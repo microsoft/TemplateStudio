@@ -1,6 +1,6 @@
 # UWP Community Template Generator
 
-Copyright (c) .NET Foundation and Contributors
+Copyright (c) Microsoft and Contributors
 
 All rights reserved. 
 

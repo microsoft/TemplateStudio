@@ -4,10 +4,6 @@ The foundation of **UWP Community Template Generator** is get a developer's File
 
 A developer should be able to quickly and easily add features, pages, and have a solid foundation to start with.  The starting code and XAML will be best practices, follow design guidelines and be commented to help aid in enabling everything a developer to get started and understand **why** something is like it is. 
 
-Simplicity and a low barrier to entry are must-have features of every API. If you have any second thoughts about the complexity of a design, it is almost always much better to cut the feature from the current release and spend more time to get the design right for the next release. 
-
-You can always add to an API, you cannot ever remove anything from one. If the design does not feel right, and you ship it anyway, you are likely to regret having done so.
-
 That's why many of the guidelines of this document are obvious and serve only one purpose: Simplicity.
 
 ## A good pull request
