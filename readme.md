@@ -46,6 +46,8 @@ Do you want to contribute? Here are our [contribution guidelines](https://github
  * Principle #6: All features will be supported for two Windows SDK for Windows 10 release cycles or until another principle supersedes it.
  * Principle #7: Templates released in production will try to adhere to the design language used in the current release of Windows 10.
 
+This project has adopted the code of conduct defined by the [http://contributor-covenant.org/](Contributor Covenant) to clarify expected behavior in our community. 
+
 ## Roadmap
 Read what we [plan for next iteration](https://github.com/Microsoft/UWPCommunityTemplates/issues?q=is%3Aopen+is%3Aissue+milestone%3Av0.1), and feel free to ask questions.
 
