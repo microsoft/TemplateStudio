@@ -35,7 +35,7 @@ Coming soon
 Please use [GitHub issues](https://github.com/Microsoft/UWPCommunityTemplates/issues) for questions or comments.  If you have specific feature requests or would like to vote on what others are recommending, please go to the [GitHub issues](https://github.com/Microsoft/UWPCommunityTemplates/issues)section as well.  We would love to see what you are thinking.
 
 ## Contributing
-Do you want to contribute? Here are our [contribution guidelines](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/contributing.md).
+Do you want to contribute? Here are our [contribution guidelines](https://github.com/Microsoft/UWPCommunityTemplates/blob/master/contributing.md).
 
 ## Principles
  * Principle #1: Generated templates will be kept simple.
