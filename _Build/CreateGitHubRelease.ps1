@@ -27,7 +27,7 @@ $body = @{
 }
 
 $releaseParams = @{ 
-   Uri = "https://api.github.com/repos/"+ $owner + "/" + $repos + "/releases";     
+   Uri = "https://api.github.com/repos/$reposOwner/$reposName/releases";     
    Method = 'POST'; 
    Headers = @{ 
      Authorization = 'Basic ' + [Convert]::ToBase64String( 
@@ -36,6 +36,7 @@ $releaseParams = @{
     ContentType = 'application/json'; 
     Body = (ConvertTo-Json $body -Compress) 
   } 
+
  
 Write-Host "Creating release in GitHub for version" $versionNumber
 
