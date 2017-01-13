@@ -1,7 +1,7 @@
 ﻿[CmdletBinding()]
 Param(
   [Parameter(Mandatory=$True,Position=1)]
-  [string]$versionNumber,
+  [string]$buildNumber,
   [Parameter(Mandatory=$True,Position=2)]
   [string]$reposOwner,
   [Parameter(Mandatory=$True,Position=3)]
@@ -13,11 +13,21 @@ Param(
 )
 
 Write-Host "Info..."
-Write-Host "Version Number" $versionNumber
+Write-Host "Build Number" $buildNumber
 Write-Host "Repos Owner" $reposOwner
 Write-Host "Repos Name" $reposName
 Write-Host "Branch" $branch
 
+$TfsBuildVersionRegEx = "_v(\d+)\.(\S+)\.(\d+)"
+
+if($buildNumber -match $TfsBuildVersionRegEx){
+
+	$versionNumber = $matches[0].Replace("_","")
+    Write-Host "Version Number" $versionNumber
+}
+else{
+	throw "Build format does not match the expected pattern (buildName_version)"
+}
 
 $body = @{
   tag_name = $versionNumber;
