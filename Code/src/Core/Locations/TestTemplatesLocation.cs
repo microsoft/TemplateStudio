@@ -12,7 +12,7 @@ namespace Microsoft.Templates.Core.Locations
         public override void Copy(string workingFolder)
         {
             Copy($@"..\..\..\{TemplatesLocation.PackagesName}", workingFolder);
-            Copy($@"..\..\..\{TemplatesLocation.TemplatesName}", workingFolder);
+            Copy($@"..\..\..\..\..\{TemplatesLocation.TemplatesName}", workingFolder);
         }
 
         protected static void Copy(string sourceFolder, string workingFolder)

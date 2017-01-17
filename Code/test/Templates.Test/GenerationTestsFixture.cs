@@ -7,7 +7,7 @@ namespace Microsoft.Templates.Test
     {
         internal const string TestAppsPath = @"..\..\Tests\Apps\";
         internal const string TestPagesPath = @"..\..\Tests\Pages\";
-        internal const string TemplatePath = @"..\..\..\Templates";
+        internal const string TemplatePath = @"..\..\..\..\..\Templates";
 
         public void Dispose()
         {
