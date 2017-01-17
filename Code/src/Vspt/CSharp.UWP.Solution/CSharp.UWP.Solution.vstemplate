@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" 
+            Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" 
+            xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>UWP Community Template based App</Name>
+    <Description>Access to the UWP Application Gallery from Microsoft Templates</Description>
+    <Icon>CSharp.UWP.Solution.ico</Icon>
+    <ProjectType>CSharp</ProjectType>
+    <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
+    <SortOrder>1000</SortOrder>
+    <TemplateID>5471541a-7eac-4feb-a834-0d6ca271a946</TemplateID>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>UWP.App</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <CustomParameters>
+      <CustomParameter Name="$uwptemplates.category$" Value="Windows/Universal"/>
+    </CustomParameters>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.Templates, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e4ef4cc7a47ae0c5</Assembly>
+    <FullClassName>Microsoft.Templates.Extension.SolutionWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>
