@@ -23,47 +23,47 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory, MemberData("GetAppTemplates", GenerationTestsFixture.TemplatePath), Trait("Type", "AppGeneration")]
-        public void GenerateAndBuildAppFromTemplate(string templateName)
+        public void GenerateAppFromTemplate(string template)
         {
             //Set up test repos
             var repos = new TemplatesRepository(new TestTemplatesLocation());
             repos.Sync();
 
             //Generate app
-            var outputPath = GenerationTestsFixture.TestAppsPath + templateName;
-            GenerateApp(templateName, repos, outputPath);
+            var outputPath = GenerationTestsFixture.TestAppsPath + template;
+            GenerateApp(template, repos, outputPath);
 
             //Build solution
-            int exitCode = BuildSolution(templateName, outputPath);
+            int exitCode = BuildSolution(template, outputPath);
 
             //Assert
-            Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully.", templateName));
+            Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully.", template));
         }
 
 
         [Theory, MemberData("GetPageTemplates", GenerationTestsFixture.TemplatePath), Trait("Type", "PageGeneration")]
-        public void GenerateAndBuildPageFromTemplate(string templateName,  string appTemplateName)
+        public void GeneratePageFromTemplate(string template,  string appTemplate)
         {
             //Set up test repos
             var repos = new TemplatesRepository(new TestTemplatesLocation());
             repos.Sync();
 
             //Generate app
-            var appOutputPath = GenerationTestsFixture.TestPagesPath + appTemplateName;
-            GenerateApp(appTemplateName, repos, appOutputPath);
+            var appOutputPath = GenerationTestsFixture.TestPagesPath + appTemplate;
+            GenerateApp(appTemplate, repos, appOutputPath);
 
             //Generate page
-            var pageOutputPath = appOutputPath + "\\" + appTemplateName;
-            var page = GeneratePage(templateName, repos, pageOutputPath);
+            var pageOutputPath = appOutputPath + "\\" + appTemplate;
+            var page = GeneratePage(template, repos, pageOutputPath);
 
             //Add file to proj
-            AddToProject(appTemplateName, pageOutputPath, page);
+            AddToProject(appTemplate, pageOutputPath, page);
 
             //Build solution
-            int exitCode = BuildSolution(appTemplateName, appOutputPath);
+            int exitCode = BuildSolution(appTemplate, appOutputPath);
 
             //Assert
-            Assert.True(exitCode.Equals(0), string.Format("Solution {0} with page {1} was not built successfully.", appTemplateName, templateName));
+            Assert.True(exitCode.Equals(0), string.Format("Solution {0} with page {1} was not built successfully.", appTemplate, template));
             
         }
 
@@ -135,7 +135,7 @@ namespace Microsoft.Templates.Test
             };
 
             var process = Process.Start(startInfo);
-            Debug.Print(process.StandardOutput.ReadToEnd());
+            File.WriteAllText(outputPath + "\\buildOutput.txt", process.StandardOutput.ReadToEnd());
             process.WaitForExit();
 
             return process.ExitCode;

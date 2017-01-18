@@ -5,8 +5,8 @@ namespace Microsoft.Templates.Test
 {
     public class GenerationTestsFixture : IDisposable
     {
-        internal const string TestAppsPath = @"..\..\Tests\Apps\";
-        internal const string TestPagesPath = @"..\..\Tests\Pages\";
+        internal const string TestAppsPath = @"..\..\Temp\Apps\";
+        internal const string TestPagesPath = @"..\..\Temp\Pages\";
         internal const string TemplatePath = @"..\..\..\..\..\Templates";
 
         public void Dispose()
