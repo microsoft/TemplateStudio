@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Microsoft.Templates.Core.Locations;
 
-namespace Core.Test
+namespace Microsoft.Templates.Core.Test
 {
     public class UnitTestsTemplatesLocation : TemplatesLocation
     {

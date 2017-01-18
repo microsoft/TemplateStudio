@@ -3,11 +3,10 @@ using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.Templates.Core;
 using Xunit;
 using Xunit.Sdk;
 
-namespace Core.Test
+namespace Microsoft.Templates.Core.Test
 {
     public class ITemplateInfoExtensionsTest : IClassFixture<TemplatesFixture>
     {
