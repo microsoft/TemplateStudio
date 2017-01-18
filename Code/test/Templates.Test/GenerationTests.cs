@@ -13,58 +13,66 @@ namespace Microsoft.Templates.Test
 {
     public class GenerationTests : IClassFixture<GenerationTestsFixture>
     {
-        private GenerationTestsFixture _fixture;
+        private GenerationTestsFixture fixture;
         private const string Platform = "x86";
         private const string Configuration = "Debug";
 
         public GenerationTests(GenerationTestsFixture fixture)
         {
-            _fixture = fixture;
+            this.fixture = fixture;
         }
 
         [Theory, MemberData("GetAppTemplates", GenerationTestsFixture.TemplatePath), Trait("Type", "AppGeneration")]
-        public void GenerateAppFromTemplate(string template)
+        public void GenerateApp(string appTemplate)
         {
             //Set up test repos
             var repos = new TemplatesRepository(new TestTemplatesLocation());
             repos.Sync();
 
             //Generate app
-            var outputPath = GenerationTestsFixture.TestAppsPath + template;
-            GenerateApp(template, repos, outputPath);
+            var outputPath = Path.Combine(fixture.TestAppsPath, appTemplate);
+            GenerateApp(appTemplate, repos, outputPath);
 
             //Build solution
-            int exitCode = BuildSolution(template, outputPath);
+            var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
+            int exitCode = BuildSolution(appTemplate, outputPath, outputFile);
 
             //Assert
-            Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully.", template));
+            Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", appTemplate, Path.GetFullPath(outputFile)));
+
+            //Clean
+            Directory.Delete(outputPath, true);
         }
 
 
         [Theory, MemberData("GetPageTemplates", GenerationTestsFixture.TemplatePath), Trait("Type", "PageGeneration")]
-        public void GeneratePageFromTemplate(string template,  string appTemplate)
+        public void GeneratePage(string pageTemplate,  string targetAppTemplate)
         {
             //Set up test repos
             var repos = new TemplatesRepository(new TestTemplatesLocation());
             repos.Sync();
 
             //Generate app
-            var appOutputPath = GenerationTestsFixture.TestPagesPath + appTemplate;
-            GenerateApp(appTemplate, repos, appOutputPath);
+            var appOutputPath = Path.Combine(fixture.TestPagesPath, targetAppTemplate);
+            GenerateApp(targetAppTemplate, repos, appOutputPath);
 
             //Generate page
-            var pageOutputPath = appOutputPath + "\\" + appTemplate;
-            var page = GeneratePage(template, repos, pageOutputPath);
+            var pageOutputPath = Path.Combine(appOutputPath, targetAppTemplate);
+            var page = GeneratePage(pageTemplate, repos, pageOutputPath);
 
             //Add file to proj
-            AddToProject(appTemplate, pageOutputPath, page);
+            AddToProject(targetAppTemplate, pageOutputPath, page);
 
             //Build solution
-            int exitCode = BuildSolution(appTemplate, appOutputPath);
+            var outputFile = Path.Combine(appOutputPath, "_buildOutput.txt");
+            int exitCode = BuildSolution(targetAppTemplate, appOutputPath, outputFile);
 
             //Assert
-            Assert.True(exitCode.Equals(0), string.Format("Solution {0} with page {1} was not built successfully.", appTemplate, template));
-            
+            Assert.True(exitCode.Equals(0), string.Format("Solution {0} with page {1} was not built successfully. Please see {2} for more details.", targetAppTemplate, pageTemplate, Path.GetFullPath(outputFile)));
+
+            //Clean
+            Directory.Delete(appOutputPath, true);
+
         }
 
         public static IEnumerable<object[]> GetPageTemplates(string path)
@@ -121,7 +129,7 @@ namespace Microsoft.Templates.Test
             return TemplateCreator.InstantiateAsync(pageTemplate, templateName, null, pageOutputPath, new Dictionary<string, string>(), true).Result;
         }
 
-        private static int BuildSolution(string solutionName, string outputPath)
+        private static int BuildSolution(string solutionName, string outputPath, string outputFile)
         {
             //Build
             var solutionFile = Path.GetFullPath(outputPath + @"\" + solutionName + ".sln");
@@ -135,7 +143,7 @@ namespace Microsoft.Templates.Test
             };
 
             var process = Process.Start(startInfo);
-            File.WriteAllText(outputPath + "\\buildOutput.txt", process.StandardOutput.ReadToEnd());
+            File.WriteAllText(outputFile, process.StandardOutput.ReadToEnd());
             process.WaitForExit();
 
             return process.ExitCode;
