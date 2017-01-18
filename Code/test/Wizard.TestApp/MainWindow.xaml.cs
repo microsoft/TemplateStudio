@@ -17,6 +17,8 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.IO;
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Locations;
 
 namespace Microsoft.Templates.Wizard.TestApp
 {
@@ -40,7 +42,7 @@ namespace Microsoft.Templates.Wizard.TestApp
             try
             {
                 testShell = new TestVsShell(SeedSolName.Text + DateTime.Now.ToString("MMddmmss"), DefaultNamespace.Text, Status);
-                genWizard = new GenerationWizard(testShell, testShell.VsData.Solution);
+                genWizard = new GenerationWizard(testShell, testShell.VsData.Solution,new TemplatesRepository(new TestTemplatesLocation()) );
                 genWizard.AddProjectInit();
                 genWizard.AddProjectFinish();
 

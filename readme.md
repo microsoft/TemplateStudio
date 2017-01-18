@@ -1,6 +1,7 @@
-|CI        |Templates Publishing |
-|:--------:|:-------------------:|
-|![CI Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/114/badge)   | ![Templates Publishing Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/113/badge) | 
+|Branch|CI        |Templates Publishing |
+|:-----|:--------:|:-------------------:|
+|vnext|![CI Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/114/badge)   | ![Templates Publishing Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/113/badge) | 
+|master|N/A|N/A| 
 
 UWP Community Template Generator 
 ===========
@@ -9,7 +10,7 @@ The UWP Community Template Generator goal is to help developers with their File-
 Example scenario:
 I need an app that uses MVVM Light, uses Cortana, Speech APIs, Ink on one of the pages and will need Azure mobile services.   It will need a background service that does a query every 5 minutes.
 
-To reach our developers in an up-to-date fashion, the project is broken up into two primary parts, templates and the generator.  The generator is built on top of [dotnet Template Engine](https://github.com/dotnet/templating) and is a Visual Studio extension a developer will install while the templates will be hosted on a CDN so we can update what is created independntly of the generator.  The generator uses templates to create actual projects, pages and/or features for the developers. 
+To reach our developers in an up-to-date fashion, the project is broken up into two primary parts, templates and the generator.  The generator is built on top of [dotnet Template Engine](https://github.com/dotnet/templating), it is a Visual Studio extension a developer will install while the templates will be hosted on a CDN so we can update what is created independntly of the generator.  The generator uses templates to create actual projects, pages and/or features for the developers. 
 
 ## Getting Started
 Please read the [getting Started with the UWP Template Community Generator](docs/Getting-Started.md) page for more detailed information about using the UWP Community Template Generator.
@@ -36,7 +37,7 @@ Coming soon
 Please use [GitHub issues](https://github.com/Microsoft/UWPCommunityTemplates/issues) for questions or comments.  If you have specific feature requests or would like to vote on what others are recommending, please go to the [GitHub issues](https://github.com/Microsoft/UWPCommunityTemplates/issues)section as well.  We would love to see what you are thinking.
 
 ## Contributing
-Do you want to contribute? Here are our [contribution guidelines](https://github.com/Microsoft/UWPCommunityTemplates/blob/master/contributing.md).
+Do you want to contribute? Here are our [contribution guidelines](contributing.md).
 
 ## Principles
  * Principle #1: Generated templates will be kept simple.

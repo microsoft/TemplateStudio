@@ -122,6 +122,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Core\Core.csproj">
+      <Project>{51DDB424-2DA2-4871-A042-4F4F9B622515}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Wizard\Wizard.csproj">
       <Project>{9e58eacc-c798-43a0-89a0-a5a32815272d}</Project>
       <Name>Wizard</Name>
