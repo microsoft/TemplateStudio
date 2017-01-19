@@ -67,7 +67,7 @@ if($publicKeyToken){
 
     $wizardAssemblyStrongName = $projectTemplateContent.VSTemplate.WizardExtension.Assembly
     $wizardAssemblyStrongName = $wizardAssemblyStrongName -replace $VersionRegEx, $versionNumber 
-    $wizardAssemblyStrongName = $wizardAssemblyStrongName -replace "PublicKeyToken=.*", "PublicKeyToken=$newPublicKeyToken"
+    $wizardAssemblyStrongName = $wizardAssemblyStrongName -replace "PublicKeyToken=.*", "PublicKeyToken=$publicKeyToken"
 
     $projectTemplateContent.VSTemplate.WizardExtension.Assembly = $wizardAssemblyStrongName
     
