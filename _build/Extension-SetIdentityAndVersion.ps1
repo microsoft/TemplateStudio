@@ -7,10 +7,7 @@ Param(
   [string]$vsixIdentity,
 
   [Parameter(Mandatory=$False,Position=3)]
-  [string]$publicKeyToken = "e4ef4cc7a47ae0c5", #TestKey.snk
-
-  [Parameter(Mandatory=$False,Position=4)]
-  [string]$codePathPattern = "code\\"
+  [string]$publicKeyToken = "e4ef4cc7a47ae0c5" #TestKey.snk
 )
 
 $VersionRegex = "\d+\.\d+\.\d+\.\d+"
@@ -26,7 +23,7 @@ else{
 ## SET IDENTITY AND VERSION IN VSIX Manifest
 if($vsixIdentity){
   Write-Host "Setting Identity in VSIX manifest"
-  $vsixManifestFile = Get-ChildItem -include "*source.extension.vsixmanifest" -recurse | Where-Object{ $_.FullName -match $codePathPattern}
+  $vsixManifestFile = Get-ChildItem -include "*source.extension.vsixmanifest" -recurse | Where-Object{ $_.FullName -notmatch "\\Templates\\" }
   if($vsixManifestFile){
     [xml]$manifestContent = Get-Content $vsixManifestFile
     $manifestContent.PackageManifest.Metadata.Identity.Id = $vsixIdentity
@@ -44,7 +41,7 @@ else{
 
 ## APPLY VERSION TO ASSEMBLY FILES
 Write-Host "Applying version to AssemblyInfo Files in matching the path pattern '$codePathPattern'" 
-$files = Get-ChildItem -include "*AssemblyInfo.cs" -Recurse | Where-Object{ $_.FullName -match $codePathPattern}
+$files = Get-ChildItem -include "*AssemblyInfo.cs" -Recurse |  Where-Object{ $_.FullName -notmatch "\\Templates\\" }
 if($files)
 {
     Write-Host "Will apply $versionNumber to $($files.count) files."
@@ -64,7 +61,7 @@ else
 ## APPLY VERSION TO PROJECT TEMPLATE WIZARD REFERENCE
 if($publicKeyToken){
   Write-Host "Setting Wizard Extension configuration in Project Template"
-  $projectTemplate = Get-ChildItem -include "*-vstemplate" -recurse | Where-Object{ $_.FullName -match $codePathPattern}
+  $projectTemplate = Get-ChildItem -include "*-vstemplate" -recurse |  Where-Object{ $_.FullName -notmatch "\\Templates\\" }
   if($projectTemplate){
     [xml]$projectTemplateContent = Get-Content $projectTemplate
 
