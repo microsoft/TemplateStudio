@@ -65,9 +65,9 @@ if($publicKeyToken){
   if($projectTemplate){
     [xml]$projectTemplateContent = Get-Content $projectTemplate
 
-    $newPublicKeyToken = "PublicKeyToken=$publicKeyToken"
-    $wizardAssemblyStrongName = $projectTemplateContent.VSTemplate.WizardExtension.Assembly -replace $VersionRegEx, $versionNumber 
-    $wizardAssemblyStrongName = $wizardExtensioAssembly -replace "PublicKeyToken=.*</Assembly>", "$newPublicKeyToken</Assembly>"
+    $wizardAssemblyStrongName = $projectTemplateContent.VSTemplate.WizardExtension.Assembly
+    $wizardAssemblyStrongName = $wizardAssemblyStrongName -replace $VersionRegEx, $versionNumber 
+    $wizardAssemblyStrongName = $wizardAssemblyStrongName -replace "PublicKeyToken=.*", "PublicKeyToken=$newPublicKeyToken"
 
     $projectTemplateContent.VSTemplate.WizardExtension.Assembly = $wizardAssemblyStrongName
     
