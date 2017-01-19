@@ -205,7 +205,7 @@ namespace Microsoft.Templates.Wizard
         private void ShowReadMe(ITemplateInfo template)
         {
             //TODO: GoTo formula Readme / Help page
-            _vsShell.Navigate("https://ralarcon.github.io/gh-pages/");
+            _vsShell.Navigate("https://github.com/Microsoft/UWPCommunityTemplates/tree/vnext");
         }
 
         private void ShowException(string message, Exception ex)
