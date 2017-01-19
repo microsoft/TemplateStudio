@@ -17,19 +17,10 @@ namespace Microsoft.Templates.Core
     {
         private const string FolderName = "UWPTemplates";
 
-        TemplatesLocation _location;
+        private readonly TemplatesLocation _location;
 
-        private Lazy<string> _workingFolder = new Lazy<string>(() =>
-        {
-            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), FolderName);
-        });
-        public string WorkingFolder
-        {
-            get
-            {
-                return _workingFolder.Value;
-            }
-        }
+        private readonly Lazy<string> _workingFolder = new Lazy<string>(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), FolderName));
+        public string WorkingFolder => _workingFolder.Value;
 
         public TemplatesRepository(TemplatesLocation location)
         {
@@ -68,7 +59,7 @@ namespace Microsoft.Templates.Core
             throw new NotImplementedException();
         }
 
-        private void EnsureHostInitialized()
+        private static void EnsureHostInitialized()
         {
             if (EngineEnvironmentSettings.Host == null)
             {
