@@ -1,0 +1,10 @@
+﻿<Application
+    x:Class="App_Name.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:App_Name"
+    RequestedTheme="Light">
+    <Application.Resources>
+        <vm:ViewModelLocator x:Key="Locator" />
+    </Application.Resources>
+</Application>
