@@ -1,6 +1,6 @@
 |Branch|CI        |Templates Publishing |
 |:-----|:--------:|:-------------------:|
-|vnext|![CI Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/114/badge)   | ![Templates Publishing Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/113/badge) | 
+|vnext|![CI Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/114/badge) | ![Templates Publishing Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/113/badge) | 
 |master|N/A|N/A| 
 
 UWP Community Template Generator 

@@ -19,6 +19,7 @@ using System.Runtime.CompilerServices;
 using System.IO;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Locations;
+using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.Wizard.TestApp
 {
@@ -50,7 +51,7 @@ namespace Microsoft.Templates.Wizard.TestApp
 
                 LockProjectActions();
             }
-            catch (UserCancelWizardException)
+            catch (WizardCancelledException)
             {
                 MessageBox.Show($"User Cancelled!", "Wizard exited", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
@@ -84,7 +85,7 @@ namespace Microsoft.Templates.Wizard.TestApp
                 testShell.UpdateSelectedItemPath(PageRelativePath.Text);
                 genWizard.AddPageToActiveProject();
             }
-            catch (UserCancelWizardException)
+            catch (WizardCancelledException)
             {
                 MessageBox.Show($"User Cancelled!", "Wizard exited", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
@@ -100,7 +101,7 @@ namespace Microsoft.Templates.Wizard.TestApp
             { 
                 genWizard.AddFeatureToActiveProject();
             }
-            catch (UserCancelWizardException)
+            catch (WizardCancelledException)
             {
                 MessageBox.Show($"User Cancelled!", "Wizard exited", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }

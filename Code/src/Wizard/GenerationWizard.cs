@@ -40,21 +40,13 @@ namespace Microsoft.Templates.Wizard
 
         public void AddProjectInit()
         {
-            try
-            {
-                _vsShell.ShowStatusBarMessage(StringRes.UIAddProjectAdding);
+            _vsShell.ShowStatusBarMessage(StringRes.UIAddProjectAdding);
+            _addProjectResult = ShowAddProjectDialog(_vsSolutionInfo.Name, _vsSolutionInfo.TemplateCategory);
 
-                _addProjectResult = ShowAddProjectDialog(_vsSolutionInfo.Name, _vsSolutionInfo.TemplateCategory);
-
-                if (_addProjectResult == null)
-                {
-                    _vsShell.ShowStatusBarMessage(StringRes.UIActionCancelled);
-                    _vsShell.CancelWizard();
-                }
-            }
-            catch (Exception ex)
+            if (_addProjectResult == null)
             {
-                ShowException(StringRes.UIErrorProjectCantBeGenerated, ex);
+                _vsShell.ShowStatusBarMessage(StringRes.UIActionCancelled);
+                _vsShell.CancelWizard();
             }
         }
         public void AddProjectFinish()
@@ -84,78 +76,87 @@ namespace Microsoft.Templates.Wizard
 
         public void AddPageToActiveProject()
         {
-            try
+            if (_vsShell.GetActiveProjectName() != "")
             {
-                if (_vsShell.GetActiveProjectName() != "")
-                {
-                    _vsShell.ShowStatusBarMessage(StringRes.UIAddPage);
+                _vsShell.ShowStatusBarMessage(StringRes.UIAddPage);
 
-                    string suggestedNamespace = _vsShell.GetSelectedItemDefaultNamespace();
+                string suggestedNamespace = _vsShell.GetSelectedItemDefaultNamespace();
 
-                    AddPageResult result = ShowAddPageDialog(_vsShell.GetActiveProjectName(), _vsSolutionInfo.TemplateCategory, suggestedNamespace);
-                    if (result != null)
-                    {
-                        string relativeItemPath = _vsShell.GetSelectedItemPath(true);
-
-                        GeneratePage(result.PageTemplate, _vsShell.GetActiveProjectName(), _vsShell.GetActiveProjectPath(), result.Namespace, result.PageName, relativeItemPath, _vsShell);
-                        _vsShell.ShowStatusBarMessage(StringRes.UIPageAddedPattern.UseParams(result.PageName));
-                    }
-                    else
-                    {
-                        _vsShell.ShowStatusBarMessage(StringRes.UIActionCancelled);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show(StringRes.UINoActiveProjectMessage, StringRes.UIMessageBoxTitlePattern.UseParams(StringRes.AddPageAction), MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-            }
-            catch(Exception ex)
-            {
-                ShowException(StringRes.UIErrorPageCantBeAdded, ex);
-            }
-        }
-        public void AddFeatureToActiveProject()
-        {
-            try
-            {
-                AddFeaturesResult result = ShowAddFeaturesDialog(_vsShell.GetActiveProjectName(), _vsSolutionInfo.TemplateCategory);
+                AddPageResult result = ShowAddPageDialog(_vsShell.GetActiveProjectName(), _vsSolutionInfo.TemplateCategory, suggestedNamespace);
                 if (result != null)
                 {
-                    //TODO: Generate Feature Code
+                    string relativeItemPath = _vsShell.GetSelectedItemPath(true);
 
-                    //TODO: Include generated code
+                    GeneratePage(result.PageTemplate, _vsShell.GetActiveProjectName(), _vsShell.GetActiveProjectPath(), result.Namespace, result.PageName, relativeItemPath, _vsShell);
+                    _vsShell.ShowStatusBarMessage(StringRes.UIPageAddedPattern.UseParams(result.PageName));
                 }
                 else
                 {
                     _vsShell.ShowStatusBarMessage(StringRes.UIActionCancelled);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                ShowException(StringRes.UIErrorFeatureCantBeAdded, ex);
+                MessageBox.Show(StringRes.UINoActiveProjectMessage, StringRes.UIMessageBoxTitlePattern.UseParams(StringRes.AddPageAction), MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+        public void AddFeatureToActiveProject()
+        {
+            AddFeaturesResult result = ShowAddFeaturesDialog(_vsShell.GetActiveProjectName(), _vsSolutionInfo.TemplateCategory);
+            if (result != null)
+            {
+                //TODO: Generate Feature Code
+
+                //TODO: Include generated code
+            }
+            else
+            {
+                _vsShell.ShowStatusBarMessage(StringRes.UIActionCancelled);
             }
         }
 
         private AddProjectResult ShowAddProjectDialog(string targetProjectName, string vsTemplateCategory)
         {
-            AddNewProject addProjectDialog = new AddNewProject(targetProjectName, vsTemplateCategory, _templatesRepository, AddProjectSteps.SelectProject);
-            var result = addProjectDialog.ShowDialog();
+            try {
+                AddNewProject addProjectDialog = new AddNewProject(targetProjectName, vsTemplateCategory, _templatesRepository, AddProjectSteps.SelectProject);
+                var result = addProjectDialog.ShowDialog();
 
-            return (result.HasValue && result.Value ? addProjectDialog.ResultInfo : null);
+                return (result.HasValue && result.Value ? addProjectDialog.ResultInfo : null);
+            }
+            catch (Exception ex)
+            {
+                ShowException(StringRes.UIErrorProjectCantBeGenerated, ex);
+                return null;
+            }
         }
 
         private AddFeaturesResult ShowAddFeaturesDialog(string targetProjectName, string vsTemplateCategory)
         {
-            MessageBox.Show("Not implemented!", StringRes.UIMessageBoxTitlePattern.UseParams(StringRes.AddFeatureAction), MessageBoxButton.OK, MessageBoxImage.Asterisk);
-            return null;
+            try
+            {
+                MessageBox.Show("Not implemented!", StringRes.UIMessageBoxTitlePattern.UseParams(StringRes.AddFeatureAction), MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                ShowException(StringRes.UIErrorFeatureCantBeAdded, ex);
+                return null;
+            }
         }
 
         private AddPageResult ShowAddPageDialog(string targetProjectName, string vsTemplateCategory, string suggestedNamespace)
         {
-            AddPage addPageDialog = new AddPage(targetProjectName, vsTemplateCategory, suggestedNamespace, _templatesRepository);
-            var result = addPageDialog.ShowDialog();
-            return (result.HasValue && result.Value ? addPageDialog.ResultInfo : null);
+            try
+            {
+                AddPage addPageDialog = new AddPage(targetProjectName, vsTemplateCategory, suggestedNamespace, _templatesRepository);
+                var result = addPageDialog.ShowDialog();
+                return (result.HasValue && result.Value ? addPageDialog.ResultInfo : null);
+            }
+            catch (Exception ex)
+            {
+                ShowException(StringRes.UIErrorPageCantBeAdded, ex);
+                return null;
+            }
         }
 
         private static void GenerateProject(ITemplateInfo template, SolutionInfo solutionInfo, IVisualStudioShell vsShell)

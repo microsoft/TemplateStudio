@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.Wizard.TestApp
 {
@@ -66,7 +67,7 @@ namespace Microsoft.Templates.Wizard.TestApp
 
         public void CancelWizard()
         {
-            throw new UserCancelWizardException("Se ha cancelado el wizard.");
+            throw new WizardCancelledException();
         }
 
         public string GetActiveProjectName()
