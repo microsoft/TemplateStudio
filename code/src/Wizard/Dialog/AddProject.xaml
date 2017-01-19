@@ -1,0 +1,103 @@
+﻿<Window x:Class="Microsoft.Templates.Wizard.Dialog.AddNewProject"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:local="clr-namespace:Microsoft.Templates.Wizard.Dialog"
+             Width="432.028" 
+             Height="500"
+             Title="UWP Community Templates"
+             WindowStartupLocation="CenterScreen" 
+             ResizeMode="NoResize" 
+             ShowInTaskbar="False"
+            x:Name="_this" >
+    <Grid>
+        <Image Source="pack://application:,,,/Microsoft.Templates.Wizard;component/Resources/Solution.png" 
+                   Width="15" 
+                   Height="15" 
+                   VerticalAlignment="Top" 
+                   HorizontalAlignment="Left"
+                   Margin="30,10,0,0"/>
+
+        <TextBlock x:Name="SolutionNameTbx" 
+                       HorizontalAlignment="Stretch" 
+                       VerticalAlignment="Top"
+                       Margin="50,10,10,0" 
+                       Text="SolutionName"/>
+
+        <Canvas x:Name="Projects"  
+                Visibility="{Binding ProjectsVisibilty}" 
+                DataContext="{Binding ElementName=_this}"
+                HorizontalAlignment="Stretch">
+
+            <TextBlock Text="Select Application Type:" 
+                       VerticalAlignment="Top" 
+                       HorizontalAlignment="Left"
+                       Margin="30,40,15,0" FontSize="14" FontWeight="Bold" />
+
+            <ItemsControl Name="ProjectOptions" 
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch" 
+                       Margin="15,60,15,40">
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <RadioButton GroupName="ProjectTypes" Margin="10,10" Content="{Binding Item.Name}" Command="{Binding Command}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+
+            </ItemsControl>
+        </Canvas>
+
+        <Canvas x:Name="SummaryInfo"  
+                Visibility="Hidden" 
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch">
+
+            <TextBlock Text="Summary Information:" 
+                       VerticalAlignment="Top" 
+                       HorizontalAlignment="Left"
+                       Margin="30,40,15,0" FontSize="14" FontWeight="Bold" />
+
+            <TextBlock Name="SummaryText"
+                    Text="{Binding Summary}"
+                       DataContext="{Binding ElementName=_this}"
+                       VerticalAlignment="Stretch" 
+                       HorizontalAlignment="Left"
+                       Margin="30,60,15,0" />
+        </Canvas>
+
+        <Button x:Name="CancelBtn" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Bottom" 
+                Width="75" 
+                Content="Cancel" 
+                Margin="0,0,10,10" 
+                Click="CancelBtn_Click"/>
+
+
+        <Button x:Name="NextBtn" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Bottom" 
+                Content="{Binding NextButtonLabel}"
+                DataContext="{Binding ElementName = _this}"
+                Width="75" 
+                Margin="0,0,90,10" 
+                Click="NextBtn_Click"/>
+
+        <Button x:Name="PrevBtn" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Bottom" 
+                Content="Previous"
+                IsEnabled="{Binding PrevButtonEnabled}"
+                DataContext="{Binding ElementName = _this}"
+                Width="75" 
+                Margin="0,0,170,10" 
+                Click="PrevBtn_Click"/>
+    
+    </Grid>
+</Window>
+
+
+
+    
+    

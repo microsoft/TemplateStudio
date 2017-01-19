@@ -1,0 +1,28 @@
+{
+  "author": "Microsoft",
+  "classifications": ["Universal"],
+  "name": "MVVMLightPage",
+  "groupIdentity": "Microsoft.UWPTemplates.MVVMLightPage",
+  "identity": "Microsoft.UWPTemplates.MVVMLightPage.CSharp",
+  "shortName": "mvvmpage",
+  "tags": {
+    "language": "C#",
+    "type": "item"
+  },
+  "sourceName": "App_Page",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\App_Page\\App_PagePage.xaml"
+    },
+    {
+      "path": ".\\App_Page\\App_PagePage.xaml.cs"
+    },
+    {
+      "path": ".\\App_Page\\App_PageViewModel.cs"
+    },
+    {
+      "path": ".\\App_Page\\ViewModelLocator.cs"
+    }
+  ]
+}
