@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.TemplateEngine.Edge.Settings;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Locations;
@@ -22,80 +24,84 @@ namespace Microsoft.Templates.Test
             this.fixture = fixture;
         }
 
-        [Theory, MemberData("GetAppTemplates", GenerationTestsFixture.TemplatePath), Trait("Type", "AppGeneration")]
-        public void GenerateApp(string appTemplate)
+        [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
+        public void GenerateProject(string projectTemplateName)
         {
-            //Set up test repos
-            var repos = new TemplatesRepository(new TestTemplatesLocation());
-            repos.Sync();
+            var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.Name == projectTemplateName).FirstOrDefault();
 
             //Generate app
-            var outputPath = Path.Combine(fixture.TestAppsPath, appTemplate);
-            GenerateApp(appTemplate, repos, outputPath);
+            string outputPath = GenerateProject(fixture.TestProjectsPath, projectTemplateName, projectTemplate);
 
             //Build solution
             var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
-            int exitCode = BuildSolution(appTemplate, outputPath, outputFile);
+            int exitCode = BuildSolution(projectTemplateName, outputPath, outputFile);
 
             //Assert
-            Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", appTemplate, Path.GetFullPath(outputFile)));
+            Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", projectTemplate.Name, Path.GetFullPath(outputFile)));
 
             //Clean
             Directory.Delete(outputPath, true);
         }
 
+       
 
-        [Theory, MemberData("GetPageTemplates", GenerationTestsFixture.TemplatePath), Trait("Type", "PageGeneration")]
-        public void GeneratePage(string pageTemplate,  string targetAppTemplate)
+        [Theory, MemberData("GetPageTemplates"), Trait("Type", "PageGeneration")]
+        public void GeneratePage(string pageTemplateName, string targetProjectTemplateName)
         {
             //Set up test repos
-            var repos = new TemplatesRepository(new TestTemplatesLocation());
-            repos.Sync();
+            var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.Name == targetProjectTemplateName).FirstOrDefault();
+            var pageTemplate = GenerationTestsFixture.Templates.Where(t => t.Name == pageTemplateName).FirstOrDefault();
 
             //Generate app
-            var appOutputPath = Path.Combine(fixture.TestPagesPath, targetAppTemplate);
-            GenerateApp(targetAppTemplate, repos, appOutputPath);
+            var projectOutputPath = GenerateProject(fixture.TestPagesPath, targetProjectTemplateName, targetProjectTemplate);
 
             //Generate page
-            var pageOutputPath = Path.Combine(appOutputPath, targetAppTemplate);
-            var page = GeneratePage(pageTemplate, repos, pageOutputPath);
+            var pageOutputPath = Path.Combine(projectOutputPath, targetProjectTemplateName);
+            var page = TemplateCreator.InstantiateAsync(pageTemplate, pageTemplateName, null, pageOutputPath, new Dictionary<string, string>(), true).Result;
 
             //Add file to proj
-            AddToProject(targetAppTemplate, pageOutputPath, page);
+            AddToProject(targetProjectTemplateName, pageOutputPath, page);
 
             //Build solution
-            var outputFile = Path.Combine(appOutputPath, "_buildOutput.txt");
-            int exitCode = BuildSolution(targetAppTemplate, appOutputPath, outputFile);
+            var outputFile = Path.Combine(projectOutputPath, "_buildOutput.txt");
+            int exitCode = BuildSolution(targetProjectTemplateName, projectOutputPath, outputFile);
 
             //Assert
-            Assert.True(exitCode.Equals(0), string.Format("Solution {0} with page {1} was not built successfully. Please see {2} for more details.", targetAppTemplate, pageTemplate, Path.GetFullPath(outputFile)));
+            Assert.True(exitCode.Equals(0), string.Format("Solution {0} with page {1} was not built successfully. Please see {2} for more details.", targetProjectTemplateName, pageTemplateName, Path.GetFullPath(outputFile)));
 
             //Clean
-            Directory.Delete(appOutputPath, true);
+            Directory.Delete(projectOutputPath, true);
 
         }
 
-        public static IEnumerable<object[]> GetPageTemplates(string path)
+        public static IEnumerable<object[]> GetPageTemplates()
         {
-            foreach (var folder in Directory.EnumerateDirectories(path))
+            var pageTemplates = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Page);
+
+            foreach (var template in pageTemplates)
             {
-                if (folder.EndsWith("Page"))
+                var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.GetFramework() == template.GetFramework() && t.GetTemplateType() == TemplateType.Project).FirstOrDefault();
+                if (projectTemplate != null)
                 {
-                    var templateName = Path.GetFileName(folder);
-                    yield return new object[] { templateName, templateName.Replace("Page", "App") };
+                    yield return new object[] { template.Name, projectTemplate.Name };
                 }
             }
         }
 
-        public static IEnumerable<object[]> GetAppTemplates(string path)
+        public static IEnumerable<object[]> GetProjectTemplates()
         {
-            foreach (var folder in Directory.EnumerateDirectories(path))
+            var projectTemplates = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project);
+            foreach (var template in projectTemplates)
             {
-                if (folder.EndsWith("App"))
-                {
-                    yield return new object[] { Path.GetFileName(folder) };
-                }
+                yield return new object[] { template.Name };
             }
+        }
+
+        private string GenerateProject(string testPath, string projectName, ITemplateInfo projectTemplate)
+        {
+            var outputPath = Path.Combine(testPath, projectName);
+            var result = TemplateCreator.InstantiateAsync(projectTemplate, projectName, null, outputPath, new Dictionary<string, string>(), true).Result;
+            return outputPath;
         }
 
         private static void AddToProject(string projectName, string projectPath, TemplateCreationResult page)
@@ -117,17 +123,9 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        private static TemplateCreationResult GenerateApp(string templateName, TemplatesRepository repos, string outputPath)
-        {
-            var template = repos.GetAll().First(t => t.Name == templateName);
-            return TemplateCreator.InstantiateAsync(template, templateName, null, outputPath, new Dictionary<string, string>(), true).Result;
-        }
+ 
 
-        private static TemplateCreationResult GeneratePage(string templateName, TemplatesRepository repos, string pageOutputPath)
-        {
-            var pageTemplate = repos.GetAll().First(t => t.Name == templateName);
-            return TemplateCreator.InstantiateAsync(pageTemplate, templateName, null, pageOutputPath, new Dictionary<string, string>(), true).Result;
-        }
+      
 
         private static int BuildSolution(string solutionName, string outputPath, string outputFile)
         {
