@@ -1,0 +1,18 @@
+{
+  "author": "Microsoft",
+  "classifications": ["Test"],
+  "name": "ProjectTemplate",
+  "groupIdentity": "Microsoft.UWPTemplates.Test.ProjectTemplate",
+  "identity": "Microsoft.UWPTemplates.Test.ProjectTemplate.CSharp",
+  "shortName": "project-test",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "uct.type": "project",
+    "uct.framework": "fx1",
+    "uct.version": "1.0.0",
+    "uct.order": "1"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

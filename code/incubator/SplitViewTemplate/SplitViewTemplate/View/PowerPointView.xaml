@@ -1,0 +1,16 @@
+﻿<Page
+    x:Class="SplitViewTemplate.View.PowerPointView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource CustomWhite}">
+        <ScrollViewer>
+            <StackPanel Margin="24,0">
+                <TextBlock x:Uid="PowerPointTitle" Style="{StaticResource CustomHeaderStyle}" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -1,0 +1,24 @@
+{
+  "author": "Microsoft",
+  "classifications": ["Universal"],
+  "name": "CaliburnMicroApp",
+  "groupIdentity": "Microsoft.UWPTemplates.CaliburnMicroApp",
+  "identity": "Microsoft.UWPTemplates.CaliburnMicroApp.CSharp",
+  "shortName": "caliburn",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "uct.type": "project",
+    "uct.framework": "Caliburn Micro",
+    "uct.version": "1.0.0",
+    "uct.order": "2"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true,
+  "guids": [ "63643E7E-B074-4B32-B9B6-2424AD912BC3", "5F0095B7-8769-40FB-A39A-C236CFA04A0B" ],
+  "PrimaryOutputs": [
+    {
+      "path": ".\\App_Name\\App_Name.csproj"
+    }
+  ]
+}
