@@ -1,13 +1,16 @@
 [CmdletBinding()]
 Param(
   [Parameter(Mandatory=$True,Position=1)]
-  [string]$tfsBuildNumber,
+  [string]$buildNumber,
 
   [Parameter(Mandatory=$True,Position=2)]
   [string]$vsixIdentity,
 
   [Parameter(Mandatory=$False,Position=3)]
-  [string]$includeFilePathPattern = "code\\src\\"
+  [string]$publicKeyToken = "e4ef4cc7a47ae0c5", #TestKey.snk
+
+  [Parameter(Mandatory=$False,Position=4)]
+  [string]$codePathPattern = "code\\"
 )
 
 $VersionRegex = "\d+\.\d+\.\d+\.\d+"
@@ -20,22 +23,28 @@ else{
 	throw "Build format does not match the expected pattern (buildName_w.x.y.z)"
 }
 
+## SET IDENTITY AND VERSION IN VSIX Manifest
 if($vsixIdentity){
   Write-Host "Setting Identity in VSIX manifest"
-  $vsixManifestFile = Get-ChildItem -include "*source.extension.vsixmanifest" -recurse
-  [xml]$manifestContent = Get-Content $vsixManifestFile
-
-  $manifestContent.PackageManifest.Metadata.Identity.Id = $vsixIdentity
-  $manifestContent.PackageManifest.Metadata.Identity.Version = $versionNumber
-  $manifestContent.Save($vsixManifest) 
-  Write-Host "$vsixManifestFile.FullName - Version & Identity applied ($versionNumber, $vsixIdentity)"
+  $vsixManifestFile = Get-ChildItem -include "*source.extension.vsixmanifest" -recurse | Where-Object{ $_.FullName -match $codePathPattern}
+  if($vsixManifestFile){
+    [xml]$manifestContent = Get-Content $vsixManifestFile
+    $manifestContent.PackageManifest.Metadata.Identity.Id = $vsixIdentity
+    $manifestContent.PackageManifest.Metadata.Identity.Version = $versionNumber
+    $manifestContent.Save($vsixManifest) 
+    Write-Host "$vsixManifestFile.FullName - Version & Identity applied ($versionNumber, $vsixIdentity)"
+  }
+  else{
+    throw "No VSIX manifest file found."
+  }
 }
 else{
   throw "Identity is mandatory."
 }
 
-Write-Host "Applying version to AssemblyInfo Files in matching the path pattern '$includeFilePathPattern'" 
-$files = Get-ChildItem -include "*AssemblyInfo.cs" -Recurse | Where-Object{ $_.FullName -match $includeFilePathPattern}
+## APPLY VERSION TO ASSEMBLY FILES
+Write-Host "Applying version to AssemblyInfo Files in matching the path pattern '$codePathPattern'" 
+$files = Get-ChildItem -include "*AssemblyInfo.cs" -Recurse | Where-Object{ $_.FullName -match $codePathPattern}
 if($files)
 {
     Write-Host "Will apply $versionNumber to $($files.count) files."
@@ -50,4 +59,28 @@ if($files)
 else
 {
     Write-Warning "No files found to apply version."
+}
+
+## APPLY VERSION TO PROJECT TEMPLATE WIZARD REFERENCE
+if($publicKeyToken){
+  Write-Host "Setting Wizard Extension configuration in Project Template"
+  $projectTemplate = Get-ChildItem -include "*-vstemplate" -recurse | Where-Object{ $_.FullName -match $codePathPattern}
+  if($projectTemplate){
+    [xml]$projectTemplateContent = Get-Content $projectTemplate
+
+    $newPublicKeyToken = "PublicKeyToken=$publicKeyToken"
+
+    $wizardAssemblyStrongName = $projectTemplateContent.VSTemplate.WizardExtension.Assembly -replace $VersionRegEx, $versionNumber 
+    $wizardAssemblyStrongName = $wizardExtensioAssembly -replace "PublicKeyToken=.*</Assembly>", "$newPublicKeyToken</Assembly>"
+
+    $projectTemplateContent.VSTemplate.WizardExtension.Assembly = $wizardAssemblyStrongName
+    
+    Write-Host "$projectTemplate.FullName - Wizard Assembly Strong Name updated ($wizardAssemblyStrongName)"
+  }
+  else{
+    throw "No Project Template manifest file found!"
+  }
+}
+else{
+  throw "Public key token not set."
 }
