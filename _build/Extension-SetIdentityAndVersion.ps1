@@ -61,7 +61,7 @@ else
 ## APPLY VERSION TO PROJECT TEMPLATE WIZARD REFERENCE
 if($publicKeyToken){
   Write-Host "Setting Wizard Extension configuration in Project Template"
-  $projectTemplate = Get-ChildItem -include "*-vstemplate" -recurse |  Where-Object{ $_.FullName -notmatch "\\Templates\\" }
+  $projectTemplate = Get-ChildItem -include "*.vstemplate" -recurse |  Where-Object{ $_.FullName -notmatch "\\Templates\\" }
   if($projectTemplate){
     [xml]$projectTemplateContent = Get-Content $projectTemplate
 
