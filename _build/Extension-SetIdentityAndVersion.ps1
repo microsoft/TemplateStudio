@@ -29,7 +29,7 @@ if($vsixIdentity){
     $manifestContent.PackageManifest.Metadata.Identity.Id = $vsixIdentity
     $manifestContent.PackageManifest.Metadata.Identity.Version = $versionNumber
     $manifestContent.Save($vsixManifest) 
-    Write-Host "$vsixManifestFile.FullName - Version & Identity applied ($versionNumber, $vsixIdentity)"
+    Write-Host "$vsixManifestFile - Version & Identity applied ($versionNumber, $vsixIdentity)"
   }
   else{
     throw "No VSIX manifest file found."
@@ -50,7 +50,7 @@ if($files)
         $filecontent = Get-Content($file)
         attrib $file -r
         $filecontent -replace $VersionRegex, $versionNumber | Out-File $file utf8
-        Write-Host "$file.FullName - version applied"
+        Write-Host "$file - version applied"
     }
 }
 else
@@ -61,18 +61,19 @@ else
 ## APPLY VERSION TO PROJECT TEMPLATE WIZARD REFERENCE
 if($publicKeyToken){
   Write-Host "Setting Wizard Extension configuration in Project Template"
-  $projectTemplate = Get-ChildItem -include "*.vstemplate" -recurse |  Where-Object{ $_.FullName -notmatch "\\Templates\\" }
+  $projectTemplate = Get-ChildItem -include "*.vstemplate" -recurse |  Where-Object{ $_.FullName -notmatch "\\Templates\\" -and $_.FullName -match "\\vspt\\"}
   if($projectTemplate){
     [xml]$projectTemplateContent = Get-Content $projectTemplate
 
     $newPublicKeyToken = "PublicKeyToken=$publicKeyToken"
-
     $wizardAssemblyStrongName = $projectTemplateContent.VSTemplate.WizardExtension.Assembly -replace $VersionRegEx, $versionNumber 
     $wizardAssemblyStrongName = $wizardExtensioAssembly -replace "PublicKeyToken=.*</Assembly>", "$newPublicKeyToken</Assembly>"
 
     $projectTemplateContent.VSTemplate.WizardExtension.Assembly = $wizardAssemblyStrongName
     
-    Write-Host "$projectTemplate.FullName - Wizard Assembly Strong Name updated ($wizardAssemblyStrongName)"
+    $projectTemplateContent.Save($projectTemplate)
+
+    Write-Host "$projectTemplate - Wizard Assembly Strong Name updated ($wizardAssemblyStrongName)"
   }
   else{
     throw "No Project Template manifest file found!"
