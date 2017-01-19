@@ -28,7 +28,7 @@ if($vsixIdentity){
     [xml]$manifestContent = Get-Content $vsixManifestFile
     $manifestContent.PackageManifest.Metadata.Identity.Id = $vsixIdentity
     $manifestContent.PackageManifest.Metadata.Identity.Version = $versionNumber
-    $manifestContent.Save($vsixManifest) 
+    $manifestContent.Save($vsixManifestFile) 
     Write-Host "$vsixManifestFile - Version & Identity applied ($versionNumber, $vsixIdentity)"
   }
   else{
