@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using App_Name.App_Page;
+using Page_NS.App_Page;
 
-namespace App_Name
+namespace Page_NS
 {
     public partial class ViewModelLocator
     {

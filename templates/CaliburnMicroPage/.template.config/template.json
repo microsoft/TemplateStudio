@@ -25,5 +25,11 @@
     {
       "path": ".\\App_Page\\App_PageViewModel.cs"
     }
-  ]
+  ],
+  "symbols": {
+    "PageNamespace": {
+      "type": "parameter",
+      "replaces": "Page_NS"
+    }
+  }
 }

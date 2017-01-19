@@ -178,8 +178,11 @@ namespace Microsoft.Templates.Wizard
 
         private static void GeneratePage(ITemplateInfo template, string projectName, string projectPath, string pageNamespace, string pageName, string pageRelativePath, IVisualStudioShell vsShell)
         {
+            var genParams = new Dictionary<string, string>();
+            genParams.Add("PageNamespace", pageNamespace);
+
             string generationPath = Path.Combine(projectPath, pageRelativePath);
-            var result = TemplateCreator.InstantiateAsync(template, pageName, null, generationPath, new Dictionary<string, string>(), true).Result;
+            var result = TemplateCreator.InstantiateAsync(template, pageName, null, generationPath, genParams, true).Result;
             
             //TODO: Control overwrites! What happend if the generated content already exits.
 

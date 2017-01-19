@@ -1,5 +1,5 @@
 <Page
-    x:Class="App_Name.App_Page.App_PageView"
+    x:Class="Page_NS.App_Page.App_PageView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cm="using:Caliburn.Micro"

@@ -28,5 +28,11 @@
     {
       "path": ".\\App_Page\\ViewModelLocator.cs"
     }
-  ]
+  ],
+  "symbols": {
+    "PageNamespace": {
+      "type": "parameter",
+      "replaces": "Page_NS"
+    }
+  }
 }

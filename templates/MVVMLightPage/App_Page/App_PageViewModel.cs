@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
 
-namespace App_Name.App_Page
+namespace Page_NS.App_Page
 {
     public class App_PageViewModel : ViewModelBase
     {
