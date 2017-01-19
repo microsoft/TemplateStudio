@@ -7,7 +7,11 @@
   "shortName": "mvvm",
   "tags": {
     "language": "C#",
-    "type": "project"
+    "type": "project",
+    "uct.type": "project",
+    "uct.framework": "MVVMLight",
+    "uct.version": "1.0.0",
+    "uct.order": "1"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true,

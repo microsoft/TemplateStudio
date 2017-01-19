@@ -7,7 +7,11 @@
   "shortName": "caliburnpage",
   "tags": {
     "language": "C#",
-    "type": "item"
+    "type": "item",
+    "uct.type": "page",
+    "uct.framework": "Caliburn Micro",
+    "uct.version": "1.0.0",
+    "uct.order": "2"
   },
   "sourceName": "App_Page",
   "preferNameDirectory": true,

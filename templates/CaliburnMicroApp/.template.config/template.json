@@ -7,7 +7,11 @@
   "shortName": "caliburn",
   "tags": {
     "language": "C#",
-    "type": "project"
+    "type": "project",
+    "uct.type": "project",
+    "uct.framework": "Caliburn Micro",
+    "uct.version": "1.0.0",
+    "uct.order": "2"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true,
