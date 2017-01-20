@@ -13,7 +13,7 @@ I need an app that uses MVVM Light, uses Cortana, Speech APIs, Ink on one of the
 To reach our developers in an up-to-date fashion, the project is broken up into two primary parts, templates and the generator.  The generator is built on top of [dotnet Template Engine](https://github.com/dotnet/templating), it is a Visual Studio extension a developer will install while the templates will be hosted on a CDN so we can update what is created independntly of the generator.  The generator uses templates to create actual projects, pages and/or features for the developers. 
 
 ## Getting Started
-Please read the [getting Started with the UWP Template Community Generator](docs/Getting-Started.md) page for more detailed information about using the UWP Community Template Generator.
+Please read the [getting Started with the UWP Template Community Generator](docs/getting-started.md) page for more detailed information about using the UWP Community Template Generator.
 
 ## Features
 
