@@ -1,20 +1,11 @@
 #Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+The UWP Community Template Generator goal is to help developers with their File->New experience in Visual Studio.  It will generate a strong, generic foundation with the pages you need, but also integrate game changing features like Cortana, action center and background tasks from the start.  Any critical features will have code comments with links to MSDN, stack overflow and blogs to help unblock developers. Once the template is generated for the developer, it can provide base sample data and will be able to compile then run without issue.
 
 #Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+Please read the [Getting Started with the UWP Template Community Generator](../docs/getting-started.md) page for more detailed information about using the UWP Community Template Generator.
 
 #Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+Check [The Project](../docs/getting-started.md#the-project) section in the [Getting Started with the UWP Template Community Generator](../docs/getting-started.md) page.
 
 #Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://www.visualstudio.com/en-us/docs/git/create-a-readme). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+Do you want to contribute? Here are our [contribution guidelines](../contributing.md).
