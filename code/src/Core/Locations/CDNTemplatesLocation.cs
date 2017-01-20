@@ -11,7 +11,7 @@ namespace Microsoft.Templates.Core.Locations
 {
     public class CdnTemplatesLocation : TemplatesLocation
     {
-        private const string CdnUrl = "https://uwpcommunitytemplates-vnext.azureedge.net";
+        private const string CdnUrl = "https://uwpcommunitytemplates.blob.core.windows.net/vnext/Latest";
         private const string CdnPackagesFileName = "packages.nupkg";
         private const string CdnTemplatesFileName = "UWPTemplates.zip";
 
