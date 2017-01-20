@@ -2,7 +2,7 @@ Getting Started
 ===============
 You can take advantage of UWP Community Templates by installing our Visual Studio Extension or by clonning the repo and working locally with the code and the available templates. If you plan to contribute, please follow the contribution guidelines published at [UWPCommunityTemplates GitHub](https://github.com/Microsoft/uwpcommunitytemplates) site.  
 
-You can install the UWP Community Templates Visual Studio Extension (pre-release nightly version) configuring the following extensions feed https://www.myget.org/F/vsixextensions/vsix/. Follow detailed installation instructions below.
+You can install the UWP Community Templates Visual Studio Extension (pre-release nightly version) configuring the following extensions feed https://www.myget.org/F/vsixextensions/vsix/. Follow detailed installation instructions [below](#the-project).
 
 You can download the official extension from the [Visual Studio Gallery](https://visualstudiogallery.msdn.microsoft.com/) (coming soon).
 
