@@ -1,0 +1,18 @@
+<Page
+    x:Class="Page_NS.App_Page.App_PagePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{Binding App_PageViewModel, Source={StaticResource Locator}}">
+
+  <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <StackPanel Margin="24,12">
+    <!--TODO: Add App_PageTitle.Text to String Resources-->
+      <TextBlock
+          x:Uid="App_PageTitle"
+          Style="{ThemeResource HeaderTextBlockStyle}"/>
+    </StackPanel>
+  </Grid>
+</Page>

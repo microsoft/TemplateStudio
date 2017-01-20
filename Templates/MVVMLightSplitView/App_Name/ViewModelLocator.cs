@@ -14,7 +14,7 @@ namespace App_Name
 
             RegisterShell();
             RegisterHome(navigationService);
-            // TODO: Register new app sections
+            //TODO: Register new app sections
         }
     }
 }

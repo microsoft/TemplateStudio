@@ -24,6 +24,7 @@ namespace App_Name.Shell
         {
             get
             {
+                //TODO: Add new shell navigation items
                 yield return new ShellNavigationItem("PaneHome", Char.ConvertFromUtf32(0xE80F), typeof(HomeViewModel).FullName);
             }
         }
