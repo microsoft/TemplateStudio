@@ -10,11 +10,13 @@ Param(
   [string]$publicKeyToken = "e4ef4cc7a47ae0c5" #TestKey.snk
 )
 
-$VersionRegex = "\d+\.\d+\.\d+\.\d+"
+$VersionRegex = "(\d+)\.(\d+)\.(\d+)\.(\d+)"
 
 if($buildNumber -match $VersionRegEx){
-	$versionNumber = $matches[0]
+
+  $versionNumber = [int]::Parse($matches[1]).ToString() + "." + [int]::Parse($matches[2]).ToString() + "." + [int]::Parse($matches[3]).ToString() + "." + [int]::Parse($matches[4]).ToString()
   Write-Host "Version Number" $versionNumber
+  
 }
 else{
 	throw "Build format does not match the expected pattern (buildName_w.x.y.z)"
