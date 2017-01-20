@@ -9,6 +9,7 @@
 
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <StackPanel Margin="24,12">
+    <!--TODO: Add App_PageTitle.Text to String Resources-->
       <TextBlock
           x:Uid="App_PageTitle"
           Style="{ThemeResource HeaderTextBlockStyle}"/>
