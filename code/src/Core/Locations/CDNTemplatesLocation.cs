@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Templates.Core.Properties;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -11,7 +12,7 @@ namespace Microsoft.Templates.Core.Locations
 {
     public class CdnTemplatesLocation : TemplatesLocation
     {
-        private const string CdnUrl = "https://uwpcommunitytemplates.blob.core.windows.net/vnext/Latest";
+        private readonly string CdnUrl = Settings.Default.CdnUrl;
         private const string CdnPackagesFileName = "packages.nupkg";
         private const string CdnTemplatesFileName = "UWPTemplates.zip";
 
