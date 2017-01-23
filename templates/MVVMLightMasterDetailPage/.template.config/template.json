@@ -1,0 +1,80 @@
+{
+  "author": "Microsoft",
+  "classifications": ["Universal"],
+  "name": "MVVMLightMasterDetailPage",
+  "groupIdentity": "Microsoft.UWPTemplates.MVVMLightMasterDetailPage",
+  "identity": "Microsoft.UWPTemplates.MVVMLightMasterDetailPage.CSharp",
+  "shortName": "mvvmmasterdetailpage",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "uct.type": "page",
+    "uct.framework": "MVVMLight",
+    "uct.version": "1.0.0",
+    "uct.order": "2"
+  },
+  "sourceName": "App_Page",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {            
+      "path": ".\\App_Page\\App_PageMasterDetailPage.xaml"
+    },
+    {
+      "path": ".\\App_Page\\App_PageMasterDetailPage.xaml.cs"
+    },    
+    {
+      "path": ".\\App_Page\\App_PageMasterDetailViewModel.cs"
+    },
+    {
+      "path": ".\\App_Page\\ViewModelLocator.cs"
+    },
+    {
+      "path": ".\\App_Page\\DessertModel.cs"
+    },
+    {
+      "path": ".\\App_Page\\DessertService.cs"
+    },
+    {
+      "path": ".\\App_Page\\Images\\60Banana.png"
+    },
+    {
+      "path": ".\\App_Page\\Images\\60Lemon.png"
+    },
+    {
+      "path": ".\\App_Page\\Images\\60Mint.png"
+    },
+    {
+      "path": ".\\App_Page\\Images\\60Orange.png"
+    },
+    {
+      "path": ".\\App_Page\\Images\\60SauceCaramel.png"
+    },
+    {
+      "path": ".\\App_Page\\Images\\60SauceChocolate.png"
+    },
+    {
+      "path": ".\\App_Page\\Images\\60SauceStrawberry.png"
+    },
+    {
+      "path": ".\\App_Page\\Images\\60SprinklesChocolate.png"
+    },
+    {
+      "path": ".\\App_Page\\Images\\60SprinklesRainbow.png"
+    },
+    {
+      "path": ".\\App_Page\\Images\\60SprinklesVanilla.png"
+    },
+    {
+      "path": ".\\App_Page\\Images\\60Strawberry.png"
+    },
+    {
+      "path": ".\\App_Page\\Images\\60Vanilla.png"
+    }
+  ],
+  "symbols": {
+    "PageNamespace": {
+      "type": "parameter",
+      "replaces": "Page_NS"
+    }
+  }
+}
