@@ -23,7 +23,7 @@ namespace App_Name
 
             RegisterDessertList(navigationService);
             RegisterDessertDetail(navigationService);
-            //G3N: REGISTER VIEW_MODEL
+            //TODO: Register new app sections
         }
 
         private async Task NotifyUserMethod(NotificationMessage message)
