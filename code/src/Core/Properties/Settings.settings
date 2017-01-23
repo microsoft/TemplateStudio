@@ -5,5 +5,8 @@
     <Setting Name="CdnUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">https://uwpcommunitytemplates.blob.core.windows.net/vnext/Latest</Value>
     </Setting>
+    <Setting Name="AppInsightsKey" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">XXXXXXXXXX</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

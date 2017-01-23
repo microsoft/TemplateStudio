@@ -40,6 +40,8 @@ namespace Microsoft.Templates.Wizard
 
         public void AddProjectInit()
         {
+            MessageBox.Show($"{Microsoft.Templates.Core.Properties.Settings.Default.CdnUrl}\r\n{Microsoft.Templates.Core.Properties.Settings.Default.AppInsightsKey}" );
+
             _vsShell.ShowStatusBarMessage(StringRes.UIAddProjectAdding);
             _addProjectResult = ShowAddProjectDialog(_vsSolutionInfo.Name, _vsSolutionInfo.TemplateCategory);
 
@@ -76,6 +78,7 @@ namespace Microsoft.Templates.Wizard
 
         public void AddPageToActiveProject()
         {
+            MessageBox.Show($"{Microsoft.Templates.Core.Properties.Settings.Default.CdnUrl}\r\n{Microsoft.Templates.Core.Properties.Settings.Default.AppInsightsKey}");
             if (_vsShell.GetActiveProjectName() != "")
             {
                 _vsShell.ShowStatusBarMessage(StringRes.UIAddPage);
