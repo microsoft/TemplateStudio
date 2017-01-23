@@ -103,7 +103,7 @@ namespace Microsoft.Templates.Wizard.Dialog
                 return new SelectionOption
                 {
                     Item = t,
-                    Command = new RelayCommand( a=> relayCommandAction(t))
+                    Command = new RelayCommand<ITemplateInfo>( a=> relayCommandAction(t))
                 };
             });
 

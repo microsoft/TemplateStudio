@@ -1,52 +1,81 @@
 ﻿<Window x:Class="Microsoft.Templates.Wizard.Dialog.AddNewProject"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:local="clr-namespace:Microsoft.Templates.Wizard.Dialog"
-             Width="432.028" 
-             Height="500"
-             Title="UWP Community Templates"
-             WindowStartupLocation="CenterScreen" 
-             ResizeMode="NoResize" 
-             ShowInTaskbar="False"
-            x:Name="_this" >
-    <Grid>
-        <Image Source="pack://application:,,,/Microsoft.Templates.Wizard;component/Resources/Solution.png" 
-                   Width="15" 
-                   Height="15" 
-                   VerticalAlignment="Top" 
-                   HorizontalAlignment="Left"
-                   Margin="30,10,0,0"/>
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:local="clr-namespace:Microsoft.Templates.Wizard.Dialog"
+    Width="640" 
+    Height="480"
+    Title="UWP Community Templates"
+    WindowStartupLocation="CenterScreen" 
+    ResizeMode="NoResize" 
+    ShowInTaskbar="False"
+    x:Name="_this" >
 
-        <TextBlock x:Name="SolutionNameTbx" 
-                       HorizontalAlignment="Stretch" 
-                       VerticalAlignment="Top"
-                       Margin="50,10,10,0" 
-                       Text="SolutionName"/>
+    <Window.Resources>
+        <ResourceDictionary Source="/Microsoft.Templates.Wizard;component/Styles/WizardTheme.xaml" />
+    </Window.Resources>
 
-        <Canvas x:Name="Projects"  
-                Visibility="{Binding ProjectsVisibilty}" 
-                DataContext="{Binding ElementName=_this}"
-                HorizontalAlignment="Stretch">
+    <Grid Style="{StaticResource PageContainerStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Image Source="/Microsoft.Templates.Wizard;component/Resources/Solution.png" Style="{StaticResource StepTitleIconStyle}" />
+            <TextBlock x:Name="SolutionNameTbx" Text="SolutionName" Style="{StaticResource StepTitleTextStyle}"/>
+        </StackPanel>
 
-            <TextBlock Text="Select Application Type:" 
-                       VerticalAlignment="Top" 
-                       HorizontalAlignment="Left"
-                       Margin="30,40,15,0" FontSize="14" FontWeight="Bold" />
+        <Grid Grid.Row="1" Style="{StaticResource TemplatesContainerStyle}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"></ColumnDefinition>
+                <ColumnDefinition Width="50*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-            <ItemsControl Name="ProjectOptions" 
-                       HorizontalAlignment="Stretch"
-                       VerticalAlignment="Stretch" 
-                       Margin="15,60,15,40">
-
-                <ItemsControl.ItemTemplate>
+            <ListView ItemsSource="{Binding Templates}" SelectedItem="{Binding TemplateSelected, Mode=TwoWay}">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <RadioButton GroupName="ProjectTypes" Margin="10,10" Content="{Binding Item.Name}" Command="{Binding Command}" />
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Image Source="{Binding Icon}" Style="{StaticResource TemplateIconStyle}" />
+                            <TextBlock Text="{Binding Name}" Grid.Row="1" Style="{StaticResource TemplateTitleStyle}" />
+                            <TextBlock Grid.Row="2" Style="{StaticResource TemplateSubTitleStyle}">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="({0})">
+                                        <Binding Path="Framework" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </Grid>
                     </DataTemplate>
-                </ItemsControl.ItemTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-            </ItemsControl>
-        </Canvas>
+            <StackPanel DataContext="{Binding TemplateSelected}" Grid.Column="1" Style="{StaticResource TemplateInfoContainerStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Version:" Style="{StaticResource TemplateInfoPropertyNameStyle}"/>
+                    <TextBlock Text="{Binding Version}" Style="{StaticResource TemplateInfoPropertyValueStyle}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Author:" Style="{StaticResource TemplateInfoPropertyNameStyle}"/>
+                    <TextBlock Text="{Binding Author}" Style="{StaticResource TemplateInfoPropertyValueStyle}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Framework:" Style="{StaticResource TemplateInfoPropertyNameStyle}"/>
+                    <TextBlock Text="{Binding Framework}" Style="{StaticResource TemplateInfoPropertyValueStyle}"/>
+                </StackPanel>
+                <TextBlock Text="{Binding Description}" Style="{StaticResource TemplateInfoDescriptionStyle}"/>
+            </StackPanel>
+        </Grid>
 
         <Canvas x:Name="SummaryInfo"  
                 Visibility="Hidden" 
@@ -66,34 +95,11 @@
                        Margin="30,60,15,0" />
         </Canvas>
 
-        <Button x:Name="CancelBtn" 
-                HorizontalAlignment="Right" 
-                VerticalAlignment="Bottom" 
-                Width="75" 
-                Content="Cancel" 
-                Margin="0,0,10,10" 
-                Click="CancelBtn_Click"/>
-
-
-        <Button x:Name="NextBtn" 
-                HorizontalAlignment="Right" 
-                VerticalAlignment="Bottom" 
-                Content="{Binding NextButtonLabel}"
-                DataContext="{Binding ElementName = _this}"
-                Width="75" 
-                Margin="0,0,90,10" 
-                Click="NextBtn_Click"/>
-
-        <Button x:Name="PrevBtn" 
-                HorizontalAlignment="Right" 
-                VerticalAlignment="Bottom" 
-                Content="Previous"
-                IsEnabled="{Binding PrevButtonEnabled}"
-                DataContext="{Binding ElementName = _this}"
-                Width="75" 
-                Margin="0,0,170,10" 
-                Click="PrevBtn_Click"/>
-    
+        <StackPanel Grid.Row="2" Style="{StaticResource NavigationContainerStyle}">
+            <Button x:Name="CancelBtn" Style="{StaticResource NavigationButtonStyle}" Content="Cancel" Click="CancelBtn_Click"/>
+            <Button x:Name="PrevBtn" Style="{StaticResource NavigationButtonStyle}" Content="Previous" IsEnabled="{Binding PrevButtonEnabled}" Click="PrevBtn_Click"/>
+            <Button x:Name="NextBtn" Style="{StaticResource NavigationButtonStyle}" Content="Next" Click="NextBtn_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
 

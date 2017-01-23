@@ -1,0 +1,86 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--BASE-->
+    <Thickness x:Key="ShortLeftMargin">5,0,0,0</Thickness>
+    <Thickness x:Key="MediumLeftMargin">10,0,0,0</Thickness>
+    <Thickness x:Key="ShortTopMargin">0,5,0,0</Thickness>
+    <Thickness x:Key="MediumTopMargin">0,10,0,0</Thickness>
+
+    <!--WIZARD STYLES-->
+    <Style TargetType="Grid" x:Key="PageContainerStyle">
+        <Setter Property="Margin" Value="10" />
+    </Style>
+    <Style TargetType="Image" x:Key="StepTitleIconStyle">
+        <Setter Property="Width" Value="15" />
+        <Setter Property="Height" Value="15" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="StepTitleTextStyle">
+        <Setter Property="Margin" Value="{StaticResource ShortLeftMargin}" />
+    </Style>
+    <Style TargetType="StackPanel" x:Key="NavigationContainerStyle">
+        <Setter Property="Margin" Value="{StaticResource MediumTopMargin}" />
+        <Setter Property="Orientation" Value="Horizontal" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+    </Style>
+    <Style TargetType="Button" x:Key="NavigationButtonStyle">
+        <Setter Property="Margin" Value="{StaticResource ShortLeftMargin}" />
+        <Setter Property="Width" Value="75" />
+    </Style>
+    <Style TargetType="Frame" x:Key="StepContainerStyle">
+        <Setter Property="Margin" Value="10" />
+    </Style>
+
+    <Style TargetType="Grid" x:Key="TemplatesContainerStyle">
+        <Setter Property="Margin" Value="{StaticResource MediumTopMargin}" />
+    </Style>
+    <Style TargetType="Image" x:Key="TemplateIconStyle">
+        <Setter Property="Width" Value="40" />
+        <Setter Property="Height" Value="40" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="TemplateTitleStyle">
+        <Setter Property="Margin" Value="{StaticResource ShortTopMargin}" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="TemplateSubTitleStyle">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+    
+    
+    
+    <Style TargetType="StackPanel" x:Key="TemplateInfoContainerStyle">
+        <Setter Property="Margin" Value="{StaticResource MediumLeftMargin}" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="TemplateInfoPropertyNameStyle">
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="TemplateInfoPropertyValueStyle">
+        <Setter Property="Margin" Value="{StaticResource ShortLeftMargin}" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="TemplateInfoDescriptionStyle">
+        <Setter Property="Margin" Value="{StaticResource MediumTopMargin}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+    
+    <!--SUMMARY-->
+    <Style TargetType="StackPanel" x:Key="SummaryInfoContainerStyle">
+        <Setter Property="Margin" Value="{StaticResource MediumTopMargin}" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="SummaryInfoTitleStyle">
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    <Style TargetType="ItemsControl" x:Key="SummaryInfoItemsStyle">
+        <Setter Property="Margin" Value="{StaticResource MediumLeftMargin}" />
+    </Style>
+    
+    <!--PAGES-->
+    <Style TargetType="StackPanel" x:Key="PageNameContainerStyle">
+        <Setter Property="Margin" Value="{StaticResource MediumTopMargin}" />
+    </Style>
+    <Style TargetType="TextBox" x:Key="PageNameValueStyle">
+        <Setter Property="Width" Value="200px" />
+        <Setter Property="Margin" Value="{StaticResource ShortLeftMargin}" />
+    </Style>
+</ResourceDictionary>

@@ -1,7 +1,8 @@
 {
   "author": "Microsoft",
   "classifications": ["Universal"],
-  "name": "MVVMLightApp",
+  "name": "Blank",
+  "description": "Sed maximus ipsum commodo mi cursus, eget efficitur justo porta. Integer imperdiet sed ex aliquet consectetur. Curabitur lacinia eros eget lectus mattis, vel vestibulum nibh ultrices. Mauris id tortor quam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed dignissim sed risus eu porta. Nulla egestas viverra blandit.",
   "groupIdentity": "Microsoft.UWPTemplates.MVVMLightApp",
   "identity": "Microsoft.UWPTemplates.MVVMLightApp.CSharp",
   "shortName": "mvvm",
