@@ -1,9 +1,0 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Microsoft.Templates.Core.Properties" GeneratedClassName="Settings">
-  <Profiles />
-  <Settings>
-    <Setting Name="CdnUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">https://uwpcommunitytemplates.blob.core.windows.net/vnext/Latest</Value>
-    </Setting>
-  </Settings>
-</SettingsFile>
