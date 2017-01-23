@@ -1,0 +1,24 @@
+{
+  "author": "Microsoft",
+  "classifications": ["Universal"],
+  "name": "MVVMLightBlankProject",
+  "groupIdentity": "Microsoft.UWPTemplates.MVVMLightBlankProject",
+  "identity": "Microsoft.UWPTemplates.MVVMLightBlankProject.CSharp",
+  "shortName": "mvvmblank",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "uct.type": "project",
+    "uct.framework": "MVVMLight",
+    "uct.version": "1.0.0",
+    "uct.order": "2"
+  },
+  "sourceName": "MVVMLightBlankProject",
+  "preferNameDirectory": true,
+  "guids": [ "2A131009-5D2B-436C-8C1B-E1E574EA1DFB", "b1383709-6382-4136-809d-a748fc567ea1" ],
+  "PrimaryOutputs": [
+    {
+      "path": ".\\MVVMLightBlankProject\\MVVMLightBlankProject.csproj"
+    }
+  ]
+}
