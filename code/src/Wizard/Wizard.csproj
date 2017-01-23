@@ -83,6 +83,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\CollectionToVisibilityConverter.cs" />
     <Compile Include="CodeSigningCertificate.cs" />
     <Compile Include="Dialog\AddFeaturesResult.cs" />
     <Compile Include="Dialog\AddPage.xaml.cs">
@@ -98,13 +99,58 @@
     <Compile Include="Dialog\RelayCommand.cs" />
     <Compile Include="Dialog\AddProjectResult.cs" />
     <Compile Include="Dialog\AddProjectSteps.cs" />
+    <Compile Include="Extensions\ObservableCollection.extensions.cs" />
+    <Compile Include="Host\TemplateConfig.cs" />
     <Compile Include="Resources\ResourcesExtensions.cs" />
     <Compile Include="Resources\StringRes.Designer.cs">
       <DependentUpon>StringRes.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Steps\PagesStep\PagesStepPage.xaml.cs">
+      <DependentUpon>PagesStepPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Steps\PagesStep\PagesStepResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PagesStepResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Steps\PagesStep\PagesStepViewModel.cs" />
+    <Compile Include="Steps\ProjectsStep\ProjectsStepPage.xaml.cs">
+      <DependentUpon>ProjectsStepPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Steps\ProjectsStep\ProjectsStepResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectsStepResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Steps\ProjectsStep\ProjectsStepViewModel.cs" />
+    <Compile Include="Steps\StepPage.cs" />
+    <Compile Include="Steps\SummaryStep\SummaryStepPage.xaml.cs">
+      <DependentUpon>SummaryStepPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Steps\SummaryStep\SummaryStepResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SummaryStepResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Steps\SummaryStep\SummaryStepViewModel.cs" />
+    <Compile Include="Steps\SummaryStep\TemplatesSummaryViewModel.cs" />
+    <Compile Include="Host\WizardHostResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WizardHostResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AddProjectViewModel.cs" />
+    <Compile Include="ViewModels\TemplateViewModel.cs" />
+    <Compile Include="ViewModels\ObservableBase.cs" />
     <Compile Include="Vs\SolutionInfo.cs" />
+    <Compile Include="Host\WizardContext.cs" />
+    <Compile Include="Host\WizardHost.xaml.cs">
+      <DependentUpon>WizardHost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Host\WizardHostViewModel.cs" />
+    <Compile Include="Host\WizardSteps.cs" />
     <Page Include="Dialog\AddPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -117,9 +163,25 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\Generic.xaml">
+    <Page Include="Steps\PagesStep\PagesStepPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Steps\ProjectsStep\ProjectsStepPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Steps\SummaryStep\SummaryStepPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\WizardTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Host\WizardHost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +208,22 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Steps\PagesStep\PagesStepResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PagesStepResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Steps\ProjectsStep\ProjectsStepResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProjectsStepResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Steps\SummaryStep\SummaryStepResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SummaryStepResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Host\WizardHostResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>WizardHostResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="..\..\TestKey.snk">
       <Link>TestKey.snk</Link>
     </None>
@@ -171,6 +249,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\common-icons.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\DefaultProjectIcon.jpg" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="CERTENROLLLib">

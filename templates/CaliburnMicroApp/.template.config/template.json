@@ -1,7 +1,8 @@
 {
   "author": "Microsoft",
   "classifications": ["Universal"],
-  "name": "CaliburnMicroApp",
+  "name": "Blank",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer non posuere mi. Vestibulum commodo justo nunc. Quisque nec enim turpis. Vestibulum nec nulla eu arcu lobortis aliquet. Nam nisl nibh, dignissim id lacinia in, consequat cursus felis. In sed ante interdum, placerat magna maximus, tristique massa. Mauris libero odio, dictum non lorem sed, commodo scelerisque nisi. Donec dignissim condimentum lectus, sed placerat magna euismod sit amet. Nullam semper tellus eu hendrerit sodales. Proin a sapien nec mi vehicula accumsan. Quisque euismod erat sed arcu aliquet luctus. Vivamus tincidunt, dolor eu vehicula porta, quam tortor lacinia mi, ut blandit quam massa a tortor.",
   "groupIdentity": "Microsoft.UWPTemplates.CaliburnMicroApp",
   "identity": "Microsoft.UWPTemplates.CaliburnMicroApp.CSharp",
   "shortName": "caliburn",
