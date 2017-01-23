@@ -17,11 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vspt", "Vspt", "{0FF77586-2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.UWP.Solution", "src\Vspt\CSharp.UWP.Solution\CSharp.UWP.Solution.csproj", "{D5E1C23A-7547-412A-82F1-F00C34622C1E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_config", "_config", "{775E9CB5-F622-49FE-8B14-15EE1C3E1080}"
-	ProjectSection(SolutionItems) = preProject
-		_config\Vsix.Tokenized.app.config = _config\Vsix.Tokenized.app.config
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
