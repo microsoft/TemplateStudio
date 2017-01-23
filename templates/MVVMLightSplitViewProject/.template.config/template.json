@@ -1,0 +1,24 @@
+{
+  "author": "Microsoft",
+  "classifications": ["Universal"],
+  "name": "MVVMLightSplitViewProject",
+  "groupIdentity": "Microsoft.UWPTemplates.MVVMLightSplitViewProject",
+  "identity": "Microsoft.UWPTemplates.MVVMLightSplitViewProject.CSharp",
+  "shortName": "mvvmsplitview",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "uct.type": "project",
+    "uct.framework": "MVVMLight",
+    "uct.version": "1.0.0",
+    "uct.order": "2"
+  },
+  "sourceName": "MVVMLightSplitViewProject",
+  "preferNameDirectory": true,
+  "guids": [ "46367C5F-A535-463B-9F04-63749F277A08", "8ae3f64a-9f24-414f-ba36-a33cdac366b1" ],
+  "PrimaryOutputs": [
+    {
+      "path": ".\\MVVMLightSplitViewProject\\MVVMLightSplitViewProject.csproj"
+    }
+  ]
+}
