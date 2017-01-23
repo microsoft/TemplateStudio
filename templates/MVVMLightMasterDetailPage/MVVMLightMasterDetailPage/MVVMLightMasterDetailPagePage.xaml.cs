@@ -15,14 +15,14 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Page_NS.App_Page
+namespace Page_NS.MVVMLightMasterDetailPage
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class App_PageMasterDetailPage : Page
+    public sealed partial class MVVMLightMasterDetailPagePage : Page
     {
-        public App_PageMasterDetailPage()
+        public MVVMLightMasterDetailPagePage()
         {
             this.InitializeComponent();
         }

@@ -1,5 +1,5 @@
 <Page
-    x:Class="Page_NS.App_Page.App_PageMasterDetailPage"
+    x:Class="Page_NS.MVVMLightMasterDetailPage.MVVMLightMasterDetailPagePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +7,7 @@
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d"
-    DataContext="{Binding App_PageMasterDetailViewModel, Source={StaticResource Locator}}">
+    DataContext="{Binding MVVMLightMasterDetailPageViewModel, Source={StaticResource Locator}}">
     <Page.Resources>
         <Style TargetType="RelativePanel" x:Key="ItemContainerStyle">
             <Setter Property="Margin" Value="0,5,0,5"/>
@@ -63,7 +63,7 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock                
-                x:Uid="App_PageTitle"
+                x:Uid="MVVMLightMasterDetailPageTitle"
                 Margin="12,0,0,0"
                 Style="{ThemeResource HeaderTextBlockStyle}"/>
 

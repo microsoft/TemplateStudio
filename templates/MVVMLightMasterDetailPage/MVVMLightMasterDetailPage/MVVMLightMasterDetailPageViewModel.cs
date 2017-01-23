@@ -7,9 +7,9 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace Page_NS.App_Page
+namespace Page_NS.MVVMLightMasterDetailPage
 {
-    public class App_PageMasterDetailViewModel : ViewModelBase
+    public class MVVMLightMasterDetailPageViewModel : ViewModelBase
     {
         const double UseNavigationWithRequested = 900;
 
@@ -41,7 +41,7 @@ namespace Page_NS.App_Page
 
         public ObservableCollection<DessertModel> DessertList { get; private set; } = new ObservableCollection<DessertModel>();
 
-        public App_PageMasterDetailViewModel()
+        public MVVMLightMasterDetailPageViewModel()
         {
             this._useNavigation = Window.Current.Bounds.Width < UseNavigationWithRequested;
             LoadDataCommand = new RelayCommand(async () => { await LoadDataAsync(); });
