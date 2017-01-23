@@ -13,7 +13,7 @@ I need an app that uses MVVM Light, uses Cortana, Speech APIs, Ink on one of the
 To reach our developers in an up-to-date fashion, the project is broken up into two primary parts, templates and the generator.  The generator is built on top of [dotnet Template Engine](https://github.com/dotnet/templating), it is a Visual Studio extension a developer will install while the templates will be hosted on a CDN so we can update what is created independntly of the generator.  The generator uses templates to create actual projects, pages and/or features for the developers. 
 
 ## Getting Started
-Please read the [getting Started with the UWP Template Community Generator](docs/getting-started.md) page for more detailed information about using the UWP Community Template Generator.
+Please read the [Getting Started with the UWP Template Community Generator](docs/getting-started.md) page for more detailed information about using the UWP Community Template Generator.
 
 ## Features
 
@@ -51,9 +51,9 @@ Do you want to contribute? Here are our [contribution guidelines](contributing.m
 This project has adopted the code of conduct defined by the [http://contributor-covenant.org/](Contributor Covenant) to clarify expected behavior in our community. 
 
 ## Roadmap
-Read what we [plan for next iteration](https://github.com/Microsoft/UWPCommunityTemplates/issues?q=is%3Aopen+is%3Aissue+milestone%3Av0.1), and feel free to ask questions.
+Read what we [plan for next iteration](https://github.com/Microsoft/UWPCommunityTemplates/issues?q=is%3Aopen+is%3Aissue+milestone%3A0.5), and feel free to ask questions.
 
-By adding this ([Gallery](TBD) ???https://dotnet.myget.org/gallery/UWPCommunityTemplates??? to your Visual Studio, you can also get pre-release packages of upcoming version.
+You can add [this feed](https://www.myget.org/F/vsixextensions/vsix/) to your Extensions galleries and you can get the pre-release versions of the UWP Community Templates Visual Studio Extension. 
 
 ## License
 This code is distributed under the terms and conditions of the [MIT license](license.md). 

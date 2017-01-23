@@ -10,11 +10,13 @@ Param(
   [string]$publicKeyToken = "e4ef4cc7a47ae0c5" #TestKey.snk
 )
 
-$VersionRegex = "\d+\.\d+\.\d+\.\d+"
+$VersionRegex = "(\d+)\.(\d+)\.(\d+)\.(\d+)"
 
 if($buildNumber -match $VersionRegEx){
-	$versionNumber = $matches[0]
+
+  $versionNumber = [int]::Parse($matches[1]).ToString() + "." + [int]::Parse($matches[2]).ToString() + "." + [int]::Parse($matches[3]).ToString() + "." + [int]::Parse($matches[4]).ToString()
   Write-Host "Version Number" $versionNumber
+  
 }
 else{
 	throw "Build format does not match the expected pattern (buildName_w.x.y.z)"
@@ -46,10 +48,13 @@ if($files)
 {
     Write-Host "Will apply $versionNumber to $($files.count) files."
 
+    $assemblyFileVersionRegEx = "AssemblyFileVersion\(""(\d+)\.(\d+)\.(\d+)\.(\d+)""\)" 
+    $assemblyFileVersionReplacement = "AssemblyFileVersion(""$versionNumber"")"
+
     foreach ($file in $files) {
         $filecontent = Get-Content($file)
         attrib $file -r
-        $filecontent -replace $VersionRegex, $versionNumber | Out-File $file utf8
+        $filecontent -replace $assemblyFileVersionRegEx, $assemblyFileVersionReplacement | Out-File $file utf8
         Write-Host "$file - version applied"
     }
 }
@@ -58,8 +63,9 @@ else
     Write-Warning "No files found to apply version."
 }
 
-## APPLY VERSION TO PROJECT TEMPLATE WIZARD REFERENCE
-if($publicKeyToken){
+## APPLY VERSION TO PROJECT TEMPLATE WIZARD 
+#Commented until review behavior of TemplatesEngine verified with strong name version
+<#if($publicKeyToken){
   Write-Host "Setting Wizard Extension configuration in Project Template"
   $projectTemplate = Get-ChildItem -include "*.vstemplate" -recurse |  Where-Object{ $_.FullName -notmatch "\\Templates\\" -and $_.FullName -match "\\vspt\\"}
   if($projectTemplate){
@@ -81,4 +87,4 @@ if($publicKeyToken){
 }
 else{
   throw "Public key token not set."
-}
+}#>
