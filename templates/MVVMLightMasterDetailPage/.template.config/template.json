@@ -5,6 +5,7 @@
   "groupIdentity": "Microsoft.UWPTemplates.MVVMLightMasterDetailPage",
   "identity": "Microsoft.UWPTemplates.MVVMLightMasterDetailPage.CSharp",
   "shortName": "mvvmmasterdetailpage",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -13,62 +14,62 @@
     "uct.version": "1.0.0",
     "uct.order": "2"
   },
-  "sourceName": "App_Page",
+  "sourceName": "MVVMLightMasterDetailPage",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {            
-      "path": ".\\App_Page\\App_PageMasterDetailPage.xaml"
+      "path": ".\\MVVMLightMasterDetailPage\\MVVMLightMasterDetailPagePage.xaml"
     },
     {
-      "path": ".\\App_Page\\App_PageMasterDetailPage.xaml.cs"
+      "path": ".\\MVVMLightMasterDetailPage\\MVVMLightMasterDetailPagePage.xaml.cs"
     },    
     {
-      "path": ".\\App_Page\\App_PageMasterDetailViewModel.cs"
+      "path": ".\\MVVMLightMasterDetailPage\\MVVMLightMasterDetailPageViewModel.cs"
     },
     {
-      "path": ".\\App_Page\\ViewModelLocator.cs"
+      "path": ".\\MVVMLightMasterDetailPage\\ViewModelLocator.cs"
     },
     {
-      "path": ".\\App_Page\\DessertModel.cs"
+      "path": ".\\MVVMLightMasterDetailPage\\DessertModel.cs"
     },
     {
-      "path": ".\\App_Page\\DessertService.cs"
+      "path": ".\\MVVMLightMasterDetailPage\\DessertService.cs"
     },
     {
-      "path": ".\\App_Page\\Images\\60Banana.png"
+      "path": ".\\MVVMLightMasterDetailPage\\Images\\60Banana.png"
     },
     {
-      "path": ".\\App_Page\\Images\\60Lemon.png"
+      "path": ".\\MVVMLightMasterDetailPage\\Images\\60Lemon.png"
     },
     {
-      "path": ".\\App_Page\\Images\\60Mint.png"
+      "path": ".\\MVVMLightMasterDetailPage\\Images\\60Mint.png"
     },
     {
-      "path": ".\\App_Page\\Images\\60Orange.png"
+      "path": ".\\MVVMLightMasterDetailPage\\Images\\60Orange.png"
     },
     {
-      "path": ".\\App_Page\\Images\\60SauceCaramel.png"
+      "path": ".\\MVVMLightMasterDetailPage\\Images\\60SauceCaramel.png"
     },
     {
-      "path": ".\\App_Page\\Images\\60SauceChocolate.png"
+      "path": ".\\MVVMLightMasterDetailPage\\Images\\60SauceChocolate.png"
     },
     {
-      "path": ".\\App_Page\\Images\\60SauceStrawberry.png"
+      "path": ".\\MVVMLightMasterDetailPage\\Images\\60SauceStrawberry.png"
     },
     {
-      "path": ".\\App_Page\\Images\\60SprinklesChocolate.png"
+      "path": ".\\MVVMLightMasterDetailPage\\Images\\60SprinklesChocolate.png"
     },
     {
-      "path": ".\\App_Page\\Images\\60SprinklesRainbow.png"
+      "path": ".\\MVVMLightMasterDetailPage\\Images\\60SprinklesRainbow.png"
     },
     {
-      "path": ".\\App_Page\\Images\\60SprinklesVanilla.png"
+      "path": ".\\MVVMLightMasterDetailPage\\Images\\60SprinklesVanilla.png"
     },
     {
-      "path": ".\\App_Page\\Images\\60Strawberry.png"
+      "path": ".\\MVVMLightMasterDetailPage\\Images\\60Strawberry.png"
     },
     {
-      "path": ".\\App_Page\\Images\\60Vanilla.png"
+      "path": ".\\MVVMLightMasterDetailPage\\Images\\60Vanilla.png"
     }
   ],
   "symbols": {

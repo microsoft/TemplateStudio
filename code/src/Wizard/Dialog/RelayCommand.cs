@@ -8,68 +8,69 @@ using System.Windows.Input;
 
 namespace Microsoft.Templates.Wizard.Dialog
 {
-    /// <summary>
-    /// A command whose sole purpose is to 
-    /// relay its functionality to other
-    /// objects by invoking delegates. The
-    /// default return value for the CanExecute
-    /// method is 'true'.
-    /// </summary>
     public class RelayCommand : ICommand
     {
-        #region Fields
+        private readonly Action execute;
+        private readonly Func<bool> canExecute;
 
-        readonly Action<object> _execute;
-        readonly Predicate<object> _canExecute;
-
-        #endregion // Fields
-
-        #region Constructors
-
-        /// <summary>
-        /// Creates a new command that can always execute.
-        /// </summary>
-        /// <param name="execute">The execution logic.</param>
-        public RelayCommand(Action<object> execute)
-            : this(execute, null)
+        public RelayCommand(Action execute) : this(execute, null)
         {
         }
 
-        /// <summary>
-        /// Creates a new command.
-        /// </summary>
-        /// <param name="execute">The execution logic.</param>
-        /// <param name="canExecute">The execution status logic.</param>
-        public RelayCommand(Action<object> execute, Predicate<object> canExecute)
+        public RelayCommand(Action execute, Func<bool> canExecute)
         {
-            if (execute == null)
-                throw new ArgumentNullException("execute");
-
-            _execute = execute;
-            _canExecute = canExecute;
+            this.execute = execute ?? throw new ArgumentNullException("execute");
+            this.canExecute = canExecute;
         }
 
-        #endregion // Constructors
+        public event EventHandler CanExecuteChanged;
 
-        #region ICommand Members
-
-        [DebuggerStepThrough]
-        public bool CanExecute(object parameters)
+        public bool CanExecute(object parameter)
         {
-            return _canExecute == null ? true : _canExecute(parameters);
+            return this.canExecute == null || this.canExecute();
         }
 
-        public event EventHandler CanExecuteChanged
+        public void Execute(object parameter)
         {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
+            this.execute();
         }
 
-        public void Execute(object parameters)
+        public void OnCanExecuteChanged()
         {
-            _execute(parameters);
+            this.CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    public class RelayCommand<T> : ICommand
+    {
+        private readonly Action<T> execute;
+        private readonly Func<T, bool> canExecute;
+
+        public RelayCommand(Action<T> execute) : this(execute, null)
+        {
         }
 
-        #endregion // ICommand Members
+        public RelayCommand(Action<T> execute, Func<T, bool> canExecute)
+        {
+            this.execute = execute ?? throw new ArgumentNullException("execute");
+            this.canExecute = canExecute;
+        }
+
+        public event EventHandler CanExecuteChanged;
+
+        public bool CanExecute(object parameter)
+        {
+            return this.canExecute == null ? true : this.canExecute((T)parameter);
+        }
+
+        public void Execute(object parameter)
+        {
+            this.execute((T)parameter);
+        }
+
+        public void OnCanExecuteChanged()
+        {
+            this.CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

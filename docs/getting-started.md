@@ -1,6 +1,6 @@
 Getting Started
 ===============
-You can take advantage of UWP Community Templates by installing our Visual Studio Extension or by clonning the repo and working locally with the code and the available templates. If you plan to contribute, please follow the contribution guidelines published at [UWPCommunityTemplates GitHub](https://github.com/Microsoft/uwpcommunitytemplates) site.  
+You can take advantage of UWP Community Templates by installing our Visual Studio Extension or by cloning the repo and working locally with the code and the available templates. If you plan to contribute, please follow the [contribution guidelines](https://github.com/Microsoft/UWPCommunityTemplates/blob/master/contributing.md).  
 
 You can install the UWP Community Templates Visual Studio Extension (pre-release nightly version) configuring the following extensions feed https://www.myget.org/F/vsixextensions/vsix/. Follow detailed installation instructions [below](#the-project).
 
@@ -23,8 +23,8 @@ There are three different types of templates:
 * **Page Template**: will contain the files needed to add a page to a certain App.
 * **Feature Templates**: will contain to add features to a certain App.
 
-### What is the Generation?
-The generation is the process executed to create actual code from a selected template. That is, the process to create the real Visual Studio project (thought to be an App), or to create the Xaml Page and its code behind, or the code to add/enable certain feature.
+### What is the Generation process?
+The generation is the process executed to create actual code from a selected template. That is, the process to create the real Visual Studio project (thought to be an App), or to create the XAML Page and its code behind, or the code to add/enable certain feature.
 
 As well as templates, the generation is based on [dotnet Template Engine](https://github.com/dotnet/templating) code generation.
 
@@ -34,7 +34,7 @@ The Templates Repository is the place where we will gather all templates and wil
 * VNext: The ongoing version of the templates.
 
 ### What is the Visual Studio Extension?
-UWP App developers can take advantage of the UWP Community Templates by installing our Visual Studio extension. This extension will allow developers to create Apps, add pages and/or add features to exsisting apps based on the available Templates from the public Repository. 
+UWP App developers can take advantage of the UWP Community Templates by installing our Visual Studio extension. This extension will allow developers to create Apps, add pages and/or add features to existing apps based on the available Templates from the public Repository. 
 
 The UWP Community Templates Visual Studio Extension (pre-release nightly build) version is published [here](). The stable public version will be published through the [Visual Studio Gallery](https://visualstudiogallery.msdn.microsoft.com/) when ready.
 
@@ -62,7 +62,7 @@ Coming soon.
 
 ## The Project
 ### Main components
-* [Core](../code/src): This assembly contains the core elements to enable the generation of templates. Deals with the location of the templates, the syncronization of the content and the  
+* [Core](../code/src): This assembly contains the core elements to enable the generation of templates. Deals with the location of the templates, the synchronization of the content and the  
 * [Vsix](../code/src): This is the Visual Studio Extension project. Enables the access to the commands and the project templates and ensures that all required assets are deployed with it.
 * [Wizard](../code/src): This project handles the generation orchestration as well as the UI dialogs required to handle the workflow.
 * [Vspt](../code/src): This folder contains the [Visual Studio Project Templates](https://msdn.microsoft.com/library/ms247121.aspx) deployed with the extension.
@@ -76,7 +76,7 @@ There are different test projects in the solution:
 ### Build and Test
 Clone the repo and you should can start working with UWP Community Templates. All projects must build and run without any special configuration.
 
-We are targeting Visual Studio 2017 RC (Community is enough) but all except the Visual Studio Extension project can build in Visual Studio 2015. 
+We are targeting Visual Studio 2017 RC (Community or higher) but all except the Visual Studio Extension project can build in Visual Studio 2015. 
 
 There are two main entry points in the code:
 * [Wizard.TestApp](../code/test/): This is a test application project which is able to run End-To-End the generation using the local templates repository. It can read the Templates folder and generate code based on the contents. This test application is thought to be able to launch and interact with the extension UI without having to run the Visual Studio Experimental instance (in other words, much more lightweight). 
