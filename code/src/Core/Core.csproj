@@ -73,7 +73,6 @@
     <Compile Include="Locations\CDNTemplatesLocation.cs" />
     <Compile Include="ITemplateInfo.extensions.cs" />
     <Compile Include="Locations\TemplatesLocation.cs" />
-    <Compile Include="Settings.cs" />
     <Compile Include="TemplatesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateType.cs" />
