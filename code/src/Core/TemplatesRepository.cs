@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,6 +31,8 @@ namespace Microsoft.Templates.Core
         public void Sync()
         {
             EnsureHostInitialized();
+
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 
             if (_location != null)
             {
@@ -73,6 +76,31 @@ namespace Microsoft.Templates.Core
         {
             //TODO: REVIEW THIS
             return new DefaultTemplateEngineHost(FolderName, "1.0.0", CultureInfo.CurrentCulture.Name, new Dictionary<string, string>());
+        }
+
+        //TODO: THIS IS TEMPORAL WHILE TEMPLATING TEAM RESOLVES APPDOMAIN LOAD ISSUES
+        private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            try
+            {
+                string path = Assembly.GetExecutingAssembly().Location;
+                path = Path.GetDirectoryName(path);
+
+                if (args.Name.ToLower().Contains("templateengine") || args.Name.ToLower().Contains("newtonsoft"))
+                {
+                    var nameChunks = args.Name.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                    var name = nameChunks[0].Trim();
+                    path = Path.Combine(path, $"{name}.dll");
+                    Assembly ret = Assembly.LoadFrom(path);
+                    return ret;
+                }
+            }
+            catch
+            {
+                //TODO: LOG THIS
+            }
+
+            return null;
         }
     }
 }
