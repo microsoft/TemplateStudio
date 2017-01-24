@@ -70,6 +70,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration.cs" />
+    <Compile Include="Diagnostics\DiagnosticWriter.cs" />
+    <Compile Include="Diagnostics\FileDiagnosticListener.cs" />
+    <Compile Include="Diagnostics\IDiagnosticListener.cs" />
+    <Compile Include="Diagnostics\Tracer.cs" />
     <Compile Include="Locations\CDNTemplatesLocation.cs" />
     <Compile Include="ITemplateInfo.extensions.cs" />
     <Compile Include="Locations\TemplatesLocation.cs" />

@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Diagnostics\FileDiagnosticListenerTest.cs" />
     <Compile Include="ITemplateInfoExtensionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplatesFixture.cs" />
