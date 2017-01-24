@@ -9,6 +9,7 @@ using System.Windows.Input;
 using Microsoft.Templates.Wizard;
 using Microsoft.Templates.Core;
 using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.Wizard.ViewModels;
 
 namespace Microsoft.Templates.Wizard.Dialog
 {
@@ -29,6 +30,8 @@ namespace Microsoft.Templates.Wizard.Dialog
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public AddProjectViewModel ViewModel { get; }
 
         public AddProjectResult ResultInfo { get; private set; }
 
@@ -98,23 +101,32 @@ namespace Microsoft.Templates.Wizard.Dialog
         public AddNewProject(string targetSolutionName, string vsTemplateCategory, TemplatesRepository templatesRepository, AddProjectSteps initial)
         {
             InitializeComponent();
+
+            ViewModel = new AddProjectViewModel(templatesRepository);
+            DataContext = ViewModel;
+
             templates = templatesRepository;
-            LoadOptions(vsTemplateCategory);
+            //LoadOptions(vsTemplateCategory);
 
             initialStep = initial;
             CurrentStep = initial;
 
             if (initial == AddProjectSteps.SelectProject)
             {
-                SolutionNameTbx.Text = $"Select the App type you want to add to {targetSolutionName}";
+                SolutionNameTbx.Text = $"Select the project template:";
             }
             else
             {
                 SolutionNameTbx.Text = $"Add Feature to the project {targetSolutionName}. Showing Category ({vsTemplateCategory})";
             }
-            ProjectOptions.ItemsSource = projectOptions;
+            //ProjectOptions.ItemsSource = projectOptions;
 
             ResultInfo = new AddProjectResult();
+        }
+
+        protected override async void OnActivated(EventArgs e)
+        {
+            await ViewModel.LoadDataAsync();
         }
 
 
@@ -157,7 +169,7 @@ namespace Microsoft.Templates.Wizard.Dialog
                 return new SelectionOption
                 {
                     Item = t,
-                    Command = new RelayCommand( a=> relayCommandAction(t))
+                    Command = new RelayCommand<ITemplateInfo>( a=> relayCommandAction(t))
                 };
             });
 

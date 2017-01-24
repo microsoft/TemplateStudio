@@ -35,6 +35,8 @@ namespace Microsoft.Templates.Core
             {
                 _location.Copy(WorkingFolder);
 
+                TemplateCache.DeleteAllLocaleCacheFiles();
+
                 TemplateCache.Scan(WorkingFolder + $@"\{TemplatesLocation.PackagesName}\*");
                 TemplateCache.Scan(WorkingFolder + $@"\{TemplatesLocation.TemplatesName}");
 

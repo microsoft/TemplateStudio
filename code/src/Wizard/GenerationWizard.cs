@@ -14,6 +14,8 @@ using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Wizard.Resources;
+using Microsoft.Templates.Wizard.Steps;
+using Microsoft.Templates.Wizard.Host;
 
 namespace Microsoft.Templates.Wizard
 {
@@ -23,7 +25,7 @@ namespace Microsoft.Templates.Wizard
         IVisualStudioShell _vsShell;
         SolutionInfo _vsSolutionInfo;
 
-        AddProjectResult _addProjectResult;
+        private TemplateConfig[] _selectedTemplates;
 
         public GenerationWizard(IVisualStudioShell vsShell, SolutionInfo solutionInfo) 
             : this(vsShell, solutionInfo, new TemplatesRepository(new CdnTemplatesLocation()))
@@ -40,31 +42,41 @@ namespace Microsoft.Templates.Wizard
 
         public void AddProjectInit()
         {
-            MessageBox.Show($"{Configuration.Current.CdnUrl}\r\n{Configuration.Current.AppInsightsKey}" );
-
             _vsShell.ShowStatusBarMessage(StringRes.UIAddProjectAdding);
-            _addProjectResult = ShowAddProjectDialog(_vsSolutionInfo.Name, _vsSolutionInfo.TemplateCategory);
 
-            if (_addProjectResult == null)
+            var steps = new WizardSteps();
+
+            steps.Add<Steps.ProjectsStep.ProjectsStepPage>();
+            steps.Add<Steps.SummaryStep.SummaryStepPage>();
+
+            var host = new WizardHost(_templatesRepository, steps);
+            var result = host.ShowDialog();
+
+            if (result.HasValue && result.Value)
             {
-                _vsShell.ShowStatusBarMessage(StringRes.UIActionCancelled);
-                _vsShell.CancelWizard();
+                _selectedTemplates = host.Result.ToArray();
+            }
+            else
+            {
+                _selectedTemplates = null;
             }
         }
         public void AddProjectFinish()
         {
             try
             {
-                if (_addProjectResult != null)
+                if (_selectedTemplates != null)
                 {
+                    //TODO: THIS SHOULD GENERATE MORE THAN ONE TEMPLATE
+                    var targetTemplate = _selectedTemplates.First().Info;
 
                     _vsShell.ShowStatusBarMessage(StringRes.UIAddProjectGenerating);
 
-                    GenerateProject(_addProjectResult.ProjectTemplate, _vsSolutionInfo, _vsShell);
+                    GenerateProject(targetTemplate, _vsSolutionInfo, _vsShell);
 
                     _vsShell.SetSolutionVsCategory(_vsSolutionInfo.TemplateCategory);
 
-                    ShowReadMe(_addProjectResult.ProjectTemplate);
+                    ShowReadMe(targetTemplate);
 
                     _vsShell.ShowStatusBarMessage(StringRes.UIProjectSuccessfullyCreated);
                 }
@@ -78,20 +90,30 @@ namespace Microsoft.Templates.Wizard
 
         public void AddPageToActiveProject()
         {
-            MessageBox.Show($"{Configuration.Current.CdnUrl}\r\n{Configuration.Current.AppInsightsKey}");
+            //TODO: THIS SHOULD BE A UNIQUE METHOD??
             if (_vsShell.GetActiveProjectName() != "")
             {
                 _vsShell.ShowStatusBarMessage(StringRes.UIAddPage);
 
                 string suggestedNamespace = _vsShell.GetSelectedItemDefaultNamespace();
 
-                AddPageResult result = ShowAddPageDialog(_vsShell.GetActiveProjectName(), _vsSolutionInfo.TemplateCategory, suggestedNamespace);
-                if (result != null)
+                var steps = new WizardSteps();
+
+                steps.Add<Steps.PagesStep.PagesStepPage>();
+                steps.Add<Steps.SummaryStep.SummaryStepPage>();
+
+                var host = new WizardHost(_templatesRepository, steps);
+                var result = host.ShowDialog();
+
+                if (result.HasValue && result.Value)
                 {
+                    var pageTemplateConfig = host.Result.First();
+                    var pageName = pageTemplateConfig.Parameters["ItemName"];
+
                     string relativeItemPath = _vsShell.GetSelectedItemPath(true);
 
-                    GeneratePage(result.PageTemplate, _vsShell.GetActiveProjectName(), _vsShell.GetActiveProjectPath(), result.Namespace, result.PageName, relativeItemPath, _vsShell);
-                    _vsShell.ShowStatusBarMessage(StringRes.UIPageAddedPattern.UseParams(result.PageName));
+                    GeneratePage(pageTemplateConfig.Info, _vsShell.GetActiveProjectName(), _vsShell.GetActiveProjectPath(), suggestedNamespace, pageName, relativeItemPath, _vsShell);
+                    _vsShell.ShowStatusBarMessage(StringRes.UIPageAddedPattern.UseParams(pageName));
                 }
                 else
                 {
@@ -181,8 +203,10 @@ namespace Microsoft.Templates.Wizard
 
         private static void GeneratePage(ITemplateInfo template, string projectName, string projectPath, string pageNamespace, string pageName, string pageRelativePath, IVisualStudioShell vsShell)
         {
-            var genParams = new Dictionary<string, string>();
-            genParams.Add("PageNamespace", pageNamespace);
+            var genParams = new Dictionary<string, string>
+            {
+                { "PageNamespace", pageNamespace }
+            };
 
             string generationPath = Path.Combine(projectPath, pageRelativePath);
             var result = TemplateCreator.InstantiateAsync(template, pageName, null, generationPath, genParams, true).Result;

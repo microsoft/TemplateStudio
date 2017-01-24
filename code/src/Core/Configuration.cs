@@ -38,8 +38,8 @@ namespace Microsoft.Templates.Core
 
         private Configuration()
         {
-            CdnUrl = Local ? "https://uwpcommunitytemplates.blob.core.windows.net/vnext/Latest" : "###CDN_URL###";
-            AppInsightsKey = Local ? "<SET_YOUR_OWN_APP_INSIGHTS_INSTRUMENTATION_KEY>" : "###APP_INSIGHTS_KEY###";
+            CdnUrl = Local ? "https://uwpcommunitytemplates.blob.core.windows.net/vnext/Latest" : "###CdnUrl###";
+            AppInsightsKey = Local ? "<SET_YOUR_OWN_APP_INSIGHTS_INSTRUMENTATION_KEY>" : "###AppInsightsKey###";
         }
     }
 }

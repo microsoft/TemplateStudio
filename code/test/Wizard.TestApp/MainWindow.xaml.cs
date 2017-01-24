@@ -44,6 +44,8 @@ namespace Microsoft.Templates.Wizard.TestApp
             {
                 testShell = new TestVsShell(SeedSolName.Text + DateTime.Now.ToString("MMddmmss"), DefaultNamespace.Text, Status);
                 genWizard = new GenerationWizard(testShell, testShell.VsData.Solution,new TemplatesRepository(new TestTemplatesLocation()) );
+
+                //TODO: MAYBE IS CANCELLED
                 genWizard.AddProjectInit();
                 genWizard.AddProjectFinish();
 
