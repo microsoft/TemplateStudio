@@ -7,7 +7,7 @@ namespace BasicBlankProject.Core
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
+        protected bool Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
         {
             if (Equals(storage, value)) return false;
 
