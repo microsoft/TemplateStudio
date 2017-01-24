@@ -2,38 +2,24 @@
   "author": "Microsoft",
   "classifications": ["Universal"],
   "name": "Blank",
-  "groupIdentity": "Microsoft.UWPTemplates.MVVMLightBlankPage",
-  "identity": "Microsoft.UWPTemplates.MVVMLightBlankPage.CSharp",
-  "shortName": "mvvmsplitviewpage",
+  "groupIdentity": "Microsoft.UWPTemplates.BasicBlankProject",
+  "identity": "Microsoft.UWPTemplates.BasicBlankProject.CSharp",
+  "shortName": "basicblank",
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   "tags": {
     "language": "C#",
-    "type": "item",
-    "uct.type": "page",
-    "uct.framework": "MVVMLight",
+    "type": "project",
+    "uct.type": "project",
+    "uct.framework": "Basic",
     "uct.version": "1.0.0",
     "uct.order": "1"
   },
-  "sourceName": "MVVMLightBlankPage",
+  "sourceName": "BasicBlankProject",
   "preferNameDirectory": true,
+  "guids": [ "C9B207DA-4BEE-4EBF-AEED-FA1461069E2C", "04047e64-bc2b-45c4-9e12-f9bd495774b3" ],
   "PrimaryOutputs": [
     {
-      "path": ".\\MVVMLightBlankPage\\MVVMLightBlankPagePage.xaml"
-    },
-    {
-      "path": ".\\MVVMLightBlankPage\\MVVMLightBlankPagePage.xaml.cs"
-    },
-    {
-      "path": ".\\MVVMLightBlankPage\\MVVMLightBlankPageViewModel.cs"
-    },
-    {
-      "path": ".\\MVVMLightBlankPage\\ViewModelLocator.cs"
+      "path": ".\\BasicBlankProject\\BasicBlankProject.csproj"
     }
-  ],
-  "symbols": {
-    "PageNamespace": {
-      "type": "parameter",
-      "replaces": "Page_NS"
-    }
-  }
+  ]
 }

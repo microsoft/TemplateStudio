@@ -21,19 +21,8 @@ namespace BasicBlankProject.Core
         public void GoBack() => _frame.GoBack();
         public void GoForward() => _frame.GoForward();
 
-        public bool Navigate<T>() where T : Page
-        {
-            return _frame.Navigate(typeof(T));
-        }
-
-        public bool Navigate<T>(object parameter) where T : Page
-        {
-            return _frame.Navigate(typeof(T), parameter);
-        }
-
-        public bool Navigate<T>(object parameter, NavigationTransitionInfo infoOverride) where T : Page
-        {
-            return _frame.Navigate(typeof(T), parameter, infoOverride);
-        }
+        public bool Navigate<T>() where T : Page => _frame.Navigate(typeof(T));
+        public bool Navigate<T>(object parameter) where T : Page => _frame.Navigate(typeof(T), parameter);
+        public bool Navigate<T>(object parameter, NavigationTransitionInfo infoOverride) where T : Page => _frame.Navigate(typeof(T), parameter, infoOverride);
     }
 }
