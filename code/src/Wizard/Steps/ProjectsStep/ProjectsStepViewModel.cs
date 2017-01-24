@@ -31,8 +31,11 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectsStep
             {
                 SetProperty(ref _templateSelected, value);
 
-                AddSelectionToContext(value);
-                _context.CanGoForward = true;
+                if (value != null)
+                {
+                    AddSelectionToContext(value);
+                    _context.CanGoForward = true; 
+                }
             }
         }
 
