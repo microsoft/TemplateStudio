@@ -10,7 +10,7 @@ param
 	[array]$Replacements,
 
 	[Parameter(Mandatory=$false)]	
-	[array]$TargetConfigFile, #If Defined, the TargetConfigFile will be replaced by the TokenizedFile after replacements occurs.
+	[string]$TargetConfigFile, #If Defined, the TargetConfigFile will be replaced by the TokenizedFile after replacements occurs.
 
 	[Parameter(Mandatory=$false)]
 	[array]$TokenPattern = "###TOKEN###"
@@ -24,13 +24,13 @@ if($Tokens.Count -ne $Replacements.Count){
 }
 else{
 	if(Test-Path $TokenizedFile){
-		$TokenizedFilecontent = Get-Content($TokenizedFile)
+		$TokenizedFilecontent =(Get-Content $TokenizedFile)
 		attrib $TokenizedFile -r
 		for ($i=0; $i -le $Tokens.Count-1; $i++) {
 			$token = $TokenPattern -replace "TOKEN", $Tokens[$i]
 			Write-Output "Replacing token $token..."
-			$TokenizedFilecontent = $TokenizedFilecontent -replace $token,  $Replacements[$i]
-   		}
+			$TokenizedFilecontent = $TokenizedFilecontent.Replace($token,  $Replacements[$i])
+		}
 		Out-File -InputObject $TokenizedFilecontent -FilePath $TokenizedFile -Encoding utf8
 		Write-Output "Done."
 

@@ -1,4 +1,4 @@
-namespace Page_NS
+namespace Page_NS.MVVMLightMasterDetailPage
 {
     public class DessertModel
     {

@@ -42,8 +42,6 @@ namespace Microsoft.Templates.Wizard
 
         public void AddProjectInit()
         {
-            MessageBox.Show($"{Configuration.Current.CdnUrl}\r\n{Configuration.Current.AppInsightsKey}" );
-
             _vsShell.ShowStatusBarMessage(StringRes.UIAddProjectAdding);
 
             var steps = new WizardSteps();
@@ -93,7 +91,6 @@ namespace Microsoft.Templates.Wizard
         public void AddPageToActiveProject()
         {
             //TODO: THIS SHOULD BE A UNIQUE METHOD??
-            MessageBox.Show($"{Configuration.Current.CdnUrl}\r\n{Configuration.Current.AppInsightsKey}");
             if (_vsShell.GetActiveProjectName() != "")
             {
                 _vsShell.ShowStatusBarMessage(StringRes.UIAddPage);
