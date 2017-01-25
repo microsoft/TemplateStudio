@@ -1,0 +1,3 @@
+<data name="MVVMLightBlankPageTitle.Text" xml:space="preserve">
+  <value>MVVMLightBlankPage</value>
+</data>

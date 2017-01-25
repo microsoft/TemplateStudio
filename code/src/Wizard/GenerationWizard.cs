@@ -16,6 +16,8 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Wizard.Resources;
 using Microsoft.Templates.Wizard.Steps;
 using Microsoft.Templates.Wizard.Host;
+using Newtonsoft.Json;
+using Microsoft.Templates.Wizard.PostActions;
 
 namespace Microsoft.Templates.Wizard
 {
@@ -186,7 +188,13 @@ namespace Microsoft.Templates.Wizard
 
         private static void GenerateProject(ITemplateInfo template, SolutionInfo solutionInfo, IVisualStudioShell vsShell)
         {
-            var result = TemplateCreator.InstantiateAsync(template, solutionInfo.Name, null, solutionInfo.Directory, new Dictionary<string, string>(), true).Result;
+			var userName = Environment.UserName;
+			var genParams = new Dictionary<string, string>
+			{
+				{ "UserName", userName }
+			};
+
+			var result = TemplateCreator.InstantiateAsync(template, solutionInfo.Name, null, solutionInfo.Directory, genParams, true).Result;
 
             if (result.Status == CreationResultStatus.CreateSucceeded && result.PrimaryOutputs != null)
             {
@@ -199,9 +207,36 @@ namespace Microsoft.Templates.Wizard
                     }
                 } 
             }
-        }
 
-        private static void GeneratePage(ITemplateInfo template, string projectName, string projectPath, string pageNamespace, string pageName, string pageRelativePath, IVisualStudioShell vsShell)
+			//Execute post actions
+			var postActionResults = ExecutePostActions(template, new ExecutionContext() {
+				ProjectName = solutionInfo.Name,
+				ProjectPath = Path.Combine(solutionInfo.Directory, solutionInfo.Name),
+				PagePath = "",
+				UserName = userName
+			});
+
+			//TODO: Show Post Action Info
+		}
+
+		private static IEnumerable<PostActionExecutionResult> ExecutePostActions(ITemplateInfo template, ExecutionContext executionContext)
+		{
+			//Get post actions from template
+			var postActions = PostActionCreator.GetPostActions(template);
+
+			//Execute post action
+			var postActionResults = new List<PostActionExecutionResult>();
+
+			foreach (var postAction in postActions)
+			{
+				var postActionResult = postAction.Execute(executionContext);
+				postActionResults.Add(postActionResult);
+			}
+
+			return postActionResults;
+		}
+
+		private static void GeneratePage(ITemplateInfo template, string projectName, string projectPath, string pageNamespace, string pageName, string pageRelativePath, IVisualStudioShell vsShell)
         {
             var genParams = new Dictionary<string, string>
             {
@@ -225,11 +260,20 @@ namespace Microsoft.Templates.Wizard
                 }
             }
 
-            //TODO:Post Action --> Show ViewModelLocator Information
-            //TODO: Show Project Information
-        }
+			//Execute post action
+			var postActionResults = ExecutePostActions(template, new ExecutionContext()
+			{
+				ProjectName = projectName,
+				ProjectPath = projectPath,
+				PagePath = Path.Combine(generationPath, pageName)
+			});
 
-        private void ShowReadMe(ITemplateInfo template)
+			//TODO: Show Post Action Info
+
+			//TODO: Show Project Information
+		}
+
+		private void ShowReadMe(ITemplateInfo template)
         {
             //TODO: GoTo formula Readme / Help page
             _vsShell.Navigate("https://github.com/Microsoft/UWPCommunityTemplates/tree/vnext");

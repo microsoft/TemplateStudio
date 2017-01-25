@@ -31,6 +31,13 @@ namespace Microsoft.Templates.Core
             }
         }
 
+		public static string GetPostActionConfigPath(this ITemplateInfo ti)
+		{
+			var configDir = GetConfigDir(ti);
+		
+			return Directory.EnumerateFiles(configDir, "postactions.json").FirstOrDefault();
+		}
+
         public static string GetIcon(this ITemplateInfo ti)
         {
             var configDir = GetConfigDir(ti);
