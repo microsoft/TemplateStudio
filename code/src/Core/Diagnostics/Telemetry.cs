@@ -12,7 +12,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 {
     public class Telemetry : IDisposable
     {
-        public TelemetryClient Client {get; private set;}
+        private TelemetryClient Client {get; set;}
         public Dictionary<string, string> Properties { get; } = new Dictionary<string, string>();
         public Dictionary<string, double> Metrics { get; } = new Dictionary<string, double>();
 
@@ -29,7 +29,6 @@ namespace Microsoft.Templates.Core.Diagnostics
             _currentConfig = config;
             IntializeTelemetryClient();
         }
-
         private void IntializeTelemetryClient()
         {
             try
@@ -51,7 +50,6 @@ namespace Microsoft.Templates.Core.Diagnostics
 #if DEBUG
                     TelemetryConfiguration.Active.TelemetryChannel.DeveloperMode = true;
 #endif
-
                 }
                 else
                 {
@@ -63,10 +61,32 @@ namespace Microsoft.Templates.Core.Diagnostics
             {
                 IsEnabled = false;
                 TelemetryConfiguration.Active.DisableTelemetry = true;
-                Debug.WriteLine($"Exception instantiating TelemetryClient:\n\r{ex.ToString()}");
+                Trace.TraceError($"Exception instantiating TelemetryClient:\n\r{ex.ToString()}");
             }
         }
 
+        public void TrackEvent(string eventName)
+        {
+            SafeTrack(()=>Client.TrackEvent(eventName, Properties, Metrics));
+        }
+
+        public void TrackException(Exception ex)
+        {
+            SafeTrack(() => Client.TrackException(ex, Properties, Metrics));
+        }
+        private void SafeTrack(Action trackAction)
+        {
+            try
+            {
+                trackAction();
+                Properties.Clear();
+                Metrics.Clear();
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError("Error tracking telemetry: {0}", ex.ToString());
+            }
+        }
         private bool RemoteKeyAvailable()
         {
             return Guid.TryParse(_currentConfig.RemoteTelemetryKey, out var aux);

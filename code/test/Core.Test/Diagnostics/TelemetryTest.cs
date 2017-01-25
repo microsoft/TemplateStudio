@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xunit;
 
 using System.Diagnostics;
+using Microsoft.Templates.Core.Diagnostics;
 
 namespace Microsoft.Templates.Core.Test.Diagnostics
 {
@@ -17,14 +18,23 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
             _fixture = fixture;
         }
         [Fact]
-        public void Instantiate()
+        public void Instantiated()
         {
-
+            Assert.NotNull(_fixture.Telemetry);
+            Assert.NotNull(_fixture.Telemetry.Properties);
+            Assert.NotNull(_fixture.Telemetry.Metrics);
         }
 
         [Fact]
-        public void VerifyDictionaryAndMetricsInstantiate()
+        public void TrackEvent()
         {
+            if (_fixture.Telemetry.IsEnabled)
+            {
+                _fixture.Telemetry.Properties.Add(TelemetryEventProperty.Name, "TestTelemetrySampleTemplate");
+                _fixture.Telemetry.Properties.Add(TelemetryEventProperty.Framework, "MVVMLight");
+                _fixture.Telemetry.Properties.Add(TelemetryEventProperty.Type, "Project");
+                _fixture.Telemetry.TrackEvent(TelemetryEvents.TemplateGenerated);
+            }
         }
 
         [Fact]

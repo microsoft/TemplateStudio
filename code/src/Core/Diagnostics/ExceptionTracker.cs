@@ -26,7 +26,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
             catch (Exception exception)
             {
-                Debug.Write($"Error writing exception data to listeners. Exception:\r\n{exception.ToString()}");
+                Trace.TraceError($"Error writing exception data to listeners. Exception:\r\n{exception.ToString()}");
             }
         }
     }

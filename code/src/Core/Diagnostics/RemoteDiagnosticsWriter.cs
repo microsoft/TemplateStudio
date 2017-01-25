@@ -24,7 +24,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task WriteExceptionAsync(Exception ex, string message = null)
         {
-            await CallAsync(() => telemetry.Client.TrackException(ex));
+            await CallAsync(() => telemetry.TrackException(ex));
         }
 
         private async Task CallAsync(Action action)

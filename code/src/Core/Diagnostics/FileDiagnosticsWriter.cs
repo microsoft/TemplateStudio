@@ -65,7 +65,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
             catch (Exception exception)
             {
-                Debug.WriteLine($"Error creating FileDiagnosticListener. Exception:\r\n{exception.ToString()}");
+                Trace.TraceError($"Error creating FileDiagnosticListener. Exception:\r\n{exception.ToString()}");
             }
             finally
             {
@@ -94,7 +94,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
             catch (Exception exception)
             {
-                Debug.WriteLine($"Error creating FileDiagnosticListener. Exception:\r\n{exception.ToString()}");
+                Trace.TraceError($"Error creating FileDiagnosticListener. Exception:\r\n{exception.ToString()}");
             }
             finally
             {
@@ -121,7 +121,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
             catch (Exception exception)
             {
-                Debug.WriteLine($"Error creating FileDiagnosticListener. Exception:\r\n{exception.ToString()}");
+                Trace.TraceError($"Error creating FileDiagnosticListener. Exception:\r\n{exception.ToString()}");
             }
             finally
             {

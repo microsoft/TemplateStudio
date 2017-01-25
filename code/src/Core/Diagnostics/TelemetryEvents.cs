@@ -20,7 +20,6 @@ namespace Microsoft.Templates.Core.Diagnostics
 
     public class TelemetryEventProperty
     {
-        public const string BuildId = TelemetryTracker.PropertiesPrefix + "BuildId";
         public const string Name = TelemetryTracker.PropertiesPrefix + "Name";
         public const string Framework = TelemetryTracker.PropertiesPrefix + "Framework";
         public const string Type = TelemetryTracker.PropertiesPrefix + "Type";
