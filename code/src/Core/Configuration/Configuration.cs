@@ -9,7 +9,7 @@ namespace Microsoft.Templates.Core
     public class Configuration
     {
         public string CdnUrl { get; set; }
-        public string AppInsightsKey { set; get; }
+        public string RemoteTelemetryKey { set; get; }
 
         private static Configuration _current;
         public static Configuration Current
@@ -24,7 +24,7 @@ namespace Microsoft.Templates.Core
             }    
         }
 
-        internal bool Local
+        protected bool Local
         {
             get
             {
@@ -36,10 +36,10 @@ namespace Microsoft.Templates.Core
             }
         }
 
-        private Configuration()
+        protected Configuration()
         {
             CdnUrl = Local ? "https://uwpcommunitytemplates.blob.core.windows.net/vnext/Latest" : "###CdnUrl###";
-            AppInsightsKey = Local ? "<SET_YOUR_OWN_APP_INSIGHTS_INSTRUMENTATION_KEY>" : "###AppInsightsKey###";
+            RemoteTelemetryKey = Local ? "<SET_YOUR_OWN_KEY>" : "###RemoteTelemetryKey###";
         }
     }
 }

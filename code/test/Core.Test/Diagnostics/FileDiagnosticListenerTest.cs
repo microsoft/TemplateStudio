@@ -12,7 +12,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
 {
     public class FileDiagnosticListenerTest 
     {
-        FileDiagnosticListener _defaultListener = FileDiagnosticListener.Default;
+        FileDiagnosticsWriter _defaultListener = FileDiagnosticsWriter.Default;
         string _expectedLogFileName;
 
         public FileDiagnosticListenerTest()
@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         public void LogInfo()
         {
             string uniqueMsg = $"LogInfo_{Guid.NewGuid()}";
-            _defaultListener.WriteDataAsync(TraceLevel.Info, uniqueMsg).Wait();
+            _defaultListener.WriteEventAsync(TraceEventType.Information, uniqueMsg).Wait();
 
             AssertMessageIsInLog(_defaultListener.LogFileName, uniqueMsg);
         }
@@ -41,7 +41,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         public void LogError()
         {
             string uniqueMsg = $"LogError_{Guid.NewGuid()}";
-            _defaultListener.WriteDataAsync(TraceLevel.Error, uniqueMsg).Wait();
+            _defaultListener.WriteEventAsync(TraceEventType.Error, uniqueMsg).Wait();
 
             AssertMessageIsInLog(_defaultListener.LogFileName, uniqueMsg);
         }
@@ -50,7 +50,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         public void LogErrorWithEx()
         {
             string uniqueMsg = $"LogErrorWithEx_{Guid.NewGuid()}";
-            _defaultListener.WriteDataAsync(TraceLevel.Error, uniqueMsg, new Exception("SampleException")).Wait();
+            _defaultListener.WriteEventAsync(TraceEventType.Error, uniqueMsg, new Exception("SampleException")).Wait();
 
             AssertMessageIsInLog(_defaultListener.LogFileName, uniqueMsg);
         }
@@ -59,13 +59,13 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         [Fact]
         public void TwoInstances()
         {
-            FileDiagnosticListener otherListener = new FileDiagnosticListener();
+            FileDiagnosticsWriter otherListener = new FileDiagnosticsWriter();
 
             string uniqueMsg = $"TwoInstances_InstanceA_{Guid.NewGuid()}";
-            _defaultListener.WriteDataAsync(TraceLevel.Error, uniqueMsg, new Exception("SampleException")).Wait();
+            _defaultListener.WriteEventAsync(TraceEventType.Error, uniqueMsg, new Exception("SampleException")).Wait();
 
             string otherUniqueMsg = $"TwoInstances_InstanceB_{Guid.NewGuid()}";
-            otherListener.WriteDataAsync(TraceLevel.Info, otherUniqueMsg).Wait();
+            otherListener.WriteEventAsync(TraceEventType.Information, otherUniqueMsg).Wait();
 
             AssertMessageIsInLog(_defaultListener.LogFileName, uniqueMsg);
             AssertMessageIsInLog(otherListener.LogFileName, otherUniqueMsg);

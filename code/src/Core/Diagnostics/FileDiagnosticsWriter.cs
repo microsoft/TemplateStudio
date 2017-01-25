@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
-    public class FileDiagnosticListener : IDiagnosticListener, IDisposable
+    public class FileDiagnosticsWriter: IDiagnosticsWriter, IDisposable
     {
         private const string FolderName = @"UWPTemplates\Logs";
         private readonly Lazy<string> _lazyWorkingFolder = new Lazy<string>(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), FolderName));
@@ -27,14 +27,14 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
 
-        static FileDiagnosticListener _default;
-        public static FileDiagnosticListener Default
+        static FileDiagnosticsWriter _default;
+        public static FileDiagnosticsWriter Default
         {
             get
             {
                 if(_default == null)
                 {
-                    _default = new FileDiagnosticListener();
+                    _default = new FileDiagnosticsWriter();
                 }
                 return _default;
             }
@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         static SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
 
-        public FileDiagnosticListener()
+        public FileDiagnosticsWriter()
         {
             _username = System.Environment.UserName;
             _processId = $"{Process.GetCurrentProcess().Id.ToString()}";
@@ -50,16 +50,12 @@ namespace Microsoft.Templates.Core.Diagnostics
             InitializeLogFile();
         }
 
-        public async Task WriteDataAsync(TraceLevel level, string message)
-        {
-            await WriteDataAsync(level, message, null);
-        }
-        public async Task WriteDataAsync(TraceLevel level, string message, Exception ex)
+        public async Task WriteEventAsync(TraceEventType eventType, string message, Exception ex=null)
         {
             await semaphoreSlim.WaitAsync();
             try
             {
-                await _fileStream?.WriteLineAsync($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}\t{_username}\t{_processId}({System.Threading.Thread.CurrentThread.ManagedThreadId})\t{level.ToString()}\t{message}{(ex != null ? "\tException Follows:" : "")}");
+                await _fileStream?.WriteLineAsync($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}\t{_username}\t{_processId}({System.Threading.Thread.CurrentThread.ManagedThreadId})\t{eventType.ToString()}\t{message}{(ex != null ? "\tException Details:" : "")}");
                 if (ex != null)
                 {
                     await _fileStream?.WriteLineAsync(ex.ToString());
@@ -77,6 +73,34 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
 
+        public async Task WriteExceptionAsync(Exception ex, string message = null)
+        {
+            await semaphoreSlim.WaitAsync();
+            try
+            {
+                string messageToTrack = message != null ? message : "Exception tracked"; 
+                await _fileStream?.WriteLineAsync($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}\t{_username}\t{_processId}({System.Threading.Thread.CurrentThread.ManagedThreadId})\t{TraceEventType.Critical.ToString()}\t{messageToTrack}{(ex != null ? "\tException Details:" : "")}");
+                if (ex != null)
+                {
+                    await _fileStream?.WriteLineAsync(ex.ToString());
+                    await _fileStream?.WriteLineAsync("--");
+                }
+                else
+                {
+                    await _fileStream?.WriteLineAsync("The exception object is null");
+                    await _fileStream?.WriteLineAsync("--");
+                }
+                await _fileStream.FlushAsync();
+            }
+            catch (Exception exception)
+            {
+                Debug.WriteLine($"Error creating FileDiagnosticListener. Exception:\r\n{exception.ToString()}");
+            }
+            finally
+            {
+                semaphoreSlim.Release();
+            }
+        }
         private void InitializeLogFile()
         {
             semaphoreSlim.Wait();
@@ -141,7 +165,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             //file is not in use
             return false;
         }
-        ~FileDiagnosticListener()
+        ~FileDiagnosticsWriter()
         {
             Dispose(false);
         }
