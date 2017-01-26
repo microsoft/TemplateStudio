@@ -1,7 +1,7 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Wizard.ViewModels;
-using Microsoft.Templates.Wizard.Vs;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;

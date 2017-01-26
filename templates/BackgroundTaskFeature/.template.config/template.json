@@ -1,0 +1,38 @@
+{
+  "author": "Microsoft",
+  "classifications": ["Universal"],
+  "name": "Background Task",
+  "groupIdentity": "Microsoft.UWPTemplates.BackgroundTaskFeature",
+  "identity": "Microsoft.UWPTemplates.BackgroundTaskFeature.CSharp",
+  "shortName": "backgroundtask",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "uct.type": "feature",
+    "uct.version": "1.0.0",
+    "uct.order": "1"
+  },
+  "sourceName": "BackgroundTaskFeature",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\BackgroundTaskFeature\\Properties\\AssemblyInfo.cs"
+    },
+    {
+      "path": ".\\BackgroundTaskFeature\\BackgroundTaskFeatureBackgroundTask.cs"
+    },
+    {
+      "path": ".\\BackgroundTaskFeature\\BackgroundTaskFeature.csproj"
+    },
+    {
+      "path": ".\\BackgroundTaskFeature\\project.json"
+    }
+  ],
+  "symbols": {
+    "PageNamespace": {
+      "type": "parameter",
+      "replaces": "Feature_NS"
+    }
+  }
+}

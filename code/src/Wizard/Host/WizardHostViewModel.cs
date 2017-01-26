@@ -2,7 +2,6 @@
 using Microsoft.Templates.Wizard.Dialog;
 using Microsoft.Templates.Wizard.Steps;
 using Microsoft.Templates.Wizard.ViewModels;
-using Microsoft.Templates.Wizard.Vs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

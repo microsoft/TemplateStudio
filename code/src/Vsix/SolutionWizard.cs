@@ -1,16 +1,8 @@
 ﻿using EnvDTE;
 using Microsoft.Templates.Wizard;
 using Microsoft.Templates.Wizard.Host;
-using Microsoft.Templates.Wizard.Vs;
 using Microsoft.VisualStudio.TemplateWizard;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Extension
 {

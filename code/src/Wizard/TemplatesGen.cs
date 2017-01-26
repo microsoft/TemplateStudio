@@ -2,15 +2,15 @@
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Wizard.Dialog;
 using Microsoft.Templates.Wizard.Host;
-using Microsoft.Templates.Wizard.Resources;
-using Microsoft.Templates.Wizard.Vs;
-using System;
+using Microsoft.Templates.Wizard.PostActions;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 
 namespace Microsoft.Templates.Wizard
 {
@@ -79,32 +79,17 @@ namespace Microsoft.Templates.Wizard
                         outputs.AddRange(result.PrimaryOutputs.Select(o => o.Path));
                     }
 
-                    //TODO: EXECUTE POST ACTIONS
-                    if (genInfo.Template.GetTemplateType() == TemplateType.Project)
-                    {
-                        //TODO: FILTER BY CSPROJ
-                        foreach (var genOutput in result.PrimaryOutputs)
-                        {
-                            if (!string.IsNullOrWhiteSpace(genOutput.Path))
-                            {
-                                var projectPath = Path.GetFullPath(Path.Combine(outputPath, genOutput.Path));
-                                _shell.AddProjectToSolution(projectPath);
-                            }
-                        }
-                    }
-                    else if (genInfo.Template.GetTemplateType() == TemplateType.Page)
-                    {
-                        foreach (var output in result.PrimaryOutputs)
-                        {
-                            if (!string.IsNullOrWhiteSpace(output.Path))
-                            {
-                                var itemPath = Path.GetFullPath(Path.Combine(outputPath, output.Path));
-                                _shell.AddItemToActiveProject(itemPath);
-                            }
-                        }
-                    }
+                    //var executionContext = new ExecutionContext()
+                    //{
+                    //    SolutionPath = solutionInfo.Directory,
+                    //    ProjectName = solutionInfo.Name,
+                    //    GenParams = genParams
+                    //};
 
-                    //_shell.SaveSolution();
+                    //var postActionResults = ExecutePostActions(genInfo.Template, executionContext, result);
+
+                    //ShowPostActionResults(postActionResults);
+
                 }
             }
         }
@@ -123,6 +108,42 @@ namespace Microsoft.Templates.Wizard
             }
 
             return Path.GetDirectoryName(projectPath);
+        }
+
+        private IEnumerable<PostActionResult> ExecutePostActions(ITemplateInfo template, ExecutionContext executionContext, TemplateCreationResult generationResult)
+        {
+            //Get post actions from template
+            var postActions = PostActionCreator.GetPostActions(template);
+
+            //Execute post action
+            var postActionResults = new List<PostActionResult>();
+
+            foreach (var postAction in postActions)
+            {
+                var postActionResult = postAction.Execute(executionContext, generationResult, _shell);
+                postActionResults.Add(postActionResult);
+            }
+
+            return postActionResults;
+        }
+
+        private static void ShowPostActionResults(IEnumerable<PostActionResult> postActionResults)
+        {
+            //TODO: Determine where to show postActionResults
+
+            var postActionResultMessages = postActionResults.Aggregate(new StringBuilder(), (sb, a) => sb.AppendLine($"{a.Message}"), sb => sb.ToString());
+
+            if (postActionResults.Any(p => p.ResultCode != ResultCode.Success))
+            {
+                var errorMessages = postActionResults
+                                            .Where(p => p.ResultCode != ResultCode.Success)
+                                            .Aggregate(new StringBuilder(), (sb, p) => sb.AppendLine($"{p.Message}"), sb => sb.ToString());
+
+                //TODO: REVIEW THIS
+                ErrorMessageDialog.Show("Some PostActions failed", "Failed post actions", errorMessages, MessageBoxImage.Error);
+            }
+
+            Debug.Print(postActionResultMessages);
         }
     }
 }

@@ -21,5 +21,11 @@
     {
       "path": ".\\MVVMLightBlankProject\\MVVMLightBlankProject.csproj"
     }
-  ]
+  ],
+  "symbols": {
+    "UserName": {
+      "type": "parameter",
+      "replaces": "User_Name"
+    }
+  }
 }
