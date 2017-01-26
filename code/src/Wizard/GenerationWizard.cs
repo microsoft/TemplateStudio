@@ -208,33 +208,11 @@ namespace Microsoft.Templates.Wizard
                 } 
             }
 
-			//Execute post actions
-			var postActionResults = ExecutePostActions(template, new ExecutionContext() {
-				ProjectName = solutionInfo.Name,
-				ProjectPath = Path.Combine(solutionInfo.Directory, solutionInfo.Name),
-				PagePath = "",
-				UserName = userName
-			});
 
-			//TODO: Show Post Action Info
+			//TODO: Show Post Action Results
 		}
 
-		private static IEnumerable<PostActionExecutionResult> ExecutePostActions(ITemplateInfo template, ExecutionContext executionContext)
-		{
-			//Get post actions from template
-			var postActions = PostActionCreator.GetPostActions(template);
-
-			//Execute post action
-			var postActionResults = new List<PostActionExecutionResult>();
-
-			foreach (var postAction in postActions)
-			{
-				var postActionResult = postAction.Execute(executionContext);
-				postActionResults.Add(postActionResult);
-			}
-
-			return postActionResults;
-		}
+		
 
 		private static void GeneratePage(ITemplateInfo template, string projectName, string projectPath, string pageNamespace, string pageName, string pageRelativePath, IVisualStudioShell vsShell)
         {
@@ -260,17 +238,26 @@ namespace Microsoft.Templates.Wizard
                 }
             }
 
-			//Execute post action
-			var postActionResults = ExecutePostActions(template, new ExecutionContext()
-			{
-				ProjectName = projectName,
-				ProjectPath = projectPath,
-				PagePath = Path.Combine(generationPath, pageName)
-			});
-
-			//TODO: Show Post Action Info
+			//TODO: Show Post Action Results
 
 			//TODO: Show Project Information
+		}
+
+		private static IEnumerable<PostActionResult> ExecutePostActions(ITemplateInfo template, ExecutionContext executionContext)
+		{
+			//Get post actions from template
+			var postActions = PostActionCreator.GetPostActions(template);
+
+			//Execute post action
+			var postActionResults = new List<PostActionResult>();
+
+			foreach (var postAction in postActions)
+			{
+				var postActionResult = postAction.Execute(executionContext);
+				postActionResults.Add(postActionResult);
+			}
+
+			return postActionResults;
 		}
 
 		private void ShowReadMe(ITemplateInfo template)

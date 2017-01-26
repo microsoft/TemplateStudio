@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Microsoft.Templates.Wizard.PostActions
 {
@@ -12,18 +8,15 @@ namespace Microsoft.Templates.Wizard.PostActions
 
 		public string Description { get; set; }
 
-
-
 		private readonly IReadOnlyDictionary<string, string> _parameters;
 
 		protected PostActionBase(string name, string description, IReadOnlyDictionary<string, string> parameters)
 		{
 			Name = name;
 			Description = description;
-			
 			_parameters = parameters;
 		}
-		public abstract PostActionExecutionResult Execute(ExecutionContext context);
+		public abstract PostActionResult Execute(ExecutionContext context);
 
 		internal string GetValueFromParameter(string parameterName)
 		{

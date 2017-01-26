@@ -106,7 +106,7 @@
     <Compile Include="PostActions\InsertPartialGenerationPostAction.cs" />
     <Compile Include="PostActions\PostActionBase.cs" />
     <Compile Include="PostActions\PostActionCreator.cs" />
-    <Compile Include="PostActions\PostActionExecutionResult.cs" />
+    <Compile Include="PostActions\PostActionResult.cs" />
     <Compile Include="PostActions\PostActionType.cs" />
     <Compile Include="PostActions\ResultCode.cs" />
     <Compile Include="Resources\ResourcesExtensions.cs" />
