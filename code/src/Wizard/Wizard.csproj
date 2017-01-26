@@ -100,7 +100,8 @@
     <Compile Include="Dialog\AddProjectResult.cs" />
     <Compile Include="Dialog\AddProjectSteps.cs" />
     <Compile Include="Extensions\ObservableCollection.extensions.cs" />
-    <Compile Include="Host\TemplateConfig.cs" />
+    <Compile Include="GenInfo.cs" />
+    <Compile Include="GenShell.cs" />
     <Compile Include="Resources\ResourcesExtensions.cs" />
     <Compile Include="Resources\StringRes.Designer.cs">
       <DependentUpon>StringRes.resx</DependentUpon>
@@ -141,6 +142,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WizardHostResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TemplatesGen.cs" />
     <Compile Include="ViewModels\AddProjectViewModel.cs" />
     <Compile Include="ViewModels\TemplateViewModel.cs" />
     <Compile Include="ViewModels\ObservableBase.cs" />
@@ -151,6 +153,7 @@
     </Compile>
     <Compile Include="Host\WizardHostViewModel.cs" />
     <Compile Include="Host\WizardSteps.cs" />
+    <Compile Include="WizardCancelledException.cs" />
     <Page Include="Dialog\AddPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -22,12 +22,20 @@ namespace Microsoft.Templates.Wizard.TestApp
         const string TEMP_TESTS_DIR = @"c:\temp\uwptemplates_tests\";
 
         private TextBlock _status;
+        private string _fakeSolutionName;
+
+        private string _outputPath;
 
         private TestVsData _data;        
         public TestVsData VsData { get { return _data; } }
 
+        public string OutputPath => _outputPath;
+
         public TestVsShell(string fakeSolutionName, string defaultNameSpace, TextBlock statusTextBlock)
         {
+            _fakeSolutionName = fakeSolutionName;
+            _outputPath = Path.Combine(TEMP_TESTS_DIR, fakeSolutionName);
+
             SolutionInfo solInfo = new SolutionInfo(Path.Combine(TEMP_TESTS_DIR, fakeSolutionName), fakeSolutionName, fakeSolutionName + ".sln", "Windows/Universal");
             _data = new TestVsData()
             {
@@ -47,6 +55,7 @@ namespace Microsoft.Templates.Wizard.TestApp
         public void UpdateSelectedItemPath(string relativePath)
         {
             _data.SelectedItemPath = relativePath;
+            _outputPath = Path.Combine(TEMP_TESTS_DIR, _fakeSolutionName, _fakeSolutionName, relativePath);
         }
 
         public void AddItemToActiveProject(string itemFullPath)

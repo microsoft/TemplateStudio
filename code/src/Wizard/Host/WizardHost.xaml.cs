@@ -1,6 +1,7 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Wizard.Steps;
+using Microsoft.Templates.Wizard.Vs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +24,11 @@ namespace Microsoft.Templates.Wizard.Host
     public partial class WizardHost : Window
     {
         public WizardHostViewModel ViewModel { get; }
-        public IEnumerable<TemplateConfig> Result { get; set; }
+        public IEnumerable<GenInfo> Result { get; set; }
 
-        public WizardHost(TemplatesRepository templatesRepository, WizardSteps wizardSteps)
+        public WizardHost(WizardSteps wizardSteps, TemplatesRepository templatesRepository, GenShell shell)
         {
-            ViewModel = new WizardHostViewModel(this, wizardSteps, templatesRepository);
+            ViewModel = new WizardHostViewModel(this, wizardSteps, templatesRepository, shell);
 
             DataContext = ViewModel;
             Loaded += WizardHost_Loaded;

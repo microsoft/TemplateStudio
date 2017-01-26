@@ -68,6 +68,7 @@
     <Compile Include="Resources\ResourcesExtensions.cs" />
     <Compile Include="SolutionWizard.cs" />
     <Compile Include="VisualStudioShell.cs" />
+    <Compile Include="VsGenShell.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\TestKey.snk">

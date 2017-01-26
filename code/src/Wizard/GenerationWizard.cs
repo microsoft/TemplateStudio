@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Wizard
         IVisualStudioShell _vsShell;
         SolutionInfo _vsSolutionInfo;
 
-        private TemplateConfig[] _selectedTemplates;
+        private GenInfo[] _selectedTemplates;
 
         public GenerationWizard(IVisualStudioShell vsShell, SolutionInfo solutionInfo) 
             : this(vsShell, solutionInfo, new TemplatesRepository(new CdnTemplatesLocation()))
@@ -49,7 +49,7 @@ namespace Microsoft.Templates.Wizard
             steps.Add<Steps.ProjectsStep.ProjectsStepPage>();
             steps.Add<Steps.SummaryStep.SummaryStepPage>();
 
-            var host = new WizardHost(_templatesRepository, steps);
+            var host = new WizardHost(steps, _templatesRepository, null);
             var result = host.ShowDialog();
 
             if (result.HasValue && result.Value)
@@ -59,6 +59,7 @@ namespace Microsoft.Templates.Wizard
             else
             {
                 _selectedTemplates = null;
+                _vsShell.CancelWizard();
             }
         }
         public void AddProjectFinish()
@@ -68,7 +69,7 @@ namespace Microsoft.Templates.Wizard
                 if (_selectedTemplates != null)
                 {
                     //TODO: THIS SHOULD GENERATE MORE THAN ONE TEMPLATE
-                    var targetTemplate = _selectedTemplates.First().Info;
+                    var targetTemplate = _selectedTemplates.First().Template;
 
                     _vsShell.ShowStatusBarMessage(StringRes.UIAddProjectGenerating);
 
@@ -102,7 +103,7 @@ namespace Microsoft.Templates.Wizard
                 steps.Add<Steps.PagesStep.PagesStepPage>();
                 steps.Add<Steps.SummaryStep.SummaryStepPage>();
 
-                var host = new WizardHost(_templatesRepository, steps);
+                var host = new WizardHost(steps, _templatesRepository, null);
                 var result = host.ShowDialog();
 
                 if (result.HasValue && result.Value)
@@ -112,7 +113,7 @@ namespace Microsoft.Templates.Wizard
 
                     string relativeItemPath = _vsShell.GetSelectedItemPath(true);
 
-                    GeneratePage(pageTemplateConfig.Info, _vsShell.GetActiveProjectName(), _vsShell.GetActiveProjectPath(), suggestedNamespace, pageName, relativeItemPath, _vsShell);
+                    GeneratePage(pageTemplateConfig.Template, _vsShell.GetActiveProjectName(), _vsShell.GetActiveProjectPath(), suggestedNamespace, pageName, relativeItemPath, _vsShell);
                     _vsShell.ShowStatusBarMessage(StringRes.UIPageAddedPattern.UseParams(pageName));
                 }
                 else
@@ -232,7 +233,7 @@ namespace Microsoft.Templates.Wizard
         private void ShowReadMe(ITemplateInfo template)
         {
             //TODO: GoTo formula Readme / Help page
-            _vsShell.Navigate("https://github.com/Microsoft/UWPCommunityTemplates/tree/vnext");
+            //_vsShell.Navigate("https://github.com/Microsoft/UWPCommunityTemplates/tree/vnext");
         }
 
         private void ShowException(string message, Exception ex)

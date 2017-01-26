@@ -12,6 +12,7 @@ namespace Microsoft.Templates.Wizard.Vs
         public SolutionInfo(string directory, string name, string fileName, string templateCategory)
         {
             Directory = directory;
+            //ProjectDirectory = projectDirectory;
             Name = name;
             FileName = fileName;
             TemplateCategory = templateCategory;
@@ -25,6 +26,7 @@ namespace Microsoft.Templates.Wizard.Vs
             string solDir = di.Parent.FullName;
 
             Directory = solDir;
+            ProjectDirectory = di.FullName;
             Name = replacements["$safeprojectname$"];
             FileName = replacements["$safeprojectname$"] + ".sln";
             TemplateCategory = replacements["$uwptemplates.category$"];
@@ -32,6 +34,7 @@ namespace Microsoft.Templates.Wizard.Vs
         }
         public string Name { get; set; }
         public string Directory { get; set; }
+        public string ProjectDirectory { get; set; }
         public string FileName { get; set; }
         public string TemplateCategory { get; set; }
         public string FullName { get; set; }

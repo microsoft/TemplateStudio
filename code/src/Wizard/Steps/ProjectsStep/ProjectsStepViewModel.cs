@@ -64,12 +64,12 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectsStep
             {
                 _context.SelectedTemplates.Remove(this.GetType());
             }
-            _context.SelectedTemplates.Add(this.GetType(), new TemplateConfig[]
+            _context.SelectedTemplates.Add(this.GetType(), new GenInfo[]
             {
-                new TemplateConfig
+                new GenInfo
                 {
-                    Parameters = new Dictionary<string, string>(),
-                    Info = template.Info
+                    Name = _context.Shell.Name,
+                    Template = template.Info
                 }
             });
         }

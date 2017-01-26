@@ -11,7 +11,7 @@ using Microsoft.Templates.Wizard;
 using Microsoft.Templates.Wizard.Vs;
 using Microsoft.Templates.Extension.Resources;
 using Microsoft.VisualStudio.Shell;
-
+using Microsoft.Templates.Wizard.Host;
 
 namespace Microsoft.Templates.Extension.Commands
 {
@@ -57,11 +57,13 @@ namespace Microsoft.Templates.Extension.Commands
         {
             try
             {
-                IVisualStudioShell vsShell = new VisualStudioShell();
-                SolutionInfo solutionInfo = new SolutionInfo(vsShell.GetSolutionDirectory(), vsShell.GetSolutionName(), vsShell.GetSolutionFileName(), vsShell.GetSolutionVsCategory());
+                var gen = new TemplatesGen(new VsGenShell());
 
-                GenerationWizard genWizard = new GenerationWizard(vsShell, solutionInfo);
-                genWizard.AddPageToActiveProject();
+                var userSelection = gen.GetUserSelection(WizardSteps.Page);
+                if (userSelection != null)
+                {
+                    gen.Generate(userSelection);
+                }
             }
             catch (Exception ex)
             {
@@ -73,11 +75,13 @@ namespace Microsoft.Templates.Extension.Commands
         {
             try
             {
-                IVisualStudioShell vsShell = new VisualStudioShell();
-                SolutionInfo solutionInfo = new SolutionInfo(vsShell.GetSolutionDirectory(), vsShell.GetSolutionName(), vsShell.GetSolutionFileName(), vsShell.GetSolutionVsCategory());
+                var gen = new TemplatesGen(new VsGenShell());
 
-                GenerationWizard genWizard = new GenerationWizard(vsShell, solutionInfo);
-                genWizard.AddFeatureToActiveProject();
+                var userSelection = gen.GetUserSelection(WizardSteps.Feature);
+                if (userSelection != null)
+                {
+                    gen.Generate(userSelection);
+                }
             }
             catch (Exception ex)
             {
