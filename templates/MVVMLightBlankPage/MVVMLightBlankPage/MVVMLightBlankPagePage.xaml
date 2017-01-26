@@ -8,7 +8,7 @@
     DataContext="{Binding MVVMLightBlankPageViewModel, Source={StaticResource Locator}}">
 
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <StackPanel Margin="24,12">
+    <StackPanel Margin="{StaticResource PageMargin}">
     <!--TODO: Add MVVMLightBlankPageTitle.Text to String Resources-->
       <TextBlock
           x:Uid="MVVMLightBlankPageTitle"

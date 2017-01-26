@@ -10,7 +10,7 @@
     DataContext="{Binding MVVMLightSettingsPageViewModel, Source={StaticResource Locator}}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Margin="24,12">
+        <StackPanel Margin="{StaticResource PageMargin}">
             <!--TODO: Add MVVMLightSettingsPageTitle.Text to string resources-->
             <TextBlock
                 x:Uid="MVVMLightSettingsPageTitle"
