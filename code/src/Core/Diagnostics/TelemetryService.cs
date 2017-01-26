@@ -52,6 +52,8 @@ namespace Microsoft.Templates.Core.Diagnostics
                     _client.Context.Device.OperatingSystem = Environment.OSVersion.ToString();
                     _client.Context.Component.Version = GetVersion();
 
+                    _client.TrackEvent(TelemetryEvents.SessionStarted);
+
                     IsEnabled = true;
 #if DEBUG
                     TelemetryConfiguration.Active.TelemetryChannel.DeveloperMode = true;
@@ -123,6 +125,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 // free managed resources 
                 if (_client != null)
                 {
+                    _client.TrackEvent(TelemetryEvents.SessionEnded);
                     _client.Flush();
                 }
             }

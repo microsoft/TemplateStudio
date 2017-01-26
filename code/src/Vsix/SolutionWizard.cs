@@ -43,49 +43,30 @@ namespace Microsoft.Templates.Extension
 
         public void RunFinished()
         {
-            Mouse.OverrideCursor = Cursors.Wait;
-            try
-            { 
-                _genWizard.AddProjectFinish();
-                AppHealth.Current.Verbose.TrackAsync("Generation finished").FireAndForget();
-            }
-            finally
-            {
-                Mouse.OverrideCursor = null;
-            }
-
+            _genWizard.AddProjectFinish();
+            AppHealth.Current.Verbose.TrackAsync("Generation finished").FireAndForget();
         }
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
-            Mouse.OverrideCursor = Cursors.Wait;
-            try
+            AppHealth.Current.Verbose.TrackAsync("Creating UWP Community Templates project...").FireAndForget();
+
+            replacements = replacementsDictionary;
+
+            SolutionInfo solutionInfo = new SolutionInfo(replacements);
+            IVisualStudioShell vsShell = new VisualStudioShell();
+
+            _genWizard = new GenerationWizard(vsShell, solutionInfo);
+
+            if (runKind == WizardRunKind.AsNewProject || runKind == WizardRunKind.AsMultiProject)
             {
-                AppHealth.Current.Verbose.TrackAsync("Creating UWP Community Templates project...").FireAndForget();
-
-                replacements = replacementsDictionary;
-
-                SolutionInfo solutionInfo = new SolutionInfo(replacements);
-                IVisualStudioShell vsShell = new VisualStudioShell();
-
-                Mouse.OverrideCursor = null;
-
-                _genWizard = new GenerationWizard(vsShell, solutionInfo);
-
-                Mouse.OverrideCursor = Cursors.Wait;
-
-                if (runKind == WizardRunKind.AsNewProject || runKind == WizardRunKind.AsMultiProject)
-                {
-                    _genWizard.AddProjectInit();
-                }
-            }
-            finally
-            {
-                Mouse.OverrideCursor = null;
+                _genWizard.AddProjectInit();
             }
         }
 
-        public bool ShouldAddProjectItem(string filePath) => true;
-
+        public bool ShouldAddProjectItem(string filePath)
+        {
+            return true;
+        }
     }
 }

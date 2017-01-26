@@ -59,7 +59,7 @@ namespace Microsoft.Templates.Extension.Diagnostsics
                 Convert.ToInt32(clearWithSolution));
 
             output.GetPane(ref paneGuid, out var pane);
-            pane.OutputString($"UWP Communit Templates {DateTime.Now.ToString("yyyyMMdd hh: mm:ss.fff")}");
+            pane.OutputString($"UWP Communit Templates {DateTime.Now.ToString("yyyyMMdd hh: mm:ss.fff")}\n");
         }
 
         private OutputWindowPane GetUwpPane(DTE2 dte)

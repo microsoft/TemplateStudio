@@ -9,6 +9,8 @@ namespace Microsoft.Templates.Core.Diagnostics
     public class TelemetryEvents
     {
         public const string TemplateGenerated = TelemetryTracker.PropertiesPrefix + "TemplateGenerated";
+        public const string SessionStarted = TelemetryTracker.PropertiesPrefix + "Session Started";
+        public const string SessionEnded = TelemetryTracker.PropertiesPrefix + "Session Ended";
     }
 
     public class TelemetryPages
