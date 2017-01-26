@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace Microsoft.Templates.Extension
 {
 
-    public static class DteExtensions
+    public static class Extensions
     {
         public static void VsShowStatusBarMessage(this string message)
         {

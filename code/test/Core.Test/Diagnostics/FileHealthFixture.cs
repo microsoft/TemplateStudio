@@ -12,7 +12,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         public FileHealthWriter FileLogWriter;
         public FileHealthFixture()
         {
-            FileLogWriter = new FileHealthWriter(new TestConfiguration());
+            FileLogWriter = new FileHealthWriter(Configuration.Current);
         } 
     }
 }

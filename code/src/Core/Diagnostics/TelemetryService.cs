@@ -21,11 +21,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public TelemetryService(Configuration config)
         {
-            if (config == null)
-            {
-                throw new ArgumentNullException("config");
-            }
-            _currentConfig = config;
+            _currentConfig = config ?? throw new ArgumentNullException("config");
             IntializeTelemetryClient();
         }
 
@@ -51,7 +47,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 if (RemoteKeyAvailable())
                 {
                     // Set session data
-                    _client.Context.User.Id = Environment.UserName; //TODO: HASH USER NAME
+                    _client.Context.User.Id = Environment.UserName; //TODO: HASH USER NAME??
                     _client.Context.Session.Id = Guid.NewGuid().ToString();
                     _client.Context.Device.OperatingSystem = Environment.OSVersion.ToString();
                     _client.Context.Component.Version = GetVersion();

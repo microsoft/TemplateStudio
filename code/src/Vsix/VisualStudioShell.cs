@@ -4,6 +4,8 @@ using Microsoft.VisualStudio.TemplateWizard;
 using System.IO;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.Templates.Wizard.Vs;
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
 
 namespace Microsoft.Templates.Extension
 {
@@ -18,6 +20,7 @@ namespace Microsoft.Templates.Extension
         public void ShowStatusBarMessage(string message)
         {
             message.VsShowStatusBarMessage();
+            AppHealth.Current.Verbose.TrackAsync(message).FireAndForget();
         }
 
         public void SaveSolution(string solutionFullPath)

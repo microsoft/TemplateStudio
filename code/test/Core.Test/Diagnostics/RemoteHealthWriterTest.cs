@@ -12,7 +12,14 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
 {
     public class RemoteHealthWriterTest
     {
-        RemoteHealthWriter _writer = new RemoteHealthWriter(new TestConfiguration());
+        RemoteHealthWriter _writer;
+
+        public RemoteHealthWriterTest()
+        {
+            TelemetryFixture.EnsureCurrentConfigWithTelemetryKey();
+            _writer = new RemoteHealthWriter(Configuration.Current);
+        }
+
         [Fact]
         public async Task WriteExceptionAsync()
         {

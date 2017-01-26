@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex=null)
         {
             //Trace events will not be forwarded to the remote service
-            return; 
+            await Task.Run(() => { });
         }
 
         public async Task WriteExceptionAsync(Exception ex, string message = null)

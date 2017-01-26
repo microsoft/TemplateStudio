@@ -35,6 +35,9 @@ namespace Microsoft.Templates.Core.Diagnostics
             _processId = $"{Process.GetCurrentProcess().Id.ToString()}";
 
             InitializeLogFile();
+
+            //TODO: Purge files older than 5 days.
+            PurgeOldLogs();
         }
 
         public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex=null)
@@ -156,6 +159,14 @@ namespace Microsoft.Templates.Core.Diagnostics
             
             return false;
         }
+
+        private void PurgeOldLogs()
+        {
+            DirectoryInfo di = new DirectoryInfo(_workingFolder);
+            di.GetFiles().Where(f => f.CreationTimeUtc >= DateTime.UtcNow.AddDays(5));
+        }
+
+
         ~FileHealthWriter()
         {
             Dispose(false);

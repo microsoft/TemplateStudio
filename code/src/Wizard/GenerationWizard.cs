@@ -18,6 +18,8 @@ using Microsoft.Templates.Wizard.Steps;
 using Microsoft.Templates.Wizard.Host;
 using Newtonsoft.Json;
 using Microsoft.Templates.Wizard.PostActions;
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
 
 namespace Microsoft.Templates.Wizard
 {
@@ -72,13 +74,21 @@ namespace Microsoft.Templates.Wizard
                     //TODO: THIS SHOULD GENERATE MORE THAN ONE TEMPLATE
                     var targetTemplate = _selectedTemplates.First().Info;
 
+                    AppHealth.Current.Info.TrackAsync($"Selected template: {targetTemplate.DefaultName}").FireAndForget();
+
                     _vsShell.ShowStatusBarMessage(StringRes.UIAddProjectGenerating);
 
                     GenerateProject(targetTemplate, _vsSolutionInfo, _vsShell);
 
+                    AppHealth.Current.Verbose.TrackAsync($"Template generated successfully.").FireAndForget();
+
                     _vsShell.SetSolutionVsCategory(_vsSolutionInfo.TemplateCategory);
 
+                    AppHealth.Current.Verbose.TrackAsync($"Category {_vsSolutionInfo.TemplateCategory} established in the solution.").FireAndForget();
+
                     ShowReadMe(targetTemplate);
+
+                    AppHealth.Current.Verbose.TrackAsync($"Readme shown.").FireAndForget();
 
                     _vsShell.ShowStatusBarMessage(StringRes.UIProjectSuccessfullyCreated);
                 }
@@ -281,8 +291,9 @@ namespace Microsoft.Templates.Wizard
 
         private void ShowException(string message, Exception ex)
         {
-            //TODO: Create a class to show exceptions (and log them to a file). Show detailed info depending on setting value;
+            //TODO: Create a dialog to show exceptionn. Show detailed info depending on setting value;
             ErrorMessageDialog.Show(message, StringRes.UIMessageBoxTitlePattern.UseParams(StringRes.UnexpectedError), ex.ToString(), MessageBoxImage.Error);
+            AppHealth.Current.Exception.TrackAsync(ex, message).FireAndForget();
         }
     }
 }

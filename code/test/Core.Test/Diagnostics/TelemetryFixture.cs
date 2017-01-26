@@ -12,7 +12,15 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         public TelemetryService Telemetry { get; }
         public TelemetryFixture()
         {
-            Telemetry = new TelemetryService(new TestConfiguration());
+            EnsureCurrentConfigWithTelemetryKey();
+            Telemetry = new TelemetryService(Configuration.Current);
         } 
+
+        public static void EnsureCurrentConfigWithTelemetryKey()
+        {
+            Configuration config = Configuration.Current;
+            config.RemoteTelemetryKey = ""; //SECRET
+            Configuration.UpdateConfiguration(config);
+        }
     }
 }

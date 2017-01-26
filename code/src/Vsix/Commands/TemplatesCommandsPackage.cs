@@ -11,7 +11,8 @@ using Microsoft.Templates.Wizard;
 using Microsoft.Templates.Wizard.Vs;
 using Microsoft.Templates.Extension.Resources;
 using Microsoft.VisualStudio.Shell;
-
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Extension.Diagnostsics;
 
 namespace Microsoft.Templates.Extension.Commands
 {
@@ -28,6 +29,7 @@ namespace Microsoft.Templates.Extension.Commands
 
         public TemplatesCommandsPackage()
         {
+            AppHealth.Current.AddWriter(new VisualStudioOutputHealthWriter());
         }
 
 

@@ -58,7 +58,8 @@
     <Compile Include="Commands\TemplatesCommands.cs" />
     <Compile Include="Commands\TemplatesCommandsPackage.cs" />
     <Compile Include="Commands\VsRelayCommand.cs" />
-    <Compile Include="DteExtensions.cs" />
+    <Compile Include="Diagnostsics\VisualStudioOutputHealthWriter.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\StringRes.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -207,6 +208,7 @@
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>

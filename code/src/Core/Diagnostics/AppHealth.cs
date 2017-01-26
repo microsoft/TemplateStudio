@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             {
                 if(_current == null)
                 {
-                    _current = new AppHealth(Configuration.Default);
+                    _current = new AppHealth(Configuration.Current);
                 }
                 return _current;
             }
@@ -43,7 +43,10 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public void AddWriter(IHealthWriter newWriter)
         {
-            HealthWriters.Available.Add(newWriter);
+            if (!HealthWriters.Available.Where(w => w.GetType() == newWriter.GetType()).Any())
+            {
+                HealthWriters.Available.Add(newWriter);
+            }
         }
         private void InstanceDefaultWriters(Configuration currentConfig)
         {

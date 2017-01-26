@@ -48,7 +48,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         [Fact]
         public void TwoInstances()
         {
-            FileHealthWriter otherListener = new FileHealthWriter(new TestConfiguration());
+            FileHealthWriter otherListener = new FileHealthWriter(Configuration.Current);
 
             string uniqueMsg = $"TwoInstances_InstanceA_{Guid.NewGuid()}";
             _fixture.FileLogWriter.WriteTraceAsync(TraceEventType.Error, uniqueMsg, new Exception("SampleException")).Wait();

@@ -10,11 +10,16 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
 {
     public class TelemetryTrackerTest 
     {
-        TelemetryTracker Tracker = new TelemetryTracker(new TestConfiguration());
+        TelemetryTracker _tracker;
+        public TelemetryTrackerTest()
+        {
+            TelemetryFixture.EnsureCurrentConfigWithTelemetryKey();
+            _tracker = new TelemetryTracker(Configuration.Current);
+        }
         [Fact]
         public async Task TrackEventAsync()
         {
-            await Tracker.TrackTemplateGeneratedAsync("TemplateName", "TemplateFramework", "TemplateType");
+            await _tracker.TrackTemplateGeneratedAsync("TemplateName", "TemplateFramework", "TemplateType");
         }
     }
 }

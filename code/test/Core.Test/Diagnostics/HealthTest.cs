@@ -77,7 +77,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         {
             TestHealthsWriter newWriter = new TestHealthsWriter();
 
-            Configuration config = Configuration.Default;
+            Configuration config = Configuration.Current;
             config.DiagnosticsTraceLevel = TraceEventType.Warning;
 
             AppHealth health = new AppHealth(config);

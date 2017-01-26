@@ -13,7 +13,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         private TelemetryService _telemetry;
         private Configuration _currentConfig;
 
-        public TelemetryTracker() : this(Configuration.Default)
+        public TelemetryTracker() : this(Configuration.Current)
         {
         }
         public TelemetryTracker(Configuration config)
