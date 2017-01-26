@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace Microsoft.Templates.Wizard.ViewModels
 {
@@ -26,7 +27,7 @@ namespace Microsoft.Templates.Wizard.ViewModels
             {
                 icon = DefaultProjectIcon;
             }
-            Icon = icon;
+            Icon = CreateIcon(icon);
             Name = ti.Name;
             Description = ti.Description;
             Author = ti.Author;
@@ -36,10 +37,21 @@ namespace Microsoft.Templates.Wizard.ViewModels
             LicenceTerms = ti.GetLicenceTerms();
         }
 
+        private BitmapImage CreateIcon(string path)
+        {
+            var image = new BitmapImage();
+            image.BeginInit();
+            image.CacheOption = BitmapCacheOption.OnLoad;
+            image.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+            image.UriSource = new Uri(path);
+            image.EndInit();
+            return image;
+        }
+
         public ITemplateInfo Info { get; }
 
-        private string _icon;
-        public string Icon
+        private BitmapImage _icon;
+        public BitmapImage Icon
         {
             get { return _icon; }
             set { SetProperty(ref _icon, value); }

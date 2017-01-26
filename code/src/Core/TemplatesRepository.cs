@@ -30,28 +30,23 @@ namespace Microsoft.Templates.Core
 
         public void Sync()
         {
-            try
+
+            EnsureHostInitialized();
+
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+
+            if (_location != null)
             {
-                EnsureHostInitialized();
+                _location.Copy(WorkingFolder);
 
-                AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+                TemplateCache.DeleteAllLocaleCacheFiles();
 
-                if (_location != null)
-                {
-                    _location.Copy(WorkingFolder);
+                TemplateCache.Scan(WorkingFolder + $@"\{TemplatesLocation.PackagesName}\*");
+                TemplateCache.Scan(WorkingFolder + $@"\{TemplatesLocation.TemplatesName}");
 
-                    TemplateCache.DeleteAllLocaleCacheFiles();
-
-                    TemplateCache.Scan(WorkingFolder + $@"\{TemplatesLocation.PackagesName}\*");
-                    TemplateCache.Scan(WorkingFolder + $@"\{TemplatesLocation.TemplatesName}");
-
-                    TemplateCache.WriteTemplateCaches();
-                }
+                TemplateCache.WriteTemplateCaches();
             }
-            catch (Exception ex)
-            {
-                //TODO: LOG THIS
-            }
+
         }
 
         public IEnumerable<ITemplateInfo> GetAll()
