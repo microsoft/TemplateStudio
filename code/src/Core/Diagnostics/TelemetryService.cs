@@ -21,7 +21,11 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public TelemetryService(Configuration config)
         {
-            _currentConfig = config ?? throw new ArgumentNullException("config");
+            if (config == null)
+            {
+                throw new ArgumentNullException("config");
+            }
+            _currentConfig = config;
             IntializeTelemetryClient();
         }
 
