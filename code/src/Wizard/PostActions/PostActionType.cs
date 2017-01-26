@@ -3,6 +3,8 @@
 	public enum PostActionType
 	{
 		InsertPartialGenerationPostAction,
-		GenerateTestCertificatePostAction
+		GenerateTestCertificatePostAction,
+		AddProjectToSolution,
+		AddItemToProject
 	}
 }

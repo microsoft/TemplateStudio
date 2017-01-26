@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using CERTENROLLLib;
+using Microsoft.TemplateEngine.Edge.Template;
+using Microsoft.Templates.Wizard.Vs;
 
 namespace Microsoft.Templates.Wizard.PostActions
 {
@@ -10,13 +13,14 @@ namespace Microsoft.Templates.Wizard.PostActions
 			: base("GenerateTestCertificate", "This post action generates a test certificate for the application", null)
 		{
 		}
-		public override PostActionResult Execute(ExecutionContext context)
+		public override PostActionResult Execute(ExecutionContext context, TemplateCreationResult result, IVisualStudioShell vsShell)
 		{
 			try
 			{
-				if (string.IsNullOrEmpty(context.UserName)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = $"{context.UserName} should not be empty" };
+				var userName = GetValueFromGenParameter(context.GenParams, "UserName");
+				if (string.IsNullOrEmpty(userName)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = $"Generation parameter UserName should not be empty" };
 
-				var publisherName = context.UserName;
+				var publisherName = userName;
 				// create DN for subject and issuer
 				var dn = new CX500DistinguishedName();
 				dn.Encode("CN=" + publisherName);
@@ -85,7 +89,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 				return new PostActionResult()
 				{
 					ResultCode = ResultCode.Success,
-					Message = "Certificate Generated"
+					Message = $"Postaction {Name}: Certificate Generated"
 				};
 			}
 			catch (Exception ex)
@@ -93,8 +97,8 @@ namespace Microsoft.Templates.Wizard.PostActions
 				return new PostActionResult()
 				{
 					ResultCode = ResultCode.Error,
-					Message = "Error in certificate generation",
-					Details = ex.Message
+					Message = $"Postaction {Name}: Error in certificate generation",
+					Exception = ex
 				};
 			}
 		}

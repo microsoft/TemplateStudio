@@ -1,22 +1,20 @@
 [
     {
-      "Name": "PostActionViewModelLocator",
-      "Type": "InsertPartialGenerationPostAction",
-      "Description": "Registers new Page in ViewModelLocator",
-      "Parameters": {
-        "Destination.FileName": "ViewModelLocator.cs",
-        "Destination.Anchor": "//PostActionAnchor: REGISTER PAGE IN VIEW_MODEL",
-        "Source.FileName": "PostAction1.txt"
+      "name": "PostActionViewModelLocator",
+      "type": "InsertPartialGenerationPostAction",
+      "description": "Registers new Page in ViewModelLocator",
+      "parameters": {
+        "destination.filename": "ViewModelLocator.cs",
+        "destination.anchor": "//PostActionAnchor: REGISTER PAGE IN VIEW_MODEL"
       }
     },
     {
-      "Name": "PostActionResourceFile",
-      "Type": "InsertPartialGenerationPostAction",
-      "Description": "Adds the page title to the resource file",
-      "Parameters": {
-        "Destination.FileName": ".\\Strings\\en-US\\Resources.resw",
-        "Destination.Anchor": "<!--PostActionAnchor: ADD PAGE TITLE RESOURCE-->",
-        "Source.FileName": "PostAction2.txt"
+      "name": "PostActionResourceFile",
+      "type": "InsertPartialGenerationPostAction",
+      "description": "Adds the page title to the resource file",
+      "parameters": {
+        "destination.filename": ".\\Strings\\en-US\\Resources.resw",
+        "destination.anchor": "<!--PostActionAnchor: ADD PAGE TITLE RESOURCE-->"
       }
     }
   ]

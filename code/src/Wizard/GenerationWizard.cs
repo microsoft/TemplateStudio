@@ -18,6 +18,7 @@ using Microsoft.Templates.Wizard.Steps;
 using Microsoft.Templates.Wizard.Host;
 using Newtonsoft.Json;
 using Microsoft.Templates.Wizard.PostActions;
+using System.Diagnostics;
 
 namespace Microsoft.Templates.Wizard
 {
@@ -197,19 +198,20 @@ namespace Microsoft.Templates.Wizard
 			var result = TemplateCreator.InstantiateAsync(template, solutionInfo.Name, null, solutionInfo.Directory, genParams, true).Result;
 
             if (result.Status == CreationResultStatus.CreateSucceeded && result.PrimaryOutputs != null)
-            {
-                foreach (var output in result.PrimaryOutputs)
-                {
-                    if (!string.IsNullOrWhiteSpace(output.Path))
-                    {
-                        var projectPath = Path.GetFullPath(Path.Combine(solutionInfo.Directory, output.Path));
-                        vsShell.AddProjectToSolution(projectPath); 
-                    }
-                } 
-            }
+			{
+				//TODO: Show Post Action Results
+				var executionContext = new ExecutionContext()
+				{
+					SolutionPath = solutionInfo.Directory,
+					ProjectName = solutionInfo.Name,
+					ProjectPath = Path.Combine(solutionInfo.Directory, solutionInfo.Name),
+					GenParams = genParams
+				};
 
+				var postActionResults = ExecutePostActions(template, executionContext, result, vsShell);
 
-			//TODO: Show Post Action Results
+				ShowPostActionResults(postActionResults);
+			}
 		}
 
 		
@@ -223,27 +225,28 @@ namespace Microsoft.Templates.Wizard
 
             string generationPath = Path.Combine(projectPath, pageRelativePath);
             var result = TemplateCreator.InstantiateAsync(template, pageName, null, generationPath, genParams, true).Result;
-            
-            //TODO: Control overwrites! What happend if the generated content already exits.
 
-            if (result.Status == CreationResultStatus.CreateSucceeded && result.PrimaryOutputs != null)
-            {
-                foreach (var output in result.PrimaryOutputs)
-                {
-                    if (!string.IsNullOrWhiteSpace(output.Path))
-                    {
-                        var itemPath = Path.GetFullPath(Path.Combine(generationPath, output.Path));
-                        vsShell.AddItemToActiveProject(itemPath);
-                    }
-                }
-            }
+			if (result.Status == CreationResultStatus.CreateSucceeded && result.PrimaryOutputs != null)
+			{
 
-			//TODO: Show Post Action Results
+				//TODO: Show Post Action Results
+				var executionContext = new ExecutionContext()
+				{
+					ProjectName = projectName,
+					ProjectPath = projectPath,
+					PagePath = Path.Combine(projectPath, pageName),
+					GenParams = genParams
+				};
+
+				var postActionResults = ExecutePostActions(template, executionContext, result, vsShell);
+
+				ShowPostActionResults(postActionResults);
+			}
 
 			//TODO: Show Project Information
 		}
 
-		private static IEnumerable<PostActionResult> ExecutePostActions(ITemplateInfo template, ExecutionContext executionContext)
+		private static IEnumerable<PostActionResult> ExecutePostActions(ITemplateInfo template, ExecutionContext executionContext, TemplateCreationResult generationResult, IVisualStudioShell shell)
 		{
 			//Get post actions from template
 			var postActions = PostActionCreator.GetPostActions(template);
@@ -253,11 +256,28 @@ namespace Microsoft.Templates.Wizard
 
 			foreach (var postAction in postActions)
 			{
-				var postActionResult = postAction.Execute(executionContext);
+				var postActionResult = postAction.Execute(executionContext, generationResult, shell);
 				postActionResults.Add(postActionResult);
 			}
 
 			return postActionResults;
+		}
+
+		private static void ShowPostActionResults(IEnumerable<PostActionResult> postActionResults)
+		{
+			//TODO: Determine where to show postActionResults
+
+			var postActionResultMessages = postActionResults.Aggregate(new StringBuilder(), (sb, a) => sb.AppendLine($"{a.Message}"), sb => sb.ToString());
+
+			if (postActionResults.Any(p => p.ResultCode != ResultCode.Success))
+			{
+				var errorMessages = postActionResults.Where(p => p.ResultCode != ResultCode.Success)
+					.Aggregate(new StringBuilder(), (sb, p) => sb.AppendLine($"{p.Message}"), sb => sb.ToString());
+
+				ErrorMessageDialog.Show("Some PostActions failed", "Failed post actions", errorMessages, MessageBoxImage.Error);
+			}
+
+			Debug.Print(postActionResultMessages);
 		}
 
 		private void ShowReadMe(ITemplateInfo template)

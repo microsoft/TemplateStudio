@@ -14,9 +14,22 @@ namespace Microsoft.Templates.Wizard.PostActions
 		{
 			var postActions = new List<PostActionBase>();
 
-			if (template.GetTemplateType() == TemplateType.Project)
+
+			switch (template.GetTemplateType())
 			{
-				postActions.Add(GetPostAction(PostActionType.GenerateTestCertificatePostAction));
+				case TemplateType.Project:
+					postActions.Add(GetPostAction(PostActionType.AddProjectToSolution));
+					postActions.Add(GetPostAction(PostActionType.GenerateTestCertificatePostAction));
+					break;
+				case TemplateType.Page:
+					postActions.Add(GetPostAction(PostActionType.AddItemToProject));
+					break;
+				case TemplateType.Feature:
+					break;
+				case TemplateType.Unspecified:
+					break;
+				default:
+					break;
 			}
 
 			var customPostActionConfigFile = template.GetPostActionConfigPath();
@@ -51,6 +64,12 @@ namespace Microsoft.Templates.Wizard.PostActions
 
 				case PostActionType.GenerateTestCertificatePostAction:
 					return new GenerateTestCertificatePostAction();
+
+				case PostActionType.AddProjectToSolution:
+					return new AddProjectToSolutionPostAction();
+
+				case PostActionType.AddItemToProject:
+					return new AddItemToProjectPostAction();
 
 				default:
 					return null;

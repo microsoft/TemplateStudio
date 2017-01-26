@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Microsoft.TemplateEngine.Edge.Template;
+using Microsoft.Templates.Wizard.Vs;
 
 namespace Microsoft.Templates.Wizard.PostActions
 {
@@ -16,12 +18,22 @@ namespace Microsoft.Templates.Wizard.PostActions
 			Description = description;
 			_parameters = parameters;
 		}
-		public abstract PostActionResult Execute(ExecutionContext context);
+		public abstract PostActionResult Execute(ExecutionContext context, TemplateCreationResult generationResult, IVisualStudioShell vsShell);
 
 		internal string GetValueFromParameter(string parameterName)
 		{
 			string parameterValue;
 			if (this._parameters != null && !string.IsNullOrEmpty(parameterName) && _parameters.TryGetValue(parameterName, out parameterValue))
+			{
+				return parameterValue;
+			}
+			return null;
+		}
+
+		internal string GetValueFromGenParameter(IDictionary<string, string> genParams, string parameterName)
+		{
+			string parameterValue;
+			if (genParams != null && !string.IsNullOrEmpty(parameterName) && genParams.TryGetValue(parameterName, out parameterValue))
 			{
 				return parameterValue;
 			}

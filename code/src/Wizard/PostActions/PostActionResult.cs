@@ -1,4 +1,6 @@
-﻿namespace Microsoft.Templates.Wizard.PostActions
+﻿using System;
+
+namespace Microsoft.Templates.Wizard.PostActions
 {
 	public class PostActionResult
 	{
@@ -6,6 +8,6 @@
 
 		public string Message { get; set; }
 		
-		public string Details { get; set; }
+		public Exception Exception { get; set; }
 	}
 }

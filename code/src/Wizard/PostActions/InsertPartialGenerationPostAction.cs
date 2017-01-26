@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Microsoft.TemplateEngine.Edge.Template;
+using Microsoft.Templates.Wizard.Vs;
 
 namespace Microsoft.Templates.Wizard.PostActions
 {
@@ -14,20 +16,18 @@ namespace Microsoft.Templates.Wizard.PostActions
 		{
 		}
 
-		public override PostActionResult Execute(ExecutionContext context)
+		public override PostActionResult Execute(ExecutionContext context, TemplateCreationResult result, IVisualStudioShell vsShell)
 		{
 			try
 			{
 				//Read values from params
-				var sourceFileName = GetValueFromParameter("Source.FileName");
-				var destinationFileName = GetValueFromParameter("Destination.FileName");
-				var destinationAnchor = GetValueFromParameter("Destination.Anchor");
+				var destinationFileName = GetValueFromParameter("destination.filename");
+				var destinationAnchor = GetValueFromParameter("destination.anchor");
 
-				if (string.IsNullOrEmpty(sourceFileName)) return new PostActionResult() { ResultCode = ResultCode.ConfigurationError, Message=$"{sourceFileName} should not be empty"};
 				if (string.IsNullOrEmpty(destinationFileName)) return new PostActionResult() { ResultCode = ResultCode.ConfigurationError, Message = $"{destinationFileName} should not be empty" };
 				if (string.IsNullOrEmpty(destinationAnchor)) return new PostActionResult() { ResultCode = ResultCode.ConfigurationError, Message = $"{destinationAnchor} should not be empty" };
 
-				var sourceFile = Path.Combine(context.PagePath, sourceFileName);
+				var sourceFile = Path.Combine(context.PagePath, Name + ".txt");
 				var destinationFile = Path.Combine(context.ProjectPath, destinationFileName);
 
 				if (!File.Exists(sourceFile)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = $"{sourceFile} was not found" };
@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 					return new PostActionResult()
 					{
 						ResultCode = ResultCode.AnchorNotFound,
-						Message = $"Could not inserted {postActionCode} on anchor {destinationAnchor} in file {destinationFile}. Please copy the code and insert it manually"
+						Message = $"Postaction {Name}: Could not insert code {postActionCode} on anchor {destinationAnchor} in file {destinationFile}. Please copy the code and insert it manually"
 					};
 				}
 
@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 				return new PostActionResult()
 				{
 					ResultCode = ResultCode.Success,
-					Message = $"Successfully inserted code {formattedCode} on anchor {destinationAnchor} in file {destinationFile}"
+					Message = $"Postaction {Name}: Successfully inserted code {formattedCode} on anchor {destinationAnchor} in file {destinationFile}"
 				};
 			}
 			catch (Exception ex)
@@ -70,8 +70,8 @@ namespace Microsoft.Templates.Wizard.PostActions
 				return new PostActionResult()
 				{
 					ResultCode = ResultCode.Error,
-					Message = "Error in insert partial generation",
-					Details = ex.Message
+					Message = $"Error in insert partial generation post action {Name}",
+					Exception = ex
 				};
 			}
 		}
