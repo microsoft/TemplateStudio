@@ -120,4 +120,5 @@
   <data name="HomeTitle.Text" xml:space="preserve">
     <value>My Mvvm Light application</value>
   </data>
+  <!--PostActionAnchor: ADD PAGE TITLE RESOURCE-->
 </root>

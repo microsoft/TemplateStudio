@@ -1,7 +1,7 @@
 {
   "author": "Microsoft",
   "classifications": ["Universal"],
-  "name": "MVVMLightSplitViewProject",
+  "name": "Split view",
   "groupIdentity": "Microsoft.UWPTemplates.MVVMLightSplitViewProject",
   "identity": "Microsoft.UWPTemplates.MVVMLightSplitViewProject.CSharp",
   "shortName": "mvvmsplitview",

@@ -1,0 +1,36 @@
+{
+  "author": "Microsoft",
+  "classifications": ["Universal"],
+  "name": "Blank",
+  "groupIdentity": "Microsoft.UWPTemplates.BasicBlankPage",
+  "identity": "Microsoft.UWPTemplates.BasicBlankPage.CSharp",
+  "shortName": "blankpage",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "uct.type": "page",
+    "uct.framework": "Basic",
+    "uct.version": "1.0.0",
+    "uct.order": "1"
+  },
+  "sourceName": "BasicBlankPage",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\BasicBlankPage\\BasicBlankPagePage.xaml"
+    },
+    {
+      "path": ".\\BasicBlankPage\\BasicBlankPagePage.xaml.cs"
+    },
+    {
+      "path": ".\\BasicBlankPage\\BasicBlankPageViewModel.cs"
+    }
+  ],
+  "symbols": {
+    "PageNamespace": {
+      "type": "parameter",
+      "replaces": "Page_NS"
+    }
+  }
+}

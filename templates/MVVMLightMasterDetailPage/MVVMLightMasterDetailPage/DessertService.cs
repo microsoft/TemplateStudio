@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Page_NS
+namespace Page_NS.MVVMLightMasterDetailPage
 {
     public class DessertService
     {

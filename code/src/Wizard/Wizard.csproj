@@ -84,7 +84,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\CollectionToVisibilityConverter.cs" />
-    <Compile Include="CodeSigningCertificate.cs" />
     <Compile Include="Dialog\AddFeaturesResult.cs" />
     <Compile Include="Dialog\AddPage.xaml.cs">
       <DependentUpon>AddPage.xaml</DependentUpon>
@@ -101,6 +100,15 @@
     <Compile Include="Dialog\AddProjectSteps.cs" />
     <Compile Include="Extensions\ObservableCollection.extensions.cs" />
     <Compile Include="Host\TemplateConfig.cs" />
+    <Compile Include="PostActions\CustomPostActionDefinition.cs" />
+    <Compile Include="PostActions\ExecutionContext.cs" />
+    <Compile Include="PostActions\GenerateTestCertificatePostAction.cs" />
+    <Compile Include="PostActions\InsertPartialGenerationPostAction.cs" />
+    <Compile Include="PostActions\PostActionBase.cs" />
+    <Compile Include="PostActions\PostActionCreator.cs" />
+    <Compile Include="PostActions\PostActionExecutionResult.cs" />
+    <Compile Include="PostActions\PostActionType.cs" />
+    <Compile Include="PostActions\ResultCode.cs" />
     <Compile Include="Resources\ResourcesExtensions.cs" />
     <Compile Include="Resources\StringRes.Designer.cs">
       <DependentUpon>StringRes.resx</DependentUpon>

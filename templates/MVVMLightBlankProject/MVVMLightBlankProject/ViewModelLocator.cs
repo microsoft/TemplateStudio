@@ -13,7 +13,7 @@ namespace MVVMLightBlankProject
             SimpleIoc.Default.Register<Services.NavigationService>(() => navigationService);
                         
             RegisterHome(navigationService);
-            //TODO: Register new app sections
+            //PostActionAnchor: REGISTER PAGE IN VIEW_MODEL
         }
     }
 }
