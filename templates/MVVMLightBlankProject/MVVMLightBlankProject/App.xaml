@@ -4,7 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:vm="using:MVVMLightBlankProject"
     RequestedTheme="Light">
+    
     <Application.Resources>
-        <vm:ViewModelLocator x:Key="Locator" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/AppTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <vm:ViewModelLocator x:Key="Locator" />
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

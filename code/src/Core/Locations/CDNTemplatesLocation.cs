@@ -11,7 +11,7 @@ namespace Microsoft.Templates.Core.Locations
 {
     public class CdnTemplatesLocation : TemplatesLocation
     {
-        private readonly string CdnUrl = Configuration.Current.CdnUrl;
+        private readonly string CdnUrl = Configuration.Default.CdnUrl;
         private const string CdnPackagesFileName = "packages.nupkg";
         private const string CdnTemplatesFileName = "UWPTemplates.zip";
 

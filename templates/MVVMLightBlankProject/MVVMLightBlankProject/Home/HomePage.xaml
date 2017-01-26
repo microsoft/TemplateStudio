@@ -8,7 +8,7 @@
     DataContext="{Binding HomeViewModel, Source={StaticResource Locator}}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Margin="24,12">
+        <StackPanel Margin="{StaticResource PageMargin}">
             <TextBlock
                 x:Uid="HomeTitle"
                 Style="{ThemeResource HeaderTextBlockStyle}"/>
