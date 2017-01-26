@@ -26,7 +26,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 				{
 					if (!string.IsNullOrWhiteSpace(output.Path))
 					{
-						var itemPath = Path.GetFullPath(Path.Combine(context.ProjectPath, output.Path));
+						var itemPath = Path.GetFullPath(Path.Combine(context.ProjectPath, context.PagesRelativePath, output.Path));
 						vsShell.AddItemToActiveProject(itemPath);
 					}
 				}

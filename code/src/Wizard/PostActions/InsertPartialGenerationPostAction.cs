@@ -27,7 +27,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 				if (string.IsNullOrEmpty(destinationFileName)) return new PostActionResult() { ResultCode = ResultCode.ConfigurationError, Message = $"{destinationFileName} should not be empty" };
 				if (string.IsNullOrEmpty(destinationAnchor)) return new PostActionResult() { ResultCode = ResultCode.ConfigurationError, Message = $"{destinationAnchor} should not be empty" };
 
-				var sourceFile = Path.Combine(context.PagePath, Name + ".txt");
+				var sourceFile = Path.Combine(context.ProjectPath, context.PagesRelativePath, context.PageName, Name + ".txt");
 				var destinationFile = Path.Combine(context.ProjectPath, destinationFileName);
 
 				if (!File.Exists(sourceFile)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = $"{sourceFile} was not found" };

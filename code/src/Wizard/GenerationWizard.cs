@@ -204,7 +204,6 @@ namespace Microsoft.Templates.Wizard
 				{
 					SolutionPath = solutionInfo.Directory,
 					ProjectName = solutionInfo.Name,
-					ProjectPath = Path.Combine(solutionInfo.Directory, solutionInfo.Name),
 					GenParams = genParams
 				};
 
@@ -232,9 +231,10 @@ namespace Microsoft.Templates.Wizard
 				//TODO: Show Post Action Results
 				var executionContext = new ExecutionContext()
 				{
-					ProjectName = projectName,
 					ProjectPath = projectPath,
-					PagePath = Path.Combine(projectPath, pageName),
+					ProjectName = projectName,
+					PagesRelativePath = pageRelativePath,
+					PageName = pageName,
 					GenParams = genParams
 				};
 

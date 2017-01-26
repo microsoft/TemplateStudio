@@ -83,7 +83,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 
 				var base64Encoded = enrollment.CreatePFX("", PFXExportOptions.PFXExportChainWithRoot);
 
-				var filePath = Path.Combine(context.ProjectPath, context.ProjectName) + "_TemporaryKey.pfx";
+				var filePath = Path.Combine(context.SolutionPath, context.ProjectName, context.ProjectName) + "_TemporaryKey.pfx";
 				File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
 
 				return new PostActionResult()
