@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
-    public interface IDiagnosticsWriter
+    public interface IHealthWriter
     {
-        Task WriteEventAsync(TraceEventType eventType, string message, Exception ex=null);
+        Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex=null);
         Task WriteExceptionAsync(Exception ex, string message = null);
     }
 }

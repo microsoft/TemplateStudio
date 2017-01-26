@@ -89,16 +89,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\Configuration.cs" />
+    <Compile Include="Diagnostics\HealthWriters.cs" />
     <Compile Include="Diagnostics\ExceptionTracker.cs" />
-    <Compile Include="Diagnostics\EventTracker.cs" />
-    <Compile Include="Diagnostics\FileDiagnosticsWriter.cs" />
-    <Compile Include="Diagnostics\IDiagnosticsWriter.cs" />
-    <Compile Include="Diagnostics\RemoteDiagnosticsWriter.cs" />
-    <Compile Include="Diagnostics\Diag.cs" />
-    <Compile Include="Diagnostics\Telemetry.cs" />
+    <Compile Include="Diagnostics\TraceTracker.cs" />
+    <Compile Include="Diagnostics\FileHealthWriter.cs" />
+    <Compile Include="Diagnostics\IHealthWriter.cs" />
+    <Compile Include="Diagnostics\RemoteHealthWriter.cs" />
+    <Compile Include="Diagnostics\AppHealth.cs" />
+    <Compile Include="Diagnostics\TelemetryService.cs" />
     <Compile Include="Diagnostics\TelemetryEvents.cs" />
     <Compile Include="Diagnostics\TelemetryTracker.cs" />
-    <Compile Include="Diagnostics\TraceDiagnosticsWriter.cs" />
+    <Compile Include="Diagnostics\TraceHealthWriter.cs" />
     <Compile Include="Locations\CDNTemplatesLocation.cs" />
     <Compile Include="ITemplateInfo.extensions.cs" />
     <Compile Include="Locations\TemplatesLocation.cs" />

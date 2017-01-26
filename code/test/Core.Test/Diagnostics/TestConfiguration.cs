@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xunit;
-
-using System.Diagnostics;
 
 namespace Microsoft.Templates.Core.Test.Diagnostics
 {
-    public class RemoteDiagnosticListenerTest
+    public class TestConfiguration : Configuration
     {
-        [Fact]
-        public void InstantiateHockeyAppAsync()
+        public override string RemoteTelemetryKey
         {
+            get
+            {
+                return ""; //SECRET
+            }
         }
     }
 }

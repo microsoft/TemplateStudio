@@ -7,11 +7,17 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
-    public class TraceDiagnosticsWriter : IDiagnosticsWriter
+    public class TraceHealthWriter : IHealthWriter
     {
-        public async Task WriteEventAsync(TraceEventType eventType, string message, Exception ex = null)
+        public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
         {
-            string formattedMessage = $"{message}" + ex != null ? $". Exception:\n\r{ex.ToString()}" : "";
+
+            string formattedMessage = $"{message}";
+            if(ex != null)
+            {
+                formattedMessage = formattedMessage + $". Exception:\n\r{ex.ToString()}";
+            }
+
             switch (eventType)
             {
                 case TraceEventType.Critical:
@@ -33,7 +39,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task WriteExceptionAsync(Exception ex, string message = null)
         {
-            await WriteEventAsync(TraceEventType.Critical, "Exception Tracked", ex);
+            await WriteTraceAsync(TraceEventType.Critical, "Exception Tracked", ex);
         }
 
         private async Task CallAsync(Action action)

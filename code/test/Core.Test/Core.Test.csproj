@@ -90,10 +90,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Diagnostics\FileDiagnosticListenerTest.cs" />
+    <Compile Include="Diagnostics\HealthTest.cs" />
+    <Compile Include="Diagnostics\FileHealthWriterTest.cs" />
+    <Compile Include="Diagnostics\FileHealthFixture.cs" />
     <Compile Include="Diagnostics\TelemetryFixture.cs" />
-    <Compile Include="Diagnostics\TelemetryTest.cs" />
-    <Compile Include="Diagnostics\RemoteDiagnosticListenerTest.cs" />
+    <Compile Include="Diagnostics\TelemetryServiceTest.cs" />
+    <Compile Include="Diagnostics\RemoteHealthWriterTest.cs" />
+    <Compile Include="Diagnostics\TelemetryTrackerTest.cs" />
+    <Compile Include="Diagnostics\TestConfiguration.cs" />
     <Compile Include="ITemplateInfoExtensionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplatesFixture.cs" />

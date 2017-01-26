@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Test.Diagnostics
 {
-    public class TelemetryFixture
+    public class FileHealthFixture
     {
-        public TelemetryService Telemetry { get; }
-        public TelemetryFixture()
+        public FileHealthWriter FileLogWriter;
+        public FileHealthFixture()
         {
-            Telemetry = new TelemetryService(new TestConfiguration());
+            FileLogWriter = new FileHealthWriter(new TestConfiguration());
         } 
     }
 }

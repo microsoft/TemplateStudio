@@ -7,23 +7,26 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
-    public class EventTracker
+    public class TraceTracker
     {
         private TraceEventType _traceEventType;
-        private List<IDiagnosticsWriter> _listeners;
-        public EventTracker(TraceEventType eventType, ref List<IDiagnosticsWriter> listeners)
+        private bool _traceEnabled;
+
+        public TraceTracker(TraceEventType eventType, TraceEventType traceLevel)
         {
             _traceEventType = eventType;
-            _listeners = listeners;
+            _traceEnabled = traceLevel >= eventType;
         }
 
-        public void Track(string message, Exception ex)
+        public async Task TrackAsync(string message, Exception ex=null)
         {
             try
             {
-                foreach (IDiagnosticsWriter listener in _listeners)
+                if (!_traceEnabled) return;
+
+                foreach (IHealthWriter writer in HealthWriters.Available)
                 {
-                    listener.WriteEventAsync(_traceEventType, message, ex);
+                    await writer.WriteTraceAsync(_traceEventType, message, ex).ConfigureAwait(false);
                 }
             }
             catch (Exception exception)

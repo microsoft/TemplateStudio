@@ -10,41 +10,47 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
-    public class Telemetry : IDisposable
+    public class TelemetryService : IDisposable
     {
-        private TelemetryClient Client {get; set;}
         public Dictionary<string, string> Properties { get; } = new Dictionary<string, string>();
         public Dictionary<string, double> Metrics { get; } = new Dictionary<string, double>();
-
         public bool IsEnabled { get; private set; }
 
         private Configuration _currentConfig;
+        private TelemetryClient _client { get; set; }
 
-        public Telemetry(Configuration config)
+        public TelemetryService(Configuration config)
         {
-            if (config == null)
-            {
-                throw new ArgumentNullException("config");
-            }
-            _currentConfig = config;
+            _currentConfig = config ?? throw new ArgumentNullException("config");
             IntializeTelemetryClient();
         }
+
+        public async Task TrackEventAsync(string eventName)
+        {
+            await SafeTrackAsync(() => _client.TrackEvent(eventName, Properties, Metrics)).ConfigureAwait(false);
+        }
+
+        public async Task TrackExceptionAsync(Exception ex)
+        {
+            await SafeTrackAsync(() => _client.TrackException(ex, Properties, Metrics)).ConfigureAwait(false);
+        }
+
         private void IntializeTelemetryClient()
         {
             try
             {
+                _client = new TelemetryClient()
+                {
+                    InstrumentationKey = _currentConfig.RemoteTelemetryKey
+                };
+
                 if (RemoteKeyAvailable())
                 {
-                    Client = new TelemetryClient()
-                    {
-                        InstrumentationKey = _currentConfig.RemoteTelemetryKey
-                    };
-
                     // Set session data
-                    Client.Context.User.Id = Environment.UserName; //TODO: HASH USER NAME
-                    Client.Context.Session.Id = Guid.NewGuid().ToString();
-                    Client.Context.Device.OperatingSystem = Environment.OSVersion.ToString();
-                    Client.Context.Component.Version = GetVersion();
+                    _client.Context.User.Id = Environment.UserName; //TODO: HASH USER NAME
+                    _client.Context.Session.Id = Guid.NewGuid().ToString();
+                    _client.Context.Device.OperatingSystem = Environment.OSVersion.ToString();
+                    _client.Context.Component.Version = GetVersion();
 
                     IsEnabled = true;
 #if DEBUG
@@ -65,22 +71,24 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
 
-        public void TrackEvent(string eventName)
-        {
-            SafeTrack(()=>Client.TrackEvent(eventName, Properties, Metrics));
-        }
 
-        public void TrackException(Exception ex)
-        {
-            SafeTrack(() => Client.TrackException(ex, Properties, Metrics));
-        }
-        private void SafeTrack(Action trackAction)
+        private async Task SafeTrackAsync(Action trackAction)
         {
             try
             {
-                trackAction();
-                Properties.Clear();
-                Metrics.Clear();
+                var task = Task.Run(() => {
+                    trackAction();
+                    Properties.Clear();
+                    Metrics.Clear();
+                });
+                await task;
+            }
+            catch (AggregateException aggEx)
+            {
+                foreach (Exception ex in aggEx.InnerExceptions)
+                {
+                    Trace.TraceError("Error tracking telemetry: {0}", ex.ToString());
+                }
             }
             catch (Exception ex)
             {
@@ -98,7 +106,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             return assembly.GetName().Version.ToString();
         }
 
-        ~Telemetry()
+        ~TelemetryService()
         {
             Dispose(false);
         }
@@ -113,10 +121,9 @@ namespace Microsoft.Templates.Core.Diagnostics
             if (disposing)
             {
                 // free managed resources 
-                if(Client != null)
+                if (_client != null)
                 {
-                    Client.Flush();
-                    System.Threading.Thread.Sleep(1000); //TODO:??
+                    _client.Flush();
                 }
             }
             //free native resources if any.

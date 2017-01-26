@@ -9,19 +9,17 @@ namespace Microsoft.Templates.Core.Diagnostics
 {
     public class ExceptionTracker
     {
-        private List<IDiagnosticsWriter> _listeners;
-        public ExceptionTracker(ref List<IDiagnosticsWriter> listeners)
+        public ExceptionTracker()
         {
-            _listeners = listeners;
         }
 
-        public void Track(Exception ex, string message=null)
+        public async Task TrackAsync(Exception ex, string message=null)
         {
             try
             {
-                foreach (IDiagnosticsWriter listener in _listeners)
+                foreach (IHealthWriter writer in HealthWriters.Available)
                 {
-                    listener.WriteExceptionAsync(ex, message);
+                    await writer.WriteExceptionAsync(ex, message).ConfigureAwait(false);
                 }
             }
             catch (Exception exception)

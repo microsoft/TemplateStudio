@@ -9,15 +9,16 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
-    public class FileDiagnosticsWriter: IDiagnosticsWriter, IDisposable
+    public class FileHealthWriter: IHealthWriter, IDisposable
     {
-        private const string FolderName = @"UWPTemplates\Logs";
-        private readonly Lazy<string> _lazyWorkingFolder = new Lazy<string>(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), FolderName));
-        private string _workingFolder => _lazyWorkingFolder.Value;
+        private static SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
+
+        private string _workingFolder;
         private string _username;
         private string _processId;
 
         private StreamWriter _fileStream;
+
         private string _fileName;
         public string LogFileName
         {
@@ -27,39 +28,27 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
 
-        static FileDiagnosticsWriter _default;
-        public static FileDiagnosticsWriter Default
-        {
-            get
-            {
-                if(_default == null)
-                {
-                    _default = new FileDiagnosticsWriter();
-                }
-                return _default;
-            }
-        }
-
-        static SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
-
-        public FileDiagnosticsWriter()
-        {
+        public FileHealthWriter(Configuration currentConfig)
+        {        
+            _workingFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), currentConfig.LogFileFolderPath);
             _username = System.Environment.UserName;
             _processId = $"{Process.GetCurrentProcess().Id.ToString()}";
 
             InitializeLogFile();
         }
 
-        public async Task WriteEventAsync(TraceEventType eventType, string message, Exception ex=null)
+        public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex=null)
         {
+            if (_fileStream == null) throw new Exception("The file stream is not instantiated. Cannot write!");
+
             await semaphoreSlim.WaitAsync();
             try
             {
-                await _fileStream?.WriteLineAsync($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}\t{_username}\t{_processId}({System.Threading.Thread.CurrentThread.ManagedThreadId})\t{eventType.ToString()}\t{message}{(ex != null ? "\tException Details:" : "")}");
+                await _fileStream.WriteLineAsync($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}\t{_username}\t{_processId}({System.Threading.Thread.CurrentThread.ManagedThreadId})\t{eventType.ToString()}\t{message}{(ex != null ? "\tException Details:" : "")}");
                 if (ex != null)
                 {
-                    await _fileStream?.WriteLineAsync(ex.ToString());
-                    await _fileStream?.WriteLineAsync("--");
+                    await _fileStream.WriteLineAsync(ex.ToString());
+                    await _fileStream.WriteLineAsync("--");
                 }
                 await _fileStream.FlushAsync();
             }
@@ -75,20 +64,22 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task WriteExceptionAsync(Exception ex, string message = null)
         {
+            if (_fileStream == null) throw new Exception("The file stream is not instantiated. Cannot write!");
+
             await semaphoreSlim.WaitAsync();
             try
             {
-                string messageToTrack = message != null ? message : "Exception tracked"; 
-                await _fileStream?.WriteLineAsync($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}\t{_username}\t{_processId}({System.Threading.Thread.CurrentThread.ManagedThreadId})\t{TraceEventType.Critical.ToString()}\t{messageToTrack}{(ex != null ? "\tException Details:" : "")}");
+                string messageToTrack = message ?? "Exception tracked"; 
+                await _fileStream.WriteLineAsync($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}\t{_username}\t{_processId}({System.Threading.Thread.CurrentThread.ManagedThreadId})\t{TraceEventType.Critical.ToString()}\t{messageToTrack}{(ex != null ? "\tException Details:" : "")}");
                 if (ex != null)
                 {
-                    await _fileStream?.WriteLineAsync(ex.ToString());
-                    await _fileStream?.WriteLineAsync("--");
+                    await _fileStream.WriteLineAsync(ex.ToString());
+                    await _fileStream.WriteLineAsync("--");
                 }
                 else
                 {
-                    await _fileStream?.WriteLineAsync("The exception object is null");
-                    await _fileStream?.WriteLineAsync("--");
+                    await _fileStream.WriteLineAsync("The exception object is null");
+                    await _fileStream.WriteLineAsync("--");
                 }
                 await _fileStream.FlushAsync();
             }
@@ -151,7 +142,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             FileStream stream = null;
             try
             {
-                stream = new FileStream(_fileName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
+                stream = new FileStream(_fileName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read);
             }
             catch (IOException)
             {
@@ -162,10 +153,10 @@ namespace Microsoft.Templates.Core.Diagnostics
                 if (stream != null)
                     stream.Close();
             }
-            //file is not in use
+            
             return false;
         }
-        ~FileDiagnosticsWriter()
+        ~FileHealthWriter()
         {
             Dispose(false);
         }
@@ -184,6 +175,5 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
             //free native resources if any.
         }
-
     }
 }
