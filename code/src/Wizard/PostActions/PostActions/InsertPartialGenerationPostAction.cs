@@ -19,53 +19,57 @@ namespace Microsoft.Templates.Wizard.PostActions
 		public override PostActionResult Execute(GenInfo genInfo, TemplateCreationResult result, GenShell shell)
 		{
 			try
-			{
-				//Read values from params
-				var destinationFileName = GetValueFromParameter("destination.filename");
-				var destinationAnchor = GetValueFromParameter("destination.anchor");
+            {
+                //Read values from params
+                var destinationFileName = GetValueFromParameter("destination.filename");
+                var destinationAnchor = GetValueFromParameter("destination.anchor");
 
-				if (string.IsNullOrEmpty(destinationFileName)) return new PostActionResult() { ResultCode = ResultCode.ConfigurationError, Message = PostActionResources.InsertPartialGeneration_EmptyDestinationFileNamePattern.UseParams(Name)};
-				if (string.IsNullOrEmpty(destinationAnchor)) return new PostActionResult() { ResultCode = ResultCode.ConfigurationError, Message = PostActionResources.InsertPartialGeneration_EmptyDestinationAnchorPattern.UseParams(Name)};
+                if (string.IsNullOrEmpty(destinationFileName)) return new PostActionResult() { ResultCode = ResultCode.ConfigurationError, Message = PostActionResources.InsertPartialGeneration_EmptyDestinationFileNamePattern.UseParams(Name) };
+                if (string.IsNullOrEmpty(destinationAnchor)) return new PostActionResult() { ResultCode = ResultCode.ConfigurationError, Message = PostActionResources.InsertPartialGeneration_EmptyDestinationAnchorPattern.UseParams(Name) };
 
-				var sourceFile = Path.Combine(shell.OutputPath,  genInfo.Name, Name + ".txt");
-				var destinationFile = Path.Combine(shell.OutputPath, destinationFileName);
+                var sourceFile = Path.Combine(shell.OutputPath, genInfo.Name, Name + ".txt");
 
-				if (!File.Exists(sourceFile)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = PostActionResources.InsertPartialGeneration_FileNotFoundPattern.UseParams(sourceFile) };
-				if (!File.Exists(destinationFile)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = PostActionResources.InsertPartialGeneration_FileNotFoundPattern.UseParams(destinationFile) };
+                var pageNamespace = GetValueFromGenParameter(genInfo.Parameters, "PageNamespace");
+                string projectPath = GetProjectPathFromNamespace(shell, pageNamespace);
 
-				//Read Code to insert
-				var postActionCodeLines = File.ReadAllLines(sourceFile);
+                var destinationFile = Path.Combine(projectPath, destinationFileName);
 
-				//Read destination file, find anchor
-				var destinationFileContent = File.ReadAllText(destinationFile);
-				var anchorIndex = destinationFileContent.IndexOf(destinationAnchor, StringComparison.Ordinal);
+                if (!File.Exists(sourceFile)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = PostActionResources.InsertPartialGeneration_FileNotFoundPattern.UseParams(sourceFile) };
+                if (!File.Exists(destinationFile)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = PostActionResources.InsertPartialGeneration_FileNotFoundPattern.UseParams(destinationFile) };
 
-				if (anchorIndex == -1)
-				{
-					var postActionCode = postActionCodeLines.Aggregate(new StringBuilder(), (sb, a) => sb.AppendLine(a), sb => sb.ToString());
+                //Read Code to insert
+                var postActionCodeLines = File.ReadAllLines(sourceFile);
 
-					return new PostActionResult()
-					{
-						ResultCode = ResultCode.AnchorNotFound,
-						Message = PostActionResources.InsertPartialGeneration_AnchorNotFoundPattern.UseParams(Name, postActionCode, destinationAnchor, destinationFile)
-					};
-				}
+                //Read destination file, find anchor
+                var destinationFileContent = File.ReadAllText(destinationFile);
+                var anchorIndex = destinationFileContent.IndexOf(destinationAnchor, StringComparison.Ordinal);
 
-				string formattedCode = FormatPostActionCode(postActionCodeLines, destinationFileContent, anchorIndex);
+                if (anchorIndex == -1)
+                {
+                    var postActionCode = postActionCodeLines.Aggregate(new StringBuilder(), (sb, a) => sb.AppendLine(a), sb => sb.ToString());
 
-				var nextLineBreakAfterAnchor = destinationFileContent.IndexOf(Environment.NewLine, anchorIndex, StringComparison.Ordinal);
-				destinationFileContent = destinationFileContent.Insert(nextLineBreakAfterAnchor, formattedCode);
+                    return new PostActionResult()
+                    {
+                        ResultCode = ResultCode.AnchorNotFound,
+                        Message = PostActionResources.InsertPartialGeneration_AnchorNotFoundPattern.UseParams(Name, postActionCode, destinationAnchor, destinationFile)
+                    };
+                }
 
-				//Save
-				File.WriteAllText(destinationFile, destinationFileContent);
+                string formattedCode = FormatPostActionCode(postActionCodeLines, destinationFileContent, anchorIndex);
 
-				return new PostActionResult()
-				{
-					ResultCode = ResultCode.Success,
-					Message = PostActionResources.InsertPartialGeneration_SuccessPattern.UseParams(Name, formattedCode, destinationAnchor, destinationFile)
+                var nextLineBreakAfterAnchor = destinationFileContent.IndexOf(Environment.NewLine, anchorIndex, StringComparison.Ordinal);
+                destinationFileContent = destinationFileContent.Insert(nextLineBreakAfterAnchor, formattedCode);
+
+                //Save
+                File.WriteAllText(destinationFile, destinationFileContent);
+
+                return new PostActionResult()
+                {
+                    ResultCode = ResultCode.Success,
+                    Message = PostActionResources.InsertPartialGeneration_SuccessPattern.UseParams(Name, formattedCode, destinationAnchor, destinationFile)
                 };
-			}
-			catch (Exception ex)
+            }
+            catch (Exception ex)
 			{
 				return new PostActionResult()
 				{
@@ -76,7 +80,18 @@ namespace Microsoft.Templates.Wizard.PostActions
 			}
 		}
 
-		private static string FormatPostActionCode(string[] postActionCodeLines, string destinationFileContent, int anchorIndex)
+        private static string GetProjectPathFromNamespace(GenShell shell, string pageNamespace)
+        {
+            var projectPath = shell.OutputPath;
+            foreach (char c in pageNamespace.Where(c => c == '.'))
+            {
+                projectPath = Directory.GetParent(projectPath).FullName;
+            }
+
+            return projectPath;
+        }
+
+        private static string FormatPostActionCode(string[] postActionCodeLines, string destinationFileContent, int anchorIndex)
 		{
 			var lastLineBreakBeforeAnchor = destinationFileContent.LastIndexOf(Environment.NewLine, anchorIndex, StringComparison.Ordinal);
 			var leadingChars = destinationFileContent.Skip(lastLineBreakBeforeAnchor + Environment.NewLine.Length).TakeWhile(char.IsWhiteSpace).ToList();
