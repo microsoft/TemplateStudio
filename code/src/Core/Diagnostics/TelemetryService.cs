@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
-    public class TelemetryService : IDisposable
+    public class TelemetryService : IHealthWriter, IDisposable
     {
         public bool IsEnabled { get; private set; }
 
@@ -53,6 +53,17 @@ namespace Microsoft.Templates.Core.Diagnostics
         public async Task TrackExceptionAsync(Exception ex, Dictionary<string, string> properties = null, Dictionary<string, double> metrics = null)
         {
             await SafeTrackAsync(() => _client.TrackException(ex, properties, metrics)).ConfigureAwait(false);
+        }
+
+                public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex=null)
+        {
+            //Trace events will not be forwarded to the remote service
+            await Task.Run(() => { });
+        }
+
+        public async Task WriteExceptionAsync(Exception ex, string message = null)
+        {
+            await TelemetryService.Current.TrackExceptionAsync(ex);
         }
 
         private void IntializeTelemetryClient()

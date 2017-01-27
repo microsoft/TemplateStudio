@@ -23,7 +23,10 @@ namespace Microsoft.Templates.Extension.Diagnostsics
         {
             _paneGuid = Guid.Parse(UWPCommunityTemplatesPaneGuid);
             _pane = GetOrCreatePane(_paneGuid, true, false);
-            _pane.Activate();
+            if (_pane != null)
+            {
+                _pane.Activate();
+            }
         }
         private OutputWindowPane GetOrCreatePane(Guid paneGuid, bool visible, bool clearWithSolution)
         {

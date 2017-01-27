@@ -58,7 +58,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             HealthWriters.Available.Add(FileHealthWriter.Current);
             HealthWriters.Available.Add(new TraceHealthWriter());
-            HealthWriters.Available.Add(RemoteHealthWriter.Current);
+            HealthWriters.Available.Add(TelemetryService.Current);
         }
 
         ~AppHealth()

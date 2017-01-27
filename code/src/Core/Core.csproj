@@ -95,7 +95,6 @@
     <Compile Include="Diagnostics\TraceTracker.cs" />
     <Compile Include="Diagnostics\FileHealthWriter.cs" />
     <Compile Include="Diagnostics\IHealthWriter.cs" />
-    <Compile Include="Diagnostics\RemoteHealthWriter.cs" />
     <Compile Include="Diagnostics\AppHealth.cs" />
     <Compile Include="Diagnostics\TelemetryService.cs" />
     <Compile Include="Diagnostics\TelemetryEvents.cs" />
