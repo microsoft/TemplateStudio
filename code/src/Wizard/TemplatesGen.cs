@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Wizard
         private GenShell _shell;
 
         //TODO: ERROR HANDLING
-        public TemplatesGen(GenShell shell) : this(shell, new TemplatesRepository(new CdnTemplatesLocation()))
+        public TemplatesGen(GenShell shell) : this(shell, new TemplatesRepository(new RemoteTemplatesLocation()))
         {
 
         }
@@ -67,7 +67,7 @@ namespace Microsoft.Templates.Wizard
                     outputPath = GetOutputPath(outputs, outputPath);
 
                     //TODO: REVIEW ASYNC
-                    var result = TemplateCreator.InstantiateAsync(genInfo.Template, genInfo.Name, null, outputPath, genInfo.Parameters, false).Result;
+                    var result = CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, outputPath, genInfo.Parameters, false).Result;
 
                     if (result.Status != CreationResultStatus.CreateSucceeded)
                     {

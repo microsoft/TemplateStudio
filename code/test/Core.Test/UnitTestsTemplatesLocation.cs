@@ -7,7 +7,6 @@ namespace Microsoft.Templates.Core.Test
     {
         public override void Copy(string workingFolder)
         {
-            Copy($@"..\..\..\{TemplatesLocation.PackagesName}", workingFolder);
             Copy($@"..\..\{TemplatesLocation.TemplatesName}", workingFolder);
         }
 

@@ -28,18 +28,21 @@ namespace Microsoft.Templates.Wizard.TestApp
 
         public void UpdateRelativePath(string relative)
         {
+            _relativePath = relative;
+
             if (string.IsNullOrEmpty(_projectPath))
             {
-                return;
+                _projectPath = Path.Combine(OutputPath, Name, $"{Name}.csproj");
             }
-            _relativePath = relative;
+
+
             if (string.IsNullOrEmpty(relative))
             {
                 OutputPath = Path.GetDirectoryName(_projectPath);
             }
             else
             {
-                Path.Combine(Path.GetDirectoryName(_projectPath), relative);
+                OutputPath = Path.Combine(Path.GetDirectoryName(_projectPath), relative);
             }
         }
 
