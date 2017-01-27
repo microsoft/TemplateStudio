@@ -159,10 +159,14 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         private void PurgeOldLogs()
         {
-            DirectoryInfo di = new DirectoryInfo(_workingFolder);
-            di.GetFiles().Where(f => f.CreationTimeUtc >= DateTime.UtcNow.AddDays(5));
-            //TODO: End
+            if (Directory.Exists(_workingFolder))
+            {
+                DirectoryInfo di = new DirectoryInfo(_workingFolder);
+                di.GetFiles().Where(f => f.CreationTimeUtc >= DateTime.UtcNow.AddDays(5));
+                //TODO: End
+            }
         }
+        
 
 
         ~FileHealthWriter()
