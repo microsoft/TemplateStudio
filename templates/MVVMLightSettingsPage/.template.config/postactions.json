@@ -16,5 +16,14 @@
         "destination.filename": ".\\Strings\\en-US\\Resources.resw",
         "destination.anchor": "<!--PostActionAnchor: ADD PAGE RESOURCES-->"
       }
+    },
+    {
+      "name": "PostActionSetApplicationTheme",
+      "type": "InsertPartialGenerationPostAction",
+      "description": "Set application theme saved on application settings",
+      "parameters": {
+        "destination.filename": ".\\App.xaml.cs",
+        "destination.anchor": "//PostActionAnchor: SET APPLICATION THEME"
+      }
     }
   ]
