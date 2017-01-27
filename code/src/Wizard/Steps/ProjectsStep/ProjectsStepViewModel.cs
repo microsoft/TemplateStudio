@@ -64,14 +64,15 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectsStep
             {
                 _context.SelectedTemplates.Remove(this.GetType());
             }
-            _context.SelectedTemplates.Add(this.GetType(), new GenInfo[]
-            {
-                new GenInfo
-                {
-                    Name = _context.Shell.Name,
-                    Template = template.Info
-                }
-            });
-        }
+			var genInfo = new GenInfo
+			{
+				Name = _context.Shell.Name,
+				Template = template.Info
+			};
+			genInfo.Parameters.Add("UserName", Environment.UserName);
+
+			_context.SelectedTemplates.Add(this.GetType(), new GenInfo[] { genInfo });
+
+		}
     }
 }

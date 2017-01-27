@@ -11,11 +11,11 @@ namespace Microsoft.Templates.Wizard.PostActions
 			: base("GenerateTestCertificate", "This post action generates a test certificate for the application", null)
 		{
 		}
-		public override PostActionResult Execute(ExecutionContext context, TemplateCreationResult result, GenShell shell)
+		public override PostActionResult Execute(GenInfo genInfo, TemplateCreationResult result, GenShell shell)
 		{
 			try
 			{
-				var userName = GetValueFromGenParameter(context.GenParams, "UserName");
+				var userName = GetValueFromGenParameter(genInfo.Parameters, "UserName");
 				if (string.IsNullOrEmpty(userName)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = $"Generation parameter UserName should not be empty" };
 
 				var publisherName = userName;
@@ -81,7 +81,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 
 				var base64Encoded = enrollment.CreatePFX("", PFXExportOptions.PFXExportChainWithRoot);
 
-				var filePath = Path.Combine(context.SolutionPath, context.ProjectName, context.ProjectName) + "_TemporaryKey.pfx";
+				var filePath = Path.Combine(shell.OutputPath, genInfo.Name, genInfo.Name) + "_TemporaryKey.pfx";
 				File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
 
 				return new PostActionResult()
