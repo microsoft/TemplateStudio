@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<assemblies>
+  <assembly name="C:\Repos\UWPCommunityTemplates\code\test\Core.Test\bin\release\Microsoft.Templates.Core.Test.DLL" environment="64-bit .NET 4.0.30319.42000 [collection-per-class, parallel (4 threads)]" test-framework="xUnit.net 2.1.0.3179" run-date="2017-01-27" run-time="14:19:28" config-file="C:\Repos\UWPCommunityTemplates\code\test\Core.Test\bin\release\Microsoft.Templates.Core.Test.dll.config" total="27" passed="27" failed="0" skipped="0" time="2.177" errors="0">
+    <errors />
+    <collection total="14" passed="14" failed="0" skipped="0" name="Test collection for Microsoft.Templates.Core.Test.ITemplateInfoExtensionsTest" time="0.077">
+      <test name="GetOrder_unspecified" type="Microsoft.Templates.Core.Test.ITemplateInfoExtensionsTest" method="GetOrder_unspecified" time="0.0567419" result="Pass" />
+      <test name="GetTemplateType_page" type="Microsoft.Templates.Core.Test.ITemplateInfoExtensionsTest" method="GetTemplateType_page" time="0.0040135" result="Pass" />
+      <test name="GetVersion_unspecified" type="Microsoft.Templates.Core.Test.ITemplateInfoExtensionsTest" method="GetVersion_unspecified" time="0.0008438" result="Pass" />
+      <test name="GetFramework" type="Microsoft.Templates.Core.Test.ITemplateInfoExtensionsTest" method="GetFramework" time="0.0017645" result="Pass" />
+      <test name="GetFramework_unspecified" type="Microsoft.Templates.Core.Test.ITemplateInfoExtensionsTest" method="GetFramework_unspecified" time="0.0004003" result="Pass" />
+      <test name="GetTemplateType_unspecified" type="Microsoft.Templates.Core.Test.ITemplateInfoExtensionsTest" method="GetTemplateType_unspecified" time="0.0004461" result="Pass" />
+      <test name="GetTemplateType_feature" type="Microsoft.Templates.Core.Test.ITemplateInfoExtensionsTest" method="GetTemplateType_feature" time="0.0004276" result="Pass" />
+      <test name="GetVersion" type="Microsoft.Templates.Core.Test.ITemplateInfoExtensionsTest" method="GetVersion" time="0.0003545" result="Pass" />
+      <test name="GetIcon" type="Microsoft.Templates.Core.Test.ITemplateInfoExtensionsTest" method="GetIcon" time="0.0045845" result="Pass" />
+      <test name="GetTemplateType_project" type="Microsoft.Templates.Core.Test.ITemplateInfoExtensionsTest" method="GetTemplateType_project" time="0.0004926" result="Pass" />
+      <test name="GetOrder" type="Microsoft.Templates.Core.Test.ITemplateInfoExtensionsTest" method="GetOrder" time="0.0004607" result="Pass" />
+      <test name="GetIcon_unspecified" type="Microsoft.Templates.Core.Test.ITemplateInfoExtensionsTest" method="GetIcon_unspecified" time="0.0007682" result="Pass" />
+      <test name="GetLicence" type="Microsoft.Templates.Core.Test.ITemplateInfoExtensionsTest" method="GetLicence" time="0.0051029" result="Pass" />
+      <test name="GetLicence_unspecified" type="Microsoft.Templates.Core.Test.ITemplateInfoExtensionsTest" method="GetLicence_unspecified" time="0.0006951" result="Pass" />
+    </collection>
+    <collection total="3" passed="3" failed="0" skipped="0" name="Test collection for Microsoft.Templates.Core.Test.Diagnostics.HealthTest" time="0.104">
+      <test name="VerifyTraceLevelChangeAsync" type="Microsoft.Templates.Core.Test.Diagnostics.HealthTest" method="VerifyTraceLevelChangeAsync" time="0.0757918" result="Pass" />
+      <test name="UsageAsync" type="Microsoft.Templates.Core.Test.Diagnostics.HealthTest" method="UsageAsync" time="0.0208865" result="Pass" />
+      <test name="AddAdditionalWriterAsync" type="Microsoft.Templates.Core.Test.Diagnostics.HealthTest" method="AddAdditionalWriterAsync" time="0.0077296" result="Pass" />
+    </collection>
+    <collection total="1" passed="1" failed="0" skipped="0" name="Test collection for Microsoft.Templates.Core.Test.Diagnostics.RemoteHealthWriterTest" time="1.034">
+      <test name="WriteExceptionAsync" type="Microsoft.Templates.Core.Test.Diagnostics.RemoteHealthWriterTest" method="WriteExceptionAsync" time="1.0337943" result="Pass" />
+    </collection>
+    <collection total="1" passed="1" failed="0" skipped="0" name="Test collection for Microsoft.Templates.Core.Test.Diagnostics.TelemetryTrackerTest" time="1.042">
+      <test name="TrackEventAsync" type="Microsoft.Templates.Core.Test.Diagnostics.TelemetryTrackerTest" method="TrackEventAsync" time="1.0418469" result="Pass" />
+    </collection>
+    <collection total="4" passed="4" failed="0" skipped="0" name="Test collection for Microsoft.Templates.Core.Test.Diagnostics.FileHealthWriterTest" time="1.089">
+      <test name="LogInfo" type="Microsoft.Templates.Core.Test.Diagnostics.FileHealthWriterTest" method="LogInfo" time="1.0345954" result="Pass" />
+      <test name="TwoInstances" type="Microsoft.Templates.Core.Test.Diagnostics.FileHealthWriterTest" method="TwoInstances" time="0.0319537" result="Pass" />
+      <test name="LogError" type="Microsoft.Templates.Core.Test.Diagnostics.FileHealthWriterTest" method="LogError" time="0.0114136" result="Pass" />
+      <test name="LogErrorWithEx" type="Microsoft.Templates.Core.Test.Diagnostics.FileHealthWriterTest" method="LogErrorWithEx" time="0.011133" result="Pass" />
+    </collection>
+    <collection total="4" passed="4" failed="0" skipped="0" name="Test collection for Microsoft.Templates.Core.Test.Diagnostics.TelemetryServiceTest" time="0.046">
+      <test name="TrackTwoEventsAsync" type="Microsoft.Templates.Core.Test.Diagnostics.TelemetryServiceTest" method="TrackTwoEventsAsync" time="0.0386082" result="Pass" />
+      <test name="TrackEventAsync" type="Microsoft.Templates.Core.Test.Diagnostics.TelemetryServiceTest" method="TrackEventAsync" time="0.0025576" result="Pass" />
+      <test name="Instantiated" type="Microsoft.Templates.Core.Test.Diagnostics.TelemetryServiceTest" method="Instantiated" time="0.0003136" result="Pass" />
+      <test name="TrackExceptionAsync" type="Microsoft.Templates.Core.Test.Diagnostics.TelemetryServiceTest" method="TrackExceptionAsync" time="0.0041568" result="Pass" />
+    </collection>
+  </assembly>
+</assemblies>

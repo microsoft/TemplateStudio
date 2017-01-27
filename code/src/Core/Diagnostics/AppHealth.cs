@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
-    public class AppHealth
+    public class AppHealth : IDisposable
     {
         public TraceTracker Verbose { get; private set; }
         public TraceTracker Info { get; private set; }
@@ -56,6 +56,33 @@ namespace Microsoft.Templates.Core.Diagnostics
             HealthWriters.Available.Add(new FileHealthWriter(currentConfig));
             HealthWriters.Available.Add(new TraceHealthWriter());
             HealthWriters.Available.Add(new RemoteHealthWriter(currentConfig));
+        }
+
+        ~AppHealth()
+        {
+            Dispose(false);
+        }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // free managed resources 
+                foreach(IHealthWriter writer in HealthWriters.Available)
+                {
+                    IDisposable disposableWriter = writer as IDisposable;
+                    if(disposableWriter != null)
+                    {
+                        disposableWriter.Dispose();
+                    }
+                }
+            }
+            //free native resources if any.
         }
     }
 }

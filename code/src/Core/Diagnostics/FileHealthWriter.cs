@@ -182,7 +182,10 @@ namespace Microsoft.Templates.Core.Diagnostics
             if (disposing)
             {
                 // free managed resources 
-                _fileStream?.Dispose();
+                if (_fileStream != null)
+                {
+                    _fileStream.Dispose();
+                }
             }
             //free native resources if any.
         }

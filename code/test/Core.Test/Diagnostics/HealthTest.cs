@@ -30,7 +30,6 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         [Fact]
         public async Task UsageAsync()
         {
-
             //Instance with default configuration
             await AppHealth.Current.Verbose.TrackAsync("VerboseMessage");
             await AppHealth.Current.Verbose.TrackAsync("VerboseMesssage with exception", new Exception("VerboseExceptionInfo"));
@@ -48,7 +47,6 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
             await AppHealth.Current.Exception.TrackAsync(new Exception("ExceptionTrackedWithAddtionalInfo"), "AddtionalInfo");
 
             await AppHealth.Current.Telemetry.TrackTemplateGeneratedAsync("TemplateName", "TemplateFramework", "TemplateType");
-
         }
 
         [Fact]

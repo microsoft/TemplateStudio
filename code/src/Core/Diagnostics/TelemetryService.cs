@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
-    public class TelemetryService
+    public class TelemetryService : IDisposable
     {
         public bool IsEnabled { get; private set; }
 
@@ -137,5 +137,31 @@ namespace Microsoft.Templates.Core.Diagnostics
             return assembly.GetName().Version.ToString();
         }
 
+
+        ~TelemetryService()
+        {
+            Dispose(false);
+        }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // free managed resources 
+                if (_client != null)
+                {
+                    _client.Flush();
+                    System.Threading.Thread.Sleep(1000);
+
+                    _client = null;
+                }
+            }
+            //free native resources if any.
+        }
     }
 }

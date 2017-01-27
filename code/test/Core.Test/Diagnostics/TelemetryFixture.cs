@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Test.Diagnostics
 {
-    public class TelemetryFixture
+    public class TelemetryFixture : IDisposable
     {
         public TelemetryService Telemetry { get; }
         public TelemetryFixture()
@@ -21,6 +21,11 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
             Configuration config = Configuration.Current;
             config.RemoteTelemetryKey = ""; //SECRET
             Configuration.UpdateConfiguration(config);
+        }
+
+        public void Dispose()
+        {
+            TelemetryService.Current.Dispose();
         }
     }
 }

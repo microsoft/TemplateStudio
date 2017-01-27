@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
-    public class TelemetryTracker
+    public class TelemetryTracker : IDisposable
     {
         public const string PropertiesPrefix = "UCT ";
         public TelemetryTracker()
@@ -25,6 +25,26 @@ namespace Microsoft.Templates.Core.Diagnostics
                 { TelemetryEventProperty.Type, "Page" }
             };
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.TemplateGenerated, properties).ConfigureAwait(false);
+        }
+
+        ~TelemetryTracker()
+        {
+            Dispose(false);
+        }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // free managed resources 
+                TelemetryService.Current.Dispose();
+            }
+            //free native resources if any.
         }
     }
 }
