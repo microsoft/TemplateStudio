@@ -12,10 +12,7 @@ namespace Microsoft.Templates.Core.Diagnostics
     public class FileHealthWriter: IHealthWriter, IDisposable
     {
         private static SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
-
         private string _workingFolder;
-        private string _username;
-        private string _processId;
 
         private StreamWriter _fileStream;
 
@@ -31,10 +28,6 @@ namespace Microsoft.Templates.Core.Diagnostics
         public FileHealthWriter(Configuration currentConfig)
         {        
             _workingFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), currentConfig.LogFileFolderPath);
-            _username = System.Environment.UserName;
-            _processId = $"{Process.GetCurrentProcess().Id.ToString()}";
-
-            InitializeLogFile();
 
             //TODO: Purge files older than 5 days.
             PurgeOldLogs();
@@ -42,80 +35,66 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex=null)
         {
-            if (_fileStream == null) throw new Exception("The file stream is not instantiated. Cannot write!");
+            await InitializeLogFile();
 
-            await semaphoreSlim.WaitAsync();
-            try
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{eventType.ToString():11}\t{message}");
+            if(ex != null)
             {
-                await _fileStream.WriteLineAsync($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}\t{_username}\t{_processId}({System.Threading.Thread.CurrentThread.ManagedThreadId})\t{eventType.ToString()}\t{message}{(ex != null ? "\tException Details:" : "")}");
-                if (ex != null)
-                {
-                    await _fileStream.WriteLineAsync(ex.ToString());
-                    await _fileStream.WriteLineAsync("--");
-                }
-                await _fileStream.FlushAsync();
+                sb.AppendLine(FormattedWriterMessages.ExHeader);
+                sb.AppendLine(ex.ToString());
+                sb.AppendLine(FormattedWriterMessages.ExFooter);
             }
-            catch (Exception exception)
-            {
-                Trace.TraceError($"Error creating FileDiagnosticListener. Exception:\r\n{exception.ToString()}");
-            }
-            finally
-            {
-                semaphoreSlim.Release();
-            }
+
+            await WriteAndFlushAsync(sb.ToString());
+
+
         }
-
         public async Task WriteExceptionAsync(Exception ex, string message = null)
         {
-            if (_fileStream == null) throw new Exception("The file stream is not instantiated. Cannot write!");
+            if (ex == null)
+            {
+                throw new ArgumentNullException("ex");
+            }
 
+            await InitializeLogFile();
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{TraceEventType.Critical.ToString():11}\tException Tracked. {(message != null ? message : "")}");
+            if (ex != null)
+            {
+                sb.AppendLine(FormattedWriterMessages.ExHeader);
+                sb.AppendLine(ex.ToString());
+                sb.AppendLine(FormattedWriterMessages.ExFooter);
+            }
+
+            await WriteAndFlushAsync(sb.ToString());
+        }
+
+        private async Task InitializeLogFile()
+        {
             await semaphoreSlim.WaitAsync();
             try
             {
-                string messageToTrack = message ?? "Exception tracked"; 
-                await _fileStream.WriteLineAsync($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}\t{_username}\t{_processId}({System.Threading.Thread.CurrentThread.ManagedThreadId})\t{TraceEventType.Critical.ToString()}\t{messageToTrack}{(ex != null ? "\tException Details:" : "")}");
-                if (ex != null)
+                if (_fileStream == null)
                 {
-                    await _fileStream.WriteLineAsync(ex.ToString());
-                    await _fileStream.WriteLineAsync("--");
-                }
-                else
-                {
-                    await _fileStream.WriteLineAsync("The exception object is null");
-                    await _fileStream.WriteLineAsync("--");
-                }
-                await _fileStream.FlushAsync();
-            }
-            catch (Exception exception)
-            {
-                Trace.TraceError($"Error creating FileDiagnosticListener. Exception:\r\n{exception.ToString()}");
-            }
-            finally
-            {
-                semaphoreSlim.Release();
-            }
-        }
-        private void InitializeLogFile()
-        {
-            semaphoreSlim.Wait();
-            try
-            {
-                _fileName = Path.Combine(_workingFolder, $"UWPTemplates_{DateTime.Now.ToString("yyyyMMdd")}.log");
-                if (!Directory.Exists(_workingFolder))
-                {
-                    Directory.CreateDirectory(_workingFolder);
-                }
-                if (CheckLogFileInUse())
-                {
-                    _fileName = _fileName.Replace(".log", $"_{Guid.NewGuid().ToString()}.log");
-                }
-                _fileStream = OpenSharedFileStream(_fileName);
+                    _fileName = Path.Combine(_workingFolder, $"UWPTemplates_{DateTime.Now.ToString("yyyyMMdd")}.log");
+                    if (!Directory.Exists(_workingFolder))
+                    {
+                        Directory.CreateDirectory(_workingFolder);
+                    }
+                    if (CheckLogFileInUse())
+                    {
+                        _fileName = _fileName.Replace(".log", $"_{Guid.NewGuid().ToString()}.log");
+                    }
+                    _fileStream = OpenSharedFileStream(_fileName);
 
-                StartLog();
+                    StartLog();
+                }
             }
             catch (Exception exception)
             {
-                Trace.TraceError($"Error creating FileDiagnosticListener. Exception:\r\n{exception.ToString()}");
+                Trace.TraceError($"Error initializating log file. Exception:\r\n{exception.ToString()}");
             }
             finally
             {
@@ -160,10 +139,29 @@ namespace Microsoft.Templates.Core.Diagnostics
             return false;
         }
 
+        public async Task WriteAndFlushAsync(string data)
+        {
+            await semaphoreSlim.WaitAsync();
+            try
+            {
+                await _fileStream.WriteLineAsync(data);
+                await _fileStream.FlushAsync();
+            }
+            catch (Exception exception)
+            {
+                Trace.TraceError($"Error writing to the stream. Exception:\r\n{exception.ToString()}");
+            }
+            finally
+            {
+                semaphoreSlim.Release();
+            }
+        }
+
         private void PurgeOldLogs()
         {
             DirectoryInfo di = new DirectoryInfo(_workingFolder);
             di.GetFiles().Where(f => f.CreationTimeUtc >= DateTime.UtcNow.AddDays(5));
+            //TODO: End
         }
 
 
