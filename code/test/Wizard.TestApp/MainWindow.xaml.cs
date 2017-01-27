@@ -44,7 +44,7 @@ namespace Microsoft.Templates.Wizard.TestApp
             try
             {
                 _shell = new FakeGenShell(SeedSolName.Text + DateTime.Now.ToString("MMddmmss"), Status);
-                _gen = new TemplatesGen(_shell, new TemplatesRepository(new TestTemplatesLocation()));
+                _gen = new TemplatesGen(_shell, new TemplatesRepository(new LocalTemplatesLocation()));
 
                 var genItems = _gen.GetUserSelection(WizardSteps.Project);
                 if (genItems != null)
@@ -73,7 +73,7 @@ namespace Microsoft.Templates.Wizard.TestApp
                 string projectName = System.IO.Path.GetFileNameWithoutExtension(PathToExistingProject.Text);
 
                 _shell = new FakeGenShell(projectName, Status);
-                _gen = new TemplatesGen(_shell, new TemplatesRepository(new TestTemplatesLocation()));
+                _gen = new TemplatesGen(_shell, new TemplatesRepository(new LocalTemplatesLocation()));
 
                 var genItems = _gen.GetUserSelection(WizardSteps.Project);
                 if (genItems != null)
