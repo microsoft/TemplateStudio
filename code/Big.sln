@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_tools", "_tools", "{85F5D2
 		_tools\NuGet.exe = _tools\NuGet.exe
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vsix", "src\Vsix\Vsix.csproj", "{BB30852B-672A-4EBF-BE58-BC63F6D3C0DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{9E58EACC-C798-43A0-89A0-A5A32815272D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E58EACC-C798-43A0-89A0-A5A32815272D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E58EACC-C798-43A0-89A0-A5A32815272D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB30852B-672A-4EBF-BE58-BC63F6D3C0DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB30852B-672A-4EBF-BE58-BC63F6D3C0DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB30852B-672A-4EBF-BE58-BC63F6D3C0DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB30852B-672A-4EBF-BE58-BC63F6D3C0DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -29,6 +29,8 @@ namespace Microsoft.Templates.Extension
         {
             var proj = GetActiveProject();
             proj.ProjectItems.AddFromFile(itemFullPath);
+
+            proj.Save();
         }
 
         public override void AddProjectToSolution(string projectFullPath)
