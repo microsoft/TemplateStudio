@@ -16,58 +16,51 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         public TelemetryServiceTest(TelemetryFixture fixture)
         {
             _fixture = fixture;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
         }
+
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            Debug.WriteLine($"Unhandledcito: \n\r{e.ExceptionObject.ToString()}");
+        }
+
         [Fact]
         public void Instantiated()
         {
             Assert.NotNull(_fixture.Telemetry);
-            Assert.NotNull(_fixture.Telemetry.Properties);
-            Assert.NotNull(_fixture.Telemetry.Metrics);
         }
 
         [Fact]
         public async Task TrackEventAsync()
         {
-            _fixture.Telemetry.Properties.Add(TelemetryEventProperty.Name, "TestTelemetrySampleTemplate");
-            _fixture.Telemetry.Properties.Add(TelemetryEventProperty.Framework, "MVVMLight");
-            _fixture.Telemetry.Properties.Add(TelemetryEventProperty.Type, "Project");
+            Dictionary<string, string> props = new Dictionary<string, string>();
+            props.Add(TelemetryEventProperty.Name, "TestTelemetrySampleTemplate");
+            props.Add(TelemetryEventProperty.Framework, "MVVMLight");
+            props.Add(TelemetryEventProperty.Type, "Project");
             await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.TemplateGenerated);
-
-            //Check telemetry properties and metrics are cleared after the event is tracked
-            Assert.Equal(0, _fixture.Telemetry.Properties.Count);
-            Assert.Equal(0, _fixture.Telemetry.Metrics.Count);
         }
 
         [Fact]
         public async Task TrackTwoEventsAsync()
         {
-            _fixture.Telemetry.Properties.Add(TelemetryEventProperty.Name, "TestTelemetrySampleTemplate");
-            _fixture.Telemetry.Properties.Add(TelemetryEventProperty.Framework, "MVVMLight");
-            _fixture.Telemetry.Properties.Add(TelemetryEventProperty.Type, "Project");
-            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.TemplateGenerated);
+            Dictionary<string, string> props = new Dictionary<string, string>();
+            props.Add(TelemetryEventProperty.Name, "TestTelemetrySampleTemplate");
+            props.Add(TelemetryEventProperty.Framework, "MVVMLight");
+            props.Add(TelemetryEventProperty.Type, "Project");
+            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.TemplateGenerated, props);
 
-            //Check telemetry properties and metrics are cleared after the event is tracked
-            Assert.Equal(0, _fixture.Telemetry.Properties.Count);
-            Assert.Equal(0, _fixture.Telemetry.Metrics.Count);
+            props[TelemetryEventProperty.Name] = "OtherData";
+            props[TelemetryEventProperty.Framework] = "Caliburn";
+            props[TelemetryEventProperty.Type] = "Page";
+            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.TemplateGenerated, props);
 
-            _fixture.Telemetry.Properties.Add(TelemetryEventProperty.Name, "OtherData");
-            _fixture.Telemetry.Properties.Add(TelemetryEventProperty.Framework, "Caliburn");
-            _fixture.Telemetry.Properties.Add(TelemetryEventProperty.Type, "Page");
-            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.TemplateGenerated);
-
-            //Check telemetry properties and metrics are cleared after the event is tracked
-            Assert.Equal(0, _fixture.Telemetry.Properties.Count);
-            Assert.Equal(0, _fixture.Telemetry.Metrics.Count);
         }
 
         [Fact]
         public async Task TrackExceptionAsync()
         {
             await _fixture.Telemetry.TrackExceptionAsync(new Exception("Telemetry Test TrackException"));
-
-            //Check telemetry properties and metrics are cleared after the event is tracked
-            Assert.Equal(0, _fixture.Telemetry.Properties.Count);
-            Assert.Equal(0, _fixture.Telemetry.Metrics.Count);
         }
 
     }

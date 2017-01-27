@@ -27,8 +27,6 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
     }
     public class HealthTest
     {
-        private object newWriter;
-
         [Fact]
         public async Task UsageAsync()
         {
@@ -60,8 +58,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
 
             await AppHealth.Current.Error.TrackAsync("WillNotBeRegisteredYet");
 
-            AppHealth.Current.AddWriter(newWriter);
-
+            AppHealth.Current.AddWriter(newWriter); 
             await AppHealth.Current.Error.TrackAsync("WillBeRegistered");
 
             Exception exToTest = new Exception("RegisteredEx");

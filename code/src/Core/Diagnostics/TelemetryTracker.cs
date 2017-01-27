@@ -9,24 +9,22 @@ namespace Microsoft.Templates.Core.Diagnostics
     public class TelemetryTracker
     {
         public const string PropertiesPrefix = "UCT ";
-
-        private TelemetryService _telemetry;
-        private Configuration _currentConfig;
-
-        public TelemetryTracker() : this(Configuration.Current)
+        public TelemetryTracker()
         {
         }
         public TelemetryTracker(Configuration config)
-        {
-            _currentConfig = config;
-            _telemetry = new TelemetryService(_currentConfig);
+        { 
+            TelemetryService.SetConfiguration(config);
         }
         public async Task TrackTemplateGeneratedAsync(string name, string framework, string type)
         {
-            _telemetry.Properties.Add(TelemetryEventProperty.Name, "OtherData");
-            _telemetry.Properties.Add(TelemetryEventProperty.Framework, "Caliburn");
-            _telemetry.Properties.Add(TelemetryEventProperty.Type, "Page");
-            await _telemetry.TrackEventAsync(TelemetryEvents.TemplateGenerated).ConfigureAwait(false);
+            Dictionary<string, string> properties = new Dictionary<string, string>()
+            {
+                {TelemetryEventProperty.Name, "EventName" },
+                {TelemetryEventProperty.Framework, "Caliburn" },
+                { TelemetryEventProperty.Type, "Page" }
+            };
+            await TelemetryService.Current.TrackEventAsync(TelemetryEvents.TemplateGenerated, properties).ConfigureAwait(false);
         }
     }
 }

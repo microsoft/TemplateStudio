@@ -13,7 +13,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         public TelemetryFixture()
         {
             EnsureCurrentConfigWithTelemetryKey();
-            Telemetry = new TelemetryService(Configuration.Current);
+            Telemetry = TelemetryService.Current;
         } 
 
         public static void EnsureCurrentConfigWithTelemetryKey()

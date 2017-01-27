@@ -18,43 +18,43 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
             _fixture = fixture;
         }        
         [Fact]
-        public void LogInfo()
+        public async Task LogInfo()
         {
             string uniqueMsg = $"LogInfo_{Guid.NewGuid()}";
-            _fixture.FileLogWriter.WriteTraceAsync(TraceEventType.Information, uniqueMsg).Wait();
+            await _fixture.FileLogWriter.WriteTraceAsync(TraceEventType.Information, uniqueMsg);
 
             AssertMessageIsInLog(_fixture.FileLogWriter.LogFileName, uniqueMsg);
         }
 
         [Fact]
-        public void LogError()
+        public async Task LogError()
         {
             string uniqueMsg = $"LogError_{Guid.NewGuid()}";
-            _fixture.FileLogWriter.WriteTraceAsync(TraceEventType.Error, uniqueMsg).Wait();
+            await _fixture.FileLogWriter.WriteTraceAsync(TraceEventType.Error, uniqueMsg);
 
             AssertMessageIsInLog(_fixture.FileLogWriter.LogFileName, uniqueMsg);
         }
 
         [Fact]
-        public void LogErrorWithEx()
+        public async Task LogErrorWithEx()
         {
             string uniqueMsg = $"LogErrorWithEx_{Guid.NewGuid()}";
-            _fixture.FileLogWriter.WriteTraceAsync(TraceEventType.Error, uniqueMsg, new Exception("SampleException")).Wait();
+            await _fixture.FileLogWriter.WriteTraceAsync(TraceEventType.Error, uniqueMsg, new Exception("SampleException"));
 
             AssertMessageIsInLog(_fixture.FileLogWriter.LogFileName, uniqueMsg);
         }
 
 
         [Fact]
-        public void TwoInstances()
+        public async Task TwoInstances()
         {
             FileHealthWriter otherListener = new FileHealthWriter(Configuration.Current);
 
             string uniqueMsg = $"TwoInstances_InstanceA_{Guid.NewGuid()}";
-            _fixture.FileLogWriter.WriteTraceAsync(TraceEventType.Error, uniqueMsg, new Exception("SampleException")).Wait();
+            await _fixture.FileLogWriter.WriteTraceAsync(TraceEventType.Error, uniqueMsg, new Exception("SampleException"));
 
             string otherUniqueMsg = $"TwoInstances_InstanceB_{Guid.NewGuid()}";
-            otherListener.WriteTraceAsync(TraceEventType.Information, otherUniqueMsg).Wait();
+            await otherListener.WriteTraceAsync(TraceEventType.Information, otherUniqueMsg);
 
             AssertMessageIsInLog(_fixture.FileLogWriter.LogFileName, uniqueMsg);
             AssertMessageIsInLog(otherListener.LogFileName, otherUniqueMsg);

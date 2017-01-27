@@ -12,10 +12,9 @@ namespace Microsoft.Templates.Core.Diagnostics
     public class RemoteHealthWriter : IHealthWriter
     {
 
-        TelemetryService _telemetry;
         public RemoteHealthWriter(Configuration currentConfig)
         {
-            _telemetry = new TelemetryService(currentConfig);
+            TelemetryService.SetConfiguration(currentConfig);
         }
         public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex=null)
         {
@@ -25,7 +24,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task WriteExceptionAsync(Exception ex, string message = null)
         {
-            await _telemetry.TrackExceptionAsync(ex);
+            await TelemetryService.Current.TrackExceptionAsync(ex);
         }
     }
 }

@@ -27,7 +27,12 @@ namespace Microsoft.Templates.Core.Diagnostics
                 }
                 return _current;
             }
+            private set
+            {
+                _current = value;
+            }
         }
+
 
         public AppHealth(Configuration currentConfig)
         {
@@ -38,15 +43,13 @@ namespace Microsoft.Templates.Core.Diagnostics
             Error = new TraceTracker(TraceEventType.Error, currentConfig.DiagnosticsTraceLevel);
             Exception = new ExceptionTracker();
             Telemetry = new TelemetryTracker();
-            _current = this;
+
+            Current = this;
         }
 
         public void AddWriter(IHealthWriter newWriter)
         {
-            if (!HealthWriters.Available.Where(w => w.GetType() == newWriter.GetType()).Any())
-            {
-                HealthWriters.Available.Add(newWriter);
-            }
+            HealthWriters.Available.Add(newWriter);
         }
         private void InstanceDefaultWriters(Configuration currentConfig)
         {
