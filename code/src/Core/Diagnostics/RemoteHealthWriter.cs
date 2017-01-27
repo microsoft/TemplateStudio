@@ -11,11 +11,30 @@ namespace Microsoft.Templates.Core.Diagnostics
 {
     public class RemoteHealthWriter : IHealthWriter, IDisposable
     {
+        //TODO, Review
+        private static RemoteHealthWriter _current;
+        public static RemoteHealthWriter Current
+        {
+            get
+            {
+                if (_current == null)
+                {
+                    _current = new RemoteHealthWriter(Configuration.Current);
+                }
+                return _current;
+            }
+        }
 
-        public RemoteHealthWriter(Configuration currentConfig)
+        private RemoteHealthWriter(Configuration currentConfig)
         {
             TelemetryService.SetConfiguration(currentConfig);
         }
+
+        public static void SetConfiguration(Configuration config)
+        {
+            _current = new RemoteHealthWriter(config);
+        }
+
         public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex=null)
         {
             //Trace events will not be forwarded to the remote service

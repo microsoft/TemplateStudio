@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core
         public Configuration()
         {
         }
-        public static void UpdateConfiguration(Configuration config)
+        public static void UpdateCurrentConfiguration(Configuration config)
         {
             _current = config;
         }

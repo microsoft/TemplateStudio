@@ -27,6 +27,9 @@ namespace Microsoft.Templates.Core.Diagnostics
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.TemplateGenerated, properties).ConfigureAwait(false);
         }
 
+        //TODO:
+        //Implement more events
+
         ~TelemetryTracker()
         {
             Dispose(false);

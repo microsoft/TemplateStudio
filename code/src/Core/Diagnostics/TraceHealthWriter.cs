@@ -12,10 +12,10 @@ namespace Microsoft.Templates.Core.Diagnostics
         public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
         {
 
-            string formattedMessage = $"{message}";
+            string formattedMessage = FormattedWriterMessages.LogEntryStart + $"\t{eventType.ToString()}\t{message}";
             if(ex != null)
             {
-                formattedMessage = formattedMessage + $". Exception:\n\r{ex.ToString()}";
+                formattedMessage = formattedMessage + $"\tException:\n\r{ex.ToString()}";
             }
 
             switch (eventType)
@@ -35,6 +35,8 @@ namespace Microsoft.Templates.Core.Diagnostics
                     await CallAsync(() => Trace.TraceInformation(formattedMessage));
                     break;
             }
+
+            Debug.WriteLine(formattedMessage);
         }
 
         public async Task WriteExceptionAsync(Exception ex, string message = null)

@@ -75,7 +75,8 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
             Configuration config = Configuration.Current;
             config.DiagnosticsTraceLevel = TraceEventType.Warning;
 
-            AppHealth health = new AppHealth(config);
+            Configuration.UpdateCurrentConfiguration(config);
+
             AppHealth.Current.AddWriter(newWriter);
 
             await AppHealth.Current.Verbose.TrackAsync("VerboseShouldNotBeRegistered");

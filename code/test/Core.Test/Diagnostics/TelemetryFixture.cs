@@ -13,6 +13,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         public TelemetryFixture()
         {
             EnsureCurrentConfigWithTelemetryKey();
+
             Telemetry = TelemetryService.Current;
         } 
 
@@ -20,7 +21,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         {
             Configuration config = Configuration.Current;
             config.RemoteTelemetryKey = ""; //SECRET
-            Configuration.UpdateConfiguration(config);
+            Configuration.UpdateCurrentConfiguration(config);
         }
 
         public void Dispose()

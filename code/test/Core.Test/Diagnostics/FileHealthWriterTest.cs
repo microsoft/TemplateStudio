@@ -10,54 +10,55 @@ using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Diagnostics
 {
-    public class FileHealthWriterTest : IClassFixture<FileHealthFixture>
+    public class FileHealthWriterTest
     {
-        FileHealthFixture _fixture;
-        public FileHealthWriterTest(FileHealthFixture fixture)
-        {
-            _fixture = fixture;
-        }        
+     
         [Fact]
         public async Task LogInfo()
         {
             string uniqueMsg = $"LogInfo_{Guid.NewGuid()}";
-            await _fixture.FileLogWriter.WriteTraceAsync(TraceEventType.Information, uniqueMsg);
+            await FileHealthWriter.Current.WriteTraceAsync(TraceEventType.Information, uniqueMsg);
 
-            AssertMessageIsInLog(_fixture.FileLogWriter.LogFileName, uniqueMsg);
+            AssertMessageIsInLog(FileHealthWriter.Current.LogFileName, uniqueMsg);
         }
 
         [Fact]
         public async Task LogError()
         {
             string uniqueMsg = $"LogError_{Guid.NewGuid()}";
-            await _fixture.FileLogWriter.WriteTraceAsync(TraceEventType.Error, uniqueMsg);
+            await FileHealthWriter.Current.WriteTraceAsync(TraceEventType.Error, uniqueMsg);
 
-            AssertMessageIsInLog(_fixture.FileLogWriter.LogFileName, uniqueMsg);
+            AssertMessageIsInLog(FileHealthWriter.Current.LogFileName, uniqueMsg);
         }
 
         [Fact]
         public async Task LogErrorWithEx()
         {
             string uniqueMsg = $"LogErrorWithEx_{Guid.NewGuid()}";
-            await _fixture.FileLogWriter.WriteTraceAsync(TraceEventType.Error, uniqueMsg, new Exception("SampleException"));
+            await FileHealthWriter.Current.WriteTraceAsync(TraceEventType.Error, uniqueMsg, new Exception("SampleException"));
 
-            AssertMessageIsInLog(_fixture.FileLogWriter.LogFileName, uniqueMsg);
+            AssertMessageIsInLog(FileHealthWriter.Current.LogFileName, uniqueMsg);
         }
 
 
         [Fact]
-        public async Task TwoInstances()
+        public async Task TwoManageThreads()
         {
-            FileHealthWriter otherListener = new FileHealthWriter(Configuration.Current);
+            var t1 = Task.Run(async () =>
+            {
+                string uniqueMsg = $"TwoManageThreads_InstanceA_{Guid.NewGuid()}";
+                await FileHealthWriter.Current.WriteTraceAsync(TraceEventType.Error, uniqueMsg, new Exception("SampleException"));
+                AssertMessageIsInLog(FileHealthWriter.Current.LogFileName, uniqueMsg);
+            });
 
-            string uniqueMsg = $"TwoInstances_InstanceA_{Guid.NewGuid()}";
-            await _fixture.FileLogWriter.WriteTraceAsync(TraceEventType.Error, uniqueMsg, new Exception("SampleException"));
+            var t2 = Task.Run(async () =>
+            {
+                string otherUniqueMsg = $"TwoManageThreads_InstanceB_{Guid.NewGuid()}";
+                await FileHealthWriter.Current.WriteTraceAsync(TraceEventType.Information, otherUniqueMsg);
+                AssertMessageIsInLog(FileHealthWriter.Current.LogFileName, otherUniqueMsg);
+            });
 
-            string otherUniqueMsg = $"TwoInstances_InstanceB_{Guid.NewGuid()}";
-            await otherListener.WriteTraceAsync(TraceEventType.Information, otherUniqueMsg);
-
-            AssertMessageIsInLog(_fixture.FileLogWriter.LogFileName, uniqueMsg);
-            AssertMessageIsInLog(otherListener.LogFileName, otherUniqueMsg);
+            await Task.WhenAll(t1, t2);
         }
 
 

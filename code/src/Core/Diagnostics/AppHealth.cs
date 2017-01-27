@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             {
                 if(_current == null)
                 {
-                    _current = new AppHealth(Configuration.Current);
+                    _current = new AppHealth();
                 }
                 return _current;
             }
@@ -34,28 +34,31 @@ namespace Microsoft.Templates.Core.Diagnostics
         }
 
 
-        public AppHealth(Configuration currentConfig)
+        private AppHealth()
         {
-            InstanceDefaultWriters(currentConfig);
-            Verbose = new TraceTracker(TraceEventType.Verbose, currentConfig.DiagnosticsTraceLevel);
-            Info = new TraceTracker(TraceEventType.Information, currentConfig.DiagnosticsTraceLevel);
-            Warning = new TraceTracker(TraceEventType.Warning, currentConfig.DiagnosticsTraceLevel);
-            Error = new TraceTracker(TraceEventType.Error, currentConfig.DiagnosticsTraceLevel);
+            InstanceDefaultWriters();
+            Verbose = new TraceTracker(TraceEventType.Verbose, Configuration.Current.DiagnosticsTraceLevel);
+            Info = new TraceTracker(TraceEventType.Information, Configuration.Current.DiagnosticsTraceLevel);
+            Warning = new TraceTracker(TraceEventType.Warning, Configuration.Current.DiagnosticsTraceLevel);
+            Error = new TraceTracker(TraceEventType.Error, Configuration.Current.DiagnosticsTraceLevel);
             Exception = new ExceptionTracker();
             Telemetry = new TelemetryTracker();
+        }
 
-            Current = this;
+        public void Restart()
+        {
+            _current = new AppHealth();
         }
 
         public void AddWriter(IHealthWriter newWriter)
         {
             HealthWriters.Available.Add(newWriter);
         }
-        private void InstanceDefaultWriters(Configuration currentConfig)
+        private void InstanceDefaultWriters()
         {
-            HealthWriters.Available.Add(new FileHealthWriter(currentConfig));
+            HealthWriters.Available.Add(FileHealthWriter.Current);
             HealthWriters.Available.Add(new TraceHealthWriter());
-            HealthWriters.Available.Add(new RemoteHealthWriter(currentConfig));
+            HealthWriters.Available.Add(RemoteHealthWriter.Current);
         }
 
         ~AppHealth()

@@ -95,7 +95,6 @@
   <ItemGroup>
     <Compile Include="Diagnostics\HealthTest.cs" />
     <Compile Include="Diagnostics\FileHealthWriterTest.cs" />
-    <Compile Include="Diagnostics\FileHealthFixture.cs" />
     <Compile Include="Diagnostics\TelemetryFixture.cs" />
     <Compile Include="Diagnostics\TelemetryServiceTest.cs" />
     <Compile Include="Diagnostics\RemoteHealthWriterTest.cs" />
