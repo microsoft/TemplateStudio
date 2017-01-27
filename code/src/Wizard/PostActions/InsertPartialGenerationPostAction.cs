@@ -15,7 +15,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 		{
 		}
 
-		public override PostActionResult Execute(ExecutionContext context, TemplateCreationResult result, GenShell shell)
+		public override PostActionResult Execute(GenInfo genInfo, TemplateCreationResult result, GenShell shell)
 		{
 			try
 			{
@@ -26,8 +26,8 @@ namespace Microsoft.Templates.Wizard.PostActions
 				if (string.IsNullOrEmpty(destinationFileName)) return new PostActionResult() { ResultCode = ResultCode.ConfigurationError, Message = $"{destinationFileName} should not be empty" };
 				if (string.IsNullOrEmpty(destinationAnchor)) return new PostActionResult() { ResultCode = ResultCode.ConfigurationError, Message = $"{destinationAnchor} should not be empty" };
 
-				var sourceFile = Path.Combine(context.ProjectPath, context.PagesRelativePath, context.PageName, Name + ".txt");
-				var destinationFile = Path.Combine(context.ProjectPath, destinationFileName);
+				var sourceFile = Path.Combine(shell.OutputPath,  genInfo.Name, Name + ".txt");
+				var destinationFile = Path.Combine(shell.OutputPath, destinationFileName);
 
 				if (!File.Exists(sourceFile)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = $"{sourceFile} was not found" };
 				if (!File.Exists(destinationFile)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = $"{destinationFile} was not found" };

@@ -79,14 +79,8 @@ namespace Microsoft.Templates.Wizard
                         outputs.AddRange(result.PrimaryOutputs.Select(o => o.Path));
                     }
 
-                    //var executionContext = new ExecutionContext()
-                    //{
-                    //    SolutionPath = solutionInfo.Directory,
-                    //    ProjectName = solutionInfo.Name,
-                    //    GenParams = genParams
-                    //};
 
-                    //var postActionResults = ExecutePostActions(genInfo.Template, executionContext, result);
+					var postActionResults = ExecutePostActions(genInfo, result);
 
                     //ShowPostActionResults(postActionResults);
 
@@ -110,17 +104,17 @@ namespace Microsoft.Templates.Wizard
             return Path.GetDirectoryName(projectPath);
         }
 
-        private IEnumerable<PostActionResult> ExecutePostActions(ITemplateInfo template, ExecutionContext executionContext, TemplateCreationResult generationResult)
+        private IEnumerable<PostActionResult> ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult)
         {
             //Get post actions from template
-            var postActions = PostActionCreator.GetPostActions(template);
+            var postActions = PostActionCreator.GetPostActions(genInfo.Template);
 
             //Execute post action
             var postActionResults = new List<PostActionResult>();
 
             foreach (var postAction in postActions)
             {
-                var postActionResult = postAction.Execute(executionContext, generationResult, _shell);
+                var postActionResult = postAction.Execute(genInfo, generationResult, _shell);
                 postActionResults.Add(postActionResult);
             }
 
