@@ -45,14 +45,12 @@ namespace Microsoft.Templates.Core.Diagnostics
             Telemetry = new TelemetryTracker();
         }
 
-        public void Restart()
-        {
-            _current = new AppHealth();
-        }
-
         public void AddWriter(IHealthWriter newWriter)
         {
-            HealthWriters.Available.Add(newWriter);
+            if (newWriter.AllowMultipleInstances() || !HealthWriters.Available.Where(w => w.GetType() == newWriter.GetType()).Any())
+            {
+                HealthWriters.Available.Add(newWriter);
+            }
         }
         private void InstanceDefaultWriters()
         {

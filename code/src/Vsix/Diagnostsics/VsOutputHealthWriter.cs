@@ -13,13 +13,13 @@ using EnvDTE80;
 
 namespace Microsoft.Templates.Extension.Diagnostsics
 {
-    class VisualStudioOutputHealthWriter : IHealthWriter
+    class VsOutputHealthWriter : IHealthWriter
     {
         private const string UWPCommunityTemplatesPaneGuid = "45480fff-0658-42e1-97f0-82cac23603aa";
         private Guid _paneGuid;
         private OutputWindowPane _pane; 
 
-        public VisualStudioOutputHealthWriter()
+        public VsOutputHealthWriter()
         {
             _paneGuid = Guid.Parse(UWPCommunityTemplatesPaneGuid);
             _pane = GetOrCreatePane(_paneGuid, true, false);
@@ -28,6 +28,48 @@ namespace Microsoft.Templates.Extension.Diagnostsics
                 _pane.Activate();
             }
         }
+
+        public async SystemTasks.Task WriteExceptionAsync(Exception ex, string message = null)
+        {
+            if (_pane != null)
+            {
+                await SafeTrackAsync(() =>
+                {
+                    string header = $"========== Tracked Exception [{DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}] ==========\n";
+                    _pane.OutputString(header);
+
+                    if (message != null)
+                    {
+                        _pane.OutputString($"AdditionalMessage: {message}\n");
+                    }
+
+                    _pane.OutputString($"{ex.ToString()}\n");
+
+                    string footer = $"{new String('-', header.Length - 2)}\n";
+                    _pane.OutputString(footer);
+                });
+            }
+        }
+
+        public async SystemTasks.Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
+        {
+            if (_pane != null)
+            {
+                await SafeTrackAsync(() =>
+                {
+                    string eventMessage = $"[{DateTime.Now.ToString("hh:mm:ss.fff")} - {eventType.ToString()}]::{message}\n";
+                    _pane.OutputString(eventMessage);
+                    if (ex != null)
+                    {
+                        string header = $"----------- Addtional Exception Info -----------\n";
+                        string footer = $"{new String('-', header.Length - 2)}\n";
+                        string exceptionInfo = header + $"{ex.ToString()}\n" + footer;
+                        _pane.OutputString(exceptionInfo);
+                    }
+                });
+            }
+        }
+
         private OutputWindowPane GetOrCreatePane(Guid paneGuid, bool visible, bool clearWithSolution)
         {
             OutputWindowPane result = null;
@@ -80,46 +122,6 @@ namespace Microsoft.Templates.Extension.Diagnostsics
             return result;
         }
 
-        public async SystemTasks.Task WriteExceptionAsync(Exception ex, string message = null)
-        {
-            if (_pane != null)
-            {
-                await SafeTrackAsync(() =>
-                {
-                    string header = $"========== Tracked Exception [{DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}] ==========\n";
-                    _pane.OutputString(header);
-
-                    if (message != null)
-                    {
-                        _pane.OutputString($"AdditionalMessage: {message}\n");
-                    }
-
-                    _pane.OutputString($"{ex.ToString()}\n");
-
-                    string footer = $"{new String('-', header.Length - 2)}\n";
-                    _pane.OutputString(footer);
-                });
-            }
-        }
-
-        public async SystemTasks.Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
-        {
-            if (_pane != null)
-            {
-                await SafeTrackAsync(() =>
-                {
-                    string eventMessage = $"[{DateTime.Now.ToString("hh:mm:ss.fff")} - {eventType.ToString()}]::{message}\n";
-                    _pane.OutputString(eventMessage);
-                    if (ex != null)
-                    {
-                        string header = $"----------- Addtional Exception Info -----------\n";
-                        string footer = $"{new String('-', header.Length - 2)}\n";
-                        string exceptionInfo = header + $"{ex.ToString()}\n" + footer;
-                        _pane.OutputString(exceptionInfo);
-                    }
-                });
-            }
-        }
         private async SystemTasks.Task SafeTrackAsync(Action trackAction)
         {
             try
@@ -142,5 +144,9 @@ namespace Microsoft.Templates.Extension.Diagnostsics
             }
         }
 
+        public bool AllowMultipleInstances()
+        {
+            return false;
+        }
     }
 }

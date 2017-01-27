@@ -66,6 +66,11 @@ namespace Microsoft.Templates.Core.Diagnostics
             await TelemetryService.Current.TrackExceptionAsync(ex);
         }
 
+        public bool AllowMultipleInstances()
+        {
+            return false;
+        }
+
         private void IntializeTelemetryClient()
         {
             try
@@ -129,14 +134,47 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task FlushAsync()
         {
-            if (_client != null)
+            try
             {
-                _client.TrackEvent(TelemetryEvents.SessionEnded);
-                _client.Flush();
-                _client = null;
+                if (_client != null)
+                {
+                    _client.TrackEvent(TelemetryEvents.SessionEnded);
+                    _client.Flush();
+                    _client = null;
+                }
+                await Task.Delay(1000);
             }
-            await Task.Delay(1000);
+            catch (AggregateException aggEx)
+            {
+                foreach (Exception ex in aggEx.InnerExceptions)
+                {
+                    Trace.TraceError("Error tracking telemetry: {0}", ex.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError("Error tracking telemetry: {0}", ex.ToString());
+            }
         }
+
+        public void Flush()
+        {
+            try
+            {
+                if (_client != null)
+                {
+                    _client.Flush();
+                    System.Threading.Thread.Sleep(1000);
+
+                    _client = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError("Error tracking telemetry: {0}", ex.ToString());
+            }
+        }
+
         private bool RemoteKeyAvailable()
         {
             return Guid.TryParse(_currentConfig.RemoteTelemetryKey, out var aux);
@@ -164,13 +202,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             if (disposing)
             {
                 // free managed resources 
-                if (_client != null)
-                {
-                    _client.Flush();
-                    System.Threading.Thread.Sleep(1000);
-
-                    _client = null;
-                }
+                Flush();
             }
             //free native resources if any.
         }

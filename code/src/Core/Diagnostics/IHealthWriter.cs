@@ -8,5 +8,6 @@ namespace Microsoft.Templates.Core.Diagnostics
     {
         Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex=null);
         Task WriteExceptionAsync(Exception ex, string message = null);
+        bool AllowMultipleInstances();
     }
 }

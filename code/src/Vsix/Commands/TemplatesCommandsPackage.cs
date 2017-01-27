@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Extension.Commands
 
         public TemplatesCommandsPackage()
         {
-            AppHealth.Current.AddWriter(new VisualStudioOutputHealthWriter());
+            AppHealth.Current.AddWriter(new VsOutputHealthWriter());
         }
 
 

@@ -88,6 +88,11 @@ namespace Microsoft.Templates.Core.Diagnostics
             await WriteAndFlushAsync(sb.ToString());
         }
 
+        public bool AllowMultipleInstances()
+        {
+            return false;
+        }
+
         private async Task InitializeLogFile()
         {
             await semaphoreSlim.WaitAsync();

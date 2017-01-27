@@ -24,6 +24,11 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         {
             await Task.Run(() => Exceptions.Add(ex));
         }
+
+        public bool AllowMultipleInstances()
+        {
+            return true;
+        }
     }
     public class HealthTest
     {

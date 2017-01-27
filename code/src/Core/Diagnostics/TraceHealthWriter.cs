@@ -49,5 +49,10 @@ namespace Microsoft.Templates.Core.Diagnostics
             var task = Task.Run(() => action);
             await task;
         }
+
+        public bool AllowMultipleInstances()
+        {
+            return false;
+        }
     }
 }

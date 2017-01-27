@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Extension
 
         public SolutionWizard()
         {
-            AppHealth.Current.AddWriter(new VisualStudioOutputHealthWriter());
+            AppHealth.Current.AddWriter(new VsOutputHealthWriter());
         }
 
 
