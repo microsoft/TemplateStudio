@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Microsoft.Templates.Wizard.Resources;
 
 namespace Microsoft.Templates.Wizard.PostActions
 {
@@ -23,14 +24,14 @@ namespace Microsoft.Templates.Wizard.PostActions
 				var destinationFileName = GetValueFromParameter("destination.filename");
 				var destinationAnchor = GetValueFromParameter("destination.anchor");
 
-				if (string.IsNullOrEmpty(destinationFileName)) return new PostActionResult() { ResultCode = ResultCode.ConfigurationError, Message = $"{destinationFileName} should not be empty" };
-				if (string.IsNullOrEmpty(destinationAnchor)) return new PostActionResult() { ResultCode = ResultCode.ConfigurationError, Message = $"{destinationAnchor} should not be empty" };
+				if (string.IsNullOrEmpty(destinationFileName)) return new PostActionResult() { ResultCode = ResultCode.ConfigurationError, Message = PostActionResources.InsertPartialGeneration_EmptyDestinationFileNamePattern.UseParams(Name)};
+				if (string.IsNullOrEmpty(destinationAnchor)) return new PostActionResult() { ResultCode = ResultCode.ConfigurationError, Message = PostActionResources.InsertPartialGeneration_EmptyDestinationAnchorPattern.UseParams(Name)};
 
 				var sourceFile = Path.Combine(shell.OutputPath,  genInfo.Name, Name + ".txt");
 				var destinationFile = Path.Combine(shell.OutputPath, destinationFileName);
 
-				if (!File.Exists(sourceFile)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = $"{sourceFile} was not found" };
-				if (!File.Exists(destinationFile)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = $"{destinationFile} was not found" };
+				if (!File.Exists(sourceFile)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = PostActionResources.InsertPartialGeneration_FileNotFoundPattern.UseParams(sourceFile) };
+				if (!File.Exists(destinationFile)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = PostActionResources.InsertPartialGeneration_FileNotFoundPattern.UseParams(destinationFile) };
 
 				//Read Code to insert
 				var postActionCodeLines = File.ReadAllLines(sourceFile);
@@ -46,7 +47,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 					return new PostActionResult()
 					{
 						ResultCode = ResultCode.AnchorNotFound,
-						Message = $"Postaction {Name}: Could not insert code {postActionCode} on anchor {destinationAnchor} in file {destinationFile}. Please copy the code and insert it manually"
+						Message = PostActionResources.InsertPartialGeneration_AnchorNotFoundPattern.UseParams(Name, postActionCode, destinationAnchor, destinationFile)
 					};
 				}
 
@@ -61,15 +62,15 @@ namespace Microsoft.Templates.Wizard.PostActions
 				return new PostActionResult()
 				{
 					ResultCode = ResultCode.Success,
-					Message = $"Postaction {Name}: Successfully inserted code {formattedCode} on anchor {destinationAnchor} in file {destinationFile}"
-				};
+					Message = PostActionResources.InsertPartialGeneration_SuccessPattern.UseParams(Name, formattedCode, destinationAnchor, destinationFile)
+                };
 			}
 			catch (Exception ex)
 			{
 				return new PostActionResult()
 				{
 					ResultCode = ResultCode.Error,
-					Message = $"Error in insert partial generation post action {Name}",
+					Message = PostActionResources.InsertPartialGeneration_ErrorPattern.UseParams(Name),
 					Exception = ex
 				};
 			}

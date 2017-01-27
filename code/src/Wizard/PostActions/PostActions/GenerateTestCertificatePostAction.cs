@@ -16,7 +16,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 			try
 			{
 				var userName = GetValueFromGenParameter(genInfo.Parameters, "UserName");
-				if (string.IsNullOrEmpty(userName)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = $"Generation parameter UserName should not be empty" };
+				if (string.IsNullOrEmpty(userName)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = PostActionResources.GenerateTestCertificate_EmptyUserName};
 
 				var publisherName = userName;
 				// create DN for subject and issuer
@@ -87,7 +87,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 				return new PostActionResult()
 				{
 					ResultCode = ResultCode.Success,
-					Message = $"Postaction {Name}: Certificate Generated"
+					Message = PostActionResources.GenerateTestCertificate_Success
 				};
 			}
 			catch (Exception ex)
@@ -95,7 +95,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 				return new PostActionResult()
 				{
 					ResultCode = ResultCode.Error,
-					Message = $"Postaction {Name}: Error in certificate generation",
+					Message = PostActionResources.GenerateTestCertificate_Error,
 					Exception = ex
 				};
 			}

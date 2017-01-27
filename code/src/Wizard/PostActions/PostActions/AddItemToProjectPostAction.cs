@@ -11,7 +11,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 	public class AddItemToProjectPostAction : PostActionBase
 	{
 		public AddItemToProjectPostAction()
-			: base("AddItemToProjectPostAction", "This post action adds the generated items to the project", null)		
+			: base("AddItemToProject", "This post action adds the generated items to the project", null)		
 		{
 		}
 
@@ -30,10 +30,10 @@ namespace Microsoft.Templates.Wizard.PostActions
 					}
 				}
 
-				return new PostActionResult()
-				{
-					ResultCode = ResultCode.Success,
-					Message = $"Postaction {Name}: Successfully added items to project"
+                return new PostActionResult()
+                {
+                    ResultCode = ResultCode.Success,
+                    Message = PostActionResources.AddItemToProject_Success
 				};
 			}
 			catch (Exception ex)
@@ -41,7 +41,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 				return new PostActionResult()
 				{
 					ResultCode = ResultCode.Error,
-					Message = $"Postaction {Name}: Error adding items to project",
+					Message = PostActionResources.AddItemToProject_Error,
 					Exception = ex
 				};
 			}

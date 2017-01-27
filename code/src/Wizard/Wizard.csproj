@@ -89,12 +89,16 @@
     </Compile>
     <Compile Include="Dialog\RelayCommand.cs" />
     <Compile Include="Extensions\ObservableCollection.extensions.cs" />
-    <Compile Include="PostActions\AddItemToProjectPostAction.cs" />
-    <Compile Include="PostActions\AddProjectToSolutionPostAction.cs" />
+    <Compile Include="PostActions\PostActionResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PostActionResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PostActions\PostActions\AddItemToProjectPostAction.cs" />
+    <Compile Include="PostActions\PostActions\AddProjectToSolutionPostAction.cs" />
     <Compile Include="PostActions\CustomPostActionDefinition.cs" />
-    <Compile Include="PostActions\ExecutionContext.cs" />
-    <Compile Include="PostActions\GenerateTestCertificatePostAction.cs" />
-    <Compile Include="PostActions\InsertPartialGenerationPostAction.cs" />
+    <Compile Include="PostActions\PostActions\GenerateTestCertificatePostAction.cs" />
+    <Compile Include="PostActions\PostActions\InsertPartialGenerationPostAction.cs" />
     <Compile Include="PostActions\PostActionBase.cs" />
     <Compile Include="PostActions\PostActionCreator.cs" />
     <Compile Include="PostActions\PostActionResult.cs" />
@@ -191,6 +195,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="PostActions\PostActionResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PostActionResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -28,7 +28,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 				return new PostActionResult()
 				{
 					ResultCode = ResultCode.Success,
-					Message = $"Postaction {Name}: Successfully added projects to solution"
+					Message = PostActionResources.AddProjectToSolution_Success
 				};
 			}
 			catch (Exception ex)
@@ -36,7 +36,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 				return new PostActionResult()
 				{
 					ResultCode = ResultCode.Error,
-					Message = $"Postaction {Name}: Error adding projects to solution",
+					Message = PostActionResources.AddProjectToSolution_Error,
 					Exception = ex
 				};
 			}
