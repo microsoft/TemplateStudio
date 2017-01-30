@@ -14,6 +14,11 @@ namespace Microsoft.Templates.Core.Locations
             Copy($@"..\..\..\..\..\{TemplatesLocation.TemplatesName}", workingFolder);
         }
 
+        public override string GetVersion(string workingFolder)
+        {
+            return string.Empty;
+        }
+
         protected static void Copy(string sourceFolder, string workingFolder)
         {
             var sourceFolderName = new DirectoryInfo(Path.GetFullPath(sourceFolder)).Name;

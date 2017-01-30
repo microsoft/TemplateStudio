@@ -11,8 +11,10 @@ namespace Microsoft.Templates.Core.Locations
     {
         public const string PackagesName = "Packages";
         public const string TemplatesName = "Templates";
+        public const string VersionFileName = "version.txt";
 
         public abstract void Copy(string workingFolder);
+        public abstract string GetVersion(string workingFolder);
 
         protected static void SafeDelete(string directoryPath)
         {
@@ -24,7 +26,10 @@ namespace Microsoft.Templates.Core.Locations
 
         protected static void SafeCopyFile(string sourceFile, string destFolder)
         {
-            Directory.CreateDirectory(destFolder);
+            if (!Directory.Exists(destFolder))
+            {
+                Directory.CreateDirectory(destFolder);
+            }
             File.Copy(sourceFile, Path.Combine(destFolder, Path.GetFileName(sourceFile)));
         }
 

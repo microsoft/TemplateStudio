@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TemplateWizard;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,7 +30,6 @@ namespace Microsoft.Templates.Wizard
         protected abstract string GetActiveProjectName();
         protected abstract string GetActiveProjectPath();
         protected abstract string GetSelectedItemPath();
-
 
         public abstract void ShowStatusBarMessage(string message);
         public abstract void AddProjectToSolution(string projectFullPath);
