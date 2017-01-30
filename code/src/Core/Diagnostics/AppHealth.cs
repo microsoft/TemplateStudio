@@ -37,10 +37,10 @@ namespace Microsoft.Templates.Core.Diagnostics
         private AppHealth()
         {
             InstanceDefaultWriters();
-            Verbose = new TraceTracker(TraceEventType.Verbose, Configuration.Current.DiagnosticsTraceLevel);
-            Info = new TraceTracker(TraceEventType.Information, Configuration.Current.DiagnosticsTraceLevel);
-            Warning = new TraceTracker(TraceEventType.Warning, Configuration.Current.DiagnosticsTraceLevel);
-            Error = new TraceTracker(TraceEventType.Error, Configuration.Current.DiagnosticsTraceLevel);
+            Verbose = new TraceTracker(TraceEventType.Verbose);
+            Info = new TraceTracker(TraceEventType.Information);
+            Warning = new TraceTracker(TraceEventType.Warning);
+            Error = new TraceTracker(TraceEventType.Error);
             Exception = new ExceptionTracker();
             Telemetry = new TelemetryTracker();
         }

@@ -31,10 +31,6 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
             props.Add(TelemetryEventProperty.Framework, "MVVMLight");
             props.Add(TelemetryEventProperty.Type, "Project");
             await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.TemplateGenerated);
-
-            await _fixture.Telemetry.TrackEventAsync("TEST1");
-            await _fixture.Telemetry.TrackEventAsync("TEST2");
-            await _fixture.Telemetry.TrackEventAsync("TEST3");
         }
 
         [Fact]

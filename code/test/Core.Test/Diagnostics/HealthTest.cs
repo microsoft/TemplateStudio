@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 namespace Microsoft.Templates.Core.Test.Diagnostics
 {
-    public class TestHealthsWriter : IHealthWriter
+    public class TestHealthWriter : IHealthWriter
     {
         public List<string> Events = new List<string>();
         public List<Exception> Exceptions = new List<Exception>();
@@ -32,9 +32,18 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
     }
     public class HealthTest
     {
+        TestHealthWriter testWriter=null;
+        public HealthTest()
+        {
+            testWriter = new TestHealthWriter();
+            AppHealth.Current.AddWriter(testWriter);
+        }
         [Fact]
         public async Task UsageAsync()
         {
+            int currentEventsCount = testWriter.Events.Count;
+            int currentExceptionCount = testWriter.Exceptions.Count;
+
             //Instance with default configuration
             await AppHealth.Current.Verbose.TrackAsync("VerboseMessage");
             await AppHealth.Current.Verbose.TrackAsync("VerboseMesssage with exception", new Exception("VerboseExceptionInfo"));
@@ -52,51 +61,61 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
             await AppHealth.Current.Exception.TrackAsync(new Exception("ExceptionTrackedWithAddtionalInfo"), "AddtionalInfo");
 
             await AppHealth.Current.Telemetry.TrackTemplateGeneratedAsync("TemplateName", "TemplateFramework", "TemplateType");
+
+            //Check events flow to the TestHealthWriter
+            Assert.Equal(currentEventsCount + 8, testWriter.Events.Count);
+            Assert.Equal(currentExceptionCount + 2, testWriter.Exceptions.Count);
         }
 
         [Fact]
         public async Task AddAdditionalWriterAsync()
         {
-            TestHealthsWriter newWriter = new TestHealthsWriter();
-
+            TestHealthWriter newWriter = new TestHealthWriter();
+            
             await AppHealth.Current.Error.TrackAsync("WillNotBeRegisteredYet");
 
-            AppHealth.Current.AddWriter(newWriter); 
-            await AppHealth.Current.Error.TrackAsync("WillBeRegistered");
+            AppHealth.Current.AddWriter(newWriter);
 
-            Exception exToTest = new Exception("RegisteredEx");
-            await AppHealth.Current.Exception.TrackAsync(exToTest);
+            await AppHealth.Current.Error.TrackAsync("WillBeRegistered");
 
             Assert.DoesNotContain("Error;WillNotBeRegisteredYet;", newWriter.Events);
             Assert.Contains("Error;WillBeRegistered;", newWriter.Events);
-            Assert.Contains<Exception>(exToTest, newWriter.Exceptions);
         }
 
         [Fact]
         public async Task VerifyTraceLevelChangeAsync()
         {
-            TestHealthsWriter newWriter = new TestHealthsWriter();
+            //Save current config;
+            Configuration prevConfig = Configuration.Current;
 
-            Configuration config = Configuration.Current;
-            config.DiagnosticsTraceLevel = TraceEventType.Warning;
+            try
+            {
+                //Update current config TraceLevel;
+                Configuration newConfig = new Configuration()
+                {
+                    DiagnosticsTraceLevel = TraceEventType.Warning
+                };
+                Configuration.UpdateCurrentConfiguration(newConfig);
 
-            Configuration.UpdateCurrentConfiguration(config);
+                await AppHealth.Current.Verbose.TrackAsync("VerboseShouldNotBeRegistered");
+                await AppHealth.Current.Info.TrackAsync("InfoShouldNotBeRegistered");
+                await AppHealth.Current.Warning.TrackAsync("WarningMustBeRegistered");
+                await AppHealth.Current.Error.TrackAsync("ErrorMustBeRegistered");
 
-            AppHealth.Current.AddWriter(newWriter);
+                Exception exToTest = new Exception("ExceptionMustBeRegistered");
+                await AppHealth.Current.Exception.TrackAsync(exToTest);
 
-            await AppHealth.Current.Verbose.TrackAsync("VerboseShouldNotBeRegistered");
-            await AppHealth.Current.Info.TrackAsync("InfoShouldNotBeRegistered");
-            await AppHealth.Current.Warning.TrackAsync("WarningMustBeRegistered");
-            await AppHealth.Current.Error.TrackAsync("ErrorMustBeRegistered");
-
-            Exception exToTest = new Exception("ExceptionMustBeRegistered");
-            await AppHealth.Current.Exception.TrackAsync(exToTest);
-
-            Assert.DoesNotContain("Verbose;VerboseShouldNotBeRegistered;", newWriter.Events);
-            Assert.DoesNotContain("Info;InfoShouldNotBeRegistered;", newWriter.Events);
-            Assert.Contains("Warning;WarningMustBeRegistered;", newWriter.Events);
-            Assert.Contains("Error;ErrorMustBeRegistered;", newWriter.Events);
-            Assert.Contains<Exception>(exToTest, newWriter.Exceptions);
+                Assert.DoesNotContain("Verbose;VerboseShouldNotBeRegistered;", testWriter.Events);
+                Assert.DoesNotContain("Info;InfoShouldNotBeRegistered;", testWriter.Events);
+                Assert.Contains("Warning;WarningMustBeRegistered;", testWriter.Events);
+                Assert.Contains("Error;ErrorMustBeRegistered;", testWriter.Events);
+                Assert.Contains<Exception>(exToTest, testWriter.Exceptions);
+            }
+            finally
+            {
+                //Restore previous config
+                Configuration.UpdateCurrentConfiguration(prevConfig);
+            }
         }
     }
 }
