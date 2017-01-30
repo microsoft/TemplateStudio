@@ -12,16 +12,31 @@ namespace Microsoft.Templates.Core.Locations
     public class RemoteTemplatesLocation : TemplatesLocation
     {
         private readonly string CdnUrl = Configuration.Current.CdnUrl;
-        private const string CdnPackagesFileName = "packages.nupkg";
         private const string CdnTemplatesFileName = "UWPTemplates.zip";
 
         public override void Copy(string workingFolder)
         {
-            Download(workingFolder, CdnPackagesFileName, PackagesName, SafeCopyFile);
-            Download(workingFolder, CdnTemplatesFileName, TemplatesName, ZipFile.ExtractToDirectory);
+            Download(workingFolder, CdnTemplatesFileName, TemplatesName, ZipFile.ExtractToDirectory, true);
+            Download(workingFolder, VersionFileName, TemplatesName, SafeCopyFile);
         }
 
-        private void Download(string workingFolder, string fileName, string folderName, Action<string, string> postDownload)
+        public override string GetVersion(string workingFolder)
+        {
+            //TODO: ERROR HANDLING
+            var sourceUrl = $"{CdnUrl}/{VersionFileName}";
+            var destinationFile = Path.Combine(workingFolder, VersionFileName);
+
+            var wc = new WebClient();
+            wc.DownloadFile(sourceUrl, destinationFile);
+
+            var version = File.ReadAllText(destinationFile);
+
+            File.Delete(destinationFile);
+
+            return version;
+        }
+
+        private void Download(string workingFolder, string fileName, string folderName, Action<string, string> postDownload, bool clean = false)
         {
             EnsureWorkingFolder(workingFolder);
 
@@ -29,7 +44,10 @@ namespace Microsoft.Templates.Core.Locations
             var destFolder = Path.Combine(workingFolder, folderName);
             var file = Path.Combine(workingFolder, fileName);
 
-            SafeDelete(destFolder);
+            if (clean)
+            {
+                SafeDelete(destFolder);
+            }
 
             var wc = new WebClient();
             wc.DownloadFile(sourceUrl, file);
