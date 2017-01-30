@@ -20,6 +20,7 @@ using System.IO;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.VisualStudio.TemplateWizard;
+using Microsoft.Templates.Wizard.Host;
 
 namespace Microsoft.Templates.Wizard.TestApp
 {
@@ -28,8 +29,8 @@ namespace Microsoft.Templates.Wizard.TestApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        TestVsShell testShell;
-        GenerationWizard genWizard;
+        private TemplatesGen _gen;
+        private FakeGenShell _shell;
 
         public MainWindow()
         {
@@ -42,16 +43,18 @@ namespace Microsoft.Templates.Wizard.TestApp
         {
             try
             {
-                testShell = new TestVsShell(SeedSolName.Text + DateTime.Now.ToString("MMddmmss"), DefaultNamespace.Text, Status);
-                genWizard = new GenerationWizard(testShell, testShell.VsData.Solution,new TemplatesRepository(new TestTemplatesLocation()) );
+                _shell = new FakeGenShell(SeedSolName.Text + DateTime.Now.ToString("MMddmmss"), Status);
+                _gen = new TemplatesGen(_shell, new TemplatesRepository(new LocalTemplatesLocation()));
 
-                //TODO: MAYBE IS CANCELLED
-                genWizard.AddProjectInit();
-                genWizard.AddProjectFinish();
+                var genItems = _gen.GetUserSelection(WizardSteps.Project);
+                if (genItems != null)
+                {
+                    _gen.Generate(genItems);
 
-                SolutionPath.Text = testShell.VsData.Solution.FullName;
+                    SolutionPath.Text = _shell.OutputPath;
 
-                LockProjectActions();
+                    LockProjectActions(); 
+                }
             }
             catch (WizardCancelledException)
             {
@@ -68,11 +71,19 @@ namespace Microsoft.Templates.Wizard.TestApp
             if (!String.IsNullOrWhiteSpace(PathToExistingProject.Text) && File.Exists(PathToExistingProject.Text) && PathToExistingProject.Text.EndsWith("proj"))
             {
                 string projectName = System.IO.Path.GetFileNameWithoutExtension(PathToExistingProject.Text);
-                testShell = new TestVsShell(projectName, projectName, Status);
-                genWizard = new GenerationWizard(testShell, testShell.VsData.Solution);
-                testShell.AddProjectToSolution(PathToExistingProject.Text);
-                SolutionPath.Text = PathToExistingProject.Text;
-                LockProjectActions();
+
+                _shell = new FakeGenShell(projectName, Status);
+                _gen = new TemplatesGen(_shell, new TemplatesRepository(new LocalTemplatesLocation()));
+
+                var genItems = _gen.GetUserSelection(WizardSteps.Project);
+                if (genItems != null)
+                {
+                    _gen.Generate(genItems);
+
+                    SolutionPath.Text = _shell.OutputPath;
+
+                    LockProjectActions();
+                }
             }
             else
             {
@@ -84,8 +95,13 @@ namespace Microsoft.Templates.Wizard.TestApp
         {
             try
             {
-                testShell.UpdateSelectedItemPath(PageRelativePath.Text);
-                genWizard.AddPageToActiveProject();
+                _shell.UpdateRelativePath(PageRelativePath.Text);
+
+                var genItems = _gen.GetUserSelection(WizardSteps.Page);
+                if (genItems != null)
+                {
+                    _gen.Generate(genItems);
+                }
             }
             catch (WizardCancelledException)
             {
@@ -101,7 +117,6 @@ namespace Microsoft.Templates.Wizard.TestApp
         {
             try
             { 
-                genWizard.AddFeatureToActiveProject();
             }
             catch (WizardCancelledException)
             {
@@ -115,15 +130,14 @@ namespace Microsoft.Templates.Wizard.TestApp
         }
         private void OpenInVs_Click(object sender, RoutedEventArgs e)
         {
-            if (!String.IsNullOrEmpty(testShell.VsData.Solution.FullName))
+            if (!String.IsNullOrEmpty(_shell.SolutionPath))
             {
-                System.Diagnostics.Process.Start(testShell.VsData.Solution.FullName);
+                System.Diagnostics.Process.Start(_shell.SolutionPath);
             }
         }
 
         private void RestartTester_Click(object sender, RoutedEventArgs e)
         {
-            testShell = null;
             InitTester();
         }
         private void InitTester()

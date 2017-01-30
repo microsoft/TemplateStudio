@@ -28,17 +28,15 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
             {
                 _context.SelectedTemplates.Remove(this.GetType());
             }
-            _context.SelectedTemplates.Add(this.GetType(), new TemplateConfig[] {
-                new TemplateConfig
-                {
-                    //TODO: REVIEW THIS TO SEE IF WE CAN MODEL BETTER
-                    Parameters = new Dictionary<string, string>
-                    {
-                        { "ItemName", ItemName }
-                    },
-                    Info = TemplateSelected.Info
-                }
-            });
+
+            var genInfo = new GenInfo
+            {
+                Name = ItemName,
+                Template = TemplateSelected.Info
+            };
+            genInfo.Parameters.Add("PageNamespace", _context.Shell.GetActiveNamespace());
+
+            _context.SelectedTemplates.Add(this.GetType(), new GenInfo[] { genInfo });
         }
 
         public ObservableCollection<TemplateViewModel> Templates { get; } = new ObservableCollection<TemplateViewModel>();
@@ -53,6 +51,7 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
                 if (value != null)
                 {
                     _context.CanGoForward = true;
+                    ItemName = value.Name;
                 }
             }
         }
@@ -78,8 +77,6 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
         //TODO: MAKE THIS METHOD TRULY ASYNC
         public async Task LoadDataAsync()
         {
-            //TODO: RENAME TO INITIALIZE??
-            ItemName = PagesStepResources.NewPage;
             Templates.Clear();
 
             var projectTemplates = _context.TemplatesRepository

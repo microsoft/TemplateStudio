@@ -40,22 +40,22 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.TemplateEngine.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Abstractions.1.0.0-beta1-20170111-87\lib\net45\Microsoft.TemplateEngine.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Abstractions.1.0.0-beta1-20170126-98\lib\net45\Microsoft.TemplateEngine.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.1.0.0-beta1-20170111-87\lib\net45\Microsoft.TemplateEngine.Core.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.1.0.0-beta1-20170126-98\lib\net45\Microsoft.TemplateEngine.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Core.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.Contracts.1.0.0-beta1-20170111-87\lib\net45\Microsoft.TemplateEngine.Core.Contracts.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.Contracts.1.0.0-beta1-20170126-98\lib\net45\Microsoft.TemplateEngine.Core.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Edge, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Edge.1.0.0-beta1-20170111-87\lib\net45\Microsoft.TemplateEngine.Edge.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Edge.1.0.0-beta1-20170126-98\lib\net45\Microsoft.TemplateEngine.Edge.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.1.0.0-beta1-20170111-87\lib\net45\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.1.0.0-beta1-20170126-98\lib\net45\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Utils, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Utils.1.0.0-beta1-20170111-87\lib\net45\Microsoft.TemplateEngine.Utils.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Utils.1.0.0-beta1-20170126-98\lib\net45\Microsoft.TemplateEngine.Utils.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Shell.14.0, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.VisualStudio.Shell.14.0.14.3.25407\lib\Microsoft.VisualStudio.Shell.14.0.dll</HintPath>
@@ -66,6 +66,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Design" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -84,31 +85,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\CollectionToVisibilityConverter.cs" />
-    <Compile Include="Dialog\AddFeaturesResult.cs" />
-    <Compile Include="Dialog\AddPage.xaml.cs">
-      <DependentUpon>AddPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Dialog\AddPageResult.cs" />
-    <Compile Include="Dialog\AddProject.xaml.cs">
-      <DependentUpon>AddProject.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Dialog\ErrorMessageDialog.xaml.cs">
       <DependentUpon>ErrorMessageDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialog\RelayCommand.cs" />
-    <Compile Include="Dialog\AddProjectResult.cs" />
-    <Compile Include="Dialog\AddProjectSteps.cs" />
     <Compile Include="Extensions\ObservableCollection.extensions.cs" />
-    <Compile Include="Host\TemplateConfig.cs" />
+    <Compile Include="PostActions\PostActionResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PostActionResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PostActions\PostActions\AddItemToProjectPostAction.cs" />
+    <Compile Include="PostActions\PostActions\AddProjectToSolutionPostAction.cs" />
     <Compile Include="PostActions\CustomPostActionDefinition.cs" />
-    <Compile Include="PostActions\ExecutionContext.cs" />
-    <Compile Include="PostActions\GenerateTestCertificatePostAction.cs" />
-    <Compile Include="PostActions\InsertPartialGenerationPostAction.cs" />
+    <Compile Include="PostActions\PostActions\GenerateTestCertificatePostAction.cs" />
+    <Compile Include="PostActions\PostActions\InsertPartialGenerationPostAction.cs" />
     <Compile Include="PostActions\PostActionBase.cs" />
     <Compile Include="PostActions\PostActionCreator.cs" />
-    <Compile Include="PostActions\PostActionExecutionResult.cs" />
+    <Compile Include="PostActions\PostActionResult.cs" />
     <Compile Include="PostActions\PostActionType.cs" />
     <Compile Include="PostActions\ResultCode.cs" />
+    <Compile Include="GenInfo.cs" />
+    <Compile Include="GenShell.cs" />
     <Compile Include="Resources\ResourcesExtensions.cs" />
     <Compile Include="Resources\StringRes.Designer.cs">
       <DependentUpon>StringRes.resx</DependentUpon>
@@ -149,24 +147,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WizardHostResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\AddProjectViewModel.cs" />
+    <Compile Include="TemplatesGen.cs" />
     <Compile Include="ViewModels\TemplateViewModel.cs" />
     <Compile Include="ViewModels\ObservableBase.cs" />
-    <Compile Include="Vs\SolutionInfo.cs" />
     <Compile Include="Host\WizardContext.cs" />
     <Compile Include="Host\WizardHost.xaml.cs">
       <DependentUpon>WizardHost.xaml</DependentUpon>
     </Compile>
     <Compile Include="Host\WizardHostViewModel.cs" />
     <Compile Include="Host\WizardSteps.cs" />
-    <Page Include="Dialog\AddPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Dialog\AddProject.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="WizardCancelledException.cs" />
     <Page Include="Dialog\ErrorMessageDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -193,8 +183,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GenerationWizard.cs" />
-    <Compile Include="Vs\IVisualStudioShell.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -208,6 +196,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="PostActions\PostActionResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PostActionResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -1,0 +1,3 @@
+<data name="BasicMasterDetailPageTitle.Text" xml:space="preserve">
+  <value>BasicMasterDetailPage</value>
+</data>

@@ -1,0 +1,21 @@
+<data name="MVVMLightSettingsPageAbout.Text" xml:space="preserve">
+  <value>About this application</value>
+</data>
+<data name="MVVMLightSettingsPageAboutDescription.Text" xml:space="preserve">
+  <value>Lorem ipsum dolor sit</value>
+</data>
+<data name="MVVMLightSettingsPagePrivacyTermsLink.Content" xml:space="preserve">
+  <value>Privacy Terms</value>
+</data>
+<data name="MVVMLightSettingsPagePrivacyTermsLink.NavigateUri" xml:space="preserve">
+  <value>https://www.microsoft.com/</value>
+</data>
+<data name="MVVMLightSettingsPageThemeToggleSwitch.OffContent" xml:space="preserve">
+  <value>Dark</value>
+</data>
+<data name="MVVMLightSettingsPageThemeToggleSwitch.OnContent" xml:space="preserve">
+  <value>Light</value>
+</data>
+<data name="MVVMLightSettingsPageTitle.Text" xml:space="preserve">
+  <value>MVVMLightBlankPage</value>
+</data>

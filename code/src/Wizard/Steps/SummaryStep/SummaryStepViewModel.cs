@@ -47,9 +47,9 @@ namespace Microsoft.Templates.Wizard.Steps.SummaryStep
         {
             return _context.SelectedTemplates
                                     .SelectMany(t => t.Value)
-                                    .Where(t => t.Info.GetTemplateType() == templateType)
+                                    .Where(t => t.Template.GetTemplateType() == templateType)
                                     //TODO: REVIEW THIS
-                                    .Select(t => $"{t.Info.Name} ({t.Info.GetFramework()})");
+                                    .Select(t => $"{t.Template.Name} ({t.Template.GetFramework()})");
         }
     }
 }

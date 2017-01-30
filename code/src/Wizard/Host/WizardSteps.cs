@@ -12,6 +12,42 @@ namespace Microsoft.Templates.Wizard.Host
         private readonly List<Type> _steps = new List<Type>();
         private int CurrentIndex => _steps.IndexOf(Current);
 
+        public static WizardSteps Project
+        {
+            get
+            {
+                var steps = new WizardSteps();
+
+                steps.Add<Steps.ProjectsStep.ProjectsStepPage>();
+                steps.Add<Steps.SummaryStep.SummaryStepPage>();
+
+                return steps;
+            }
+        }
+
+        public static WizardSteps Page
+        {
+            get
+            {
+                var steps = new WizardSteps();
+
+                steps.Add<Steps.PagesStep.PagesStepPage>();
+
+                return steps;
+            }
+        }
+
+        public static WizardSteps Feature
+        {
+            get
+            {
+                //TODO: NOTHING TO ADD FOR THE MOMENT
+                var steps = new WizardSteps();
+
+                return steps;
+            }
+        }
+
         public Type Current { get; private set; }
 
         public void Add<T>() where T : StepPage

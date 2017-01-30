@@ -1,6 +1,7 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Wizard.ViewModels;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +16,17 @@ namespace Microsoft.Templates.Wizard.Host
     public class WizardContext : ObservableBase
     {
         public TemplatesRepository TemplatesRepository { get; }
+        public GenShell Shell { get; }
 
         public event SaveStateEventHandler SaveState;
 
         //TODO: MAKE READONLY??
-        public Dictionary<Type, TemplateConfig[]> SelectedTemplates { get; } = new Dictionary<Type, TemplateConfig[]>();
+        public Dictionary<Type, GenInfo[]> SelectedTemplates { get; } = new Dictionary<Type, GenInfo[]>();
 
-        public WizardContext(TemplatesRepository templatesRepository)
+        public WizardContext(TemplatesRepository templatesRepository, GenShell shell)
         {
             TemplatesRepository = templatesRepository;
+            Shell = shell;
         }
 
         private bool _canGoForward;

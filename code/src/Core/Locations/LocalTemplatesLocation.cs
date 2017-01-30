@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Locations
 {
-    public class TestTemplatesLocation : TemplatesLocation
+    public class LocalTemplatesLocation : TemplatesLocation
     {
         public override void Copy(string workingFolder)
         {
-            Copy($@"..\..\..\{TemplatesLocation.PackagesName}", workingFolder);
             Copy($@"..\..\..\..\..\{TemplatesLocation.TemplatesName}", workingFolder);
         }
 

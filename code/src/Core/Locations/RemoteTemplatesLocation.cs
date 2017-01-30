@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Locations
 {
-    public class CdnTemplatesLocation : TemplatesLocation
+    public class RemoteTemplatesLocation : TemplatesLocation
     {
         private readonly string CdnUrl = Configuration.Current.CdnUrl;
         private const string CdnPackagesFileName = "packages.nupkg";
