@@ -55,7 +55,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             await InitializeLogFile();
 
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{eventType.ToString():11}\t{message}");
+            sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{eventType.ToString()}\t{message}");
             if(ex != null)
             {
                 sb.AppendLine(FormattedWriterMessages.ExHeader);
