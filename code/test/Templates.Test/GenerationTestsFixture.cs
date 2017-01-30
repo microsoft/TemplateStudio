@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Test
 
         private static TemplatesRepository CreateNewRepos()
         {
-            var repos = new TemplatesRepository(new TestTemplatesLocation());
+            var repos = new TemplatesRepository(new LocalTemplatesLocation());
             repos.Sync();
             return repos;
         }
