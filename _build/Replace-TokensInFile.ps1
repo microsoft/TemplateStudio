@@ -28,17 +28,27 @@ else{
 		attrib $TokenizedFile -r
 		for ($i=0; $i -le $Tokens.Count-1; $i++) {
 			$token = $TokenPattern -replace "TOKEN", $Tokens[$i]
-			Write-Output "Replacing token $token..."
+			
+			if($TokenizedFilecontent -match $token){
+				Write-Output "Replacing token '$token' --> File content DOES HAVE the toke '$token'. The token will be replaced."
+			}
+			else {
+				
+				Write-Output "Replacing token '$token' --> File content DOES NOT HAVE the '$token'. The token WILL NOT BE replaced."
+			}
 			$TokenizedFilecontent = $TokenizedFilecontent.Replace($token,  $Replacements[$i])
-		}
-		Out-File -InputObject $TokenizedFilecontent -FilePath $TokenizedFile -Encoding utf8
-		Write-Output "Done."
 
+		}
+		
 		if($TargetConfigFile){
 			if((Test-Path $TargetConfigFile) -eq $false){
 				Write-Output "Target config file does not exists. It will be created."
 			}
-			Copy-Item -Path $TokenizedFilecontent -Destination $TargetConfigFile -Force -ErrorAction SilentlyContinue
+			Out-File -InputObject $TokenizedFilecontent -FilePath $TargetConfigFile -Encoding utf8 -Force -ErrorAction Continue
+		}
+		else{
+			Out-File -InputObject $TokenizedFilecontent -FilePath $TokenizedFile -Encoding utf8
+		Write-Output "Done."
 		}
 	}
 	else{
