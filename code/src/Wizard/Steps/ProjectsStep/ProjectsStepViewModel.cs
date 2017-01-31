@@ -66,7 +66,7 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectsStep
             }
 			var genInfo = new GenInfo
 			{
-				Name = _context.Shell.Name,
+				Name = _context.Shell.ProjectName,
 				Template = template.Info
 			};
 			genInfo.Parameters.Add("UserName", Environment.UserName);

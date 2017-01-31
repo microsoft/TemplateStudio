@@ -19,6 +19,7 @@ namespace Microsoft.Templates.Wizard.Host
                 var steps = new WizardSteps();
 
                 steps.Add<Steps.ProjectsStep.ProjectsStepPage>();
+                steps.Add<Steps.PagesStep.PagesStepPage>();
                 steps.Add<Steps.SummaryStep.SummaryStepPage>();
 
                 return steps;

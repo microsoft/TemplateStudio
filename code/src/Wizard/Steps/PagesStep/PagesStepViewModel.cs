@@ -34,8 +34,7 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
                 Name = ItemName,
                 Template = TemplateSelected.Info
             };
-            genInfo.Parameters.Add("PageNamespace", _context.Shell.GetActiveNamespace());
-
+ 
             _context.SelectedTemplates.Add(this.GetType(), new GenInfo[] { genInfo });
         }
 
