@@ -11,6 +11,7 @@
     "type": "project",
     "uct.type": "project",
     "uct.framework": "MVVMLight",
+    "uct.ProjectType":"Blank",
     "uct.version": "1.0.0",
     "uct.order": "2"
   },

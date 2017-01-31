@@ -82,6 +82,11 @@ namespace Microsoft.Templates.Core
             return int.MaxValue;
         }
 
+        public static string GetProjectType(this ITemplateInfo ti)
+        {
+            return GetValueFromTag(ti, TagPrefix + "ProjectType");
+        }
+
         private static string GetConfigDir(ITemplateInfo ti)
         {
             IFile file;

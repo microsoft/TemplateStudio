@@ -133,6 +133,15 @@
       <DependentUpon>ProjectsStepResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Steps\ProjectsStep\ProjectsStepViewModel.cs" />
+    <Compile Include="Steps\ProjectTypeStep\ProjectTypeStepViewModel.cs" />
+    <Compile Include="Steps\ProjectTypeStep\ProjectTypeStepResources.Designer.cs">
+      <DependentUpon>ProjectTypeStepResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Steps\ProjectTypeStep\ProjectTypeStepPage.xaml.cs">
+      <DependentUpon>ProjectTypeStepPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Steps\StepPage.cs" />
     <Compile Include="Steps\SummaryStep\SummaryStepPage.xaml.cs">
       <DependentUpon>SummaryStepPage.xaml</DependentUpon>
@@ -150,6 +159,7 @@
       <DependentUpon>WizardHostResources.resx</DependentUpon>
     </Compile>
     <Compile Include="TemplatesGen.cs" />
+    <Compile Include="ViewModels\ProjectTypeViewModel.cs" />
     <Compile Include="ViewModels\TemplateViewModel.cs" />
     <Compile Include="ViewModels\ObservableBase.cs" />
     <Compile Include="Host\WizardContext.cs" />
@@ -169,6 +179,10 @@
     <Page Include="Steps\ProjectsStep\ProjectsStepPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Steps\ProjectTypeStep\ProjectTypeStepPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Steps\SummaryStep\SummaryStepPage.xaml">
       <SubType>Designer</SubType>
@@ -216,6 +230,10 @@
     <EmbeddedResource Include="Steps\ProjectsStep\ProjectsStepResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ProjectsStepResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Steps\ProjectTypeStep\ProjectTypeStepResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProjectTypeStepResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Steps\SummaryStep\SummaryStepResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
