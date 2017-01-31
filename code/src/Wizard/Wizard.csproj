@@ -159,8 +159,8 @@
       <DependentUpon>WizardHostResources.resx</DependentUpon>
     </Compile>
     <Compile Include="TemplatesGen.cs" />
-    <Compile Include="ViewModels\FrameworkTypeViewModel.cs" />
-    <Compile Include="ViewModels\ProjectTypeViewModel.cs" />
+    <Compile Include="ViewModels\Extensions.cs" />
+    <Compile Include="ViewModels\ProjectInfoViewModel.cs" />
     <Compile Include="ViewModels\TemplateViewModel.cs" />
     <Compile Include="ViewModels\ObservableBase.cs" />
     <Compile Include="Host\WizardContext.cs" />

@@ -31,8 +31,8 @@ namespace Microsoft.Templates.Wizard.Steps.FrameworkTypeStep
                 var template = _context.TemplatesRepository
                                     .GetAll()
                                     .FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project &&
-                                           t.GetProjectType() == _context.SelectedProjectType.ProjectType &&
-                                           t.GetFramework() == _context.SelectedFrameworkType.FrameworkType);
+                                           t.GetProjectType() == _context.SelectedProjectType.Name &&
+                                           t.GetFramework() == _context.SelectedFrameworkType.Name);
                 if (template == null)
                 {
                     throw new NullReferenceException("Project template not found.");
@@ -49,10 +49,10 @@ namespace Microsoft.Templates.Wizard.Steps.FrameworkTypeStep
             }            
         }
 
-        public ObservableCollection<FrameworkTypeViewModel> FrameworkTypes { get; } = new ObservableCollection<FrameworkTypeViewModel>();
+        public ObservableCollection<ProjectInfoViewModel> FrameworkTypes { get; } = new ObservableCollection<ProjectInfoViewModel>();
 
-        private FrameworkTypeViewModel _selectedFrameworkType;
-        public FrameworkTypeViewModel SelectedFrameworkType
+        private ProjectInfoViewModel _selectedFrameworkType;
+        public ProjectInfoViewModel SelectedFrameworkType
         {
             get => _selectedFrameworkType;
             set => SetProperty(ref _selectedFrameworkType, value);
@@ -68,7 +68,7 @@ namespace Microsoft.Templates.Wizard.Steps.FrameworkTypeStep
                                     .Where(t => t.GetTemplateType() == TemplateType.Project && !String.IsNullOrWhiteSpace(t.GetFramework()))
                                     .Select(t => t.GetFramework())
                                     .Distinct()
-                                    .Select(t => new FrameworkTypeViewModel(t))
+                                    .Select(t => new ProjectInfoViewModel(t, _context.TemplatesRepository.GetFrameworkTypeInfo(t)))
                                     .ToList();
 
             FrameworkTypes.AddRange(frameworkTypes);

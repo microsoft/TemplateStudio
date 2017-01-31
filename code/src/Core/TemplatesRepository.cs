@@ -1,18 +1,11 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.TemplateEngine.Edge.Settings;
 using Microsoft.TemplateEngine.Edge.Template;
-using Microsoft.TemplateEngine.Orchestrator.RunnableProjects;
-using Microsoft.TemplateEngine.Utils;
 using Microsoft.Templates.Core.Locations;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core
 {
@@ -94,5 +87,31 @@ namespace Microsoft.Templates.Core
             var fileVersion = new FileInfo(FileVersionPath);
             return fileVersion.LastWriteTime.AddMinutes(Configuration.Current.VersionCheckingExpirationMinutes) <= DateTime.Now;
         }
+
+
+        public ProjectInfo GetProjectTypeInfo(string projectType)
+        {
+            return GetProyectInfo(Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName, TemplatesLocation.ProjectTypes, projectType));
+        }
+
+        public ProjectInfo GetFrameworkTypeInfo(string projectType)
+        {
+            return GetProyectInfo(Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName, TemplatesLocation.FrameworkTypes, projectType));
+        }
+
+        private ProjectInfo GetProyectInfo(string folderName)
+        {
+            var projectInfo = new ProjectInfo();
+            string descriptionFile = Path.Combine(folderName, $"description.txt");
+            projectInfo.Description = File.Exists(descriptionFile) ? File.ReadAllText(descriptionFile) : String.Empty;
+            projectInfo.Icon = Path.Combine(folderName, $"icon.png");
+            return projectInfo;
+        }
+    }
+
+    public class ProjectInfo
+    {
+        public string Icon { get; set; }
+        public string Description { get; set; }
     }
 }

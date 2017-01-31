@@ -27,12 +27,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <ListView ItemsSource="{Binding Templates}" SelectedItem="{Binding TemplateSelected, Mode=TwoWay}">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
+        <ListView ItemsSource="{Binding Templates}" SelectedItem="{Binding TemplateSelected, Mode=TwoWay}" Style="{StaticResource WizardListViewStyle}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>

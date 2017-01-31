@@ -21,10 +21,10 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectTypeStep
 
         private void OnContextSaveState(object sender, EventArgs e) => _context.SelectedProjectType = SelectedProjectType;
 
-        public ObservableCollection<ProjectTypeViewModel> ProjectTypes { get; } = new ObservableCollection<ProjectTypeViewModel>();
+        public ObservableCollection<ProjectInfoViewModel> ProjectTypes { get; } = new ObservableCollection<ProjectInfoViewModel>();
 
-        private ProjectTypeViewModel _selectedProjectType;
-        public ProjectTypeViewModel SelectedProjectType
+        private ProjectInfoViewModel _selectedProjectType;
+        public ProjectInfoViewModel SelectedProjectType
         {
             get => _selectedProjectType;
             set => SetProperty(ref _selectedProjectType, value);
@@ -40,7 +40,7 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectTypeStep
                                                     .Where(t => t.GetTemplateType() == TemplateType.Project && !String.IsNullOrWhiteSpace(t.GetProjectType()))
                                                     .Select(t => t.GetProjectType())
                                                     .Distinct()
-                                                    .Select(t => new ProjectTypeViewModel(t))
+                                                    .Select(t => new ProjectInfoViewModel(t, _context.TemplatesRepository.GetProjectTypeInfo(t)))
                                                     .ToList();
 
             ProjectTypes.AddRange(projectTypes);

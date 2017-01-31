@@ -21,26 +21,19 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <ListView ItemsSource="{Binding ProjectTypes}" SelectedItem="{Binding SelectedProjectType, Mode=TwoWay}">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Width="100" Height="100">
-                        <TextBlock Text="{Binding ProjectType}" Style="{StaticResource TemplateTitleStyle}" VerticalAlignment="Center" />
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <ListView
+            ItemsSource="{Binding ProjectTypes}"
+            SelectedItem="{Binding SelectedProjectType, Mode=TwoWay}"
+            ItemTemplate="{StaticResource ProjectInfoTemplate}"
+            Style="{StaticResource WizardListViewStyle}"/>
+
 
         <StackPanel DataContext="{Binding SelectedProjectType}" Grid.Column="1" Style="{StaticResource TemplateInfoContainerStyle}">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Name:" Style="{StaticResource TemplateInfoPropertyNameStyle}"/>
-                <TextBlock Text="{Binding ProjectType}" Style="{StaticResource TemplateInfoPropertyValueStyle}"/>
+                <TextBlock Text="{Binding Name}" Style="{StaticResource TemplateInfoPropertyValueStyle}"/>
             </StackPanel>
+            <TextBlock Text="{Binding Description}" Style="{StaticResource TemplateInfoDescriptionStyle}"/>
         </StackPanel>
     </Grid>
 </steps:StepPage>
