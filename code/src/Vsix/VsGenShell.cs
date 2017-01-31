@@ -53,7 +53,14 @@ namespace Microsoft.Templates.Extension
                     return $"{selectedItem.ProjectItem.Properties.GetSafeValue("DefaultNamespace")}";
                 }
             }
-            return null;
+
+            var p = GetActiveProject();
+            if (p != null)
+            {
+                return p.Properties.GetSafeValue("DefaultNamespace");
+            }
+
+            return ProjectName;
         }
 
         public override void SaveSolution(string solutionFullPath)

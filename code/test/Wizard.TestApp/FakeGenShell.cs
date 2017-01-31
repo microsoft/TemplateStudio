@@ -12,7 +12,6 @@ namespace Microsoft.Templates.Wizard.TestApp
     {
         const string TEMP_TESTS_DIR = @"c:\temp\uwptemplates_tests\";
 
-        private string _projectPath;
         private string _relativePath;
 
         public string SolutionPath { get; set; } = string.Empty;
@@ -20,9 +19,10 @@ namespace Microsoft.Templates.Wizard.TestApp
 
         public FakeGenShell(string name, TextBlock status)
         {
-            Name = name;
+            ProjectName = name;
             OutputPath = Path.Combine(TEMP_TESTS_DIR, name);
             SolutionPath = Path.Combine(OutputPath, $"{name}.sln");
+            ProjectPath = Path.Combine(OutputPath, ProjectName);
             Status = status;
         }
 
@@ -30,25 +30,24 @@ namespace Microsoft.Templates.Wizard.TestApp
         {
             _relativePath = relative;
 
-            if (string.IsNullOrEmpty(_projectPath))
-            {
-                _projectPath = Path.Combine(OutputPath, Name, $"{Name}.csproj");
-            }
-
-
             if (string.IsNullOrEmpty(relative))
             {
-                OutputPath = Path.GetDirectoryName(_projectPath);
+                OutputPath = Path.GetDirectoryName(ProjectPath);
             }
             else
             {
-                OutputPath = Path.Combine(Path.GetDirectoryName(_projectPath), relative);
+                OutputPath = Path.Combine(Path.GetDirectoryName(ProjectPath), relative);
             }
         }
 
         public override void AddItemToActiveProject(string itemFullPath)
         {
-            var msbuildProj = MsBuildProject.Load(_projectPath);
+            var projectFileName = FindProject(ProjectPath);
+            if (string.IsNullOrEmpty(projectFileName))
+            {
+                throw new Exception($"There is not project file in {ProjectPath}");
+            }
+            var msbuildProj = MsBuildProject.Load(projectFileName);
 
             if (msbuildProj != null)
             {
@@ -59,7 +58,6 @@ namespace Microsoft.Templates.Wizard.TestApp
 
         public override void AddProjectToSolution(string projectFullPath)
         {
-            _projectPath = projectFullPath;
         }
 
         public override string GetActiveNamespace()
@@ -67,11 +65,11 @@ namespace Microsoft.Templates.Wizard.TestApp
             var relativeNs = string.IsNullOrEmpty(_relativePath) ? string.Empty : _relativePath.Replace(@"\", ".");
             if (string.IsNullOrEmpty(relativeNs))
             {
-                return Name;
+                return ProjectName;
             }
             else
             {
-                return $"{Name}.{relativeNs}";
+                return $"{ProjectName}.{relativeNs}";
             }
         }
 
@@ -86,35 +84,22 @@ namespace Microsoft.Templates.Wizard.TestApp
 
         protected override string GetActiveProjectName()
         {
-            return Name;
+            return ProjectName;
         }
 
         protected override string GetActiveProjectPath()
         {
             return string.Empty;
-
-            //if (string.IsNullOrEmpty(ProjectPath))
-            //{
-            //    return OutputPath;
-            //}
-            //else
-            //{
-            //    return ProjectPath;
-            //}
         }
 
         protected override string GetSelectedItemPath()
         {
             return string.Empty;
+        }
 
-            //if (string.IsNullOrEmpty(RelativePath))
-            //{
-            //    return GetActiveProjectPath();
-            //}
-            //else
-            //{
-            //    return Path.Combine(GetActiveProjectPath(), RelativePath);
-            //}
+        private static string FindProject(string path)
+        {
+            return Directory.EnumerateFiles(path, "*proj").FirstOrDefault();
         }
     }
 }
