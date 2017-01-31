@@ -17,7 +17,7 @@ namespace Microsoft.Templates.Extension
 
         public VsGenShell()
         {
-
+            
         }
 
         public VsGenShell(Dictionary<string, string> replacements) : base(replacements)
@@ -27,11 +27,32 @@ namespace Microsoft.Templates.Extension
 
         public override void AddItemToActiveProject(string itemFullPath)
         {
+            //TODO: Improve performance (allow passing various files to add)
             var proj = GetActiveProject();
             proj.ProjectItems.AddFromFile(itemFullPath);
 
             proj.Save();
         }
+
+        public override bool SetActiveConfigurationAndPlatform(string configurationName, string platformName)
+        {
+            foreach (SolutionConfiguration solConfiguration in Dte.Solution.SolutionBuild.SolutionConfigurations)
+            {
+                if (solConfiguration.Name == configurationName)
+                {
+                    foreach (SolutionContext context in solConfiguration.SolutionContexts)
+                    {
+                        if (context.PlatformName == platformName)
+                        {
+                            solConfiguration.Activate();
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
 
         public override void AddProjectToSolution(string projectFullPath)
         {
@@ -53,7 +74,14 @@ namespace Microsoft.Templates.Extension
                     return $"{selectedItem.ProjectItem.Properties.GetSafeValue("DefaultNamespace")}";
                 }
             }
-            return null;
+
+            var p = GetActiveProject();
+            if (p != null)
+            {
+                return p.Properties.GetSafeValue("DefaultNamespace");
+            }
+
+            return ProjectName;
         }
 
         public override void SaveSolution(string solutionFullPath)
@@ -85,10 +113,12 @@ namespace Microsoft.Templates.Extension
             return GetActiveProjectPath();
         }
 
+        
+
         protected override string GetActiveProjectName()
         {
             var p = GetActiveProject();
-
+            
             return p?.Name;
         }
 

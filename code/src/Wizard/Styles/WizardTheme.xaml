@@ -7,6 +7,8 @@
     <Thickness x:Key="MediumLeftMargin">10,0,0,0</Thickness>
     <Thickness x:Key="ShortTopMargin">0,5,0,0</Thickness>
     <Thickness x:Key="MediumTopMargin">0,10,0,0</Thickness>
+    <Thickness x:Key="ShortBottomMargin">0,0,0,5</Thickness>
+    <Thickness x:Key="MediumMargin">10</Thickness>
 
     <!--WIZARD STYLES-->
     <Style TargetType="Grid" x:Key="PageContainerStyle">
@@ -58,6 +60,7 @@
     </Style>
     <Style TargetType="TextBlock" x:Key="TemplateInfoPropertyValueStyle">
         <Setter Property="Margin" Value="{StaticResource ShortLeftMargin}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
     <Style TargetType="TextBlock" x:Key="TemplateInfoDescriptionStyle">
         <Setter Property="Margin" Value="{StaticResource MediumTopMargin}" />
@@ -76,11 +79,53 @@
     </Style>
     
     <!--PAGES-->
-    <Style TargetType="StackPanel" x:Key="PageNameContainerStyle">
-        <Setter Property="Margin" Value="{StaticResource MediumTopMargin}" />
+     <Style TargetType="Image" x:Key="SelectedPageIcon">
+        <Setter Property="Width" Value="40" />
+        <Setter Property="Height" Value="40" />
+    </Style>
+        <Style TargetType="StackPanel" x:Key="SelectedPageTextContainer">
+        <Setter Property="Margin" Value="{StaticResource ShortLeftMargin}" />
+    </Style>
+     <Style TargetType="TextBlock" x:Key="SelectedPageTitle">
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+     <Style TargetType="TextBlock" x:Key="SelectedPageSubtitle">
+    </Style>
+    <Style TargetType="Button" x:Key="AsideButtonStyle">
+        <Setter Property="Margin" Value="{StaticResource ShortBottomMargin}" />
+        <Setter Property="Width" Value="100" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="NoResultsStyle">
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+    <!--PAGES DIALOG-->
+    <Style TargetType="Grid" x:Key="PageNameContainerStyle">
+        <Setter Property="Margin" Value="{StaticResource MediumMargin}" />
     </Style>
     <Style TargetType="TextBox" x:Key="PageNameValueStyle">
         <Setter Property="Width" Value="200px" />
         <Setter Property="Margin" Value="{StaticResource ShortLeftMargin}" />
     </Style>
+
+    <!--LISTVIEW-->
+    <Style TargetType="ListView" x:Key="WizardListViewStyle">
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+    </Style>
+    <DataTemplate x:Key="ProjectInfoTemplate">
+        <Grid Width="100" Height="100">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Image Source="{Binding Icon}" Style="{StaticResource TemplateIconStyle}" />
+            <TextBlock Text="{Binding Name}" Grid.Row="1" Style="{StaticResource TemplateTitleStyle}" />
+        </Grid>
+    </DataTemplate>
 </ResourceDictionary>

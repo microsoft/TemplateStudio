@@ -61,6 +61,42 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string AddCommand {
+            get {
+                return ResourceManager.GetString("AddCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string CancelCommand {
+            get {
+                return ResourceManager.GetString("CancelCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add pages pushing add button. Lorem ipsum.
+        /// </summary>
+        public static string NoPagesMessage {
+            get {
+                return ResourceManager.GetString("NoPagesMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string OkCommand {
+            get {
+                return ResourceManager.GetString("OkCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page name:.
         /// </summary>
         public static string PageName_Text {
@@ -75,6 +111,15 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep {
         public static string PageTitle {
             get {
                 return ResourceManager.GetString("PageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string RemoveCommand {
+            get {
+                return ResourceManager.GetString("RemoveCommand", resourceCulture);
             }
         }
     }

@@ -11,6 +11,7 @@
     "type": "project",
     "uct.type": "project",
     "uct.framework": "Basic",
+    "uct.ProjectType":"SplitView",
     "uct.version": "1.0.0",
     "uct.order": "1"
   },
@@ -21,5 +22,11 @@
     {
       "path": ".\\BasicSplitViewProject\\BasicSplitViewProject.csproj"
     }
-  ]
+  ],
+  "symbols": {
+    "UserName": {
+      "type": "parameter",
+      "replaces": "Param_UserName"
+    }
+  }
 }

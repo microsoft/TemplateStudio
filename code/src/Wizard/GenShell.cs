@@ -10,20 +10,23 @@ namespace Microsoft.Templates.Wizard
 {
     public abstract class GenShell
     {
-        public string Name { get; set; }
-        public string OutputPath { get; set; }
+        public string ProjectName { get; protected set; }
+        public string ProjectPath { get; protected set; }
+        public string OutputPath { get; protected set; }
 
         public GenShell()
         {
-            Name = GetActiveProjectName();
+            ProjectName = GetActiveProjectName();
+            ProjectPath = GetActiveProjectPath();
             OutputPath = GetSelectedItemPath();
         }
 
         public GenShell(Dictionary<string, string> replacements)
         {
-            Name = replacements["$safeprojectname$"];
+            ProjectName = replacements["$safeprojectname$"];
 
             var di = new DirectoryInfo(replacements["$destinationdirectory$"]);
+            ProjectPath = di.FullName;
             OutputPath = di.Parent.FullName;
         }
 
@@ -31,6 +34,7 @@ namespace Microsoft.Templates.Wizard
         protected abstract string GetActiveProjectPath();
         protected abstract string GetSelectedItemPath();
 
+        public abstract bool SetActiveConfigurationAndPlatform(string configurationName, string platformName);
         public abstract void ShowStatusBarMessage(string message);
         public abstract void AddProjectToSolution(string projectFullPath);
         public abstract void AddItemToActiveProject(string itemFullPath);

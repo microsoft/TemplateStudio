@@ -117,10 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddCommand" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="CancelCommand" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="NoPagesMessage" xml:space="preserve">
+    <value>Add pages pushing add button. Lorem ipsum</value>
+  </data>
+  <data name="OkCommand" xml:space="preserve">
+    <value>Ok</value>
+  </data>
   <data name="PageName_Text" xml:space="preserve">
     <value>Page name:</value>
   </data>
   <data name="PageTitle" xml:space="preserve">
     <value>Select the page template:</value>
+  </data>
+  <data name="RemoveCommand" xml:space="preserve">
+    <value>Remove</value>
   </data>
 </root>

@@ -6,7 +6,6 @@ using Microsoft.Templates.Wizard.Dialog;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Wizard.PostActions;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,16 +21,12 @@ namespace Microsoft.Templates.Wizard
         //TODO: ERROR HANDLING
         public TemplatesGen(GenShell shell) : this(shell, new TemplatesRepository(new RemoteTemplatesLocation()))
         {
-
         }
 
         public TemplatesGen(GenShell shell, TemplatesRepository repository)
         {
             _shell = shell;
             _repository = repository;
-
-            //TODO: MOVE THIS. IS FAILING BECAUSE IS LOCKING AN ICON FILE
-            _repository.Sync();
         }
 
         public IEnumerable<GenInfo> GetUserSelection(WizardSteps selectionSteps)
@@ -64,7 +59,8 @@ namespace Microsoft.Templates.Wizard
                         continue;
                     }
 
-                    outputPath = GetOutputPath(outputs, outputPath);
+                    outputPath = GetOutputPath(genInfo.Template);
+                    AddSystemParams(genInfo);
 
                     //TODO: REVIEW ASYNC
                     var result = CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, outputPath, genInfo.Parameters, false).Result;
@@ -88,20 +84,24 @@ namespace Microsoft.Templates.Wizard
             }
         }
 
-        private static string GetOutputPath(IEnumerable<string> outputs, string outputPath)
+        private string GetOutputPath(ITemplateInfo templateInfo)
         {
-            if (outputs == null)
+            if (templateInfo.GetTemplateType() == TemplateType.Project)
             {
-                return outputPath;
+                return _shell.OutputPath;
             }
-            var projectPath = outputs.FirstOrDefault(p => p.ToLower().EndsWith("proj"));
-
-            if (string.IsNullOrEmpty(projectPath))
+            else
             {
-                return outputPath;
+                return _shell.ProjectPath;
             }
+        }
 
-            return Path.GetDirectoryName(projectPath);
+        private void AddSystemParams(GenInfo genInfo)
+        {
+            if (genInfo.Template.GetTemplateType() == TemplateType.Page)
+            {
+                genInfo.Parameters.Add("PageNamespace", _shell.GetActiveNamespace());
+            }
         }
 
         private IEnumerable<PostActionResult> ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult)
@@ -137,7 +137,7 @@ namespace Microsoft.Templates.Wizard
                 ErrorMessageDialog.Show("Some PostActions failed", "Failed post actions", errorMessages, MessageBoxImage.Error);
             }
 
-            Debug.Print(postActionResultMessages);
+            
         }
     }
 }

@@ -11,8 +11,6 @@ namespace Microsoft.Templates.Wizard.ViewModels
 {
     public class TemplateViewModel : ObservableBase
     {
-        private const string DefaultProjectIcon = "/Microsoft.Templates.Wizard;component/Assets/DefaultProjectIcon.jpg";
-
         public TemplateViewModel()
         {
 
@@ -23,11 +21,7 @@ namespace Microsoft.Templates.Wizard.ViewModels
             Info = ti;
 
             var icon = ti.GetIcon();
-            if (string.IsNullOrWhiteSpace(icon))
-            {
-                icon = DefaultProjectIcon;
-            }
-            Icon = CreateIcon(icon);
+            Icon = Extensions.CreateIcon(icon);
             Name = ti.Name;
             Description = ti.Description;
             Author = ti.Author;
@@ -35,17 +29,6 @@ namespace Microsoft.Templates.Wizard.ViewModels
             Version = ti.GetVersion();
             Order = ti.GetOrder();
             LicenceTerms = ti.GetLicenceTerms();
-        }
-
-        private BitmapImage CreateIcon(string path)
-        {
-            var image = new BitmapImage();
-            image.BeginInit();
-            image.CacheOption = BitmapCacheOption.OnLoad;
-            image.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
-            image.UriSource = new Uri(path);
-            image.EndInit();
-            return image;
         }
 
         public ITemplateInfo Info { get; }

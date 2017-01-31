@@ -62,6 +62,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 
                 //Save
                 File.WriteAllText(destinationFile, destinationFileContent);
+                File.Delete(sourceFile);
 
                 return new PostActionResult()
                 {

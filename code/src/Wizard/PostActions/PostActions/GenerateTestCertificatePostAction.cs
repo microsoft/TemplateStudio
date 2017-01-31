@@ -84,7 +84,9 @@ namespace Microsoft.Templates.Wizard.PostActions
 				var filePath = Path.Combine(shell.OutputPath, genInfo.Name, genInfo.Name) + "_TemporaryKey.pfx";
 				File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
 
-				return new PostActionResult()
+                shell.AddItemToActiveProject(filePath);
+
+                return new PostActionResult()
 				{
 					ResultCode = ResultCode.Success,
 					Message = PostActionResources.GenerateTestCertificate_Success
