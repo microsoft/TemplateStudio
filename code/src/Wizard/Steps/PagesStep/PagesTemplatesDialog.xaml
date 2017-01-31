@@ -38,7 +38,7 @@
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Image Source="{Binding Icon}" Style="{StaticResource TemplateIconStyle}" />
+                        <Image Source="/Microsoft.Templates.Wizard;component/Assets/DefaultProjectIcon.png" Style="{StaticResource TemplateIconStyle}" />
                         <TextBlock Text="{Binding Name}" Grid.Row="1" Style="{StaticResource TemplateTitleStyle}" />
                     </Grid>
                 </DataTemplate>
