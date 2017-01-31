@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Templates.Core.Properties;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -28,14 +30,15 @@ namespace Microsoft.Templates.Core
                 return _current;
             }
         }
-
-        public Configuration()
-        {
-        }
         public static void UpdateCurrentConfiguration(Configuration config)
         {
             _current = config;
         }
+
+        public Configuration()
+        {
+        }
+
         protected static bool IsLocalExecution
         {
             get

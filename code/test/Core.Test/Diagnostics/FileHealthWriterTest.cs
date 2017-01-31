@@ -14,7 +14,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
     {
      
         [Fact]
-        public async Task LogInfo()
+        public async Task LogInfoAsync()
         {
             string uniqueMsg = $"LogInfo_{Guid.NewGuid()}";
             await FileHealthWriter.Current.WriteTraceAsync(TraceEventType.Information, uniqueMsg);
@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         }
 
         [Fact]
-        public async Task LogError()
+        public async Task LogErrorAsync()
         {
             string uniqueMsg = $"LogError_{Guid.NewGuid()}";
             await FileHealthWriter.Current.WriteTraceAsync(TraceEventType.Error, uniqueMsg);
@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         }
 
         [Fact]
-        public async Task LogErrorWithEx()
+        public async Task LogErrorWithExAsync()
         {
             string uniqueMsg = $"LogErrorWithEx_{Guid.NewGuid()}";
             await FileHealthWriter.Current.WriteTraceAsync(TraceEventType.Error, uniqueMsg, new Exception("SampleException"));
@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
 
 
         [Fact]
-        public async Task TwoManageThreads()
+        public async Task TwoManageThreadsAsync()
         {
             var t1 = Task.Run(async () =>
             {
