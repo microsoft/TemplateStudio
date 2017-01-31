@@ -6,7 +6,6 @@ using Microsoft.Templates.Wizard.Dialog;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Wizard.PostActions;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -137,7 +136,7 @@ namespace Microsoft.Templates.Wizard
                 ErrorMessageDialog.Show("Some PostActions failed", "Failed post actions", errorMessages, MessageBoxImage.Error);
             }
 
-            Debug.Print(postActionResultMessages);
+            
         }
     }
 }
