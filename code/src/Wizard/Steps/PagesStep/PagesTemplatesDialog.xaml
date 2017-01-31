@@ -30,29 +30,16 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <ListView ItemsSource="{Binding Templates}" SelectedItem="{Binding TemplateSelected, Mode=TwoWay}">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
+        <ListView ItemsSource="{Binding Templates}" SelectedItem="{Binding TemplateSelected, Mode=TwoWay}" Style="{StaticResource WizardListViewStyle}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Width="80" Height="120">
                         <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <Image Source="{Binding Icon}" Style="{StaticResource TemplateIconStyle}" />
                         <TextBlock Text="{Binding Name}" Grid.Row="1" Style="{StaticResource TemplateTitleStyle}" />
-                        <TextBlock Grid.Row="2" Style="{StaticResource TemplateSubTitleStyle}">
-                            <TextBlock.Text>
-                                <MultiBinding StringFormat="({0})">
-                                    <Binding Path="Framework" />
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
