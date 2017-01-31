@@ -21,5 +21,11 @@
     {
       "path": ".\\MVVMLightSplitViewProject\\MVVMLightSplitViewProject.csproj"
     }
-  ]
+  ],
+  "symbols": {
+    "UserName": {
+      "type": "parameter",
+      "replaces": "Param_UserName"
+    }
+  }
 }
