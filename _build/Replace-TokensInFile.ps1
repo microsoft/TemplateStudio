@@ -30,11 +30,11 @@ else{
 			$token = $TokenPattern -replace "TOKEN", $Tokens[$i]
 			
 			if($TokenizedFilecontent -match $token){
-				Write-Output "Replacing token '$token' --> File content DOES HAVE the toke '$token'. The token will be replaced."
+				Write-Output "Token '$token' found, will be replaced."
 			}
 			else {
 				
-				Write-Output "Replacing token '$token' --> File content DOES NOT HAVE the '$token'. The token WILL NOT BE replaced."
+				Write-Warning "Token '$token' NOT FOUND."
 			}
 			$TokenizedFilecontent = $TokenizedFilecontent.Replace($token,  $Replacements[$i])
 
@@ -42,7 +42,7 @@ else{
 		
 		if($TargetConfigFile){
 			if((Test-Path $TargetConfigFile) -eq $false){
-				Write-Output "Target config file does not exists. It will be created."
+				Write-Warning "Target config file does not exists. It will be created."
 			}
 			Out-File -InputObject $TokenizedFilecontent -FilePath $TargetConfigFile -Encoding utf8 -Force -ErrorAction Continue
 		}
