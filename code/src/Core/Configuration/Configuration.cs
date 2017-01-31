@@ -44,6 +44,7 @@ namespace Microsoft.Templates.Core
                     {
 
                         _current = new Configuration();
+                        AppHealth.Current.Verbose.TrackAsync($"Tried to use the configuration file located at {currentConfigFile}, but not found. Using default configuration.").FireAndForget();
                     }
                 }            
                 return _current;
@@ -52,10 +53,18 @@ namespace Microsoft.Templates.Core
 
         public static string GetJsonConfigFilePath()
         {
+            TraceUsingDefault("Gettin JsonConfigFilePaht");
+            TraceUsingDefault("1. Check 'JsonConfigFile' appSetting is defined");
             string jsonConfigFile = ConfigurationManager.AppSettings["JsonConfigFile"];
+        
             if (String.IsNullOrWhiteSpace(jsonConfigFile) || !File.Exists(jsonConfigFile))
             {
                 jsonConfigFile = Path.Combine(Environment.CurrentDirectory, DefaultJsonConfigFileName);
+                TraceUsingDefault($"2. AppSetting config file is not defined. Returning path current directory: {jsonConfigFile}");
+            }
+            else
+            {
+                TraceUsingDefault($"2. AppSetting config file IS defined. Returning path configured directory: {jsonConfigFile}");
             }
             return jsonConfigFile;
         }
