@@ -116,5 +116,10 @@ namespace Microsoft.Templates.Wizard.TestApp
             //    return Path.Combine(GetActiveProjectPath(), RelativePath);
             //}
         }
+
+        public override bool SetActiveConfigurationAndPlatform(string configurationName, string platformName)
+        {
+            return true;
+        }
     }
 }

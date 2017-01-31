@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Wizard
         protected abstract string GetActiveProjectPath();
         protected abstract string GetSelectedItemPath();
 
-
+        public abstract bool SetActiveConfigurationAndPlatform(string configurationName, string platformName);
         public abstract void ShowStatusBarMessage(string message);
         public abstract void AddProjectToSolution(string projectFullPath);
         public abstract void AddItemToActiveProject(string itemFullPath);

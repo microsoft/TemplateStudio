@@ -18,11 +18,12 @@ namespace Microsoft.Templates.Wizard.PostActions
 			switch (template.GetTemplateType())
 			{
 				case TemplateType.Project:
-					postActions.Add(GetPostAction(PostActionType.AddProjectToSolution));
+					postActions.Add(GetPostAction(PostActionType.AddProjectToSolutionPostAction));
 					postActions.Add(GetPostAction(PostActionType.GenerateTestCertificatePostAction));
-					break;
+                    postActions.Add(GetPostAction(PostActionType.SetDefaultSolutionConfigurationPostAction));
+                    break;
 				case TemplateType.Page:
-					postActions.Add(GetPostAction(PostActionType.AddItemToProject));
+					postActions.Add(GetPostAction(PostActionType.AddItemToProjectPostAction));
 					break;
 				case TemplateType.Feature:
 					break;
@@ -57,23 +58,26 @@ namespace Microsoft.Templates.Wizard.PostActions
 
 		private static PostActionBase GetPostAction(PostActionType postActionType, string name, string description, IReadOnlyDictionary<string, string> parameters)
 		{
-			switch (postActionType)
-			{
-				case PostActionType.InsertPartialGenerationPostAction:
-					return new InsertPartialGenerationPostAction(name, description, parameters);
+            switch (postActionType)
+            {
+                case PostActionType.InsertPartialGenerationPostAction:
+                    return new InsertPartialGenerationPostAction(name, description, parameters);
 
-				case PostActionType.GenerateTestCertificatePostAction:
-					return new GenerateTestCertificatePostAction();
+                case PostActionType.GenerateTestCertificatePostAction:
+                    return new GenerateTestCertificatePostAction();
 
-				case PostActionType.AddProjectToSolution:
-					return new AddProjectToSolutionPostAction();
+                case PostActionType.AddProjectToSolutionPostAction:
+                    return new AddProjectToSolutionPostAction();
 
-				case PostActionType.AddItemToProject:
-					return new AddItemToProjectPostAction();
+                case PostActionType.AddItemToProjectPostAction:
+                    return new AddItemToProjectPostAction();
 
-				default:
-					return null;
-			}
-		}
-	}
+                case PostActionType.SetDefaultSolutionConfigurationPostAction:
+                    return new SetDefaultSolutionConfigurationPostAction();
+                    
+                default:
+                    return null;
+            }
+        }
+    }
 }

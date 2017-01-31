@@ -176,5 +176,32 @@ namespace Microsoft.Templates.Wizard.PostActions {
                 return ResourceManager.GetString("InsertPartialGeneration_SuccessPattern", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Postaction SetDefaultSolutionConfiguration: Configuration {0} {1} was not found.
+        /// </summary>
+        internal static string SetDefaultSolutionConfiguration_ConfigurationNotFoundPattern {
+            get {
+                return ResourceManager.GetString("SetDefaultSolutionConfiguration_ConfigurationNotFoundPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Postaction SetDefaultSolutionConfiguration: Error setting default solution configuration..
+        /// </summary>
+        internal static string SetDefaultSolutionConfiguration_Error {
+            get {
+                return ResourceManager.GetString("SetDefaultSolutionConfiguration_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Postaction SetDefaultSolutionConfiguration: Successfully set default solution configuration..
+        /// </summary>
+        internal static string SetDefaultSolutionConfiguration_Success {
+            get {
+                return ResourceManager.GetString("SetDefaultSolutionConfiguration_Success", resourceCulture);
+            }
+        }
     }
 }

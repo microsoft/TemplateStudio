@@ -103,6 +103,7 @@
     <Compile Include="PostActions\PostActionBase.cs" />
     <Compile Include="PostActions\PostActionCreator.cs" />
     <Compile Include="PostActions\PostActionResult.cs" />
+    <Compile Include="PostActions\PostActions\SetDefaultSolutionConfigurationPostAction.cs" />
     <Compile Include="PostActions\PostActionType.cs" />
     <Compile Include="PostActions\ResultCode.cs" />
     <Compile Include="GenInfo.cs" />
