@@ -59,7 +59,7 @@ namespace Microsoft.Templates.Core
         
             if (String.IsNullOrWhiteSpace(jsonConfigFile) || !File.Exists(jsonConfigFile))
             {
-                jsonConfigFile = Path.Combine(Environment.CurrentDirectory, DefaultJsonConfigFileName);
+                jsonConfigFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), DefaultJsonConfigFileName);
                 TraceUsingDefault($"2. AppSetting config file is not defined. Returning path current directory: {jsonConfigFile}");
             }
             else
