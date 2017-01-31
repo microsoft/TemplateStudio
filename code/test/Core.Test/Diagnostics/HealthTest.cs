@@ -85,17 +85,10 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         [Fact]
         public async Task VerifyTraceLevelChangeAsync()
         {
-            //Save current config;
-            Configuration prevConfig = Configuration.Current;
-
+            TraceEventType previousLevel = Configuration.Current.DiagnosticsTraceLevel;
             try
             {
-                //Update current config TraceLevel;
-                Configuration newConfig = new Configuration()
-                {
-                    DiagnosticsTraceLevel = TraceEventType.Warning
-                };
-                Configuration.UpdateCurrentConfiguration(newConfig);
+                Configuration.Current.DiagnosticsTraceLevel = TraceEventType.Warning;
 
                 await AppHealth.Current.Verbose.TrackAsync("VerboseShouldNotBeRegistered");
                 await AppHealth.Current.Info.TrackAsync("InfoShouldNotBeRegistered");
@@ -114,7 +107,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
             finally
             {
                 //Restore previous config
-                Configuration.UpdateCurrentConfiguration(prevConfig);
+                Configuration.Current.DiagnosticsTraceLevel = previousLevel;
             }
         }
     }

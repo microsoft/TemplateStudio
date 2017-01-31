@@ -11,7 +11,7 @@
     <SortOrder>1000</SortOrder>
     <TemplateID>5471541a-7eac-4feb-a834-0d6ca271a946</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
-    <DefaultName>UWP.App</DefaultName>
+    <DefaultName>App</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
   </TemplateData>
   <TemplateContent>

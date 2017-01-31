@@ -8,12 +8,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Templates.Core.Properties {
+namespace Microsoft.Templates.Core.Test.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.0.0.0")]
-    public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
         
@@ -25,19 +25,10 @@ namespace Microsoft.Templates.Core.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Verbose")]
-        public string DiagnosticsTraceLevel {
+        [global::System.Configuration.DefaultSettingValueAttribute("5e56cd68-9738-469b-baf0-1b6b7c296745")]
+        public string TelemetryKey {
             get {
-                return ((string)(this["DiagnosticsTraceLevel"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("99999")]
-        public string RemoteTelemetryKey {
-            get {
-                return ((string)(this["RemoteTelemetryKey"]));
+                return ((string)(this["TelemetryKey"]));
             }
         }
     }
