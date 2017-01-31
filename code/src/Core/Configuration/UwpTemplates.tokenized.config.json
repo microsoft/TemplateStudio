@@ -1,0 +1,8 @@
+{
+  "CdnUrl": "###CdnUrl###",
+  "RemoteTelemetryKey": "###RemoteTelemetryKey###",
+  "LogFileFolderPath": "UWPTemplates\\Logs",
+  "DiagnosticsTraceLevel": "###DiagnosticsTraceLevel###",
+  "DaysToKeepDiagnosticsLogs": 5,
+  "VersionCheckingExpirationMinutes": 120
+}

@@ -19,9 +19,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
 
         public static void EnsureCurrentConfigWithTelemetryKey()
         {
-            Configuration config = Configuration.Current;
-            config.RemoteTelemetryKey = ""; //SECRET
-            Configuration.UpdateCurrentConfiguration(config);
+            Configuration.Current.RemoteTelemetryKey = Microsoft.Templates.Core.Test.Properties.Settings.Default.TelemetryKey;
         }
 
         public void Dispose()

@@ -16,15 +16,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         public TelemetryServiceTest(TelemetryFixture fixture)
         {
             _fixture = fixture;
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-
         }
-
-        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            Debug.WriteLine($"Unhandledcito: \n\r{e.ExceptionObject.ToString()}");
-        }
-
         [Fact]
         public void Instantiated()
         {
