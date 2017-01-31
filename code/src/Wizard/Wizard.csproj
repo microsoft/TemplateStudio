@@ -115,6 +115,15 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Steps\FrameworkTypeStep\FrameworkTypeStepViewModel.cs" />
+    <Compile Include="Steps\FrameworkTypeStep\FrameworkTypeStepPage.xaml.cs">
+      <DependentUpon>FrameworkTypeStepPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Steps\FrameworkTypeStep\FrameworkTypeStepResources.Designer.cs">
+      <DependentUpon>FrameworkTypeStepResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Steps\PagesStep\PagesStepPage.xaml.cs">
       <DependentUpon>PagesStepPage.xaml</DependentUpon>
     </Compile>
@@ -124,20 +133,20 @@
       <DependentUpon>PagesStepResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Steps\PagesStep\PagesStepViewModel.cs" />
+    <Compile Include="Steps\ProjectTypeStep\ProjectTypeStepViewModel.cs" />
+    <Compile Include="Steps\ProjectTypeStep\ProjectTypeStepResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectTypeStepResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Steps\PagesStep\PagesTemplatesDialog.xaml.cs">
       <DependentUpon>PagesTemplatesDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Steps\PagesStep\PagesTemplatesDialogViewModel.cs" />
     <Compile Include="Steps\PagesStep\PageViewModel.cs" />
-    <Compile Include="Steps\ProjectsStep\ProjectsStepPage.xaml.cs">
-      <DependentUpon>ProjectsStepPage.xaml</DependentUpon>
+    <Compile Include="Steps\ProjectTypeStep\ProjectTypeStepPage.xaml.cs">
+      <DependentUpon>ProjectTypeStepPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Steps\ProjectsStep\ProjectsStepResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProjectsStepResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Steps\ProjectsStep\ProjectsStepViewModel.cs" />
     <Compile Include="Steps\StepPage.cs" />
     <Compile Include="Steps\SummaryStep\SummaryStepPage.xaml.cs">
       <DependentUpon>SummaryStepPage.xaml</DependentUpon>
@@ -155,6 +164,8 @@
       <DependentUpon>WizardHostResources.resx</DependentUpon>
     </Compile>
     <Compile Include="TemplatesGen.cs" />
+    <Compile Include="ViewModels\Extensions.cs" />
+    <Compile Include="ViewModels\ProjectInfoViewModel.cs" />
     <Compile Include="ViewModels\TemplateViewModel.cs" />
     <Compile Include="ViewModels\ObservableBase.cs" />
     <Compile Include="Host\WizardContext.cs" />
@@ -167,15 +178,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Steps\FrameworkTypeStep\FrameworkTypeStepPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Steps\PagesStep\PagesStepPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Steps\PagesStep\PagesTemplatesDialog.xaml">
+    <Page Include="Steps\ProjectTypeStep\ProjectTypeStepPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Steps\ProjectsStep\ProjectsStepPage.xaml">
+    <Page Include="Steps\PagesStep\PagesTemplatesDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -218,13 +233,17 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Steps\FrameworkTypeStep\FrameworkTypeStepResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FrameworkTypeStepResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Steps\PagesStep\PagesStepResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PagesStepResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Steps\ProjectsStep\ProjectsStepResources.resx">
+    <EmbeddedResource Include="Steps\ProjectTypeStep\ProjectTypeStepResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ProjectsStepResources.Designer.cs</LastGenOutput>
+      <LastGenOutput>ProjectTypeStepResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Steps\SummaryStep\SummaryStepResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

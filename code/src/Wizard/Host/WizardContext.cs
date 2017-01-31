@@ -21,6 +21,8 @@ namespace Microsoft.Templates.Wizard.Host
         public event SaveStateEventHandler SaveState;
 
         //TODO: MAKE READONLY??
+        public ProjectInfoViewModel SelectedProjectType { get; set; }
+        public ProjectInfoViewModel SelectedFrameworkType { get; set; }
         public Dictionary<Type, List<GenInfo>> SelectedTemplates { get; } = new Dictionary<Type, List<GenInfo>>();
 
         public WizardContext(TemplatesRepository templatesRepository, GenShell shell)

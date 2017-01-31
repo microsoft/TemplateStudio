@@ -27,6 +27,7 @@ namespace Microsoft.Templates.Extension
 
         public override void AddItemToActiveProject(string itemFullPath)
         {
+            //TODO: Improve performance (allow passing various files to add)
             var proj = GetActiveProject();
             proj.ProjectItems.AddFromFile(itemFullPath);
 
