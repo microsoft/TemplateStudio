@@ -129,4 +129,13 @@
   <data name="ProjectsTitle" xml:space="preserve">
     <value>Project templates selected:</value>
   </data>
+  <data name="AcceptTerms" xml:space="preserve">
+    <value>Accept Terms: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat ante justo, quis scelerisque sem rhoncus vitae. Nullam sit amet purus nec leo tempus tempor.</value>
+  </data>
+  <data name="LicenceCommand" xml:space="preserve">
+    <value>View Licence</value>
+  </data>
+  <data name="LicenceDialogCaption" xml:space="preserve">
+    <value>&lt;{0}&gt; Licence Terms</value>
+  </data>
 </root>

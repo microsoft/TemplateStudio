@@ -61,11 +61,38 @@ namespace Microsoft.Templates.Wizard.Steps.SummaryStep {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accept Terms: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat ante justo, quis scelerisque sem rhoncus vitae. Nullam sit amet purus nec leo tempus tempor..
+        /// </summary>
+        public static string AcceptTerms {
+            get {
+                return ResourceManager.GetString("AcceptTerms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Feature templates selected:.
         /// </summary>
         public static string FeaturesTitle {
             get {
                 return ResourceManager.GetString("FeaturesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Licence.
+        /// </summary>
+        public static string LicenceCommand {
+            get {
+                return ResourceManager.GetString("LicenceCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;{0}&gt; Licence Terms.
+        /// </summary>
+        public static string LicenceDialogCaption {
+            get {
+                return ResourceManager.GetString("LicenceDialogCaption", resourceCulture);
             }
         }
         

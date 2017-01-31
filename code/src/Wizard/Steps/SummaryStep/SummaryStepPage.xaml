@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:steps="clr-namespace:Microsoft.Templates.Wizard.Steps"
       xmlns:converters="clr-namespace:Microsoft.Templates.Wizard.Converters"
+      xmlns:local="clr-namespace:Microsoft.Templates.Wizard.Steps.SummaryStep"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="SummaryStepPage">
@@ -17,8 +18,13 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    
+
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
         <ItemsControl ItemsSource="{Binding Templates}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
@@ -27,7 +33,25 @@
                         <ItemsControl ItemsSource="{Binding Items}" Style="{StaticResource SummaryInfoItemsStyle}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding}" />
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Name}" />
+                                            <TextBlock>
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat=", {0}, {1}, {2}">
+                                                        <Binding Path="TemplateName" />
+                                                        <Binding Path="Author" />
+                                                        <Binding Path="Framework" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </StackPanel>
+                                        <TextBlock Visibility="{Binding LicenceVisibility}">           
+                                            <Hyperlink Command="{Binding ViewLicenceCommand}">
+                                                <TextBlock Text="{x:Static local:SummaryStepResources.LicenceCommand}"/>
+                                            </Hyperlink>
+                                        </TextBlock>
+                                    </StackPanel>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -35,5 +59,6 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        <TextBlock Text="{x:Static local:SummaryStepResources.AcceptTerms}" Grid.Row="1" TextWrapping="Wrap" />
     </Grid>
 </steps:StepPage>
