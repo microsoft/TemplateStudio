@@ -1,14 +1,12 @@
+using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.TemplateEngine.Edge.Template;
+using Microsoft.Templates.Core;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.TemplateEngine.Edge.Settings;
-using Microsoft.TemplateEngine.Edge.Template;
-using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Locations;
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -57,7 +55,7 @@ namespace Microsoft.Templates.Test
 
             //Generate page
             var pageOutputPath = Path.Combine(projectOutputPath, targetProjectTemplate.Name);
-            var page = TemplateCreator.InstantiateAsync(pageTemplate, pageTemplate.Name, null, pageOutputPath, new Dictionary<string, string>(), true).Result;
+            var page = CodeGen.Instance.Creator.InstantiateAsync(pageTemplate, pageTemplate.Name, null, pageOutputPath, new Dictionary<string, string>(), true).Result;
 
             //Add file to proj
             AddToProject("TestApp", projectOutputPath, page);
@@ -100,7 +98,7 @@ namespace Microsoft.Templates.Test
         private string GenerateProject(string testPath, string projectName, ITemplateInfo projectTemplate)
         {
             var outputPath = Path.Combine(testPath, projectName);
-            var result = TemplateCreator.InstantiateAsync(projectTemplate, "TestApp", null, outputPath, new Dictionary<string, string>(), true).Result;
+            var result = CodeGen.Instance.Creator.InstantiateAsync(projectTemplate, "TestApp", null, outputPath, new Dictionary<string, string>(), true).Result;
             return outputPath;
         }
 
@@ -122,10 +120,6 @@ namespace Microsoft.Templates.Test
                 msbuildProj.Save();
             }
         }
-
- 
-
-      
 
         private static int BuildSolution(string solutionName, string outputPath, string outputFile)
         {

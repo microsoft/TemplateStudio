@@ -1,0 +1,3 @@
+<data name="MVVMLightMasterDetailPageTitle.Text" xml:space="preserve">
+  <value>MVVMLightMasterDetailPage</value>
+</data>

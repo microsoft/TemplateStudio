@@ -1,10 +1,12 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Settings;
 using Microsoft.TemplateEngine.Edge.Template;
+using Microsoft.TemplateEngine.Orchestrator.RunnableProjects;
 using Microsoft.TemplateEngine.Utils;
 using Microsoft.Templates.Core.Locations;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -23,6 +25,8 @@ namespace Microsoft.Templates.Core
         private readonly Lazy<string> _workingFolder = new Lazy<string>(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), FolderName));
         public string WorkingFolder => _workingFolder.Value;
 
+        private string FileVersionPath => Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName, TemplatesLocation.VersionFileName);
+
         public TemplatesRepository(TemplatesLocation location)
         {
             _location = location;
@@ -30,28 +34,20 @@ namespace Microsoft.Templates.Core
 
         public void Sync()
         {
-            EnsureHostInitialized();
-
-            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
-
-            if (_location != null)
+            if (_location != null && IsUpdateAvailable())
             {
                 _location.Copy(WorkingFolder);
 
-                TemplateCache.DeleteAllLocaleCacheFiles();
-
-                TemplateCache.Scan(WorkingFolder + $@"\{TemplatesLocation.PackagesName}\*");
-                TemplateCache.Scan(WorkingFolder + $@"\{TemplatesLocation.TemplatesName}");
-
-                TemplateCache.WriteTemplateCaches();
+                CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
+                CodeGen.Instance.Cache.Scan(WorkingFolder + $@"\{TemplatesLocation.TemplatesName}");
+                CodeGen.Instance.Cache.WriteTemplateCaches();
             }
+
         }
 
         public IEnumerable<ITemplateInfo> GetAll()
         {
-            EnsureHostInitialized();
-
-            var queryResult = TemplateCreator.List(false, WellKnownSearchFilters.LanguageFilter("C#"));
+            var queryResult = CodeGen.Instance.Creator.List(false, WellKnownSearchFilters.LanguageFilter("C#"));
 
             return queryResult
                         .Where(r => r.IsMatch)
@@ -64,43 +60,39 @@ namespace Microsoft.Templates.Core
             throw new NotImplementedException();
         }
 
-        private static void EnsureHostInitialized()
+        private bool IsUpdateAvailable()
         {
-            if (EngineEnvironmentSettings.Host == null)
+            if (!IsFileVersionExpired())
             {
-                EngineEnvironmentSettings.Host = CreateHost();
+                return false;
+            }
+            var repoVersion = _location.GetVersion(WorkingFolder);
+            var installedVersion = GetInstalledVersion();
+
+            return repoVersion != installedVersion;
+        }
+
+        private string GetInstalledVersion()
+        {
+            if (File.Exists(FileVersionPath))
+            {
+                return File.ReadAllText(FileVersionPath);
+            }
+            else
+            {
+                return "1.0.0";
             }
         }
 
-        private static ITemplateEngineHost CreateHost()
+        private bool IsFileVersionExpired()
         {
-            //TODO: REVIEW THIS
-            return new DefaultTemplateEngineHost(FolderName, "1.0.0", CultureInfo.CurrentCulture.Name, new Dictionary<string, string>());
-        }
-
-        //TODO: THIS IS TEMPORAL WHILE TEMPLATING TEAM RESOLVES APPDOMAIN LOAD ISSUES
-        private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
-        {
-            try
+            if (!File.Exists(FileVersionPath))
             {
-                string path = Assembly.GetExecutingAssembly().Location;
-                path = Path.GetDirectoryName(path);
-
-                if (args.Name.ToLower().Contains("templateengine") || args.Name.ToLower().Contains("newtonsoft"))
-                {
-                    var nameChunks = args.Name.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                    var name = nameChunks[0].Trim();
-                    path = Path.Combine(path, $"{name}.dll");
-                    Assembly ret = Assembly.LoadFrom(path);
-                    return ret;
-                }
-            }
-            catch
-            {
-                //TODO: LOG THIS
+                return true;
             }
 
-            return null;
+            var fileVersion = new FileInfo(FileVersionPath);
+            return fileVersion.LastWriteTime.AddMinutes(Configuration.Current.VersionCheckingExpirationMinutes) <= DateTime.Now;
         }
     }
 }

@@ -19,12 +19,12 @@ namespace Microsoft.Templates.Wizard.Host
         public WizardHost Host { get; }
         public WizardSteps Steps { get; }
 
-        public WizardHostViewModel(WizardHost host, WizardSteps steps, TemplatesRepository templatesRepository)
+        public WizardHostViewModel(WizardHost host, WizardSteps steps, TemplatesRepository templatesRepository, GenShell shell)
         {
             //TODO: VERIFY NOT NULL
             Host = host;
             Steps = steps;
-            _context = new WizardContext(templatesRepository);
+            _context = new WizardContext(templatesRepository, shell);
             _context.PropertyChanged += _context_PropertyChanged;
 
             NextButtonText = WizardHostResources.NextButton;

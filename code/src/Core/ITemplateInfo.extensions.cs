@@ -85,7 +85,7 @@ namespace Microsoft.Templates.Core
         private static string GetConfigDir(ITemplateInfo ti)
         {
             IFile file;
-            SettingsLoader.TryGetFileFromIdAndPath(ti.ConfigMountPointId, ti.ConfigPlace, out file);
+            CodeGen.Instance.Settings.SettingsLoader.TryGetFileFromIdAndPath(ti.ConfigMountPointId, ti.ConfigPlace, out file);
             if (file?.Parent == null)
             {
                 return null;

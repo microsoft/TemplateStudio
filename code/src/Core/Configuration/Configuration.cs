@@ -17,7 +17,7 @@ namespace Microsoft.Templates.Core
         public string LogFileFolderPath { get; set; } = @"UWPTemplates\Logs";
         public TraceEventType DiagnosticsTraceLevel { get; set; } = IsLocalExecution ? TraceEventType.Verbose : (TraceEventType)Enum.Parse(typeof(TraceEventType), "###DiagnosticsTraceLevel###", true);
         public int DaysToKeepDiagnosticsLogs { get; set; } = 5;
-
+        public int VersionCheckingExpirationMinutes { get; set; } = IsLocalExecution ? 5 : 120;
         private static Configuration _current;
         public static Configuration Current
         {

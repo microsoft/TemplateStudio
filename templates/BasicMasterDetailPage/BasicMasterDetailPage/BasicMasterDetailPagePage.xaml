@@ -68,13 +68,8 @@
                 Grid.Row="1"                
                 ItemsSource="{Binding DessertList}"
                 SelectionMode="Single"
-                IsItemClickEnabled="True">
-
-                <i:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="ItemClick">
-                        <core:InvokeCommandAction Command="{Binding NavigateToDetailCommand}"  />
-                    </core:EventTriggerBehavior>
-                </i:Interaction.Behaviors>
+                IsItemClickEnabled="True"
+                SelectedItem="{Binding Selected, Mode=TwoWay}">
 
                 <ListView.ItemTemplate>
                     <DataTemplate>

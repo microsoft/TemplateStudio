@@ -61,15 +61,6 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Page.
-        /// </summary>
-        public static string NewPage {
-            get {
-                return ResourceManager.GetString("NewPage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Page name:.
         /// </summary>
         public static string PageName_Text {
