@@ -8,14 +8,14 @@
 
   <Identity
     Name="8ae3f64a-9f24-414f-ba36-a33cdac366b1"
-    Publisher="CN=mvega"
+    Publisher="CN=Param_UserName"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="8ae3f64a-9f24-414f-ba36-a33cdac366b1" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>MVVMLightSplitViewProject</DisplayName>
-    <PublisherDisplayName>mvega</PublisherDisplayName>
+    <PublisherDisplayName>Param_UserName</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

@@ -8,14 +8,14 @@
 
   <Identity
     Name="04047e64-bc2b-45c4-9e12-f9bd495774b3"
-    Publisher="CN=mvega"
+    Publisher="CN=Param_UserName"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="04047e64-bc2b-45c4-9e12-f9bd495774b3" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>BasicBlankProject</DisplayName>
-    <PublisherDisplayName>mvega</PublisherDisplayName>
+    <PublisherDisplayName>Param_UserName</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

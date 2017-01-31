@@ -20,6 +20,7 @@ namespace Microsoft.Templates.Wizard.Host
 
                 steps.Add<Steps.ProjectTypeStep.ProjectTypeStepPage>();
                 steps.Add<Steps.ProjectsStep.ProjectsStepPage>();
+                steps.Add<Steps.PagesStep.PagesStepPage>();
                 steps.Add<Steps.SummaryStep.SummaryStepPage>();
 
                 return steps;

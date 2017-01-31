@@ -22,5 +22,11 @@
     {
       "path": ".\\BasicBlankProject\\BasicBlankProject.csproj"
     }
-  ]
+  ],
+  "symbols": {
+    "UserName": {
+      "type": "parameter",
+      "replaces": "Param_UserName"
+    }
+  }
 }

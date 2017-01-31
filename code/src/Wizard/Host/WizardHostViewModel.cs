@@ -32,6 +32,8 @@ namespace Microsoft.Templates.Wizard.Host
 
         public void Iniatialize()
         {
+            _context.TemplatesRepository.Sync();
+
             var step = Steps.First();
             Navigate(step);
         }
