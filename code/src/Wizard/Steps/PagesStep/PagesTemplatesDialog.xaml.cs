@@ -24,9 +24,9 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
 
         public GenInfo Result { get; set; }
 
-        public PagesTemplatesDialog(WizardContext context)
+        public PagesTemplatesDialog(WizardContext context, IEnumerable<string> selectedNames)
         {
-            ViewModel = new PagesTemplatesDialogViewModel(context, this);
+            ViewModel = new PagesTemplatesDialogViewModel(context, this, selectedNames);
 
             DataContext = ViewModel;
             Loaded += PagesTemplatesDialog_Loaded;

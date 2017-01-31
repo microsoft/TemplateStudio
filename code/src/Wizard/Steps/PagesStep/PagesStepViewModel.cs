@@ -59,7 +59,7 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
 
         private void ShowAddPageDialog()
         {
-            var dialog = new PagesTemplatesDialog(_context);
+            var dialog = new PagesTemplatesDialog(_context, Templates.Select(t => t.Name));
             var dialogResult = dialog.ShowDialog();
 
             if (dialogResult.HasValue && dialogResult.Value && dialog.Result != null)

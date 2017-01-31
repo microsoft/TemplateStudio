@@ -19,11 +19,13 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
 
         private readonly WizardContext _context;
         private readonly PagesTemplatesDialog _dialog;
+        private readonly IEnumerable<string> _selectedNames;
 
-        public PagesTemplatesDialogViewModel(WizardContext context, PagesTemplatesDialog dialog)
+        public PagesTemplatesDialogViewModel(WizardContext context, PagesTemplatesDialog dialog, IEnumerable<string> selectedNames)
         {
             _context = context;
             _dialog = dialog;
+            _selectedNames = selectedNames;
         }
 
         public ICommand OkCommand => new RelayCommand(SaveAndClose, IsValid);
@@ -40,7 +42,7 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
                 SetProperty(ref _templateSelected, value);
                 if (value != null)
                 {
-                    ItemName = value.Name;
+                    ItemName = InferName(value.Name);
                 }
             }
         }
@@ -52,15 +54,9 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
             set
             {
                 SetProperty(ref _itemName, value);
-                if (string.IsNullOrEmpty(value))
-                {
-                    _isValid = false;
-                    throw new Exception("Invalid name");
-                }
-                else
-                {
-                    _isValid = true;
-                }
+
+                ValidateName(value);
+
                 OnPropertyChanged("OkCommand");
             }
         }
@@ -99,5 +95,42 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
         }
 
         private bool IsValid() => _isValid;
+
+        private void ValidateName(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                _isValid = false;
+                throw new Exception("Name cannot be empty");
+            }
+            if (_selectedNames.Contains(value))
+            {
+                _isValid = false;
+                throw new Exception("Name is already selected");
+            }
+
+            _isValid = true;
+        }
+
+        private string InferName(string name)
+        {
+            if (!_selectedNames.Contains(name))
+            {
+                return name;
+            }
+
+            for (int i = 1; i < 32; i++)
+            {
+                var newName = $"{name}{i}";
+
+                if (!_selectedNames.Contains(newName))
+                {
+                    return newName;
+                }
+            }
+
+            //TODO: SEE WHAT TO DO HERE
+            return null;
+        }
     }
 }
