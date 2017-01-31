@@ -124,6 +124,11 @@
       <DependentUpon>PagesStepResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Steps\PagesStep\PagesStepViewModel.cs" />
+    <Compile Include="Steps\PagesStep\PagesTemplatesDialog.xaml.cs">
+      <DependentUpon>PagesTemplatesDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Steps\PagesStep\PagesTemplatesDialogViewModel.cs" />
+    <Compile Include="Steps\PagesStep\PageViewModel.cs" />
     <Compile Include="Steps\ProjectsStep\ProjectsStepPage.xaml.cs">
       <DependentUpon>ProjectsStepPage.xaml</DependentUpon>
     </Compile>
@@ -163,6 +168,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Steps\PagesStep\PagesStepPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Steps\PagesStep\PagesTemplatesDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -251,9 +260,8 @@
   <ItemGroup>
     <Resource Include="Resources\common-icons.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Assets\DefaultProjectIcon.jpg" />
+    <Resource Include="Assets\DefaultProjectIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="CERTENROLLLib">

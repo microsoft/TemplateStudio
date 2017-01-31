@@ -17,6 +17,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
+    
     <Grid>
         <ItemsControl ItemsSource="{Binding Templates}">
             <ItemsControl.ItemTemplate>

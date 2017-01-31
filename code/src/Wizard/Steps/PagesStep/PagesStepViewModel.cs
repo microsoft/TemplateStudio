@@ -1,5 +1,6 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Wizard.Dialog;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Wizard.ViewModels;
 using System;
@@ -8,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Microsoft.Templates.Wizard.Steps.PagesStep
 {
@@ -22,74 +24,71 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
             _context.SaveState += _context_SaveState;
         }
 
-        private void _context_SaveState(object sender, EventArgs e)
-        {
-            if (_context.SelectedTemplates.ContainsKey(this.GetType()))
-            {
-                _context.SelectedTemplates.Remove(this.GetType());
-            }
+        public ICommand AddPageCommand => new RelayCommand(ShowAddPageDialog);
+        public ICommand RemovePageCommand => new RelayCommand(RemovePage);
 
-            var genInfo = new GenInfo
-            {
-                Name = ItemName,
-                Template = TemplateSelected.Info
-            };
- 
-            _context.SelectedTemplates.Add(this.GetType(), new GenInfo[] { genInfo });
-        }
+        public ObservableCollection<PageViewModel> Templates { get; } = new ObservableCollection<PageViewModel>();
 
-        public ObservableCollection<TemplateViewModel> Templates { get; } = new ObservableCollection<TemplateViewModel>();
-
-        private TemplateViewModel _templateSelected;
-        public TemplateViewModel TemplateSelected
+        private PageViewModel _templateSelected;
+        public PageViewModel TemplateSelected
         {
             get { return _templateSelected; }
             set
             {
                 SetProperty(ref _templateSelected, value);
-                if (value != null)
-                {
-                    _context.CanGoForward = true;
-                    ItemName = value.Name;
-                }
             }
         }
 
-        private string _itemName;
-        public string ItemName
-        {
-            get { return _itemName; }
-            set
-            {
-                SetProperty(ref _itemName, value);
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    _context.CanGoForward = false;
-                }
-                else
-                {
-                    _context.CanGoForward = true;
-                }
-            }
-        }
 
         //TODO: MAKE THIS METHOD TRULY ASYNC
         public async Task LoadDataAsync()
         {
             Templates.Clear();
 
-            var projectTemplates = _context.TemplatesRepository
-                                                    .GetAll()
-                                                    .Where(f => f.GetTemplateType() == TemplateType.Page)
-                                                    .Select(t => new TemplateViewModel(t))
-                                                    .OrderBy(t => t.Order)
+            var selectedTemplates = _context.SelectedTemplates
+                                                    .Where(t => t.Key == this.GetType())
+                                                    .SelectMany(t => t.Value)
+                                                    .Select(g => new PageViewModel(g))
                                                     .ToList();
 
-            Templates.AddRange(projectTemplates);
+            Templates.AddRange(selectedTemplates);
 
-            TemplateSelected = projectTemplates.FirstOrDefault();
 
             await Task.FromResult(true);
+        }
+
+        private void ShowAddPageDialog()
+        {
+            var dialog = new PagesTemplatesDialog(_context);
+            var dialogResult = dialog.ShowDialog();
+
+            if (dialogResult.HasValue && dialogResult.Value && dialog.Result != null)
+            {
+                Templates.Add(new PageViewModel(dialog.Result));
+            }
+
+        }
+
+        private void RemovePage()
+        {
+            if (TemplateSelected != null)
+            {
+                Templates.Remove(TemplateSelected);
+            }
+        }
+
+        private void _context_SaveState(object sender, EventArgs e)
+        {
+            if (!_context.SelectedTemplates.ContainsKey(this.GetType()))
+            {
+                _context.SelectedTemplates.Add(this.GetType(), new List<GenInfo>());
+            }
+            else
+            {
+                _context.SelectedTemplates[this.GetType()].Clear();
+            }
+
+            _context.SelectedTemplates[this.GetType()].AddRange(Templates.Select(t => t.Info));
         }
     }
 }

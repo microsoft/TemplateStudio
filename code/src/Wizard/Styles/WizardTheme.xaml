@@ -7,6 +7,8 @@
     <Thickness x:Key="MediumLeftMargin">10,0,0,0</Thickness>
     <Thickness x:Key="ShortTopMargin">0,5,0,0</Thickness>
     <Thickness x:Key="MediumTopMargin">0,10,0,0</Thickness>
+    <Thickness x:Key="ShortBottomMargin">0,0,0,5</Thickness>
+    <Thickness x:Key="MediumMargin">10</Thickness>
 
     <!--WIZARD STYLES-->
     <Style TargetType="Grid" x:Key="PageContainerStyle">
@@ -76,8 +78,28 @@
     </Style>
     
     <!--PAGES-->
-    <Style TargetType="StackPanel" x:Key="PageNameContainerStyle">
-        <Setter Property="Margin" Value="{StaticResource MediumTopMargin}" />
+     <Style TargetType="Image" x:Key="SelectedPageIcon">
+        <Setter Property="Width" Value="40" />
+        <Setter Property="Height" Value="40" />
+    </Style>
+        <Style TargetType="StackPanel" x:Key="SelectedPageTextContainer">
+        <Setter Property="Margin" Value="{StaticResource ShortLeftMargin}" />
+    </Style>
+     <Style TargetType="TextBlock" x:Key="SelectedPageTitle">
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+     <Style TargetType="TextBlock" x:Key="SelectedPageSubtitle">
+    </Style>
+    <Style TargetType="Button" x:Key="AsideButtonStyle">
+        <Setter Property="Margin" Value="{StaticResource ShortBottomMargin}" />
+        <Setter Property="Width" Value="100" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="NoResultsStyle">
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+    <!--PAGES DIALOG-->
+    <Style TargetType="Grid" x:Key="PageNameContainerStyle">
+        <Setter Property="Margin" Value="{StaticResource MediumMargin}" />
     </Style>
     <Style TargetType="TextBox" x:Key="PageNameValueStyle">
         <Setter Property="Width" Value="200px" />

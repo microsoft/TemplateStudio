@@ -11,7 +11,7 @@ namespace Microsoft.Templates.Wizard.ViewModels
 {
     public class TemplateViewModel : ObservableBase
     {
-        private const string DefaultProjectIcon = "/Microsoft.Templates.Wizard;component/Assets/DefaultProjectIcon.jpg";
+        private const string DefaultProjectIcon = "/Microsoft.Templates.Wizard;component/Assets/DefaultProjectIcon.png";
 
         public TemplateViewModel()
         {

@@ -71,7 +71,7 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectsStep
 			};
 			genInfo.Parameters.Add("UserName", Environment.UserName);
 
-			_context.SelectedTemplates.Add(this.GetType(), new GenInfo[] { genInfo });
+			_context.SelectedTemplates.Add(this.GetType(), new List<GenInfo> { genInfo });
 
 		}
     }
