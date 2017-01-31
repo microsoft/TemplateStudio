@@ -24,7 +24,7 @@ namespace Microsoft.Templates.Wizard.Host
             //TODO: VERIFY NOT NULL
             Host = host;
             Steps = steps;
-            _context = new WizardContext(templatesRepository, shell);
+            _context = new WizardContext(templatesRepository, shell) { CanGoForward = true };
             _context.PropertyChanged += _context_PropertyChanged;
 
             NextButtonText = WizardHostResources.NextButton;

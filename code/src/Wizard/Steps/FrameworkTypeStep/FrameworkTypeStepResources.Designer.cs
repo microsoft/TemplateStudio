@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Templates.Wizard.Steps.ProjectsStep {
+namespace Microsoft.Templates.Wizard.Steps.FrameworkTypeStep {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectsStep {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ProjectsStepResources {
+    public class FrameworkTypeStepResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ProjectsStepResources() {
+        internal FrameworkTypeStepResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectsStep {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.Templates.Wizard.Steps.ProjectsStep.ProjectsStepResources", typeof(ProjectsStepResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.Templates.Wizard.Steps.FrameworkTypeStep.FrameworkTypeStepResources", typeof(FrameworkTypeStepResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectsStep {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select the project template:.
+        ///   Looks up a localized string similar to Select the project framework:.
         /// </summary>
         public static string PageTitle {
             get {

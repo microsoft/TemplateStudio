@@ -16,48 +16,20 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectTypeStep
         {
             //TODO: VERIFY NOT NULL
             _context = context;
-            _context.SaveState += OncontextSaveState;
+            _context.SaveState += OnContextSaveState;
         }
 
-        private void OncontextSaveState(object sender, EventArgs e)
-        {            
-        }
+        private void OnContextSaveState(object sender, EventArgs e) => _context.SelectedProjectType = SelectedProjectType;
 
         public ObservableCollection<ProjectTypeViewModel> ProjectTypes { get; } = new ObservableCollection<ProjectTypeViewModel>();
 
-        private ProjectTypeViewModel _projectTypeSelected;
-        public ProjectTypeViewModel ProjectTypeSelected
+        private ProjectTypeViewModel _selectedProjectType;
+        public ProjectTypeViewModel SelectedProjectType
         {
-            get { return _projectTypeSelected; }
-            set
-            {
-                SetProperty(ref _projectTypeSelected, value);
-                if (value != null)
-                {
-                    _context.CanGoForward = true;
-                    ProjectType = value.ProjectType;
-                }
-            }
+            get => _selectedProjectType;
+            set => SetProperty(ref _selectedProjectType, value);
         }
-
-        private string _projectType;
-        public string ProjectType
-        {
-            get { return _projectType; }
-            set
-            {
-                SetProperty(ref _projectType, value);
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    _context.CanGoForward = false;
-                }
-                else
-                {
-                    _context.CanGoForward = true;
-                }
-            }
-        }
-
+        
         //TODO: MAKE THIS METHOD TRULY ASYNC
         public async Task LoadDataAsync()
         {
@@ -73,7 +45,7 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectTypeStep
 
             ProjectTypes.AddRange(projectTypes);
 
-            ProjectTypeSelected = projectTypes.FirstOrDefault();
+            SelectedProjectType = projectTypes.FirstOrDefault();
 
             await Task.FromResult(true);
         }

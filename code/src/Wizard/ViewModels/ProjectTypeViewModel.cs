@@ -4,7 +4,7 @@ using Microsoft.TemplateEngine.Abstractions;
 namespace Microsoft.Templates.Wizard.ViewModels
 {
     public class ProjectTypeViewModel : ObservableBase
-    {        
+    {
         private string _projectType;
         public string ProjectType
         {
