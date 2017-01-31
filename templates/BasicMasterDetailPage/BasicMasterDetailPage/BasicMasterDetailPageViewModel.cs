@@ -1,9 +1,9 @@
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Page_NS.Core;
 
 namespace Page_NS.BasicMasterDetailPage
@@ -32,11 +32,14 @@ namespace Page_NS.BasicMasterDetailPage
         public DessertModel Selected
         {
             get => _selected;
-            set => Set(ref _selected, value);
+            set
+            {
+                Set(ref _selected, value);
+                NavigateToDetail();
+            }
         }
 
         public ICommand LoadDataCommand { get; private set; }
-        public ICommand NavigateToDetailCommand { get; private set; }
 
         public ObservableCollection<DessertModel> DessertList { get; private set; } = new ObservableCollection<DessertModel>();
 
@@ -44,7 +47,6 @@ namespace Page_NS.BasicMasterDetailPage
         {
             this._useNavigation = Window.Current.Bounds.Width < UseNavigationWithRequested;
             LoadDataCommand = new RelayCommand(async () => { await LoadDataAsync(); });
-            NavigateToDetailCommand = new RelayCommand<ItemClickEventArgs>(NavigateToDetail);
             Window.Current.SizeChanged += OnWindowSizeChanged;
             SetGoBack();
         }
@@ -80,20 +82,16 @@ namespace Page_NS.BasicMasterDetailPage
             {
                 this.DessertList.Add(item);
             }
+            Selected = DessertList.First();
         }
 
-        public void NavigateToDetail(ItemClickEventArgs param)
+        public void NavigateToDetail()
         {
-            var item = param.ClickedItem as DessertModel;
-            if (item != null)
+            this.DetailVisibility = Visibility.Visible;
+            if (this._useNavigation)
             {
-                this.Selected = item;
-                this.DetailVisibility = Visibility.Visible;
-                if (this._useNavigation)
-                {
-                    this.MasterVisibility = Visibility.Collapsed;
-                    SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
-                }
+                this.MasterVisibility = Visibility.Collapsed;
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             }
         }
 

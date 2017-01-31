@@ -44,10 +44,13 @@ namespace Microsoft.Templates.Core
 
         private void Initialize()
         {
-            typeof(RunnableProjectGenerator).Assembly
-                                                .GetTypes()
-                                                .ToList()
-                                                .ForEach(t => Settings.SettingsLoader.Components.Register(t));
+            if (!Settings.SettingsLoader.Components.OfType<IGenerator>().Any())
+            {
+                typeof(RunnableProjectGenerator).Assembly
+                                                    .GetTypes()
+                                                    .ToList()
+                                                    .ForEach(t => Settings.SettingsLoader.Components.Register(t));
+            }
         }
 
         private static ITemplateEngineHost CreateHost()

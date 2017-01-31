@@ -25,6 +25,8 @@ namespace Microsoft.Templates.Core
         private readonly Lazy<string> _workingFolder = new Lazy<string>(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), FolderName));
         public string WorkingFolder => _workingFolder.Value;
 
+        private string FileVersionPath => Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName, TemplatesLocation.VersionFileName);
+
         public TemplatesRepository(TemplatesLocation location)
         {
             _location = location;
@@ -32,7 +34,7 @@ namespace Microsoft.Templates.Core
 
         public void Sync()
         {
-            if (_location != null)
+            if (_location != null && IsUpdateAvailable())
             {
                 _location.Copy(WorkingFolder);
 
@@ -56,6 +58,41 @@ namespace Microsoft.Templates.Core
         public ITemplateInfo Find(string name)
         {
             throw new NotImplementedException();
+        }
+
+        private bool IsUpdateAvailable()
+        {
+            if (!IsFileVersionExpired())
+            {
+                return false;
+            }
+            var repoVersion = _location.GetVersion(WorkingFolder);
+            var installedVersion = GetInstalledVersion();
+
+            return repoVersion != installedVersion;
+        }
+
+        private string GetInstalledVersion()
+        {
+            if (File.Exists(FileVersionPath))
+            {
+                return File.ReadAllText(FileVersionPath);
+            }
+            else
+            {
+                return "1.0.0";
+            }
+        }
+
+        private bool IsFileVersionExpired()
+        {
+            if (!File.Exists(FileVersionPath))
+            {
+                return true;
+            }
+
+            var fileVersion = new FileInfo(FileVersionPath);
+            return fileVersion.LastWriteTime.AddMinutes(Configuration.Current.VersionCheckingExpirationMinutes) <= DateTime.Now;
         }
     }
 }

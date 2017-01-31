@@ -19,8 +19,9 @@ using System.Runtime.CompilerServices;
 using System.IO;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Locations;
-using Microsoft.VisualStudio.TemplateWizard;
+
 using Microsoft.Templates.Wizard.Host;
+using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.Wizard.TestApp
 {

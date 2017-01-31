@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TemplateWizard;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
