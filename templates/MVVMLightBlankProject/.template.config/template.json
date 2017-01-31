@@ -25,7 +25,7 @@
   "symbols": {
     "UserName": {
       "type": "parameter",
-      "replaces": "User_Name"
+      "replaces": "Param_UserName"
     }
   }
 }

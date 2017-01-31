@@ -4,7 +4,8 @@
 	{
 		InsertPartialGenerationPostAction,
 		GenerateTestCertificatePostAction,
-		AddProjectToSolution,
-		AddItemToProject
-	}
+        AddProjectToSolutionPostAction,
+        AddItemToProjectPostAction,
+        SetDefaultSolutionConfigurationPostAction
+    }
 }

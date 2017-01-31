@@ -8,14 +8,14 @@
 
   <Identity
     Name="b1383709-6382-4136-809d-a748fc567ea1"
-    Publisher="CN=User_Name"
+    Publisher="CN=Param_UserName"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="b1383709-6382-4136-809d-a748fc567ea1" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>MVVMLightBlankProject</DisplayName>
-    <PublisherDisplayName>User_Name</PublisherDisplayName>
+    <PublisherDisplayName>Param_UserName</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

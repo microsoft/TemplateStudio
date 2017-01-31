@@ -156,4 +156,13 @@
   <data name="InsertPartialGeneration_SuccessPattern" xml:space="preserve">
     <value>Postaction InsertPartialGeneration {0}: Successfully inserted code {1} on anchor {2} in file {3}</value>
   </data>
+  <data name="SetDefaultSolutionConfiguration_ConfigurationNotFoundPattern" xml:space="preserve">
+    <value>Postaction SetDefaultSolutionConfiguration: Configuration {0} {1} was not found</value>
+  </data>
+  <data name="SetDefaultSolutionConfiguration_Error" xml:space="preserve">
+    <value>Postaction SetDefaultSolutionConfiguration: Error setting default solution configuration.</value>
+  </data>
+  <data name="SetDefaultSolutionConfiguration_Success" xml:space="preserve">
+    <value>Postaction SetDefaultSolutionConfiguration: Successfully set default solution configuration.</value>
+  </data>
 </root>

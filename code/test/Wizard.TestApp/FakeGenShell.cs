@@ -101,5 +101,10 @@ namespace Microsoft.Templates.Wizard.TestApp
         {
             return Directory.EnumerateFiles(path, "*proj").FirstOrDefault();
         }
+
+        public override bool SetActiveConfigurationAndPlatform(string configurationName, string platformName)
+        {
+            return true;
+        }
     }
 }
