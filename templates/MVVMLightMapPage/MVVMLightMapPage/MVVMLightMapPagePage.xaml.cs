@@ -24,8 +24,9 @@ namespace Page_NS.MVVMLightMapPage
             MapControl map = sender as MapControl;
             if (map == null)
             {
-                throw new ArgumentNullException("Expected type is MapControl");//TODO: Set your map access key. If you don't have it, request at https://www.bingmapsportal.com/
+                throw new ArgumentNullException("Expected type is MapControl");
             }
+            //TODO: UWPTemplates -> Set your map access key. If you don't have it, request at https://www.bingmapsportal.com/
             map.AccessKey = "";
             ViewModel.SetMap(map);
         }
