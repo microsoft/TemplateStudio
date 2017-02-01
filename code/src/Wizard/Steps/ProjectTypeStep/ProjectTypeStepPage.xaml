@@ -18,15 +18,15 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <ListView
+            Width="274"
             ItemsSource="{Binding ProjectTypes}"
             SelectedItem="{Binding SelectedProjectType, Mode=TwoWay}"
             ItemTemplate="{StaticResource ProjectInfoTemplate}"
             Style="{StaticResource WizardListViewStyle}"/>
-
 
         <StackPanel DataContext="{Binding SelectedProjectType}" Grid.Column="1" Style="{StaticResource TemplateInfoContainerStyle}">
             <StackPanel Orientation="Horizontal">

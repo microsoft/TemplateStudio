@@ -52,10 +52,6 @@ Once installed, you will see a new Project Template which allows you to access t
 
 ![File New Project](resources/vsix/filenew.jpg)
 
-You can access available templates from the contextual menu of an open project as well.
-
-![Add item](resources/vsix/additem.jpg)
-
 ### Official release version.
 Coming soon.
 

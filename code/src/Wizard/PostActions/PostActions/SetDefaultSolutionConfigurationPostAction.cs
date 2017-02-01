@@ -15,7 +15,7 @@ namespace Microsoft.Templates.Wizard.PostActions
         private const string Configuration = "Debug";
         private const string Platform = "x86";
 
-        public override PostActionResult Execute(GenInfo context, TemplateCreationResult generationResult, GenShell shell)
+        public override PostActionResult Execute(string outputPath, GenInfo context, TemplateCreationResult generationResult, GenShell shell)
         {
             try
             {

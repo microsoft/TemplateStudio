@@ -16,7 +16,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 		{
 		}
 
-		public override PostActionResult Execute(GenInfo genInfo, TemplateCreationResult result, GenShell shell)
+		public override PostActionResult Execute(string outputPath, GenInfo genInfo, TemplateCreationResult result, GenShell shell)
 		{
 			try
             {
@@ -27,12 +27,9 @@ namespace Microsoft.Templates.Wizard.PostActions
                 if (string.IsNullOrEmpty(destinationFileName)) return new PostActionResult() { ResultCode = ResultCode.ConfigurationError, Message = PostActionResources.InsertPartialGeneration_EmptyDestinationFileNamePattern.UseParams(Name) };
                 if (string.IsNullOrEmpty(destinationAnchor)) return new PostActionResult() { ResultCode = ResultCode.ConfigurationError, Message = PostActionResources.InsertPartialGeneration_EmptyDestinationAnchorPattern.UseParams(Name) };
 
-                var sourceFile = Path.Combine(shell.OutputPath, genInfo.Name, Name + ".txt");
+                var sourceFile = Path.Combine(outputPath, genInfo.Name, Name + ".txt");
 
-                var pageNamespace = GetValueFromGenParameter(genInfo.Parameters, "PageNamespace");
-                string projectPath = GetProjectPathFromNamespace(shell, pageNamespace);
-
-                var destinationFile = Path.Combine(projectPath, destinationFileName);
+                var destinationFile = Path.Combine(outputPath, destinationFileName);
 
                 if (!File.Exists(sourceFile)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = PostActionResources.InsertPartialGeneration_FileNotFoundPattern.UseParams(sourceFile) };
                 if (!File.Exists(destinationFile)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = PostActionResources.InsertPartialGeneration_FileNotFoundPattern.UseParams(destinationFile) };
@@ -81,16 +78,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 			}
 		}
 
-        private static string GetProjectPathFromNamespace(GenShell shell, string pageNamespace)
-        {
-            var projectPath = shell.OutputPath;
-            foreach (char c in pageNamespace.Where(c => c == '.'))
-            {
-                projectPath = Directory.GetParent(projectPath).FullName;
-            }
-
-            return projectPath;
-        }
+ 
 
         private static string FormatPostActionCode(string[] postActionCodeLines, string destinationFileContent, int anchorIndex)
 		{

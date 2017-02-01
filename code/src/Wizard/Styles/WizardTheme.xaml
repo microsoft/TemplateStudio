@@ -119,7 +119,7 @@
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
     </Style>
     <DataTemplate x:Key="ProjectInfoTemplate">
-        <Grid Width="100" Height="100">
+        <Grid Width="80" Height="100">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="*" />

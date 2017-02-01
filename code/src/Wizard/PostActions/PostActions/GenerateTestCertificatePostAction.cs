@@ -11,7 +11,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 			: base("GenerateTestCertificate", "This post action generates a test certificate for the application", null)
 		{
 		}
-		public override PostActionResult Execute(GenInfo genInfo, TemplateCreationResult result, GenShell shell)
+		public override PostActionResult Execute(string outputPath, GenInfo genInfo, TemplateCreationResult result, GenShell shell)
 		{
 			try
 			{
@@ -81,7 +81,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 
 				var base64Encoded = enrollment.CreatePFX("", PFXExportOptions.PFXExportChainWithRoot);
 
-				var filePath = Path.Combine(shell.OutputPath, genInfo.Name, genInfo.Name) + "_TemporaryKey.pfx";
+				var filePath = Path.Combine(shell.ProjectPath, shell.ProjectName) + "_TemporaryKey.pfx";
 				File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
 
                 shell.AddItemToActiveProject(filePath);

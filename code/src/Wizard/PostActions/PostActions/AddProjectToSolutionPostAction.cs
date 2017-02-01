@@ -11,7 +11,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 		{
 		}
 
-		public override PostActionResult Execute(GenInfo genInfo, TemplateCreationResult generationResult, GenShell shell)
+		public override PostActionResult Execute(string outputPath, GenInfo genInfo, TemplateCreationResult generationResult, GenShell shell)
 		{
 			//TODO: Control overwrites! What happend if the generated content already exits.
 			try
@@ -21,7 +21,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 				{
 					if (!string.IsNullOrWhiteSpace(output.Path))
 					{
-						var projectPath = Path.GetFullPath(Path.Combine(shell.OutputPath, output.Path));
+						var projectPath = Path.GetFullPath(Path.Combine(outputPath, output.Path));
 						shell.AddProjectToSolution(projectPath);
 					}
 				}

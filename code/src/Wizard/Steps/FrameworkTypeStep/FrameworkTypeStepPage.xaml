@@ -18,10 +18,11 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <ListView
+            Width="274"
             ItemsSource="{Binding FrameworkTypes}"
             SelectedItem="{Binding SelectedFrameworkType, Mode=TwoWay}"
             ItemTemplate="{StaticResource ProjectInfoTemplate}"

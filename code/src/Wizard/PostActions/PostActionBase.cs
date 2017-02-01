@@ -17,7 +17,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 			Description = description;
 			_parameters = parameters;
 		}
-		public abstract PostActionResult Execute(GenInfo context, TemplateCreationResult generationResult, GenShell shell);
+		public abstract PostActionResult Execute(string outputPath, GenInfo context, TemplateCreationResult generationResult, GenShell shell);
 
 		internal string GetValueFromParameter(string parameterName)
 		{
