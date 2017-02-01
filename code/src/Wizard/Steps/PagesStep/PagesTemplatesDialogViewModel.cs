@@ -71,7 +71,7 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
             var projectTemplates = _context.TemplatesRepository
                                                     .GetAll()
                                                     .Where(f => f.GetTemplateType() == TemplateType.Page &&
-                                                    f.GetFramework() == _context.SelectedFrameworkType.Name)
+                                                    f.GetFramework().Contains(_context.SelectedFrameworkType.Name))
                                                     .Select(t => new TemplateViewModel(t))
                                                     .OrderBy(t => t.Order)
                                                     .ToList();
