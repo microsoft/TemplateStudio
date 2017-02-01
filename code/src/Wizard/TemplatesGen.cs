@@ -18,7 +18,7 @@ namespace Microsoft.Templates.Wizard
     public class TemplatesGen
     {
         private TemplatesRepository _repository;
-        private GenShell _shell;
+        public GenShell Shell { get; }
 
         //TODO: ERROR HANDLING
         public TemplatesGen(GenShell shell) : this(shell, new TemplatesRepository(new RemoteTemplatesLocation()))
@@ -27,13 +27,13 @@ namespace Microsoft.Templates.Wizard
 
         public TemplatesGen(GenShell shell, TemplatesRepository repository)
         {
-            _shell = shell;
+            Shell = shell;
             _repository = repository;
         }
 
         public IEnumerable<GenInfo> GetUserSelection(WizardSteps selectionSteps)
         {
-            var host = new WizardHost(selectionSteps, _repository, _shell);
+            var host = new WizardHost(selectionSteps, _repository, Shell);
             var result = host.ShowDialog();
 
             if (result.HasValue && result.Value)
@@ -45,7 +45,7 @@ namespace Microsoft.Templates.Wizard
                 //TODO: Review when right-click-actions available to track Project or Page cancelled.
                 AppHealth.Current.Telemetry.TrackCancellationAsync().FireAndForget();
 
-                _shell.CancelWizard();
+                Shell.CancelWizard();
             }
             return null;
         }
@@ -54,7 +54,7 @@ namespace Microsoft.Templates.Wizard
         {
             if (genItems != null)
             {
-                var outputPath = _shell.OutputPath;
+                var outputPath = Shell.OutputPath;
                 var outputs = new List<string>();
 
                 //TODO: RAULMGC record Telemetry for global project afterwards
@@ -90,8 +90,6 @@ namespace Microsoft.Templates.Wizard
                     }
 
 					var postActionResults = ExecutePostActions(outputPath, genInfo, result);
-
-                    _shell.ShowTaskList();
                 }
             }
         }
@@ -100,11 +98,11 @@ namespace Microsoft.Templates.Wizard
         {
             if (templateInfo.GetTemplateType() == TemplateType.Project)
             {
-                return _shell.OutputPath;
+                return Shell.OutputPath;
             }
             else
             {
-                return _shell.ProjectPath;
+                return Shell.ProjectPath;
             }
         }
 
@@ -112,7 +110,7 @@ namespace Microsoft.Templates.Wizard
         {
             if (genInfo.Template.GetTemplateType() == TemplateType.Page)
             {
-                genInfo.Parameters.Add("PageNamespace", _shell.GetActiveNamespace());
+                genInfo.Parameters.Add("PageNamespace", Shell.GetActiveNamespace());
             }
         }
 
@@ -126,7 +124,7 @@ namespace Microsoft.Templates.Wizard
 
             foreach (var postAction in postActions)
             {
-                var postActionResult = postAction.Execute(outputPath, genInfo, generationResult, _shell);
+                var postActionResult = postAction.Execute(outputPath, genInfo, generationResult, Shell);
                 postActionResults.Add(postActionResult);
             }
 
