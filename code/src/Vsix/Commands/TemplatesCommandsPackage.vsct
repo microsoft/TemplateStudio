@@ -43,34 +43,6 @@
     </Bitmaps>
   </Commands>
 
-  <CommandPlacements>
-    <CommandPlacement guid="guidTemplatesCommandsPackageCmdSet" id="TemplatesContextGroup" priority="0x100">
-      <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS" />
-    </CommandPlacement>
-    <CommandPlacement guid="guidTemplatesCommandsPackageCmdSet" id="TemplatesContextGroup" priority="0x200">
-      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_PROJNODE" />
-    </CommandPlacement>
-    <CommandPlacement guid="guidTemplatesCommandsPackageCmdSet" id="TemplatesContextGroup" priority="0x100">
-      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_FOLDERNODE" />
-    </CommandPlacement>
-
-    <CommandPlacement guid="guidTemplatesCommandsPackageCmdSet" id="TemplatesContextMenu" priority="0x0100">
-      <Parent guid="guidTemplatesCommandsPackageCmdSet" id="TemplatesContextGroup" />
-    </CommandPlacement>
-
-    <CommandPlacement guid="guidTemplatesCommandsPackageCmdSet" id="TemplatesContextMenuGroup" priority="0x0100">
-      <Parent guid="guidTemplatesCommandsPackageCmdSet" id="TemplatesContextMenu" />
-    </CommandPlacement>
-
-    <CommandPlacement guid="guidTemplatesCommandsPackageCmdSet" id="AddPageCommand" priority="0x0100">
-      <Parent guid="guidTemplatesCommandsPackageCmdSet" id="TemplatesContextMenuGroup" />
-    </CommandPlacement>
-
-    <CommandPlacement guid="guidTemplatesCommandsPackageCmdSet" id="AddFeatureCommand" priority="0x0200">
-      <Parent guid="guidTemplatesCommandsPackageCmdSet" id="TemplatesContextMenuGroup" />
-    </CommandPlacement>
-  </CommandPlacements>
-
 
   <Symbols>
     <GuidSymbol name="guidTemplatesCommandsPackage" value="{70616fbe-b608-4e19-a769-cb46095a2f3d}" />
