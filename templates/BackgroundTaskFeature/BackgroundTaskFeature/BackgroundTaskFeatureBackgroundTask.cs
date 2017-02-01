@@ -3,7 +3,7 @@ using System;
 using Windows.ApplicationModel.Background;
 using Windows.UI.Notifications;
 
-namespace BackgroundTaskFeatureBackgroundTask
+namespace Feature_NS
 {
     public sealed class BackgroundTaskFeature : IBackgroundTask
     {
