@@ -1,0 +1,11 @@
+[
+    {
+      "name": "PostActionViewModelLocator",
+      "type": "InsertPartialGenerationPostAction",
+      "description": "Registers new Page in ViewModelLocator",
+      "parameters": {
+        "destination.filename": "ViewModelLocator.cs",
+        "destination.anchor": "//PostActionAnchor: REGISTER PAGE IN VIEW_MODEL"
+      }
+    }
+  ]
