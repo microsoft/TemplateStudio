@@ -8,7 +8,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 {
     public class TelemetryTracker : IDisposable
     {
-        public const string PropertiesPrefix = "UCT ";
+        public const string PropertiesPrefix = "Uct";
         public TelemetryTracker()
         {
         }
@@ -16,19 +16,49 @@ namespace Microsoft.Templates.Core.Diagnostics
         { 
             TelemetryService.SetConfiguration(config);
         }
-        public async Task TrackTemplateGeneratedAsync(string name, string framework, string type)
+
+        public async Task TrackNewProject(ActionStatus status, string appType, string appFx, string templateName, int pagesCount = 0, double timeSpent=0, int featuresDefaultCount=0, int featuresAddedCount = 0, int featuresRemovedCount = 0)
         {
             Dictionary<string, string> properties = new Dictionary<string, string>()
             {
-                {TelemetryEventProperty.Name, "EventName" },
-                {TelemetryEventProperty.Framework, "Caliburn" },
-                { TelemetryEventProperty.Type, "Page" }
+                { TelemetryProperties.ActionStatus, status.ToString() },
+                { TelemetryProperties.AppType, appType },
+                { TelemetryProperties.FxType, appFx },
+                { TelemetryProperties.TemplateName, templateName }
             };
-            await TelemetryService.Current.TrackEventAsync(TelemetryEvents.TemplateGenerated, properties).ConfigureAwait(false);
+
+            Dictionary<string, double> metrics = new Dictionary<string, double>()
+            {
+                { TelemetryMetrics.PagesCount, pagesCount },
+                { TelemetryMetrics.TimeSpent, timeSpent},
+                { TelemetryMetrics.FeaturesDefaultCount, featuresDefaultCount },
+                { TelemetryMetrics.FeaturesAddedCount, featuresAddedCount },
+                { TelemetryMetrics.FeaturesRemovedCount, featuresRemovedCount }
+
+            };
+            await TelemetryService.Current.TrackEventAsync(TelemetryEvents.NewProject, properties, metrics).ConfigureAwait(false);
         }
 
-        //TODO:
-        //Implement more events
+        public async Task TrackNewPage(ActionStatus status, string appType, string appFx, string templateName)
+        {
+            Dictionary<string, string> properties = new Dictionary<string, string>()
+            {
+                { TelemetryProperties.ActionStatus, status.ToString() },
+                { TelemetryProperties.AppType, appType },
+                { TelemetryProperties.FxType, appFx },
+                { TelemetryProperties.TemplateName, templateName }
+            };
+            await TelemetryService.Current.TrackEventAsync(TelemetryEvents.NewPage, properties).ConfigureAwait(false);
+        }
+
+        public async Task TrackWizardAction(int lastStep)
+        {
+            Dictionary<string, string> properties = new Dictionary<string, string>()
+            {
+                { TelemetryProperties.LastStep, lastStep.ToString() }
+            };
+            await TelemetryService.Current.TrackEventAsync(TelemetryEvents.Wizard, properties).ConfigureAwait(false);
+        }
 
         ~TelemetryTracker()
         {

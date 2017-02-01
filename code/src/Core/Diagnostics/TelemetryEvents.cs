@@ -6,24 +6,34 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
+    public enum ActionStatus
+    {
+        Completed,
+        Cancelled,
+        Error
+    }
+
     public class TelemetryEvents
     {
-        public const string TemplateGenerated = TelemetryTracker.PropertiesPrefix + "TemplateGenerated";
-        public const string SessionStarted = TelemetryTracker.PropertiesPrefix + "Session Started";
-        public const string SessionEnded = TelemetryTracker.PropertiesPrefix + "Session Ended";
+        public static string NewProject { get; private set; } = TelemetryTracker.PropertiesPrefix + "NewProject";
+        public static string NewPage { get; private set; } = TelemetryTracker.PropertiesPrefix + "NewPage";
+        public static string Wizard { get; private set; } = TelemetryTracker.PropertiesPrefix + "Wizard";
+    }
+    public class TelemetryProperties
+    {
+        public static string ActionStatus { get; private set; } = TelemetryTracker.PropertiesPrefix + "Status";
+        public static string AppType { get; private set; } = TelemetryTracker.PropertiesPrefix + "AppType";
+        public static string FxType { get; private set; } = TelemetryTracker.PropertiesPrefix + "FxType";
+        public static string TemplateName { get; private set; } = TelemetryTracker.PropertiesPrefix + "TemplateName";
+        public static string LastStep { get; private set; } = TelemetryTracker.PropertiesPrefix + "LastStep";
     }
 
-    public class TelemetryPages
+    public class TelemetryMetrics
     {
-        public const string Project = TelemetryTracker.PropertiesPrefix + "Project";
-        public const string Page = TelemetryTracker.PropertiesPrefix + "Page";
-        public const string Feature = TelemetryTracker.PropertiesPrefix + "Feature";
-    }
-
-    public class TelemetryEventProperty
-    {
-        public const string Name = TelemetryTracker.PropertiesPrefix + "Name";
-        public const string Framework = TelemetryTracker.PropertiesPrefix + "Framework";
-        public const string Type = TelemetryTracker.PropertiesPrefix + "Type";
+        public static string PagesCount {get; private set;} = TelemetryTracker.PropertiesPrefix + "PagesCount";
+        public static string TimeSpent { get; private set; } = TelemetryTracker.PropertiesPrefix + "TimeSpent";
+        public static string FeaturesAddedCount { get; private set; } = TelemetryTracker.PropertiesPrefix + "FeaturesAddedCount";
+        public static string FeaturesRemovedCount { get; private set; } = TelemetryTracker.PropertiesPrefix + "FeaturesRemovedCount";
+        public static string FeaturesDefaultCount { get; private set; } = TelemetryTracker.PropertiesPrefix + "FeaturesDefaultCount";
     }
 }
