@@ -76,7 +76,7 @@ namespace Microsoft.Templates.Wizard
                     }
 
 
-					var postActionResults = ExecutePostActions(genInfo, result);
+					var postActionResults = ExecutePostActions(outputPath, genInfo, result);
 
                     //ShowPostActionResults(postActionResults);
 
@@ -104,7 +104,7 @@ namespace Microsoft.Templates.Wizard
             }
         }
 
-        private IEnumerable<PostActionResult> ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult)
+        private IEnumerable<PostActionResult> ExecutePostActions(string outputPath, GenInfo genInfo, TemplateCreationResult generationResult)
         {
             //Get post actions from template
             var postActions = PostActionCreator.GetPostActions(genInfo.Template);
@@ -114,7 +114,7 @@ namespace Microsoft.Templates.Wizard
 
             foreach (var postAction in postActions)
             {
-                var postActionResult = postAction.Execute(genInfo, generationResult, _shell);
+                var postActionResult = postAction.Execute(outputPath, genInfo, generationResult, _shell);
                 postActionResults.Add(postActionResult);
             }
 

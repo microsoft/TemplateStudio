@@ -4,7 +4,7 @@
       "type": "InsertPartialGenerationPostAction",
       "description": "Adds the page resources to the resource file",
       "parameters": {
-        "destination.filename": ".\\Strings\\en-US\\Resources.resw",
+        "destination.filename": "Strings\\en-US\\Resources.resw",
         "destination.anchor": "<!--PostActionAnchor: ADD PAGE RESOURCES-->"
       }
     },
@@ -13,7 +13,7 @@
       "type": "InsertPartialGenerationPostAction",
       "description": "Set application theme saved on application settings",
       "parameters": {
-        "destination.filename": ".\\App.xaml.cs",
+        "destination.filename": "App.xaml.cs",
         "destination.anchor": "//PostActionAnchor: SET APPLICATION THEME"
       }
     }
