@@ -9,7 +9,6 @@
 
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <StackPanel Margin="{StaticResource PageMargin}">
-    <!--TODO: Add MVVMLightBlankPageTitle.Text to String Resources-->
       <TextBlock
           x:Uid="MVVMLightBlankPageTitle"
           Style="{ThemeResource HeaderTextBlockStyle}"/>

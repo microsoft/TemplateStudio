@@ -25,9 +25,10 @@ namespace BasicSplitViewProject.Shell
         public IEnumerable<ShellNavigationItem> NavigationItems
         {
             get
-            {
-                //TODO: Add new shell navigation items
-                yield return ShellNavigationItem.FromType<HomePage>("PaneHome", Char.ConvertFromUtf32(0xE80F));
+            {                
+                yield return ShellNavigationItem.FromType<HomePage>("PaneHome", Char.ConvertFromUtf32(0xE80F));                
+                //TODO: To show project pages in splitview menu, add shell navigation items for each page
+                //TODO: Edit String/en-US/Resources.resw: Add a menu item title for each page
             }
         }
 
