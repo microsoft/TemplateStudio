@@ -72,11 +72,11 @@
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{x:Static local:PagesStepResources.PageName_Text}" />
-                <TextBox Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" Style="{StaticResource PageNameValueStyle}" />
+                <TextBox Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" Style="{StaticResource PageNameValueStyle}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1">
                 <Button Content="{x:Static local:PagesStepResources.OkCommand}" Command="{Binding OkCommand}" Style="{StaticResource NavigationButtonStyle}" />
-                <Button Content="{x:Static local:PagesStepResources.CancelCommand}" Style="{StaticResource NavigationButtonStyle}" />
+                <Button Content="{x:Static local:PagesStepResources.CancelCommand}" Command="{Binding CancelCommand}" Style="{StaticResource NavigationButtonStyle}" />
             </StackPanel>
         </Grid>
     </Grid>

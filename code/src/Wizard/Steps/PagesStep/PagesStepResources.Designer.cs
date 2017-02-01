@@ -122,5 +122,32 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep {
                 return ResourceManager.GetString("RemoveCommand", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name already exists.
+        /// </summary>
+        public static string ValidationError_AlreadyExists {
+            get {
+                return ResourceManager.GetString("ValidationError_AlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name contains not allowed caracters.
+        /// </summary>
+        public static string ValidationError_BadFormat {
+            get {
+                return ResourceManager.GetString("ValidationError_BadFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name cannot be empty.
+        /// </summary>
+        public static string ValidationError_Empty {
+            get {
+                return ResourceManager.GetString("ValidationError_Empty", resourceCulture);
+            }
+        }
     }
 }
