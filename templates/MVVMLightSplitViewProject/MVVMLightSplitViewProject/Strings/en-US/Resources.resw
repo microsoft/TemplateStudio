@@ -123,5 +123,8 @@
   <data name="PaneHome" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="TODO" xml:space="preserve">
+    <value>Add a splitview menu item title for each page</value>
+  </data>
   <!--PostActionAnchor: ADD PAGE RESOURCES-->
 </root>
