@@ -138,4 +138,13 @@
   <data name="RemoveCommand" xml:space="preserve">
     <value>Remove</value>
   </data>
+  <data name="ValidationError_AlreadyExists" xml:space="preserve">
+    <value>Name already exists</value>
+  </data>
+  <data name="ValidationError_BadFormat" xml:space="preserve">
+    <value>Name contains not allowed caracters</value>
+  </data>
+  <data name="ValidationError_Empty" xml:space="preserve">
+    <value>Name cannot be empty</value>
+  </data>
 </root>

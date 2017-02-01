@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
                 SetProperty(ref _templateSelected, value);
                 if (value != null)
                 {
-                    ItemName = InferName(value.Name);
+                    ItemName = Naming.Infer(_selectedNames, value.Name);
                 }
             }
         }
@@ -55,13 +55,15 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
             {
                 SetProperty(ref _itemName, value);
 
-                ValidateName(value);
+                var validationResult = Naming.Validate(_selectedNames, value);
+
+                HandleValidation(validationResult);
 
                 OnPropertyChanged("OkCommand");
             }
         }
 
-        //TODO: MAKE THIS METHOD TRULY ASYNC
+         //TODO: MAKE THIS METHOD TRULY ASYNC
         public async Task LoadDataAsync()
         {
             Templates.Clear();
@@ -95,43 +97,21 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
             _dialog.Close();
         }
 
-        private bool IsValid() => _isValid;
-
-        private void ValidateName(string value)
+        private void HandleValidation(ValidationResult validationResult)
         {
-            if (string.IsNullOrEmpty(value))
-            {
-                _isValid = false;
-                throw new Exception("Name cannot be empty");
-            }
-            if (_selectedNames.Contains(value))
-            {
-                _isValid = false;
-                throw new Exception("Name is already selected");
-            }
+            _isValid = validationResult.IsValid;
 
-            _isValid = true;
-        }
-
-        private string InferName(string name)
-        {
-            if (!_selectedNames.Contains(name))
+            if (!validationResult.IsValid)
             {
-                return name;
-            }
-
-            for (int i = 1; i < 32; i++)
-            {
-                var newName = $"{name}{i}";
-
-                if (!_selectedNames.Contains(newName))
+                var message = PagesStepResources.ResourceManager.GetString($"ValidationError_{validationResult.ErrorType}");
+                if (string.IsNullOrWhiteSpace(message))
                 {
-                    return newName;
+                    message = "UndefinedError";
                 }
+                throw new Exception(message);
             }
-
-            //TODO: SEE WHAT TO DO HERE
-            return null;
         }
+
+        private bool IsValid() => _isValid;
     }
 }
