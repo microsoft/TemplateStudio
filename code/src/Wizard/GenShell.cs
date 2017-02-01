@@ -40,6 +40,7 @@ namespace Microsoft.Templates.Wizard
         public abstract void AddItemToActiveProject(string itemFullPath);
         public abstract void SaveSolution(string solutionFullPath);
         public abstract string GetActiveNamespace();
+        public abstract void ShowTaskList();
 
         public void CancelWizard()
         {

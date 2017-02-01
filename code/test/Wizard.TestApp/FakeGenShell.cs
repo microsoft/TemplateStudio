@@ -106,5 +106,9 @@ namespace Microsoft.Templates.Wizard.TestApp
         {
             return true;
         }
+
+        public override void ShowTaskList()
+        {
+        }
     }
 }

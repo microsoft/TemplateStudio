@@ -75,11 +75,9 @@ namespace Microsoft.Templates.Wizard
                         outputs.AddRange(result.PrimaryOutputs.Select(o => o.Path));
                     }
 
-
 					var postActionResults = ExecutePostActions(outputPath, genInfo, result);
 
-                    //ShowPostActionResults(postActionResults);
-
+                    _shell.ShowTaskList();
                 }
             }
         }
