@@ -30,7 +30,7 @@
     }
   ],
   "symbols": {
-    "PageNamespace": {
+    "FeatureNamespace": {
       "type": "parameter",
       "replaces": "Feature_NS"
     }

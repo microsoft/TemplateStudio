@@ -10,7 +10,6 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Margin="{StaticResource PageMargin}">
-            <!--TODO: Add BasicSettingsPageTitle.Text to string resources-->
             <TextBlock
                 x:Uid="BasicSettingsPageTitle"
                 Style="{ThemeResource HeaderTextBlockStyle}"/>

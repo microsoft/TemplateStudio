@@ -8,7 +8,6 @@
 
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <StackPanel Margin="{StaticResource PageMargin}">
-    <!--TODO: Add BasicBlankPageTitle.Text to String Resources-->
       <TextBlock
           x:Uid="BasicBlankPageTitle"
           Style="{ThemeResource HeaderTextBlockStyle}"/>

@@ -53,7 +53,6 @@ namespace Microsoft.Templates.Extension
             return false;
         }
 
-
         public override void AddProjectToSolution(string projectFullPath)
         {
             Dte.Solution.AddFromFile(projectFullPath);
@@ -92,6 +91,12 @@ namespace Microsoft.Templates.Extension
         public override void ShowStatusBarMessage(string message)
         {
             Dte.StatusBar.Text = message;
+        }
+
+        public override void ShowTaskList()
+        {
+            var window = Dte.Windows.Item(EnvDTE.Constants.vsWindowKindTaskList);
+            window.Activate();
         }
 
         protected override string GetSelectedItemPath()

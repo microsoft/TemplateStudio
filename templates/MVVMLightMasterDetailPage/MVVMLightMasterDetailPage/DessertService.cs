@@ -5,7 +5,7 @@ namespace Page_NS.MVVMLightMasterDetailPage
 {
     public class DessertService
     {
-        //TODO: GET YOUR OWN DATA
+        //TODO: Use LoadDataAsync method to use your own data
         public async Task<IEnumerable<DessertModel>> GetDataAsync()
         {
             await Task.Delay(0);
