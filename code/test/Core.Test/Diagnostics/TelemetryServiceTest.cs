@@ -26,26 +26,30 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         [Fact]
         public async Task TrackEventAsync()
         {
-            Dictionary<string, string> props = new Dictionary<string, string>();
-            props.Add(TelemetryEventProperty.Name, "TestTelemetrySampleTemplate");
-            props.Add(TelemetryEventProperty.Framework, "MVVMLight");
-            props.Add(TelemetryEventProperty.Type, "Project");
-            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.TemplateGenerated);
+            Dictionary<string, string> props = new Dictionary<string, string>
+            {
+                { TelemetryProperties.TemplateName, "TestTelemetrySampleTemplate" },
+                { TelemetryProperties.AppFx, "MVVMLight" },
+                { TelemetryProperties.AppType, "Blank" }
+            };
+            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.NewProject, props);
         }
 
         [Fact]
         public async Task TrackTwoEventsAsync()
         {
-            Dictionary<string, string> props = new Dictionary<string, string>();
-            props.Add(TelemetryEventProperty.Name, "TestTelemetrySampleTemplate");
-            props.Add(TelemetryEventProperty.Framework, "MVVMLight");
-            props.Add(TelemetryEventProperty.Type, "Project");
-            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.TemplateGenerated, props);
+            Dictionary<string, string> props = new Dictionary<string, string>
+            {
+                { TelemetryProperties.TemplateName, "TestTelemetrySampleTemplate" },
+                { TelemetryProperties.AppFx, "MVVMLight" },
+                { TelemetryProperties.AppType, "Blank" }
+            };
+            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.NewProject, props);
 
-            props[TelemetryEventProperty.Name] = "OtherData";
-            props[TelemetryEventProperty.Framework] = "Caliburn";
-            props[TelemetryEventProperty.Type] = "Page";
-            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.TemplateGenerated, props);
+            props[TelemetryProperties.TemplateName] = "OtherData";
+            props[TelemetryProperties.AppFx] = "Caliburn";
+            props[TelemetryProperties.AppType] = "SplitView";
+            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.NewProject, props);
 
         }
 

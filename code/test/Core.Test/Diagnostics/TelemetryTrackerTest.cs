@@ -17,9 +17,25 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
             _tracker = new TelemetryTracker(Configuration.Current);
         }
         [Fact]
-        public async Task TrackEventAsync()
+        public async Task TrackNewProjectAsync()
         {
-            await _tracker.TrackTemplateGeneratedAsync("TemplateName", "TemplateFramework", "TemplateType");
+            await _tracker.TrackNewProjectAsync(ActionStatus.Completed, "appType", "appFx", "templateName");
         }
+        [Fact]
+        public async Task TrackNewProjectWithMetrics()
+        {
+            await _tracker.TrackNewProjectAsync(ActionStatus.Completed, "appType", "appFx", "templateName", 10, 10, 1, 2, 2);
+        }
+
+        public async Task TrackNewPageAsync()
+        {
+            await _tracker.TrackNewPageAsync(ActionStatus.Completed, "appType", "appFx", "templateName");
+        }
+        [Fact]
+        public async Task TrackWizardAsync()
+        {
+            await _tracker.TrackWizardAsync(3);
+        }
+
     }
 }
