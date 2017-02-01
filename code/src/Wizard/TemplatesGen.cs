@@ -1,6 +1,8 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Wizard.Dialog;
 using Microsoft.Templates.Wizard.Host;
@@ -40,6 +42,9 @@ namespace Microsoft.Templates.Wizard
             }
             else
             {
+                //TODO: Review when right-click-actions available to track Project or Page cancelled.
+                AppHealth.Current.Telemetry.TrackCancellationAsync().FireAndForget();
+
                 _shell.CancelWizard();
             }
             return null;
@@ -51,6 +56,10 @@ namespace Microsoft.Templates.Wizard
             {
                 var outputPath = _shell.OutputPath;
                 var outputs = new List<string>();
+
+                //TODO: RAULMGC record Telemetry for global project afterwards
+                var pagesAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Count();
+                var featuresAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Count();
 
                 foreach (var genInfo in genItems)
                 {
@@ -68,6 +77,11 @@ namespace Microsoft.Templates.Wizard
                     if (result.Status != CreationResultStatus.CreateSucceeded)
                     {
                         //TODO: THROW EXECPTION
+                        AppHealth.Current.Telemetry.TrackTemplateGeneratedErrorAsync(genInfo.Template, pagesAdded, featuresAdded, result.Status, result.Message).FireAndForget();
+                    }
+                    else
+                    {
+                        AppHealth.Current.Telemetry.TrackTemplateGeneratedOkAsync(genInfo.Template, pagesAdded, featuresAdded).FireAndForget();
                     }
 
                     if (result.PrimaryOutputs != null)
