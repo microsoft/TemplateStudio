@@ -17,5 +17,5 @@
   <value>Light</value>
 </data>
 <data name="MVVMLightSettingsPageTitle.Text" xml:space="preserve">
-  <value>MVVMLightBlankPage</value>
+  <value>MVVMLightSettingsPage</value>
 </data>
