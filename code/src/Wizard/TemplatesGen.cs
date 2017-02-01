@@ -1,6 +1,8 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Wizard.Dialog;
 using Microsoft.Templates.Wizard.Host;
@@ -16,7 +18,7 @@ namespace Microsoft.Templates.Wizard
     public class TemplatesGen
     {
         private TemplatesRepository _repository;
-        private GenShell _shell;
+        public GenShell Shell { get; }
 
         //TODO: ERROR HANDLING
         public TemplatesGen(GenShell shell) : this(shell, new TemplatesRepository(new RemoteTemplatesLocation()))
@@ -25,13 +27,13 @@ namespace Microsoft.Templates.Wizard
 
         public TemplatesGen(GenShell shell, TemplatesRepository repository)
         {
-            _shell = shell;
+            Shell = shell;
             _repository = repository;
         }
 
         public IEnumerable<GenInfo> GetUserSelection(WizardSteps selectionSteps)
         {
-            var host = new WizardHost(selectionSteps, _repository, _shell);
+            var host = new WizardHost(selectionSteps, _repository, Shell);
             var result = host.ShowDialog();
 
             if (result.HasValue && result.Value)
@@ -40,7 +42,10 @@ namespace Microsoft.Templates.Wizard
             }
             else
             {
-                _shell.CancelWizard();
+                //TODO: Review when right-click-actions available to track Project or Page cancelled.
+                AppHealth.Current.Telemetry.TrackCancellationAsync().FireAndForget();
+
+                Shell.CancelWizard();
             }
             return null;
         }
@@ -49,8 +54,12 @@ namespace Microsoft.Templates.Wizard
         {
             if (genItems != null)
             {
-                var outputPath = _shell.OutputPath;
+                var outputPath = Shell.OutputPath;
                 var outputs = new List<string>();
+
+                //TODO: RAULMGC record Telemetry for global project afterwards
+                var pagesAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Count();
+                var featuresAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Count();
 
                 foreach (var genInfo in genItems)
                 {
@@ -68,6 +77,11 @@ namespace Microsoft.Templates.Wizard
                     if (result.Status != CreationResultStatus.CreateSucceeded)
                     {
                         //TODO: THROW EXECPTION
+                        AppHealth.Current.Telemetry.TrackTemplateGeneratedErrorAsync(genInfo.Template, pagesAdded, featuresAdded, result.Status, result.Message).FireAndForget();
+                    }
+                    else
+                    {
+                        AppHealth.Current.Telemetry.TrackTemplateGeneratedOkAsync(genInfo.Template, pagesAdded, featuresAdded).FireAndForget();
                     }
 
                     if (result.PrimaryOutputs != null)
@@ -75,11 +89,7 @@ namespace Microsoft.Templates.Wizard
                         outputs.AddRange(result.PrimaryOutputs.Select(o => o.Path));
                     }
 
-
 					var postActionResults = ExecutePostActions(outputPath, genInfo, result);
-
-                    //ShowPostActionResults(postActionResults);
-
                 }
             }
         }
@@ -88,11 +98,11 @@ namespace Microsoft.Templates.Wizard
         {
             if (templateInfo.GetTemplateType() == TemplateType.Project)
             {
-                return _shell.OutputPath;
+                return Shell.OutputPath;
             }
             else
             {
-                return _shell.ProjectPath;
+                return Shell.ProjectPath;
             }
         }
 
@@ -100,7 +110,7 @@ namespace Microsoft.Templates.Wizard
         {
             if (genInfo.Template.GetTemplateType() == TemplateType.Page)
             {
-                genInfo.Parameters.Add("PageNamespace", _shell.GetActiveNamespace());
+                genInfo.Parameters.Add("PageNamespace", Shell.GetActiveNamespace());
             }
         }
 
@@ -114,7 +124,7 @@ namespace Microsoft.Templates.Wizard
 
             foreach (var postAction in postActions)
             {
-                var postActionResult = postAction.Execute(outputPath, genInfo, generationResult, _shell);
+                var postActionResult = postAction.Execute(outputPath, genInfo, generationResult, Shell);
                 postActionResults.Add(postActionResult);
             }
 

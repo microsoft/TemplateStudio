@@ -44,6 +44,8 @@ namespace Microsoft.Templates.Extension
             AppHealth.Current.Verbose.TrackAsync("Creating UWP Community Templates project...").FireAndForget();
             _gen.Generate(_selectedTemplates);
             AppHealth.Current.Verbose.TrackAsync("Generation finished").FireAndForget();
+
+            _gen.Shell.ShowTaskList();
         }
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)

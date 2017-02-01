@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
                 { TelemetryProperties.AppFx, "MVVMLight" },
                 { TelemetryProperties.AppType, "Blank" }
             };
-            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.NewProject, props);
+            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.Project, props);
         }
 
         [Fact]
@@ -44,12 +44,12 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
                 { TelemetryProperties.AppFx, "MVVMLight" },
                 { TelemetryProperties.AppType, "Blank" }
             };
-            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.NewProject, props);
+            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.Project, props);
 
             props[TelemetryProperties.TemplateName] = "OtherData";
             props[TelemetryProperties.AppFx] = "Caliburn";
             props[TelemetryProperties.AppType] = "SplitView";
-            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.NewProject, props);
+            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.Project, props);
 
         }
 

@@ -100,7 +100,6 @@
     <Compile Include="Diagnostics\FileHealthWriterTest.cs" />
     <Compile Include="Diagnostics\TelemetryFixture.cs" />
     <Compile Include="Diagnostics\TelemetryServiceTest.cs" />
-    <Compile Include="Diagnostics\TelemetryTrackerTest.cs" />
     <Compile Include="ITemplateInfoExtensionsTest.cs" />
     <Compile Include="NamingTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
