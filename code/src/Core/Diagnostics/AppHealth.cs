@@ -76,8 +76,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 // free managed resources 
                 foreach(IHealthWriter writer in HealthWriters.Available)
                 {
-                    IDisposable disposableWriter = writer as IDisposable;
-                    if(disposableWriter != null)
+                    if (writer is IDisposable disposableWriter)
                     {
                         disposableWriter.Dispose();
                     }

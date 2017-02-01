@@ -17,13 +17,13 @@ namespace Microsoft.Templates.Core.Diagnostics
             TelemetryService.SetConfiguration(config);
         }
 
-        public async Task TrackNewProject(ActionStatus status, string appType, string appFx, string templateName, int pagesCount = 0, double timeSpent=0, int featuresDefaultCount=0, int featuresAddedCount = 0, int featuresRemovedCount = 0)
+        public async Task TrackNewProjectAsync(ActionStatus status, string appType, string appFx, string templateName, int pagesCount = 0, double timeSpent=0, int featuresDefaultCount=0, int featuresAddedCount = 0, int featuresRemovedCount = 0)
         {
             Dictionary<string, string> properties = new Dictionary<string, string>()
             {
                 { TelemetryProperties.ActionStatus, status.ToString() },
                 { TelemetryProperties.AppType, appType },
-                { TelemetryProperties.FxType, appFx },
+                { TelemetryProperties.AppFx, appFx },
                 { TelemetryProperties.TemplateName, templateName }
             };
 
@@ -39,19 +39,19 @@ namespace Microsoft.Templates.Core.Diagnostics
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.NewProject, properties, metrics).ConfigureAwait(false);
         }
 
-        public async Task TrackNewPage(ActionStatus status, string appType, string appFx, string templateName)
+        public async Task TrackNewPageAsync(ActionStatus status, string appType, string appFx, string templateName)
         {
             Dictionary<string, string> properties = new Dictionary<string, string>()
             {
                 { TelemetryProperties.ActionStatus, status.ToString() },
                 { TelemetryProperties.AppType, appType },
-                { TelemetryProperties.FxType, appFx },
+                { TelemetryProperties.AppFx, appFx },
                 { TelemetryProperties.TemplateName, templateName }
             };
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.NewPage, properties).ConfigureAwait(false);
         }
 
-        public async Task TrackWizardAction(int lastStep)
+        public async Task TrackWizardAsync(int lastStep)
         {
             Dictionary<string, string> properties = new Dictionary<string, string>()
             {

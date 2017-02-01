@@ -99,7 +99,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                     _client.Context.Properties.Add("Application FileVersion", GetFileVersion());
                     
 
-                    _client.TrackEvent(TelemetryEvents.SessionStarted);
+                    _client.TrackEvent(TelemetryEvents.SessionStart);
 
                     IsEnabled = true;
 #if DEBUG
@@ -147,7 +147,6 @@ namespace Microsoft.Templates.Core.Diagnostics
             await SafeExecuteAsync( async () => {
                 if (_client != null)
                 {
-                    _client.TrackEvent(TelemetryEvents.SessionEnded);
                     _client.Flush();
                     _client = null;
                 }
@@ -161,7 +160,6 @@ namespace Microsoft.Templates.Core.Diagnostics
             {
                 if (_client != null)
                 {
-                    _client.TrackEvent(TelemetryEvents.SessionEnded);
                     _client.Flush();
                     System.Threading.Thread.Sleep(1000);
 
