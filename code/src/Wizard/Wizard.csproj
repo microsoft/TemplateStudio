@@ -96,15 +96,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PostActionResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="PostActions\PostActions\AddItemToProjectPostAction.cs" />
-    <Compile Include="PostActions\PostActions\AddProjectToSolutionPostAction.cs" />
+    <Compile Include="PostActions\Catalog\AddItemToProjectPostAction.cs" />
+    <Compile Include="PostActions\Catalog\AddProjectToSolutionPostAction.cs" />
     <Compile Include="PostActions\CustomPostActionDefinition.cs" />
-    <Compile Include="PostActions\PostActions\GenerateTestCertificatePostAction.cs" />
-    <Compile Include="PostActions\PostActions\InsertPartialGenerationPostAction.cs" />
+    <Compile Include="PostActions\Catalog\GenerateTestCertificatePostAction.cs" />
+    <Compile Include="PostActions\Catalog\InsertPartialGenerationPostAction.cs" />
     <Compile Include="PostActions\PostActionBase.cs" />
     <Compile Include="PostActions\PostActionCreator.cs" />
     <Compile Include="PostActions\PostActionResult.cs" />
-    <Compile Include="PostActions\PostActions\SetDefaultSolutionConfigurationPostAction.cs" />
+    <Compile Include="PostActions\Catalog\SetDefaultSolutionConfigurationPostAction.cs" />
     <Compile Include="PostActions\PostActionType.cs" />
     <Compile Include="PostActions\ResultCode.cs" />
     <Compile Include="GenInfo.cs" />

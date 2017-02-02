@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Wizard.PostActions.Catalog;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.Templates.Core;
-using Newtonsoft.Json;
 
 namespace Microsoft.Templates.Wizard.PostActions
 {
-	public class PostActionCreator
+    public class PostActionCreator
 	{
 
 		public static IEnumerable<PostActionBase> GetPostActions(ITemplateInfo template)

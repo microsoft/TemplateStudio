@@ -7,6 +7,7 @@ using Xunit;
 
 using System.Diagnostics;
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
 
 namespace Microsoft.Templates.Core.Test.Diagnostics
 {
@@ -24,6 +25,14 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         }
 
         [Fact]
+        public void ObfuscateUserName()
+        {
+            string hiddenUserName = Environment.UserName.Obfuscate();
+
+            Assert.NotEqual(hiddenUserName, Environment.UserName.ToUpper());
+        }
+
+        [Fact]
         public async Task TrackEventAsync()
         {
             Dictionary<string, string> props = new Dictionary<string, string>
@@ -32,7 +41,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
                 { TelemetryProperties.AppFx, "MVVMLight" },
                 { TelemetryProperties.AppType, "Blank" }
             };
-            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.Project, props);
+            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.ProjectGen, props);
         }
 
         [Fact]
@@ -44,12 +53,12 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
                 { TelemetryProperties.AppFx, "MVVMLight" },
                 { TelemetryProperties.AppType, "Blank" }
             };
-            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.Project, props);
+            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.ProjectGen, props);
 
             props[TelemetryProperties.TemplateName] = "OtherData";
             props[TelemetryProperties.AppFx] = "Caliburn";
             props[TelemetryProperties.AppType] = "SplitView";
-            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.Project, props);
+            await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.ProjectGen, props);
 
         }
 
