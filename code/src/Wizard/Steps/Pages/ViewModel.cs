@@ -10,19 +10,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Controls;
 
-namespace Microsoft.Templates.Wizard.Steps.PagesStep
+namespace Microsoft.Templates.Wizard.Steps.Pages
 {
-    public class PagesStepViewModel : ObservableBase
+    public class ViewModel : StepViewModel
     {
-        private readonly WizardContext _context;
-
-        public PagesStepViewModel(WizardContext context)
+        public ViewModel(WizardContext context) : base(context)
         {
-            //TODO: VERIFY NOT NULL
-            _context = context;
-            _context.SaveState += _context_SaveState;
         }
+
+        public override string PageTitle => Strings.PageTitle;
 
         public ICommand AddPageCommand => new RelayCommand(ShowAddPageDialog);
         public ICommand RemovePageCommand => new RelayCommand(RemovePage);
@@ -39,34 +37,38 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
             }
         }
 
-
-        //TODO: MAKE THIS METHOD TRULY ASYNC
-        public async Task LoadDataAsync()
+        public override async Task InitializeAsync()
         {
             Templates.Clear();
 
-            var selectedTemplates = _context.SelectedTemplates
-                                                    .Where(t => t.Key == this.GetType())
-                                                    .SelectMany(t => t.Value)
-                                                    .Select(g => new PageViewModel(g))
-                                                    .ToList();
+            var selectedPages = Context.GetState<ViewModel, IEnumerable<GenInfo>>();
 
-            Templates.AddRange(selectedTemplates);
-
+            if (selectedPages != null)
+            {
+                Templates.AddRange(selectedPages.Select(p => new PageViewModel(p)));
+            }
 
             await Task.FromResult(true);
         }
 
+        public override void SaveState()
+        {
+            var selectedPages = Templates
+                                    .Select(t => t.Info)
+                                    .ToList();
+
+            Context.SetState(this, selectedPages); 
+        }
+
         private void ShowAddPageDialog()
         {
-            var dialog = new PagesTemplatesDialog(_context, Templates.Select(t => t.Name));
+            var dialog = new NewPage.NewPageDialog(Context, Templates.Select(t => t.Name));
             var dialogResult = dialog.ShowDialog();
 
             if (dialogResult.HasValue && dialogResult.Value && dialog.Result != null)
             {
                 Templates.Add(new PageViewModel(dialog.Result));
             }
-
         }
 
         private void RemovePage()
@@ -77,18 +79,9 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
             }
         }
 
-        private void _context_SaveState(object sender, EventArgs e)
+        protected override Page GetPageInternal()
         {
-            if (!_context.SelectedTemplates.ContainsKey(this.GetType()))
-            {
-                _context.SelectedTemplates.Add(this.GetType(), new List<GenInfo>());
-            }
-            else
-            {
-                _context.SelectedTemplates[this.GetType()].Clear();
-            }
-
-            _context.SelectedTemplates[this.GetType()].AddRange(Templates.Select(t => t.Info));
+            return new View();
         }
     }
 }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Templates.Wizard.Steps.ProjectTypeStep {
+namespace Microsoft.Templates.Wizard.Steps.Summary {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectTypeStep {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ProjectTypeStepResources {
+    public class Strings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ProjectTypeStepResources() {
+        internal Strings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectTypeStep {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.Templates.Wizard.Steps.ProjectTypeStep.ProjectTypeStepResources", typeof(ProjectTypeStepResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.Templates.Wizard.Steps.Summary.Strings", typeof(Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,65 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectTypeStep {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select the project type:.
+        ///   Looks up a localized string similar to Accept Terms: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat ante justo, quis scelerisque sem rhoncus vitae. Nullam sit amet purus nec leo tempus tempor..
+        /// </summary>
+        public static string AcceptTerms {
+            get {
+                return ResourceManager.GetString("AcceptTerms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feature templates selected:.
+        /// </summary>
+        public static string FeaturesTitle {
+            get {
+                return ResourceManager.GetString("FeaturesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Licence.
+        /// </summary>
+        public static string LicenceCommand {
+            get {
+                return ResourceManager.GetString("LicenceCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;{0}&gt; Licence Terms.
+        /// </summary>
+        public static string LicenceDialogCaption {
+            get {
+                return ResourceManager.GetString("LicenceDialogCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page templates selected:.
+        /// </summary>
+        public static string PagesTitle {
+            get {
+                return ResourceManager.GetString("PagesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Summary:.
         /// </summary>
         public static string PageTitle {
             get {
                 return ResourceManager.GetString("PageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project templates selected:.
+        /// </summary>
+        public static string ProjectsTitle {
+            get {
+                return ResourceManager.GetString("ProjectsTitle", resourceCulture);
             }
         }
     }

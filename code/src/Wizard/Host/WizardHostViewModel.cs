@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Microsoft.Templates.Wizard.Host
 {
@@ -56,14 +57,14 @@ namespace Microsoft.Templates.Wizard.Host
         public RelayCommand PreviousCommand => new RelayCommand(GoBack, Steps.CanGoBack);
         public RelayCommand NextCommand => new RelayCommand(GoForward, CanGoForward);
 
-        private void Navigate(Type pageType)
+        private void Navigate(Type stepType)
         {
-            //TODO: CACHE INSTANCES
-            var stepPage = Activator.CreateInstance(pageType, new object[] { _context }) as StepPage;
+            //TODO: CACHE INSTANCES??
+            var nextStep = Activator.CreateInstance(stepType, new object[] { _context }) as StepViewModel;
 
-            StepTitle = stepPage.PageTitle;
+            StepTitle = nextStep.PageTitle;
 
-            Host.StepsFrame.Navigate(stepPage);
+            Host.StepsFrame.Navigate(nextStep.GetPage());
 
             OnPropertyChanged("PreviousCommand");
             OnPropertyChanged("NextCommand");
@@ -78,6 +79,12 @@ namespace Microsoft.Templates.Wizard.Host
             }
         }
 
+        private StepViewModel GetCurrentStep()
+        {
+            var currentPage = Host.StepsFrame.Content as Page;
+            return currentPage?.DataContext as StepViewModel;
+        }
+
         private void _context_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(_context.CanGoForward))
@@ -88,18 +95,18 @@ namespace Microsoft.Templates.Wizard.Host
 
         private void GoForward()
         {
-            _context.NotifySave();
-
             if (Steps.CanGoForward())
             {
-                var step = Steps.GoForward();
-                Navigate(step);
+                var currentStep = GetCurrentStep();
+                currentStep?.SaveState();
+
+                var nextStep = Steps.GoForward();
+                Navigate(nextStep);
             }
             else
             {
                 Host.DialogResult = true;
-                Host.Result = _context.SelectedTemplates
-                                            .SelectMany(t => t.Value);
+                Host.Result = _context.GetSelection();
                 Host.Close();
             }
         }
@@ -108,9 +115,11 @@ namespace Microsoft.Templates.Wizard.Host
         {
             if (Steps.CanGoBack())
             {
-                //TODO: REMOVE STATE FROM PREVIOUS PAGE
-                var step = Steps.GoBack();
-                Navigate(step);
+                var currentStep = GetCurrentStep();
+                _context.ClearState(currentStep);
+
+                var previous = Steps.GoBack();
+                Navigate(previous);
             }
         }
 

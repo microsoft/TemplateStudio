@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.Templates.Wizard.Steps.PagesStep
+namespace Microsoft.Templates.Wizard.Steps.Pages
 {
     public class PageViewModel : ObservableBase
     {

@@ -59,7 +59,6 @@ namespace Microsoft.Templates.Wizard.TestApp
             }
             catch (WizardCancelledException)
             {
-                MessageBox.Show($"User Cancelled!", "Wizard exited", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             catch (Exception ex)
             {
@@ -106,7 +105,6 @@ namespace Microsoft.Templates.Wizard.TestApp
             }
             catch (WizardCancelledException)
             {
-                MessageBox.Show($"User Cancelled!", "Wizard exited", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             catch (Exception ex)
             {

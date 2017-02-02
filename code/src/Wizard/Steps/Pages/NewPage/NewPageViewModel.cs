@@ -11,17 +11,17 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace Microsoft.Templates.Wizard.Steps.PagesStep
+namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
 {
-    public class PagesTemplatesDialogViewModel : ObservableBase
+    public class NewPageViewModel : ObservableBase
     {
         private bool _isValid = true;
 
         private readonly WizardContext _context;
-        private readonly PagesTemplatesDialog _dialog;
+        private readonly NewPageDialog _dialog;
         private readonly IEnumerable<string> _selectedNames;
 
-        public PagesTemplatesDialogViewModel(WizardContext context, PagesTemplatesDialog dialog, IEnumerable<string> selectedNames)
+        public NewPageViewModel(WizardContext context, NewPageDialog dialog, IEnumerable<string> selectedNames)
         {
             _context = context;
             _dialog = dialog;
@@ -64,17 +64,17 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
         }
 
          //TODO: MAKE THIS METHOD TRULY ASYNC
-        public async Task LoadDataAsync()
+        public async Task InitializeAsync()
         {
             Templates.Clear();
 
-            var projectTemplates = _context.TemplatesRepository
-                                                    .GetAll()
-                                                    .Where(f => f.GetTemplateType() == TemplateType.Page &&
-                                                    f.GetFramework() == _context.SelectedFrameworkType.Name)
-                                                    .Select(t => new TemplateViewModel(t))
-                                                    .OrderBy(t => t.Order)
-                                                    .ToList();
+            var selectedFrameword = GetSelectedFramework();
+            var projectTemplates = _context.TemplatesRepository.GetAll()
+                                                                    .Where(f => f.GetTemplateType() == TemplateType.Page
+                                                                        && f.GetFramework() == selectedFrameword)
+                                                                    .Select(t => new TemplateViewModel(t))
+                                                                    .OrderBy(t => t.Order)
+                                                                    .ToList();
 
             Templates.AddRange(projectTemplates);
 
@@ -103,7 +103,7 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
 
             if (!validationResult.IsValid)
             {
-                var message = PagesStepResources.ResourceManager.GetString($"ValidationError_{validationResult.ErrorType}");
+                var message = Strings.ResourceManager.GetString($"ValidationError_{validationResult.ErrorType}");
                 if (string.IsNullOrWhiteSpace(message))
                 {
                     message = "UndefinedError";
@@ -113,5 +113,15 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
         }
 
         private bool IsValid() => _isValid;
+
+        private string GetSelectedFramework()
+        {
+            var selectedProject = _context.GetState<Steps.FrameworkType.ViewModel, GenInfo>();
+            if (selectedProject == null)
+            {
+                throw new ArgumentException("No way to show the page templates, there is no project template selected");
+            }
+            return selectedProject.Template.GetFramework();
+        }
     }
 }

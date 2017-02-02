@@ -1,11 +1,11 @@
-﻿<steps:StepPage x:Class="Microsoft.Templates.Wizard.Steps.SummaryStep.SummaryStepPage"
+﻿<Page x:Class="Microsoft.Templates.Wizard.Steps.Summary.View"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:steps="clr-namespace:Microsoft.Templates.Wizard.Steps"
       xmlns:converters="clr-namespace:Microsoft.Templates.Wizard.Converters"
-      xmlns:local="clr-namespace:Microsoft.Templates.Wizard.Steps.SummaryStep"
+      xmlns:local="clr-namespace:Microsoft.Templates.Wizard.Steps.Summary"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="SummaryStepPage">
@@ -48,7 +48,7 @@
                                         </StackPanel>
                                         <TextBlock Visibility="{Binding LicenceVisibility}">           
                                             <Hyperlink Command="{Binding ViewLicenceCommand}">
-                                                <TextBlock Text="{x:Static local:SummaryStepResources.LicenceCommand}"/>
+                                                <TextBlock Text="{x:Static local:Strings.LicenceCommand}"/>
                                             </Hyperlink>
                                         </TextBlock>
                                     </StackPanel>
@@ -59,6 +59,6 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <TextBlock Text="{x:Static local:SummaryStepResources.AcceptTerms}" Grid.Row="1" TextWrapping="Wrap" />
+        <TextBlock Text="{x:Static local:Strings.AcceptTerms}" Grid.Row="1" TextWrapping="Wrap" />
     </Grid>
-</steps:StepPage>
+</Page>

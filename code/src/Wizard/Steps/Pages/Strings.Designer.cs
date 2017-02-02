@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Templates.Wizard.Steps.SummaryStep {
+namespace Microsoft.Templates.Wizard.Steps.Pages {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Microsoft.Templates.Wizard.Steps.SummaryStep {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class SummaryStepResources {
+    public class Strings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal SummaryStepResources() {
+        internal Strings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Microsoft.Templates.Wizard.Steps.SummaryStep {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.Templates.Wizard.Steps.SummaryStep.SummaryStepResources", typeof(SummaryStepResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.Templates.Wizard.Steps.Pages.Strings", typeof(Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,52 +61,52 @@ namespace Microsoft.Templates.Wizard.Steps.SummaryStep {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Accept Terms: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat ante justo, quis scelerisque sem rhoncus vitae. Nullam sit amet purus nec leo tempus tempor..
+        ///   Looks up a localized string similar to Add.
         /// </summary>
-        public static string AcceptTerms {
+        public static string AddCommand {
             get {
-                return ResourceManager.GetString("AcceptTerms", resourceCulture);
+                return ResourceManager.GetString("AddCommand", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Feature templates selected:.
+        ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        public static string FeaturesTitle {
+        public static string CancelCommand {
             get {
-                return ResourceManager.GetString("FeaturesTitle", resourceCulture);
+                return ResourceManager.GetString("CancelCommand", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View Licence.
+        ///   Looks up a localized string similar to Add pages pushing add button. Lorem ipsum.
         /// </summary>
-        public static string LicenceCommand {
+        public static string NoPagesMessage {
             get {
-                return ResourceManager.GetString("LicenceCommand", resourceCulture);
+                return ResourceManager.GetString("NoPagesMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;{0}&gt; Licence Terms.
+        ///   Looks up a localized string similar to Ok.
         /// </summary>
-        public static string LicenceDialogCaption {
+        public static string OkCommand {
             get {
-                return ResourceManager.GetString("LicenceDialogCaption", resourceCulture);
+                return ResourceManager.GetString("OkCommand", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Page templates selected:.
+        ///   Looks up a localized string similar to Page name:.
         /// </summary>
-        public static string PagesTitle {
+        public static string PageName_Text {
             get {
-                return ResourceManager.GetString("PagesTitle", resourceCulture);
+                return ResourceManager.GetString("PageName_Text", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Summary:.
+        ///   Looks up a localized string similar to Select the page template:.
         /// </summary>
         public static string PageTitle {
             get {
@@ -115,11 +115,38 @@ namespace Microsoft.Templates.Wizard.Steps.SummaryStep {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Project templates selected:.
+        ///   Looks up a localized string similar to Remove.
         /// </summary>
-        public static string ProjectsTitle {
+        public static string RemoveCommand {
             get {
-                return ResourceManager.GetString("ProjectsTitle", resourceCulture);
+                return ResourceManager.GetString("RemoveCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name already exists.
+        /// </summary>
+        public static string ValidationError_AlreadyExists {
+            get {
+                return ResourceManager.GetString("ValidationError_AlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name contains not allowed caracters.
+        /// </summary>
+        public static string ValidationError_BadFormat {
+            get {
+                return ResourceManager.GetString("ValidationError_BadFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name cannot be empty.
+        /// </summary>
+        public static string ValidationError_Empty {
+            get {
+                return ResourceManager.GetString("ValidationError_Empty", resourceCulture);
             }
         }
     }

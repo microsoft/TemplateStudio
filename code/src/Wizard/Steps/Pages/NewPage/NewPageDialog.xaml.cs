@@ -13,20 +13,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Microsoft.Templates.Wizard.Steps.PagesStep
+namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
 {
     /// <summary>
     /// Interaction logic for PagesTemplatesDialog.xaml
     /// </summary>
-    public partial class PagesTemplatesDialog : Window
+    public partial class NewPageDialog : Window
     {
-        public PagesTemplatesDialogViewModel ViewModel { get; }
+        public NewPageViewModel ViewModel { get; }
 
         public GenInfo Result { get; set; }
 
-        public PagesTemplatesDialog(WizardContext context, IEnumerable<string> selectedNames)
+        public NewPageDialog(WizardContext context, IEnumerable<string> selectedNames)
         {
-            ViewModel = new PagesTemplatesDialogViewModel(context, this, selectedNames);
+            ViewModel = new NewPageViewModel(context, this, selectedNames);
 
             DataContext = ViewModel;
             Loaded += PagesTemplatesDialog_Loaded;
@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Wizard.Steps.PagesStep
 
         private async void PagesTemplatesDialog_Loaded(object sender, RoutedEventArgs e)
         {
-            await ViewModel.LoadDataAsync();
+            await ViewModel.InitializeAsync();
         }
     }
 }

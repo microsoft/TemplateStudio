@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace Microsoft.Templates.Wizard.Steps.SummaryStep
+namespace Microsoft.Templates.Wizard.Steps.Summary
 {
-    public class TemplatesSummaryViewModel : ObservableBase
+    public class SummaryGroupViewModel : ObservableBase
     {
         private string _title;
         public string Title
@@ -22,14 +22,14 @@ namespace Microsoft.Templates.Wizard.Steps.SummaryStep
             set { SetProperty(ref _title, value); }
         }
 
-        public ObservableCollection<TemplatesSummaryItemViewModel> Items { get; } = new ObservableCollection<TemplatesSummaryItemViewModel>();
+        public ObservableCollection<SummaryItemViewModel> Items { get; } = new ObservableCollection<SummaryItemViewModel>();
     }
 
-    public class TemplatesSummaryItemViewModel : ObservableBase
+    public class SummaryItemViewModel : ObservableBase
     {
         private readonly string _licence;
 
-        public TemplatesSummaryItemViewModel(GenInfo genInfo)
+        public SummaryItemViewModel(GenInfo genInfo)
         {
             //TODO: CHECK NULLS
             Name = genInfo.Name;
@@ -80,7 +80,7 @@ namespace Microsoft.Templates.Wizard.Steps.SummaryStep
 
         private void ShowLicence()
         {
-            MessageBox.Show(_licence, string.Format(SummaryStepResources.LicenceDialogCaption, TemplateName));
+            MessageBox.Show(_licence, string.Format(Strings.LicenceDialogCaption, TemplateName));
         }
     }
 }
