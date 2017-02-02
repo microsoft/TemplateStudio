@@ -1,4 +1,5 @@
 ﻿using EnvDTE;
+using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Wizard;
 using Microsoft.VisualStudio.Shell;
 using System;
@@ -95,6 +96,14 @@ namespace Microsoft.Templates.Extension
 
         public override void ShowTaskList()
         {
+            ShowTaskListAsync().FireAndForget();
+        }
+
+        private async System.Threading.Tasks.Task ShowTaskListAsync()
+        {
+            //JAVIERS: DELAY THIS EXECUTION TO OPEN THE WINDOW AFTER EVERYTHING IS LOADED
+            await System.Threading.Tasks.Task.Delay(1000);
+
             var window = Dte.Windows.Item(EnvDTE.Constants.vsWindowKindTaskList);
             window.Activate();
         }
