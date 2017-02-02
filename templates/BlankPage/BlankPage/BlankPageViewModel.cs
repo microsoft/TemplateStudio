@@ -1,6 +1,10 @@
-using Page_NS.Core;
+#if (isBasic)
+using Param_PageNS.Core;
+#else if (isMVVMLight)
+using GalaSoft.MvvmLight;
+#endif
 
-namespace Page_NS.BlankPage
+namespace Param_PageNS.BlankPage
 {
     public class BlankPageViewModel : ViewModelBase
     {
