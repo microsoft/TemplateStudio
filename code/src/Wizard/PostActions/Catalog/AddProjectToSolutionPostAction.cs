@@ -14,32 +14,21 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
 		public override PostActionResult Execute(string outputPath, GenInfo genInfo, TemplateCreationResult generationResult, GenShell shell)
 		{
 			//TODO: Control overwrites! What happend if the generated content already exits.
-			try
+			//TODO: Control multiple primary outputs, continue on failure or abort?
+			foreach (var output in generationResult.PrimaryOutputs)
 			{
-				//TODO: Control multiple primary outputs, continue on failure or abort?
-				foreach (var output in generationResult.PrimaryOutputs)
+				if (!string.IsNullOrWhiteSpace(output.Path))
 				{
-					if (!string.IsNullOrWhiteSpace(output.Path))
-					{
-						var projectPath = Path.GetFullPath(Path.Combine(outputPath, output.Path));
-						shell.AddProjectToSolution(projectPath);
-					}
+					var projectPath = Path.GetFullPath(Path.Combine(outputPath, output.Path));
+					shell.AddProjectToSolution(projectPath);
 				}
-				return new PostActionResult()
-				{
-					ResultCode = ResultCode.Success,
-					Message = PostActionResources.AddProjectToSolution_Success
-				};
 			}
-			catch (Exception ex)
+			return new PostActionResult()
 			{
-				return new PostActionResult()
-				{
-					ResultCode = ResultCode.Error,
-					Message = PostActionResources.AddProjectToSolution_Error,
-					Exception = ex
-				};
-			}
+				ResultCode = ResultCode.Success,
+				Message = PostActionResources.AddProjectToSolution_Success
+			};
+			
 		}
 	}
 }
