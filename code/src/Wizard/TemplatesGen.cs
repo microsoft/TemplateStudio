@@ -8,6 +8,7 @@ using Microsoft.Templates.Wizard.Dialog;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Wizard.PostActions;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -38,12 +39,15 @@ namespace Microsoft.Templates.Wizard
 
             if (result.HasValue && result.Value)
             {
+                //TODO: Review when right-click-actions available to track Project or Page completed.
+                AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject).FireAndForget();
+
                 return host.Result.ToArray();
             }
             else
             {
                 //TODO: Review when right-click-actions available to track Project or Page cancelled.
-                AppHealth.Current.Telemetry.TrackCancellationAsync().FireAndForget();
+                AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewProject).FireAndForget();
 
                 _shell.CancelWizard();
             }
@@ -54,10 +58,55 @@ namespace Microsoft.Templates.Wizard
         {
             if (genItems != null)
             {
+                Stopwatch chrono = Stopwatch.StartNew();
+
+                Dictionary<string, TemplateCreationResult> genResults = new Dictionary<string, TemplateCreationResult>();
+
                 var outputPath = _shell.OutputPath;
                 var outputs = new List<string>();
 
-                //TODO: RAULMGC record Telemetry for global project afterwards
+                foreach (var genInfo in genItems)
+                {
+                    if (genInfo.Template == null)
+                    {
+                        continue;
+                    }
+                    
+                    outputPath = GetOutputPath(genInfo.Template);
+                    AddSystemParams(genInfo);
+
+                    AppHealth.Current.Verbose.TrackAsync($"Generation the template {genInfo.Template.Name} to {outputPath}.").FireAndForget();
+
+                    //TODO: REVIEW ASYNC
+                    var result = CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, outputPath, genInfo.Parameters, false).Result;
+                    genResults.Add(genInfo.Template.Identity, result);
+
+                    if (result.Status != CreationResultStatus.CreateSucceeded)
+                    {
+                        //TODO: THROW EXCEPTION ?
+                    }
+
+                    if (result.PrimaryOutputs != null)
+                    {
+                        outputs.AddRange(result.PrimaryOutputs.Select(o => o.Path));
+                    }
+
+                    var postActionResults = ExecutePostActions(outputPath, genInfo, result);
+
+                    chrono.Stop();
+
+                    _shell.ShowTaskList();
+                }
+
+                var timeSpent = chrono.Elapsed.TotalSeconds;
+                TrackTelemery(genItems, genResults, timeSpent);
+            }
+        }
+
+        private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent)
+        {
+            try
+            {
                 var pagesAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Count();
                 var featuresAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Count();
 
@@ -67,32 +116,19 @@ namespace Microsoft.Templates.Wizard
                     {
                         continue;
                     }
-
-                    outputPath = GetOutputPath(genInfo.Template);
-                    AddSystemParams(genInfo);
-
-                    //TODO: REVIEW ASYNC
-                    var result = CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, outputPath, genInfo.Parameters, false).Result;
-
-                    if (result.Status != CreationResultStatus.CreateSucceeded)
+                    if (genInfo.Template.GetTemplateType() == TemplateType.Project)
                     {
-                        //TODO: THROW EXECPTION
-                        AppHealth.Current.Telemetry.TrackTemplateGeneratedErrorAsync(genInfo.Template, pagesAdded, featuresAdded, result.Status, result.Message).FireAndForget();
+                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, genResults[genInfo.Template.Identity], pagesAdded, featuresAdded, timeSpent).FireAndForget();
                     }
                     else
                     {
-                        AppHealth.Current.Telemetry.TrackTemplateGeneratedOkAsync(genInfo.Template, pagesAdded, featuresAdded).FireAndForget();
+                        AppHealth.Current.Telemetry.TrackPageOrFeatureTemplateGen(genInfo.Template, genResults[genInfo.Template.Identity]).FireAndForget();
                     }
-
-                    if (result.PrimaryOutputs != null)
-                    {
-                        outputs.AddRange(result.PrimaryOutputs.Select(o => o.Path));
-                    }
-
-					var postActionResults = ExecutePostActions(outputPath, genInfo, result);
-
-                    _shell.ShowTaskList();
                 }
+            }
+            catch (System.Exception ex)
+            {
+                AppHealth.Current.Exception.TrackAsync(ex, "Exception tracking telemetry for Template Generation.").FireAndForget();
             }
         }
 
