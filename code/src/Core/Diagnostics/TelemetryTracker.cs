@@ -137,13 +137,12 @@ namespace Microsoft.Templates.Core.Diagnostics
             await TrackFeatureAsync();
         }
 
-        private async Task TrackPageAsync(GenStatusEnum status, string appType, string appFx, string templateName, CreationResultStatus genStatus= CreationResultStatus.CreateSucceeded, string message="")
+        private async Task TrackPageAsync(GenStatusEnum status, string appType, string pageFx, string templateName, CreationResultStatus genStatus= CreationResultStatus.CreateSucceeded, string message="")
         {
             Dictionary<string, string> properties = new Dictionary<string, string>()
             {
                 { TelemetryProperties.Status, status.ToString() },
-                { TelemetryProperties.AppType, appType },
-                { TelemetryProperties.AppFx, appFx },
+                { TelemetryProperties.AppFx, pageFx },
                 { TelemetryProperties.TemplateName, templateName },
                 { TelemetryProperties.GenEngineStatus, genStatus.ToString() },
                 { TelemetryProperties.GenEngineMessage, message }

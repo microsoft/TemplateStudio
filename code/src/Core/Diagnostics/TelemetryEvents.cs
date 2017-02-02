@@ -39,11 +39,11 @@ namespace Microsoft.Templates.Core.Diagnostics
         public static string AppType { get; private set; } = TelemetryTracker.PropertiesPrefix + "AppType";
         public static string AppFx { get; private set; } = TelemetryTracker.PropertiesPrefix + "AppFx";
         public static string TemplateName { get; private set; } = TelemetryTracker.PropertiesPrefix + "TemplateName";
-        public static string LastStep { get; private set; } = TelemetryTracker.PropertiesPrefix + "LastStep";
         public static string GenEngineStatus { get; private set; } = TelemetryTracker.PropertiesPrefix + "GenEngineStatus";
         public static string GenEngineMessage { get; private set; } = TelemetryTracker.PropertiesPrefix + "GenEngineMessage";
         public static string WizardType { get; private set; } = TelemetryTracker.PropertiesPrefix + "WizardType";
         public static string WizardStatus { get; private set; } = TelemetryTracker.PropertiesPrefix + "WizardStatus";
+        public static string LastStep { get; private set; } = TelemetryTracker.PropertiesPrefix + "LastStep";
     }
 
     public class TelemetryMetrics
