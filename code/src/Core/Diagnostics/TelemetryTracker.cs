@@ -66,7 +66,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             await TrackProjectAsync(telemetryStatus, template.Name, template.GetProjectType(), template.GetFramework(), pagesCount, featuresCount, timeSpent, result.Status, result.Message);
         }
 
-        public async Task TrackPageOrFeatureTemplateGen(ITemplateInfo template, TemplateCreationResult result)
+        public async Task TrackPageOrFeatureTemplateGenAsync(ITemplateInfo template, TemplateCreationResult result)
         {
             if (template != null && result != null)
             {

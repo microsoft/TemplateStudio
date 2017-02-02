@@ -95,7 +95,7 @@ namespace Microsoft.Templates.Wizard
 
                     chrono.Stop();
 
-                    _shell.ShowTaskList();
+                    Shell.ShowTaskList();
                 }
 
                 var timeSpent = chrono.Elapsed.TotalSeconds;
@@ -122,7 +122,7 @@ namespace Microsoft.Templates.Wizard
                     }
                     else
                     {
-                        AppHealth.Current.Telemetry.TrackPageOrFeatureTemplateGen(genInfo.Template, genResults[genInfo.Template.Identity]).FireAndForget();
+                        AppHealth.Current.Telemetry.TrackPageOrFeatureTemplateGenAsync(genInfo.Template, genResults[genInfo.Template.Identity]).FireAndForget();
                     }
                 }
             }
