@@ -25,8 +25,11 @@ namespace MVVMLightSplitViewProject.Shell
             get
             {                
                 yield return new ShellNavigationItem("PaneHome", Char.ConvertFromUtf32(0xE80F), typeof(HomeViewModel).FullName);
-                //TODO: To show project pages in splitview menu, add shell navigation items for each page
-                //TODO: Edit String/en-US/Resources.resw: Add a menu item title for each page
+                
+                //TODO: UWPTemplates -> To show your project pages in the SplitView menu, add a navigation item for each page like above
+                //i.e. yield return ShellNavigationItem.FromType<......>("Pane....", Char.ConvertFromUtf32(...));
+                                
+                //Edit String/en-US/Resources.resw: Add a menu item title for each page
             }
         }
 

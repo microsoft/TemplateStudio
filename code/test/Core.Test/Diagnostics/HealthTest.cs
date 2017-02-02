@@ -60,9 +60,6 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
             await AppHealth.Current.Exception.TrackAsync(new Exception("ExceptionTracked"));
             await AppHealth.Current.Exception.TrackAsync(new Exception("ExceptionTrackedWithAddtionalInfo"), "AddtionalInfo");
 
-            await AppHealth.Current.Telemetry.TrackNewProjectAsync(ActionStatus.Completed, "appType","appFx", "ProjectTemplateName");
-            await AppHealth.Current.Telemetry.TrackNewPageAsync(ActionStatus.Completed, "appType", "appFx", "PageTemplateName");
-
             //Check events flow to the TestHealthWriter
             Assert.True(initialEvents < testWriter.Events.Count);
             Assert.True(initialExceptions < testWriter.Exceptions.Count);
