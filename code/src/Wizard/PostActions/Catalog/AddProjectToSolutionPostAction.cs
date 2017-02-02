@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace Microsoft.Templates.Wizard.PostActions
+namespace Microsoft.Templates.Wizard.PostActions.Catalog
 {
     public class AddProjectToSolutionPostAction : PostActionBase
 	{

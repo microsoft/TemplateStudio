@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Edge.Template;
 
-namespace Microsoft.Templates.Wizard.PostActions
+namespace Microsoft.Templates.Wizard.PostActions.Catalog
 {
 	public class AddItemToProjectPostAction : PostActionBase
 	{

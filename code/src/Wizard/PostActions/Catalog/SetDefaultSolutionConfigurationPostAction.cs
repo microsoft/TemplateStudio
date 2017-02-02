@@ -2,7 +2,7 @@
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Wizard.Resources;
 
-namespace Microsoft.Templates.Wizard.PostActions
+namespace Microsoft.Templates.Wizard.PostActions.Catalog
 {
     public class SetDefaultSolutionConfigurationPostAction : PostActionBase
     {

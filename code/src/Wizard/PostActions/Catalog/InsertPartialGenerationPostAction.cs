@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Templates.Wizard.Resources;
 
-namespace Microsoft.Templates.Wizard.PostActions
+namespace Microsoft.Templates.Wizard.PostActions.Catalog
 {
     public class InsertPartialGenerationPostAction : PostActionBase
 	{
