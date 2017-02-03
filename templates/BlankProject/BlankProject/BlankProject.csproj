@@ -106,6 +106,9 @@
     </Compile>
     <Compile Include="Home\HomeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Condition="$(isMVVMLight)" Include="Home\ViewModelLocator.cs" />    
+    <Compile Condition="$(isMVVMLight)" Include="Services\NavigationService.cs" />
+    <Compile Condition="$(isMVVMLight)" Include="ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

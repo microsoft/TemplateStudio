@@ -1,4 +1,9 @@
-﻿using BlankProject.Core;
+﻿#if (isBasic)
+using BlankProject.Core;
+#endif
+#if(isMVVMLight)
+using GalaSoft.MvvmLight;
+#endif
 
 namespace BlankProject.Home
 {
@@ -6,6 +11,6 @@ namespace BlankProject.Home
     {
         public HomeViewModel()
         {
-        }      
+        }
     }
 }

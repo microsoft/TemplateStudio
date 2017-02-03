@@ -1,7 +1,10 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
-    "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.0.3"
+    "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.0.3",
+//#if(isMVVMLight)
+    "MvvmLight": "5.3.0"
+//#endif
   },
   "frameworks": {
     "uap10.0": {}
