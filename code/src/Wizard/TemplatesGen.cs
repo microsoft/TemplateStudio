@@ -7,6 +7,8 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Wizard.Dialog;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Wizard.PostActions;
+using Microsoft.Templates.Wizard.Resources;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -34,10 +36,12 @@ namespace Microsoft.Templates.Wizard
 
         public IEnumerable<GenInfo> GetUserSelection(WizardSteps selectionSteps)
         {
-            var host = new WizardHost(selectionSteps, _repository, Shell);
-            var result = host.ShowDialog();
+            CleanStatusBar();
 
-            if (result.HasValue && result.Value)
+            var host = new WizardHost(selectionSteps, _repository, Shell);
+            Shell.ShowModal(host);
+
+            if (host.Result != null)
             {
                 //TODO: Review when right-click-actions available to track Project or Page completed.
                 AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject).FireAndForget();
@@ -63,7 +67,6 @@ namespace Microsoft.Templates.Wizard
                 Dictionary<string, TemplateCreationResult> genResults = new Dictionary<string, TemplateCreationResult>();
 
                 var outputPath = Shell.OutputPath;
-                var outputs = new List<string>();
 
                 foreach (var genInfo in genItems)
                 {
@@ -71,7 +74,14 @@ namespace Microsoft.Templates.Wizard
                     {
                         continue;
                     }
-                    
+
+                    var statusText = GetStatusText(genInfo);
+
+                    if (!string.IsNullOrEmpty(statusText))
+                    {
+                        Shell.ShowStatusBarMessage(statusText);
+                    }
+
                     outputPath = GetOutputPath(genInfo.Template);
                     AddSystemParams(genInfo);
 
@@ -87,16 +97,9 @@ namespace Microsoft.Templates.Wizard
                         //TODO: THROW EXCEPTION ?
                     }
 
-                    if (result.PrimaryOutputs != null)
-                    {
-                        outputs.AddRange(result.PrimaryOutputs.Select(o => o.Path));
-                    }
-
                     var postActionResults = ExecutePostActions(outputPath, genInfo, result);
 
                     chrono.Stop();
-
-                    Shell.ShowTaskList();
                 }
                 PostActionCreator.CleanUpAnchors(outputPath);
 
@@ -189,6 +192,24 @@ namespace Microsoft.Templates.Wizard
             }
 
             
+        }
+
+        private static string GetStatusText(GenInfo genInfo)
+        {
+            switch (genInfo.Template.GetTemplateType())
+            {
+                case TemplateType.Project:
+                    return string.Format(StringRes.AddProjectMessage, genInfo.Name);
+                case TemplateType.Page:
+                    return string.Format(StringRes.AddPageMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
+                default:
+                    return null;
+            }
+        }
+
+        private void CleanStatusBar()
+        {
+            Shell.ShowStatusBarMessage(string.Empty);
         }
     }
 }
