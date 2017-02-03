@@ -98,17 +98,17 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Condition="$(isBasic)" Include="Core\NavigationService.cs" />
-    <Compile Condition="$(isBasic)" Include="Core\RelayCommand.cs" />
-    <Compile Condition="$(isBasic)" Include="Core\ViewModelBase.cs" />
+    <Compile Condition="'$(isBasic)' == 'true'" Include="Core\NavigationService.cs" />
+    <Compile Condition="'$(isBasic)' == 'true'" Include="Core\RelayCommand.cs" />
+    <Compile Condition="'$(isBasic)' == 'true'" Include="Core\ViewModelBase.cs" />
     <Compile Include="Home\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Home\HomeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Condition="$(isMVVMLight)" Include="Home\ViewModelLocator.cs" />    
-    <Compile Condition="$(isMVVMLight)" Include="Services\NavigationService.cs" />
-    <Compile Condition="$(isMVVMLight)" Include="ViewModelLocator.cs" />
+    <Compile Condition="'$(isMVVMLight)' == 'true'" Include="Home\ViewModelLocator.cs" />    
+    <Compile Condition="'$(isMVVMLight)' == 'true'" Include="Services\NavigationService.cs" />
+    <Compile Condition="'$(isMVVMLight)' == 'true'" Include="ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

@@ -1,7 +1,6 @@
 ﻿#if (isBasic)
 using BlankProject.Core;
-#endif
-#if(isMVVMLight)
+#else if(isMVVMLight)
 using GalaSoft.MvvmLight;
 #endif
 
