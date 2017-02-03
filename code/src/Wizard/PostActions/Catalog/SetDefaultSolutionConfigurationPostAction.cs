@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
             {
                 return new PostActionResult()
                 {
-                    ResultCode = ResultCode.ContextError,
+                    ResultCode = ResultCode.Error,
                     Message = PostActionResources.SetDefaultSolutionConfiguration_ConfigurationNotFoundPattern.UseParams(Configuration, Platform)
                 };
             }

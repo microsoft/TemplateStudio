@@ -23,12 +23,12 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
-        public void GenerateProject(string projectTemplateIdentity)
+        public void GenerateProject(string projId)
         {
-            var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projectTemplateIdentity).FirstOrDefault();
+            var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
 
             //Generate app
-            string outputPath = GenerateProject(fixture.TestProjectsPath, projectTemplateIdentity, projectTemplate);
+            string outputPath = GenerateProject(fixture.TestProjectsPath, projId, projectTemplate);
 
             //Build solution
             var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
@@ -44,14 +44,14 @@ namespace Microsoft.Templates.Test
        
 
         [Theory, MemberData("GetPageTemplates"), Trait("Type", "PageGeneration")]
-        public void GeneratePage(string pageTemplateIdentity, string targetProjectTemplateIdentity)
+        public void GeneratePage(string pageId, string projId)
         {
             //Set up test repos
-            var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == targetProjectTemplateIdentity).FirstOrDefault();
-            var pageTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == pageTemplateIdentity).FirstOrDefault();
+            var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
+            var pageTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == pageId).FirstOrDefault();
 
             //Generate app
-            var projectOutputPath = GenerateProject(fixture.TestPagesPath, pageTemplateIdentity, targetProjectTemplate);
+            var projectOutputPath = GenerateProject(fixture.TestPagesPath, pageId, targetProjectTemplate);
 
             //Generate page
             var pageOutputPath = Path.Combine(projectOutputPath, targetProjectTemplate.Name);

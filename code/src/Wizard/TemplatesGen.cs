@@ -187,8 +187,6 @@ namespace Microsoft.Templates.Wizard
                 //TODO: REVIEW THIS
                 ErrorMessageDialog.Show("Some PostActions failed", "Failed post actions", errorMessages, MessageBoxImage.Error);
             }
-
-            
         }
     }
 }
