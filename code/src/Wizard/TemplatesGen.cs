@@ -79,7 +79,8 @@ namespace Microsoft.Templates.Wizard
 
                     //TODO: REVIEW ASYNC
                     var result = CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, outputPath, genInfo.Parameters, false).Result;
-                    genResults.Add(genInfo.Template.Identity, result);
+
+                    genResults.Add($"{genInfo.Template.Identity}_{genInfo.Name}", result);
 
                     if (result.Status != CreationResultStatus.CreateSucceeded)
                     {
@@ -120,7 +121,7 @@ namespace Microsoft.Templates.Wizard
                     }
                     if (genInfo.Template.GetTemplateType() == TemplateType.Project)
                     {
-                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, genResults[genInfo.Template.Identity], pagesAdded, featuresAdded, timeSpent).FireAndForget();
+                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, genResults[$"{genInfo.Template.Identity}_{genInfo.Name}"], pagesAdded, featuresAdded, timeSpent).FireAndForget();
                     }
                     else
                     {
