@@ -97,10 +97,12 @@ namespace Microsoft.Templates.Wizard
 
                     Shell.ShowTaskList();
                 }
+                PostActionCreator.CleanUpAnchors(outputPath);
 
                 var timeSpent = chrono.Elapsed.TotalSeconds;
                 TrackTelemery(genItems, genResults, timeSpent);
             }
+            
         }
 
         private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent)
