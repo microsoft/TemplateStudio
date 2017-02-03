@@ -1,0 +1,3 @@
+<data name="SettingsPageTitle.Text" xml:space="preserve">
+  <value>SettingsPage</value>
+</data>
