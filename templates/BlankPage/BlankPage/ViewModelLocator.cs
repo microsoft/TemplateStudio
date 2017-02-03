@@ -1,3 +1,4 @@
+using Microsoft.Practices.ServiceLocation;
 using GalaSoft.MvvmLight.Ioc;
 using Param_PageNS.Services;
 using Param_PageNS.BlankPage;
