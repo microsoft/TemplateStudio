@@ -14,14 +14,14 @@
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Margin="{StaticResource PageMargin}">
             <TextBlock
-                x:Uid="BasicSettingsPageTitle"
+                x:Uid="SettingsPageTitle"
                 Style="{ThemeResource HeaderTextBlockStyle}"/>
             <TextBlock
                 Margin="0,12,0,0"
-                x:Uid="BasicSettingsPageTheme"
+                x:Uid="SettingsPageTheme"
                 Style="{ThemeResource TitleTextBlockStyle}"/>
             <ToggleSwitch
-                x:Uid="BasicSettingsPageThemeToggleSwitch"
+                x:Uid="SettingsPageThemeToggleSwitch"
                 IsOn="{Binding IsLightThemeEnabled, Mode=TwoWay}">
                 <i:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="Toggled">
@@ -29,10 +29,10 @@
                     </core:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
             </ToggleSwitch>
-            <TextBlock x:Uid="BasicSettingsPageAbout" Margin="0,24,0,0" Style="{ThemeResource TitleTextBlockStyle}"/>
+            <TextBlock x:Uid="SettingsPageAbout" Margin="0,24,0,0" Style="{ThemeResource TitleTextBlockStyle}"/>
             <TextBlock Text="{Binding AppDescription}" Margin="0,8,0,0" Style="{ThemeResource SubtitleTextBlockStyle}"/>
-            <TextBlock x:Uid="BasicSettingsPageAboutDescription" Margin="0,8,0,0" Style="{ThemeResource BodyTextBlockStyle}"/>
-            <HyperlinkButton x:Uid="BasicSettingsPagePrivacyTermsLink" Margin="0,8,0,0"/>
+            <TextBlock x:Uid="SettingsPageAboutDescription" Margin="0,8,0,0" Style="{ThemeResource BodyTextBlockStyle}"/>
+            <HyperlinkButton x:Uid="SettingsPagePrivacyTermsLink" Margin="0,8,0,0"/>
         </StackPanel>
     </Grid>
 </Page>

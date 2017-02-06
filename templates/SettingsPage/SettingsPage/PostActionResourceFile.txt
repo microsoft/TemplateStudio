@@ -1,3 +1,24 @@
+<data name="SettingsPageAbout.Text" xml:space="preserve">
+  <value>About this application</value>
+</data>
+<data name="SettingsPageAboutDescription.Text" xml:space="preserve">
+  <value>Lorem ipsum dolor sit</value>
+</data>
+<data name="SettingsPagePrivacyTermsLink.Content" xml:space="preserve">
+  <value>Privacy Terms</value>
+</data>
+<data name="SettingsPagePrivacyTermsLink.NavigateUri" xml:space="preserve">
+  <value>https://www.microsoft.com/</value>
+</data>
+<data name="SettingsTheme.Text" xml:space="preserve">
+  <value>Application theme</value>
+</data>
+<data name="SettingsPageThemeToggleSwitch.OffContent" xml:space="preserve">
+  <value>Dark</value>
+</data>
+<data name="SettingsPageThemeToggleSwitch.OnContent" xml:space="preserve">
+  <value>Light</value>
+</data>
 <data name="SettingsPageTitle.Text" xml:space="preserve">
   <value>SettingsPage</value>
 </data>

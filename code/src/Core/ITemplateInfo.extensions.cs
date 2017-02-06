@@ -22,21 +22,21 @@ namespace Microsoft.Templates.Core
             {
                 case "project":
                     return TemplateType.Project;
-                case  "page":
+                case "page":
                     return TemplateType.Page;
-                case  "feature":
+                case "feature":
                     return TemplateType.Feature;
                 default:
                     return TemplateType.Unspecified;
             }
         }
 
-		public static string GetPostActionConfigPath(this ITemplateInfo ti)
-		{
-			var configDir = GetConfigDir(ti);
-		
-			return Directory.EnumerateFiles(configDir, "postactions.json").FirstOrDefault();
-		}
+        public static string GetPostActionConfigPath(this ITemplateInfo ti)
+        {
+            var configDir = GetConfigDir(ti);
+
+            return Directory.EnumerateFiles(configDir, "postactions.json").FirstOrDefault();
+        }
 
         public static string GetIcon(this ITemplateInfo ti)
         {
@@ -61,6 +61,25 @@ namespace Microsoft.Templates.Core
         public static string GetFramework(this ITemplateInfo ti)
         {
             return GetValueFromTag(ti, TagPrefix + "framework");
+        }
+
+        public static List<string> GetFrameworkList(this ITemplateInfo ti)
+        {
+            var frameworks = GetValueFromTag(ti, TagPrefix + "framework");
+
+            var result = new List<string>();
+            if (!string.IsNullOrEmpty(frameworks))
+            {
+                if (!frameworks.Contains(';'))
+                {
+                    result.Add(frameworks);
+                }
+                else
+                {
+                    result.AddRange(frameworks.Split(';'));
+                }
+            }
+            return result;
         }
 
         public static string GetVersion(this ITemplateInfo ti)

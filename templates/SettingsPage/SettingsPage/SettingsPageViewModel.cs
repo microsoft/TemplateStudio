@@ -6,6 +6,7 @@ using Windows.Storage;
 using Param_PageNS.Core;
 #else if (isMVVMLight)
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 #endif
 
 namespace Param_PageNS.SettingsPage

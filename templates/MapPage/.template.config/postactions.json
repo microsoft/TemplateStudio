@@ -7,14 +7,5 @@
         "destination.filename": "ViewModelLocator.cs",
         "destination.anchor": "//PostActionAnchor: REGISTER PAGE IN VIEW_MODEL"
       }
-    },
-    {
-      "name": "PostActionResourceFile",
-      "type": "InsertPartialGenerationPostAction",
-      "description": "Adds the page resources to the resource file",
-      "parameters": {
-        "destination.filename": "Strings\\en-US\\Resources.resw",
-        "destination.anchor": "<!--PostActionAnchor: ADD PAGE RESOURCES-->"
-      }
-    }
+    }    
   ]

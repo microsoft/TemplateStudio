@@ -56,7 +56,7 @@ namespace Microsoft.Templates.Wizard.Steps.Pages
             var selectedPages = Templates
                                     .Select(t => t.Info)
                                     .ToList();
-
+            selectedPages.ForEach(p => p.Parameters.Add("framework", Context.GetState<FrameworkType.ViewModel, GenInfo>().Parameters["framework"]));
             Context.SetState(this, selectedPages); 
         }
 

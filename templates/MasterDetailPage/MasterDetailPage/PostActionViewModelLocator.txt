@@ -1,0 +1,1 @@
+RegisterMasterDetailPage(navigationService);

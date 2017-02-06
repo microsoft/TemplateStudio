@@ -1,3 +1,0 @@
-<data name="MapPageTitle.Text" xml:space="preserve">
-  <value>MapPage</value>
-</data>

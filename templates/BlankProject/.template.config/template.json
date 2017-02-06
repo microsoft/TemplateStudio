@@ -70,7 +70,7 @@
     "framework":
     {
       "type": "parameter",
-      "defaultValue": "MVVMLight",
+      "defaultValue": "Basic",
       "description": "The application design pattern framework."
     },
     
