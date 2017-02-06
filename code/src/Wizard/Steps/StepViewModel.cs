@@ -15,19 +15,19 @@ namespace Microsoft.Templates.Wizard.Steps
 
         public abstract string PageTitle { get; }
 
-        //TODO: MAKE THIS METHOD TRULY ASYNC
-        public abstract Task InitializeAsync();
-
-        public virtual void SaveState()
-        {
-
-        }
-
-        protected abstract Page GetPageInternal();
-
         public StepViewModel(WizardContext context)
         {
             Context = context;
+            Context.CanGoForward = true;
+        }
+
+        //TODO: MAKE THIS METHOD TRULY ASYNC
+        public abstract Task InitializeAsync();
+
+        protected abstract Page GetPageInternal();
+
+        public virtual void SaveState()
+        {
         }
 
         public Page GetPage()

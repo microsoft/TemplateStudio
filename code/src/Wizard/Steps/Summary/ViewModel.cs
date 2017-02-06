@@ -13,10 +13,23 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
     public class ViewModel : StepViewModel
     {
         public ObservableCollection<SummaryGroupViewModel> Templates { get; } = new ObservableCollection<SummaryGroupViewModel>();
+        public ObservableCollection<SummaryLicenceViewModel> Licences { get; } = new ObservableCollection<SummaryLicenceViewModel>();
         public override string PageTitle => Strings.PagesTitle;
 
         public ViewModel(WizardContext context) : base(context)
         {
+            TermsAccepted = false;
+        }
+
+        private bool _termsAccepted;
+        public bool TermsAccepted
+        {
+            get { return _termsAccepted; }
+            set
+            {
+                SetProperty(ref _termsAccepted, value);
+                Context.CanGoForward = value;
+            }
         }
 
         public override async Task InitializeAsync()
@@ -24,6 +37,8 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
             AddTemplates(Strings.ProjectsTitle, FilterTemplates(TemplateType.Project));
             AddTemplates(Strings.PagesTitle, FilterTemplates(TemplateType.Page));
             AddTemplates(Strings.FeaturesTitle, FilterTemplates(TemplateType.Feature));
+
+            AddLicences();
 
             await Task.FromResult(true);
         }
@@ -48,6 +63,27 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
             return Context.GetSelection()
                                 .Where(t => t.Template.GetTemplateType() == templateType)
                                 .Select(t => new SummaryItemViewModel(t));
+        }
+
+        private void AddLicences()
+        {
+            foreach (var selected in Context.GetSelection())
+            {
+                foreach (var templateLic in selected.Template.GetLicences())
+                {
+                    var lic = Licences.FirstOrDefault(l => l.Text == templateLic.text);
+                    if (lic == null)
+                    {
+                        lic = new SummaryLicenceViewModel
+                        {
+                            Text = templateLic.text,
+                            Url = templateLic.url
+                        };
+                        Licences.Add(lic);
+                    }
+                    lic.UsedIn.Add(selected.Name);
+                }
+            }
         }
     }
 }

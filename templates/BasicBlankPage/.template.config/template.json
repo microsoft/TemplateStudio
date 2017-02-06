@@ -12,6 +12,7 @@
     "uct.type": "page",
     "uct.framework": "Basic",
     "uct.version": "1.0.0",
+    "uct.licences": "[lorem](http://microsoft.com)|[ipsum](http://microsoft.com)",
     "uct.order": "1"
   },
   "sourceName": "BasicBlankPage",

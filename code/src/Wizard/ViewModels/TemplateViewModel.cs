@@ -28,7 +28,7 @@ namespace Microsoft.Templates.Wizard.ViewModels
             Framework = ti.GetFramework();
             Version = ti.GetVersion();
             Order = ti.GetOrder();
-            LicenceTerms = ti.GetLicenceTerms();
+            //LicenceTerms = ti.GetLicenceTerms();
         }
 
         public ITemplateInfo Info { get; }

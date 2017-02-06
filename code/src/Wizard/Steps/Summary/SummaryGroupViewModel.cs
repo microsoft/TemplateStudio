@@ -27,7 +27,6 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
 
     public class SummaryItemViewModel : ObservableBase
     {
-        private readonly string _licence;
 
         public SummaryItemViewModel(GenInfo genInfo)
         {
@@ -36,12 +35,7 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
             TemplateName = genInfo.Template.Name;
             Author = genInfo.Template.Author;
             Framework = genInfo.Template.GetFramework();
-
-            _licence = genInfo.Template.GetLicenceTerms();
-            LicenceVisibility = string.IsNullOrWhiteSpace(_licence) ? Visibility.Collapsed : Visibility.Visible;
         }
-
-        public ICommand ViewLicenceCommand => new RelayCommand(ShowLicence);
 
         private string _name;
         public string Name
@@ -69,18 +63,6 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
         {
             get { return _framework; }
             set { SetProperty(ref _framework, value); }
-        }
-
-        private Visibility _licenceVisibility;
-        public Visibility LicenceVisibility
-        {
-            get { return _licenceVisibility; }
-            set { SetProperty(ref _licenceVisibility, value); }
-        }
-
-        private void ShowLicence()
-        {
-            MessageBox.Show(_licence, string.Format(Strings.LicenceDialogCaption, TemplateName));
         }
     }
 }

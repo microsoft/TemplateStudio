@@ -8,12 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions.Mount;
 using Microsoft.TemplateEngine.Edge.Settings;
+using System.Text.RegularExpressions;
 
 namespace Microsoft.Templates.Core
 {
     public static class ITemplateInfoExtensions
     {
         private const string TagPrefix = "uct.";
+        private const string LicencesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\|?";
 
         public static TemplateType GetTemplateType(this ITemplateInfo ti)
         {
@@ -45,17 +47,26 @@ namespace Microsoft.Templates.Core
             return Directory.EnumerateFiles(configDir, "icon.*").FirstOrDefault();
         }
 
-        public static string GetLicenceTerms(this ITemplateInfo ti)
+        public static IEnumerable<(string text, string url)> GetLicences(this ITemplateInfo ti)
         {
-            var configDir = GetConfigDir(ti);
-            var licenceFilePath = Path.Combine(configDir, "licence.txt");
-
-            if (File.Exists(licenceFilePath))
+            var licences = GetValueFromTag(ti, TagPrefix + "licences");
+            if (string.IsNullOrWhiteSpace(licences))
             {
-                return File.ReadAllText(licenceFilePath);
+                return Enumerable.Empty<(string text, string url)>();
             }
+            var result = new List<(string text, string url)>();
 
-            return null;
+            var licencesMatches = Regex.Matches(licences, LicencesPattern);
+            for (int i = 0; i < licencesMatches.Count; i++)
+            {
+                var m = licencesMatches[i];
+                if (m.Success)
+                {
+                    result.Add((m.Groups["text"].Value, m.Groups["url"].Value));
+                }
+
+            }
+            return result;
         }
 
         public static string GetFramework(this ITemplateInfo ti)
