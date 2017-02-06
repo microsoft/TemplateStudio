@@ -78,8 +78,12 @@ namespace Microsoft.Templates.Core.Test
         {
             var target = GetTarget("ProjectTemplate");
 
-            var result = target.GetFramework();
-            Assert.Equal("fx1", result);
+            var result = target.GetFrameworkList();
+            Assert.Collection(result,
+                e1 =>
+                {
+                    e1.Equals("fx1");
+                });
         }
 
         [Fact]
@@ -87,8 +91,8 @@ namespace Microsoft.Templates.Core.Test
         {
             var target = GetTarget("UnspecifiedTemplate");
 
-            var result = target.GetFramework();
-            Assert.Null(result);
+            var result = target.GetFrameworkList();
+            Assert.Collection(result);
         }
 
         [Fact]

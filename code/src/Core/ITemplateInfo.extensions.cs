@@ -74,17 +74,12 @@ namespace Microsoft.Templates.Core
             var frameworks = GetValueFromTag(ti, TagPrefix + "framework");
 
             var result = new List<string>();
+
             if (!string.IsNullOrEmpty(frameworks))
             {
-                if (!frameworks.Contains(';'))
-                {
-                    result.Add(frameworks);
-                }
-                else
-                {
-                    result.AddRange(frameworks.Split(';'));
-                }
+                result.AddRange(frameworks.Split(";".ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
             }
+
             return result;
         }
 
