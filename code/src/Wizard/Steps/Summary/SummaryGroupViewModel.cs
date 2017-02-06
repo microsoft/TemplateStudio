@@ -35,7 +35,6 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
             Name = genInfo.Name;
             TemplateName = genInfo.Template.Name;
             Author = genInfo.Template.Author;
-            Framework = genInfo.Template.GetFramework();
 
             _licence = genInfo.Template.GetLicenceTerms();
             LicenceVisibility = string.IsNullOrWhiteSpace(_licence) ? Visibility.Collapsed : Visibility.Visible;
@@ -62,14 +61,7 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
         {
             get { return _author; }
             set { SetProperty(ref _author, value); }
-        }
-
-        private string _framework;
-        public string Framework
-        {
-            get { return _framework; }
-            set { SetProperty(ref _framework, value); }
-        }
+        }        
 
         private Visibility _licenceVisibility;
         public Visibility LicenceVisibility

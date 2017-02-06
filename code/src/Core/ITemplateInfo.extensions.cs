@@ -58,11 +58,6 @@ namespace Microsoft.Templates.Core
             return null;
         }
 
-        public static string GetFramework(this ITemplateInfo ti)
-        {
-            return GetValueFromTag(ti, TagPrefix + "framework");
-        }
-
         public static List<string> GetFrameworkList(this ITemplateInfo ti)
         {
             var frameworks = GetValueFromTag(ti, TagPrefix + "framework");

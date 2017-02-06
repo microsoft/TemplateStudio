@@ -71,7 +71,7 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
             var selectedFrameword = GetSelectedFramework();
             var projectTemplates = _context.TemplatesRepository.GetAll()
                                                                     .Where(f => f.GetTemplateType() == TemplateType.Page
-                                                                        && f.GetFramework() == selectedFrameword)
+                                                                        && f.GetFrameworkList().Contains(selectedFrameword))
                                                                     .Select(t => new TemplateViewModel(t))
                                                                     .OrderBy(t => t.Order)
                                                                     .ToList();
@@ -116,12 +116,12 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
 
         private string GetSelectedFramework()
         {
-            var selectedProject = _context.GetState<Steps.FrameworkType.ViewModel, GenInfo>();
+            var selectedProject = _context.GetState<FrameworkType.ViewModel, GenInfo>();
             if (selectedProject == null)
             {
                 throw new ArgumentException("No way to show the page templates, there is no project template selected");
             }
-            return selectedProject.Template.GetFramework();
+            return selectedProject.GetFramework();
         }
     }
 }

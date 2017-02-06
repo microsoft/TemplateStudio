@@ -33,12 +33,9 @@ namespace Microsoft.Templates.Wizard.Steps.FrameworkType
             var templatesByProjectType = Context.TemplatesRepository
                                             .GetAll()
                                             .Where(t =>
-                                                t.GetTemplateType() == TemplateType.Project && t.GetProjectType() == GetSelectedProjectType());
+                                                t.GetTemplateType() == TemplateType.Project && t.GetProjectType() == GetSelectedProjectType()).ToList();
             List<string> frameworkTypeNames = new List<string>();
-            foreach (var template in templatesByProjectType)
-            {
-                frameworkTypeNames.AddRange(template.GetFrameworkList());
-            }
+            templatesByProjectType.ForEach(t => frameworkTypeNames.AddRange(t.GetFrameworkList()));
             FrameworkTypes.AddRange(frameworkTypeNames.Select(ft => new ProjectInfoViewModel(ft, Context.TemplatesRepository.GetFrameworkTypeInfo(ft))));
 
             SelectedFrameworkType = FrameworkTypes.FirstOrDefault();
@@ -56,7 +53,7 @@ namespace Microsoft.Templates.Wizard.Steps.FrameworkType
             var template = Context.TemplatesRepository.GetAll()
                                                         .FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project
                                                             && t.GetProjectType() == projectType
-                                                            && t.GetFramework().Contains(SelectedFrameworkType.Name));
+                                                            && t.GetFrameworkList().Contains(SelectedFrameworkType.Name));
             if (template == null)
             {
                 throw new NullReferenceException($"Project template not found for framework '{SelectedFrameworkType.Name}'");
@@ -68,7 +65,7 @@ namespace Microsoft.Templates.Wizard.Steps.FrameworkType
                 Template = template
             };
             genInfo.Parameters.Add("UserName", Environment.UserName);
-            genInfo.Parameters.Add("framework", SelectedFrameworkType.Name);
+            genInfo.Parameters.Add(GenInfo.FrameworkPrameterName, SelectedFrameworkType.Name);
 
 
             Context.SetState(this, genInfo);

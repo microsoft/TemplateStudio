@@ -106,7 +106,7 @@ namespace Microsoft.Templates.Wizard
                 var timeSpent = chrono.Elapsed.TotalSeconds;
                 TrackTelemery(genItems, genResults, timeSpent);
             }
-            
+
         }
 
         private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent)
@@ -122,13 +122,19 @@ namespace Microsoft.Templates.Wizard
                     {
                         continue;
                     }
+                    string appFx = genInfo.GetFramework();
+                    if (string.IsNullOrEmpty(appFx))
+                    {
+                        // TODO: Review error tracking
+                        AppHealth.Current.Error.TrackAsync("Project framework does not found").FireAndForget();
+                    }
                     if (genInfo.Template.GetTemplateType() == TemplateType.Project)
                     {
-                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, genResults[$"{genInfo.Template.Identity}_{genInfo.Name}"], pagesAdded, featuresAdded, timeSpent).FireAndForget();
+                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, appFx, genResults[$"{genInfo.Template.Identity}_{genInfo.Name}"], pagesAdded, featuresAdded, timeSpent).FireAndForget();
                     }
                     else
                     {
-                        AppHealth.Current.Telemetry.TrackPageOrFeatureTemplateGenAsync(genInfo.Template, genResults[genInfo.Template.Identity]).FireAndForget();
+                        AppHealth.Current.Telemetry.TrackPageOrFeatureTemplateGenAsync(genInfo.Template, appFx, genResults[genInfo.Template.Identity]).FireAndForget();
                     }
                 }
             }
