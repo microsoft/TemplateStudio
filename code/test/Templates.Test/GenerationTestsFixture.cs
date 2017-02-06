@@ -27,8 +27,8 @@ namespace Microsoft.Templates.Test
         public GenerationTestsFixture()
         {
             TestRunPath = string.Format(TestRunPath, DateTime.Now.ToString("yyyyMMdd_hhmm"));
-            TestProjectsPath = Path.Combine(TestRunPath, "Projects");
-            TestPagesPath = Path.Combine(TestRunPath, "Pages");
+            TestProjectsPath = Path.GetFullPath(Path.Combine(TestRunPath, "Projects"));
+            TestPagesPath = Path.GetFullPath(Path.Combine(TestRunPath, "Pages"));
         }
 
         public void Dispose()
