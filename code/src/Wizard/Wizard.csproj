@@ -65,6 +65,7 @@
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Design" />
     <Reference Include="System.IO.Compression" />
@@ -115,54 +116,54 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Steps\FrameworkTypeStep\FrameworkTypeStepViewModel.cs" />
-    <Compile Include="Steps\FrameworkTypeStep\FrameworkTypeStepPage.xaml.cs">
-      <DependentUpon>FrameworkTypeStepPage.xaml</DependentUpon>
+    <Compile Include="Steps\FrameworkType\View.xaml.cs">
+      <DependentUpon>View.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Steps\FrameworkTypeStep\FrameworkTypeStepResources.Designer.cs">
-      <DependentUpon>FrameworkTypeStepResources.resx</DependentUpon>
+    <Compile Include="Steps\FrameworkType\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Steps\PagesStep\PagesStepPage.xaml.cs">
-      <DependentUpon>PagesStepPage.xaml</DependentUpon>
+    <Compile Include="Steps\FrameworkType\ViewModel.cs" />
+    <Compile Include="Steps\Pages\NewPage\NewPageDialog.xaml.cs">
+      <DependentUpon>NewPageDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Steps\PagesStep\PagesStepResources.Designer.cs">
+    <Compile Include="Steps\Pages\NewPage\NewPageViewModel.cs" />
+    <Compile Include="Steps\Pages\View.xaml.cs">
+      <DependentUpon>View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Steps\Pages\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PagesStepResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Steps\PagesStep\PagesStepViewModel.cs" />
-    <Compile Include="Steps\ProjectTypeStep\ProjectTypeStepViewModel.cs" />
-    <Compile Include="Steps\ProjectTypeStep\ProjectTypeStepResources.Designer.cs">
+    <Compile Include="Steps\Pages\PageViewModel.cs" />
+    <Compile Include="Steps\Pages\ViewModel.cs" />
+    <Compile Include="Steps\ProjectType\View.xaml.cs">
+      <DependentUpon>View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Steps\ProjectType\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ProjectTypeStepResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Steps\PagesStep\PagesTemplatesDialog.xaml.cs">
-      <DependentUpon>PagesTemplatesDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Steps\PagesStep\PagesTemplatesDialogViewModel.cs" />
-    <Compile Include="Steps\PagesStep\PageViewModel.cs" />
-    <Compile Include="Steps\ProjectTypeStep\ProjectTypeStepPage.xaml.cs">
-      <DependentUpon>ProjectTypeStepPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Steps\StepPage.cs" />
-    <Compile Include="Steps\SummaryStep\SummaryStepPage.xaml.cs">
-      <DependentUpon>SummaryStepPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Steps\SummaryStep\SummaryStepResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SummaryStepResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Steps\SummaryStep\SummaryStepViewModel.cs" />
-    <Compile Include="Steps\SummaryStep\TemplatesSummaryViewModel.cs" />
+    <Compile Include="Steps\ProjectType\ViewModel.cs" />
+    <Compile Include="Steps\StepViewModel.cs" />
     <Compile Include="Host\WizardHostResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WizardHostResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Steps\Summary\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Steps\Summary\SummaryGroupViewModel.cs" />
+    <Compile Include="Steps\Summary\View.xaml.cs">
+      <DependentUpon>View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Steps\Summary\ViewModel.cs" />
     <Compile Include="TemplatesGen.cs" />
     <Compile Include="ViewModels\Extensions.cs" />
     <Compile Include="ViewModels\ProjectInfoViewModel.cs" />
@@ -178,25 +179,25 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Steps\FrameworkTypeStep\FrameworkTypeStepPage.xaml">
+    <Page Include="Steps\FrameworkType\View.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Steps\PagesStep\PagesStepPage.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Steps\Pages\NewPage\NewPageDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="Steps\ProjectTypeStep\ProjectTypeStepPage.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Steps\Pages\View.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="Steps\PagesStep\PagesTemplatesDialog.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Steps\ProjectType\View.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="Steps\SummaryStep\SummaryStepPage.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Steps\Summary\View.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\WizardTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -233,25 +234,25 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Steps\FrameworkTypeStep\FrameworkTypeStepResources.resx">
+    <EmbeddedResource Include="Steps\FrameworkType\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>FrameworkTypeStepResources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Steps\PagesStep\PagesStepResources.resx">
+    <EmbeddedResource Include="Steps\Pages\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>PagesStepResources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Steps\ProjectTypeStep\ProjectTypeStepResources.resx">
+    <EmbeddedResource Include="Steps\ProjectType\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ProjectTypeStepResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Steps\SummaryStep\SummaryStepResources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>SummaryStepResources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Host\WizardHostResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>WizardHostResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Steps\Summary\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="..\..\TestKey.snk">
       <Link>TestKey.snk</Link>
@@ -293,6 +294,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

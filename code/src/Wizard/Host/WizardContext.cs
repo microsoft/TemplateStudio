@@ -10,20 +10,11 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Wizard.Host
 {
-    public delegate void SaveStateEventHandler(object sender, EventArgs e);
-
-    //TODO: REVIEW THIS NAME
     public class WizardContext : ObservableBase
     {
         public TemplatesRepository TemplatesRepository { get; }
         public GenShell Shell { get; }
-
-        public event SaveStateEventHandler SaveState;
-
-        //TODO: MAKE READONLY??
-        public ProjectInfoViewModel SelectedProjectType { get; set; }
-        public ProjectInfoViewModel SelectedFrameworkType { get; set; }
-        public Dictionary<Type, List<GenInfo>> SelectedTemplates { get; } = new Dictionary<Type, List<GenInfo>>();
+        private Dictionary<Type, object> State { get; } = new Dictionary<Type, object>();
 
         public WizardContext(TemplatesRepository templatesRepository, GenShell shell)
         {
@@ -38,6 +29,64 @@ namespace Microsoft.Templates.Wizard.Host
             set => SetProperty(ref _canGoForward, value);
         }
 
-        public void NotifySave() => SaveState?.Invoke(this, new EventArgs());
+        public IEnumerable<GenInfo> GetSelection()
+        {
+            var selection = new List<GenInfo>();
+
+            foreach (var stepState in State)
+            {
+                if (stepState.Value is IEnumerable<GenInfo> stepTemplates)
+                {
+                    selection.AddRange(stepTemplates);
+                }
+                else if (stepState.Value is GenInfo stepTemplate)
+                {
+                    selection.Add(stepTemplate);
+                }
+            }
+
+            return selection;
+        }
+
+        public TOut GetState<T, TOut>() where T : Steps.StepViewModel
+        {
+            if (State.ContainsKey(typeof(T)) && State[typeof(T)] is TOut)
+            {
+                return (TOut)State[typeof(T)];
+            }
+            return default(TOut);
+        }
+
+        public void SetState<T>(T instance, object state) where T : Steps.StepViewModel
+        {
+            if (instance == null)
+            {
+                return;
+            }
+            var type = instance.GetType();
+
+            if (State.ContainsKey(type))
+            {
+                State[type] = state;
+            }
+            else
+            {
+                State.Add(type, state);
+            }
+        }
+
+        public void ClearState<T>(T instance)
+        {
+            if (instance == null)
+            {
+                return;
+            }
+            var type = instance.GetType();
+
+            if (State.ContainsKey(type))
+            {
+                State.Remove(type);
+            }
+        }
     }
 }

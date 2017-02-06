@@ -2,6 +2,7 @@
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Wizard.PostActions.Catalog;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -78,6 +79,38 @@ namespace Microsoft.Templates.Wizard.PostActions
                     
                 default:
                     return null;
+            }
+        }
+
+        public static void CleanUpAnchors(string outputPath)
+        {
+            string[] anchorTexts = { "//PostActionAnchor", "<!--PostActionAnchor" };
+
+            var projectFiles = Directory.EnumerateFiles(outputPath, "*", SearchOption.AllDirectories);
+
+            foreach (var file in projectFiles)
+            {
+                var modified = false;
+                var fileContent = File.ReadAllText(file);
+                foreach (var anchorText in anchorTexts)
+                {
+                    var anchorIndex = 0;
+                    //Search the whole file, until nothing else is found
+                    while (anchorIndex != -1)
+                    {
+                        anchorIndex = fileContent.IndexOf(anchorText, StringComparison.Ordinal);
+                        if (anchorIndex != -1)
+                        {
+                            var nextLineBreakAfterAnchor = fileContent.IndexOf(Environment.NewLine, anchorIndex, StringComparison.Ordinal);
+
+                            fileContent = fileContent.Remove(anchorIndex, nextLineBreakAfterAnchor - anchorIndex);
+                            modified = true;
+                        }
+                    }
+                }
+
+                if (modified) File.WriteAllText(file, fileContent);
+
             }
         }
     }

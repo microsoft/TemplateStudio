@@ -7,6 +7,7 @@ using Xunit;
 
 using System.Diagnostics;
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
 
 namespace Microsoft.Templates.Core.Test.Diagnostics
 {
@@ -21,6 +22,14 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         public void Instantiated()
         {
             Assert.NotNull(_fixture.Telemetry);
+        }
+
+        [Fact]
+        public void ObfuscateUserName()
+        {
+            string hiddenUserName = Environment.UserName.Obfuscate();
+
+            Assert.NotEqual(hiddenUserName, Environment.UserName.ToUpper());
         }
 
         [Fact]

@@ -18,10 +18,10 @@ namespace Microsoft.Templates.Wizard.Host
             {
                 var steps = new WizardSteps();
 
-                steps.Add<Steps.ProjectTypeStep.ProjectTypeStepPage>();
-                steps.Add<Steps.FrameworkTypeStep.FrameworkTypeStepPage>();
-                steps.Add<Steps.PagesStep.PagesStepPage>();
-                steps.Add<Steps.SummaryStep.SummaryStepPage>();
+                steps.Add<Steps.ProjectType.ViewModel>();
+                steps.Add<Steps.FrameworkType.ViewModel>();
+                steps.Add<Steps.Pages.ViewModel>();
+                steps.Add<Steps.Summary.ViewModel>();
 
                 return steps;
             }
@@ -31,11 +31,7 @@ namespace Microsoft.Templates.Wizard.Host
         {
             get
             {
-                var steps = new WizardSteps();
-
-                steps.Add<Steps.PagesStep.PagesStepPage>();
-
-                return steps;
+                throw new NotImplementedException();
             }
         }
 
@@ -43,16 +39,13 @@ namespace Microsoft.Templates.Wizard.Host
         {
             get
             {
-                //TODO: NOTHING TO ADD FOR THE MOMENT
-                var steps = new WizardSteps();
-
-                return steps;
+                throw new NotImplementedException();
             }
         }
 
         public Type Current { get; private set; }
 
-        public void Add<T>() where T : StepPage
+        public void Add<T>() where T : StepViewModel
         {
             _steps.Add(typeof(T));
         }

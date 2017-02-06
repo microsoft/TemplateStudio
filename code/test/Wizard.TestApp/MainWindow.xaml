@@ -13,7 +13,7 @@
         </Grid.ColumnDefinitions>
         <Button x:Name="AddProject" Content="Create Project" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Width="112" Click="AddProject_Click"/>
         <Button x:Name="AddPage" Content="Add Page" HorizontalAlignment="Left" Margin="10,234,0,0" VerticalAlignment="Top" Width="112" Click="AddPage_Click"/>
-        <TextBlock x:Name="Status" Margin="14,344,11,10" TextWrapping="Wrap" Text="Status TextBox"/>
+        <TextBlock x:Name="Status" Margin="14,328,11,26" TextWrapping="Wrap" Text="Status TextBox"/>
         <Button Visibility="Hidden" x:Name="AddFeature" Content="Add Feature" HorizontalAlignment="Left" Margin="10,163,0,0" VerticalAlignment="Top" Width="112" Click="AddFeature_Click"/>
         <TextBox x:Name="SeedSolName" HorizontalAlignment="Left" Height="22" Margin="140,63,0,0" TextWrapping="Wrap" Text="Test" VerticalAlignment="Top" Width="200"/>
         <Label Content="Seed Solution Name:" HorizontalAlignment="Left" Margin="138,42,0,0" VerticalAlignment="Top" Width="202" RenderTransformOrigin="0.5,0.5" />
@@ -22,7 +22,7 @@
         <TextBox x:Name="SolutionPath" Background="Transparent" BorderThickness="0" IsReadOnly="true" Text="Solution Generated at C:\XXX\YYY\Solution.sln" Margin="10,95,10,0" VerticalAlignment="Top"/>
         <TextBox x:Name="PagePath" Background="Transparent" BorderThickness="0" IsReadOnly="true" Text="Page Added: C:\XXX\YYY\Page\test.xaml" Margin="10,259,11,0" VerticalAlignment="Top"/>
         <Button x:Name="OpenInVs" Content="Open Active Project in VS" Margin="0,177,10,0" VerticalAlignment="Top" Click="OpenInVs_Click" HorizontalAlignment="Right" Width="148" HorizontalContentAlignment="Center"/>
-        <Button x:Name="RestartTester" Content="Restart Tester" Margin="0,0,11,38" Click="RestartTester_Click" HorizontalAlignment="Right" Height="20" VerticalAlignment="Bottom" Width="101"/>
+        <Button x:Name="RestartTester" Content="Restart Tester" Margin="0,0,10,51" Click="RestartTester_Click" HorizontalAlignment="Right" Height="20" VerticalAlignment="Bottom" Width="101"/>
         <Button x:Name="SetActiveProject" Content="Set Existing Project" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" Width="112" Click="SetActiveProject_Click"/>
 
         <TextBox x:Name="PathToExistingProject" Height="34" Margin="140,138,11,0"  TextWrapping="Wrap" VerticalAlignment="Top"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"

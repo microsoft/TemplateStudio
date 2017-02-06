@@ -123,8 +123,14 @@
   <data name="AddPageAction" xml:space="preserve">
     <value>Add Page</value>
   </data>
+  <data name="AddPageMessage" xml:space="preserve">
+    <value>Adding '{0}' page to project...</value>
+  </data>
   <data name="AddProjectAction" xml:space="preserve">
     <value>Add Project</value>
+  </data>
+  <data name="AddProjectMessage" xml:space="preserve">
+    <value>Creating project '{0}'...</value>
   </data>
   <data name="UIActionCancelled" xml:space="preserve">
     <value>Action cancelled by user.</value>

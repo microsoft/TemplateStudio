@@ -86,15 +86,15 @@ namespace Microsoft.Templates.Core.Diagnostics
 
                 if (RemoteKeyAvailable())
                 {
-                    string userToTrack = Obfuscate(Environment.UserName); //TODO: Obfuscate this info??
-                    string machineToTrack = Obfuscate(Environment.MachineName);
+                    string userToTrack = Environment.UserName.Obfuscate(); //TODO: Obfuscate this info??
+                    string machineToTrack = Environment.MachineName.Obfuscate();
                     // Set session data
                     _client.Context.User.Id = userToTrack;
                     _client.Context.Device.Id = machineToTrack;
+                    _client.Context.Device.OperatingSystem = Environment.OSVersion.VersionString;
                     _client.Context.Cloud.RoleInstance = machineToTrack;
                     _client.Context.Cloud.RoleName = "VSIX Instance";
                     _client.Context.Session.Id = Guid.NewGuid().ToString();
-                    //_client.Context.Device.OperatingSystem = Environment.OSVersion.ToString();
                     _client.Context.Component.Version = GetVersion();
                     _client.Context.Properties.Add("Application FileVersion", GetFileVersion());
                     
@@ -171,40 +171,6 @@ namespace Microsoft.Templates.Core.Diagnostics
                 Trace.TraceError("Error tracking telemetry: {0}", ex.ToString());
             }
         }
-
-        private string Obfuscate(string data)
-        {
-            string result = String.Empty;
-            try
-            {
-                byte[] b64data = Encoding.UTF8.GetBytes(data);
-
-                using (MD5 md5Hash = MD5.Create())
-                {
-                    result = GetMd5Hash(md5Hash, b64data);
-                }
-            }
-            catch (Exception ex)
-            {
-                AppHealth.Current.Error.TrackAsync("Error obfuscating data", ex).FireAndForget();
-            }
-            return result.ToUpper();
-        }
-
-        static string GetMd5Hash(MD5 md5Hash, byte[] inputData)
-        {
-            byte[] data = md5Hash.ComputeHash(inputData);
-
-            StringBuilder sBuilder = new StringBuilder();
-
-            for (int i = 0; i < data.Length; i++)
-            {
-                sBuilder.Append(data[i].ToString("x2"));
-            }
-
-            return sBuilder.ToString();
-        }
-
 
         private bool RemoteKeyAvailable()
         {
