@@ -13,6 +13,7 @@
     <Page.Resources>
         <ResourceDictionary>
             <converters:CollectionToVisibilityConverter x:Key="CollectionToVisibilityConverter" />
+            <converters:ListToStringConverter x:Key="ListToStringConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Microsoft.Templates.Wizard;component/Styles/WizardTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -23,8 +24,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
+
         <ItemsControl ItemsSource="{Binding Templates}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
@@ -46,11 +48,6 @@
                                                 </TextBlock.Text>
                                             </TextBlock>
                                         </StackPanel>
-                                        <TextBlock Visibility="{Binding LicenceVisibility}">           
-                                            <Hyperlink Command="{Binding ViewLicenceCommand}">
-                                                <TextBlock Text="{x:Static local:Strings.LicenceCommand}"/>
-                                            </Hyperlink>
-                                        </TextBlock>
                                     </StackPanel>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -59,6 +56,45 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <TextBlock Text="{x:Static local:Strings.AcceptTerms}" Grid.Row="1" TextWrapping="Wrap" />
+        <Grid Grid.Row="1">
+            <Grid.Style>
+                <Style TargetType="Grid" BasedOn="{StaticResource LicencesContainerStyle}">
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Licences.Count}" Value="0">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="{x:Static local:Strings.LicencesTitle}" Style="{StaticResource LicenceTitleStyle}" />
+            <ItemsControl ItemsSource="{Binding Licences}" Grid.Row="1" Style="{StaticResource LicenceItemsStyle}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>           
+                                <Hyperlink Command="{Binding ShowLicenceCommand}">
+                                    <TextBlock Text="{Binding Text}"/>
+                                </Hyperlink>
+                            </TextBlock>
+                            <TextBlock Style="{StaticResource LicenceItemDescriptionStyle}">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="({0})">
+                                        <Binding Path="UsedIn" Converter="{StaticResource ListToStringConverter}" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+        <CheckBox Grid.Row="2" IsChecked="{Binding TermsAccepted}" Style="{StaticResource AcceptTermsStyle}">
+            <TextBlock Text="{x:Static local:Strings.AcceptTerms}" TextWrapping="Wrap" />
+        </CheckBox>
     </Grid>
 </Page>

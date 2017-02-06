@@ -138,4 +138,10 @@
   <data name="LicenceDialogCaption" xml:space="preserve">
     <value>&lt;{0}&gt; Licence Terms</value>
   </data>
+  <data name="LicencesTitle" xml:space="preserve">
+    <value>Licenses:</value>
+  </data>
+  <data name="LicencesUsedIn" xml:space="preserve">
+    <value>Used in: </value>
+  </data>
 </root>

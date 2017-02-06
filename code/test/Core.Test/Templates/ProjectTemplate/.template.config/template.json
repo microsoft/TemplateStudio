@@ -11,6 +11,7 @@
     "uct.type": "project",
     "uct.framework": "fx1",
     "uct.version": "1.0.0",
+    "uct.licences": "[text1](url1)|[text2](url2)",
     "uct.order": "1"
   },
   "sourceName": "App_Name",

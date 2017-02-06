@@ -77,6 +77,22 @@
     <Style TargetType="ItemsControl" x:Key="SummaryInfoItemsStyle">
         <Setter Property="Margin" Value="{StaticResource MediumLeftMargin}" />
     </Style>
+    <Style TargetType="Grid" x:Key="LicencesContainerStyle">
+        <Setter Property="Margin" Value="{StaticResource MediumTopMargin}" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="LicenceTitleStyle">
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    <Style TargetType="ItemsControl" x:Key="LicenceItemsStyle">
+        <Setter Property="Margin" Value="{StaticResource MediumLeftMargin}" />
+    </Style>
+     <Style TargetType="TextBlock" x:Key="LicenceItemDescriptionStyle">
+        <Setter Property="Margin" Value="{StaticResource ShortLeftMargin}" />
+        <Setter Property="FontStyle" Value="Italic" />
+    </Style>
+    <Style TargetType="CheckBox" x:Key="AcceptTermsStyle">
+        <Setter Property="Margin" Value="{StaticResource MediumTopMargin}" />
+    </Style>
     
     <!--PAGES-->
      <Style TargetType="Image" x:Key="SelectedPageIcon">

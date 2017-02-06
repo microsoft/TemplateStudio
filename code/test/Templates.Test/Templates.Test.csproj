@@ -60,6 +60,7 @@
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
@@ -79,10 +80,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FakeGenShell.cs" />
     <Compile Include="GenerationTests.cs" />
     <Compile Include="GenerationTestsFixture.cs" />
     <Compile Include="MSBuildProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextBlock.cs" />
     <Compile Include="VsItemType.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +104,13 @@
       <Project>{51DDB424-2DA2-4871-A042-4F4F9B622515}</Project>
       <Name>Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Wizard\Wizard.csproj">
+      <Project>{9E58EACC-C798-43A0-89A0-A5A32815272D}</Project>
+      <Name>Wizard</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="System\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

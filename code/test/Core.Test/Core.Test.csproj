@@ -80,6 +80,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.3.0-preview1-24530-04\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c">
       <HintPath>..\..\packages\xunit.abstractions.2.0.0\lib\net35\xunit.abstractions.dll</HintPath>
@@ -122,7 +125,6 @@
     <Content Include="Templates\FeatureTemplate\.template.config\template.json" />
     <Content Include="Templates\PageTemplate\.template.config\template.json" />
     <Content Include="Templates\ProjectTemplate\.template.config\icon.png" />
-    <Content Include="Templates\ProjectTemplate\.template.config\licence.txt" />
     <Content Include="Templates\ProjectTemplate\.template.config\template.json" />
     <Content Include="Templates\UnspecifiedTemplate\.template.config\template.json" />
   </ItemGroup>
