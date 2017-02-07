@@ -58,7 +58,7 @@ namespace Microsoft.Templates.Wizard.Steps.FrameworkType
             {
                 throw new NullReferenceException($"Project template not found for framework '{SelectedFrameworkType.Name}'");
             }
-
+            List<GenInfo> projectTemplates = new List<GenInfo>();
             var genInfo = new GenInfo
             {
                 Name = Context.Shell.ProjectName,
@@ -66,9 +66,17 @@ namespace Microsoft.Templates.Wizard.Steps.FrameworkType
             };
             genInfo.Parameters.Add(GenInfo.UsernameParameterName, Environment.UserName);
             genInfo.Parameters.Add(GenInfo.FrameworkParameterName, SelectedFrameworkType.Name);
+            projectTemplates.Add(genInfo);
+
+            var feature = GetFeature("StringResources", "en-US");
+
+            if (feature != null)
+            {
+                projectTemplates.Add(feature);
+            }
 
 
-            Context.SetState(this, genInfo);
+            Context.SetState(this, projectTemplates);
         }
 
         protected override Page GetPageInternal()

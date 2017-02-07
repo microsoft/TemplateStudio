@@ -42,5 +42,24 @@ namespace Microsoft.Templates.Wizard.Steps
 
             return page;
         }
+
+        public GenInfo GetFeature(string featureName, string name = null)
+        {
+            var template = Context.TemplatesRepository.GetAll().FirstOrDefault(t => t.Name == featureName);
+            if (template != null)
+            {
+                var genInfo = new GenInfo() { Template = template };
+                if (!string.IsNullOrEmpty(name))
+                {
+                    genInfo.Name = name;
+                }
+                else
+                {
+                    genInfo.Name = template.Name;
+                }
+                return genInfo;
+            }
+            return null;
+        }
     }
 }

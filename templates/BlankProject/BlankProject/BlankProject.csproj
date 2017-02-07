@@ -90,9 +90,6 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="project.json" />
-    <PRIResource Include="Strings\en-US\Resources.resw">
-      <SubType>Designer</SubType>
-    </PRIResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -106,7 +103,7 @@
     </Compile>
     <Compile Include="Home\HomeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Condition="'$(isMVVMLight)' == 'true'" Include="Home\ViewModelLocator.cs" />    
+    <Compile Condition="'$(isMVVMLight)' == 'true'" Include="Home\ViewModelLocator.cs" />
     <Compile Condition="'$(isMVVMLight)' == 'true'" Include="Services\NavigationService.cs" />
     <Compile Condition="'$(isMVVMLight)' == 'true'" Include="ViewModelLocator.cs" />
   </ItemGroup>

@@ -61,8 +61,10 @@
   [
     { "path": ".\\BlankProject\\BlankProject.csproj" }
   ],
-  "symbols": {
-    "userName": {
+  "symbols":
+  {
+    "userName":
+    {
       "type": "parameter",
       "replaces": "Param_UserName"
     },
@@ -73,11 +75,19 @@
       "defaultValue": "Basic",
       "description": "The application design pattern framework."
     },
-    
+
     "isBasic": { "type": "computed", "value": "(framework == \"Basic\")" },
     "isNotBasic": { "type": "computed", "value": "(!isBasic)" },
 
     "isMVVMLight": { "type": "computed", "value": "(framework == \"MVVMLight\")" },
-    "isNotMVVMLight": { "type":"computed", "value":"(!isMVVMLight)" }
+    "isNotMVVMLight": { "type":"computed", "value":"(!isMVVMLight)" },
+
+    "useStringResources":
+    {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true"
+    },
+    "notUseStringResources": { "type":"computed", "value":"(!useStringResources)" }
   }
 }

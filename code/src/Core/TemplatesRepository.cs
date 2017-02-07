@@ -46,7 +46,7 @@ namespace Microsoft.Templates.Core
                         .Where(r => r.IsMatch)
                         .Select(r => r.Info)
                         .ToList();
-        }
+        }        
 
         public ITemplateInfo Find(string name)
         {
