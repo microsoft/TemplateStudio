@@ -2,6 +2,7 @@
   "CdnUrl": "https://uwpcommunitytemplates.blob.core.windows.net/vnext/Latest",
   "RemoteTelemetryKey": "VSIX Key",
   "LogFileFolderPath": "UWPTemplates\\Logs",
+  "RepositoryFolderName": "UWPTemplates",
   "DiagnosticsTraceLevel": "Verbose",
   "DaysToKeepDiagnosticsLogs": 5,
   "VersionCheckingExpirationMinutes": 5

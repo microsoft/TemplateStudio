@@ -11,7 +11,7 @@ namespace Microsoft.Templates.Core
 {
     public class TemplatesRepository
     {
-        private const string FolderName = "UWPTemplates";
+        private static readonly string FolderName = Configuration.Current.RepositoryFolderName;
 
         private readonly TemplatesLocation _location;
 
