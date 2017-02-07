@@ -48,7 +48,7 @@ namespace Microsoft.Templates.Test
             Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", projectTemplate.Name, Path.GetFullPath(outputFile)));
 
             //Clean
-            //Directory.Delete(outputPath, true);
+            Directory.Delete(outputPath, true);
 
         }
 
@@ -80,7 +80,7 @@ namespace Microsoft.Templates.Test
             Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", targetProjectTemplate.Name, Path.GetFullPath(outputFile)));
 
             //Clean
-            //Directory.Delete(outputPath, true);
+            Directory.Delete(outputPath, true);
 
         }
 
@@ -115,7 +115,7 @@ namespace Microsoft.Templates.Test
             Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", targetProjectTemplate.Name, Path.GetFullPath(outputFile)));
 
             //Clean
-            //Directory.Delete(outputPath, true);
+            Directory.Delete(outputPath, true);
         }
 
 
@@ -164,7 +164,6 @@ namespace Microsoft.Templates.Test
             }
             return pageGenInfos;
         }
-
 
 
         public static IEnumerable<object[]> GetPageTemplates()
