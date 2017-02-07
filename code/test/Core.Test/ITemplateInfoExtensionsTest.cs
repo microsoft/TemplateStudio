@@ -78,8 +78,12 @@ namespace Microsoft.Templates.Core.Test
         {
             var target = GetTarget("ProjectTemplate");
 
-            var result = target.GetFramework();
-            Assert.Equal("fx1", result);
+            var result = target.GetFrameworkList();
+            Assert.Collection(result,
+                e1 =>
+                {
+                    e1.Equals("fx1");
+                });
         }
 
         [Fact]
@@ -87,8 +91,8 @@ namespace Microsoft.Templates.Core.Test
         {
             var target = GetTarget("UnspecifiedTemplate");
 
-            var result = target.GetFramework();
-            Assert.Null(result);
+            var result = target.GetFrameworkList();
+            Assert.Collection(result);
         }
 
         [Fact]
@@ -128,21 +132,32 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Fact]
-        public void GetLicence()
+        public void GetLicences()
         {
             var target = GetTarget("ProjectTemplate");
 
-            var result = target.GetLicenceTerms();
-            Assert.Equal("licence terms.", result);
+            var result = target.GetLicences().ToList();
+            Assert.NotNull(result);
+
+            Assert.Collection(result, 
+                e1 => {
+                    Assert.Equal("text1", e1.text);
+                    Assert.Equal("url1", e1.url);
+                    },
+                e2 => {
+                    Assert.Equal("text2", e2.text);
+                    Assert.Equal("url2", e2.url);
+                    }
+                );
         }
 
         [Fact]
-        public void GetLicence_unspecified()
+        public void GetLicences_unspecified()
         {
             var target = GetTarget("UnspecifiedTemplate");
 
-            var result = target.GetLicenceTerms();
-            Assert.Null(result);
+            var result = target.GetLicences().ToList();
+            Assert.Equal(0, result.Count);
         }
 
         private ITemplateInfo GetTarget(string templateName)

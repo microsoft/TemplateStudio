@@ -97,6 +97,24 @@ namespace Microsoft.Templates.Wizard.Steps.Summary {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Licenses:.
+        /// </summary>
+        public static string LicencesTitle {
+            get {
+                return ResourceManager.GetString("LicencesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Used in: .
+        /// </summary>
+        public static string LicencesUsedIn {
+            get {
+                return ResourceManager.GetString("LicencesUsedIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page templates selected:.
         /// </summary>
         public static string PagesTitle {

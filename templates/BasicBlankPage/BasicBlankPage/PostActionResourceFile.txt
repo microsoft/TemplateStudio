@@ -1,3 +1,0 @@
-<data name="BasicBlankPageTitle.Text" xml:space="preserve">
-  <value>BasicBlankPage</value>
-</data>

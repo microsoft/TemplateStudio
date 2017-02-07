@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Microsoft.Templates.Wizard
 {
@@ -41,10 +42,11 @@ namespace Microsoft.Templates.Wizard
         public abstract void SaveSolution(string solutionFullPath);
         public abstract string GetActiveNamespace();
         public abstract void ShowTaskList();
+        public abstract void ShowModal(Window dialog);
 
         public void CancelWizard()
         {
-            throw new WizardCancelledException();
+            throw new WizardBackoutException();
         }
     }
 }

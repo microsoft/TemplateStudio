@@ -25,10 +25,9 @@ namespace Microsoft.Templates.Wizard.ViewModels
             Name = ti.Name;
             Description = ti.Description;
             Author = ti.Author;
-            Framework = ti.GetFramework();
             Version = ti.GetVersion();
             Order = ti.GetOrder();
-            LicenceTerms = ti.GetLicenceTerms();
+            //LicenceTerms = ti.GetLicenceTerms();
         }
 
         public ITemplateInfo Info { get; }
@@ -59,13 +58,6 @@ namespace Microsoft.Templates.Wizard.ViewModels
         {
             get { return _author; }
             set { SetProperty(ref _author, value); }
-        }
-
-        private string _framework;
-        public string Framework
-        {
-            get { return _framework; }
-            set { SetProperty(ref _framework, value); }
         }
 
         private string _version;

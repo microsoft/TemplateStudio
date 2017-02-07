@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Microsoft.Templates.Wizard.Resources;
+using System.Configuration;
 
 namespace Microsoft.Templates.Wizard.PostActions.Catalog
 {
@@ -17,28 +18,28 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
 		}
 
 		public override PostActionResult Execute(string outputPath, GenInfo genInfo, TemplateCreationResult result, GenShell shell)
-		{
+        {
             //Read values from params
             var destinationFileName = GetValueFromParameter("destination.filename");
             var destinationAnchor = GetValueFromParameter("destination.anchor");
 
-            if (string.IsNullOrEmpty(destinationFileName)) return new PostActionResult() { ResultCode = ResultCode.ConfigurationError, Message = PostActionResources.InsertPartialGeneration_EmptyDestinationFileNamePattern.UseParams(Name) };
-            if (string.IsNullOrEmpty(destinationAnchor)) return new PostActionResult() { ResultCode = ResultCode.ConfigurationError, Message = PostActionResources.InsertPartialGeneration_EmptyDestinationAnchorPattern.UseParams(Name) };
+            if (string.IsNullOrEmpty(destinationFileName))
+            {
+                throw new ConfigurationErrorsException(PostActionResources.InsertPartialGeneration_EmptyDestinationFileNamePattern.UseParams(Name));
+            }
+
+            if (string.IsNullOrEmpty(destinationAnchor))
+            {
+                throw new ConfigurationErrorsException(PostActionResources.InsertPartialGeneration_EmptyDestinationAnchorPattern.UseParams(Name));
+            }
 
             var sourceFile = Path.Combine(outputPath, genInfo.Name, Name + ".txt");
+            var postActionCodeLines = ReadPostActionCode(sourceFile);
 
             var destinationFile = Path.Combine(outputPath, destinationFileName);
+            var destinationFileContent = ReadDestinationFileContent(destinationFile);
 
-            if (!File.Exists(sourceFile)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = PostActionResources.InsertPartialGeneration_FileNotFoundPattern.UseParams(sourceFile) };
-            if (!File.Exists(destinationFile)) return new PostActionResult() { ResultCode = ResultCode.ContextError, Message = PostActionResources.InsertPartialGeneration_FileNotFoundPattern.UseParams(destinationFile) };
-
-            //Read Code to insert
-            var postActionCodeLines = File.ReadAllLines(sourceFile);
-
-            //Read destination file, find anchor
-            var destinationFileContent = File.ReadAllText(destinationFile);
             var anchorIndex = destinationFileContent.IndexOf(destinationAnchor, StringComparison.Ordinal);
-
             if (anchorIndex == -1)
             {
                 var postActionCode = postActionCodeLines.Aggregate(new StringBuilder(), (sb, a) => sb.AppendLine(a), sb => sb.ToString());
@@ -57,6 +58,8 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
 
             //Save
             File.WriteAllText(destinationFile, destinationFileContent);
+
+            //Delete source file
             File.Delete(sourceFile);
 
             return new PostActionResult()
@@ -64,9 +67,34 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
                 ResultCode = ResultCode.Success,
                 Message = PostActionResources.InsertPartialGeneration_SuccessPattern.UseParams(Name, formattedCode, destinationAnchor, destinationFile)
             };
-		}
+        }
 
- 
+        private static string ReadDestinationFileContent(string destinationFile)
+        {
+            if (File.Exists(destinationFile))
+            {
+                //Read destination file, find anchor
+                return File.ReadAllText(destinationFile);
+
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+        private static string[] ReadPostActionCode(string sourceFile)
+        {
+            if (!File.Exists(sourceFile))
+            {
+                throw new ConfigurationErrorsException(PostActionResources.InsertPartialGeneration_FileNotFoundPattern.UseParams(sourceFile));
+            }
+
+            //Read Code to insert
+            var postActionCodeLines = File.ReadAllLines(sourceFile);
+            return postActionCodeLines;
+        }
+
 
         private static string FormatPostActionCode(string[] postActionCodeLines, string destinationFileContent, int anchorIndex)
 		{

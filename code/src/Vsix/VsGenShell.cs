@@ -1,13 +1,16 @@
 ﻿using EnvDTE;
+using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Wizard;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Microsoft.Templates.Extension
 {
@@ -15,6 +18,9 @@ namespace Microsoft.Templates.Extension
     {
         private Lazy<DTE> _dte = new Lazy<DTE>(() => ServiceProvider.GlobalProvider.GetService(typeof(DTE)) as DTE, true);
         private DTE Dte => _dte.Value;
+
+        private Lazy<IVsUIShell> _uiShell = new Lazy<IVsUIShell>(() => ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell)) as IVsUIShell, true);
+        private IVsUIShell UIShell => _uiShell.Value;
 
         public VsGenShell()
         {
@@ -99,13 +105,22 @@ namespace Microsoft.Templates.Extension
             ShowTaskListAsync().FireAndForget();
         }
 
-        private async System.Threading.Tasks.Task ShowTaskListAsync()
+        public override void ShowModal(System.Windows.Window dialog)
         {
-            //JAVIERS: DELAY THIS EXECUTION TO OPEN THE WINDOW AFTER EVERYTHING IS LOADED
-            await System.Threading.Tasks.Task.Delay(1000);
-
-            var window = Dte.Windows.Item(EnvDTE.Constants.vsWindowKindTaskList);
-            window.Activate();
+            //get the owner of this dialog
+            IntPtr hwnd;
+            UIShell.GetDialogOwnerHwnd(out hwnd);
+            dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+            UIShell.EnableModeless(0);
+            try
+            {
+                WindowHelper.ShowModal(dialog, hwnd);
+            }
+            finally
+            {
+                // This will take place after the window is closed.
+                UIShell.EnableModeless(1);
+            }
         }
 
         protected override string GetSelectedItemPath()
@@ -161,6 +176,15 @@ namespace Microsoft.Templates.Extension
                 }
             }
             return p;
+        }
+
+        private async System.Threading.Tasks.Task ShowTaskListAsync()
+        {
+            //JAVIERS: DELAY THIS EXECUTION TO OPEN THE WINDOW AFTER EVERYTHING IS LOADED
+            await System.Threading.Tasks.Task.Delay(1000);
+
+            var window = Dte.Windows.Item(EnvDTE.Constants.vsWindowKindTaskList);
+            window.Activate();
         }
     }
 }

@@ -79,11 +79,29 @@ namespace Microsoft.Templates.Wizard.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adding &apos;{0}&apos; page to project....
+        /// </summary>
+        public static string AddPageMessage {
+            get {
+                return ResourceManager.GetString("AddPageMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Project.
         /// </summary>
         public static string AddProjectAction {
             get {
                 return ResourceManager.GetString("AddProjectAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creating project &apos;{0}&apos;....
+        /// </summary>
+        public static string AddProjectMessage {
+            get {
+                return ResourceManager.GetString("AddProjectMessage", resourceCulture);
             }
         }
         

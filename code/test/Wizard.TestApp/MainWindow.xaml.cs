@@ -37,6 +37,8 @@ namespace Microsoft.Templates.Wizard.TestApp
         {
             InitializeComponent();
             InitTester();
+
+            Status.Text = "Create a project...";
         }
 
 
@@ -53,11 +55,12 @@ namespace Microsoft.Templates.Wizard.TestApp
                     _gen.Generate(genItems);
 
                     SolutionPath.Text = _shell.OutputPath;
+                    _gen.Shell.ShowStatusBarMessage("Project creation successfull...");
 
                     LockProjectActions(); 
                 }
             }
-            catch (WizardCancelledException)
+            catch (WizardBackoutException)
             {
             }
             catch (Exception ex)
@@ -103,7 +106,7 @@ namespace Microsoft.Templates.Wizard.TestApp
                     _gen.Generate(genItems);
                 }
             }
-            catch (WizardCancelledException)
+            catch (WizardBackoutException)
             {
             }
             catch (Exception ex)
@@ -117,7 +120,7 @@ namespace Microsoft.Templates.Wizard.TestApp
             try
             { 
             }
-            catch (WizardCancelledException)
+            catch (WizardBackoutException)
             {
                 MessageBox.Show($"User Cancelled!", "Wizard exited", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }

@@ -58,10 +58,6 @@
                 <TextBlock Text="Author:" Style="{StaticResource TemplateInfoPropertyNameStyle}"/>
                 <TextBlock Text="{Binding Author}" Style="{StaticResource TemplateInfoPropertyValueStyle}"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Framework:" Style="{StaticResource TemplateInfoPropertyNameStyle}"/>
-                <TextBlock Text="{Binding Framework}" Style="{StaticResource TemplateInfoPropertyValueStyle}"/>
-            </StackPanel>
             <TextBlock Text="{Binding Description}" Style="{StaticResource TemplateInfoDescriptionStyle}"/>
         </StackPanel>
 

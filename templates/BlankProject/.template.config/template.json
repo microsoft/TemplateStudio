@@ -1,0 +1,83 @@
+{
+  "SpecialCustomOperations": {
+    "**/*.xaml": {
+      "operations": [
+        {
+          "type": "conditional",
+          "configuration": {
+            "actionableIf": [ "<!--#if" ],
+            "actionableElse": [ "#else", "<!--#else" ],
+            "actionableElseif": [ "#elseif", "<!--#elseif" ],
+            "endif": [ "#endif", "<!--#endif" ],
+            "trim" : "true",
+            "wholeLine": "true"
+          }
+        }
+      ]
+    }
+  },
+  "author": "Microsoft",
+  "classifications": ["Universal"],
+  "name": "Blank",
+  "groupIdentity": "Microsoft.UWPTemplates.BlankProject",
+  "identity": "Microsoft.UWPTemplates.BlankProject.CSharp",
+  "shortName": "blank",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "uct.type": "project",
+    "uct.framework": "Basic;MVVMLight",
+    "uct.ProjectType":"Blank",
+    "uct.version": "1.0.0",
+    "uct.order": "1"
+  },
+  "sourceName": "BlankProject",
+  "preferNameDirectory": true,
+  "sources":[
+    {
+      "modifiers":[
+        {
+          "condition":"(isNotBasic)",
+          "exclude":
+          [
+            "BlankProject/Core/**"
+          ]
+        },
+        {
+          "condition":"(isNotMVVMLight)",
+          "exclude":
+          [
+            "BlankProject/ViewModelLocator.cs",
+            "BlankProject/Home/ViewModelLocator.cs",
+            "BlankProject/Services/NavigationService.cs"
+          ]
+        }
+      ]
+    }
+  ],
+  "guids": [ "7cf740f7-735f-48ea-8b7b-3ffa4902371c", "be236938-efed-4037-b3f2-70788b43ca20" ],
+  "PrimaryOutputs":
+  [
+    { "path": ".\\BlankProject\\BlankProject.csproj" }
+  ],
+  "symbols": {
+    "userName": {
+      "type": "parameter",
+      "replaces": "Param_UserName"
+    },
+
+    "framework":
+    {
+      "type": "parameter",
+      "defaultValue": "Basic",
+      "description": "The application design pattern framework."
+    },
+    
+    "isBasic": { "type": "computed", "value": "(framework == \"Basic\")" },
+    "isNotBasic": { "type": "computed", "value": "(!isBasic)" },
+
+    "isMVVMLight": { "type": "computed", "value": "(framework == \"MVVMLight\")" },
+    "isNotMVVMLight": { "type":"computed", "value":"(!isMVVMLight)" }
+  }
+}

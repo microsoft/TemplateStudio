@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Microsoft.Templates.Wizard.TestApp
@@ -109,6 +110,11 @@ namespace Microsoft.Templates.Wizard.TestApp
 
         public override void ShowTaskList()
         {
+        }
+
+        public override void ShowModal(Window dialog)
+        {
+            dialog.ShowDialog();
         }
     }
 }

@@ -30,38 +30,30 @@ namespace Microsoft.Templates.Wizard.Steps.FrameworkType
         public override async Task InitializeAsync()
         {
             FrameworkTypes.Clear();
+            var templatesByProjectType = Context.TemplatesRepository
+                                            .GetAll()
+                                            .Where(t =>
+                                                t.GetTemplateType() == TemplateType.Project && t.GetProjectType() == GetSelectedProjectType()).ToList();
+            List<string> frameworkTypeNames = new List<string>();
+            templatesByProjectType.ForEach(t => frameworkTypeNames.AddRange(t.GetFrameworkList()));
+            FrameworkTypes.AddRange(frameworkTypeNames.Select(ft => new ProjectInfoViewModel(ft, Context.TemplatesRepository.GetFrameworkTypeInfo(ft))));
 
-            var frameworkTypes = Context.TemplatesRepository
-                                    .GetAll()
-                                    .Where(t => t.GetTemplateType() == TemplateType.Project && !String.IsNullOrWhiteSpace(t.GetFramework()))
-                                    .Select(t => t.GetFramework())
-                                    .Distinct()
-                                    .Select(t => new ProjectInfoViewModel(t, Context.TemplatesRepository.GetFrameworkTypeInfo(t)))
-                                    .ToList();
-
-            FrameworkTypes.AddRange(frameworkTypes);
-
-            var savedProject = Context.GetState<ViewModel, GenInfo>();
-
-            if (savedProject == null)
-            {
-                SelectedFrameworkType = frameworkTypes.FirstOrDefault();
-            }
-            else
-            {
-                SelectedFrameworkType = frameworkTypes.FirstOrDefault(f => f.Name == savedProject.Template.GetFramework());
-            }
-
+            SelectedFrameworkType = FrameworkTypes.FirstOrDefault();
             await Task.FromResult(true);
+        }
+
+        private string GetSelectedProjectType()
+        {
+            return Context.GetState<ProjectType.ViewModel, string>();
         }
 
         public override void SaveState()
         {
             var projectType = Context.GetState<ProjectType.ViewModel, string>();
             var template = Context.TemplatesRepository.GetAll()
-                                                        .FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project 
-                                                            && t.GetProjectType() == projectType 
-                                                            && t.GetFramework() == SelectedFrameworkType.Name);
+                                                        .FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project
+                                                            && t.GetProjectType() == projectType
+                                                            && t.GetFrameworkList().Contains(SelectedFrameworkType.Name));
             if (template == null)
             {
                 throw new NullReferenceException($"Project template not found for framework '{SelectedFrameworkType.Name}'");
@@ -72,7 +64,9 @@ namespace Microsoft.Templates.Wizard.Steps.FrameworkType
                 Name = Context.Shell.ProjectName,
                 Template = template
             };
-            genInfo.Parameters.Add("UserName", Environment.UserName);
+            genInfo.Parameters.Add(GenInfo.UsernameParameterName, Environment.UserName);
+            genInfo.Parameters.Add(GenInfo.FrameworkParameterName, SelectedFrameworkType.Name);
+
 
             Context.SetState(this, genInfo);
         }
