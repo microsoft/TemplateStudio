@@ -64,8 +64,8 @@ namespace Microsoft.Templates.Wizard.Steps.FrameworkType
                 Name = Context.Shell.ProjectName,
                 Template = template
             };
-            genInfo.Parameters.Add("UserName", Environment.UserName);
-            genInfo.Parameters.Add(GenInfo.FrameworkPrameterName, SelectedFrameworkType.Name);
+            genInfo.Parameters.Add(GenInfo.UsernameParameterName, Environment.UserName);
+            genInfo.Parameters.Add(GenInfo.FrameworkParameterName, SelectedFrameworkType.Name);
 
 
             Context.SetState(this, genInfo);

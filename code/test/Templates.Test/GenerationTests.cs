@@ -25,16 +25,16 @@ namespace Microsoft.Templates.Test
 
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
-        public void GenerateEmptyProject(string projId)
+        public void GenerateEmptyProject(string projId, string framework)
         {
             var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
 
-            var projectName = $"{projectTemplate.GetFramework()}{projectTemplate.GetProjectType()}";
+            var projectName = $"{framework}{projectTemplate.GetProjectType()}";
 
             var generator = new TemplatesGen(new FakeGenShell(projectName, fixture.TestProjectsPath, new TextBlock()));
             var genItems = new List<GenInfo>
             {
-                GetProjectGenInfo(projectTemplate, projectName)
+                GetProjectGenInfo(projectTemplate, projectName, framework)
             };
         
             generator.Generate(genItems);
@@ -48,27 +48,26 @@ namespace Microsoft.Templates.Test
             Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", projectTemplate.Name, Path.GetFullPath(outputFile)));
 
             //Clean
-            Directory.Delete(outputPath, true);
+            //Directory.Delete(outputPath, true);
 
         }
 
         
         [Theory, MemberData("GetPageTemplates"), Trait("Type", "PageGeneration")]
-        public void GeneratePage(string pageId, string projId)
+        public void GeneratePage(string pageId, string projId, string framework)
         {
             var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
-            var pageTemplates = GenerationTestsFixture.Templates.Where(t => t.Identity == pageId).FirstOrDefault();
+            var pageTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == pageId).FirstOrDefault();
 
-            var projectName = $"{targetProjectTemplate.GetFramework()}{targetProjectTemplate.GetProjectType()}";
+            var projectName = $"{framework}{Naming.Infer(new List<string>(), pageTemplate.Name)}";
 
             var generator = new TemplatesGen(new FakeGenShell(projectName, fixture.TestPagesPath, new TextBlock()));
             var genItems = new List<GenInfo>
             {
-                GetProjectGenInfo(targetProjectTemplate, projectName)
+                GetProjectGenInfo(targetProjectTemplate, projectName, framework)
             };
 
-
-            genItems.Add(GetPageGenInfo(pageTemplates));
+            genItems.Add(GetPageGenInfo(pageTemplate, framework));
 
             generator.Generate(genItems);
 
@@ -81,29 +80,29 @@ namespace Microsoft.Templates.Test
             Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", targetProjectTemplate.Name, Path.GetFullPath(outputFile)));
 
             //Clean
-            Directory.Delete(outputPath, true);
+            //Directory.Delete(outputPath, true);
 
         }
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
-        public void GenerateProjectWithAllPages(string projId)
+        public void GenerateProjectWithAllPages(string projId, string framework)
         {
             var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
 
-            var projectName = $"{targetProjectTemplate.GetFramework()}{targetProjectTemplate.GetProjectType()}All";
+            var projectName = $"{framework}{targetProjectTemplate.GetProjectType()}All";
 
             var generator = new TemplatesGen(new FakeGenShell(projectName, fixture.TestProjectsPath, new TextBlock()));
             var genItems = new List<GenInfo>
             {
-                GetProjectGenInfo(targetProjectTemplate, projectName)
+                GetProjectGenInfo(targetProjectTemplate, projectName, framework)
             };
 
             var pageTemplates = GenerationTestsFixture.Templates
-                .Where(t => t.GetFramework() == targetProjectTemplate.GetFramework() &&
+                .Where(t => t.GetFrameworkList().Contains(framework) &&
                 t.GetType() == t.GetType() &&
                 t.GetTemplateType() == TemplateType.Page);
 
-            genItems.AddRange(GetPagesGenInfo(pageTemplates));
+            genItems.AddRange(GetPagesGenInfo(pageTemplates, framework));
 
             generator.Generate(genItems);
 
@@ -116,32 +115,38 @@ namespace Microsoft.Templates.Test
             Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", targetProjectTemplate.Name, Path.GetFullPath(outputFile)));
 
             //Clean
-            Directory.Delete(outputPath, true);
+            //Directory.Delete(outputPath, true);
         }
 
 
-        private static GenInfo GetProjectGenInfo(ITemplateInfo targetProjectTemplate, string projectName)
+        private static GenInfo GetProjectGenInfo(ITemplateInfo targetProjectTemplate, string projectName, string framework)
         {
             var genInfo = new GenInfo()
             {
                 Name = projectName,
                 Template = targetProjectTemplate
             };
-            genInfo.Parameters.Add("UserName", Environment.UserName);
+            genInfo.Parameters.Add(GenInfo.UsernameParameterName, Environment.UserName);
+            genInfo.Parameters.Add(GenInfo.FrameworkParameterName, framework);
+
             return genInfo;
         }
 
-        private static GenInfo GetPageGenInfo(ITemplateInfo pageTemplate)
+        private static GenInfo GetPageGenInfo(ITemplateInfo pageTemplate, string framework)
         {
-            return new GenInfo()
+            var genInfo = new GenInfo()
             {
                 Name = Naming.Infer(new List<string>(), pageTemplate.Name),
                 Template = pageTemplate
             };
+
+            genInfo.Parameters.Add(GenInfo.FrameworkParameterName, framework);
+
+            return genInfo;
         }
 
 
-        private static IEnumerable<GenInfo> GetPagesGenInfo(IEnumerable<ITemplateInfo> pageTemplates)
+        private static IEnumerable<GenInfo> GetPagesGenInfo(IEnumerable<ITemplateInfo> pageTemplates, string framework)
         {
             var pageGenInfos = new List<GenInfo>();
             var usedNames = new List<string>();
@@ -152,7 +157,9 @@ namespace Microsoft.Templates.Test
                     Name = Naming.Infer(usedNames, pageTemplate.Name),
                     Template = pageTemplate
                 };
+                pageGenInfo.Parameters.Add(GenInfo.FrameworkParameterName, framework);
                 pageGenInfos.Add(pageGenInfo);
+
                 usedNames.Add(pageGenInfo.Name);
             }
             return pageGenInfos;
@@ -166,10 +173,13 @@ namespace Microsoft.Templates.Test
 
             foreach (var template in pageTemplates)
             {
-                var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.GetFramework() == template.GetFramework() && t.GetTemplateType() == TemplateType.Project).FirstOrDefault();
-                if (projectTemplate != null)
+                foreach (var framework in template.GetFrameworkList())
                 {
-                    yield return new object[] { template.Identity, projectTemplate.Identity };
+                    var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.GetFrameworkList().Contains(framework) && t.GetTemplateType() == TemplateType.Project).FirstOrDefault();
+                    if (projectTemplate != null)
+                    {
+                        yield return new object[] { template.Identity, projectTemplate.Identity, framework };
+                    }
                 }
             }
         }
@@ -179,7 +189,10 @@ namespace Microsoft.Templates.Test
             var projectTemplates = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project);
             foreach (var template in projectTemplates)
             {
-                yield return new object[] { template.Identity };
+                foreach (var framework in template.GetFrameworkList())
+                {
+                    yield return new object[] { template.Identity, framework };
+                }
             }
         }
 

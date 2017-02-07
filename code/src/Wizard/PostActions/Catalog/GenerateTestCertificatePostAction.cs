@@ -13,7 +13,7 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
 		}
 		public override PostActionResult Execute(string outputPath, GenInfo genInfo, TemplateCreationResult result, GenShell shell)
 		{
-			var userName = GetValueFromGenParameter(genInfo.Parameters, "UserName");
+			var userName = genInfo.GetUserName();
             if (string.IsNullOrEmpty(userName))
             {
                 throw new Exception(PostActionResources.GenerateTestCertificate_EmptyUserName);
