@@ -86,7 +86,8 @@ namespace Microsoft.Templates.Core.Diagnostics
 
                 if (RemoteKeyAvailable())
                 {
-                    string userToTrack = Environment.UserName.Obfuscate(); //TODO: Obfuscate this info??
+                    string clearUser = (Environment.UserDomainName + Environment.UserName).ToLower();
+                    string userToTrack = clearUser.Obfuscate(); //TODO: Ensure needed to obfuscate this info??
                     string machineToTrack = Environment.MachineName.Obfuscate();
                     // Set session data
                     _client.Context.User.Id = userToTrack;

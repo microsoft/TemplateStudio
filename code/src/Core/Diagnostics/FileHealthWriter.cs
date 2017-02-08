@@ -41,8 +41,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {        
             _workingFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), currentConfig.LogFileFolderPath);
 
-            //TODO: Purge files older than 5 days.
-            PurgeOldLogs();
+            PurgeOldLogs(_workingFolder, Configuration.Current.DaysToKeepDiagnosticsLogs);
         }
 
         public static void SetConfiguration(Configuration config)
@@ -52,7 +51,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex=null)
         {
-            await InitializeLogFile();
+            await InitializeLogFileAsync();
 
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{eventType.ToString()}\t{message}");
@@ -74,10 +73,10 @@ namespace Microsoft.Templates.Core.Diagnostics
                 throw new ArgumentNullException("ex");
             }
 
-            await InitializeLogFile();
+            await InitializeLogFileAsync();
 
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{TraceEventType.Critical.ToString():11}\tException Tracked. {(message != null ? message : "")}");
+            sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{TraceEventType.Critical.ToString():11}\tException Tracked. {(message ?? "")}");
             if (ex != null)
             {
                 sb.AppendLine(FormattedWriterMessages.ExHeader);
@@ -93,7 +92,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             return false;
         }
 
-        private async Task InitializeLogFile()
+        private async Task InitializeLogFileAsync()
         {
             await semaphoreSlim.WaitAsync();
             try
@@ -179,16 +178,27 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
 
-        private void PurgeOldLogs()
+        private static void PurgeOldLogs(string logFolder, int daysToKeep)
         {
-            if (Directory.Exists(_workingFolder))
+            if (Directory.Exists(logFolder))
             {
-                DirectoryInfo di = new DirectoryInfo(_workingFolder);
-                di.GetFiles().Where(f => f.CreationTimeUtc >= DateTime.UtcNow.AddDays(5));
-                //TODO: End
+                DirectoryInfo di = new DirectoryInfo(logFolder);
+                var toBeDeleted = di.GetFiles().Where(f => f.CreationTimeUtc.AddDays(daysToKeep) < DateTime.UtcNow);
+                foreach (var f in toBeDeleted)
+                {
+                    try
+                    {
+                        f.Delete();
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"Error removing old log file '{f.FullName}'. Skipped. Exception:\n\r{ex.ToString()}");
+                        Trace.TraceError($"Error removing old log file '{f.FullName}'. Skipped. Exception:\n\r{ex.ToString()}");
+                    }
+                }
             }
         }
-        
+
 
 
         ~FileHealthWriter()
