@@ -1,0 +1,29 @@
+[
+  {
+    "name": "PostActionSetDataContextToPage",
+    "type": "InsertPartialGenerationPostAction",
+    "description": "Sets datacontext in page to resource locator",
+    "parameters": {
+      "destination.filename": "*Page.xaml",
+      "destination.anchor": "<!-- PostActionAnchor: SET DATACONTEXT -->"
+    }
+  },
+  {
+    "name": "PostActionAddNsToViewModel",
+    "type": "InsertPartialGenerationPostAction",
+    "description": "Add ViewModelBase namespace",
+    "parameters": {
+      "destination.filename": "*ViewModel.cs",
+      "destination.anchor": "//PostActionAnchor: MVVM NAMESPACE"
+    }
+  },
+  {
+    "name": "PostActionRegisterPageInLocator",
+    "type": "InsertPartialGenerationPostAction",
+    "description": "Register page in view model locator",
+    "parameters": {
+      "destination.filename": "ViewModelLocator.cs",
+      "destination.anchor": "//PostActionAnchor: REGISTER PAGE IN VIEW_MODEL"
+    }
+  }
+]

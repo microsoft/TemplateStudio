@@ -1,0 +1,1 @@
+public ItemNameViewModel ViewModel { get; private set; }

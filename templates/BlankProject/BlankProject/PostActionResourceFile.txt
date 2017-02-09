@@ -1,3 +1,0 @@
-<data name="HomeTitle.Text" xml:space="preserve">
-  <value>Home</value>
-</data>

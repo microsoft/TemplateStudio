@@ -38,21 +38,21 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectType
 
             ProjectTypes.AddRange(projectTypes);
 
-            var savedProjectType = Context.GetState<ViewModel, string>();
-
-            if (string.IsNullOrEmpty(savedProjectType))
+            if (string.IsNullOrEmpty(Context.State.ProjectType))
             {
                 SelectedProjectType = projectTypes.FirstOrDefault();
             }
             else
             {
-                SelectedProjectType = projectTypes.FirstOrDefault(p => p.Name == savedProjectType);
+                SelectedProjectType = projectTypes.FirstOrDefault(p => p.Name == Context.State.ProjectType);
             }
 
             await Task.FromResult(true);
         }
 
-        public override void SaveState() => Context.SetState(this, SelectedProjectType.Name);
+        public override void SaveState() => Context.State.ProjectType = SelectedProjectType.Name;
+
+        public override void CleanState() => Context.State.ProjectType = null;
 
         protected override Page GetPageInternal()
         {

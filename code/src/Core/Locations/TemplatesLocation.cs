@@ -12,8 +12,8 @@ namespace Microsoft.Templates.Core.Locations
         public const string PackagesName = "Packages";
         public const string TemplatesName = "Templates";
         public const string VersionFileName = "version.txt";
-        public const string ProjectTypes = "_projectTypes";
-        public const string FrameworkTypes = "_frameworkTypes";
+        public const string ProjectTypes = "Projects";
+        public const string Frameworks = "Frameworks";
 
         public abstract void Copy(string workingFolder);
         public abstract string GetVersion(string workingFolder);

@@ -46,11 +46,18 @@ namespace Microsoft.Templates.Core
                         .Where(r => r.IsMatch)
                         .Select(r => r.Info)
                         .ToList();
-        }        
+        }
 
-        public ITemplateInfo Find(string name)
+        public IEnumerable<ITemplateInfo> Get(Func<ITemplateInfo, bool> predicate)
         {
-            throw new NotImplementedException();
+            return GetAll()
+                        .Where(predicate);
+        }
+
+        public ITemplateInfo Find(Func<ITemplateInfo, bool> predicate)
+        {
+            return GetAll()
+                        .FirstOrDefault(predicate);
         }
 
         private bool IsUpdateAvailable()
@@ -91,17 +98,22 @@ namespace Microsoft.Templates.Core
 
         public ProjectInfo GetProjectTypeInfo(string projectType)
         {
-            return GetProyectInfo(Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName, TemplatesLocation.ProjectTypes, projectType));
+            return GetProyectInfo(Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName, TemplatesLocation.ProjectTypes, projectType, "Info"));
         }
 
-        public ProjectInfo GetFrameworkTypeInfo(string projectType)
+        public ProjectInfo GetFrameworkTypeInfo(string fxType)
         {
-            return GetProyectInfo(Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName, TemplatesLocation.FrameworkTypes, projectType));
+            return GetProyectInfo(Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName, TemplatesLocation.Frameworks, fxType, "Info"));
         }
 
         private ProjectInfo GetProyectInfo(string folderName)
         {
+            if (!Directory.Exists(folderName))
+            {
+                return null;
+            }
             var projectInfo = new ProjectInfo();
+
             string descriptionFile = Path.Combine(folderName, $"description.txt");
             projectInfo.Description = File.Exists(descriptionFile) ? File.ReadAllText(descriptionFile) : String.Empty;
             projectInfo.Icon = Path.Combine(folderName, $"icon.png");
@@ -111,6 +123,7 @@ namespace Microsoft.Templates.Core
 
     public class ProjectInfo
     {
+        public string Name { get; set; }
         public string Icon { get; set; }
         public string Description { get; set; }
     }

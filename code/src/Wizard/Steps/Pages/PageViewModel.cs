@@ -9,14 +9,10 @@ namespace Microsoft.Templates.Wizard.Steps.Pages
 {
     public class PageViewModel : ObservableBase
     {
-        public GenInfo Info { get; set; }
-        public PageViewModel(GenInfo genInfo)
+        public PageViewModel(string name, string templateName)
         {
-            //TODO: CHECK NULLS
-            Info = genInfo;
-
-            Name = genInfo.Name;
-            TemplateName = genInfo.Template.Name;
+            Name = name;
+            TemplateName = templateName;
         }
 
         private string _name;

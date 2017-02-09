@@ -11,6 +11,7 @@ namespace Microsoft.Templates.Core
         Project = 1,
         Page = 2,
         Feature = 3,
-        Unspecified = 4
+        Framework = 4,
+        Unspecified = 100
     }
 }

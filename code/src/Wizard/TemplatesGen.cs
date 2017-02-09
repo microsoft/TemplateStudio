@@ -34,7 +34,83 @@ namespace Microsoft.Templates.Wizard
             _repository = repository;
         }
 
-        public IEnumerable<GenInfo> GetUserSelection(WizardSteps selectionSteps)
+        //TODO: MOVE THIS SOMEWHERE
+        public IEnumerable<GenInfo> ComposeGeneration(WizardState userSelection)
+        {
+            var genQueue = new List<GenInfo>();
+
+            if (!string.IsNullOrEmpty(userSelection.ProjectType))
+            {
+                var projectTemplate = _repository
+                                            .Find(t => t.GetTemplateType() == TemplateType.Project
+                                                && t.GetProjectType() == userSelection.ProjectType
+                                                && t.GetFrameworkList().Any(f => f == userSelection.Framework));
+
+                var genProject = new GenInfo
+                {
+                    Name = Shell.ProjectName,
+                    Template = projectTemplate
+                };
+                genQueue.Add(genProject);
+                AddSystemParams(genProject);
+                genProject.Parameters.Add(GenInfo.UsernameParameterName, Environment.UserName);
+
+                var fxTemplate = _repository
+                                        .Find(t => t.GetTemplateType() == TemplateType.Framework
+                                            && t.Name.Equals($"{userSelection.Framework.ToLower()}.project", StringComparison.OrdinalIgnoreCase));
+                if (fxTemplate != null)
+                {
+                    foreach (var export in fxTemplate.GetExports())
+                    {
+                        genProject.Parameters.Add(export.name, export.value);
+                    }
+                    var getFramework = new GenInfo
+                    {
+                        Name = Shell.ProjectName,
+                        Template = fxTemplate
+                    };
+                    genQueue.Add(getFramework);
+                    AddSystemParams(getFramework);
+                }
+            }
+
+            foreach (var page in userSelection.Pages)
+            {
+                var pageTemplate = _repository.Find(t => t.Name == page.templateName);
+                if (pageTemplate != null)
+                {
+                    var genPage = new GenInfo
+                    {
+                        Name = page.name,
+                        Template = pageTemplate
+                    };
+                    genQueue.Add(genPage);
+                    AddSystemParams(genPage);
+
+                    var fxTemplate = _repository
+                                        .Find(t => t.GetTemplateType() == TemplateType.Framework
+                                            && t.Name.Equals($"{userSelection.Framework.ToLower()}.page", StringComparison.OrdinalIgnoreCase));
+                    if (fxTemplate != null)
+                    {
+                        foreach (var export in fxTemplate.GetExports())
+                        {
+                            genPage.Parameters.Add(export.name, export.value);
+                        }
+                        var genFramework = new GenInfo
+                        {
+                            Name = page.name,
+                            Template = fxTemplate
+                        };
+                        genQueue.Add(genFramework);
+                        AddSystemParams(genFramework);
+                    }
+                }
+            }
+
+            return genQueue;
+        }
+
+        public WizardState GetUserSelection(WizardSteps selectionSteps)
         {
             CleanStatusBar();
 
@@ -46,7 +122,7 @@ namespace Microsoft.Templates.Wizard
                 //TODO: Review when right-click-actions available to track Project or Page completed.
                 AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject).FireAndForget();
 
-                return host.Result.ToArray();
+                return host.Result;
             }
             else
             {
@@ -58,54 +134,54 @@ namespace Microsoft.Templates.Wizard
             return null;
         }
 
-        public void Generate(IEnumerable<GenInfo> genItems)
+        public void Generate(WizardState userSelection)
         {
-            if (genItems != null)
+            var genItems = ComposeGeneration(userSelection).ToList();
+
+            Stopwatch chrono = Stopwatch.StartNew();
+
+            Dictionary<string, TemplateCreationResult> genResults = new Dictionary<string, TemplateCreationResult>();
+
+            var outputPath = Shell.OutputPath;
+
+            foreach (var genInfo in genItems)
             {
-                Stopwatch chrono = Stopwatch.StartNew();
-
-                Dictionary<string, TemplateCreationResult> genResults = new Dictionary<string, TemplateCreationResult>();
-
-                var outputPath = Shell.OutputPath;
-
-                foreach (var genInfo in genItems)
+                if (genInfo.Template == null)
                 {
-                    if (genInfo.Template == null)
-                    {
-                        continue;
-                    }
-
-                    var statusText = GetStatusText(genInfo);
-
-                    if (!string.IsNullOrEmpty(statusText))
-                    {
-                        Shell.ShowStatusBarMessage(statusText);
-                    }
-
-                    outputPath = GetOutputPath(genInfo.Template);
-                    AddSystemParams(genInfo);
-
-                    AppHealth.Current.Verbose.TrackAsync($"Generating the template {genInfo.Template.Name} to {outputPath}.").FireAndForget();
-
-                    //TODO: REVIEW ASYNC
-                    var result = CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, outputPath, genInfo.Parameters, false).Result;
-
-                    genResults.Add($"{genInfo.Template.Identity}_{genInfo.Name}", result);
-
-                    if (result.Status != CreationResultStatus.CreateSucceeded)
-                    {
-                        //TODO: THROW EXCEPTION ?
-                    }
-
-                    var postActionResults = ExecutePostActions(outputPath, genInfo, result);
-
-                    chrono.Stop();
+                    continue;
                 }
-                PostActionCreator.CleanUpAnchors(outputPath);
 
-                var timeSpent = chrono.Elapsed.TotalSeconds;
-                TrackTelemery(genItems, genResults, timeSpent);
+                var statusText = GetStatusText(genInfo);
+
+                if (!string.IsNullOrEmpty(statusText))
+                {
+                    Shell.ShowStatusBarMessage(statusText);
+                }
+
+                outputPath = GetOutputPath(genInfo.Template);
+
+
+                AppHealth.Current.Verbose.TrackAsync($"Generating the template {genInfo.Template.Name} to {outputPath}.").FireAndForget();
+
+                //TODO: REVIEW ASYNC
+                var result = CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, outputPath, genInfo.Parameters, false).Result;
+
+                genResults.Add($"{genInfo.Template.Identity}_{genInfo.Name}", result);
+
+                if (result.Status != CreationResultStatus.CreateSucceeded)
+                {
+                    //TODO: THROW EXCEPTION ?
+                }
+
+                var postActionResults = ExecutePostActions(outputPath, genInfo, result);
+
+                chrono.Stop();
             }
+            PostActionCreator.CleanUpAnchors(outputPath);
+
+            var timeSpent = chrono.Elapsed.TotalSeconds;
+            TrackTelemery(genItems, genResults, timeSpent);
+
 
         }
 
@@ -156,12 +232,11 @@ namespace Microsoft.Templates.Wizard
             }
         }
 
+        //TODO: REVIEW THIS NAME
         private void AddSystemParams(GenInfo genInfo)
         {
-            if (genInfo.Template.GetTemplateType() == TemplateType.Page)
-            {
-                genInfo.Parameters.Add("PageNamespace", Shell.GetActiveNamespace());
-            }
+            genInfo.Parameters.Add("RootNamespace", Shell.GetActiveNamespace());
+            genInfo.Parameters.Add("ItemNamespace", Shell.GetActiveNamespace());
         }
 
         private IEnumerable<PostActionResult> ExecutePostActions(string outputPath, GenInfo genInfo, TemplateCreationResult generationResult)

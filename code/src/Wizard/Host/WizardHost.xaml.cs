@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Wizard.Host
     public partial class WizardHost : Window
     {
         public WizardHostViewModel ViewModel { get; }
-        public IEnumerable<GenInfo> Result { get; set; }
+        public WizardState Result { get; set; }
 
         public WizardHost(WizardSteps wizardSteps, TemplatesRepository templatesRepository, GenShell shell)
         {

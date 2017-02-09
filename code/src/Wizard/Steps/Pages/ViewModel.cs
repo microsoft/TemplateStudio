@@ -41,23 +41,18 @@ namespace Microsoft.Templates.Wizard.Steps.Pages
         {
             Templates.Clear();
 
-            var selectedPages = Context.GetState<ViewModel, IEnumerable<GenInfo>>();
+            var selectedPages = Context.State.Pages
+                                                .Select(p => new PageViewModel(p.name, p.templateName));
 
-            if (selectedPages != null)
-            {
-                Templates.AddRange(selectedPages.Select(p => new PageViewModel(p)));
-            }
+            Templates.AddRange(selectedPages);
 
             await Task.FromResult(true);
         }
 
         public override void SaveState()
         {
-            var selectedPages = Templates
-                                    .Select(t => t.Info)
-                                    .ToList();
-            selectedPages.ForEach(p => p.Parameters.Add(GenInfo.FrameworkParameterName, Context.GetState<FrameworkType.ViewModel, GenInfo>().GetFramework()));
-            Context.SetState(this, selectedPages); 
+            Context.State.Pages.Clear();
+            Context.State.Pages.AddRange(Templates.Select(t => (t.Name, t.TemplateName)));
         }
 
         private void ShowAddPageDialog()
@@ -65,9 +60,9 @@ namespace Microsoft.Templates.Wizard.Steps.Pages
             var dialog = new NewPage.NewPageDialog(Context, Templates.Select(t => t.Name));
             var dialogResult = dialog.ShowDialog();
 
-            if (dialogResult.HasValue && dialogResult.Value && dialog.Result != null)
+            if (dialogResult.HasValue && dialogResult.Value)
             {
-                Templates.Add(new PageViewModel(dialog.Result));
+                Templates.Add(new PageViewModel(dialog.Result.name, dialog.Result.templateName));
             }
         }
 

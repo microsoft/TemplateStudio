@@ -30,6 +30,10 @@ namespace Microsoft.Templates.Wizard.Steps
         {
         }
 
+        public virtual void CleanState()
+        {
+        }
+
         public Page GetPage()
         {
             var page = GetPageInternal();

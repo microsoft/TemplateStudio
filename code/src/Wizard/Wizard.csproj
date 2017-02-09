@@ -120,15 +120,15 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Steps\FrameworkType\View.xaml.cs">
+    <Compile Include="Steps\Framework\View.xaml.cs">
       <DependentUpon>View.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Steps\FrameworkType\Strings.Designer.cs">
+    <Compile Include="Steps\Framework\Strings.Designer.cs">
       <DependentUpon>Strings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Steps\FrameworkType\ViewModel.cs" />
+    <Compile Include="Steps\Framework\ViewModel.cs" />
     <Compile Include="Steps\Pages\NewPage\NewPageDialog.xaml.cs">
       <DependentUpon>NewPageDialog.xaml</DependentUpon>
     </Compile>
@@ -184,7 +184,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Steps\FrameworkType\View.xaml">
+    <Page Include="Steps\Framework\View.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -239,7 +239,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Steps\FrameworkType\Strings.resx">
+    <EmbeddedResource Include="Steps\Framework\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>

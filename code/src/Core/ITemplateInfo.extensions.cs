@@ -28,6 +28,8 @@ namespace Microsoft.Templates.Core
                     return TemplateType.Page;
                 case "feature":
                     return TemplateType.Feature;
+                case "framework":
+                    return TemplateType.Framework;
                 default:
                     return TemplateType.Unspecified;
             }
@@ -67,6 +69,19 @@ namespace Microsoft.Templates.Core
 
             }
             return result;
+        }
+
+        public static IEnumerable<(string name, string value)> GetExports(this ITemplateInfo ti)
+        {
+            if (ti == null || ti.Tags == null)
+            {
+                return Enumerable.Empty<(string name, string value)>();
+            }
+
+            return ti.Tags
+                        .Where(t => t.Key.Contains(TagPrefix + "export."))
+                        .Select(t => (t.Key.Replace(TagPrefix + "export.", string.Empty), t.Value))
+                        .ToList();
         }
 
         public static List<string> GetFrameworkList(this ITemplateInfo ti)

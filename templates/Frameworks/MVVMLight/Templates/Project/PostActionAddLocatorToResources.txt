@@ -1,0 +1,1 @@
+<local:ViewModelLocator x:Key="Locator" />
