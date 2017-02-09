@@ -138,6 +138,14 @@ namespace Microsoft.Templates.Wizard.TestApp
             }
         }
 
+        private void OpenInExplorer_Click(object sender, RoutedEventArgs e)
+        {
+            if (!String.IsNullOrEmpty(_shell.ProjectPath))
+            {
+                System.Diagnostics.Process.Start(_shell.ProjectPath);
+            }
+        }
+
         private void RestartTester_Click(object sender, RoutedEventArgs e)
         {
             InitTester();
@@ -151,6 +159,7 @@ namespace Microsoft.Templates.Wizard.TestApp
             AddPage.IsEnabled = false;
             AddFeature.IsEnabled = false;
             OpenInVs.Visibility = Visibility.Hidden;
+            OpenInExplorer.Visibility = Visibility.Hidden;
             RestartTester.Visibility = Visibility.Hidden;
             Status.Text = "";
             PageRelativePath.Text = "";
@@ -163,6 +172,7 @@ namespace Microsoft.Templates.Wizard.TestApp
             AddPage.IsEnabled = true;
             AddFeature.IsEnabled = true;
             OpenInVs.Visibility = Visibility.Visible;
+            OpenInExplorer.Visibility = Visibility.Visible;
             RestartTester.Visibility = Visibility.Visible;
         }
     }

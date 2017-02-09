@@ -28,6 +28,10 @@ namespace Microsoft.Templates.Wizard.PostActions
 					postActions.Add(GetPostAction(PostActionType.AddItemToProjectPostAction));
 					break;
 				case TemplateType.Feature:
+                    if (template.GetTemplateOutputType() == "project")
+                    {
+                        postActions.Add(GetPostAction(PostActionType.AddProjectToSolutionPostAction));
+                    }
 					break;
 				case TemplateType.Unspecified:
 					break;

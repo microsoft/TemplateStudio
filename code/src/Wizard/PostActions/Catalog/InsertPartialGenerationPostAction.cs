@@ -33,40 +33,59 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
                 throw new ConfigurationErrorsException(PostActionResources.InsertPartialGeneration_EmptyDestinationAnchorPattern.UseParams(Name));
             }
 
-            var sourceFile = Path.Combine(outputPath, genInfo.Name, Name + ".txt");
+            var sourceFile = Path.Combine(outputPath, Name + ".txt");
             var postActionCodeLines = ReadPostActionCode(sourceFile);
 
-            var destinationFile = Path.Combine(outputPath, destinationFileName);
-            var destinationFileContent = ReadDestinationFileContent(destinationFile);
+            var anchorFound = false;
+            var destinationFiles = new List<string>();
 
-            var anchorIndex = destinationFileContent.IndexOf(destinationAnchor, StringComparison.Ordinal);
-            if (anchorIndex == -1)
+            foreach (var item in Directory.EnumerateFiles(outputPath, destinationFileName, SearchOption.AllDirectories))
             {
-                var postActionCode = postActionCodeLines.Aggregate(new StringBuilder(), (sb, a) => sb.AppendLine(a), sb => sb.ToString());
+                //var destinationFile = Path.Combine(outputPath, destinationFileName);
+                var destinationFileContent = ReadDestinationFileContent(item);
 
-                return new PostActionResult()
+                var anchorIndex = destinationFileContent.IndexOf(destinationAnchor, StringComparison.Ordinal);
+                if (anchorIndex == -1)
                 {
-                    ResultCode = ResultCode.AnchorNotFound,
-                    Message = PostActionResources.InsertPartialGeneration_AnchorNotFoundPattern.UseParams(Name, postActionCode, destinationAnchor, destinationFile)
-                };
+                    continue;
+                    
+                }
+
+                string formattedCode = FormatPostActionCode(postActionCodeLines, destinationFileContent, anchorIndex);
+
+                var nextLineBreakAfterAnchor = destinationFileContent.IndexOf(Environment.NewLine, anchorIndex, StringComparison.Ordinal);
+                destinationFileContent = destinationFileContent.Insert(nextLineBreakAfterAnchor, formattedCode);
+
+                //Save
+                File.WriteAllText(item, destinationFileContent);
+
+                destinationFiles.Add(item);
+
+               
             }
-
-            string formattedCode = FormatPostActionCode(postActionCodeLines, destinationFileContent, anchorIndex);
-
-            var nextLineBreakAfterAnchor = destinationFileContent.IndexOf(Environment.NewLine, anchorIndex, StringComparison.Ordinal);
-            destinationFileContent = destinationFileContent.Insert(nextLineBreakAfterAnchor, formattedCode);
-
-            //Save
-            File.WriteAllText(destinationFile, destinationFileContent);
 
             //Delete source file
             File.Delete(sourceFile);
 
-            return new PostActionResult()
+            var postActionCode = postActionCodeLines.Aggregate(new StringBuilder(), (sb, a) => sb.AppendLine(a), sb => sb.ToString());
+
+            if (!anchorFound)
             {
-                ResultCode = ResultCode.Success,
-                Message = PostActionResources.InsertPartialGeneration_SuccessPattern.UseParams(Name, formattedCode, destinationAnchor, destinationFile)
-            };
+                return new PostActionResult()
+                {
+                    ResultCode = ResultCode.AnchorNotFound,
+                    Message = PostActionResources.InsertPartialGeneration_AnchorNotFoundPattern.UseParams(Name, postActionCode, destinationAnchor, destinationFileName)
+                };
+            }
+            else
+            {
+                return new PostActionResult()
+                {
+                    ResultCode = ResultCode.Success,
+                    Message = PostActionResources.InsertPartialGeneration_SuccessPattern.UseParams(Name, postActionCode, destinationAnchor, destinationFiles.Aggregate(new StringBuilder(), (sb, a) => sb.AppendFormat(a, ","), sb => sb.ToString()))
+                };
+
+            }
         }
 
         private static string ReadDestinationFileContent(string destinationFile)

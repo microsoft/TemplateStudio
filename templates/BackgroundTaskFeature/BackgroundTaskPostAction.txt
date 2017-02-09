@@ -1,0 +1,28 @@
+private void RegisterBackgroundTask()
+{
+    string taskEntryPoint = "BackgroundTaskFeature.BackgroundTaskFeature";
+    string taskName = "BackgroundTaskFeature";
+
+    if (!BackgroundTaskRegistration.AllTasks.Any(t => t.Value.Name == taskName))
+    {
+        var builder = new BackgroundTaskBuilder()
+        {
+            Name = taskName,
+            TaskEntryPoint = taskEntryPoint
+        };
+        //TODO UWPTemplates: Define your trigger here
+        builder.SetTrigger(new SystemTrigger(SystemTriggerType.InternetAvailable, false));
+
+        //TODO UWPTemplates: Add your conditions here
+        builder.AddCondition(new SystemCondition(SystemConditionType.UserPresent));
+        BackgroundTaskRegistration task = builder.Register();
+
+        task.Completed += new BackgroundTaskCompletedEventHandler(OnCompleted);
+    }
+}
+
+private void OnCompleted(IBackgroundTaskRegistration task, BackgroundTaskCompletedEventArgs args)
+{
+    //TODO UWPTemplates: Write your code here, remember to use a dispatcher to update UI thread
+}
+ 

@@ -7,8 +7,8 @@
     <ProjectGuid>{5B9D2EEE-B648-4CA1-837E-9ABB8F3DFFDD}</ProjectGuid>
     <OutputType>winmdobj</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NotificationsBackgroundTask</RootNamespace>
-    <AssemblyName>NotificationsBackgroundTask</AssemblyName>
+    <RootNamespace>BackgroundTaskFeature</RootNamespace>
+    <AssemblyName>BackgroundTaskFeature</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
@@ -108,7 +108,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BackgroundTask.cs" />
+    <Compile Include="BackgroundTaskFeature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

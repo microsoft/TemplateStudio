@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using BlankProject.Home;
+//PostActionAnchor: USING BACKGROUNDTASK
 
 namespace BlankProject
 {
@@ -72,7 +73,11 @@ namespace BlankProject
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+
+            //PostActionAnchor: REGISTER BACKGROUNDTASK
         }
+
+        //PostActionAnchor: BACKGROUNDTASK CODE
 
         /// <summary>
         /// Invoked when Navigation to a certain page fails

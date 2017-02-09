@@ -46,7 +46,19 @@ namespace Microsoft.Templates.Wizard
                 //TODO: Review when right-click-actions available to track Project or Page completed.
                 AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject).FireAndForget();
 
-                return host.Result.ToArray();
+                //HACK: Temporary to include background task
+                var backgroundTemplate = _repository.GetAll().FirstOrDefault(t => t.Identity == "Microsoft.UWPTemplates.BackgroundTaskFeature.CSharp");
+
+                var genInfoBackgroundTask = new GenInfo
+                {
+                    Name = "BackgroundTask",
+                    Template = backgroundTemplate
+                };
+                var result = host.Result.ToList();
+                result.Add(genInfoBackgroundTask);
+                return result.ToArray();
+
+               
             }
             else
             {
@@ -146,7 +158,8 @@ namespace Microsoft.Templates.Wizard
 
         private string GetOutputPath(ITemplateInfo templateInfo)
         {
-            if (templateInfo.GetTemplateType() == TemplateType.Project)
+            //TODO: Review this with Javi
+            if (templateInfo.GetTemplateOutputType() == "project")
             {
                 return Shell.OutputPath;
             }
