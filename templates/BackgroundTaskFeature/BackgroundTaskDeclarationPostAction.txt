@@ -1,0 +1,7 @@
+<Extensions>
+    <Extension Category="windows.backgroundTasks" EntryPoint="BackgroundTaskFeature.BackgroundTaskFeature">
+        <BackgroundTasks>
+            <Task Type="systemEvent" />
+        </BackgroundTasks>
+    </Extension>
+</Extensions>

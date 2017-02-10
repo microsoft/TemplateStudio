@@ -98,7 +98,7 @@ namespace Microsoft.Templates.Wizard
                     AddSystemParams(genInfo);
 
                     AppHealth.Current.Verbose.TrackAsync($"Generating the template {genInfo.Template.Name} to {outputPath}.").FireAndForget();
-
+                    
                     //TODO: REVIEW ASYNC
                     var result = CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, outputPath, genInfo.Parameters, false).Result;
 

@@ -8,14 +8,14 @@
 
   <Identity
     Name="be236938-efed-4037-b3f2-70788b43ca20"
-    Publisher="CN=mvega"
+    Publisher="CN=Param_UserName"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="be236938-efed-4037-b3f2-70788b43ca20" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>BlankProject</DisplayName>
-    <PublisherDisplayName>mvega</PublisherDisplayName>
+    <PublisherDisplayName>Param_UserName</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -40,6 +40,7 @@
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
+      <!--PostActionAnchor: BACKGROUND TASK DECLARATION  -->
     </Application>
   </Applications>
 
