@@ -11,7 +11,7 @@ private void RegisterBackgroundTask()
             TaskEntryPoint = taskEntryPoint
         };
         //TODO UWPTemplates: Define your trigger here
-        builder.SetTrigger(new SystemTrigger(SystemTriggerType.InternetAvailable, false));
+        builder.SetTrigger(new TimeTrigger(15, false));
 
         //TODO UWPTemplates: Add your conditions here
         builder.AddCondition(new SystemCondition(SystemConditionType.UserPresent));
