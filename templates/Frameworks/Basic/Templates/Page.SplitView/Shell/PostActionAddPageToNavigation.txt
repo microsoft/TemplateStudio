@@ -1,0 +1,1 @@
+yield return ShellNavigationItem.FromType<ItemNamePage>("ItemName", Char.ConvertFromUtf32(0xE80F));

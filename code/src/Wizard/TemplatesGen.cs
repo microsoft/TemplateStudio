@@ -64,13 +64,31 @@ namespace Microsoft.Templates.Wizard
                     {
                         genProject.Parameters.Add(export.name, export.value);
                     }
-                    var getFramework = new GenInfo
+                    var genFramework = new GenInfo
                     {
                         Name = Shell.ProjectName,
                         Template = fxTemplate
                     };
-                    genQueue.Add(getFramework);
-                    AddSystemParams(getFramework);
+                    genQueue.Add(genFramework);
+                    AddSystemParams(genFramework);
+                }
+
+                var fxProjectTemplate = _repository
+                                            .Find(t => t.GetTemplateType() == TemplateType.Framework
+                                                && t.Name.Equals($"{userSelection.Framework.ToLower()}.project.{userSelection.ProjectType.ToLower()}", StringComparison.OrdinalIgnoreCase));
+                if (fxProjectTemplate != null)
+                {
+                    foreach (var export in fxProjectTemplate.GetExports())
+                    {
+                        genProject.Parameters.Add(export.name, export.value);
+                    }
+                    var genFramework = new GenInfo
+                    {
+                        Name = Shell.ProjectName,
+                        Template = fxProjectTemplate
+                    };
+                    genQueue.Add(genFramework);
+                    AddSystemParams(genFramework);
                 }
             }
 
@@ -100,6 +118,24 @@ namespace Microsoft.Templates.Wizard
                         {
                             Name = page.name,
                             Template = fxTemplate
+                        };
+                        genQueue.Add(genFramework);
+                        AddSystemParams(genFramework);
+                    }
+
+                    var fxPageTemplate = _repository
+                                            .Find(t => t.GetTemplateType() == TemplateType.Framework
+                                                && t.Name.Equals($"{userSelection.Framework.ToLower()}.page.{userSelection.ProjectType.ToLower()}", StringComparison.OrdinalIgnoreCase));
+                    if (fxPageTemplate != null)
+                    {
+                        foreach (var export in fxPageTemplate.GetExports())
+                        {
+                            genPage.Parameters.Add(export.name, export.value);
+                        }
+                        var genFramework = new GenInfo
+                        {
+                            Name = page.name,
+                            Template = fxPageTemplate
                         };
                         genQueue.Add(genFramework);
                         AddSystemParams(genFramework);
