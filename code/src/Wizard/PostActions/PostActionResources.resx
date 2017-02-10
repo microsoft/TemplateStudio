@@ -129,6 +129,9 @@
   <data name="AddProjectToSolution_Success" xml:space="preserve">
     <value>Postaction AddProjectToSolution: Successfully added projects to solution.</value>
   </data>
+  <data name="AddReferenceToProject_Success" xml:space="preserve">
+    <value>Postaction AddReferenceToProject: Successfully added reference to project.</value>
+  </data>
   <data name="GenerateTestCertificate_EmptyUserName" xml:space="preserve">
     <value>Generation parameter UserName should not be empty.</value>
   </data>

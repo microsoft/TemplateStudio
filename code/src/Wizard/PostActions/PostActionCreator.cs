@@ -31,6 +31,7 @@ namespace Microsoft.Templates.Wizard.PostActions
                     if (template.GetTemplateOutputType() == "project")
                     {
                         postActions.Add(GetPostAction(PostActionType.AddProjectToSolutionPostAction));
+                        postActions.Add(GetPostAction(PostActionType.AddReferenceToProjectPostAction));
                     }
 					break;
 				case TemplateType.Unspecified:
@@ -80,7 +81,10 @@ namespace Microsoft.Templates.Wizard.PostActions
 
                 case PostActionType.SetDefaultSolutionConfigurationPostAction:
                     return new SetDefaultSolutionConfigurationPostAction();
-                    
+
+                case PostActionType.AddReferenceToProjectPostAction:
+                    return new AddReferenceToProjectPostAction();
+
                 default:
                     return null;
             }

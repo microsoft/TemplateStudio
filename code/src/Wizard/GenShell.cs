@@ -39,6 +39,7 @@ namespace Microsoft.Templates.Wizard
         public abstract void ShowStatusBarMessage(string message);
         public abstract void AddProjectToSolution(string projectFullPath);
         public abstract void AddItemToActiveProject(string itemFullPath);
+        public abstract void AddReferenceToProject(string projectName, string referencePath);
         public abstract void SaveSolution(string solutionFullPath);
         public abstract string GetActiveNamespace();
         public abstract void ShowTaskList();

@@ -59,6 +59,13 @@ namespace Microsoft.Templates.Test
 
         public override void AddProjectToSolution(string projectFullPath)
         {
+            //TODO: Implement this
+        }
+
+        public override void AddReferenceToProject(string referencePath)
+        {
+           //TODO: Implement this
+            
         }
 
         public override string GetActiveNamespace()

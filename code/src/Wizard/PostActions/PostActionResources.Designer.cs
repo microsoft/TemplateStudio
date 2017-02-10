@@ -97,6 +97,15 @@ namespace Microsoft.Templates.Wizard.PostActions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Postaction AddReferenceToProject: Successfully added reference to project..
+        /// </summary>
+        internal static string AddReferenceToProject_Success {
+            get {
+                return ResourceManager.GetString("AddReferenceToProject_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generation parameter UserName should not be empty..
         /// </summary>
         internal static string GenerateTestCertificate_EmptyUserName {
