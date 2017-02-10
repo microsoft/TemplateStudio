@@ -56,6 +56,9 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task TrackProjectGenAsync(ITemplateInfo template, string appFx, TemplateCreationResult result, int? pagesCount = null, int? featuresCount = null, double? timeSpent = null)
         {
+            if (template == null) throw new ArgumentNullException("template");
+            if (result == null) throw new ArgumentNullException("result");
+
             if (template.GetTemplateType() != TemplateType.Project)
             {
                 return;
@@ -67,6 +70,9 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task TrackPageOrFeatureTemplateGenAsync(ITemplateInfo template, string appFx, TemplateCreationResult result)
         {
+            if (template == null) throw new ArgumentNullException("template");
+            if (result == null) throw new ArgumentNullException("result");
+
             if (template != null && result != null)
             {
                 switch (template.GetTemplateType())

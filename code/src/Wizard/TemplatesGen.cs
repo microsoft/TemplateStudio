@@ -125,16 +125,18 @@ namespace Microsoft.Templates.Wizard
                     string appFx = genInfo.GetFramework();
                     if (string.IsNullOrEmpty(appFx))
                     {
-                        // TODO: Review error tracking
+                        // TODO: Review error tracking. Must this error reach the telemetry?
                         AppHealth.Current.Error.TrackAsync("Project framework does not found").FireAndForget();
                     }
+
+                    string resultsKey = $"{genInfo.Template.Identity}_{genInfo.Name}";
                     if (genInfo.Template.GetTemplateType() == TemplateType.Project)
                     {
-                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, appFx, genResults[$"{genInfo.Template.Identity}_{genInfo.Name}"], pagesAdded, featuresAdded, timeSpent).FireAndForget();
+                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, appFx, genResults[resultsKey], pagesAdded, featuresAdded, timeSpent).FireAndForget();
                     }
                     else
                     {
-                        AppHealth.Current.Telemetry.TrackPageOrFeatureTemplateGenAsync(genInfo.Template, appFx, genResults[genInfo.Template.Identity]).FireAndForget();
+                        AppHealth.Current.Telemetry.TrackPageOrFeatureTemplateGenAsync(genInfo.Template, appFx, genResults[resultsKey]).FireAndForget();
                     }
                 }
             }
