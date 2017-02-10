@@ -70,6 +70,8 @@ namespace Microsoft.Templates.Test
             return itemElement;
         }
 
+
+
         private static XElement GetContentXElement(string includePath)
         {
             StringBuilder sb = new StringBuilder();
@@ -78,5 +80,7 @@ namespace Microsoft.Templates.Test
             XElement itemElement = XElement.Load(sr);
             return itemElement;
         }
+
+        
     }
 }

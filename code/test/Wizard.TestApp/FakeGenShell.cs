@@ -59,12 +59,30 @@ namespace Microsoft.Templates.Wizard.TestApp
 
         public override void AddProjectToSolution(string projectFullPath)
         {
+            var msbuildProj = MsBuildProject.Load(projectFullPath);
+            
+
+            var solutionFile = SolutionFile.Load(SolutionPath);
+            solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid);
+
             //TODO: Implement this
         }
 
-        public override void AddReferenceToProject(string projectName, string referencePath)
+        public override void AddReferenceToProject(string projectName, string referenceProjectName)
         {
-            //TODO: Implement this
+            var projectFileName = FindProject(ProjectPath);
+            var msbuildProj = MsBuildProject.Load(projectFileName);
+
+            var referencePath = Path.Combine(OutputPath, referenceProjectName);
+            var referenceProjFileName = FindProject(referencePath);
+            var referenceProj = MsBuildProject.Load(referenceProjFileName);
+
+            if (msbuildProj != null)
+            {
+                msbuildProj.AddProjectReference(referenceProjFileName, referenceProj.Guid, referenceProj.Name);
+                msbuildProj.Save();
+            }
+
         }
 
         public override string GetActiveNamespace()

@@ -62,10 +62,16 @@ namespace Microsoft.Templates.Test
             //TODO: Implement this
         }
 
-        public override void AddReferenceToProject(string referencePath)
+        public override void AddReferenceToProject(string projectName, string referencePath)
         {
-           //TODO: Implement this
+            var projectFileName = FindProject(ProjectPath);
+            var msbuildProj = MsBuildProject.Load(projectFileName);
+
+            var referenceProjFileName = FindProject(referencePath);
+            var referenceProj = MsBuildProject.Load(referenceProjFileName);
             
+            msbuildProj.AddProjectReference(referencePath, referenceProj.Guid, referenceProj.Name);
+
         }
 
         public override string GetActiveNamespace()
@@ -109,6 +115,7 @@ namespace Microsoft.Templates.Test
         {
             return Directory.EnumerateFiles(path, "*proj").FirstOrDefault();
         }
+
 
         public override bool SetActiveConfigurationAndPlatform(string configurationName, string platformName)
         {
