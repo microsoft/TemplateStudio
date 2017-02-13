@@ -18,151 +18,25 @@ using System.Windows;
 
 namespace Microsoft.Templates.Wizard
 {
-    public class TemplatesGen
+    public class GenController
     {
-        private TemplatesRepository _repository;
+        private static GenComposer _composer;
+        private static TemplatesRepository _repository;
+
         public GenShell Shell { get; }
 
+
         //TODO: ERROR HANDLING
-        public TemplatesGen(GenShell shell) : this(shell, new TemplatesRepository(new RemoteTemplatesLocation()))
+        public GenController(GenShell shell) : this(shell, new TemplatesRepository(new RemoteTemplatesLocation()))
         {
         }
 
-        public TemplatesGen(GenShell shell, TemplatesRepository repository)
+        public GenController(GenShell shell, TemplatesRepository repository)
         {
             Shell = shell;
             _repository = repository;
-        }
 
-        //TODO: MOVE THIS SOMEWHERE
-        public IEnumerable<GenInfo> ComposeGeneration(WizardState userSelection)
-        {
-            var genQueue = new List<GenInfo>();
-
-            if (!string.IsNullOrEmpty(userSelection.ProjectType))
-            {
-                var projectTemplate = _repository
-                                            .Find(t => t.GetTemplateType() == TemplateType.Project
-                                                && t.GetProjectType() == userSelection.ProjectType
-                                                && t.GetFrameworkList().Any(f => f == userSelection.Framework));
-
-                var genProject = new GenInfo
-                {
-                    Name = Shell.ProjectName,
-                    Template = projectTemplate
-                };
-                genQueue.Add(genProject);
-                AddSystemParams(genProject);
-                genProject.Parameters.Add(GenInfo.UsernameParameterName, Environment.UserName);
-
-                var fxTemplate = _repository
-                                        .Find(t => t.GetTemplateType() == TemplateType.Framework
-                                            && t.Name.Equals($"{userSelection.Framework.ToLower()}.project", StringComparison.OrdinalIgnoreCase));
-                if (fxTemplate != null)
-                {
-                    foreach (var export in fxTemplate.GetExports())
-                    {
-                        genProject.Parameters.Add(export.name, export.value);
-                    }
-                    var genFramework = new GenInfo
-                    {
-                        Name = Shell.ProjectName,
-                        Template = fxTemplate
-                    };
-                    genQueue.Add(genFramework);
-                    AddSystemParams(genFramework);
-                }
-
-                var fxProjectTemplate = _repository
-                                            .Find(t => t.GetTemplateType() == TemplateType.Framework
-                                                && t.Name.Equals($"{userSelection.Framework.ToLower()}.project.{userSelection.ProjectType.ToLower()}", StringComparison.OrdinalIgnoreCase));
-                if (fxProjectTemplate != null)
-                {
-                    foreach (var export in fxProjectTemplate.GetExports())
-                    {
-                        genProject.Parameters.Add(export.name, export.value);
-                    }
-                    var genFramework = new GenInfo
-                    {
-                        Name = Shell.ProjectName,
-                        Template = fxProjectTemplate
-                    };
-                    genQueue.Add(genFramework);
-                    AddSystemParams(genFramework);
-                }
-            }
-
-            foreach (var page in userSelection.Pages)
-            {
-                var pageTemplate = _repository.Find(t => t.Name == page.templateName);
-                if (pageTemplate != null)
-                {
-                    var genPage = new GenInfo
-                    {
-                        Name = page.name,
-                        Template = pageTemplate
-                    };
-                    genQueue.Add(genPage);
-                    AddSystemParams(genPage);
-
-                    var fxTemplate = _repository
-                                        .Find(t => t.GetTemplateType() == TemplateType.Framework
-                                            && t.Name.Equals($"{userSelection.Framework.ToLower()}.page", StringComparison.OrdinalIgnoreCase));
-                    if (fxTemplate != null)
-                    {
-                        foreach (var export in fxTemplate.GetExports())
-                        {
-                            genPage.Parameters.Add(export.name, export.value);
-                        }
-                        var genFramework = new GenInfo
-                        {
-                            Name = page.name,
-                            Template = fxTemplate
-                        };
-                        genQueue.Add(genFramework);
-                        AddSystemParams(genFramework);
-                    }
-
-                    var fxPageTemplate = _repository
-                                            .Find(t => t.GetTemplateType() == TemplateType.Framework
-                                                && t.Name.Equals($"{userSelection.Framework.ToLower()}.page.{userSelection.ProjectType.ToLower()}", StringComparison.OrdinalIgnoreCase));
-                    if (fxPageTemplate != null)
-                    {
-                        foreach (var export in fxPageTemplate.GetExports())
-                        {
-                            genPage.Parameters.Add(export.name, export.value);
-                        }
-                        var genFramework = new GenInfo
-                        {
-                            Name = page.name,
-                            Template = fxPageTemplate
-                        };
-                        genQueue.Add(genFramework);
-                        AddSystemParams(genFramework);
-                    }
-
-                    var fxPageNameTemplate = _repository
-                                                .Find(t => t.GetTemplateType() == TemplateType.Framework
-                                                    && t.Name.Equals($"{userSelection.Framework.ToLower()}.page.{pageTemplate.Name.ToLower()}", StringComparison.OrdinalIgnoreCase));
-
-                    if (fxPageNameTemplate != null)
-                    {
-                        foreach (var export in fxPageNameTemplate.GetExports())
-                        {
-                            genPage.Parameters.Add(export.name, export.value);
-                        }
-                        var genFramework = new GenInfo
-                        {
-                            Name = page.name,
-                            Template = fxPageNameTemplate
-                        };
-                        genQueue.Add(genFramework);
-                        AddSystemParams(genFramework);
-                    }
-                }
-            }
-
-            return genQueue;
+            _composer = new GenComposer(shell, repository);
         }
 
         public WizardState GetUserSelection(WizardSteps selectionSteps)
@@ -191,7 +65,7 @@ namespace Microsoft.Templates.Wizard
 
         public void Generate(WizardState userSelection)
         {
-            var genItems = ComposeGeneration(userSelection).ToList();
+            var genItems = _composer.Compose(userSelection).ToList();
 
             Stopwatch chrono = Stopwatch.StartNew();
 
@@ -287,12 +161,6 @@ namespace Microsoft.Templates.Wizard
             }
         }
 
-        //TODO: REVIEW THIS NAME
-        private void AddSystemParams(GenInfo genInfo)
-        {
-            genInfo.Parameters.Add("RootNamespace", Shell.GetActiveNamespace());
-            genInfo.Parameters.Add("ItemNamespace", Shell.GetActiveNamespace());
-        }
 
         private IEnumerable<PostActionResult> ExecutePostActions(string outputPath, GenInfo genInfo, TemplateCreationResult generationResult)
         {

@@ -96,6 +96,8 @@
     </Compile>
     <Compile Include="Dialog\RelayCommand.cs" />
     <Compile Include="Extensions\ObservableCollection.extensions.cs" />
+    <Compile Include="GenComposer.cs" />
+    <Compile Include="GenParams.cs" />
     <Compile Include="PostActions\PostActionResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -169,7 +171,7 @@
       <DependentUpon>View.xaml</DependentUpon>
     </Compile>
     <Compile Include="Steps\Summary\ViewModel.cs" />
-    <Compile Include="TemplatesGen.cs" />
+    <Compile Include="GenController.cs" />
     <Compile Include="ViewModels\Extensions.cs" />
     <Compile Include="ViewModels\ProjectInfoViewModel.cs" />
     <Compile Include="ViewModels\TemplateViewModel.cs" />

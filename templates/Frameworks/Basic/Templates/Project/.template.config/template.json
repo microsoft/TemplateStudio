@@ -42,9 +42,7 @@
     "uct.type": "framework",
     "uct.framework": "Basic",
     "uct.version": "1.0.0",
-    "uct.order": "1",
-    "uct.export.baseclass": "Observable",
-    "uct.export.setter": "Set"
+    "uct.order": "1"
   },
   "sourceName": "ItemName",
   "preferNameDirectory": true,

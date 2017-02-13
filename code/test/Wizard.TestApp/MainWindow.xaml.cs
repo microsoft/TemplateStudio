@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Wizard.TestApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private TemplatesGen _gen;
+        private GenController _gen;
         private FakeGenShell _shell;
 
         public MainWindow()
@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Wizard.TestApp
             try
             {
                 _shell = new FakeGenShell(SeedSolName.Text + DateTime.Now.ToString("MMddmmss"), Status);
-                _gen = new TemplatesGen(_shell, new TemplatesRepository(new LocalTemplatesLocation()));
+                _gen = new GenController(_shell, new TemplatesRepository(new LocalTemplatesLocation()));
 
                 var userSelection = _gen.GetUserSelection(WizardSteps.Project);
                 if (userSelection != null)
@@ -76,7 +76,7 @@ namespace Microsoft.Templates.Wizard.TestApp
                 string projectName = System.IO.Path.GetFileNameWithoutExtension(PathToExistingProject.Text);
 
                 _shell = new FakeGenShell(projectName, Status);
-                _gen = new TemplatesGen(_shell, new TemplatesRepository(new LocalTemplatesLocation()));
+                _gen = new GenController(_shell, new TemplatesRepository(new LocalTemplatesLocation()));
 
                 var userSelection = _gen.GetUserSelection(WizardSteps.Project);
                 if (userSelection != null)
