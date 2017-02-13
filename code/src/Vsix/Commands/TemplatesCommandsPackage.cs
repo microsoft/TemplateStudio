@@ -59,7 +59,7 @@ namespace Microsoft.Templates.Extension.Commands
         {
             try
             {
-                var gen = new TemplatesGen(new VsGenShell());
+                var gen = new GenController(new VsGenShell());
 
                 var userSelection = gen.GetUserSelection(WizardSteps.Page);
                 if (userSelection != null)
@@ -77,7 +77,7 @@ namespace Microsoft.Templates.Extension.Commands
         {
             try
             {
-                var gen = new TemplatesGen(new VsGenShell());
+                var gen = new GenController(new VsGenShell());
 
                 var userSelection = gen.GetUserSelection(WizardSteps.Feature);
                 if (userSelection != null)

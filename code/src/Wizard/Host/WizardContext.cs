@@ -39,8 +39,34 @@ namespace Microsoft.Templates.Wizard.Host
 
         public IEnumerable<GenInfo> GetSelection()
         {
+            //TODO: REVIEW THIS
             var selection = new List<GenInfo>();
 
+            var projectTemplate = TemplatesRepository.Find(t => t.GetProjectType() == State.ProjectType && t.GetFrameworkList().Any(f => f == State.Framework));
+            if (projectTemplate != null)
+            {
+                selection.Add(new GenInfo
+                {
+                    Name = Shell.ProjectName,
+                    Template = projectTemplate
+                });
+            }
+
+            if (State.Pages != null)
+            {
+                foreach (var p in State.Pages)
+                {
+                    var pageTemplate = TemplatesRepository.Find(t => t.Name == p.templateName);
+                    if (pageTemplate != null)
+                    {
+                        selection.Add(new GenInfo
+                        {
+                            Name = p.name,
+                            Template = pageTemplate
+                        });
+                    }
+                } 
+            }
             
             return selection;
         }
