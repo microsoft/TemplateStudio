@@ -41,6 +41,32 @@ namespace Microsoft.Templates.Core.Extensions
 
             return sBuilder.ToString();
         }
+
+        public static string ObfuscateSHA(this string data)
+        {
+            string result = data;
+            byte[] b64data = Encoding.UTF8.GetBytes(data);
+
+            using (SHA512 sha2 = SHA512.Create())
+            {
+                result = GetSha2Hash(sha2, b64data);
+            }
+            return result.ToUpper();
+        }
+
+        static string GetSha2Hash(SHA512 sha2, byte[] inputData)
+        {
+            byte[] data = sha2.ComputeHash(inputData);
+
+            StringBuilder sBuilder = new StringBuilder();
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+
+            return sBuilder.ToString();
+        }
     }
 
 }
