@@ -21,16 +21,16 @@ namespace Microsoft.Templates.Core.Extensions
             string result = data;
             byte[] b64data = Encoding.UTF8.GetBytes(data);
 
-            using (MD5 md5Hash = MD5.Create())
+            using (SHA512 sha2 = SHA512.Create())
             {
-                result = GetMd5Hash(md5Hash, b64data);
+                result = GetSha2Hash(sha2, b64data);
             }
             return result.ToUpper();
-        }
+        } 
 
-        static string GetMd5Hash(MD5 md5Hash, byte[] inputData)
+        static string GetSha2Hash(SHA512 sha2, byte[] inputData)
         {
-            byte[] data = md5Hash.ComputeHash(inputData);
+            byte[] data = sha2.ComputeHash(inputData);
 
             StringBuilder sBuilder = new StringBuilder();
 
