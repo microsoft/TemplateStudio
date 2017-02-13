@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Test.Diagnostics
 {
-    public class TelemetryFixture : IDisposable
+    public sealed class TelemetryFixture : IDisposable
     {
         public TelemetryService Telemetry { get; }
         public TelemetryFixture()

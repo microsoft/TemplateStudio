@@ -28,14 +28,12 @@ namespace Microsoft.Templates.Core.Test.Config
 
             string filePath = Path.Combine(Environment.CurrentDirectory, "tests.save.config.json");
 
-            using (StreamWriter sw = new StreamWriter(filePath))
+            StreamWriter sw = new StreamWriter(filePath);
+            using (JsonWriter writer = new JsonTextWriter(sw))
             {
-                using (JsonWriter writer = new JsonTextWriter(sw))
-                {
-                    serializer.Serialize(writer, new Configuration());
-                }
+                serializer.Serialize(writer, new Configuration());
             }
-
+            
             Assert.True(File.Exists(filePath));
         }        
 

@@ -8,7 +8,7 @@ using Microsoft.Templates.Core.Locations;
 
 namespace Microsoft.Templates.Test
 {
-    public class GenerationTestsFixture : IDisposable
+    public sealed class GenerationTestsFixture : IDisposable
     {
         internal string TestRunPath = @"..\..\TestRuns\{0}\";
         internal string TestProjectsPath;

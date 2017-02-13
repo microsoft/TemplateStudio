@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         public bool IsEnabled { get; private set; }
 
         private Configuration _currentConfig;
-        private TelemetryClient _client { get; set; }
+        private TelemetryClient _client;
 
         public static TelemetryService _current;
         public static TelemetryService Current
