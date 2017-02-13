@@ -72,6 +72,7 @@ namespace BlankProject
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+            //PostActionAnchor: GET APP THEME
         }
 
         /// <summary>

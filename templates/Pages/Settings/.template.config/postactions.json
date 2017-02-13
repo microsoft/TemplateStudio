@@ -1,0 +1,11 @@
+[
+  {
+    "name": "PostActionGetAppTheme",
+    "type": "InsertPartialGenerationPostAction",
+    "description": "Get saved app theme value from storage settings.",
+    "parameters": {
+      "destination.filename": "App.xaml.cs",
+      "destination.anchor": "//PostActionAnchor: GET APP THEME"
+    }
+  }
+]
