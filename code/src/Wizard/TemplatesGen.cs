@@ -140,6 +140,25 @@ namespace Microsoft.Templates.Wizard
                         genQueue.Add(genFramework);
                         AddSystemParams(genFramework);
                     }
+
+                    var fxPageNameTemplate = _repository
+                                                .Find(t => t.GetTemplateType() == TemplateType.Framework
+                                                    && t.Name.Equals($"{userSelection.Framework.ToLower()}.page.{pageTemplate.Name.ToLower()}", StringComparison.OrdinalIgnoreCase));
+
+                    if (fxPageNameTemplate != null)
+                    {
+                        foreach (var export in fxPageNameTemplate.GetExports())
+                        {
+                            genPage.Parameters.Add(export.name, export.value);
+                        }
+                        var genFramework = new GenInfo
+                        {
+                            Name = page.name,
+                            Template = fxPageNameTemplate
+                        };
+                        genQueue.Add(genFramework);
+                        AddSystemParams(genFramework);
+                    }
                 }
             }
 

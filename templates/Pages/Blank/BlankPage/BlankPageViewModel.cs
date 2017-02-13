@@ -3,7 +3,7 @@ using System;
 
 namespace ItemNamespace.BlankPage
 {
-    public class BlankPageViewModel : object
+    public class BlankPageViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         public BlankPageViewModel()
         {

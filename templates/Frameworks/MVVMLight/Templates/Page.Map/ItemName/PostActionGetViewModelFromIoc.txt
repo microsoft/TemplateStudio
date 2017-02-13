@@ -1,0 +1,1 @@
+var ViewModel = ServiceLocator.Current.GetInstance<ItemNameViewModel>();
