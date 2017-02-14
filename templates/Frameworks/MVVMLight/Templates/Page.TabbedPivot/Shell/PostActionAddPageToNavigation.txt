@@ -1,0 +1,1 @@
+yield return new ShellTabbedItem("ItemName", new ItemName.ItemNamePage());

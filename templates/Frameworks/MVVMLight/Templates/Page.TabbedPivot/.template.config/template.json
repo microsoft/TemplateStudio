@@ -31,31 +31,22 @@
   "classifications": [
     "Universal"
   ],
-  "name": "TabbedPivotPage",
-  "groupIdentity": "Microsoft.UWPTemplates.TabbedPivotPage",
-  "identity": "Microsoft.UWPTemplates.TabbedPivotPage.CSharp",
-  "shortName": "tabbedpivotpage",
+  "name": "MVVMLight.Page.TabbedPivot",
+  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMLight.Page.TabbedPivot",
+  "identity": "Microsoft.UWPTemplates.Framework.MVVMLight.Page.TabbedPivot.CSharp",
+  "shortName": "MVVMLight_page_tabbedpivot",
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "page",
-    "uct.framework": "Basic;MVVMLight",
+    "uct.type": "framework",
+    "uct.framework": "MVVMLight",
     "uct.version": "1.0.0",
     "uct.order": "1"
   },
-  "sourceName": "TabbedPivotPage",
+  "sourceName": "ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\TabbedPivotPage\\TabbedPivotPagePage.xaml"
-    },
-    {
-      "path": ".\\TabbedPivotPage\\TabbedPivotPagePage.xaml.cs"
-    },
-    {
-      "path": ".\\TabbedPivotPage\\TabbedPivotPageViewModel.cs"
-    }
   ],
   "symbols": {
     "rootNamespace": {
@@ -65,14 +56,6 @@
     "itemNamespace": {
       "type": "parameter",
       "replaces": "ItemNamespace"
-    },
-    "baseclass": {
-      "type": "parameter",
-      "replaces": "System.ComponentModel.INotifyPropertyChanged"
-    },
-    "setter": {
-      "type": "parameter",
-      "replaces": "Set"
     }
   }
 }

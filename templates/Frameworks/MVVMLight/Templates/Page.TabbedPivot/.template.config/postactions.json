@@ -1,0 +1,11 @@
+[
+  {
+    "name": "PostActionAddPageToNavigation",
+    "type": "InsertPartialGenerationPostAction",
+    "description": "Add page to navigation elements",
+    "parameters": {
+      "destination.filename": "ShellViewModel.cs",
+      "destination.anchor": "//PostActionAnchor: ADD PAGE TO NAVIGATION"
+    }
+  }
+]
