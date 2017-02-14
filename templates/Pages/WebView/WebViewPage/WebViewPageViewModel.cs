@@ -14,7 +14,7 @@ namespace ItemNamespace.WebViewPage
 
         public WebViewPageViewModel()
         {
-            Source = new Uri("https://www.microsoft.com/");
+            Source = new Uri("https://www.microsoft.com/"); //Setup here your web url.
         }
     }
 }
