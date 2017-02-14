@@ -15,10 +15,7 @@ namespace ItemNamespace.WebViewPage
         public WebViewPagePage()
         {
             this.InitializeComponent();
-
             //PostActionAnchor: SET DATACONTEXT"
         }
-
-        //PostActionAnchor: Manage Navigation events
     }
 }

@@ -8,14 +8,6 @@
     mc:Ignorable="d">
 
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <WebView
-      Source="{Binding Source}"
-      NavigationCompleted="OnNavigationCompleted"
-      NavigationStarting="OnNavigationStarting" />
-    <ProgressRing
-      Width="100"
-      Height="100"
-      IsActive="True"
-      Visibility="{Binding LoadingIndicatorVisibility}" />
+    <WebView Source="{Binding Source}" />
   </Grid>  
 </Page>
