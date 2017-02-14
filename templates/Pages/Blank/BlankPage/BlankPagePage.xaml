@@ -6,6 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     <!-- PostActionAnchor: SET DATACONTEXT -->
     mc:Ignorable="d">
+    <Page.Resources>
+        <Thickness x:Key="PageMargin">24,12</Thickness>
+    </Page.Resources>
 
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <StackPanel Margin="{StaticResource PageMargin}">

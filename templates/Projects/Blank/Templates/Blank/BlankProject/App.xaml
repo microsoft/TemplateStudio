@@ -7,10 +7,6 @@
 
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/AppTheme.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-
             <!-- PostActionAnchor: ADD RESOURCES -->
         </ResourceDictionary>
     </Application.Resources>
