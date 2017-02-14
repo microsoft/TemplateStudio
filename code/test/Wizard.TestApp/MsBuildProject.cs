@@ -83,6 +83,10 @@ namespace Microsoft.Templates.Wizard.TestApp
             {
                 return VsItemType.XamlPage;
             }
+            else if (ext == ".resw")
+            {
+                return VsItemType.Resource;
+            }
             else
             {
                 return VsItemType.Content;

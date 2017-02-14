@@ -12,6 +12,7 @@ namespace Microsoft.Templates.Core
         Page = 2,
         Feature = 3,
         Framework = 4,
+        DevFeature = 5,
         Unspecified = 100
     }
 }

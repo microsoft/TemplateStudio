@@ -62,7 +62,7 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock                
-                x:Uid="MasterDetailPageTitle"
+                Text="LOC_ANCHOR:MasterDetailPage_Title~MasterDetailPage"
                 Margin="12,0,0,0"
                 Style="{ThemeResource HeaderTextBlockStyle}"/>
 
