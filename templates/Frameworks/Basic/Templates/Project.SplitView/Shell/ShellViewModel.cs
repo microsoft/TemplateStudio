@@ -27,10 +27,10 @@ namespace ItemName.Shell
         {
             get
             {
-                //PostActionAnchor: ADD PAGE TO NAVIGATION
+                //TODO: UWPTemplates -> Show pages in the SplitView menu by adding a navigation item for each page with its name and icon.
+                //More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
 
-                //TODO: UWPTemplates -> To show your project pages in the SplitView menu, add a navigation item for each page like above
-                //i.e. yield return ShellNavigationItem.FromType<......>("Pane....", Char.ConvertFromUtf32(...));
+                //PostActionAnchor: ADD PAGE TO NAVIGATION
                                 
                 //Edit String/en-US/Resources.resw: Add a menu item title for each page
             }
