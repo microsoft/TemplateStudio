@@ -10,7 +10,9 @@ private void RegisterBackgroundTask()
             Name = taskName,
             TaskEntryPoint = taskEntryPoint
         };
-        //TODO UWPTemplates: Define your trigger here
+        //TODO UWPTemplates: Define your trigger here, 
+        //for more info regarding background task registration, see 
+        //https://docs.microsoft.com/windows/uwp/launch-resume/create-and-register-a-background-task
         builder.SetTrigger(new TimeTrigger(15, false));
 
         //TODO UWPTemplates: Add your conditions here
@@ -23,6 +25,22 @@ private void RegisterBackgroundTask()
 
 private void OnCompleted(IBackgroundTaskRegistration task, BackgroundTaskCompletedEventArgs args)
 {
-    //TODO UWPTemplates: Write your code here, remember to use a dispatcher to update UI thread
+    //TODO UWPTemplates: Write the code you want to execute when the background task completes here, 
+    //remember to use a dispatcher to update UI thread,
+    //for more information regarding handling background task completion see
+    //https://docs.microsoft.com/windows/uwp/launch-resume/create-and-register-a-background-task
+}
+
+protected override void OnActivated(IActivatedEventArgs args)
+{
+    if (args.Kind == ActivationKind.ToastNotification)
+    {
+        var toastArgs = args as ToastNotificationActivatedEventArgs;
+        var arguments = toastArgs.Argument;
+
+        //TODO UWPTemplates: Handle activation from toast notification, 
+        //for more info handling activation see 
+        //https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/
+    }
 }
  
