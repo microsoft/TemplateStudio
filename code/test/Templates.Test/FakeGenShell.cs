@@ -59,7 +59,10 @@ namespace Microsoft.Templates.Test
 
         public override void AddProjectToSolution(string projectFullPath)
         {
-            //TODO: Implement this
+            var msbuildProj = MsBuildProject.Load(projectFullPath);
+
+            var solutionFile = SolutionFile.Load(SolutionPath);
+            solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid);
         }
 
         public override void AddReferenceToProject(string projectName, string referencePath)

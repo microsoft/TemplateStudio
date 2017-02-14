@@ -61,11 +61,9 @@ namespace Microsoft.Templates.Wizard.TestApp
         {
             var msbuildProj = MsBuildProject.Load(projectFullPath);
             
-
             var solutionFile = SolutionFile.Load(SolutionPath);
             solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid);
 
-            //TODO: Implement this
         }
 
         public override void AddReferenceToProject(string projectName, string referenceProjectName)
