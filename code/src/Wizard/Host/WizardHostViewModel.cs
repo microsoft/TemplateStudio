@@ -106,7 +106,7 @@ namespace Microsoft.Templates.Wizard.Host
             else
             {
                 Host.DialogResult = true;
-                Host.Result = _context.GetSelection();
+                Host.Result = _context.State;
                 Host.Close();
             }
         }
@@ -116,7 +116,7 @@ namespace Microsoft.Templates.Wizard.Host
             if (Steps.CanGoBack())
             {
                 var currentStep = GetCurrentStep();
-                _context.ClearState(currentStep);
+                currentStep.CleanState();
 
                 var previous = Steps.GoBack();
                 Navigate(previous);
@@ -127,6 +127,7 @@ namespace Microsoft.Templates.Wizard.Host
         {
             Host.DialogResult = false;
             Host.Result = null;
+
             Host.Close();
         }
 

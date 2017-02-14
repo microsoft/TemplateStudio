@@ -1,0 +1,20 @@
+[
+  {
+    "name": "PostActionAddServicesNs",
+    "type": "InsertPartialGenerationPostAction",
+    "description": "Add Services Namespace to App.xaml.cs",
+    "parameters": {
+      "destination.filename": "App.xaml.cs",
+      "destination.anchor": "//PostActionAnchor: ADD SERVICES NS"
+    }
+  },
+  {
+    "name": "PostActionDefineNavigationProperty",
+    "type": "InsertPartialGenerationPostAction",
+    "description": "Define Navigation property in App",
+    "parameters": {
+      "destination.filename": "App.xaml.cs",
+      "destination.anchor": "//PostActionAnchor: DEFINE NAVIGATION PROPERTY"
+    }
+  }
+]

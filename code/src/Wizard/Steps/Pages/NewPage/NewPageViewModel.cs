@@ -68,10 +68,9 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
         {
             Templates.Clear();
 
-            var selectedFrameword = GetSelectedFramework();
             var projectTemplates = _context.TemplatesRepository.GetAll()
                                                                     .Where(f => f.GetTemplateType() == TemplateType.Page
-                                                                        && f.GetFrameworkList().Contains(selectedFrameword))
+                                                                        && f.GetFrameworkList().Contains(_context.State.Framework))
                                                                     .Select(t => new TemplateViewModel(t))
                                                                     .OrderBy(t => t.Order)
                                                                     .ToList();
@@ -85,14 +84,8 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
 
         private void SaveAndClose()
         {
-            var genInfo = new GenInfo
-            {
-                Name = ItemName,
-                Template = TemplateSelected.Info
-            };
-
             _dialog.DialogResult = true;
-            _dialog.Result = genInfo;
+            _dialog.Result = (ItemName, TemplateSelected.Name);
 
             _dialog.Close();
         }
@@ -113,15 +106,5 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
         }
 
         private bool IsValid() => _isValid;
-
-        private string GetSelectedFramework()
-        {
-            var selectedProject = _context.GetState<FrameworkType.ViewModel, GenInfo>();
-            if (selectedProject == null)
-            {
-                throw new ArgumentException("No way to show the page templates, there is no project template selected");
-            }
-            return selectedProject.GetFramework();
-        }
     }
 }

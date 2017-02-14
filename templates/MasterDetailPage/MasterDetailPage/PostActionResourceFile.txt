@@ -1,3 +1,0 @@
-<data name="MasterDetailPageTitle.Text" xml:space="preserve">
-  <value>MasterDetailPage</value>
-</data>

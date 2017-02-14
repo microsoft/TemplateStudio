@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Item1",
+    "templateIdentity": "Microsoft.UWPTemplates.Test.ProjectTemplate.CSharp",
+    "readonly": "true"
+  },
+  {
+    "name": "Item2",
+    "templateIdentity": "Microsoft.UWPTemplates.Test.PageTemplate.CSharp",
+    "readonly": "false"
+  }
+]

@@ -1,0 +1,17 @@
+﻿<Application
+    x:Class="BlankProject.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    <!-- PostActionAnchor: NAMESPACES ALIAS -->
+    RequestedTheme="Light">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/AppTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- PostActionAnchor: ADD RESOURCES -->
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

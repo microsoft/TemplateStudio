@@ -21,7 +21,8 @@
         <Label Content="Default Namespace:" HorizontalAlignment="Left" Margin="354,42,-11,0" VerticalAlignment="Top" Width="220" RenderTransformOrigin="0.5,0.5" />
         <TextBox x:Name="SolutionPath" Background="Transparent" BorderThickness="0" IsReadOnly="true" Text="Solution Generated at C:\XXX\YYY\Solution.sln" Margin="10,95,10,0" VerticalAlignment="Top"/>
         <TextBox x:Name="PagePath" Background="Transparent" BorderThickness="0" IsReadOnly="true" Text="Page Added: C:\XXX\YYY\Page\test.xaml" Margin="10,259,11,0" VerticalAlignment="Top"/>
-        <Button x:Name="OpenInVs" Content="Open Active Project in VS" Margin="0,177,10,0" VerticalAlignment="Top" Click="OpenInVs_Click" HorizontalAlignment="Right" Width="148" HorizontalContentAlignment="Center"/>
+        <Button x:Name="OpenInExplorer" Content="Open in Explorer" Margin="0,177,10,0" VerticalAlignment="Top" Click="OpenInExplorer_Click" HorizontalAlignment="Right" Width="148" HorizontalContentAlignment="Center"/>
+        <Button x:Name="OpenInVs" Content="Open Active Project in VS" Margin="237,177,0,0" VerticalAlignment="Top" Click="OpenInVs_Click" HorizontalAlignment="Left" Width="148" HorizontalContentAlignment="Center"/>
         <Button x:Name="RestartTester" Content="Restart Tester" Margin="0,0,10,51" Click="RestartTester_Click" HorizontalAlignment="Right" Height="20" VerticalAlignment="Bottom" Width="101"/>
         <Button x:Name="SetActiveProject" Content="Set Existing Project" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" Width="112" Click="SetActiveProject_Click"/>
 

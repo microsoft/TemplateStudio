@@ -5,6 +5,7 @@
 		Undefined = 0,
 		Success = 1,
 		AnchorNotFound = 2,
-		Error = 3
+		Error = 3,
+        NotExecuted
 	}
 }

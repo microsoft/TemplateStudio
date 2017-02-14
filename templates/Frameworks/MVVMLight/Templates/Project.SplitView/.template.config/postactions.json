@@ -1,0 +1,11 @@
+[
+  {
+    "name": "PostActionRegisterShell",
+    "type": "InsertPartialGenerationPostAction",
+    "description": "Registers shell in viewmodellocator",
+    "parameters": {
+      "destination.filename": "ViewModelLocator.cs",
+      "destination.anchor": "//PostActionAnchor: REGISTER PAGE IN VIEW_MODEL"
+    }
+  }
+]

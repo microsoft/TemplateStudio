@@ -1,0 +1,9 @@
+private void OnNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
+{
+    ViewModel.LoadingIndicatorVisibility = Visibility.Collapsed;
+}
+
+private void OnNavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
+{
+    ViewModel.LoadingIndicatorVisibility = Visibility.Visible;
+}

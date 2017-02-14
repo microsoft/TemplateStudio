@@ -10,14 +10,14 @@ using System.Configuration;
 namespace Microsoft.Templates.Wizard.PostActions.Catalog
 {
     public class InsertPartialGenerationPostAction : PostActionBase
-	{
+    {
 
-		public InsertPartialGenerationPostAction(string name, string description,  IReadOnlyDictionary<string, string> parameters)
-			: base(name, description, parameters)
-		{
-		}
+        public InsertPartialGenerationPostAction(string name, string description, IReadOnlyDictionary<string, string> parameters)
+            : base(name, description, parameters)
+        {
+        }
 
-		public override PostActionResult Execute(string outputPath, GenInfo genInfo, TemplateCreationResult result, GenShell shell)
+        public override PostActionResult Execute(string outputPath, GenInfo genInfo, TemplateCreationResult result, GenShell shell)
         {
             //Read values from params
             var destinationFileName = GetValueFromParameter("destination.filename");
@@ -33,39 +33,56 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
                 throw new ConfigurationErrorsException(PostActionResources.InsertPartialGeneration_EmptyDestinationAnchorPattern.UseParams(Name));
             }
 
-            var sourceFile = Path.Combine(outputPath, genInfo.Name, Name + ".txt");
-            var postActionCodeLines = ReadPostActionCode(sourceFile);
-
-            var destinationFile = Path.Combine(outputPath, destinationFileName);
-            var destinationFileContent = ReadDestinationFileContent(destinationFile);
-
-            var anchorIndex = destinationFileContent.IndexOf(destinationAnchor, StringComparison.Ordinal);
-            if (anchorIndex == -1)
+            //TODO: REVIEW WITH SIBILLE
+            var sourceFile = Directory.EnumerateFiles(outputPath, Name + ".txt", SearchOption.AllDirectories).FirstOrDefault();
+            if (string.IsNullOrEmpty(sourceFile))
             {
-                var postActionCode = postActionCodeLines.Aggregate(new StringBuilder(), (sb, a) => sb.AppendLine(a), sb => sb.ToString());
-
-                return new PostActionResult()
+                return new PostActionResult
                 {
-                    ResultCode = ResultCode.AnchorNotFound,
-                    Message = PostActionResources.InsertPartialGeneration_AnchorNotFoundPattern.UseParams(Name, postActionCode, destinationAnchor, destinationFile)
+                    ResultCode = ResultCode.NotExecuted
                 };
             }
 
-            string formattedCode = FormatPostActionCode(postActionCodeLines, destinationFileContent, anchorIndex);
+            var postActionCodeLines = ReadPostActionCode(sourceFile);
+            var destinationFiles = Directory.EnumerateFiles(Path.GetDirectoryName(sourceFile), destinationFileName, SearchOption.TopDirectoryOnly);
 
-            var nextLineBreakAfterAnchor = destinationFileContent.IndexOf(Environment.NewLine, anchorIndex, StringComparison.Ordinal);
-            destinationFileContent = destinationFileContent.Insert(nextLineBreakAfterAnchor, formattedCode);
+            foreach (var destinationFile in destinationFiles)
+            {
+                //var destinationFile = Path.Combine(outputPath, destinationFileName);
+                var destinationFileContent = ReadDestinationFileContent(destinationFile);
 
-            //Save
-            File.WriteAllText(destinationFile, destinationFileContent);
+                var anchorIndex = destinationFileContent.IndexOf(destinationAnchor, StringComparison.Ordinal);
+                if (anchorIndex == -1)
+                {
+                    //TODO: REVIEW THIS
+                    //var postActionCode = postActionCodeLines.Aggregate(new StringBuilder(), (sb, a) => sb.AppendLine(a), sb => sb.ToString());
+
+                    //return new PostActionResult()
+                    //{
+                    //    ResultCode = ResultCode.AnchorNotFound,
+                    //    Message = PostActionResources.InsertPartialGeneration_AnchorNotFoundPattern.UseParams(Name, postActionCode, destinationAnchor, destinationFile)
+                    //};
+                }
+                else
+                {
+                    string formattedCode = FormatPostActionCode(postActionCodeLines, destinationFileContent, anchorIndex);
+
+                    var nextLineBreakAfterAnchor = destinationFileContent.IndexOf(Environment.NewLine, anchorIndex, StringComparison.Ordinal);
+                    destinationFileContent = destinationFileContent.Insert(nextLineBreakAfterAnchor, formattedCode);
+
+                    //Save
+                    File.WriteAllText(destinationFile, destinationFileContent);
+                }
+            }
 
             //Delete source file
             File.Delete(sourceFile);
 
             return new PostActionResult()
             {
+                //TODO: REVIEW THIS
                 ResultCode = ResultCode.Success,
-                Message = PostActionResources.InsertPartialGeneration_SuccessPattern.UseParams(Name, formattedCode, destinationAnchor, destinationFile)
+                //Message = PostActionResources.InsertPartialGeneration_SuccessPattern.UseParams(Name, formattedCode, destinationAnchor, destinationFile)
             };
         }
 
@@ -87,7 +104,8 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
         {
             if (!File.Exists(sourceFile))
             {
-                throw new ConfigurationErrorsException(PostActionResources.InsertPartialGeneration_FileNotFoundPattern.UseParams(sourceFile));
+                return null;
+                //throw new ConfigurationErrorsException(PostActionResources.InsertPartialGeneration_FileNotFoundPattern.UseParams(sourceFile));
             }
 
             //Read Code to insert
@@ -97,23 +115,23 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
 
 
         private static string FormatPostActionCode(string[] postActionCodeLines, string destinationFileContent, int anchorIndex)
-		{
-			var lastLineBreakBeforeAnchor = destinationFileContent.LastIndexOf(Environment.NewLine, anchorIndex, StringComparison.Ordinal);
-			var leadingChars = destinationFileContent.Skip(lastLineBreakBeforeAnchor + Environment.NewLine.Length).TakeWhile(char.IsWhiteSpace).ToList();
+        {
+            var lastLineBreakBeforeAnchor = destinationFileContent.LastIndexOf(Environment.NewLine, anchorIndex, StringComparison.Ordinal);
+            var leadingChars = destinationFileContent.Skip(lastLineBreakBeforeAnchor + Environment.NewLine.Length).TakeWhile(char.IsWhiteSpace).ToList();
 
-			var leadingTabs = leadingChars.Count(c => c == '\t');
-			var leadingWhiteSpaces = leadingChars.Count(c => c != '\t');
+            var leadingTabs = leadingChars.Count(c => c == '\t');
+            var leadingWhiteSpaces = leadingChars.Count(c => c != '\t');
 
-			//Add linebreaks and leading whitespaces/tabs to code
-			var formattedCode = Environment.NewLine;
-			foreach (var line in postActionCodeLines)
-			{
-				var formattedCodeLine = line.PadLeft(line.Length + leadingWhiteSpaces);
-				formattedCodeLine = string.Concat(new string('\t', leadingTabs), formattedCodeLine);
-				formattedCode = string.Concat(formattedCode, formattedCodeLine, Environment.NewLine);
-			}
+            //Add linebreaks and leading whitespaces/tabs to code
+            var formattedCode = Environment.NewLine;
+            foreach (var line in postActionCodeLines)
+            {
+                var formattedCodeLine = line.PadLeft(line.Length + leadingWhiteSpaces);
+                formattedCodeLine = string.Concat(new string('\t', leadingTabs), formattedCodeLine);
+                formattedCode = string.Concat(formattedCode, formattedCodeLine, Environment.NewLine);
+            }
 
-			return formattedCode;
-		}
-	}
+            return formattedCode;
+        }
+    }
 }

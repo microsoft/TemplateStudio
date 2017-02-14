@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
     {
         public NewPageViewModel ViewModel { get; }
 
-        public GenInfo Result { get; set; }
+        public (string name, string templateName) Result { get; set; }
 
         public NewPageDialog(WizardContext context, IEnumerable<string> selectedNames)
         {

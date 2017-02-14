@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Wizard.Host
                 var steps = new WizardSteps();
 
                 steps.Add<Steps.ProjectType.ViewModel>();
-                steps.Add<Steps.FrameworkType.ViewModel>();
+                steps.Add<Steps.Framework.ViewModel>();
                 steps.Add<Steps.Pages.ViewModel>();
                 steps.Add<Steps.Summary.ViewModel>();
 

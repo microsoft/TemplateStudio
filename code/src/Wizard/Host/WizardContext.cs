@@ -10,11 +10,19 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Wizard.Host
 {
+    public class WizardState
+    {
+        public string ProjectType { get; set; }
+        public string Framework { get; set; }
+        public List<(string name, string templateName)> Pages { get; } = new List<(string name, string templateName)>();
+    }
+
     public class WizardContext : ObservableBase
     {
         public TemplatesRepository TemplatesRepository { get; }
         public GenShell Shell { get; }
-        private Dictionary<Type, object> State { get; } = new Dictionary<Type, object>();
+        public WizardState State { get; } = new WizardState();
+
 
         public WizardContext(TemplatesRepository templatesRepository, GenShell shell)
         {
@@ -31,62 +39,36 @@ namespace Microsoft.Templates.Wizard.Host
 
         public IEnumerable<GenInfo> GetSelection()
         {
+            //TODO: REVIEW THIS
             var selection = new List<GenInfo>();
 
-            foreach (var stepState in State)
+            var projectTemplate = TemplatesRepository.Find(t => t.GetProjectType() == State.ProjectType && t.GetFrameworkList().Any(f => f == State.Framework));
+            if (projectTemplate != null)
             {
-                if (stepState.Value is IEnumerable<GenInfo> stepTemplates)
+                selection.Add(new GenInfo
                 {
-                    selection.AddRange(stepTemplates);
-                }
-                else if (stepState.Value is GenInfo stepTemplate)
-                {
-                    selection.Add(stepTemplate);
-                }
+                    Name = Shell.ProjectName,
+                    Template = projectTemplate
+                });
             }
 
+            if (State.Pages != null)
+            {
+                foreach (var p in State.Pages)
+                {
+                    var pageTemplate = TemplatesRepository.Find(t => t.Name == p.templateName);
+                    if (pageTemplate != null)
+                    {
+                        selection.Add(new GenInfo
+                        {
+                            Name = p.name,
+                            Template = pageTemplate
+                        });
+                    }
+                } 
+            }
+            
             return selection;
-        }
-
-        public TOut GetState<T, TOut>() where T : Steps.StepViewModel
-        {
-            if (State.ContainsKey(typeof(T)) && State[typeof(T)] is TOut)
-            {
-                return (TOut)State[typeof(T)];
-            }
-            return default(TOut);
-        }
-
-        public void SetState<T>(T instance, object state) where T : Steps.StepViewModel
-        {
-            if (instance == null)
-            {
-                return;
-            }
-            var type = instance.GetType();
-
-            if (State.ContainsKey(type))
-            {
-                State[type] = state;
-            }
-            else
-            {
-                State.Add(type, state);
-            }
-        }
-
-        public void ClearState<T>(T instance)
-        {
-            if (instance == null)
-            {
-                return;
-            }
-            var type = instance.GetType();
-
-            if (State.ContainsKey(type))
-            {
-                State.Remove(type);
-            }
         }
     }
 }

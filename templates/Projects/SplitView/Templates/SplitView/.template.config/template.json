@@ -1,0 +1,48 @@
+{
+  "SpecialCustomOperations": {
+    "**/*.xaml": {
+      "operations": [
+        {
+          "type": "conditional",
+          "configuration": {
+            "actionableIf": [ "<!--#if" ],
+            "actionableElse": [ "#else", "<!--#else" ],
+            "actionableElseif": [ "#elseif", "<!--#elseif" ],
+            "endif": [ "#endif", "<!--#endif" ],
+            "trim" : "true",
+            "wholeLine": "true"
+          }
+        }
+      ]
+    }
+  },
+  "author": "Microsoft",
+  "classifications": ["Universal"],
+  "name": "SplitView",
+  "groupIdentity": "Microsoft.UWPTemplates.SplitViewProject",
+  "identity": "Microsoft.UWPTemplates.SplitViewProject.CSharp",
+  "shortName": "splitview",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "uct.type": "project",
+    "uct.framework": "Basic;MVVMLight",
+    "uct.ProjectType":"SplitView",
+    "uct.version": "1.0.0",
+    "uct.order": "1"
+  },
+  "sourceName": "SplitViewProject",
+  "preferNameDirectory": true,
+  "guids": [ "2C4C3417-7073-4822-BA11-65B00E78B005", "b38d8add-fede-4905-a7af-9589cb0a82dc" ],
+  "PrimaryOutputs":
+  [
+    { "path": ".\\SplitViewProject\\SplitViewProject.csproj" }
+  ],
+  "symbols": {
+    "userName": {
+      "type": "parameter",
+      "replaces": "Param_UserName"
+    }
+  }
+}

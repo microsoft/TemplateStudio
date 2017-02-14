@@ -23,8 +23,8 @@ namespace Microsoft.Templates.Extension
 {
     public class SolutionWizard : IWizard
     {
-        private TemplatesGen _gen;
-        private IEnumerable<GenInfo> _selectedTemplates;
+        private GenController _gen;
+        private WizardState _userSelection;
 
         public SolutionWizard()
         {
@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Extension
         public void RunFinished()
         {
             AppHealth.Current.Verbose.TrackAsync("Creating UWP Community Templates project...").FireAndForget();
-            _gen.Generate(_selectedTemplates);
+            _gen.Generate(_userSelection);
             AppHealth.Current.Verbose.TrackAsync("Generation finished").FireAndForget();
 
             _gen.Shell.ShowTaskList();
@@ -57,11 +57,11 @@ namespace Microsoft.Templates.Extension
         {
             var shell = new VsGenShell(replacementsDictionary);
 
-            _gen = new TemplatesGen(shell);
+            _gen = new GenController(shell);
 
             if (runKind == WizardRunKind.AsNewProject || runKind == WizardRunKind.AsMultiProject)
             {
-                _selectedTemplates = _gen.GetUserSelection(WizardSteps.Project);
+                _userSelection = _gen.GetUserSelection(WizardSteps.Project);
             }
         }
 

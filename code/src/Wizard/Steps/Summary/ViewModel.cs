@@ -18,7 +18,11 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
 
         public ViewModel(WizardContext context) : base(context)
         {
+#if DEBUG
+            TermsAccepted = true;
+#else
             TermsAccepted = false;
+#endif
         }
 
         private bool _termsAccepted;
@@ -61,13 +65,17 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
         private IEnumerable<SummaryItemViewModel> FilterTemplates(TemplateType templateType)
         {
             return Context.GetSelection()
+                                .Where(t => t.Template != null)
                                 .Where(t => t.Template.GetTemplateType() == templateType)
                                 .Select(t => new SummaryItemViewModel(t));
         }
 
         private void AddLicences()
         {
-            foreach (var selected in Context.GetSelection())
+            var selection = Context.GetSelection()
+                                            .Where(t => t.Template != null);
+
+            foreach (var selected in selection)
             {
                 foreach (var templateLic in selected.Template.GetLicences())
                 {

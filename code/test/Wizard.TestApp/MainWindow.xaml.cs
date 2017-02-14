@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Wizard.TestApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private TemplatesGen _gen;
+        private GenController _gen;
         private FakeGenShell _shell;
 
         public MainWindow()
@@ -47,12 +47,12 @@ namespace Microsoft.Templates.Wizard.TestApp
             try
             {
                 _shell = new FakeGenShell(SeedSolName.Text + DateTime.Now.ToString("MMddmmss"), Status);
-                _gen = new TemplatesGen(_shell, new TemplatesRepository(new LocalTemplatesLocation()));
+                _gen = new GenController(_shell, new TemplatesRepository(new LocalTemplatesLocation()));
 
-                var genItems = _gen.GetUserSelection(WizardSteps.Project);
-                if (genItems != null)
+                var userSelection = _gen.GetUserSelection(WizardSteps.Project);
+                if (userSelection != null)
                 {
-                    _gen.Generate(genItems);
+                    _gen.Generate(userSelection);
 
                     SolutionPath.Text = _shell.OutputPath;
                     _gen.Shell.ShowStatusBarMessage("Project creation successfull...");
@@ -76,12 +76,12 @@ namespace Microsoft.Templates.Wizard.TestApp
                 string projectName = System.IO.Path.GetFileNameWithoutExtension(PathToExistingProject.Text);
 
                 _shell = new FakeGenShell(projectName, Status);
-                _gen = new TemplatesGen(_shell, new TemplatesRepository(new LocalTemplatesLocation()));
+                _gen = new GenController(_shell, new TemplatesRepository(new LocalTemplatesLocation()));
 
-                var genItems = _gen.GetUserSelection(WizardSteps.Project);
-                if (genItems != null)
+                var userSelection = _gen.GetUserSelection(WizardSteps.Project);
+                if (userSelection != null)
                 {
-                    _gen.Generate(genItems);
+                    _gen.Generate(userSelection);
 
                     SolutionPath.Text = _shell.OutputPath;
 
@@ -100,10 +100,10 @@ namespace Microsoft.Templates.Wizard.TestApp
             {
                 _shell.UpdateRelativePath(PageRelativePath.Text);
 
-                var genItems = _gen.GetUserSelection(WizardSteps.Page);
-                if (genItems != null)
+                var userSelection = _gen.GetUserSelection(WizardSteps.Page);
+                if (userSelection != null)
                 {
-                    _gen.Generate(genItems);
+                    _gen.Generate(userSelection);
                 }
             }
             catch (WizardBackoutException)
@@ -138,6 +138,15 @@ namespace Microsoft.Templates.Wizard.TestApp
             }
         }
 
+        private void OpenInExplorer_Click(object sender, RoutedEventArgs e)
+        {
+            if (!String.IsNullOrEmpty(_shell.SolutionPath))
+            {
+                
+                System.Diagnostics.Process.Start(System.IO.Path.GetDirectoryName(_shell.SolutionPath));
+            }
+        }
+
         private void RestartTester_Click(object sender, RoutedEventArgs e)
         {
             InitTester();
@@ -151,6 +160,7 @@ namespace Microsoft.Templates.Wizard.TestApp
             AddPage.IsEnabled = false;
             AddFeature.IsEnabled = false;
             OpenInVs.Visibility = Visibility.Hidden;
+            OpenInExplorer.Visibility = Visibility.Hidden;
             RestartTester.Visibility = Visibility.Hidden;
             Status.Text = "";
             PageRelativePath.Text = "";
@@ -163,6 +173,7 @@ namespace Microsoft.Templates.Wizard.TestApp
             AddPage.IsEnabled = true;
             AddFeature.IsEnabled = true;
             OpenInVs.Visibility = Visibility.Visible;
+            OpenInExplorer.Visibility = Visibility.Visible;
             RestartTester.Visibility = Visibility.Visible;
         }
     }

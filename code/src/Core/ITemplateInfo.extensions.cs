@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions.Mount;
 using Microsoft.TemplateEngine.Edge.Settings;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace Microsoft.Templates.Core
 {
@@ -28,6 +29,8 @@ namespace Microsoft.Templates.Core
                     return TemplateType.Page;
                 case "feature":
                     return TemplateType.Feature;
+                case "framework":
+                    return TemplateType.Framework;
                 default:
                     return TemplateType.Unspecified;
             }
@@ -69,6 +72,19 @@ namespace Microsoft.Templates.Core
             return result;
         }
 
+        public static IEnumerable<(string name, string value)> GetExports(this ITemplateInfo ti)
+        {
+            if (ti == null || ti.Tags == null)
+            {
+                return Enumerable.Empty<(string name, string value)>();
+            }
+
+            return ti.Tags
+                        .Where(t => t.Key.Contains(TagPrefix + "export."))
+                        .Select(t => (t.Key.Replace(TagPrefix + "export.", string.Empty), t.Value))
+                        .ToList();
+        }
+
         public static List<string> GetFrameworkList(this ITemplateInfo ti)
         {
             var frameworks = GetValueFromTag(ti, TagPrefix + "framework");
@@ -107,10 +123,24 @@ namespace Microsoft.Templates.Core
             return GetValueFromTag(ti, TagPrefix + "ProjectType");
         }
 
+        public static IEnumerable<LayoutItem> GetLayout(this ITemplateInfo ti)
+        {
+            var configDir = GetConfigDir(ti);
+
+            var layoutFile = Directory.EnumerateFiles(configDir, "Layout.json").FirstOrDefault();
+
+            if (string.IsNullOrEmpty(layoutFile))
+            {
+                return Enumerable.Empty<LayoutItem>();
+            }
+
+            var layoutContent = File.ReadAllText(layoutFile);
+            return JsonConvert.DeserializeObject<List<LayoutItem>>(layoutContent);
+        }
+
         private static string GetConfigDir(ITemplateInfo ti)
         {
-            IFile file;
-            CodeGen.Instance.Settings.SettingsLoader.TryGetFileFromIdAndPath(ti.ConfigMountPointId, ti.ConfigPlace, out file);
+            CodeGen.Instance.Settings.SettingsLoader.TryGetFileFromIdAndPath(ti.ConfigMountPointId, ti.ConfigPlace, out IFile file);
             if (file?.Parent == null)
             {
                 return null;
@@ -120,8 +150,7 @@ namespace Microsoft.Templates.Core
 
         private static string GetValueFromTag(this ITemplateInfo templateInfo, string tagName)
         {
-            string tagValue;
-            if (templateInfo.Tags != null && !string.IsNullOrEmpty(tagName) && templateInfo.Tags.TryGetValue(tagName, out tagValue))
+            if (templateInfo.Tags != null && !string.IsNullOrEmpty(tagName) && templateInfo.Tags.TryGetValue(tagName, out string tagValue))
             {
                 return tagValue;
             }

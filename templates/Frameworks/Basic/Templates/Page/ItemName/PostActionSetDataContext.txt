@@ -1,0 +1,2 @@
+ViewModel = new ItemNameViewModel();
+DataContext = ViewModel;

@@ -28,8 +28,11 @@ namespace Microsoft.Templates.Wizard.PostActions
 					postActions.Add(GetPostAction(PostActionType.AddItemToProjectPostAction));
 					break;
 				case TemplateType.Feature:
-					break;
-				case TemplateType.Unspecified:
+                    break;
+                case TemplateType.Framework:
+                    postActions.Add(GetPostAction(PostActionType.AddItemToProjectPostAction));
+                    break;
+                case TemplateType.Unspecified:
 					break;
 				default:
 					break;
@@ -84,7 +87,7 @@ namespace Microsoft.Templates.Wizard.PostActions
 
         public static void CleanUpAnchors(string outputPath)
         {
-            string[] anchorTexts = { "//PostActionAnchor", "<!--PostActionAnchor" };
+            string[] anchorTexts = { "//PostActionAnchor", "<!--PostActionAnchor", "<!-- PostActionAnchor" };
 
             var projectFiles = Directory.EnumerateFiles(outputPath, "*", SearchOption.AllDirectories);
 

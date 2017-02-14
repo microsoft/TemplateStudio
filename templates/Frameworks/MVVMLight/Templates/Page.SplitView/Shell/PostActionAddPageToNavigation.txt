@@ -1,0 +1,1 @@
+yield return new ShellNavigationItem("ItemName", Char.ConvertFromUtf32(0xE130), typeof(ItemNameViewModel).FullName);
