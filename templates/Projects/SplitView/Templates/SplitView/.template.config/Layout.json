@@ -1,0 +1,7 @@
+[
+    {
+        "name": "Home",
+        "templateIdentity": "Microsoft.UWPTemplates.BlankPage.CSharp",
+        "readonly": "true"
+    }
+]

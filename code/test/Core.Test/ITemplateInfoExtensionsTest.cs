@@ -139,15 +139,17 @@ namespace Microsoft.Templates.Core.Test
             var result = target.GetLicences().ToList();
             Assert.NotNull(result);
 
-            Assert.Collection(result, 
-                e1 => {
+            Assert.Collection(result,
+                e1 =>
+                {
                     Assert.Equal("text1", e1.text);
                     Assert.Equal("url1", e1.url);
-                    },
-                e2 => {
+                },
+                e2 =>
+                {
                     Assert.Equal("text2", e2.text);
                     Assert.Equal("url2", e2.url);
-                    }
+                }
                 );
         }
 
@@ -157,7 +159,38 @@ namespace Microsoft.Templates.Core.Test
             var target = GetTarget("UnspecifiedTemplate");
 
             var result = target.GetLicences().ToList();
-            Assert.Equal(0, result.Count);
+            Assert.Collection(result);
+        }
+
+        [Fact]
+        public void GetLayout()
+        {
+            var target = GetTarget("ProjectTemplate");
+
+            var result = target.GetLayout().ToList();
+            Assert.Collection(result,
+                e1 =>
+                {
+                    Assert.Equal("Item1", e1.name);
+                    Assert.Equal("Microsoft.UWPTemplates.Test.ProjectTemplate.CSharp", e1.templateIdentity);
+                    Assert.Equal(true, e1.@readonly);
+                },
+                e2 =>
+                {
+                    Assert.Equal("Item2", e2.name);
+                    Assert.Equal("Microsoft.UWPTemplates.Test.PageTemplate.CSharp", e2.templateIdentity);
+                    Assert.Equal(false, e2.@readonly);
+                }
+                );
+        }
+
+        [Fact]
+        public void GetLayout_NoLayout()
+        {
+            var target = GetTarget("UnspecifiedTemplate");
+
+            var result = target.GetLayout().ToList();
+            Assert.Collection(result);
         }
 
         private ITemplateInfo GetTarget(string templateName)

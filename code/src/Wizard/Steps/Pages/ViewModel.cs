@@ -41,10 +41,17 @@ namespace Microsoft.Templates.Wizard.Steps.Pages
         {
             Templates.Clear();
 
-            var selectedPages = Context.State.Pages
-                                                .Select(p => new PageViewModel(p.name, p.templateName));
+            if (Context.State.Pages == null || Context.State.Pages.Count == 0)
+            {
+                AddFromLayout();
+            }
+            else
+            {
+                var selectedPages = Context.State.Pages
+                                    .Select(p => new PageViewModel(p.name, p.templateName));
 
-            Templates.AddRange(selectedPages);
+                Templates.AddRange(selectedPages);
+            }
 
             await Task.FromResult(true);
         }
@@ -53,6 +60,11 @@ namespace Microsoft.Templates.Wizard.Steps.Pages
         {
             Context.State.Pages.Clear();
             Context.State.Pages.AddRange(Templates.Select(t => (t.Name, t.TemplateName)));
+        }
+
+        public override void CleanState()
+        {
+            Context.State.Pages.Clear();
         }
 
         private void ShowAddPageDialog()
@@ -68,9 +80,24 @@ namespace Microsoft.Templates.Wizard.Steps.Pages
 
         private void RemovePage()
         {
-            if (TemplateSelected != null)
+            if (TemplateSelected != null && !TemplateSelected.Readonly)
             {
                 Templates.Remove(TemplateSelected);
+            }
+        }
+
+        private void AddFromLayout()
+        {
+            var projectTemplate = Context.TemplatesRepository.Find(t => t.GetProjectType() == Context.State.ProjectType && t.GetFrameworkList().Any(f => f == Context.State.Framework));
+            var layout = projectTemplate.GetLayout();
+
+            foreach (var item in layout)
+            {
+                var template = Context.TemplatesRepository.Find(t => t.Identity == item.templateIdentity);
+                if (template != null && template.GetTemplateType() == TemplateType.Page)
+                {
+                    Templates.Add(new PageViewModel(item.name, template.Name, item.@readonly));
+                }
             }
         }
 
