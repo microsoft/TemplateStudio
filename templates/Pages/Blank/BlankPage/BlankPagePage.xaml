@@ -9,7 +9,7 @@
 
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <StackPanel Margin="{StaticResource PageMargin}">
-      <TextBlock x:Uid="BlankPageTitle" Style="{ThemeResource HeaderTextBlockStyle}"/>
+      <TextBlock Text="LOC_ANCHOR:BlankPage_Title~BlankPage" Style="{ThemeResource HeaderTextBlockStyle}"/>
     </StackPanel>
   </Grid>  
 </Page>

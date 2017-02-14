@@ -6,6 +6,7 @@
 		GenerateTestCertificatePostAction,
         AddProjectToSolutionPostAction,
         AddItemToProjectPostAction,
-        SetDefaultSolutionConfigurationPostAction
+        SetDefaultSolutionConfigurationPostAction,
+        LocalizationPostAction
     }
 }

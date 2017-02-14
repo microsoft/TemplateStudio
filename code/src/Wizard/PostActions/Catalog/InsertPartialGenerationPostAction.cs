@@ -86,6 +86,31 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
             };
         }
 
+        public static bool CleanUpAnchors(ref string fileContent)
+        {
+            string[] anchorTexts = { "//PostActionAnchor", "<!--PostActionAnchor", "<!-- PostActionAnchor" };
+            var modified = false;
+
+            foreach (var anchorText in anchorTexts)
+            {
+                var anchorIndex = 0;
+                //Search the whole file, until nothing else is found
+                while (anchorIndex != -1)
+                {
+                    anchorIndex = fileContent.IndexOf(anchorText, StringComparison.Ordinal);
+                    if (anchorIndex != -1)
+                    {
+                        var nextLineBreakAfterAnchor = fileContent.IndexOf(Environment.NewLine, anchorIndex, StringComparison.Ordinal);
+
+                        fileContent = fileContent.Remove(anchorIndex, nextLineBreakAfterAnchor - anchorIndex);
+                        modified = true;
+                    }
+                }
+            }
+
+            return modified;
+        }
+
         private static string ReadDestinationFileContent(string destinationFile)
         {
             if (File.Exists(destinationFile))

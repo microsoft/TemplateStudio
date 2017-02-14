@@ -31,6 +31,8 @@ namespace Microsoft.Templates.Core
                     return TemplateType.Feature;
                 case "framework":
                     return TemplateType.Framework;
+                case "devfeature":
+                    return TemplateType.DevFeature;
                 default:
                     return TemplateType.Unspecified;
             }

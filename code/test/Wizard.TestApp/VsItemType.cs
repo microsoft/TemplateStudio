@@ -13,6 +13,7 @@ namespace Microsoft.Templates.Wizard.TestApp
         Compiled,
         CompiledWithDependant,
         XamlPage,
+        Resource,
         Content
     }
 
@@ -20,23 +21,21 @@ namespace Microsoft.Templates.Wizard.TestApp
     {
         public static XElement GetXmlDefinition(this VsItemType itemType, string includePath)
         {
-            if (itemType == VsItemType.Compiled)
+            switch (itemType)
             {
-                return GetCompileXElement(includePath, false);
+                case VsItemType.Compiled:
+                    return GetCompileXElement(includePath, false);
+                case VsItemType.CompiledWithDependant:
+                    return GetCompileXElement(includePath, true);
+                case VsItemType.XamlPage:
+                    return GetXamlPageXElement(includePath);
+                case VsItemType.Resource:
+                    return GetResourceXElement(includePath);
+                case VsItemType.Content:
+                    return GetContentXElement(includePath);
+                default:
+                    return null;
             }
-            if (itemType == VsItemType.CompiledWithDependant)
-            {
-                return GetCompileXElement(includePath, true);
-            }
-            if (itemType == VsItemType.XamlPage)
-            {
-                return GetXamlPageXElement(includePath);
-            }
-            if (itemType == VsItemType.Content)
-            {
-                return GetContentXElement(includePath);
-            }
-            return null;
         }
 
         private static XElement GetCompileXElement(string includePath, bool dependentUpon)
@@ -71,6 +70,15 @@ namespace Microsoft.Templates.Wizard.TestApp
 
             StringReader sr = new StringReader(sb.ToString());
             XElement itemElement = XElement.Load(sr);
+            return itemElement;
+        }
+
+        private static XElement GetResourceXElement(string includePath)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"<PRIResource Include=\"{includePath}\" />");
+
+            XElement itemElement = XElement.Parse(sb.ToString());
             return itemElement;
         }
 

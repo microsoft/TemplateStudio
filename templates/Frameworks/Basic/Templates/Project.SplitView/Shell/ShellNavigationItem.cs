@@ -1,5 +1,5 @@
 ﻿using System;
-using Windows.ApplicationModel.Resources;
+
 using Windows.UI.Xaml.Controls;
 
 namespace ItemName.Shell
@@ -10,18 +10,16 @@ namespace ItemName.Shell
         public string Name { get; set; }        
         public Type PageType { get; set; }
 
-        private ShellNavigationItem(string resource, string glyph, Type pageType)
+        private ShellNavigationItem(string name, string glyph, Type pageType)
         {
-            //TODO: THIS DEPENDS ON LOCALIZATION FEATURE SELECTION
-            ResourceLoader resourceLoader = new ResourceLoader();
-            this.Name = resourceLoader.GetString(resource);
+            this.Name = name;
             this.Glyph = glyph;
             this.PageType = pageType;
         }
 
-        public static ShellNavigationItem FromType<T>(string resource, string glyph) where T : Page
+        public static ShellNavigationItem FromType<T>(string name, string glyph) where T : Page
         {
-            return new ShellNavigationItem(resource, glyph, typeof(T));
+            return new ShellNavigationItem(name, glyph, typeof(T));
         }       
     }
 }
