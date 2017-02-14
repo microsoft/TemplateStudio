@@ -1,7 +1,7 @@
 using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Wizard;
+using Microsoft.Templates.Wizard.Host;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,20 +24,24 @@ namespace Microsoft.Templates.Test
         }
 
 
-        //[Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
+        [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
         public void GenerateEmptyProject(string projId, string framework)
         {
             var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
 
             var projectName = $"{framework}{projectTemplate.GetProjectType()}";
+            var usedPageNames = new List<string>();
 
             var generator = new GenController(new FakeGenShell(projectName, fixture.TestProjectsPath, new TextBlock()));
-            var genItems = new List<GenInfo>
+            var wizardState = new WizardState
             {
-                GetProjectGenInfo(projectTemplate, projectName, framework)
+                Framework = framework,
+                ProjectType = projectTemplate.GetProjectType(),
             };
-        
-            //generator.Generate(genItems);
+
+            AddLayoutItems(wizardState, projectTemplate, usedPageNames);
+
+            generator.Generate(wizardState);
 
             //Build solution
             var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);
@@ -53,23 +57,29 @@ namespace Microsoft.Templates.Test
         }
 
         
-        //[Theory, MemberData("GetPageTemplates"), Trait("Type", "PageGeneration")]
+        [Theory, MemberData("GetPageTemplates"), Trait("Type", "PageGeneration")]
         public void GeneratePage(string pageId, string projId, string framework)
         {
             var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
             var pageTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == pageId).FirstOrDefault();
 
             var projectName = $"{framework}{Naming.Infer(new List<string>(), pageTemplate.Name)}";
+            var usedPageNames = new List<string>();
 
             var generator = new GenController(new FakeGenShell(projectName, fixture.TestPagesPath, new TextBlock()));
-            var genItems = new List<GenInfo>
+
+            var wizardState = new WizardState
             {
-                GetProjectGenInfo(targetProjectTemplate, projectName, framework)
+                Framework = framework,
+                ProjectType = targetProjectTemplate.GetProjectType(),
             };
 
-            genItems.Add(GetPageGenInfo(pageTemplate, framework));
+            AddLayoutItems(wizardState, targetProjectTemplate, usedPageNames);
 
-            //generator.Generate(genItems);
+            var pageName = Naming.Infer(usedPageNames, pageTemplate.Name);
+            wizardState.Pages.Add((pageName, pageTemplate.Name));
+
+            generator.Generate(wizardState);
 
             //Build solution
             var outputPath = Path.Combine(fixture.TestPagesPath, projectName);
@@ -84,27 +94,31 @@ namespace Microsoft.Templates.Test
 
         }
 
-        //[Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
+        [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
         public void GenerateProjectWithAllPages(string projId, string framework)
         {
             var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
 
             var projectName = $"{framework}{targetProjectTemplate.GetProjectType()}All";
-
+            var usedPageNames = new List<string>();
             var generator = new GenController(new FakeGenShell(projectName, fixture.TestProjectsPath, new TextBlock()));
-            var genItems = new List<GenInfo>
+
+            var wizardState = new WizardState
             {
-                GetProjectGenInfo(targetProjectTemplate, projectName, framework)
+                Framework = framework,
+                ProjectType = targetProjectTemplate.GetProjectType(),
             };
 
+            AddLayoutItems(wizardState, targetProjectTemplate, usedPageNames);
+
             var pageTemplates = GenerationTestsFixture.Templates
-                .Where(t => t.GetFrameworkList().Contains(framework) &&
-                t.GetType() == t.GetType() &&
-                t.GetTemplateType() == TemplateType.Page);
+              .Where(t => t.GetFrameworkList().Contains(framework) &&
+              t.GetType() == t.GetType() &&
+              t.GetTemplateType() == TemplateType.Page);
 
-            genItems.AddRange(GetPagesGenInfo(pageTemplates, framework));
+            wizardState.Pages.AddRange(GetPages(pageTemplates, usedPageNames));
 
-            //generator.Generate(genItems);
+            generator.Generate(wizardState);
 
             //Build solution
             var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);
@@ -119,53 +133,39 @@ namespace Microsoft.Templates.Test
         }
 
 
-        private static GenInfo GetProjectGenInfo(ITemplateInfo targetProjectTemplate, string projectName, string framework)
-        {
-            var genInfo = new GenInfo()
-            {
-                Name = projectName,
-                Template = targetProjectTemplate
-            };
-            genInfo.Parameters.Add(GenParams.Username, Environment.UserName);
-            genInfo.Parameters.Add(GenParams.Framework, framework);
 
-            return genInfo;
+        private static void AddLayoutItems(WizardState wizardState, ITemplateInfo projectTemplate,  IEnumerable<string> usedNames)
+        {
+            var pages = new List<(string name, string templateName)>();
+            var layouts = projectTemplate.GetLayout();
+
+            foreach (var layoutItem in layouts)
+            {
+                var template = GenerationTestsFixture.Templates.Where(t => t.Identity == layoutItem.templateIdentity).FirstOrDefault();
+                if (template != null)
+                {
+                    if (template.GetTemplateType() == TemplateType.Page)
+                    {
+                        var itemName = Naming.Infer(usedNames, layoutItem.name);
+                        wizardState.Pages.Add((itemName, template.Name));
+                    }
+                }
+
+            }
         }
 
-        private static GenInfo GetPageGenInfo(ITemplateInfo pageTemplate, string framework)
+        private static IEnumerable<(string name, string templateName)> GetPages(IEnumerable<ITemplateInfo> pageTemplates, IEnumerable<string> usedNames)
         {
-            var genInfo = new GenInfo()
-            {
-                Name = Naming.Infer(new List<string>(), pageTemplate.Name),
-                Template = pageTemplate
-            };
-
-            genInfo.Parameters.Add(GenParams.Framework, framework);
-
-            return genInfo;
-        }
-
-
-        private static IEnumerable<GenInfo> GetPagesGenInfo(IEnumerable<ITemplateInfo> pageTemplates, string framework)
-        {
-            var pageGenInfos = new List<GenInfo>();
-            var usedNames = new List<string>();
+            var pages = new List<(string name, string templateName)>();
             foreach (var pageTemplate in pageTemplates)
             {
-                var pageGenInfo = new GenInfo()
-                {
-                    Name = Naming.Infer(usedNames, pageTemplate.Name),
-                    Template = pageTemplate
-                };
-                pageGenInfo.Parameters.Add(GenParams.Framework, framework);
-                pageGenInfos.Add(pageGenInfo);
-
-                usedNames.Add(pageGenInfo.Name);
+                var pageName = Naming.Infer(usedNames, pageTemplate.Name);
+                pages.Add((pageName, pageTemplate.Name));              
             }
-            return pageGenInfos;
+            return pages;
         }
 
-
+    
         public static IEnumerable<object[]> GetPageTemplates()
         {
             var pageTemplates = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Page);
