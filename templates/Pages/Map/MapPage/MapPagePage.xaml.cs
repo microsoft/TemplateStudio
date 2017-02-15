@@ -30,7 +30,7 @@ namespace ItemNamespace.MapPage
                 throw new ArgumentNullException("Expected type is MapControl");
             }
             //TODO: UWPTemplates -> Set your map access key. If you don't have it, request at https://www.bingmapsportal.com/
-            map.AccessKey = "";
+            //map.AccessKey = "";
             
             //PostActionAnchor: GET VM FROM IOC
 
