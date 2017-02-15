@@ -29,8 +29,6 @@
 
             <StackPanel Grid.Row="1" Margin="{StaticResource LargeTopMargin}">
                 <TextBlock
-                    Style="{ThemeResource HeaderTextBlockStyle}"/>
-                <TextBlock
                     Text="LOC_ANCHOR:SettingsPage_Theme~Application theme"
                     Style="{ThemeResource TitleTextBlockStyle}"/>
                 <ToggleSwitch
