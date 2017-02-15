@@ -10,10 +10,9 @@ namespace ItemName.Shell
         public string Name { get; set; }        
         public string ViewModelName { get; set; }
 
-        public ShellNavigationItem(string resource, string glyph, string viewModelName)
+        public ShellNavigationItem(string name, string glyph, string viewModelName)
         {
-            ResourceLoader resourceLoader = new ResourceLoader();
-            this.Name = resourceLoader.GetString(resource);
+            this.Name = name;
             this.Glyph = glyph;
             this.ViewModelName = viewModelName;
         }      

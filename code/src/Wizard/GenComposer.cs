@@ -58,7 +58,24 @@ namespace Microsoft.Templates.Wizard
                 }
             }
 
+            //TODO: THIS IS TEMPORAL
+            AddDevFeatures(genProject.Template, genQueue);
+
             return genQueue;
+        }
+
+        //TODO: THIS IS TEMPORAL
+        private void AddDevFeatures(ITemplateInfo mainTemplate, List<GenInfo> queue)
+        {
+            var layout = mainTemplate.GetLayout();
+            foreach (var item in layout)
+            {
+                var template = _repository.Find(t => t.Identity == item.templateIdentity);
+                if (template != null && template.GetTemplateType() == TemplateType.DevFeature)
+                {
+                    CreateGenInfo(item.name, template, queue);
+                }
+            }
         }
 
         private void AddTemplate(GenInfo mainGenInfo, List<GenInfo> queue, params string[] predicates)
