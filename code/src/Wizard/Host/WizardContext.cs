@@ -68,7 +68,23 @@ namespace Microsoft.Templates.Wizard.Host
                     }
                 } 
             }
-            
+
+            if (State.DevFeatures != null)
+            {
+                foreach (var f in State.DevFeatures)
+                {
+                    var featureTemplate = TemplatesRepository.Find(t => t.Name == f.templateName);
+                    if (featureTemplate != null)
+                    {
+                        selection.Add(new GenInfo
+                        {
+                            Name = f.name,
+                            Template = featureTemplate
+                        });
+                    }
+                }
+            }
+
             return selection;
         }
     }

@@ -70,11 +70,11 @@ namespace Microsoft.Templates.Wizard.Steps.Summary {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Feature templates selected:.
+        ///   Looks up a localized string similar to Developer feature templates selected:.
         /// </summary>
-        public static string FeaturesTitle {
+        public static string DevFeaturesTitle {
             get {
-                return ResourceManager.GetString("FeaturesTitle", resourceCulture);
+                return ResourceManager.GetString("DevFeaturesTitle", resourceCulture);
             }
         }
         

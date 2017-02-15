@@ -46,7 +46,7 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures
             }
             else
             {
-                var selectedFeatures = Context.State.Pages
+                var selectedFeatures = Context.State.DevFeatures
                                                         .Select(p => new PageViewModel(p.name, p.templateName));
 
                 Templates.AddRange(selectedFeatures);
