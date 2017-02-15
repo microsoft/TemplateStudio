@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 using ItemName.Home;
+using ItemName.Services;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 namespace ItemName.Shell
@@ -29,7 +30,7 @@ namespace ItemName.Shell
 
             ViewModel = new ShellViewModel();
             DataContext = ViewModel;
-            App.NavigationService.SetNavigationFrame(frame);
+            NavigationService.Instance.SetNavigationFrame(frame);
         }
 
         public ShellViewModel ViewModel { get; private set; }
@@ -39,7 +40,7 @@ namespace ItemName.Shell
             var navigationItem = e.ClickedItem as ShellNavigationItem;
             if (navigationItem != null)
             {
-                App.NavigationService.Navigate(navigationItem.PageType);
+                NavigationService.Instance.Navigate(navigationItem.PageType);
             }
         }
 
@@ -50,7 +51,7 @@ namespace ItemName.Shell
             {
                 paneitems.SelectedIndex = 0;
 
-                App.NavigationService.Navigate<HomePage>();
+                NavigationService.Instance.Navigate<HomePage>();
             }
         }
     }

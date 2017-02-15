@@ -7,9 +7,15 @@ namespace RootNamespace.Services
 {
     public class NavigationService
     {
+        private static readonly NavigationService _instance = new NavigationService();
+        public static NavigationService Instance
+        {
+            get => _instance;
+        }
+
         private Frame _frame;
 
-        public NavigationService()
+        private NavigationService()
         {
             _frame = Window.Current.Content as Frame;
         }        
