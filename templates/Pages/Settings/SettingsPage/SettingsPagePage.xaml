@@ -9,33 +9,59 @@
     <!-- PostActionAnchor: SET DATACONTEXT -->
     mc:Ignorable="d">
     <Page.Resources>
-        <Thickness x:Key="PageMargin">24,12</Thickness>
+        <Thickness x:Key="ContainerMargin">24,12</Thickness>
+        <Thickness x:Key="LargeTopMargin">0,16,0,0</Thickness>
+        <Thickness x:Key="MediumTopMargin">0,8,0,0</Thickness>
+        <Thickness x:Key="SmallTopMargin">0,4,0,0</Thickness>
     </Page.Resources>
 
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Margin="{StaticResource PageMargin}">
+        <Grid Margin="{StaticResource ContainerMargin}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
             <TextBlock
-                Text="LOC_ANCHOR:SettingsPage_Title~SettingsPage"
+                Grid.Row="0"
+                Text="LOC_ANCHOR:SettingsPage_Title~Settings"
                 Style="{ThemeResource HeaderTextBlockStyle}"/>
-            <TextBlock
-                Margin="0,12,0,0"
-                Text="LOC_ANCHOR:SettingsPage_Theme~Application theme"
-                Style="{ThemeResource TitleTextBlockStyle}"/>
-            <ToggleSwitch
-                OffContent="LOC_ANCHOR:SettingsPage_ThemeToggleSwitch~Dark"
-                OnContent="LOC_ANCHOR:SettingsPage_ThemeToggleSwitch~Light"
-                IsOn="{Binding IsLightThemeEnabled, Mode=TwoWay}">
-                <i:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="Toggled">
-                        <core:InvokeCommandAction Command="{Binding SwitchThemeCommand}"/>
-                    </core:EventTriggerBehavior>
-                </i:Interaction.Behaviors>
-            </ToggleSwitch>
+
+            <StackPanel Grid.Row="1" Margin="{StaticResource LargeTopMargin}">
+                <TextBlock
+                    Style="{ThemeResource HeaderTextBlockStyle}"/>
+                <TextBlock
+                    Text="LOC_ANCHOR:SettingsPage_Theme~Application theme"
+                    Style="{ThemeResource TitleTextBlockStyle}"/>
+                <ToggleSwitch
+                    OffContent="LOC_ANCHOR:SettingsPage_ThemeToggleSwitch~Dark"
+                    OnContent="LOC_ANCHOR:SettingsPage_ThemeToggleSwitch~Light"
+                    IsOn="{Binding IsLightThemeEnabled, Mode=TwoWay}"
+                    Margin="{StaticResource SmallTopMargin}">
+                    <i:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Toggled">
+                            <core:InvokeCommandAction Command="{Binding SwitchThemeCommand}"/>
+                        </core:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                </ToggleSwitch>
+            </StackPanel>
             
-            <TextBlock Text="LOC_ANCHOR:SettingsPage_About~About this application" Margin="0,24,0,0" Style="{ThemeResource TitleTextBlockStyle}"/>
-            <TextBlock Text="{Binding AppDescription}" Margin="0,8,0,0" Style="{ThemeResource SubtitleTextBlockStyle}"/>
-            <TextBlock Text="LOC_ANCHOR:SettingsPage_AboutDescription~Lorem ipsum dolor sit" Margin="0,8,0,0" Style="{ThemeResource BodyTextBlockStyle}"/>
-            <HyperlinkButton Content="LOC_ANCHOR:SettingsPage_PrivacyTermsLink~Privacy Terms" Margin="0,8,0,0"/>
-        </StackPanel>
+            <StackPanel Grid.Row="2" Margin="{StaticResource LargeTopMargin}">
+                <TextBlock
+                    Text="LOC_ANCHOR:SettingsPage_About~About this application"
+                    Style="{ThemeResource TitleTextBlockStyle}"/>
+                <TextBlock
+                    Text="{Binding AppDescription}"
+                    Style="{ThemeResource SubtitleTextBlockStyle}"
+                    Margin="{StaticResource SmallTopMargin}"/>
+                <TextBlock
+                    Text="LOC_ANCHOR:SettingsPage_AboutDescription~Lorem ipsum dolor sit"
+                    Style="{ThemeResource BodyTextBlockStyle}"/>
+                <HyperlinkButton
+                    Content="LOC_ANCHOR:SettingsPage_PrivacyTermsLink~Privacy Terms"
+                    Margin="{StaticResource MediumTopMargin}"/>
+            </StackPanel>
+            
+        </Grid>
     </Grid>
 </Page>
