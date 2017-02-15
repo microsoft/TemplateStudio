@@ -34,17 +34,15 @@ namespace Microsoft.Templates.Wizard
                 return genQueue;
             }
 
-            var projectTemplate = _repository
-                                        .Find(t => t.GetTemplateType() == TemplateType.Project
-                                            && t.GetProjectType() == userSelection.ProjectType
-                                            && t.GetFrameworkList().Any(f => f == userSelection.Framework));
+            AddProjects(userSelection, genQueue);
+            AddPages(userSelection, genQueue);
+            AddDevFeatures(userSelection, genQueue);
 
-            var genProject = CreateGenInfo(Shell.ProjectName, projectTemplate, genQueue);
-            genProject.Parameters.Add(GenParams.Username, Environment.UserName);
+            return genQueue;
+        }
 
-            AddTemplate(genProject, genQueue, userSelection.Framework, "Project");
-            AddTemplate(genProject, genQueue, userSelection.Framework, "Project", userSelection.ProjectType);
-
+        private void AddPages(WizardState userSelection, List<GenInfo> genQueue)
+        {
             foreach (var page in userSelection.Pages)
             {
                 var pageTemplate = _repository.Find(t => t.Name == page.templateName);
@@ -57,23 +55,30 @@ namespace Microsoft.Templates.Wizard
                     AddTemplate(genPage, genQueue, userSelection.Framework, "Page", pageTemplate.Name);
                 }
             }
-
-            //TODO: THIS IS TEMPORAL
-            AddDevFeatures(genProject.Template, genQueue);
-
-            return genQueue;
         }
 
-        //TODO: THIS IS TEMPORAL
-        private void AddDevFeatures(ITemplateInfo mainTemplate, List<GenInfo> queue)
+        private void AddProjects(WizardState userSelection, List<GenInfo> genQueue)
         {
-            var layout = mainTemplate.GetLayout();
-            foreach (var item in layout)
+            var projectTemplate = _repository
+                                        .Find(t => t.GetTemplateType() == TemplateType.Project
+                                            && t.GetProjectType() == userSelection.ProjectType
+                                            && t.GetFrameworkList().Any(f => f == userSelection.Framework));
+
+            var genProject = CreateGenInfo(Shell.ProjectName, projectTemplate, genQueue);
+            genProject.Parameters.Add(GenParams.Username, Environment.UserName);
+
+            AddTemplate(genProject, genQueue, userSelection.Framework, "Project");
+            AddTemplate(genProject, genQueue, userSelection.Framework, "Project", userSelection.ProjectType);
+        }
+
+        private void AddDevFeatures(WizardState userSelection, List<GenInfo> genQueue)
+        {
+            foreach (var feature in userSelection.DevFeatures)
             {
-                var template = _repository.Find(t => t.Identity == item.templateIdentity);
-                if (template != null && template.GetTemplateType() == TemplateType.DevFeature)
+                var featureTemplate = _repository.Find(t => t.Name == feature.templateName);
+                if (featureTemplate != null)
                 {
-                    CreateGenInfo(item.name, template, queue);
+                    CreateGenInfo(feature.name, featureTemplate, genQueue);
                 }
             }
         }

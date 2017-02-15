@@ -140,6 +140,17 @@ namespace Microsoft.Templates.Core
             return JsonConvert.DeserializeObject<List<LayoutItem>>(layoutContent);
         }
 
+        public static string GetDefaultName(this ITemplateInfo ti)
+        {
+            var result = GetValueFromTag(ti, TagPrefix + "defaultInstance");
+            if (string.IsNullOrEmpty(result))
+            {
+                result = ti.Name;
+            }
+
+            return result;
+        }
+
         private static string GetConfigDir(ITemplateInfo ti)
         {
             CodeGen.Instance.Settings.SettingsLoader.TryGetFileFromIdAndPath(ti.ConfigMountPointId, ti.ConfigPlace, out IFile file);
