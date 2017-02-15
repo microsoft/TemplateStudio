@@ -82,7 +82,7 @@ namespace Microsoft.Templates.Wizard.PostActions
                     return new SetDefaultSolutionConfigurationPostAction();
 
                 case PostActionType.LocalizationPostAction:
-                    return new LocalizationPostAction();
+                    //return new LocalizationPostAction();
 
                 default:
                     return null;

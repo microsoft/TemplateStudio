@@ -11,8 +11,8 @@ namespace Microsoft.Templates.Core
     {
         private static readonly string[] ReservedNames = new string[] { "WebView", "Page" };
 
-        private const string ValidationPattern = @"^([a-zA-Z])(\w)*$";
-        private const string InferInvalidPattern = @"\W";
+        private const string ValidationPattern = @"^([a-zA-Z])([\w\-])*$";
+        private const string InferInvalidPattern = @"[^a-zA-Z\d_\-]";
 
         public static string Infer(IEnumerable<string> existing, string suggestedName)
         {

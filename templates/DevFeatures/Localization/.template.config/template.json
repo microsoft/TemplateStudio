@@ -41,7 +41,8 @@
     "type": "item",
     "uct.type": "devfeature",
     "uct.version": "1.0.0",
-    "uct.order": "1"
+    "uct.order": "1",
+    "uct.defaultInstance": "en-us"
   },
   "sourceName": "en-us",
   "preferNameDirectory": true,

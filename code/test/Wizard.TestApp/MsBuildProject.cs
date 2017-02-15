@@ -40,9 +40,13 @@ namespace Microsoft.Templates.Wizard.TestApp
 
         public void AddItem(string itemPath)
         {
-            var itemsContainer = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
+            var itemRelativePath = itemPath.Replace($@"{Path.GetDirectoryName(_path)}\", "").Replace(@".\", "");
+            if (ItemExists(itemRelativePath))
+            {
+                return;
+            }
 
-            string itemRelativePath = itemPath.Replace($@"{Path.GetDirectoryName(_path)}\", "").Replace(@".\", "");
+            var itemsContainer = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
 
             XElement element = GetItemType(itemRelativePath).GetXmlDefinition(itemRelativePath);
             ApplyNs(element);
@@ -63,6 +67,12 @@ namespace Microsoft.Templates.Wizard.TestApp
             {
                 d.Name = _root.GetDefaultNamespace() + d.Name.LocalName;
             }
+        }
+
+        private bool ItemExists(string itemPath)
+        {
+            return _root.Descendants().Any(d => d.Attribute("Include") != null 
+                && d.Attribute("Include").Value.Equals(itemPath, StringComparison.OrdinalIgnoreCase));
         }
 
         private VsItemType GetItemType(string fileName)
