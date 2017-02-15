@@ -20,8 +20,9 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
 
         public override PostActionResult Execute(string outputPath, GenInfo context, TemplateCreationResult generationResult, GenShell shell)
         {
-            var resourcesFile = Directory.EnumerateFiles(shell.ProjectPath, "*.resw", SearchOption.AllDirectories).FirstOrDefault();
-            if (string.IsNullOrEmpty(resourcesFile))
+            var projectResources = GetResources(shell.ProjectPath);
+
+            if (projectResources == null || !projectResources.Any())
             {
                 //TODO: SET MESSAGE
                 return new PostActionResult
@@ -29,8 +30,6 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
                     ResultCode = ResultCode.Error
                 };
             }
-
-            var projectResources = XElement.Load(resourcesFile);
 
             foreach (var projectItemFile in Directory.EnumerateFiles(shell.ProjectPath, "*", SearchOption.AllDirectories))
             {
@@ -55,7 +54,7 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
                     }
                     foreach (var anchor in updateResult.Anchors)
                     {
-                        projectResources.Add(anchor.ToXml());
+                        projectResources.ForEach(r => r.element.Add(anchor.ToXml()));
                     }
 
 
@@ -63,7 +62,7 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
                 }
             }
 
-            projectResources.Save(resourcesFile);
+            projectResources.ForEach(r => r.element.Save(r.fileName));
 
             return new PostActionResult
             {
@@ -90,6 +89,13 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
             }
 
             return modified;
+        }
+
+        private static List<(string fileName, XElement element)> GetResources(string path)
+        {
+            return Directory.EnumerateFiles(path, "*.resw", SearchOption.AllDirectories)
+                                .Select(f => (f, XElement.Load(f)))
+                                .ToList();
         }
 
         private static FileLocUpdater GetUpdater(string fileName)

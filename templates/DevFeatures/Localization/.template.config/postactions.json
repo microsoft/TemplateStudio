@@ -1,7 +1,0 @@
-[
-  {
-    "name": "PostActionAddLocItems",
-    "type": "LocalizationPostAction",
-    "description": "Adds all resource items to resource file"
-  }
-]

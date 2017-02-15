@@ -106,12 +106,26 @@ namespace Microsoft.Templates.Wizard
 
                 chrono.Stop();
             }
+
+            //TODO: THIS IS TEMPORAL
+            ExecuteGlobalPostActions(genItems);
+
             PostActionCreator.CleanUpAnchors(outputPath);
 
             var timeSpent = chrono.Elapsed.TotalSeconds;
             TrackTelemery(genItems, genResults, timeSpent);
 
 
+        }
+
+        private void ExecuteGlobalPostActions(List<GenInfo> genItems)
+        {
+            if (genItems.Any(g => g.Template.GetTemplateType() == TemplateType.DevFeature && g.Template.Name == "Localization"))
+            {
+                var locPostAction = new PostActions.Catalog.LocalizationPostAction();
+
+                locPostAction.Execute(Shell.OutputPath, null, null, Shell);
+            }
         }
 
         private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent)
@@ -178,7 +192,7 @@ namespace Microsoft.Templates.Wizard
                 postActionResults.Add(postActionResult);
             }
 
-            return postActionResults;
+             return postActionResults;
         }
 
         private static void ShowPostActionResults(IEnumerable<PostActionResult> postActionResults)

@@ -38,13 +38,29 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
 
         public override async Task InitializeAsync()
         {
-            AddTemplates(Strings.ProjectsTitle, FilterTemplates(TemplateType.Project));
-            AddTemplates(Strings.PagesTitle, FilterTemplates(TemplateType.Page));
-            AddTemplates(Strings.FeaturesTitle, FilterTemplates(TemplateType.Feature));
+            var selection = Context.GetSelection();
 
-            AddLicences();
+            AddTemplates(Strings.ProjectsTitle, FilterTemplates(selection, TemplateType.Project));
+            AddTemplates(Strings.PagesTitle, FilterTemplates(selection, TemplateType.Page));
+            AddTemplates(Strings.DevFeaturesTitle, FilterTemplates(selection, TemplateType.DevFeature));
+
+
+            //TODO: REVIEW THIS
+            var allTemplates = new GenComposer(Context.Shell, Context.TemplatesRepository).Compose(Context.State);
+
+            AddLicences(allTemplates);
 
             await Task.FromResult(true);
+        }
+
+        public override void SaveState()
+        {
+            //NOTHING TO DO
+        }
+
+        public override void CleanState()
+        {
+            //NOTHING TO DO
         }
 
         protected override Page GetPageInternal()
@@ -62,19 +78,16 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
             Templates.Add(templatesSummary);
         }
 
-        private IEnumerable<SummaryItemViewModel> FilterTemplates(TemplateType templateType)
+        private IEnumerable<SummaryItemViewModel> FilterTemplates(IEnumerable<GenInfo> selection, TemplateType templateType)
         {
-            return Context.GetSelection()
-                                .Where(t => t.Template != null)
-                                .Where(t => t.Template.GetTemplateType() == templateType)
-                                .Select(t => new SummaryItemViewModel(t));
+            return selection
+                        .Where(t => t.Template != null)
+                        .Where(t => t.Template.GetTemplateType() == templateType)
+                        .Select(t => new SummaryItemViewModel(t));
         }
 
-        private void AddLicences()
+        private void AddLicences(IEnumerable<GenInfo> selection)
         {
-            var selection = Context.GetSelection()
-                                            .Where(t => t.Template != null);
-
             foreach (var selected in selection)
             {
                 foreach (var templateLic in selected.Template.GetLicences())
