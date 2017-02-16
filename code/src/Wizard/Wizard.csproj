@@ -96,7 +96,6 @@
     </Compile>
     <Compile Include="Dialog\RelayCommand.cs" />
     <Compile Include="Extensions\ObservableCollection.extensions.cs" />
-    <Compile Include="PostActions\Catalog\AddReferenceToProjectPostAction.cs" />
     <Compile Include="PostActions\PostActionResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

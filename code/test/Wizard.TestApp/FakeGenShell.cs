@@ -66,23 +66,6 @@ namespace Microsoft.Templates.Wizard.TestApp
 
         }
 
-        public override void AddReferenceToProject(string projectName, string referenceProjectName)
-        {
-            var projectFileName = FindProject(ProjectPath);
-            var msbuildProj = MsBuildProject.Load(projectFileName);
-
-            var referencePath = Path.Combine(OutputPath, referenceProjectName);
-            var referenceProjFileName = FindProject(referencePath);
-            var referenceProj = MsBuildProject.Load(referenceProjFileName);
-
-            if (msbuildProj != null)
-            {
-                msbuildProj.AddProjectReference(referenceProjFileName, referenceProj.Guid, referenceProj.Name);
-                msbuildProj.Save();
-            }
-
-        }
-
         public override string GetActiveNamespace()
         {
             var relativeNs = string.IsNullOrEmpty(_relativePath) ? string.Empty : _relativePath.Replace(@"\", ".");

@@ -65,18 +65,6 @@ namespace Microsoft.Templates.Test
             solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid);
         }
 
-        public override void AddReferenceToProject(string projectName, string referencePath)
-        {
-            var projectFileName = FindProject(ProjectPath);
-            var msbuildProj = MsBuildProject.Load(projectFileName);
-
-            var referenceProjFileName = FindProject(referencePath);
-            var referenceProj = MsBuildProject.Load(referenceProjFileName);
-            
-            msbuildProj.AddProjectReference(referencePath, referenceProj.Guid, referenceProj.Name);
-
-        }
-
         public override string GetActiveNamespace()
         {
             var relativeNs = string.IsNullOrEmpty(_relativePath) ? string.Empty : _relativePath.Replace(@"\", ".");

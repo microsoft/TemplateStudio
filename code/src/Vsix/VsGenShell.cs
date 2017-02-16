@@ -66,20 +66,6 @@ namespace Microsoft.Templates.Extension
             Dte.Solution.AddFromFile(projectFullPath);
             Dte.Solution.SaveAs(Dte.Solution.FileName);
         }
-        
-        public override void AddReferenceToProject(string projectName, string referenceProjectName)
-        {
-            var project = GetProjectByName(projectName);
-            var referenceProject = GetProjectByName(referenceProjectName);
-
-            if (project != null && referenceProject != null)
-            {
-                var vsProj = (VSLangProj.VSProject)project.Object;
-                vsProj.References.AddProject(referenceProject);
-
-                project.Save();
-            }
-        }
 
         public override string GetActiveNamespace()
         {
@@ -192,18 +178,6 @@ namespace Microsoft.Templates.Extension
                 }
             }
             return p;
-        }
-
-        private Project GetProjectByName(string projectName)
-        {
-            foreach (EnvDTE.Project project in Dte.Solution.Projects)
-            {
-                if (project.Name == projectName)
-                {
-                    return project;
-                }
-            }
-            return null;
         }
 
         private async System.Threading.Tasks.Task ShowTaskListAsync()
