@@ -1,0 +1,11 @@
+{
+    "alias":[
+        "xmlns:local=\"using:ItemName\""
+    ],
+    "elements":[
+        {
+            "path": "Application/Application.Resources/ResourceDictionary",
+            "content": "<local:ViewModelLocator x:Key=\"Locator\" />"
+        }
+    ]
+}
