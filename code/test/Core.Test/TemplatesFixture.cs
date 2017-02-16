@@ -1,4 +1,6 @@
-﻿namespace Microsoft.Templates.Core.Test
+﻿using Microsoft.Templates.Core.Test.Locations;
+
+namespace Microsoft.Templates.Core.Test
 {
     public class TemplatesFixture
     {

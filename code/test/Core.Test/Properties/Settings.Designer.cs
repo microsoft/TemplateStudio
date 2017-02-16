@@ -22,14 +22,5 @@ namespace Microsoft.Templates.Core.Test.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5e56cd68-9738-469b-baf0-1b6b7c296745")]
-        public string TelemetryKey {
-            get {
-                return ((string)(this["TelemetryKey"]));
-            }
-        }
     }
 }

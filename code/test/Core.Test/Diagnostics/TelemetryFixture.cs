@@ -12,15 +12,8 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         public TelemetryService Telemetry { get; }
         public TelemetryFixture()
         {
-            EnsureCurrentConfigWithTelemetryKey();
-
             Telemetry = TelemetryService.Current;
         } 
-
-        public static void EnsureCurrentConfigWithTelemetryKey()
-        {
-            Configuration.Current.RemoteTelemetryKey = Microsoft.Templates.Core.Test.Properties.Settings.Default.TelemetryKey;
-        }
 
         public void Dispose()
         {

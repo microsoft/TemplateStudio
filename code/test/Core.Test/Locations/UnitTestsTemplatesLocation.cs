@@ -2,7 +2,7 @@
 using Microsoft.Templates.Core.Locations;
 using System;
 
-namespace Microsoft.Templates.Core.Test
+namespace Microsoft.Templates.Core.Test.Locations
 {
     public class UnitTestsTemplatesLocation : TemplatesLocation
     {
