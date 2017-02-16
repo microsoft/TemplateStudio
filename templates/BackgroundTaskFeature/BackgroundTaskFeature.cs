@@ -2,9 +2,10 @@
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 
+//TODO: Review namespace
 namespace BackgroundTaskFeature
 {
-    public sealed class BackgroundTaskFeature : IBackgroundTask
+    public sealed class BackgroundTaskFeature 
     {
         public void Run(IBackgroundTaskInstance taskInstance)
         {
@@ -18,8 +19,6 @@ namespace BackgroundTaskFeature
             //Documentation: https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-badges-notifications
             var toast = ConstructToastNotification();
             ToastNotificationManager.CreateToastNotifier().Show(toast);
-
-
         }
 
         private void OnCanceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason)

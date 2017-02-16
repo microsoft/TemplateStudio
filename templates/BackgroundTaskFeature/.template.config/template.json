@@ -8,7 +8,7 @@
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   "tags": {
     "language": "C#",
-    "type": "project",
+    "type": "item",
     "uct.type": "feature",
     "uct.version": "1.0.0",
     "uct.order": "1"
@@ -18,7 +18,10 @@
   "guids": [ "5b9d2eee-b648-4ca1-837e-9abb8f3dffdd" ],
   "PrimaryOutputs": [
     {
-      "path": ".\\BackgroundTaskFeature\\BackgroundTaskFeature.csproj"
+      "path": ".\\BackgroundTaskFeature.cs"
+    },
+    {
+      "path": ".\\BackgroundTaskManager.cs"
     }
   ]
 }

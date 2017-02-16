@@ -25,15 +25,5 @@
         "destination.filename": "App.xaml.cs",
         "destination.anchor": "//PostActionAnchor: USING BACKGROUNDTASK"
       }
-    },
-    {
-      "name": "BackgroundTaskDeclarationPostAction",
-      "type": "InsertPartialGenerationPostAction",
-      "description": "Adds Background Task declaration to appxmanifest",
-      "parameters": {
-        "destination.filename": "Package.appxmanifest",
-        "destination.anchor": "<!--PostActionAnchor: BACKGROUND TASK DECLARATION  -->"
-      }
-    }
-    
+    }   
   ]

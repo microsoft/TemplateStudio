@@ -1,18 +1,16 @@
 private void RegisterBackgroundTask()
 {
-    string taskEntryPoint = "BackgroundTaskFeature.BackgroundTaskFeature";
     string taskName = "BackgroundTaskFeature";
 
     if (!BackgroundTaskRegistration.AllTasks.Any(t => t.Value.Name == taskName))
     {
         var builder = new BackgroundTaskBuilder()
         {
-            Name = taskName,
-            TaskEntryPoint = taskEntryPoint
+            Name = taskName
         };
         //TODO UWPTemplates: Define your trigger here, 
         //for more info regarding background task registration, see 
-        //https://docs.microsoft.com/windows/uwp/launch-resume/create-and-register-a-background-task
+        //https://docs.microsoft.com/windows/uwp/launch-resume/create-and-register-an-inproc-background-task
         builder.SetTrigger(new TimeTrigger(15, false));
 
         //TODO UWPTemplates: Add your conditions here
@@ -23,12 +21,18 @@ private void RegisterBackgroundTask()
     }
 }
 
+protected override void OnBackgroundActivated(BackgroundActivatedEventArgs args)
+{
+    BackgroundTaskManager.Start(args.TaskInstance);
+}
+
+
 private void OnCompleted(IBackgroundTaskRegistration task, BackgroundTaskCompletedEventArgs args)
 {
     //TODO UWPTemplates: Write the code you want to execute when the background task completes here, 
     //remember to use a dispatcher to update UI thread,
     //for more information regarding handling background task completion see
-    //https://docs.microsoft.com/windows/uwp/launch-resume/create-and-register-a-background-task
+    //https://docs.microsoft.com/windows/uwp/launch-resume/create-and-register-an-inproc-background-task
 }
 
 protected override void OnActivated(IActivatedEventArgs args)

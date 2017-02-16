@@ -33,6 +33,10 @@ namespace Microsoft.Templates.Wizard.PostActions
                         postActions.Add(GetPostAction(PostActionType.AddProjectToSolutionPostAction));
                         postActions.Add(GetPostAction(PostActionType.AddReferenceToProjectPostAction));
                     }
+                    else
+                    {
+                        postActions.Add(GetPostAction(PostActionType.AddItemToProjectPostAction));
+                    }
 					break;
 				case TemplateType.Unspecified:
 					break;
