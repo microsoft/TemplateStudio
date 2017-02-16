@@ -1,8 +1,0 @@
-private static NavigationService _navigationService;
-public static NavigationService NavigationService
-{
-    get
-    {
-        return _navigationService ?? (_navigationService = new NavigationService());
-    }
-}

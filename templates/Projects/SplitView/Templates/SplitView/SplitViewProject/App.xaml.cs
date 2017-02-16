@@ -16,7 +16,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 using SplitViewProject.Shell;
-//PostActionAnchor: ADD SERVICES NS
 
 namespace SplitViewProject
 {
@@ -25,7 +24,6 @@ namespace SplitViewProject
     /// </summary>
     sealed partial class App : Application
     {
-        //PostActionAnchor: DEFINE NAVIGATION PROPERTY
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
