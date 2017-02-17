@@ -1,0 +1,29 @@
+[
+    {
+      "name": "BackgroundTaskPostAction",
+      "type": "InsertPartialGenerationPostAction",
+      "description": "Adds Background task code",
+      "parameters": {
+        "destination.filename": "App.xaml.cs",
+        "destination.anchor": "//PostActionAnchor: BACKGROUNDTASK CODE"
+      }
+    },
+    {
+      "name": "RegisterBackgroundTaskPostAction",
+      "type": "InsertPartialGenerationPostAction",
+      "description": "Registers background task in OnLaunched",
+      "parameters": {
+        "destination.filename": "App.xaml.cs",
+        "destination.anchor": "//PostActionAnchor: REGISTER BACKGROUNDTASK"
+      }
+    },
+    {
+      "name": "BackgroundTaskUsingPostAction",
+      "type": "InsertPartialGenerationPostAction",
+      "description": "Adds usings for Background Task registration",
+      "parameters": {
+        "destination.filename": "App.xaml.cs",
+        "destination.anchor": "//PostActionAnchor: USING BACKGROUNDTASK"
+      }
+    }   
+  ]

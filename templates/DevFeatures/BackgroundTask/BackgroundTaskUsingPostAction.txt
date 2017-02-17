@@ -1,0 +1,2 @@
+using Windows.ApplicationModel.Background;
+using RootNamespace.BackgroundTask;

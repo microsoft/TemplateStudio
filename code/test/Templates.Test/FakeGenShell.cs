@@ -59,6 +59,10 @@ namespace Microsoft.Templates.Test
 
         public override void AddProjectToSolution(string projectFullPath)
         {
+            var msbuildProj = MsBuildProject.Load(projectFullPath);
+
+            var solutionFile = SolutionFile.Load(SolutionPath);
+            solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid);
         }
 
         public override string GetActiveNamespace()
@@ -102,6 +106,7 @@ namespace Microsoft.Templates.Test
         {
             return Directory.EnumerateFiles(path, "*proj").FirstOrDefault();
         }
+
 
         public override bool SetActiveConfigurationAndPlatform(string configurationName, string platformName)
         {
