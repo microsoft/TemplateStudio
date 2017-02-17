@@ -1,1 +1,1 @@
-RegisterBackgroundTask();	
+BackgroundTaskService.RegisterBackgroundTasks();

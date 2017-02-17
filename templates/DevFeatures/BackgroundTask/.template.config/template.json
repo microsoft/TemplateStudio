@@ -18,10 +18,13 @@
   "guids": [ "5b9d2eee-b648-4ca1-837e-9abb8f3dffdd" ],
   "PrimaryOutputs": [
     {
-      "path": ".\\BackgroundTask\\BackgroundTaskFeature.cs"
+      "path": ".\\BackgroundTask\\BackgroundTaskService.cs"
     },
     {
-      "path": ".\\BackgroundTask\\BackgroundTaskManager.cs"
+      "path": ".\\BackgroundTask\\BackgroundTaskBase.cs"
+    },
+    {
+      "path": ".\\BackgroundTask\\BackgroundTaskFeature.cs"
     }
   ],
   "symbols": {

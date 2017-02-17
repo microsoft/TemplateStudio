@@ -1,26 +1,51 @@
 ﻿using Windows.ApplicationModel.Background;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ItemNamespace.BackgroundTask
 {
-    public sealed class BackgroundTaskFeature 
+    public sealed class BackgroundTaskFeature : BackgroundTaskBase
     {
-        public void Run(IBackgroundTaskInstance taskInstance)
+        public override void Register()
         {
-            taskInstance.Canceled += new BackgroundTaskCanceledEventHandler(OnCanceled);
+            var taskName = this.GetType().Name;
+            if (!BackgroundTaskRegistration.AllTasks.Any(t => t.Value.Name == taskName))
+            {
+                var builder = new BackgroundTaskBuilder()
+                {
+                    Name = taskName
+                };
+                //TODO UWPTemplates: Define your trigger here, 
+                //for more info regarding background task registration, see 
+                //https://docs.microsoft.com/windows/uwp/launch-resume/create-and-register-an-inproc-background-task
+                builder.SetTrigger(new TimeTrigger(15, false));
 
+                //TODO UWPTemplates: Add your conditions here
+                builder.AddCondition(new SystemCondition(SystemConditionType.UserPresent));
+                BackgroundTaskRegistration task = builder.Register();
+
+            }
+        }
+        public override Task RunAsync(IBackgroundTaskInstance taskInstance)
+        {
             //TODO UWPTemplates: Insert the code that should be executed in the background task here. 
-            //Remember to use a BackgroundTaskDeferral if you are executing asynchgronous methods.
+            //Remember to use a BackgroundTaskDeferral if you are executing asynchronous methods.
             //Documentation: https://msdn.microsoft.com/windows/uwp/launch-resume/support-your-app-with-background-tasks
 
             //This is an example of sending a toast notification from a background task
             //Documentation: https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-badges-notifications
-            var toast = ConstructToastNotification();
-            ToastNotificationManager.CreateToastNotifier().Show(toast);
+
+            return Task.Run(() =>
+            {
+                var toast = ConstructToastNotification();
+                ToastNotificationManager.CreateToastNotifier().Show(toast);
+            });
         }
 
-        private void OnCanceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason)
+
+        public override void OnCanceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason)
         {
            //TODO UWPTemplates: Insert code to handle the cancelation request here. 
            //Documentation: https://docs.microsoft.com/windows/uwp/launch-resume/handle-a-cancelled-background-task
