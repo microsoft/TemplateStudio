@@ -49,12 +49,16 @@ namespace Microsoft.Templates.Core.Locations
                 SafeDelete(destFolder);
             }
 
+            var signedFile = file + Templatex.DefaultExtension;
+            var signedSourceUrl = sourceUrl + Templatex.DefaultExtension;
             var wc = new WebClient();
-            wc.DownloadFile(sourceUrl, file);
+            wc.DownloadFile(signedSourceUrl, signedFile);
+            Templatex.Extract(signedFile, workingFolder);
 
             postDownload(file, destFolder);
 
             File.Delete(file);
+            File.Delete(signedFile);
         }
 
         private static void EnsureWorkingFolder(string workingFolder)

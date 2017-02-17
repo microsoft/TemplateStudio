@@ -118,7 +118,7 @@
     <Compile Include="Locations\RemoteTemplatesLocation.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="ITemplateInfo.extensions.cs" />
-    <Compile Include="Locations\SecureContent.cs" />
+    <Compile Include="Locations\Templatex.cs" />
     <Compile Include="Locations\SignCertNotFoundException.cs" />
     <Compile Include="Locations\TemplatesLocation.cs" />
     <Compile Include="Naming.cs" />

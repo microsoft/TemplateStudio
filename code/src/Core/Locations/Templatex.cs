@@ -6,6 +6,7 @@ using System.IO;
 using System.IO.Packaging;
 using System.Linq;
 using System.Net.Mime;
+using System.Reflection;
 using System.Security;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -15,82 +16,130 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Locations
 {
-    public class SecureContent
+    public class Templatex
     {
-        const string TemplatesContentRelationshipType = "http://schemas.microsoft.com/opc/2006/06/templates/content";
+        public const string DefaultExtension = ".templatex";
+        const string TemplatesContentRelationshipType = "http://schemas.microsoft.com/opc/2006/06/templates/signedcontent";
 
-        public static void PackAndSign(string sourceFile, string signedPackageFilename, string certThumbprint, string mimeMediaType = MediaTypeNames.Text.Plain)
+        public static string PackAndSign(string source, string certThumbprint, string mimeMediaType = MediaTypeNames.Text.Plain)
+        {
+            string signedPack = source + DefaultExtension;
+            PackAndSign(source, signedPack, certThumbprint, mimeMediaType);
+            return signedPack;
+        }
+        public static string PackAndSign(string source, X509Certificate signingCert, string mimeMediaType = MediaTypeNames.Text.Plain)
+        {
+            string signedPack = source + DefaultExtension;
+            PackAndSign(source, signedPack, signingCert, mimeMediaType);
+            return signedPack;
+        } 
+        public static void PackAndSign(string source, string signedFilePack, string certThumbprint, string mimeMediaType)
         {
             X509Certificate cert = LoadCert(certThumbprint);
             if(cert == null)
             {
                 throw new SignCertNotFoundException($"The certificate with thumbprint {certThumbprint} can't be found in the stores CurrentUser or LocalMachine.");
             }
-            PackAndSign(sourceFile, signedPackageFilename, cert, mimeMediaType);
+            PackAndSign(source, signedFilePack, cert, mimeMediaType);
         }
-        public static void PackAndSign(string sourceFile, string signedPackageFilename, X509Certificate signingCert, string mimeMediaType = MediaTypeNames.Text.Plain)
+        public static void PackAndSign(string source, string signedPack, X509Certificate signingCert, string mimeMediaType)
         {
-            Uri uriFile = new Uri(sourceFile, UriKind.Relative);
-            Uri partUriFile = PackUriHelper.CreatePartUri(uriFile);
+            if (String.IsNullOrWhiteSpace(source)) throw new ArgumentException("source");
+            if (String.IsNullOrWhiteSpace(signedPack)) throw new ArgumentException("signedPack");
+            if (signingCert == null) throw new ArgumentException("signingCert");
 
-            string targetFileDir = Path.GetDirectoryName(signedPackageFilename);
-            if (!Directory.Exists(targetFileDir)) Directory.CreateDirectory(targetFileDir);
-
-            using (Package package = Package.Open(signedPackageFilename, FileMode.Create))
+            FileInfo[] files = null;
+            if (!File.Exists(source))
             {
-                 PackagePart packagePart = package.CreatePart(partUriFile, mimeMediaType);
-
-                // Add content to the File part
-                using (FileStream fileStream = new FileStream(uriFile.ToString(), FileMode.Open, FileAccess.Read))
+                if (Directory.Exists(Path.GetFullPath(source)))
                 {
-                    CopyStream(fileStream, packagePart.GetStream());
+                    DirectoryInfo di = new DirectoryInfo(source);
+                    files = di.GetFiles("*", SearchOption.AllDirectories);
+                }
+            }
+            else
+            {
+                files = new FileInfo[] { new FileInfo(source) };
+            }
+
+            if (files==null || files.Count() == 0)
+            {
+                throw new FileNotFoundException($"The specified source '{source}' is invalid. Or the file does not exists or the folder is empty.");
+            }
+            string uriString;
+            if (!Path.IsPathRooted(source))
+            {
+                uriString = Path.GetDirectoryName(Path.GetFullPath(source)).Replace(source, "");
+                if (!File.Exists(source))
+                {
+                    uriString = uriString + Path.DirectorySeparatorChar;
+                }
+            }
+            else
+            {
+                uriString = Path.GetDirectoryName(source);
+                if (!File.Exists(source))
+                {
+                    uriString = uriString + Path.DirectorySeparatorChar;
+                }
+            }
+            Uri rootUri = new Uri(uriString, UriKind.Absolute);
+
+            string targetFileDir = Path.GetDirectoryName(signedPack);
+            if (!String.IsNullOrEmpty(targetFileDir) && !Directory.Exists(targetFileDir)) Directory.CreateDirectory(targetFileDir);
+
+            using (Package package = Package.Open(signedPack, FileMode.Create))
+            {
+                foreach (var file in files)
+                {
+                    Uri uriFile = rootUri.MakeRelativeUri(new Uri(file.FullName, UriKind.Absolute));
+                    Uri partUriFile = PackUriHelper.CreatePartUri(uriFile);
+                    PackagePart packagePart = package.CreatePart(partUriFile, mimeMediaType);
+
+                    // Add content to the File part
+                    using (FileStream fileStream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read))
+                    {
+                        CopyStream(fileStream, packagePart.GetStream());
+                    }
+
+                    // Add a Package Relationship to the Document Part.
+                    package.CreateRelationship(packagePart.Uri, TargetMode.Internal, TemplatesContentRelationshipType);
                 }
 
-                // Add a Package Relationship to the Document Part.
-                package.CreateRelationship(packagePart.Uri, TargetMode.Internal, TemplatesContentRelationshipType);
-
-                
                 package.Flush();
-
                 SignAllParts(package, signingCert);
             }
-
         }
 
-        public static void Extract(string signedPackageFilename, string targetDirectory)
+        public static void Extract(string signedFilePack, string targetDirectory)
         {
-            DirectoryInfo directoryInfo = new DirectoryInfo(targetDirectory);
-            if (directoryInfo.Exists)
-            {
-                directoryInfo.Delete(true);
-            }
-            directoryInfo = Directory.CreateDirectory(targetDirectory);
+            string currentDir = Environment.CurrentDirectory;
+            string inFilePack = Path.IsPathRooted(signedFilePack) ? signedFilePack : Path.Combine(currentDir, signedFilePack);
+            string outDir = Path.IsPathRooted(targetDirectory) ? targetDirectory : Path.Combine(currentDir, targetDirectory);
 
-            // Move the current Package to the Target directory.
-            string targetFilename = targetDirectory + @"\" + signedPackageFilename;
-            File.Copy(signedPackageFilename, targetFilename);
+            EnsureTargetDir(outDir);
 
-            // Open the Package copy in the target directory.
-            using (Package package = Package.Open(targetFilename, FileMode.Open, FileAccess.Read))
+            using (Package package = Package.Open(inFilePack, FileMode.Open, FileAccess.Read))
             {
                 if (ValidateSignatures(package))
                 {
                     PackagePart packagePartDocument = null;
-                   
+
                     foreach (PackageRelationship relationship in package.GetRelationshipsByType(TemplatesContentRelationshipType))
                     {
                         // Open the Document part, write the contents to a file.
                         packagePartDocument = package.GetPart(relationship.TargetUri);
-                        ExtractPart(packagePartDocument, targetFilename);
+                        ExtractPart(packagePartDocument, outDir);
                     }
                 }
                 else
                 {
-                    string msg = $"Digital signatures in '{signedPackageFilename}\n' failed validation.  Unable to continue.";
+                    string msg = $"Digital signatures in '{signedFilePack}\n' failed validation.  Unable to continue.";
                     throw new InvalidSignatureException(msg);
                 }
             }
         }
+
         public static bool ValidateSignatures(string signedPackageFilename)
         {
             using (Package package = Package.Open(signedPackageFilename, FileMode.Open, FileAccess.Read))
@@ -140,15 +189,18 @@ namespace Microsoft.Templates.Core.Locations
                         AppHealth.Current.Info.TrackAsync($"The certificate found does not have private key.").FireAndForget();
                     }
                 }
+                store.Close();
             }
             return certFound;
         }
-        private static void ExtractPart(PackagePart packagePart, string packageFilename)
+        private static void ExtractPart(PackagePart packagePart, string targetDirectory)
         {
             string stringPart = packagePart.Uri.ToString().TrimStart('/');
+            
             Uri partUri = new Uri(stringPart, UriKind.Relative);
 
-            Uri uriFullPartPath = new Uri(new Uri(packageFilename, UriKind.Absolute), partUri);
+            var dir = targetDirectory.EndsWith(Path.DirectorySeparatorChar.ToString()) ? targetDirectory : targetDirectory + Path.DirectorySeparatorChar;
+            Uri uriFullPartPath = new Uri(new Uri(dir, UriKind.Absolute), partUri);
 
             Directory.CreateDirectory(Path.GetDirectoryName(uriFullPartPath.LocalPath));
 
@@ -192,12 +244,13 @@ namespace Microsoft.Templates.Core.Locations
 
         private static void SignAllParts(Package package, X509Certificate cert)
         {
-            if (package == null)
-                throw new ArgumentNullException("SignAllParts(package)");
+            if (package == null) throw new ArgumentNullException("SignAllParts(package)");
+
+            if (cert == null) throw new ArgumentNullException("SignAllParts(cert)");
 
             PackageDigitalSignatureManager dsm = new PackageDigitalSignatureManager(package)
             {
-                CertificateOption = CertificateEmbeddingOption.InCertificatePart,
+                CertificateOption = CertificateEmbeddingOption.InSignaturePart,
                 HashAlgorithm = SignedXml.XmlDsigSHA512Url
             };
 
@@ -231,7 +284,16 @@ namespace Microsoft.Templates.Core.Locations
             while ((bytesRead = source.Read(buf, 0, bufSize)) > 0)
                 target.Write(buf, 0, bytesRead);
         }
-
+        private static void EnsureTargetDir(string outDir)
+        {
+            if (!String.IsNullOrEmpty(outDir) && outDir.ToLower() != Environment.CurrentDirectory.ToLower())
+            {
+                if (!Directory.Exists(outDir))
+                {
+                    Directory.CreateDirectory(outDir);
+                }
+            }
+        }
     }
 
 }
