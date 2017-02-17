@@ -1,5 +1,5 @@
 {
-    "alias":[
+    "aliases":[
         "xmlns:local=\"using:ItemName\""
     ],
     "elements":[
