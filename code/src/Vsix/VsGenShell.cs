@@ -167,13 +167,21 @@ namespace Microsoft.Templates.Extension
         private Project GetActiveProject()
         {
             Project p = null;
-            if (_dte != null)
+
+            try
             {
-                Array projects = (Array)Dte.ActiveSolutionProjects;
-                if (projects?.Length >= 1)
+                if (_dte != null)
                 {
-                    p = (Project)projects.GetValue(0);
+                    Array projects = (Array)Dte.ActiveSolutionProjects;
+                    if (projects?.Length >= 1)
+                    {
+                        p = (Project)projects.GetValue(0);
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                //WE GE AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
             }
             return p;
         }
