@@ -75,8 +75,8 @@ namespace BlankProject
                 Window.Current.Activate();
             }
             //PostActionAnchor: GET APP THEME
-
             //PostActionAnchor: REGISTER BACKGROUNDTASK
+            //PostActionAnchor: LIVE TILE SAMPLE UPDATE
         }
 
         //PostActionAnchor: BACKGROUNDTASK CODE

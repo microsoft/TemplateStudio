@@ -13,14 +13,14 @@
     "type": "item",
     "uct.type": "devfeature",
     "uct.version": "1.0.0",
-    "uct.order": "1"
-    // "uct.defaultInstance": "en-us"
+    "uct.order": "1",
+    "uct.defaultInstance": "LiveTile"
   },
   "sourceName": "LiveTile",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\TileService.cs"
+      "path": ".\\Services\\LiveTileService.cs"
     }
   ],
   "symbols": {
