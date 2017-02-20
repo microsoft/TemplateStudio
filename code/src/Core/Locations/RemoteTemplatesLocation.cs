@@ -12,12 +12,11 @@ namespace Microsoft.Templates.Core.Locations
     public class RemoteTemplatesLocation : TemplatesLocation
     {
         private readonly string CdnUrl = Configuration.Current.CdnUrl;
-        private const string CdnTemplatesFileName = "UWPTemplates.tmpltx";
+        private const string CdnTemplatesFileName = "Templates.mstx";
 
         public override void Copy(string workingFolder)
         {
-            Download(workingFolder, CdnTemplatesFileName, TemplatesName, ZipFile.ExtractToDirectory, true);
-            Download(workingFolder, VersionFileName, TemplatesName, SafeCopyFile);
+            Download(workingFolder, CdnTemplatesFileName);
         }
 
         public override string GetVersion(string workingFolder)
@@ -36,29 +35,21 @@ namespace Microsoft.Templates.Core.Locations
             return version;
         }
 
-        private void Download(string workingFolder, string fileName, string folderName, Action<string, string> postDownload, bool clean = false)
+        private void Download(string workingFolder, string fileName)
         {
             EnsureWorkingFolder(workingFolder);
 
             var sourceUrl = $"{CdnUrl}/{fileName}";
-            var destFolder = Path.Combine(workingFolder, folderName);
             var file = Path.Combine(workingFolder, fileName);
 
-            if (clean)
-            {
-                SafeDelete(destFolder);
-            }
+            SafeDelete(Path.Combine(workingFolder, TemplatesName));
 
-            var signedFile = file + Templatex.DefaultExtension;
-            var signedSourceUrl = sourceUrl + Templatex.DefaultExtension;
             var wc = new WebClient();
-            wc.DownloadFile(signedSourceUrl, signedFile);
-            Templatex.Extract(signedFile, workingFolder);
+            wc.DownloadFile(sourceUrl, file);
 
-            postDownload(file, destFolder);
+            Templatex.Extract(file, workingFolder);
 
             File.Delete(file);
-            File.Delete(signedFile);
         }
 
         private static void EnsureWorkingFolder(string workingFolder)
