@@ -14,8 +14,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
 using SplitViewProject.Shell;
+//PostActionAnchor: USING BACKGROUNDTASK
 
 namespace SplitViewProject
 {
@@ -74,7 +74,11 @@ namespace SplitViewProject
                 Window.Current.Activate();
             }
             //PostActionAnchor: GET APP THEME
+            
+            //PostActionAnchor: REGISTER BACKGROUNDTASK
         }
+
+        //PostActionAnchor: BACKGROUNDTASK CODE
 
         /// <summary>
         /// Invoked when Navigation to a certain page fails
