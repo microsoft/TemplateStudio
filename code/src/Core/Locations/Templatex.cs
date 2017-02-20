@@ -18,7 +18,7 @@ namespace Microsoft.Templates.Core.Locations
 {
     public class Templatex
     {
-        public const string DefaultExtension = ".tmpltx";
+        public const string DefaultExtension = ".mstx";
         const string TemplatesContentRelationshipType = "http://schemas.microsoft.com/opc/2006/06/templates/securecontent";
 
         public static string PackAndSign(string source, string certThumbprint, string mimeMediaType = MediaTypeNames.Text.Plain)
