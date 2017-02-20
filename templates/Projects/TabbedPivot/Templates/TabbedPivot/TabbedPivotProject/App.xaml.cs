@@ -16,6 +16,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using TabbedPivotProject.Shell;
 //PostActionAnchor: USING BACKGROUNDTASK
+//PostActionAnchor: USING SUSPENDANDRESUME
+
 
 namespace TabbedPivotProject
 {
@@ -24,6 +26,10 @@ namespace TabbedPivotProject
     /// </summary>
     sealed partial class App : Application
     {
+
+        //PostActionAnchor: STATE SERVICE
+        
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -32,6 +38,7 @@ namespace TabbedPivotProject
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            this.EnteredBackground += App_EnteredBackground;
             //PostActionAnchor: ENABLE QUEUE
         }
 
@@ -40,7 +47,7 @@ namespace TabbedPivotProject
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -56,6 +63,8 @@ namespace TabbedPivotProject
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: Load state from previously suspended application
+                     rootFrame.Navigate(typeof(ShellPage), e.Arguments);
+                     //PostActionAnchor:RESTORE STATE
                 }
 
                 // Place the frame in the current Window
@@ -102,6 +111,14 @@ namespace TabbedPivotProject
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
+            deferral.Complete();
+        }
+
+        private async void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e)
+        {
+            var deferral = e.GetDeferral();
+
+            //PostActionAnchor: SAVE STATE
             deferral.Complete();
         }
     }

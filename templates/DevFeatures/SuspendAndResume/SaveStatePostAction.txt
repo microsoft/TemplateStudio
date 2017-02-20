@@ -1,0 +1,2 @@
+// Save application state 
+await StateService.SaveStateAsync();

@@ -1,0 +1,47 @@
+[
+    {
+      "name": "SaveStatePostAction",
+      "type": "InsertPartialGenerationPostAction",
+      "description": "Saves the application state on backgroundtask entered",
+      "parameters": {
+        "destination.filename": "App.xaml.cs",
+        "destination.anchor": " //PostActionAnchor: SAVE STATE"
+      }
+    },
+    {
+      "name": "RestoreStatePostAction",
+      "type": "InsertPartialGenerationPostAction",
+      "description": "Restores the application state ",
+      "parameters": {
+        "destination.filename": "App.xaml.cs",
+        "destination.anchor": "//PostActionAnchor:RESTORE STATE"
+      }
+    },
+    {
+      "name": "ServicesUsingPostAction",
+      "type": "InsertPartialGenerationPostAction",
+      "description": "Adds using to services",
+      "parameters": {
+        "destination.filename": "App.xaml.cs",
+        "destination.anchor": "//PostActionAnchor: USING SERVICES"
+      }
+    },
+    {
+      "name": "StateServicePostAction",
+      "type": "InsertPartialGenerationPostAction",
+      "description": "Adds state service",
+      "parameters": {
+        "destination.filename": "App.xaml.cs",
+        "destination.anchor": "//PostActionAnchor: STATE SERVICE"
+      }
+    },
+    {
+      "name": "AddJSONReferencePostAction",
+      "type": "InsertPartialGenerationPostAction",
+      "description": "Adds reference to json.net",
+      "parameters": {
+        "destination.filename": "project.json",
+        "destination.anchor": "//PostActionAnchor: ADD REFERENCES"
+      }
+    }
+  ]
