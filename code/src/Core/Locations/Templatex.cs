@@ -18,8 +18,8 @@ namespace Microsoft.Templates.Core.Locations
 {
     public class Templatex
     {
-        public const string DefaultExtension = ".templatex";
-        const string TemplatesContentRelationshipType = "http://schemas.microsoft.com/opc/2006/06/templates/signedcontent";
+        public const string DefaultExtension = ".tmpltx";
+        const string TemplatesContentRelationshipType = "http://schemas.microsoft.com/opc/2006/06/templates/securecontent";
 
         public static string PackAndSign(string source, string certThumbprint, string mimeMediaType = MediaTypeNames.Text.Plain)
         {
@@ -38,7 +38,7 @@ namespace Microsoft.Templates.Core.Locations
             X509Certificate cert = LoadCert(certThumbprint);
             if(cert == null)
             {
-                throw new SignCertNotFoundException($"The certificate with thumbprint {certThumbprint} can't be found in the stores CurrentUser or LocalMachine.");
+                throw new SignCertNotFoundException($"The certificate with thumbprint {certThumbprint} can't be found in CurrentUser/My or LocalMachine/My.");
             }
             PackAndSign(source, signedFilePack, cert, mimeMediaType);
         }

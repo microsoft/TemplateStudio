@@ -12,7 +12,7 @@ namespace Microsoft.Templates.Core.Locations
     public class RemoteTemplatesLocation : TemplatesLocation
     {
         private readonly string CdnUrl = Configuration.Current.CdnUrl;
-        private const string CdnTemplatesFileName = "UWPTemplates.zip";
+        private const string CdnTemplatesFileName = "UWPTemplates.tmpltx";
 
         public override void Copy(string workingFolder)
         {
