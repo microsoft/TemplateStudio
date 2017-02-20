@@ -1,0 +1,11 @@
+[
+    {
+      "name": "LiveTileQueuePostAction",
+      "type": "InsertPartialGenerationPostAction",
+      "description": "Enable Live Tiles Queue",
+      "parameters": {
+        "destination.filename": "App.xaml.cs",
+        "destination.anchor": "//PostActionAnchor: ENABLE QUEUE"
+      }
+    }
+  ]

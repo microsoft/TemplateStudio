@@ -6,28 +6,29 @@ namespace RootNamespace.Services
 {
     public class TileService
     {
-        private static volatile TileService instance;
-        private static object syncRoot = new Object();
+        private static Lazy<TileService> instanceHolder = new Lazy<TileService>(() => new TileService());
 
-        public static TileService Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null) instance = new TileService();
-                    }
-                }
-
-                return instance;
-            }
-        }
+        private static TileService Instance { get => instanceHolder.Value; }
 
         private TileService() { }
 
-        public void EnableQueue()
+        public static void EnableQueue()
+        {
+            lock (Instance)
+            {
+                Instance.DoEnableQueue();
+            }
+        }
+        
+        public void UpdateTile()
+        {
+            lock (Instance)
+            {
+                Instance.DoUpdateTile();
+            }
+        }
+
+        private void DoEnableQueue()
         {
             var key = "NotificationQueueEnabled";
             var settings = ApplicationData.Current.LocalSettings.Values;            
@@ -38,7 +39,7 @@ namespace RootNamespace.Services
             }            
         }
 
-        public void UpdateTile()
+        private void DoUpdateTile()
         {
             var wideTileXml = TileUpdateManager.GetTemplateContent(TileTemplateType.TileWide310x150ImageAndText01);
 
