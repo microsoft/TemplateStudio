@@ -106,7 +106,11 @@
     <Compile Include="Diagnostics\TelemetryServiceTest.cs" />
     <Compile Include="ITemplateInfoExtensionsTest.cs" />
     <Compile Include="NamingTest.cs" />
+    <Compile Include="PostActions\CodePostActionTest.cs" />
     <Compile Include="PostActions\ReferencesPostActionTest.cs" />
+    <None Include="TestData\PostActions\Code\Execute.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Compile Include="PostActions\XamlPostActionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -115,6 +119,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="TemplatesFixture.cs" />
+    <None Include="TestData\PostActions\Code\Execute_Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Compile Include="UnitTestsTemplatesLocation.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -125,11 +132,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="Templates\FeatureTemplate\.template.config\template.json" />
-    <Content Include="Templates\PageTemplate\.template.config\template.json" />
-    <Content Include="Templates\ProjectTemplate\.template.config\icon.png" />
-    <Content Include="Templates\ProjectTemplate\.template.config\template.json" />
-    <Content Include="Templates\UnspecifiedTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\FeatureTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\PageTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\ProjectTemplate\.template.config\icon.png" />
+    <Content Include="TestData\Templates\ProjectTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\UnspecifiedTemplate\.template.config\template.json" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
@@ -152,7 +159,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Templates\ProjectTemplate\.template.config\Layout.json" />
+    <Content Include="TestData\Templates\ProjectTemplate\.template.config\Layout.json" />
     <None Include="test.config.template.json">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
