@@ -1,6 +1,7 @@
 ﻿using Windows.ApplicationModel.Background;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,6 +9,8 @@ namespace ItemNamespace.BackgroundTask
 {
     public sealed class BackgroundTaskFeature : BackgroundTaskBase
     {
+        BackgroundTaskDeferral _deferral = null;
+
         public override void Register()
         {
             var taskName = this.GetType().Name;
@@ -17,12 +20,13 @@ namespace ItemNamespace.BackgroundTask
                 {
                     Name = taskName
                 };
+
                 //TODO UWPTemplates: Define your trigger here, 
                 //for more info regarding background task registration, see 
                 //https://docs.microsoft.com/windows/uwp/launch-resume/create-and-register-an-inproc-background-task
                 builder.SetTrigger(new TimeTrigger(15, false));
 
-                //TODO UWPTemplates: Add your conditions here
+                //TODO UWPTemplates: Add your conditions here, conditions are optional.
                 builder.AddCondition(new SystemCondition(SystemConditionType.UserPresent));
                 BackgroundTaskRegistration task = builder.Register();
 
@@ -34,13 +38,14 @@ namespace ItemNamespace.BackgroundTask
             //Remember to use a BackgroundTaskDeferral if you are executing asynchronous methods.
             //Documentation: https://msdn.microsoft.com/windows/uwp/launch-resume/support-your-app-with-background-tasks
 
-            //This is an example of sending a toast notification from a background task
-            //Documentation: https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-badges-notifications
+            _deferral = taskInstance.GetDeferral();
 
             return Task.Run(() =>
             {
-                var toast = ConstructToastNotification();
-                ToastNotificationManager.CreateToastNotifier().Show(toast);
+
+                //This is an example of sending a toast notification from a background task
+                //Documentation: https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-badges-notifications
+                SendToastNotification();
             });
         }
 
@@ -51,10 +56,12 @@ namespace ItemNamespace.BackgroundTask
            //Documentation: https://docs.microsoft.com/windows/uwp/launch-resume/handle-a-cancelled-background-task
         }
 
-        private ToastNotification ConstructToastNotification()
+        private void SendToastNotification()
         {
-            string xml = 
-            $@"<toast activationType='foreground'>
+            try
+            {
+                string xml =
+                $@"<toast activationType='foreground'>
                     <visual>
                         <binding template='ToastGeneric'>
                             <text>Action - text</text>
@@ -73,14 +80,24 @@ namespace ItemNamespace.BackgroundTask
                     </actions>
                 </toast>";
 
-            // Parse to XML
-            XmlDocument toastXml = new XmlDocument();
-            toastXml.LoadXml(xml);
+                // Parse to XML
+                XmlDocument toastXml = new XmlDocument();
+                toastXml.LoadXml(xml);
 
-            // Generate toast
-            var toast = new ToastNotification(toastXml);
+                // Generate toast
+                var toast = new ToastNotification(toastXml);
+                ToastNotificationManager.CreateToastNotifier().Show(toast);
 
-            return toast;
+            }
+            catch (Exception)
+            {
+                //TODO: Handle this condition
+                throw;
+            }
+            finally
+            {
+                _deferral.Complete();
+            }
         }
     }
 }
