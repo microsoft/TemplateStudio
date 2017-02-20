@@ -23,16 +23,23 @@ namespace Microsoft.Templates.Core.Locations
 
         public override string GetVersion(string workingFolder)
         {
-            //TODO: ERROR HANDLING
-            var sourceUrl = $"{CdnUrl}/{VersionFileName}";
-            var destinationFile = Path.Combine(workingFolder, VersionFileName);
+            var version = "1.0.0";
+            try
+            {
+                var sourceUrl = $"{CdnUrl}/{VersionFileName}";
+                var destinationFile = Path.Combine(workingFolder, VersionFileName);
 
-            var wc = new WebClient();
-            wc.DownloadFile(sourceUrl, destinationFile);
+                var wc = new WebClient();
+                wc.DownloadFile(sourceUrl, destinationFile);
 
-            var version = File.ReadAllText(destinationFile);
+                version = File.ReadAllText(destinationFile);
 
-            File.Delete(destinationFile);
+                File.Delete(destinationFile);
+            }
+            catch (Exception ex)
+            {
+                AppHealth.Current.Error.TrackAsync("Error downloading the version file.",ex).FireAndForget();
+            }
 
             return version;
         }
@@ -131,7 +138,6 @@ namespace Microsoft.Templates.Core.Locations
             try
             {
                 var wc = new WebClient();
-                wc.DownloadProgressChanged += Wc_DownloadProgressChanged;
                 wc.DownloadFile(sourceUrl, file);
                 message = "Templates content downloaded successfully.";
                 return true;
@@ -144,11 +150,6 @@ namespace Microsoft.Templates.Core.Locations
                 message = $"{msg}. Error message: {ex.Message}";
                 return false;
             }
-        }
-
-        private void Wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
-        {
-            
         }
 
         private static void EnsureWorkingFolder(string workingFolder)

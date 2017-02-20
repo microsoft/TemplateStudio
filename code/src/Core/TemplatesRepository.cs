@@ -1,5 +1,7 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Template;
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Locations;
 using Newtonsoft.Json;
 using System;
@@ -22,20 +24,40 @@ namespace Microsoft.Templates.Core
 
         public TemplatesRepository(TemplatesLocation location)
         {
-            _location = location;
+            _location = location ?? throw new ArgumentNullException("location");
         }
 
-        public void Sync()
+        public (bool Success, string Message) Sync()
         {
+            var success = true;
+            var message = "Template Repository Synchronization started.";
             if (_location != null && IsUpdateAvailable())
             {
-                _location.Copy(WorkingFolder);
+                var copy = _location.Copy(WorkingFolder);
+                
+                if (copy.Status == LocationCopyStatus.Finished || copy.Status == LocationCopyStatus.TargetUpdated)
+                {
 
-                CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
-                CodeGen.Instance.Cache.Scan(WorkingFolder + $@"\{TemplatesLocation.TemplatesName}");
-                CodeGen.Instance.Cache.WriteTemplateCaches();
+                    CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
+                    CodeGen.Instance.Cache.Scan(WorkingFolder + $@"\{TemplatesLocation.TemplatesName}");
+                    CodeGen.Instance.Cache.WriteTemplateCaches();
+                    message = $"Status: {copy.Status.ToString()} Message: {copy.Message}.";
+                    AppHealth.Current.Warning.TrackAsync(message).FireAndForget();
+
+                }
+                else
+                {
+                    success = false;
+                    message = $"Status: {copy.Status.ToString()} Message: {copy.Message}.";
+                    AppHealth.Current.Warning.TrackAsync(message).FireAndForget();
+                }
+            }
+            else
+            {
+                message = $"Update not available to synchronize the templates repository.";
             }
 
+            return (success, message);
         }
 
         public IEnumerable<ITemplateInfo> GetAll()

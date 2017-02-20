@@ -33,10 +33,18 @@ namespace Microsoft.Templates.Wizard.Host
 
         public void Iniatialize()
         {
-            _context.TemplatesRepository.Sync();
+            var sync = _context.TemplatesRepository.Sync();
 
-            var step = Steps.First();
-            Navigate(step);
+            if (sync.Success)
+            {
+                var step = Steps.First();
+                Navigate(step);
+            }
+            else
+            {
+                //TODO: Show a proper message with further information not as "unpolite" as a message box.
+                MessageBox.Show($"The templates repository can't be updated. {sync.Message}\r\n\r\nCheck your internet connection and ensure you are running the latest version for the extension.", "Templates Repository Synchronization", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private string _stepTitle;
