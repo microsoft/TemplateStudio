@@ -8,9 +8,9 @@ using System.Xml.Linq;
 
 namespace Microsoft.Templates.Core.PostActions.Xaml
 {
-    public class XamlPostAction
+    public class XamlPostAction : PostAction<XamlPostActionConfig>
     {
-        public string Execute(XamlPostActionConfig config, string sourceContent)
+        public override string Execute(XamlPostActionConfig config, string sourceContent)
         {
             if (config == null || string.IsNullOrEmpty(sourceContent))
             {

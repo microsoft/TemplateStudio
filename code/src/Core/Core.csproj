@@ -111,6 +111,9 @@
     <Compile Include="Locations\TemplatesLocation.cs" />
     <Compile Include="Naming.cs" />
     <Compile Include="LayoutItem.cs" />
+    <Compile Include="PostActions\PostAction.cs" />
+    <Compile Include="PostActions\References\ReferencesPostAction.cs" />
+    <Compile Include="PostActions\References\ReferencesPostActionConfig.cs" />
     <Compile Include="PostActions\Xaml\XamlPostAction.cs" />
     <Compile Include="PostActions\Xaml\XamlPostActionConfig.cs" />
     <Compile Include="XElement.extensions.cs" />
