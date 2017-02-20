@@ -48,68 +48,31 @@ namespace Microsoft.Templates.Core.Locations
             if (String.IsNullOrWhiteSpace(signedPack)) throw new ArgumentException("signedPack");
             if (signingCert == null) throw new ArgumentException("signingCert");
 
-            FileInfo[] files = null;
-            if (!File.Exists(source))
-            {
-                if (Directory.Exists(Path.GetFullPath(source)))
-                {
-                    DirectoryInfo di = new DirectoryInfo(source);
-                    files = di.GetFiles("*", SearchOption.AllDirectories);
-                }
-            }
-            else
-            {
-                files = new FileInfo[] { new FileInfo(source) };
-            }
+            FileInfo[] files = GetSourceFiles(source);
 
-            if (files==null || files.Count() == 0)
-            {
-                throw new FileNotFoundException($"The specified source '{source}' is invalid. Or the file does not exists or the folder is empty.");
-            }
-            string uriString;
-            if (!Path.IsPathRooted(source))
-            {
-                uriString = Path.GetDirectoryName(Path.GetFullPath(source)).Replace(source, "");
-                if (!File.Exists(source))
-                {
-                    uriString = uriString + Path.DirectorySeparatorChar;
-                }
-            }
-            else
-            {
-                uriString = Path.GetDirectoryName(source);
-                if (!File.Exists(source))
-                {
-                    uriString = uriString + Path.DirectorySeparatorChar;
-                }
-            }
-            Uri rootUri = new Uri(uriString, UriKind.Absolute);
+            Uri rootUri = GetRootUri(source);
 
-            string targetFileDir = Path.GetDirectoryName(signedPack);
-            if (!String.IsNullOrEmpty(targetFileDir) && !Directory.Exists(targetFileDir)) Directory.CreateDirectory(targetFileDir);
+            EnsureDirectory(Path.GetDirectoryName(signedPack)); 
 
             using (Package package = Package.Open(signedPack, FileMode.Create))
             {
                 foreach (var file in files)
                 {
-                    Uri uriFile = rootUri.MakeRelativeUri(new Uri(file.FullName, UriKind.Absolute));
-                    Uri partUriFile = PackUriHelper.CreatePartUri(uriFile);
-                    PackagePart packagePart = package.CreatePart(partUriFile, mimeMediaType);
+                    Uri partUriFile = GetPartUriFile(rootUri, file);
 
-                    // Add content to the File part
-                    using (FileStream fileStream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read))
-                    {
-                        CopyStream(fileStream, packagePart.GetStream());
-                    }
+                    PackagePart packagePart = package.CreatePart(partUriFile, mimeMediaType, CompressionOption.Maximum);
 
-                    // Add a Package Relationship to the Document Part.
+                    AddContentToPackagePart(file, packagePart);
+
                     package.CreateRelationship(packagePart.Uri, TargetMode.Internal, TemplatesContentRelationshipType);
                 }
 
                 package.Flush();
+
                 SignAllParts(package, signingCert);
             }
         }
+
 
         public static void Extract(string signedFilePack, string targetDirectory)
         {
@@ -117,7 +80,7 @@ namespace Microsoft.Templates.Core.Locations
             string inFilePack = Path.IsPathRooted(signedFilePack) ? signedFilePack : Path.Combine(currentDir, signedFilePack);
             string outDir = Path.IsPathRooted(targetDirectory) ? targetDirectory : Path.Combine(currentDir, targetDirectory);
 
-            EnsureTargetDir(outDir);
+            EnsureDirectory(outDir);
 
             using (Package package = Package.Open(inFilePack, FileMode.Open, FileAccess.Read))
             {
@@ -245,7 +208,6 @@ namespace Microsoft.Templates.Core.Locations
         private static void SignAllParts(Package package, X509Certificate cert)
         {
             if (package == null) throw new ArgumentNullException("SignAllParts(package)");
-
             if (cert == null) throw new ArgumentNullException("SignAllParts(cert)");
 
             PackageDigitalSignatureManager dsm = new PackageDigitalSignatureManager(package)
@@ -284,15 +246,76 @@ namespace Microsoft.Templates.Core.Locations
             while ((bytesRead = source.Read(buf, 0, bufSize)) > 0)
                 target.Write(buf, 0, bytesRead);
         }
-        private static void EnsureTargetDir(string outDir)
+        private static void EnsureDirectory(string dir)
         {
-            if (!String.IsNullOrEmpty(outDir) && outDir.ToLower() != Environment.CurrentDirectory.ToLower())
+            if (!String.IsNullOrEmpty(dir) && dir.ToLower() != Environment.CurrentDirectory.ToLower())
             {
-                if (!Directory.Exists(outDir))
+                if (!Directory.Exists(dir))
                 {
-                    Directory.CreateDirectory(outDir);
+                    Directory.CreateDirectory(dir);
                 }
             }
+        }
+
+        private static void AddContentToPackagePart(FileInfo file, PackagePart packagePart)
+        {
+            using (FileStream fileStream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read))
+            {
+                CopyStream(fileStream, packagePart.GetStream());
+            }
+        }
+
+        private static Uri GetPartUriFile(Uri rootUri, FileInfo file)
+        {
+            Uri uriFile = rootUri.MakeRelativeUri(new Uri(file.FullName, UriKind.Absolute));
+            Uri partUriFile = PackUriHelper.CreatePartUri(uriFile);
+            return partUriFile;
+        }
+
+        private static Uri GetRootUri(string source)
+        {
+            string uriString;
+            if (!Path.IsPathRooted(source))
+            {
+                uriString = Path.GetDirectoryName(Path.GetFullPath(source)).Replace(source, "");
+                if (!File.Exists(source))
+                {
+                    uriString = uriString + Path.DirectorySeparatorChar;
+                }
+            }
+            else
+            {
+                uriString = Path.GetDirectoryName(source);
+                if (!File.Exists(source))
+                {
+                    uriString = uriString + Path.DirectorySeparatorChar;
+                }
+            }
+            Uri rootUri = new Uri(uriString, UriKind.Absolute);
+            return rootUri;
+        }
+
+        private static FileInfo[] GetSourceFiles(string source)
+        {
+            FileInfo[] files = null;
+            if (!File.Exists(source))
+            {
+                if (Directory.Exists(Path.GetFullPath(source)))
+                {
+                    DirectoryInfo di = new DirectoryInfo(source);
+                    files = di.GetFiles("*", SearchOption.AllDirectories);
+                }
+            }
+            else
+            {
+                files = new FileInfo[] { new FileInfo(source) };
+            }
+            if (files == null || files.Count() == 0)
+            {
+                throw new FileNotFoundException($"The specified source '{source}' is invalid. Or the file does not exists or the folder is empty.");
+            }
+
+            return files;
         }
     }
 
