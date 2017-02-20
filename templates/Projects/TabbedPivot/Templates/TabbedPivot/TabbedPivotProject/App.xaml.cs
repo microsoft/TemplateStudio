@@ -31,6 +31,7 @@ namespace TabbedPivotProject
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            //PostActionAnchor: ENABLE QUEUE
         }
 
         /// <summary>
