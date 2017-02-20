@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -14,9 +16,9 @@ namespace Microsoft.Templates.Core.Locations
         private readonly string CdnUrl = Configuration.Current.CdnUrl;
         private const string CdnTemplatesFileName = "Templates.mstx";
 
-        public override void Copy(string workingFolder)
+        public override (LocationCopyStatus Status, string Message) Copy(string workingFolder)
         {
-            Download(workingFolder, CdnTemplatesFileName);
+            return Download(workingFolder, CdnTemplatesFileName);
         }
 
         public override string GetVersion(string workingFolder)
@@ -35,21 +37,118 @@ namespace Microsoft.Templates.Core.Locations
             return version;
         }
 
-        private void Download(string workingFolder, string fileName)
+        private (LocationCopyStatus Status, string Message) Download(string workingFolder, string fileName)
         {
+            var status = LocationCopyStatus.Started;
+            var message = "Content adquisition started.";
+
             EnsureWorkingFolder(workingFolder);
 
             var sourceUrl = $"{CdnUrl}/{fileName}";
+            var tempFoder = Path.Combine(workingFolder, "temp");
             var file = Path.Combine(workingFolder, fileName);
 
-            SafeDelete(Path.Combine(workingFolder, TemplatesName));
+           
+            if (DownloadContent(sourceUrl, file, out message))
+            {
+                status = LocationCopyStatus.SourceAdquired;
+                AppHealth.Current.Verbose.TrackAsync($"LocationCopyStatus: {status.ToString()}. {message}").FireAndForget();
 
-            var wc = new WebClient();
-            wc.DownloadFile(sourceUrl, file);
+                if (ExtractContent(file, tempFoder, out message))
+                {
+                    AppHealth.Current.Verbose.TrackAsync($"LocationCopyStatus: {status.ToString()}. {message}").FireAndForget();
+                    if (UpdateTemplatesFolder(tempFoder, workingFolder, out message))
+                    {
+                        status = LocationCopyStatus.TargetUpdated;
+                        AppHealth.Current.Verbose.TrackAsync($"LocationCopyStatus: {status.ToString()}. {message}").FireAndForget();
 
-            Templatex.Extract(file, workingFolder);
+                        if (CleanUpTempFiles(tempFoder, file, out message))
+                        {
+                            status = LocationCopyStatus.Finished;
+                            AppHealth.Current.Verbose.TrackAsync($"LocationCopyStatus: {status.ToString()}. {message}").FireAndForget();
+                        }
+                    }
+                }
+            }
+            return (status, message);
+        }
 
-            File.Delete(file);
+        private static bool ExtractContent(string file, string workingFolder, out string message)
+        {
+            try
+            {
+                Templatex.Extract(file, workingFolder);
+                message = "Content extracted successfully.";
+                return true;
+            }
+            catch(Exception ex)
+            {
+                var msg = "The templates content can't be extracted.";
+                AppHealth.Current.Exception.TrackAsync(ex, msg).FireAndForget();
+                message = $"{msg}. Error message: {ex.Message}";
+                return false;
+            }
+        }
+
+        private static bool CleanUpTempFiles(string usedTempFolder, string mstxFile, out string message)
+        {
+            try
+            {
+                File.Delete(mstxFile);
+                Directory.Delete(usedTempFolder, true);
+                message = "Templates content updated successfully.";
+                return true;
+            }
+            catch(Exception ex)
+            {
+                var msg = "The cleanup task can't be executed.";
+                AppHealth.Current.Exception.TrackAsync(ex, msg).FireAndForget();
+                message = $"{msg}. Error message: {ex.Message}";
+                return false;
+            }
+        }
+
+        private static bool UpdateTemplatesFolder(string tempFoder, string workingFolder, out string message)
+        {
+            try
+            {
+                SafeDelete(Path.Combine(workingFolder, TemplatesName));
+                CopyRecursive(Path.Combine(tempFoder, TemplatesName), Path.Combine(workingFolder, TemplatesName));
+                message = "Templates content updated successfully.";
+                return true;
+            }
+            catch(Exception ex)
+            {
+                var msg = "The templates content can't be updated.";
+                AppHealth.Current.Exception.TrackAsync(ex, msg).FireAndForget();
+                message = $"{msg}. Error message: {ex.Message}";
+                return false;
+            }
+        }
+
+        private bool DownloadContent(string sourceUrl, string file, out string message)
+        {
+            try
+            {
+                var wc = new WebClient();
+                wc.DownloadProgressChanged += Wc_DownloadProgressChanged;
+                wc.DownloadFile(sourceUrl, file);
+                message = "Templates content downloaded successfully.";
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                string msg = "The templates content can't be downloaded.";
+                AppHealth.Current.Exception.TrackAsync(ex, msg).FireAndForget();
+                message = $"{msg}. Error message: {ex.Message}";
+                return false;
+            }
+        }
+
+        private void Wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            
         }
 
         private static void EnsureWorkingFolder(string workingFolder)

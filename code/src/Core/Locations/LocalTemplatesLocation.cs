@@ -9,9 +9,17 @@ namespace Microsoft.Templates.Core.Locations
 {
     public class LocalTemplatesLocation : TemplatesLocation
     {
-        public override void Copy(string workingFolder)
+        public override (LocationCopyStatus Status, string Message) Copy(string workingFolder)
         {
+            var status = LocationCopyStatus.SourceAdquired;
+            var message = "Local templates copy started.";
+
             Copy($@"..\..\..\..\..\{TemplatesLocation.TemplatesName}", workingFolder);
+
+            status = LocationCopyStatus.TargetUpdated;
+            message = "Local templates sucessfully copied.";
+
+            return (status, message);
         }
 
         public override string GetVersion(string workingFolder)
