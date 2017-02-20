@@ -1,11 +1,20 @@
 [
     {
-      "name": "LiveTileQueuePostAction",
+      "name": "TileQueuePostAction",
       "type": "InsertPartialGenerationPostAction",
       "description": "Enable Live Tiles Queue",
       "parameters": {
         "destination.filename": "App.xaml.cs",
         "destination.anchor": "//PostActionAnchor: ENABLE QUEUE"
+      }
+    },
+    {
+      "name": "TileSampleUpdatePostAction",
+      "type": "InsertPartialGenerationPostAction",
+      "description": "Call to SampleUpdate Live Tiles method",
+      "parameters": {
+        "destination.filename": "App.xaml.cs",
+        "destination.anchor": "//PostActionAnchor: LIVE TILE SAMPLE UPDATE"
       }
     }
   ]
