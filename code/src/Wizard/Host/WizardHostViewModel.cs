@@ -33,18 +33,17 @@ namespace Microsoft.Templates.Wizard.Host
 
         public void Iniatialize()
         {
-            var sync = _context.TemplatesRepository.Sync();
+            try
+            {
+                _context.TemplatesRepository.Sync();
+            }
+            catch (RepositorySynchronizationException ex)
+            {
+                ErrorMessageDialog.Show("Ops! It is not possible to update available templates. Please ensure you have internet connection and that you are running the latest version of the extension.", "Updating available templates.", ex.ToString(), MessageBoxImage.Warning);
+            }
 
-            if (sync.Success)
-            {
-                var step = Steps.First();
-                Navigate(step);
-            }
-            else
-            {
-                //TODO: Show a proper message with further information not as "unpolite" as a message box.
-                MessageBox.Show($"The templates repository can't be updated. {sync.Message}\r\n\r\nCheck your internet connection and ensure you are running the latest version for the extension.", "Templates Repository Synchronization", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+            var step = Steps.First();
+            Navigate(step);
         }
 
         private string _stepTitle;

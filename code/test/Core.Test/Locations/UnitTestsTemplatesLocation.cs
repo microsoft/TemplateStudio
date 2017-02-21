@@ -6,17 +6,9 @@ namespace Microsoft.Templates.Core.Test.Locations
 {
     public class UnitTestsTemplatesLocation : TemplatesLocation
     {
-        public override (LocationCopyStatus Status, string Message) Copy(string workingFolder)
-        {
-            var status = LocationCopyStatus.SourceAdquired;
-            var message = "Local templates copy started.";
-
+        public override void Copy(string workingFolder)
+        {            
             Copy($@"..\..\{TemplatesLocation.TemplatesName}", workingFolder);
-
-            status = LocationCopyStatus.TargetUpdated;
-            message = "Local templates sucessfully copied.";
-
-            return (status, message);
         }
 
         public override string GetVersion(string workingFolder)

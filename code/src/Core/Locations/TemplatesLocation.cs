@@ -7,14 +7,6 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Locations
 {
-    public enum LocationCopyStatus
-    {
-        Started,
-        SourceAdquired,
-        TargetUpdated,
-        Finished
-    }
-
     public abstract class TemplatesLocation
     {
         public const string PackagesName = "Packages";
@@ -23,7 +15,7 @@ namespace Microsoft.Templates.Core.Locations
         public const string ProjectTypes = "Projects";
         public const string Frameworks = "Frameworks";
 
-        public abstract (LocationCopyStatus Status, string Message) Copy(string workingFolder);
+        public abstract void Copy(string workingFolder);
         public abstract string GetVersion(string workingFolder);
 
         protected static void SafeDelete(string directoryPath)

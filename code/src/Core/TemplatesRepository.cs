@@ -27,37 +27,25 @@ namespace Microsoft.Templates.Core
             _location = location ?? throw new ArgumentNullException("location");
         }
 
-        public (bool Success, string Message) Sync()
+        public void Sync()
         {
-            var success = true;
-            var message = "Template Repository Synchronization started.";
-            if (_location != null && IsUpdateAvailable())
+            try
             {
-                var copy = _location.Copy(WorkingFolder);
-                
-                if (copy.Status == LocationCopyStatus.Finished || copy.Status == LocationCopyStatus.TargetUpdated)
+                if (_location != null && IsUpdateAvailable())
                 {
+                    _location.Copy(WorkingFolder);
 
                     CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
                     CodeGen.Instance.Cache.Scan(WorkingFolder + $@"\{TemplatesLocation.TemplatesName}");
                     CodeGen.Instance.Cache.WriteTemplateCaches();
-                    message = $"Status: {copy.Status.ToString()} Message: {copy.Message}.";
-                    AppHealth.Current.Warning.TrackAsync(message).FireAndForget();
+                }
 
-                }
-                else
-                {
-                    success = false;
-                    message = $"Status: {copy.Status.ToString()} Message: {copy.Message}.";
-                    AppHealth.Current.Warning.TrackAsync(message).FireAndForget();
-                }
             }
-            else
+            catch (Exception ex)
             {
-                message = $"Update not available to synchronize the templates repository.";
+                var msg = "Error in templates repository synchronization.";
+                throw new RepositorySynchronizationException(msg, ex);
             }
-
-            return (success, message);
         }
 
         public IEnumerable<ITemplateInfo> GetAll()

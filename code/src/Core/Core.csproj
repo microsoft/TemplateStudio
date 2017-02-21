@@ -123,6 +123,7 @@
     <Compile Include="Locations\TemplatesLocation.cs" />
     <Compile Include="Naming.cs" />
     <Compile Include="LayoutItem.cs" />
+    <Compile Include="RepositorySynchronizationException.cs" />
     <Compile Include="TemplatesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateType.cs" />
