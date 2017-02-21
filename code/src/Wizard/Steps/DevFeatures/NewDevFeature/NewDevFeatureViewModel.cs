@@ -9,6 +9,7 @@ using Microsoft.Templates.Wizard.Dialog;
 using System.Collections.ObjectModel;
 using Microsoft.Templates.Wizard.ViewModels;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Wizard.Steps.Pages;
 
 namespace Microsoft.Templates.Wizard.Steps.DevFeatures.NewDevFeature
 {
@@ -19,12 +20,14 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures.NewDevFeature
         private readonly WizardContext _context;
         private readonly NewDevFeatureDialog _dialog;
         private readonly IEnumerable<string> _selectedNames;
+        private readonly IEnumerable<PageViewModel> _selectedTemplates;
 
-        public NewDevFeatureViewModel(WizardContext context, NewDevFeatureDialog newDevFeatureDialog, IEnumerable<string> selectedNames)
+        public NewDevFeatureViewModel(WizardContext context, NewDevFeatureDialog newDevFeatureDialog, IEnumerable<PageViewModel> selectedTemplates)
         {
             _context = context;
             _dialog = newDevFeatureDialog;
-            _selectedNames = selectedNames;
+            _selectedNames = selectedTemplates.Select(t => t.Name);
+            _selectedTemplates = selectedTemplates;
         }
 
         public ICommand OkCommand => new RelayCommand(SaveAndClose, IsValid);
@@ -66,20 +69,31 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures.NewDevFeature
         {
             Templates.Clear();
 
-            var devFeatTemplates = _context.TemplatesRepository.Get(t => t.GetTemplateType() == TemplateType.DevFeature)
-                                                                    .Select(t => new TemplateViewModel(t))
-                                                                    .OrderBy(t => t.Order)
-                                                                    .ToList();
-
-            Templates.AddRange(devFeatTemplates);
+            var devFeatTemplates = _context.TemplatesRepository
+                .Get(t => t.GetTemplateType() == TemplateType.DevFeature)
+                .Select(t => new TemplateViewModel(t))
+                .OrderBy(t => t.Order)
+                .ToList();
+            foreach (var template in devFeatTemplates)
+            {
+                if (template.MultipleInstances == true || !IsAlreadyDefined(template))
+                {
+                    Templates.Add(template);
+                }
+            }
 
             TemplateSelected = devFeatTemplates.FirstOrDefault();
 
             await Task.FromResult(true);
         }
 
-        private void SaveAndClose()
+        private bool IsAlreadyDefined(TemplateViewModel template)
         {
+            return _selectedTemplates.Any(t => t.TemplateName == template.Name);
+        }
+
+        private void SaveAndClose()
+        {            
             _dialog.DialogResult = true;
             _dialog.Result = (ItemName, TemplateSelected.Name);
 
