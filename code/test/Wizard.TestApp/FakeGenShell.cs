@@ -59,6 +59,11 @@ namespace Microsoft.Templates.Wizard.TestApp
 
         public override void AddProjectToSolution(string projectFullPath)
         {
+            var msbuildProj = MsBuildProject.Load(projectFullPath);
+            
+            var solutionFile = SolutionFile.Load(SolutionPath);
+            solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid);
+
         }
 
         public override string GetActiveNamespace()

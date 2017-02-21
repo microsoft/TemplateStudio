@@ -81,6 +81,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="FakeGenShell.cs" />
+    <Compile Include="SolutionFile.cs" />
     <Compile Include="VsItemType.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
