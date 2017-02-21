@@ -15,12 +15,12 @@
                 </DataTemplate>
             </Pivot.HeaderTemplate>
             <PivotItem Header="LOC_ANCHOR:TabbedPivotPage_ItemHeader1~Item 1">
-                <!--TODO: UWPTemplates -> Add here your tab layout-->
+                <!--TODO UWPTemplates: Add here your tab layout-->
                 
             </PivotItem>
             
             <PivotItem Header="LOC_ANCHOR:TabbedPivotPage_ItemHeader2~Item 2">
-                <!--TODO: UWPTemplates -> Add here your tab layout-->
+                <!--TODO UWPTemplates: Add here your tab layout-->
                 
             </PivotItem>
         </Pivot>
