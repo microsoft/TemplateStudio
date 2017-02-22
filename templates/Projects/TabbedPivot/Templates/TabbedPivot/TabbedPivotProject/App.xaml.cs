@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using TabbedPivotProject.Shell;
 //PostActionAnchor: USING BACKGROUNDTASK
-//PostActionAnchor: USING SUSPENDANDRESUME
+//PostActionAnchor: USING SERVICES
 
 
 namespace TabbedPivotProject

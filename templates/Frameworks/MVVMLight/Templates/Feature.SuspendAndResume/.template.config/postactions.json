@@ -7,5 +7,15 @@
       "destination.filename": "StateService.cs",
       "destination.anchor": "//PostActionAnchor: NAVIGATE TO STORED PAGE"
     }
+  },
+  {
+    "name": "UsingServiceLocatorPostAction",
+    "type": "InsertPartialGenerationPostAction",
+    "description": "Inserts using for ServiceLocator",
+    "parameters": {
+      "destination.filename": "StateService.cs",
+      "destination.anchor": "//PostActionAnchor: USING SERVICLOCATOR"
+    }
   }
+  
 ]

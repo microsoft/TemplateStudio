@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using SplitViewProject.Shell;
 //PostActionAnchor: USING BACKGROUNDTASK
-//PostActionAnchor: USING SUSPENDANDRESUME
+//PostActionAnchor: USING SERVICES
 
 namespace SplitViewProject
 {
