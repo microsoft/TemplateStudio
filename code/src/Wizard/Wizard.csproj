@@ -98,6 +98,7 @@
     <Compile Include="Extensions\ObservableCollection.extensions.cs" />
     <Compile Include="GenComposer.cs" />
     <Compile Include="GenParams.cs" />
+    <Compile Include="PostActions\Catalog\BackgroundTaskPostAction.cs" />
     <Compile Include="PostActions\Catalog\LocalizationPostAction.cs" />
     <Compile Include="PostActions\PostActionResources.Designer.cs">
       <AutoGen>True</AutoGen>

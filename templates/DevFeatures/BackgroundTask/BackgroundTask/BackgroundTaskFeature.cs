@@ -45,6 +45,9 @@ namespace ItemNamespace.BackgroundTask
 
                 //This is an example of sending a toast notification from a background task
                 //Documentation: https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-badges-notifications
+                //The Notifications Visualizer helps you to design adaptive toast notifications and live tiles:
+                //https://www.microsoft.com/store/apps/notifications-visualizer/9nblggh5xsl1  
+                //https://msdn.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-notifications-visualizer 
                 SendToastNotification();
             });
         }

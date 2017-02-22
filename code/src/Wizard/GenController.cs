@@ -126,6 +126,12 @@ namespace Microsoft.Templates.Wizard
 
                 locPostAction.Execute(Shell.OutputPath, null, null, Shell);
             }
+            if (genItems.Any(g => g.Template.GetTemplateType() == TemplateType.DevFeature && g.Template.Name == "BackgroundTask"))
+            {
+                var backgroundTaskPostAction = new PostActions.Catalog.BackgroundTaskPostAction();
+
+                backgroundTaskPostAction.Execute(Shell.OutputPath, null, null, Shell);
+            }
         }
 
         private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent)

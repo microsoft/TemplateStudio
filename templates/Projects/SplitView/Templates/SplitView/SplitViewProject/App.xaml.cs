@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using SplitViewProject.Shell;
 //PostActionAnchor: USING BACKGROUNDTASK
+//PostActionAnchor: USING SUSPENDANDRESUME
 
 namespace SplitViewProject
 {
@@ -24,6 +25,8 @@ namespace SplitViewProject
     /// </summary>
     sealed partial class App : Application
     {
+        //PostActionAnchor: STATE SERVICE
+        
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -31,7 +34,7 @@ namespace SplitViewProject
         public App()
         {
             this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            //PostActionAnchor: ENTERED BACKGROUND EVENT REGISTRATION
             //PostActionAnchor: ENABLE QUEUE
         }
 
@@ -40,7 +43,7 @@ namespace SplitViewProject
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -53,13 +56,16 @@ namespace SplitViewProject
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                    //TODO: Load state from previously suspended application
-                }
-
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
+
+                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                {                
+                     rootFrame.Navigate(typeof(ShellPage), e.Arguments);
+                    //PostActionAnchor:RESTORE STATE
+                }
+
+                
             }
 
             if (e.PrelaunchActivated == false)
@@ -79,7 +85,6 @@ namespace SplitViewProject
             //PostActionAnchor: LIVE TILE SAMPLE UPDATE
         }
 
-        //PostActionAnchor: BACKGROUNDTASK CODE
 
         /// <summary>
         /// Invoked when Navigation to a certain page fails
@@ -91,18 +96,13 @@ namespace SplitViewProject
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
 
-        /// <summary>
-        /// Invoked when application execution is being suspended.  Application state is saved
-        /// without knowing whether the application will be terminated or resumed with the contents
-        /// of memory still intact.
-        /// </summary>
-        /// <param name="sender">The source of the suspend request.</param>
-        /// <param name="e">Details about the suspend request.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+        //PostActionAnchor: ENTERED BACKGROUND EVENT HANDLER
+
+        //PostActionAnchor: BACKGROUND ACTIVATED EVENT HANDLER
+
+        protected override void OnActivated(IActivatedEventArgs args)
         {
-            var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Save application state and stop any background activity
-            deferral.Complete();
+            //PostActionAnchor: ACTIVATE FROM TOASTNOTIFICATION
         }
     }
 }
