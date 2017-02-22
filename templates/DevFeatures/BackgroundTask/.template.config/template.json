@@ -10,6 +10,7 @@
     "language": "C#",
     "type": "item",
     "uct.type": "devfeature",
+    "uct.framework": "Basic;MVVMLight",
     "uct.version": "1.0.0",
     "uct.order": "1",
     "uct.multipleInstance": "true"
