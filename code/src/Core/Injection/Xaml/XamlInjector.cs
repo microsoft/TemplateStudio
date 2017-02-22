@@ -32,10 +32,21 @@ namespace Microsoft.Templates.Core.Injection.Xaml
                 var container = source.Select(element.path);
                 if (container != null)
                 {
-                    var newElement = XElement.Parse(element.content);
+                    if (!string.IsNullOrEmpty(element.content))
+                    {
+                        var newElement = XElement.Parse(element.content);
 
-                    container.Add(newElement);
-                    source.CopyNamespaces(newElement);
+                        container.Add(newElement);
+                        source.CopyNamespaces(newElement); 
+                    }
+
+                    if (element.attributes != null)
+                    {
+                        foreach (var attr in element.attributes)
+                        {
+                            container.Add(new XAttribute(attr.name, attr.value));
+                        }
+                    }
                 }
             }
             return source.ToString(SaveOptions.OmitDuplicateNamespaces);

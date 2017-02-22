@@ -22,15 +22,16 @@ namespace Microsoft.Templates.Core.Test.Injection
                     "System.Globalization"
                 },
                 path = "Microsoft.Templates.Core.Test.PostActions.Class1::Main",
+                before = "Console.WriteLine(v1);",
                 content = "var v1 = \"v1 value\";\r\nvar v2 = \"v2 value\";"
             };
-            var code = File.ReadAllText(@".\TestData\PostActions\Code\Execute.cs");
+            var code = File.ReadAllText(@".\TestData\Injection\Code\Inject.cs");
 
             var target = new CodeInjector(config);
 
             var result = target.Inject(code);
 
-            var expected = File.ReadAllText(@".\TestData\PostActions\Code\Execute_Expected.cs");
+            var expected = File.ReadAllText(@".\TestData\Injection\Code\Inject_Expected.cs");
 
             Assert.Equal(expected, result);
         }

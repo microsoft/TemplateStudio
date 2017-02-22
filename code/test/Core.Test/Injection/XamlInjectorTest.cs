@@ -28,6 +28,8 @@ namespace Microsoft.Templates.Core.Test.Injection
                                                 xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
                                                 xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
                                                 RequestedTheme=""Light""
+                                                attr1=""value1""
+                                                attr2=""value2""
                                                 xmlns:local1=""using:TestProject1""
                                                 xmlns:local2=""using:TestProject2"">
 
@@ -47,6 +49,15 @@ namespace Microsoft.Templates.Core.Test.Injection
             {
                 elements = new Element[]
                 {
+                    new Element
+                    {
+                        path = "/Application",
+                        attributes = new Attr[]
+                        {
+                            new Attr{name = "attr1", value = "value1"},
+                            new Attr{name = "attr2", value = "value2"}
+                        }
+                    },
                     new Element
                     {
                         path = "/Application/Application.Resources/ResourceDictionary",

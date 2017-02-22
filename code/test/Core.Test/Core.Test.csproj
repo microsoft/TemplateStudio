@@ -108,7 +108,7 @@
     <Compile Include="NamingTest.cs" />
     <Compile Include="Injection\CodeInjectorTest.cs" />
     <Compile Include="Injection\ReferencesInjectorTest.cs" />
-    <None Include="TestData\PostActions\Code\Execute.cs">
+    <None Include="TestData\Injection\Code\Inject.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Compile Include="Injection\XamlInjectorTest.cs" />
@@ -119,7 +119,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="TemplatesFixture.cs" />
-    <None Include="TestData\PostActions\Code\Execute_Expected.cs">
+    <None Include="TestData\Injection\Code\Inject_Expected.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Compile Include="UnitTestsTemplatesLocation.cs" />

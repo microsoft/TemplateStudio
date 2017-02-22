@@ -1,9 +1,9 @@
 [
-    {
+/*    {
         "name": "Home",
         "templateIdentity": "Microsoft.UWPTemplates.BlankPage.CSharp",
         "readonly": "true"
-    },
+    },*/
     {
         "name": "en-us",
         "templateIdentity": "Microsoft.UWPTemplates.Localization.CSharp",

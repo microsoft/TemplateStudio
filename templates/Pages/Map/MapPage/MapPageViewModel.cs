@@ -4,7 +4,6 @@ using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls.Maps;
-//PostActionAnchor: MVVM NAMESPACE
 
 namespace ItemNamespace.MapPage
 {

@@ -22,33 +22,27 @@ namespace Microsoft.Templates.Core.Injection.Code
 
         public override string Inject(string sourceContent)
         {
-            //TODO: VERIFY CONFIG
-            var codePath = CodePath.Parse(Config.path);
-
-            if (codePath == null)
-            {
-                return null;
-            }
-
             //TODO: VERIFY PATH NOT NULL
             var tree = CSharpSyntaxTree.ParseText(sourceContent);
             var root = tree.GetRoot() as CompilationUnitSyntax;
 
+            var usings = GetUsings(Config.usings).ToList();
+            root = AddUsings(root, usings);
+
+            //TODO: VERIFY CONFIG
+            var codePath = CodePath.Parse(Config.path);
+
+
             //TODO: VERIFY CODE
             var method = codePath.FindMethod(root);
 
-            if (method == null)
+            if (method != null)
             {
-                return null;
+                var statements = GetStatements(method, Config.content);
+                root = AddStatements(root, method, statements);
             }
 
-            var statements = GetStatements(method, Config.content);
-            var newRoot = AddStatements(root, method, statements);
-
-            var usings = GetUsings(Config.usings);
-            newRoot = AddUsings(newRoot, usings);
-
-            return newRoot
+            return root
                     .NormalizeWhitespace()
                     .ToFullString();
         }
@@ -65,6 +59,11 @@ namespace Microsoft.Templates.Core.Injection.Code
 
         private static IEnumerable<UsingDirectiveSyntax> GetUsings(string[] usings)
         {
+            if (usings == null)
+            {
+                yield break;
+            }
+
             foreach (var u in usings)
             {
                 yield return SyntaxFactory.UsingDirective(SyntaxFactory.IdentifierName(u))
@@ -73,9 +72,10 @@ namespace Microsoft.Templates.Core.Injection.Code
             }
         }
 
-        private static CompilationUnitSyntax AddStatements(CompilationUnitSyntax root, MethodDeclarationSyntax method, IEnumerable<StatementSyntax> statements)
+        private CompilationUnitSyntax AddStatements(CompilationUnitSyntax root, BaseMethodDeclarationSyntax method, IEnumerable<StatementSyntax> statements)
         {
-            var newStatements = method.Body.Statements.AddRange(statements);
+            var newStatements = InsertStatement(method, statements);
+
             var newBody = method.Body.Update(method.Body.OpenBraceToken, newStatements, method.Body.CloseBraceToken);
 
             var newMethod = method.ReplaceNode(method.Body, newBody);
@@ -84,8 +84,42 @@ namespace Microsoft.Templates.Core.Injection.Code
             return newRoot;
         }
 
+        private SyntaxList<StatementSyntax> InsertStatement(BaseMethodDeclarationSyntax method, IEnumerable<StatementSyntax> statements)
+        {
+            if (!string.IsNullOrEmpty(Config.before))
+            {
+                var tree = CSharpSyntaxTree.ParseText(GetMethodSnippet(Config.before));
+                var root = tree.GetRoot();
 
-        private static IEnumerable<StatementSyntax> GetStatements(MethodDeclarationSyntax method, string text)
+                var dummyMethod = root
+                                    .DescendantNodes()
+                                    .OfType<MethodDeclarationSyntax>()
+                                    .FirstOrDefault();
+
+                var beforeStatement = dummyMethod.Body.Statements.FirstOrDefault();
+                if (beforeStatement == null)
+                {
+                    throw new ArgumentException($"Statement {Config.before} not found in source!!");
+                }
+
+                var targetStatement = method.Body.Statements.FirstOrDefault(s => s.ToString().Equals(beforeStatement.ToString(), StringComparison.OrdinalIgnoreCase));
+
+                if (targetStatement == null)
+                {
+                    throw new ArgumentException($"Statement {Config.before} not found in destination!!");
+                }
+
+                var index = method.Body.Statements.IndexOf(targetStatement);
+
+                return method.Body.Statements.InsertRange(index, statements);
+            }
+            else
+            {
+                return method.Body.Statements.AddRange(statements);
+            }
+        }
+
+        private static IEnumerable<StatementSyntax> GetStatements(BaseMethodDeclarationSyntax method, string text)
         {
             var startTrivia = method.GetLeadingTrivia().Span.Length;
 
@@ -97,6 +131,11 @@ namespace Microsoft.Templates.Core.Injection.Code
                                                 .WithLeadingTrivia(SyntaxFactory.Whitespace(new string(' ', startTrivia + 4)))
                                                 .WithTrailingTrivia(method.GetTrailingTrivia());
             }
+        }
+
+        private static string GetMethodSnippet(string statement)
+        {
+            return $"void a(){{{statement}}}";
         }
 
         private class CodePath
@@ -135,7 +174,7 @@ namespace Microsoft.Templates.Core.Injection.Code
                 return instance;
             }
 
-            public MethodDeclarationSyntax FindMethod(SyntaxNode root)
+            public BaseMethodDeclarationSyntax FindMethod(SyntaxNode root)
             {
                 var @namespace = root.DescendantNodes()
                                     .OfType<NamespaceDeclarationSyntax>()
@@ -156,9 +195,17 @@ namespace Microsoft.Templates.Core.Injection.Code
                     return null;
                 }
 
-                var method = @namespace.DescendantNodes()
-                                            .OfType<MethodDeclarationSyntax>()
-                                            .FirstOrDefault(m => m.Identifier.ValueText == MethodName);
+                BaseMethodDeclarationSyntax method = @class.DescendantNodes()
+                                                                .OfType<MethodDeclarationSyntax>()
+                                                                .FirstOrDefault(m => m.Identifier.ValueText == MethodName);
+
+                if (method == null)
+                {
+                    method = @class.DescendantNodes()
+                                        .OfType<ConstructorDeclarationSyntax>()
+                                        .FirstOrDefault(m => m.Identifier.ValueText == MethodName);
+                }
+
 
                 return method;
             }

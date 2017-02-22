@@ -1,0 +1,4 @@
+{
+    "path": "RootNamespace.ViewModelLocator::ViewModelLocator",
+    "content": "RegisterItemName(navigationService);"
+}

@@ -12,6 +12,7 @@ namespace RootNamespace
             var navigationService = new Services.NavigationService();
             SimpleIoc.Default.Register(() => navigationService);
             //PostActionAnchor: REGISTER PAGE IN VIEW_MODEL
+            
         }
     }
 }

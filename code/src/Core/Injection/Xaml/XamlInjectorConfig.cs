@@ -15,5 +15,12 @@ namespace Microsoft.Templates.Core.Injection.Xaml
     {
         public string path { get; set; }
         public string content { get; set; }
+        public Attr[] attributes { get; set; }
+    }
+
+    public class Attr
+    {
+        public string name { get; set; }
+        public string value { get; set; }
     }
 }

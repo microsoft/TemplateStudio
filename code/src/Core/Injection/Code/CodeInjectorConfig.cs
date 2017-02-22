@@ -11,6 +11,7 @@ namespace Microsoft.Templates.Core.Injection.Code
     {
         public string[] usings { get; set; }
         public string path { get; set; }
+        public string before { get; set; }
         public string content { get; set; }
     }
 }

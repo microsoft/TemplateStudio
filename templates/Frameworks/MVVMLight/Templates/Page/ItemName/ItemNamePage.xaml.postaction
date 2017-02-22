@@ -1,0 +1,13 @@
+{
+    "elements": [
+        {
+            "path": "/Page",
+            "attributes": [
+                {
+                    "name": "DataContext",
+                    "value": "{Binding ItemNameViewModel, Source={StaticResource Locator}}"
+                }
+            ]
+        }
+    ]
+}

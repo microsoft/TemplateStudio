@@ -21,10 +21,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             //TODO: EXTRACT THIS SOMEWHERE
             var originalFilePath = _config.Replace(Path.GetExtension(_config), string.Empty);
 
-            //TODO: VERIFY NOT NULL
             var resultContent = injector.Inject(File.ReadAllText(originalFilePath));
-            //TODO: VERIFY NOT NULL
-            File.WriteAllText(originalFilePath, resultContent);
+
+            if (!string.IsNullOrEmpty(resultContent))
+            {
+                File.WriteAllText(originalFilePath, resultContent);
+            }
 
             File.Delete(_config);
         }
