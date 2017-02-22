@@ -70,7 +70,8 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures.NewDevFeature
             Templates.Clear();
 
             var devFeatTemplates = _context.TemplatesRepository
-                .Get(t => t.GetTemplateType() == TemplateType.DevFeature)
+                .Get(t => t.GetTemplateType() == TemplateType.DevFeature
+                    && t.GetFrameworkList().Contains(_context.State.Framework))
                 .Select(t => new TemplateViewModel(t))
                 .OrderBy(t => t.Order)
                 .ToList();
