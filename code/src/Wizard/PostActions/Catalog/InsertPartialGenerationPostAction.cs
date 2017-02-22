@@ -67,6 +67,17 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
                 {
                     string formattedCode = FormatPostActionCode(postActionCodeLines, destinationFileContent, anchorIndex);
 
+                    if (destinationFileContent.Contains(formattedCode))
+                    {
+                        //Delete source file
+                        File.Delete(sourceFile);
+
+                        return new PostActionResult()
+                        {
+                            ResultCode = ResultCode.Success
+                        };
+                    }
+
                     var nextLineBreakAfterAnchor = destinationFileContent.IndexOf(Environment.NewLine, anchorIndex, StringComparison.Ordinal);
                     destinationFileContent = destinationFileContent.Insert(nextLineBreakAfterAnchor, formattedCode);
 

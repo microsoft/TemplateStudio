@@ -16,7 +16,7 @@ namespace ItemNamespace.BackgroundTask
         private static IEnumerable<BackgroundTaskBase> CreateInstances()
         {
             var backgroundTasks = new List<BackgroundTaskBase>();
-            //PostActionAnchor: ADD BACKGROUNDTASK
+            //BACKGROUNDTASK_ANCHOR
 
             return backgroundTasks;
         }

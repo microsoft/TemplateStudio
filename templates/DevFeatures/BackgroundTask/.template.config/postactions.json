@@ -34,14 +34,5 @@
         "destination.filename": "App.xaml.cs",
         "destination.anchor": "//PostActionAnchor: ACTIVATE FROM TOASTNOTIFICATION"
       }
-    },
-    {
-      "name": "AddBackgroundTaskPostAction",
-      "type": "InsertPartialGenerationPostAction",
-      "description":"Adds background task to BackgroundTaskService",
-      "parameters": {
-        "destination.filename": "BackgroundTaskService.cs",
-        "destination.anchor": "//PostActionAnchor: ADD BACKGROUNDTASK"
-      }
     }   
   ]
