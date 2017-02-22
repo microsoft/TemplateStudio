@@ -1,0 +1,8 @@
+{
+    "elements": [
+        {
+            "path": "Page",
+            "content": "<local:ViewModelLocator x:Key=\"Locator\" />"
+        }
+    ]
+}

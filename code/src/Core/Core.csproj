@@ -81,6 +81,7 @@
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Collections.Immutable, Version=1.1.37.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Collections.Immutable.1.1.37\lib\dotnet\System.Collections.Immutable.dll</HintPath>
@@ -117,19 +118,29 @@
     <Compile Include="Diagnostics\TelemetryEvents.cs" />
     <Compile Include="Diagnostics\TelemetryTracker.cs" />
     <Compile Include="Diagnostics\TraceHealthWriter.cs" />
+    <Compile Include="GenInfo.cs" />
+    <Compile Include="GenParams.cs" />
+    <Compile Include="GenShell.cs" />
     <Compile Include="Locations\RemoteTemplatesLocation.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="ITemplateInfo.extensions.cs" />
     <Compile Include="Locations\TemplatesLocation.cs" />
     <Compile Include="Naming.cs" />
     <Compile Include="LayoutItem.cs" />
-    <Compile Include="PostActions\Code\CodePostAction.cs" />
-    <Compile Include="PostActions\Code\CodePostActionConfig.cs" />
+    <Compile Include="PostActions\Catalog\AddItemToProjectPostAction.cs" />
+    <Compile Include="PostActions\Catalog\AddProjectToSolutionPostAction.cs" />
+    <Compile Include="PostActions\Catalog\GenerateTestCertificatePostAction.cs" />
+    <Compile Include="Injection\Code\CodeInjector.cs" />
+    <Compile Include="Injection\Code\CodeInjectorConfig.cs" />
+    <Compile Include="Injection\ContentInjector.cs" />
+    <Compile Include="PostActions\Catalog\InjectionPostAction.cs" />
+    <Compile Include="Injection\References\ReferencesInjector.cs" />
+    <Compile Include="Injection\References\ReferencesInjectorConfig.cs" />
+    <Compile Include="Injection\Xaml\XamlInjector.cs" />
+    <Compile Include="Injection\Xaml\XamlInjectorConfig.cs" />
     <Compile Include="PostActions\PostAction.cs" />
-    <Compile Include="PostActions\References\ReferencesPostAction.cs" />
-    <Compile Include="PostActions\References\ReferencesPostActionConfig.cs" />
-    <Compile Include="PostActions\Xaml\XamlPostAction.cs" />
-    <Compile Include="PostActions\Xaml\XamlPostActionConfig.cs" />
+    <Compile Include="PostActions\PostActionFactory.cs" />
+    <Compile Include="PostActions\Catalog\SetDefaultSolutionConfigurationPostAction.cs" />
     <Compile Include="XElement.extensions.cs" />
     <Compile Include="TemplatesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -150,6 +161,17 @@
     <None Include="Configuration\UwpTemplates.tokenized.config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="CERTENROLLLib">
+      <Guid>{728AB348-217D-11DA-B2A4-000E7BBB2B09}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />

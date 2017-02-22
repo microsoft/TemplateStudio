@@ -1,4 +1,5 @@
 ﻿using Microsoft.TemplateEngine.Edge.Template;
+using Microsoft.Templates.Core;
 using System.Collections.Generic;
 
 namespace Microsoft.Templates.Wizard.PostActions

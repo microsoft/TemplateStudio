@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualStudio.TemplateWizard;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Microsoft.Templates.Wizard
+namespace Microsoft.Templates.Core
 {
     public abstract class GenShell
     {
@@ -44,9 +43,6 @@ namespace Microsoft.Templates.Wizard
         public abstract void ShowTaskList();
         public abstract void ShowModal(Window dialog);
 
-        public void CancelWizard()
-        {
-            throw new WizardBackoutException();
-        }
+        public abstract void CancelWizard();
     }
 }

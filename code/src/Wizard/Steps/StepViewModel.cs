@@ -1,4 +1,5 @@
-﻿using Microsoft.Templates.Wizard.Host;
+﻿using Microsoft.Templates.Core;
+using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Wizard.ViewModels;
 using System;
 using System.Collections.Generic;

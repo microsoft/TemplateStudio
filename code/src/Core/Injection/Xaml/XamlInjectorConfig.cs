@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.Templates.Core.PostActions.Code
+namespace Microsoft.Templates.Core.Injection.Xaml
 {
-    public class CodePostActionConfig
+    public class XamlInjectorConfig
     {
-        public string[] usings { get; set; }
+        public Element[] elements { get; set; }
+    }
+
+    public class Element
+    {
         public string path { get; set; }
         public string content { get; set; }
     }

@@ -1,18 +1,15 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.Templates.Core.PostActions.Xaml
+namespace Microsoft.Templates.Core.Injection.Code
 {
-    public class XamlPostActionConfig
+    public class CodeInjectorConfig
     {
-        public Element[] elements { get; set; }
-    }
-
-    public class Element
-    {
+        public string[] usings { get; set; }
         public string path { get; set; }
         public string content { get; set; }
     }

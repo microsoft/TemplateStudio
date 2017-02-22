@@ -1,4 +1,4 @@
-﻿using Microsoft.Templates.Core.PostActions.Code;
+﻿using Microsoft.Templates.Core.Injection.Code;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,14 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Microsoft.Templates.Core.Test.PostActions
+namespace Microsoft.Templates.Core.Test.Injection
 {
-    public class CodePostActionTest
+    public class CodeInjectorTest
     {
         [Fact]
-        public void Execute()
+        public void Inject()
         {
-            var config = new CodePostActionConfig
+            var config = new CodeInjectorConfig
             {
                 usings = new string[]
                 {
@@ -26,8 +26,9 @@ namespace Microsoft.Templates.Core.Test.PostActions
             };
             var code = File.ReadAllText(@".\TestData\PostActions\Code\Execute.cs");
 
-            var target = new CodePostAction();
-            var result = target.Execute(config, code);
+            var target = new CodeInjector(config);
+
+            var result = target.Inject(code);
 
             var expected = File.ReadAllText(@".\TestData\PostActions\Code\Execute_Expected.cs");
 

@@ -1,5 +1,4 @@
-﻿using Microsoft.Templates.Core.PostActions;
-using Microsoft.Templates.Core.PostActions.Xaml;
+﻿using Microsoft.Templates.Core.Injection.Xaml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +7,9 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Xunit;
 
-namespace Microsoft.Templates.Core.Test.PostActions
+namespace Microsoft.Templates.Core.Test.Injection
 {
-    public class XamlPostActionTest
+    public class XamlInjectorTest
     {
         private const string Xaml = @"<Application
                                         x:Class=""BlankProject.App""
@@ -42,9 +41,9 @@ namespace Microsoft.Templates.Core.Test.PostActions
                                             </Application>";
 
         [Fact]
-        public void Execute()
+        public void Inject()
         {
-            var config = new XamlPostActionConfig
+            var config = new XamlInjectorConfig
             {
                 elements = new Element[]
                 {
@@ -65,9 +64,9 @@ namespace Microsoft.Templates.Core.Test.PostActions
                     },
                 }
             };
-            var target = new XamlPostAction();
+            var target = new XamlInjector(config);
 
-            var result = target.Execute(config, Xaml);
+            var result = target.Inject(Xaml);
 
             Assert.NotNull(result);
             Assert.Equal(XElement.Parse(EspectedXaml).ToString(), XElement.Parse(result).ToString());

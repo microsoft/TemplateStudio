@@ -8,14 +8,22 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Microsoft.Templates.Core.PostActions.Code
+namespace Microsoft.Templates.Core.Injection.Code
 {
-    public class CodePostAction : PostAction<CodePostActionConfig>
+    public class CodeInjector : ContentInjector<CodeInjectorConfig>
     {
-        public override string Execute(CodePostActionConfig config, string sourceContent)
+        public CodeInjector(string filePath) : base(filePath)
+        {
+        }
+
+        public CodeInjector(CodeInjectorConfig config) : base(config)
+        {
+        }
+
+        public override string Inject(string sourceContent)
         {
             //TODO: VERIFY CONFIG
-            var codePath = CodePath.Parse(config.path);
+            var codePath = CodePath.Parse(Config.path);
 
             if (codePath == null)
             {
@@ -34,10 +42,10 @@ namespace Microsoft.Templates.Core.PostActions.Code
                 return null;
             }
 
-            var statements = GetStatements(method, config.content);
+            var statements = GetStatements(method, Config.content);
             var newRoot = AddStatements(root, method, statements);
 
-            var usings = GetUsings(config.usings);
+            var usings = GetUsings(Config.usings);
             newRoot = AddUsings(newRoot, usings);
 
             return newRoot

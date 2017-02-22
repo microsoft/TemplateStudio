@@ -1,4 +1,4 @@
-﻿using Microsoft.Templates.Core.PostActions.References;
+﻿using Microsoft.Templates.Core.Injection.References;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Microsoft.Templates.Core.Test.PostActions
+namespace Microsoft.Templates.Core.Test.Injection
 {
-    public class ReferencesPostActionTest
+    public class ReferencesInjectorTest
     {
         private const string Json = @"{
                                       ""dependencies"": {
@@ -56,9 +56,9 @@ namespace Microsoft.Templates.Core.Test.PostActions
                                     }";
 
         [Fact]
-        public void Execute()
+        public void Inject()
         {
-            var config = new ReferencesPostActionConfig
+            var config = new ReferencesInjectorConfig
             {
                 dependencies = new Dictionary<string, string>
                 {
@@ -66,17 +66,18 @@ namespace Microsoft.Templates.Core.Test.PostActions
                 }
             };
 
-            var target = new ReferencesPostAction();
-            var result = target.Execute(config, Json);
+            var target = new ReferencesInjector(config);
+
+            var result = target.Inject(Json);
             var expected = JsonConvert.DeserializeObject<ProjectJson>(ExpectedJson);
 
             Assert.Equal(JsonConvert.SerializeObject(expected, Formatting.Indented), result);
         }
 
         [Fact]
-        public void Execute_EmptyDependencies()
+        public void Inject_EmptyDependencies()
         {
-            var config = new ReferencesPostActionConfig
+            var config = new ReferencesInjectorConfig
             {
                 dependencies = new Dictionary<string, string>
                 {
@@ -84,8 +85,9 @@ namespace Microsoft.Templates.Core.Test.PostActions
                 }
             };
 
-            var target = new ReferencesPostAction();
-            var result = target.Execute(config, "{}");
+            var target = new ReferencesInjector(config);
+
+            var result = target.Inject("{}");
             var expected = JsonConvert.DeserializeObject<ProjectJson>(ExpectedJsonEmpty);
 
             Assert.Equal(JsonConvert.SerializeObject(expected, Formatting.Indented), result);

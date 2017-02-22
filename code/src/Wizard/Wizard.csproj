@@ -97,7 +97,6 @@
     <Compile Include="Dialog\RelayCommand.cs" />
     <Compile Include="Extensions\ObservableCollection.extensions.cs" />
     <Compile Include="GenComposer.cs" />
-    <Compile Include="GenParams.cs" />
     <Compile Include="PostActions\Catalog\LocalizationPostAction.cs" />
     <Compile Include="PostActions\PostActionResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -115,8 +114,6 @@
     <Compile Include="PostActions\Catalog\SetDefaultSolutionConfigurationPostAction.cs" />
     <Compile Include="PostActions\PostActionType.cs" />
     <Compile Include="PostActions\ResultCode.cs" />
-    <Compile Include="GenInfo.cs" />
-    <Compile Include="GenShell.cs" />
     <Compile Include="Resources\ResourcesExtensions.cs" />
     <Compile Include="Resources\StringRes.Designer.cs">
       <DependentUpon>StringRes.resx</DependentUpon>

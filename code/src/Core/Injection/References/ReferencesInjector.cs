@@ -5,11 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.Templates.Core.PostActions.References
+namespace Microsoft.Templates.Core.Injection.References
 {
-    public class ReferencesPostAction : PostAction<ReferencesPostActionConfig>
+    public class ReferencesInjector : ContentInjector<ReferencesInjectorConfig>
     {
-        public override string Execute(ReferencesPostActionConfig config, string sourceContent)
+        public ReferencesInjector(string filePath) : base(filePath)
+        {
+        }
+
+        public ReferencesInjector(ReferencesInjectorConfig config) : base(config)
+        {
+        }
+
+        public override string Inject(string sourceContent)
         {
             //TODO: VERIFY SAME FORMAT
             var projectJson = JsonConvert.DeserializeObject<ProjectJson>(sourceContent);
@@ -19,7 +27,7 @@ namespace Microsoft.Templates.Core.PostActions.References
                 projectJson.dependencies = new Dictionary<string, string>();
             }
 
-            foreach (var dependency in config.dependencies)
+            foreach (var dependency in Config.dependencies)
             {
                 projectJson.dependencies.Add(dependency.Key, dependency.Value);
             }

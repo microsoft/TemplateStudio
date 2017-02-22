@@ -1,5 +1,6 @@
 ﻿using CERTENROLLLib;
 using Microsoft.TemplateEngine.Edge.Template;
+using Microsoft.Templates.Core;
 using System;
 using System.IO;
 
