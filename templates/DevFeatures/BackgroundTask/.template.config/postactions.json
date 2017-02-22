@@ -1,11 +1,11 @@
 [
     {
-      "name": "BackgroundTaskPostAction",
+      "name": "BackgroundActivatedPostAction",
       "type": "InsertPartialGenerationPostAction",
       "description": "Adds Background task code",
       "parameters": {
         "destination.filename": "App.xaml.cs",
-        "destination.anchor": "//PostActionAnchor: BACKGROUNDTASK CODE"
+        "destination.anchor": "//PostActionAnchor: BACKGROUND ACTIVATED EVENT HANDLER"
       }
     },
     {
@@ -24,6 +24,15 @@
       "parameters": {
         "destination.filename": "App.xaml.cs",
         "destination.anchor": "//PostActionAnchor: USING BACKGROUNDTASK"
+      }
+    },
+    {
+      "name": "ActivateFromToastNotificationPostAction",
+      "type": "InsertPartialGenerationPostAction",
+      "description":"Handles app activation from toast notification",
+      "parameters": {
+        "destination.filename": "App.xaml.cs",
+        "destination.anchor": "//PostActionAnchor: ACTIVATE FROM TOASTNOTIFICATION"
       }
     },
     {

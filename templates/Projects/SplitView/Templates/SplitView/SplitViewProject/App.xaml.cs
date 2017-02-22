@@ -34,8 +34,7 @@ namespace SplitViewProject
         public App()
         {
             this.InitializeComponent();
-            this.Suspending += OnSuspending;
-            this.EnteredBackground += App_EnteredBackground;
+            //PostActionAnchor: ENTERED BACKGROUND EVENT REGISTRATION
             //PostActionAnchor: ENABLE QUEUE
         }
 
@@ -57,15 +56,16 @@ namespace SplitViewProject
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
+                // Place the frame in the current Window
+                Window.Current.Content = rootFrame;
+
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                    //TODO: Load state from previously suspended application
+                {                
                      rootFrame.Navigate(typeof(ShellPage), e.Arguments);
                     //PostActionAnchor:RESTORE STATE
                 }
 
-                // Place the frame in the current Window
-                Window.Current.Content = rootFrame;
+                
             }
 
             if (e.PrelaunchActivated == false)
@@ -85,7 +85,6 @@ namespace SplitViewProject
             //PostActionAnchor: LIVE TILE SAMPLE UPDATE
         }
 
-        //PostActionAnchor: BACKGROUNDTASK CODE
 
         /// <summary>
         /// Invoked when Navigation to a certain page fails
@@ -97,26 +96,13 @@ namespace SplitViewProject
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
 
-        /// <summary>
-        /// Invoked when application execution is being suspended.  Application state is saved
-        /// without knowing whether the application will be terminated or resumed with the contents
-        /// of memory still intact.
-        /// </summary>
-        /// <param name="sender">The source of the suspend request.</param>
-        /// <param name="e">Details about the suspend request.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
-        {
-            var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Save application state and stop any background activity
-            deferral.Complete();
-        }
+        //PostActionAnchor: ENTERED BACKGROUND EVENT HANDLER
 
-        private async void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e)
-        {
-            var deferral = e.GetDeferral();
+        //PostActionAnchor: BACKGROUND ACTIVATED EVENT HANDLER
 
-            //PostActionAnchor: SAVE STATE
-            deferral.Complete();
+        protected override void OnActivated(IActivatedEventArgs args)
+        {
+            //PostActionAnchor: ACTIVATE FROM TOASTNOTIFICATION
         }
     }
 }

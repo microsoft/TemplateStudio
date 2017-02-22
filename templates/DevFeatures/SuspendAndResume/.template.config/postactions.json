@@ -1,11 +1,20 @@
 [
     {
-      "name": "SaveStatePostAction",
+      "name": "EnteredBackgroundPostAction",
+      "type": "InsertPartialGenerationPostAction",
+      "description": "Registers event handler for entered background",
+      "parameters": {
+        "destination.filename": "App.xaml.cs",
+        "destination.anchor": "//PostActionAnchor: ENTERED BACKGROUND EVENT REGISTRATION"
+      }
+    },
+    {
+      "name": "EnteredBackgroundEventHandlerPostAction",
       "type": "InsertPartialGenerationPostAction",
       "description": "Saves the application state on backgroundtask entered",
       "parameters": {
         "destination.filename": "App.xaml.cs",
-        "destination.anchor": " //PostActionAnchor: SAVE STATE"
+        "destination.anchor": "//PostActionAnchor: ENTERED BACKGROUND EVENT HANDLER"
       }
     },
     {

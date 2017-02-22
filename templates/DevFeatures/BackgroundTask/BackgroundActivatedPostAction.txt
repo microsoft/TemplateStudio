@@ -1,0 +1,8 @@
+protected override void OnBackgroundActivated(BackgroundActivatedEventArgs args) 
+{ 
+    BackgroundTaskService.Start(args.TaskInstance); 
+} 
+
+
+
+ 

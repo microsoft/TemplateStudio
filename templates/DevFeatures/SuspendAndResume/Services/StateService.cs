@@ -9,14 +9,23 @@ using System.Runtime.CompilerServices;
 
 namespace ItemNamespace.Services
 {
+    /// <summary>
+    /// This class exposes methods and events to save and restore the application's state. 
+    /// For more information regarding the application lifecycle and how to handle suspend and resume, please see: 
+    /// https://docs.microsoft.com/windows/uwp/launch-resume/app-lifecycle
+    /// </summary>
     public class StateService
     {
         private const string stateFilename = "pageState.json";
 
+        /// <summary>
+        /// Saves the application state (current page and it's data) to local folder
+        /// </summary>
+        /// <returns></returns>
         internal async Task SaveStateAsync()
         {
             var pageState = new Dictionary<String, Object>();
-            Type page = SaveState.Target.GetType();
+            Type page = SaveState?.Target.GetType();
             var saveStateArgs = new SaveStateEventArgs(pageState, page);
 
             SaveState?.Invoke(this, saveStateArgs);
@@ -27,6 +36,11 @@ namespace ItemNamespace.Services
 
         }
 
+        /// <summary>
+        /// Restores the application state from local folder, navigates to stored page and restores it's data
+        /// </summary>
+        /// <param name="arguments"></param>
+        /// <returns></returns>
         internal async Task RestoreStateAsync(string arguments)
         {
             SaveStateEventArgs saveState;
@@ -41,20 +55,19 @@ namespace ItemNamespace.Services
 
                     saveState = JsonConvert.DeserializeObject<SaveStateEventArgs>(saveStateData);
 
-                    if (saveState != null)
+                    if (saveState != null && saveState.Page != null)
                     {
-                        //Navigate to stored page 
-                        NavigationService.Instance.Navigate(saveState.Page, arguments);
+                        //PostActionAnchor: NAVIGATE TO STORED PAGE
 
                         //Restore page state
-                        RestoreState.Invoke(this, new RestoreStateEventArgs(saveState.PageState));
+                        RestoreState?.Invoke(this, new RestoreStateEventArgs(saveState.PageState));
                     }
                 }
             }
         }
 
         //TODO UWPTEMPLATES: Subscribe to this event in pages in OnNavigatedTo event handler
-        //                   to save page data, unsubscribe in OnNavigatedFrom
+        //to save page data, unsubscribe in OnNavigatedFrom
 
         public event SaveStateEventHandler SaveState;
         
@@ -62,13 +75,11 @@ namespace ItemNamespace.Services
 
 
         //TODO UWPTEMPLATES: Subscribe to this event in pages in OnNavigatedTo event handler
-        //                   to restore page data, unsubscribe in OnNavigatedFrom
+        //to restore page data, unsubscribe in OnNavigatedFrom
 
         public event RestoreStateEventHandler RestoreState;
 
         public delegate void RestoreStateEventHandler(object sender, RestoreStateEventArgs e);
-
-        
 
         public class RestoreStateEventArgs : EventArgs
         {
@@ -82,7 +93,6 @@ namespace ItemNamespace.Services
             }
         }
 
-       
         public class SaveStateEventArgs : EventArgs
         {
             public Object PageState { get; set; }

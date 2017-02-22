@@ -1,7 +1,7 @@
 {
   "author": "Microsoft",
   "classifications": ["Universal"],
-  "name": "Background Task",
+  "name": "BackgroundTask",
   "groupIdentity": "Microsoft.UWPTemplates.BackgroundTaskFeature",
   "identity": "Microsoft.UWPTemplates.BackgroundTaskFeature.CSharp",
   "shortName": "backgroundtask",

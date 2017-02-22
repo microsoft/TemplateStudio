@@ -1,0 +1,2 @@
+//Navigate to stored page 
+NavigationService.Instance.Navigate(saveState.Page, arguments);

@@ -1,0 +1,11 @@
+[
+  {
+    "name": "NavigateToStoredPagePostAction",
+    "type": "InsertPartialGenerationPostAction",
+    "description": "Navigates to stored page",
+    "parameters": {
+      "destination.filename": "StateService.cs",
+      "destination.anchor": "//PostActionAnchor: NAVIGATE TO STORED PAGE"
+    }
+  }
+]

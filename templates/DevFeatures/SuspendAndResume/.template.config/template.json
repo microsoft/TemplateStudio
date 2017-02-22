@@ -1,7 +1,7 @@
 {
   "author": "Microsoft",
   "classifications": ["Universal"],
-  "name": "Suspend and Resume",
+  "name": "SuspendAndResume",
   "groupIdentity": "Microsoft.UWPTemplates.SuspendAndResumeFeature",
   "identity": "Microsoft.UWPTemplates.SuspendAndResumeFeature.CSharp",
   "shortName": "suspendandresume",
