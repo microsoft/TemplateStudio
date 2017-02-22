@@ -157,6 +157,20 @@ namespace Microsoft.Templates.Core
             return result;
         }
 
+        public static bool GetMultipleInstance(this ITemplateInfo ti)
+        {
+            var result = GetValueFromTag(ti, TagPrefix + "multipleInstance");
+            if (!string.IsNullOrEmpty(result))
+            {
+                bool boolResult;
+                if (Boolean.TryParse(result, out boolResult))
+                {
+                    return boolResult;
+                }
+            }            
+            return false;
+        }
+
         private static string GetConfigDir(ITemplateInfo ti)
         {
             CodeGen.Instance.Settings.SettingsLoader.TryGetFileFromIdAndPath(ti.ConfigMountPointId, ti.ConfigPlace, out IFile file);

@@ -18,7 +18,7 @@ namespace ItemName.Shell
         {
             get
             {
-                //TODO: UWPTemplates -> Show pages in Pivot by adding a navigation item for each page with its name.
+                //TODO UWPTemplates: Show pages in Pivot by adding a navigation item for each page with its name.
 
                 //PostActionAnchor: ADD PAGE TO NAVIGATION
                                 

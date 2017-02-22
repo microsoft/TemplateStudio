@@ -1,4 +1,5 @@
 ﻿using Microsoft.Templates.Wizard.Host;
+using Microsoft.Templates.Wizard.Steps.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +24,9 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures.NewDevFeature
         public NewDevFeatureViewModel ViewModel { get; }
         public (string name, string templateName) Result { get; set; }
 
-        public NewDevFeatureDialog(WizardContext context, IEnumerable<string> selectedNames)
+        public NewDevFeatureDialog(WizardContext context, IEnumerable<PageViewModel> selectedTemplates)
         {
-            ViewModel = new NewDevFeatureViewModel(context, this, selectedNames);
+            ViewModel = new NewDevFeatureViewModel(context, this, selectedTemplates);
 
             DataContext = ViewModel;
             Loaded += NewDevFeatureDialog_Loaded;
