@@ -47,8 +47,8 @@ namespace Microsoft.Templates.Core
             }
             catch(Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"Error syncing templates content: {ex.Message}").FireAndForget();
-                AppHealth.Current.Verbose.TrackAsync($"Sync Exception details", ex).FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"Synchronization Failed. {ex.Message}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"Ensure you have internet connection and try again and that you are running the latest version for the extension.").FireAndForget();
                 throw;
             }
         }
@@ -85,7 +85,7 @@ namespace Microsoft.Templates.Core
             }
             catch (Exception ex)
             {
-                var msg = "Error in templates repository updating templates cache.";
+                var msg = "Error updating templates cache.";
                 throw new RepositorySynchronizationException(msg, ex);
             }
         }
