@@ -117,14 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="HomeTitle.Text" xml:space="preserve">
-    <value>My SplitView application</value>
+  <data name="AddCommand" xml:space="preserve">
+    <value>Add</value>
   </data>
-  <data name="PaneHome" xml:space="preserve">
-    <value>Home</value>
+  <data name="CancelCommand" xml:space="preserve">
+    <value>Cancel</value>
   </data>
-  <data name="TODO" xml:space="preserve">
-    <value>Add a splitview menu item title for each page</value>
+  <data name="NoFeaturesMessage" xml:space="preserve">
+    <value>Add features pushing add button. Lorem ipsum</value>
   </data>
-  <!--PostActionAnchor: ADD PAGE RESOURCES-->
+  <data name="OkCommand" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="PageName_Text" xml:space="preserve">
+    <value>Page name:</value>
+  </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Select your developer features:</value>
+  </data>
+  <data name="RemoveCommand" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="ValidationError_AlreadyExists" xml:space="preserve">
+    <value>Name already exists</value>
+  </data>
+  <data name="ValidationError_BadFormat" xml:space="preserve">
+    <value>Name contains not allowed caracters</value>
+  </data>
+  <data name="ValidationError_Empty" xml:space="preserve">
+    <value>Name cannot be empty</value>
+  </data>
 </root>

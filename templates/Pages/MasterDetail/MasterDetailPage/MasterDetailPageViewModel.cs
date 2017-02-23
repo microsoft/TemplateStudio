@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 //PostActionAnchor: MVVM NAMESPACE
 
 namespace ItemNamespace.MasterDetailPage
@@ -33,14 +34,11 @@ namespace ItemNamespace.MasterDetailPage
         public DessertModel Selected
         {
             get => _selected;
-            set
-            {
-                Set(ref _selected, value);
-                NavigateToDetail();
-            }
+            set => Set(ref _selected, value);
         }
 
         public ICommand LoadDataCommand { get; private set; }
+        public ICommand ItemClickCommand { get; private set; }
 
         public ObservableCollection<DessertModel> DessertList { get; private set; } = new ObservableCollection<DessertModel>();
 
@@ -48,6 +46,7 @@ namespace ItemNamespace.MasterDetailPage
         {
             this._useNavigation = Window.Current.Bounds.Width < UseNavigationWithRequested;
             LoadDataCommand = new RelayCommand(async () => { await LoadDataAsync(); });
+            ItemClickCommand = new RelayCommand<ItemClickEventArgs>(OnItemClick);
             Window.Current.SizeChanged += OnWindowSizeChanged;
             SetGoBack();
         }
@@ -72,7 +71,7 @@ namespace ItemNamespace.MasterDetailPage
             this._useNavigation = newWidth < UseNavigationWithRequested;
         }
 
-        public async Task LoadDataAsync()
+        private async Task LoadDataAsync()
         {
             this.DessertList.Clear();
 
@@ -86,10 +85,21 @@ namespace ItemNamespace.MasterDetailPage
             if (Window.Current.Bounds.Width >= UseNavigationWithRequested)
             {
                 Selected = DessertList.First();
+                NavigateToDetail();
             }
         }
 
-        public void NavigateToDetail()
+        private void OnItemClick(ItemClickEventArgs args)
+        {
+            DessertModel item = args?.ClickedItem as DessertModel;
+            if (item != null)
+            {
+                Selected = item;
+                NavigateToDetail();
+            }
+        }
+
+        private void NavigateToDetail()
         {
             this.DetailVisibility = Visibility.Visible;
             if (this._useNavigation)

@@ -1,4 +1,3 @@
-using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Controls;
 
 namespace ItemName.Shell
@@ -8,10 +7,9 @@ namespace ItemName.Shell
         public string Title { get; set; }
         public Page Page { get; set; }
 
-        public ShellTabbedItem(string resource, Page page)
+        public ShellTabbedItem(string title, Page page)
         {
-            ResourceLoader resourceLoader = new ResourceLoader();
-            this.Title = resourceLoader.GetString(resource);
+            this.Title = title;
             this.Page = page;
         }
     }

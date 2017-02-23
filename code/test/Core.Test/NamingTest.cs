@@ -31,7 +31,7 @@ namespace Microsoft.Templates.Core.Test
         public void Infer_Clean()
         {
             var existing = new string[] { };
-            var result = Naming.Infer(existing, "Blank-Page");
+            var result = Naming.Infer(existing, "Blank$Page");
 
             Assert.Equal("BlankPage", result);
         }

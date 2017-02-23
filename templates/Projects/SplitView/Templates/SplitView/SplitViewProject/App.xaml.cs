@@ -14,9 +14,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
 using SplitViewProject.Shell;
-//PostActionAnchor: ADD SERVICES NS
+//PostActionAnchor: USING BACKGROUNDTASK
 
 namespace SplitViewProject
 {
@@ -25,7 +24,6 @@ namespace SplitViewProject
     /// </summary>
     sealed partial class App : Application
     {
-        //PostActionAnchor: DEFINE NAVIGATION PROPERTY
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -34,6 +32,7 @@ namespace SplitViewProject
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            //PostActionAnchor: ENABLE QUEUE
         }
 
         /// <summary>
@@ -75,8 +74,12 @@ namespace SplitViewProject
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
-            //PostActionAnchor: GET APP THEME
+            //PostActionAnchor: GET APP THEME            
+            //PostActionAnchor: REGISTER BACKGROUNDTASK
+            //PostActionAnchor: LIVE TILE SAMPLE UPDATE
         }
+
+        //PostActionAnchor: BACKGROUNDTASK CODE
 
         /// <summary>
         /// Invoked when Navigation to a certain page fails

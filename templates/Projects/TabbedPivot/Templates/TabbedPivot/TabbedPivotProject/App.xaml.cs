@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using TabbedPivotProject.Shell;
+//PostActionAnchor: USING BACKGROUNDTASK
 
 namespace TabbedPivotProject
 {
@@ -31,6 +32,7 @@ namespace TabbedPivotProject
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            //PostActionAnchor: ENABLE QUEUE
         }
 
         /// <summary>
@@ -73,7 +75,11 @@ namespace TabbedPivotProject
                 Window.Current.Activate();
             }
             //PostActionAnchor: GET APP THEME
+            //PostActionAnchor: REGISTER BACKGROUNDTASK
+            //PostActionAnchor: LIVE TILE SAMPLE UPDATE
         }
+
+        //PostActionAnchor: BACKGROUNDTASK CODE
 
         /// <summary>
         /// Invoked when Navigation to a certain page fails

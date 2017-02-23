@@ -87,6 +87,7 @@
     <Compile Include="GenerationTestsFixture.cs" />
     <Compile Include="MSBuildProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SolutionFile.cs" />
     <Compile Include="TextBlock.cs" />
     <Compile Include="VsItemType.cs" />
   </ItemGroup>

@@ -193,6 +193,24 @@ namespace Microsoft.Templates.Core.Test
             Assert.Collection(result);
         }
 
+        [Fact]
+        public void GetDefaultName()
+        {
+            var target = GetTarget("ProjectTemplate");
+            var result = target.GetDefaultName();
+
+            Assert.Equal("DefaultName", result);
+        }
+
+        [Fact]
+        public void GetDefaultName_unspecified()
+        {
+            var target = GetTarget("UnspecifiedTemplate");
+            var result = target.GetDefaultName();
+
+            Assert.Equal("UnspecifiedTemplate", result);
+        }
+
         private ITemplateInfo GetTarget(string templateName)
         {
             var allTemplates = _fixture.Repository.GetAll();

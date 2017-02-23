@@ -77,6 +77,6 @@ namespace Microsoft.Templates.Test
             StringReader sr = new StringReader(sb.ToString());
             XElement itemElement = XElement.Load(sr);
             return itemElement;
-        }
+        }  
     }
 }

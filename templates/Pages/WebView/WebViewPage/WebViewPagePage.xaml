@@ -7,7 +7,8 @@
     <!-- PostActionAnchor: SET DATACONTEXT -->
     mc:Ignorable="d">
 
-  <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <WebView Source="{Binding Source}" />
-  </Grid>  
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <WebView Source="{Binding Source}" />
+        <!--Consider giving feedback to the user for waiting in the navigation-->
+    </Grid>
 </Page>

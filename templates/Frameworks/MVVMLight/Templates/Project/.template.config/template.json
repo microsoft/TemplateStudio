@@ -42,7 +42,8 @@
     "uct.type": "framework",
     "uct.framework": "MVVMLight",
     "uct.version": "1.0.0",
-    "uct.order": "1"
+    "uct.order": "1",
+    "uct.licences": "[MVVMLight](http://mvvmlight.codeplex.com/license)"
   },
   "sourceName": "ItemName",
   "preferNameDirectory": true,

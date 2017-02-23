@@ -1,1 +1,1 @@
-yield return new ShellTabbedItem("ItemName", new ItemName.ItemNamePage());
+yield return new ShellTabbedItem("LOC_ANCHOR:Shell_ItemName~ItemName", new ItemName.ItemNamePage());

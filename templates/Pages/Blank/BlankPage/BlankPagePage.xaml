@@ -7,11 +7,11 @@
     <!-- PostActionAnchor: SET DATACONTEXT -->
     mc:Ignorable="d">
     <Page.Resources>
-        <Thickness x:Key="PageMargin">24,12</Thickness>
+        <Thickness x:Key="ContainerMargin">24,12</Thickness>
     </Page.Resources>
 
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <StackPanel Margin="{StaticResource PageMargin}">
+    <StackPanel Margin="{StaticResource ContainerMargin}">
       <TextBlock Text="LOC_ANCHOR:BlankPage_Title~BlankPage" Style="{ThemeResource HeaderTextBlockStyle}"/>
     </StackPanel>
   </Grid>  

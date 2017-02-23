@@ -10,15 +10,23 @@
     mc:Ignorable="d">
 
   <Page.Resources>
-        <Style TargetType="RelativePanel" x:Key="ItemContainerStyle">
-            <Setter Property="Margin" Value="0,5,0,5"/>
-        </Style>
+        <Thickness x:Key="ContainerMargin">24,0</Thickness>
+        <Thickness x:Key="PageHeaderMargin">24,12</Thickness>
+        
+        <Thickness x:Key="LargeTopMargin">0,16,0,0</Thickness>
+        <Thickness x:Key="MediumTopMargin">0,8,0,0</Thickness>
+        <Thickness x:Key="SmallTopMargin">0,4,0,0</Thickness>
+        
+        <Thickness x:Key="ListItemMargin">12</Thickness>
+        <Thickness x:Key="ListTextMargin">12,-9,0,0</Thickness>
+
         <Style TargetType="Image" x:Key="ThumbnailStyle">
             <Setter Property="Width" Value="80"/>
             <Setter Property="Height" Value="80"/>
-            <Setter Property="Margin" Value="0,0,10,0" />
+            <Setter Property="Stretch" Value="UniformToFill"/>
         </Style>
     </Page.Resources>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -55,46 +63,53 @@
             <ColumnDefinition x:Name="cd0" />
             <ColumnDefinition x:Name="cd1" />
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <Grid Margin="12,0,0,0" Visibility="{Binding MasterVisibility}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <TextBlock                
-                Text="LOC_ANCHOR:MasterDetailPage_Title~MasterDetailPage"
-                Margin="12,0,0,0"
-                Style="{ThemeResource HeaderTextBlockStyle}"/>
-
-            <ListView
-                Grid.Row="1"                
-                ItemsSource="{Binding DessertList}"
-                SelectionMode="Single"
-                IsItemClickEnabled="True"
-                SelectedItem="{Binding Selected, Mode=TwoWay}">
-
+        <TextBlock Grid.Row="0" Text="LOC_ANCHOR:MasterDetailPage_Title~MasterDetailPage" Margin="{StaticResource PageHeaderMargin}" Style="{ThemeResource HeaderTextBlockStyle}"/>
+        <Grid Visibility="{Binding MasterVisibility}" Grid.Row="1">
+            <ListView ItemsSource="{Binding DessertList}" SelectionMode="Single" IsItemClickEnabled="True" SelectedItem="{Binding Selected}">
+                <i:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="ItemClick">
+                        <core:InvokeCommandAction Command="{Binding ItemClickCommand}"/>
+                    </core:EventTriggerBehavior>
+                </i:Interaction.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <RelativePanel Style="{StaticResource ItemContainerStyle}">
-                            <Image x:Name="Image" Source="{Binding Picture}" RelativePanel.AlignLeftWithPanel="True" Style="{StaticResource ThumbnailStyle}" />
-                            <TextBlock x:Name="Title" Text="{Binding Title}" RelativePanel.RightOf="Image" Style="{StaticResource TitleTextBlockStyle}" />
-                            <TextBlock Text="{Binding Category}" RelativePanel.RightOf="Image" RelativePanel.Below="Title" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                        </RelativePanel>
+                        <Grid Margin="{StaticResource ListItemMargin}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="{Binding Picture}" Style="{StaticResource ThumbnailStyle}" />
+                            <StackPanel Grid.Column="1" Margin="{StaticResource ListTextMargin}">
+                                <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}" />
+                                <TextBlock Text="{Binding Category}" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                            </StackPanel>
+                        </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
 
-        <ScrollViewer x:Name="detailGrid" Visibility="{Binding DetailVisibility}">
-            <StackPanel Margin="12,0">
-                <RelativePanel Style="{StaticResource ItemContainerStyle}">
-                    <Image x:Name="Image" Source="{Binding Selected.Picture}" RelativePanel.AlignLeftWithPanel="True" Style="{StaticResource ThumbnailStyle}" />
-                    <TextBlock x:Name="Title" Text="{Binding Selected.Title}" RelativePanel.RightOf="Image" Style="{ThemeResource TitleTextBlockStyle}" />
-                    <TextBlock Text="{Binding Selected.Category}" RelativePanel.RightOf="Image" RelativePanel.Below="Title" Style="{StaticResource SubtitleTextBlockStyle}" />
-                </RelativePanel>
-                <TextBlock Text="{Binding Selected.Subtitle}" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                <TextBlock Text="{Binding Selected.Description}" Style="{StaticResource BodyTextBlockStyle}"/>
+        <ScrollViewer Grid.Row="1" x:Name="detailGrid" Visibility="{Binding DetailVisibility}">
+            <StackPanel Margin="{StaticResource ContainerMargin}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="{Binding Selected.Picture}" Style="{StaticResource ThumbnailStyle}" />
+                    <StackPanel Grid.Column="1" Margin="{StaticResource ListTextMargin}">
+                        <TextBlock Text="{Binding Selected.Title}" Style="{StaticResource TitleTextBlockStyle}" />
+                        <TextBlock Text="{Binding Selected.Category}" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                    </StackPanel>
+                </Grid>
+                <TextBlock Text="{Binding Selected.Subtitle}" Margin="{StaticResource MediumTopMargin}" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                <TextBlock Text="{Binding Selected.Description}" Margin="{StaticResource SmallTopMargin}" Style="{StaticResource BodyTextBlockStyle}"/>
             </StackPanel>
         </ScrollViewer>
-    </Grid>  
+    </Grid>
 </Page>

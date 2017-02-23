@@ -68,16 +68,16 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
         {
             Templates.Clear();
 
-            var projectTemplates = _context.TemplatesRepository.GetAll()
-                                                                    .Where(f => f.GetTemplateType() == TemplateType.Page
-                                                                        && f.GetFrameworkList().Contains(_context.State.Framework))
-                                                                    .Select(t => new TemplateViewModel(t))
-                                                                    .OrderBy(t => t.Order)
-                                                                    .ToList();
+            var pageTemplates = _context.TemplatesRepository.GetAll()
+                                                                .Where(f => f.GetTemplateType() == TemplateType.Page
+                                                                    && f.GetFrameworkList().Contains(_context.State.Framework))
+                                                                .Select(t => new TemplateViewModel(t))
+                                                                .OrderBy(t => t.Order)
+                                                                .ToList();
 
-            Templates.AddRange(projectTemplates);
+            Templates.AddRange(pageTemplates);
 
-            TemplateSelected = projectTemplates.FirstOrDefault();
+            TemplateSelected = pageTemplates.FirstOrDefault();
 
             await Task.FromResult(true);
         }

@@ -106,6 +106,12 @@ namespace Microsoft.Templates.Core
             return GetValueFromTag(ti, TagPrefix + "version");
         }
 
+        //TODO: Create Enum for this
+        public static string GetTemplateOutputType(this ITemplateInfo ti)
+        {
+            return GetValueFromTag(ti, "type");
+        }
+
         public static int GetOrder(this ITemplateInfo ti)
         {
             var rawOrder = GetValueFromTag(ti, TagPrefix + "order");
@@ -138,6 +144,17 @@ namespace Microsoft.Templates.Core
 
             var layoutContent = File.ReadAllText(layoutFile);
             return JsonConvert.DeserializeObject<List<LayoutItem>>(layoutContent);
+        }
+
+        public static string GetDefaultName(this ITemplateInfo ti)
+        {
+            var result = GetValueFromTag(ti, TagPrefix + "defaultInstance");
+            if (string.IsNullOrEmpty(result))
+            {
+                result = ti.Name;
+            }
+
+            return result;
         }
 
         private static string GetConfigDir(ITemplateInfo ti)
