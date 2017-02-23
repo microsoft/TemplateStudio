@@ -71,13 +71,7 @@ namespace Microsoft.Templates.Test
             };
 
             AddLayoutItems(wizardState, targetProjectTemplate);
-
-            var pageTemplates = GenerationTestsFixture.Templates
-              .Where(t => t.GetFrameworkList().Contains(framework) &&
-              t.GetType() == t.GetType() &&
-              t.GetTemplateType() == TemplateType.Page);
-
-            AddItems(wizardState, pageTemplates);
+            AddItems(wizardState, GetTemplates(framework, TemplateType.Page));
 
             generator.Generate(wizardState);
 
@@ -109,10 +103,7 @@ namespace Microsoft.Templates.Test
             };
 
             AddLayoutItems(wizardState, targetProjectTemplate);
-
-            var devfeaturesTemplates = GetTemplates(framework, TemplateType.DevFeature); 
-            
-            AddItems(wizardState, devfeaturesTemplates);
+            AddItems(wizardState, GetTemplates(framework, TemplateType.DevFeature));
 
             generator.Generate(wizardState);
 
@@ -132,7 +123,6 @@ namespace Microsoft.Templates.Test
         {
             return GenerationTestsFixture.Templates
               .Where(t => t.GetFrameworkList().Contains(framework) &&
-              t.GetType() == t.GetType() &&
               t.GetTemplateType() == templateType);
         }
 
@@ -143,7 +133,11 @@ namespace Microsoft.Templates.Test
 
             foreach (var layoutItem in layouts)
             {
-                var template = GenerationTestsFixture.Templates.Where(t => t.Identity == layoutItem.templateIdentity).First();
+                var template = GenerationTestsFixture.Templates.Where(t => t.Identity == layoutItem.templateIdentity).FirstOrDefault();
+                if (template == null)
+                {
+                    throw new Exception($"Template {layoutItem.templateIdentity} could not be found");
+                }
                 AddItem(wizardState, layoutItem.name, template);
             }
         }

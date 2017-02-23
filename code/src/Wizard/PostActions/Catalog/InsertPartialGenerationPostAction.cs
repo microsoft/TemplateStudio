@@ -74,7 +74,7 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
 
                         return new PostActionResult()
                         {
-                            ResultCode = ResultCode.Success
+                            ResultCode = ResultCode.NotExecuted
                         };
                     }
 
