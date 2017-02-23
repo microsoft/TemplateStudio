@@ -40,8 +40,8 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
 
             foreach (var backgroundTaskToAdd in backgroundTasks)
             {
-                backgroundServiceContent= backgroundServiceContent.Insert(nextLineAfterAnchor, FormatCode(backgroundTaskToAdd.Item2, backgroundServiceContent, anchorIndex));
-                File.Delete(backgroundTaskToAdd.Item1);
+                backgroundServiceContent= backgroundServiceContent.Insert(nextLineAfterAnchor, FormatCode(backgroundTaskToAdd.Content, backgroundServiceContent, anchorIndex));
+                File.Delete(backgroundTaskToAdd.Name);
             }
 
             //Delete anchor
@@ -55,11 +55,12 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
 
         }
 
-        private List<(string, string)> GetBackgroundTasksToAdd(string projectPath)
+        private List<(string Name, string Content)> GetBackgroundTasksToAdd(string projectPath)
         {
-            return Directory.EnumerateFiles(Path.Combine(projectPath,backgroundTaskFolder), backgroundTasksToAddFileName, SearchOption.TopDirectoryOnly).
-                Select(f => (f, File.ReadAllText(f))).ToList();
+            return  Directory.EnumerateFiles(Path.Combine(projectPath,backgroundTaskFolder), backgroundTasksToAddFileName, SearchOption.TopDirectoryOnly).
+                Select(f => (Name: f, Content: File.ReadAllText(f))).ToList();
         }
+
 
         private static string FormatCode(string backgroundTaskToAdd, string destinationFileContent, int anchorIndex)
         {
