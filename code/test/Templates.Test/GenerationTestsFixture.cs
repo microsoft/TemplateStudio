@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Test
         private static TemplatesRepository CreateNewRepos()
         {
             var repos = new TemplatesRepository(new LocalTemplatesLocation());
-            repos.Sync();
+            repos.SynchronizeAsync(true).Wait();
             return repos;
         }
 

@@ -262,8 +262,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         public void UseRemote()
         {
             RemoteTemplatesLocation remote = new RemoteTemplatesLocation();
-            remote.Copy(@"C:\Temp\WorkingFolder");
-            remote.GetVersion(@"C:\Temp\WorkingFolder");
+            remote.Adquire(@"C:\Temp\WorkingFolder");
         }
        
         private void ModifyContent(string signedPack, string contentFile)

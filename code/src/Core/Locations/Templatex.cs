@@ -181,7 +181,7 @@ namespace Microsoft.Templates.Core.Locations
             bool result = dsm.IsSigned;
             if (result)
             {
-                //TODO: DECIDE IF WE HAVE TO ENFORCE THE CERTIFICATE VALIDITY (CERTIFICATE CHAIN)
+                //TODO: DECIDE IF WE HAVE TO ENFORCE THE CERTIFICATE VALIDITY (CERTIFICATE CHAIN ISSUES)
                 //result = result && ValidateSignatureCertificates(dsm);
                 if (result)
                 {

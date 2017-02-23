@@ -16,97 +16,43 @@ namespace Microsoft.Templates.Core.Locations
         private readonly string CdnUrl = Configuration.Current.CdnUrl;
         private const string CdnTemplatesFileName = "Templates.mstx";
 
-        public override void Copy(string workingFolder)
+        public override void Adquire(string workingFolder)
         {
             Download(workingFolder, CdnTemplatesFileName);
         }
 
-        public override string GetVersion(string workingFolder)
+        public override bool Update(string workingFolder)
         {
-            var sourceUrl = $"{CdnUrl}/{VersionFileName}";
-            var destinationFile = Path.Combine(workingFolder, VersionFileName);
-
-            try
-            {
-                var wc = new WebClient();
-                wc.DownloadFile(sourceUrl, destinationFile);
-
-                var version = File.ReadAllText(destinationFile);
-                return version;
-            }
-            catch (Exception ex)
-            {
-                AppHealth.Current.Error.TrackAsync("Error downloading the version file.",ex).FireAndForget();
-                throw;
-            }
-            finally
-            {
-                if (File.Exists(destinationFile))
-                {
-                    File.Delete(destinationFile);
-                }
-            }
+            return UpdateTemplates(Path.Combine(workingFolder, TempFolderName), workingFolder);
         }
 
         private void Download(string workingFolder, string fileName)
         {
-            EnsureWorkingFolder(workingFolder);
-
-            var sourceUrl = $"{CdnUrl}/{fileName}";
-            var tempFolder = Path.Combine(workingFolder, "temp");
-            var file = Path.Combine(workingFolder, fileName);
-
-            DownloadContent(sourceUrl, file);
-
-            ExtractContent(file, tempFolder);
-
-            UpdateTemplates(tempFolder, workingFolder);
-
-            CleanUpTempFiles(tempFolder, file);
-        }
-
-        private static void ExtractContent(string file, string workingFolder)
-        {
-            try
+            if (IsDownloadExpired(workingFolder))
             {
-                Templatex.Extract(file, workingFolder);
-            }
-            catch(Exception ex)
-            {
-                var msg = "The templates content can't be extracted.";
-                AppHealth.Current.Exception.TrackAsync(ex, msg).FireAndForget();
-                throw;
+                var sourceUrl = $"{CdnUrl}/{fileName}";
+                var tempFolder = Path.Combine(workingFolder, TempFolderName);
+                var file = Path.Combine(workingFolder, fileName);
+
+                EnsureWorkingFolder(workingFolder);
+
+                DownloadContent(sourceUrl, file);
+
+                ExtractContent(file, tempFolder);
             }
         }
-
-        private static void CleanUpTempFiles(string usedTempFolder, string mstxFile)
+        private bool IsDownloadExpired(string workingFolder)
         {
-            try
+            var currentFileVersion = Path.Combine(workingFolder, Path.Combine(TemplatesName, VersionFileName));
+            if (!File.Exists(currentFileVersion))
             {
-                File.Delete(mstxFile);
-                Directory.Delete(usedTempFolder, true);
+                return true;
             }
-            catch(Exception ex)
-            {
-                var msg = "The cleanup task can't be executed.";
-                AppHealth.Current.Exception.TrackAsync(ex, msg).FireAndForget();
-                throw;
-            }
-        }
 
-        private static void UpdateTemplates(string tempFoder, string workingFolder)
-        {
-            try
-            {
-                SafeDelete(Path.Combine(workingFolder, TemplatesName));
-                CopyRecursive(Path.Combine(tempFoder, TemplatesName), Path.Combine(workingFolder, TemplatesName));
-            }
-            catch(Exception ex)
-            {
-                var msg = "The templates content can't be updated.";
-                AppHealth.Current.Exception.TrackAsync(ex, msg).FireAndForget();
-                throw;
-            }
+            var fileVersion = new FileInfo(currentFileVersion);
+            var downloadExpiration = fileVersion.LastWriteTime.AddMinutes(Configuration.Current.VersionCheckingExpirationMinutes);
+            AppHealth.Current.Verbose.TrackAsync($"Current templates content expiration: {downloadExpiration.ToString()}").FireAndForget();
+            return downloadExpiration <= DateTime.Now;
         }
 
         private static void DownloadContent(string sourceUrl, string file)
@@ -115,12 +61,115 @@ namespace Microsoft.Templates.Core.Locations
             {
                 var wc = new WebClient();
                 wc.DownloadFile(sourceUrl, file);
+                AppHealth.Current.Info.TrackAsync($"Templates content downloaded from {sourceUrl}.").FireAndForget();
             }
             catch (Exception ex)
             {
                 string msg = "The templates content can't be downloaded.";
                 AppHealth.Current.Exception.TrackAsync(ex, msg).FireAndForget();
                 throw;
+            }
+        }
+
+        private static void ExtractContent(string file, string targetFolder)
+        {
+            try
+            {
+                Templatex.Extract(file, targetFolder);
+                var ver = GetVersionFromFile(Path.Combine(targetFolder, Path.Combine(TemplatesName, VersionFileName)));
+                AppHealth.Current.Info.TrackAsync($"Templates content extracted to {targetFolder}. Version adquired: {ver}").FireAndForget();
+                AppHealth.Current.Info.TrackAsync($"Templates will be updated if required next time you launch the wizard.").FireAndForget();
+            }
+            catch (Exception ex)
+            {
+                var msg = "The templates content can't be extracted.";
+                AppHealth.Current.Exception.TrackAsync(ex, msg).FireAndForget();
+                throw;
+            }
+            finally
+            {
+                if (File.Exists(file))
+                {
+                    File.Delete(file);
+                }
+            }
+        }
+
+        private static bool UpdateTemplates(string tempFolder, string workingFolder)
+        {
+            bool templatesUpdated = false;
+            try
+            {
+                string downloadedTemplatesDir = Path.Combine(tempFolder, TemplatesName);
+                string downloadedVersionFile = Path.Combine(downloadedTemplatesDir, VersionFileName);
+                string installedTemplatesDir = Path.Combine(workingFolder, TemplatesName);
+                string installedVersionFile = Path.Combine(installedTemplatesDir, VersionFileName);
+
+                var downloadedVersion = GetVersionFromFile(downloadedVersionFile);
+                var installedVersion = GetVersionFromFile(installedVersionFile);
+
+                if (downloadedVersion != "0.0.0" && downloadedVersion != installedVersion)
+                {
+                    AppHealth.Current.Info.TrackAsync($"There is a new version available for templates content. Previous version:{downloadedVersion}, Current Version: {installedVersion}").FireAndForget();
+
+                    SafeDelete(installedTemplatesDir);
+                    CopyRecursive(downloadedTemplatesDir, installedTemplatesDir);
+
+                    AppHealth.Current.Info.TrackAsync($"Templates has been updated with version {downloadedVersion}.").FireAndForget();
+
+                    SafeCleanUpTempFolder(tempFolder);
+
+                    templatesUpdated = true;
+                }
+                else
+                {
+                    RefreshVersionFileExpiration(installedVersionFile, installedVersion);
+                }
+            }
+            catch(Exception ex)
+            {
+                var msg = "The templates content can't be updated.";
+                AppHealth.Current.Exception.TrackAsync(ex, msg).FireAndForget();
+                throw;
+            }
+            return templatesUpdated;
+        }
+
+        private static void RefreshVersionFileExpiration(string installedVersionFile, string installedVersion)
+        {
+            File.WriteAllText(installedVersionFile, installedVersion);
+        }
+
+        private static bool IsUpdateAvailableInternal(string downloadedVersionFile, string installedVersionFile)
+        {
+            var downloadedVersion = GetVersionFromFile(downloadedVersionFile);
+            var installedVersion = GetVersionFromFile(installedVersionFile);
+            
+            return 
+        }
+        public static string GetVersionFromFile(string versionFilePath)
+        {
+            var version = "0.0.0";
+            if (File.Exists(versionFilePath))
+            {
+                version = File.ReadAllText(versionFilePath);
+            }
+            return version;
+        }
+
+        private static void SafeCleanUpTempFolder(string usedTempFolder)
+        {
+            try
+            {
+                if (Directory.Exists(usedTempFolder))
+                {
+                    Directory.Delete(usedTempFolder, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                var msg = $"The temp folder {usedTempFolder} can't be delete. Error: {ex.Message}";
+                AppHealth.Current.Error.TrackAsync(msg).FireAndForget();
             }
         }
 

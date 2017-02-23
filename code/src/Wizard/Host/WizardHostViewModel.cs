@@ -1,4 +1,5 @@
 ﻿using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Wizard.Dialog;
 using Microsoft.Templates.Wizard.Steps;
 using Microsoft.Templates.Wizard.ViewModels;
@@ -33,14 +34,7 @@ namespace Microsoft.Templates.Wizard.Host
 
         public void Iniatialize()
         {
-            try
-            {
-                _context.TemplatesRepository.Sync();
-            }
-            catch (RepositorySynchronizationException ex)
-            {
-                ErrorMessageDialog.Show("Ops! It is not possible to update available templates. Please ensure you have internet connection and that you are running the latest version of the extension.", "Updating available templates.", ex.ToString(), MessageBoxImage.Warning);
-            }
+            _context.TemplatesRepository.SynchronizeAsync().FireAndForget();
 
             var step = Steps.First();
             Navigate(step);

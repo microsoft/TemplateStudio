@@ -10,6 +10,7 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio;
 using EnvDTE;
 using EnvDTE80;
+using System.Reflection;
 
 namespace Microsoft.Templates.Extension.Diagnostsics
 {
@@ -104,7 +105,15 @@ namespace Microsoft.Templates.Extension.Diagnostsics
                 Convert.ToInt32(clearWithSolution));
 
             output.GetPane(ref paneGuid, out var pane);
-            pane.OutputString($"UWP Communit Templates {DateTime.Now.ToString("yyyyMMdd hh: mm:ss.fff")}\n");
+            pane.OutputString($"UWP Communit Templates {DateTime.Now.ToString("yyyyMMdd HH:mm:ss.fff")}\n");
+            pane.OutputString($"Version: {GetVersion()}\n");
+            pane.OutputString($">\n");
+        }
+
+        private static string GetVersion()
+        {
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            return assembly.GetName().Version.ToString();
         }
 
         private OutputWindowPane GetUwpPane(DTE2 dte)

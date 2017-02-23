@@ -9,7 +9,7 @@ namespace Microsoft.Templates.Core.Test
         public TemplatesFixture()
         {
             Repository = new TemplatesRepository(new UnitTestsTemplatesLocation());
-            Repository.Sync();
+            Repository.SynchronizeAsync(true).Wait();
         }
     }
 }

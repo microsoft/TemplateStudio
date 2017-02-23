@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core
 {
@@ -27,24 +28,78 @@ namespace Microsoft.Templates.Core
             _location = location ?? throw new ArgumentNullException("location");
         }
 
-        public void Sync()
+        public async Task SynchronizeAsync(bool forceAdquisition=false)
         {
             try
             {
-                if (_location != null && IsUpdateAvailable())
+                UpdateContent();
+
+                Task adquisitionTask = Task.Run(() => AdquireContent());
+                if (forceAdquisition || !ExistsTemplates())
                 {
-                    _location.Copy(WorkingFolder);
-
-                    CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
-                    CodeGen.Instance.Cache.Scan(WorkingFolder + $@"\{TemplatesLocation.TemplatesName}");
-                    CodeGen.Instance.Cache.WriteTemplateCaches();
+                    Task.WaitAll(adquisitionTask);
+                    UpdateContent();
                 }
+                else
+                {
+                    await adquisitionTask;
+                }
+            }
+            catch(Exception ex)
+            {
+                AppHealth.Current.Error.TrackAsync($"Error syncing templates content: {ex.Message}").FireAndForget();
+                AppHealth.Current.Verbose.TrackAsync($"Sync Exception details", ex).FireAndForget();
+                throw;
+            }
+        }
 
+        private void AdquireContent()
+        {
+            try
+            {
+                if (_location != null)
+                {
+                    _location.Adquire(WorkingFolder);
+                }
             }
             catch (Exception ex)
             {
-                var msg = "Error in templates repository synchronization.";
+                var msg = "Error adquiring the templates content.";
                 throw new RepositorySynchronizationException(msg, ex);
+            }
+        }
+
+        private void UpdateContent()
+        {
+            try
+            {
+                if (_location != null)
+                {
+                    if (_location.Update(WorkingFolder))
+                    {
+                        CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
+                        CodeGen.Instance.Cache.Scan(WorkingFolder + $@"\{TemplatesLocation.TemplatesName}");
+                        CodeGen.Instance.Cache.WriteTemplateCaches();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var msg = "Error in templates repository updating templates cache.";
+                throw new RepositorySynchronizationException(msg, ex);
+            }
+        }
+        private bool ExistsTemplates()
+        {
+            string templatesDir = Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName);
+            if (!Directory.Exists(templatesDir))
+            {
+                return false;
+            }
+            else
+            {
+                DirectoryInfo di = new DirectoryInfo(templatesDir);
+                return di.EnumerateFiles("*", SearchOption.AllDirectories).Any();
             }
         }
 
@@ -70,42 +125,7 @@ namespace Microsoft.Templates.Core
                         .FirstOrDefault(predicate);
         }
 
-        private bool IsUpdateAvailable()
-        {
-            if (!IsFileVersionExpired())
-            {
-                return false;
-            }
-            var repoVersion = _location.GetVersion(WorkingFolder);
-            var installedVersion = GetInstalledVersion();
-
-            return repoVersion != installedVersion;
-        }
-
-        private string GetInstalledVersion()
-        {
-            if (File.Exists(FileVersionPath))
-            {
-                return File.ReadAllText(FileVersionPath);
-            }
-            else
-            {
-                return "1.0.0";
-            }
-        }
-
-        private bool IsFileVersionExpired()
-        {
-            if (!File.Exists(FileVersionPath))
-            {
-                return true;
-            }
-
-            var fileVersion = new FileInfo(FileVersionPath);
-            return fileVersion.LastWriteTime.AddMinutes(Configuration.Current.VersionCheckingExpirationMinutes) <= DateTime.Now;
-        }
-
-
+       
         public ProjectInfo GetProjectTypeInfo(string projectType)
         {
             return GetProyectInfo(Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName, TemplatesLocation.ProjectTypes, projectType, "Info"));

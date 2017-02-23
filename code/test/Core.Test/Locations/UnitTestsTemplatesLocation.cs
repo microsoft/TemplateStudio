@@ -6,14 +6,14 @@ namespace Microsoft.Templates.Core.Test.Locations
 {
     public class UnitTestsTemplatesLocation : TemplatesLocation
     {
-        public override void Copy(string workingFolder)
+        public override void Adquire(string workingFolder)
         {            
             Copy($@"..\..\{TemplatesLocation.TemplatesName}", workingFolder);
         }
 
-        public override string GetVersion(string workingFolder)
+        public override bool Update(string workingFolder)
         {
-            return string.Empty;
+            return true;
         }
 
         protected static void Copy(string sourceFolder, string workingFolder)

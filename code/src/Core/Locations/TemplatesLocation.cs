@@ -14,9 +14,10 @@ namespace Microsoft.Templates.Core.Locations
         public const string VersionFileName = "version.txt";
         public const string ProjectTypes = "Projects";
         public const string Frameworks = "Frameworks";
+        public const string TempFolderName = "Temp";
 
-        public abstract void Copy(string workingFolder);
-        public abstract string GetVersion(string workingFolder);
+        public abstract void Adquire(string workingFolder);
+        public abstract bool Update(string workingFolder);
 
         protected static void SafeDelete(string directoryPath)
         {
