@@ -1,0 +1,3 @@
+private static readonly Lazy<StateService> stateService = new Lazy<StateService>(() => new StateService());
+
+public static StateService StateService => stateService.Value;

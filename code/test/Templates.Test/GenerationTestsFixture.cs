@@ -10,9 +10,11 @@ namespace Microsoft.Templates.Test
 {
     public sealed class GenerationTestsFixture : IDisposable
     {
-        internal string TestRunPath = @"..\..\TestRuns\{0}\";
-        internal string TestProjectsPath;
-        internal string TestPagesPath;
+        internal string TestRunPath = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\Runs\\{DateTime.Now.ToString("yyyyMMdd_hhmm")}\\";
+        internal string TestProjectsPath => Path.GetFullPath(Path.Combine(TestRunPath, "Projects"));
+        internal string TestPagesPath => Path.GetFullPath(Path.Combine(TestRunPath, "Pages"));
+        internal string TestDevFeaturesPath => Path.GetFullPath(Path.Combine(TestRunPath, "DevFeatures"));
+
 
         private static readonly Lazy<TemplatesRepository> _repos = new Lazy<TemplatesRepository>(() => CreateNewRepos(), true);
         public static IEnumerable<ITemplateInfo> Templates => _repos.Value.GetAll();
@@ -26,18 +28,16 @@ namespace Microsoft.Templates.Test
 
         public GenerationTestsFixture()
         {
-            TestRunPath = string.Format(TestRunPath, DateTime.Now.ToString("yyyyMMdd_hhmm"));
-            TestProjectsPath = Path.GetFullPath(Path.Combine(TestRunPath, "Projects"));
-            TestPagesPath = Path.GetFullPath(Path.Combine(TestRunPath, "Pages"));
         }
 
         public void Dispose()
         {
             if (Directory.Exists(TestRunPath))
             {
-                if ((!Directory.Exists(TestProjectsPath) || Directory.EnumerateDirectories(TestProjectsPath).Count() == 0) 
-                    && (!Directory.Exists(TestPagesPath) || Directory.EnumerateDirectories(TestPagesPath).Count() == 0))
-                {
+                if ((!Directory.Exists(TestProjectsPath) || Directory.EnumerateDirectories(TestProjectsPath).Count() == 0)
+                    && (!Directory.Exists(TestPagesPath) || Directory.EnumerateDirectories(TestPagesPath).Count() == 0)
+                    && (!Directory.Exists(TestDevFeaturesPath) || Directory.EnumerateDirectories(TestDevFeaturesPath).Count() == 0))
+  {
                     Directory.Delete(TestRunPath, true);
                 }
             }

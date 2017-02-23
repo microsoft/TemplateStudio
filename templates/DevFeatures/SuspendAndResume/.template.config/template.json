@@ -1,0 +1,37 @@
+{
+  "author": "Microsoft",
+  "classifications": ["Universal"],
+  "name": "SuspendAndResume",
+  "groupIdentity": "Microsoft.UWPTemplates.SuspendAndResumeFeature",
+  "identity": "Microsoft.UWPTemplates.SuspendAndResumeFeature.CSharp",
+  "shortName": "suspendandresume",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "uct.type": "devfeature",
+    "uct.framework": "Basic;MVVMLight",
+    "uct.version": "1.0.0",
+    "uct.order": "1",
+    "uct.licences": "[Newtonsoft.Json](https://raw.githubusercontent.com/JamesNK/Newtonsoft.Json/master/LICENSE.md)",
+    "uct.multipleInstance": "false"
+  },
+  "sourceName": "SuspendAndResumeFeature",
+  "preferNameDirectory": true,
+  "guids": [ "5b9d2eee-b648-4ca1-837e-9abb8f3dffdd" ],
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Services\\StateService.cs"
+    }
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    }
+  }
+}

@@ -17,6 +17,7 @@ namespace Microsoft.Templates.Test
         private GenerationTestsFixture fixture;
         private const string Platform = "x86";
         private const string Configuration = "Debug";
+        private List<string> UsedNames = new List<string>();
 
         public GenerationTests(GenerationTestsFixture fixture)
         {
@@ -30,7 +31,6 @@ namespace Microsoft.Templates.Test
             var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
 
             var projectName = $"{framework}{projectTemplate.GetProjectType()}";
-            var usedPageNames = new List<string>();
 
             var generator = new GenController(new FakeGenShell(projectName, fixture.TestProjectsPath, new TextBlock()));
             var wizardState = new WizardState
@@ -39,7 +39,7 @@ namespace Microsoft.Templates.Test
                 ProjectType = projectTemplate.GetProjectType(),
             };
 
-            AddLayoutItems(wizardState, projectTemplate, usedPageNames);
+            AddLayoutItems(wizardState, projectTemplate);
 
             generator.Generate(wizardState);
 
@@ -61,8 +61,8 @@ namespace Microsoft.Templates.Test
             var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
 
             var projectName = $"{framework}{targetProjectTemplate.GetProjectType()}All";
-            var usedPageNames = new List<string>();
-            var generator = new GenController(new FakeGenShell(projectName, fixture.TestProjectsPath, new TextBlock()));
+
+            var generator = new GenController(new FakeGenShell(projectName, fixture.TestPagesPath, new TextBlock()));
 
             var wizardState = new WizardState
             {
@@ -70,19 +70,13 @@ namespace Microsoft.Templates.Test
                 ProjectType = targetProjectTemplate.GetProjectType(),
             };
 
-            AddLayoutItems(wizardState, targetProjectTemplate, usedPageNames);
-
-            var pageTemplates = GenerationTestsFixture.Templates
-              .Where(t => t.GetFrameworkList().Contains(framework) &&
-              t.GetType() == t.GetType() &&
-              t.GetTemplateType() == TemplateType.Page);
-
-            wizardState.Pages.AddRange(GetPages(pageTemplates, usedPageNames));
+            AddLayoutItems(wizardState, targetProjectTemplate);
+            AddItems(wizardState, GetTemplates(framework, TemplateType.Page));
 
             generator.Generate(wizardState);
 
             //Build solution
-            var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);
+            var outputPath = Path.Combine(fixture.TestPagesPath, projectName);
             var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
             int exitCode = BuildSolution(projectName, outputPath, outputFile);
 
@@ -93,9 +87,46 @@ namespace Microsoft.Templates.Test
             Directory.Delete(outputPath, true);
         }
 
+        [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
+        public void GenerateProjectWithAllDevFeatures(string projId, string framework)
+        {
+            var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
 
+            var projectName = $"{framework}{targetProjectTemplate.GetProjectType()}All";
+            
+            var generator = new GenController(new FakeGenShell(projectName, fixture.TestDevFeaturesPath, new TextBlock()));
 
-        private static void AddLayoutItems(WizardState wizardState, ITemplateInfo projectTemplate,  IEnumerable<string> usedNames)
+            var wizardState = new WizardState
+            {
+                Framework = framework,
+                ProjectType = targetProjectTemplate.GetProjectType(),
+            };
+
+            AddLayoutItems(wizardState, targetProjectTemplate);
+            AddItems(wizardState, GetTemplates(framework, TemplateType.DevFeature));
+
+            generator.Generate(wizardState);
+
+            //Build solution
+            var outputPath = Path.Combine(fixture.TestDevFeaturesPath, projectName);
+            var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
+            int exitCode = BuildSolution(projectName, outputPath, outputFile);
+
+            //Assert
+            Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", targetProjectTemplate.Name, Path.GetFullPath(outputFile)));
+
+            //Clean
+            Directory.Delete(outputPath, true);
+        }
+
+        private IEnumerable<ITemplateInfo> GetTemplates(string framework, TemplateType templateType)
+        {
+            return GenerationTestsFixture.Templates
+              .Where(t => t.GetFrameworkList().Contains(framework) &&
+              t.GetTemplateType() == templateType);
+        }
+
+        private void AddLayoutItems(WizardState wizardState, ITemplateInfo projectTemplate)
         {
             var pages = new List<(string name, string templateName)>();
             var layouts = projectTemplate.GetLayout();
@@ -103,30 +134,38 @@ namespace Microsoft.Templates.Test
             foreach (var layoutItem in layouts)
             {
                 var template = GenerationTestsFixture.Templates.Where(t => t.Identity == layoutItem.templateIdentity).FirstOrDefault();
-                if (template != null)
+                if (template == null)
                 {
-                    if (template.GetTemplateType() == TemplateType.Page)
-                    {
-                        var itemName = Naming.Infer(usedNames, layoutItem.name);
-                        wizardState.Pages.Add((itemName, template.Name));
-                    }
+                    throw new Exception($"Template {layoutItem.templateIdentity} could not be found");
                 }
-
+                AddItem(wizardState, layoutItem.name, template);
             }
         }
 
-        private static IEnumerable<(string name, string templateName)> GetPages(IEnumerable<ITemplateInfo> pageTemplates, IEnumerable<string> usedNames)
+        private void AddItems(WizardState wizardState, IEnumerable<ITemplateInfo> templates)
         {
-            var pages = new List<(string name, string templateName)>();
-            foreach (var pageTemplate in pageTemplates)
+            foreach (var template in templates)
             {
-                var pageName = Naming.Infer(usedNames, pageTemplate.Name);
-                pages.Add((pageName, pageTemplate.Name));              
+                var itemName = Naming.Infer(UsedNames, template.GetDefaultName());
+                AddItem(wizardState, itemName, template);
             }
-            return pages;
         }
 
-    
+        private void AddItem(WizardState wizardState, string itemName, ITemplateInfo template)
+        {
+            switch (template.GetTemplateType())
+            {
+                case TemplateType.Page:
+                    wizardState.Pages.Add((itemName, template.Name));
+                    break;
+
+                case TemplateType.DevFeature:
+                    wizardState.DevFeatures.Add((itemName, template.Name));
+                    break;
+
+            }
+            UsedNames.Add(itemName);
+        }
 
         public static IEnumerable<object[]> GetProjectTemplates()
         {

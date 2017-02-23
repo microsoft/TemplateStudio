@@ -1,7 +1,7 @@
 {
   "author": "Microsoft",
   "classifications": ["Universal"],
-  "name": "Background Task",
+  "name": "BackgroundTask",
   "groupIdentity": "Microsoft.UWPTemplates.BackgroundTaskFeature",
   "identity": "Microsoft.UWPTemplates.BackgroundTaskFeature.CSharp",
   "shortName": "backgroundtask",
@@ -10,8 +10,10 @@
     "language": "C#",
     "type": "item",
     "uct.type": "devfeature",
+    "uct.framework": "Basic;MVVMLight",
     "uct.version": "1.0.0",
-    "uct.order": "1"
+    "uct.order": "1",
+    "uct.multipleInstance": "true"
   },
   "sourceName": "BackgroundTaskFeature",
   "preferNameDirectory": true,

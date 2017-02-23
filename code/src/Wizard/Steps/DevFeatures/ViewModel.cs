@@ -88,7 +88,7 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures
 
         private void ShowAddFeatureDialog()
         {
-            var dialog = new NewDevFeature.NewDevFeatureDialog(Context, Templates.Select(t => t.Name));
+            var dialog = new NewDevFeature.NewDevFeatureDialog(Context, Templates);
             var dialogResult = dialog.ShowDialog();
 
             if (dialogResult.HasValue && dialogResult.Value)

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -46,9 +47,13 @@ namespace Microsoft.Templates.Test
 
         public void AddItem(string itemPath)
         {
-            var itemsContainer = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
+            var itemRelativePath = itemPath.Replace($@"{Path.GetDirectoryName(_path)}\", "").Replace(@".\", "");
+            if (ItemExists(itemRelativePath))
+            {
+                return;
+            }
 
-            string itemRelativePath = itemPath.Replace($@"{Path.GetDirectoryName(_path)}\", "").Replace(@".\", "");
+            var itemsContainer = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
 
             XElement element = GetItemType(itemRelativePath).GetXmlDefinition(itemRelativePath);
             ApplyNs(element);
@@ -61,8 +66,8 @@ namespace Microsoft.Templates.Test
         public void AddProjectReference(string projectPath, string projguid, string projectName)
         {
             var container = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
-            
-            XElement element = GetProjectReferenceXElement(projectPath, projguid, projectName);
+            string itemRelativePath = "..\\" + projectPath.Replace($@"{Path.GetDirectoryName(Path.GetDirectoryName(_path))}\", "");
+            XElement element = GetProjectReferenceXElement(itemRelativePath, projguid, projectName);
             ApplyNs(element);
             container.Add(element);
 
@@ -97,6 +102,12 @@ namespace Microsoft.Templates.Test
             }
         }
 
+        private bool ItemExists(string itemPath)
+        {
+            return _root.Descendants().Any(d => d.Attribute("Include") != null
+                && d.Attribute("Include").Value.Equals(itemPath, StringComparison.OrdinalIgnoreCase));
+        }
+
         private VsItemType GetItemType(string fileName)
         {
             string ext = Path.GetExtension(fileName).ToLower();
@@ -115,12 +126,14 @@ namespace Microsoft.Templates.Test
             {
                 return VsItemType.XamlPage;
             }
+            else if (ext == ".resw")
+            {
+                return VsItemType.Resource;
+            }
             else
             {
                 return VsItemType.Content;
             }
         }
-
     }
-    
 }

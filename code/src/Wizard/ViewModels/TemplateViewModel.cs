@@ -27,6 +27,7 @@ namespace Microsoft.Templates.Wizard.ViewModels
             Author = ti.Author;
             Version = ti.GetVersion();
             Order = ti.GetOrder();
+            MultipleInstances = ti.GetMultipleInstance();
             //LicenceTerms = ti.GetLicenceTerms();
         }
 
@@ -72,6 +73,13 @@ namespace Microsoft.Templates.Wizard.ViewModels
         {
             get { return _order; }
             set { SetProperty(ref _order, value); }
+        }
+
+        private bool _multipleInstances;
+        public bool MultipleInstances
+        {
+            get { return _multipleInstances; }
+            set { SetProperty(ref _multipleInstances, value); }
         }
 
         private string _licenceTerms;

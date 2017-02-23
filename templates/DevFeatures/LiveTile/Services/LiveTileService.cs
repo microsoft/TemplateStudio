@@ -1,6 +1,10 @@
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Windows.Data.Xml.Dom;
 using Windows.Storage;
 using Windows.UI.Notifications;
+using Windows.UI.StartScreen;
 
 namespace RootNamespace.Services
 {
@@ -20,6 +24,21 @@ namespace RootNamespace.Services
         public static void UpdateTile(TileNotification notification)
         {
             TileUpdateManager.CreateTileUpdaterForApplication().Update(notification);
+        }
+
+        public static async Task<bool> PinSecondaryTileAsync(SecondaryTile tile, bool allowDuplicity = false)
+        {
+            if (!await IsAlreadyPinnedAsync(tile) || allowDuplicity)
+            {
+                return await tile.RequestCreateAsync();
+            }
+            return false;
+        }
+
+        private static async Task<bool> IsAlreadyPinnedAsync(SecondaryTile tile)
+        {
+            var secondaryTiles = await SecondaryTile.FindAllAsync();
+            return secondaryTiles.Any(t => t.Arguments == tile.Arguments);
         }
 
         public static void SampleUpdate()
@@ -61,6 +80,21 @@ namespace RootNamespace.Services
             // Then create the tile notification
             var notification = new TileNotification(doc);
             UpdateTile(notification);
-        }      
+        }
+
+        public static async Task SamplePinSecondary(string pageName)
+        {
+            //TODO UWPTemplates: Call this method to Pin a Secondary Tile from a page.
+            //You also must implement the navigation to this specific page in the OnLaunched event handler on App.xaml.cs
+            SecondaryTile tile = new SecondaryTile(DateTime.Now.Ticks.ToString());
+            tile.Arguments = pageName;
+            tile.DisplayName = pageName;
+            tile.VisualElements.Square44x44Logo = new Uri("ms-appx:///Assets/Square44x44Logo.scale-200.png");
+            tile.VisualElements.Square150x150Logo = new Uri("ms-appx:///Assets/Square150x150Logo.scale-200.png");
+            tile.VisualElements.Wide310x150Logo = new Uri("ms-appx:///Assets/Wide310x150Logo.scale-200.png");
+            tile.VisualElements.ShowNameOnSquare150x150Logo = true;
+            tile.VisualElements.ShowNameOnWide310x150Logo = true;
+            await PinSecondaryTileAsync(tile);
+        }
     }
 }

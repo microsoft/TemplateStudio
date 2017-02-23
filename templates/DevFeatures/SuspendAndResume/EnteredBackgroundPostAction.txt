@@ -1,0 +1,1 @@
+this.EnteredBackground += App_EnteredBackground;

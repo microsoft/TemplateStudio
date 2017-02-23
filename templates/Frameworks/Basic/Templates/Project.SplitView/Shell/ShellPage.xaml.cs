@@ -30,7 +30,7 @@ namespace ItemName.Shell
 
             ViewModel = new ShellViewModel();
             DataContext = ViewModel;
-            NavigationService.Instance.SetNavigationFrame(frame);
+            NavigationService.SetNavigationFrame(frame);
         }
 
         public ShellViewModel ViewModel { get; private set; }
@@ -40,7 +40,7 @@ namespace ItemName.Shell
             var navigationItem = e.ClickedItem as ShellNavigationItem;
             if (navigationItem != null)
             {
-                NavigationService.Instance.Navigate(navigationItem.PageType);
+                NavigationService.Navigate(navigationItem.PageType);
             }
         }
 
@@ -51,7 +51,7 @@ namespace ItemName.Shell
             {
                 paneitems.SelectedIndex = 0;
 
-                NavigationService.Instance.Navigate<HomePage>();
+                NavigationService.Navigate<HomePage>();
             }
         }
     }
