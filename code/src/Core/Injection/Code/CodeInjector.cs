@@ -26,28 +26,22 @@ namespace Microsoft.Templates.Core.Injection.Code
             var tree = CSharpSyntaxTree.ParseText(sourceContent);
             var root = tree.GetRoot() as CompilationUnitSyntax;
 
-            var usings = GetUsings(Config.usings).ToList();
-            root = AddUsings(root, usings);
-
-            //TODO: VERIFY CONFIG
-            var codePath = CodePath.Parse(Config.path);
-
-
-            //TODO: VERIFY CODE
-            var method = codePath.FindMethod(root);
-
-            if (method != null)
-            {
-                var statements = GetStatements(method, Config.content);
-                root = AddStatements(root, method, statements);
-            }
+            root = InjectUsings(root, Config.usings);
+            root = InjectProperties(root, Config.properties);
+            root = InjectElements(root, Config.elements);
 
             return root
                     .NormalizeWhitespace()
                     .ToFullString();
         }
 
-        private CompilationUnitSyntax AddUsings(CompilationUnitSyntax root, IEnumerable<UsingDirectiveSyntax> usings)
+        private static CompilationUnitSyntax InjectUsings(CompilationUnitSyntax root, string[] usings)
+        {
+            var usingsSyntax = GetUsings(usings).ToList();
+            return AddUsings(root, usingsSyntax);
+        }
+
+        private static CompilationUnitSyntax AddUsings(CompilationUnitSyntax root, IEnumerable<UsingDirectiveSyntax> usings)
         {
             if (usings == null)
             {
@@ -67,28 +61,98 @@ namespace Microsoft.Templates.Core.Injection.Code
             foreach (var u in usings)
             {
                 yield return SyntaxFactory.UsingDirective(SyntaxFactory.IdentifierName(u))
-                                                                .WithTrailingTrivia(
-                                                                    SyntaxFactory.EndOfLine(Environment.NewLine));
+                                                                            .WithTrailingTrivia(SyntaxFactory.EndOfLine(Environment.NewLine));
             }
         }
 
-        private CompilationUnitSyntax AddStatements(CompilationUnitSyntax root, BaseMethodDeclarationSyntax method, IEnumerable<StatementSyntax> statements)
+        private static CompilationUnitSyntax InjectProperties(CompilationUnitSyntax root, Dictionary<string, string> properties)
         {
-            var newStatements = InsertStatement(method, statements);
+            if (properties == null || properties.Count == 0)
+            {
+                return root;
+            }
 
-            var newBody = method.Body.Update(method.Body.OpenBraceToken, newStatements, method.Body.CloseBraceToken);
+            var propertiesDeclaration = GetProperties(properties).ToList();
+            root = AddProperties(root, propertiesDeclaration);
 
-            var newMethod = method.ReplaceNode(method.Body, newBody);
+            return root;
+        }
+
+        private static CompilationUnitSyntax AddProperties(CompilationUnitSyntax root, IEnumerable<PropertyDeclarationSyntax> properties)
+        {
+            var @class = root.DescendantNodes()
+                                    .OfType<ClassDeclarationSyntax>()
+                                    .FirstOrDefault();
+
+            //TODO: THROW EXCEPTION IF CLASS NOT FOUND
+
+            var newClass = @class.AddMembers(properties.ToArray());
+
+            root = root.ReplaceNode(@class, newClass);
+            return root;
+        }
+
+        private static IEnumerable<PropertyDeclarationSyntax> GetProperties(Dictionary<string, string> properties)
+        {
+            foreach (var prop in properties)
+            {
+                yield return SyntaxFactory.PropertyDeclaration(
+                                                SyntaxFactory.IdentifierName(prop.Value),
+                                                SyntaxFactory.Identifier(prop.Key))
+                                            .WithModifiers(
+                                                SyntaxFactory.TokenList(
+                                                    SyntaxFactory.Token(SyntaxKind.PublicKeyword)))
+                                            .WithAccessorList(
+                                                SyntaxFactory.AccessorList(
+                                                    SyntaxFactory.SingletonList<AccessorDeclarationSyntax>(
+                                                        SyntaxFactory.AccessorDeclaration(SyntaxKind.GetAccessorDeclaration)
+                                                        .WithSemicolonToken(
+                                                            SyntaxFactory.Token(SyntaxKind.SemicolonToken)))));
+            }
+        }
+
+        private CompilationUnitSyntax InjectElements(CompilationUnitSyntax root, CodeInjectorElement[] elements)
+        {
+            if (elements != null)
+            {
+                foreach (var element in elements)
+                {
+                    //TODO: VERIFY CONFIG
+                    var codePath = CodePath.Parse(element.path);
+
+                    //TODO: VERIFY CODE
+                    var body = codePath.FindBody(root);
+
+                    if (body != null)
+                    {
+                        var statements = GetStatements(body, element.content);
+                        var newStatements = InsertStatement(body, statements, element.before);
+
+                        root = AddStatements(root, body, newStatements);
+                    }
+                }
+            }
+
+            return root;
+        }
+
+        private CompilationUnitSyntax AddStatements(CompilationUnitSyntax root, BlockSyntax body, SyntaxList<StatementSyntax> statements)
+        {
+            var method = body.Parent;
+
+            var newBody = body.Update(body.OpenBraceToken, statements, body.CloseBraceToken);
+
+            var newMethod = method.ReplaceNode(body, newBody);
 
             var newRoot = root.ReplaceNode(method, newMethod);
             return newRoot;
         }
 
-        private SyntaxList<StatementSyntax> InsertStatement(BaseMethodDeclarationSyntax method, IEnumerable<StatementSyntax> statements)
+        private static SyntaxList<StatementSyntax> InsertStatement(BlockSyntax body, IEnumerable<StatementSyntax> statements, string beforeOf)
         {
-            if (!string.IsNullOrEmpty(Config.before))
+            if (!string.IsNullOrEmpty(beforeOf))
             {
-                var tree = CSharpSyntaxTree.ParseText(GetMethodSnippet(Config.before));
+                var tree = CSharpSyntaxTree.ParseText(GetMethodSnippet(beforeOf));
                 var root = tree.GetRoot();
 
                 var dummyMethod = root
@@ -99,29 +163,29 @@ namespace Microsoft.Templates.Core.Injection.Code
                 var beforeStatement = dummyMethod.Body.Statements.FirstOrDefault();
                 if (beforeStatement == null)
                 {
-                    throw new ArgumentException($"Statement {Config.before} not found in source!!");
+                    throw new ArgumentException($"Statement {beforeOf} not found in source!!");
                 }
 
-                var targetStatement = method.Body.Statements.FirstOrDefault(s => s.ToString().Equals(beforeStatement.ToString(), StringComparison.OrdinalIgnoreCase));
+                var targetStatement = body.Statements.FirstOrDefault(s => s.ToString().Equals(beforeStatement.ToString(), StringComparison.OrdinalIgnoreCase));
 
                 if (targetStatement == null)
                 {
-                    throw new ArgumentException($"Statement {Config.before} not found in destination!!");
+                    throw new ArgumentException($"Statement {beforeOf} not found in destination!!");
                 }
 
-                var index = method.Body.Statements.IndexOf(targetStatement);
+                var index = body.Statements.IndexOf(targetStatement);
 
-                return method.Body.Statements.InsertRange(index, statements);
+                return body.Statements.InsertRange(index, statements);
             }
             else
             {
-                return method.Body.Statements.AddRange(statements);
+                return body.Statements.AddRange(statements);
             }
         }
 
-        private static IEnumerable<StatementSyntax> GetStatements(BaseMethodDeclarationSyntax method, string text)
+        private static IEnumerable<StatementSyntax> GetStatements(BlockSyntax body, string text)
         {
-            var startTrivia = method.GetLeadingTrivia().Span.Length;
+            var startTrivia = body.GetLeadingTrivia().Span.Length;
 
             var lines = Regex.Split(text, Environment.NewLine);
 
@@ -129,7 +193,7 @@ namespace Microsoft.Templates.Core.Injection.Code
             {
                 yield return SyntaxFactory.ParseStatement(line)
                                                 .WithLeadingTrivia(SyntaxFactory.Whitespace(new string(' ', startTrivia + 4)))
-                                                .WithTrailingTrivia(method.GetTrailingTrivia());
+                                                .WithTrailingTrivia(body.GetTrailingTrivia());
             }
         }
 
@@ -143,7 +207,10 @@ namespace Microsoft.Templates.Core.Injection.Code
             public string Namespace { get; set; }
             public string ClassName { get; set; }
             public string MethodName { get; set; }
+            public PropertyInfo PropertyName { get; set; }
 
+
+            //TODO: DO THIS WITH REGEX
             public static CodePath Parse(string path)
             {
                 var instance = new CodePath();
@@ -156,7 +223,21 @@ namespace Microsoft.Templates.Core.Injection.Code
                 var methodChunks = Regex.Split(path, "::");
                 if (methodChunks.Length > 1)
                 {
-                    instance.MethodName = methodChunks[1];
+                    if (methodChunks[1].EndsWith("_get") || methodChunks[1].EndsWith("_set"))
+                    {
+                        var propChunks = Regex.Split(methodChunks[1], "_");
+
+                        instance.PropertyName = new PropertyInfo
+                        {
+                            Name = propChunks[0],
+                            Accesor = propChunks[1] == "get" ? AccesorType.Get : AccesorType.Set
+                        };
+
+                    }
+                    else
+                    {
+                        instance.MethodName = methodChunks[1];
+                    }
                 }
 
                 var namespaceChunks = Regex.Split(methodChunks[0], @"\.");
@@ -174,7 +255,7 @@ namespace Microsoft.Templates.Core.Injection.Code
                 return instance;
             }
 
-            public BaseMethodDeclarationSyntax FindMethod(SyntaxNode root)
+            public BlockSyntax FindBody(SyntaxNode root)
             {
                 var @namespace = root.DescendantNodes()
                                     .OfType<NamespaceDeclarationSyntax>()
@@ -195,20 +276,47 @@ namespace Microsoft.Templates.Core.Injection.Code
                     return null;
                 }
 
-                BaseMethodDeclarationSyntax method = @class.DescendantNodes()
-                                                                .OfType<MethodDeclarationSyntax>()
-                                                                .FirstOrDefault(m => m.Identifier.ValueText == MethodName);
-
-                if (method == null)
+                if (PropertyName != null)
                 {
-                    method = @class.DescendantNodes()
-                                        .OfType<ConstructorDeclarationSyntax>()
-                                        .FirstOrDefault(m => m.Identifier.ValueText == MethodName);
+                    //TODO: VERIFY PROP IS NOT NULL
+                    var property = @class.DescendantNodes()
+                                                .OfType<PropertyDeclarationSyntax>()
+                                                .FirstOrDefault(m => m.Identifier.ValueText == PropertyName.Name);
+
+                    var method = property.AccessorList.Accessors.FirstOrDefault(a => a.Kind() == SyntaxKind.GetAccessorDeclaration);
+
+                    return method.Body;
+
                 }
+                else if (!string.IsNullOrEmpty(MethodName))
+                {
+                    BaseMethodDeclarationSyntax method = @class.DescendantNodes()
+                                                                    .OfType<MethodDeclarationSyntax>()
+                                                                    .FirstOrDefault(m => m.Identifier.ValueText == MethodName);
 
+                    if (method == null)
+                    {
+                        method = @class.DescendantNodes()
+                                            .OfType<ConstructorDeclarationSyntax>()
+                                            .FirstOrDefault(m => m.Identifier.ValueText == MethodName);
+                    }
 
-                return method;
+                    return method.Body;
+                }
+                return null;
             }
+        }
+
+        public class PropertyInfo
+        {
+            public string Name { get; set; }
+            public AccesorType Accesor { get; set; }
+        }
+
+        public enum AccesorType
+        {
+            Get,
+            Set
         }
     }
 }

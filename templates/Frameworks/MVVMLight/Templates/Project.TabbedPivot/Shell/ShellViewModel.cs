@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Input;
-using ItemName.Home;
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-
-//PostActionAnchor: ADD PAGE NS
 
 namespace ItemName.Shell
 {
@@ -20,10 +17,7 @@ namespace ItemName.Shell
         {
             get
             {
-                //TODO: UWPTemplates -> Show pages in Pivot by adding a navigation item for each page with its name.
-
-                //PostActionAnchor: ADD PAGE TO NAVIGATION
-                                
+                //TODO: UWPTemplates -> Show pages in Pivot by adding a navigation item for each page with its name.                               
                 //Edit String/en-US/Resources.resw: Add a menu item title for each page
             }
         }

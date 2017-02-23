@@ -8,6 +8,13 @@ namespace Microsoft.Templates.Core.Test.PostActions
 {
     class Class1
     {
+        public string Elements
+        {
+            get
+            {
+            }
+        }
+
         public void Main()
         {
             var v0 = "v0 value";

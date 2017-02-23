@@ -1,8 +1,7 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
-    "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.0.3",
-    //PostActionAnchor: ADD REFERENCES
+    "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.0.3"
   },
   "frameworks": {
     "uap10.0": {}

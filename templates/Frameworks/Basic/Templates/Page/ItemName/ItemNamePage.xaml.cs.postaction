@@ -1,0 +1,11 @@
+{
+    "properties": {
+        "ViewModel": "ItemNameViewModel"
+    },
+    "elements": [
+        {
+            "path": "ItemNamespace.ItemName.ItemNamePage::ItemNamePage",
+            "content": "ViewModel = new ItemNameViewModel();\r\nDataContext = ViewModel;"
+        }
+    ]
+}

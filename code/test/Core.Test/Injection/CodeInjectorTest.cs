@@ -21,9 +21,26 @@ namespace Microsoft.Templates.Core.Test.Injection
                     "System.IO",
                     "System.Globalization"
                 },
-                path = "Microsoft.Templates.Core.Test.PostActions.Class1::Main",
-                before = "Console.WriteLine(v1);",
-                content = "var v1 = \"v1 value\";\r\nvar v2 = \"v2 value\";"
+                properties = new Dictionary<string, string>
+                {
+                    { "Prop1", "string" },
+                    { "Prop2", "string" }
+                },
+                elements = new CodeInjectorElement[]
+                {
+                    new CodeInjectorElement
+                    {
+                        path = "Microsoft.Templates.Core.Test.PostActions.Class1::Main",
+                        before = "Console.WriteLine(v1);",
+                        content = "var v1 = \"v1 value\";\r\nvar v2 = \"v2 value\";"
+                    },
+                    new CodeInjectorElement
+                    {
+                        path = "Microsoft.Templates.Core.Test.PostActions.Class1::Elements_get",
+                        content = "return \"value\";"
+                    }
+                }
+
             };
             var code = File.ReadAllText(@".\TestData\Injection\Code\Inject.cs");
 

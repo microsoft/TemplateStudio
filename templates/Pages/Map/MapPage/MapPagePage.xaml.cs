@@ -11,13 +11,9 @@ namespace ItemNamespace.MapPage
     /// </summary>
     public sealed partial class MapPagePage : Page
     {
-        //PostActionAnchor: DEFINE VIEW MODEL
-
         public MapPagePage()
         {
             this.InitializeComponent();
-
-            //PostActionAnchor: SET DATACONTEXT"
         }
 
         private void OnLoaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -30,8 +26,6 @@ namespace ItemNamespace.MapPage
             //TODO: UWPTemplates -> Set your map access key. If you don't have it, request at https://www.bingmapsportal.com/
             //map.AccessKey = "";
             
-            //PostActionAnchor: GET VM FROM IOC
-
             ViewModel.SetMap(map);
         }
     }
