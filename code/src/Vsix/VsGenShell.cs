@@ -1,9 +1,11 @@
 ﻿using EnvDTE;
 using Microsoft.Internal.VisualStudio.PlatformUI;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Wizard;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.TemplateWizard;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -121,6 +123,11 @@ namespace Microsoft.Templates.Extension
                 // This will take place after the window is closed.
                 UIShell.EnableModeless(1);
             }
+        }
+
+        public override void CancelWizard()
+        {
+            throw new WizardBackoutException();
         }
 
         protected override string GetSelectedItemPath()
