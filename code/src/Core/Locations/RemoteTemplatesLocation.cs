@@ -123,10 +123,10 @@ namespace Microsoft.Templates.Core.Locations
             bool updated = false;
             var downloadedVersion = GetVersionFromFile(downloadedVersionFile);
             var installedVersion = GetVersionFromFile(installedVersionFile);
-
+            
             if (downloadedVersion != "0.0.0" && downloadedVersion != installedVersion)
             {
-                AppHealth.Current.Verbose.TrackAsync($"There is a new version available for templates content. Installed version:{installedVersion}, Downloaded Version: {downloadedVersion}").FireAndForget();
+                AppHealth.Current.Verbose.TrackAsync($"New of templates content available. Curren version:{installedVersion}; New version: {downloadedVersion}").FireAndForget();
 
                 SafeDelete(installedTemplatesDir);
                 CopyRecursive(downloadedTemplatesDir, installedTemplatesDir);

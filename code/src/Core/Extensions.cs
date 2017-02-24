@@ -23,23 +23,9 @@ namespace Microsoft.Templates.Core.Extensions
 
             using (MD5 md5Hash = MD5.Create())
             {
-                result = GetMd5Hash(md5Hash, b64data);
+                result = GetHash(md5Hash, b64data);
             }
             return result.ToUpper();
-        }
-
-        static string GetMd5Hash(MD5 md5Hash, byte[] inputData)
-        {
-            byte[] data = md5Hash.ComputeHash(inputData);
-
-            StringBuilder sBuilder = new StringBuilder();
-
-            for (int i = 0; i < data.Length; i++)
-            {
-                sBuilder.Append(data[i].ToString("x2"));
-            }
-
-            return sBuilder.ToString();
         }
 
         public static string ObfuscateSHA(this string data)
@@ -49,14 +35,14 @@ namespace Microsoft.Templates.Core.Extensions
 
             using (SHA512 sha2 = SHA512.Create())
             {
-                result = GetSha2Hash(sha2, b64data);
+                result = GetHash(sha2, b64data);
             }
             return result.ToUpper();
         }
 
-        static string GetSha2Hash(SHA512 sha2, byte[] inputData)
+        static string GetHash(HashAlgorithm md5Hash, byte[] inputData)
         {
-            byte[] data = sha2.ComputeHash(inputData);
+            byte[] data = md5Hash.ComputeHash(inputData);
 
             StringBuilder sBuilder = new StringBuilder();
 
