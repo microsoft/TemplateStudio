@@ -22,6 +22,28 @@ namespace Microsoft.Templates.Core.PostActions
             return postActions;
         }
 
+        public static IEnumerable<PostAction> FindGlobal(GenShell shell, List<GenInfo> genItems)
+        {
+            var postActions = new List<PostAction>();
+
+            //TODO: REVIEW THIS FACTORY AND MAGIC STRINGS IN NAMES
+            if (genItems.Any(g => g.Template.GetTemplateType() == TemplateType.DevFeature && g.Template.Name == "Localization"))
+            {
+                postActions.Add(new LocalizationPostAction(shell));
+            }
+            else
+            {
+                postActions.Add(new CleanLocAnchorPostAction(shell));
+            }
+
+            if (genItems.Any(g => g.Template.GetTemplateType() == TemplateType.DevFeature && g.Template.Name == "BackgroundTask"))
+            {
+                postActions.Add(new BackgroundTaskPostAction(shell));
+            }
+
+            return postActions;
+        }
+
         private static void AddPredefinedActions(GenShell shell, GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
         {
             switch (genInfo.Template.GetTemplateType())

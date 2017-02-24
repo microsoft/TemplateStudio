@@ -7,7 +7,6 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions;
 using Microsoft.Templates.Wizard.Dialog;
 using Microsoft.Templates.Wizard.Host;
-using Microsoft.Templates.Wizard.PostActions;
 using Microsoft.Templates.Wizard.Resources;
 using System;
 using System.Collections.Generic;
@@ -111,27 +110,17 @@ namespace Microsoft.Templates.Wizard
             //TODO: THIS IS TEMPORAL
             ExecuteGlobalPostActions(genItems);
 
-            PostActionCreator.CleanUpAnchors(outputPath);
-
             var timeSpent = chrono.Elapsed.TotalSeconds;
             TrackTelemery(genItems, genResults, timeSpent);
-
-
         }
 
         private void ExecuteGlobalPostActions(List<GenInfo> genItems)
         {
-            if (genItems.Any(g => g.Template.GetTemplateType() == TemplateType.DevFeature && g.Template.Name == "Localization"))
-            {
-                var locPostAction = new PostActions.Catalog.LocalizationPostAction();
+            var postActions = PostActionFactory.FindGlobal(Shell, genItems);
 
-                locPostAction.Execute(Shell.OutputPath, null, null, Shell);
-            }
-            if (genItems.Any(g => g.Template.GetTemplateType() == TemplateType.DevFeature && g.Template.Name == "BackgroundTask"))
+            foreach (var postAction in postActions)
             {
-                var backgroundTaskPostAction = new PostActions.Catalog.BackgroundTaskPostAction();
-
-                backgroundTaskPostAction.Execute(Shell.OutputPath, null, null, Shell);
+                postAction.Execute();
             }
         }
 
