@@ -8,7 +8,7 @@ namespace Microsoft.Templates.Core.Test.Locations
     {
         public override void Adquire(string workingFolder)
         {            
-            Copy($@"..\..\{TemplatesLocation.TemplatesName}", workingFolder);
+            Copy($@"..\..\TestData\{TemplatesLocation.TemplatesName}", workingFolder);
         }
 
         public override bool Update(string workingFolder)

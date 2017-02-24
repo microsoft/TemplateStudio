@@ -1,0 +1,11 @@
+{
+    "usings": [
+        "ItemNamespace.ItemName"
+    ],
+    "elements": [
+        {
+            "path": "RootNamespace.Shell.ShellViewModel::Items_get",
+            "content": "yield return new ShellTabbedItem(\"LOC_ANCHOR:Shell_ItemName~ItemName\", new ItemName.ItemNamePage());"
+        }
+    ]
+}

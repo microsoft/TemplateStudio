@@ -1,0 +1,8 @@
+{
+    "elements": [
+        {
+            "path": "RootNamespace.App::OnLaunched",
+            "content": "SettingsPage.SettingsPageViewModel.InitAppTheme();"
+        }
+    ]
+}

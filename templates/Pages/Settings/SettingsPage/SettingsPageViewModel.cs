@@ -3,7 +3,6 @@ using System.Windows.Input;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 using Windows.Storage;
-//PostActionAnchor: MVVM NAMESPACE
 
 namespace ItemNamespace.SettingsPage
 {
@@ -60,5 +59,24 @@ namespace ItemNamespace.SettingsPage
             }
             IsLightThemeEnabled = themeName == "Light";
         } 
+
+
+        //TODO: MOVE THIS SOMEWHERE
+        public static void InitAppTheme()
+        {
+            //Set application theme saved on application settings
+            if (Windows.Storage.ApplicationData.Current.LocalSettings.Values.ContainsKey("RequestedTheme"))
+            {
+                string themeName = Windows.Storage.ApplicationData.Current.LocalSettings.Values["RequestedTheme"].ToString();
+                if (themeName.Equals("Light"))
+                {
+                    (Window.Current.Content as FrameworkElement).RequestedTheme = ElementTheme.Light;
+                }
+                else if (themeName.Equals("Dark"))
+                {
+                    (Window.Current.Content as FrameworkElement).RequestedTheme = ElementTheme.Dark;
+                }
+            }
+        }
     }
 }

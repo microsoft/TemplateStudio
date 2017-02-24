@@ -1,0 +1,6 @@
+{
+    "usings": [
+        "GalaSoft.MvvmLight",
+        "GalaSoft.MvvmLight.Command"
+    ]
+}

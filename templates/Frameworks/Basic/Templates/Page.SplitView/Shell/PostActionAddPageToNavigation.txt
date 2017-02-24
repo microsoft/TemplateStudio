@@ -1,1 +1,0 @@
-yield return ShellNavigationItem.FromType<ItemNamePage>("LOC_ANCHOR:Shell_ItemName~ItemName", Char.ConvertFromUtf32(0xE130));

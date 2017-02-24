@@ -9,13 +9,9 @@ namespace ItemNamespace.MasterDetailPage
     /// </summary>
     public sealed partial class MasterDetailPagePage : Page
     {
-        //PostActionAnchor: DEFINE VIEW MODEL
-
         public MasterDetailPagePage()
         {
             this.InitializeComponent();
-
-            //PostActionAnchor: SET DATACONTEXT"
         }
     }
 }

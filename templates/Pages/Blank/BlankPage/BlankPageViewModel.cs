@@ -1,5 +1,4 @@
 using System;
-//PostActionAnchor: MVVM NAMESPACE
 
 namespace ItemNamespace.BlankPage
 {

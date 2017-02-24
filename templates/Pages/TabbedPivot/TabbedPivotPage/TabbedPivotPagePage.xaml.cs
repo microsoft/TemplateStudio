@@ -9,13 +9,9 @@ namespace ItemNamespace.TabbedPivotPage
     /// </summary>
     public sealed partial class TabbedPivotPagePage : Page
     {
-        //PostActionAnchor: DEFINE VIEW MODEL
-
         public TabbedPivotPagePage()
         {
             this.InitializeComponent();
-
-            //PostActionAnchor: SET DATACONTEXT"
         }
     }
 }

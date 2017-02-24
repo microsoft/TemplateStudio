@@ -98,27 +98,6 @@
     <Compile Include="Dialog\RelayCommand.cs" />
     <Compile Include="Extensions\ObservableCollection.extensions.cs" />
     <Compile Include="GenComposer.cs" />
-    <Compile Include="GenParams.cs" />
-    <Compile Include="PostActions\Catalog\BackgroundTaskPostAction.cs" />
-    <Compile Include="PostActions\Catalog\LocalizationPostAction.cs" />
-    <Compile Include="PostActions\PostActionResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PostActionResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="PostActions\Catalog\AddItemToProjectPostAction.cs" />
-    <Compile Include="PostActions\Catalog\AddProjectToSolutionPostAction.cs" />
-    <Compile Include="PostActions\CustomPostActionDefinition.cs" />
-    <Compile Include="PostActions\Catalog\GenerateTestCertificatePostAction.cs" />
-    <Compile Include="PostActions\Catalog\InsertPartialGenerationPostAction.cs" />
-    <Compile Include="PostActions\PostActionBase.cs" />
-    <Compile Include="PostActions\PostActionCreator.cs" />
-    <Compile Include="PostActions\PostActionResult.cs" />
-    <Compile Include="PostActions\Catalog\SetDefaultSolutionConfigurationPostAction.cs" />
-    <Compile Include="PostActions\PostActionType.cs" />
-    <Compile Include="PostActions\ResultCode.cs" />
-    <Compile Include="GenInfo.cs" />
-    <Compile Include="GenShell.cs" />
     <Compile Include="Resources\ResourcesExtensions.cs" />
     <Compile Include="Resources\StringRes.Designer.cs">
       <DependentUpon>StringRes.resx</DependentUpon>
@@ -253,10 +232,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="PostActions\PostActionResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>PostActionResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

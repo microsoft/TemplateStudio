@@ -1,0 +1,8 @@
+{
+    "elements":[
+        {
+            "path": "/Application/Application.Resources/ResourceDictionary",
+            "content": "<local:ViewModelLocator x:Key=\"Locator\" xmlns:local=\"using:RootNamespace\" xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\" />"
+        }
+    ]
+}

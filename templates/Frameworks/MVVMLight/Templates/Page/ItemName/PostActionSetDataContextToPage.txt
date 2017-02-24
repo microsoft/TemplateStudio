@@ -1,1 +1,0 @@
-DataContext="{Binding ItemNameViewModel, Source={StaticResource Locator}}"

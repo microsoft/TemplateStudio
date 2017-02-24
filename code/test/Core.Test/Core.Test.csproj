@@ -86,6 +86,7 @@
       <HintPath>..\..\packages\System.ValueTuple.4.3.0-preview1-24530-04\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c">
       <HintPath>..\..\packages\xunit.abstractions.2.0.0\lib\net35\xunit.abstractions.dll</HintPath>
     </Reference>
@@ -108,6 +109,12 @@
     <Compile Include="ITemplateInfoExtensionsTest.cs" />
     <Compile Include="Locations\TemplatexTests.cs" />
     <Compile Include="NamingTest.cs" />
+    <Compile Include="Injection\CodeInjectorTest.cs" />
+    <Compile Include="Injection\ReferencesInjectorTest.cs" />
+    <None Include="TestData\Injection\Code\Inject.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Compile Include="Injection\XamlInjectorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -115,6 +122,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="TemplatesFixture.cs" />
+    <None Include="TestData\Injection\Code\Inject_Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Compile Include="Locations\UnitTestsTemplatesLocation.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -128,11 +138,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="packages.config" />
-    <Content Include="Templates\FeatureTemplate\.template.config\template.json" />
-    <Content Include="Templates\PageTemplate\.template.config\template.json" />
-    <Content Include="Templates\ProjectTemplate\.template.config\icon.png" />
-    <Content Include="Templates\ProjectTemplate\.template.config\template.json" />
-    <Content Include="Templates\UnspecifiedTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\FeatureTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\PageTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\ProjectTemplate\.template.config\icon.png" />
+    <Content Include="TestData\Templates\ProjectTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\UnspecifiedTemplate\.template.config\template.json" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
@@ -158,7 +168,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Templates\ProjectTemplate\.template.config\Layout.json" />
+    <Content Include="TestData\Templates\ProjectTemplate\.template.config\Layout.json" />
     <None Include="test.config.json">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
