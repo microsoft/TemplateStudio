@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Wizard;
 using System;
 using System.Collections.Generic;
@@ -122,5 +123,8 @@ namespace Microsoft.Templates.Test
             
         }
 
+        public override void CancelWizard()
+        {
+        }
     }
 }

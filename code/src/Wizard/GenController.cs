@@ -4,6 +4,7 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Core.PostActions;
 using Microsoft.Templates.Wizard.Dialog;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Wizard.PostActions;
@@ -102,7 +103,7 @@ namespace Microsoft.Templates.Wizard
                     //TODO: THROW EXCEPTION ?
                 }
 
-                var postActionResults = ExecutePostActions(outputPath, genInfo, result);
+                ExecutePostActions(genInfo, result);
 
                 chrono.Stop();
             }
@@ -184,37 +185,14 @@ namespace Microsoft.Templates.Wizard
         }
 
 
-        private IEnumerable<PostActionResult> ExecutePostActions(string outputPath, GenInfo genInfo, TemplateCreationResult generationResult)
+        private void ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult)
         {
             //Get post actions from template
-            var postActions = PostActionCreator.GetPostActions(genInfo.Template);
-
-            //Execute post action
-            var postActionResults = new List<PostActionResult>();
+            var postActions = PostActionFactory.Find(Shell, genInfo, generationResult);
 
             foreach (var postAction in postActions)
             {
-                var postActionResult = postAction.Execute(outputPath, genInfo, generationResult, Shell);
-                postActionResults.Add(postActionResult);
-            }
-
-             return postActionResults;
-        }
-
-        private static void ShowPostActionResults(IEnumerable<PostActionResult> postActionResults)
-        {
-            //TODO: Determine where to show postActionResults
-
-            var postActionResultMessages = postActionResults.Aggregate(new StringBuilder(), (sb, a) => sb.AppendLine($"{a.Message}"), sb => sb.ToString());
-
-            if (postActionResults.Any(p => p.ResultCode != ResultCode.Success))
-            {
-                var errorMessages = postActionResults
-                                            .Where(p => p.ResultCode != ResultCode.Success)
-                                            .Aggregate(new StringBuilder(), (sb, p) => sb.AppendLine($"{p.Message}"), sb => sb.ToString());
-
-                //TODO: REVIEW THIS
-                ErrorMessageDialog.Show("Some PostActions failed", "Failed post actions", errorMessages, MessageBoxImage.Error);
+                postAction.Execute();
             }
         }
 

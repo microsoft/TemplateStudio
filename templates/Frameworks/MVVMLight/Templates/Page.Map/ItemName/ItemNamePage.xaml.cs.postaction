@@ -1,0 +1,12 @@
+{
+    "usings": [
+        "Microsoft.Practices.ServiceLocation"
+    ],
+    "elements": [
+        {
+            "path": "ItemNamespace.ItemName.ItemNamePage::OnLoaded",
+            "before": "ViewModel.SetMap(map);",
+            "content": "var ViewModel = ServiceLocator.Current.GetInstance<ItemNameViewModel>();"
+        }
+    ]
+}

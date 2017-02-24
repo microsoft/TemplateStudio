@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Edge.Template;
+using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.Wizard.PostActions.Catalog
 {

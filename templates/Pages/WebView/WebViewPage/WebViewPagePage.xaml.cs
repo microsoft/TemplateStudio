@@ -10,12 +10,9 @@ namespace ItemNamespace.WebViewPage
     /// </summary>
     public sealed partial class WebViewPagePage : Page
     {
-        //PostActionAnchor: DEFINE VIEW MODEL
-
         public WebViewPagePage()
         {
             this.InitializeComponent();
-            //PostActionAnchor: SET DATACONTEXT"
         }
     }
 }

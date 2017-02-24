@@ -1,0 +1,8 @@
+{
+    "elements": [
+        {
+            "path": "RootNamespace.ViewModelLocator::ViewModelLocator",
+            "content": "RegisterShell(navigationService);"
+        }
+    ]
+}

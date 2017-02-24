@@ -6,7 +6,6 @@ using System.Windows.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-//PostActionAnchor: MVVM NAMESPACE
 
 namespace ItemNamespace.MasterDetailPage
 {

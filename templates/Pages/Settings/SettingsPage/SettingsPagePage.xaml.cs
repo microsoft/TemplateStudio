@@ -9,13 +9,9 @@ namespace ItemNamespace.SettingsPage
     /// </summary>
     public sealed partial class SettingsPagePage : Page
     {
-        //PostActionAnchor: DEFINE VIEW MODEL
-
         public SettingsPagePage()
         {
             this.InitializeComponent();
-
-            //PostActionAnchor: SET DATACONTEXT"
         }
     }
 }

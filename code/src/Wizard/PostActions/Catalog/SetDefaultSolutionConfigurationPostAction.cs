@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Wizard.Resources;
+using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.Wizard.PostActions.Catalog
 {

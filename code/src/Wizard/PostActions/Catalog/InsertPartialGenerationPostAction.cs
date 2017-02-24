@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Templates.Wizard.Resources;
 using System.Configuration;
+using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.Wizard.PostActions.Catalog
 {

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Templates.Core;
+using Microsoft.VisualStudio.TemplateWizard;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -120,6 +122,11 @@ namespace Microsoft.Templates.Wizard.TestApp
         public override void ShowModal(Window dialog)
         {
             dialog.ShowDialog();
+        }
+
+        public override void CancelWizard()
+        {
+            throw new WizardBackoutException();
         }
     }
 }

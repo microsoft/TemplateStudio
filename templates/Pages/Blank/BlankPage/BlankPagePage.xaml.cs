@@ -9,13 +9,9 @@ namespace ItemNamespace.BlankPage
     /// </summary>
     public sealed partial class BlankPagePage : Page
     {
-        //PostActionAnchor: DEFINE VIEW MODEL
-
         public BlankPagePage()
         {
             this.InitializeComponent();
-
-            //PostActionAnchor: SET DATACONTEXT"
         }
     }
 }

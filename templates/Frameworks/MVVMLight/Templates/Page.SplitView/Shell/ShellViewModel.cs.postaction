@@ -1,0 +1,11 @@
+{
+    "usings": [
+        "ItemNamespace.ItemName"
+    ],
+    "elements": [
+        {
+            "path": "RootNamespace.Shell.ShellViewModel::NavigationItems_get",
+            "content": "yield return new ShellNavigationItem(\"LOC_ANCHOR:Shell_ItemName~ItemName\", Char.ConvertFromUtf32(0xE130), typeof(ItemNameViewModel).FullName);"
+        }
+    ]
+}

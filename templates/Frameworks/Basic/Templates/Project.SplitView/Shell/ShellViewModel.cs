@@ -4,8 +4,6 @@ using System.Windows.Input;
 
 using ItemName.Mvvm;
 
-//PostActionAnchor: ADD PAGE NS
-
 namespace ItemName.Shell
 {
     public class ShellViewModel : Observable
@@ -30,8 +28,7 @@ namespace ItemName.Shell
                 //TODO UWPTemplates: Show pages in the SplitView menu by adding a navigation item for each page with its name and icon.
                 //More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
 
-                //PostActionAnchor: ADD PAGE TO NAVIGATION
-                                
+                               
                 //Edit String/en-US/Resources.resw: Add a menu item title for each page
             }
         }

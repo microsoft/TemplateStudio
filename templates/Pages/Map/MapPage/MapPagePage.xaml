@@ -7,7 +7,6 @@
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
-    <!-- PostActionAnchor: SET DATACONTEXT -->
     mc:Ignorable="d">
 
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">

@@ -7,6 +7,7 @@ using Microsoft.TemplateEngine.Edge.Template;
 using System.IO;
 using System.Xml.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.Wizard.PostActions.Catalog
 {
