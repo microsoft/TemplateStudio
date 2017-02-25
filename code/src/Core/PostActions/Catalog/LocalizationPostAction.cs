@@ -1,38 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Microsoft.TemplateEngine.Edge.Template;
-using System.IO;
-using System.Xml.Linq;
 using System.Text.RegularExpressions;
-using Microsoft.Templates.Core;
+using System.Threading.Tasks;
+using System.Xml.Linq;
 
-namespace Microsoft.Templates.Wizard.PostActions.Catalog
+namespace Microsoft.Templates.Core.PostActions.Catalog
 {
-    public class LocalizationPostAction : PostActionBase
+    public class LocalizationPostAction : PostAction
     {
         private const string AnchorPattern = @"\""" + LocAnchor.Tag + @"(?<Key>\w+)~(?<Value>.+?)\""";
 
-        public LocalizationPostAction() : base("Localization", "Create localization resources", null)
+        public LocalizationPostAction(GenShell shell) : base(shell)
         {
         }
 
-        public override PostActionResult Execute(string outputPath, GenInfo context, TemplateCreationResult generationResult, GenShell shell)
+        public override void Execute()
         {
-            var projectResources = GetResources(shell.ProjectPath);
+            var projectResources = GetResources(_shell.ProjectPath);
 
             if (projectResources == null || !projectResources.Any())
             {
-                //TODO: SET MESSAGE
-                return new PostActionResult
-                {
-                    ResultCode = ResultCode.Error
-                };
+                return;
             }
 
-            foreach (var projectItemFile in Directory.EnumerateFiles(shell.ProjectPath, "*", SearchOption.AllDirectories))
+            foreach (var projectItemFile in Directory.EnumerateFiles(_shell.ProjectPath, "*", SearchOption.AllDirectories))
             {
                 //TODO: THIS SHOULD BE DONE IN UPDATER
                 var fileContent = File.ReadAllText(projectItemFile);
@@ -48,10 +42,7 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
                     if (updateResult == null)
                     {
                         //TODO: SET MESSAGE
-                        return new PostActionResult
-                        {
-                            ResultCode = ResultCode.Error
-                        };
+                        throw new Exception($"Update for project file '{projectItemFile}' was null");
                     }
                     foreach (var anchor in updateResult.Anchors)
                     {
@@ -64,32 +55,6 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
             }
 
             projectResources.ForEach(r => r.element.Save(r.fileName));
-
-            return new PostActionResult
-            {
-                ResultCode = ResultCode.Success
-            };
-        }
-
-        public static bool CleanUpAnchors(ref string fileContent)
-        {
-            var modified = false;
-
-            if (fileContent.IndexOf(LocAnchor.Tag) > -1)
-            {
-                var matches = Regex.Matches(fileContent, AnchorPattern);
-                for (int i = 0; i < matches.Count; i++)
-                {
-                    var m = matches[i];
-
-                    var replacement = $"\"{m.Groups["Value"].Value}\"";
-                    fileContent = fileContent.Replace(m.Value, replacement);
-
-                    modified = true;
-                }
-            }
-
-            return modified;
         }
 
         private static List<(string fileName, XElement element)> GetResources(string path)
@@ -112,7 +77,6 @@ namespace Microsoft.Templates.Wizard.PostActions.Catalog
 
             return null;
         }
-
     }
 
     abstract class FileLocUpdater

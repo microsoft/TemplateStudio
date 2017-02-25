@@ -1,64 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.TemplateEngine.Edge.Template;
-using System.IO;
-using Microsoft.Templates.Core;
 
-namespace Microsoft.Templates.Wizard.PostActions.Catalog
+namespace Microsoft.Templates.Core.PostActions.Catalog
 {
-    public class BackgroundTaskPostAction : PostActionBase
+    public class BackgroundTaskPostAction : PostAction
     {
         private const string backgroundTaskFolder = "BackgroundTask";
         private const string backgroundTaskServiceFileName = "BackgroundTaskService.cs";
         private const string Anchor = "//BACKGROUNDTASK_ANCHOR";
         private const string backgroundTasksToAddFileName = "*AddBackgroundTask.txt";
 
-        public BackgroundTaskPostAction() : 
-            base("BackgroundTask", "Adds the generated background tasks to the background tasks service dictionary", null)
+        public BackgroundTaskPostAction(GenShell shell) : base(shell)
         {
         }
 
-        public override PostActionResult Execute(string outputPath, GenInfo context, TemplateCreationResult generationResult, GenShell shell)
+        public override void Execute()
         {
-            var backgroundServiceFile = Path.Combine(shell.ProjectPath, backgroundTaskFolder, backgroundTaskServiceFileName);
+            var backgroundServiceFile = Path.Combine(_shell.ProjectPath, backgroundTaskFolder, backgroundTaskServiceFileName);
             var backgroundServiceContent = File.ReadAllText(backgroundServiceFile);
 
             var anchorIndex = backgroundServiceContent.IndexOf(Anchor);
 
             if (anchorIndex == -1)
             {
-                return new PostActionResult()
-                {
-                    ResultCode = ResultCode.AnchorNotFound
-                };
+                //TODO: REVIEW THIS
+                throw new Exception("Anchor not found");
             }
             var nextLineAfterAnchor = backgroundServiceContent.IndexOf(Environment.NewLine, anchorIndex, StringComparison.Ordinal) + Environment.NewLine.Length;
-            
-            var backgroundTasks = GetBackgroundTasksToAdd(shell.ProjectPath);
+
+            var backgroundTasks = GetBackgroundTasksToAdd(_shell.ProjectPath);
 
             foreach (var backgroundTaskToAdd in backgroundTasks)
             {
-                backgroundServiceContent= backgroundServiceContent.Insert(nextLineAfterAnchor, FormatCode(backgroundTaskToAdd.Content, backgroundServiceContent, anchorIndex));
+                backgroundServiceContent = backgroundServiceContent.Insert(nextLineAfterAnchor, FormatCode(backgroundTaskToAdd.Content, backgroundServiceContent, anchorIndex));
                 File.Delete(backgroundTaskToAdd.Name);
             }
 
             //Delete anchor
             backgroundServiceContent = backgroundServiceContent.Replace(Anchor, String.Empty);
             File.WriteAllText(backgroundServiceFile, backgroundServiceContent);
-
-            return new PostActionResult()
-            {
-                ResultCode = ResultCode.Success
-            };
-
         }
 
         private List<(string Name, string Content)> GetBackgroundTasksToAdd(string projectPath)
         {
-            return  Directory.EnumerateFiles(Path.Combine(projectPath,backgroundTaskFolder), backgroundTasksToAddFileName, SearchOption.TopDirectoryOnly).
+            return Directory.EnumerateFiles(Path.Combine(projectPath, backgroundTaskFolder), backgroundTasksToAddFileName, SearchOption.TopDirectoryOnly).
                 Select(f => (Name: f, Content: File.ReadAllText(f))).ToList();
         }
 

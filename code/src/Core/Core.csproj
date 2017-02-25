@@ -141,6 +141,8 @@
     <Compile Include="LayoutItem.cs" />
     <Compile Include="PostActions\Catalog\AddItemToProjectPostAction.cs" />
     <Compile Include="PostActions\Catalog\AddProjectToSolutionPostAction.cs" />
+    <Compile Include="PostActions\Catalog\BackgroundTaskPostAction.cs" />
+    <Compile Include="PostActions\Catalog\CleanLocAnchorPostAction.cs" />
     <Compile Include="PostActions\Catalog\GenerateTestCertificatePostAction.cs" />
     <Compile Include="Injection\Code\CodeInjector.cs" />
     <Compile Include="Injection\Code\CodeInjectorConfig.cs" />
@@ -150,6 +152,7 @@
     <Compile Include="Injection\References\ReferencesInjectorConfig.cs" />
     <Compile Include="Injection\Xaml\XamlInjector.cs" />
     <Compile Include="Injection\Xaml\XamlInjectorConfig.cs" />
+    <Compile Include="PostActions\Catalog\LocalizationPostAction.cs" />
     <Compile Include="PostActions\PostAction.cs" />
     <Compile Include="PostActions\PostActionFactory.cs" />
     <Compile Include="PostActions\Catalog\SetDefaultSolutionConfigurationPostAction.cs" />
