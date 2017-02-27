@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Windows.Storage;
 using System.IO;
 using System.Runtime.CompilerServices;
+using Windows.ApplicationModel.Activation;
 //PostActionAnchor: USING SERVICLOCATOR
 
 namespace ItemNamespace.Services
@@ -17,6 +18,10 @@ namespace ItemNamespace.Services
     /// </summary>
     public class StateService
     {
+        private static readonly Lazy<StateService> stateService = new Lazy<StateService>(() => new StateService());
+
+        public static StateService Instance => stateService.Value;
+
         private const string stateFilename = "pageState.json";
 
         /// <summary>
@@ -42,29 +47,36 @@ namespace ItemNamespace.Services
         /// </summary>
         /// <param name="arguments"></param>
         /// <returns></returns>
-        internal async Task RestoreStateAsync(string arguments)
+        internal async Task RestoreStateAsync(ApplicationExecutionState previousState, string arguments)
         {
-            SaveStateEventArgs saveState;
-
-            if (File.Exists(Path.Combine(ApplicationData.Current.LocalFolder.Path, stateFilename)))
+            if (previousState == ApplicationExecutionState.Terminated)
             {
-                var file = await ApplicationData.Current.LocalFolder.GetFileAsync(stateFilename);
+                SaveStateEventArgs saveState;
 
-                if (file != null)
+                if (File.Exists(Path.Combine(ApplicationData.Current.LocalFolder.Path, stateFilename)))
                 {
-                    var saveStateData = await FileIO.ReadTextAsync(file);
+                    var file = await ApplicationData.Current.LocalFolder.GetFileAsync(stateFilename);
 
-                    saveState = JsonConvert.DeserializeObject<SaveStateEventArgs>(saveStateData);
-
-                    if (saveState != null && saveState.Page != null)
+                    if (file != null)
                     {
-                        //PostActionAnchor: NAVIGATE TO STORED PAGE
+                        var saveStateData = await FileIO.ReadTextAsync(file);
 
-                        //Restore page state
-                        RestoreState?.Invoke(this, new RestoreStateEventArgs(saveState.PageState));
+                        saveState = JsonConvert.DeserializeObject<SaveStateEventArgs>(saveStateData);
+
+                        if (saveState != null && saveState.Page != null)
+                        {
+                            NavigateToPage(saveState.Page, arguments);
+
+                            //Restore page state
+                            RestoreState?.Invoke(this, new RestoreStateEventArgs(saveState.PageState));
+                        }
                     }
                 }
             }
+        }
+
+        private void NavigateToPage(Type page, string arguments)
+        {
         }
 
         //TODO UWPTEMPLATES: Subscribe to this event in pages in OnNavigatedTo event handler

@@ -15,8 +15,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using BlankProject.Home;
-//PostActionAnchor: USING BACKGROUNDTASK
-//PostActionAnchor: USING SERVICES
 
 namespace BlankProject
 {
@@ -25,8 +23,7 @@ namespace BlankProject
     /// </summary>
     sealed partial class App : Application
     {
-        //PostActionAnchor: STATE SERVICE
-        
+       
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -34,7 +31,7 @@ namespace BlankProject
         public App()
         {
             this.InitializeComponent();
-            //PostActionAnchor: ENTERED BACKGROUND EVENT REGISTRATION
+            this.EnteredBackground += App_EnteredBackground;
             //PostActionAnchor: ENABLE QUEUE
         }
 
@@ -58,13 +55,6 @@ namespace BlankProject
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
-                
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                    //PostActionAnchor:RESTORE STATE
-                }
-
-                
             }
 
             if (e.PrelaunchActivated == false)
@@ -93,13 +83,30 @@ namespace BlankProject
         }
 
 
-        //PostActionAnchor: ENTERED BACKGROUND EVENT HANDLER
+        private async void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e)
+        {
+            var deferral = e.GetDeferral();
+           
+            deferral.Complete();
+        }
 
-        //PostActionAnchor: BACKGROUND ACTIVATED EVENT HANDLER
 
         protected override void OnActivated(IActivatedEventArgs args)
         {
-            //PostActionAnchor: ACTIVATE FROM TOASTNOTIFICATION
+            if (args.Kind == ActivationKind.ToastNotification) 
+            { 
+                var toastArgs = args as ToastNotificationActivatedEventArgs; 
+                var arguments = toastArgs.Argument; 
+                
+                //TODO UWPTemplates: Handle activation from toast notification,  
+                //for more info handling activation see  
+                //https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/ 
+            } 
         }
+
+        protected override void OnBackgroundActivated(BackgroundActivatedEventArgs args) 
+        { 
+            
+        } 
     }
 }

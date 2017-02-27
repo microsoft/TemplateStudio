@@ -26,11 +26,11 @@ namespace Microsoft.Templates.Test
 
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
-        public void GenerateEmptyProject(string projId, string framework)
+        public void GenerateEmptyProject(string name, string framework, string projId)
         {
             var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
 
-            var projectName = $"{framework}{projectTemplate.GetProjectType()}";
+            var projectName = $"{name}{framework}";
 
             var generator = new GenController(new FakeGenShell(projectName, fixture.TestProjectsPath, new TextBlock()));
             var wizardState = new WizardState
@@ -56,11 +56,11 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
-        public void GenerateProjectWithAllPages(string projId, string framework)
+        public void GenerateAllPages(string name, string framework, string projId)
         {
             var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
 
-            var projectName = $"{framework}{targetProjectTemplate.GetProjectType()}All";
+            var projectName = $"{name}{framework}All";
 
             var generator = new GenController(new FakeGenShell(projectName, fixture.TestPagesPath, new TextBlock()));
 
@@ -88,12 +88,12 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
-        public void GenerateProjectWithAllDevFeatures(string projId, string framework)
+        public void GenerateAllDevFeatures(string name,  string framework, string projId)
         {
             var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
 
-            var projectName = $"{framework}{targetProjectTemplate.GetProjectType()}All";
-            
+            var projectName = $"{name}{framework}All";
+
             var generator = new GenController(new FakeGenShell(projectName, fixture.TestDevFeaturesPath, new TextBlock()));
 
             var wizardState = new WizardState
@@ -174,7 +174,7 @@ namespace Microsoft.Templates.Test
             {
                 foreach (var framework in template.GetFrameworkList())
                 {
-                    yield return new object[] { template.Identity, framework };
+                    yield return new object[] { template.Name,  framework, template.Identity };
                 }
             }
         }

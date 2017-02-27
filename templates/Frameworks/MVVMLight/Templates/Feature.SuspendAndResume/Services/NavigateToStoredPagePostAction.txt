@@ -1,3 +1,0 @@
-//Navigate to stored page 
-var navigationService = ServiceLocator.Current.GetInstance<NavigationService>();
-navigationService.Navigate(saveState.Page.FullName);
