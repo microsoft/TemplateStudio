@@ -97,7 +97,7 @@ namespace Microsoft.Templates.Core.Locations
                 }
                 else
                 {
-                    string msg = $"Digital signatures in '{signedFilePack}\n' failed validation.  Unable to continue.";
+                    string msg = $"Invalid digital signatures in '{signedFilePack}'. The content has been tampered or the certificate is not present, not valid or not allowed.  Unable to continue.";
                     throw new InvalidSignatureException(msg);
                 }
             }
@@ -181,8 +181,8 @@ namespace Microsoft.Templates.Core.Locations
             bool result = dsm.IsSigned;
             if (result)
             {
-                //TODO: DECIDE IF WE HAVE TO ENFORCE THE CERTIFICATE VALIDITY (CERTIFICATE CHAIN ISSUES)
-                //result = result && ValidateSignatureCertificates(dsm);
+                result = result && ValidatePackageCertificates(dsm);
+
                 if (result)
                 {
                     VerifyResult verifyResult = dsm.VerifySignatures(false);
@@ -192,18 +192,66 @@ namespace Microsoft.Templates.Core.Locations
             return result;
         }
 
-        private static bool ValidateSignatureCertificates(PackageDigitalSignatureManager dsm)
+        private static bool ValidatePackageCertificates(PackageDigitalSignatureManager dsm)
         {
-            bool certificatesOk = true;
+            
+            Dictionary<string, X509Certificate> certs = GetPackageCertificates(dsm);
+            bool certificatesOk = certs.Count > 0;
+            
+            foreach (X509Certificate cert in certs.Values)
+            {
+                if (CertificateChainVaidationRequired())
+                {
+                    certificatesOk = certificatesOk && VerifyCertificate(cert);
+                }
+                else
+                {
+                    certificatesOk = certificatesOk && VerifyAllowedPublicKey(cert);
+                }
+
+                if (!certificatesOk)
+                {
+                    AppHealth.Current.Warning.TrackAsync("Package signature certificate validation not passed.").FireAndForget();
+                    break;
+                }
+            }
+            return certificatesOk;
+        }
+
+        private static bool CertificateChainVaidationRequired()
+        {
+            return !Configuration.Current.AllowedPublicKeysPins.Where(pk => !String.IsNullOrWhiteSpace(pk)).Any();
+        }
+
+        private static Dictionary<string, X509Certificate> GetPackageCertificates(PackageDigitalSignatureManager dsm)
+        {
+            Dictionary<string, X509Certificate> certs = new Dictionary<string, X509Certificate>();
             foreach (var signature in dsm.Signatures)
             {
-                var status = PackageDigitalSignatureManager.VerifyCertificate(signature.Signer);
-                certificatesOk = certificatesOk && (status == X509ChainStatusFlags.NoError);
-                AppHealth.Current.Verbose.TrackAsync($"Certiticate validation finished for certificate with subject '{signature.Signer.Subject}'. Status: {status.ToString()}").FireAndForget();
+                if (!certs.Keys.Contains(signature.Signer.GetSerialNumberString()))
+                {
+                    certs.Add(signature.Signer.GetSerialNumberString(), signature.Signer);
+                }
             }
-            AppHealth.Current.Verbose.TrackAsync($"Package certiticates valid: {certificatesOk}").FireAndForget();
 
-            return certificatesOk;
+            return certs;
+        }
+
+        private static bool VerifyCertificate(X509Certificate cert)
+        {
+            var status = PackageDigitalSignatureManager.VerifyCertificate(cert);
+            AppHealth.Current.Verbose.TrackAsync($"Certificate '{cert.Subject}' verification finished with status '{status.ToString()}'").FireAndForget();
+            return (status == X509ChainStatusFlags.NoError);
+        }
+
+        private static bool VerifyAllowedPublicKey(X509Certificate cert)
+        {
+            var pubKeyCert = cert.GetPublicKeyString();
+            var pubKeyPin = pubKeyCert.ObfuscateSHA();
+
+            AppHealth.Current.Verbose.TrackAsync($"Package certificate {cert.Subject} with pin {pubKeyPin} (Public Key: {pubKeyCert})").FireAndForget();
+
+            return Configuration.Current.AllowedPublicKeysPins.Where(allowedPin => allowedPin.Equals(pubKeyPin)).Any();
         }
 
         private static void SignAllParts(Package package, X509Certificate cert)

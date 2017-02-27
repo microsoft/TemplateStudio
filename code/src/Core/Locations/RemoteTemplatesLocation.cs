@@ -24,7 +24,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public override bool Update(string workingFolder)
         {
-            return UpdateTemplates(Path.Combine(workingFolder, TempFolderName), workingFolder);
+            return UpdateTemplates(workingFolder);
         }
 
         private void Download(string workingFolder, string fileName)
@@ -96,17 +96,14 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private static bool UpdateTemplates(string tempFolder, string workingFolder)
+        private static bool UpdateTemplates(string workingFolder)
         {
             bool templatesUpdated = false;
-            string downloadedTemplatesDir = Path.Combine(tempFolder, TemplatesName);
-            string downloadedVersionFile = Path.Combine(downloadedTemplatesDir, VersionFileName);
-            string installedTemplatesDir = Path.Combine(workingFolder, TemplatesName);
-            string installedVersionFile = Path.Combine(installedTemplatesDir, VersionFileName);
+            var tempFolder = Path.Combine(workingFolder, TempFolderName);
             try
             {
 
-                templatesUpdated = CopyContentIfNeeded(downloadedTemplatesDir, downloadedVersionFile, installedTemplatesDir, installedVersionFile);
+                templatesUpdated = CopyContentIfNeeded(workingFolder);
                 SafeCleanUpTempFolder(tempFolder);
             }
             catch (Exception ex)
@@ -118,31 +115,45 @@ namespace Microsoft.Templates.Core.Locations
             return templatesUpdated;
         }
 
-        private static bool CopyContentIfNeeded(string downloadedTemplatesDir, string downloadedVersionFile, string installedTemplatesDir, string installedVersionFile)
+        private static bool CopyContentIfNeeded(string workingFolder)
         {
             bool updated = false;
-            var downloadedVersion = GetVersionFromFile(downloadedVersionFile);
-            var installedVersion = GetVersionFromFile(installedVersionFile);
+            string tempContentDir = Path.Combine(workingFolder, Path.Combine(TempFolderName, TemplatesName));
+            string currentContentDir = Path.Combine(workingFolder, TemplatesName);
 
-            if (downloadedVersion != "0.0.0" && downloadedVersion != installedVersion)
+            if (UpdateAvailable(workingFolder))
             {
-                AppHealth.Current.Verbose.TrackAsync($"There is a new version available for templates content. Installed version:{installedVersion}, Downloaded Version: {downloadedVersion}").FireAndForget();
+                SafeDelete(currentContentDir);
+                CopyRecursive(tempContentDir, currentContentDir);
 
-                SafeDelete(installedTemplatesDir);
-                CopyRecursive(downloadedTemplatesDir, installedTemplatesDir);
-
-                AppHealth.Current.Warning.TrackAsync($"Templates successfully updated with version {downloadedVersion}.").FireAndForget();
-
+                AppHealth.Current.Warning.TrackAsync($"Templates successfully updated").FireAndForget();
                 updated = true;
             }
-            else if (downloadedVersion == installedVersion)
-            {
-                RefreshVersionFileExpiration(installedVersionFile, installedVersion);
-            }
-
             return updated;
         }
 
+        private static bool UpdateAvailable(string workingFolder)
+        {
+            string tempContentDir = Path.Combine(workingFolder, Path.Combine(TempFolderName, TemplatesName));
+            string tempFileVersion = Path.Combine(tempContentDir, VersionFileName);
+            string currentFileVersion = Path.Combine(workingFolder, Path.Combine(TemplatesName, VersionFileName));
+
+            var tempVersion = GetVersionFromFile(tempFileVersion);
+            var currentVersion = GetVersionFromFile(currentFileVersion);
+
+            bool update = tempVersion != "0.0.0" && tempVersion != currentVersion;
+
+            if (update)
+            {
+                AppHealth.Current.Verbose.TrackAsync($"New templates content available. Current version:{currentVersion}; New version: {tempVersion}").FireAndForget();
+            }
+
+            if (!update && tempVersion == currentVersion)
+            {
+                RefreshVersionFileExpiration(currentFileVersion, currentVersion);
+            }
+            return update;
+        }
         private static void RefreshVersionFileExpiration(string installedVersionFile, string installedVersion)
         {
             if (File.Exists(installedVersionFile))

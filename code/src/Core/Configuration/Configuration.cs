@@ -23,6 +23,7 @@ namespace Microsoft.Templates.Core
         public TraceEventType DiagnosticsTraceLevel { get; set; } = TraceEventType.Verbose;
         public int DaysToKeepDiagnosticsLogs { get; set; } = 5;
         public int VersionCheckingExpirationMinutes { get; set; } = 5;
+        public List<string> AllowedPublicKeysPins { get; set; } = new List<string>() { };
 
         public const string DefaultJsonConfigFileName = "UwpTemplates.config.json";
 
@@ -52,20 +53,21 @@ namespace Microsoft.Templates.Core
             }
         }
 
+        
         public static string GetJsonConfigFilePath()
         {
-            TraceUsingDefault("Gettin JsonConfigFilePaht");
+            TraceUsingDefault("Resoving JsonConfigFilePath");
             TraceUsingDefault("1. Check 'JsonConfigFile' appSetting is defined");
             string jsonConfigFile = ConfigurationManager.AppSettings["JsonConfigFile"];
         
             if (String.IsNullOrWhiteSpace(jsonConfigFile) || !File.Exists(jsonConfigFile))
             {
                 jsonConfigFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), DefaultJsonConfigFileName);
-                TraceUsingDefault($"2. AppSetting config file is not defined. Returning path current directory: {jsonConfigFile}");
+                TraceUsingDefault($"2. AppSetting config file is not defined. Returning default config file in executing directory: {jsonConfigFile}");
             }
             else
             {
-                TraceUsingDefault($"2. AppSetting config file IS defined. Returning path configured directory: {jsonConfigFile}");
+                TraceUsingDefault($"2. AppSetting config file is defined. Returning configured file: {jsonConfigFile}");
             }
             return jsonConfigFile;
         }

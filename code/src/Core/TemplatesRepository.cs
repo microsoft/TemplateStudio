@@ -35,6 +35,7 @@ namespace Microsoft.Templates.Core
                 UpdateContent();
 
                 Task adquisitionTask = Task.Run(() => AdquireContent());
+
                 if (forceAdquisition || !ExistsTemplates())
                 {
                     Task.WaitAll(adquisitionTask);

@@ -213,7 +213,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             Templatex.Extract(outFile, extractionDir);
 
-            Assert.True(File.Exists(Path.Combine(extractionDir, Path.GetFileName(inFile))));
+            Assert.True(File.Exists(outFile));
 
             File.Delete(outFile);
         }
