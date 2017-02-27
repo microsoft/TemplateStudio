@@ -11,7 +11,7 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "devfeature",
+    "uct.type": "consumerfeature",
     "uct.framework": "Basic;MVVMLight",
     "uct.version": "1.0.0",
     "uct.order": "1",

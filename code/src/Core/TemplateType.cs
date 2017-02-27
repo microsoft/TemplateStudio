@@ -10,9 +10,9 @@ namespace Microsoft.Templates.Core
     {
         Project = 1,
         Page = 2,
-        Feature = 3,
         Framework = 4,
         DevFeature = 5,
+        ConsumerFeature = 6,
         Unspecified = 100
     }
 }

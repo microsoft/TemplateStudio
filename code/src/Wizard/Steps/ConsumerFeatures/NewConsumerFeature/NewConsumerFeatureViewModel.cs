@@ -69,13 +69,14 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
         {
             Templates.Clear();
 
-            var devFeatTemplates = _context.TemplatesRepository
-                .Get(t => t.GetTemplateType() == TemplateType.DevFeature
-                    && t.GetFrameworkList().Contains(_context.State.Framework))
-                .Select(t => new TemplateViewModel(t))
-                .OrderBy(t => t.Order)
-                .ToList();
-            foreach (var template in devFeatTemplates)
+            var consumerFeatTemplates = _context.TemplatesRepository
+                                                        .Get(t => t.GetTemplateType() == TemplateType.ConsumerFeature
+                                                            && t.GetFrameworkList().Contains(_context.State.Framework))
+                                                        .Select(t => new TemplateViewModel(t))
+                                                        .OrderBy(t => t.Order)
+                                                        .ToList();
+
+            foreach (var template in consumerFeatTemplates)
             {
                 if (template.MultipleInstances == true || !IsAlreadyDefined(template))
                 {
@@ -83,7 +84,15 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
                 }
             }
 
-            TemplateSelected = devFeatTemplates.FirstOrDefault();
+            if (Templates.Any())
+            {
+                TemplateSelected = consumerFeatTemplates.FirstOrDefault(); 
+            }
+            else
+            {
+                _isValid = false;
+                OnPropertyChanged("OkCommand");
+            }
 
             await Task.FromResult(true);
         }

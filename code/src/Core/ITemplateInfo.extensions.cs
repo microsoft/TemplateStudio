@@ -27,12 +27,12 @@ namespace Microsoft.Templates.Core
                     return TemplateType.Project;
                 case "page":
                     return TemplateType.Page;
-                case "feature":
-                    return TemplateType.Feature;
                 case "framework":
                     return TemplateType.Framework;
                 case "devfeature":
                     return TemplateType.DevFeature;
+                case "consumerfeature":
+                    return TemplateType.ConsumerFeature;
                 default:
                     return TemplateType.Unspecified;
             }

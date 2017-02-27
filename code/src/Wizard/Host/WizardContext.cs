@@ -16,6 +16,7 @@ namespace Microsoft.Templates.Wizard.Host
         public string Framework { get; set; }
         public List<(string name, string templateName)> Pages { get; } = new List<(string name, string templateName)>();
         public List<(string name, string templateName)> DevFeatures { get; } = new List<(string name, string templateName)>();
+        public List<(string name, string templateName)> ConsumerFeatures { get; } = new List<(string name, string templateName)>();
     }
 
     public class WizardContext : ObservableBase

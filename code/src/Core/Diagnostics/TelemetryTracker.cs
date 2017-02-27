@@ -80,9 +80,6 @@ namespace Microsoft.Templates.Core.Diagnostics
                     case TemplateType.Page:
                         await TrackPageGenAsync(template, appFx, result);
                         break;
-                    case TemplateType.Feature:
-                        await TrackFeatureGenAsync(template, result);
-                        break;
                     case TemplateType.Unspecified:
                         break;
                 }
@@ -132,11 +129,6 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         private async Task TrackFeatureGenAsync(ITemplateInfo template, TemplateCreationResult result)
         {
-            if (template.GetTemplateType() != TemplateType.Feature)
-            {
-                return;
-            }
-
             GenStatusEnum telemetryStatus = result.Status == CreationResultStatus.Success ? GenStatusEnum.Completed : GenStatusEnum.Error;
 
             await TrackFeatureAsync();

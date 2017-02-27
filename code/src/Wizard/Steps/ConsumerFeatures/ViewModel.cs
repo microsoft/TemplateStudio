@@ -40,13 +40,13 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures
         {
             Templates.Clear();
 
-            if (Context.State.DevFeatures == null || Context.State.DevFeatures.Count == 0)
+            if (Context.State.ConsumerFeatures == null || Context.State.ConsumerFeatures.Count == 0)
             {
                 AddFromLayout();
             }
             else
             {
-                var selectedFeatures = Context.State.DevFeatures
+                var selectedFeatures = Context.State.ConsumerFeatures
                                                         .Select(p => new PageViewModel(p.name, p.templateName));
 
                 Templates.AddRange(selectedFeatures);
@@ -57,13 +57,13 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures
 
         public override void SaveState()
         {
-            Context.State.DevFeatures.Clear();
-            Context.State.DevFeatures.AddRange(Templates.Select(t => (t.Name, t.TemplateName)));
+            Context.State.ConsumerFeatures.Clear();
+            Context.State.ConsumerFeatures.AddRange(Templates.Select(t => (t.Name, t.TemplateName)));
         }
 
         public override void CleanState()
         {
-            Context.State.DevFeatures.Clear();
+            Context.State.ConsumerFeatures.Clear();
         }
 
         protected override Page GetPageInternal()
@@ -79,7 +79,7 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures
             foreach (var item in layout)
             {
                 var template = Context.TemplatesRepository.Find(t => t.Identity == item.templateIdentity);
-                if (template != null && template.GetTemplateType() == TemplateType.DevFeature)
+                if (template != null && template.GetTemplateType() == TemplateType.ConsumerFeature)
                 {
                     Templates.Add(new PageViewModel(item.name, template.Name, item.@readonly));
                 }

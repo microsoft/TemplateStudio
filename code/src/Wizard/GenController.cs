@@ -126,7 +126,7 @@ namespace Microsoft.Templates.Wizard
             try
             {
                 var pagesAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Count();
-                var featuresAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Count();
+                //var featuresAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Count();
 
                 foreach (var genInfo in genItems)
                 {
@@ -144,7 +144,7 @@ namespace Microsoft.Templates.Wizard
                     string resultsKey = $"{genInfo.Template.Identity}_{genInfo.Name}";
                     if (genInfo.Template.GetTemplateType() == TemplateType.Project)
                     {
-                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, appFx, genResults[resultsKey], pagesAdded, featuresAdded, timeSpent).FireAndForget();
+                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, appFx, genResults[resultsKey], pagesAdded, null, timeSpent).FireAndForget();
                     }
                     else
                     {

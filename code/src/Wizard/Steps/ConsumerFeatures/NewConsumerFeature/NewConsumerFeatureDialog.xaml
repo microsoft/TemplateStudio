@@ -11,7 +11,7 @@
         WindowStartupLocation="CenterScreen" 
         ResizeMode="NoResize" 
         ShowInTaskbar="False">
-    
+
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -21,52 +21,85 @@
     </Window.Resources>
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <TextBlock Text="{x:Static local:Strings.NoConsumerFeatAvailableMessage}">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource NoResultsStyle}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Templates.Count}" Value="0">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Templates.Count}" Value="0">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <ListView            
+                Width="274"
+                ItemsSource="{Binding Templates}"
+                SelectedItem="{Binding TemplateSelected, Mode=TwoWay}"
+                Style="{StaticResource WizardListViewStyle}">
 
-        <ListView            
-            Width="274"
-            ItemsSource="{Binding Templates}"
-            SelectedItem="{Binding TemplateSelected, Mode=TwoWay}"
-            Style="{StaticResource WizardListViewStyle}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Width="80" Height="120">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Image Source="/Microsoft.Templates.Wizard;component/Assets/DefaultProjectIcon.png" Style="{StaticResource TemplateIconStyle}" />
-                        <TextBlock Text="{Binding Name}" Grid.Row="1" Style="{StaticResource TemplateTitleStyle}" />
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="80" Height="120">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Image Source="/Microsoft.Templates.Wizard;component/Assets/DefaultProjectIcon.png" Style="{StaticResource TemplateIconStyle}" />
+                            <TextBlock Text="{Binding Name}" Grid.Row="1" Style="{StaticResource TemplateTitleStyle}" />
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-        <StackPanel DataContext="{Binding TemplateSelected}" Grid.Column="1" Style="{StaticResource TemplateInfoContainerStyle}">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Version:" Style="{StaticResource TemplateInfoPropertyNameStyle}"/>
-                <TextBlock Text="{Binding Version}" Style="{StaticResource TemplateInfoPropertyValueStyle}"/>
+            <StackPanel DataContext="{Binding TemplateSelected}" Grid.Column="1" Style="{StaticResource TemplateInfoContainerStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Version:" Style="{StaticResource TemplateInfoPropertyNameStyle}"/>
+                    <TextBlock Text="{Binding Version}" Style="{StaticResource TemplateInfoPropertyValueStyle}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Author:" Style="{StaticResource TemplateInfoPropertyNameStyle}"/>
+                    <TextBlock Text="{Binding Author}" Style="{StaticResource TemplateInfoPropertyValueStyle}"/>
+                </StackPanel>
+                <TextBlock Text="{Binding Description}" Style="{StaticResource TemplateInfoDescriptionStyle}"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Author:" Style="{StaticResource TemplateInfoPropertyNameStyle}"/>
-                <TextBlock Text="{Binding Author}" Style="{StaticResource TemplateInfoPropertyValueStyle}"/>
-            </StackPanel>
-            <TextBlock Text="{Binding Description}" Style="{StaticResource TemplateInfoDescriptionStyle}"/>
-        </StackPanel>
-
-        <Grid Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource PageNameContainerStyle}">
+        </Grid>
+        <Grid Grid.Row="1" Style="{StaticResource PageNameContainerStyle}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal">
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Visibility" Value="Visible" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Templates.Count}" Value="0">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
                 <TextBlock Text="{x:Static local:Strings.PageName_Text}" />
                 <TextBox Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" Style="{StaticResource PageNameValueStyle}" />
             </StackPanel>

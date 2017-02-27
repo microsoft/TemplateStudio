@@ -79,6 +79,15 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No features available. Lorem ipsum.
+        /// </summary>
+        public static string NoConsumerFeatAvailableMessage {
+            get {
+                return ResourceManager.GetString("NoConsumerFeatAvailableMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add features pushing add button. Lorem ipsum.
         /// </summary>
         public static string NoFeaturesMessage {
