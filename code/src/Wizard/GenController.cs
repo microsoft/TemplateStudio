@@ -93,25 +93,22 @@ namespace Microsoft.Templates.Wizard
                 AppHealth.Current.Verbose.TrackAsync($"Generating the template {genInfo.Template.Name} to {outputPath}.").FireAndForget();
 
                 //TODO: REVIEW ASYNC
-                var result = CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, outputPath, genInfo.Parameters, false).Result;
+                var result = CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, outputPath, genInfo.Parameters, false, false).Result;
 
                 genResults.Add($"{genInfo.Template.Identity}_{genInfo.Name}", result);
 
-                if (result.Status != CreationResultStatus.CreateSucceeded)
+                if (result.Status != CreationResultStatus.Success)
                 {
                     //TODO: THROW EXCEPTION ?
                 }
 
                 ExecutePostActions(genInfo, result);
-
-                chrono.Stop();
             }
 
-            //TODO: THIS IS TEMPORAL
             ExecuteGlobalPostActions(genItems);
 
-            var timeSpent = chrono.Elapsed.TotalSeconds;
-            TrackTelemery(genItems, genResults, timeSpent);
+            chrono.Stop();
+            TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds);
         }
 
         private void ExecuteGlobalPostActions(List<GenInfo> genItems)
