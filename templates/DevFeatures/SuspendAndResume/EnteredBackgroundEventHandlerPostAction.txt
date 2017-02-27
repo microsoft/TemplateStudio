@@ -1,8 +1,0 @@
-private async void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e)
-{
-    var deferral = e.GetDeferral();
-    //Save the application state 
-    //Documentation: https://docs.microsoft.com/windows/uwp/launch-resume/suspend-an-app
-    await StateService.SaveStateAsync();
-    deferral.Complete();
-}

@@ -1,0 +1,16 @@
+{
+    "usings": [
+        "ItemNamespace.Services"
+    ],
+    "elements": [
+        {
+            "path":"ItemNamespace.App::App_EnteredBackground",
+            "before": "deferral.Complete();",
+            "content": "StateService.Instance.SaveStateAsync();"
+        }, 
+        {
+            "path":"ItemNamespace.App::OnLaunched",
+            "content": "await StateService.Instance.RestoreStateAsync(e.PreviousExecutionState, e.Arguments);"
+        }
+    ]
+}

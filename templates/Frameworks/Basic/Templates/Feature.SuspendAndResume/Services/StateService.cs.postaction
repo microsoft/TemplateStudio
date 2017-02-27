@@ -1,0 +1,8 @@
+{
+    "elements": [
+        {
+            "path":"ItemNamespace.Services.StateService::NavigateToPage",
+            "content": "NavigationService.Navigate(page, arguments);"
+        }
+    ]
+}

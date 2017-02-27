@@ -1,3 +1,0 @@
-//Load state from previously suspended application
-await StateService.RestoreStateAsync(e.Arguments);
-
