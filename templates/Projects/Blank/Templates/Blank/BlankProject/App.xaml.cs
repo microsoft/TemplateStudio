@@ -32,7 +32,6 @@ namespace BlankProject
         {
             this.InitializeComponent();
             this.EnteredBackground += App_EnteredBackground;
-            //PostActionAnchor: ENABLE QUEUE
         }
 
         /// <summary>

@@ -8,22 +8,20 @@ namespace Microsoft.Templates.Core.Test.Locations
     {
         public override void Adquire(string workingFolder)
         {            
-            Copy($@"..\..\TestData\{TemplatesLocation.TemplatesName}", workingFolder);
+            //NO ADQUSITION REQUIRED;
         }
 
         public override bool Update(string workingFolder)
         {
+            var targetFolder = Path.Combine(workingFolder, TemplatesName);
+            Copy($@"..\..\TestData\{TemplatesLocation.TemplatesName}", targetFolder);
             return true;
         }
 
-        protected static void Copy(string sourceFolder, string workingFolder)
+        protected static void Copy(string sourceFolder, string targetFolder)
         {
-            var sourceFolderName = new DirectoryInfo(Path.GetFullPath(sourceFolder)).Name;
-            workingFolder = Path.Combine(workingFolder, sourceFolderName);
-
-            SafeDelete(workingFolder);
-
-            CopyRecursive(sourceFolder, workingFolder);
+            SafeDelete(targetFolder);
+            CopyRecursive(sourceFolder, targetFolder);
         }
     }
 }

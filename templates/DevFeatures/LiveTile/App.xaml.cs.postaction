@@ -1,0 +1,12 @@
+{
+    "elements": [
+        {
+            "path": "RootNamespace.App::App",
+            "content": "Services.LiveTileService.EnableQueue();"
+        },
+        {
+            "path":"RootNamespace.App::OnLaunched",
+            "content": "Services.LiveTileService.SampleUpdate();"
+        }
+    ]
+}

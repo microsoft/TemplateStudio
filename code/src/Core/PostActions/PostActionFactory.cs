@@ -49,18 +49,18 @@ namespace Microsoft.Templates.Core.PostActions
             switch (genInfo.Template.GetTemplateType())
             {
                 case TemplateType.Project:
-                    postActions.Add(new AddProjectToSolutionPostAction(shell, genResult.PrimaryOutputs));
+                    postActions.Add(new AddProjectToSolutionPostAction(shell, genResult.ResultInfo.PrimaryOutputs));
                     postActions.Add(new GenerateTestCertificatePostAction(shell, genInfo.GetUserName()));
                     postActions.Add(new SetDefaultSolutionConfigurationPostAction(shell));
                     break;
                 case TemplateType.Page:
-                    postActions.Add(new AddItemToProjectPostAction(shell, genResult.PrimaryOutputs));
+                    postActions.Add(new AddItemToProjectPostAction(shell, genResult.ResultInfo.PrimaryOutputs));
                     break;
                 case TemplateType.DevFeature:
-                    postActions.Add(new AddItemToProjectPostAction(shell, genResult.PrimaryOutputs));
+                    postActions.Add(new AddItemToProjectPostAction(shell, genResult.ResultInfo.PrimaryOutputs));
                     break;
                 case TemplateType.Framework:
-                    postActions.Add(new AddItemToProjectPostAction(shell, genResult.PrimaryOutputs));
+                    postActions.Add(new AddItemToProjectPostAction(shell, genResult.ResultInfo.PrimaryOutputs));
                     break;
                 default:
                     break;
