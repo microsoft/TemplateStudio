@@ -38,7 +38,6 @@ namespace TabbedPivotProject
         {
             this.InitializeComponent();
             //PostActionAnchor: ENTERED BACKGROUND EVENT REGISTRATION
-            //PostActionAnchor: ENABLE QUEUE
         }
 
         /// <summary>

@@ -64,7 +64,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 return;
             }
 
-            GenStatusEnum telemetryStatus = result.Status == CreationResultStatus.CreateSucceeded ? GenStatusEnum.Completed : GenStatusEnum.Error;            
+            GenStatusEnum telemetryStatus = result.Status == CreationResultStatus.Success ? GenStatusEnum.Completed : GenStatusEnum.Error;            
             await TrackProjectAsync(telemetryStatus, template.Name, template.GetProjectType(), appFx, pagesCount, featuresCount, timeSpent, result.Status, result.Message);
         }
 
@@ -89,7 +89,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
 
-        private async Task TrackProjectAsync(GenStatusEnum status, string templateName, string appType, string appFx, int? pagesCount = null, int? featuresCount = null, double? timeSpent = null, CreationResultStatus genStatus = CreationResultStatus.CreateSucceeded, string message = "")
+        private async Task TrackProjectAsync(GenStatusEnum status, string templateName, string appType, string appFx, int? pagesCount = null, int? featuresCount = null, double? timeSpent = null, CreationResultStatus genStatus = CreationResultStatus.Success, string message = "")
         {
             Dictionary<string, string> properties = new Dictionary<string, string>()
             {
@@ -125,7 +125,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 return;
             }
 
-            GenStatusEnum telemetryStatus = result.Status == CreationResultStatus.CreateSucceeded ? GenStatusEnum.Completed : GenStatusEnum.Error;
+            GenStatusEnum telemetryStatus = result.Status == CreationResultStatus.Success ? GenStatusEnum.Completed : GenStatusEnum.Error;
 
             await TrackPageAsync(telemetryStatus, template.GetProjectType(), appFx, template.Name, result.Status, result.Message);
         }
@@ -137,12 +137,12 @@ namespace Microsoft.Templates.Core.Diagnostics
                 return;
             }
 
-            GenStatusEnum telemetryStatus = result.Status == CreationResultStatus.CreateSucceeded ? GenStatusEnum.Completed : GenStatusEnum.Error;
+            GenStatusEnum telemetryStatus = result.Status == CreationResultStatus.Success ? GenStatusEnum.Completed : GenStatusEnum.Error;
 
             await TrackFeatureAsync();
         }
 
-        private async Task TrackPageAsync(GenStatusEnum status, string appType, string pageFx, string templateName, CreationResultStatus genStatus= CreationResultStatus.CreateSucceeded, string message="")
+        private async Task TrackPageAsync(GenStatusEnum status, string appType, string pageFx, string templateName, CreationResultStatus genStatus= CreationResultStatus.Success, string message="")
         {
             Dictionary<string, string> properties = new Dictionary<string, string>()
             {
