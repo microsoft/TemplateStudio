@@ -11,18 +11,18 @@ using Microsoft.Templates.Wizard.ViewModels;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Wizard.Steps.Pages;
 
-namespace Microsoft.Templates.Wizard.Steps.DevFeatures.NewDevFeature
+namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
 {
     public class NewConsumerFeatureViewModel : ObservableBase
     {
         private bool _isValid = true;
 
         private readonly WizardContext _context;
-        private readonly NewDevFeatureDialog _dialog;
+        private readonly NewConsumerFeatureDialog _dialog;
         private readonly IEnumerable<string> _selectedNames;
         private readonly IEnumerable<PageViewModel> _selectedTemplates;
 
-        public NewConsumerFeatureViewModel(WizardContext context, NewDevFeatureDialog newDevFeatureDialog, IEnumerable<PageViewModel> selectedTemplates)
+        public NewConsumerFeatureViewModel(WizardContext context, NewConsumerFeatureDialog newDevFeatureDialog, IEnumerable<PageViewModel> selectedTemplates)
         {
             _context = context;
             _dialog = newDevFeatureDialog;

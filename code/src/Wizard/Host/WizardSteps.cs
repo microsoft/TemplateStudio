@@ -22,6 +22,7 @@ namespace Microsoft.Templates.Wizard.Host
                 steps.Add<Steps.Framework.ViewModel>();
                 steps.Add<Steps.Pages.ViewModel>();
                 steps.Add<Steps.DevFeatures.ViewModel>();
+                steps.Add<Steps.ConsumerFeatures.ViewModel>();
                 steps.Add<Steps.Summary.ViewModel>();
 
                 return steps;
