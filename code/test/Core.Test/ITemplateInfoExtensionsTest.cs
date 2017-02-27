@@ -36,15 +36,6 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Fact]
-        public void GetTemplateType_feature()
-        {
-            var target = GetTarget("FeatureTemplate");
-
-            var result = target.GetTemplateType();
-            Assert.Equal(TemplateType.Feature, result);
-        }
-
-        [Fact]
         public void GetTemplateType_unspecified()
         {
             var target = GetTarget("UnspecifiedTemplate");
