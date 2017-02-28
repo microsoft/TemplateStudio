@@ -14,6 +14,7 @@ namespace Microsoft.Templates.Test
         internal string TestProjectsPath => Path.GetFullPath(Path.Combine(TestRunPath, "Projects"));
         internal string TestPagesPath => Path.GetFullPath(Path.Combine(TestRunPath, "Pages"));
         internal string TestDevFeaturesPath => Path.GetFullPath(Path.Combine(TestRunPath, "DevFeatures"));
+        internal string TestConsumerFeaturesPath => Path.GetFullPath(Path.Combine(TestRunPath, "ConsumerFeatures"));
 
 
         private static readonly Lazy<TemplatesRepository> _repos = new Lazy<TemplatesRepository>(() => CreateNewRepos(), true);
@@ -36,8 +37,9 @@ namespace Microsoft.Templates.Test
             {
                 if ((!Directory.Exists(TestProjectsPath) || Directory.EnumerateDirectories(TestProjectsPath).Count() == 0)
                     && (!Directory.Exists(TestPagesPath) || Directory.EnumerateDirectories(TestPagesPath).Count() == 0)
-                    && (!Directory.Exists(TestDevFeaturesPath) || Directory.EnumerateDirectories(TestDevFeaturesPath).Count() == 0))
-  {
+                    && (!Directory.Exists(TestDevFeaturesPath) || Directory.EnumerateDirectories(TestDevFeaturesPath).Count() == 0)
+                     && (!Directory.Exists(TestConsumerFeaturesPath) || Directory.EnumerateDirectories(TestConsumerFeaturesPath).Count() == 0))
+                {
                     Directory.Delete(TestRunPath, true);
                 }
             }

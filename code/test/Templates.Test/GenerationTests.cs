@@ -119,6 +119,38 @@ namespace Microsoft.Templates.Test
             Directory.Delete(outputPath, true);
         }
 
+        [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
+        public void GenerateAllConsumerFeatures(string name, string framework, string projId)
+        {
+            var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
+
+            var projectName = $"{name}{framework}All";
+
+            var generator = new GenController(new FakeGenShell(projectName, fixture.TestConsumerFeaturesPath, new TextBlock()));
+
+            var wizardState = new WizardState
+            {
+                Framework = framework,
+                ProjectType = targetProjectTemplate.GetProjectType(),
+            };
+
+            AddLayoutItems(wizardState, targetProjectTemplate);
+            AddItems(wizardState, GetTemplates(framework, TemplateType.ConsumerFeature));
+
+            generator.Generate(wizardState);
+
+            //Build solution
+            var outputPath = Path.Combine(fixture.TestConsumerFeaturesPath, projectName);
+            var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
+            int exitCode = BuildSolution(projectName, outputPath, outputFile);
+
+            //Assert
+            Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", targetProjectTemplate.Name, Path.GetFullPath(outputFile)));
+
+            //Clean
+            Directory.Delete(outputPath, true);
+        }
+
         private IEnumerable<ITemplateInfo> GetTemplates(string framework, TemplateType templateType)
         {
             return GenerationTestsFixture.Templates
@@ -158,10 +190,13 @@ namespace Microsoft.Templates.Test
                 case TemplateType.Page:
                     wizardState.Pages.Add((itemName, template.Name));
                     break;
-
                 case TemplateType.DevFeature:
                     wizardState.DevFeatures.Add((itemName, template.Name));
                     break;
+                case TemplateType.ConsumerFeature:
+                    wizardState.ConsumerFeatures.Add((itemName, template.Name));
+                    break;
+
 
             }
             UsedNames.Add(itemName);
