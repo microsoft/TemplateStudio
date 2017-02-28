@@ -6,7 +6,7 @@
         {
             "path":"ItemNamespace.App::App_EnteredBackground",
             "before": "deferral.Complete();",
-            "content": "StateService.Instance.SaveStateAsync();"
+            "content": "await StateService.Instance.SaveStateAsync();"
         }, 
         {
             "path":"ItemNamespace.App::OnLaunched",
