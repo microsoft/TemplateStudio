@@ -12,9 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
 using ItemName.Home;
-
 using Microsoft.Practices.ServiceLocation;
 using ItemName.Services;
 
@@ -28,33 +26,48 @@ namespace ItemName.Shell
     /// </summary>
     public sealed partial class ShellPage : Page
     {
+        private NavigationService navigationService => ServiceLocator.Current.GetInstance<NavigationService>();
+
         public ShellPage()
         {
             this.InitializeComponent();
 
-
-            var navigationService = ServiceLocator.Current.GetInstance<NavigationService>();
             navigationService.SetNavigationFrame(frame);
         }
+
         private void OnItemClick(object sender, ItemClickEventArgs e)
         {
             var navigationItem = e.ClickedItem as ShellNavigationItem;
             if (navigationItem != null)
             {
-                var navigationService = ServiceLocator.Current.GetInstance<NavigationService>();
                 navigationService.Navigate(navigationItem.ViewModelName);
             }
         }
 
-        private void OnNavigationItemsLoaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ListView paneitems = sender as ListView;
-            if (paneitems.Items?.Count > 0)
+            if (String.IsNullOrEmpty(e.Parameter.ToString()))
             {
-                paneitems.SelectedIndex = 0;
-
-                var navigationService = ServiceLocator.Current.GetInstance<NavigationService>();
                 navigationService.Navigate(typeof(HomeViewModel).FullName);
+            }
+            else
+            {
+                  navigationService.Navigate(e.Parameter.ToString());
+            }
+        }
+
+        private void frame_Navigated(object sender, NavigationEventArgs e)
+        {
+            var viewModel = DataContext as ShellViewModel;
+
+            if (viewModel != null)
+            {
+                var item = viewModel.NavigationItems.FirstOrDefault(i => i.ViewModelName == navigationService.GetViewModel(e.SourcePageType));
+                if (item != null)
+                {
+                    viewModel.SelectedItem = item;
+                    return;
+                }
             }
         }
     }

@@ -17,6 +17,11 @@ namespace RootNamespace.Services
             _frame = Window.Current.Content as Frame;
         }
 
+        public string GetViewModel(Type page)
+        {
+            return _pages.FirstOrDefault(p => p.Value.FullName == page.FullName).Key;
+        }
+
         public void SetNavigationFrame(Frame frame) => _frame = frame;
 
         public bool CanGoBack => _frame.CanGoBack;

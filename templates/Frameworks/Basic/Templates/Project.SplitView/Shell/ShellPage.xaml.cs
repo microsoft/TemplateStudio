@@ -26,10 +26,10 @@ namespace ItemName.Shell
     {
         public ShellPage()
         {
-            this.InitializeComponent();
-
             ViewModel = new ShellViewModel();
             DataContext = ViewModel;
+            this.InitializeComponent();
+
             NavigationService.SetNavigationFrame(frame);
         }
 
@@ -44,14 +44,25 @@ namespace ItemName.Shell
             }
         }
 
-        private void OnNavigationItemsLoaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ListView paneitems = sender as ListView;
-            if (paneitems.Items?.Count > 0)
+            if (String.IsNullOrEmpty(e.Parameter.ToString()))
             {
-                paneitems.SelectedIndex = 0;
-
                 NavigationService.Navigate<HomePage>();
+            }
+            else
+            {
+                NavigationService.Navigate((Type)e.Parameter);
+            }
+        }
+
+        private void frame_Navigated(object sender, NavigationEventArgs e)
+        {
+            var item = ViewModel.NavigationItems.FirstOrDefault(i => i.PageType == e.SourcePageType);
+            if (item != null)
+            {
+                ViewModel.SelectedItem = item;
+                return;
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Input;
-
+using System.Linq;
 using ItemName.Mvvm;
 
 namespace ItemName.Shell
@@ -17,21 +17,34 @@ namespace ItemName.Shell
         }
         #endregion
 
+        #region SelectedItem
+        private ShellNavigationItem _selectedItem;
+        public ShellNavigationItem SelectedItem
+        {
+            get => _selectedItem;
+            set => Set(ref _selectedItem, value);
+        }
+
+        #endregion
+
         public ShellViewModel() 
         {
+            _navigationItems = new List<ShellNavigationItem>();
+
+            //More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
+            //Edit String/en-US/Resources.resw: Add a menu item title for each page
+
+            SelectedItem = NavigationItems.FirstOrDefault();
         }
 
-        public IEnumerable<ShellNavigationItem> NavigationItems
+        private List<ShellNavigationItem> _navigationItems;
+        public List<ShellNavigationItem> NavigationItems
         {
-            get
-            {
-                //TODO UWPTemplates: Show pages in the SplitView menu by adding a navigation item for each page with its name and icon.
-                //More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
-
-                               
-                //Edit String/en-US/Resources.resw: Add a menu item title for each page
-            }
+            get => _navigationItems;
+            set => Set(ref _navigationItems, value);
         }
+
+        
 
         #region OpenPaneCommand
         private ICommand _openPaneCommand;

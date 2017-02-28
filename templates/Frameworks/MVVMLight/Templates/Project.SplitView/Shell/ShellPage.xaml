@@ -59,10 +59,10 @@
                         IsItemClickEnabled="True"                        
                         ItemTemplate="{StaticResource SplitViewItemTemplate}"
                         ItemsSource="{Binding NavigationItems}"
+                        SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                         SelectionMode="Single"
                         TabIndex="1"
-                        ItemClick="OnItemClick"
-                        Loaded="OnNavigationItemsLoaded">
+                        ItemClick="OnItemClick">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="Padding" Value="0" />
@@ -71,7 +71,7 @@
                     </ListView>
                 </Grid>
             </SplitView.Pane>
-            <Frame x:Name="frame"/>
+            <Frame x:Name="frame" Navigated="frame_Navigated"/>
         </SplitView>
     </Grid>
 </Page>
