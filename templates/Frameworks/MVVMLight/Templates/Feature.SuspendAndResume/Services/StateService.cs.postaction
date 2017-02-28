@@ -5,8 +5,7 @@
     "elements": [
         {
             "path":"ItemNamespace.Services.StateService::NavigateToPage",
-            "content": "var navigationService = ServiceLocator.Current.GetInstance<NavigationService>();\r\nnavigationService.Navigate(navigationService.GetViewModel(page));
-"
+            "content": "var navigationService = ServiceLocator.Current.GetInstance<NavigationService>();\r\nnavigationService.Navigate(navigationService.GetViewModel(page));"
         }
     ]
 }
