@@ -43,6 +43,7 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
             AddTemplates(Strings.ProjectsTitle, FilterTemplates(selection, TemplateType.Project));
             AddTemplates(Strings.PagesTitle, FilterTemplates(selection, TemplateType.Page));
             AddTemplates(Strings.DevFeaturesTitle, FilterTemplates(selection, TemplateType.DevFeature));
+            AddTemplates(Strings.ConsumerFeaturesTitle, FilterTemplates(selection, TemplateType.ConsumerFeature));
 
 
             //TODO: REVIEW THIS

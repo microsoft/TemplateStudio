@@ -37,6 +37,7 @@ namespace Microsoft.Templates.Wizard
             AddProjects(userSelection, genQueue);
             AddPages(userSelection, genQueue);
             AddDevFeatures(userSelection, genQueue);
+            AddConsumerFeatures(userSelection, genQueue);
 
             return genQueue;
         }
@@ -80,6 +81,18 @@ namespace Microsoft.Templates.Wizard
                 {
                     var genFeature = CreateGenInfo(feature.name, featureTemplate, genQueue);
                     AddTemplate(genFeature, genQueue, userSelection.Framework, "Feature", featureTemplate.Name);
+                }
+            }
+        }
+
+        private void AddConsumerFeatures(WizardState userSelection, List<GenInfo> genQueue)
+        {
+            foreach (var feature in userSelection.ConsumerFeatures)
+            {
+                var featureTemplate = _repository.Find(t => t.Name == feature.templateName);
+                if (featureTemplate != null)
+                {
+                    CreateGenInfo(feature.name, featureTemplate, genQueue);
                 }
             }
         }
