@@ -59,6 +59,9 @@ namespace Microsoft.Templates.Core.PostActions
                 case TemplateType.DevFeature:
                     postActions.Add(new AddItemToProjectPostAction(shell, genResult.ResultInfo.PrimaryOutputs));
                     break;
+                case TemplateType.ConsumerFeature:
+                    postActions.Add(new AddItemToProjectPostAction(shell, genResult.ResultInfo.PrimaryOutputs));
+                    break;
                 case TemplateType.Framework:
                     postActions.Add(new AddItemToProjectPostAction(shell, genResult.ResultInfo.PrimaryOutputs));
                     break;

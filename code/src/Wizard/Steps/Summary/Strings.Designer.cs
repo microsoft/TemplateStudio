@@ -70,6 +70,15 @@ namespace Microsoft.Templates.Wizard.Steps.Summary {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Consumer feature templates selected:.
+        /// </summary>
+        public static string ConsumerFeaturesTitle {
+            get {
+                return ResourceManager.GetString("ConsumerFeaturesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Developer feature templates selected:.
         /// </summary>
         public static string DevFeaturesTitle {
