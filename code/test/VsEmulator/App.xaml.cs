@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Microsoft.Templates.Wizard.TestApp
+namespace Microsoft.Templates.VsEmulator
 {
     /// <summary>
     /// Interaction logic for App.xaml

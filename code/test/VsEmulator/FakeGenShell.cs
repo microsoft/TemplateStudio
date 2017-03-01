@@ -9,24 +9,25 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Microsoft.Templates.Wizard.TestApp
+namespace Microsoft.Templates.VsEmulator
 {
     public class FakeGenShell : GenShell
     {
-        const string TEMP_TESTS_DIR = @"c:\temp\uwptemplates_tests\";
-
         private string _relativePath;
+        private readonly Action<string> _changeStatus;
+        private readonly Window _owner;
 
         public string SolutionPath { get; set; } = string.Empty;
-        public TextBlock Status { get; set; }
 
-        public FakeGenShell(string name, TextBlock status)
+        public FakeGenShell(string name, string location, string solutionName, Action<string> changeStatus, Window owner)
         {
             ProjectName = name;
-            OutputPath = Path.Combine(TEMP_TESTS_DIR, name);
+            OutputPath = Path.Combine(location, name);
             SolutionPath = Path.Combine(OutputPath, $"{name}.sln");
             ProjectPath = Path.Combine(OutputPath, ProjectName);
-            Status = status;
+
+            _changeStatus = changeStatus;
+            _owner = owner;
         }
 
         public void UpdateRelativePath(string relative)
@@ -87,7 +88,7 @@ namespace Microsoft.Templates.Wizard.TestApp
 
         public override void ShowStatusBarMessage(string message)
         {
-            Status.Text = message;
+            _changeStatus(message);
         }
 
         protected override string GetActiveProjectName()
@@ -121,6 +122,7 @@ namespace Microsoft.Templates.Wizard.TestApp
 
         public override void ShowModal(Window dialog)
         {
+            dialog.Owner = _owner;
             dialog.ShowDialog();
         }
 
