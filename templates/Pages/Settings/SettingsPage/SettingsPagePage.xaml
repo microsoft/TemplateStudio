@@ -31,8 +31,7 @@
                     Text="LOC_ANCHOR:SettingsPage_Theme~Application theme"
                     Style="{ThemeResource TitleTextBlockStyle}"/>
                 <ToggleSwitch
-                    OffContent="LOC_ANCHOR:SettingsPage_ThemeToggleSwitch~Dark"
-                    OnContent="LOC_ANCHOR:SettingsPage_ThemeToggleSwitch~Light"
+                    OffContent="LOC_ANCHOR:SettingsPage_ThemeToggleSwitch~Dark" OnContent="LOC_ANCHOR:SettingsPage_ThemeToggleSwitch~Light"
                     IsOn="{Binding IsLightThemeEnabled, Mode=TwoWay}"
                     Margin="{StaticResource SmallTopMargin}">
                     <i:Interaction.Behaviors>
