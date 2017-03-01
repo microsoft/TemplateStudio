@@ -7,7 +7,6 @@ using Windows.Storage;
 using System.IO;
 using System.Runtime.CompilerServices;
 using Windows.ApplicationModel.Activation;
-//PostActionAnchor: USING SERVICLOCATOR
 
 namespace ItemNamespace.Services
 {
