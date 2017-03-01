@@ -1,0 +1,6 @@
+{
+    "dependencies": {
+        "Microsoft.Services.Store.SDK": "10.1610.31001",
+        "WindowsAzure.Messaging.Managed": "0.1.7.9"
+    }
+}

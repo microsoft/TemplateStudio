@@ -1,0 +1,16 @@
+{
+    "elements": [
+        {
+            "path":"RootNamespace.App::OnLaunched",
+            "content": "//Services.NotificationsFeature.InitializeNotificationsHub();"
+        },
+        {
+            "path":"RootNamespace.App::OnLaunched",
+            "content": "Services.NotificationsFeature.InitializeStoreNotifications();"
+        },
+        {
+            "path":"RootNamespace.App::OnLaunched",
+            "content": "Services.NotificationsFeature.ShowToastNotificationSample();"
+        }
+    ]
+}
