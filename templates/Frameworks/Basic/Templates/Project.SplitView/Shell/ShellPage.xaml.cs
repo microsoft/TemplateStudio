@@ -46,7 +46,7 @@ namespace ItemName.Shell
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (String.IsNullOrEmpty(e.Parameter.ToString()))
+            if (e.Parameter == null || String.IsNullOrEmpty(e.Parameter.ToString()))
             {
                 NavigationService.Navigate<HomePage>();
             }
