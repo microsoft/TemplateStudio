@@ -89,23 +89,29 @@ namespace BlankProject
             deferral.Complete();
         }
 
-
+        /// <summary>
+        /// Invoked when the application is activated by some means other than normal launching.
+        /// </summary>
+        /// <param name="args">Event data for the event.</param>
         protected override void OnActivated(IActivatedEventArgs args)
         {
-            if (args.Kind == ActivationKind.ToastNotification) 
-            { 
-                var toastArgs = args as ToastNotificationActivatedEventArgs; 
-                var arguments = toastArgs.Argument; 
-                
-                //TODO UWPTemplates: Handle activation from toast notification,  
-                //for more info handling activation see  
-                //https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/ 
-            } 
+            Frame rootFrame = Window.Current.Content as Frame;
+            if (rootFrame == null)
+            {
+                rootFrame = new Frame();
+                rootFrame.NavigationFailed += OnNavigationFailed;
+                Window.Current.Content = rootFrame;
+                if (rootFrame.Content == null)
+                {
+                    rootFrame.Navigate(typeof(HomePage));
+                }
+            }
+            Window.Current.Activate();
         }
 
         protected override void OnBackgroundActivated(BackgroundActivatedEventArgs args) 
-        { 
-            
+        {
+
         } 
     }
 }

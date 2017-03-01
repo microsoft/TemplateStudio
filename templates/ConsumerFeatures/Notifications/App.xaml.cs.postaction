@@ -2,15 +2,16 @@
     "elements": [
         {
             "path":"RootNamespace.App::OnLaunched",
-            "content": "//Services.NotificationsFeature.InitializeNotificationsHub();"
+            "content": "Services.NotificationsFeatureService.InitializeStoreNotifications();"
         },
         {
             "path":"RootNamespace.App::OnLaunched",
-            "content": "Services.NotificationsFeature.InitializeStoreNotifications();"
+            "content": "Services.NotificationsFeatureService.ShowToastNotificationSample();"
         },
         {
-            "path":"RootNamespace.App::OnLaunched",
-            "content": "Services.NotificationsFeature.ShowToastNotificationSample();"
+            "path": "RootNamespace.App::OnActivated",
+            "before": "Frame rootFrame = Window.Current.Content as Frame;",
+            "content": "Services.NotificationsService.HandleNotificationActivation(args);"
         }
     ]
 }

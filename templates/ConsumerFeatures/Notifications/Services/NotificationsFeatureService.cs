@@ -1,8 +1,8 @@
 using Microsoft.Services.Store.Engagement;
+using Microsoft.Toolkit.Uwp.Notifications;
 using Microsoft.WindowsAzure.Messaging;
 using System;
 using Windows.ApplicationModel.Activation;
-using Windows.Data.Xml.Dom;
 using Windows.Networking.PushNotifications;
 using Windows.UI.Notifications;
 
@@ -39,46 +39,72 @@ namespace RootNamespace.Services
             await engagementManager.RegisterNotificationChannelAsync();
         }
 
-        public static void ShowToastNotification(string xml)
+        public static void ShowToastNotification(ToastNotification toastNotification)
         {
-            XmlDocument toastXml = new XmlDocument();
-            toastXml.LoadXml(xml);
-
-            // Generate toast
-            var toast = new ToastNotification(toastXml);
-            ToastNotificationManager.CreateToastNotifier().Show(toast);
+            ToastNotificationManager.CreateToastNotifier().Show(toastNotification);
         }
 
         public static void ShowToastNotificationSample()
         {
-            string xml =
-            $@"<toast activationType='foreground'>
-                    <visual>
-                        <binding template='ToastGeneric'>
-                            <text>Action - text</text>
-                            <text>Make sure left button on the toast has the text ""ok"" on it, and the right button has the text ""cancel"" on it.</text>
-                        </binding>
-                    </visual>
-                    <actions>
-                        <action
-                            content='ok'
-                            activationType='foreground'
-                            arguments='ok'/>
-                        <action
-                            content='cancel'
-                            activationType='foreground'
-                            arguments='cancel'/>
-                    </actions>
-                </toast>";
-            ShowToastNotification(xml);
+            // Create the toast content
+            var content = new ToastContent()
+            {
+                Launch = "action=view&id=5",
+
+                Visual = new ToastVisual()
+                {
+                    BindingGeneric = new ToastBindingGeneric()
+                    {
+                        Children =
+                        {
+                            new AdaptiveText()
+                            {
+                                Text = "Action - text"
+                            },
+
+                            new AdaptiveText()
+                            {
+                                Text = @"Make sure the left button on the toast has the text ""Ok"" on it, and the right button has the text ""Cancel"" on it."
+                            }
+                        }
+                    }
+                },
+
+                Actions = new ToastActionsCustom()
+                {
+                    Buttons =
+                    {
+                        new ToastButton("Ok", "action=ok&id=5")
+                        {
+                            ActivationType = ToastActivationType.Foreground
+                        },
+
+                        new ToastButtonDismiss("Cancel")
+                    }
+                }
+            };
+
+            // Create the toast
+            var toast = new ToastNotification(content.GetXml())
+            {
+                // Assign a tag (and optionally a group) so you can remove this notification in the future
+                Tag = "toast5"
+            };
+
+            // And show the toast
+            ShowToastNotification(toast);
         }
 
         public static void HandleNotificationActivation(IActivatedEventArgs args)
         {
             if (args is ToastNotificationActivatedEventArgs)
-            {
-                var toastActivationArgs = args as ToastNotificationActivatedEventArgs;
-                //TODO UWPCommunity: Handle notification parameter activation
+            {                
+                var toastArgs = args as ToastNotificationActivatedEventArgs; 
+                var arguments = toastArgs.Argument; 
+                
+                //TODO UWPTemplates: Handle activation from toast notification,  
+                //for more info handling activation see  
+                //https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/ 
             }
         }
     }
