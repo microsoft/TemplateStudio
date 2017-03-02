@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -50,7 +51,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             //Add key usage
             var ku = new CX509ExtensionKeyUsage();
-            ku.InitializeEncode(X509KeyUsageFlags.XCN_CERT_DIGITAL_SIGNATURE_KEY_USAGE);
+            ku.InitializeEncode(CERTENROLLLib.X509KeyUsageFlags.XCN_CERT_DIGITAL_SIGNATURE_KEY_USAGE);
             ku.Critical = false;
             cert.X509Extensions.Add((CX509Extension)ku);
 
@@ -83,12 +84,18 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             enrollment.CertificateFriendlyName = publisherName;
             var request = enrollment.CreateRequest();
             enrollment.InstallResponse(InstallResponseRestrictionFlags.AllowUntrustedCertificate, request, EncodingType.XCN_CRYPT_STRING_BASE64, "");
-
+            
             var base64Encoded = enrollment.CreatePFX("", PFXExportOptions.PFXExportChainWithRoot);
+            var certificate = new X509Certificate2(Convert.FromBase64String(base64Encoded), "");
 
             var filePath = Path.Combine(_shell.ProjectPath, _shell.ProjectName) + "_TemporaryKey.pfx";
             File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
 
+            X509Store store = new X509Store(StoreLocation.CurrentUser);
+            store.Open(OpenFlags.ReadWrite);
+
+            store.Remove(certificate);
+            store.Close();
             _shell.AddItemToActiveProject(filePath);
         }
     }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26127.3
+VisualStudioVersion = 15.0.26127.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{481CC407-92E7-42A9-AD6E-AA157E5D40C3}"
 EndProject
@@ -25,6 +25,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vsix", "src\Vsix\Vsix.csproj", "{BB30852B-672A-4EBF-BE58-BC63F6D3C0DE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Templates.Test", "test\Templates.Test\Templates.Test.csproj", "{1EE12A16-FE11-43AD-B509-668CE5D0DB16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestArtifacts", "TestArtifacts\TestArtifacts.csproj", "{FB3C81AD-823E-409C-BF6D-27534B84A8AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +62,10 @@ Global
 		{1EE12A16-FE11-43AD-B509-668CE5D0DB16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EE12A16-FE11-43AD-B509-668CE5D0DB16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EE12A16-FE11-43AD-B509-668CE5D0DB16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB3C81AD-823E-409C-BF6D-27534B84A8AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB3C81AD-823E-409C-BF6D-27534B84A8AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB3C81AD-823E-409C-BF6D-27534B84A8AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB3C81AD-823E-409C-BF6D-27534B84A8AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,5 +75,6 @@ Global
 		{272B516C-0D73-4BA6-A97E-5C82D5C02ABD} = {481CC407-92E7-42A9-AD6E-AA157E5D40C3}
 		{D5E1C23A-7547-412A-82F1-F00C34622C1E} = {428D8EC8-DF58-4921-B464-967086C924A4}
 		{1EE12A16-FE11-43AD-B509-668CE5D0DB16} = {481CC407-92E7-42A9-AD6E-AA157E5D40C3}
+		{FB3C81AD-823E-409C-BF6D-27534B84A8AF} = {481CC407-92E7-42A9-AD6E-AA157E5D40C3}
 	EndGlobalSection
 EndGlobal
