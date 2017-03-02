@@ -1,0 +1,17 @@
+{
+    "elements": [
+        {
+            "path":"RootNamespace.App::OnLaunched",
+            "content": "Services.NotificationsFeatureService.InitializeStoreNotifications();"
+        },
+        {
+            "path":"RootNamespace.App::OnLaunched",
+            "content": "Services.NotificationsFeatureService.ShowToastNotificationSample();"
+        },
+        {
+            "path": "RootNamespace.App::OnActivated",
+            "before": "Frame rootFrame = Window.Current.Content as Frame;",
+            "content": "Services.NotificationsService.HandleNotificationActivation(args);"
+        }
+    ]
+}

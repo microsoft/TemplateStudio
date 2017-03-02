@@ -90,8 +90,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         public override UpdateResult Update(string content)
         {
-            var result = new UpdateResult();
-            result.Content = content;
+            var result = new UpdateResult()
+            {
+                Content = content
+            };
 
             var matches = Regex.Matches(content, AnchorPattern);
             for (int i = 0; i < matches.Count; i++)

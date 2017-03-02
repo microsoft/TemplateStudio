@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Microsoft.Templates.Wizard.TestApp
+namespace Microsoft.Templates.VsEmulator
 {
 
     public class MsBuildProject

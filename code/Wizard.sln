@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26020.0
+VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "src\Core\Core.csproj", "{51DDB424-2DA2-4871-A042-4F4F9B622515}"
 EndProject
@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{FC077937-5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wizard", "src\Wizard\Wizard.csproj", "{9E58EACC-C798-43A0-89A0-A5A32815272D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wizard.TestApp", "test\Wizard.TestApp\Wizard.TestApp.csproj", "{272B516C-0D73-4BA6-A97E-5C82D5C02ABD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VsEmulator", "test\VsEmulator\VsEmulator.csproj", "{272B516C-0D73-4BA6-A97E-5C82D5C02ABD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

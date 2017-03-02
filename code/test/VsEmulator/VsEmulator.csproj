@@ -7,8 +7,8 @@
     <ProjectGuid>{272B516C-0D73-4BA6-A97E-5C82D5C02ABD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Microsoft.Templates.Wizard.TestApp</RootNamespace>
-    <AssemblyName>Microsoft.Templates.Wizard.TestApp</AssemblyName>
+    <RootNamespace>Microsoft.Templates.VsEmulator</RootNamespace>
+    <AssemblyName>VsEmulator</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -63,6 +63,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -82,9 +83,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="FakeGenShell.cs" />
+    <Compile Include="Mvvm\ObservableBase.cs" />
+    <Compile Include="Mvvm\RelayCommand.cs" />
+    <Compile Include="ProjectConfirm\ProjectConfirmationView.xaml.cs">
+      <DependentUpon>ProjectConfirmationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SolutionFile.cs" />
     <Compile Include="VsItemType.cs" />
-    <Page Include="MainWindow.xaml">
+    <Page Include="Main\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -93,10 +99,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MsBuildProject.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Main\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ProjectConfirm\ProjectConfirmationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -138,6 +148,7 @@
       <Name>Wizard</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

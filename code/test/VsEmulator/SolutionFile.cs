@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.Templates.Wizard.TestApp
+namespace Microsoft.Templates.VsEmulator
 {
     public class SolutionFile
     {
