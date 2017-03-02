@@ -10,11 +10,11 @@ namespace Microsoft.Templates.Test
 {
     public sealed class GenerationTestsFixture : IDisposable
     {
-        internal string TestRunPath = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\Runs\\{DateTime.Now.ToString("yyyyMMdd_hhmm")}\\";
-        internal string TestProjectsPath => Path.GetFullPath(Path.Combine(TestRunPath, "Projects"));
-        internal string TestPagesPath => Path.GetFullPath(Path.Combine(TestRunPath, "Pages"));
-        internal string TestDevFeaturesPath => Path.GetFullPath(Path.Combine(TestRunPath, "DevFeatures"));
-        internal string TestConsumerFeaturesPath => Path.GetFullPath(Path.Combine(TestRunPath, "ConsumerFeatures"));
+        internal string TestRunPath = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\{DateTime.Now.ToString("dd_hhmm")}\\";
+        internal string TestProjectsPath => Path.GetFullPath(Path.Combine(TestRunPath, "Proj"));
+        internal string TestPagesPath => Path.GetFullPath(Path.Combine(TestRunPath, "Page"));
+        internal string TestDevFeaturesPath => Path.GetFullPath(Path.Combine(TestRunPath, "Dev"));
+        internal string TestConsumerFeaturesPath => Path.GetFullPath(Path.Combine(TestRunPath, "Cons"));
 
 
         private static readonly Lazy<TemplatesRepository> _repos = new Lazy<TemplatesRepository>(() => CreateNewRepos(), true);
