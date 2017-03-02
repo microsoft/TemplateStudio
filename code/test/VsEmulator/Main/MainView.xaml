@@ -1,0 +1,52 @@
+﻿<Window x:Class="Microsoft.Templates.VsEmulator.Main.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Visual Studio Emulator" 
+        Height="480" Width="800" 
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Image x:Key="VsImage" Source="/VsEmulator;component/Assets/vs.jpg"/>
+        <Image x:Key="FolderImage" Source="/VsEmulator;component/Assets/folder.png"/>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Margin="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0">           
+                <Hyperlink Command="{Binding NewProjectCommand}">
+                    <TextBlock Text="New Project..."/>
+                </Hyperlink>
+            </TextBlock>
+            <Grid Grid.Column="1" Style="{StaticResource VerticalSeparator}" />
+            <Grid Grid.Column="2" Visibility="{Binding IsProjectLoaded}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <Button Command="{Binding OpenInVsCommand}" Content="{StaticResource VsImage}" Style="{StaticResource IconButton}" />
+                    <Button Command="{Binding OpenInExplorerCommand}" Content="{StaticResource FolderImage}" Style="{StaticResource IconButton}"  />
+                </StackPanel>
+                <Grid Grid.Row="1" Style="{StaticResource HorizontalSeparator}" />
+                <TextBlock Grid.Row="2" Text="{Binding SolutionName}" Style="{StaticResource Header2}" />
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Style="{StaticResource StatusContainer}">
+            <TextBlock Text="{Binding State}" Style="{StaticResource StatusText}" />
+        </Grid>
+    </Grid>
+</Window>

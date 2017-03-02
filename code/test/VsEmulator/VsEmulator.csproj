@@ -63,6 +63,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -83,14 +86,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="FakeGenShell.cs" />
+    <Compile Include="Main\MainViewModel.cs" />
     <Compile Include="Mvvm\ObservableBase.cs" />
     <Compile Include="Mvvm\RelayCommand.cs" />
-    <Compile Include="ProjectConfirm\ProjectConfirmationView.xaml.cs">
-      <DependentUpon>ProjectConfirmationView.xaml</DependentUpon>
+    <Compile Include="NewProject\NewProjectView.xaml.cs">
+      <DependentUpon>NewProjectView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewProject\NewProjectViewModel.cs" />
     <Compile Include="SolutionFile.cs" />
     <Compile Include="VsItemType.cs" />
-    <Page Include="Main\MainWindow.xaml">
+    <Page Include="Main\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -99,13 +104,17 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MsBuildProject.cs" />
-    <Compile Include="Main\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Main\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ProjectConfirm\ProjectConfirmationView.xaml">
+    <Page Include="NewProject\NewProjectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\VsTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -148,7 +157,12 @@
       <Name>Wizard</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\vs.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\folder.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
