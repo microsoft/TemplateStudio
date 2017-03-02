@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using TestArtifacts;
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -24,7 +25,7 @@ namespace Microsoft.Templates.Test
             this.fixture = fixture;
         }
 
-
+        [STAThread]
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
         public void GenerateEmptyProject(string name, string framework, string projId)
         {
@@ -32,7 +33,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{name}{framework}";
 
-            var generator = new GenController(new FakeGenShell(projectName, fixture.TestProjectsPath, new TextBlock()));
+            var generator = new GenController(new FakeGenShell(projectName, fixture.TestProjectsPath));
             var wizardState = new WizardState
             {
                 Framework = framework,
@@ -62,7 +63,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{name}{framework}All";
 
-            var generator = new GenController(new FakeGenShell(projectName, fixture.TestPagesPath, new TextBlock()));
+            var generator = new GenController(new FakeGenShell(projectName, fixture.TestPagesPath));
 
             var wizardState = new WizardState
             {
@@ -94,7 +95,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{name}{framework}All";
 
-            var generator = new GenController(new FakeGenShell(projectName, fixture.TestDevFeaturesPath, new TextBlock()));
+            var generator = new GenController(new FakeGenShell(projectName, fixture.TestDevFeaturesPath));
 
             var wizardState = new WizardState
             {
@@ -126,7 +127,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{name}{framework}All";
 
-            var generator = new GenController(new FakeGenShell(projectName, fixture.TestConsumerFeaturesPath, new TextBlock()));
+            var generator = new GenController(new FakeGenShell(projectName, fixture.TestConsumerFeaturesPath));
 
             var wizardState = new WizardState
             {

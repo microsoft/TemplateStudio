@@ -20,13 +20,22 @@ namespace TestArtifacts
         public string SolutionPath { get; set; } = string.Empty;
         public TextBlock Status { get; set; }
 
-        public FakeGenShell(string name, TextBlock status)
+        public FakeGenShell(string name, string directory)
+        {
+            ProjectName = name;
+            OutputPath = Path.Combine(directory, name);
+            SolutionPath = Path.Combine(OutputPath, $"{name}.sln");
+            ProjectPath = Path.Combine(OutputPath, ProjectName);
+            Status = null;
+        }
+
+        public FakeGenShell(string name)
         {
             ProjectName = name;
             OutputPath = Path.Combine(TEMP_TESTS_DIR, name);
             SolutionPath = Path.Combine(OutputPath, $"{name}.sln");
             ProjectPath = Path.Combine(OutputPath, ProjectName);
-            Status = status;
+            Status = null;
         }
 
         public void UpdateRelativePath(string relative)
@@ -87,7 +96,10 @@ namespace TestArtifacts
 
         public override void ShowStatusBarMessage(string message)
         {
-            Status.Text = message;
+            if (Status != null)
+            {
+                Status.Text = message;
+            }
         }
 
         protected override string GetActiveProjectName()

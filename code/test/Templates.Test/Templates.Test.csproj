@@ -93,14 +93,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FakeGenShell.cs" />
     <Compile Include="GenerationTests.cs" />
     <Compile Include="GenerationTestsFixture.cs" />
-    <Compile Include="MSBuildProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SolutionFile.cs" />
-    <Compile Include="TextBlock.cs" />
-    <Compile Include="VsItemType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -121,6 +116,10 @@
     <ProjectReference Include="..\..\src\Wizard\Wizard.csproj">
       <Project>{9E58EACC-C798-43A0-89A0-A5A32815272D}</Project>
       <Name>Wizard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TestArtifacts\TestArtifacts.csproj">
+      <Project>{fb3c81ad-823e-409c-bf6d-27534b84a8af}</Project>
+      <Name>TestArtifacts</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
