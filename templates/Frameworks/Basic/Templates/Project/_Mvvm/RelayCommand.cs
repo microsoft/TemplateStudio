@@ -13,7 +13,12 @@ namespace RootNamespace.Mvvm
 
         public RelayCommand(Action execute, Func<bool> canExecute)
         {
-            this.execute = execute ?? throw new ArgumentNullException("execute");
+            if(execute == null)
+            {
+                throw new ArgumentNullException("execute");
+            }
+
+            this.execute = execute;
             this.canExecute = canExecute;
         }
 
@@ -32,7 +37,12 @@ namespace RootNamespace.Mvvm
 
         public RelayCommand(Action<T> execute, Func<T, bool> canExecute)
         {
-            this.execute = execute ?? throw new ArgumentNullException("execute");
+            if(execute == null)
+            {
+                throw new ArgumentNullException("execute");
+            }
+
+            this.execute = execute;
             this.canExecute = canExecute;
         }
 

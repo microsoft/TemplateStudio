@@ -52,7 +52,12 @@ namespace ItemName.Shell
         {
             get
             {
-                return _openPaneCommand ?? (_openPaneCommand = new RelayCommand(() => IsPaneOpen = !_isPaneOpen));
+                if(_openPaneCommand == null)
+                {
+                    _openPaneCommand = new RelayCommand(() => IsPaneOpen = !_isPaneOpen);
+                }
+                
+                return _openPaneCommand;
             }
         }
         #endregion
