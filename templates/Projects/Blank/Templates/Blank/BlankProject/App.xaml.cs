@@ -112,6 +112,6 @@ namespace BlankProject
         protected override void OnBackgroundActivated(BackgroundActivatedEventArgs args) 
         {
 
-        } 
+        }
     }
 }

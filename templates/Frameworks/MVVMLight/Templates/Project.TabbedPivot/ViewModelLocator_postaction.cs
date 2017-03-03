@@ -1,0 +1,5 @@
+﻿public ViewModelLocator()
+{
+    //^^         
+    RegisterShell(navigationService);
+}

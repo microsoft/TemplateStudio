@@ -80,6 +80,8 @@ namespace Microsoft.Templates.VsEmulator.Main
                     var userSelection = _gen.GetUserSelection(WizardSteps.Project);
                     if (userSelection != null)
                     {
+                        SolutionName = null;
+
                         _gen.Generate(userSelection);
 
                         _shell.ShowStatusBarMessage("Project created!!!");
