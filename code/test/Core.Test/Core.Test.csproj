@@ -155,7 +155,7 @@
       <Project>{51DDB424-2DA2-4871-A042-4F4F9B622515}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\TestArtifacts\TestArtifacts.csproj">
+    <ProjectReference Include="..\TestArtifacts\TestArtifacts.csproj">
       <Project>{fb3c81ad-823e-409c-bf6d-27534b84a8af}</Project>
       <Name>TestArtifacts</Name>
     </ProjectReference>
