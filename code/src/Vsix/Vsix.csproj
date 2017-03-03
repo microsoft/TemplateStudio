@@ -59,7 +59,7 @@
     <Compile Include="Commands\TemplatesCommands.cs" />
     <Compile Include="Commands\TemplatesCommandsPackage.cs" />
     <Compile Include="Commands\VsRelayCommand.cs" />
-    <Compile Include="Diagnostsics\VsOutputHealthWriter.cs" />
+    <Compile Include="VsOutputPane.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\StringRes.Designer.cs">

@@ -135,6 +135,7 @@
     <Compile Include="Diagnostics\TelemetryEvents.cs" />
     <Compile Include="Diagnostics\TelemetryTracker.cs" />
     <Compile Include="Diagnostics\TraceHealthWriter.cs" />
+    <Compile Include="Diagnostics\ShellHealthWriter.cs" />
     <Compile Include="GenInfo.cs" />
     <Compile Include="GenParams.cs" />
     <Compile Include="GenShell.cs" />

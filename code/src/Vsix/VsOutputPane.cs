@@ -11,16 +11,16 @@ using Microsoft.VisualStudio;
 using EnvDTE;
 using EnvDTE80;
 using System.Reflection;
+using Microsoft.Templates.Core;
 
-namespace Microsoft.Templates.Extension.Diagnostsics
+namespace Microsoft.Templates.Extension
 {
-    class VsOutputHealthWriter : IHealthWriter
+    class VsOutputPane
     {
         private const string UWPCommunityTemplatesPaneGuid = "45480fff-0658-42e1-97f0-82cac23603aa";
+        private OutputWindowPane _pane;
         private Guid _paneGuid;
-        private OutputWindowPane _pane; 
-
-        public VsOutputHealthWriter()
+        public VsOutputPane() 
         {
             _paneGuid = Guid.Parse(UWPCommunityTemplatesPaneGuid);
             _pane = GetOrCreatePane(_paneGuid, true, false);
@@ -29,48 +29,10 @@ namespace Microsoft.Templates.Extension.Diagnostsics
                 _pane.Activate();
             }
         }
-
-        public async SystemTasks.Task WriteExceptionAsync(Exception ex, string message = null)
+        public void Write(string data)
         {
-            if (_pane != null)
-            {
-                await SafeTrackAsync(() =>
-                {
-                    string header = $"========== Tracked Exception [{DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}] ==========\n";
-                    _pane.OutputString(header);
-
-                    if (message != null)
-                    {
-                        _pane.OutputString($"AdditionalMessage: {message}\n");
-                    }
-
-                    _pane.OutputString($"{ex.ToString()}\n");
-
-                    string footer = $"{new String('-', header.Length - 2)}\n";
-                    _pane.OutputString(footer);
-                });
-            }
+            _pane.OutputString(data);
         }
-
-        public async SystemTasks.Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
-        {
-            if (_pane != null)
-            {
-                await SafeTrackAsync(() =>
-                {
-                    string eventMessage = $"[{DateTime.Now.ToString("hh:mm:ss.fff")} - {eventType.ToString()}]::{message}\n";
-                    _pane.OutputString(eventMessage);
-                    if (ex != null)
-                    {
-                        string header = $"----------- Addtional Exception Info -----------\n";
-                        string footer = $"{new String('-', header.Length - 2)}\n";
-                        string exceptionInfo = header + $"{ex.ToString()}\n" + footer;
-                        _pane.OutputString(exceptionInfo);
-                    }
-                });
-            }
-        }
-
         private OutputWindowPane GetOrCreatePane(Guid paneGuid, bool visible, bool clearWithSolution)
         {
             OutputWindowPane result = null;
@@ -122,7 +84,7 @@ namespace Microsoft.Templates.Extension.Diagnostsics
             OutputWindowPane result = null;
             foreach (OutputWindowPane p in panes)
             {
-                if (Guid.Parse(p.Guid).ToString() == _paneGuid.ToString())
+                if (Guid.Parse(p.Guid).ToString() == _pane.ToString())
                 {
                     result = p;
                 }
@@ -151,11 +113,6 @@ namespace Microsoft.Templates.Extension.Diagnostsics
             {
                 Trace.TraceError("Error writing to Visual Studio Output: {0}", ex.ToString());
             }
-        }
-
-        public bool AllowMultipleInstances()
-        {
-            return false;
         }
     }
 }

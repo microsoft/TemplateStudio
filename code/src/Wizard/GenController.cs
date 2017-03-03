@@ -34,9 +34,13 @@ namespace Microsoft.Templates.Wizard
         public GenController(GenShell shell, TemplatesRepository repository)
         {
             Shell = shell;
+
             _repository = repository;
 
             _composer = new GenComposer(shell, repository);
+
+            AppHealth.Current.AddWriter(new ShellHealthWriter(shell));
+
         }
 
         public WizardState GetUserSelection(WizardSteps selectionSteps)

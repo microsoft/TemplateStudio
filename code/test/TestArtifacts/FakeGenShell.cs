@@ -139,6 +139,11 @@ namespace TestArtifacts
         {
             throw new WizardBackoutException();
         }
+
+        public override void WriteOutput(string data)
+        {
+            Console.Out.WriteLine(data);
+        }
     }
 }
 
