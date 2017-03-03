@@ -27,7 +27,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             for (int i = 0; i < actual.Count; i++)
             {
-                if (actual[i].Equals(item, StringComparison.OrdinalIgnoreCase))
+                if (actual[i].TrimEnd().Equals(item.TrimEnd(), StringComparison.OrdinalIgnoreCase))
                 {
                     return skip + i;
                 }
