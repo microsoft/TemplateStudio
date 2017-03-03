@@ -18,22 +18,22 @@ namespace ItemNamespace.MasterDetailPage
         private Visibility _masterVisibility;
         public Visibility MasterVisibility
         {
-            get => _masterVisibility;
-            set => Set(ref _masterVisibility, value);
+            get { return _masterVisibility; }
+            set { Set(ref _masterVisibility, value); }
         }
 
         private Visibility _detailVisibility = Visibility.Collapsed;
         public Visibility DetailVisibility
         {
-            get => _detailVisibility;
-            set => Set(ref _detailVisibility, value);
+            get { return _detailVisibility; }
+            set { Set(ref _detailVisibility, value); }
         }
 
         private DessertModel _selected;
         public DessertModel Selected
         {
-            get => _selected;
-            set => Set(ref _selected, value);
+            get { return _selected; }
+            set { Set(ref _selected, value); }
         }
 
         public ICommand LoadDataCommand { get; private set; }
