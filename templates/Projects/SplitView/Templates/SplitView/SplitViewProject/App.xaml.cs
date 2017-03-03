@@ -51,6 +51,11 @@ namespace SplitViewProject
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
+                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                {
+                    
+                }
+
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
             }
