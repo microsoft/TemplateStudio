@@ -15,6 +15,7 @@
     "uct.framework": "Basic;MVVMLight",
     "uct.version": "1.0.0",
     "uct.order": "1",
+    "uct.licences": "[Microsoft.Toolkit.Uwp.Notifications](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)|[WindowsAzure.Messaging.Managed](http://go.microsoft.com/fwlink/?LinkId=218949)",
     "uct.defaultInstance": "Notifications",
     "uct.multipleInstance": "false"
   },
