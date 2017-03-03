@@ -7,8 +7,8 @@
     <ProjectGuid>{FB3C81AD-823E-409C-BF6D-27534B84A8AF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestArtifacts</RootNamespace>
-    <AssemblyName>TestArtifacts</AssemblyName>
+    <RootNamespace>Artifacts</RootNamespace>
+    <AssemblyName>Artifacts</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -52,7 +52,7 @@
     <Compile Include="VsItemType.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Core\Core.csproj">
+    <ProjectReference Include="..\..\src\Core\Core.csproj">
       <Project>{51ddb424-2da2-4871-a042-4f4f9b622515}</Project>
       <Name>Core</Name>
     </ProjectReference>

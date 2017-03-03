@@ -14,15 +14,15 @@ namespace ItemNamespace.MapPage
         private double _zoomLevel;
         public double ZoomLevel
         {
-            get => _zoomLevel;
-            set => Set(ref _zoomLevel, value);
+            get { return _zoomLevel; }
+            set { Set(ref _zoomLevel, value); }
         }
 
         private Geopoint _center;
         public Geopoint Center
         {
-            get => _center;
-            set => Set(ref _center, value);
+            get { return _center; }
+            set { Set(ref _center, value); }
         }
 
         public ICommand LoadDataCommand { get; private set; }

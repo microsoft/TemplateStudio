@@ -1,6 +1,7 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.PostActions.Catalog;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +19,7 @@ namespace Microsoft.Templates.Core.PostActions
 
             AddPredefinedActions(shell, genInfo, genResult, postActions);
             AddInjectionActions(shell, postActions);
+            AddMergeActions(shell, postActions);
 
             return postActions;
         }
@@ -76,6 +78,14 @@ namespace Microsoft.Templates.Core.PostActions
                 .EnumerateFiles(shell.ProjectPath, "*.postaction", SearchOption.AllDirectories)
                 .ToList()
                 .ForEach(f => postActions.Add(new InjectionPostAction(shell, f)));
+        }
+
+        private static void AddMergeActions(GenShell shell, List<PostAction> postActions)
+        {
+            Directory
+               .EnumerateFiles(shell.ProjectPath, $"*{MergePostAction.Extension}*", SearchOption.AllDirectories)
+               .ToList()
+               .ForEach(f => postActions.Add(new MergePostAction(shell, f)));
         }
     }
 }

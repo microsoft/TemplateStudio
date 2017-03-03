@@ -123,11 +123,21 @@
     <Compile Include="NamingTest.cs" />
     <Compile Include="Injection\CodeInjectorTest.cs" />
     <Compile Include="Injection\ReferencesInjectorTest.cs" />
+    <None Include="TestData\Merge\Source_expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Merge\Source_postaction.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Merge\Source.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestData\Injection\Code\Inject.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Compile Include="Injection\XamlInjectorTest.cs" />
     <Compile Include="PostActions\Catalog\GenerateTestCertificatePostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\MergeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -145,7 +155,7 @@
       <Project>{51DDB424-2DA2-4871-A042-4F4F9B622515}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\TestArtifacts\TestArtifacts.csproj">
+    <ProjectReference Include="..\TestArtifacts\TestArtifacts.csproj">
       <Project>{fb3c81ad-823e-409c-bf6d-27534b84a8af}</Project>
       <Name>TestArtifacts</Name>
     </ProjectReference>

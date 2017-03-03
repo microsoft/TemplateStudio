@@ -162,6 +162,9 @@
     <Compile Include="Injection\Xaml\XamlInjector.cs" />
     <Compile Include="Injection\Xaml\XamlInjectorConfig.cs" />
     <Compile Include="PostActions\Catalog\LocalizationPostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\IEnumerableExtensions.cs" />
+    <Compile Include="PostActions\Catalog\Merge\MergePostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\StringExtensions.cs" />
     <Compile Include="PostActions\PostAction.cs" />
     <Compile Include="PostActions\PostActionFactory.cs" />
     <Compile Include="PostActions\Catalog\SetDefaultSolutionConfigurationPostAction.cs" />

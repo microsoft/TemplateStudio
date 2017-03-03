@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Microsoft.Templates.VsEmulator
+namespace TestArtifacts
 {
     public class FakeGenShell : GenShell
     {
@@ -19,7 +19,7 @@ namespace Microsoft.Templates.VsEmulator
 
         public string SolutionPath { get; set; } = string.Empty;
 
-        public FakeGenShell(string name, string location, string solutionName, Action<string> changeStatus, Window owner)
+        public FakeGenShell(string name, string location, string solutionName = null, Action<string> changeStatus = null, Window owner = null)
         {
             ProjectName = name;
             OutputPath = Path.Combine(location, name);
@@ -44,8 +44,13 @@ namespace Microsoft.Templates.VsEmulator
             }
         }
 
-        public override void AddItemToActiveProject(string itemFullPath)
+        public override void AddItems(params string[] itemsFullPath)
         {
+            if (itemsFullPath == null || itemsFullPath.Length == 0)
+            {
+                return;
+            }
+
             var projectFileName = FindProject(ProjectPath);
             if (string.IsNullOrEmpty(projectFileName))
             {
@@ -55,7 +60,11 @@ namespace Microsoft.Templates.VsEmulator
 
             if (msbuildProj != null)
             {
-                msbuildProj.AddItem(itemFullPath);
+                foreach (var item in itemsFullPath)
+                {
+                    msbuildProj.AddItem(item);
+                }
+
                 msbuildProj.Save();
             }
         }
@@ -63,7 +72,7 @@ namespace Microsoft.Templates.VsEmulator
         public override void AddProjectToSolution(string projectFullPath)
         {
             var msbuildProj = MsBuildProject.Load(projectFullPath);
-            
+
             var solutionFile = SolutionFile.Load(SolutionPath);
             solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid);
 
@@ -88,7 +97,7 @@ namespace Microsoft.Templates.VsEmulator
 
         public override void ShowStatusBarMessage(string message)
         {
-            _changeStatus(message);
+            _changeStatus?.Invoke(message);
         }
 
         protected override string GetActiveProjectName()
@@ -132,3 +141,4 @@ namespace Microsoft.Templates.VsEmulator
         }
     }
 }
+

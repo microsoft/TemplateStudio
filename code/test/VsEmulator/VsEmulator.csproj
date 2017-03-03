@@ -85,7 +85,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="FakeGenShell.cs" />
     <Compile Include="Main\MainViewModel.cs" />
     <Compile Include="Mvvm\ObservableBase.cs" />
     <Compile Include="Mvvm\RelayCommand.cs" />
@@ -155,6 +154,10 @@
     <ProjectReference Include="..\..\src\Wizard\Wizard.csproj">
       <Project>{9e58eacc-c798-43a0-89a0-a5a32815272d}</Project>
       <Name>Wizard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestArtifacts\TestArtifacts.csproj">
+      <Project>{fb3c81ad-823e-409c-bf6d-27534b84a8af}</Project>
+      <Name>TestArtifacts</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

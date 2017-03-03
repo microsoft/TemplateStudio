@@ -26,7 +26,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vsix", "src\Vsix\Vsix.cspro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Templates.Test", "test\Templates.Test\Templates.Test.csproj", "{1EE12A16-FE11-43AD-B509-668CE5D0DB16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestArtifacts", "TestArtifacts\TestArtifacts.csproj", "{FB3C81AD-823E-409C-BF6D-27534B84A8AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestArtifacts", "test\TestArtifacts\TestArtifacts.csproj", "{FB3C81AD-823E-409C-BF6D-27534B84A8AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

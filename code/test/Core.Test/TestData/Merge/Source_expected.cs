@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+//USING
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,15 +16,19 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using SplitViewProject.Shell;
+using App38.Shell;
+using App38.BackgroundTask;
+using App38.Services;
 
-namespace SplitViewProject
+namespace App38
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
     sealed partial class App : Application
     {
+        //PROPERTY DEFINITION
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -30,27 +36,28 @@ namespace SplitViewProject
         public App()
         {
             this.InitializeComponent();
+            //AFTER INITIALIZE!!
             this.EnteredBackground += App_EnteredBackground;
+            //PostActionAnchor: ENABLE QUEUE
         }
+
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
-        /// <param name="e">Details about the launch request and process.</param>
+        /// <param name = "e">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
-        {
+        {   
+            //AFTER ONLAUNCHED!!
             Frame rootFrame = Window.Current.Content as Frame;
-
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (rootFrame == null)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
-
                 rootFrame.NavigationFailed += OnNavigationFailed;
-
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
             }
@@ -64,17 +71,30 @@ namespace SplitViewProject
                     // parameter
                     rootFrame.Navigate(typeof(ShellPage), e.Arguments);
                 }
+
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+
+            Settings.SettingsViewModel.InitAppTheme();
+            BackgroundTaskService.RegisterBackgroundTasks();
+            await StateService.Instance.RestoreStateAsync(e.PreviousExecutionState, e.Arguments);
+
+            //BEFORE END!!
+            var s = "";
+        }
+
+        private static void ThisIsANewMethod()
+        {
+            //INSIDE NEW METHOD!!
         }
 
 
         /// <summary>
         /// Invoked when Navigation to a certain page fails
         /// </summary>
-        /// <param name="sender">The Frame which failed navigation</param>
-        /// <param name="e">Details about the navigation failure</param>
+        /// <param name = "sender">The Frame which failed navigation</param>
+        /// <param name = "e">Details about the navigation failure</param>
         void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
@@ -83,33 +103,26 @@ namespace SplitViewProject
         private async void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e)
         {
             var deferral = e.GetDeferral();
-           
+            StateService.Instance.SaveStateAsync();
             deferral.Complete();
         }
- 
-        /// <summary>
-        /// Invoked when the application is activated by some means other than normal launching.
-        /// </summary>
-        /// <param name="args">Event data for the event.</param>
+
         protected override void OnActivated(IActivatedEventArgs args)
         {
-            Frame rootFrame = Window.Current.Content as Frame;
-            if (rootFrame == null)
+            if (args.Kind == ActivationKind.ToastNotification)
             {
-                rootFrame = new Frame();
-                rootFrame.NavigationFailed += OnNavigationFailed;
-                Window.Current.Content = rootFrame;
-                if (rootFrame.Content == null)
-                {
-                    rootFrame.Navigate(typeof(ShellPage));
-                }
+                //INSIDE IF!!
+                var toastArgs = args as ToastNotificationActivatedEventArgs;
+                var arguments = toastArgs.Argument;
+                //TODO UWPTemplates: Handle activation from toast notification,  
+                //for more info handling activation see  
+                //https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/ 
             }
-            Window.Current.Activate(); 
         }
 
-        protected override void OnBackgroundActivated(BackgroundActivatedEventArgs args) 
+        protected override void OnBackgroundActivated(BackgroundActivatedEventArgs args)
         {
-            
+            BackgroundTaskService.Start(args.TaskInstance);
         }
     }
 }

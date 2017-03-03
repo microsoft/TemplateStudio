@@ -9,6 +9,7 @@ using System;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
+using TestArtifacts;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
@@ -80,6 +81,8 @@ namespace Microsoft.Templates.VsEmulator.Main
                     var userSelection = _gen.GetUserSelection(WizardSteps.Project);
                     if (userSelection != null)
                     {
+                        SolutionName = null;
+
                         _gen.Generate(userSelection);
 
                         _shell.ShowStatusBarMessage("Project created!!!");

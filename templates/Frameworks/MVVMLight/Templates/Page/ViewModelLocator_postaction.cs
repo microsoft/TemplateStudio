@@ -1,0 +1,5 @@
+﻿public ViewModelLocator()
+{
+    //^^         
+    RegisterItemName(navigationService);
+}

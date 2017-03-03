@@ -13,8 +13,8 @@ namespace ItemName.Shell
         private bool _isPaneOpen;
         public bool IsPaneOpen
         {
-            get => _isPaneOpen;
-            set => Set(ref _isPaneOpen, value);
+            get { return _isPaneOpen; }
+            set { Set(ref _isPaneOpen, value); }
         }
         #endregion
 
@@ -22,20 +22,17 @@ namespace ItemName.Shell
         private ShellNavigationItem _selectedItem;
         public ShellNavigationItem SelectedItem
         {
-            get  => 
-                _selectedItem;
-                set => Set(ref _selectedItem, value);
+            get { return _selectedItem; }
+            set { Set(ref _selectedItem, value); }
         }
-
         #endregion
 
         #region NavigationItems
         private List<ShellNavigationItem> _navigationItems;
         public List<ShellNavigationItem> NavigationItems
         {
-            get  => 
-                _navigationItems;
-                set => Set(ref _navigationItems, value);
+            get { return _navigationItems; }
+            set { Set(ref _navigationItems, value); }
         }
         #endregion
 
@@ -55,7 +52,12 @@ namespace ItemName.Shell
         {
             get
             {
-                return _openPaneCommand ?? (_openPaneCommand = new RelayCommand(() => IsPaneOpen = !_isPaneOpen));
+                if(_openPaneCommand == null)
+                {
+                    _openPaneCommand = new RelayCommand(() => IsPaneOpen = !_isPaneOpen);
+                }
+                
+                return _openPaneCommand;
             }
         }
         #endregion
