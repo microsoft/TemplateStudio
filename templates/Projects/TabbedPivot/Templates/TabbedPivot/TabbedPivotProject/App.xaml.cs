@@ -110,7 +110,7 @@ namespace TabbedPivotProject
         }
 
         protected override void OnBackgroundActivated(BackgroundActivatedEventArgs args) 
-        { 
+        {
             
         }
     }
