@@ -1,3 +1,5 @@
+using Microsoft.Practices.ServiceLocation;
+
 namespace ItemNamespace.Services
 {
     public class StateService
