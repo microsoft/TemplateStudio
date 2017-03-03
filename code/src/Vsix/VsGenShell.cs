@@ -24,17 +24,13 @@ namespace Microsoft.Templates.Extension
 
         private Lazy<IVsUIShell> _uiShell = new Lazy<IVsUIShell>(() => ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell)) as IVsUIShell, true);
         private IVsUIShell UIShell => _uiShell.Value;
-
         private VsOutputPane OutputPane => new VsOutputPane();
-
-        public VsGenShell() : base ()
+        
+        public VsGenShell()
         {
-
         }
-
         public VsGenShell(Dictionary<string, string> replacements) : base(replacements)
         {
-
         }
 
         public override void AddItems(params string[] itemsFullPath)

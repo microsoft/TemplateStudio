@@ -137,7 +137,19 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         private void StartLog()
         {
+            StackTrace stackTrace = new StackTrace();           
+            StackFrame[] stackFrames = stackTrace.GetFrames(); 
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Stack:");
+            foreach (StackFrame stackFrame in stackFrames)
+            {
+               sb.AppendLine(stackFrame.GetMethod().Module + "." + stackFrame.GetMethod().Name);   
+            }
+            sb.AppendLine("");
+
             _fileStream?.WriteLine($"\r\n>>>>>>>>>>>>>> Log started {DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}");
+            _fileStream?.WriteLine(sb.ToString());
         }
 
         private bool CheckLogFileInUse()
