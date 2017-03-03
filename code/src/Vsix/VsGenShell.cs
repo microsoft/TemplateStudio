@@ -34,11 +34,17 @@ namespace Microsoft.Templates.Extension
 
         }
 
-        public override void AddItemToActiveProject(string itemFullPath)
+        public override void AddItems(params string[] itemsFullPath)
         {
-            //TODO: Improve performance (allow passing various files to add)
+            if (itemsFullPath == null || itemsFullPath.Length == 0)
+            {
+                return;
+            }
             var proj = GetActiveProject();
-            proj.ProjectItems.AddFromFile(itemFullPath);
+            foreach (var item in itemsFullPath)
+            {
+                proj.ProjectItems.AddFromFile(item);
+            }
 
             proj.Save();
         }

@@ -9,6 +9,7 @@ using System;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
+using TestArtifacts;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {

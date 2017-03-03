@@ -17,7 +17,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         {
             var projectName = "test";
 
-            var fakeShell = new FakeGenShell(projectName);
+            var fakeShell = new FakeGenShell(projectName, @".\TestData\tmp");
             Directory.CreateDirectory(fakeShell.ProjectPath);
             File.Copy(Path.Combine(Environment.CurrentDirectory, "TestData\\TestProject\\Test.csproj"), Path.Combine(fakeShell.ProjectPath, "Test.csproj"), true);
 

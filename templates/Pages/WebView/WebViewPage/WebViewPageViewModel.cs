@@ -7,8 +7,8 @@ namespace ItemNamespace.WebViewPage
         private Uri _source;
         public Uri Source
         {
-            get => _source;
-            set => Set(ref _source, value);
+            get { return _source; }
+            set { Set(ref _source, value); }
         }
 
         public WebViewPageViewModel()

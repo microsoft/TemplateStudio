@@ -11,15 +11,15 @@ namespace ItemNamespace.SettingsPage
         private bool _isLightThemeEnabled;
         public bool IsLightThemeEnabled
         {
-            get => _isLightThemeEnabled;
-            set => Set(ref _isLightThemeEnabled, value);
+            get { return _isLightThemeEnabled; }
+            set { Set(ref _isLightThemeEnabled, value); }
         }
 
         private string _appDescription;
         public string AppDescription
         {
-            get => _appDescription;
-            set => Set(ref _appDescription, value);
+            get { return _appDescription; }
+            set { Set(ref _appDescription, value); }
         }
 
         public ICommand SwitchThemeCommand { get; private set; }

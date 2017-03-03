@@ -19,7 +19,7 @@ namespace ItemNamespace.Services
     {
         private static readonly Lazy<StateService> stateService = new Lazy<StateService>(() => new StateService());
 
-        public static StateService Instance => stateService.Value;
+        public static StateService Instance { get{ return stateService.Value; } }
 
         private const string stateFilename = "pageState.json";
 

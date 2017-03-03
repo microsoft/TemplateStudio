@@ -37,7 +37,7 @@ namespace Microsoft.Templates.Core
         public abstract bool SetActiveConfigurationAndPlatform(string configurationName, string platformName);
         public abstract void ShowStatusBarMessage(string message);
         public abstract void AddProjectToSolution(string projectFullPath);
-        public abstract void AddItemToActiveProject(string itemFullPath);
+        public abstract void AddItems(params string[] itemsFullPath);
         public abstract void SaveSolution(string solutionFullPath);
         public abstract string GetActiveNamespace();
         public abstract void ShowTaskList();
