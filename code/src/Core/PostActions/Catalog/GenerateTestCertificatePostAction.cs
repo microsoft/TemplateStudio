@@ -96,7 +96,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             store.Remove(certificate);
             store.Close();
-            _shell.AddItemToActiveProject(filePath);
+            _shell.AddItems(filePath);
         }
     }
 }

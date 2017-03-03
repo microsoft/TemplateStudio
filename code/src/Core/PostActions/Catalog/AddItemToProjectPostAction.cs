@@ -16,15 +16,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         public override void Execute()
         {
-            foreach (var output in _config)
-            {
-                if (!string.IsNullOrWhiteSpace(output.Path))
-                {
-                    //TODO: REVIEW OUTPUT PATH
-                    var projectPath = Path.GetFullPath(Path.Combine(_shell.ProjectPath, output.Path));
-                    _shell.AddItemToActiveProject(projectPath);
-                }
-            }
+            var itemsToAdd = _config
+                                .Where(o => !string.IsNullOrWhiteSpace(o.Path))
+                                .Select(o => Path.GetFullPath(Path.Combine(_shell.ProjectPath, o.Path)))
+                                .ToList();
+
+            _shell.AddItems(itemsToAdd.ToArray());
         }
     }
 }

@@ -44,8 +44,13 @@ namespace Microsoft.Templates.VsEmulator
             }
         }
 
-        public override void AddItemToActiveProject(string itemFullPath)
+        public override void AddItems(params string[] itemsFullPath)
         {
+            if (itemsFullPath == null || itemsFullPath.Length == 0)
+            {
+                return;
+            }
+
             var projectFileName = FindProject(ProjectPath);
             if (string.IsNullOrEmpty(projectFileName))
             {
@@ -55,7 +60,11 @@ namespace Microsoft.Templates.VsEmulator
 
             if (msbuildProj != null)
             {
-                msbuildProj.AddItem(itemFullPath);
+                foreach (var item in itemsFullPath)
+                {
+                    msbuildProj.AddItem(item);
+                }
+
                 msbuildProj.Save();
             }
         }
