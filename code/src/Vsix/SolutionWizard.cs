@@ -2,7 +2,6 @@
 using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
-using Microsoft.Templates.Extension.Diagnostsics;
 using Microsoft.Templates.Wizard;
 using Microsoft.Templates.Wizard.Dialog;
 using Microsoft.Templates.Wizard.Host;
@@ -28,7 +27,6 @@ namespace Microsoft.Templates.Extension
 
         public SolutionWizard()
         {
-            AppHealth.Current.AddWriter(new VsOutputHealthWriter());
         }
 
 

@@ -1,6 +1,7 @@
 ﻿using EnvDTE;
 using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Wizard;
 using Microsoft.VisualStudio.Shell;
@@ -24,9 +25,11 @@ namespace Microsoft.Templates.Extension
         private Lazy<IVsUIShell> _uiShell = new Lazy<IVsUIShell>(() => ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell)) as IVsUIShell, true);
         private IVsUIShell UIShell => _uiShell.Value;
 
-        public VsGenShell()
+        private VsOutputPane OutputPane => new VsOutputPane();
+
+        public VsGenShell() : base ()
         {
-            
+
         }
 
         public VsGenShell(Dictionary<string, string> replacements) : base(replacements)
@@ -200,6 +203,11 @@ namespace Microsoft.Templates.Extension
 
             var window = Dte.Windows.Item(EnvDTE.Constants.vsWindowKindTaskList);
             window.Activate();
+        }
+
+        public override void WriteOutput(string data)
+        {
+            OutputPane.Write(data);
         }
     }
 }

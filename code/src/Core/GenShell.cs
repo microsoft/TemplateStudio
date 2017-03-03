@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Templates.Core.Diagnostics;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -42,7 +43,7 @@ namespace Microsoft.Templates.Core
         public abstract string GetActiveNamespace();
         public abstract void ShowTaskList();
         public abstract void ShowModal(Window dialog);
-
         public abstract void CancelWizard();
+        public abstract void WriteOutput(string data);
     }
 }

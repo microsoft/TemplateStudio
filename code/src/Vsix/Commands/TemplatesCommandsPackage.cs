@@ -4,7 +4,6 @@
 // </copyright>
 //------------------------------------------------------------------------------
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Extension.Diagnostsics;
 using Microsoft.Templates.Extension.Resources;
 using Microsoft.Templates.Wizard;
 using Microsoft.Templates.Wizard.Host;
@@ -29,9 +28,7 @@ namespace Microsoft.Templates.Extension.Commands
 
         public TemplatesCommandsPackage()
         {
-            AppHealth.Current.AddWriter(new VsOutputHealthWriter());
         }
-
 
         protected override void Initialize()
         {
