@@ -34,11 +34,7 @@ namespace ItemNamespace.Services
             var saveStateArgs = new SaveStateEventArgs(pageState, page);
 
             SaveState?.Invoke(this, saveStateArgs);
-            var stateData = JsonConvert.SerializeObject(saveStateArgs);
-
-            var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(stateFilename, CreationCollisionOption.ReplaceExisting);
-            await FileIO.WriteTextAsync(file, stateData);
-
+            await SettingsStorageService.SaveAsync<SaveStateEventArgs>(stateFilename, saveStateArgs, Windows.Storage.ApplicationData.Current.LocalFolder);
         }
 
         /// <summary>
@@ -50,27 +46,15 @@ namespace ItemNamespace.Services
         {
             if (previousState == ApplicationExecutionState.Terminated)
             {
-                SaveStateEventArgs saveState;
+                var saveState = await SettingsStorageService.ReadAsync<SaveStateEventArgs>(stateFilename, Windows.Storage.ApplicationData.Current.LocalFolder);
 
-                if (File.Exists(Path.Combine(ApplicationData.Current.LocalFolder.Path, stateFilename)))
+                if (saveState != null && saveState.Page != null)
                 {
-                    var file = await ApplicationData.Current.LocalFolder.GetFileAsync(stateFilename);
+                    NavigateToPage(saveState.Page, arguments);
 
-                    if (file != null)
-                    {
-                        var saveStateData = await FileIO.ReadTextAsync(file);
-
-                        saveState = JsonConvert.DeserializeObject<SaveStateEventArgs>(saveStateData);
-
-                        if (saveState != null && saveState.Page != null)
-                        {
-                            NavigateToPage(saveState.Page, arguments);
-
-                            //Restore page state
-                            RestoreState?.Invoke(this, new RestoreStateEventArgs(saveState.PageState));
-                        }
-                    }
-                }
+                    //Restore page state
+                    RestoreState?.Invoke(this, new RestoreStateEventArgs(saveState.PageState));
+                }  
             }
         }
 
