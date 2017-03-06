@@ -132,6 +132,27 @@
   <data name="AddProjectMessage" xml:space="preserve">
     <value>Creating project '{0}'...</value>
   </data>
+  <data name="ExceptionGenerating" xml:space="preserve">
+    <value>Template '{0}', name: '{1}', reason: '{2}'</value>
+  </data>
+  <data name="ExceptionUnexpectedGenerating" xml:space="preserve">
+    <value>Unexpected error generating the project: {0}</value>
+  </data>
+  <data name="ExceptionUnexpectedWizard" xml:space="preserve">
+    <value>Unexpected error in template selector wizard: {0}</value>
+  </data>
+  <data name="StatusAdquired" xml:space="preserve">
+    <value>Templates downloaded</value>
+  </data>
+  <data name="StatusAdquiring" xml:space="preserve">
+    <value>Downloading templates...</value>
+  </data>
+  <data name="StatusUpdated" xml:space="preserve">
+    <value>Templates updated</value>
+  </data>
+  <data name="StatusUpdating" xml:space="preserve">
+    <value>Updating templates...</value>
+  </data>
   <data name="UIActionCancelled" xml:space="preserve">
     <value>Action cancelled by user.</value>
   </data>

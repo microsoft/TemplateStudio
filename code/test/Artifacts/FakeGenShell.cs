@@ -135,14 +135,25 @@ namespace Microsoft.Templates.Test.Artifacts
             dialog.ShowDialog();
         }
 
-        public override void CancelWizard()
+        public override void CancelWizard(bool back = true)
         {
-            throw new WizardBackoutException();
+            if (back)
+            {
+                throw new WizardBackoutException();
+            }
+            else
+            {
+                throw new WizardCancelledException();
+            }
         }
 
         public override void WriteOutput(string data)
         {
             Console.Out.WriteLine(data);
+        }
+
+        public override void CloseSolution()
+        {
         }
     }
 }

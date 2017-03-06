@@ -136,7 +136,9 @@
     </Compile>
     <Compile Include="Dialog\RelayCommand.cs" />
     <Compile Include="Extensions\ObservableCollection.extensions.cs" />
+    <Compile Include="Extensions\Window.extensions.cs" />
     <Compile Include="GenComposer.cs" />
+    <Compile Include="GenException.cs" />
     <Compile Include="Resources\ResourcesExtensions.cs" />
     <Compile Include="Resources\StringRes.Designer.cs">
       <DependentUpon>StringRes.resx</DependentUpon>

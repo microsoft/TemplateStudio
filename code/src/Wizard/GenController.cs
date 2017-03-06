@@ -8,6 +8,7 @@ using Microsoft.Templates.Core.PostActions;
 using Microsoft.Templates.Wizard.Dialog;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Wizard.Resources;
+using Microsoft.VisualStudio.TemplateWizard;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -45,74 +46,93 @@ namespace Microsoft.Templates.Wizard
 
         public WizardState GetUserSelection(WizardSteps selectionSteps)
         {
-            CleanStatusBar();
-
             var host = new WizardHost(selectionSteps, _repository, Shell);
-            Shell.ShowModal(host);
 
-            if (host.Result != null)
+            try
             {
-                //TODO: Review when right-click-actions available to track Project or Page completed.
-                AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject).FireAndForget();
+                CleanStatusBar();
 
-                return host.Result;
+                Shell.ShowModal(host);
+
+                if (host.Result != null)
+                {
+                    //TODO: Review when right-click-actions available to track Project or Page completed.
+                    AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject).FireAndForget();
+
+                    return host.Result;
+                }
+                else
+                {
+                    //TODO: Review when right-click-actions available to track Project or Page cancelled.
+                    AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewProject).FireAndForget();
+                }
+
             }
-            else
+            catch (Exception ex) when (!(ex is WizardBackoutException))
             {
-                //TODO: Review when right-click-actions available to track Project or Page cancelled.
-                AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewProject).FireAndForget();
-
-                Shell.CancelWizard();
+                host.SafeClose();
+                ShowError(ex, Resources.StringRes.ExceptionUnexpectedWizard);
             }
+            Shell.CancelWizard();
             return null;
         }
 
         public void Generate(WizardState userSelection)
         {
-            var genItems = _composer.Compose(userSelection).ToList();
-
-            Stopwatch chrono = Stopwatch.StartNew();
-
-            Dictionary<string, TemplateCreationResult> genResults = new Dictionary<string, TemplateCreationResult>();
-
-            var outputPath = Shell.OutputPath;
-
-            foreach (var genInfo in genItems)
+            try
             {
-                if (genInfo.Template == null)
+                var genItems = _composer.Compose(userSelection).ToList();
+
+                Stopwatch chrono = Stopwatch.StartNew();
+
+                Dictionary<string, TemplateCreationResult> genResults = new Dictionary<string, TemplateCreationResult>();
+
+                var outputPath = Shell.OutputPath;
+
+                foreach (var genInfo in genItems)
                 {
-                    continue;
+                    if (genInfo.Template == null)
+                    {
+                        continue;
+                    }
+
+                    var statusText = GetStatusText(genInfo);
+
+                    if (!string.IsNullOrEmpty(statusText))
+                    {
+                        Shell.ShowStatusBarMessage(statusText);
+                    }
+
+                    outputPath = GetOutputPath(genInfo.Template);
+
+                    AppHealth.Current.Verbose.TrackAsync($"Generating the template {genInfo.Template.Name} to {outputPath}.").FireAndForget();
+
+                    //TODO: REVIEW ASYNC
+                    var result = CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, outputPath, genInfo.Parameters, false, false).Result;
+
+                    genResults.Add($"{genInfo.Template.Identity}_{genInfo.Name}", result);
+
+                    if (result.Status != CreationResultStatus.Success)
+                    {
+                        throw new GenException(genInfo.Name, genInfo.Template.Name, result.Message);
+                    }
+
+                    ExecutePostActions(genInfo, result);
                 }
 
-                var statusText = GetStatusText(genInfo);
+                ExecuteGlobalPostActions(genItems);
 
-                if (!string.IsNullOrEmpty(statusText))
-                {
-                    Shell.ShowStatusBarMessage(statusText);
-                }
-
-                outputPath = GetOutputPath(genInfo.Template);
-
-
-                AppHealth.Current.Verbose.TrackAsync($"Generating the template {genInfo.Template.Name} to {outputPath}.").FireAndForget();
-
-                //TODO: REVIEW ASYNC
-                var result = CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, outputPath, genInfo.Parameters, false, false).Result;
-
-                genResults.Add($"{genInfo.Template.Identity}_{genInfo.Name}", result);
-
-                if (result.Status != CreationResultStatus.Success)
-                {
-                    //TODO: THROW EXCEPTION ?
-                }
-
-                ExecutePostActions(genInfo, result);
+                chrono.Stop();
+                TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.Framework);
             }
+            catch (Exception ex)
+            {
+                Shell.CloseSolution();
 
-            ExecuteGlobalPostActions(genItems);
+                ShowError(ex, Resources.StringRes.ExceptionUnexpectedGenerating);
 
-            chrono.Stop();
-            TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds);
+                Shell.CancelWizard(false);
+            }
         }
 
         private void ExecuteGlobalPostActions(List<GenInfo> genItems)
@@ -125,7 +145,7 @@ namespace Microsoft.Templates.Wizard
             }
         }
 
-        private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent)
+        private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appFx)
         {
             try
             {
@@ -137,12 +157,6 @@ namespace Microsoft.Templates.Wizard
                     if (genInfo.Template == null)
                     {
                         continue;
-                    }
-                    string appFx = genInfo.GetFramework();
-                    if (string.IsNullOrEmpty(appFx))
-                    {
-                        // TODO: Review error tracking. Must this error reach the telemetry?
-                        AppHealth.Current.Error.TrackAsync("Project framework does not found").FireAndForget();
                     }
 
                     string resultsKey = $"{genInfo.Template.Identity}_{genInfo.Name}";
@@ -197,6 +211,15 @@ namespace Microsoft.Templates.Wizard
                 default:
                     return null;
             }
+        }
+
+        private void ShowError(Exception ex, string textFormat)
+        {
+            AppHealth.Current.Error.TrackAsync(ex.ToString()).FireAndForget();
+            AppHealth.Current.Exception.TrackAsync(ex).FireAndForget();
+
+            //TODO: SHOW ERROR MESSAGE && TRACE
+            MessageBox.Show(string.Format(textFormat, ex.Message), "Error!!!", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void CleanStatusBar()

@@ -47,6 +47,7 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectType
                 SelectedProjectType = projectTypes.FirstOrDefault(p => p.Name == Context.State.ProjectType);
             }
 
+            //TODO: REVIEW ASYNC
             await Task.FromResult(true);
         }
 

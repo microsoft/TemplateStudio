@@ -1,6 +1,8 @@
 ﻿using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Wizard.Dialog;
+using Microsoft.Templates.Wizard.Resources;
 using Microsoft.Templates.Wizard.Steps;
 using Microsoft.Templates.Wizard.ViewModels;
 using System;
@@ -26,18 +28,63 @@ namespace Microsoft.Templates.Wizard.Host
             //TODO: VERIFY NOT NULL
             Host = host;
             Steps = steps;
-            _context = new WizardContext(templatesRepository, shell) { CanGoForward = true };
+            _context = new WizardContext(templatesRepository, shell);
+
             _context.PropertyChanged += _context_PropertyChanged;
 
             NextButtonText = WizardHostResources.NextButton;
         }
 
-        public void Iniatialize()
+        public async Task IniatializeAsync()
         {
-            _context.TemplatesRepository.SynchronizeAsync().FireAndForget();
+            _context.TemplatesRepository.Sync += (sender, status) =>
+            {
+                Status = GetStatusText(status);
 
-            var step = Steps.First();
-            Navigate(step);
+                if (status == SyncStatus.Updated)
+                {
+                    _context.CanGoForward = true;
+
+                    var step = Steps.First();
+                    Navigate(step);
+                }
+            };
+
+            try
+            {
+                await _context.TemplatesRepository.SynchronizeAsync();
+                Status = string.Empty;
+            }
+            catch (Exception ex)
+            {
+                Status = "Error updating templates. See output for more details.";
+                await AppHealth.Current.Error.TrackAsync(ex.ToString());
+                await AppHealth.Current.Exception.TrackAsync(ex);
+            }
+        }
+
+        private string GetStatusText(SyncStatus status)
+        {
+            switch (status)
+            {
+                case SyncStatus.Updating:
+                    return StringRes.StatusUpdating;
+                case SyncStatus.Updated:
+                    return StringRes.StatusUpdated;
+                case SyncStatus.Adquiring:
+                    return StringRes.StatusAdquiring;
+                case SyncStatus.Adquired:
+                    return StringRes.StatusAdquired;
+                default:
+                    return string.Empty;
+            }
+        }
+
+        private string _status;
+        public string Status
+        {
+            get { return _status; }
+            set { SetProperty(ref _status, value); }
         }
 
         private string _stepTitle;

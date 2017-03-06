@@ -130,9 +130,16 @@ namespace Microsoft.Templates.Wizard.Vsix
             }
         }
 
-        public override void CancelWizard()
+        public override void CancelWizard(bool back = true)
         {
-            throw new WizardBackoutException();
+            if (back)
+            {
+                throw new WizardBackoutException();
+            }
+            else
+            {
+                throw new WizardCancelledException();
+            }
         }
 
         protected override string GetSelectedItemPath()
@@ -210,6 +217,11 @@ namespace Microsoft.Templates.Wizard.Vsix
         public override void WriteOutput(string data)
         {
             OutputPane.Write(data);
+        }
+
+        public override void CloseSolution()
+        {
+            Dte.Solution.Close();
         }
     }
 }

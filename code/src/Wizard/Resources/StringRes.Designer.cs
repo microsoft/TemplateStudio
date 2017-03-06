@@ -106,6 +106,69 @@ namespace Microsoft.Templates.Wizard.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Template &apos;{0}&apos;, name: &apos;{1}&apos;, reason: &apos;{2}&apos;.
+        /// </summary>
+        public static string ExceptionGenerating {
+            get {
+                return ResourceManager.GetString("ExceptionGenerating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unexpected error generating the project: {0}.
+        /// </summary>
+        public static string ExceptionUnexpectedGenerating {
+            get {
+                return ResourceManager.GetString("ExceptionUnexpectedGenerating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unexpected error in template selector wizard: {0}.
+        /// </summary>
+        public static string ExceptionUnexpectedWizard {
+            get {
+                return ResourceManager.GetString("ExceptionUnexpectedWizard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Templates downloaded.
+        /// </summary>
+        public static string StatusAdquired {
+            get {
+                return ResourceManager.GetString("StatusAdquired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downloading templates....
+        /// </summary>
+        public static string StatusAdquiring {
+            get {
+                return ResourceManager.GetString("StatusAdquiring", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Templates updated.
+        /// </summary>
+        public static string StatusUpdated {
+            get {
+                return ResourceManager.GetString("StatusUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updating templates....
+        /// </summary>
+        public static string StatusUpdating {
+            get {
+                return ResourceManager.GetString("StatusUpdating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Action cancelled by user..
         /// </summary>
         public static string UIActionCancelled {

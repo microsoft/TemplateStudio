@@ -34,10 +34,18 @@
 
         <Frame x:Name="StepsFrame" Grid.Row="1" NavigationUIVisibility="Hidden" Style="{StaticResource StepContainerStyle}" />
 
-        <StackPanel Grid.Row="2" Style="{StaticResource NavigationContainerStyle}">
-            <Button Style="{StaticResource NavigationButtonStyle}" Content="{x:Static local:WizardHostResources.CancelButton}" Command="{Binding CancelCommand}" />
-            <Button Style="{StaticResource NavigationButtonStyle}" Content="{x:Static local:WizardHostResources.PreviousButton}" Command="{Binding PreviousCommand}" />
-            <Button Style="{StaticResource NavigationButtonStyle}" Content="{Binding NextButtonText}" Command="{Binding NextCommand}" />
-        </StackPanel>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="{Binding Status}" />
+            <StackPanel Grid.Column="1" Style="{StaticResource NavigationContainerStyle}">
+                <Button Style="{StaticResource NavigationButtonStyle}" Content="{x:Static local:WizardHostResources.CancelButton}" Command="{Binding CancelCommand}" />
+                <Button Style="{StaticResource NavigationButtonStyle}" Content="{x:Static local:WizardHostResources.PreviousButton}" Command="{Binding PreviousCommand}" />
+                <Button Style="{StaticResource NavigationButtonStyle}" Content="{Binding NextButtonText}" Command="{Binding NextCommand}" />
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

@@ -12,8 +12,21 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core
 {
+    public enum SyncStatus
+    {
+        Undefined = 0,
+        Updating = 1,
+        Updated = 2,
+        Adquiring = 3,
+        Adquired = 4
+    }
+
     public class TemplatesRepository
     {
+
+        public event Action<object, SyncStatus> Sync;
+
+
         private static readonly string FolderName = Configuration.Current.RepositoryFolderName;
 
         private readonly TemplatesLocation _location;
@@ -28,66 +41,59 @@ namespace Microsoft.Templates.Core
             _location = location ?? throw new ArgumentNullException("location");
         }
 
-        public async Task SynchronizeAsync(bool forceAdquisition=false)
+        public async Task SynchronizeAsync(bool forceUpdate = false)
         {
-            try
+            if (forceUpdate || !ExistsTemplates())
             {
-                UpdateContent();
-
-                Task adquisitionTask = Task.Run(() => AdquireContent());
-
-                if (forceAdquisition || !ExistsTemplates())
-                {
-                    Task.WaitAll(adquisitionTask);
-                    UpdateContent();
-                }
-                else
-                {
-                    await adquisitionTask;
-                }
+                await AdquireContentAsync();
+                await UpdateContentAsync();
             }
-            catch(Exception ex)
+            else
             {
-                AppHealth.Current.Error.TrackAsync($"Synchronization Failed. {ex.Message}").FireAndForget();
-                AppHealth.Current.Error.TrackAsync($"Ensure you have internet connection and try again and that you are running the latest version for the extension.").FireAndForget();
-                throw;
+                await UpdateContentAsync();
+                await AdquireContentAsync();
             }
+        }
+        private async Task AdquireContentAsync()
+        {
+            Sync?.Invoke(this, SyncStatus.Adquiring);
+            await Task.Run(() => AdquireContent());
+            Sync?.Invoke(this, SyncStatus.Adquired);
         }
 
         private void AdquireContent()
         {
             try
             {
-                if (_location != null)
-                {
-                    _location.Adquire(WorkingFolder);
-                }
+                _location.Adquire(WorkingFolder);
             }
             catch (Exception ex)
             {
-                var msg = "Error adquiring the templates content.";
-                throw new RepositorySynchronizationException(msg, ex);
+                throw new RepositorySynchronizationException(SyncStatus.Adquiring, ex);
             }
+        }
+
+        private async Task UpdateContentAsync()
+        {
+            Sync?.Invoke(this, SyncStatus.Updating);
+            await Task.Run(() => UpdateContent());
+            Sync?.Invoke(this, SyncStatus.Updated);
         }
 
         private void UpdateContent()
         {
             try
             {
-                if (_location != null)
+                if (_location.Update(WorkingFolder))
                 {
-                    if (_location.Update(WorkingFolder))
-                    {
-                        CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
-                        CodeGen.Instance.Cache.Scan(WorkingFolder + $@"\{TemplatesLocation.TemplatesName}");
-                        CodeGen.Instance.Cache.WriteTemplateCaches();
-                    }
+                    CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
+                    CodeGen.Instance.Cache.Scan(WorkingFolder + $@"\{TemplatesLocation.TemplatesName}");
+                    CodeGen.Instance.Cache.WriteTemplateCaches();
                 }
             }
             catch (Exception ex)
             {
-                var msg = "Error updating templates cache.";
-                throw new RepositorySynchronizationException(msg, ex);
+                throw new RepositorySynchronizationException(SyncStatus.Updating, ex);
             }
         }
         private bool ExistsTemplates()
@@ -132,7 +138,7 @@ namespace Microsoft.Templates.Core
                         .FirstOrDefault(predicate);
         }
 
-       
+
         public ProjectInfo GetProjectTypeInfo(string projectType)
         {
             return GetProyectInfo(Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName, TemplatesLocation.ProjectTypes, projectType, "Info"));
