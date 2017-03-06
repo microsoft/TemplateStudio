@@ -39,7 +39,25 @@ namespace Microsoft.Templates.Wizard
             AddDevFeatures(userSelection, genQueue);
             AddConsumerFeatures(userSelection, genQueue);
 
+            AddMissingDependencies(genQueue);
             return genQueue;
+        }
+
+        private void AddMissingDependencies(List<GenInfo> genQueue)
+        {
+            var currentGenQueue = genQueue.ToList();
+            foreach (var item in currentGenQueue)
+            {
+                var dependencies = item.Template.GetDependencyList();
+                foreach (var dependency in dependencies)
+                {
+                    if (!genQueue.ToList().Any(g => g.Template.Identity == dependency))
+                    {
+                        var dependencyTemplate = _repository.Find(t => t.Identity == dependency);
+                        CreateGenInfo(dependencyTemplate.Name, dependencyTemplate, genQueue);
+                    }
+                }
+            }
         }
 
         private void AddPages(WizardState userSelection, List<GenInfo> genQueue)

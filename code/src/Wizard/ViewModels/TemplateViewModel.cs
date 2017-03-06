@@ -1,7 +1,9 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Wizard.Host;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +18,7 @@ namespace Microsoft.Templates.Wizard.ViewModels
 
         }
 
-        public TemplateViewModel(ITemplateInfo ti)
+        public TemplateViewModel(ITemplateInfo ti, IEnumerable<ITemplateInfo> dependencies)
         {
             Info = ti;
 
@@ -29,7 +31,10 @@ namespace Microsoft.Templates.Wizard.ViewModels
             Order = ti.GetOrder();
             MultipleInstances = ti.GetMultipleInstance();
             //LicenceTerms = ti.GetLicenceTerms();
+            Dependencies = string.Join(",", dependencies.Select(d => d.Name));
+            
         }
+
 
         public ITemplateInfo Info { get; }
 
@@ -88,5 +93,14 @@ namespace Microsoft.Templates.Wizard.ViewModels
             get { return _licenceTerms; }
             set { SetProperty(ref _licenceTerms, value); }
         }
+
+        private string _dependencies;
+
+        public string Dependencies
+        {
+            get { return _dependencies; }
+            set { SetProperty( ref _dependencies, value); }
+        }
+
     }
 }

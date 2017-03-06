@@ -71,7 +71,7 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
             var pageTemplates = _context.TemplatesRepository.GetAll()
                                                                 .Where(f => f.GetTemplateType() == TemplateType.Page
                                                                     && f.GetFrameworkList().Contains(_context.State.Framework))
-                                                                .Select(t => new TemplateViewModel(t))
+                                                                .Select(t => new TemplateViewModel(t, _context.TemplatesRepository.GetDependencies(t)))
                                                                 .OrderBy(t => t.Order)
                                                                 .ToList();
 

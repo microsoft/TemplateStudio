@@ -101,6 +101,21 @@ namespace Microsoft.Templates.Core
             return result;
         }
 
+        public static List<string> GetDependencyList(this ITemplateInfo ti)
+        {
+            var dependencies = GetValueFromTag(ti, TagPrefix + "dependencies");
+
+            var result = new List<string>();
+
+            if (!string.IsNullOrEmpty(dependencies))
+            {
+                result.AddRange(dependencies.Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
+            }
+
+            return result;
+        }
+
+
         public static string GetVersion(this ITemplateInfo ti)
         {
             return GetValueFromTag(ti, TagPrefix + "version");

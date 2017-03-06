@@ -3,6 +3,7 @@ using System.Windows.Input;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 using Windows.Storage;
+using RootNamespace.Services;
 
 namespace ItemNamespace.SettingsPage
 {
@@ -35,7 +36,7 @@ namespace ItemNamespace.SettingsPage
         {
             ElementTheme theme = IsLightThemeEnabled ? ElementTheme.Light : ElementTheme.Dark;
             (Window.Current.Content as FrameworkElement).RequestedTheme = theme;
-            ApplicationData.Current.LocalSettings.Values["RequestedTheme"] = (IsLightThemeEnabled) ? "Light" : "Dark";
+            SettingsStorageService.Save<string>("RequestedTheme", (IsLightThemeEnabled) ? "Light" : "Dark", Windows.Storage.ApplicationData.Current.LocalSettings);
         }
 
         private string GetAppDescription()
@@ -48,15 +49,13 @@ namespace ItemNamespace.SettingsPage
 
         private void InitializeTheme()
         {
-            string themeName;
-            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("RequestedTheme"))
-            {
-                themeName = ApplicationData.Current.LocalSettings.Values["RequestedTheme"].ToString();
-            }
-            else
+            var themeName = SettingsStorageService.Read<string>("RequestedTheme", ApplicationData.Current.LocalSettings);
+
+            if (String.IsNullOrEmpty(themeName))
             {
                 themeName = Application.Current.RequestedTheme.ToString();
             }
+
             IsLightThemeEnabled = themeName == "Light";
         } 
 
@@ -65,17 +64,18 @@ namespace ItemNamespace.SettingsPage
         public static void InitAppTheme()
         {
             //Set application theme saved on application settings
-            if (Windows.Storage.ApplicationData.Current.LocalSettings.Values.ContainsKey("RequestedTheme"))
+            var themeName = SettingsStorageService.Read<string>("RequestedTheme", ApplicationData.Current.LocalSettings);
+            if (themeName == null)
             {
-                string themeName = Windows.Storage.ApplicationData.Current.LocalSettings.Values["RequestedTheme"].ToString();
-                if (themeName.Equals("Light"))
-                {
-                    (Window.Current.Content as FrameworkElement).RequestedTheme = ElementTheme.Light;
-                }
-                else if (themeName.Equals("Dark"))
-                {
-                    (Window.Current.Content as FrameworkElement).RequestedTheme = ElementTheme.Dark;
-                }
+                return;
+            }
+            if (themeName.Equals("Light"))
+            {
+                (Window.Current.Content as FrameworkElement).RequestedTheme = ElementTheme.Light;
+            }
+            else if (themeName.Equals("Dark"))
+            {
+                (Window.Current.Content as FrameworkElement).RequestedTheme = ElementTheme.Dark;
             }
         }
     }

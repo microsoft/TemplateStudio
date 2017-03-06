@@ -72,7 +72,7 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
             var consumerFeatTemplates = _context.TemplatesRepository
                                                         .Get(t => t.GetTemplateType() == TemplateType.ConsumerFeature
                                                             && t.GetFrameworkList().Contains(_context.State.Framework))
-                                                        .Select(t => new TemplateViewModel(t))
+                                                        .Select(t => new TemplateViewModel(t, _context.TemplatesRepository.GetDependencies(t)))
                                                         .OrderBy(t => t.Order)
                                                         .ToList();
 

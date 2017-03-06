@@ -14,7 +14,8 @@
     "uct.type": "page",
     "uct.framework": "Basic;MVVMLight",
     "uct.version": "1.0.0",
-    "uct.order": "1"
+    "uct.order": "1",
+    "uct.dependencies":"Microsoft.UWPTemplates.SettingsStorageFeature.CSharp"
   },
   "sourceName": "SettingsPage",
   "preferNameDirectory": true,
