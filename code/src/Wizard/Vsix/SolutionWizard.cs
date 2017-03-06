@@ -18,7 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Microsoft.Templates.Extension
+namespace Microsoft.Templates.Wizard.Vsix
 {
     public class SolutionWizard : IWizard
     {
