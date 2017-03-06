@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wizard", "src\Wizard\Wizard
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VsEmulator", "test\VsEmulator\VsEmulator.csproj", "{272B516C-0D73-4BA6-A97E-5C82D5C02ABD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestArtifacts", "test\TestArtifacts\TestArtifacts.csproj", "{FB3C81AD-823E-409C-BF6D-27534B84A8AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artifacts", "test\Artifacts\Artifacts.csproj", "{FB3C81AD-823E-409C-BF6D-27534B84A8AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

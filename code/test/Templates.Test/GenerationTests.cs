@@ -1,5 +1,6 @@
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Test.Artifacts;
 using Microsoft.Templates.Wizard;
 using Microsoft.Templates.Wizard.Host;
 using System;
@@ -8,8 +9,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using TestArtifacts;
 using Xunit;
+
 
 namespace Microsoft.Templates.Test
 {

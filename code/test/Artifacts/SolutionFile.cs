@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 
-namespace TestArtifacts
+namespace Microsoft.Templates.Test.Artifacts
 {
     public class SolutionFile
     {

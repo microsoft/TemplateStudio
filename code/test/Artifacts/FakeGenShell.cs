@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace TestArtifacts
+namespace Microsoft.Templates.Test.Artifacts
 {
     public class FakeGenShell : GenShell
     {

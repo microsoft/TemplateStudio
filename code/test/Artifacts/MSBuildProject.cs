@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace TestArtifacts
+namespace Microsoft.Templates.Test.Artifacts
 {
 
     public class MsBuildProject

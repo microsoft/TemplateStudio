@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TestArtifacts;
+using Microsoft.Templates.Test.Artifacts;
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog

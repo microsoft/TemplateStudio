@@ -1,5 +1,6 @@
 ﻿using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Test.Artifacts;
 using Microsoft.Templates.VsEmulator.Mvvm;
 using Microsoft.Templates.VsEmulator.NewProject;
 using Microsoft.Templates.Wizard;
@@ -9,7 +10,7 @@ using System;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
-using TestArtifacts;
+
 
 namespace Microsoft.Templates.VsEmulator.Main
 {

@@ -114,12 +114,12 @@
       <Name>Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Wizard\Wizard.csproj">
-      <Project>{9E58EACC-C798-43A0-89A0-A5A32815272D}</Project>
+      <Project>{9e58eacc-c798-43a0-89a0-a5a32815272d}</Project>
       <Name>Wizard</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TestArtifacts\TestArtifacts.csproj">
+    <ProjectReference Include="..\Artifacts\Artifacts.csproj">
       <Project>{fb3c81ad-823e-409c-bf6d-27534b84a8af}</Project>
-      <Name>TestArtifacts</Name>
+      <Name>Artifacts</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
