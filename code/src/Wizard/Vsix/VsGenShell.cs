@@ -15,7 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Microsoft.Templates.Extension
+namespace Microsoft.Templates.Wizard.Vsix
 {
     public class VsGenShell : GenShell
     {
