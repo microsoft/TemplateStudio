@@ -59,6 +59,21 @@
                 <TextBlock Text="{Binding Author}" Style="{StaticResource TemplateInfoPropertyValueStyle}"/>
             </StackPanel>
             <TextBlock Text="{Binding Description}" Style="{StaticResource TemplateInfoDescriptionStyle}"/>
+            <StackPanel Orientation="Horizontal" >
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel" BasedOn="{StaticResource TemplateDependencyContainerStyle}">
+                        <Setter Property="Visibility" Value="Visible" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Dependencies}" Value="">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <TextBlock Text="Dependencies:"  Style="{StaticResource TemplateInfoPropertyNameStyle}"/>
+                <TextBlock Text="{Binding Dependencies}" Style="{StaticResource TemplateInfoPropertyValueStyle}"/>
+               
+            </StackPanel>
         </StackPanel>
 
         <Grid Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource PageNameContainerStyle}">

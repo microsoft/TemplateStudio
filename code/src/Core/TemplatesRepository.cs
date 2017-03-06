@@ -120,6 +120,12 @@ namespace Microsoft.Templates.Core
                         .Where(predicate);
         }
 
+        public IEnumerable<ITemplateInfo> GetDependencies(ITemplateInfo ti)
+        {
+            return ti.GetDependencyList().Select(d => GetAll().FirstOrDefault(t => t.Identity == d));
+        }
+
+
         public ITemplateInfo Find(Func<ITemplateInfo, bool> predicate)
         {
             return GetAll()

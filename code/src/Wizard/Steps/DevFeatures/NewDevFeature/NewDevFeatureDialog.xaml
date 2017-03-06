@@ -59,6 +59,20 @@
                 <TextBlock Text="{Binding Author}" Style="{StaticResource TemplateInfoPropertyValueStyle}"/>
             </StackPanel>
             <TextBlock Text="{Binding Description}" Style="{StaticResource TemplateInfoDescriptionStyle}"/>
+            <StackPanel Orientation="Horizontal" >
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel" BasedOn="{StaticResource TemplateDependencyContainerStyle}">
+                        <Setter Property="Visibility" Value="Visible" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Dependencies}" Value="">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <TextBlock Text="Dependencies:"  Style="{StaticResource TemplateInfoPropertyNameStyle}"/>
+                <TextBlock Text="{Binding Dependencies}" Style="{StaticResource TemplateInfoPropertyValueStyle}"/>
+            </StackPanel>
         </StackPanel>
 
         <Grid Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource PageNameContainerStyle}">
@@ -67,6 +81,16 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal">
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Visibility" Value="Visible" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding TemplateSelected.MultipleInstances}" Value="false">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
                 <TextBlock Text="{x:Static local:Strings.PageName_Text}" />
                 <TextBox Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" Style="{StaticResource PageNameValueStyle}" />
             </StackPanel>

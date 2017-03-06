@@ -38,16 +38,13 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
 
         public override async Task InitializeAsync()
         {
-            var selection = Context.GetSelection();
-
-            AddTemplates(Strings.ProjectsTitle, FilterTemplates(selection, TemplateType.Project));
-            AddTemplates(Strings.PagesTitle, FilterTemplates(selection, TemplateType.Page));
-            AddTemplates(Strings.DevFeaturesTitle, FilterTemplates(selection, TemplateType.DevFeature));
-            AddTemplates(Strings.ConsumerFeaturesTitle, FilterTemplates(selection, TemplateType.ConsumerFeature));
-
-
             //TODO: REVIEW THIS
             var allTemplates = new GenComposer(Context.Shell, Context.TemplatesRepository).Compose(Context.State);
+
+            AddTemplates(Strings.ProjectsTitle, FilterTemplates(allTemplates, TemplateType.Project));
+            AddTemplates(Strings.PagesTitle, FilterTemplates(allTemplates, TemplateType.Page));
+            AddTemplates(Strings.DevFeaturesTitle, FilterTemplates(allTemplates, TemplateType.DevFeature));
+            AddTemplates(Strings.ConsumerFeaturesTitle, FilterTemplates(allTemplates, TemplateType.ConsumerFeature));
 
             AddLicences(allTemplates);
 

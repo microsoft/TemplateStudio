@@ -55,6 +55,9 @@
     <Style TargetType="StackPanel" x:Key="TemplateInfoContainerStyle">
         <Setter Property="Margin" Value="{StaticResource MediumLeftMargin}" />
     </Style>
+    <Style TargetType="StackPanel" x:Key="TemplateDependencyContainerStyle">
+        <Setter Property="Margin" Value="{StaticResource MediumTopMargin}" />
+    </Style>
     <Style TargetType="TextBlock" x:Key="TemplateInfoPropertyNameStyle">
         <Setter Property="FontWeight" Value="SemiBold" />
     </Style>
