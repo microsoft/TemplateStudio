@@ -19,11 +19,10 @@ namespace Microsoft.Templates.Extension
     {
         private const string UWPCommunityTemplatesPaneGuid = "45480fff-0658-42e1-97f0-82cac23603aa";
         private OutputWindowPane _pane;
-        private Guid _paneGuid;
+
         public VsOutputPane() 
         {
-            _paneGuid = Guid.Parse(UWPCommunityTemplatesPaneGuid);
-            _pane = GetOrCreatePane(_paneGuid, true, false);
+            _pane = GetOrCreatePane(Guid.Parse(UWPCommunityTemplatesPaneGuid), true, false);
             if (_pane != null)
             {
                 _pane.Activate();
@@ -33,7 +32,7 @@ namespace Microsoft.Templates.Extension
         {
             _pane.OutputString(data);
         }
-        private OutputWindowPane GetOrCreatePane(Guid paneGuid, bool visible, bool clearWithSolution)
+        private static OutputWindowPane GetOrCreatePane(Guid paneGuid, bool visible, bool clearWithSolution)
         {
             OutputWindowPane result = null;
             try
@@ -41,11 +40,11 @@ namespace Microsoft.Templates.Extension
                 string title = "UWP Community Templates";
                 if (ServiceProvider.GlobalProvider.GetService(typeof(DTE)) is DTE2 dte)
                 {
-                    result = GetUwpPane(dte);
+                    result = GetUwpPane(dte, paneGuid);
                     if (result == null)
                     {
                         CreateUwpPane(paneGuid, visible, clearWithSolution, title);
-                        result = GetUwpPane(dte);
+                        result = GetUwpPane(dte, paneGuid);
                     }
                 }
             }
@@ -78,41 +77,19 @@ namespace Microsoft.Templates.Extension
             return assembly.GetName().Version.ToString();
         }
 
-        private OutputWindowPane GetUwpPane(DTE2 dte)
+        private static OutputWindowPane GetUwpPane(DTE2 dte,  Guid uwpOutputPaneGuid)
         {
             OutputWindowPanes panes = dte.ToolWindows.OutputWindow.OutputWindowPanes;
             OutputWindowPane result = null;
             foreach (OutputWindowPane p in panes)
             {
-                if (Guid.Parse(p.Guid).ToString() == _pane.ToString())
+                if (Guid.Parse(p.Guid).ToString() == uwpOutputPaneGuid.ToString())
                 {
                     result = p;
                 }
             }
 
             return result;
-        }
-
-        private async SystemTasks.Task SafeTrackAsync(Action trackAction)
-        {
-            try
-            {
-                var task = SystemTasks.Task.Run(() => {
-                    trackAction();
-                });
-                await task;
-            }
-            catch (AggregateException aggEx)
-            {
-                foreach (Exception ex in aggEx.InnerExceptions)
-                {
-                    Trace.TraceError("Error writing to Visual Studio Output: {0}", ex.ToString());
-                }
-            }
-            catch (Exception ex)
-            {
-                Trace.TraceError("Error writing to Visual Studio Output: {0}", ex.ToString());
-            }
         }
     }
 }
