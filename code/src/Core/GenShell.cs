@@ -43,7 +43,8 @@ namespace Microsoft.Templates.Core
         public abstract string GetActiveNamespace();
         public abstract void ShowTaskList();
         public abstract void ShowModal(Window dialog);
-        public abstract void CancelWizard();
+        public abstract void CancelWizard(bool back = true);
         public abstract void WriteOutput(string data);
+        public abstract void CloseSolution();
     }
 }

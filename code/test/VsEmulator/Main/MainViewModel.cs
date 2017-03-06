@@ -94,10 +94,11 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
             catch (WizardBackoutException)
             {
+                _shell.ShowStatusBarMessage("Wizard back out");
             }
-            catch (Exception ex)
+            catch (WizardCancelledException)
             {
-                MessageBox.Show($"Unexpected Exception: {ex.ToString()}", "Wizard exited", MessageBoxButton.OK, MessageBoxImage.Error);
+                _shell.ShowStatusBarMessage("Wizard cancelled");
             }
         }
 

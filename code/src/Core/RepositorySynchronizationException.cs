@@ -10,15 +10,15 @@ namespace Microsoft.Templates.Core
         {
         }
 
-        public RepositorySynchronizationException(string message) : base(message)
-        {
-        }
-
-        public RepositorySynchronizationException(string message, Exception innerException) : base(message, innerException)
+        public RepositorySynchronizationException(string message, Exception innerException = null) : base(message, innerException)
         {
         }
 
         protected RepositorySynchronizationException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
+
+        public RepositorySynchronizationException(SyncStatus status, Exception innerException = null) : base($"Error syncing templates. Status: '{status}'", innerException)
         {
         }
     }

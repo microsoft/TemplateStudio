@@ -10,15 +10,6 @@ namespace Microsoft.Templates.Core
         public ITemplateInfo Template { get; set; }
         public Dictionary<string, string> Parameters { get; } = new Dictionary<string, string>();
 
-        public string GetFramework()
-        {
-            if (Parameters.ContainsKey(GenParams.Framework))
-            {
-                return Parameters[GenParams.Framework];
-            }
-            return String.Empty;
-        }
-
         public string GetUserName()
         {
             if (Parameters.ContainsKey(GenParams.Username))

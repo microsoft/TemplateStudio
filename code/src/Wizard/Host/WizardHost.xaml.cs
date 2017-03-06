@@ -30,14 +30,13 @@ namespace Microsoft.Templates.Wizard.Host
             ViewModel = new WizardHostViewModel(this, wizardSteps, templatesRepository, shell);
 
             DataContext = ViewModel;
-            Loaded += WizardHost_Loaded;
+
+            Loaded += async (sender, e) =>
+            {
+                await ViewModel.IniatializeAsync();
+            };
 
             InitializeComponent();
-        }
-
-        private void WizardHost_Loaded(object sender, RoutedEventArgs e)
-        {
-            ViewModel.Iniatialize();
         }
     }
 }

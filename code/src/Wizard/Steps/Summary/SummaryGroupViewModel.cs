@@ -34,7 +34,6 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
             Name = genInfo.Name;
             TemplateName = genInfo.Template.Name;
             Author = genInfo.Template.Author;
-            Framework = genInfo.GetFramework();
         }
 
         private string _name;
