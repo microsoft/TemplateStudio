@@ -3,13 +3,13 @@
             Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" 
             xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name>UWP Community Template based App</Name>
-    <Description>Access to the UWP Application Gallery from Microsoft Templates</Description>
-    <Icon>CSharp.UWP.Solution.ico</Icon>
+    <Name>Uwp Templates based App (vs2015 dev-nightly)</Name>
+    <Description>Access to the UWP gallery from Microsoft Templates</Description>
+    <Icon>CSharp.UWP.VS2015.Solution.ico</Icon>
     <ProjectType>CSharp</ProjectType>
     <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
     <SortOrder>1000</SortOrder>
-    <TemplateID>5471541a-7eac-4feb-a834-0d6ca271a946</TemplateID>
+    <TemplateID>a06f41ad-ee94-4a2b-8cf5-09f0549cff52</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
     <DefaultName>App</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
