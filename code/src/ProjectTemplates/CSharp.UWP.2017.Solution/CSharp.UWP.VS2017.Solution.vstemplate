@@ -3,11 +3,11 @@
             Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" 
             xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name>Uwp Templates based App (vs2017 dev-nightly)</Name>
+    <Name>Uwp Templates based App (vs2017 local)</Name>
     <Description>Access to the UWP gallery from Microsoft Templates</Description>
     <Icon>CSharp.UWP.VS2017.Solution.ico</Icon>
     <ProjectType>CSharp</ProjectType>
-    <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
+    <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
     <SortOrder>1000</SortOrder>
     <TemplateID>5471541a-7eac-4feb-a834-0d6ca271a946</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
@@ -17,6 +17,7 @@
   <TemplateContent>
     <CustomParameters>
       <CustomParameter Name="$uwptemplates.category$" Value="Windows Universal"/>
+      <CustomParameter Name="$uwptemplates.version$" Value="1.0.0.0"/>
     </CustomParameters>
   </TemplateContent>
   <WizardExtension>

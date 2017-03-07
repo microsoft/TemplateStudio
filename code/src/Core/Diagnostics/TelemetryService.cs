@@ -86,19 +86,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
                 if (RemoteKeyAvailable())
                 {
-                    string clearUser = (Environment.UserDomainName + Environment.UserName).ToLower();
-                    string userToTrack = clearUser.Obfuscate(); //TODO: Ensure needed to obfuscate this info??
-                    string machineToTrack = Environment.MachineName.Obfuscate();
-                    // Set session data
-                    _client.Context.User.Id = userToTrack;
-                    _client.Context.Device.Id = machineToTrack;
-                    _client.Context.Device.OperatingSystem = Environment.OSVersion.VersionString;
-                    _client.Context.Cloud.RoleInstance = machineToTrack;
-                    _client.Context.Cloud.RoleName = "VSIX Instance";
-                    _client.Context.Session.Id = Guid.NewGuid().ToString();
-                    _client.Context.Component.Version = GetVersion();
-                    _client.Context.Properties.Add("Application FileVersion", GetFileVersion());
-                    
+                    SetSessionData();
 
                     _client.TrackEvent(TelemetryEvents.SessionStart);
 
@@ -119,6 +107,29 @@ namespace Microsoft.Templates.Core.Diagnostics
                 TelemetryConfiguration.Active.DisableTelemetry = true;
                 Trace.TraceError($"Exception instantiating TelemetryClient:\n\r{ex.ToString()}");
             }
+        }
+
+        private void SetSessionData()
+        {
+            string clearUser = (Environment.UserDomainName + Environment.UserName).ToLower();
+            string userToTrack = clearUser.Obfuscate();
+            string machineToTrack = Environment.MachineName.Obfuscate();
+
+            _client.Context.User.Id = userToTrack;
+            _client.Context.User.AccountId = userToTrack;
+            _client.Context.User.AuthenticatedUserId = userToTrack;
+
+            _client.Context.Device.Id = machineToTrack;
+            _client.Context.Device.OperatingSystem = Environment.OSVersion.VersionString;
+
+            _client.Context.Cloud.RoleInstance = "VSIX";
+            _client.Context.Cloud.RoleName = "VSIX";
+
+            _client.Context.Session.Id = Guid.NewGuid().ToString();
+
+            _client.Context.Component.Version = GetVersion();
+
+            _client.Context.Properties.Add("VSIX FileVersion", GetFileVersion());
         }
 
         private async Task SafeExecuteAsync(Action action)

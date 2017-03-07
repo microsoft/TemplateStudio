@@ -1,13 +1,16 @@
 [CmdletBinding()]
 Param(
   [Parameter(Mandatory=$True,Position=1)]
-  [string]$buildNumber,
+  [string]$vsixManifestFile,
 
   [Parameter(Mandatory=$True,Position=2)]
   [string]$vsixIdentity,
 
-  [Parameter(Mandatory=$False,Position=3)]
-  [string]$publicKeyToken = "e4ef4cc7a47ae0c5" #TestKey.snk
+  [Parameter(Mandatory=$True,Position=3)]
+  [string]$vsixDisplayName,
+
+  [Parameter(Mandatory=$True,Position=4)]
+  [string]$buildNumber
 )
 
 $VersionRegex = "(\d+)\.(\d+)\.(\d+)\.(\d+)"
@@ -25,13 +28,13 @@ else{
 ## SET IDENTITY AND VERSION IN VSIX Manifest
 if($vsixIdentity){
   Write-Host "Setting Identity in VSIX manifest"
-  $vsixManifestFile = Get-ChildItem -include "*source.extension.vsixmanifest" -recurse | Where-Object{ $_.FullName -notmatch "\\Templates\\" }
-  if($vsixManifestFile){
+  if(Test-Path($vsixManifestFile)){
     [xml]$manifestContent = Get-Content $vsixManifestFile
     $manifestContent.PackageManifest.Metadata.Identity.Id = $vsixIdentity
     $manifestContent.PackageManifest.Metadata.Identity.Version = $versionNumber
+    $manifestContent.PackageManifest.Metadata.DisplayName = $vsixDisplayName
     $manifestContent.Save($vsixManifestFile) 
-    Write-Host "$vsixManifestFile - Version & Identity applied ($versionNumber, $vsixIdentity)"
+    Write-Host "$vsixManifestFile - Version, Identity & DisplayName applied ($versionNumber, $vsixIdentity, $vsixDisplayName)"
   }
   else{
     throw "No VSIX manifest file found."
@@ -62,29 +65,3 @@ else
 {
     Write-Warning "No files found to apply version."
 }
-
-## APPLY VERSION TO PROJECT TEMPLATE WIZARD 
-#Commented until review behavior of TemplatesEngine verified with strong name version
-<#if($publicKeyToken){
-  Write-Host "Setting Wizard Extension configuration in Project Template"
-  $projectTemplate = Get-ChildItem -include "*.vstemplate" -recurse |  Where-Object{ $_.FullName -notmatch "\\Templates\\" -and $_.FullName -match "\\vspt\\"}
-  if($projectTemplate){
-    [xml]$projectTemplateContent = Get-Content $projectTemplate
-
-    $wizardAssemblyStrongName = $projectTemplateContent.VSTemplate.WizardExtension.Assembly
-    $wizardAssemblyStrongName = $wizardAssemblyStrongName -replace $VersionRegEx, $versionNumber 
-    $wizardAssemblyStrongName = $wizardAssemblyStrongName -replace "PublicKeyToken=.*", "PublicKeyToken=$publicKeyToken"
-
-    $projectTemplateContent.VSTemplate.WizardExtension.Assembly = $wizardAssemblyStrongName
-    
-    $projectTemplateContent.Save($projectTemplate)
-
-    Write-Host "$projectTemplate - Wizard Assembly Strong Name updated ($wizardAssemblyStrongName)"
-  }
-  else{
-    throw "No Project Template manifest file found!"
-  }
-}
-else{
-  throw "Public key token not set."
-}#>
