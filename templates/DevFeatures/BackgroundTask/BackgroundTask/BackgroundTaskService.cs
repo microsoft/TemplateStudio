@@ -29,6 +29,11 @@ namespace ItemNamespace.BackgroundTask
             }
         }
 
+        public static BackgroundTaskRegistration GetBackgroundTasksRegistration(Type task)
+        {
+            return (BackgroundTaskRegistration)BackgroundTaskRegistration.AllTasks.FirstOrDefault(t => t.Value.Name == task.Name).Value;
+        }
+
         public static void Start(IBackgroundTaskInstance taskInstance)
         {
             var task = BackgroundTasks.FirstOrDefault(b => b.Match(taskInstance.Task.Name));
