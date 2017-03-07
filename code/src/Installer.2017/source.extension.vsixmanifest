@@ -2,7 +2,7 @@
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
     <Identity Id="UWPTemplatesExtension2017.Local.cc89ead5-631c-412c-a571-2616fb8d60cb" Version="0.1" Language="en-US" Publisher="Microsoft Corporation" />
-    <DisplayName>UWP Templates (vs2017 dev-nightly)</DisplayName>
+    <DisplayName>UWP Templates (vs2017 local)</DisplayName>
     <Description xml:space="preserve">UWP Templates Generator</Description>
     <MoreInfo>http://go.microsoft.com/fwlink/?LinkId=521839</MoreInfo>
     <License>Content\EULA.rtf</License>
