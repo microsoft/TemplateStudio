@@ -53,7 +53,7 @@ namespace Microsoft.Templates.Wizard.Vsix
         {
             var shell = new VsGenShell(replacementsDictionary);
 
-            _gen = new GenController(shell, new Core.TemplatesRepository(new Core.Locations.LocalTemplatesLocation()));
+            _gen = new GenController(shell);
 
             if (runKind == WizardRunKind.AsNewProject || runKind == WizardRunKind.AsMultiProject)
             {
