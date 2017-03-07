@@ -1,4 +1,5 @@
 ﻿using Microsoft.Templates.Core;
+using Microsoft.Templates.Test.Artifacts.MSBuild;
 using Microsoft.VisualStudio.TemplateWizard;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,6 @@ namespace Microsoft.Templates.Test.Artifacts
 {
     public class FakeGenShell : GenShell
     {
-        private string _relativePath;
         private readonly Action<string> _changeStatus;
         private readonly Window _owner;
 
@@ -22,26 +22,12 @@ namespace Microsoft.Templates.Test.Artifacts
         public FakeGenShell(string name, string location, string solutionName = null, Action<string> changeStatus = null, Window owner = null)
         {
             ProjectName = name;
-            OutputPath = Path.Combine(location, name);
-            SolutionPath = Path.Combine(OutputPath, $"{name}.sln");
-            ProjectPath = Path.Combine(OutputPath, ProjectName);
+
+            OutputPath = Path.Combine(location, name, ProjectName);
+            SolutionPath = Path.Combine(location, name, $"{name}.sln");
 
             _changeStatus = changeStatus;
             _owner = owner;
-        }
-
-        public void UpdateRelativePath(string relative)
-        {
-            _relativePath = relative;
-
-            if (string.IsNullOrEmpty(relative))
-            {
-                OutputPath = Path.GetDirectoryName(ProjectPath);
-            }
-            else
-            {
-                OutputPath = Path.Combine(Path.GetDirectoryName(ProjectPath), relative);
-            }
         }
 
         public override void AddItems(params string[] itemsFullPath)
@@ -51,10 +37,10 @@ namespace Microsoft.Templates.Test.Artifacts
                 return;
             }
 
-            var projectFileName = FindProject(ProjectPath);
+            var projectFileName = FindProject(OutputPath);
             if (string.IsNullOrEmpty(projectFileName))
             {
-                throw new Exception($"There is not project file in {ProjectPath}");
+                throw new Exception($"There is not project file in {OutputPath}");
             }
             var msbuildProj = MsBuildProject.Load(projectFileName);
 
@@ -73,22 +59,14 @@ namespace Microsoft.Templates.Test.Artifacts
         {
             var msbuildProj = MsBuildProject.Load(projectFullPath);
 
-            var solutionFile = SolutionFile.Load(SolutionPath);
+            var solutionFile = MSBuildSolution.Create(SolutionPath);
             solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid);
 
         }
 
         public override string GetActiveNamespace()
         {
-            var relativeNs = string.IsNullOrEmpty(_relativePath) ? string.Empty : _relativePath.Replace(@"\", ".");
-            if (string.IsNullOrEmpty(relativeNs))
-            {
-                return ProjectName;
-            }
-            else
-            {
-                return $"{ProjectName}.{relativeNs}";
-            }
+            return ProjectName;
         }
 
         public override void SaveSolution(string solutionFullPath)

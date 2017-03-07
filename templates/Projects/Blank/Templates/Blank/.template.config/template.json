@@ -15,12 +15,12 @@
     "uct.version": "1.0.0",
     "uct.order": "1"
   },
-  "sourceName": "BlankProject",
+  "sourceName": "uct.BlankProject",
   "preferNameDirectory": true,
   "guids": [ "7cf740f7-735f-48ea-8b7b-3ffa4902371c", "be236938-efed-4037-b3f2-70788b43ca20" ],
   "PrimaryOutputs":
   [
-    { "path": ".\\BlankProject\\BlankProject.csproj" }
+    { "path": "uct.BlankProject.csproj" }
   ],
   "symbols":
   {

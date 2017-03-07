@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 using System.Linq;
-using ItemName.Mvvm;
+using uct.ItemName.Mvvm;
 
-namespace ItemName.Shell
+namespace uct.ItemName.Shell
 {
     public class ShellViewModel : Observable
     {

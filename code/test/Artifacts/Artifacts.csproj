@@ -46,10 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FakeGenShell.cs" />
-    <Compile Include="MSBuildProject.cs" />
+    <Compile Include="MSBuild\MSBuildProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SolutionFile.cs" />
-    <Compile Include="VsItemType.cs" />
+    <Compile Include="MSBuild\MSBuildSolution.cs" />
+    <Compile Include="MSBuild\VsItemType.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Core\Core.csproj">
@@ -59,6 +59,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MSBuild\SolutionTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

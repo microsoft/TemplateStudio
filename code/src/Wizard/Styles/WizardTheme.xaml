@@ -158,7 +158,7 @@
         <Setter Property="VerticalAlignment" Value="Top" />
     </Style>
     <Style TargetType="TextBlock" x:Key="ErrorTextStyle">
-        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontSize" Value="14" />
         <Setter Property="TextWrapping" Value="Wrap" />
         <Setter Property="Margin" Value="{StaticResource MediumLeftMargin}" />
     </Style>

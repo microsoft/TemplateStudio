@@ -12,13 +12,11 @@ namespace Microsoft.Templates.Core
     public abstract class GenShell
     {
         public string ProjectName { get; protected set; }
-        public string ProjectPath { get; protected set; }
         public string OutputPath { get; protected set; }
 
         public GenShell()
         {
             ProjectName = GetActiveProjectName();
-            ProjectPath = GetActiveProjectPath();
             OutputPath = GetSelectedItemPath();
         }
 
@@ -27,8 +25,8 @@ namespace Microsoft.Templates.Core
             ProjectName = replacements["$safeprojectname$"];
 
             var di = new DirectoryInfo(replacements["$destinationdirectory$"]);
-            ProjectPath = di.FullName;
-            OutputPath = di.Parent.FullName;
+
+            OutputPath = di.FullName;
         }
 
         protected abstract string GetActiveProjectName();

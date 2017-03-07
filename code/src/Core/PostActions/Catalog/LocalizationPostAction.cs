@@ -11,22 +11,20 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class LocalizationPostAction : PostAction
     {
-        private const string AnchorPattern = @"\""" + LocAnchor.Tag + @"(?<Key>\w+)~(?<Value>.+?)\""";
-
         public LocalizationPostAction(GenShell shell) : base(shell)
         {
         }
 
         public override void Execute()
         {
-            var projectResources = GetResources(_shell.ProjectPath);
+            var projectResources = GetResources(_shell.OutputPath);
 
             if (projectResources == null || !projectResources.Any())
             {
                 return;
             }
 
-            foreach (var projectItemFile in Directory.EnumerateFiles(_shell.ProjectPath, "*", SearchOption.AllDirectories))
+            foreach (var projectItemFile in Directory.EnumerateFiles(_shell.OutputPath, "*", SearchOption.AllDirectories))
             {
                 //TODO: THIS SHOULD BE DONE IN UPDATER
                 var fileContent = File.ReadAllText(projectItemFile);
@@ -86,7 +84,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
     class XmlLocUpdater : FileLocUpdater
     {
-        private const string AnchorPattern = @"(?<Attribute>[a-zA-Z0-9]+)=\""" + LocAnchor.Tag + @"(?<Key>\w+)~(?<Value>.+?)\""";
+        private const string AnchorPattern = @"(?<Attribute>[a-zA-Z0-9]+)=\""" + LocAnchor.Tag + @"(?<Key>.+?)~(?<Value>.+?)\""";
 
         public override UpdateResult Update(string content)
         {
@@ -123,7 +121,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
     class CsLocUpdater : FileLocUpdater
     {
-        private const string AnchorPattern = @"\""" + LocAnchor.Tag + @"(?<Key>\w+)~(?<Value>.+?)\""";
+        private const string AnchorPattern = @"\""" + LocAnchor.Tag + @"(?<Key>.+?)~(?<Value>.+?)\""";
         private const string ExtensionMethod = "GetLocalized";
 
         public override UpdateResult Update(string content)

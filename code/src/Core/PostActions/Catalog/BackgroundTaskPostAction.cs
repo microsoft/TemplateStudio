@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         public override void Execute()
         {
-            var backgroundServiceFile = Path.Combine(_shell.ProjectPath, backgroundTaskFolder, backgroundTaskServiceFileName);
+            var backgroundServiceFile = Path.Combine(_shell.OutputPath, backgroundTaskFolder, backgroundTaskServiceFileName);
             var backgroundServiceContent = File.ReadAllText(backgroundServiceFile);
 
             var anchorIndex = backgroundServiceContent.IndexOf(Anchor);
@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             }
             var nextLineAfterAnchor = backgroundServiceContent.IndexOf(Environment.NewLine, anchorIndex, StringComparison.Ordinal) + Environment.NewLine.Length;
 
-            var backgroundTasks = GetBackgroundTasksToAdd(_shell.ProjectPath);
+            var backgroundTasks = GetBackgroundTasksToAdd(_shell.OutputPath);
 
             foreach (var backgroundTaskToAdd in backgroundTasks)
             {

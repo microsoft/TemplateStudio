@@ -18,7 +18,7 @@
     "uct.export.baseclass": "Observable",
     "uct.export.setter": "Set"
   },
-  "sourceName": "ItemName",
+  "sourceName": "uct.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
   ],

@@ -2,7 +2,7 @@
 
 using Windows.UI.Xaml.Controls;
 
-namespace ItemName.Shell
+namespace uct.ItemName.Shell
 {
     public class ShellNavigationItem
     {

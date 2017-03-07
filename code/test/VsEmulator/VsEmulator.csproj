@@ -101,8 +101,6 @@
       <DependentUpon>NewProjectView.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewProject\NewProjectViewModel.cs" />
-    <Compile Include="SolutionFile.cs" />
-    <Compile Include="VsItemType.cs" />
     <Page Include="Main\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -111,7 +109,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MsBuildProject.cs" />
     <Compile Include="Main\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>

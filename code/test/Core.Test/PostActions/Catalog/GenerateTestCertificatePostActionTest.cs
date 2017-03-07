@@ -18,12 +18,12 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var projectName = "test";
 
             var fakeShell = new FakeGenShell(projectName, @".\TestData\tmp");
-            Directory.CreateDirectory(fakeShell.ProjectPath);
-            File.Copy(Path.Combine(Environment.CurrentDirectory, "TestData\\TestProject\\Test.csproj"), Path.Combine(fakeShell.ProjectPath, "Test.csproj"), true);
+            Directory.CreateDirectory(fakeShell.OutputPath);
+            File.Copy(Path.Combine(Environment.CurrentDirectory, "TestData\\TestProject\\Test.csproj"), Path.Combine(fakeShell.OutputPath, "Test.csproj"), true);
 
             var postAction =  new GenerateTestCertificatePostAction(fakeShell, "TestUser");
             postAction.Execute();
-            var certFilePath = Path.Combine(fakeShell.ProjectPath, $"{projectName}_TemporaryKey.pfx");
+            var certFilePath = Path.Combine(fakeShell.OutputPath, $"{projectName}_TemporaryKey.pfx");
 
             Assert.True(File.Exists(certFilePath));
 

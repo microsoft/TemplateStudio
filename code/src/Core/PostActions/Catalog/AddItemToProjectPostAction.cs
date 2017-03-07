@@ -18,7 +18,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
             var itemsToAdd = _config
                                 .Where(o => !string.IsNullOrWhiteSpace(o.Path))
-                                .Select(o => Path.GetFullPath(Path.Combine(_shell.ProjectPath, o.Path)))
+                                .Select(o => Path.GetFullPath(Path.Combine(_shell.OutputPath, o.Path)))
                                 .ToList();
 
             _shell.AddItems(itemsToAdd.ToArray());

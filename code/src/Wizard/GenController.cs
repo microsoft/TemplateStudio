@@ -87,8 +87,6 @@ namespace Microsoft.Templates.Wizard
 
                 Dictionary<string, TemplateCreationResult> genResults = new Dictionary<string, TemplateCreationResult>();
 
-                var outputPath = Shell.OutputPath;
-
                 foreach (var genInfo in genItems)
                 {
                     if (genInfo.Template == null)
@@ -103,12 +101,10 @@ namespace Microsoft.Templates.Wizard
                         Shell.ShowStatusBarMessage(statusText);
                     }
 
-                    outputPath = GetOutputPath(genInfo.Template);
-
-                    AppHealth.Current.Verbose.TrackAsync($"Generating the template {genInfo.Template.Name} to {outputPath}.").FireAndForget();
+                    AppHealth.Current.Verbose.TrackAsync($"Generating the template {genInfo.Template.Name} to {Shell.OutputPath}.").FireAndForget();
 
                     //TODO: REVIEW ASYNC
-                    var result = CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, outputPath, genInfo.Parameters, false, false).Result;
+                    var result = CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, Shell.OutputPath, genInfo.Parameters, false, false).Result;
 
                     genResults.Add($"{genInfo.Template.Identity}_{genInfo.Name}", result);
 
@@ -175,19 +171,6 @@ namespace Microsoft.Templates.Wizard
                 AppHealth.Current.Exception.TrackAsync(ex, "Exception tracking telemetry for Template Generation.").FireAndForget();
             }
         }
-
-        private string GetOutputPath(ITemplateInfo templateInfo)
-        {
-            if (templateInfo.GetTemplateType() == TemplateType.Project)
-            {
-                return Shell.OutputPath;
-            }
-            else
-            {
-                return Shell.ProjectPath;
-            }
-        }
-
 
         private void ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult)
         {

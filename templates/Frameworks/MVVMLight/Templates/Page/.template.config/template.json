@@ -18,11 +18,11 @@
     "uct.export.baseclass": "ViewModelBase",
     "uct.export.setter": "Set"
   },
-  "sourceName": "ItemName",
+  "sourceName": "uct.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\ItemName\\ViewModelLocator.cs"
+      "path": ".\\uct.ItemName\\ViewModelLocator.cs"
     }
   ],
   "symbols": {

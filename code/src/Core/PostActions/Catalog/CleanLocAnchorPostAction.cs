@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         public override void Execute()
         {
-            var projectFiles = Directory.EnumerateFiles(_shell.ProjectPath, "*", SearchOption.AllDirectories);
+            var projectFiles = Directory.EnumerateFiles(_shell.OutputPath, "*", SearchOption.AllDirectories);
 
             foreach (var file in projectFiles)
             {

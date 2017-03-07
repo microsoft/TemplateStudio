@@ -1,4 +1,4 @@
-﻿using ItemNamespace.ItemName;
+﻿using ItemNamespace.uct.ItemName;
 namespace ItemNamespace.Shell
 {
     public class ShellViewModel : ViewModelBase
@@ -8,7 +8,7 @@ namespace ItemNamespace.Shell
             get
             {
                 //^^
-                yield return new ShellTabbedItem("LOC_ANCHOR:Shell_ItemName~ItemName", new ItemName.ItemNamePage());
+                yield return new ShellTabbedItem("LOC_ANCHOR:Shell_uct.ItemName~uct.ItemName", new uct.ItemName.uct.ItemNamePage());
             }
         }
     }

@@ -1,9 +1,9 @@
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using ItemName.Shell;
-using ItemName.Services;
+using uct.ItemName.Shell;
+using uct.ItemName.Services;
 
-namespace ItemName
+namespace uct.ItemName
 {
     public partial class ViewModelLocator
     {

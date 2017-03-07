@@ -75,7 +75,7 @@ namespace Microsoft.Templates.Core.PostActions
         private static void AddInjectionActions(GenShell shell, List<PostAction> postActions)
         {
              Directory
-                .EnumerateFiles(shell.ProjectPath, "*.postaction", SearchOption.AllDirectories)
+                .EnumerateFiles(shell.OutputPath, "*.postaction", SearchOption.AllDirectories)
                 .ToList()
                 .ForEach(f => postActions.Add(new InjectionPostAction(shell, f)));
         }
@@ -83,7 +83,7 @@ namespace Microsoft.Templates.Core.PostActions
         private static void AddMergeActions(GenShell shell, List<PostAction> postActions)
         {
             Directory
-               .EnumerateFiles(shell.ProjectPath, $"*{MergePostAction.Extension}*", SearchOption.AllDirectories)
+               .EnumerateFiles(shell.OutputPath, $"*{MergePostAction.Extension}*", SearchOption.AllDirectories)
                .ToList()
                .ForEach(f => postActions.Add(new MergePostAction(shell, f)));
         }

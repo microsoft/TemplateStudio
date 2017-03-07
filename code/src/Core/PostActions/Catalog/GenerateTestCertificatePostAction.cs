@@ -88,7 +88,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             var base64Encoded = enrollment.CreatePFX("", PFXExportOptions.PFXExportChainWithRoot);
             var certificate = new X509Certificate2(Convert.FromBase64String(base64Encoded), "");
 
-            var filePath = Path.Combine(_shell.ProjectPath, _shell.ProjectName) + "_TemporaryKey.pfx";
+            var filePath = Path.Combine(_shell.OutputPath, _shell.ProjectName) + "_TemporaryKey.pfx";
             File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
 
             X509Store store = new X509Store(StoreLocation.CurrentUser);
