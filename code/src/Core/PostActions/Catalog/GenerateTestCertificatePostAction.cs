@@ -30,15 +30,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             dn.Encode("CN=" + publisherName);
 
             // create a new private key for the certificate
-            var privateKey = new CX509PrivateKey()
-            {
-                ProviderName = "Microsoft Base Cryptographic Provider v1.0",
-                MachineContext = false,
-                Length = 2048,
-                KeySpec = X509KeySpec.XCN_AT_SIGNATURE,
-                KeyUsage = X509PrivateKeyUsageFlags.XCN_NCRYPT_ALLOW_SIGNING_FLAG,
-                ExportPolicy = X509PrivateKeyExportFlags.XCN_NCRYPT_ALLOW_PLAINTEXT_EXPORT_FLAG
-            };
+            var privateKey = (IX509PrivateKey)Activator.CreateInstance(Type.GetTypeFromProgID("X509Enrollment.CX509PrivateKey"));
+            privateKey.ProviderName = "Microsoft Base Cryptographic Provider v1.0";
+            privateKey.MachineContext = false;
+            privateKey.Length = 2048;
+            privateKey.KeySpec = X509KeySpec.XCN_AT_SIGNATURE;
+            privateKey.KeyUsage = X509PrivateKeyUsageFlags.XCN_NCRYPT_ALLOW_SIGNING_FLAG;
+            privateKey.ExportPolicy = X509PrivateKeyExportFlags.XCN_NCRYPT_ALLOW_PLAINTEXT_EXPORT_FLAG;
             privateKey.Create();
 
             // Create the self signing request
