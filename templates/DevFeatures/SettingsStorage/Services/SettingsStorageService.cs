@@ -67,13 +67,16 @@ namespace RootNamespace.Services
 
         public static T Read<T>(string key, ApplicationDataContainer settings)
         {
-            var value = (string)settings.Values[key];
-            if (value != null)
+            if (settings.Values.ContainsKey(key))
             {
-                return JsonConvert.DeserializeObject<T>(value);
+                var value = (string)settings.Values[key];
+                if (value != null)
+                {
+                    return JsonConvert.DeserializeObject<T>(value);
+                }
             }
-
             return default(T);
+            
         }
     }
 }

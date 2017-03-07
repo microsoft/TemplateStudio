@@ -3,10 +3,10 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Notifications",
-  "groupIdentity": "Microsoft.UWPTemplates.Notifications",
-  "identity": "Microsoft.UWPTemplates.Notifications.CSharp",
-  "shortName": "Notifications",
+  "name": "ToastNotifications",
+  "groupIdentity": "Microsoft.UWPTemplates.ToastNotifications",
+  "identity": "Microsoft.UWPTemplates.ToastNotifications.CSharp",
+  "shortName": "ToastNotifications",
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   "tags": {
     "language": "C#",
@@ -15,15 +15,15 @@
     "uct.framework": "Basic;MVVMLight",
     "uct.version": "1.0.0",
     "uct.order": "1",
-    "uct.licences": "[Microsoft.Toolkit.Uwp.Notifications](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)|[WindowsAzure.Messaging.Managed](http://go.microsoft.com/fwlink/?LinkId=218949)",
-    "uct.defaultInstance": "Notifications",
+    "uct.licences": "[Microsoft.Toolkit.Uwp.Notifications](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)",
+    "uct.defaultInstance": "ToastNotifications",
     "uct.multipleInstance": "false"
   },
-  "sourceName": "NotificationsFeature",
+  "sourceName": "ToastNotificationsFeature",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\NotificationsFeatureService.cs"
+      "path": ".\\Services\\ToastNotificationsFeatureService.cs"
     }
   ],
   "symbols": {

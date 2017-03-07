@@ -26,9 +26,9 @@ else{
 }
 
 ## SET IDENTITY AND VERSION IN VSIX Manifest
-if(Test-Path($vsixIdentity)){
+if($vsixIdentity){
   Write-Host "Setting Identity in VSIX manifest"
-  if($vsixManifestFile){
+  if(Test-Path($vsixManifestFile)){
     [xml]$manifestContent = Get-Content $vsixManifestFile
     $manifestContent.PackageManifest.Metadata.Identity.Id = $vsixIdentity
     $manifestContent.PackageManifest.Metadata.Identity.Version = $versionNumber

@@ -1,0 +1,39 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "HubNotifications",
+  "groupIdentity": "Microsoft.UWPTemplates.HubNotifications",
+  "identity": "Microsoft.UWPTemplates.HubNotifications.CSharp",
+  "shortName": "HubNotifications",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "uct.type": "consumerfeature",
+    "uct.framework": "Basic;MVVMLight",
+    "uct.version": "1.0.0",
+    "uct.order": "1",
+    "uct.licences": "[Microsoft.Toolkit.Uwp.Notifications](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)|[WindowsAzure.Messaging.Managed](http://go.microsoft.com/fwlink/?LinkId=218949)",
+    "uct.defaultInstance": "HubNotifications",
+    "uct.multipleInstance": "false"
+  },
+  "sourceName": "HubNotificationsFeature",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Services\\HubNotificationsFeatureService.cs"
+    }
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    }
+  }
+}
