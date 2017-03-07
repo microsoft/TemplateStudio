@@ -6,9 +6,10 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.Templates.Wizard.ViewModels
+namespace Microsoft.Templates.Core.Mvvm
 {
-    public class ObservableBase : INotifyPropertyChanged
+    //TODO: THIS IS DUPLICATED
+    public class Observable : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

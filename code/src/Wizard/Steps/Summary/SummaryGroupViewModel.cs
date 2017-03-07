@@ -1,6 +1,6 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Wizard.Dialog;
+using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Wizard.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace Microsoft.Templates.Wizard.Steps.Summary
 {
-    public class SummaryGroupViewModel : ObservableBase
+    public class SummaryGroupViewModel : Observable
     {
         private string _title;
         public string Title
@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
         public ObservableCollection<SummaryItemViewModel> Items { get; } = new ObservableCollection<SummaryItemViewModel>();
     }
 
-    public class SummaryItemViewModel : ObservableBase
+    public class SummaryItemViewModel : Observable
     {
 
         public SummaryItemViewModel(GenInfo genInfo)
@@ -34,6 +34,10 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
             Name = genInfo.Name;
             TemplateName = genInfo.Template.Name;
             Author = genInfo.Template.Author;
+        }
+
+        public SummaryItemViewModel()
+        {
         }
 
         private string _name;

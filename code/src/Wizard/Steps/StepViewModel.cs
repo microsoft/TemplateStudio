@@ -1,4 +1,5 @@
 ﻿using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Wizard.ViewModels;
 using System;
@@ -10,7 +11,7 @@ using System.Windows.Controls;
 
 namespace Microsoft.Templates.Wizard.Steps
 {
-    public abstract class StepViewModel : ObservableBase
+    public abstract class StepViewModel : Observable
     {
         protected WizardContext Context { get; }
 

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Templates.Core;
-using Microsoft.Templates.VsEmulator.Mvvm;
+using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Wizard;
 using System;
 using System.Collections.Generic;

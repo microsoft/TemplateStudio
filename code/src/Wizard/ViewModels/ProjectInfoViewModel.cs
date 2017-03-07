@@ -1,9 +1,10 @@
 ﻿using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Mvvm;
 using System.Windows.Media.Imaging;
 
 namespace Microsoft.Templates.Wizard.ViewModels
 {
-    public class ProjectInfoViewModel : ObservableBase
+    public class ProjectInfoViewModel : Observable
     {
         private string _name;
         public string Name

@@ -106,6 +106,15 @@ namespace Microsoft.Templates.Wizard.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error updating templates. See output for more details..
+        /// </summary>
+        public static string ErrorSync {
+            get {
+                return ResourceManager.GetString("ErrorSync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Template &apos;{0}&apos;, name: &apos;{1}&apos;, reason: &apos;{2}&apos;.
         /// </summary>
         public static string ExceptionGenerating {

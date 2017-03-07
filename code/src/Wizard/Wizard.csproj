@@ -131,10 +131,15 @@
   <ItemGroup>
     <Compile Include="Converters\CollectionToVisibilityConverter.cs" />
     <Compile Include="Converters\ListToStringConverter.cs" />
-    <Compile Include="Dialog\ErrorMessageDialog.xaml.cs">
-      <DependentUpon>ErrorMessageDialog.xaml</DependentUpon>
+    <Compile Include="Error\ErrorDialog.xaml.cs">
+      <DependentUpon>ErrorDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\RelayCommand.cs" />
+    <Compile Include="Error\ErrorViewModel.cs" />
+    <Compile Include="Error\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\ObservableCollection.extensions.cs" />
     <Compile Include="Extensions\Window.extensions.cs" />
     <Compile Include="GenComposer.cs" />
@@ -224,7 +229,6 @@
     <Compile Include="ViewModels\Extensions.cs" />
     <Compile Include="ViewModels\ProjectInfoViewModel.cs" />
     <Compile Include="ViewModels\TemplateViewModel.cs" />
-    <Compile Include="ViewModels\ObservableBase.cs" />
     <Compile Include="Host\WizardContext.cs" />
     <Compile Include="Host\WizardHost.xaml.cs">
       <DependentUpon>WizardHost.xaml</DependentUpon>
@@ -235,7 +239,7 @@
     <Compile Include="Vsix\SolutionWizard.cs" />
     <Compile Include="Vsix\VsGenShell.cs" />
     <Compile Include="Vsix\VsOutputPane.cs" />
-    <Page Include="Dialog\ErrorMessageDialog.xaml">
+    <Page Include="Error\ErrorDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -298,6 +302,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Error\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

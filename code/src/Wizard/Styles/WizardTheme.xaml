@@ -49,9 +49,9 @@
     <Style TargetType="TextBlock" x:Key="TemplateSubTitleStyle">
         <Setter Property="HorizontalAlignment" Value="Center" />
     </Style>
-    
-    
-    
+
+
+
     <Style TargetType="StackPanel" x:Key="TemplateInfoContainerStyle">
         <Setter Property="Margin" Value="{StaticResource MediumLeftMargin}" />
     </Style>
@@ -69,7 +69,7 @@
         <Setter Property="Margin" Value="{StaticResource MediumTopMargin}" />
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
-    
+
     <!--SUMMARY-->
     <Style TargetType="StackPanel" x:Key="SummaryInfoContainerStyle">
         <Setter Property="Margin" Value="{StaticResource MediumTopMargin}" />
@@ -89,26 +89,26 @@
     <Style TargetType="ItemsControl" x:Key="LicenceItemsStyle">
         <Setter Property="Margin" Value="{StaticResource MediumLeftMargin}" />
     </Style>
-     <Style TargetType="TextBlock" x:Key="LicenceItemDescriptionStyle">
+    <Style TargetType="TextBlock" x:Key="LicenceItemDescriptionStyle">
         <Setter Property="Margin" Value="{StaticResource ShortLeftMargin}" />
         <Setter Property="FontStyle" Value="Italic" />
     </Style>
     <Style TargetType="CheckBox" x:Key="AcceptTermsStyle">
         <Setter Property="Margin" Value="{StaticResource MediumTopMargin}" />
     </Style>
-    
+
     <!--PAGES-->
-     <Style TargetType="Image" x:Key="SelectedPageIcon">
+    <Style TargetType="Image" x:Key="SelectedPageIcon">
         <Setter Property="Width" Value="40" />
         <Setter Property="Height" Value="40" />
     </Style>
-        <Style TargetType="StackPanel" x:Key="SelectedPageTextContainer">
+    <Style TargetType="StackPanel" x:Key="SelectedPageTextContainer">
         <Setter Property="Margin" Value="{StaticResource ShortLeftMargin}" />
     </Style>
-     <Style TargetType="TextBlock" x:Key="SelectedPageTitle">
+    <Style TargetType="TextBlock" x:Key="SelectedPageTitle">
         <Setter Property="FontWeight" Value="SemiBold" />
     </Style>
-     <Style TargetType="TextBlock" x:Key="SelectedPageSubtitle">
+    <Style TargetType="TextBlock" x:Key="SelectedPageSubtitle">
     </Style>
     <Style TargetType="Button" x:Key="AsideButtonStyle">
         <Setter Property="Margin" Value="{StaticResource ShortBottomMargin}" />
@@ -147,4 +147,34 @@
             <TextBlock Text="{Binding Name}" Grid.Row="1" Style="{StaticResource TemplateTitleStyle}" />
         </Grid>
     </DataTemplate>
+
+    <!--ERROR DIALOG-->
+    <Style TargetType="Grid" x:Key="ErrorContainerStyle">
+        <Setter Property="Margin" Value="{StaticResource MediumMargin}" />
+    </Style>
+    <Style TargetType="Image" x:Key="ErrorImageStyle">
+        <Setter Property="Height" Value="64" />
+        <Setter Property="Width" Value="64" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="ErrorTextStyle">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Margin" Value="{StaticResource MediumLeftMargin}" />
+    </Style>
+    <Style TargetType="TextBox" x:Key="ErrorDetailStyle">
+        <Setter Property="Height" Value="240" />
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Margin" Value="{StaticResource ShortTopMargin}" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="ErrorMoreInfoButtonStyle">
+        <Setter Property="Margin" Value="{StaticResource ShortTopMargin}" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+    </Style>
+    <Style TargetType="Button" x:Key="ErrorCloseButtonStyle">
+        <Setter Property="Margin" Value="{StaticResource MediumTopMargin}" />
+        <Setter Property="Width" Value="75" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+    </Style>
 </ResourceDictionary>

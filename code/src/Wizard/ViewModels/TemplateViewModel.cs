@@ -1,5 +1,6 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Wizard.Host;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Windows.Media.Imaging;
 
 namespace Microsoft.Templates.Wizard.ViewModels
 {
-    public class TemplateViewModel : ObservableBase
+    public class TemplateViewModel : Observable
     {
         public TemplateViewModel()
         {

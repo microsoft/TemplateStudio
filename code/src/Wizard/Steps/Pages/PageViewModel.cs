@@ -1,4 +1,5 @@
-﻿using Microsoft.Templates.Wizard.ViewModels;
+﻿using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.Wizard.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Wizard.Steps.Pages
 {
-    public class PageViewModel : ObservableBase
+    public class PageViewModel : Observable
     {
         public PageViewModel(string name, string templateName, bool @readonly = false)
         {
