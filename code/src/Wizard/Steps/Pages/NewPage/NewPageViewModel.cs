@@ -1,5 +1,5 @@
 ﻿using Microsoft.Templates.Core;
-using Microsoft.Templates.Wizard.Dialog;
+using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Wizard.ViewModels;
 using System;
@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
 {
-    public class NewPageViewModel : ObservableBase
+    public class NewPageViewModel : Observable
     {
         private bool _isValid = true;
 

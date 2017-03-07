@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 using Microsoft.Templates.Wizard.Steps.Pages;
 using Microsoft.Templates.Core;
 using System.Windows.Input;
-using Microsoft.Templates.Wizard.Dialog;
+using Microsoft.Templates.Core.Mvvm;
 
 namespace Microsoft.Templates.Wizard.Steps.DevFeatures
 {

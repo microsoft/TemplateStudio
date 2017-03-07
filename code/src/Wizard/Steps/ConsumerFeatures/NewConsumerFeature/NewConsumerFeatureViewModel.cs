@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Templates.Wizard.Host;
 using System.Windows.Input;
-using Microsoft.Templates.Wizard.Dialog;
 using System.Collections.ObjectModel;
 using Microsoft.Templates.Wizard.ViewModels;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Wizard.Steps.Pages;
+using Microsoft.Templates.Core.Mvvm;
 
 namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
 {
-    public class NewConsumerFeatureViewModel : ObservableBase
+    public class NewConsumerFeatureViewModel : Observable
     {
         private bool _isValid = true;
 

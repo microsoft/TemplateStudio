@@ -1,6 +1,5 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Wizard.Dialog;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Wizard.ViewModels;
 using System;
@@ -11,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Controls;
+using Microsoft.Templates.Core.Mvvm;
 
 namespace Microsoft.Templates.Wizard.Steps.Pages
 {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Wizard.ViewModels;
 
 using System;
@@ -19,7 +20,7 @@ namespace Microsoft.Templates.Wizard.Host
         public List<(string name, string templateName)> ConsumerFeatures { get; } = new List<(string name, string templateName)>();
     }
 
-    public class WizardContext : ObservableBase
+    public class WizardContext : Observable
     {
         public TemplatesRepository TemplatesRepository { get; }
         public GenShell Shell { get; }
