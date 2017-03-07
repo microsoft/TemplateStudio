@@ -35,7 +35,7 @@ if($name){
     [xml]$templateContent = Get-Content $vsTemplateFile
     $templateContent.VSTemplate.TemplateData.Name = $name
     $templateContent.VSTemplate.TemplateData.TemplateID = $templateId
-    $templateContent.VSTemplate.CustomParameters.CustomParameter[2].Value = $versionNumber
+    $templateContent.VSTemplate.TemplateContent.CustomParameters.CustomParameter[1].Value = $versionNumber
    
     if($description)
     {
