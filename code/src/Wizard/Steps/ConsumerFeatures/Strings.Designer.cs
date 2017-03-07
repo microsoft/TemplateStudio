@@ -142,7 +142,7 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name contains not allowed caracters.
+        ///   Looks up a localized string similar to Only alphanumeric and &apos;-&apos; characters are allowed.
         /// </summary>
         public static string ValidationError_BadFormat {
             get {

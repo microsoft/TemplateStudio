@@ -11,7 +11,7 @@
         WindowStartupLocation="CenterScreen" 
         ResizeMode="NoResize" 
         ShowInTaskbar="False">
-    
+
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -92,7 +92,17 @@
                     </Style>
                 </StackPanel.Style>
                 <TextBlock Text="{x:Static local:Strings.PageName_Text}" />
-                <TextBox Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" Style="{StaticResource PageNameValueStyle}" />
+                <TextBox Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox" BasedOn="{StaticResource PageNameValueStyle}">
+                            <Style.Triggers>
+                                <Trigger Property="Validation.HasError" Value="True">
+                                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1">
                 <Button Content="{x:Static local:Strings.OkCommand}" Command="{Binding OkCommand}" Style="{StaticResource NavigationButtonStyle}" />
