@@ -2,5 +2,5 @@
 {
     //^^
 
-    SettingsPage.SettingsPageViewModel.InitAppTheme();
+    Services.ThemeSelectorService.SetRequestedTheme();
 }

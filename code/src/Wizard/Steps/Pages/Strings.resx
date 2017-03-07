@@ -142,7 +142,7 @@
     <value>Name already exists</value>
   </data>
   <data name="ValidationError_BadFormat" xml:space="preserve">
-    <value>Name contains not allowed caracters</value>
+    <value>Only alphanumeric and '-' characters are allowed</value>
   </data>
   <data name="ValidationError_Empty" xml:space="preserve">
     <value>Name cannot be empty</value>

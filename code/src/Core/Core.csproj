@@ -146,6 +146,8 @@
     <Compile Include="Locations\Templatex.cs" />
     <Compile Include="Locations\SignCertNotFoundException.cs" />
     <Compile Include="Locations\TemplatesLocation.cs" />
+    <Compile Include="Mvvm\ObservableBase.cs" />
+    <Compile Include="Mvvm\RelayCommand.cs" />
     <Compile Include="Naming.cs" />
     <Compile Include="LayoutItem.cs" />
     <Compile Include="PostActions\Catalog\AddItemToProjectPostAction.cs" />

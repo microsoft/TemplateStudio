@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" ?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="UWPTemplatesExtension2015.Local.9dc08c89-5da8-418b-bb2c-8be4ef6e30e2" Version="0.1" Language="en-US" Publisher="Raúl Alarcón" />
-    <DisplayName>UWP Templates (vs2015 dev-nightly)</DisplayName>
+    <Identity Id="UWPTemplatesExtension2015.Local.9dc08c89-5da8-418b-bb2c-8be4ef6e30e2" Version="0.1" Language="en-US" Publisher="Microsoft Corporation" />
+    <DisplayName>UWP Templates (vs2015 local)</DisplayName>
     <Description xml:space="preserve">UWP Templates Generator</Description>
     <MoreInfo>http://go.microsoft.com/fwlink/?LinkId=521839</MoreInfo>
     <License>Content\EULA.rtf</License>

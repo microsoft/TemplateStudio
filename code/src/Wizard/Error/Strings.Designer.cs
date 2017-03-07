@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Templates.Wizard.Steps.Pages {
+namespace Microsoft.Templates.Wizard.Error {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Microsoft.Templates.Wizard.Steps.Pages {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.Templates.Wizard.Steps.Pages.Strings", typeof(Strings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.Templates.Wizard.Error.Strings", typeof(Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,92 +61,47 @@ namespace Microsoft.Templates.Wizard.Steps.Pages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add.
+        ///   Looks up a localized string similar to Close.
         /// </summary>
-        public static string AddCommand {
+        public static string Close {
             get {
-                return ResourceManager.GetString("AddCommand", resourceCulture);
+                return ResourceManager.GetString("Close", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
+        ///   Looks up a localized string similar to &lt; Less info.
         /// </summary>
-        public static string CancelCommand {
+        public static string LessDetail {
             get {
-                return ResourceManager.GetString("CancelCommand", resourceCulture);
+                return ResourceManager.GetString("LessDetail", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add pages pushing add button. Lorem ipsum.
+        ///   Looks up a localized string similar to More info &gt;.
         /// </summary>
-        public static string NoPagesMessage {
+        public static string MoreDetail {
             get {
-                return ResourceManager.GetString("NoPagesMessage", resourceCulture);
+                return ResourceManager.GetString("MoreDetail", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ok.
+        ///   Looks up a localized string similar to -No data-.
         /// </summary>
-        public static string OkCommand {
+        public static string NoData {
             get {
-                return ResourceManager.GetString("OkCommand", resourceCulture);
+                return ResourceManager.GetString("NoData", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Page name:.
+        ///   Looks up a localized string similar to Error.
         /// </summary>
-        public static string PageName_Text {
+        public static string Title {
             get {
-                return ResourceManager.GetString("PageName_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select the page template:.
-        /// </summary>
-        public static string PageTitle {
-            get {
-                return ResourceManager.GetString("PageTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove.
-        /// </summary>
-        public static string RemoveCommand {
-            get {
-                return ResourceManager.GetString("RemoveCommand", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name already exists.
-        /// </summary>
-        public static string ValidationError_AlreadyExists {
-            get {
-                return ResourceManager.GetString("ValidationError_AlreadyExists", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Only alphanumeric and &apos;-&apos; characters are allowed.
-        /// </summary>
-        public static string ValidationError_BadFormat {
-            get {
-                return ResourceManager.GetString("ValidationError_BadFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name cannot be empty.
-        /// </summary>
-        public static string ValidationError_Empty {
-            get {
-                return ResourceManager.GetString("ValidationError_Empty", resourceCulture);
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
     }
