@@ -98,7 +98,7 @@
       <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
     </ProjectReference>
-    <ProjectReference Include="..\Vspt\CSharp.UWP.2015.Solution\CSharp.UWP.VS2015.Solution.csproj">
+    <ProjectReference Include="..\ProjectTemplates\CSharp.UWP.2015.Solution\CSharp.UWP.VS2015.Solution.csproj">
       <Project>{BA338FD8-55FC-4606-8645-18A1C00F9233}</Project>
       <Name>CSharp.UWP.VS2015.Solution</Name>
       <VSIXSubPath>ProjectTemplates</VSIXSubPath>
