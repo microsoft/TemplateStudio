@@ -28,6 +28,9 @@
     },
     {
       "path": ".\\SettingsPage\\SettingsPageViewModel.cs"
+    },
+    {
+      "path": ".\\Services\\ThemeSelectorService.cs"
     }
   ],
   "symbols": {
