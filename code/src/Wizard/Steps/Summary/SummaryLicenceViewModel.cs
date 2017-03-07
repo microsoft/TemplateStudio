@@ -1,4 +1,4 @@
-﻿using Microsoft.Templates.Wizard.Dialog;
+﻿using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Wizard.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace Microsoft.Templates.Wizard.Steps.Summary
 {
-    public class SummaryLicenceViewModel : ObservableBase
+    public class SummaryLicenceViewModel : Observable
     {
         public ObservableCollection<string> UsedIn { get; } = new ObservableCollection<string>();
 

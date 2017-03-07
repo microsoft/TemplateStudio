@@ -5,7 +5,7 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions;
-using Microsoft.Templates.Wizard.Dialog;
+using Microsoft.Templates.Wizard.Error;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Wizard.Resources;
 using Microsoft.VisualStudio.TemplateWizard;
@@ -218,8 +218,8 @@ namespace Microsoft.Templates.Wizard
             AppHealth.Current.Error.TrackAsync(ex.ToString()).FireAndForget();
             AppHealth.Current.Exception.TrackAsync(ex).FireAndForget();
 
-            //TODO: SHOW ERROR MESSAGE && TRACE
-            MessageBox.Show(string.Format(textFormat, ex.Message), "Error!!!", MessageBoxButton.OK, MessageBoxImage.Error);
+            var error = new ErrorDialog(ex);
+            Shell.ShowModal(error);
         }
 
         private void CleanStatusBar()

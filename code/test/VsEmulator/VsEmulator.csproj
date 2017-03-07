@@ -86,8 +86,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Main\MainViewModel.cs" />
-    <Compile Include="Mvvm\ObservableBase.cs" />
-    <Compile Include="Mvvm\RelayCommand.cs" />
     <Compile Include="NewProject\NewProjectView.xaml.cs">
       <DependentUpon>NewProjectView.xaml</DependentUpon>
     </Compile>

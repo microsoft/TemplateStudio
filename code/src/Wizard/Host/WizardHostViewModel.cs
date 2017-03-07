@@ -1,7 +1,7 @@
 ﻿using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
-using Microsoft.Templates.Wizard.Dialog;
+using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Wizard.Resources;
 using Microsoft.Templates.Wizard.Steps;
 using Microsoft.Templates.Wizard.ViewModels;
@@ -16,7 +16,7 @@ using System.Windows.Controls;
 
 namespace Microsoft.Templates.Wizard.Host
 {
-    public class WizardHostViewModel : ObservableBase
+    public class WizardHostViewModel : Observable
     {
         private WizardContext _context;
 
@@ -33,6 +33,10 @@ namespace Microsoft.Templates.Wizard.Host
             _context.PropertyChanged += _context_PropertyChanged;
 
             NextButtonText = WizardHostResources.NextButton;
+        }
+
+        public WizardHostViewModel()
+        {
         }
 
         public async Task IniatializeAsync()

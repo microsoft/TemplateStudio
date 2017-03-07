@@ -1,9 +1,10 @@
 ﻿using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Test.Artifacts;
-using Microsoft.Templates.VsEmulator.Mvvm;
 using Microsoft.Templates.VsEmulator.NewProject;
 using Microsoft.Templates.Wizard;
+using Microsoft.Templates.Wizard.Error;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.VisualStudio.TemplateWizard;
 using System;
@@ -76,6 +77,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var newProjectInfo = ShowNewProjectDialog();
                 if (!string.IsNullOrEmpty(newProjectInfo.name))
                 {
+                    //TODO: THIS SHOULD BE CREATED IN THE CONSTRUCTOR
                     _shell = new FakeGenShell(newProjectInfo.name, newProjectInfo.location, newProjectInfo.solutionName, msg => SetStateAsync(msg), _host);
                     _gen = new GenController(_shell, new TemplatesRepository(new LocalTemplatesLocation()));
 
