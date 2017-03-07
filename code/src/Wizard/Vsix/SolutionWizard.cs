@@ -3,7 +3,6 @@ using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Wizard;
-using Microsoft.Templates.Wizard.Dialog;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -18,7 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Microsoft.Templates.Extension
+namespace Microsoft.Templates.Wizard.Vsix
 {
     public class SolutionWizard : IWizard
     {

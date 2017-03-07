@@ -1,7 +1,6 @@
 ﻿using EnvDTE;
 using EnvDTE100;
 using EnvDTE80;
-using Microsoft.Templates.Extension.Resources;
 using Microsoft.VisualStudio.Shell;
 using System;
 using System.Collections.Generic;
@@ -12,25 +11,13 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.Templates.Extension
+namespace Microsoft.Templates.Wizard.Vsix
 {
 
-    public static class Extensions
+    public static class VsShellExtensions
     {
-        public static void VsShowStatusBarMessage(this string message)
-        {
-            if(ServiceProvider.GlobalProvider.GetService(typeof(DTE)) is DTE)
-            {
-                DTE dte = ServiceProvider.GlobalProvider.GetService(typeof(DTE)) as DTE;
-                dte.StatusBar.Text = StringRes.UIStatusMsgPattern.UseParams(message);
-            }
-            else
-            {
-                Debug.WriteLine(StringRes.UIStatusMsgPattern.UseParams(message));
-            }
-        }
 
-        public static string GetSafeValue(this Properties props, string propertyName)
+        public static string GetSafeValue(this EnvDTE.Properties props, string propertyName)
         {
             if (props != null)
             {
@@ -49,7 +36,7 @@ namespace Microsoft.Templates.Extension
             }
         }
 
-        public static T GetSafeValue<T>(this Properties props, string propertyName)
+        public static T GetSafeValue<T>(this EnvDTE.Properties props, string propertyName)
         {
             if (props != null)
             {

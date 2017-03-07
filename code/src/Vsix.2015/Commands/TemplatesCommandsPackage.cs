@@ -56,13 +56,7 @@ namespace Microsoft.Templates.Extension.Commands
         {
             try
             {
-                var gen = new GenController(new VsGenShell());
-
-                var userSelection = gen.GetUserSelection(WizardSteps.Page);
-                if (userSelection != null)
-                {
-                    gen.Generate(userSelection);
-                }
+                //TODO: AddPage Command implementation    
             }
             catch (Exception ex)
             {
@@ -74,13 +68,7 @@ namespace Microsoft.Templates.Extension.Commands
         {
             try
             {
-                var gen = new GenController(new VsGenShell());
-
-                var userSelection = gen.GetUserSelection(WizardSteps.Feature);
-                if (userSelection != null)
-                {
-                    gen.Generate(userSelection);
-                }
+                //TODO: AddFeature command implementation.
             }
             catch (Exception ex)
             {

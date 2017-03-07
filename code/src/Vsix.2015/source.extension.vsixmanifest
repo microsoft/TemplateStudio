@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" ?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="UWPTemplatesExtension2015.Local.9dc08c89-5da8-418b-bb2c-8be4ef6e30e2" Version="0.1" Language="en-US" Publisher="Raúl Alarcón" />
+    <DisplayName>UWP Templates (vs2015 dev-nightly)</DisplayName>
+    <Description xml:space="preserve">UWP Templates Generator</Description>
+    <MoreInfo>http://go.microsoft.com/fwlink/?LinkId=521839</MoreInfo>
+    <License>Content\EULA.rtf</License>
+    <ReleaseNotes>https://github.com/Microsoft/UWPCommunityTemplates/blob/master/readme.md</ReleaseNotes>
+    <Tags>Templates UWP</Tags>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0]" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.6.2,)" />
+    <Dependency d:Source="Installed" Id="Microsoft.VisualStudio.UWPTools" DisplayName="Universal Windows App Development Tools (v1.4.1)" Version="[14.0,15.0)" d:InstallSource="Download" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Core" Path="|Core|" AssemblyName="|Core;AssemblyName|" />
+    <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Wizard" Path="|Wizard|" AssemblyName="|Wizard;AssemblyName|" />
+    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.UWP.VS2015.Solution" d:TargetPath="|CSharp.UWP.VS2015.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+  </Assets>
+  <Prerequisites>
+    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" DisplayName="Visual Studio core editor" />
+  </Prerequisites>
+</PackageManifest>

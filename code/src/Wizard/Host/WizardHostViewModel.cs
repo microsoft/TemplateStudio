@@ -61,7 +61,8 @@ namespace Microsoft.Templates.Wizard.Host
             }
             catch (Exception ex)
             {
-                Status = "Error updating templates. See output for more details.";
+                Status = StringRes.ErrorSync;
+
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);
             }

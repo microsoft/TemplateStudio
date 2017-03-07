@@ -123,75 +123,15 @@
   <data name="AddPageAction" xml:space="preserve">
     <value>Add Page</value>
   </data>
-  <data name="AddPageMessage" xml:space="preserve">
-    <value>Adding '{0}' page to project...</value>
-  </data>
   <data name="AddProjectAction" xml:space="preserve">
     <value>Add Project</value>
-  </data>
-  <data name="AddProjectMessage" xml:space="preserve">
-    <value>Creating project '{0}'...</value>
-  </data>
-  <data name="ErrorSync" xml:space="preserve">
-    <value>Error updating templates. See output for more details.</value>
-  </data>
-  <data name="ExceptionGenerating" xml:space="preserve">
-    <value>Template '{0}', name: '{1}', reason: '{2}'</value>
-  </data>
-  <data name="ExceptionUnexpectedGenerating" xml:space="preserve">
-    <value>Unexpected error generating the project: {0}</value>
-  </data>
-  <data name="ExceptionUnexpectedWizard" xml:space="preserve">
-    <value>Unexpected error in template selector wizard: {0}</value>
-  </data>
-  <data name="StatusAdquired" xml:space="preserve">
-    <value>Templates downloaded</value>
-  </data>
-  <data name="StatusAdquiring" xml:space="preserve">
-    <value>Downloading templates...</value>
-  </data>
-  <data name="StatusUpdated" xml:space="preserve">
-    <value>Templates updated</value>
-  </data>
-  <data name="StatusUpdating" xml:space="preserve">
-    <value>Updating templates...</value>
-  </data>
-  <data name="UIActionCancelled" xml:space="preserve">
-    <value>Action cancelled by user.</value>
-  </data>
-  <data name="UIAddPage" xml:space="preserve">
-    <value>Adding page...</value>
-  </data>
-  <data name="UIAddProjectAdding" xml:space="preserve">
-    <value>Adding project...</value>
-  </data>
-  <data name="UIAddProjectGenerating" xml:space="preserve">
-    <value>Generating your project...</value>
-  </data>
-  <data name="UIErrorFeatureCantBeAdded" xml:space="preserve">
-    <value>Something went wrong. The feature can't be generated.</value>
-  </data>
-  <data name="UIErrorPageCantBeAdded" xml:space="preserve">
-    <value>Something went wrong. The the page can't be generated.</value>
-  </data>
-  <data name="UIErrorProjectCantBeGenerated" xml:space="preserve">
-    <value>Something went wrong. The project can't be generated.</value>
   </data>
   <data name="UIMessageBoxTitlePattern" xml:space="preserve">
     <value>UWP Community Templates: {0}</value>
     <comment>Generic MessageBox Title</comment>
   </data>
-  <data name="UINoActiveProjectMessage" xml:space="preserve">
-    <value>Before adding a page you must select a project in the Solution Explorer.</value>
-  </data>
-  <data name="UIPageAddedPattern" xml:space="preserve">
-    <value>Page '{0}' successfully added.</value>
-  </data>
-  <data name="UIProjectSuccessfullyCreated" xml:space="preserve">
-    <value>Project successfully created.</value>
-  </data>
-  <data name="UnexpectedError" xml:space="preserve">
-    <value>Unexpected Error</value>
+  <data name="UIStatusMsgPattern" xml:space="preserve">
+    <value>UWP Community Templates: {0}</value>
   </data>
   <data name="UnexpectedExPattern" xml:space="preserve">
     <value>Unexpected Exception.\n{0}</value>
