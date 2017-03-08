@@ -177,13 +177,13 @@ namespace Microsoft.Templates.Core
             var result = GetValueFromTag(ti, TagPrefix + "multipleInstance");
             if (!string.IsNullOrEmpty(result))
             {
-                bool boolResult;
+                bool boolResult = true;
                 if (Boolean.TryParse(result, out boolResult))
                 {
                     return boolResult;
                 }
             }            
-            return false;
+            return true;
         }
 
         private static string GetConfigDir(ITemplateInfo ti)
