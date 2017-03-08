@@ -1,4 +1,6 @@
 ﻿using CERTENROLLLib;
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,14 +19,96 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         public override void Execute()
         {
-            //TODO: VERIFY THIS OUTSIDE
-            //var userName = genInfo.GetUserName();
-            //if (string.IsNullOrEmpty(userName))
-            //{
-            //    throw new Exception(PostActionResources.GenerateTestCertificate_EmptyUserName);
-            //}
+            try
+            {
+                var publisherName = _config;
+                var pfx = CreateCertificate(publisherName);
 
-            var publisherName = _config;
+                AddToProject(pfx);
+                RemoveFromStore(pfx);
+            }
+            catch (Exception ex)
+            {
+                AppHealth.Current.Warning.TrackAsync("Error generating certificate.", ex).FireAndForget();
+            }
+        }
+
+        private void AddToProject(string base64Encoded)
+        {
+            var filePath = Path.Combine(_shell.OutputPath, _shell.ProjectName) + "_TemporaryKey.pfx";
+            File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
+            
+            _shell.AddItems(filePath);
+        }
+
+        private static void RemoveFromStore(string base64Encoded)
+        {
+            var certificate = new X509Certificate2(Convert.FromBase64String(base64Encoded), "");
+            var store = new X509Store(StoreLocation.CurrentUser);
+            store.Open(OpenFlags.ReadWrite);
+
+            store.Remove(certificate);
+            store.Close();
+        }
+
+        private string CreateCertificate(string publisherName)
+        {
+            var cert = CreateCertificateRequest(publisherName);
+            AddKeyUsage(cert);
+            AddExtendedKeyUsage(cert);
+            AddBasicConstraints(cert);
+
+            //Specify the hashing algorithm
+            var hashobj = new CObjectId();
+            hashobj.InitializeFromAlgorithmName(ObjectIdGroupId.XCN_CRYPT_HASH_ALG_OID_GROUP_ID,
+                ObjectIdPublicKeyFlags.XCN_CRYPT_OID_INFO_PUBKEY_ANY,
+                AlgorithmFlags.AlgorithmFlagsNone, "SHA256");
+
+            cert.HashAlgorithm = hashobj;
+            cert.Encode();
+
+            // Do the final enrollment process
+            var enrollment = new CX509Enrollment();
+            enrollment.InitializeFromRequest(cert); // load the certificate
+            enrollment.CertificateFriendlyName = cert.Subject.Name;
+            var request = enrollment.CreateRequest();
+            enrollment.InstallResponse(InstallResponseRestrictionFlags.AllowUntrustedCertificate, request, EncodingType.XCN_CRYPT_STRING_BASE64, "");
+
+            var base64Encoded = enrollment.CreatePFX("", PFXExportOptions.PFXExportChainWithRoot);
+            return base64Encoded;
+        }
+
+        private void AddBasicConstraints(CX509CertificateRequestCertificate cert)
+        {
+            //Add basic constraints
+            var bc = new CX509ExtensionBasicConstraints();
+            bc.InitializeEncode(false, 0);
+            bc.Critical = true;
+            cert.X509Extensions.Add((CX509Extension)bc);
+        }
+
+        private void AddExtendedKeyUsage(CX509CertificateRequestCertificate cert)
+        {
+            //Add extended key usage 
+            var eku = new CX509ExtensionEnhancedKeyUsage();
+            var oid = new CObjectId();
+            oid.InitializeFromValue("1.3.6.1.5.5.7.3.3");
+            eku.InitializeEncode(new CObjectIds() { oid });
+            eku.Critical = true;
+            cert.X509Extensions.Add((CX509Extension)eku);
+        }
+
+        private void AddKeyUsage(CX509CertificateRequestCertificate cert)
+        {
+            //Add key usage
+            var ku = new CX509ExtensionKeyUsage();
+            ku.InitializeEncode(CERTENROLLLib.X509KeyUsageFlags.XCN_CERT_DIGITAL_SIGNATURE_KEY_USAGE);
+            ku.Critical = false;
+            cert.X509Extensions.Add((CX509Extension)ku);
+        }
+
+        private CX509CertificateRequestCertificate CreateCertificateRequest(string publisherName)
+        {
             // create DN for subject and issuer
             var dn = new CX500DistinguishedName();
             dn.Encode("CN=" + publisherName);
@@ -47,54 +131,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             cert.NotBefore = DateTime.Now.Date.AddDays(-1);
             cert.NotAfter = DateTime.Now.Date.AddYears(1);
 
-            //Add key usage
-            var ku = new CX509ExtensionKeyUsage();
-            ku.InitializeEncode(CERTENROLLLib.X509KeyUsageFlags.XCN_CERT_DIGITAL_SIGNATURE_KEY_USAGE);
-            ku.Critical = false;
-            cert.X509Extensions.Add((CX509Extension)ku);
-
-            //Add extended key usage 
-            var eku = new CX509ExtensionEnhancedKeyUsage();
-            var oid = new CObjectId();
-            oid.InitializeFromValue("1.3.6.1.5.5.7.3.3");
-            eku.InitializeEncode(new CObjectIds() { oid });
-            eku.Critical = true;
-            cert.X509Extensions.Add((CX509Extension)eku);
-
-            //Add basic constraints
-            var bc = new CX509ExtensionBasicConstraints();
-            bc.InitializeEncode(false, 0);
-            bc.Critical = true;
-            cert.X509Extensions.Add((CX509Extension)bc);
-
-            //Specify the hashing algorithm
-            var hashobj = new CObjectId();
-            hashobj.InitializeFromAlgorithmName(ObjectIdGroupId.XCN_CRYPT_HASH_ALG_OID_GROUP_ID,
-                ObjectIdPublicKeyFlags.XCN_CRYPT_OID_INFO_PUBKEY_ANY,
-                AlgorithmFlags.AlgorithmFlagsNone, "SHA256");
-
-            cert.HashAlgorithm = hashobj;
-            cert.Encode();
-
-            // Do the final enrollment process
-            var enrollment = new CX509Enrollment();
-            enrollment.InitializeFromRequest(cert); // load the certificate
-            enrollment.CertificateFriendlyName = publisherName;
-            var request = enrollment.CreateRequest();
-            enrollment.InstallResponse(InstallResponseRestrictionFlags.AllowUntrustedCertificate, request, EncodingType.XCN_CRYPT_STRING_BASE64, "");
-            
-            var base64Encoded = enrollment.CreatePFX("", PFXExportOptions.PFXExportChainWithRoot);
-            var certificate = new X509Certificate2(Convert.FromBase64String(base64Encoded), "");
-
-            var filePath = Path.Combine(_shell.OutputPath, _shell.ProjectName) + "_TemporaryKey.pfx";
-            File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
-
-            X509Store store = new X509Store(StoreLocation.CurrentUser);
-            store.Open(OpenFlags.ReadWrite);
-
-            store.Remove(certificate);
-            store.Close();
-            _shell.AddItems(filePath);
+            return cert;
         }
     }
 }
