@@ -61,11 +61,6 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures
             Context.State.DevFeatures.AddRange(Templates.Select(t => (t.Name, t.TemplateName)));
         }
 
-        public override void CleanState()
-        {
-            Context.State.DevFeatures.Clear();
-        }
-
         protected override Page GetPageInternal()
         {
             return new View();

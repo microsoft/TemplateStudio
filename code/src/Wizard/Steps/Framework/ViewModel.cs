@@ -7,12 +7,17 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
+
 
 namespace Microsoft.Templates.Wizard.Steps.Framework
 {
     public class ViewModel : StepViewModel
     {
+        private bool _alreadyAccepted;
+
         public ObservableCollection<ProjectInfoViewModel> Frameworks { get; } = new ObservableCollection<ProjectInfoViewModel>();
         public override string PageTitle => Strings.PageTitle;
 
@@ -24,7 +29,34 @@ namespace Microsoft.Templates.Wizard.Steps.Framework
         public ProjectInfoViewModel SelectedFramework
         {
             get => _selectedFramework;
-            set => SetProperty(ref _selectedFramework, value);
+            set
+            {
+                //TODO: REVIEW THIS IMPLEMENTATION
+
+                var originalSelected = _selectedFramework;
+
+                if (ShouldShowResetMessage(value))
+                {
+                    if (Context.ResetSelection())
+                    {
+                        _alreadyAccepted = true;
+                        CleanState();
+                    }
+                    else
+                    {
+                        //UNDO
+                        Application.Current.Dispatcher.BeginInvoke(
+                            new Action(() =>
+                            {
+                                SetProperty(ref _selectedFramework, originalSelected);
+                            }),
+                            DispatcherPriority.ContextIdle,
+                            null
+                        );
+                    }
+                }
+                SetProperty(ref _selectedFramework, value);
+            }
         }
 
         public override async Task InitializeAsync()
@@ -53,7 +85,6 @@ namespace Microsoft.Templates.Wizard.Steps.Framework
         }
 
         public override void SaveState() => Context.State.Framework = SelectedFramework.Name;
-        public override void CleanState() => Context.State.Framework = null;
 
         protected override Page GetPageInternal()
         {
@@ -66,6 +97,18 @@ namespace Microsoft.Templates.Wizard.Steps.Framework
                                                 .Where(t => t.GetProjectType() == projectType)
                                                 .SelectMany(t => t.GetFrameworkList())
                                                 .Distinct();
+        }
+
+        private bool ShouldShowResetMessage(ProjectInfoViewModel value)
+        {
+            return !string.IsNullOrEmpty(Context.State.Framework) && !Context.State.Framework.Equals(value.Name) && !_alreadyAccepted;
+        }
+
+        private void CleanState()
+        {
+            Context.State.Pages.Clear();
+            Context.State.DevFeatures.Clear();
+            Context.State.ConsumerFeatures.Clear();
         }
     }
 }

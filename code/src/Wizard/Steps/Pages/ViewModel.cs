@@ -62,11 +62,6 @@ namespace Microsoft.Templates.Wizard.Steps.Pages
             Context.State.Pages.AddRange(Templates.Select(t => (t.Name, t.TemplateName)));
         }
 
-        public override void CleanState()
-        {
-            Context.State.Pages.Clear();
-        }
-
         private void ShowAddPageDialog()
         {
             var dialog = new NewPage.NewPageDialog(Context, Templates.Select(t => t.Name));

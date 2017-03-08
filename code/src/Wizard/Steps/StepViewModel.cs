@@ -26,7 +26,6 @@ namespace Microsoft.Templates.Wizard.Steps
         //TODO: MAKE THIS METHOD TRULY ASYNC
         public abstract Task InitializeAsync();
         public abstract void SaveState();
-        public abstract void CleanState();
 
         protected abstract Page GetPageInternal();
 

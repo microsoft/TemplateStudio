@@ -169,7 +169,6 @@ namespace Microsoft.Templates.Wizard.Host
             if (Steps.CanGoBack())
             {
                 var currentStep = GetCurrentStep();
-                currentStep.CleanState();
 
                 var previous = Steps.GoBack();
                 Navigate(previous);

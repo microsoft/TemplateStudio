@@ -5,12 +5,16 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace Microsoft.Templates.Wizard.Steps.ProjectType
 {
     public class ViewModel : StepViewModel
     {
+        private bool _alreadyAccepted;
+
         public ObservableCollection<ProjectInfoViewModel> ProjectTypes { get; } = new ObservableCollection<ProjectInfoViewModel>();
         public override string PageTitle => Strings.PageTitle;
 
@@ -22,7 +26,39 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectType
         public ProjectInfoViewModel SelectedProjectType
         {
             get => _selectedProjectType;
-            set => SetProperty(ref _selectedProjectType, value);
+            set
+            {
+                //TODO: REVIEW THIS IMPLEMENTATION
+
+                var originalSelected = _selectedProjectType;
+
+                if (ShouldShowResetMessage(value))
+                {
+                    if (Context.ResetSelection())
+                    {
+                        _alreadyAccepted = true;
+                        CleanState();
+                    }
+                    else
+                    {
+                        //UNDO
+                        Application.Current.Dispatcher.BeginInvoke(
+                            new Action(() =>
+                            {
+                                SetProperty(ref _selectedProjectType, originalSelected);
+                            }),
+                            DispatcherPriority.ContextIdle,
+                            null
+                        );
+                    }
+                }
+                SetProperty(ref _selectedProjectType, value);
+            }
+        }
+
+        private bool ShouldShowResetMessage(ProjectInfoViewModel value)
+        {
+            return !string.IsNullOrEmpty(Context.State.ProjectType) && !Context.State.ProjectType.Equals(value.Name) && !_alreadyAccepted;
         }
 
         public override async Task InitializeAsync()
@@ -53,11 +89,18 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectType
 
         public override void SaveState() => Context.State.ProjectType = SelectedProjectType.Name;
 
-        public override void CleanState() => Context.State.ProjectType = null;
 
         protected override Page GetPageInternal()
         {
             return new View();
+        }
+
+        private void CleanState()
+        {
+            Context.State.Framework = null;
+            Context.State.Pages.Clear();
+            Context.State.DevFeatures.Clear();
+            Context.State.ConsumerFeatures.Clear();
         }
     }
 }

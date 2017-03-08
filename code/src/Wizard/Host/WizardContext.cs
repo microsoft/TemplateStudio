@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Microsoft.Templates.Wizard.Host
 {
@@ -104,6 +105,12 @@ namespace Microsoft.Templates.Wizard.Host
             }
 
             return selection;
+        }
+
+        public bool ResetSelection()
+        {
+            var resetSelectionResult = MessageBox.Show(Host.WizardHostResources.ResetSelection, Host.WizardHostResources.ResetSelectionTitle, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            return resetSelectionResult == MessageBoxResult.Yes;
         }
     }
 }

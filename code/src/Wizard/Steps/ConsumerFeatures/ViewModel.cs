@@ -61,11 +61,6 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures
             Context.State.ConsumerFeatures.AddRange(Templates.Select(t => (t.Name, t.TemplateName)));
         }
 
-        public override void CleanState()
-        {
-            Context.State.ConsumerFeatures.Clear();
-        }
-
         protected override Page GetPageInternal()
         {
             return new View();
