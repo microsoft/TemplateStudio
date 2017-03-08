@@ -25,6 +25,13 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
 #endif
         }
 
+        private string _selectedFramework;
+        public string SelectedFramework
+        {
+            get { return _selectedFramework; }
+            set { SetProperty(ref _selectedFramework, value); }
+        }
+
         private bool _termsAccepted;
         public bool TermsAccepted
         {
@@ -38,6 +45,8 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
 
         public override async Task InitializeAsync()
         {
+            SelectedFramework = Context.State.Framework;
+
             //TODO: REVIEW THIS
             var allTemplates = new GenComposer(Context.Shell, Context.TemplatesRepository).Compose(Context.State);
 

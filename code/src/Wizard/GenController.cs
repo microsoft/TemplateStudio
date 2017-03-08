@@ -27,7 +27,6 @@ namespace Microsoft.Templates.Wizard
         public GenShell Shell { get; }
 
 
-        //TODO: ERROR HANDLING
         public GenController(GenShell shell) : this(shell, new TemplatesRepository(new RemoteTemplatesLocation()))
         {
         }
@@ -41,7 +40,6 @@ namespace Microsoft.Templates.Wizard
             _composer = new GenComposer(shell, repository);
 
             AppHealth.Current.AddWriter(new ShellHealthWriter(shell));
-
         }
 
         public WizardState GetUserSelection(WizardSteps selectionSteps)

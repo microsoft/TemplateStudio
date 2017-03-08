@@ -14,21 +14,6 @@ namespace Microsoft.Templates.Core
         public string ProjectName { get; protected set; }
         public string OutputPath { get; protected set; }
 
-        public GenShell()
-        {
-            ProjectName = GetActiveProjectName();
-            OutputPath = GetSelectedItemPath();
-        }
-
-        public GenShell(Dictionary<string, string> replacements)
-        {
-            ProjectName = replacements["$safeprojectname$"];
-
-            var di = new DirectoryInfo(replacements["$destinationdirectory$"]);
-
-            OutputPath = di.FullName;
-        }
-
         protected abstract string GetActiveProjectName();
         protected abstract string GetActiveProjectPath();
         protected abstract string GetSelectedItemPath();

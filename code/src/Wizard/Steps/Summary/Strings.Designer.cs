@@ -149,5 +149,14 @@ namespace Microsoft.Templates.Wizard.Steps.Summary {
                 return ResourceManager.GetString("ProjectsTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SelectedFramework: .
+        /// </summary>
+        public static string SelectedFramework {
+            get {
+                return ResourceManager.GetString("SelectedFramework", resourceCulture);
+            }
+        }
     }
 }

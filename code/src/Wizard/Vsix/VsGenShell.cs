@@ -24,13 +24,16 @@ namespace Microsoft.Templates.Wizard.Vsix
 
         private Lazy<IVsUIShell> _uiShell = new Lazy<IVsUIShell>(() => ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell)) as IVsUIShell, true);
         private IVsUIShell UIShell => _uiShell.Value;
+
+        //TODO: CACHE ON THIS
         private VsOutputPane OutputPane => new VsOutputPane();
         
-        public VsGenShell()
+        public VsGenShell(Dictionary<string, string> replacements)
         {
-        }
-        public VsGenShell(Dictionary<string, string> replacements) : base(replacements)
-        {
+            ProjectName = replacements["$safeprojectname$"];
+
+            var di = new DirectoryInfo(replacements["$destinationdirectory$"]);
+            OutputPath = di.FullName;
         }
 
         public override void AddItems(params string[] itemsFullPath)
