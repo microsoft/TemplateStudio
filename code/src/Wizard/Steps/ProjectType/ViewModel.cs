@@ -65,11 +65,11 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectType
         {
             ProjectTypes.Clear();
 
-            var projectTypes = Context.TemplatesRepository.GetAll()
+            var projectTypes = TemplatesRepository.Current.GetAll()
                                                             .Where(t => t.GetTemplateType() == TemplateType.Project && !String.IsNullOrWhiteSpace(t.GetProjectType()))
                                                             .Select(t => t.GetProjectType())
                                                             .Distinct()
-                                                            .Select(t => new ProjectInfoViewModel(t, Context.TemplatesRepository.GetProjectTypeInfo(t)))
+                                                            .Select(t => new ProjectInfoViewModel(t, TemplatesRepository.Current.GetProjectTypeInfo(t)))
                                                             .ToList();
 
             ProjectTypes.AddRange(projectTypes);

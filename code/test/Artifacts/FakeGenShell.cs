@@ -17,15 +17,17 @@ namespace Microsoft.Templates.Test.Artifacts
         private readonly Action<string> _changeStatus;
         private readonly Window _owner;
 
-        public string SolutionPath { get; set; } = string.Empty;
-
-        public FakeGenShell(string name, string location, string solutionName = null, Action<string> changeStatus = null, Window owner = null)
+        public string SolutionPath
         {
-            ProjectName = name;
+            get
+            {
+                var outputDir = new DirectoryInfo(ContextInfo.OutputPath);
+                return Path.Combine(outputDir.Parent.FullName, $"{ContextInfo.ProjectName}.sln");
+            }
+        }
 
-            OutputPath = Path.Combine(location, name, ProjectName);
-            SolutionPath = Path.Combine(location, name, $"{name}.sln");
-
+        public FakeGenShell(Action<string> changeStatus = null, Window owner = null)
+        {
             _changeStatus = changeStatus;
             _owner = owner;
         }
@@ -37,10 +39,10 @@ namespace Microsoft.Templates.Test.Artifacts
                 return;
             }
 
-            var projectFileName = FindProject(OutputPath);
+            var projectFileName = FindProject(ContextInfo.OutputPath);
             if (string.IsNullOrEmpty(projectFileName))
             {
-                throw new Exception($"There is not project file in {OutputPath}");
+                throw new Exception($"There is not project file in {ContextInfo.OutputPath}");
             }
             var msbuildProj = MsBuildProject.Load(projectFileName);
 
@@ -66,7 +68,7 @@ namespace Microsoft.Templates.Test.Artifacts
 
         public override string GetActiveNamespace()
         {
-            return ProjectName;
+            return ContextInfo.ProjectName;
         }
 
         public override void SaveSolution(string solutionFullPath)
@@ -80,7 +82,7 @@ namespace Microsoft.Templates.Test.Artifacts
 
         protected override string GetActiveProjectName()
         {
-            return ProjectName;
+            return ContextInfo.ProjectName;
         }
 
         protected override string GetActiveProjectPath()

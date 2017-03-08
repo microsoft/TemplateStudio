@@ -68,12 +68,12 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures
 
         private void AddFromLayout()
         {
-            var projectTemplate = Context.TemplatesRepository.Find(t => t.GetProjectType() == Context.State.ProjectType && t.GetFrameworkList().Any(f => f == Context.State.Framework));
+            var projectTemplate = TemplatesRepository.Current.Find(t => t.GetProjectType() == Context.State.ProjectType && t.GetFrameworkList().Any(f => f == Context.State.Framework));
             var layout = projectTemplate.GetLayout();
 
             foreach (var item in layout)
             {
-                var template = Context.TemplatesRepository.Find(t => t.Identity == item.templateIdentity);
+                var template = TemplatesRepository.Current.Find(t => t.Identity == item.templateIdentity);
                 if (template != null && template.GetTemplateType() == TemplateType.DevFeature)
                 {
                     Templates.Add(new PageViewModel(item.name, template.Name, item.@readonly));

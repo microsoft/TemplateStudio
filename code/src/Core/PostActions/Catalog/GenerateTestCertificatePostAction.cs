@@ -13,7 +13,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class GenerateTestCertificatePostAction : PostAction<string>
     {
-        public GenerateTestCertificatePostAction(GenShell shell, string config) : base(shell, config)
+        public GenerateTestCertificatePostAction(string config) : base(config)
         {
         }
 
@@ -35,10 +35,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private void AddToProject(string base64Encoded)
         {
-            var filePath = Path.Combine(_shell.OutputPath, _shell.ProjectName) + "_TemporaryKey.pfx";
+            var filePath = Path.Combine(GenShell.Current.ContextInfo.OutputPath, GenShell.Current.ContextInfo.ProjectName) + "_TemporaryKey.pfx";
             File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
             
-            _shell.AddItems(filePath);
+            GenShell.Current.AddItems(filePath);
         }
 
         private static void RemoveFromStore(string base64Encoded)

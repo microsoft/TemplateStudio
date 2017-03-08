@@ -122,8 +122,6 @@
     <Compile Include="ITemplateInfoExtensionsTest.cs" />
     <Compile Include="Locations\TemplatexTests.cs" />
     <Compile Include="NamingTest.cs" />
-    <Compile Include="Injection\CodeInjectorTest.cs" />
-    <Compile Include="Injection\ReferencesInjectorTest.cs" />
     <None Include="TestData\Merge\Source_expected.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -133,10 +131,6 @@
     <None Include="TestData\Merge\Source.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Injection\Code\Inject.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <Compile Include="Injection\XamlInjectorTest.cs" />
     <Compile Include="PostActions\Catalog\GenerateTestCertificatePostActionTest.cs" />
     <Compile Include="PostActions\Catalog\MergeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -146,9 +140,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="TemplatesFixture.cs" />
-    <None Include="TestData\Injection\Code\Inject_Expected.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Compile Include="Locations\UnitTestsTemplatesLocation.cs" />
   </ItemGroup>
   <ItemGroup>

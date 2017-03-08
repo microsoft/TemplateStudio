@@ -28,14 +28,6 @@ namespace Microsoft.Templates.Wizard.Vsix
         //TODO: CACHE ON THIS
         private VsOutputPane OutputPane => new VsOutputPane();
         
-        public VsGenShell(Dictionary<string, string> replacements)
-        {
-            ProjectName = replacements["$safeprojectname$"];
-
-            var di = new DirectoryInfo(replacements["$destinationdirectory$"]);
-            OutputPath = di.FullName;
-        }
-
         public override void AddItems(params string[] itemsFullPath)
         {
             if (itemsFullPath == null || itemsFullPath.Length == 0)
@@ -97,7 +89,7 @@ namespace Microsoft.Templates.Wizard.Vsix
                 return p.Properties.GetSafeValue("DefaultNamespace");
             }
 
-            return ProjectName;
+            return ContextInfo.ProjectName;
         }
 
         public override void SaveSolution(string solutionFullPath)

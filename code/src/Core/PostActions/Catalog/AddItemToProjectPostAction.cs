@@ -10,7 +10,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class AddItemToProjectPostAction : PostAction<IReadOnlyList<ICreationPath>>
     {
-        public AddItemToProjectPostAction(GenShell shell, IReadOnlyList<ICreationPath> config) : base(shell, config)
+        public AddItemToProjectPostAction(IReadOnlyList<ICreationPath> config) : base(config)
         {
         }
 
@@ -18,10 +18,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
             var itemsToAdd = _config
                                 .Where(o => !string.IsNullOrWhiteSpace(o.Path))
-                                .Select(o => Path.GetFullPath(Path.Combine(_shell.OutputPath, o.Path)))
+                                .Select(o => Path.GetFullPath(Path.Combine(GenShell.Current.ContextInfo.OutputPath, o.Path)))
                                 .ToList();
 
-            _shell.AddItems(itemsToAdd.ToArray());
+            GenShell.Current.AddItems(itemsToAdd.ToArray());
         }
     }
 }

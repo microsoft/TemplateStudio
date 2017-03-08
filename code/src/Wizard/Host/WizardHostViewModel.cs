@@ -23,12 +23,12 @@ namespace Microsoft.Templates.Wizard.Host
         public WizardHost Host { get; }
         public WizardSteps Steps { get; }
 
-        public WizardHostViewModel(WizardHost host, WizardSteps steps, TemplatesRepository templatesRepository, GenShell shell)
+        public WizardHostViewModel(WizardHost host, WizardSteps steps)
         {
             //TODO: VERIFY NOT NULL
             Host = host;
             Steps = steps;
-            _context = new WizardContext(templatesRepository, shell);
+            _context = new WizardContext();
 
             _context.PropertyChanged += _context_PropertyChanged;
 
@@ -41,7 +41,7 @@ namespace Microsoft.Templates.Wizard.Host
 
         public async Task IniatializeAsync()
         {
-            _context.TemplatesRepository.Sync += (sender, status) =>
+            TemplatesRepository.Current.SyncStatusChanged += (sender, status) =>
             {
                 Status = GetStatusText(status);
 
@@ -56,7 +56,7 @@ namespace Microsoft.Templates.Wizard.Host
 
             try
             {
-                await _context.TemplatesRepository.SynchronizeAsync();
+                await TemplatesRepository.Current.SynchronizeAsync();
                 Status = string.Empty;
             }
             catch (Exception ex)

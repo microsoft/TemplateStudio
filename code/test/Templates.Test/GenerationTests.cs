@@ -24,6 +24,7 @@ namespace Microsoft.Templates.Test
         public GenerationTests(GenerationTestsFixture fixture)
         {
             this.fixture = fixture;
+            GenShell.Initialize(new FakeGenShell());
         }
 
         [STAThread]
@@ -34,7 +35,8 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{name}{framework}";
 
-            var generator = new GenController(new FakeGenShell(projectName, fixture.TestProjectsPath));
+            GenShell.Current.ContextInfo = GenSolution.Create(projectName, fixture.TestProjectsPath);
+
             var wizardState = new WizardState
             {
                 Framework = framework,
@@ -43,7 +45,7 @@ namespace Microsoft.Templates.Test
 
             AddLayoutItems(wizardState, projectTemplate);
 
-            generator.Generate(wizardState);
+            GenController.Generate(wizardState);
 
             //Build solution
             var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);
@@ -64,7 +66,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{name}{framework}All";
 
-            var generator = new GenController(new FakeGenShell(projectName, fixture.TestPagesPath));
+            GenShell.Current.ContextInfo = GenSolution.Create(projectName, fixture.TestPagesPath);
 
             var wizardState = new WizardState
             {
@@ -75,7 +77,7 @@ namespace Microsoft.Templates.Test
             AddLayoutItems(wizardState, targetProjectTemplate);
             AddItems(wizardState, GetTemplates(framework, TemplateType.Page));
 
-            generator.Generate(wizardState);
+            GenController.Generate(wizardState);
 
             //Build solution
             var outputPath = Path.Combine(fixture.TestPagesPath, projectName);
@@ -96,7 +98,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{name}{framework}All";
 
-            var generator = new GenController(new FakeGenShell(projectName, fixture.TestDevFeaturesPath));
+            GenShell.Current.ContextInfo = GenSolution.Create(projectName, fixture.TestDevFeaturesPath);
 
             var wizardState = new WizardState
             {
@@ -107,7 +109,7 @@ namespace Microsoft.Templates.Test
             AddLayoutItems(wizardState, targetProjectTemplate);
             AddItems(wizardState, GetTemplates(framework, TemplateType.DevFeature));
 
-            generator.Generate(wizardState);
+            GenController.Generate(wizardState);
 
             //Build solution
             var outputPath = Path.Combine(fixture.TestDevFeaturesPath, projectName);
@@ -128,7 +130,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{name}{framework}All";
 
-            var generator = new GenController(new FakeGenShell(projectName, fixture.TestConsumerFeaturesPath));
+            GenShell.Current.ContextInfo = GenSolution.Create(projectName, fixture.TestConsumerFeaturesPath);
 
             var wizardState = new WizardState
             {
@@ -139,7 +141,7 @@ namespace Microsoft.Templates.Test
             AddLayoutItems(wizardState, targetProjectTemplate);
             AddItems(wizardState, GetTemplates(framework, TemplateType.ConsumerFeature));
 
-            generator.Generate(wizardState);
+            GenController.Generate(wizardState);
 
             //Build solution
             var outputPath = Path.Combine(fixture.TestConsumerFeaturesPath, projectName);

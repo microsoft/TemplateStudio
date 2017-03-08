@@ -12,20 +12,7 @@ namespace Microsoft.Templates.Wizard
 {
     public class GenComposer
     {
-        private TemplatesRepository _repository;
-        public GenShell Shell { get; }
-
-        public GenComposer(GenShell shell) : this(shell, new TemplatesRepository(new RemoteTemplatesLocation()))
-        {
-        }
-
-        public GenComposer(GenShell shell, TemplatesRepository repository)
-        {
-            Shell = shell;
-            _repository = repository;
-        }
-
-        public IEnumerable<GenInfo> Compose(WizardState userSelection)
+        public static IEnumerable<GenInfo> Compose(WizardState userSelection)
         {
             var genQueue = new List<GenInfo>();
 
@@ -43,7 +30,7 @@ namespace Microsoft.Templates.Wizard
             return genQueue;
         }
 
-        private void AddMissingDependencies(List<GenInfo> genQueue)
+        private static void AddMissingDependencies(List<GenInfo> genQueue)
         {
             var currentGenQueue = genQueue.ToList();
             foreach (var item in currentGenQueue)
@@ -53,18 +40,18 @@ namespace Microsoft.Templates.Wizard
                 {
                     if (!genQueue.ToList().Any(g => g.Template.Identity == dependency))
                     {
-                        var dependencyTemplate = _repository.Find(t => t.Identity == dependency);
+                        var dependencyTemplate = TemplatesRepository.Current.Find(t => t.Identity == dependency);
                         CreateGenInfo(dependencyTemplate.Name, dependencyTemplate, genQueue);
                     }
                 }
             }
         }
 
-        private void AddPages(WizardState userSelection, List<GenInfo> genQueue)
+        private static void AddPages(WizardState userSelection, List<GenInfo> genQueue)
         {
             foreach (var page in userSelection.Pages)
             {
-                var pageTemplate = _repository.Find(t => t.Name == page.templateName);
+                var pageTemplate = TemplatesRepository.Current.Find(t => t.Name == page.templateName);
                 if (pageTemplate != null)
                 {
                     var genPage = CreateGenInfo(page.name, pageTemplate, genQueue);
@@ -76,25 +63,25 @@ namespace Microsoft.Templates.Wizard
             }
         }
 
-        private void AddProjects(WizardState userSelection, List<GenInfo> genQueue)
+        private static void AddProjects(WizardState userSelection, List<GenInfo> genQueue)
         {
-            var projectTemplate = _repository
-                                        .Find(t => t.GetTemplateType() == TemplateType.Project
-                                            && t.GetProjectType() == userSelection.ProjectType
-                                            && t.GetFrameworkList().Any(f => f == userSelection.Framework));
+            var projectTemplate = TemplatesRepository.Current
+                                                        .Find(t => t.GetTemplateType() == TemplateType.Project
+                                                            && t.GetProjectType() == userSelection.ProjectType
+                                                            && t.GetFrameworkList().Any(f => f == userSelection.Framework));
 
-            var genProject = CreateGenInfo(Shell.ProjectName, projectTemplate, genQueue);
+            var genProject = CreateGenInfo(GenShell.Current.ContextInfo.ProjectName, projectTemplate, genQueue);
             genProject.Parameters.Add(GenParams.Username, Environment.UserName);
 
             AddTemplate(genProject, genQueue, userSelection.Framework, "Project");
             AddTemplate(genProject, genQueue, userSelection.Framework, "Project", userSelection.ProjectType);
         }
 
-        private void AddDevFeatures(WizardState userSelection, List<GenInfo> genQueue)
+        private static void AddDevFeatures(WizardState userSelection, List<GenInfo> genQueue)
         {
             foreach (var feature in userSelection.DevFeatures)
             {
-                var featureTemplate = _repository.Find(t => t.Name == feature.templateName);
+                var featureTemplate = TemplatesRepository.Current.Find(t => t.Name == feature.templateName);
                 if (featureTemplate != null)
                 {
                     var genFeature = CreateGenInfo(feature.name, featureTemplate, genQueue);
@@ -103,11 +90,11 @@ namespace Microsoft.Templates.Wizard
             }
         }
 
-        private void AddConsumerFeatures(WizardState userSelection, List<GenInfo> genQueue)
+        private static void AddConsumerFeatures(WizardState userSelection, List<GenInfo> genQueue)
         {
             foreach (var feature in userSelection.ConsumerFeatures)
             {
-                var featureTemplate = _repository.Find(t => t.Name == feature.templateName);
+                var featureTemplate = TemplatesRepository.Current.Find(t => t.Name == feature.templateName);
                 if (featureTemplate != null)
                 {
                     CreateGenInfo(feature.name, featureTemplate, genQueue);
@@ -115,18 +102,18 @@ namespace Microsoft.Templates.Wizard
             }
         }
 
-        private void AddTemplate(GenInfo mainGenInfo, List<GenInfo> queue, params string[] predicates)
+        private static void AddTemplate(GenInfo mainGenInfo, List<GenInfo> queue, params string[] predicates)
         {
             var predicate = string.Join(".", predicates.Select(p => p.ToLower()));
 
             AddTemplate(mainGenInfo, queue, t => t.Name.Equals(predicate, StringComparison.OrdinalIgnoreCase));
         }
 
-        private void AddTemplate(GenInfo mainGenInfo, List<GenInfo> queue, Func<ITemplateInfo, bool> predicate)
+        private static void AddTemplate(GenInfo mainGenInfo, List<GenInfo> queue, Func<ITemplateInfo, bool> predicate)
         {
-            var targetTemplate = _repository
-                                        .Get(t => t.GetTemplateType() == TemplateType.Framework)
-                                        .FirstOrDefault(predicate);
+            var targetTemplate = TemplatesRepository.Current
+                                                        .Get(t => t.GetTemplateType() == TemplateType.Framework)
+                                                        .FirstOrDefault(predicate);
 
             if (targetTemplate != null)
             {
@@ -139,7 +126,7 @@ namespace Microsoft.Templates.Wizard
             }
         }
 
-        private GenInfo CreateGenInfo(string name, ITemplateInfo template, List<GenInfo> queue)
+        private static GenInfo CreateGenInfo(string name, ITemplateInfo template, List<GenInfo> queue)
         {
             var genInfo = new GenInfo
             {
@@ -153,10 +140,10 @@ namespace Microsoft.Templates.Wizard
             return genInfo;
         }
 
-        private void AddDefaultParams(GenInfo genInfo)
+        private static void AddDefaultParams(GenInfo genInfo)
         {
-            genInfo.Parameters.Add(GenParams.RootNamespace, Shell.GetActiveNamespace());
-            genInfo.Parameters.Add(GenParams.ItemNamespace, Shell.GetActiveNamespace());
+            genInfo.Parameters.Add(GenParams.RootNamespace, GenShell.Current.GetActiveNamespace());
+            genInfo.Parameters.Add(GenParams.ItemNamespace, GenShell.Current.GetActiveNamespace());
         }
     }
 }

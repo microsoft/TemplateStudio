@@ -17,14 +17,14 @@ namespace Microsoft.Templates.VsEmulator.Main
 {
     public class MainViewModel : Observable
     {
-        private GenController _gen;
-        private FakeGenShell _shell;
-
         private readonly Window _host;
 
         public MainViewModel(Window host)
         {
             _host = host;
+
+            TemplatesRepository.Initialize(new LocalTemplatesLocation());
+            GenShell.Initialize(new FakeGenShell(msg => SetStateAsync(msg), _host));
         }
 
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
@@ -65,6 +65,8 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
+        private FakeGenShell CurrentShell => (FakeGenShell)GenShell.Current;
+
         public void Initialize()
         {
             SolutionName = null;
@@ -77,18 +79,16 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var newProjectInfo = ShowNewProjectDialog();
                 if (!string.IsNullOrEmpty(newProjectInfo.name))
                 {
-                    //TODO: THIS SHOULD BE CREATED IN THE CONSTRUCTOR
-                    _shell = new FakeGenShell(newProjectInfo.name, newProjectInfo.location, newProjectInfo.solutionName, msg => SetStateAsync(msg), _host);
-                    _gen = new GenController(_shell, new TemplatesRepository(new LocalTemplatesLocation()));
+                    CurrentShell.ContextInfo = GenSolution.Create(newProjectInfo.name, newProjectInfo.location, newProjectInfo.solutionName);
 
-                    var userSelection = _gen.GetUserSelection(WizardSteps.Project);
+                    var userSelection = GenController.GetUserSelection(WizardSteps.Project);
                     if (userSelection != null)
                     {
                         SolutionName = null;
 
-                        _gen.Generate(userSelection);
+                        GenController.Generate(userSelection);
 
-                        _shell.ShowStatusBarMessage("Project created!!!");
+                        GenShell.Current.ShowStatusBarMessage("Project created!!!");
 
                         SolutionName = newProjectInfo.name;
                     }
@@ -96,28 +96,28 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
             catch (WizardBackoutException)
             {
-                _shell.ShowStatusBarMessage("Wizard back out");
+                GenShell.Current.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)
             {
-                _shell.ShowStatusBarMessage("Wizard cancelled");
+                GenShell.Current.ShowStatusBarMessage("Wizard cancelled");
             }
         }
 
 
         private void OpenInVs()
         {
-            if (!string.IsNullOrEmpty(_shell?.SolutionPath))
+            if (!string.IsNullOrEmpty(CurrentShell.SolutionPath))
             {
-                System.Diagnostics.Process.Start(_shell.SolutionPath);
+                System.Diagnostics.Process.Start(CurrentShell.SolutionPath);
             }
         }
 
         private void OpenInExplorer()
         {
-            if (!string.IsNullOrEmpty(_shell?.SolutionPath))
+            if (!string.IsNullOrEmpty(CurrentShell.SolutionPath))
             {
-                System.Diagnostics.Process.Start(System.IO.Path.GetDirectoryName(_shell.SolutionPath));
+                System.Diagnostics.Process.Start(System.IO.Path.GetDirectoryName(CurrentShell.SolutionPath));
             }
         }
 

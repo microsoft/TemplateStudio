@@ -1,5 +1,6 @@
 ﻿using EnvDTE;
 using Microsoft.Internal.VisualStudio.PlatformUI;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Wizard;
@@ -21,11 +22,11 @@ namespace Microsoft.Templates.Wizard.Vsix
 {
     public class SolutionWizard : IWizard
     {
-        private GenController _gen;
         private WizardState _userSelection;
 
         public SolutionWizard()
         {
+            GenShell.Initialize(new VsGenShell());
         }
 
         public void BeforeOpeningFile(ProjectItem projectItem)
@@ -43,21 +44,18 @@ namespace Microsoft.Templates.Wizard.Vsix
         public void RunFinished()
         {
             AppHealth.Current.Verbose.TrackAsync("Creating UWP Community Templates project...").FireAndForget();
-            _gen.Generate(_userSelection);
+            GenController.Generate(_userSelection);
             AppHealth.Current.Verbose.TrackAsync("Generation finished").FireAndForget();
 
-            _gen.Shell.ShowTaskList();
+            GenShell.Current.ShowTaskList();
         }
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
-            var shell = new VsGenShell(replacementsDictionary);
-
-            _gen = new GenController(shell);
-
             if (runKind == WizardRunKind.AsNewProject || runKind == WizardRunKind.AsMultiProject)
             {
-                _userSelection = _gen.GetUserSelection(WizardSteps.Project);
+                GenShell.Current.ContextInfo = GenSolution.Create(replacementsDictionary);
+                _userSelection = GenController.GetUserSelection(WizardSteps.Project);
             }
         }
 

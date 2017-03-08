@@ -10,7 +10,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class AddProjectToSolutionPostAction : PostAction<IReadOnlyList<ICreationPath>>
     {
-        public AddProjectToSolutionPostAction(GenShell shell, IReadOnlyList<ICreationPath> config) : base(shell, config)
+        public AddProjectToSolutionPostAction(IReadOnlyList<ICreationPath> config) : base(config)
         {
         }
 
@@ -20,8 +20,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             {
                 if (!string.IsNullOrWhiteSpace(output.Path))
                 {
-                    var projectPath = Path.GetFullPath(Path.Combine(_shell.OutputPath, output.Path));
-                    _shell.AddProjectToSolution(projectPath);
+                    var projectPath = Path.GetFullPath(Path.Combine(GenShell.Current.ContextInfo.OutputPath, output.Path));
+                    GenShell.Current.AddProjectToSolution(projectPath);
                 }
             }
         }

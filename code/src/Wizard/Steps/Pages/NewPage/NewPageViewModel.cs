@@ -68,10 +68,10 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
         {
             Templates.Clear();
 
-            var pageTemplates = _context.TemplatesRepository.GetAll()
+            var pageTemplates = TemplatesRepository.Current.GetAll()
                                                                 .Where(f => f.GetTemplateType() == TemplateType.Page
                                                                     && f.GetFrameworkList().Contains(_context.State.Framework))
-                                                                .Select(t => new TemplateViewModel(t, _context.TemplatesRepository.GetDependencies(t)))
+                                                                .Select(t => new TemplateViewModel(t, TemplatesRepository.Current.GetDependencies(t)))
                                                                 .OrderBy(t => t.Order)
                                                                 .ToList();
 

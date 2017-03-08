@@ -23,9 +23,9 @@ namespace Microsoft.Templates.Core
 
     public class TemplatesRepository
     {
+        private static TemplatesLocation _staticLocation;
 
-        public event Action<object, SyncStatus> Sync;
-
+        public event Action<object, SyncStatus> SyncStatusChanged;
 
         private static readonly string FolderName = Configuration.Current.RepositoryFolderName;
 
@@ -35,6 +35,26 @@ namespace Microsoft.Templates.Core
         public string WorkingFolder => _workingFolder.Value;
 
         private string FileVersionPath => Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName, TemplatesLocation.VersionFileName);
+
+
+        private static readonly Lazy<TemplatesRepository> _current = new Lazy<TemplatesRepository>(GetInstance, true);
+
+        private static TemplatesRepository GetInstance()
+        {
+            if (_staticLocation == null)
+            {
+                _staticLocation = new RemoteTemplatesLocation();
+            }
+
+            return new TemplatesRepository(_staticLocation);
+        }
+
+        public static TemplatesRepository Current => _current.Value;
+
+        public static void Initialize(TemplatesLocation location)
+        {
+            _staticLocation = location;
+        }
 
         public TemplatesRepository(TemplatesLocation location)
         {
@@ -56,9 +76,9 @@ namespace Microsoft.Templates.Core
         }
         private async Task AdquireContentAsync()
         {
-            Sync?.Invoke(this, SyncStatus.Adquiring);
+            SyncStatusChanged?.Invoke(this, SyncStatus.Adquiring);
             await Task.Run(() => AdquireContent());
-            Sync?.Invoke(this, SyncStatus.Adquired);
+            SyncStatusChanged?.Invoke(this, SyncStatus.Adquired);
         }
 
         private void AdquireContent()
@@ -75,9 +95,9 @@ namespace Microsoft.Templates.Core
 
         private async Task UpdateContentAsync()
         {
-            Sync?.Invoke(this, SyncStatus.Updating);
+            SyncStatusChanged?.Invoke(this, SyncStatus.Updating);
             await Task.Run(() => UpdateContent());
-            Sync?.Invoke(this, SyncStatus.Updated);
+            SyncStatusChanged?.Invoke(this, SyncStatus.Updated);
         }
 
         private void UpdateContent()

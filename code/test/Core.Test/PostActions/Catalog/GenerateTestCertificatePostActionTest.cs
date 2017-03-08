@@ -1,11 +1,11 @@
 ﻿using Microsoft.Templates.Core.PostActions.Catalog;
+using Microsoft.Templates.Test.Artifacts;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Templates.Test.Artifacts;
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
@@ -17,13 +17,15 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         {
             var projectName = "test";
 
-            var fakeShell = new FakeGenShell(projectName, @".\TestData\tmp");
-            Directory.CreateDirectory(fakeShell.OutputPath);
-            File.Copy(Path.Combine(Environment.CurrentDirectory, "TestData\\TestProject\\Test.csproj"), Path.Combine(fakeShell.OutputPath, "Test.csproj"), true);
+            GenShell.Initialize(new FakeGenShell());
+            GenShell.Current.ContextInfo = GenSolution.Create(projectName, @".\TestData\tmp");
 
-            var postAction =  new GenerateTestCertificatePostAction(fakeShell, "TestUser");
+            Directory.CreateDirectory(GenShell.Current.ContextInfo.OutputPath);
+            File.Copy(Path.Combine(Environment.CurrentDirectory, "TestData\\TestProject\\Test.csproj"), Path.Combine(GenShell.Current.ContextInfo.OutputPath, "Test.csproj"), true);
+
+            var postAction =  new GenerateTestCertificatePostAction("TestUser");
             postAction.Execute();
-            var certFilePath = Path.Combine(fakeShell.OutputPath, $"{projectName}_TemporaryKey.pfx");
+            var certFilePath = Path.Combine(GenShell.Current.ContextInfo.OutputPath, $"{projectName}_TemporaryKey.pfx");
 
             Assert.True(File.Exists(certFilePath));
 
