@@ -5,7 +5,6 @@ namespace ItemNamespace.MasterDetailPage
 {
     public class DessertService
     {
-        //TODO: Use LoadDataAsync method to use your own data
         public async Task<IEnumerable<DessertModel>> GetDataAsync()
         {
             await Task.Delay(0);
