@@ -9,8 +9,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
     public static class IEnumerableExtensions
     {
         private const string MacroBeforeMode = "^^";
-        private const string MacroStartGroup = "{{";
-        private const string MarcoEndGroup = "}}";
+        private const string MacroStartGroup = "{[{";
+        private const string MarcoEndGroup = "}]}";
 
         public static int SafeIndexOf(this IEnumerable<string> source, string item, int skip)
         {

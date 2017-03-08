@@ -33,7 +33,13 @@ namespace ItemNamespace.MapPage
             ZoomLevel = 19;
         }
 
-        public void SetMap(MapControl map) => _map = map;
+        public void SetMap(MapControl map)
+        {
+            _map = map;
+            
+            //TODO UWPTemplates: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/
+            _map.MapServiceToken = "";
+        }
 
         private void LoadDataAsync()
         {

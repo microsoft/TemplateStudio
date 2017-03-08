@@ -22,41 +22,46 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
-        <ItemsControl ItemsSource="{Binding Templates}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Visibility="{Binding Items, Converter={StaticResource CollectionToVisibilityConverter}}" Style="{StaticResource SummaryInfoContainerStyle}">
-                        <TextBlock Text="{Binding Title}" Style="{StaticResource SummaryInfoTitleStyle}" />
-                        <ItemsControl ItemsSource="{Binding Items}" Style="{StaticResource SummaryInfoItemsStyle}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Name}" />
-                                            <TextBlock>
-                                                <TextBlock.Text>
-                                                    <MultiBinding StringFormat=", {0}, {1}, {2}">
-                                                        <Binding Path="TemplateName" />
-                                                        <Binding Path="Author" />
-                                                        <Binding Path="Framework" />
-                                                    </MultiBinding>
-                                                </TextBlock.Text>
-                                            </TextBlock>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{x:Static local:Strings.SelectedFramework}" Style="{StaticResource SummaryInfoTitleStyle}" />
+            <TextBlock Text="{Binding SelectedFramework}" />
+        </StackPanel>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Templates}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Visibility="{Binding Items, Converter={StaticResource CollectionToVisibilityConverter}}" Style="{StaticResource SummaryInfoContainerStyle}">
+                            <TextBlock Text="{Binding Title}" Style="{StaticResource SummaryInfoTitleStyle}" />
+                            <ItemsControl ItemsSource="{Binding Items}" Style="{StaticResource SummaryInfoItemsStyle}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Name}" />
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <MultiBinding StringFormat=", {0}, {1}">
+                                                            <Binding Path="TemplateName" />
+                                                            <Binding Path="Author" />
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </StackPanel>
                                         </StackPanel>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-        <Grid Grid.Row="1">
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <Grid Grid.Row="2">
             <Grid.Style>
                 <Style TargetType="Grid" BasedOn="{StaticResource LicencesContainerStyle}">
                     <Setter Property="Visibility" Value="Visible" />
@@ -93,7 +98,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </Grid>
-        <CheckBox Grid.Row="2" IsChecked="{Binding TermsAccepted}" Style="{StaticResource AcceptTermsStyle}">
+        <CheckBox Grid.Row="3" IsChecked="{Binding TermsAccepted}" Style="{StaticResource AcceptTermsStyle}">
             <TextBlock Text="{x:Static local:Strings.AcceptTerms}" TextWrapping="Wrap" />
         </CheckBox>
     </Grid>
