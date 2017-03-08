@@ -147,4 +147,7 @@
   <data name="ConsumerFeaturesTitle" xml:space="preserve">
     <value>Consumer feature templates selected:</value>
   </data>
+  <data name="SelectedFramework" xml:space="preserve">
+    <value>SelectedFramework: </value>
+  </data>
 </root>

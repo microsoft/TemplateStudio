@@ -60,24 +60,5 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
             get { return _author; }
             set { SetProperty(ref _author, value); }
         }        
-
-        private string _framework;
-        public string Framework
-        {
-            get { return _framework; }
-            set { SetProperty(ref _framework, value); }
-        }
-
-        private Visibility _licenceVisibility;
-        public Visibility LicenceVisibility
-        {
-            get { return _licenceVisibility; }
-            set { SetProperty(ref _licenceVisibility, value); }
-        }
-
-        private void ShowLicence()
-        {
-            MessageBox.Show(string.Format(Strings.LicenceDialogCaption, TemplateName));
-        }
     }
 }
