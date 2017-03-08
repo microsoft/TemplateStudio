@@ -22,12 +22,12 @@ namespace App38
             var s = "";
         }
 
-        //{{
+        //{[{
         private static void ThisIsANewMethod()
         {
             //INSIDE NEW METHOD!!
         }
-        //}}
+        //}]}
 
         protected override void OnActivated(IActivatedEventArgs args)
         {
