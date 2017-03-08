@@ -67,11 +67,6 @@
     <Compile Include="Resources\ResourcesExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\content\EULA.rtf">
-      <Link>Content\EULA.rtf</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="..\..\content\UwpTemplates.config.json">
       <Link>UwpTemplates.config.json</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -86,6 +81,10 @@
       <Link>README.md</Link>
     </None>
     <None Include="app.config" />
+    <None Include="Content\EULA.rtf" />
+    <Content Include="UwpTemplates.config.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
