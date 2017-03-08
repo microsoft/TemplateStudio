@@ -85,40 +85,8 @@ namespace ItemNamespace.BackgroundTask
                 {
                     Message = $"Background Task {_taskInstance.Task.Name} finished";
                 }
-                SendToastNotification();
                 _deferral.Complete();
             }
-        }
-
-        private void SendToastNotification()
-        {
-            string xml =
-            $@"<toast activationType='foreground'>
-                <visual>
-                    <binding template='ToastGeneric'>
-                        <text>Action - text</text>
-                        <text>Make sure left button on the toast has the text ""ok"" on it, and the right button has the text ""cancel"" on it.</text>
-                    </binding>
-                </visual>
-                <actions>
-                    <action
-                        content='ok'
-                        activationType='foreground'
-                        arguments='ok'/>
-                    <action
-                        content='cancel'
-                        activationType='foreground'
-                        arguments='cancel'/>
-                </actions>
-            </toast>";
-
-            // Parse to XML
-            XmlDocument toastXml = new XmlDocument();
-            toastXml.LoadXml(xml);
-
-            // Generate toast
-            var toast = new ToastNotification(toastXml);
-            ToastNotificationManager.CreateToastNotifier().Show(toast);
         }
     }
 }
