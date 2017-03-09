@@ -1,4 +1,5 @@
 ﻿using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Test.Artifacts;
@@ -8,6 +9,7 @@ using Microsoft.Templates.Wizard.Error;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.VisualStudio.TemplateWizard;
 using System;
+using System.IO;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
@@ -23,8 +25,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             _host = host;
 
-            TemplatesRepository.Initialize(new LocalTemplatesLocation());
-            GenShell.Initialize(new FakeGenShell(msg => SetStateAsync(msg), _host));
+            GenContext.Bootstrap(new TemplatesRepository(new LocalTemplatesLocation()), new FakeGenShell(msg => SetStateAsync(msg), _host));
         }
 
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
@@ -65,7 +66,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
-        private FakeGenShell CurrentShell => (FakeGenShell)GenShell.Current;
+        public string SolutionPath { get; set; }
 
         public void Initialize()
         {
@@ -79,45 +80,48 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var newProjectInfo = ShowNewProjectDialog();
                 if (!string.IsNullOrEmpty(newProjectInfo.name))
                 {
-                    CurrentShell.ContextInfo = GenSolution.Create(newProjectInfo.name, newProjectInfo.location, newProjectInfo.solutionName);
-
-                    var userSelection = GenController.GetUserSelection(WizardSteps.Project);
-                    if (userSelection != null)
+                    var outputPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
+                    using (var context = GenContext.CreateNew(newProjectInfo.name, outputPath))
                     {
-                        SolutionName = null;
+                        var userSelection = GenController.GetUserSelection(WizardSteps.Project);
+                        if (userSelection != null)
+                        {
+                            SolutionName = null;
 
-                        GenController.Generate(userSelection);
+                            GenController.Generate(userSelection);
 
-                        GenShell.Current.ShowStatusBarMessage("Project created!!!");
+                            GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
 
-                        SolutionName = newProjectInfo.name;
+                            SolutionName = newProjectInfo.name;
+                            SolutionPath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
+                        }
                     }
                 }
             }
             catch (WizardBackoutException)
             {
-                GenShell.Current.ShowStatusBarMessage("Wizard back out");
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)
             {
-                GenShell.Current.ShowStatusBarMessage("Wizard cancelled");
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
             }
         }
 
 
         private void OpenInVs()
         {
-            if (!string.IsNullOrEmpty(CurrentShell.SolutionPath))
+            if (!string.IsNullOrEmpty(SolutionPath))
             {
-                System.Diagnostics.Process.Start(CurrentShell.SolutionPath);
+                System.Diagnostics.Process.Start(SolutionPath);
             }
         }
 
         private void OpenInExplorer()
         {
-            if (!string.IsNullOrEmpty(CurrentShell.SolutionPath))
+            if (!string.IsNullOrEmpty(SolutionPath))
             {
-                System.Diagnostics.Process.Start(System.IO.Path.GetDirectoryName(CurrentShell.SolutionPath));
+                System.Diagnostics.Process.Start(System.IO.Path.GetDirectoryName(SolutionPath));
             }
         }
 

@@ -3,6 +3,7 @@ using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions;
 using Microsoft.Templates.Wizard.Error;
@@ -35,7 +36,7 @@ namespace Microsoft.Templates.Wizard
             {
                 CleanStatusBar();
 
-                GenShell.Current.ShowModal(host);
+                GenContext.ToolBox.Shell.ShowModal(host);
 
                 if (host.Result != null)
                 {
@@ -56,7 +57,7 @@ namespace Microsoft.Templates.Wizard
                 host.SafeClose();
                 ShowError(ex, Resources.StringRes.ExceptionUnexpectedWizard);
             }
-            GenShell.Current.CancelWizard();
+            GenContext.ToolBox.Shell.CancelWizard();
             return null;
         }
 
@@ -81,13 +82,13 @@ namespace Microsoft.Templates.Wizard
 
                     if (!string.IsNullOrEmpty(statusText))
                     {
-                        GenShell.Current.ShowStatusBarMessage(statusText);
+                        GenContext.ToolBox.Shell.ShowStatusBarMessage(statusText);
                     }
 
-                    AppHealth.Current.Verbose.TrackAsync($"Generating the template {genInfo.Template.Name} to {GenShell.Current.ContextInfo.OutputPath}.").FireAndForget();
+                    AppHealth.Current.Verbose.TrackAsync($"Generating the template {genInfo.Template.Name} to {GenContext.Current.OutputPath}.").FireAndForget();
 
                     //TODO: REVIEW ASYNC
-                    var result = CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, GenShell.Current.ContextInfo.OutputPath, genInfo.Parameters, false, false).Result;
+                    var result = CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, GenContext.Current.OutputPath, genInfo.Parameters, false, false).Result;
 
                     genResults.Add($"{genInfo.Template.Identity}_{genInfo.Name}", result);
 
@@ -106,11 +107,11 @@ namespace Microsoft.Templates.Wizard
             }
             catch (Exception ex)
             {
-                GenShell.Current.CloseSolution();
+                GenContext.ToolBox.Shell.CloseSolution();
 
-                ShowError(ex, Resources.StringRes.ExceptionUnexpectedGenerating);
+                ShowError(ex, StringRes.ExceptionUnexpectedGenerating);
 
-                GenShell.Current.CancelWizard(false);
+                GenContext.ToolBox.Shell.CancelWizard(false);
             }
         }
 
@@ -154,12 +155,12 @@ namespace Microsoft.Templates.Wizard
             AppHealth.Current.Exception.TrackAsync(ex).FireAndForget();
 
             var error = new ErrorDialog(ex);
-            GenShell.Current.ShowModal(error);
+            GenContext.ToolBox.Shell.ShowModal(error);
         }
 
         private static void CleanStatusBar()
         {
-            GenShell.Current.ShowStatusBarMessage(string.Empty);
+            GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Empty);
         }
 
         private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appFx)

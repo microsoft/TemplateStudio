@@ -23,8 +23,6 @@ namespace Microsoft.Templates.Core
 
     public class TemplatesRepository
     {
-        private static TemplatesLocation _staticLocation;
-
         public event Action<object, SyncStatus> SyncStatusChanged;
 
         private static readonly string FolderName = Configuration.Current.RepositoryFolderName;
@@ -35,26 +33,6 @@ namespace Microsoft.Templates.Core
         public string WorkingFolder => _workingFolder.Value;
 
         private string FileVersionPath => Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName, TemplatesLocation.VersionFileName);
-
-
-        private static readonly Lazy<TemplatesRepository> _current = new Lazy<TemplatesRepository>(GetInstance, true);
-
-        private static TemplatesRepository GetInstance()
-        {
-            if (_staticLocation == null)
-            {
-                _staticLocation = new RemoteTemplatesLocation();
-            }
-
-            return new TemplatesRepository(_staticLocation);
-        }
-
-        public static TemplatesRepository Current => _current.Value;
-
-        public static void Initialize(TemplatesLocation location)
-        {
-            _staticLocation = location;
-        }
 
         public TemplatesRepository(TemplatesLocation location)
         {

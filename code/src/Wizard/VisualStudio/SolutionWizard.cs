@@ -3,6 +3,8 @@ using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Wizard;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.VisualStudio.Shell;
@@ -18,19 +20,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Microsoft.Templates.Wizard.Vsix
+namespace Microsoft.Templates.Wizard.VisualStudio
 {
-    public class SolutionWizard : IWizard
+    public class SolutionWizard : IWizard, IDisposable
     {
         private WizardState _userSelection;
+        private GenContext _context;
 
         public SolutionWizard()
         {
-            GenShell.Initialize(new VsGenShell());
+            //TODO: LOCK THIS?
+            if (!GenContext.IsInitialized)
+            {
+                GenContext.Bootstrap(new TemplatesRepository(new RemoteTemplatesLocation()), new VsGenShell());
+            }
         }
 
         public void BeforeOpeningFile(ProjectItem projectItem)
         {
+        }
+
+        public void Dispose()
+        {
+            _context?.Dispose();
         }
 
         public void ProjectFinishedGenerating(Project project)
@@ -47,14 +59,14 @@ namespace Microsoft.Templates.Wizard.Vsix
             GenController.Generate(_userSelection);
             AppHealth.Current.Verbose.TrackAsync("Generation finished").FireAndForget();
 
-            GenShell.Current.ShowTaskList();
+            GenContext.ToolBox.Shell.ShowTaskList();
         }
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
             if (runKind == WizardRunKind.AsNewProject || runKind == WizardRunKind.AsMultiProject)
             {
-                GenShell.Current.ContextInfo = GenSolution.Create(replacementsDictionary);
+                _context = GenContext.CreateNew(replacementsDictionary);
                 _userSelection = GenController.GetUserSelection(WizardSteps.Project);
             }
         }

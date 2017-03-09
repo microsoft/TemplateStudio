@@ -1,4 +1,5 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.Core.Gen;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,10 +19,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
             var itemsToAdd = _config
                                 .Where(o => !string.IsNullOrWhiteSpace(o.Path))
-                                .Select(o => Path.GetFullPath(Path.Combine(GenShell.Current.ContextInfo.OutputPath, o.Path)))
+                                .Select(o => Path.GetFullPath(Path.Combine(GenContext.Current.OutputPath, o.Path)))
                                 .ToList();
 
-            GenShell.Current.AddItems(itemsToAdd.ToArray());
+            GenContext.ToolBox.Shell.AddItems(itemsToAdd.ToArray());
         }
     }
 }

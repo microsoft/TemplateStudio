@@ -1,4 +1,5 @@
 ﻿using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Test.Artifacts.MSBuild;
 using Microsoft.VisualStudio.TemplateWizard;
 using System;
@@ -21,8 +22,11 @@ namespace Microsoft.Templates.Test.Artifacts
         {
             get
             {
-                var outputDir = new DirectoryInfo(ContextInfo.OutputPath);
-                return Path.Combine(outputDir.Parent.FullName, $"{ContextInfo.ProjectName}.sln");
+                if (GenContext.Current != null)
+                {
+                    return Path.Combine(Path.GetDirectoryName(GenContext.Current.OutputPath), $"{GenContext.Current.ProjectName}.sln");
+                }
+                throw new Exception("Context doesn't exists");
             }
         }
 
@@ -39,10 +43,10 @@ namespace Microsoft.Templates.Test.Artifacts
                 return;
             }
 
-            var projectFileName = FindProject(ContextInfo.OutputPath);
+            var projectFileName = FindProject(GenContext.Current.OutputPath);
             if (string.IsNullOrEmpty(projectFileName))
             {
-                throw new Exception($"There is not project file in {ContextInfo.OutputPath}");
+                throw new Exception($"There is not project file in {GenContext.Current.OutputPath}");
             }
             var msbuildProj = MsBuildProject.Load(projectFileName);
 
@@ -68,7 +72,7 @@ namespace Microsoft.Templates.Test.Artifacts
 
         public override string GetActiveNamespace()
         {
-            return ContextInfo.ProjectName;
+            return GenContext.Current.ProjectName;
         }
 
         public override void SaveSolution(string solutionFullPath)
@@ -82,7 +86,7 @@ namespace Microsoft.Templates.Test.Artifacts
 
         protected override string GetActiveProjectName()
         {
-            return ContextInfo.ProjectName;
+            return GenContext.Current.ProjectName;
         }
 
         protected override string GetActiveProjectPath()

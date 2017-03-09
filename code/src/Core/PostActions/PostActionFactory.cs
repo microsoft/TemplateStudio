@@ -1,5 +1,6 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Template;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using System;
@@ -74,7 +75,7 @@ namespace Microsoft.Templates.Core.PostActions
         private static void AddMergeActions(GenInfo genInfo, List<PostAction> postActions)
         {
             Directory
-               .EnumerateFiles(GenShell.Current.ContextInfo.OutputPath, $"*{MergePostAction.Extension}*", SearchOption.AllDirectories)
+               .EnumerateFiles(GenContext.Current.OutputPath, $"*{MergePostAction.Extension}*", SearchOption.AllDirectories)
                .ToList()
                .ForEach(f => postActions.Add(new MergePostAction(f)));
         }

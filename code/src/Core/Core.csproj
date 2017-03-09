@@ -130,10 +130,11 @@
     <Compile Include="Diagnostics\TelemetryTracker.cs" />
     <Compile Include="Diagnostics\TraceHealthWriter.cs" />
     <Compile Include="Diagnostics\ShellHealthWriter.cs" />
-    <Compile Include="GenInfo.cs" />
-    <Compile Include="GenParams.cs" />
-    <Compile Include="GenShell.cs" />
-    <Compile Include="GenSolution.cs" />
+    <Compile Include="Gen\GenInfo.cs" />
+    <Compile Include="Gen\GenParams.cs" />
+    <Compile Include="Gen\GenShell.cs" />
+    <Compile Include="Gen\GenContext.cs" />
+    <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Locations\InvalidSignatureException.cs" />
     <Compile Include="Locations\RemoteTemplatesLocation.cs" />
     <Compile Include="Extensions.cs" />

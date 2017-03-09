@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Core;
 using System.Collections.ObjectModel;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Wizard.Steps.Summary
 {

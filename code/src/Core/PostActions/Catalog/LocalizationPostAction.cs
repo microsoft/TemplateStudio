@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Templates.Core.Gen;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,14 +14,14 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
     {
         public override void Execute()
         {
-            var projectResources = GetResources(GenShell.Current.ContextInfo.OutputPath);
+            var projectResources = GetResources(GenContext.Current.OutputPath);
 
             if (projectResources == null || !projectResources.Any())
             {
                 return;
             }
 
-            foreach (var projectItemFile in Directory.EnumerateFiles(GenShell.Current.ContextInfo.OutputPath, "*", SearchOption.AllDirectories))
+            foreach (var projectItemFile in Directory.EnumerateFiles(GenContext.Current.OutputPath, "*", SearchOption.AllDirectories))
             {
                 //TODO: THIS SHOULD BE DONE IN UPDATER
                 var fileContent = File.ReadAllText(projectItemFile);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.Core.Gen;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,8 +21,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             {
                 if (!string.IsNullOrWhiteSpace(output.Path))
                 {
-                    var projectPath = Path.GetFullPath(Path.Combine(GenShell.Current.ContextInfo.OutputPath, output.Path));
-                    GenShell.Current.AddProjectToSolution(projectPath);
+                    var projectPath = Path.GetFullPath(Path.Combine(GenContext.Current.OutputPath, output.Path));
+                    GenContext.ToolBox.Shell.AddProjectToSolution(projectPath);
                 }
             }
         }

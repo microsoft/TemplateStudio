@@ -10,6 +10,7 @@ using Microsoft.Templates.Wizard.ViewModels;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Wizard.Steps.Pages;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
 {
@@ -61,7 +62,7 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
 
                 HandleValidation(validationResult);
 
-                OnPropertyChanged("OkCommand");
+                OnPropertyChanged(nameof(OkCommand));
             }
         }
 
@@ -69,10 +70,10 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
         {
             Templates.Clear();
 
-            var consumerFeatTemplates = TemplatesRepository.Current
+            var consumerFeatTemplates = GenContext.ToolBox.Repo
                                                             .Get(t => t.GetTemplateType() == TemplateType.ConsumerFeature
                                                                 && t.GetFrameworkList().Contains(_context.State.Framework))
-                                                            .Select(t => new TemplateViewModel(t, TemplatesRepository.Current.GetDependencies(t)))
+                                                            .Select(t => new TemplateViewModel(t, GenContext.ToolBox.Repo.GetDependencies(t)))
                                                             .OrderBy(t => t.Order)
                                                             .ToList();
 
@@ -91,7 +92,7 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
             else
             {
                 _isValid = false;
-                OnPropertyChanged("OkCommand");
+                OnPropertyChanged(nameof(OkCommand));
             }
 
             await Task.FromResult(true);

@@ -1,5 +1,6 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Wizard.Host;
 using System;
@@ -40,7 +41,7 @@ namespace Microsoft.Templates.Wizard
                 {
                     if (!genQueue.ToList().Any(g => g.Template.Identity == dependency))
                     {
-                        var dependencyTemplate = TemplatesRepository.Current.Find(t => t.Identity == dependency);
+                        var dependencyTemplate = GenContext.ToolBox.Repo.Find(t => t.Identity == dependency);
                         CreateGenInfo(dependencyTemplate.Name, dependencyTemplate, genQueue);
                     }
                 }
@@ -51,7 +52,7 @@ namespace Microsoft.Templates.Wizard
         {
             foreach (var page in userSelection.Pages)
             {
-                var pageTemplate = TemplatesRepository.Current.Find(t => t.Name == page.templateName);
+                var pageTemplate = GenContext.ToolBox.Repo.Find(t => t.Name == page.templateName);
                 if (pageTemplate != null)
                 {
                     var genPage = CreateGenInfo(page.name, pageTemplate, genQueue);
@@ -65,12 +66,12 @@ namespace Microsoft.Templates.Wizard
 
         private static void AddProjects(WizardState userSelection, List<GenInfo> genQueue)
         {
-            var projectTemplate = TemplatesRepository.Current
+            var projectTemplate = GenContext.ToolBox.Repo
                                                         .Find(t => t.GetTemplateType() == TemplateType.Project
                                                             && t.GetProjectType() == userSelection.ProjectType
                                                             && t.GetFrameworkList().Any(f => f == userSelection.Framework));
 
-            var genProject = CreateGenInfo(GenShell.Current.ContextInfo.ProjectName, projectTemplate, genQueue);
+            var genProject = CreateGenInfo(GenContext.Current.ProjectName, projectTemplate, genQueue);
             genProject.Parameters.Add(GenParams.Username, Environment.UserName);
 
             AddTemplate(genProject, genQueue, userSelection.Framework, "Project");
@@ -81,7 +82,7 @@ namespace Microsoft.Templates.Wizard
         {
             foreach (var feature in userSelection.DevFeatures)
             {
-                var featureTemplate = TemplatesRepository.Current.Find(t => t.Name == feature.templateName);
+                var featureTemplate = GenContext.ToolBox.Repo.Find(t => t.Name == feature.templateName);
                 if (featureTemplate != null)
                 {
                     var genFeature = CreateGenInfo(feature.name, featureTemplate, genQueue);
@@ -94,7 +95,7 @@ namespace Microsoft.Templates.Wizard
         {
             foreach (var feature in userSelection.ConsumerFeatures)
             {
-                var featureTemplate = TemplatesRepository.Current.Find(t => t.Name == feature.templateName);
+                var featureTemplate = GenContext.ToolBox.Repo.Find(t => t.Name == feature.templateName);
                 if (featureTemplate != null)
                 {
                     CreateGenInfo(feature.name, featureTemplate, genQueue);
@@ -111,7 +112,7 @@ namespace Microsoft.Templates.Wizard
 
         private static void AddTemplate(GenInfo mainGenInfo, List<GenInfo> queue, Func<ITemplateInfo, bool> predicate)
         {
-            var targetTemplate = TemplatesRepository.Current
+            var targetTemplate = GenContext.ToolBox.Repo
                                                         .Get(t => t.GetTemplateType() == TemplateType.Framework)
                                                         .FirstOrDefault(predicate);
 
@@ -142,8 +143,15 @@ namespace Microsoft.Templates.Wizard
 
         private static void AddDefaultParams(GenInfo genInfo)
         {
-            genInfo.Parameters.Add(GenParams.RootNamespace, GenShell.Current.GetActiveNamespace());
-            genInfo.Parameters.Add(GenParams.ItemNamespace, GenShell.Current.GetActiveNamespace());
+            var ns = GenContext.ToolBox.Shell.GetActiveNamespace();
+            if (string.IsNullOrEmpty(ns))
+            {
+                ns = GenContext.Current.ProjectName;
+            }
+            genInfo.Parameters.Add(GenParams.RootNamespace, ns);
+
+            //TODO: THIS SHOULD BE THE ITEM IN CONTEXT
+            genInfo.Parameters.Add(GenParams.ItemNamespace, ns);
         }
     }
 }

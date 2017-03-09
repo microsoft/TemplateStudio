@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Templates.Core
+namespace Microsoft.Templates.Core.Gen
 {
     public class GenInfo
     {

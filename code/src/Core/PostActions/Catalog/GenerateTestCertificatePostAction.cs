@@ -1,6 +1,7 @@
 ﻿using CERTENROLLLib;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
+using Microsoft.Templates.Core.Gen;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,10 +36,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private void AddToProject(string base64Encoded)
         {
-            var filePath = Path.Combine(GenShell.Current.ContextInfo.OutputPath, GenShell.Current.ContextInfo.ProjectName) + "_TemporaryKey.pfx";
+            var filePath = Path.Combine(GenContext.Current.OutputPath, GenContext.Current.ProjectName) + "_TemporaryKey.pfx";
             File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
             
-            GenShell.Current.AddItems(filePath);
+            GenContext.ToolBox.Shell.AddItems(filePath);
         }
 
         private static void RemoveFromStore(string base64Encoded)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Templates.Core.Gen;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         public override void Execute()
         {
-            GenShell.Current.SetActiveConfigurationAndPlatform(Configuration, Platform);
+            GenContext.ToolBox.Shell.SetActiveConfigurationAndPlatform(Configuration, Platform);
         }
     }
 }

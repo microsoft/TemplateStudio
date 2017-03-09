@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.Templates.Wizard.Vsix
+namespace Microsoft.Templates.Wizard.VisualStudio
 {
 
     public static class VsShellExtensions

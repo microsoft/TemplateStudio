@@ -3,6 +3,7 @@ using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Wizard;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -15,7 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Microsoft.Templates.Wizard.Vsix
+namespace Microsoft.Templates.Wizard.VisualStudio
 {
     public class VsGenShell : GenShell
     {
@@ -89,7 +90,7 @@ namespace Microsoft.Templates.Wizard.Vsix
                 return p.Properties.GetSafeValue("DefaultNamespace");
             }
 
-            return ContextInfo.ProjectName;
+            return null;
         }
 
         public override void SaveSolution(string solutionFullPath)
