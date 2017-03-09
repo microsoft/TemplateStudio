@@ -25,18 +25,21 @@ namespace RootNamespace.Services
             {
                 //RegistrationID let you know it was successful
             }
-        }        
+
+            //You can also send push notifications from Windows Developer Center targeting your app consumers
+            //https://docs.microsoft.com/windows/uwp/publish/send-push-notifications-to-your-apps-customers
+        }
 
         public static void HandleNotificationActivation(IActivatedEventArgs args)
         {
             if (args is ToastNotificationActivatedEventArgs)
-            {                
+            {
                 var toastArgs = args as ToastNotificationActivatedEventArgs;
-                var arguments = toastArgs.Argument; 
+                var arguments = toastArgs.Argument;
                 
-                //TODO UWPTemplates: Handle activation from toast notification,  
-                //for more info handling activation see  
-                //https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/ 
+                //TODO UWPTemplates: Handle activation from toast notification,
+                //for more info handling activation see
+                //https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/
             }
         }
     }

@@ -1,7 +1,6 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
-    "Microsoft.Services.Store.SDK": "10.1610.31001",
     "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.0.3"
   },
   "frameworks": {
