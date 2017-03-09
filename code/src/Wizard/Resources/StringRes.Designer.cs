@@ -142,6 +142,15 @@ namespace Microsoft.Templates.Wizard.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restauring packages....
+        /// </summary>
+        public static string RestauringMessage {
+            get {
+                return ResourceManager.GetString("RestauringMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Templates downloaded.
         /// </summary>
         public static string StatusAdquired {

@@ -7,6 +7,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Wizard;
 using Microsoft.Templates.Wizard.Host;
+using Microsoft.Templates.Wizard.Resources;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
@@ -58,6 +59,9 @@ namespace Microsoft.Templates.Wizard.VisualStudio
             AppHealth.Current.Verbose.TrackAsync("Creating UWP Community Templates project...").FireAndForget();
             GenController.Generate(_userSelection);
             AppHealth.Current.Verbose.TrackAsync("Generation finished").FireAndForget();
+
+            GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.RestauringMessage);
+            GenContext.ToolBox.Shell.RestorePackages();
 
             GenContext.ToolBox.Shell.ShowTaskList();
         }

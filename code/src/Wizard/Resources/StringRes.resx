@@ -144,6 +144,9 @@
   <data name="ExceptionUnexpectedWizard" xml:space="preserve">
     <value>Unexpected error in template selector wizard: {0}</value>
   </data>
+  <data name="RestauringMessage" xml:space="preserve">
+    <value>Restauring packages...</value>
+  </data>
   <data name="StatusAdquired" xml:space="preserve">
     <value>Templates downloaded</value>
   </data>

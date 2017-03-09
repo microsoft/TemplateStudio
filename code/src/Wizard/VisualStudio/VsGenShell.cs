@@ -1,20 +1,14 @@
 ﻿using EnvDTE;
 using Microsoft.Internal.VisualStudio.PlatformUI;
-using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Wizard;
+using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
+using NuGet.VisualStudio;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace Microsoft.Templates.Wizard.VisualStudio
 {
@@ -25,6 +19,8 @@ namespace Microsoft.Templates.Wizard.VisualStudio
 
         private Lazy<IVsUIShell> _uiShell = new Lazy<IVsUIShell>(() => ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell)) as IVsUIShell, true);
         private IVsUIShell UIShell => _uiShell.Value;
+
+        public IVsPackageRestorer packageRestorer;
 
         //TODO: CACHE ON THIS
         private VsOutputPane OutputPane => new VsOutputPane();
@@ -218,6 +214,14 @@ namespace Microsoft.Templates.Wizard.VisualStudio
         public override void CloseSolution()
         {
             Dte.Solution.Close();
+        }
+
+        public override void RestorePackages()
+        {
+            var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
+            var restoreService = componentModel.GetService<IVsPackageRestorer>();
+
+            restoreService?.RestorePackages(GetActiveProject());
         }
     }
 }
