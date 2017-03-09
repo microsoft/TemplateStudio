@@ -52,6 +52,12 @@ namespace Microsoft.Templates.Core
                 await AdquireContentAsync();
             }
         }
+
+        public string GetVersion()
+        {
+            return _location.GetVersion(WorkingFolder);
+        }
+
         private async Task AdquireContentAsync()
         {
             SyncStatusChanged?.Invoke(this, SyncStatus.Adquiring);

@@ -19,6 +19,12 @@ namespace Microsoft.Templates.Core.Locations
         public abstract void Adquire(string workingFolder);
         public abstract bool Update(string workingFolder);
 
+        public string GetVersion(string workingFolder)
+        {
+            var fileName = Path.Combine(workingFolder, Path.Combine(TemplatesName, VersionFileName));
+            return GetVersionFromFile(fileName);
+        }
+
         protected static void SafeDelete(string directoryPath)
         {
             if (Directory.Exists(directoryPath))
@@ -49,6 +55,16 @@ namespace Microsoft.Templates.Core.Locations
             {
                 CopyRecursive(directory, Path.Combine(targetDir, Path.GetFileName(directory)));
             }
+        }
+
+        protected static string GetVersionFromFile(string versionFilePath)
+        {
+            var version = "0.0.0";
+            if (File.Exists(versionFilePath))
+            {
+                version = File.ReadAllText(versionFilePath);
+            }
+            return version;
         }
     }
 }

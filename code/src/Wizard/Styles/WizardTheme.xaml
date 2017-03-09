@@ -29,9 +29,23 @@
     <Style TargetType="Button" x:Key="NavigationButtonStyle">
         <Setter Property="Margin" Value="{StaticResource ShortLeftMargin}" />
         <Setter Property="Width" Value="75" />
+        <Setter Property="Height" Value="24" />
     </Style>
     <Style TargetType="Frame" x:Key="StepContainerStyle">
         <Setter Property="Margin" Value="10" />
+    </Style>
+    
+    
+    <Style TargetType="TextBlock" x:Key="StatusStyle">
+        <Setter Property="Margin" Value="{StaticResource ShortBottomMargin}" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="VersionTitleStyle">
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="VersionValueStyle">
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="FontStyle" Value="Italic" />
     </Style>
 
     <Style TargetType="Grid" x:Key="TemplatesContainerStyle">

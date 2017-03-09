@@ -162,16 +162,6 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public static string GetVersionFromFile(string versionFilePath)
-        {
-            var version = "0.0.0";
-            if (File.Exists(versionFilePath))
-            {
-                version = File.ReadAllText(versionFilePath);
-            }
-            return version;
-        }
-
         private static void SafeCleanUpTempFolder(string usedTempFolder)
         {
             try

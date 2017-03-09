@@ -39,8 +39,17 @@
                 <ColumnDefinition Width="3*" />
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
-
-            <TextBlock Text="{Binding Status}" />
+            <StackPanel>
+                <TextBlock Text="{Binding Status}" Style="{StaticResource StatusStyle}" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Wizard:" Style="{StaticResource VersionTitleStyle}" />
+                    <TextBlock Text="{Binding WizardVersion}" Style="{StaticResource VersionValueStyle}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Templates:" Style="{StaticResource VersionTitleStyle}" />
+                    <TextBlock Text="{Binding TemplatesVersion}" Style="{StaticResource VersionValueStyle}" />
+                </StackPanel>
+            </StackPanel>
             <StackPanel Grid.Column="1" Style="{StaticResource NavigationContainerStyle}">
                 <Button Style="{StaticResource NavigationButtonStyle}" Content="{x:Static local:WizardHostResources.CancelButton}" Command="{Binding CancelCommand}" />
                 <Button Style="{StaticResource NavigationButtonStyle}" Content="{x:Static local:WizardHostResources.PreviousButton}" Command="{Binding PreviousCommand}" />
