@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Templates.Core.Gen;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,13 +15,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private const string AnchorPattern = @"\""" + LocAnchor.Tag + @"(?<Key>\w+)~(?<Value>.+?)\""";
 
-        public CleanLocAnchorPostAction(GenShell shell) : base(shell)
-        {
-        }
-
         public override void Execute()
         {
-            var projectFiles = Directory.EnumerateFiles(_shell.OutputPath, "*", SearchOption.AllDirectories);
+            var projectFiles = Directory.EnumerateFiles(GenContext.Current.OutputPath, "*", SearchOption.AllDirectories);
 
             foreach (var file in projectFiles)
             {

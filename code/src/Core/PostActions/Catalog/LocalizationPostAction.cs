@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Templates.Core.Gen;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,20 +12,16 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class LocalizationPostAction : PostAction
     {
-        public LocalizationPostAction(GenShell shell) : base(shell)
-        {
-        }
-
         public override void Execute()
         {
-            var projectResources = GetResources(_shell.OutputPath);
+            var projectResources = GetResources(GenContext.Current.OutputPath);
 
             if (projectResources == null || !projectResources.Any())
             {
                 return;
             }
 
-            foreach (var projectItemFile in Directory.EnumerateFiles(_shell.OutputPath, "*", SearchOption.AllDirectories))
+            foreach (var projectItemFile in Directory.EnumerateFiles(GenContext.Current.OutputPath, "*", SearchOption.AllDirectories))
             {
                 //TODO: THIS SHOULD BE DONE IN UPDATER
                 var fileContent = File.ReadAllText(projectItemFile);

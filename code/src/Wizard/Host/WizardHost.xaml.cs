@@ -25,9 +25,9 @@ namespace Microsoft.Templates.Wizard.Host
         public WizardHostViewModel ViewModel { get; }
         public WizardState Result { get; set; }
 
-        public WizardHost(WizardSteps wizardSteps, TemplatesRepository templatesRepository, GenShell shell)
+        public WizardHost(WizardSteps wizardSteps)
         {
-            ViewModel = new WizardHostViewModel(this, wizardSteps, templatesRepository, shell);
+            ViewModel = new WizardHostViewModel(this, wizardSteps);
 
             DataContext = ViewModel;
 

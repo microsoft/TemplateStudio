@@ -1,4 +1,5 @@
 ﻿using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Test.Artifacts.MSBuild;
 using Microsoft.VisualStudio.TemplateWizard;
 using System;
@@ -17,15 +18,20 @@ namespace Microsoft.Templates.Test.Artifacts
         private readonly Action<string> _changeStatus;
         private readonly Window _owner;
 
-        public string SolutionPath { get; set; } = string.Empty;
-
-        public FakeGenShell(string name, string location, string solutionName = null, Action<string> changeStatus = null, Window owner = null)
+        public string SolutionPath
         {
-            ProjectName = name;
+            get
+            {
+                if (GenContext.Current != null)
+                {
+                    return Path.Combine(Path.GetDirectoryName(GenContext.Current.OutputPath), $"{GenContext.Current.ProjectName}.sln");
+                }
+                throw new Exception("Context doesn't exists");
+            }
+        }
 
-            OutputPath = Path.Combine(location, name, ProjectName);
-            SolutionPath = Path.Combine(location, name, $"{name}.sln");
-
+        public FakeGenShell(Action<string> changeStatus = null, Window owner = null)
+        {
             _changeStatus = changeStatus;
             _owner = owner;
         }
@@ -37,10 +43,10 @@ namespace Microsoft.Templates.Test.Artifacts
                 return;
             }
 
-            var projectFileName = FindProject(OutputPath);
+            var projectFileName = FindProject(GenContext.Current.OutputPath);
             if (string.IsNullOrEmpty(projectFileName))
             {
-                throw new Exception($"There is not project file in {OutputPath}");
+                throw new Exception($"There is not project file in {GenContext.Current.OutputPath}");
             }
             var msbuildProj = MsBuildProject.Load(projectFileName);
 
@@ -66,7 +72,7 @@ namespace Microsoft.Templates.Test.Artifacts
 
         public override string GetActiveNamespace()
         {
-            return ProjectName;
+            return GenContext.Current.ProjectName;
         }
 
         public override void SaveSolution(string solutionFullPath)
@@ -80,7 +86,7 @@ namespace Microsoft.Templates.Test.Artifacts
 
         protected override string GetActiveProjectName()
         {
-            return ProjectName;
+            return GenContext.Current.ProjectName;
         }
 
         protected override string GetActiveProjectPath()

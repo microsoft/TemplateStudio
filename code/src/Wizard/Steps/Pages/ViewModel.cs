@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Controls;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Wizard.Steps.Pages
 {
@@ -83,12 +84,12 @@ namespace Microsoft.Templates.Wizard.Steps.Pages
 
         private void AddFromLayout()
         {
-            var projectTemplate = Context.TemplatesRepository.Find(t => t.GetProjectType() == Context.State.ProjectType && t.GetFrameworkList().Any(f => f == Context.State.Framework));
+            var projectTemplate = GenContext.ToolBox.Repo.Find(t => t.GetProjectType() == Context.State.ProjectType && t.GetFrameworkList().Any(f => f == Context.State.Framework));
             var layout = projectTemplate.GetLayout();
 
             foreach (var item in layout)
             {
-                var template = Context.TemplatesRepository.Find(t => t.Identity == item.templateIdentity);
+                var template = GenContext.ToolBox.Repo.Find(t => t.Identity == item.templateIdentity);
                 if (template != null && template.GetTemplateType() == TemplateType.Page)
                 {
                     Templates.Add(new PageViewModel(item.name, template.Name, item.@readonly));

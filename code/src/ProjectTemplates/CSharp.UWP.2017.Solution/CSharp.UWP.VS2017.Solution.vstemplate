@@ -22,6 +22,6 @@
   </TemplateContent>
   <WizardExtension>
     <Assembly>Microsoft.Templates.Wizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e4ef4cc7a47ae0c5</Assembly>
-    <FullClassName>Microsoft.Templates.Wizard.Vsix.SolutionWizard</FullClassName>
+    <FullClassName>Microsoft.Templates.Wizard.VisualStudio.SolutionWizard</FullClassName>
   </WizardExtension>
 </VSTemplate>

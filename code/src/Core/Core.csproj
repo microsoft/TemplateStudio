@@ -55,12 +55,6 @@
     <Reference Include="Microsoft.ApplicationInsights, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.ApplicationInsights.2.3.0-beta1\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeAnalysis, Version=1.3.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.CodeAnalysis.Common.1.3.2\lib\net45\Microsoft.CodeAnalysis.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.CSharp, Version=1.3.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.CodeAnalysis.CSharp.1.3.2\lib\net45\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.TemplateEngine.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.TemplateEngine.Abstractions.1.0.0-beta1-20170223-126\lib\net45\Microsoft.TemplateEngine.Abstractions.dll</HintPath>
     </Reference>
@@ -136,9 +130,11 @@
     <Compile Include="Diagnostics\TelemetryTracker.cs" />
     <Compile Include="Diagnostics\TraceHealthWriter.cs" />
     <Compile Include="Diagnostics\ShellHealthWriter.cs" />
-    <Compile Include="GenInfo.cs" />
-    <Compile Include="GenParams.cs" />
-    <Compile Include="GenShell.cs" />
+    <Compile Include="Gen\GenInfo.cs" />
+    <Compile Include="Gen\GenParams.cs" />
+    <Compile Include="Gen\GenShell.cs" />
+    <Compile Include="Gen\GenContext.cs" />
+    <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Locations\InvalidSignatureException.cs" />
     <Compile Include="Locations\RemoteTemplatesLocation.cs" />
     <Compile Include="Extensions.cs" />
@@ -155,14 +151,6 @@
     <Compile Include="PostActions\Catalog\BackgroundTaskPostAction.cs" />
     <Compile Include="PostActions\Catalog\CleanLocAnchorPostAction.cs" />
     <Compile Include="PostActions\Catalog\GenerateTestCertificatePostAction.cs" />
-    <Compile Include="Injection\Code\CodeInjector.cs" />
-    <Compile Include="Injection\Code\CodeInjectorConfig.cs" />
-    <Compile Include="Injection\ContentInjector.cs" />
-    <Compile Include="PostActions\Catalog\InjectionPostAction.cs" />
-    <Compile Include="Injection\References\ReferencesInjector.cs" />
-    <Compile Include="Injection\References\ReferencesInjectorConfig.cs" />
-    <Compile Include="Injection\Xaml\XamlInjector.cs" />
-    <Compile Include="Injection\Xaml\XamlInjectorConfig.cs" />
     <Compile Include="PostActions\Catalog\LocalizationPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\IEnumerableExtensions.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergePostAction.cs" />
@@ -204,10 +192,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
-    <Analyzer Include="..\..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

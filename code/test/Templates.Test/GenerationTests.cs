@@ -1,5 +1,7 @@
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Test.Artifacts;
 using Microsoft.Templates.Wizard;
 using Microsoft.Templates.Wizard.Host;
@@ -24,6 +26,7 @@ namespace Microsoft.Templates.Test
         public GenerationTests(GenerationTestsFixture fixture)
         {
             this.fixture = fixture;
+            GenContext.Bootstrap(new TemplatesRepository(new LocalTemplatesLocation()), new FakeGenShell());
         }
 
         [STAThread]
@@ -34,27 +37,29 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{name}{framework}";
 
-            var generator = new GenController(new FakeGenShell(projectName, fixture.TestProjectsPath));
-            var wizardState = new WizardState
+            using (var context = GenContext.CreateNew(projectName, Path.Combine(fixture.TestProjectsPath, projectName, projectName)))
             {
-                Framework = framework,
-                ProjectType = projectTemplate.GetProjectType(),
-            };
+                var wizardState = new WizardState
+                {
+                    Framework = framework,
+                    ProjectType = projectTemplate.GetProjectType(),
+                };
 
-            AddLayoutItems(wizardState, projectTemplate);
+                AddLayoutItems(wizardState, projectTemplate);
 
-            generator.Generate(wizardState);
+                GenController.Generate(wizardState);
 
-            //Build solution
-            var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);
-            var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
-            int exitCode = BuildSolution(projectName, outputPath, outputFile);
+                //Build solution
+                var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);
+                var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
+                int exitCode = BuildSolution(projectName, outputPath, outputFile);
 
-            //Assert
-            Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", projectTemplate.Name, Path.GetFullPath(outputFile)));
+                //Assert
+                Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", projectTemplate.Name, Path.GetFullPath(outputFile)));
 
-            //Clean
-            Directory.Delete(outputPath, true);
+                //Clean
+                Directory.Delete(outputPath, true);
+            }
         }
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
@@ -64,29 +69,30 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{name}{framework}All";
 
-            var generator = new GenController(new FakeGenShell(projectName, fixture.TestPagesPath));
-
-            var wizardState = new WizardState
+            using (var context = GenContext.CreateNew(projectName, Path.Combine(fixture.TestPagesPath, projectName, projectName)))
             {
-                Framework = framework,
-                ProjectType = targetProjectTemplate.GetProjectType(),
-            };
+                var wizardState = new WizardState
+                {
+                    Framework = framework,
+                    ProjectType = targetProjectTemplate.GetProjectType(),
+                };
 
-            AddLayoutItems(wizardState, targetProjectTemplate);
-            AddItems(wizardState, GetTemplates(framework, TemplateType.Page));
+                AddLayoutItems(wizardState, targetProjectTemplate);
+                AddItems(wizardState, GetTemplates(framework, TemplateType.Page));
 
-            generator.Generate(wizardState);
+                GenController.Generate(wizardState);
 
-            //Build solution
-            var outputPath = Path.Combine(fixture.TestPagesPath, projectName);
-            var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
-            int exitCode = BuildSolution(projectName, outputPath, outputFile);
+                //Build solution
+                var outputPath = Path.Combine(fixture.TestPagesPath, projectName);
+                var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
+                int exitCode = BuildSolution(projectName, outputPath, outputFile);
 
-            //Assert
-            Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", targetProjectTemplate.Name, Path.GetFullPath(outputFile)));
+                //Assert
+                Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", targetProjectTemplate.Name, Path.GetFullPath(outputFile)));
 
-            //Clean
-            Directory.Delete(outputPath, true);
+                //Clean
+                Directory.Delete(outputPath, true);
+            }
         }
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
@@ -96,29 +102,31 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{name}{framework}All";
 
-            var generator = new GenController(new FakeGenShell(projectName, fixture.TestDevFeaturesPath));
-
-            var wizardState = new WizardState
+            using (var context = GenContext.CreateNew(projectName, Path.Combine(fixture.TestDevFeaturesPath, projectName, projectName)))
             {
-                Framework = framework,
-                ProjectType = targetProjectTemplate.GetProjectType(),
-            };
 
-            AddLayoutItems(wizardState, targetProjectTemplate);
-            AddItems(wizardState, GetTemplates(framework, TemplateType.DevFeature));
+                var wizardState = new WizardState
+                {
+                    Framework = framework,
+                    ProjectType = targetProjectTemplate.GetProjectType(),
+                };
 
-            generator.Generate(wizardState);
+                AddLayoutItems(wizardState, targetProjectTemplate);
+                AddItems(wizardState, GetTemplates(framework, TemplateType.DevFeature));
 
-            //Build solution
-            var outputPath = Path.Combine(fixture.TestDevFeaturesPath, projectName);
-            var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
-            int exitCode = BuildSolution(projectName, outputPath, outputFile);
+                GenController.Generate(wizardState);
 
-            //Assert
-            Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", targetProjectTemplate.Name, Path.GetFullPath(outputFile)));
+                //Build solution
+                var outputPath = Path.Combine(fixture.TestDevFeaturesPath, projectName);
+                var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
+                int exitCode = BuildSolution(projectName, outputPath, outputFile);
 
-            //Clean
-            Directory.Delete(outputPath, true);
+                //Assert
+                Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", targetProjectTemplate.Name, Path.GetFullPath(outputFile)));
+
+                //Clean
+                Directory.Delete(outputPath, true);
+            }
         }
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
@@ -128,36 +136,37 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{name}{framework}All";
 
-            var generator = new GenController(new FakeGenShell(projectName, fixture.TestConsumerFeaturesPath));
-
-            var wizardState = new WizardState
+            using (var context = GenContext.CreateNew(projectName, Path.Combine(fixture.TestConsumerFeaturesPath, projectName, projectName)))
             {
-                Framework = framework,
-                ProjectType = targetProjectTemplate.GetProjectType(),
-            };
+                var wizardState = new WizardState
+                {
+                    Framework = framework,
+                    ProjectType = targetProjectTemplate.GetProjectType(),
+                };
 
-            AddLayoutItems(wizardState, targetProjectTemplate);
-            AddItems(wizardState, GetTemplates(framework, TemplateType.ConsumerFeature));
+                AddLayoutItems(wizardState, targetProjectTemplate);
+                AddItems(wizardState, GetTemplates(framework, TemplateType.ConsumerFeature));
 
-            generator.Generate(wizardState);
+                GenController.Generate(wizardState);
 
-            //Build solution
-            var outputPath = Path.Combine(fixture.TestConsumerFeaturesPath, projectName);
-            var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
-            int exitCode = BuildSolution(projectName, outputPath, outputFile);
+                //Build solution
+                var outputPath = Path.Combine(fixture.TestConsumerFeaturesPath, projectName);
+                var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
+                int exitCode = BuildSolution(projectName, outputPath, outputFile);
 
-            //Assert
-            Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", targetProjectTemplate.Name, Path.GetFullPath(outputFile)));
+                //Assert
+                Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", targetProjectTemplate.Name, Path.GetFullPath(outputFile)));
 
-            //Clean
-            Directory.Delete(outputPath, true);
+                //Clean
+                Directory.Delete(outputPath, true); 
+            }
         }
 
         private IEnumerable<ITemplateInfo> GetTemplates(string framework, TemplateType templateType)
         {
             return GenerationTestsFixture.Templates
-              .Where(t => t.GetFrameworkList().Contains(framework) &&
-              t.GetTemplateType() == templateType);
+                                              .Where(t => t.GetFrameworkList().Contains(framework) &&
+                                              t.GetTemplateType() == templateType);
         }
 
         private void AddLayoutItems(WizardState wizardState, ITemplateInfo projectTemplate)

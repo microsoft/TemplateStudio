@@ -10,6 +10,7 @@ using Microsoft.Templates.Wizard.ViewModels;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Wizard.Steps.Pages;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
 {
@@ -61,7 +62,7 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
 
                 HandleValidation(validationResult);
 
-                OnPropertyChanged("OkCommand");
+                OnPropertyChanged(nameof(OkCommand));
             }
         }
 
@@ -69,12 +70,12 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
         {
             Templates.Clear();
 
-            var consumerFeatTemplates = _context.TemplatesRepository
-                                                        .Get(t => t.GetTemplateType() == TemplateType.ConsumerFeature
-                                                            && t.GetFrameworkList().Contains(_context.State.Framework))
-                                                        .Select(t => new TemplateViewModel(t, _context.TemplatesRepository.GetDependencies(t)))
-                                                        .OrderBy(t => t.Order)
-                                                        .ToList();
+            var consumerFeatTemplates = GenContext.ToolBox.Repo
+                                                            .Get(t => t.GetTemplateType() == TemplateType.ConsumerFeature
+                                                                && t.GetFrameworkList().Contains(_context.State.Framework))
+                                                            .Select(t => new TemplateViewModel(t, GenContext.ToolBox.Repo.GetDependencies(t)))
+                                                            .OrderBy(t => t.Order)
+                                                            .ToList();
 
             foreach (var template in consumerFeatTemplates)
             {
@@ -91,7 +92,7 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
             else
             {
                 _isValid = false;
-                OnPropertyChanged("OkCommand");
+                OnPropertyChanged(nameof(OkCommand));
             }
 
             await Task.FromResult(true);

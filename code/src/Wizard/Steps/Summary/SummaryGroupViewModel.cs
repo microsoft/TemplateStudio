@@ -1,5 +1,6 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Wizard.ViewModels;
 using System;

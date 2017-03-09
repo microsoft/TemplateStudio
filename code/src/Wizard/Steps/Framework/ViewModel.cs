@@ -1,4 +1,5 @@
 ﻿using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Wizard.ViewModels;
 using System;
@@ -65,7 +66,7 @@ namespace Microsoft.Templates.Wizard.Steps.Framework
 
             foreach (var fx in GetSupportedFx(Context.State.ProjectType))
             {
-                var pi = Context.TemplatesRepository.GetFrameworkTypeInfo(fx);
+                var pi = GenContext.ToolBox.Repo.GetFrameworkTypeInfo(fx);
                 if (pi != null)
                 {
                     Frameworks.Add(new ProjectInfoViewModel(fx, pi));
@@ -93,7 +94,7 @@ namespace Microsoft.Templates.Wizard.Steps.Framework
 
         private IEnumerable<string> GetSupportedFx(string projectType)
         {
-            return Context.TemplatesRepository.GetAll()
+            return GenContext.ToolBox.Repo.GetAll()
                                                 .Where(t => t.GetProjectType() == projectType)
                                                 .SelectMany(t => t.GetFrameworkList())
                                                 .Distinct();

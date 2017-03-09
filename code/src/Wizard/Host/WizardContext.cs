@@ -23,88 +23,13 @@ namespace Microsoft.Templates.Wizard.Host
 
     public class WizardContext : Observable
     {
-        public TemplatesRepository TemplatesRepository { get; }
-        public GenShell Shell { get; }
         public WizardState State { get; } = new WizardState();
-
-
-        public WizardContext(TemplatesRepository templatesRepository, GenShell shell)
-        {
-            TemplatesRepository = templatesRepository;
-            Shell = shell;
-        }
 
         private bool _canGoForward;
         public bool CanGoForward
         {
             get => _canGoForward;
             set => SetProperty(ref _canGoForward, value);
-        }
-
-        public IEnumerable<GenInfo> GetSelection()
-        {
-            //TODO: REVIEW THIS
-            var selection = new List<GenInfo>();
-
-            var projectTemplate = TemplatesRepository.Find(t => t.GetProjectType() == State.ProjectType && t.GetFrameworkList().Any(f => f == State.Framework));
-            if (projectTemplate != null)
-            {
-                selection.Add(new GenInfo
-                {
-                    Name = Shell.ProjectName,
-                    Template = projectTemplate
-                });
-            }
-
-            if (State.Pages != null)
-            {
-                foreach (var p in State.Pages)
-                {
-                    var pageTemplate = TemplatesRepository.Find(t => t.Name == p.templateName);
-                    if (pageTemplate != null)
-                    {
-                        selection.Add(new GenInfo
-                        {
-                            Name = p.name,
-                            Template = pageTemplate
-                        });
-                    }
-                } 
-            }
-
-            if (State.DevFeatures != null)
-            {
-                foreach (var f in State.DevFeatures)
-                {
-                    var featureTemplate = TemplatesRepository.Find(t => t.Name == f.templateName);
-                    if (featureTemplate != null)
-                    {
-                        selection.Add(new GenInfo
-                        {
-                            Name = f.name,
-                            Template = featureTemplate
-                        });
-                    }
-                }
-            }
-
-            if (State.ConsumerFeatures != null)
-            {
-                foreach (var f in State.ConsumerFeatures)
-                {
-                    var featureTemplate = TemplatesRepository.Find(t => t.Name == f.templateName);
-                    if (featureTemplate != null)
-                    {
-                        selection.Add(new GenInfo
-                        {
-                            Name = f.name,
-                            Template = featureTemplate
-                        });
-                    }
-                }
-            }
-
-            return selection;
         }
 
         public bool ResetSelection()

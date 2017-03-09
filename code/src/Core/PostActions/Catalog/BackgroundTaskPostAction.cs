@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Templates.Core.Gen;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,13 +15,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         private const string Anchor = "//BACKGROUNDTASK_ANCHOR";
         private const string backgroundTasksToAddFileName = "*AddBackgroundTask.txt";
 
-        public BackgroundTaskPostAction(GenShell shell) : base(shell)
-        {
-        }
-
         public override void Execute()
         {
-            var backgroundServiceFile = Path.Combine(_shell.OutputPath, backgroundTaskFolder, backgroundTaskServiceFileName);
+            var backgroundServiceFile = Path.Combine(GenContext.Current.OutputPath, backgroundTaskFolder, backgroundTaskServiceFileName);
             var backgroundServiceContent = File.ReadAllText(backgroundServiceFile);
 
             var anchorIndex = backgroundServiceContent.IndexOf(Anchor);
@@ -32,7 +29,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             }
             var nextLineAfterAnchor = backgroundServiceContent.IndexOf(Environment.NewLine, anchorIndex, StringComparison.Ordinal) + Environment.NewLine.Length;
 
-            var backgroundTasks = GetBackgroundTasksToAdd(_shell.OutputPath);
+            var backgroundTasks = GetBackgroundTasksToAdd(GenContext.Current.OutputPath);
 
             foreach (var backgroundTaskToAdd in backgroundTasks)
             {

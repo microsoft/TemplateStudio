@@ -1,4 +1,5 @@
 ﻿using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Test.Artifacts;
@@ -8,6 +9,7 @@ using Microsoft.Templates.Wizard.Error;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.VisualStudio.TemplateWizard;
 using System;
+using System.IO;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
@@ -17,14 +19,13 @@ namespace Microsoft.Templates.VsEmulator.Main
 {
     public class MainViewModel : Observable
     {
-        private GenController _gen;
-        private FakeGenShell _shell;
-
         private readonly Window _host;
 
         public MainViewModel(Window host)
         {
             _host = host;
+
+            GenContext.Bootstrap(new TemplatesRepository(new LocalTemplatesLocation()), new FakeGenShell(msg => SetStateAsync(msg), _host));
         }
 
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
@@ -65,6 +66,8 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
+        public string SolutionPath { get; set; }
+
         public void Initialize()
         {
             SolutionName = null;
@@ -77,47 +80,48 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var newProjectInfo = ShowNewProjectDialog();
                 if (!string.IsNullOrEmpty(newProjectInfo.name))
                 {
-                    //TODO: THIS SHOULD BE CREATED IN THE CONSTRUCTOR
-                    _shell = new FakeGenShell(newProjectInfo.name, newProjectInfo.location, newProjectInfo.solutionName, msg => SetStateAsync(msg), _host);
-                    _gen = new GenController(_shell, new TemplatesRepository(new LocalTemplatesLocation()));
-
-                    var userSelection = _gen.GetUserSelection(WizardSteps.Project);
-                    if (userSelection != null)
+                    var outputPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
+                    using (var context = GenContext.CreateNew(newProjectInfo.name, outputPath))
                     {
-                        SolutionName = null;
+                        var userSelection = GenController.GetUserSelection(WizardSteps.Project);
+                        if (userSelection != null)
+                        {
+                            SolutionName = null;
 
-                        _gen.Generate(userSelection);
+                            GenController.Generate(userSelection);
 
-                        _shell.ShowStatusBarMessage("Project created!!!");
+                            GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
 
-                        SolutionName = newProjectInfo.name;
+                            SolutionName = newProjectInfo.name;
+                            SolutionPath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
+                        }
                     }
                 }
             }
             catch (WizardBackoutException)
             {
-                _shell.ShowStatusBarMessage("Wizard back out");
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)
             {
-                _shell.ShowStatusBarMessage("Wizard cancelled");
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
             }
         }
 
 
         private void OpenInVs()
         {
-            if (!string.IsNullOrEmpty(_shell?.SolutionPath))
+            if (!string.IsNullOrEmpty(SolutionPath))
             {
-                System.Diagnostics.Process.Start(_shell.SolutionPath);
+                System.Diagnostics.Process.Start(SolutionPath);
             }
         }
 
         private void OpenInExplorer()
         {
-            if (!string.IsNullOrEmpty(_shell?.SolutionPath))
+            if (!string.IsNullOrEmpty(SolutionPath))
             {
-                System.Diagnostics.Process.Start(System.IO.Path.GetDirectoryName(_shell.SolutionPath));
+                System.Diagnostics.Process.Start(System.IO.Path.GetDirectoryName(SolutionPath));
             }
         }
 

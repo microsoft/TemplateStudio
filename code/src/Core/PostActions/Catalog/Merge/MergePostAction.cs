@@ -11,7 +11,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
     {
         public const string Extension = "_postaction.";
 
-        public MergePostAction(GenShell shell, string config) : base(shell, config)
+        public MergePostAction(string config) : base(config)
         {
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Templates.Core.Gen;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,13 +12,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         private const string Configuration = "Debug";
         private const string Platform = "x86";
 
-        public SetDefaultSolutionConfigurationPostAction(GenShell shell) : base(shell)
-        {
-        }
-
         public override void Execute()
         {
-            _shell.SetActiveConfigurationAndPlatform(Configuration, Platform);
+            GenContext.ToolBox.Shell.SetActiveConfigurationAndPlatform(Configuration, Platform);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Wizard.ViewModels;
 using System;
@@ -65,11 +66,11 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectType
         {
             ProjectTypes.Clear();
 
-            var projectTypes = Context.TemplatesRepository.GetAll()
+            var projectTypes = GenContext.ToolBox.Repo.GetAll()
                                                             .Where(t => t.GetTemplateType() == TemplateType.Project && !String.IsNullOrWhiteSpace(t.GetProjectType()))
                                                             .Select(t => t.GetProjectType())
                                                             .Distinct()
-                                                            .Select(t => new ProjectInfoViewModel(t, Context.TemplatesRepository.GetProjectTypeInfo(t)))
+                                                            .Select(t => new ProjectInfoViewModel(t, GenContext.ToolBox.Repo.GetProjectTypeInfo(t)))
                                                             .ToList();
 
             ProjectTypes.AddRange(projectTypes);

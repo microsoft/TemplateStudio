@@ -13,7 +13,7 @@ using EnvDTE80;
 using System.Reflection;
 using Microsoft.Templates.Core;
 
-namespace Microsoft.Templates.Wizard.Vsix
+namespace Microsoft.Templates.Wizard.VisualStudio
 {
     class VsOutputPane
     {

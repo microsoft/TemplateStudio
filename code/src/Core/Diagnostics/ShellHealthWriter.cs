@@ -1,61 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using SystemTasks = System.Threading.Tasks;
+﻿using Microsoft.Templates.Core.Gen;
+using System;
 using System.Diagnostics;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio;
-using System.Reflection;
+using SystemTasks = System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
     public class ShellHealthWriter : IHealthWriter
-    {
-        private GenShell _shell; 
-         
-        public ShellHealthWriter(GenShell shell)
-        {
-            _shell = shell ?? throw new ArgumentNullException("shell");
-        }
-
+    {       
         public async SystemTasks.Task WriteExceptionAsync(Exception ex, string message = null)
         {
-            if (_shell != null)
+            if (GenContext.ToolBox.Shell != null)
             {
                 await SafeTrackAsync(() =>
                 {
                     string header = $"========== Tracked Exception [{DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}] ==========\n";
-                    _shell.WriteOutput(header);
+                    GenContext.ToolBox.Shell.WriteOutput(header);
 
                     if (message != null)
                     {
-                        _shell.WriteOutput($"AdditionalMessage: {message}\n");
+                        GenContext.ToolBox.Shell.WriteOutput($"AdditionalMessage: {message}\n");
                     }
 
-                    _shell.WriteOutput($"{ex.ToString()}\n");
+                    GenContext.ToolBox.Shell.WriteOutput($"{ex.ToString()}\n");
 
                     string footer = $"{new String('-', header.Length - 2)}\n";
-                    _shell.WriteOutput(footer);
+                    GenContext.ToolBox.Shell.WriteOutput(footer);
                 });
             }
         }
 
         public async SystemTasks.Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
         {
-            if (_shell != null)
+            if (GenContext.ToolBox.Shell != null)
             {
                 await SafeTrackAsync(() =>
                 {
                     string eventMessage = $"[{DateTime.Now.ToString("hh:mm:ss.fff")} - {eventType.ToString()}]::{message}\n";
-                    _shell.WriteOutput(eventMessage);
+                    GenContext.ToolBox.Shell.WriteOutput(eventMessage);
                     if (ex != null)
                     {
                         string header = $"----------- Addtional Exception Info -----------\n";
                         string footer = $"{new String('-', header.Length - 2)}\n";
                         string exceptionInfo = header + $"{ex.ToString()}\n" + footer;
-                        _shell.WriteOutput(exceptionInfo);
+                        GenContext.ToolBox.Shell.WriteOutput(exceptionInfo);
                     }
                 });
             }

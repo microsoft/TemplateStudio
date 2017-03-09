@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Core;
 using System.Collections.ObjectModel;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Wizard.Steps.Summary
 {
@@ -48,7 +49,7 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
             SelectedFramework = Context.State.Framework;
 
             //TODO: REVIEW THIS
-            var allTemplates = new GenComposer(Context.Shell, Context.TemplatesRepository).Compose(Context.State);
+            var allTemplates = GenComposer.Compose(Context.State);
 
             AddTemplates(Strings.ProjectsTitle, FilterTemplates(allTemplates, TemplateType.Project));
             AddTemplates(Strings.PagesTitle, FilterTemplates(allTemplates, TemplateType.Page));

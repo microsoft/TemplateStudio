@@ -1,5 +1,6 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Template;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using System;
@@ -13,79 +14,70 @@ namespace Microsoft.Templates.Core.PostActions
 {
     public static class PostActionFactory
     {
-        public static IEnumerable<PostAction> Find(GenShell shell, GenInfo genInfo, TemplateCreationResult genResult)
+        public static IEnumerable<PostAction> Find(GenInfo genInfo, TemplateCreationResult genResult)
         {
             var postActions = new List<PostAction>();
 
-            AddPredefinedActions(shell, genInfo, genResult, postActions);
-            AddInjectionActions(shell, postActions);
-            AddMergeActions(shell, postActions);
+            AddPredefinedActions(genInfo, genResult, postActions);
+            AddMergeActions(genInfo,postActions);
 
             return postActions;
         }
 
-        public static IEnumerable<PostAction> FindGlobal(GenShell shell, List<GenInfo> genItems)
+        public static IEnumerable<PostAction> FindGlobal(List<GenInfo> genItems)
         {
             var postActions = new List<PostAction>();
 
             //TODO: REVIEW THIS FACTORY AND MAGIC STRINGS IN NAMES
             if (genItems.Any(g => g.Template.GetTemplateType() == TemplateType.DevFeature && g.Template.Name == "Localization"))
             {
-                postActions.Add(new LocalizationPostAction(shell));
+                postActions.Add(new LocalizationPostAction());
             }
             else
             {
-                postActions.Add(new CleanLocAnchorPostAction(shell));
+                postActions.Add(new CleanLocAnchorPostAction());
             }
 
             if (genItems.Any(g => g.Template.GetTemplateType() == TemplateType.DevFeature && g.Template.Name == "BackgroundTask"))
             {
-                postActions.Add(new BackgroundTaskPostAction(shell));
+                postActions.Add(new BackgroundTaskPostAction());
             }
 
             return postActions;
         }
 
-        private static void AddPredefinedActions(GenShell shell, GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
+        private static void AddPredefinedActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
         {
             switch (genInfo.Template.GetTemplateType())
             {
                 case TemplateType.Project:
-                    postActions.Add(new AddProjectToSolutionPostAction(shell, genResult.ResultInfo.PrimaryOutputs));
-                    postActions.Add(new GenerateTestCertificatePostAction(shell, genInfo.GetUserName()));
-                    postActions.Add(new SetDefaultSolutionConfigurationPostAction(shell));
+                    postActions.Add(new AddProjectToSolutionPostAction( genResult.ResultInfo.PrimaryOutputs));
+                    postActions.Add(new GenerateTestCertificatePostAction(genInfo.GetUserName()));
+                    postActions.Add(new SetDefaultSolutionConfigurationPostAction());
                     break;
                 case TemplateType.Page:
-                    postActions.Add(new AddItemToProjectPostAction(shell, genResult.ResultInfo.PrimaryOutputs));
+                    postActions.Add(new AddItemToProjectPostAction(genResult.ResultInfo.PrimaryOutputs));
                     break;
                 case TemplateType.DevFeature:
-                    postActions.Add(new AddItemToProjectPostAction(shell, genResult.ResultInfo.PrimaryOutputs));
+                    postActions.Add(new AddItemToProjectPostAction(genResult.ResultInfo.PrimaryOutputs));
                     break;
                 case TemplateType.ConsumerFeature:
-                    postActions.Add(new AddItemToProjectPostAction(shell, genResult.ResultInfo.PrimaryOutputs));
+                    postActions.Add(new AddItemToProjectPostAction(genResult.ResultInfo.PrimaryOutputs));
                     break;
                 case TemplateType.Framework:
-                    postActions.Add(new AddItemToProjectPostAction(shell, genResult.ResultInfo.PrimaryOutputs));
+                    postActions.Add(new AddItemToProjectPostAction(genResult.ResultInfo.PrimaryOutputs));
                     break;
                 default:
                     break;
             }
         }
 
-        private static void AddInjectionActions(GenShell shell, List<PostAction> postActions)
-        {
-             Directory
-                .EnumerateFiles(shell.OutputPath, "*.postaction", SearchOption.AllDirectories)
-                .ToList()
-                .ForEach(f => postActions.Add(new InjectionPostAction(shell, f)));
-        }
-
-        private static void AddMergeActions(GenShell shell, List<PostAction> postActions)
+        private static void AddMergeActions(GenInfo genInfo, List<PostAction> postActions)
         {
             Directory
-               .EnumerateFiles(shell.OutputPath, $"*{MergePostAction.Extension}*", SearchOption.AllDirectories)
+               .EnumerateFiles(GenContext.Current.OutputPath, $"*{MergePostAction.Extension}*", SearchOption.AllDirectories)
                .ToList()
-               .ForEach(f => postActions.Add(new MergePostAction(shell, f)));
+               .ForEach(f => postActions.Add(new MergePostAction(f)));
         }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions;
 using Microsoft.Templates.Wizard.Error;
@@ -21,36 +22,21 @@ namespace Microsoft.Templates.Wizard
 {
     public class GenController
     {
-        private static GenComposer _composer;
-        private static TemplatesRepository _repository;
-
-        public GenShell Shell { get; }
-
-
-        public GenController(GenShell shell) : this(shell, new TemplatesRepository(new RemoteTemplatesLocation()))
+        static GenController()
         {
+            //TODO: WHERE INITIALIZE THIS??
+            AppHealth.Current.AddWriter(new ShellHealthWriter());
         }
 
-        public GenController(GenShell shell, TemplatesRepository repository)
+        public static WizardState GetUserSelection(WizardSteps selectionSteps)
         {
-            Shell = shell;
-
-            _repository = repository;
-
-            _composer = new GenComposer(shell, repository);
-
-            AppHealth.Current.AddWriter(new ShellHealthWriter(shell));
-        }
-
-        public WizardState GetUserSelection(WizardSteps selectionSteps)
-        {
-            var host = new WizardHost(selectionSteps, _repository, Shell);
+            var host = new WizardHost(selectionSteps);
 
             try
             {
                 CleanStatusBar();
 
-                Shell.ShowModal(host);
+                GenContext.ToolBox.Shell.ShowModal(host);
 
                 if (host.Result != null)
                 {
@@ -71,15 +57,15 @@ namespace Microsoft.Templates.Wizard
                 host.SafeClose();
                 ShowError(ex, Resources.StringRes.ExceptionUnexpectedWizard);
             }
-            Shell.CancelWizard();
+            GenContext.ToolBox.Shell.CancelWizard();
             return null;
         }
 
-        public void Generate(WizardState userSelection)
+        public static void Generate(WizardState userSelection)
         {
             try
             {
-                var genItems = _composer.Compose(userSelection).ToList();
+                var genItems = GenComposer.Compose(userSelection).ToList();
 
                 Stopwatch chrono = Stopwatch.StartNew();
 
@@ -96,13 +82,13 @@ namespace Microsoft.Templates.Wizard
 
                     if (!string.IsNullOrEmpty(statusText))
                     {
-                        Shell.ShowStatusBarMessage(statusText);
+                        GenContext.ToolBox.Shell.ShowStatusBarMessage(statusText);
                     }
 
-                    AppHealth.Current.Verbose.TrackAsync($"Generating the template {genInfo.Template.Name} to {Shell.OutputPath}.").FireAndForget();
+                    AppHealth.Current.Verbose.TrackAsync($"Generating the template {genInfo.Template.Name} to {GenContext.Current.OutputPath}.").FireAndForget();
 
                     //TODO: REVIEW ASYNC
-                    var result = CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, Shell.OutputPath, genInfo.Parameters, false, false).Result;
+                    var result = CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, GenContext.Current.OutputPath, genInfo.Parameters, false, false).Result;
 
                     genResults.Add($"{genInfo.Template.Identity}_{genInfo.Name}", result);
 
@@ -121,22 +107,60 @@ namespace Microsoft.Templates.Wizard
             }
             catch (Exception ex)
             {
-                Shell.CloseSolution();
+                GenContext.ToolBox.Shell.CloseSolution();
 
-                ShowError(ex, Resources.StringRes.ExceptionUnexpectedGenerating);
+                ShowError(ex, StringRes.ExceptionUnexpectedGenerating);
 
-                Shell.CancelWizard(false);
+                GenContext.ToolBox.Shell.CancelWizard(false);
             }
         }
 
-        private void ExecuteGlobalPostActions(List<GenInfo> genItems)
+        private static void ExecuteGlobalPostActions(List<GenInfo> genItems)
         {
-            var postActions = PostActionFactory.FindGlobal(Shell, genItems);
+            var postActions = PostActionFactory.FindGlobal(genItems);
 
             foreach (var postAction in postActions)
             {
                 postAction.Execute();
             }
+        }
+
+        private static void ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult)
+        {
+            //Get post actions from template
+            var postActions = PostActionFactory.Find(genInfo, generationResult);
+
+            foreach (var postAction in postActions)
+            {
+                postAction.Execute();
+            }
+        }
+
+        private static string GetStatusText(GenInfo genInfo)
+        {
+            switch (genInfo.Template.GetTemplateType())
+            {
+                case TemplateType.Project:
+                    return string.Format(StringRes.AddProjectMessage, genInfo.Name);
+                case TemplateType.Page:
+                    return string.Format(StringRes.AddPageMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
+                default:
+                    return null;
+            }
+        }
+
+        private static void ShowError(Exception ex, string textFormat)
+        {
+            AppHealth.Current.Error.TrackAsync(ex.ToString()).FireAndForget();
+            AppHealth.Current.Exception.TrackAsync(ex).FireAndForget();
+
+            var error = new ErrorDialog(ex);
+            GenContext.ToolBox.Shell.ShowModal(error);
+        }
+
+        private static void CleanStatusBar()
+        {
+            GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Empty);
         }
 
         private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appFx)
@@ -168,44 +192,6 @@ namespace Microsoft.Templates.Wizard
             {
                 AppHealth.Current.Exception.TrackAsync(ex, "Exception tracking telemetry for Template Generation.").FireAndForget();
             }
-        }
-
-        private void ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult)
-        {
-            //Get post actions from template
-            var postActions = PostActionFactory.Find(Shell, genInfo, generationResult);
-
-            foreach (var postAction in postActions)
-            {
-                postAction.Execute();
-            }
-        }
-
-        private static string GetStatusText(GenInfo genInfo)
-        {
-            switch (genInfo.Template.GetTemplateType())
-            {
-                case TemplateType.Project:
-                    return string.Format(StringRes.AddProjectMessage, genInfo.Name);
-                case TemplateType.Page:
-                    return string.Format(StringRes.AddPageMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
-                default:
-                    return null;
-            }
-        }
-
-        private void ShowError(Exception ex, string textFormat)
-        {
-            AppHealth.Current.Error.TrackAsync(ex.ToString()).FireAndForget();
-            AppHealth.Current.Exception.TrackAsync(ex).FireAndForget();
-
-            var error = new ErrorDialog(ex);
-            Shell.ShowModal(error);
-        }
-
-        private void CleanStatusBar()
-        {
-            Shell.ShowStatusBarMessage(string.Empty);
         }
     }
 }

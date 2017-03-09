@@ -10,6 +10,7 @@ using Microsoft.Templates.Wizard.ViewModels;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Wizard.Steps.Pages;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Wizard.Steps.DevFeatures.NewDevFeature
 {
@@ -61,7 +62,7 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures.NewDevFeature
 
                 HandleValidation(validationResult);
 
-                OnPropertyChanged("OkCommand");
+                OnPropertyChanged(nameof(OkCommand));
             }
         }
 
@@ -69,12 +70,12 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures.NewDevFeature
         {
             Templates.Clear();
 
-            var devFeatTemplates = _context.TemplatesRepository
-                .Get(t => t.GetTemplateType() == TemplateType.DevFeature
-                    && t.GetFrameworkList().Contains(_context.State.Framework))
-                .Select(t => new TemplateViewModel(t, _context.TemplatesRepository.GetDependencies(t)))
-                .OrderBy(t => t.Order)
-                .ToList();
+            var devFeatTemplates = GenContext.ToolBox.Repo
+                                                        .Get(t => t.GetTemplateType() == TemplateType.DevFeature
+                                                            && t.GetFrameworkList().Contains(_context.State.Framework))
+                                                        .Select(t => new TemplateViewModel(t, GenContext.ToolBox.Repo.GetDependencies(t)))
+                                                        .OrderBy(t => t.Order)
+                                                        .ToList();
             foreach (var template in devFeatTemplates)
             {
                 if (template.MultipleInstances == true || !IsAlreadyDefined(template))
