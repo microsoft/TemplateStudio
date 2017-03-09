@@ -26,6 +26,7 @@
             ItemsSource="{Binding ProjectTypes}"
             SelectedItem="{Binding SelectedProjectType, Mode=TwoWay}"
             ItemTemplate="{StaticResource ProjectInfoTemplate}"
+
             Style="{StaticResource WizardListViewStyle}"/>
 
         <StackPanel DataContext="{Binding SelectedProjectType}" Grid.Column="1" Style="{StaticResource TemplateInfoContainerStyle}">

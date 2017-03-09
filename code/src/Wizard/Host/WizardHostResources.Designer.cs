@@ -95,5 +95,23 @@ namespace Microsoft.Templates.Wizard.Host {
                 return ResourceManager.GetString("PreviousButton", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your are about to change your project type selection, if you continue you will lose all the selection you made previously. Do you want to continue?.
+        /// </summary>
+        public static string ResetSelection {
+            get {
+                return ResourceManager.GetString("ResetSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset selection.
+        /// </summary>
+        public static string ResetSelectionTitle {
+            get {
+                return ResourceManager.GetString("ResetSelectionTitle", resourceCulture);
+            }
+        }
     }
 }

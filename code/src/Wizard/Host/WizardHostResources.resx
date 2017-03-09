@@ -129,4 +129,10 @@
   <data name="PreviousButton" xml:space="preserve">
     <value>&lt; Previous</value>
   </data>
+  <data name="ResetSelection" xml:space="preserve">
+    <value>Your are about to change your project type selection, if you continue you will lose all the selection you made previously. Do you want to continue?</value>
+  </data>
+  <data name="ResetSelectionTitle" xml:space="preserve">
+    <value>Reset selection</value>
+  </data>
 </root>

@@ -65,11 +65,6 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
             //NOTHING TO DO
         }
 
-        public override void CleanState()
-        {
-            //NOTHING TO DO
-        }
-
         protected override Page GetPageInternal()
         {
             return new View();
