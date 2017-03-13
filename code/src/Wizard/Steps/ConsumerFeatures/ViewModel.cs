@@ -84,7 +84,11 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures
 
         private void ShowAddFeatureDialog()
         {
-            var dialog = new NewConsumerFeature.NewConsumerFeatureDialog(Context, Templates);
+            var dialog = new NewConsumerFeature.NewConsumerFeatureDialog(Context, Templates)
+            {
+                Owner = Context.Host
+            };
+
             var dialogResult = dialog.ShowDialog();
 
             if (dialogResult.HasValue && dialogResult.Value)

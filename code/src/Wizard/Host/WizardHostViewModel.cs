@@ -30,7 +30,10 @@ namespace Microsoft.Templates.Wizard.Host
             //TODO: VERIFY NOT NULL
             Host = host;
             Steps = steps;
-            _context = new WizardContext();
+            _context = new WizardContext()
+            {
+                Host = host
+            };
 
             _context.PropertyChanged += _context_PropertyChanged;
 

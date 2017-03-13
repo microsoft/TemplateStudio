@@ -23,6 +23,8 @@ namespace Microsoft.Templates.Wizard.Host
 
     public class WizardContext : Observable
     {
+        public Window Host { get; set; }
+
         public WizardState State { get; } = new WizardState();
 
         private bool _canGoForward;
@@ -34,7 +36,7 @@ namespace Microsoft.Templates.Wizard.Host
 
         public bool ResetSelection()
         {
-            var resetSelectionResult = MessageBox.Show(Host.WizardHostResources.ResetSelection, Host.WizardHostResources.ResetSelectionTitle, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            var resetSelectionResult = MessageBox.Show(WizardHostResources.ResetSelection, WizardHostResources.ResetSelectionTitle, MessageBoxButton.YesNo, MessageBoxImage.Warning);
             return resetSelectionResult == MessageBoxResult.Yes;
         }
     }

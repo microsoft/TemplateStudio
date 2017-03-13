@@ -65,7 +65,11 @@ namespace Microsoft.Templates.Wizard.Steps.Pages
 
         private void ShowAddPageDialog()
         {
-            var dialog = new NewPage.NewPageDialog(Context, Templates.Select(t => t.Name));
+            var dialog = new NewPage.NewPageDialog(Context, Templates.Select(t => t.Name))
+            {
+                Owner = Context.Host
+            };
+
             var dialogResult = dialog.ShowDialog();
 
             if (dialogResult.HasValue && dialogResult.Value)
