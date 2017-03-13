@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Templates.Core.Locations;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,9 +20,9 @@ namespace Microsoft.Templates.Core.Gen
         public string ProjectName { get; }
         public string OutputPath { get; }
 
-        public static void Bootstrap(TemplatesRepository repo, GenShell shell)
+        public static void Bootstrap(TemplatesLocation location, GenShell shell)
         {
-            ToolBox = new GenToolBox(repo, shell);
+            ToolBox = new GenToolBox(new TemplatesRepository(location), shell);
 
             IsInitialized = true;
         }

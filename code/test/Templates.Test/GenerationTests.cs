@@ -26,7 +26,7 @@ namespace Microsoft.Templates.Test
         public GenerationTests(GenerationTestsFixture fixture)
         {
             this.fixture = fixture;
-            GenContext.Bootstrap(new TemplatesRepository(new LocalTemplatesLocation()), new FakeGenShell());
+            GenContext.Bootstrap(new LocalTemplatesLocation(), new FakeGenShell());
         }
 
         [STAThread]

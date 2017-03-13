@@ -25,7 +25,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             _host = host;
 
-            GenContext.Bootstrap(new TemplatesRepository(new LocalTemplatesLocation()), new FakeGenShell(msg => SetStateAsync(msg), _host));
+            GenContext.Bootstrap(new LocalTemplatesLocation(), new FakeGenShell(msg => SetStateAsync(msg), _host));
         }
 
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);

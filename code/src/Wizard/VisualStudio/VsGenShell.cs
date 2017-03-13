@@ -6,9 +6,11 @@ using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
+using NuGet;
 using NuGet.VisualStudio;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace Microsoft.Templates.Wizard.VisualStudio
 {
@@ -19,8 +21,6 @@ namespace Microsoft.Templates.Wizard.VisualStudio
 
         private Lazy<IVsUIShell> _uiShell = new Lazy<IVsUIShell>(() => ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell)) as IVsUIShell, true);
         private IVsUIShell UIShell => _uiShell.Value;
-
-        public IVsPackageRestorer packageRestorer;
 
         //TODO: CACHE ON THIS
         private VsOutputPane OutputPane => new VsOutputPane();
@@ -219,9 +219,16 @@ namespace Microsoft.Templates.Wizard.VisualStudio
         public override void RestorePackages()
         {
             var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
-            var restoreService = componentModel.GetService<IVsPackageRestorer>();
 
-            restoreService?.RestorePackages(GetActiveProject());
+            var installer = componentModel.GetService<IVsPackageInstaller>();
+            var uninstaller = componentModel.GetService<IVsPackageUninstaller>();
+            var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
+
+            var installedPackages = installerServices.GetInstalledPackages().ToList();
+            var activeProject = GetActiveProject();
+
+            installedPackages.ForEach(p => uninstaller.UninstallPackage(activeProject, p.Id, false));
+            installedPackages.ForEach(p => installer.InstallPackage("All", activeProject, p.Id, p.VersionString, true));
         }
     }
 }

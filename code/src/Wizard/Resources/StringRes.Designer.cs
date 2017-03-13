@@ -142,11 +142,11 @@ namespace Microsoft.Templates.Wizard.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restauring packages....
+        ///   Looks up a localized string similar to Restoring packages....
         /// </summary>
-        public static string RestauringMessage {
+        public static string RestoringMessage {
             get {
-                return ResourceManager.GetString("RestauringMessage", resourceCulture);
+                return ResourceManager.GetString("RestoringMessage", resourceCulture);
             }
         }
         
