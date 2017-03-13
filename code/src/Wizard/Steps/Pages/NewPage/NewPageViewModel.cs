@@ -70,15 +70,23 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
             Templates.Clear();
 
             var pageTemplates = GenContext.ToolBox.Repo.GetAll()
-                                                                .Where(f => f.GetTemplateType() == TemplateType.Page
-                                                                    && f.GetFrameworkList().Contains(_context.State.Framework))
-                                                                .Select(t => new TemplateViewModel(t, GenContext.ToolBox.Repo.GetDependencies(t)))
-                                                                .OrderBy(t => t.Order)
-                                                                .ToList();
+                                                            .Where(f => f.GetTemplateType() == TemplateType.Page
+                                                                && f.GetFrameworkList().Contains(_context.State.Framework))
+                                                            .Select(t => new TemplateViewModel(t, GenContext.ToolBox.Repo.GetDependencies(t)))
+                                                            .OrderBy(t => t.Order)
+                                                            .ToList();
 
             Templates.AddRange(pageTemplates);
 
-            TemplateSelected = pageTemplates.FirstOrDefault();
+            if (Templates.Any())
+            {
+                TemplateSelected = Templates.FirstOrDefault();
+            }
+            else
+            {
+                _isValid = false;
+                OnPropertyChanged(nameof(OkCommand));
+            }
 
             await Task.FromResult(true);
         }
