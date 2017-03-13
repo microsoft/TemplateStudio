@@ -75,7 +75,7 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures
             foreach (var item in layout)
             {
                 var template = GenContext.ToolBox.Repo.Find(t => t.Identity == item.templateIdentity);
-                if (template != null && template.GetTemplateType() == TemplateType.DevFeature)
+                if (template != null && template.GetTemplateType() == TemplateType.DevFeature && template.GetFrameworkList().Any(f => f.Equals(Context.State.Framework, StringComparison.OrdinalIgnoreCase)))
                 {
                     Templates.Add(new PageViewModel(item.name, template.Name, item.@readonly));
                 }

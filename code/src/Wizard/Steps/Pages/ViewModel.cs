@@ -90,7 +90,7 @@ namespace Microsoft.Templates.Wizard.Steps.Pages
             foreach (var item in layout)
             {
                 var template = GenContext.ToolBox.Repo.Find(t => t.Identity == item.templateIdentity);
-                if (template != null && template.GetTemplateType() == TemplateType.Page)
+                if (template != null && template.GetTemplateType() == TemplateType.Page && template.GetFrameworkList().Any(f => f.Equals(Context.State.Framework, StringComparison.OrdinalIgnoreCase)))
                 {
                     Templates.Add(new PageViewModel(item.name, template.Name, item.@readonly));
                 }
