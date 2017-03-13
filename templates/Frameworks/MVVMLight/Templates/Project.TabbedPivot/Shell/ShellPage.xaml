@@ -9,7 +9,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Pivot Title="LOC_ANCHOR:uct.ItemName_Title~uct.ItemName" ItemsSource="{Binding Items}">
+        <Pivot x:Uid="ShellPivot" ItemsSource="{Binding Items}">
             <Pivot.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Title}"/>

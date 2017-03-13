@@ -149,9 +149,7 @@
     <Compile Include="PostActions\Catalog\AddItemToProjectPostAction.cs" />
     <Compile Include="PostActions\Catalog\AddProjectToSolutionPostAction.cs" />
     <Compile Include="PostActions\Catalog\BackgroundTaskPostAction.cs" />
-    <Compile Include="PostActions\Catalog\CleanLocAnchorPostAction.cs" />
     <Compile Include="PostActions\Catalog\GenerateTestCertificatePostAction.cs" />
-    <Compile Include="PostActions\Catalog\LocalizationPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\IEnumerableExtensions.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergePostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\StringExtensions.cs" />

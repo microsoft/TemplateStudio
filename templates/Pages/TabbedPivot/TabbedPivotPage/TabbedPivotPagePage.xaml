@@ -7,18 +7,18 @@
     mc:Ignorable="d">
 
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Pivot Title="LOC_ANCHOR:TabbedPivotPage_Title~TabbedPivotPage">
+        <Pivot x:Uid="TabbedPivotPage_Pivot">
             <Pivot.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding}"/>
                 </DataTemplate>
             </Pivot.HeaderTemplate>
-            <PivotItem Header="LOC_ANCHOR:TabbedPivotPage_ItemHeader1~Item 1">
+            <PivotItem x:Uid="TabbedPivotPage_PivotItem1">
                 <!--TODO UWPTemplates: Add here your tab layout-->
                 
             </PivotItem>
             
-            <PivotItem Header="LOC_ANCHOR:TabbedPivotPage_ItemHeader2~Item 2">
+            <PivotItem x:Uid="TabbedPivotPage_PivotItem2">
                 <!--TODO UWPTemplates: Add here your tab layout-->
                 
             </PivotItem>
