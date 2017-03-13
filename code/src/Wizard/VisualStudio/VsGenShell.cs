@@ -32,6 +32,7 @@ namespace Microsoft.Templates.Wizard.VisualStudio
                 return;
             }
             var proj = GetActiveProject();
+
             foreach (var item in itemsFullPath)
             {
                 proj.ProjectItems.AddFromFile(item);
@@ -229,6 +230,27 @@ namespace Microsoft.Templates.Wizard.VisualStudio
 
             installedPackages.ForEach(p => uninstaller.UninstallPackage(activeProject, p.Id, false));
             installedPackages.ForEach(p => installer.InstallPackage("All", activeProject, p.Id, p.VersionString, true));
+        }
+
+        public override void CollapseSolutionItems()
+        {
+            var solutionExplorer = Dte.Windows.Item(EnvDTE.Constants.vsext_wk_SProjectWindow).Object as UIHierarchy;
+            var projectNode = solutionExplorer.UIHierarchyItems.Item(1)?.UIHierarchyItems.Item(1);
+
+            foreach (UIHierarchyItem item in projectNode.UIHierarchyItems)
+            {
+                Collapse(item);
+            }
+        }
+
+        private void Collapse(UIHierarchyItem item)
+        {
+            foreach (UIHierarchyItem subitem in item.UIHierarchyItems)
+            {
+                Collapse(subitem);
+            }
+
+            item.UIHierarchyItems.Expanded = false;
         }
     }
 }
