@@ -8,7 +8,7 @@ namespace ItemNamespace.Shell
             get
             {
                 //^^
-                yield return new ShellTabbedItem("LOC_ANCHOR:Shell_uct.ItemName~uct.ItemName", new uct.ItemName.uct.ItemNamePage());
+                yield return new ShellTabbedItem("Shell_uct.ItemName".GetLocalized(), new uct.ItemName.uct.ItemNamePage());
             }
         }
     }

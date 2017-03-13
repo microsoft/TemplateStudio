@@ -1,0 +1,26 @@
+<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="SettingsPage_Title.Text" xml:space="preserve">
+    <value>SettingsPage</value>
+  </data>
+  <data name="SettingsPage_Theme.Text" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="SettingsPage_Toggle.OnContent" xml:space="preserve">  
+    <value>Light</value>
+  </data>
+  <data name="SettingsPage_Toggle.OffContent" xml:space="preserve">    
+    <value>Dark</value>
+  </data>
+  <data name="SettingsPage_About.Text" xml:space="preserve">    
+    <value>About this application</value>
+  </data>
+  <data name="SettingsPage_AboutDescription.Text" xml:space="preserve">    
+    <value>Lorem ipsum dolor sit</value>
+  </data>
+  <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">  
+    <value>Privacy Terms</value>
+  </data>
+  <!--}]}-->
+</root>

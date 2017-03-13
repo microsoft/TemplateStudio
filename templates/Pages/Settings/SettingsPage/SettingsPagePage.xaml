@@ -23,15 +23,15 @@
             </Grid.RowDefinitions>
             <TextBlock
                 Grid.Row="0"
-                Text="LOC_ANCHOR:SettingsPage_Title~Settings"
+                x:Uid="SettingsPage_Title"
                 Style="{ThemeResource HeaderTextBlockStyle}"/>
 
             <StackPanel Grid.Row="1" Margin="{StaticResource LargeTopMargin}">
                 <TextBlock
-                    Text="LOC_ANCHOR:SettingsPage_Theme~Application theme"
+                    x:Uid="SettingsPage_Theme"
                     Style="{ThemeResource TitleTextBlockStyle}"/>
                 <ToggleSwitch
-                    OffContent="LOC_ANCHOR:SettingsPage_ThemeToggleSwitch~Dark" OnContent="LOC_ANCHOR:SettingsPage_ThemeToggleSwitch~Light"
+                    x:Uid="SettingsPage_Toggle"
                     IsOn="{Binding IsLightThemeEnabled, Mode=TwoWay}"
                     Margin="{StaticResource SmallTopMargin}">
                     <i:Interaction.Behaviors>
@@ -44,17 +44,17 @@
             
             <StackPanel Grid.Row="2" Margin="{StaticResource LargeTopMargin}">
                 <TextBlock
-                    Text="LOC_ANCHOR:SettingsPage_About~About this application"
+                    x:Uid="SettingsPage_About"
                     Style="{ThemeResource TitleTextBlockStyle}"/>
                 <TextBlock
                     Text="{Binding AppDescription}"
                     Style="{ThemeResource SubtitleTextBlockStyle}"
                     Margin="{StaticResource SmallTopMargin}"/>
                 <TextBlock
-                    Text="LOC_ANCHOR:SettingsPage_AboutDescription~Lorem ipsum dolor sit"
+                    x:Uid="SettingsPage_AboutDescription"
                     Style="{ThemeResource BodyTextBlockStyle}"/>
                 <HyperlinkButton
-                    Content="LOC_ANCHOR:SettingsPage_PrivacyTermsLink~Privacy Terms"
+                    x:Uid="SettingsPage_PrivacyTermsLink"
                     Margin="{StaticResource MediumTopMargin}"/>
             </StackPanel>
             

@@ -67,7 +67,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="LOC_ANCHOR:MasterDetailPage_Title~MasterDetailPage" Margin="{StaticResource PageHeaderMargin}" Style="{ThemeResource HeaderTextBlockStyle}"/>
+        <TextBlock Grid.Row="0" x:Uid="MasterDetailPage_Title" Margin="{StaticResource PageHeaderMargin}" Style="{ThemeResource HeaderTextBlockStyle}"/>
         <Grid Visibility="{Binding MasterVisibility}" Grid.Row="1">
             <ListView ItemsSource="{Binding DessertList}" SelectionMode="Single" IsItemClickEnabled="True" SelectedItem="{Binding Selected}">
                 <i:Interaction.Behaviors>
