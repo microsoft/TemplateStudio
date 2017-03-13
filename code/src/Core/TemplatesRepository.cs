@@ -32,11 +32,14 @@ namespace Microsoft.Templates.Core
         private readonly Lazy<string> _workingFolder = new Lazy<string>(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), FolderName));
         public string WorkingFolder => _workingFolder.Value;
 
-        private string FileVersionPath => Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName, TemplatesLocation.VersionFileName);
+        public string CurrentTemplatesFolder { get => _location.CurrentTemplatesVersionFolder; }
+
+        //private string FileVersionPath => Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName, TemplatesLocation.VersionFileName);
 
         public TemplatesRepository(TemplatesLocation location)
         {
             _location = location ?? throw new ArgumentNullException("location");
+            _location.InitializeWorkingFolder(WorkingFolder);
         }
 
         public async Task SynchronizeAsync(bool forceUpdate = false)
@@ -55,7 +58,7 @@ namespace Microsoft.Templates.Core
 
         public string GetVersion()
         {
-            return _location.GetVersion(WorkingFolder);
+            return _location.GetVersion();
         }
 
         private async Task AdquireContentAsync()
@@ -69,7 +72,7 @@ namespace Microsoft.Templates.Core
         {
             try
             {
-                _location.Adquire(WorkingFolder);
+                _location.Adquire();
             }
             catch (Exception ex)
             {
@@ -88,10 +91,10 @@ namespace Microsoft.Templates.Core
         {
             try
             {
-                if (_location.Update(WorkingFolder))
+                if (_location.Update())
                 {
                     CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
-                    CodeGen.Instance.Cache.Scan(WorkingFolder + $@"\{TemplatesLocation.TemplatesName}");
+                    CodeGen.Instance.Cache.Scan(CurrentTemplatesFolder);
                     CodeGen.Instance.Cache.WriteTemplateCaches();
                 }
             }
@@ -102,14 +105,13 @@ namespace Microsoft.Templates.Core
         }
         private bool ExistsTemplates()
         {
-            string templatesDir = Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName);
-            if (!Directory.Exists(templatesDir))
+            if (!Directory.Exists(_location.CurrentTemplatesVersionFolder))
             {
                 return false;
             }
             else
             {
-                DirectoryInfo di = new DirectoryInfo(templatesDir);
+                DirectoryInfo di = new DirectoryInfo(CurrentTemplatesFolder);
                 return di.EnumerateFiles("*", SearchOption.AllDirectories).Any();
             }
         }
@@ -145,12 +147,12 @@ namespace Microsoft.Templates.Core
 
         public ProjectInfo GetProjectTypeInfo(string projectType)
         {
-            return GetProyectInfo(Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName, TemplatesLocation.ProjectTypes, projectType, "Info"));
+            return GetProyectInfo(Path.Combine(CurrentTemplatesFolder, TemplatesLocation.ProjectTypes, projectType, "Info"));
         }
 
         public ProjectInfo GetFrameworkTypeInfo(string fxType)
         {
-            return GetProyectInfo(Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName, TemplatesLocation.Frameworks, fxType, "Info"));
+            return GetProyectInfo(Path.Combine(CurrentTemplatesFolder, TemplatesLocation.Frameworks, fxType, "Info"));
         }
 
         private ProjectInfo GetProyectInfo(string folderName)

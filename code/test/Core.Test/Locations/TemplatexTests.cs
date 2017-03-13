@@ -259,12 +259,40 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
         [Fact]
-        public void UseRemote()
+        public void UseRemoteDownloadAndUpdate()
         {
+            string workingFolder = Path.Combine(@"C:\Temp", Path.GetRandomFileName());
+
             RemoteTemplatesLocation remote = new RemoteTemplatesLocation();
-            remote.Adquire(@"C:\Temp\WorkingFolder");
+            remote.InitializeWorkingFolder(workingFolder);
+            remote.Adquire();
+            Assert.True(remote.Update());
+
+            if (Directory.Exists(workingFolder))
+            {
+                Directory.Delete(workingFolder, true);
+            }
         }
-       
+
+        [Fact]
+        public void UseRemoteDownloadAndUpdateTwice()
+        {
+            string workingFolder = Path.Combine(@"C:\Temp", Path.GetRandomFileName());
+
+            RemoteTemplatesLocation remote = new RemoteTemplatesLocation();
+            remote.InitializeWorkingFolder(workingFolder);
+            remote.Adquire();
+            Assert.True(remote.Update());
+
+            remote.Adquire();
+            Assert.False(remote.Update());
+
+            if (Directory.Exists(workingFolder))
+            {
+                Directory.Delete(workingFolder, true);
+            }
+        }
+
         private void ModifyContent(string signedPack, string contentFile)
         {
             using (ZipArchive zip = ZipFile.Open(signedPack, ZipArchiveMode.Update))

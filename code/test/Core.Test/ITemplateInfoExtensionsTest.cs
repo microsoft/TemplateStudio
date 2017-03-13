@@ -50,7 +50,7 @@ namespace Microsoft.Templates.Core.Test
             var target = GetTarget("ProjectTemplate");
 
             var result = target.GetIcon();
-            var expected = Path.Combine(_fixture.Repository.WorkingFolder, @"Templates\ProjectTemplate", ".template.config",
+            var expected = Path.Combine(_fixture.Repository.CurrentTemplatesFolder, @"ProjectTemplate", ".template.config",
                 "icon.png");
             Assert.Equal(expected, result);
         }

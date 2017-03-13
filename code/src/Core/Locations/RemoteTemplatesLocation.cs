@@ -16,36 +16,68 @@ namespace Microsoft.Templates.Core.Locations
         private readonly string CdnUrl = Configuration.Current.CdnUrl;
         private const string CdnTemplatesFileName = "Templates.mstx";
 
+        protected override string LocationId { get => "Remote_" + CdnUrl.Obfuscate(); }
 
-        public override void Adquire(string workingFolder)
+        public override void Adquire()
         {
-            Download(workingFolder, CdnTemplatesFileName);
+            Download();
         }
 
-        public override bool Update(string workingFolder)
+        public override bool Update()
         {
-            return UpdateTemplates(workingFolder);
-        }
-
-        private void Download(string workingFolder, string fileName)
-        {
-
-            if (IsDownloadExpired(workingFolder))
+            bool updated = UpdateTemplates();
+            if (updated)
             {
-                var sourceUrl = $"{CdnUrl}/{fileName}";
-                var tempFolder = Path.Combine(workingFolder, TempFolderName);
-                var file = Path.Combine(workingFolder, fileName);
+                RefreshWorkingFolders();
+            }
+            return updated;
+        }
+        public override void Purge()
+        {
+            PurgeOldContent();
+        }
+        protected override string GetCurrentTemplatesFolderName()
+        {
+            Version latestVersion = new Version(0, 0, 0, 0);
+            string currentTemplatesFolder = string.Empty;
+            if (Directory.Exists(TemplatesFolder))
+            {
+                DirectoryInfo di = new DirectoryInfo(TemplatesFolder);
+                foreach (DirectoryInfo sdi in di.EnumerateDirectories())
+                {
+                    Version.TryParse(sdi.Name, out Version v);
 
-                EnsureWorkingFolder(workingFolder);
+                    if (v > latestVersion)
+                    {
+                        currentTemplatesFolder = sdi.Name;
+                    }
+
+                    //TODO: Version DOWNLOADED (EXISTING IN TEMP FOLDER MUST BE COORDINATED WIHT THE EXTENSION Mayor.Minor;
+                }
+            }
+            return currentTemplatesFolder;
+        }
+        
+        private void Download()
+        {
+
+            if (IsDownloadExpired())
+            {
+                var sourceUrl = $"{CdnUrl}/{CdnTemplatesFileName}";
+                var tempFolder = Path.Combine(TempDownloadsFolder, Path.GetRandomFileName());
+                var file = Path.Combine(LocationFolder, CdnTemplatesFileName);
+
+                EnsureFolder(LocationFolder);
+                EnsureFolder(tempFolder);
 
                 DownloadContent(sourceUrl, file);
 
                 ExtractContent(file, tempFolder);
             }
         }
-        private bool IsDownloadExpired(string workingFolder)
+        private bool IsDownloadExpired()
         {
-            var currentFileVersion = Path.Combine(workingFolder, Path.Combine(TemplatesName, VersionFileName));
+            var currentFileVersion = CurrentTemplatesVersionFilePath;
             if (!File.Exists(currentFileVersion))
             {
                 return true;
@@ -73,13 +105,19 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private static void ExtractContent(string file, string targetFolder)
+        private void ExtractContent(string file, string intermediateTempFolder)
         {
             try
             {
-                Templatex.Extract(file, targetFolder);
-                var ver = GetVersionFromFile(Path.Combine(targetFolder, Path.Combine(TemplatesName, VersionFileName)));
-                AppHealth.Current.Verbose.TrackAsync($"Templates content extracted to {targetFolder}. Version adquired: {ver}").FireAndForget();
+                var ver = GetVersionFromPackage(file);
+
+                Templatex.Extract(file, intermediateTempFolder);
+
+                var finalTarget = Path.Combine(intermediateTempFolder, ver.ToString());
+
+                SafeMoveDirectory(Path.Combine(intermediateTempFolder, TemplatesName), finalTarget);
+
+                AppHealth.Current.Verbose.TrackAsync($"Templates content extracted to {finalTarget}. Version adquired: {ver.ToString()}").FireAndForget();
             }
             catch (Exception ex)
             {
@@ -96,15 +134,17 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private static bool UpdateTemplates(string workingFolder)
+        private bool UpdateTemplates()
         {
             bool templatesUpdated = false;
-            var tempFolder = Path.Combine(workingFolder, TempFolderName);
             try
             {
-
-                templatesUpdated = CopyContentIfNeeded(workingFolder);
-                SafeCleanUpTempFolder(tempFolder);
+                var tempContentFolder = GetTempContentFolder();
+                if (!String.IsNullOrEmpty(tempContentFolder) && Directory.Exists(tempContentFolder))
+                {
+                    templatesUpdated = CopyContentIfNeeded(tempContentFolder);
+                    //SafeDeleteDirectory(tempContentFolder);
+                }
             }
             catch (Exception ex)
             {
@@ -115,16 +155,34 @@ namespace Microsoft.Templates.Core.Locations
             return templatesUpdated;
         }
 
-        private static bool CopyContentIfNeeded(string workingFolder)
+        private string GetTempContentFolder()
+        {
+            DateTime latest = new DateTime(1900, 1, 1);
+            string latestDir = null;
+            if (Directory.Exists(TempDownloadsFolder))
+            {
+                DirectoryInfo di = new DirectoryInfo(TempDownloadsFolder);
+                foreach (DirectoryInfo sdi in di.EnumerateDirectories())
+                {
+                    if (sdi.LastWriteTimeUtc > latest)
+                    {
+                        latest = sdi.LastWriteTimeUtc;
+                        latestDir = sdi.FullName;
+                    }
+
+                    //TODO: Version DOWNLOADED (EXISTING IN TEMP FOLDER MUST BE COORDINATED WIHT THE EXTENSION Mayor.Minor;
+                }
+            }
+            return latestDir;
+        }
+
+        private bool CopyContentIfNeeded(string tempContentFolder)
         {
             bool updated = false;
-            string tempContentDir = Path.Combine(workingFolder, Path.Combine(TempFolderName, TemplatesName));
-            string currentContentDir = Path.Combine(workingFolder, TemplatesName);
 
-            if (UpdateAvailable(workingFolder))
+            if (UpdateAvailable(tempContentFolder))
             {
-                SafeDelete(currentContentDir);
-                CopyRecursive(tempContentDir, currentContentDir);
+                CopyRecursive(tempContentFolder, TemplatesFolder);
 
                 AppHealth.Current.Warning.TrackAsync($"Templates successfully updated").FireAndForget();
                 updated = true;
@@ -132,16 +190,14 @@ namespace Microsoft.Templates.Core.Locations
             return updated;
         }
 
-        private static bool UpdateAvailable(string workingFolder)
+        private bool UpdateAvailable(string tempContentFolder)
         {
-            string tempContentDir = Path.Combine(workingFolder, Path.Combine(TempFolderName, TemplatesName));
-            string tempFileVersion = Path.Combine(tempContentDir, VersionFileName);
-            string currentFileVersion = Path.Combine(workingFolder, Path.Combine(TemplatesName, VersionFileName));
+            string tempFileVersion = GetVersionFilePathFromTempContentFolder(tempContentFolder);
 
             var tempVersion = GetVersionFromFile(tempFileVersion);
-            var currentVersion = GetVersionFromFile(currentFileVersion);
+            var currentVersion = GetVersionFromFile(CurrentTemplatesVersionFilePath);
 
-            bool update = tempVersion != "0.0.0" && tempVersion != currentVersion;
+            bool update = tempVersion > currentVersion;
 
             if (update)
             {
@@ -150,10 +206,23 @@ namespace Microsoft.Templates.Core.Locations
 
             if (!update && tempVersion == currentVersion)
             {
-                RefreshVersionFileExpiration(currentFileVersion, currentVersion);
+                RefreshVersionFileExpiration(CurrentTemplatesVersionFilePath, currentVersion.ToString());
             }
             return update;
         }
+
+        private string GetVersionFilePathFromTempContentFolder(string tempContentFolder)
+        {
+            if (Directory.Exists(tempContentFolder))
+            {
+                return Directory.EnumerateFiles(tempContentFolder, VersionFileName, SearchOption.AllDirectories).FirstOrDefault();
+            }
+            else
+            {
+                return String.Empty;
+            }
+        }
+
         private static void RefreshVersionFileExpiration(string installedVersionFile, string installedVersion)
         {
             if (File.Exists(installedVersionFile))
@@ -162,28 +231,25 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private static void SafeCleanUpTempFolder(string usedTempFolder)
+
+        private static void EnsureFolder(string folder)
         {
-            try
+            if (!Directory.Exists(folder))
             {
-                if (Directory.Exists(usedTempFolder))
-                {
-                    Directory.Delete(usedTempFolder, true);
-                }
-            }
-            catch (Exception ex)
-            {
-                var msg = $"The temp folder {usedTempFolder} can't be delete. Error: {ex.Message}";
-                AppHealth.Current.Warning.TrackAsync(msg).FireAndForget();
+                Directory.CreateDirectory(folder);
             }
         }
 
-        private static void EnsureWorkingFolder(string workingFolder)
+        private void PurgeOldContent()
         {
-            if (!Directory.Exists(workingFolder))
+            DirectoryInfo di = new DirectoryInfo(TempDownloadsFolder);
+            var tobedeleted = di.EnumerateDirectories().Where(sdi => sdi.LastWriteTimeUtc.AddDays(Configuration.Current.DaysToKeepTempDownloads) < DateTime.UtcNow);
+            foreach (var sdi in tobedeleted)
             {
-                Directory.CreateDirectory(workingFolder);
+                SafeDeleteDirectory(sdi.FullName);
             }
+
+            //TODO: Purge old templates.
         }
     }
 }
