@@ -16,7 +16,7 @@ namespace Microsoft.Templates.Core
 {
     public class CodeGen
     {
-        public const string Name = "UWPTemplates";
+        public const string BaseName = "UWPTemplates";
 
         public EngineEnvironmentSettings Settings { get; }
         public TemplateCache Cache { get; }
@@ -24,21 +24,21 @@ namespace Microsoft.Templates.Core
 
         public static CodeGen Instance { get; private set; }
 
-        private CodeGen()
+        private CodeGen(string locationId)
         {
-            var host = CreateHost();
+            var host = CreateHost(locationId);
             Settings = new EngineEnvironmentSettings(host, x => new SettingsLoader(x));
             Cache = new TemplateCache(Settings);
             Creator = new TemplateCreator(Settings);
         }
 
-        public static void CreateInstance(string locationId)
+        public static void Initialize(string locationId)
         {
-            Instance = new CodeGen();
-            Instance.Initialize();
+            Instance = new CodeGen(locationId);
+            Instance.Init();
         }
-
-        private void Initialize()
+         
+        private void Init()
         {
             if (!Settings.SettingsLoader.Components.OfType<IGenerator>().Any())
             {
@@ -49,9 +49,9 @@ namespace Microsoft.Templates.Core
             }
         }
 
-        private static ITemplateEngineHost CreateHost()
+        private static ITemplateEngineHost CreateHost(string locationId)
         {
-            return new DefaultTemplateEngineHost(Name, GetVersion(), CultureInfo.CurrentCulture.Name, new Dictionary<string, string>());
+            return new DefaultTemplateEngineHost($"{BaseName}_{locationId}", GetVersion(), CultureInfo.CurrentCulture.Name, new Dictionary<string, string>());
         }
 
         private static string GetVersion()

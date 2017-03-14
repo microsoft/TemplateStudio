@@ -22,7 +22,11 @@ namespace Microsoft.Templates.Core.Gen
 
         public static void Bootstrap(TemplatesLocation location, GenShell shell)
         {
-            ToolBox = new GenToolBox(new TemplatesRepository(location), shell);
+            TemplatesRepository repository = new TemplatesRepository(location);
+
+            CodeGen.Initialize(location.Id);
+
+            ToolBox = new GenToolBox(repository, shell);
 
             IsInitialized = true;
         }
