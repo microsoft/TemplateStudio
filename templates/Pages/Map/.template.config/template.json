@@ -22,7 +22,7 @@
     { "path": ".\\MapPage\\MapPagePage.xaml" },
     { "path": ".\\MapPage\\MapPagePage.xaml.cs" },
     { "path": ".\\MapPage\\MapPageViewModel.cs" },    
-    { "path": ".\\MapPage\\map.png" }
+    { "path": ".\\Assets\\map.png" }
   ],
   "symbols": {
     "rootNamespace": {

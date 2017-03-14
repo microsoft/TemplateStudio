@@ -12,18 +12,12 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using uct.ItemName.Home;
+using uct.ItemName.Main;
 using Microsoft.Practices.ServiceLocation;
 using uct.ItemName.Services;
 
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace uct.ItemName.Shell
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class ShellPage : Page
     {
         private NavigationService navigationService => ServiceLocator.Current.GetInstance<NavigationService>();
@@ -48,7 +42,7 @@ namespace uct.ItemName.Shell
         {
             if (e.Parameter == null || String.IsNullOrEmpty(e.Parameter.ToString()))
             {
-                navigationService.Navigate(typeof(HomeViewModel).FullName);
+                navigationService.Navigate(typeof(MainViewModel).FullName);
             }
             else
             {

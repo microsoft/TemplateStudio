@@ -18,16 +18,6 @@
   "sourceName": "uct.BlankProject",
   "preferNameDirectory": true,
   "guids": [ "7cf740f7-735f-48ea-8b7b-3ffa4902371c", "be236938-efed-4037-b3f2-70788b43ca20" ],
-  // "sources":
-  // [
-  //   {
-  //       "source" : "./"
-  //   },
-  //   {
-  //       "source" : "../../../../Common/Location",
-  //       "target":"./"
-  //   }
-  // ],
   "PrimaryOutputs":
   [
     { "path": "uct.BlankProject.csproj" }
@@ -38,6 +28,10 @@
     {
       "type": "parameter",
       "replaces": "Param_UserName"
+    },
+    "year":{
+      "type":"parameter",
+      "replaces": "Param_Year"
     }
   }
 }

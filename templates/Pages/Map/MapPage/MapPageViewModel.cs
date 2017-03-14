@@ -9,7 +9,9 @@ namespace ItemNamespace.MapPage
 {
     public class MapPageViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        private MapControl _map;
+        private const double defaultZoomLevel = 19;
+        private const double defaultLatitude = 47.639627;
+        private const double defaultLongitude = -122.128227;
 
         private double _zoomLevel;
         public double ZoomLevel
@@ -25,38 +27,37 @@ namespace ItemNamespace.MapPage
             set { Set(ref _center, value); }
         }
 
-        public ICommand LoadDataCommand { get; private set; }
-
         public MapPageViewModel()
         {
-            LoadDataCommand = new RelayCommand(LoadDataAsync);
-            ZoomLevel = 19;
+            ZoomLevel = defaultZoomLevel;
         }
 
-        public void SetMap(MapControl map)
+        public void Initialize(MapControl map)
         {
-            _map = map;
-            
-            //TODO UWPTemplates: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/
-            _map.MapServiceToken = "";
-        }
+            if (map == null)
+            {
+                return;
+            }
 
-        private void LoadDataAsync()
-        {
-            var position = new BasicGeoposition() { Latitude = 47.639627, Longitude = -122.128227 };
+            //TODO UWPTemplates: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
+            map.MapServiceToken = "";
+
+            var position = new BasicGeoposition() { Latitude = defaultLatitude, Longitude = defaultLongitude };
             Center = new Geopoint(position);
-            AddMapIcon(Center, "Microsoft Corporation");
-        }
+            AddMapIcon(map, Center, "Microsoft Corporation");
+        }        
 
-        private void AddMapIcon(Geopoint position, string title)
+        private void AddMapIcon(MapControl map, Geopoint position, string title)
         {
-            MapIcon mapIcon = new MapIcon();
-            mapIcon.Location = position;
-            mapIcon.NormalizedAnchorPoint = new Point(0.5, 1.0);
-            mapIcon.Title = title;
-            mapIcon.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///MapPage/map.png"));
-            mapIcon.ZIndex = 0;
-            _map?.MapElements.Add(mapIcon);
+            MapIcon mapIcon = new MapIcon()
+            {
+                Location = position,
+                NormalizedAnchorPoint = new Point(0.5, 1.0),
+                Title = title,
+                Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/map.png")),
+                ZIndex = 0
+            };
+            map.MapElements.Add(mapIcon);
         }
     }
 }

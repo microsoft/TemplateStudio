@@ -18,16 +18,6 @@
   "sourceName": "uct.TabbedPivotProject",
   "preferNameDirectory": true,
   "guids": [ "b826fc01-407f-4edd-a771-2db208af108f", "78ca7868-383f-4f7e-8036-9c97d91dc4c3" ],
-  // "sources":
-  // [
-  //   {
-  //       "source" : "./"
-  //   },
-  //   {
-  //       "source" : "../../../../Common/Location",
-  //       "target":"./"
-  //   }
-  // ],
   "PrimaryOutputs":
   [
     { "path": "uct.TabbedPivotProject.csproj" }
@@ -38,6 +28,10 @@
     {
       "type": "parameter",
       "replaces": "Param_UserName"
+    },
+    "year":{
+      "type":"parameter",
+      "replaces": "Param_Year"
     }
   }
 }

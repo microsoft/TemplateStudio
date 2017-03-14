@@ -18,16 +18,6 @@
   "sourceName": "uct.SplitViewProject",
   "preferNameDirectory": true,
   "guids": [ "2C4C3417-7073-4822-BA11-65B00E78B005", "b38d8add-fede-4905-a7af-9589cb0a82dc" ],
-  // "sources":
-  // [
-  //   {
-  //       "source" : "./"
-  //   },
-  //   {
-  //       "source" : "../../../../Common/Location",
-  //       "target":"./"
-  //   }
-  // ],
   "PrimaryOutputs":
   [
     { "path": "uct.SplitViewProject.csproj" }
@@ -36,6 +26,10 @@
     "userName": {
       "type": "parameter",
       "replaces": "Param_UserName"
+    },
+    "year":{
+      "type":"parameter",
+      "replaces": "Param_Year"
     }
   }  
 }
