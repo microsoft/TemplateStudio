@@ -1,6 +1,7 @@
 using System;
 using Windows.Storage;
 using Windows.UI.Xaml;
+using RootNamespace.Extensions;
 
 namespace RootNamespace.Services
 {
@@ -52,7 +53,7 @@ namespace RootNamespace.Services
         private static Theme LoadThemeFromSettings()
         {
             Theme cacheTheme = Theme.Light;
-            string themeName = SettingsStorageService.Read<string>(SettingsKey, ApplicationData.Current.LocalSettings);
+            string themeName = ApplicationData.Current.LocalSettings.Read<string>(SettingsKey);
             if (String.IsNullOrEmpty(themeName))
             {
                 cacheTheme = Application.Current.RequestedTheme == ApplicationTheme.Dark ? Theme.Dark : Theme.Light;
@@ -65,7 +66,7 @@ namespace RootNamespace.Services
         }
         private static void SaveThemeInSettings(Theme theme)
         {
-            SettingsStorageService.Save<string>(SettingsKey, theme.ToString(), ApplicationData.Current.LocalSettings);
+            ApplicationData.Current.LocalSettings.Save<string>(SettingsKey, theme.ToString());
         }
     }
 }

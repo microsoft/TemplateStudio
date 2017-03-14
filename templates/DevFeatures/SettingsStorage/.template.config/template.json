@@ -21,7 +21,7 @@
   "guids": [ "5b9d2eee-b648-4ca1-837e-9abb8f3dffdd" ],
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\SettingsStorageService.cs"
+      "path": ".\\Extensions\\SettingsStorage.extensions.cs"
     }
   ],
   "symbols": {

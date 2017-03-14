@@ -1,13 +1,21 @@
 using Microsoft.Practices.ServiceLocation;
-
 namespace ItemNamespace.Services
 {
     public class StateService
     {
-        private void NavigateToPage(Type page, string arguments)
+        public async Task RestoreStateAsync(ApplicationExecutionState previousState, string arguments)
         {
-            var navigationService = ServiceLocator.Current.GetInstance<NavigationService>();
-            navigationService.Navigate(navigationService.GetViewModel(page));
+            if (previousState == ApplicationExecutionState.Terminated)
+            {
+                if (saveState != null && saveState.Page != null)
+                {
+                    //Navigate to page
+                    var navigationService = ServiceLocator.Current.GetInstance<NavigationService>();
+                    navigationService.Navigate(navigationService.GetViewModel(saveState.Page));
+                    //Restore page state
+                    RestoreState?.Invoke(this, new RestoreStateEventArgs(saveState.PageState));
+                }  
+            }
         }
     }
 }

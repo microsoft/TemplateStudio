@@ -9,7 +9,6 @@ namespace RootNamespace
                     await Services.StateService.Instance.RestoreStateAsync(e.PreviousExecutionState, e.Arguments);
                 }
         }
-
         private async void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e)
         {
             var deferral = e.GetDeferral();

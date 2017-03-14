@@ -4,30 +4,21 @@ using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
 
-namespace RootNamespace.Services
+namespace ItemNamespace.Extensions
 {
-    /// <summary>
-    /// This service allows to save/retrieve settings and files to/from local and remote storage,
-    /// Documentation: https://docs.microsoft.com/en-us/windows/uwp/app-settings/store-and-retrieve-app-data
-    /// </summary>
-    public static class SettingsStorageService
+    public static class SettingsStorageExtensions
     {
-        public static bool IsRoamingStorageAvailable
+        //For mor info regarding storing and retrieving app data, 
+        //please see: https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data
+        
+        private const string fileExtension = ".json";
+
+        public static bool IsRoamingStorageAvailable(this ApplicationData appData)
         {
-            get
-            {
-                return (RoamingQuota == 0);
-            }
-        }
-        public static ulong RoamingQuota
-        {
-            get
-            {
-                return ApplicationData.Current.RoamingStorageQuota;
-            }
+            return (appData.RoamingStorageQuota == 0);
         }
 
-        public static async Task SaveAsync<T>(string name, T content, StorageFolder folder)
+        public static async Task SaveAsync<T>(this StorageFolder folder, string name, T content)
         {
             var file = await folder.CreateFileAsync(GetFileName(name), CreationCollisionOption.ReplaceExisting);
 
@@ -36,7 +27,7 @@ namespace RootNamespace.Services
             await FileIO.WriteTextAsync(file, fileContent);
         }
 
-        public static async Task<T> ReadAsync<T>(string name, StorageFolder folder)
+        public static async Task<T> ReadAsync<T>(this StorageFolder folder, string name)
         {
             if (!File.Exists(Path.Combine(folder.Path, GetFileName(name))))
             {
@@ -48,12 +39,7 @@ namespace RootNamespace.Services
             return JsonConvert.DeserializeObject<T>(fileContent);
         }
 
-        private static string GetFileName(string name)
-        {
-            return $"{name}.json";
-        }
-
-        public static void Save<T>(string key, T value, ApplicationDataContainer settings)
+        public static void Save<T>(this ApplicationDataContainer settings, string key, T value)
         {
             if (settings.Values.ContainsKey(key))
             {
@@ -65,7 +51,7 @@ namespace RootNamespace.Services
             }
         }
 
-        public static T Read<T>(string key, ApplicationDataContainer settings)
+        public static T Read<T>(this ApplicationDataContainer settings, string key)
         {
             if (settings.Values.ContainsKey(key))
             {
@@ -76,7 +62,11 @@ namespace RootNamespace.Services
                 }
             }
             return default(T);
-            
+        }
+
+        private static string GetFileName(string name)
+        {
+            return string.Concat(name, fileExtension);
         }
     }
 }

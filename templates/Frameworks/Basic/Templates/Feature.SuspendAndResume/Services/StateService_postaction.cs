@@ -2,9 +2,18 @@ namespace ItemNamespace.Services
 {
     public class StateService
     {
-        private void NavigateToPage(Type page, string arguments)
+        public async Task RestoreStateAsync(ApplicationExecutionState previousState, string arguments)
         {
-            NavigationService.Navigate(page, arguments);
+            if (previousState == ApplicationExecutionState.Terminated)
+            {
+                if (saveState != null && saveState.Page != null)
+                {
+                    //Navigate to page
+                    NavigationService.Navigate(saveState.Page, arguments);
+                    //Restore page state
+                    RestoreState?.Invoke(this, new RestoreStateEventArgs(saveState.PageState));
+                }  
+            }
         }
     }
 }
