@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using uct.ItemName.Home;
+using uct.ItemName.Main;
 using Microsoft.Practices.ServiceLocation;
 using uct.ItemName.Services;
 
@@ -48,7 +48,7 @@ namespace uct.ItemName.Shell
         {
             if (e.Parameter == null || String.IsNullOrEmpty(e.Parameter.ToString()))
             {
-                navigationService.Navigate(typeof(HomeViewModel).FullName);
+                navigationService.Navigate(typeof(MainViewModel).FullName);
             }
             else
             {

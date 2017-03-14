@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using uct.BlankProject.Home;
+using uct.BlankProject.Main;
 
 namespace uct.BlankProject
 {
@@ -67,7 +67,7 @@ namespace uct.BlankProject
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(HomePage), e.Arguments);
+                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
@@ -107,7 +107,7 @@ namespace uct.BlankProject
                 Window.Current.Content = rootFrame;
                 if (rootFrame.Content == null)
                 {
-                    rootFrame.Navigate(typeof(HomePage));
+                    rootFrame.Navigate(typeof(MainPage));
                 }
             }
             Window.Current.Activate();

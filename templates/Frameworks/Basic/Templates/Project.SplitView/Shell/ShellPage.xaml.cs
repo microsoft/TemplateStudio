@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-using uct.ItemName.Home;
+using uct.ItemName.Main;
 using uct.ItemName.Services;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -48,7 +48,7 @@ namespace uct.ItemName.Shell
         {
             if (e.Parameter == null || String.IsNullOrEmpty(e.Parameter.ToString()))
             {
-                NavigationService.Navigate<HomePage>();
+                NavigationService.Navigate<MainPage>();
             }
             else
             {
