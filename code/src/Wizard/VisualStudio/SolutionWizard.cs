@@ -63,7 +63,7 @@ namespace Microsoft.Templates.Wizard.VisualStudio
             GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.RestoringMessage);
             GenContext.ToolBox.Shell.RestorePackages();
 
-            GenContext.ToolBox.Shell.ShowTaskList();
+            GenContext.ToolBox.Shell.CollapseSolutionItems();
         }
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)

@@ -12,7 +12,7 @@
     "language": "C#",
     "type": "item",
     "uct.type": "consumerfeature",
-    "uct.framework": "Basic;MVVMLight",
+    "uct.framework": "Basic|MVVMLight",
     "uct.version": "1.0.0",
     "uct.order": "1",
     "uct.defaultInstance": "LiveTile",

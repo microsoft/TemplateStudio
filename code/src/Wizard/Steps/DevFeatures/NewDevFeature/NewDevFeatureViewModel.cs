@@ -84,7 +84,15 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures.NewDevFeature
                 }
             }
 
-            TemplateSelected = devFeatTemplates.FirstOrDefault();
+            if (Templates.Any())
+            {
+                TemplateSelected = Templates.FirstOrDefault();
+            }
+            else
+            {
+                _isValid = false;
+                OnPropertyChanged(nameof(OkCommand));
+            }
 
             await Task.FromResult(true);
         }

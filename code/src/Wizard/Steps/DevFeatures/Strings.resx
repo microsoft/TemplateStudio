@@ -123,6 +123,9 @@
   <data name="CancelCommand" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="NoDevFeatAvailableMessage" xml:space="preserve">
+    <value>No features available. Lorem ipsum</value>
+  </data>
   <data name="NoFeaturesMessage" xml:space="preserve">
     <value>Add features pushing add button. Lorem ipsum</value>
   </data>
