@@ -6,20 +6,21 @@ namespace uct.ItemName.Shell
 {
     public class ShellNavigationItem
     {
-        public string Glyph { get; set; }
-        public string Name { get; set; }        
+        public string Name { get; set; }
+        public Symbol Symbol { get; set; }
+        public char SymbolAsChar { get { return (char)Symbol; } }
         public Type PageType { get; set; }
 
-        private ShellNavigationItem(string name, string glyph, Type pageType)
+        private ShellNavigationItem(string name, Symbol symbol, Type pageType)
         {
             this.Name = name;
-            this.Glyph = glyph;
+            this.Symbol = symbol;
             this.PageType = pageType;
         }
 
-        public static ShellNavigationItem FromType<T>(string name, string glyph) where T : Page
+        public static ShellNavigationItem FromType<T>(string name, Symbol symbol) where T : Page
         {
-            return new ShellNavigationItem(name, glyph, typeof(T));
+            return new ShellNavigationItem(name, symbol, typeof(T));
         }       
     }
 }
