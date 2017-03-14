@@ -13,7 +13,12 @@ namespace ItemNamespace.WebViewPage
 
         public WebViewPageViewModel()
         {
-            Source = new Uri("https://www.microsoft.com/"); //Setup here your web url.
+        }
+
+        public void Initialize()
+        {
+            //TODO UWPTemplates: Setup here your web url
+            Source = new Uri("https://www.microsoft.com/");   
         }
     }
 }
