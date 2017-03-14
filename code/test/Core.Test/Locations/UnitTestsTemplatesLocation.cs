@@ -6,26 +6,21 @@ namespace Microsoft.Templates.Core.Test.Locations
 {
     public class UnitTestsTemplatesLocation : TemplatesLocation
     {
-        protected override string LocationId { get => "Unit"; }
+        public override string Id { get => "Unit"; }
         public override void Adquire()
-        {            
-            //NO ADQUSITION REQUIRED;
+        {
+            Copy($@"..\..\TestData\{TemplatesLocation.TemplatesFolderName}", CurrentVersionFolder);
+            File.WriteAllText(CurrentVersionFilePath, $"0.0.0.0");
         }
 
-        public override bool Update()
+        public override bool UpdateAvailable()
         {
-            Copy($@"..\..\TestData\{TemplatesLocation.TemplatesName}", CurrentTemplatesVersionFolder);
-            File.WriteAllText(CurrentTemplatesVersionFilePath, $"0.0.0.0");
             return true;
         }
 
-        protected override string GetCurrentTemplatesFolderName()
+        protected override string GetLatestTemplateFolder()
         {
             return "0.0.0.0-unit";
-        }
-        public override void Purge()
-        {
-            //No purge required
         }
 
         protected static void Copy(string sourceFolder, string targetFolder)

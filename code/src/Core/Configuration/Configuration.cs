@@ -16,13 +16,13 @@ namespace Microsoft.Templates.Core
 {
     public class Configuration
     {
+        public string Environment { get; set; } = "LocalDev";
         public string CdnUrl { get; set; } = "https://uwpcommunitytemplates.blob.core.windows.net/vnext/Latest";
         public string RemoteTelemetryKey { get; set; } = "<SET_YOUR_OWN_KEY>"; //Or configure it in a UWPTemplates.config.json located in the working folder.
         public string LogFileFolderPath { get; set; } = @"UWPTemplates\Logs";
         public string RepositoryFolderName { get; set; } = @"UWPTemplates";
         public TraceEventType DiagnosticsTraceLevel { get; set; } = TraceEventType.Verbose;
         public int DaysToKeepDiagnosticsLogs { get; set; } = 5;
-        public int DaysToKeepTempDownloads { get; set; } = 5;
         public int VersionCheckingExpirationMinutes { get; set; } = 5;
         public List<string> AllowedPublicKeysPins { get; set; } = new List<string>() { };
 
@@ -54,7 +54,6 @@ namespace Microsoft.Templates.Core
             }
         }
 
-        
         public static string GetJsonConfigFilePath()
         {
             TraceUsingDefault("Resoving JsonConfigFilePath");

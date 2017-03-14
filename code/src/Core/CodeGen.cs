@@ -18,13 +18,11 @@ namespace Microsoft.Templates.Core
     {
         public const string Name = "UWPTemplates";
 
-        private static readonly Lazy<CodeGen> _instance = new Lazy<CodeGen>(() => CreateNew(), true);
-
         public EngineEnvironmentSettings Settings { get; }
         public TemplateCache Cache { get; }
         public TemplateCreator Creator { get; }
 
-        public static CodeGen Instance => _instance.Value;
+        public static CodeGen Instance { get; private set; }
 
         private CodeGen()
         {
@@ -34,12 +32,10 @@ namespace Microsoft.Templates.Core
             Creator = new TemplateCreator(Settings);
         }
 
-        private static CodeGen CreateNew()
+        public static void CreateInstance(string locationId)
         {
-            var instance = new CodeGen();
-            instance.Initialize();
-
-            return instance;
+            Instance = new CodeGen();
+            Instance.Initialize();
         }
 
         private void Initialize()

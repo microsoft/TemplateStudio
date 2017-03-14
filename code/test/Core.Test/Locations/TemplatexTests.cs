@@ -264,9 +264,9 @@ namespace Microsoft.Templates.Core.Test.Locations
             string workingFolder = Path.Combine(@"C:\Temp", Path.GetRandomFileName());
 
             RemoteTemplatesLocation remote = new RemoteTemplatesLocation();
-            remote.InitializeWorkingFolder(workingFolder);
+            remote.Initialize(workingFolder);
             remote.Adquire();
-            Assert.True(remote.Update());
+            Assert.True(remote.UpdateAvailable());
 
             if (Directory.Exists(workingFolder))
             {
@@ -280,12 +280,12 @@ namespace Microsoft.Templates.Core.Test.Locations
             string workingFolder = Path.Combine(@"C:\Temp", Path.GetRandomFileName());
 
             RemoteTemplatesLocation remote = new RemoteTemplatesLocation();
-            remote.InitializeWorkingFolder(workingFolder);
+            remote.Initialize(workingFolder);
             remote.Adquire();
-            Assert.True(remote.Update());
+            Assert.True(remote.UpdateAvailable());
 
             remote.Adquire();
-            Assert.False(remote.Update());
+            Assert.False(remote.UpdateAvailable());
 
             if (Directory.Exists(workingFolder))
             {

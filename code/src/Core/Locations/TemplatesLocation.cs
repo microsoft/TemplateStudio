@@ -12,54 +12,50 @@ namespace Microsoft.Templates.Core.Locations
 {
     public abstract class TemplatesLocation
     {
-        public const string TemplatesName = "Templates";
+        public const string TemplatesFolderName = "Templates";
         public const string VersionFileName = "version.txt";
         public const string ProjectTypes = "Projects";
         public const string Frameworks = "Frameworks";
-        public const string TempFolderName = "TempDownloads";
+        public const string DownloadsFolderName = "Downloads";
 
-        public string TemplatesFolder { get; protected set; }
-        public string TempDownloadsFolder { get; protected set; }
 
-        public string CurrentTemplatesVersionFilePath { get; protected set; }
-        public string CurrentTemplatesVersionFolder { get; protected set; }
-
+        public string RootWorkingFolder { get; private set; }
+        public string RootTemplatesFolder { get; protected set; }
+        public string DownloadsFolder { get; protected set; }
         public string LocationFolder { get; protected set; }
+        public string CurrentVersionFilePath { get; protected set; }
+        public string CurrentVersionFolder { get; protected set; }
+        public Version CurrentVersion { get; private set; }
 
-        private string _workingFolder = String.Empty;
-        public void InitializeWorkingFolder(string workingFolder)
+
+
+        public void Initialize(string workingFolder)
         {
-            _workingFolder = workingFolder;
-            RefreshWorkingFolders();
+            RootWorkingFolder = workingFolder;
+            RefreshFolders();
+        }
+        public void RefreshFolders()
+        {
+            RootTemplatesFolder = Path.Combine(RootWorkingFolder, TemplatesFolderName);
+            DownloadsFolder = Path.Combine(RootWorkingFolder, DownloadsFolderName);
+
+            LocationFolder = Path.Combine(RootTemplatesFolder, Id);
+
+            CurrentVersionFolder = Path.Combine(LocationFolder, GetLatestTemplateFolder());
+            CurrentVersionFilePath = Path.Combine(CurrentVersionFolder, VersionFileName);
+
+            SetCurrentVersion();
         }
 
-        protected void RefreshWorkingFolders()
-        {
-            LocationFolder = Path.Combine(_workingFolder, LocationId);
-            TemplatesFolder = Path.Combine(LocationFolder, TemplatesName);
-            TempDownloadsFolder = Path.Combine(LocationFolder, TempFolderName);
-            CurrentTemplatesVersionFolder = Path.Combine(TemplatesFolder, GetCurrentTemplatesFolderName());
-            CurrentTemplatesVersionFilePath = Path.Combine(CurrentTemplatesVersionFolder, VersionFileName);
-        }
-
-        protected abstract string LocationId { get; }
+        public abstract string Id { get; }
         public abstract void Adquire();
-        public abstract bool Update();
-        public abstract void Purge();
-        protected abstract string GetCurrentTemplatesFolderName();
+        public abstract bool UpdateAvailable();
+        protected abstract string GetLatestTemplateFolder();
 
-        public string GetVersion()
+        public void Purge()
         {
-            return GetVersionFromFile(CurrentTemplatesVersionFilePath).ToString();
-        }
-
-        protected static void SafeCopyFile(string sourceFile, string destFolder)
-        {
-            if (!Directory.Exists(destFolder))
-            {
-                Directory.CreateDirectory(destFolder);
-            }
-            File.Copy(sourceFile, Path.Combine(destFolder, Path.GetFileName(sourceFile)));
+            CleanUpDownloads();
+            CleanUpOldVersions();
         }
 
         protected static void CopyRecursive(string sourceDir, string targetDir)
@@ -144,6 +140,63 @@ namespace Microsoft.Templates.Core.Locations
                 result = new Version(0, 0, 0, 0);
             }
             return result;
+        }
+
+        protected void SetCurrentVersion()
+        {
+            if (File.Exists(CurrentVersionFilePath))
+            {
+                CurrentVersion = GetVersionFromFile(CurrentVersionFilePath);
+            }
+            else
+            {
+                CurrentVersion = new Version(0, 0, 0, 0);
+            }
+        }
+
+        protected static void EnsureFolder(string folder)
+        {
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+        }
+
+        protected static void SafeCopyFile(string sourceFile, string destFolder)
+        {
+            if (!Directory.Exists(destFolder))
+            {
+                Directory.CreateDirectory(destFolder);
+            }
+            File.Copy(sourceFile, Path.Combine(destFolder, Path.GetFileName(sourceFile)));
+        }
+
+        private void CleanUpDownloads()
+        {
+            if (Directory.Exists(DownloadsFolder))
+            {
+                DirectoryInfo di = new DirectoryInfo(DownloadsFolder);
+                foreach (var sdi in di.EnumerateDirectories())
+                {
+                    SafeDeleteDirectory(sdi.FullName);
+                }
+            }
+        }
+
+        private void CleanUpOldVersions()
+        {
+            if (Directory.Exists(LocationFolder))
+            {
+                DirectoryInfo di = new DirectoryInfo(LocationFolder);
+                foreach (var sdi in di.EnumerateDirectories())
+                {
+                    Version.TryParse(sdi.Name, out Version v);
+                    if (v < CurrentVersion)
+                    {
+                        SafeDeleteDirectory(sdi.FullName);
+                    }
+                }
+            }
         }
     }
 }
