@@ -51,11 +51,10 @@ namespace Microsoft.Templates.Test
 
                 //Build solution
                 var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);
-                var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
-                int exitCode = BuildSolution(projectName, outputPath, outputFile);
+                var result = BuildSolution(projectName, outputPath);
 
                 //Assert
-                Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", projectTemplate.Name, Path.GetFullPath(outputFile)));
+                Assert.True(result.exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", projectTemplate.Name, Path.GetFullPath(result.outputFile)));
 
                 //Clean
                 Directory.Delete(outputPath, true);
@@ -63,13 +62,13 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
-        public void GenerateAllPages(string name, string framework, string projId)
+        public void GenerateAllPagesAndFeatures(string name, string framework, string projId)
         {
             var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
 
             var projectName = $"{name}{framework}All";
 
-            using (var context = GenContext.CreateNew(projectName, Path.Combine(fixture.TestPagesPath, projectName, projectName)))
+            using (var context = GenContext.CreateNew(projectName, Path.Combine(fixture.TestProjectsPath, projectName, projectName)))
             {
                 var wizardState = new WizardState
                 {
@@ -79,88 +78,23 @@ namespace Microsoft.Templates.Test
 
                 AddLayoutItems(wizardState, targetProjectTemplate);
                 AddItems(wizardState, GetTemplates(framework, TemplateType.Page));
-
-                GenController.Generate(wizardState);
-
-                //Build solution
-                var outputPath = Path.Combine(fixture.TestPagesPath, projectName);
-                var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
-                int exitCode = BuildSolution(projectName, outputPath, outputFile);
-
-                //Assert
-                Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", targetProjectTemplate.Name, Path.GetFullPath(outputFile)));
-
-                //Clean
-                Directory.Delete(outputPath, true);
-            }
-        }
-
-        [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
-        public void GenerateAllDevFeatures(string name,  string framework, string projId)
-        {
-            var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
-
-            var projectName = $"{name}{framework}All";
-
-            using (var context = GenContext.CreateNew(projectName, Path.Combine(fixture.TestDevFeaturesPath, projectName, projectName)))
-            {
-
-                var wizardState = new WizardState
-                {
-                    Framework = framework,
-                    ProjectType = targetProjectTemplate.GetProjectType(),
-                };
-
-                AddLayoutItems(wizardState, targetProjectTemplate);
                 AddItems(wizardState, GetTemplates(framework, TemplateType.DevFeature));
-
-                GenController.Generate(wizardState);
-
-                //Build solution
-                var outputPath = Path.Combine(fixture.TestDevFeaturesPath, projectName);
-                var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
-                int exitCode = BuildSolution(projectName, outputPath, outputFile);
-
-                //Assert
-                Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", targetProjectTemplate.Name, Path.GetFullPath(outputFile)));
-
-                //Clean
-                Directory.Delete(outputPath, true);
-            }
-        }
-
-        [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
-        public void GenerateAllConsumerFeatures(string name, string framework, string projId)
-        {
-            var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
-
-            var projectName = $"{name}{framework}All";
-
-            using (var context = GenContext.CreateNew(projectName, Path.Combine(fixture.TestConsumerFeaturesPath, projectName, projectName)))
-            {
-                var wizardState = new WizardState
-                {
-                    Framework = framework,
-                    ProjectType = targetProjectTemplate.GetProjectType(),
-                };
-
-                AddLayoutItems(wizardState, targetProjectTemplate);
                 AddItems(wizardState, GetTemplates(framework, TemplateType.ConsumerFeature));
 
                 GenController.Generate(wizardState);
 
                 //Build solution
-                var outputPath = Path.Combine(fixture.TestConsumerFeaturesPath, projectName);
-                var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
-                int exitCode = BuildSolution(projectName, outputPath, outputFile);
+                var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);
+                var result = BuildSolution(projectName, outputPath);
 
                 //Assert
-                Assert.True(exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", targetProjectTemplate.Name, Path.GetFullPath(outputFile)));
+                Assert.True(result.exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", targetProjectTemplate.Name, Path.GetFullPath(result.outputFile)));
 
                 //Clean
-                Directory.Delete(outputPath, true); 
+                Directory.Delete(outputPath, true);
             }
         }
+
 
         private IEnumerable<ITemplateInfo> GetTemplates(string framework, TemplateType templateType)
         {
@@ -225,8 +159,10 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        private static int BuildSolution(string solutionName, string outputPath, string outputFile)
+        private static (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath)
         {
+            var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
+
             //Build
             var solutionFile = Path.GetFullPath(outputPath + @"\" + solutionName + ".sln");
             var startInfo = new ProcessStartInfo(GetPath("RestoreAndBuild.bat"))
@@ -242,7 +178,7 @@ namespace Microsoft.Templates.Test
             File.WriteAllText(outputFile, process.StandardOutput.ReadToEnd());
             process.WaitForExit();
 
-            return process.ExitCode;
+            return (process.ExitCode, outputFile);
         }
 
         internal static string GetPath(string fileName)

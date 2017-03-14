@@ -1,0 +1,430 @@
+<?xml version="1.0"?>
+<UITest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="" Id="dd0a8440-f831-4d0b-929a-bfeb1b161a34" AssemblyVersion="15.0.26208.0" Version="1.0" xmlns="http://schemas.microsoft.com/VisualStudio/TeamTest/UITest/2010">
+  <Configuration>
+    <Group Name="IE">
+      <Setting Name="Version" Value="9.11.14393.0" WarningLevel="1" />
+      <Setting Name="InformationBar" WarningLevel="1" />
+      <Setting Name="AutoCompletePassword" WarningLevel="1" />
+      <Setting Name="AutoCompleteForm" Value="no" WarningLevel="1" />
+      <Setting Name="DefaultBrowser" Value="IEXPLORE.EXE" WarningLevel="1" />
+      <Setting Name="PopupBlocker" Value="1" WarningLevel="1" />
+      <Setting Name="TabbedBrowsing" WarningLevel="2" />
+      <Setting Name="InternetZoneSecurity" Value="0" WarningLevel="2" />
+      <Setting Name="IntranetZoneSecurity" Value="69632" WarningLevel="2" />
+      <Setting Name="TrustedZoneSecurity" Value="70912" WarningLevel="2" />
+      <Setting Name="RestrictedZoneSecurity" Value="73728" WarningLevel="2" />
+      <Setting Name="PhishingFilter" WarningLevel="1" />
+      <Setting Name="EnhancedSecurityConfiguration" WarningLevel="1" />
+    </Group>
+    <Group Name="OS">
+      <Setting Name="Name" Value="Microsoft Windows 10 Pro" WarningLevel="2" />
+      <Setting Name="Version" Value="Microsoft Windows NT 10.0.14393.0" WarningLevel="2" />
+      <Setting Name="IsUserAdmin" Value="False" WarningLevel="2" />
+      <Setting Name="Is64BitOperatingSystem" Value="True" WarningLevel="2" />
+      <Setting Name="IsTerminalServerSession" Value="False" WarningLevel="2" />
+      <Setting Name="OSLanguage" Value="1033" WarningLevel="1" />
+      <Setting Name="UserLocale" Value="3082" WarningLevel="1" />
+      <Setting Name="DragFullWindows" Value="True" WarningLevel="2" />
+      <Setting Name="ScreenResolutionWidth" Value="1920" WarningLevel="2" />
+      <Setting Name="ScreenResolutionHeight" Value="1080" WarningLevel="2" />
+      <Setting Name="SystemDPIX" Value="96" WarningLevel="2" />
+      <Setting Name="SystemDPIY" Value="96" WarningLevel="2" />
+      <Setting Name="Aero" Value="1" WarningLevel="1" />
+      <Setting Name="UACEnabled" Value="1" WarningLevel="2" />
+      <Setting Name="UACPromptEnabled" Value="5" WarningLevel="1" />
+    </Group>
+    <Group Name="TechnologyManagers">
+      <Setting Name="Web" WarningLevel="1" />
+      <Setting Name="Web" WarningLevel="1" />
+      <Setting Name="UIA" WarningLevel="1" />
+    </Group>
+  </Configuration>
+  <InitializeActions />
+  <ExecuteActions>
+    <SendKeysAction>
+      <ParameterName />
+      <ModifierKeys>Windows</ModifierKeys>
+      <IsGlobalHotkey>true</IsGlobalHotkey>
+      <Text Encoded="false">r</Text>
+    </SendKeysAction>
+    <SetValueAction UIObjectName="UIMap.UIRunWindow.UIItemWindow.UIOpenComboBox">
+      <ParameterName />
+      <Value Encoded="false">C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\devenv.exe</Value>
+      <Type>String</Type>
+      <PreferEdit>True</PreferEdit>
+    </SetValueAction>
+    <SendKeysAction UIObjectName="UIMap.UIRunWindow.UIItemWindow1.UIOpenEdit">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Text Encoded="false">{Enter}</Text>
+    </SendKeysAction>
+    <TestStepMarkerAction Comment="" MarkerInformation="OpenVisualStudio">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Action</MarkerRegionType>
+    </TestStepMarkerAction>
+    <MouseAction UIObjectName="UIMap.UIStartPageMicrosoftViWindow.UIMenuBarMenuBar.UIFileMenuItem.UINewMenuItem.UIProjectMenuItem">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="48" Y="9" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <MouseAction UIObjectName="UIMap.UINewProjectWindow.UIM_vsExtnsExplorerCtlCustom.UIExtensionsTable.UIUwpTemplatesbasedAppDataItem.UIItemCell.UIUwpTemplatesbasedAppText">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="70" Y="1" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <MouseAction UIObjectName="UIMap.UINewProjectWindow.UIOKButton">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="34" Y="10" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <TestStepMarkerAction Comment="" MarkerInformation="CreateNewProject">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Action</MarkerRegionType>
+    </TestStepMarkerAction>
+    <MouseAction UIObjectName="UIMap.UIUWPCommunityTemplateWindow.UINextButton">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="35" Y="12" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <MouseAction UIObjectName="UIMap.UIUWPCommunityTemplateWindow.UINextButton">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="31" Y="15" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <TestStepMarkerAction Comment="" MarkerInformation="SelectBasicBlank">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Action</MarkerRegionType>
+    </TestStepMarkerAction>
+  </ExecuteActions>
+  <CleanupActions />
+  <OnErrorActions />
+  <Maps>
+    <UIMap Id="UIMap">
+      <TopLevelWindows>
+        <TopLevelWindow ControlType="Window" Id="UIRunWindow" FriendlyName="Run" SpecialControlType="None" SessionId="1117288">
+          <TechnologyName>MSAA</TechnologyName>
+          <WindowTitles>
+            <WindowTitle>Run</WindowTitle>
+          </WindowTitles>
+          <SearchConfigurations>
+            <SearchConfiguration>VisibleOnly</SearchConfiguration>
+          </SearchConfigurations>
+          <AndCondition Id="SearchCondition">
+            <PropertyCondition Name="Name">Run</PropertyCondition>
+            <PropertyCondition Name="ClassName">#32770</PropertyCondition>
+            <PropertyCondition Name="ControlType">Window</PropertyCondition>
+          </AndCondition>
+          <SupportLevel>0</SupportLevel>
+          <Descendants>
+            <UIObject ControlType="Window" Id="UIItemWindow" FriendlyName="" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>Run</WindowTitle>
+              </WindowTitles>
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="ControlId">12298</PropertyCondition>
+                <PropertyCondition Name="ControlType">Window</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="ComboBox" Id="UIOpenComboBox" FriendlyName="Open:" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>Run</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>VisibleOnly</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="Name">Open:</PropertyCondition>
+                    <PropertyCondition Name="ControlType">ComboBox</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants />
+                </UIObject>
+              </Descendants>
+            </UIObject>
+            <UIObject ControlType="Window" Id="UIItemWindow1" FriendlyName="" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>Run</WindowTitle>
+              </WindowTitles>
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="ControlId">1001</PropertyCondition>
+                <PropertyCondition Name="ControlType">Window</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="Edit" Id="UIOpenEdit" FriendlyName="Open:" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>Run</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>VisibleOnly</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="Name">Open:</PropertyCondition>
+                    <PropertyCondition Name="ControlType">Edit</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants />
+                </UIObject>
+              </Descendants>
+            </UIObject>
+          </Descendants>
+        </TopLevelWindow>
+        <TopLevelWindow ControlType="Window" Id="UIStartPageMicrosoftViWindow" FriendlyName="Start Page - Microsoft Visual Studio" SpecialControlType="None" SessionId="1509956">
+          <TechnologyName>UIA</TechnologyName>
+          <WindowTitles>
+            <WindowTitle>Start Page - Microsoft Visual Studio</WindowTitle>
+          </WindowTitles>
+          <AndCondition>
+            <PropertyCondition Name="ControlType">Window</PropertyCondition>
+            <PropertyCondition Name="Name">Start Page - Microsoft Visual Studio</PropertyCondition>
+            <PropertyCondition Name="FrameworkId">WPF</PropertyCondition>
+            <PropertyCondition Name="ClassName" Operator="Contains">HwndWrapper</PropertyCondition>
+          </AndCondition>
+          <SupportLevel>0</SupportLevel>
+          <Descendants>
+            <UIObject ControlType="MenuBar" Id="UIMenuBarMenuBar" FriendlyName="MenuBar" SpecialControlType="None">
+              <TechnologyName>UIA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>Start Page - Microsoft Visual Studio</WindowTitle>
+              </WindowTitles>
+              <AndCondition>
+                <PropertyCondition Name="FrameworkId">WPF</PropertyCondition>
+                <PropertyCondition Name="ControlType">MenuBar</PropertyCondition>
+                <PropertyCondition Name="AutomationId">MenuBar</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="MenuItem" Id="UIFileMenuItem" FriendlyName="File" SpecialControlType="None">
+                  <TechnologyName>UIA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>Start Page - Microsoft Visual Studio</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>Expand</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition>
+                    <PropertyCondition Name="FrameworkId">WPF</PropertyCondition>
+                    <PropertyCondition Name="ControlType">MenuItem</PropertyCondition>
+                    <PropertyCondition Name="Name">File</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants>
+                    <UIObject ControlType="MenuItem" Id="UINewMenuItem" FriendlyName="New" SpecialControlType="None">
+                      <TechnologyName>UIA</TechnologyName>
+                      <WindowTitles>
+                        <WindowTitle>Start Page - Microsoft Visual Studio</WindowTitle>
+                      </WindowTitles>
+                      <SearchConfigurations>
+                        <SearchConfiguration>Expand</SearchConfiguration>
+                      </SearchConfigurations>
+                      <AndCondition>
+                        <PropertyCondition Name="FrameworkId">WPF</PropertyCondition>
+                        <PropertyCondition Name="ControlType">MenuItem</PropertyCondition>
+                        <PropertyCondition Name="Name">New</PropertyCondition>
+                      </AndCondition>
+                      <SupportLevel>0</SupportLevel>
+                      <Descendants>
+                        <UIObject ControlType="MenuItem" Id="UIProjectMenuItem" FriendlyName="Project..." SpecialControlType="None">
+                          <TechnologyName>UIA</TechnologyName>
+                          <WindowTitles>
+                            <WindowTitle>Start Page - Microsoft Visual Studio</WindowTitle>
+                          </WindowTitles>
+                          <SearchConfigurations>
+                            <SearchConfiguration>Expand</SearchConfiguration>
+                          </SearchConfigurations>
+                          <AndCondition>
+                            <PropertyCondition Name="FrameworkId">WPF</PropertyCondition>
+                            <PropertyCondition Name="ControlType">MenuItem</PropertyCondition>
+                            <PropertyCondition Name="Name">Project...</PropertyCondition>
+                          </AndCondition>
+                          <SupportLevel>0</SupportLevel>
+                          <Descendants />
+                        </UIObject>
+                      </Descendants>
+                    </UIObject>
+                  </Descendants>
+                </UIObject>
+              </Descendants>
+            </UIObject>
+          </Descendants>
+        </TopLevelWindow>
+        <TopLevelWindow ControlType="Window" Id="UINewProjectWindow" FriendlyName="New Project" SpecialControlType="None" SessionId="724230">
+          <TechnologyName>UIA</TechnologyName>
+          <WindowTitles>
+            <WindowTitle>New Project</WindowTitle>
+          </WindowTitles>
+          <AndCondition>
+            <PropertyCondition Name="ControlType">Window</PropertyCondition>
+            <PropertyCondition Name="Name">New Project</PropertyCondition>
+            <PropertyCondition Name="FrameworkId">WPF</PropertyCondition>
+            <PropertyCondition Name="ClassName" Operator="Contains">HwndWrapper</PropertyCondition>
+          </AndCondition>
+          <SupportLevel>0</SupportLevel>
+          <Descendants>
+            <UIObject ControlType="Custom" Id="UIM_vsExtnsExplorerCtlCustom" FriendlyName="m_vsExtnsExplorerCtl" SpecialControlType="None">
+              <TechnologyName>UIA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>New Project</WindowTitle>
+              </WindowTitles>
+              <AndCondition>
+                <PropertyCondition Name="FrameworkId">WPF</PropertyCondition>
+                <PropertyCondition Name="ControlType">Custom</PropertyCondition>
+                <PropertyCondition Name="ClassName">Uia.VSExtensionsExplorerCtl</PropertyCondition>
+                <PropertyCondition Name="AutomationId">m_vsExtnsExplorerCtl</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="Table" Id="UIExtensionsTable" FriendlyName="Extensions" SpecialControlType="None">
+                  <TechnologyName>UIA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>New Project</WindowTitle>
+                  </WindowTitles>
+                  <AndCondition>
+                    <PropertyCondition Name="FrameworkId">WPF</PropertyCondition>
+                    <PropertyCondition Name="ControlType">Table</PropertyCondition>
+                    <PropertyCondition Name="AutomationId">lvw_Extensions</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants>
+                    <UIObject ControlType="DataItem" Id="UIUwpTemplatesbasedAppDataItem" FriendlyName="Uwp Templates based App (vs2017 dev-nightly)" SpecialControlType="None">
+                      <TechnologyName>UIA</TechnologyName>
+                      <WindowTitles>
+                        <WindowTitle>New Project</WindowTitle>
+                      </WindowTitles>
+                      <AndCondition>
+                        <PropertyCondition Name="FrameworkId">WPF</PropertyCondition>
+                        <PropertyCondition Name="ControlType">DataItem</PropertyCondition>
+                        <PropertyCondition Name="AutomationId">Uwp Templates based App (vs2017 dev-nightly)</PropertyCondition>
+                      </AndCondition>
+                      <SupportLevel>0</SupportLevel>
+                      <Descendants>
+                        <UIObject ControlType="Cell" Id="UIItemCell" FriendlyName="" SpecialControlType="None">
+                          <TechnologyName>UIA</TechnologyName>
+                          <WindowTitles>
+                            <WindowTitle>New Project</WindowTitle>
+                          </WindowTitles>
+                          <AndCondition>
+                            <PropertyCondition Name="ColumnHeader">Name</PropertyCondition>
+                            <PropertyCondition Name="ControlType">Cell</PropertyCondition>
+                            <PropertyCondition Name="FrameworkId">WPF</PropertyCondition>
+                          </AndCondition>
+                          <SupportLevel>0</SupportLevel>
+                          <Descendants>
+                            <UIObject ControlType="Text" Id="UIUwpTemplatesbasedAppText" FriendlyName="Uwp Templates based App (vs2017 dev-nightly)" SpecialControlType="None">
+                              <TechnologyName>UIA</TechnologyName>
+                              <WindowTitles>
+                                <WindowTitle>New Project</WindowTitle>
+                              </WindowTitles>
+                              <AndCondition>
+                                <PropertyCondition Name="FrameworkId">WPF</PropertyCondition>
+                                <PropertyCondition Name="ControlType">Text</PropertyCondition>
+                                <PropertyCondition Name="Name">Uwp Templates based App (vs2017 dev-nightly)</PropertyCondition>
+                              </AndCondition>
+                              <SupportLevel>0</SupportLevel>
+                              <Descendants />
+                            </UIObject>
+                          </Descendants>
+                        </UIObject>
+                      </Descendants>
+                    </UIObject>
+                  </Descendants>
+                </UIObject>
+              </Descendants>
+            </UIObject>
+            <UIObject ControlType="Button" Id="UIOKButton" FriendlyName="OK" SpecialControlType="None">
+              <TechnologyName>UIA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>New Project</WindowTitle>
+              </WindowTitles>
+              <AndCondition>
+                <PropertyCondition Name="FrameworkId">WPF</PropertyCondition>
+                <PropertyCondition Name="ControlType">Button</PropertyCondition>
+                <PropertyCondition Name="AutomationId">btn_OK</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants />
+            </UIObject>
+          </Descendants>
+        </TopLevelWindow>
+        <TopLevelWindow ControlType="Window" Id="UIUWPCommunityTemplateWindow" FriendlyName="UWP Community Templates" SpecialControlType="None" SessionId="1507376">
+          <TechnologyName>UIA</TechnologyName>
+          <WindowTitles>
+            <WindowTitle>UWP Community Templates</WindowTitle>
+          </WindowTitles>
+          <AndCondition>
+            <PropertyCondition Name="ControlType">Window</PropertyCondition>
+            <PropertyCondition Name="Name">UWP Community Templates</PropertyCondition>
+            <PropertyCondition Name="FrameworkId">WPF</PropertyCondition>
+            <PropertyCondition Name="ClassName" Operator="Contains">HwndWrapper</PropertyCondition>
+          </AndCondition>
+          <SupportLevel>0</SupportLevel>
+          <Descendants>
+            <UIObject ControlType="Button" Id="UINextButton" FriendlyName="Next &gt;" SpecialControlType="None">
+              <TechnologyName>UIA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>UWP Community Templates</WindowTitle>
+              </WindowTitles>
+              <AndCondition>
+                <PropertyCondition Name="FrameworkId">WPF</PropertyCondition>
+                <PropertyCondition Name="ControlType">Button</PropertyCondition>
+                <PropertyCondition Name="Name">Next &gt;</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants />
+            </UIObject>
+          </Descendants>
+        </TopLevelWindow>
+      </TopLevelWindows>
+    </UIMap>
+  </Maps>
+  <ValueMap>
+    <ParameterList />
+  </ValueMap>
+</UITest>
