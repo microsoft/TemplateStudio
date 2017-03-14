@@ -124,29 +124,11 @@ namespace Microsoft.Templates.Wizard.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unexpected error generating the project: {0}.
+        ///   Looks up a localized string similar to Restoring packages....
         /// </summary>
-        public static string ExceptionUnexpectedGenerating {
+        public static string RestoringMessage {
             get {
-                return ResourceManager.GetString("ExceptionUnexpectedGenerating", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unexpected error in template selector wizard: {0}.
-        /// </summary>
-        public static string ExceptionUnexpectedWizard {
-            get {
-                return ResourceManager.GetString("ExceptionUnexpectedWizard", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Restauring packages....
-        /// </summary>
-        public static string RestauringMessage {
-            get {
-                return ResourceManager.GetString("RestauringMessage", resourceCulture);
+                return ResourceManager.GetString("RestoringMessage", resourceCulture);
             }
         }
         

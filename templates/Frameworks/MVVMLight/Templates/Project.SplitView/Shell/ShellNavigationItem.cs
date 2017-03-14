@@ -6,14 +6,15 @@ namespace uct.ItemName.Shell
 {
     public class ShellNavigationItem
     {
-        public string Glyph { get; set; }
-        public string Name { get; set; }        
+        public string Name { get; set; }
+        public Symbol Symbol { get; set; }
+        public char SymbolAsChar { get { return (char)Symbol; } }
         public string ViewModelName { get; set; }
 
-        public ShellNavigationItem(string name, string glyph, string viewModelName)
+        public ShellNavigationItem(string name, Symbol symbol, string viewModelName)
         {
             this.Name = name;
-            this.Glyph = glyph;
+            this.Symbol = symbol;
             this.ViewModelName = viewModelName;
         }      
     }

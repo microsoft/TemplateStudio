@@ -65,7 +65,11 @@ namespace Microsoft.Templates.Wizard.Steps.Pages
 
         private void ShowAddPageDialog()
         {
-            var dialog = new NewPage.NewPageDialog(Context, Templates.Select(t => t.Name));
+            var dialog = new NewPage.NewPageDialog(Context, Templates.Select(t => t.Name))
+            {
+                Owner = Context.Host
+            };
+
             var dialogResult = dialog.ShowDialog();
 
             if (dialogResult.HasValue && dialogResult.Value)
@@ -90,7 +94,7 @@ namespace Microsoft.Templates.Wizard.Steps.Pages
             foreach (var item in layout)
             {
                 var template = GenContext.ToolBox.Repo.Find(t => t.Identity == item.templateIdentity);
-                if (template != null && template.GetTemplateType() == TemplateType.Page)
+                if (template != null && template.GetTemplateType() == TemplateType.Page && template.GetFrameworkList().Any(f => f.Equals(Context.State.Framework, StringComparison.OrdinalIgnoreCase)))
                 {
                     Templates.Add(new PageViewModel(item.name, template.Name, item.@readonly));
                 }

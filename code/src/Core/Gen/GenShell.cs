@@ -29,6 +29,10 @@ namespace Microsoft.Templates.Core.Gen
 
         public virtual void RestorePackages()
         {
+        }
+
+        public virtual void CollapseSolutionItems()
+        {
 
         }
     }

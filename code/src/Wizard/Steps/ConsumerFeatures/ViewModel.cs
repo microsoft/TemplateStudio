@@ -75,7 +75,7 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures
             foreach (var item in layout)
             {
                 var template = GenContext.ToolBox.Repo.Find(t => t.Identity == item.templateIdentity);
-                if (template != null && template.GetTemplateType() == TemplateType.ConsumerFeature)
+                if (template != null && template.GetTemplateType() == TemplateType.ConsumerFeature && template.GetFrameworkList().Any(f => f.Equals(Context.State.Framework, StringComparison.OrdinalIgnoreCase)))
                 {
                     Templates.Add(new PageViewModel(item.name, template.Name, item.@readonly));
                 }
@@ -84,7 +84,11 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures
 
         private void ShowAddFeatureDialog()
         {
-            var dialog = new NewConsumerFeature.NewConsumerFeatureDialog(Context, Templates);
+            var dialog = new NewConsumerFeature.NewConsumerFeatureDialog(Context, Templates)
+            {
+                Owner = Context.Host
+            };
+
             var dialogResult = dialog.ShowDialog();
 
             if (dialogResult.HasValue && dialogResult.Value)

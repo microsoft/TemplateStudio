@@ -6,7 +6,7 @@ namespace ItemNamespace.Shell
         public ShellViewModel() 
         {
             //^^
-            _navigationItems.Add(ShellNavigationItem.FromType<uct.ItemNamePage>("LOC_ANCHOR:Shell_uct.ItemName~uct.ItemName", Char.ConvertFromUtf32(0xE130)));
+            _navigationItems.Add(ShellNavigationItem.FromType<uct.ItemNamePage>("Shell_uct.ItemName".GetLocalized(), Symbol.Document));
             SelectedItem = NavigationItems.FirstOrDefault();
         }
     }

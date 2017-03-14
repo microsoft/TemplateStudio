@@ -55,7 +55,7 @@ namespace Microsoft.Templates.Wizard
             catch (Exception ex) when (!(ex is WizardBackoutException))
             {
                 host.SafeClose();
-                ShowError(ex, Resources.StringRes.ExceptionUnexpectedWizard);
+                ShowError(ex);
             }
             GenContext.ToolBox.Shell.CancelWizard();
             return null;
@@ -65,6 +65,8 @@ namespace Microsoft.Templates.Wizard
         {
             try
             {
+                throw new Exception("castañazo!!");
+
                 var genItems = GenComposer.Compose(userSelection).ToList();
 
                 Stopwatch chrono = Stopwatch.StartNew();
@@ -109,7 +111,7 @@ namespace Microsoft.Templates.Wizard
             {
                 GenContext.ToolBox.Shell.CloseSolution();
 
-                ShowError(ex, StringRes.ExceptionUnexpectedGenerating);
+                ShowError(ex, userSelection);
 
                 GenContext.ToolBox.Shell.CancelWizard(false);
             }
@@ -149,10 +151,10 @@ namespace Microsoft.Templates.Wizard
             }
         }
 
-        private static void ShowError(Exception ex, string textFormat)
+        private static void ShowError(Exception ex, WizardState userSelection = null)
         {
             AppHealth.Current.Error.TrackAsync(ex.ToString()).FireAndForget();
-            AppHealth.Current.Exception.TrackAsync(ex).FireAndForget();
+            AppHealth.Current.Exception.TrackAsync(ex, userSelection?.ToString()).FireAndForget();
 
             var error = new ErrorDialog(ex);
             GenContext.ToolBox.Shell.ShowModal(error);
@@ -168,7 +170,6 @@ namespace Microsoft.Templates.Wizard
             try
             {
                 var pagesAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Count();
-                //var featuresAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Count();
 
                 foreach (var genInfo in genItems)
                 {

@@ -87,7 +87,7 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
 
             if (Templates.Any())
             {
-                TemplateSelected = consumerFeatTemplates.FirstOrDefault(); 
+                TemplateSelected = Templates.FirstOrDefault(); 
             }
             else
             {

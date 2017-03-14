@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Wizard.VisualStudio
             //TODO: LOCK THIS?
             if (!GenContext.IsInitialized)
             {
-                GenContext.Bootstrap(new TemplatesRepository(new RemoteTemplatesLocation()), new VsGenShell());
+                GenContext.Bootstrap(new RemoteTemplatesLocation(), new VsGenShell());
             }
         }
 
@@ -60,10 +60,10 @@ namespace Microsoft.Templates.Wizard.VisualStudio
             GenController.Generate(_userSelection);
             AppHealth.Current.Verbose.TrackAsync("Generation finished").FireAndForget();
 
-            GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.RestauringMessage);
+            GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.RestoringMessage);
             GenContext.ToolBox.Shell.RestorePackages();
 
-            GenContext.ToolBox.Shell.ShowTaskList();
+            GenContext.ToolBox.Shell.CollapseSolutionItems();
         }
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)

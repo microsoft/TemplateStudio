@@ -138,14 +138,8 @@
   <data name="ExceptionGenerating" xml:space="preserve">
     <value>Template '{0}', name: '{1}', reason: '{2}'</value>
   </data>
-  <data name="ExceptionUnexpectedGenerating" xml:space="preserve">
-    <value>Unexpected error generating the project: {0}</value>
-  </data>
-  <data name="ExceptionUnexpectedWizard" xml:space="preserve">
-    <value>Unexpected error in template selector wizard: {0}</value>
-  </data>
-  <data name="RestauringMessage" xml:space="preserve">
-    <value>Restauring packages...</value>
+  <data name="RestoringMessage" xml:space="preserve">
+    <value>Restoring packages...</value>
   </data>
   <data name="StatusAdquired" xml:space="preserve">
     <value>Templates downloaded</value>

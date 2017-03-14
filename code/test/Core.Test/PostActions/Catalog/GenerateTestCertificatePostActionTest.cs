@@ -1,5 +1,6 @@
 ﻿using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
+using Microsoft.Templates.Core.Test.Locations;
 using Microsoft.Templates.Test.Artifacts;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         [Fact]
         public void Execute_Ok()
         {
-            GenContext.Bootstrap(null, new FakeGenShell());
+            GenContext.Bootstrap(new UnitTestsTemplatesLocation(), new FakeGenShell());
 
             var projectName = "test";
 

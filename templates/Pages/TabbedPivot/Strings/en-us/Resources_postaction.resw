@@ -1,0 +1,14 @@
+<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="TabbedPivotPage_Pivot.Title" xml:space="preserve">  
+    <value>TabbedPivotPage</value>
+  </data>
+  <data name="TabbedPivotPage_PivotItem1.Header" xml:space="preserve">  
+    <value>Item 1</value>
+  </data>
+  <data name="TabbedPivotPage_PivotItem2.Header" xml:space="preserve">
+    <value>Item 2</value>
+  </data>
+  <!--}]}-->
+</root>

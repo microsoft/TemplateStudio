@@ -15,8 +15,9 @@ namespace Microsoft.Templates.Core
 {
     public static class ITemplateInfoExtensions
     {
+        private const string Separator = "|";
         private const string TagPrefix = "uct.";
-        private const string LicencesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\|?";
+        private const string LicencesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
 
         public static TemplateType GetTemplateType(this ITemplateInfo ti)
         {
@@ -95,7 +96,7 @@ namespace Microsoft.Templates.Core
 
             if (!string.IsNullOrEmpty(frameworks))
             {
-                result.AddRange(frameworks.Split(";".ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
+                result.AddRange(frameworks.Split(Separator.ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
             }
 
             return result;
@@ -109,7 +110,7 @@ namespace Microsoft.Templates.Core
 
             if (!string.IsNullOrEmpty(dependencies))
             {
-                result.AddRange(dependencies.Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
+                result.AddRange(dependencies.Split(Separator.ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
             }
 
             return result;
