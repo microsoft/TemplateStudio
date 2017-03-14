@@ -8,11 +8,6 @@
 
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Pivot x:Uid="TabbedPivotPage_Pivot">
-            <Pivot.HeaderTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding}"/>
-                </DataTemplate>
-            </Pivot.HeaderTemplate>
             <PivotItem x:Uid="TabbedPivotPage_PivotItem1">
                 <!--TODO UWPTemplates: Add here your tab layout-->
                 
