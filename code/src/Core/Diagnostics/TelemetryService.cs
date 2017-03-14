@@ -67,7 +67,14 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task WriteExceptionAsync(Exception ex, string message = null)
         {
-            await TelemetryService.Current.TrackExceptionAsync(ex);
+            var properties = new Dictionary<string, string>();
+
+            if (!string.IsNullOrEmpty(message))
+            {
+                properties.Add("Additional info", message);
+            }
+
+            await TelemetryService.Current.TrackExceptionAsync(ex, properties);
         }
 
         public bool AllowMultipleInstances()
