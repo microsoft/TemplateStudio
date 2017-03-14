@@ -20,8 +20,14 @@ namespace Microsoft.Templates.Core.Locations
         {
             return true;
         }
+
+        public override bool ExistsContentWithHigherVersionThanWizard()
+        {
+            return false;
+        }
+
         protected override string GetLatestTemplateFolder() {
-            return "0.0.0.0-local";
+            return "0.0.0.0";
         }
 
         protected static void Copy(string sourceFolder, string targetFolder)

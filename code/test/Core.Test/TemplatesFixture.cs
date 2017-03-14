@@ -8,7 +8,10 @@ namespace Microsoft.Templates.Core.Test
 
         public TemplatesFixture()
         {
-            Repository = new TemplatesRepository(new UnitTestsTemplatesLocation());
+            //TODO: Review
+            var location = new UnitTestsTemplatesLocation();
+            Repository = new TemplatesRepository(location);
+            CodeGen.Initialize(location.Id);
             Repository.SynchronizeAsync(true).Wait();
         }
     }

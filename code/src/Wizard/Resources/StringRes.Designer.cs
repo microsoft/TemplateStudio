@@ -151,6 +151,15 @@ namespace Microsoft.Templates.Wizard.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are newer templates content. Consider to update the extension..
+        /// </summary>
+        public static string StatusNewerContent {
+            get {
+                return ResourceManager.GetString("StatusNewerContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Templates updated.
         /// </summary>
         public static string StatusUpdated {

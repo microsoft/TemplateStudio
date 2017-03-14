@@ -2,9 +2,11 @@
 using Microsoft.Templates.Core.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,7 +28,7 @@ namespace Microsoft.Templates.Core.Locations
         public string CurrentVersionFilePath { get; protected set; }
         public string CurrentVersionFolder { get; protected set; }
         public Version CurrentVersion { get; private set; }
-
+        public Version WizardVersion { get => GetWizardVersion(); }
 
 
         public void Initialize(string workingFolder)
@@ -50,6 +52,7 @@ namespace Microsoft.Templates.Core.Locations
         public abstract string Id { get; }
         public abstract void Adquire();
         public abstract bool UpdateAvailable();
+        public abstract bool ExistsContentWithHigherVersionThanWizard();
         protected abstract string GetLatestTemplateFolder();
 
         public void Purge()
@@ -169,6 +172,20 @@ namespace Microsoft.Templates.Core.Locations
                 Directory.CreateDirectory(destFolder);
             }
             File.Copy(sourceFile, Path.Combine(destFolder, Path.GetFileName(sourceFile)));
+        }
+
+        protected static Version GetWizardVersion()
+        {
+            string assemblyLocation = Assembly.GetExecutingAssembly().Location;
+            var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
+            Version.TryParse(versionInfo.FileVersion, out Version v);
+
+            return v;
+        }
+
+        protected bool VersionIsAlignedWithWizard(Version v)
+        {
+            return v.Major == WizardVersion.Major && v.Minor == WizardVersion.Minor;
         }
 
         private void CleanUpDownloads()

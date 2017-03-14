@@ -18,7 +18,8 @@ namespace Microsoft.Templates.Core
         Updating = 1,
         Updated = 2,
         Adquiring = 3,
-        Adquired = 4
+        Adquired = 4,
+        NewerContent = 5
     }
 
     public class TemplatesRepository
@@ -55,6 +56,8 @@ namespace Microsoft.Templates.Core
                 await AdquireContentAsync();
             }
 
+            //await CheckIncompatibleContentExists();
+
             await PurgeContentAsync();
         }
 
@@ -89,6 +92,18 @@ namespace Microsoft.Templates.Core
             SyncStatusChanged?.Invoke(this, SyncStatus.Updated);
         }
 
+        private async Task CheckIncompatibleContentExists()
+        {
+            await Task.Run(() =>
+            {
+                if (_location.ExistsContentWithHigherVersionThanWizard())
+                {
+                    SyncStatusChanged?.Invoke(this, SyncStatus.NewerContent);
+                }
+            });
+        }
+
+
         private void UpdateTemplatesCache()
         {
             try
@@ -105,6 +120,7 @@ namespace Microsoft.Templates.Core
                 throw new RepositorySynchronizationException(SyncStatus.Updating, ex);
             }
         }
+
         private bool ExistsTemplates()
         {
             if (!Directory.Exists(CurrentTemplatesFolder))

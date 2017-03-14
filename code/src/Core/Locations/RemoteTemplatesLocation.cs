@@ -2,6 +2,7 @@
 using Microsoft.Templates.Core.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public override bool UpdateAvailable()
         { 
-            bool updatedAvailable = CurrentVersion < GetLatestVersionAvailable();
+            bool updatedAvailable = CurrentVersion < GetLatestAlignedVersionAvailable();
             if (updatedAvailable)
             {
                 RefreshFolders();
@@ -34,13 +35,23 @@ namespace Microsoft.Templates.Core.Locations
             return updatedAvailable;
         }
 
-        private Version GetLatestVersionAvailable()
+        public override bool ExistsContentWithHigherVersionThanWizard()
+        {
+            return (GetLatestTemplateVersionFolder(false).ToString() != "0.0.0.0");
+        }
+
+        protected override string GetLatestTemplateFolder()
+        {
+            return GetLatestTemplateVersionFolder(true);
+        }
+
+        private Version GetLatestAlignedVersionAvailable()
         {
             string s = Path.Combine(LocationFolder, GetLatestTemplateFolder());
             return GetVersionFromFile(Path.Combine(s, VersionFileName));
         }
 
-        protected override string GetLatestTemplateFolder()
+        private string GetLatestTemplateVersionFolder(bool ensureWizardAligmnent)
         {
             Version latestVersion = new Version(0, 0, 0, 0);
             string currentTemplatesFolder = string.Empty;
@@ -53,11 +64,12 @@ namespace Microsoft.Templates.Core.Locations
 
                     if (v > latestVersion)
                     {
-                        latestVersion = v;
-                        currentTemplatesFolder = sdi.Name;
+                        if (!ensureWizardAligmnent || (ensureWizardAligmnent && VersionIsAlignedWithWizard(v)))
+                        {
+                            latestVersion = v;
+                            currentTemplatesFolder = sdi.Name;
+                        }
                     }
-
-                    //TODO: Version DOWNLOADED (EXISTING IN TEMP FOLDER MUST BE COORDINATED WIHT THE EXTENSION Mayor.Minor;
                 }
             }
             return currentTemplatesFolder;
@@ -120,6 +132,8 @@ namespace Microsoft.Templates.Core.Locations
                     Templatex.Extract(file, intermediateTempFolder);
 
                     var finalTarget = Path.Combine(LocationFolder, ver.ToString());
+
+                    //TODO: Ensure FinalTarget does not exists.
 
                     SafeMoveDirectory(Path.Combine(intermediateTempFolder, TemplatesFolderName), finalTarget);
 
