@@ -8,14 +8,14 @@
 
   <Identity
     Name="78ca7868-383f-4f7e-8036-9c97d91dc4c3"
-    Publisher="CN=mvega"
+    Publisher="CN=Param_UserName"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="78ca7868-383f-4f7e-8036-9c97d91dc4c3" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>uct.TabbedPivotProject</DisplayName>
-    <PublisherDisplayName>mvega</PublisherDisplayName>
+    <PublisherDisplayName>Param_UserName</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
