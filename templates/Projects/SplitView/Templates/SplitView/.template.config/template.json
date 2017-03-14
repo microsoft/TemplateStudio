@@ -36,6 +36,10 @@
     "userName": {
       "type": "parameter",
       "replaces": "Param_UserName"
+    },
+    "year":{
+      "type":"parameter",
+      "replaces": "Param_Year"
     }
   }  
 }
