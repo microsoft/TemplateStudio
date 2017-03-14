@@ -33,11 +33,6 @@ namespace Microsoft.Templates.Core.Gen
             OutputPath = outputPath;
         }
 
-        //public static GenContext CreateNew(string name, string outputPath, string solutionName = null)
-        //{
-        //    return CreateNew(name, Path.Combine(location, name, name));
-        //}
-
         public static GenContext CreateNew(Dictionary<string, string> replacements)
         {
             var destinationDirectory = new DirectoryInfo(replacements["$destinationdirectory$"]);
