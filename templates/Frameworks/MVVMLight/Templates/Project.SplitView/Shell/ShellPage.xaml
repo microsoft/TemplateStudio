@@ -17,7 +17,7 @@
                 <FontIcon
                     Grid.Column="0"
                     Margin="12"
-                    Glyph="{x:Bind Glyph}"                    
+                    Glyph="{x:Bind SymbolAsChar}"                    
                     FontFamily="Segoe MDL2 Assets"
                     Foreground="{ThemeResource SystemBaseHighColor}" />
                 <TextBlock

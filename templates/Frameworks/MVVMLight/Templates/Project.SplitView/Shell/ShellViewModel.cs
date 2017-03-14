@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 using System.Linq;
+using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
