@@ -65,8 +65,6 @@ namespace Microsoft.Templates.Wizard
         {
             try
             {
-                throw new Exception("castañazo!!");
-
                 var genItems = GenComposer.Compose(userSelection).ToList();
 
                 Stopwatch chrono = Stopwatch.StartNew();
