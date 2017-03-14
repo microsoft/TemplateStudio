@@ -16,6 +16,7 @@ namespace Microsoft.Templates.Core
 {
     public class Configuration
     {
+        public string Environment { get; set; } = "LocalDev";
         public string CdnUrl { get; set; } = "https://uwpcommunitytemplates.blob.core.windows.net/vnext/Latest";
         public string RemoteTelemetryKey { get; set; } = "<SET_YOUR_OWN_KEY>"; //Or configure it in a UWPTemplates.config.json located in the working folder.
         public string LogFileFolderPath { get; set; } = @"UWPTemplates\Logs";
@@ -53,7 +54,6 @@ namespace Microsoft.Templates.Core
             }
         }
 
-        
         public static string GetJsonConfigFilePath()
         {
             TraceUsingDefault("Resoving JsonConfigFilePath");

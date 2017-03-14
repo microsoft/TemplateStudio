@@ -14,38 +14,74 @@ namespace Microsoft.Templates.Core.Locations
     public class RemoteTemplatesLocation : TemplatesLocation
     {
         private readonly string CdnUrl = Configuration.Current.CdnUrl;
+
         private const string CdnTemplatesFileName = "Templates.mstx";
 
-
-        public override void Adquire(string workingFolder)
+        public override string Id { get => Configuration.Current.Environment; }
+        
+        public override void Adquire()
         {
-            Download(workingFolder, CdnTemplatesFileName);
+            Download();
         }
 
-        public override bool Update(string workingFolder)
-        {
-            return UpdateTemplates(workingFolder);
-        }
-
-        private void Download(string workingFolder, string fileName)
-        {
-
-            if (IsDownloadExpired(workingFolder))
+        public override bool UpdateAvailable()
+        { 
+            bool updatedAvailable = CurrentVersion < GetLatestVersionAvailable();
+            if (updatedAvailable)
             {
-                var sourceUrl = $"{CdnUrl}/{fileName}";
-                var tempFolder = Path.Combine(workingFolder, TempFolderName);
-                var file = Path.Combine(workingFolder, fileName);
+                RefreshFolders();
+            }
+            return updatedAvailable;
+        }
 
-                EnsureWorkingFolder(workingFolder);
+        private Version GetLatestVersionAvailable()
+        {
+            string s = Path.Combine(LocationFolder, GetLatestTemplateFolder());
+            return GetVersionFromFile(Path.Combine(s, VersionFileName));
+        }
+
+        protected override string GetLatestTemplateFolder()
+        {
+            Version latestVersion = new Version(0, 0, 0, 0);
+            string currentTemplatesFolder = string.Empty;
+            if (Directory.Exists(LocationFolder))
+            {
+                DirectoryInfo di = new DirectoryInfo(LocationFolder);
+                foreach (DirectoryInfo sdi in di.EnumerateDirectories())
+                {
+                    Version.TryParse(sdi.Name, out Version v);
+
+                    if (v > latestVersion)
+                    {
+                        latestVersion = v;
+                        currentTemplatesFolder = sdi.Name;
+                    }
+
+                    //TODO: Version DOWNLOADED (EXISTING IN TEMP FOLDER MUST BE COORDINATED WIHT THE EXTENSION Mayor.Minor;
+                }
+            }
+            return currentTemplatesFolder;
+        }
+
+        private void Download()
+        {
+            if (IsDownloadExpired())
+            {
+                var sourceUrl = $"{CdnUrl}/{CdnTemplatesFileName}";
+                var tempFolder = Path.Combine(DownloadsFolder, Path.GetRandomFileName());
+                var file = Path.Combine(LocationFolder, CdnTemplatesFileName);
+
+                EnsureFolder(LocationFolder);
+                EnsureFolder(tempFolder);
 
                 DownloadContent(sourceUrl, file);
 
                 ExtractContent(file, tempFolder);
             }
         }
-        private bool IsDownloadExpired(string workingFolder)
+        private bool IsDownloadExpired()
         {
-            var currentFileVersion = Path.Combine(workingFolder, Path.Combine(TemplatesName, VersionFileName));
+            var currentFileVersion = CurrentVersionFilePath;
             if (!File.Exists(currentFileVersion))
             {
                 return true;
@@ -73,13 +109,22 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private static void ExtractContent(string file, string targetFolder)
+        private void ExtractContent(string file, string intermediateTempFolder)
         {
             try
             {
-                Templatex.Extract(file, targetFolder);
-                var ver = GetVersionFromFile(Path.Combine(targetFolder, Path.Combine(TemplatesName, VersionFileName)));
-                AppHealth.Current.Verbose.TrackAsync($"Templates content extracted to {targetFolder}. Version adquired: {ver}").FireAndForget();
+                var ver = GetVersionFromPackage(file);
+
+                if (ver > CurrentVersion)
+                {
+                    Templatex.Extract(file, intermediateTempFolder);
+
+                    var finalTarget = Path.Combine(LocationFolder, ver.ToString());
+
+                    SafeMoveDirectory(Path.Combine(intermediateTempFolder, TemplatesFolderName), finalTarget);
+
+                    AppHealth.Current.Verbose.TrackAsync($"Templates content extracted to {finalTarget}. Version adquired: {ver.ToString()}").FireAndForget();
+                }
             }
             catch (Exception ex)
             {
@@ -96,93 +141,23 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private static bool UpdateTemplates(string workingFolder)
+        private string GetVersionFilePathFromTempContentFolder(string tempContentFolder)
         {
-            bool templatesUpdated = false;
-            var tempFolder = Path.Combine(workingFolder, TempFolderName);
-            try
+            if (Directory.Exists(tempContentFolder))
             {
-
-                templatesUpdated = CopyContentIfNeeded(workingFolder);
-                SafeCleanUpTempFolder(tempFolder);
+                return Directory.EnumerateFiles(tempContentFolder, VersionFileName, SearchOption.AllDirectories).FirstOrDefault();
             }
-            catch (Exception ex)
+            else
             {
-                var msg = "The templates content can't be updated.";
-                AppHealth.Current.Exception.TrackAsync(ex, msg).FireAndForget();
-                throw;
+                return String.Empty;
             }
-            return templatesUpdated;
         }
 
-        private static bool CopyContentIfNeeded(string workingFolder)
-        {
-            bool updated = false;
-            string tempContentDir = Path.Combine(workingFolder, Path.Combine(TempFolderName, TemplatesName));
-            string currentContentDir = Path.Combine(workingFolder, TemplatesName);
-
-            if (UpdateAvailable(workingFolder))
-            {
-                SafeDelete(currentContentDir);
-                CopyRecursive(tempContentDir, currentContentDir);
-
-                AppHealth.Current.Warning.TrackAsync($"Templates successfully updated").FireAndForget();
-                updated = true;
-            }
-            return updated;
-        }
-
-        private static bool UpdateAvailable(string workingFolder)
-        {
-            string tempContentDir = Path.Combine(workingFolder, Path.Combine(TempFolderName, TemplatesName));
-            string tempFileVersion = Path.Combine(tempContentDir, VersionFileName);
-            string currentFileVersion = Path.Combine(workingFolder, Path.Combine(TemplatesName, VersionFileName));
-
-            var tempVersion = GetVersionFromFile(tempFileVersion);
-            var currentVersion = GetVersionFromFile(currentFileVersion);
-
-            bool update = tempVersion != "0.0.0" && tempVersion != currentVersion;
-
-            if (update)
-            {
-                AppHealth.Current.Verbose.TrackAsync($"New templates content available. Current version:{currentVersion}; New version: {tempVersion}").FireAndForget();
-            }
-
-            if (!update && tempVersion == currentVersion)
-            {
-                RefreshVersionFileExpiration(currentFileVersion, currentVersion);
-            }
-            return update;
-        }
         private static void RefreshVersionFileExpiration(string installedVersionFile, string installedVersion)
         {
             if (File.Exists(installedVersionFile))
             {
                 File.WriteAllText(installedVersionFile, installedVersion);
-            }
-        }
-
-        private static void SafeCleanUpTempFolder(string usedTempFolder)
-        {
-            try
-            {
-                if (Directory.Exists(usedTempFolder))
-                {
-                    Directory.Delete(usedTempFolder, true);
-                }
-            }
-            catch (Exception ex)
-            {
-                var msg = $"The temp folder {usedTempFolder} can't be delete. Error: {ex.Message}";
-                AppHealth.Current.Warning.TrackAsync(msg).FireAndForget();
-            }
-        }
-
-        private static void EnsureWorkingFolder(string workingFolder)
-        {
-            if (!Directory.Exists(workingFolder))
-            {
-                Directory.CreateDirectory(workingFolder);
             }
         }
     }

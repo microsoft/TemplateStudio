@@ -32,30 +32,35 @@ namespace Microsoft.Templates.Core
         private readonly Lazy<string> _workingFolder = new Lazy<string>(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), FolderName));
         public string WorkingFolder => _workingFolder.Value;
 
-        private string FileVersionPath => Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName, TemplatesLocation.VersionFileName);
+        public string CurrentTemplatesFolder { get => _location.CurrentVersionFolder; }
 
         public TemplatesRepository(TemplatesLocation location)
         {
             _location = location ?? throw new ArgumentNullException("location");
+            _location.Initialize(WorkingFolder);
         }
 
         public async Task SynchronizeAsync(bool forceUpdate = false)
         {
+            _location.RefreshFolders();
+
             if (forceUpdate || !ExistsTemplates())
             {
                 await AdquireContentAsync();
-                await UpdateContentAsync();
+                await UpdateTemplatesCacheAsync();
             }
             else
             {
-                await UpdateContentAsync();
+                await UpdateTemplatesCacheAsync();
                 await AdquireContentAsync();
             }
+
+            await PurgeContentAsync();
         }
 
         public string GetVersion()
         {
-            return _location.GetVersion(WorkingFolder);
+            return _location.CurrentVersion.ToString();
         }
 
         private async Task AdquireContentAsync()
@@ -69,7 +74,7 @@ namespace Microsoft.Templates.Core
         {
             try
             {
-                _location.Adquire(WorkingFolder);
+                _location.Adquire();
             }
             catch (Exception ex)
             {
@@ -77,21 +82,21 @@ namespace Microsoft.Templates.Core
             }
         }
 
-        private async Task UpdateContentAsync()
+        private async Task UpdateTemplatesCacheAsync()
         {
             SyncStatusChanged?.Invoke(this, SyncStatus.Updating);
-            await Task.Run(() => UpdateContent());
+            await Task.Run(() => UpdateTemplatesCache());
             SyncStatusChanged?.Invoke(this, SyncStatus.Updated);
         }
 
-        private void UpdateContent()
+        private void UpdateTemplatesCache()
         {
             try
             {
-                if (_location.Update(WorkingFolder))
+                if (_location.UpdateAvailable() || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
                 {
                     CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
-                    CodeGen.Instance.Cache.Scan(WorkingFolder + $@"\{TemplatesLocation.TemplatesName}");
+                    CodeGen.Instance.Cache.Scan(CurrentTemplatesFolder);
                     CodeGen.Instance.Cache.WriteTemplateCaches();
                 }
             }
@@ -102,15 +107,26 @@ namespace Microsoft.Templates.Core
         }
         private bool ExistsTemplates()
         {
-            string templatesDir = Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName);
-            if (!Directory.Exists(templatesDir))
+            if (!Directory.Exists(CurrentTemplatesFolder))
             {
                 return false;
             }
             else
             {
-                DirectoryInfo di = new DirectoryInfo(templatesDir);
+                DirectoryInfo di = new DirectoryInfo(CurrentTemplatesFolder);
                 return di.EnumerateFiles("*", SearchOption.AllDirectories).Any();
+            }
+        }
+
+        private async Task PurgeContentAsync()
+        {
+            try
+            {
+                await Task.Run(() => _location.Purge());
+            }
+            catch (Exception ex)
+            {
+                await AppHealth.Current.Warning.TrackAsync("Unable to purge old content.", ex);
             }
         }
 
@@ -145,12 +161,12 @@ namespace Microsoft.Templates.Core
 
         public ProjectInfo GetProjectTypeInfo(string projectType)
         {
-            return GetProyectInfo(Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName, TemplatesLocation.ProjectTypes, projectType, "Info"));
+            return GetProyectInfo(Path.Combine(CurrentTemplatesFolder, TemplatesLocation.ProjectTypes, projectType, "Info"));
         }
 
         public ProjectInfo GetFrameworkTypeInfo(string fxType)
         {
-            return GetProyectInfo(Path.Combine(WorkingFolder, TemplatesLocation.TemplatesName, TemplatesLocation.Frameworks, fxType, "Info"));
+            return GetProyectInfo(Path.Combine(CurrentTemplatesFolder, TemplatesLocation.Frameworks, fxType, "Info"));
         }
 
         private ProjectInfo GetProyectInfo(string folderName)

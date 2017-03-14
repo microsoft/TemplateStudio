@@ -13,7 +13,7 @@ Write-Host "Version Number" $versionNumber
 Write-Host "Destination Directory" $destinationDirectory
 Write-Host "Destination File" $destinationFile
 
-$TfsBuildVersionRegEx = "_v(\d+)\.(\S+)\.(\d+)"
+$TfsBuildVersionRegEx = "_(\d+)\.(\S+)\.(\d+)"
 
 if($buildNumber -match $TfsBuildVersionRegEx){
 

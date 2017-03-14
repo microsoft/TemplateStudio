@@ -9,21 +9,24 @@ namespace Microsoft.Templates.Core.Locations
 {
     public class LocalTemplatesLocation : TemplatesLocation
     {
-        public override void Adquire(string workingFolder)
+        public override string Id { get => "Local"; }
+
+        public override void Adquire()
         {
-            //NO ADQUSITION REQUIRED;
+            Copy($@"..\..\..\..\..\{TemplatesLocation.TemplatesFolderName}", CurrentVersionFolder);
+            File.WriteAllText(CurrentVersionFilePath, $"0.0.0.0");
         }
-        public override bool Update(string workingFolder)
+        public override bool UpdateAvailable()
         {
-            var targetFolder = Path.Combine(workingFolder, TemplatesName);
-            Copy($@"..\..\..\..\..\{TemplatesLocation.TemplatesName}", targetFolder);
-            File.WriteAllText(Path.Combine(targetFolder, VersionFileName), $"1.0.0-local{DateTime.Now.ToString("yyyyMMddHHmmss")}");
             return true;
+        }
+        protected override string GetLatestTemplateFolder() {
+            return "0.0.0.0-local";
         }
 
         protected static void Copy(string sourceFolder, string targetFolder)
         {
-            SafeDelete(targetFolder);
+            SafeDeleteDirectory(targetFolder);
             CopyRecursive(sourceFolder, targetFolder);
         }
     }
