@@ -147,6 +147,9 @@
   <data name="StatusAdquiring" xml:space="preserve">
     <value>Downloading templates...</value>
   </data>
+  <data name="StatusNewerContent" xml:space="preserve">
+    <value>There are newer templates content. Consider to update the extension.</value>
+  </data>
   <data name="StatusUpdated" xml:space="preserve">
     <value>Templates updated</value>
   </data>

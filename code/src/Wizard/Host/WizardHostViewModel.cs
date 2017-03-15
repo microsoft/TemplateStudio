@@ -57,11 +57,19 @@ namespace Microsoft.Templates.Wizard.Host
                     var step = Steps.First();
                     Navigate(step);
                 }
+
+                if(status == SyncStatus.NewerContent)
+                {
+                    MessageBox.Show(Status, "Wizard Update Available", MessageBoxButton.OK);
+                    //TODO: Review message and behavior.
+                }
             };
 
             try
             {
                 WizardVersion = GetWizardVersion();
+
+                TemplatesVersion = "...";
 
                 await GenContext.ToolBox.Repo.SynchronizeAsync();
                 Status = string.Empty;
@@ -97,6 +105,8 @@ namespace Microsoft.Templates.Wizard.Host
                     return StringRes.StatusAdquiring;
                 case SyncStatus.Adquired:
                     return StringRes.StatusAdquired;
+                case SyncStatus.NewerContent:
+                    return StringRes.StatusNewerContent;
                 default:
                     return string.Empty;
             }

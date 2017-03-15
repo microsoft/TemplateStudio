@@ -1,7 +1,12 @@
-﻿using System;
+﻿using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,37 +14,51 @@ namespace Microsoft.Templates.Core.Locations
 {
     public abstract class TemplatesLocation
     {
-        public const string PackagesName = "Packages";
-        public const string TemplatesName = "Templates";
+        public const string TemplatesFolderName = "Templates";
         public const string VersionFileName = "version.txt";
         public const string ProjectTypes = "Projects";
         public const string Frameworks = "Frameworks";
-        public const string TempFolderName = "Temp";
+        public const string DownloadsFolderName = "Downloads";
 
-        public abstract void Adquire(string workingFolder);
-        public abstract bool Update(string workingFolder);
 
-        public string GetVersion(string workingFolder)
+        public string RootWorkingFolder { get; private set; }
+        public string RootTemplatesFolder { get; protected set; }
+        public string DownloadsFolder { get; protected set; }
+        public string LocationFolder { get; protected set; }
+        public string CurrentVersionFilePath { get; protected set; }
+        public string CurrentVersionFolder { get; protected set; }
+        public Version CurrentVersion { get; private set; }
+        public Version WizardVersion { get => GetWizardVersion(); }
+
+
+        public void Initialize(string workingFolder)
         {
-            var fileName = Path.Combine(workingFolder, Path.Combine(TemplatesName, VersionFileName));
-            return GetVersionFromFile(fileName);
+            RootWorkingFolder = workingFolder;
+            RefreshFolders();
+        }
+        public void RefreshFolders()
+        {
+            RootTemplatesFolder = Path.Combine(RootWorkingFolder, TemplatesFolderName);
+            DownloadsFolder = Path.Combine(RootWorkingFolder, DownloadsFolderName);
+
+            LocationFolder = Path.Combine(RootTemplatesFolder, Id);
+
+            CurrentVersionFolder = Path.Combine(LocationFolder, GetLatestTemplateFolder());
+            CurrentVersionFilePath = Path.Combine(CurrentVersionFolder, VersionFileName);
+
+            SetCurrentVersion();
         }
 
-        protected static void SafeDelete(string directoryPath)
-        {
-            if (Directory.Exists(directoryPath))
-            {
-                Directory.Delete(directoryPath, true);
-            }
-        }
+        public abstract string Id { get; }
+        public abstract void Adquire();
+        public abstract bool UpdateAvailable();
+        public abstract bool ExistsContentWithHigherVersionThanWizard();
+        protected abstract string GetLatestTemplateFolder();
 
-        protected static void SafeCopyFile(string sourceFile, string destFolder)
+        public void Purge()
         {
-            if (!Directory.Exists(destFolder))
-            {
-                Directory.CreateDirectory(destFolder);
-            }
-            File.Copy(sourceFile, Path.Combine(destFolder, Path.GetFileName(sourceFile)));
+            CleanUpDownloads();
+            CleanUpOldVersions();
         }
 
         protected static void CopyRecursive(string sourceDir, string targetDir)
@@ -56,15 +75,145 @@ namespace Microsoft.Templates.Core.Locations
                 CopyRecursive(directory, Path.Combine(targetDir, Path.GetFileName(directory)));
             }
         }
-
-        protected static string GetVersionFromFile(string versionFilePath)
+        protected static void SafeDeleteDirectory(string dir)
         {
-            var version = "0.0.0";
+            try
+            {
+                if (Directory.Exists(dir))
+                {
+                    Directory.Delete(dir, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                var msg = $"The folder {dir} can't be delete. Error: {ex.Message}";
+                AppHealth.Current.Warning.TrackAsync(msg, ex).FireAndForget();
+            }
+        }
+
+        protected static void SafeMoveDirectory(string sourceDir, string targetDir)
+        {
+            try
+            {
+                if (Directory.Exists(sourceDir))
+                {
+                    Directory.Move(sourceDir, targetDir);
+                }
+            }
+            catch (Exception ex)
+            {
+                var msg = $"The folder {sourceDir} can't be moved to {targetDir}. Error: {ex.Message}";
+                AppHealth.Current.Warning.TrackAsync(msg, ex).FireAndForget();
+            }
+        }
+
+        protected static Version GetVersionFromFile(string versionFilePath)
+        {
+            var version = "0.0.0.0";
             if (File.Exists(versionFilePath))
             {
-                version = File.ReadAllText(versionFilePath);
+                version = File.ReadAllText(versionFilePath).Replace("v", ""); //TODO: quitar cuando no sea necesario.
             }
-            return version;
+            if (!Version.TryParse(version, out Version result))
+            {
+                result = new Version(0, 0, 0, 0);
+            }
+            return result;
+        }
+
+        protected static Version GetVersionFromPackage(string packagePath)
+        {
+            string version = String.Empty;
+            if (File.Exists(packagePath))
+            {
+                using (ZipArchive zip = ZipFile.Open(packagePath, ZipArchiveMode.Read))
+                {
+                    var versionFile = zip.Entries.Where(e => e.Name == $"{VersionFileName}").FirstOrDefault();
+                    if (versionFile != null)
+                    {
+                        using (StreamReader sr = new StreamReader(versionFile.Open()))
+                        {
+                            version = sr.ReadToEnd().Replace("v", ""); //TODO: Quitar una vez se haya configurado bien la build.
+                        }
+                    }
+                }
+            }
+            if (!Version.TryParse(version, out Version result))
+            {
+                result = new Version(0, 0, 0, 0);
+            }
+            return result;
+        }
+
+        protected void SetCurrentVersion()
+        {
+            if (File.Exists(CurrentVersionFilePath))
+            {
+                CurrentVersion = GetVersionFromFile(CurrentVersionFilePath);
+            }
+            else
+            {
+                CurrentVersion = new Version(0, 0, 0, 0);
+            }
+        }
+
+        protected static void EnsureFolder(string folder)
+        {
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+        }
+
+        protected static void SafeCopyFile(string sourceFile, string destFolder)
+        {
+            if (!Directory.Exists(destFolder))
+            {
+                Directory.CreateDirectory(destFolder);
+            }
+            File.Copy(sourceFile, Path.Combine(destFolder, Path.GetFileName(sourceFile)));
+        }
+
+        protected static Version GetWizardVersion()
+        {
+            string assemblyLocation = Assembly.GetExecutingAssembly().Location;
+            var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
+            Version.TryParse(versionInfo.FileVersion, out Version v);
+
+            return v;
+        }
+
+        protected bool VersionIsAlignedWithWizard(Version v)
+        {
+            return v.Major == WizardVersion.Major && v.Minor == WizardVersion.Minor;
+        }
+
+        private void CleanUpDownloads()
+        {
+            if (Directory.Exists(DownloadsFolder))
+            {
+                DirectoryInfo di = new DirectoryInfo(DownloadsFolder);
+                foreach (var sdi in di.EnumerateDirectories())
+                {
+                    SafeDeleteDirectory(sdi.FullName);
+                }
+            }
+        }
+
+        private void CleanUpOldVersions()
+        {
+            if (Directory.Exists(LocationFolder))
+            {
+                DirectoryInfo di = new DirectoryInfo(LocationFolder);
+                foreach (var sdi in di.EnumerateDirectories())
+                {
+                    Version.TryParse(sdi.Name, out Version v);
+                    if (v < CurrentVersion)
+                    {
+                        SafeDeleteDirectory(sdi.FullName);
+                    }
+                }
+            }
         }
     }
 }
