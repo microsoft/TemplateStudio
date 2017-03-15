@@ -94,6 +94,12 @@
     <Compile Include="Strings\ResourceExtensions.cs" />    
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activation\ActivationHandler.cs" />
+    <Compile Include="Activation\ActivationService.cs" />
+    <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
+    <Compile Include="Singleton.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Page Include="Shell\ShellPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
