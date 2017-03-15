@@ -20,16 +20,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Shell\\ShellPage.xaml"
-    },
-    {
-      "path": ".\\Shell\\ShellPage.xaml.cs"
-    },
-    {
       "path": ".\\Shell\\ShellViewModel.cs"
-    },
-    {
-      "path": ".\\Shell\\ShellTabbedItem.cs"
     },
     {
       "path": ".\\Shell\\ViewModelLocator.cs"
