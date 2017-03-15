@@ -12,141 +12,29 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core
 {
-    public enum SyncStatus
-    {
-        Undefined = 0,
-        Updating = 1,
-        Updated = 2,
-        Adquiring = 3,
-        Adquired = 4,
-        OverVersion = 5
-    }
-
     public class TemplatesRepository
     {
         private const string ProjectTypes = "Projects";
         private const string Frameworks = "Frameworks";
 
-        public event Action<object, SyncStatus> SyncStatusChanged;
+        public TemplatesSynchronization Sync { get; private set; }
 
-        private static readonly string FolderName = Configuration.Current.RepositoryFolderName;
-
-        private readonly Lazy<string> _workingFolder = new Lazy<string>(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), FolderName));
-        public string WorkingFolder => _workingFolder.Value;
-        public string CurrentContentFolder { get; private set; }
-
-        private readonly TemplatesSource _source;
-        private readonly TemplatesContent _content;
+        public string CurrentContentFolder { get => Sync?.CurrentContentFolder; }
 
         public TemplatesRepository(TemplatesSource source)
         {
-            _source = source ?? throw new ArgumentNullException("location");
-            _content = new TemplatesContent(WorkingFolder, source.Id);
-
-            CurrentContentFolder = CodeGen.Instance?.GetCurrentContentSource(WorkingFolder);
+            Sync = new TemplatesSynchronization(source);
         }
 
-        public async Task SynchronizeAsync(bool forceUpdate = false)
-        {
-            await ForcedAdquisition(forceUpdate);
-
-            await UpdateTemplatesCacheAsync();
-
-            await ExpirationAdquisition();
-
-            await ExistsOverVersion();
-
-            await PurgeContentAsync();
-
-        }
 
         public string GetVersion()
         {
-            return _content.GetVersionFromFolder(CurrentContentFolder).ToString();
+            return Sync.CurrentContentVersion.ToString();
         }
 
-        private async Task AdquireContentAsync()
+        public async Task SynchronizeAsync(bool force = false)
         {
-            SyncStatusChanged?.Invoke(this, SyncStatus.Adquiring);
-            await Task.Run(() => AdquireContent());
-            SyncStatusChanged?.Invoke(this, SyncStatus.Adquired);
-        }
-        private async Task ExpirationAdquisition()
-        {
-            if (_content.IsExpired(CurrentContentFolder))
-            {
-                await AdquireContentAsync();
-            }
-        }
-
-        private async Task ForcedAdquisition(bool forceUpdate)
-        {
-            if (forceUpdate || !_content.Exists())
-            {
-                await AdquireContentAsync();
-            }
-        }
-
-        private void AdquireContent()
-        {
-            try
-            {
-                _source.Adquire(_content.TemplatesFolder);
-            }
-            catch (Exception ex)
-            {
-                throw new RepositorySynchronizationException(SyncStatus.Adquiring, ex);
-            }
-        }
-
-        private async Task UpdateTemplatesCacheAsync()
-        {
-            SyncStatusChanged?.Invoke(this, SyncStatus.Updating);
-            await Task.Run(() => UpdateTemplatesCache());
-            SyncStatusChanged?.Invoke(this, SyncStatus.Updated);
-        }
-
-        private async Task ExistsOverVersion()
-        {
-            await Task.Run(() =>
-            {
-                if (_content.ExistOverVersion())
-                {
-                    SyncStatusChanged?.Invoke(this, SyncStatus.OverVersion);
-                }
-            });
-        }
-
-        private void UpdateTemplatesCache()
-        {
-            try
-            {
- 
-                if (_content.ExitsNewerVersion(CurrentContentFolder) || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
-                {
-                    CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
-                    CodeGen.Instance.Cache.Scan(_content.LatestContentFolder);
-                    CodeGen.Instance.Cache.WriteTemplateCaches();
-
-                    CurrentContentFolder = CodeGen.Instance.GetCurrentContentSource(WorkingFolder);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new RepositorySynchronizationException(SyncStatus.Updating, ex);
-            }
-        }
-
-        private async Task PurgeContentAsync()
-        {
-            try
-            {
-                await Task.Run(() => _content.Purge(CurrentContentFolder));
-            }
-            catch (Exception ex)
-            {
-                await AppHealth.Current.Warning.TrackAsync("Unable to purge old content.", ex);
-            }
+            await Sync.Do(force);
         }
 
         public IEnumerable<ITemplateInfo> GetAll()
@@ -180,12 +68,12 @@ namespace Microsoft.Templates.Core
 
         public ProjectInfo GetProjectTypeInfo(string projectType)
         {
-            return GetProyectInfo(Path.Combine(CurrentContentFolder, ProjectTypes, projectType, "Info"));
+            return GetProyectInfo(Path.Combine(Sync.CurrentContentFolder, ProjectTypes, projectType, "Info"));
         }
 
         public ProjectInfo GetFrameworkTypeInfo(string fxType)
         {
-            return GetProyectInfo(Path.Combine(CurrentContentFolder, Frameworks, fxType, "Info"));
+            return GetProyectInfo(Path.Combine(Sync.CurrentContentFolder, Frameworks, fxType, "Info"));
         }
 
         private ProjectInfo GetProyectInfo(string folderName)

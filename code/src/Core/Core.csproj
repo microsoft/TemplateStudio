@@ -141,6 +141,7 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="ITemplateInfo.extensions.cs" />
     <Compile Include="Locations\RemoteTemplatesSource.cs" />
+    <Compile Include="Locations\TemplatesSynchronization.cs" />
     <Compile Include="Locations\TemplatesContent.cs" />
     <Compile Include="Locations\TemplatesSource.cs" />
     <Compile Include="Locations\Templatex.cs" />

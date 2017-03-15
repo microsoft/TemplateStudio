@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Core.Locations
             {
                 Version currentVersion = GetVersionFromFolder(currentContentFolder);
                 Version latestVersion = GetVersionFromFolder(LatestContentFolder);
-                return currentVersion < latestVersion;
+                return currentVersion==null || currentVersion < latestVersion;
             }
             else
             {

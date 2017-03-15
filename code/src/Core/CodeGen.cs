@@ -41,7 +41,7 @@ namespace Microsoft.Templates.Core
         public string GetCurrentContentSource(string workingFolder)
         {
             string result = String.Empty;
-            var mountingPoint = CodeGen.Instance?.Settings.SettingsLoader.MountPoints.Where(i => i.Place.Contains(workingFolder)).FirstOrDefault();
+            var mountingPoint = CodeGen.Instance?.Settings.SettingsLoader.MountPoints.Where(i => i.Place.Contains(workingFolder)).LastOrDefault();
             if (mountingPoint != null)
             {
                 result = mountingPoint.Place;

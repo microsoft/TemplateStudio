@@ -2,6 +2,7 @@
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Wizard.Resources;
 using Microsoft.Templates.Wizard.Steps;
@@ -46,7 +47,7 @@ namespace Microsoft.Templates.Wizard.Host
 
         public async Task IniatializeAsync()
         {
-            GenContext.ToolBox.Repo.SyncStatusChanged += (sender, status) =>
+            GenContext.ToolBox.Repo.Sync.SyncStatusChanged += (sender, status) =>
             {
                 Status = GetStatusText(status);
 
