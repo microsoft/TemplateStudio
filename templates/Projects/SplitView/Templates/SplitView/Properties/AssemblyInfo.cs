@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("uct.SplitViewProject")]
-[assembly: AssemblyCopyright("Copyright ©  Param_Year")]
+[assembly: AssemblyCopyright("Copyright ©  1976")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -28,10 +28,14 @@
     {
       "type": "parameter",
       "replaces": "Param_UserName"
-    },
-    "year":{
-      "type":"parameter",
-      "replaces": "Param_Year"
+    }
+  },
+  "copyrightYear": {
+      "type": "generated",
+      "generator": "now",
+      "replaces": "1976",
+      "parameters": {
+        "format": "yyyy"
     }
   }
 }
