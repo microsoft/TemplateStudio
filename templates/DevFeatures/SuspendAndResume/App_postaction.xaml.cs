@@ -6,13 +6,13 @@ namespace RootNamespace
         {
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
-                    await Services.StateService.Instance.RestoreStateAsync(e.PreviousExecutionState, e.Arguments);
+                    await Services.SuspendAndResumeService.Instance.RestoreStateAsync();
                 }
         }
         private async void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e)
         {
             var deferral = e.GetDeferral();
-            await Services.StateService.Instance.SaveStateAsync();
+            await Services.SuspendAndResumeService.Instance.SaveStateAsync();
             deferral.Complete();
         }
     }
