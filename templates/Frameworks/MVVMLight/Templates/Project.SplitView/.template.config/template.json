@@ -23,12 +23,6 @@
       "path": ".\\Shell\\ShellNavigationItem.cs"
     },
     {
-      "path": ".\\Shell\\ShellPage.xaml"
-    },
-    {
-      "path": ".\\Shell\\ShellPage.xaml.cs"
-    },
-    {
       "path": ".\\Shell\\ShellViewModel.cs"
     },
     {
