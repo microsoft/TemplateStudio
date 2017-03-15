@@ -121,6 +121,7 @@
     <Compile Include="Diagnostics\TelemetryServiceTest.cs" />
     <Compile Include="ITemplateInfoExtensionsTest.cs" />
     <Compile Include="Locations\TemplatexTests.cs" />
+    <Compile Include="Locations\UnitTestTemplatesSource.cs" />
     <Compile Include="NamingTest.cs" />
     <None Include="TestData\Merge\Source_expected.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

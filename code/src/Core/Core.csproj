@@ -135,10 +135,16 @@
     <Compile Include="Gen\GenShell.cs" />
     <Compile Include="Gen\GenContext.cs" />
     <Compile Include="Gen\GenToolBox.cs" />
+    <Compile Include="Locations\Fs.cs" />
     <Compile Include="Locations\InvalidSignatureException.cs" />
+    <Compile Include="Locations\LocalTemplatesSource.cs" />
     <Compile Include="Locations\RemoteTemplatesLocation.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="ITemplateInfo.extensions.cs" />
+    <Compile Include="Locations\RemoteTemplatesSource.cs" />
+    <Compile Include="Locations\RepositorySync.cs" />
+    <Compile Include="Locations\TemplatesContent.cs" />
+    <Compile Include="Locations\TemplatesSource.cs" />
     <Compile Include="Locations\Templatex.cs" />
     <Compile Include="Locations\SignCertNotFoundException.cs" />
     <Compile Include="Locations\TemplatesLocation.cs" />

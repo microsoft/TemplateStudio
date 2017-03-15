@@ -258,6 +258,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             File.Delete(outFile);
         }
 
+        //TODO: Refactor this methods to other class
         [Fact]
         public void UseRemoteDownloadAndUpdate()
         {
@@ -293,6 +294,40 @@ namespace Microsoft.Templates.Core.Test.Locations
             }
         }
 
+        [Fact]
+        public void TestRemoteSource()
+        {
+            string targetFolder = @"C:\Temp\TestRts";
+            try
+            {
+                RemoteTemplatesSource rts = new RemoteTemplatesSource();
+                rts.Adquire(targetFolder);
+
+                string aquiredContentFolder = Directory.EnumerateDirectories(targetFolder).FirstOrDefault();
+
+                Assert.NotNull(aquiredContentFolder);
+
+                //There is just one
+                Assert.True(Directory.EnumerateDirectories(targetFolder).Count() == 1);
+
+                //Ensure even downloaded, if there is coincident content, it is not duplicated.
+                rts.Adquire(targetFolder);
+                Assert.True(Directory.EnumerateDirectories(targetFolder).Count() == 1);
+
+                //Change the previous adquired content and ensure it is adquired again
+                Directory.Move(aquiredContentFolder, aquiredContentFolder + "_old");
+
+                rts.Adquire(targetFolder);
+                Assert.True(Directory.EnumerateDirectories(targetFolder).Count() == 2);
+            }
+            finally
+            {
+                if (Directory.Exists(targetFolder))
+                {
+                    Directory.Delete(targetFolder, true);
+                }
+            }
+        }
         private void ModifyContent(string signedPack, string contentFile)
         {
             using (ZipArchive zip = ZipFile.Open(signedPack, ZipArchiveMode.Update))
