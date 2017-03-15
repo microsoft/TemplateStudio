@@ -5,6 +5,8 @@
     xmlns:shell="using:uct.ItemName.Shell"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
     DataContext="{Binding ShellViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     <Page.Resources>
@@ -61,8 +63,12 @@
                         ItemsSource="{Binding NavigationItems}"
                         SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                         SelectionMode="Single"
-                        TabIndex="1"
-                        ItemClick="OnItemClick">
+                        TabIndex="1">
+                        <i:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="ItemClick">
+                                <core:InvokeCommandAction Command="{Binding ItemClickCommand}"/>
+                            </core:EventTriggerBehavior>
+                        </i:Interaction.Behaviors>
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="Padding" Value="0" />
@@ -71,7 +77,7 @@
                     </ListView>
                 </Grid>
             </SplitView.Pane>
-            <Frame x:Name="frame" Navigated="frame_Navigated"/>
+            <Frame x:Name="frame" Navigated="OnFrameNavigated"/>
         </SplitView>
     </Grid>
 </Page>
