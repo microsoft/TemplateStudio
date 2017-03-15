@@ -58,7 +58,7 @@ namespace Microsoft.Templates.Wizard.Host
                     Navigate(step);
                 }
 
-                if(status == SyncStatus.NewerContent)
+                if(status == SyncStatus.OverVersion)
                 {
                     MessageBox.Show(Status, "Wizard Update Available", MessageBoxButton.OK);
                     //TODO: Review message and behavior.
@@ -105,7 +105,7 @@ namespace Microsoft.Templates.Wizard.Host
                     return StringRes.StatusAdquiring;
                 case SyncStatus.Adquired:
                     return StringRes.StatusAdquired;
-                case SyncStatus.NewerContent:
+                case SyncStatus.OverVersion:
                     return StringRes.StatusNewerContent;
                 default:
                     return string.Empty;

@@ -141,7 +141,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="TemplatesFixture.cs" />
-    <Compile Include="Locations\UnitTestsTemplatesLocation.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Core\Core.csproj">

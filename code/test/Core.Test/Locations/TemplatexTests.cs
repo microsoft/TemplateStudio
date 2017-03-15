@@ -260,41 +260,6 @@ namespace Microsoft.Templates.Core.Test.Locations
 
         //TODO: Refactor this methods to other class
         [Fact]
-        public void UseRemoteDownloadAndUpdate()
-        {
-            string workingFolder = Path.Combine(@"C:\Temp", Path.GetRandomFileName());
-
-            RemoteTemplatesLocation remote = new RemoteTemplatesLocation();
-            remote.Initialize(workingFolder);
-            remote.Adquire();
-            Assert.True(remote.UpdateAvailable());
-
-            if (Directory.Exists(workingFolder))
-            {
-                Directory.Delete(workingFolder, true);
-            }
-        }
-
-        [Fact]
-        public void UseRemoteDownloadAndUpdateTwice()
-        {
-            string workingFolder = Path.Combine(@"C:\Temp", Path.GetRandomFileName());
-
-            RemoteTemplatesLocation remote = new RemoteTemplatesLocation();
-            remote.Initialize(workingFolder);
-            remote.Adquire();
-            Assert.True(remote.UpdateAvailable());
-
-            remote.Adquire();
-            Assert.False(remote.UpdateAvailable());
-
-            if (Directory.Exists(workingFolder))
-            {
-                Directory.Delete(workingFolder, true);
-            }
-        }
-
-        [Fact]
         public void TestRemoteSource()
         {
             string targetFolder = @"C:\Temp\TestRts";

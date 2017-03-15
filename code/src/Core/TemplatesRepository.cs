@@ -19,51 +19,50 @@ namespace Microsoft.Templates.Core
         Updated = 2,
         Adquiring = 3,
         Adquired = 4,
-        NewerContent = 5
+        OverVersion = 5
     }
 
     public class TemplatesRepository
     {
+        private const string ProjectTypes = "Projects";
+        private const string Frameworks = "Frameworks";
+
         public event Action<object, SyncStatus> SyncStatusChanged;
 
         private static readonly string FolderName = Configuration.Current.RepositoryFolderName;
 
-        private readonly TemplatesLocation _location;
-
         private readonly Lazy<string> _workingFolder = new Lazy<string>(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), FolderName));
         public string WorkingFolder => _workingFolder.Value;
+        public string CurrentContentFolder { get; private set; }
 
-        public string CurrentTemplatesFolder { get => _location.CurrentVersionFolder; }
+        private readonly TemplatesSource _source;
+        private readonly TemplatesContent _content;
 
-        public TemplatesRepository(TemplatesLocation location)
+        public TemplatesRepository(TemplatesSource source)
         {
-            _location = location ?? throw new ArgumentNullException("location");
-            _location.Initialize(WorkingFolder);
+            _source = source ?? throw new ArgumentNullException("location");
+            _content = new TemplatesContent(WorkingFolder, source.Id);
+
+            CurrentContentFolder = CodeGen.Instance?.GetCurrentContentSource(WorkingFolder);
         }
 
         public async Task SynchronizeAsync(bool forceUpdate = false)
         {
-            _location.RefreshFolders();
+            await ForcedAdquisition(forceUpdate);
 
-            if (forceUpdate || !ExistsTemplates())
-            {
-                await AdquireContentAsync();
-                await UpdateTemplatesCacheAsync();
-            }
-            else
-            {
-                await UpdateTemplatesCacheAsync();
-                await AdquireContentAsync();
-            }
+            await UpdateTemplatesCacheAsync();
 
-            //await CheckIncompatibleContentExists();
+            await ExpirationAdquisition();
+
+            await ExistsOverVersion();
 
             await PurgeContentAsync();
+
         }
 
         public string GetVersion()
         {
-            return _location.CurrentVersion.ToString();
+            return _content.GetVersionFromFolder(CurrentContentFolder).ToString();
         }
 
         private async Task AdquireContentAsync()
@@ -72,12 +71,27 @@ namespace Microsoft.Templates.Core
             await Task.Run(() => AdquireContent());
             SyncStatusChanged?.Invoke(this, SyncStatus.Adquired);
         }
+        private async Task ExpirationAdquisition()
+        {
+            if (_content.IsExpired(CurrentContentFolder))
+            {
+                await AdquireContentAsync();
+            }
+        }
+
+        private async Task ForcedAdquisition(bool forceUpdate)
+        {
+            if (forceUpdate || !_content.Exists())
+            {
+                await AdquireContentAsync();
+            }
+        }
 
         private void AdquireContent()
         {
             try
             {
-                _location.Adquire();
+                _source.Adquire(_content.TemplatesFolder);
             }
             catch (Exception ex)
             {
@@ -92,27 +106,29 @@ namespace Microsoft.Templates.Core
             SyncStatusChanged?.Invoke(this, SyncStatus.Updated);
         }
 
-        private async Task CheckIncompatibleContentExists()
+        private async Task ExistsOverVersion()
         {
             await Task.Run(() =>
             {
-                if (_location.ExistsContentWithHigherVersionThanWizard())
+                if (_content.ExistOverVersion())
                 {
-                    SyncStatusChanged?.Invoke(this, SyncStatus.NewerContent);
+                    SyncStatusChanged?.Invoke(this, SyncStatus.OverVersion);
                 }
             });
         }
-
 
         private void UpdateTemplatesCache()
         {
             try
             {
-                if (_location.UpdateAvailable() || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
+ 
+                if (_content.ExitsNewerVersion(CurrentContentFolder) || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
                 {
                     CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
-                    CodeGen.Instance.Cache.Scan(CurrentTemplatesFolder);
+                    CodeGen.Instance.Cache.Scan(_content.LatestContentFolder);
                     CodeGen.Instance.Cache.WriteTemplateCaches();
+
+                    CurrentContentFolder = CodeGen.Instance.GetCurrentContentSource(WorkingFolder);
                 }
             }
             catch (Exception ex)
@@ -121,24 +137,11 @@ namespace Microsoft.Templates.Core
             }
         }
 
-        private bool ExistsTemplates()
-        {
-            if (!Directory.Exists(CurrentTemplatesFolder))
-            {
-                return false;
-            }
-            else
-            {
-                DirectoryInfo di = new DirectoryInfo(CurrentTemplatesFolder);
-                return di.EnumerateFiles("*", SearchOption.AllDirectories).Any();
-            }
-        }
-
         private async Task PurgeContentAsync()
         {
             try
             {
-                await Task.Run(() => _location.Purge());
+                await Task.Run(() => _content.Purge(CurrentContentFolder));
             }
             catch (Exception ex)
             {
@@ -177,12 +180,12 @@ namespace Microsoft.Templates.Core
 
         public ProjectInfo GetProjectTypeInfo(string projectType)
         {
-            return GetProyectInfo(Path.Combine(CurrentTemplatesFolder, TemplatesLocation.ProjectTypes, projectType, "Info"));
+            return GetProyectInfo(Path.Combine(CurrentContentFolder, ProjectTypes, projectType, "Info"));
         }
 
         public ProjectInfo GetFrameworkTypeInfo(string fxType)
         {
-            return GetProyectInfo(Path.Combine(CurrentTemplatesFolder, TemplatesLocation.Frameworks, fxType, "Info"));
+            return GetProyectInfo(Path.Combine(CurrentContentFolder, Frameworks, fxType, "Info"));
         }
 
         private ProjectInfo GetProyectInfo(string folderName)
@@ -199,7 +202,6 @@ namespace Microsoft.Templates.Core
             return projectInfo;
         }
     }
-
     public class ProjectInfo
     {
         public string Name { get; set; }

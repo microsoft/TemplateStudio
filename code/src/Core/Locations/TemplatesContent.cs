@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -25,12 +27,12 @@ namespace Microsoft.Templates.Core.Locations
             return ExistsContent(LatestContentFolder);
         }
 
-        public bool ExitsNewerVersion(string currentUsedFolder)
+        public bool ExitsNewerVersion(string currentContentFolder)
         {
             if (ExistsContent(LatestContentFolder))
             {
-                Version currentVersion = GetVersion(currentUsedFolder);
-                Version latestVersion = GetVersion(LatestContentFolder);
+                Version currentVersion = GetVersionFromFolder(currentContentFolder);
+                Version latestVersion = GetVersionFromFolder(LatestContentFolder);
                 return currentVersion < latestVersion;
             }
             else
@@ -41,7 +43,52 @@ namespace Microsoft.Templates.Core.Locations
         public bool ExistOverVersion()
         {
             string overVersionFolder = GetLatestContentFolder(false);
-            return ExistsContent(overVersionFolder);
+
+            if (ExistsContent(overVersionFolder))
+            {
+                Version overVersion = GetVersionFromFolder(overVersionFolder);
+                return !IsWizardAligned(overVersion);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool IsExpired(string currentContent)
+        {
+            if (!File.Exists(currentContent))
+            {
+                return true;
+            }
+
+            var directory = new DirectoryInfo(currentContent);
+            var expiration = directory.LastWriteTimeUtc.AddMinutes(Configuration.Current.VersionCheckingExpirationMinutes);
+            AppHealth.Current.Verbose.TrackAsync($"Current content expiration: {expiration.ToString()}").FireAndForget();
+            return expiration <= DateTime.UtcNow;
+        }
+
+        public void Purge(string currentContent)
+        {
+            if (Directory.Exists(TemplatesFolder))
+            {
+                DirectoryInfo di = new DirectoryInfo(TemplatesFolder);
+                foreach (var sdi in di.EnumerateDirectories())
+                {
+                    Version.TryParse(sdi.Name, out Version v);
+                    if (v < GetVersionFromFolder(currentContent))
+                    {
+                        Fs.SafeDeleteDirectory(sdi.FullName);
+                    }
+                }
+            }
+        }
+
+        public Version GetVersionFromFolder(string contentFolder)
+        {
+            string versionPart = Path.GetFileName(contentFolder);
+            Version.TryParse(versionPart, out Version v);
+            return v;
         }
 
         private bool ExistsContent(string folder)
@@ -56,17 +103,11 @@ namespace Microsoft.Templates.Core.Locations
                 return di.EnumerateFiles("*", SearchOption.AllDirectories).Any();
             }
         }
-        private Version GetVersion(string contentFolder)
-        {
-            string versionPart = Path.GetDirectoryName(contentFolder);
-            Version.TryParse(versionPart, out Version v);
-            return v;
-        }
 
         private string GetLatestContentFolder(bool ensureWizardAligmnent)
         {
             Version latestVersion = new Version(0, 0, 0, 0);
-            string latestContent = string.Empty;
+            string latestContent = "";
             if (Directory.Exists(TemplatesFolder))
             {
                 DirectoryInfo di = new DirectoryInfo(TemplatesFolder);
@@ -74,12 +115,12 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     Version.TryParse(sdi.Name, out Version v);
 
-                    if (v > latestVersion)
+                    if (v >= latestVersion)
                     {
                         if (!ensureWizardAligmnent || (ensureWizardAligmnent && IsWizardAligned(v)))
                         {
                             latestVersion = v;
-                            latestContent = sdi.Name;
+                            latestContent = sdi.FullName;
                         }
                     }
                 }

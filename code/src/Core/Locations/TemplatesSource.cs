@@ -14,6 +14,6 @@ namespace Microsoft.Templates.Core.Locations
         protected const string SourceFolderName = "Templates";
 
         public abstract string Id { get; }
-        public abstract void Adquire(string targetFolder);        
+        public abstract void Adquire(string targetFolder);
     }
 }

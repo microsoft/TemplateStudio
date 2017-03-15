@@ -17,7 +17,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         [Fact]
         public void Execute_Ok()
         {
-            GenContext.Bootstrap(new UnitTestsTemplatesLocation(), new FakeGenShell());
+            GenContext.Bootstrap(new UnitTestsTemplatesSource(), new FakeGenShell());
 
             var projectName = "test";
 

@@ -37,7 +37,19 @@ namespace Microsoft.Templates.Core
             Instance = new CodeGen(locationId);
             Instance.Init();
         }
-         
+
+        public string GetCurrentContentSource(string workingFolder)
+        {
+            string result = String.Empty;
+            var mountingPoint = CodeGen.Instance?.Settings.SettingsLoader.MountPoints.Where(i => i.Place.Contains(workingFolder)).FirstOrDefault();
+            if (mountingPoint != null)
+            {
+                result = mountingPoint.Place;
+            }
+            return result;
+        }
+
+
         private void Init()
         {
             if (!Settings.SettingsLoader.Components.OfType<IGenerator>().Any())
@@ -59,5 +71,6 @@ namespace Microsoft.Templates.Core
             var v = Assembly.GetExecutingAssembly().GetName().Version;
             return $"{v.Major}.{v.Minor}.{v.Build}";
         }
+
     }
 }

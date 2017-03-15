@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Microsoft.Templates.Core.Locations;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.Templates.Core.Locations
+namespace Microsoft.Templates.Core.Test.Locations
 {
-    public class UnitTemplatesSource : TemplatesSource
+    public class UnitTestsTemplatesSource : TemplatesSource
     {
         private string LocalVersion = "0.0.0.0";
         public override string Id { get => "UnitTest"; }

@@ -39,27 +39,11 @@ namespace Microsoft.Templates.Core.Locations
            
             var fileTarget = Path.Combine(tempFolder, TemplatesPackageFileName);
 
-            if (IsDownloadExpired())
-            {
-                Fs.EnsureFolder(tempFolder);
+            Fs.EnsureFolder(tempFolder);
 
-                DownloadContent(sourceUrl, fileTarget);
-            }
+            DownloadContent(sourceUrl, fileTarget);
+
             return fileTarget;
-        }
-
-        private bool IsDownloadExpired()
-        {
-            var currentFileVersion = "CurrentVersionFilePath"; //TODO: OJO HAY QUE PENSAR QUÉ SOLUCION DAR A LA VERIFICACIÓN  DEL CONTENIDO EXPIRADO!
-            if (!File.Exists(currentFileVersion))
-            {
-                return true;
-            }
-
-            var fileVersion = new FileInfo(currentFileVersion);
-            var downloadExpiration = fileVersion.LastWriteTime.AddMinutes(Configuration.Current.VersionCheckingExpirationMinutes);
-            AppHealth.Current.Verbose.TrackAsync($"Current templates content expiration: {downloadExpiration.ToString()}").FireAndForget();
-            return downloadExpiration <= DateTime.Now;
         }
 
         private static void DownloadContent(string sourceUrl, string file)
