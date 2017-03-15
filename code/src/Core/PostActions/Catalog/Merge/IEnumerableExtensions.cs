@@ -58,7 +58,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
                 if (currentLineIndex > -1)
                 {
-                    if (insertionBuffer.Any())
+                    if (insertionBuffer.Any() && !BlockExists(insertionBuffer, result, lastLineIndex))
                     {
                         var insertIndex = GetInsertLineIndex(currentLineIndex, lastLineIndex, beforeMode);
                         result.InsertRange(insertIndex, insertionBuffer);
@@ -94,6 +94,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             }
 
             return result;
+        }
+
+        private static bool BlockExists(IEnumerable<string> blockBuffer, IEnumerable<string> target, int skip)
+        {
+            return blockBuffer
+                        .Where(b => !string.IsNullOrWhiteSpace(b))
+                        .All(b => target.SafeIndexOf(b, skip) > -1);
         }
 
         private static int GetInsertLineIndex(int currentLine, int lastLine, bool isBeforeMode)

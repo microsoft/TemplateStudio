@@ -1,18 +1,11 @@
-﻿using ItemNamespace.BackgroundTask;
-
-namespace RootNamespace
+﻿sealed partial class App : Application
 {
-    sealed partial class App : Application
+    //^^
+    //{[{
+
+    protected override async void OnBackgroundActivated(BackgroundActivatedEventArgs args)
     {
-        protected override async void OnLaunched(LaunchActivatedEventArgs e)
-        {
-            //^^
-            BackgroundTaskService.RegisterBackgroundTasks();
-        }
-        protected override void OnBackgroundActivated(BackgroundActivatedEventArgs args) 
-        {
-            //^^
-            BackgroundTaskService.Start(args.TaskInstance);
-        }
+        await _activationService.ActivateAsync(args);
     }
+    //}]}
 }

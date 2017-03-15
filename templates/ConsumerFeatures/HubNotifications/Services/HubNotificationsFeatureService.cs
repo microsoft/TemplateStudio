@@ -1,13 +1,16 @@
 using Microsoft.WindowsAzure.Messaging;
 using System;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.Networking.PushNotifications;
 
+using RootNamespace.Activation;
+
 namespace RootNamespace.Services
 {
-    public static class HubNotificationsFeatureService
+    class HubNotificationsFeatureService : ActivationHandler<ToastNotificationActivatedEventArgs>
     {
-        public static async void Initialize()
+        public async void InitializeAsync()
         {
             //See more about adding push notifications to your Windows app
             //https://docs.microsoft.com/azure/app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push            
@@ -30,17 +33,13 @@ namespace RootNamespace.Services
             //https://docs.microsoft.com/windows/uwp/publish/send-push-notifications-to-your-apps-customers
         }
 
-        public static void HandleNotificationActivation(IActivatedEventArgs args)
+        protected override async Task HandleInternalAsync(ToastNotificationActivatedEventArgs args)
         {
-            if (args is ToastNotificationActivatedEventArgs)
-            {
-                var toastArgs = args as ToastNotificationActivatedEventArgs;
-                var arguments = toastArgs.Argument;
-                
-                //TODO UWPTemplates: Handle activation from toast notification,
-                //for more info handling activation see
-                //https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/
-            }
+            //TODO UWPTemplates: Handle activation from toast notification,
+            //for more info handling activation see
+            //https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/
+
+            await Task.FromResult(true).ConfigureAwait(false);
         }
     }
 }

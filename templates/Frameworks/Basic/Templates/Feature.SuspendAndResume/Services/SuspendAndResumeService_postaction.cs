@@ -1,14 +1,8 @@
-namespace ItemNamespace.Services
-{
-    public class SuspendAndResumeService
+private async Task RestoreStateAsync()
+{           
+    if (typeof(Page).IsAssignableFrom(saveState?.Page))
     {
-        public async Task RestoreStateAsync()
-        {           
-            if (typeof(Page).IsAssignableFrom(saveState?.Page))
-            {
-                //Navigate to page
-                NavigationService.Navigate(saveState.Page, saveState.SuspensionState);
-            }
-        }
+        //Navigate to page
+        NavigationService.Navigate(saveState.Page, saveState.SuspensionState);
     }
 }

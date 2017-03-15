@@ -41,7 +41,6 @@ namespace App38
             //PostActionAnchor: ENABLE QUEUE
         }
 
-
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used such as when the application is launched to open a specific file.
@@ -118,6 +117,10 @@ namespace App38
                 //for more info handling activation see  
                 //https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/ 
             }
+        }
+
+        private static void ThisIsAnExistingMethod()
+        {
         }
 
         protected override void OnBackgroundActivated(BackgroundActivatedEventArgs args)

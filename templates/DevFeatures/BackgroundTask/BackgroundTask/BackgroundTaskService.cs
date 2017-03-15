@@ -3,10 +3,12 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using RootNamespace.Activation;
+using Windows.ApplicationModel.Activation;
 
 namespace ItemNamespace.BackgroundTask
 {
-    public static class BackgroundTaskService
+    class BackgroundTaskService : ActivationHandler<BackgroundActivatedEventArgs>
     {
         private static readonly Lazy<IEnumerable<BackgroundTaskBase>> backgroundTasks = 
             new Lazy<IEnumerable<BackgroundTaskBase>>(() => CreateInstances());
@@ -21,7 +23,7 @@ namespace ItemNamespace.BackgroundTask
             return backgroundTasks;
         }
 
-        public static void RegisterBackgroundTasks()
+        public void RegisterBackgroundTasks()
         {
             foreach (var task in BackgroundTasks)
             {
@@ -29,12 +31,12 @@ namespace ItemNamespace.BackgroundTask
             }
         }
 
-        public static BackgroundTaskRegistration GetBackgroundTasksRegistration(Type task)
+        public BackgroundTaskRegistration GetBackgroundTasksRegistration(Type task)
         {
             return (BackgroundTaskRegistration)BackgroundTaskRegistration.AllTasks.FirstOrDefault(t => t.Value.Name == task.Name).Value;
         }
 
-        public static void Start(IBackgroundTaskInstance taskInstance)
+        public void Start(IBackgroundTaskInstance taskInstance)
         {
             var task = BackgroundTasks.FirstOrDefault(b => b.Match(taskInstance.Task.Name));
 
@@ -47,6 +49,17 @@ namespace ItemNamespace.BackgroundTask
             task.RunAsync(taskInstance).FireAndForget();
           
         }
+
+        protected override async Task HandleInternalAsync(BackgroundActivatedEventArgs args)
+        {
+            Start(args.TaskInstance);
+
+            await Task.FromResult(true).ConfigureAwait(false);
+        }
+    }
+
+    public static class TaskExtensions
+    {
         public static void FireAndForget(this Task task)
         {
 
