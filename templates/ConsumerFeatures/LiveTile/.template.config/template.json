@@ -15,14 +15,18 @@
     "uct.framework": "Basic|MVVMLight",
     "uct.version": "1.0.0",
     "uct.order": "1",
+    "uct.dependencies":"Microsoft.UWPTemplates.SettingsStorageFeature.CSharp",
     "uct.defaultInstance": "LiveTile",
-    "uct.multipleInstance": "false"
+    "uct.multipleInstance": "false"    
   },
   "sourceName": "LiveTile",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
       "path": ".\\Services\\LiveTileService.cs"
+    },
+    {
+      "path": ".\\Services\\LiveTileService.Samples.cs"
     }
   ],
   "symbols": {
