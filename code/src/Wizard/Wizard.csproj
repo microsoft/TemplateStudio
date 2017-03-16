@@ -235,7 +235,7 @@
     <Compile Include="Steps\Summary\ViewModel.cs" />
     <Compile Include="GenController.cs" />
     <Compile Include="ViewModels\Extensions.cs" />
-    <Compile Include="ViewModels\ProjectInfoViewModel.cs" />
+    <Compile Include="ViewModels\MetadataInfoViewModel.cs" />
     <Compile Include="ViewModels\TemplateViewModel.cs" />
     <Compile Include="Host\WizardContext.cs" />
     <Compile Include="Host\WizardHost.xaml.cs">
