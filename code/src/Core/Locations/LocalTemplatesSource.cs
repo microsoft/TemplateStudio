@@ -13,10 +13,12 @@ namespace Microsoft.Templates.Core.Locations
 
         public override string Id { get => "Local"; }
 
+        public string Origin { get => $@"..\..\..\..\..\{SourceFolderName}"; }
+
         public override void Adquire(string targetFolder)
         {
             var targetVersionFolder = Path.Combine(targetFolder, LocalVersion);
-            Copy($@"..\..\..\..\..\{SourceFolderName}", targetVersionFolder);
+            Copy(Origin, targetVersionFolder);
         }
 
         protected static void Copy(string sourceFolder, string targetFolder)

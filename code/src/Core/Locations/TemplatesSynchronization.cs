@@ -31,8 +31,10 @@ namespace Microsoft.Templates.Core.Locations
 
         public string WorkingFolder => _workingFolder.Value;
 
+        public string CurrentTemplatesFolder { get => _content?.TemplatesFolder; }
         public string CurrentContentFolder { get; private set; }
         public Version CurrentContentVersion { get => GetCurrentVersion(); }
+
 
         public TemplatesSynchronization(TemplatesSource source)
         {

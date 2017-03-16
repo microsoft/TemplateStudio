@@ -64,4 +64,9 @@
     <Style TargetType="Button" x:Key="CommandButton" BasedOn="{StaticResource TextButton}">
         <Setter Property="Margin" Value="6,0,0,0" />
     </Style>
+    
+    <!-- Templates Content -->
+    <Style TargetType="ListBox" x:Key="ListContent">
+        <Setter Property="Margin" Value="0,8,0,8" />
+    </Style>
 </ResourceDictionary>

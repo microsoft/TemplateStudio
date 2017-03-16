@@ -4,6 +4,7 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Test.Artifacts;
 using Microsoft.Templates.VsEmulator.NewProject;
+using Microsoft.Templates.VsEmulator.TemplatesContent;
 using Microsoft.Templates.Wizard;
 using Microsoft.Templates.Wizard.Error;
 using Microsoft.Templates.Wizard.Host;
@@ -32,6 +33,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
         public RelayCommand OpenInExplorerCommand => new RelayCommand(OpenInExplorer);
+        public RelayCommand TemplatesContentCommand => new RelayCommand(TemplatesContent);
+
 
         private string _state;
         public string State
@@ -108,6 +111,15 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
+        private void TemplatesContent()
+        {
+            var dialog = new TemplatesContentView()
+            {
+                Owner = _host
+            };
+            var result = dialog.ShowDialog();
+        }
+
 
         private void OpenInVs()
         {
@@ -137,6 +149,15 @@ namespace Microsoft.Templates.VsEmulator.Main
                 return (dialog.ViewModel.Name, dialog.ViewModel.SolutionName, dialog.ViewModel.Location);
             }
             return (null, null, null);
+        }
+
+        private void ShowTemplatesContentDialog()
+        {
+            var dialog = new TemplatesContentView()
+            {
+                Owner = _host
+            };
+            var result = dialog.ShowDialog();
         }
 
         private void SetStateAsync(string message)
