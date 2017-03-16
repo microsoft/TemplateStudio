@@ -144,6 +144,9 @@ namespace Microsoft.Templates.Wizard
                     return string.Format(StringRes.AddProjectMessage, genInfo.Name);
                 case TemplateType.Page:
                     return string.Format(StringRes.AddPageMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
+                case TemplateType.DevFeature:
+                case TemplateType.ConsumerFeature:
+                    return string.Format(StringRes.AddFeatureMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
                 default:
                     return null;
             }

@@ -70,6 +70,15 @@ namespace Microsoft.Templates.Wizard.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adding &apos;{0}&apos; feature to project....
+        /// </summary>
+        public static string AddFeatureMessage {
+            get {
+                return ResourceManager.GetString("AddFeatureMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Page.
         /// </summary>
         public static string AddPageAction {
