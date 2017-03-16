@@ -2,6 +2,7 @@
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Wizard.Resources;
 using Microsoft.Templates.Wizard.Steps;
@@ -46,7 +47,7 @@ namespace Microsoft.Templates.Wizard.Host
 
         public async Task IniatializeAsync()
         {
-            GenContext.ToolBox.Repo.SyncStatusChanged += (sender, status) =>
+            GenContext.ToolBox.Repo.Sync.SyncStatusChanged += (sender, status) =>
             {
                 Status = GetStatusText(status);
 
@@ -58,7 +59,7 @@ namespace Microsoft.Templates.Wizard.Host
                     Navigate(step);
                 }
 
-                if(status == SyncStatus.NewerContent)
+                if(status == SyncStatus.OverVersion)
                 {
                     MessageBox.Show(Status, "Wizard Update Available", MessageBoxButton.OK);
                     //TODO: Review message and behavior.
@@ -105,7 +106,7 @@ namespace Microsoft.Templates.Wizard.Host
                     return StringRes.StatusAdquiring;
                 case SyncStatus.Adquired:
                     return StringRes.StatusAdquired;
-                case SyncStatus.NewerContent:
+                case SyncStatus.OverVersion:
                     return StringRes.StatusNewerContent;
                 default:
                     return string.Empty;

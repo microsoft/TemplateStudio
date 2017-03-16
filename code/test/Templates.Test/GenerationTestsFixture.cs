@@ -18,9 +18,11 @@ namespace Microsoft.Templates.Test
 
         private static TemplatesRepository CreateNewRepos()
         {
-            var location = new LocalTemplatesLocation();
-            var repos = new TemplatesRepository(location);
-            CodeGen.Initialize(location.Id);
+            var source = new LocalTemplatesSource();
+            CodeGen.Initialize(source.Id);
+
+            var repos = new TemplatesRepository(source);
+
             repos.SynchronizeAsync(true).Wait();
             return repos;
         }

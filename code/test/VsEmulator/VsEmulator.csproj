@@ -104,6 +104,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Main\MainViewModel.cs" />
+    <Compile Include="TemplatesContent\TemplatesContentView.xaml.cs">
+      <DependentUpon>TemplatesContentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TemplatesContent\TemplatesContentViewModel.cs" />
     <Compile Include="NewProject\NewProjectView.xaml.cs">
       <DependentUpon>NewProjectView.xaml</DependentUpon>
     </Compile>
@@ -120,6 +124,10 @@
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="TemplatesContent\TemplatesContentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="NewProject\NewProjectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
