@@ -1,6 +1,6 @@
 using Windows.UI.Xaml.Controls;
 
-namespace uct.ItemName.Shell
+namespace uct.TabbedPivotProject.Shell
 {
     public class ShellTabbedItem
     {

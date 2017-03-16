@@ -19,8 +19,12 @@
   <data name="SettingsPage_AboutDescription.Text" xml:space="preserve">    
     <value>Lorem ipsum dolor sit</value>
   </data>
-  <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">  
+  <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">    
     <value>Privacy Terms</value>
   </data>
+  <data name="SettingsPage_PrivacyTermsLink.NavigateUri" xml:space="preserve">  
+    <value>https://www.microsoft.com/</value>
+  </data>
+  NavigateUri
   <!--}]}-->
 </root>

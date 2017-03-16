@@ -103,6 +103,10 @@ namespace App38
             }
         }
 
+        private static void ThisIsAnExistingMethod()
+        {
+        }
+
         protected override void OnBackgroundActivated(BackgroundActivatedEventArgs args)
         {
             BackgroundTaskService.Start(args.TaskInstance);

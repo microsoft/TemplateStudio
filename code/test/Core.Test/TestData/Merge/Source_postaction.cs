@@ -36,5 +36,11 @@ namespace App38
                 //INSIDE IF!!
             }
         }
+
+        //{[{
+        private static void ThisIsAnExistingMethod()
+        {
+        }
+        //}]}
     }
 }

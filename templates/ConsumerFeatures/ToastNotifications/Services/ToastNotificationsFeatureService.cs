@@ -2,16 +2,29 @@ using Microsoft.Toolkit.Uwp.Notifications;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Notifications;
 
+using System.Threading.Tasks;
+
+using RootNamespace.Activation;
+
 namespace RootNamespace.Services
 {
-    public static class ToastNotificationsFeatureService
+    class ToastNotificationsFeatureService : ActivationHandler<ToastNotificationActivatedEventArgs>
     {
-        public static void ShowToastNotification(ToastNotification toastNotification)
+        public void ShowToastNotification(ToastNotification toastNotification)
         {
             ToastNotificationManager.CreateToastNotifier().Show(toastNotification);
         }
 
-        public static void ShowToastNotificationSample()
+        protected override async Task HandleInternalAsync(ToastNotificationActivatedEventArgs args)
+        {
+            //TODO UWPTemplates: Handle activation from toast notification,
+            //for more info handling activation see
+            //https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/
+
+            await Task.FromResult(true).ConfigureAwait(false);
+        }
+
+        public void ShowToastNotificationSample()
         {
             // Create the toast content
             var content = new ToastContent()
@@ -60,19 +73,6 @@ namespace RootNamespace.Services
 
             // And show the toast
             ShowToastNotification(toast);
-        }      
-
-        public static void HandleNotificationActivation(IActivatedEventArgs args)
-        {
-            if (args is ToastNotificationActivatedEventArgs)
-            {                
-                var toastArgs = args as ToastNotificationActivatedEventArgs;
-                var arguments = toastArgs.Argument; 
-                
-                //TODO UWPTemplates: Handle activation from toast notification,  
-                //for more info handling activation see  
-                //https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/ 
-            }
         }
     }
 }

@@ -10,7 +10,6 @@ namespace Microsoft.Templates.Core.Gen
     {
         public const string Framework = "framework";
         public const string Username = "UserName";
-        public const string Year = "year";
         public const string RootNamespace = "RootNamespace";
         public const string ItemNamespace = "ItemNamespace";
     }
