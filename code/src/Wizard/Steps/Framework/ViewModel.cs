@@ -82,7 +82,7 @@ namespace Microsoft.Templates.Wizard.Steps.Framework
                 SelectedFramework = Frameworks.FirstOrDefault(f => f.Name == Context.State.Framework);
             }
 
-            await Task.FromResult(true);
+            await Task.CompletedTask;
         }
 
         public override void SaveState() => Context.State.Framework = SelectedFramework.Name;

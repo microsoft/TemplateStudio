@@ -88,7 +88,7 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
                 OnPropertyChanged(nameof(OkCommand));
             }
 
-            await Task.FromResult(true);
+            await Task.CompletedTask;
         }
 
         private void SaveAndClose()

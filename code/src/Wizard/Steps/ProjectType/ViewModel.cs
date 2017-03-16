@@ -84,8 +84,7 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectType
                 SelectedProjectType = projectTypes.FirstOrDefault(p => p.Name == Context.State.ProjectType);
             }
 
-            //TODO: REVIEW ASYNC
-            await Task.FromResult(true);
+            await Task.CompletedTask;
         }
 
         public override void SaveState() => Context.State.ProjectType = SelectedProjectType.Name;

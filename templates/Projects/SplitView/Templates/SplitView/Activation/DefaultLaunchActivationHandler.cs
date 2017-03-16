@@ -40,7 +40,7 @@ namespace uct.SplitViewProject.Activation
             // parameter
             RootFrame.Navigate(_page, args.Arguments);
 
-            await Task.FromResult(true).ConfigureAwait(false);
+            await Task.CompletedTask;
         }
 
         protected override bool CanHandleInternal(LaunchActivatedEventArgs args)

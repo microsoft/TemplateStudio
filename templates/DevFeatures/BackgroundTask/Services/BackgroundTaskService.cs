@@ -52,7 +52,7 @@ namespace ItemNamespace.Services
         {
             Start(args.TaskInstance);
 
-            await Task.FromResult(true).ConfigureAwait(false);
+            await Task.CompletedTask;
         }
 
         private static IEnumerable<BackgroundTask> CreateInstances()

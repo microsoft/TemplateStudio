@@ -51,7 +51,7 @@ namespace RootNamespace.Services
 
             //If app is launched from a LiveTile notification update, TileContent arguments property is contained in args.TileActivatedInfo.RecentlyShownNotifications
             //var tileUpdatesArguments = args.TileActivatedInfo.RecentlyShownNotifications;
-            await Task.FromResult(true).ConfigureAwait(false);
+            await Task.CompletedTask;
         }
 
         protected override bool CanHandleInternal(LaunchActivatedEventArgs args)                        

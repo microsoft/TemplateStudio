@@ -94,7 +94,7 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures.NewDevFeature
                 OnPropertyChanged(nameof(OkCommand));
             }
 
-            await Task.FromResult(true);
+            await Task.CompletedTask;
         }
 
         private bool IsAlreadyDefined(TemplateViewModel template)

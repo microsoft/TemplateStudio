@@ -21,7 +21,7 @@ namespace RootNamespace.Services
             //for more info handling activation see
             //https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/
 
-            await Task.FromResult(true).ConfigureAwait(false);
+            await Task.CompletedTask;
         }
 
         public void ShowToastNotificationSample()
