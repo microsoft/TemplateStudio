@@ -12,138 +12,29 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core
 {
-    public enum SyncStatus
-    {
-        Undefined = 0,
-        Updating = 1,
-        Updated = 2,
-        Adquiring = 3,
-        Adquired = 4,
-        NewerContent = 5
-    }
-
     public class TemplatesRepository
     {
-        public event Action<object, SyncStatus> SyncStatusChanged;
+        private const string ProjectTypes = "Projects";
+        private const string Frameworks = "Frameworks";
 
-        private static readonly string FolderName = Configuration.Current.RepositoryFolderName;
+        public TemplatesSynchronization Sync { get; private set; }
 
-        private readonly TemplatesLocation _location;
+        public string CurrentContentFolder { get => Sync?.CurrentContentFolder; }
 
-        private readonly Lazy<string> _workingFolder = new Lazy<string>(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), FolderName));
-        public string WorkingFolder => _workingFolder.Value;
-
-        public string CurrentTemplatesFolder { get => _location.CurrentVersionFolder; }
-
-        public TemplatesRepository(TemplatesLocation location)
+        public TemplatesRepository(TemplatesSource source)
         {
-            _location = location ?? throw new ArgumentNullException("location");
-            _location.Initialize(WorkingFolder);
+            Sync = new TemplatesSynchronization(source);
         }
 
-        public async Task SynchronizeAsync(bool forceUpdate = false)
-        {
-            _location.RefreshFolders();
-
-            if (forceUpdate || !ExistsTemplates())
-            {
-                await AdquireContentAsync();
-                await UpdateTemplatesCacheAsync();
-            }
-            else
-            {
-                await UpdateTemplatesCacheAsync();
-                await AdquireContentAsync();
-            }
-
-            //await CheckIncompatibleContentExists();
-
-            await PurgeContentAsync();
-        }
 
         public string GetVersion()
         {
-            return _location.CurrentVersion.ToString();
+            return Sync.CurrentContentVersion.ToString();
         }
 
-        private async Task AdquireContentAsync()
+        public async Task SynchronizeAsync(bool force = false)
         {
-            SyncStatusChanged?.Invoke(this, SyncStatus.Adquiring);
-            await Task.Run(() => AdquireContent());
-            SyncStatusChanged?.Invoke(this, SyncStatus.Adquired);
-        }
-
-        private void AdquireContent()
-        {
-            try
-            {
-                _location.Adquire();
-            }
-            catch (Exception ex)
-            {
-                throw new RepositorySynchronizationException(SyncStatus.Adquiring, ex);
-            }
-        }
-
-        private async Task UpdateTemplatesCacheAsync()
-        {
-            SyncStatusChanged?.Invoke(this, SyncStatus.Updating);
-            await Task.Run(() => UpdateTemplatesCache());
-            SyncStatusChanged?.Invoke(this, SyncStatus.Updated);
-        }
-
-        private async Task CheckIncompatibleContentExists()
-        {
-            await Task.Run(() =>
-            {
-                if (_location.ExistsContentWithHigherVersionThanWizard())
-                {
-                    SyncStatusChanged?.Invoke(this, SyncStatus.NewerContent);
-                }
-            });
-        }
-
-
-        private void UpdateTemplatesCache()
-        {
-            try
-            {
-                if (_location.UpdateAvailable() || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
-                {
-                    CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
-                    CodeGen.Instance.Cache.Scan(CurrentTemplatesFolder);
-                    CodeGen.Instance.Cache.WriteTemplateCaches();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new RepositorySynchronizationException(SyncStatus.Updating, ex);
-            }
-        }
-
-        private bool ExistsTemplates()
-        {
-            if (!Directory.Exists(CurrentTemplatesFolder))
-            {
-                return false;
-            }
-            else
-            {
-                DirectoryInfo di = new DirectoryInfo(CurrentTemplatesFolder);
-                return di.EnumerateFiles("*", SearchOption.AllDirectories).Any();
-            }
-        }
-
-        private async Task PurgeContentAsync()
-        {
-            try
-            {
-                await Task.Run(() => _location.Purge());
-            }
-            catch (Exception ex)
-            {
-                await AppHealth.Current.Warning.TrackAsync("Unable to purge old content.", ex);
-            }
+            await Sync.Do(force);
         }
 
         public IEnumerable<ITemplateInfo> GetAll()
@@ -177,12 +68,12 @@ namespace Microsoft.Templates.Core
 
         public ProjectInfo GetProjectTypeInfo(string projectType)
         {
-            return GetProyectInfo(Path.Combine(CurrentTemplatesFolder, TemplatesLocation.ProjectTypes, projectType, "Info"));
+            return GetProyectInfo(Path.Combine(Sync.CurrentContentFolder, ProjectTypes, projectType, "Info"));
         }
 
         public ProjectInfo GetFrameworkTypeInfo(string fxType)
         {
-            return GetProyectInfo(Path.Combine(CurrentTemplatesFolder, TemplatesLocation.Frameworks, fxType, "Info"));
+            return GetProyectInfo(Path.Combine(Sync.CurrentContentFolder, Frameworks, fxType, "Info"));
         }
 
         private ProjectInfo GetProyectInfo(string folderName)
@@ -199,7 +90,6 @@ namespace Microsoft.Templates.Core
             return projectInfo;
         }
     }
-
     public class ProjectInfo
     {
         public string Name { get; set; }

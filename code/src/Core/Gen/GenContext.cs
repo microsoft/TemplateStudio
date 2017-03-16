@@ -20,11 +20,10 @@ namespace Microsoft.Templates.Core.Gen
         public string ProjectName { get; }
         public string OutputPath { get; }
 
-        public static void Bootstrap(TemplatesLocation location, GenShell shell)
+        public static void Bootstrap(TemplatesSource source, GenShell shell)
         {
-            TemplatesRepository repository = new TemplatesRepository(location);
-
-            CodeGen.Initialize(location.Id);
+            CodeGen.Initialize(source.Id);
+            TemplatesRepository repository = new TemplatesRepository(source);
 
             ToolBox = new GenToolBox(repository, shell);
 

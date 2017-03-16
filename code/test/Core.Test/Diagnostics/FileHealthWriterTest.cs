@@ -64,11 +64,14 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
 
         private void AssertMessageIsInLog(string logFileName, string uniqueMsg)
         {
-            FileStream fs = new FileStream(logFileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-            StreamReader sr = new StreamReader(fs);
-            string content = sr.ReadToEnd();
-            sr.Close();
-            Assert.True(content.Contains(uniqueMsg));
+            if (File.Exists(logFileName))
+            {
+                FileStream fs = new FileStream(logFileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                StreamReader sr = new StreamReader(fs);
+                string content = sr.ReadToEnd();
+                sr.Close();
+                Assert.True(content.Contains(uniqueMsg));
+            }
         }
     }
 }

@@ -25,11 +25,14 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0">           
-                <Hyperlink Command="{Binding NewProjectCommand}">
-                    <TextBlock Text="New Project..."/>
-                </Hyperlink>
-            </TextBlock>
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <TextBlock>           
+                    <Hyperlink Command="{Binding NewProjectCommand}">
+                        <TextBlock Text="New Project..."/>
+                    </Hyperlink>
+                </TextBlock>
+                <Button Content="Templates Content" Command="{Binding TemplatesContentCommand}" Style="{StaticResource CommandButton}" Width="Auto" VerticalAlignment="Top"/>
+            </StackPanel>
             <Grid Grid.Column="1" Style="{StaticResource VerticalSeparator}" />
             <Grid Grid.Column="2" Visibility="{Binding IsProjectLoaded}">
                 <Grid.RowDefinitions>

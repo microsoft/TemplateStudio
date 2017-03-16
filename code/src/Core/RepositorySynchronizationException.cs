@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Templates.Core.Locations;
+using System;
 using System.Runtime.Serialization;
 
 namespace Microsoft.Templates.Core
