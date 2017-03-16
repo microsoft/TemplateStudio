@@ -31,7 +31,7 @@ namespace Microsoft.Templates.Test
 
         [STAThread]
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
-        public void GenerateEmptyProject(string name, string framework, string projId)
+        public async void GenerateEmptyProject(string name, string framework, string projId)
         {
             var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
 
@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Test
 
                 AddLayoutItems(wizardState, projectTemplate);
 
-                GenController.Generate(wizardState);
+                await GenController.GenerateAsync(wizardState);
 
                 //Build solution
                 var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);
@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
-        public void GenerateAllPagesAndFeatures(string name, string framework, string projId)
+        public async void GenerateAllPagesAndFeatures(string name, string framework, string projId)
         {
             var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
 
@@ -81,7 +81,7 @@ namespace Microsoft.Templates.Test
                 AddItems(wizardState, GetTemplates(framework, TemplateType.DevFeature));
                 AddItems(wizardState, GetTemplates(framework, TemplateType.ConsumerFeature));
 
-                GenController.Generate(wizardState);
+                await GenController.GenerateAsync(wizardState);
 
                 //Build solution
                 var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);

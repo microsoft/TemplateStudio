@@ -54,10 +54,10 @@ namespace Microsoft.Templates.Wizard.VisualStudio
         {
         }
 
-        public void RunFinished()
+        public async void RunFinished()
         {
             AppHealth.Current.Verbose.TrackAsync("Creating UWP Community Templates project...").FireAndForget();
-            GenController.Generate(_userSelection);
+            await GenController.GenerateAsync(_userSelection);
             AppHealth.Current.Verbose.TrackAsync("Generation finished").FireAndForget();
 
             GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.RestoringMessage);
