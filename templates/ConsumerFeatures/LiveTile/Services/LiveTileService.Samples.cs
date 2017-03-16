@@ -6,9 +6,9 @@ using Windows.UI.StartScreen;
 
 namespace RootNamespace.Services
 {
-    public static partial class LiveTileService
+    partial class LiveTileService
     {
-        public static void SampleUpdate()
+        public void SampleUpdate()
         {
             // See more information about Live Tiles Notifications
             //https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-sending-a-local-tile-notification
@@ -23,6 +23,7 @@ namespace RootNamespace.Services
             {
                 Visual = new TileVisual()
                 {
+                    Arguments = "Jennifer Parker",
                     TileMedium = new TileBinding()
                     {
                         Content = new TileBindingContentAdaptive()
@@ -79,7 +80,7 @@ namespace RootNamespace.Services
             UpdateTile(notification);
         }
 
-        public static async Task SamplePinSecondary(string pageName)
+        public async Task SamplePinSecondary(string pageName)
         {
             //TODO UWPTemplates: Call this method to Pin a Secondary Tile from a page.
             //You also must implement the navigation to this specific page in the OnLaunched event handler on App.xaml.cs

@@ -1,13 +1,13 @@
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 
-namespace ItemNamespace.BackgroundTask
+namespace ItemNamespace.BackgroundTasks
 {
-    public abstract class BackgroundTaskBase
+    public abstract class BackgroundTask
     {
         public bool Match(string name)
         {
-            if (name == this.GetType().Name)
+            if (name == GetType().Name)
             {
                 return true; 
             }
@@ -19,9 +19,17 @@ namespace ItemNamespace.BackgroundTask
 
         public abstract void Register();
 
-        public abstract Task RunAsync(IBackgroundTaskInstance taskInstance);
-        
+       
+        public abstract Task RunAsyncInternal(IBackgroundTaskInstance taskInstance);
+
+
         public abstract void OnCanceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason);
+
+        public Task RunAsync(IBackgroundTaskInstance taskInstance)
+        {
+            SubscribeToEvents(taskInstance);
+            return RunAsyncInternal(taskInstance);
+        }
 
         public void SubscribeToEvents(IBackgroundTaskInstance taskInstance)
         {

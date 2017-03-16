@@ -1,8 +1,8 @@
 private async Task InitializeAsync()
 {
-    Singleton<BackgroundTask.BackgroundTaskService>.Instance.RegisterBackgroundTasks();
+    Singleton<Services.BackgroundTaskService>.Instance.RegisterBackgroundTasks();
 }
 private IEnumerable<ActivationHandler> GetActivationHandlers()
 {
-    yield return Singleton<BackgroundTask.BackgroundTaskService>.Instance;
+    yield return Singleton<Services.BackgroundTaskService>.Instance;
 }

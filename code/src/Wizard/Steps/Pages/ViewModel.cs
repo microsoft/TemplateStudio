@@ -54,7 +54,7 @@ namespace Microsoft.Templates.Wizard.Steps.Pages
                 Templates.AddRange(selectedPages);
             }
 
-            await Task.FromResult(true);
+            await Task.CompletedTask;
         }
 
         public override void SaveState()

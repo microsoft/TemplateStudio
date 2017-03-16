@@ -53,7 +53,7 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures
                 Templates.AddRange(selectedFeatures);
             }
 
-            await Task.FromResult(true);
+            await Task.CompletedTask;
         }
 
         public override void SaveState()

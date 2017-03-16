@@ -95,7 +95,7 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
                 OnPropertyChanged(nameof(OkCommand));
             }
 
-            await Task.FromResult(true);
+            await Task.CompletedTask;
         }
 
         private bool IsAlreadyDefined(TemplateViewModel template)

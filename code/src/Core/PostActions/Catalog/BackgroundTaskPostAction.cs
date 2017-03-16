@@ -10,14 +10,15 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class BackgroundTaskPostAction : PostAction
     {
-        private const string backgroundTaskFolder = "BackgroundTask";
+        private const string backgroundTaskFolder = "BackgroundTasks";
+        private const string serviceFolder = "Services";
         private const string backgroundTaskServiceFileName = "BackgroundTaskService.cs";
         private const string Anchor = "//BACKGROUNDTASK_ANCHOR";
         private const string backgroundTasksToAddFileName = "*AddBackgroundTask.txt";
 
         public override void Execute()
         {
-            var backgroundServiceFile = Path.Combine(GenContext.Current.OutputPath, backgroundTaskFolder, backgroundTaskServiceFileName);
+            var backgroundServiceFile = Path.Combine(GenContext.Current.OutputPath, serviceFolder, backgroundTaskServiceFileName);
             var backgroundServiceContent = File.ReadAllText(backgroundServiceFile);
 
             var anchorIndex = backgroundServiceContent.IndexOf(Anchor);

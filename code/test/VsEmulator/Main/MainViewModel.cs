@@ -12,6 +12,7 @@ using Microsoft.VisualStudio.TemplateWizard;
 using System;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -76,7 +77,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             SolutionName = null;
         }
 
-        private void NewProject()
+        private async void NewProject()
         {
             try
             {
@@ -91,7 +92,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                         {
                             SolutionName = null;
 
-                            GenController.Generate(userSelection);
+                            await GenController.GenerateAsync(userSelection);
 
                             GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
 

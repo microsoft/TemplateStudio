@@ -1,18 +1,20 @@
+using RootNamespace.Activation;
 using RootNamespace.Extensions;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Activation;
 using Windows.Storage;
 using Windows.UI.Notifications;
 using Windows.UI.StartScreen;
 
 namespace RootNamespace.Services
 {
-    public static partial class LiveTileService
+    partial class LiveTileService : ActivationHandler<LaunchActivatedEventArgs>
     {
         private const string QueueEnabledKey = "NotificationQueueEnabled";
 
-        public static void EnableQueue()
+        public void EnableQueue()
         {
             var queueEnabled = ApplicationData.Current.LocalSettings.Read<bool>(QueueEnabledKey);
             if (!queueEnabled)
@@ -22,12 +24,12 @@ namespace RootNamespace.Services
             }
         }
         
-        public static void UpdateTile(TileNotification notification)
+        public void UpdateTile(TileNotification notification)
         {
             TileUpdateManager.CreateTileUpdaterForApplication().Update(notification);
         }
 
-        public static async Task<bool> PinSecondaryTileAsync(SecondaryTile tile, bool allowDuplicity = false)
+        public async Task<bool> PinSecondaryTileAsync(SecondaryTile tile, bool allowDuplicity = false)
         {
             if (!await IsAlreadyPinnedAsync(tile) || allowDuplicity)
             {
@@ -36,10 +38,39 @@ namespace RootNamespace.Services
             return false;
         }
 
-        private static async Task<bool> IsAlreadyPinnedAsync(SecondaryTile tile)
+        private async Task<bool> IsAlreadyPinnedAsync(SecondaryTile tile)
         {
             var secondaryTiles = await SecondaryTile.FindAllAsync();
             return secondaryTiles.Any(t => t.Arguments == tile.Arguments);
+        }
+
+        protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
+        {
+            //If app is launched from a SecondaryTile, tile arguments property is contained in args.Arguments
+            //var secondaryTileArguments = args.Arguments;
+
+            //If app is launched from a LiveTile notification update, TileContent arguments property is contained in args.TileActivatedInfo.RecentlyShownNotifications
+            //var tileUpdatesArguments = args.TileActivatedInfo.RecentlyShownNotifications;
+            await Task.CompletedTask;
+        }
+
+        protected override bool CanHandleInternal(LaunchActivatedEventArgs args)                        
+        {
+            return LaunchFromSecondaryTile(args) || LaunchFromLiveTileUpdate(args);
+        }
+
+        private bool LaunchFromSecondaryTile(LaunchActivatedEventArgs args)
+        {
+            //If app is launched from a SecondaryTile, tile arguments property is contained in args.Arguments
+            //TODO UWPTemplates: Implement your own logic to determine if you can handle the SecondaryTile activation
+            return false;
+        }
+
+        private bool LaunchFromLiveTileUpdate(LaunchActivatedEventArgs args)
+        {
+            //If app is launched from a LiveTile notification update, TileContent arguments property is contained in args.TileActivatedInfo.RecentlyShownNotifications
+            //TODO UWPTemplates: Implement your own logic to determine if you can handle the LiveTile nptification update activation
+            return false;
         }
     }
 }

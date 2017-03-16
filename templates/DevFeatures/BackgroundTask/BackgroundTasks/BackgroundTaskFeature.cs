@@ -1,25 +1,22 @@
 ﻿using Windows.ApplicationModel.Background;
-using Windows.Data.Xml.Dom;
-using Windows.UI.Notifications;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.System.Threading;
 
-namespace ItemNamespace.BackgroundTask
+namespace ItemNamespace.BackgroundTasks
 {
-    public sealed class BackgroundTaskFeature : BackgroundTaskBase
+    public sealed class BackgroundTaskFeature : BackgroundTask
     {
         public static string Message;
-        volatile bool _cancelRequested = false;
-        ThreadPoolTimer _periodicTimer = null;
-        uint _progress = 0;
-        IBackgroundTaskInstance _taskInstance = null;
-        BackgroundTaskDeferral _deferral = null;
+
+        private volatile bool _cancelRequested = false;
+        private IBackgroundTaskInstance _taskInstance;
+        private BackgroundTaskDeferral _deferral;
 
         public override void Register()
         {
-            var taskName = this.GetType().Name;
+            var taskName = GetType().Name;
             if (!BackgroundTaskRegistration.AllTasks.Any(t => t.Value.Name == taskName))
             {
                 var builder = new BackgroundTaskBuilder()
@@ -34,28 +31,30 @@ namespace ItemNamespace.BackgroundTask
 
                 //TODO UWPTemplates: Add your conditions here, conditions are optional.
                 builder.AddCondition(new SystemCondition(SystemConditionType.UserPresent));
-                BackgroundTaskRegistration task = builder.Register();
+                builder.Register();
             }
         }
 
-
-        public override Task RunAsync(IBackgroundTaskInstance taskInstance)
+        public override Task RunAsyncInternal(IBackgroundTaskInstance taskInstance)
         {
+            if (taskInstance == null)
+            {
+                return null;
+            }
+
             _deferral = taskInstance.GetDeferral();
 
             return Task.Run(() =>
             {
                 //TODO UWPTemplates: Insert the code that should be executed in the background task here. 
-                //Documentation: https://msdn.microsoft.com/windows/uwp/launch-resume/support-your-app-with-background-tasks
+                //Documentation: https://docs.microsoft.com/en-us/windows/uwp/launch-resume/support-your-app-with-background-tasks
 
-                //This example initializes a timer from a background task. The timer counts in steps of 10 until 100 and 
-                //updates the values for progress and message in each step. When finished it sends a toast notification.
-                //To show the background progress and message on any page in the application, subcribe to the events Progress and Completed exposed by the 
-                //backgroundtask registration.  
+                //This sample initializes a timer, the timer counts in steps of 10 until 100 and updates the values for progress and message in each step. 
+                //To show the background progress and message on any page in the application, subcribe to the events 
+                //Progress and Completed exposed by the backgroundtask registration.  
                 //Documentation: https://docs.microsoft.com/windows/uwp/launch-resume/monitor-background-task-progress-and-completion
                 _taskInstance = taskInstance;
-                _periodicTimer = ThreadPoolTimer.CreatePeriodicTimer(new TimerElapsedHandler(PeriodicTimerCallback), TimeSpan.FromSeconds(1));
-
+                ThreadPoolTimer.CreatePeriodicTimer(new TimerElapsedHandler(SampleTimerCallback), TimeSpan.FromSeconds(1));
             });
         }
 
@@ -65,17 +64,16 @@ namespace ItemNamespace.BackgroundTask
            //Documentation: https://docs.microsoft.com/windows/uwp/launch-resume/handle-a-cancelled-background-task
         }
 
-        private void PeriodicTimerCallback(ThreadPoolTimer timer)
+        private void SampleTimerCallback(ThreadPoolTimer timer)
         {
-            if ((_cancelRequested == false) && (_progress < 100))
+            if ((_cancelRequested == false) && (_taskInstance.Progress < 100))
             {
-                _progress += 10;
-                _taskInstance.Progress = _progress;
+                _taskInstance.Progress += 10;
                 Message = $"Background Task { _taskInstance.Task.Name} running";
             }
             else
             {
-                _periodicTimer.Cancel();
+                timer.Cancel();
 
                 if (_cancelRequested)
                 {
@@ -85,7 +83,8 @@ namespace ItemNamespace.BackgroundTask
                 {
                     Message = $"Background Task {_taskInstance.Task.Name} finished";
                 }
-                _deferral.Complete();
+              
+                _deferral?.Complete();
             }
         }
     }

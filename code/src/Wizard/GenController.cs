@@ -16,6 +16,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace Microsoft.Templates.Wizard
@@ -61,7 +62,7 @@ namespace Microsoft.Templates.Wizard
             return null;
         }
 
-        public static void Generate(WizardState userSelection)
+        public static async Task GenerateAsync(WizardState userSelection)
         {
             try
             {
@@ -87,8 +88,7 @@ namespace Microsoft.Templates.Wizard
 
                     AppHealth.Current.Verbose.TrackAsync($"Generating the template {genInfo.Template.Name} to {GenContext.Current.OutputPath}.").FireAndForget();
 
-                    //TODO: REVIEW ASYNC
-                    var result = CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, GenContext.Current.OutputPath, genInfo.Parameters, false, false).Result;
+                    var result = await CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, GenContext.Current.OutputPath, genInfo.Parameters, false, false);
 
                     genResults.Add($"{genInfo.Template.Identity}_{genInfo.Name}", result);
 
@@ -144,6 +144,9 @@ namespace Microsoft.Templates.Wizard
                     return string.Format(StringRes.AddProjectMessage, genInfo.Name);
                 case TemplateType.Page:
                     return string.Format(StringRes.AddPageMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
+                case TemplateType.DevFeature:
+                case TemplateType.ConsumerFeature:
+                    return string.Format(StringRes.AddFeatureMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
                 default:
                     return null;
             }

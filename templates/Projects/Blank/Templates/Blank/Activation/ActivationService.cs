@@ -72,12 +72,12 @@ namespace uct.BlankProject.Activation
 
         private async Task InitializeAsync()
         {
-            await Task.FromResult(true).ConfigureAwait(false);
+            await Task.CompletedTask;
         }
 
         private async Task StartupAsync()
         {
-            await Task.FromResult(true).ConfigureAwait(false);
+            await Task.CompletedTask;
         }
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()

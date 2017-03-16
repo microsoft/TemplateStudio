@@ -120,6 +120,9 @@
   <data name="AddFeatureAction" xml:space="preserve">
     <value>Add Feature</value>
   </data>
+  <data name="AddFeatureMessage" xml:space="preserve">
+    <value>Adding '{0}' feature to project...</value>
+  </data>
   <data name="AddPageAction" xml:space="preserve">
     <value>Add Page</value>
   </data>

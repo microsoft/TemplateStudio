@@ -8,6 +8,7 @@ namespace ItemNamespace.Extensions
 {
     public static class SettingsStorageExtensions
     {
+        //TODO UWPTemplates: Use this extension methods to store and retrieve in local and roaming app data 
         //For mor info regarding storing and retrieving app data, 
         //please see: https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data
         

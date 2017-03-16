@@ -58,7 +58,7 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
 
             AddLicences(allTemplates);
 
-            await Task.FromResult(true);
+            await Task.CompletedTask;
         }
 
         public override void SaveState()
