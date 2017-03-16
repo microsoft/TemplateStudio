@@ -31,7 +31,11 @@
                         <TextBlock Text="New Project..."/>
                     </Hyperlink>
                 </TextBlock>
-                <Button Content="Templates Content" Command="{Binding TemplatesContentCommand}" Style="{StaticResource CommandButton}" Width="Auto" VerticalAlignment="Top"/>
+                <TextBlock Margin="20,0,0,0">           
+                    <Hyperlink Command="{Binding TemplatesContentCommand}">
+                        <TextBlock Text="Handle Templates Content"/>
+                    </Hyperlink>
+                </TextBlock>
             </StackPanel>
             <Grid Grid.Column="1" Style="{StaticResource VerticalSeparator}" />
             <Grid Grid.Column="2" Visibility="{Binding IsProjectLoaded}">

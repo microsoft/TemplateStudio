@@ -35,6 +35,10 @@ namespace Microsoft.Templates.Wizard.Host
             {
                 await ViewModel.IniatializeAsync();
             };
+            Unloaded += (sender, e) =>
+            {
+                ViewModel.UnsuscribeEventHandlers();
+            };
 
             InitializeComponent();
         }

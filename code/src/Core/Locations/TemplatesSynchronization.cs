@@ -15,7 +15,8 @@ namespace Microsoft.Templates.Core.Locations
         Updated = 2,
         Adquiring = 3,
         Adquired = 4,
-        OverVersion = 5
+        OverVersion = 5,
+        LowerVersion = 6
     }
 
     public class TemplatesSynchronization
@@ -45,15 +46,18 @@ namespace Microsoft.Templates.Core.Locations
 
         public async Task Do(bool forced = false)
         {
-            await MandatoryAdquisitionAsync(forced);
+            if (!await ExistsLowerVersion()) //TODO: Review
+            {
+                await MandatoryAdquisitionAsync(forced);
 
-            await UpdateTemplatesCacheAsync();
+                await UpdateTemplatesCacheAsync();
 
-            await ExpirationAdquisitionAsync();
+                await ExpirationAdquisitionAsync();
 
-            await ExistsOverVersion();
+                await ExistsOverVersion();
 
-            await PurgeContentAsync();
+                await PurgeContentAsync();
+            }
         }
 
         private async Task AdquireContentAsync()
@@ -105,6 +109,19 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     SyncStatusChanged?.Invoke(this, SyncStatus.OverVersion);
                 }
+            });
+        }
+
+        private async Task<bool> ExistsLowerVersion()
+        {
+            return await Task.Run(() =>
+            {
+                bool result = _content.ExistLowerVersion();
+                if (result)
+                {
+                    SyncStatusChanged?.Invoke(this, SyncStatus.LowerVersion);
+                }
+                return result;
             });
         }
 

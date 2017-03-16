@@ -117,7 +117,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 Owner = _host
             };
-            var result = dialog.ShowDialog();
+            dialog.Show();
         }
 
 

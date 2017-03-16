@@ -47,30 +47,12 @@ namespace Microsoft.Templates.Wizard.Host
 
         public async Task IniatializeAsync()
         {
-            GenContext.ToolBox.Repo.Sync.SyncStatusChanged += (sender, status) =>
-            {
-                Status = GetStatusText(status);
-
-                if (status == SyncStatus.Updated)
-                {
-                    _context.CanGoForward = true;
-
-                    var step = Steps.First();
-                    Navigate(step);
-                }
-
-                if(status == SyncStatus.OverVersion)
-                {
-                    MessageBox.Show(Status, "Wizard Update Available", MessageBoxButton.OK);
-                    //TODO: Review message and behavior.
-                }
-            };
+            GenContext.ToolBox.Repo.Sync.SyncStatusChanged += Sync_SyncStatusChanged;
 
             try
             {
                 WizardVersion = GetWizardVersion();
-
-                TemplatesVersion = "...";
+                TemplatesVersion = GenContext.ToolBox.Repo.GetVersion();
 
                 await GenContext.ToolBox.Repo.SynchronizeAsync();
                 Status = string.Empty;
@@ -84,6 +66,38 @@ namespace Microsoft.Templates.Wizard.Host
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);
             }
+
+        }
+
+        private void Sync_SyncStatusChanged(object sender, SyncStatus status)
+        {
+
+            Status = GetStatusText(status);
+
+            if (status == SyncStatus.Updated)
+            {
+                _context.CanGoForward = true;
+
+                var step = Steps.First();
+                Navigate(step);
+            }
+
+            if (status == SyncStatus.OverVersion)
+            {
+                MessageBox.Show(StringRes.StatusOverVersionContent, StringRes.StatusOverVersionTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+                //TODO: Review message and behavior.
+            }
+
+            if (status == SyncStatus.LowerVersion)
+            {
+                MessageBox.Show(StringRes.StatusLowerVersionContent, StringRes.StatusLowerVersionContent, MessageBoxButton.OK, MessageBoxImage.Error);
+                //TODO: Review message and behavior.
+            }
+        }
+
+        public void UnsuscribeEventHandlers()
+        {
+            GenContext.ToolBox.Repo.Sync.SyncStatusChanged -= Sync_SyncStatusChanged;
         }
 
         private string GetWizardVersion()
@@ -106,8 +120,6 @@ namespace Microsoft.Templates.Wizard.Host
                     return StringRes.StatusAdquiring;
                 case SyncStatus.Adquired:
                     return StringRes.StatusAdquired;
-                case SyncStatus.OverVersion:
-                    return StringRes.StatusNewerContent;
                 default:
                     return string.Empty;
             }

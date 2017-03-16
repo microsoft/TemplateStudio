@@ -13,9 +13,11 @@ namespace Microsoft.Templates.Core.Locations
 {
     public class TemplatesContent
     {
-        private string TemplatesFolderName = "Templates";
+        private const string TemplatesFolderName = "Templates";
+        
         public string TemplatesFolder { get; private set; }
         public string LatestContentFolder { get => GetLatestContentFolder(true); }
+        private string DefaultContentFolder => Path.Combine(TemplatesFolder, "0.0.0.0");
 
         public TemplatesContent(string workingFolder, string sourceId)
         {
@@ -43,11 +45,26 @@ namespace Microsoft.Templates.Core.Locations
         public bool ExistOverVersion()
         {
             string overVersionFolder = GetLatestContentFolder(false);
+            Version overVersion = GetVersionFromFolder(overVersionFolder);
 
-            if (ExistsContent(overVersionFolder))
+            if (ExistsContent(overVersionFolder) && !overVersion.IsDefault())
             {
-                Version overVersion = GetVersionFromFolder(overVersionFolder);
-                return !IsWizardAligned(overVersion);
+                return IsVersionOverWizard(overVersion);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool ExistLowerVersion()
+        {
+            string lowerVersionFolder = GetLatestContentFolder(false);
+            Version overVersion = GetVersionFromFolder(lowerVersionFolder);
+
+            if (ExistsContent(lowerVersionFolder) && !overVersion.IsDefault())
+            {
+                return IsVersionLowerWizard(overVersion);
             }
             else
             {
@@ -76,7 +93,7 @@ namespace Microsoft.Templates.Core.Locations
                 foreach (var sdi in di.EnumerateDirectories())
                 {
                     Version.TryParse(sdi.Name, out Version v);
-                    if (v < GetVersionFromFolder(currentContent))
+                    if (!v.IsDefault() && v < GetVersionFromFolder(currentContent))
                     {
                         Fs.SafeDeleteDirectory(sdi.FullName);
                     }
@@ -93,21 +110,24 @@ namespace Microsoft.Templates.Core.Locations
 
         private bool ExistsContent(string folder)
         {
-            if (!Directory.Exists(folder))
-            {
-                return false;
-            }
-            else
+            bool result = false;
+            if (Directory.Exists(folder))
             {
                 DirectoryInfo di = new DirectoryInfo(folder);
-                return di.EnumerateFiles("*", SearchOption.AllDirectories).Any();
+                result = di.EnumerateFiles("*", SearchOption.AllDirectories).Any();
             }
+
+            if (!result)
+            {
+                result = CheckDefaultVersionContent();
+            }
+            return result;
         }
 
         private string GetLatestContentFolder(bool ensureWizardAligmnent)
         {
             Version latestVersion = new Version(0, 0, 0, 0);
-            string latestContent = "";
+            string latestContent = DefaultContentFolder;
             if (Directory.Exists(TemplatesFolder))
             {
                 DirectoryInfo di = new DirectoryInfo(TemplatesFolder);
@@ -137,10 +157,42 @@ namespace Microsoft.Templates.Core.Locations
             return v;
         }
 
-        protected bool IsWizardAligned(Version v)
+        private bool CheckDefaultVersionContent()
+        {
+            return Directory.Exists(DefaultContentFolder);
+        }
+
+        private bool IsVersionOverWizard(Version v)
+        {
+            Version wizardVersion = GetWizardVersion();
+            if (IsWizardAligned(v))
+            {
+                return false;
+            }
+            else
+            {
+                return (v.Major > wizardVersion.Major || (v.Major == wizardVersion.Major && (v.Minor > wizardVersion.Minor)));
+            }
+        }
+
+        private bool IsVersionLowerWizard(Version v)
+        {
+            Version wizardVersion = GetWizardVersion();
+            if (IsWizardAligned(v))
+            {
+                return false;
+            }
+            else
+            {
+                return (v.Major < wizardVersion.Major || (v.Major == wizardVersion.Major && (v.Minor < wizardVersion.Minor)));
+            }
+        }
+
+        private bool IsWizardAligned(Version v)
         {
             Version wizardVersion = GetWizardVersion();
             return v.Major == wizardVersion.Major && v.Minor == wizardVersion.Minor;
         }
+        
     }
 }

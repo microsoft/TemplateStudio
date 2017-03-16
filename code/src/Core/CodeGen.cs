@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -41,10 +42,13 @@ namespace Microsoft.Templates.Core
         public string GetCurrentContentSource(string workingFolder)
         {
             string result = String.Empty;
-            var mountingPoint = CodeGen.Instance?.Settings.SettingsLoader.MountPoints.Where(i => i.Place.Contains(workingFolder)).LastOrDefault();
-            if (mountingPoint != null)
+
+            foreach(var mp in Instance?.Settings.SettingsLoader.MountPoints)
             {
-                result = mountingPoint.Place;
+                if (Directory.Exists(mp.Place))
+                {
+                    result = mp.Place;
+                }
             }
             return result;
         }
@@ -68,8 +72,11 @@ namespace Microsoft.Templates.Core
 
         private static string GetVersion()
         {
-            var v = Assembly.GetExecutingAssembly().GetName().Version;
-            return $"{v.Major}.{v.Minor}.{v.Build}";
+            string assemblyLocation = Assembly.GetExecutingAssembly().Location;
+            var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
+            Version.TryParse(versionInfo.FileVersion, out Version v);
+
+            return v.ToString();
         }
 
     }

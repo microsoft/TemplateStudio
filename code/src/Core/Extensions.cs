@@ -55,4 +55,11 @@ namespace Microsoft.Templates.Core.Extensions
         }
     }
 
+    public static class VersionExtensions
+    {
+        public static bool IsDefault(this Version v)
+        {
+            return (v.Major + v.Minor + v.Build + v.Revision) == 0;
+        }
+    }
 }

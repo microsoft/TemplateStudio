@@ -151,11 +151,38 @@ namespace Microsoft.Templates.Wizard.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are newer templates content. Consider to update the extension..
+        ///   Looks up a localized string similar to There is no templates content available for the current wizard version. Please ensure you have connectivity and restart the wizard again..
         /// </summary>
-        public static string StatusNewerContent {
+        public static string StatusLowerVersionContent {
             get {
-                return ResourceManager.GetString("StatusNewerContent", resourceCulture);
+                return ResourceManager.GetString("StatusLowerVersionContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wizard compatible with templates content.
+        /// </summary>
+        public static string StatusLowerVersionTitle {
+            get {
+                return ResourceManager.GetString("StatusLowerVersionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is templates content available with higher version than the wizard. Consider to update the extension to access the latest content..
+        /// </summary>
+        public static string StatusOverVersionContent {
+            get {
+                return ResourceManager.GetString("StatusOverVersionContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wizard update available.
+        /// </summary>
+        public static string StatusOverVersionTitle {
+            get {
+                return ResourceManager.GetString("StatusOverVersionTitle", resourceCulture);
             }
         }
         

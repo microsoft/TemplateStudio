@@ -147,8 +147,17 @@
   <data name="StatusAdquiring" xml:space="preserve">
     <value>Downloading templates...</value>
   </data>
-  <data name="StatusNewerContent" xml:space="preserve">
-    <value>There are newer templates content. Consider to update the extension.</value>
+  <data name="StatusLowerVersionContent" xml:space="preserve">
+    <value>There is no templates content available for the current wizard version. Please ensure you have connectivity and restart the wizard again.</value>
+  </data>
+  <data name="StatusLowerVersionTitle" xml:space="preserve">
+    <value>Wizard compatible with templates content</value>
+  </data>
+  <data name="StatusOverVersionContent" xml:space="preserve">
+    <value>There is templates content available with higher version than the wizard. Consider to update the extension to access the latest content.</value>
+  </data>
+  <data name="StatusOverVersionTitle" xml:space="preserve">
+    <value>Wizard update available</value>
   </data>
   <data name="StatusUpdated" xml:space="preserve">
     <value>Templates updated</value>

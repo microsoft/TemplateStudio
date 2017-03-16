@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Microsoft.Templates.VsEmulator.TemplatesContent"
         mc:Ignorable="d"
         Title="Templates Content" 
-        Height="180" Width="480" 
+        Height="220" Width="480" 
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
 
@@ -23,7 +23,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Version:" />
+        <TextBlock Grid.Row="0" Text="Next Version:" />
         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding VersionInfo, Mode=TwoWay}" Style="{StaticResource FieldValue}" />
 
         <TextBlock Grid.Row="1" Text="Templates Location:" />
@@ -32,19 +32,13 @@
 
 
         <StackPanel Grid.Row="3" Grid.Column="1" Style="{StaticResource CommandsContainer}">
-            <Button Grid.Row="1" Grid.Column="2" Command="{Binding BrowseCommand}" Content="Create" Style="{StaticResource BrowseButton}" />
-            <Button Content="Clean Created Content" Command="{Binding OkCommand}" Style="{StaticResource CommandButton}" Width="Auto"/>
+            <Button Grid.Row="1" Grid.Column="2" Command="{Binding CreateContentCommand}" Content="Create" Style="{StaticResource BrowseButton}" />
+            <Button Content="Clean Created Content" Command="{Binding CleanCommand}" Style="{StaticResource CommandButton}" Width="Auto"/>
             <Button Content="Close" Command="{Binding CloseCommand}" Style="{StaticResource CommandButton}" />
         </StackPanel>
 
         <TextBlock Grid.Row="4" Grid.Column="0" Text="Current Versions:"></TextBlock>
-        <ListBox  Grid.Row="4" Grid.Column="1" ItemsSource="{Binding AvailableContent}" ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{StaticResource ListContent}">
-            <DataTemplate>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding Path=.}" />
-                </StackPanel>
-            </DataTemplate>
-        </ListBox>
+        <ListBox  Grid.Row="4" Grid.Column="1" ItemsSource="{Binding AvailableContent}" ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{StaticResource ListContent}" />
     </Grid>
 
 </Window>
