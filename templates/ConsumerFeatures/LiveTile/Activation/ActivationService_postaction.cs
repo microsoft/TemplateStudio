@@ -1,8 +1,12 @@
 private async Task InitializeAsync()
 {
-    Services.LiveTileService.EnableQueue();
+    Singleton<Services.LiveTileService>.Instance.EnableQueue();
 }
 private async Task StartupAsync()
 {
-    Services.LiveTileService.SampleUpdate();
+    Singleton<Services.LiveTileService>.Instance.SampleUpdate();
+}
+private IEnumerable<ActivationHandler> GetActivationHandlers()
+{
+    yield return Singleton<Services.LiveTileService>.Instance;
 }
