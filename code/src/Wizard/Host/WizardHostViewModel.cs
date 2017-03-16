@@ -52,7 +52,7 @@ namespace Microsoft.Templates.Wizard.Host
             try
             {
                 WizardVersion = GetWizardVersion();
-                TemplatesVersion = GenContext.ToolBox.Repo.GetVersion();
+                //TemplatesVersion = GenContext.ToolBox.Repo.GetVersion();
 
                 await GenContext.ToolBox.Repo.SynchronizeAsync();
                 Status = string.Empty;
@@ -77,7 +77,7 @@ namespace Microsoft.Templates.Wizard.Host
             if (status == SyncStatus.Updated)
             {
                 _context.CanGoForward = true;
-
+                TemplatesVersion = GenContext.ToolBox.Repo.GetVersion();
                 var step = Steps.First();
                 Navigate(step);
             }

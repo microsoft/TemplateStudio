@@ -42,11 +42,11 @@ namespace Microsoft.Templates.Core
         public string GetCurrentContentSource(string workingFolder)
         {
             string result = String.Empty;
-
             foreach(var mp in Instance?.Settings.SettingsLoader.MountPoints)
             {
                 if (Directory.Exists(mp.Place))
                 {
+                    //TODO RAGC: ENSURE EXITSI AND THE VERSION IS HIGHER!!!!
                     result = mp.Place;
                 }
             }

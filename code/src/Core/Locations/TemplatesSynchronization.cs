@@ -46,7 +46,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public async Task Do(bool forced = false)
         {
-            if (!await ExistsLowerVersion()) //TODO: Review
+            if (!await ExistsLowerVersion())
             {
                 await MandatoryAdquisitionAsync(forced);
 

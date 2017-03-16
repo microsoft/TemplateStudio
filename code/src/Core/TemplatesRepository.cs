@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Core
 
         public string GetVersion()
         {
-            return Sync.CurrentContentVersion.ToString();
+            return Sync.CurrentContentVersion?.ToString();
         }
 
         public async Task SynchronizeAsync(bool force = false)
