@@ -10,13 +10,6 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Locations
 {
-    public static class TemplatesSourceFactory
-    {
-        public TemplatesSource CreateNew()
-        {
-            switch(Configuration.Current.Environment)
-        }
-    }
     public abstract class TemplatesSource
     {
         protected const string SourceFolderName = "Templates";
