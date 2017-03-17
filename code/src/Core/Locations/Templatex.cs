@@ -249,7 +249,7 @@ namespace Microsoft.Templates.Core.Locations
             var pubKeyCert = cert.GetPublicKeyString();
             var pubKeyPin = pubKeyCert.ObfuscateSHA();
 
-            AppHealth.Current.Verbose.TrackAsync($"Package certificate {cert.Subject} with pin {pubKeyPin} (Public Key: {pubKeyCert})").FireAndForget();
+            AppHealth.Current.Verbose.TrackAsync($"Package certificate {cert.Subject}").FireAndForget();
 
             return Configuration.Current.AllowedPublicKeysPins.Where(allowedPin => allowedPin.Equals(pubKeyPin)).Any();
         }

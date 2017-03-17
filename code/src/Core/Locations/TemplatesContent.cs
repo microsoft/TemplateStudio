@@ -74,7 +74,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public bool IsExpired(string currentContent)
         {
-            if (!File.Exists(currentContent))
+            if (!Directory.Exists(currentContent))
             {
                 return true;
             }
@@ -191,7 +191,7 @@ namespace Microsoft.Templates.Core.Locations
         private bool IsWizardAligned(Version v)
         {
             Version wizardVersion = GetWizardVersion();
-            return v.Major == wizardVersion.Major && v.Minor == wizardVersion.Minor;
+            return wizardVersion.IsDefault() || (v.Major == wizardVersion.Major && v.Minor == wizardVersion.Minor);
         }
         
     }

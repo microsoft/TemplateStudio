@@ -1,4 +1,5 @@
 {
+  "Environment" :  "LocalVsix",
   "CdnUrl": "https://uwpcommunitytemplates.blob.core.windows.net/vnext/Latest",
   "RemoteTelemetryKey": "VSIX Key",
   "LogFileFolderPath": "UWPTemplates\\Logs",

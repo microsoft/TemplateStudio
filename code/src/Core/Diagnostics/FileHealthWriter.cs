@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -140,16 +141,23 @@ namespace Microsoft.Templates.Core.Diagnostics
             StackTrace stackTrace = new StackTrace();           
             StackFrame[] stackFrames = stackTrace.GetFrames(); 
 
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Stack:");
-            foreach (StackFrame stackFrame in stackFrames)
-            {
-               sb.AppendLine(stackFrame.GetMethod().Module + "." + stackFrame.GetMethod().Name);   
-            }
-            sb.AppendLine("");
+            //StringBuilder sb = new StringBuilder();
+            //sb.AppendLine("Stack:");
+            //foreach (StackFrame stackFrame in stackFrames)
+            //{
+            //   sb.AppendLine(stackFrame.GetMethod().Module + "." + stackFrame.GetMethod().Name);   
+            //}
+            //sb.AppendLine("");
 
             _fileStream?.WriteLine($"\r\n>>>>>>>>>>>>>> Log started {DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}");
-            _fileStream?.WriteLine(sb.ToString());
+            _fileStream?.WriteLine($">>>>>>>>>>>>>> Assembly File Version: {GetVersion()}");
+            //_fileStream?.WriteLine(sb.ToString());
+        }
+
+        private static string GetVersion()
+        {
+            string assemblyLocation = Assembly.GetExecutingAssembly().Location;
+            return FileVersionInfo.GetVersionInfo(assemblyLocation).FileVersion;
         }
 
         private bool CheckLogFileInUse()
