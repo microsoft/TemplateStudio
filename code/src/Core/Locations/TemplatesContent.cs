@@ -80,9 +80,9 @@ namespace Microsoft.Templates.Core.Locations
             }
 
             var directory = new DirectoryInfo(currentContent);
-            var expiration = directory.LastWriteTimeUtc.AddMinutes(Configuration.Current.VersionCheckingExpirationMinutes);
+            var expiration = directory.LastWriteTime.AddMinutes(Configuration.Current.VersionCheckingExpirationMinutes);
             AppHealth.Current.Verbose.TrackAsync($"Current content expiration: {expiration.ToString()}").FireAndForget();
-            return expiration <= DateTime.UtcNow;
+            return expiration <= DateTime.Now;
         }
 
         public void Purge(string currentContent)
