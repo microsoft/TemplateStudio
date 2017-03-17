@@ -16,15 +16,15 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectType
     {
         private bool _alreadyAccepted;
 
-        public ObservableCollection<ProjectInfoViewModel> ProjectTypes { get; } = new ObservableCollection<ProjectInfoViewModel>();
+        public ObservableCollection<MetadataInfoViewModel> ProjectTypes { get; } = new ObservableCollection<MetadataInfoViewModel>();
         public override string PageTitle => Strings.PageTitle;
 
         public ViewModel(WizardContext context) : base(context)
         {
         }
 
-        private ProjectInfoViewModel _selectedProjectType;
-        public ProjectInfoViewModel SelectedProjectType
+        private MetadataInfoViewModel _selectedProjectType;
+        public MetadataInfoViewModel SelectedProjectType
         {
             get => _selectedProjectType;
             set
@@ -57,7 +57,7 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectType
             }
         }
 
-        private bool ShouldShowResetMessage(ProjectInfoViewModel value)
+        private bool ShouldShowResetMessage(MetadataInfoViewModel value)
         {
             return !string.IsNullOrEmpty(Context.State.ProjectType) && !Context.State.ProjectType.Equals(value.Name) && !_alreadyAccepted;
         }
@@ -67,13 +67,13 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectType
             ProjectTypes.Clear();
 
             var projectTypes = GenContext.ToolBox.Repo.GetAll()
-                                                            .Where(t => t.GetTemplateType() == TemplateType.Project && !String.IsNullOrWhiteSpace(t.GetProjectType()))
-                                                            .Select(t => t.GetProjectType())
-                                                            .Distinct()
-                                                            .Select(t => new ProjectInfoViewModel(t, GenContext.ToolBox.Repo.GetProjectTypeInfo(t)))
-                                                            .ToList();
+                                                        .Where(t => t.GetTemplateType() == TemplateType.Project && !String.IsNullOrWhiteSpace(t.GetProjectType()))
+                                                        .Select(t => t.GetProjectType())
+                                                        .Distinct()
+                                                        .Select(t => new MetadataInfoViewModel(t, GenContext.ToolBox.Repo.GetProjectTypeInfo(t)))
+                                                        .ToList();
 
-            ProjectTypes.AddRange(projectTypes);
+            ProjectTypes.AddRange(projectTypes.Where(p => !string.IsNullOrEmpty(p.Description)));
 
             if (string.IsNullOrEmpty(Context.State.ProjectType))
             {

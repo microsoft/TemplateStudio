@@ -19,15 +19,15 @@ namespace Microsoft.Templates.Wizard.Steps.Framework
     {
         private bool _alreadyAccepted;
 
-        public ObservableCollection<ProjectInfoViewModel> Frameworks { get; } = new ObservableCollection<ProjectInfoViewModel>();
+        public ObservableCollection<MetadataInfoViewModel> Frameworks { get; } = new ObservableCollection<MetadataInfoViewModel>();
         public override string PageTitle => Strings.PageTitle;
 
         public ViewModel(WizardContext context) : base(context)
         {
         }
 
-        private ProjectInfoViewModel _selectedFramework;
-        public ProjectInfoViewModel SelectedFramework
+        private MetadataInfoViewModel _selectedFramework;
+        public MetadataInfoViewModel SelectedFramework
         {
             get => _selectedFramework;
             set
@@ -69,7 +69,7 @@ namespace Microsoft.Templates.Wizard.Steps.Framework
                 var pi = GenContext.ToolBox.Repo.GetFrameworkTypeInfo(fx);
                 if (pi != null)
                 {
-                    Frameworks.Add(new ProjectInfoViewModel(fx, pi));
+                    Frameworks.Add(new MetadataInfoViewModel(fx, pi));
                 }
             }
 
@@ -100,7 +100,7 @@ namespace Microsoft.Templates.Wizard.Steps.Framework
                                                 .Distinct();
         }
 
-        private bool ShouldShowResetMessage(ProjectInfoViewModel value)
+        private bool ShouldShowResetMessage(MetadataInfoViewModel value)
         {
             return !string.IsNullOrEmpty(Context.State.Framework) && !Context.State.Framework.Equals(value.Name) && !_alreadyAccepted;
         }
