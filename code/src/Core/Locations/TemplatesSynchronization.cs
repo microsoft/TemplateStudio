@@ -1,4 +1,5 @@
 ﻿using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +17,7 @@ namespace Microsoft.Templates.Core.Locations
         Adquiring = 3,
         Adquired = 4,
         OverVersion = 5,
-        LowerVersion = 6
+        UnderVersion = 6
     }
 
     public class TemplatesSynchronization
@@ -46,17 +47,17 @@ namespace Microsoft.Templates.Core.Locations
 
         public async Task Do(bool forced = false)
         {
-            if (!await ExistsLowerVersion())
+            if (!await ExistsUnderVersion())
             {
-                await MandatoryAdquisitionAsync(forced);
+                await CheckMandatoryAdquisitionAsync(forced);
 
                 await UpdateTemplatesCacheAsync();
 
-                await ExpirationAdquisitionAsync();
+                await CheckExpirationAdquisitionAsync();
 
-                await ExistsOverVersion();
+                await CheckOverVersion();
 
-                await PurgeContentAsync();
+                PurgeContentAsync().FireAndForget();
             }
         }
 
@@ -66,7 +67,7 @@ namespace Microsoft.Templates.Core.Locations
             await Task.Run(() => AdquireContent());
             SyncStatusChanged?.Invoke(this, SyncStatus.Adquired);
         }
-        private async Task ExpirationAdquisitionAsync()
+        private async Task CheckExpirationAdquisitionAsync()
         {
             if (_content.IsExpired(CurrentContentFolder))
             {
@@ -74,7 +75,7 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private async Task MandatoryAdquisitionAsync(bool forceUpdate)
+        private async Task CheckMandatoryAdquisitionAsync(bool forceUpdate)
         {
             if (forceUpdate || !_content.Exists())
             {
@@ -101,7 +102,7 @@ namespace Microsoft.Templates.Core.Locations
             SyncStatusChanged?.Invoke(this, SyncStatus.Updated);
         }
 
-        private async Task ExistsOverVersion()
+        private async Task CheckOverVersion()
         {
             await Task.Run(() =>
             {
@@ -112,14 +113,14 @@ namespace Microsoft.Templates.Core.Locations
             });
         }
 
-        private async Task<bool> ExistsLowerVersion()
+        private async Task<bool> ExistsUnderVersion()
         {
             return await Task.Run(() =>
             {
-                bool result = _content.ExistLowerVersion();
+                bool result = _content.ExistUnderVersion();
                 if (result)
                 {
-                    SyncStatusChanged?.Invoke(this, SyncStatus.LowerVersion);
+                    SyncStatusChanged?.Invoke(this, SyncStatus.UnderVersion);
                 }
                 return result;
             });

@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Wizard.VisualStudio
         private IVsUIShell UIShell => _uiShell.Value;
 
         //TODO: CACHE ON THIS
-        private VsOutputPane OutputPane => new VsOutputPane();
+        private VsOutputPane OutputPane => new VsOutputPane(); 
         
         public override void AddItems(params string[] itemsFullPath)
         {

@@ -33,7 +33,11 @@ namespace Microsoft.Templates.Wizard.VisualStudio
             //TODO: LOCK THIS?
             if (!GenContext.IsInitialized)
             {
+#if DEBUG
+                GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell());
+#else
                 GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell());
+#endif
             }
         }
 

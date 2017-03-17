@@ -52,7 +52,6 @@ namespace Microsoft.Templates.Wizard.Host
             try
             {
                 WizardVersion = GetWizardVersion();
-                //TemplatesVersion = GenContext.ToolBox.Repo.GetVersion();
 
                 await GenContext.ToolBox.Repo.SynchronizeAsync();
                 Status = string.Empty;
@@ -76,8 +75,10 @@ namespace Microsoft.Templates.Wizard.Host
 
             if (status == SyncStatus.Updated)
             {
-                _context.CanGoForward = true;
                 TemplatesVersion = GenContext.ToolBox.Repo.GetVersion();
+
+                _context.CanGoForward = true;
+                
                 var step = Steps.First();
                 Navigate(step);
             }
@@ -88,7 +89,7 @@ namespace Microsoft.Templates.Wizard.Host
                 //TODO: Review message and behavior.
             }
 
-            if (status == SyncStatus.LowerVersion)
+            if (status == SyncStatus.UnderVersion)
             {
                 MessageBox.Show(StringRes.StatusLowerVersionContent, StringRes.StatusLowerVersionContent, MessageBoxButton.OK, MessageBoxImage.Error);
                 //TODO: Review message and behavior.

@@ -4,11 +4,19 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Locations
 {
+    public static class TemplatesSourceFactory
+    {
+        public TemplatesSource CreateNew()
+        {
+            switch(Configuration.Current.Environment)
+        }
+    }
     public abstract class TemplatesSource
     {
         protected const string SourceFolderName = "Templates";

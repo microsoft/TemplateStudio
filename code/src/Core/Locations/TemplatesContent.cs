@@ -16,7 +16,7 @@ namespace Microsoft.Templates.Core.Locations
         private const string TemplatesFolderName = "Templates";
         
         public string TemplatesFolder { get; private set; }
-        public string LatestContentFolder { get => GetLatestContentFolder(true); }
+        public string LatestContentFolder => GetLatestContentFolder(true); 
         private string DefaultContentFolder => Path.Combine(TemplatesFolder, "0.0.0.0");
 
         public TemplatesContent(string workingFolder, string sourceId)
@@ -44,12 +44,12 @@ namespace Microsoft.Templates.Core.Locations
         }
         public bool ExistOverVersion()
         {
-            string overVersionFolder = GetLatestContentFolder(false);
-            Version overVersion = GetVersionFromFolder(overVersionFolder);
+            string targetFolder = GetLatestContentFolder(false);
+            Version targetVersion = GetVersionFromFolder(targetFolder);
 
-            if (ExistsContent(overVersionFolder) && !overVersion.IsDefault())
+            if (ExistsContent(targetFolder) && !targetVersion.IsDefault())
             {
-                return IsVersionOverWizard(overVersion);
+                return IsVersionOverWizard(targetVersion);
             }
             else
             {
@@ -57,14 +57,14 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public bool ExistLowerVersion()
+        public bool ExistUnderVersion()
         {
-            string lowerVersionFolder = GetLatestContentFolder(false);
-            Version overVersion = GetVersionFromFolder(lowerVersionFolder);
+            string targetFolder = GetLatestContentFolder(false);
+            Version targetVersion = GetVersionFromFolder(targetFolder);
 
-            if (ExistsContent(lowerVersionFolder) && !overVersion.IsDefault())
+            if (ExistsContent(targetFolder) && !targetVersion.IsDefault())
             {
-                return IsVersionLowerWizard(overVersion);
+                return IsVersionUnderWizard(targetVersion);
             }
             else
             {
@@ -175,7 +175,7 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private bool IsVersionLowerWizard(Version v)
+        private bool IsVersionUnderWizard(Version v)
         {
             Version wizardVersion = GetWizardVersion();
             if (IsWizardAligned(v))
