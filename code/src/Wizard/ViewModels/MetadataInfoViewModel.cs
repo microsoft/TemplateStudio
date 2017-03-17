@@ -4,7 +4,7 @@ using System.Windows.Media.Imaging;
 
 namespace Microsoft.Templates.Wizard.ViewModels
 {
-    public class ProjectInfoViewModel : Observable
+    public class MetadataInfoViewModel : Observable
     {
         private string _name;
         public string Name
@@ -27,11 +27,17 @@ namespace Microsoft.Templates.Wizard.ViewModels
             set { SetProperty(ref _icon, value); }
         }
 
-        public ProjectInfoViewModel(string name, ProjectInfo projectInfo)
+        public MetadataInfoViewModel(string name, MetadataInfo metadataInfo)
         {
             this.Name = name;
-            this.Description = projectInfo.Description;
-            this.Icon = Extensions.CreateIcon(projectInfo.Icon);
+
+            if (metadataInfo == null)
+            {
+                return;
+            }
+
+            this.Description = metadataInfo.Description;
+            this.Icon = Extensions.CreateIcon(metadataInfo.Icon);
         }
     }
 }

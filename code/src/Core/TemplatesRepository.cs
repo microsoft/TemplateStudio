@@ -16,6 +16,7 @@ namespace Microsoft.Templates.Core
     {
         private const string ProjectTypes = "Projects";
         private const string Frameworks = "Frameworks";
+        private const string Metadata = ".metadata";
 
         public TemplatesSynchronization Sync { get; private set; }
 
@@ -66,34 +67,31 @@ namespace Microsoft.Templates.Core
         }
 
 
-        public ProjectInfo GetProjectTypeInfo(string projectType)
+        public MetadataInfo GetProjectTypeInfo(string projectType)
         {
-            return GetProyectInfo(Path.Combine(Sync.CurrentContentFolder, ProjectTypes, projectType, "Info"));
+            return GetMetadataInfo(Path.Combine(Sync.CurrentContentFolder, ProjectTypes, projectType, Metadata));
         }
 
-        public ProjectInfo GetFrameworkTypeInfo(string fxType)
+        public MetadataInfo GetFrameworkTypeInfo(string fxType)
         {
-            return GetProyectInfo(Path.Combine(Sync.CurrentContentFolder, Frameworks, fxType, "Info"));
+            return GetMetadataInfo(Path.Combine(Sync.CurrentContentFolder, Frameworks, fxType, Metadata));
         }
 
-        private ProjectInfo GetProyectInfo(string folderName)
+        private MetadataInfo GetMetadataInfo(string folderName)
         {
             if (!Directory.Exists(folderName))
             {
                 return null;
             }
-            var projectInfo = new ProjectInfo();
 
             string descriptionFile = Path.Combine(folderName, $"description.txt");
-            projectInfo.Description = File.Exists(descriptionFile) ? File.ReadAllText(descriptionFile) : String.Empty;
-            projectInfo.Icon = Path.Combine(folderName, $"icon.png");
-            return projectInfo;
+
+            var metadataInfo = new MetadataInfo()
+            {
+                Description = File.Exists(descriptionFile) ? File.ReadAllText(descriptionFile) : String.Empty,
+                Icon = Path.Combine(folderName, $"icon.png")
+            };
+            return metadataInfo;
         }
-    }
-    public class ProjectInfo
-    {
-        public string Name { get; set; }
-        public string Icon { get; set; }
-        public string Description { get; set; }
     }
 }
