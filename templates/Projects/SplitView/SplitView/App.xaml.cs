@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-using uct.SplitViewProject.Activation;
+using uct.SplitViewProject.Services;
 
 namespace uct.SplitViewProject
 {

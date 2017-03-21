@@ -15,8 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-using uct.BlankProject.Main;
-using uct.BlankProject.Activation;
+using uct.BlankProject.Services;
 
 namespace uct.BlankProject
 {

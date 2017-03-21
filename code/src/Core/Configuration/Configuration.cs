@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Core
         public string RepositoryFolderName { get; set; } = @"UWPTemplates";
         public TraceEventType DiagnosticsTraceLevel { get; set; } = TraceEventType.Verbose;
         public int DaysToKeepDiagnosticsLogs { get; set; } = 5;
-        public int VersionCheckingExpirationMinutes { get; set; } = 5;
+        public int VersionCheckingExpirationMinutes { get; set; } = 0;
         public List<string> AllowedPublicKeysPins { get; set; } = new List<string>() { };
 
         public const string DefaultJsonConfigFileName = "UwpTemplates.config.json";
