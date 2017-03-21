@@ -114,12 +114,6 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
 
         private void Validate(string value)
         {
-            //TODO: CREATE VALIDATION ERROR CLASS
-            if (!TemplateSelected.MultipleInstances)
-            {
-                throw new Exception(Strings.ValidationError_RenameNotAllowed);
-            }
-
             var validationResult = Naming.Validate(_selectedNames, value);
 
             HandleValidation(validationResult);
