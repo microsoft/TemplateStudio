@@ -1,13 +1,13 @@
 using Windows.UI.Xaml.Controls;
 
-namespace uct.TabbedPivotProject.Shell
+namespace uct.TabbedPivotProject.PivotPage
 {
-    public class ShellTabbedItem
+    public class PivotTabbedItem
     {
         public string Title { get; set; }
         public Page Page { get; set; }
 
-        public ShellTabbedItem(string title, Page page)
+        public PivotTabbedItem(string title, Page page)
         {
             this.Title = title;
             this.Page = page;

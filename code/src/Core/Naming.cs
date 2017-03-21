@@ -9,7 +9,7 @@ namespace Microsoft.Templates.Core
 {
     public class Naming
     {
-        private static readonly string[] ReservedNames = new string[] { "WebView", "Page", "BackgroundTask" };
+        private static readonly string[] ReservedNames = new string[] { "WebView", "Page", "BackgroundTask", "PivotPage" };
 
         private const string ValidationPattern = @"^([a-zA-Z])([\w\-])*$";
         private const string InferInvalidPattern = @"[^a-zA-Z\d_\-]";

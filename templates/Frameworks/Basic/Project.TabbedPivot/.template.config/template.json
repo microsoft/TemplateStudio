@@ -20,7 +20,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Shell\\ShellViewModel.cs"
+      "path": ".\\PivotPage\\PivotPageViewModel.cs"
     }
   ],
   "symbols": {

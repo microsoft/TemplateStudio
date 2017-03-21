@@ -1,5 +1,5 @@
 ﻿public ViewModelLocator()
 {
     //^^         
-    RegisterShell(navigationService);
+    RegisterPivotPage(navigationService);
 }
