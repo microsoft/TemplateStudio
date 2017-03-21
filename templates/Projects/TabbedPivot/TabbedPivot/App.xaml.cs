@@ -34,7 +34,7 @@ namespace uct.TabbedPivotProject
         {
             this.InitializeComponent();
 
-            _activationService = new ActivationService(this, typeof(Shell.ShellPage));
+            _activationService = new ActivationService(this, typeof(PivotPage.PivotPage));
         }
 
         /// <summary>

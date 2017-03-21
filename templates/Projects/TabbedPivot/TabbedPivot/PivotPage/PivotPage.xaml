@@ -1,5 +1,5 @@
 <Page
-    x:Class="uct.TabbedPivotProject.Shell.ShellPage"
+    x:Class="uct.TabbedPivotProject.PivotPage.PivotPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +7,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Pivot x:Uid="ShellPivot"  ItemsSource="{Binding Items}">
+        <Pivot x:Uid="PivotPage"  ItemsSource="{Binding Items}">
             <Pivot.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Title}"/>
