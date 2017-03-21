@@ -44,15 +44,20 @@ namespace Microsoft.Templates.Core
             string result = String.Empty;
             foreach(var mp in Instance?.Settings.SettingsLoader.MountPoints)
             {
-                if (Directory.Exists(mp.Place))
+                if (Directory.Exists(mp.Place) && IsHigherVersion(result, mp.Place))
                 {
-                    //TODO RAGC: ENSURE EXITSI AND THE VERSION IS HIGHER!!!!
                     result = mp.Place;
                 }
             }
             return result;
         }
 
+        private bool IsHigherVersion(string currentPlace, string newPlace)
+        {
+            Version.TryParse(currentPlace, out Version current);
+            Version.TryParse(Path.GetFileName(newPlace), out Version newp);
+            return newp > current;
+        }
 
         private void Init()
         {
