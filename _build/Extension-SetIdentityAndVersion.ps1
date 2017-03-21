@@ -19,7 +19,16 @@ Param(
 $VersionRegex = "(\d+)\.(\d+)\.(\d+)\.(\d+)"
 
 if($buildNumber -match $VersionRegEx){
-  $buildDifferentiator =([DateTime]::Now.Year - 2000) * 1000 + [DateTime]::Now.DayOfYear
+  $dateFromBuildNumber = [DateTime]::Now;
+
+  [DateTime]::TryParseExact($matches[2],"yyyyMMdd",
+        [System.Globalization.CultureInfo]::InvariantCulture, 
+        [System.Globalization.DateTimeStyles]::None, 
+        [ref]$dateFromBuildNumber)
+
+  Write-Output "Parsed Date From Build: $dateFromBuildNumber"
+
+  $buildDifferentiator =($dateFromBuildNumber.Year - 2000) * 1000 + $dateFromBuildNumber.DayOfYear
 
   $versionNumber = [int]::Parse($matches[1]).ToString() + "." + [int]::Parse($matches[2]).ToString() + "." + $buildDifferentiator.ToString() + "." + [int]::Parse($matches[4]).ToString()
   Write-Host "Version Number" $versionNumber
