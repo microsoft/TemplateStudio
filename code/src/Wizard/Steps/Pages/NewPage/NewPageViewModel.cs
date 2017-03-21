@@ -56,15 +56,13 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
             {
                 SetProperty(ref _itemName, value);
 
-                var validationResult = Naming.Validate(_selectedNames, value);
-
-                HandleValidation(validationResult);
+                Validate(value);
 
                 OnPropertyChanged(nameof(OkCommand));
             }
         }
 
-         //TODO: MAKE THIS METHOD TRULY ASYNC
+        //TODO: MAKE THIS METHOD TRULY ASYNC
         public async Task InitializeAsync()
         {
             Templates.Clear();
@@ -112,6 +110,19 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
                 }
                 throw new Exception(message);
             }
+        }
+
+        private void Validate(string value)
+        {
+            //TODO: CREATE VALIDATION ERROR CLASS
+            if (!TemplateSelected.MultipleInstances)
+            {
+                throw new Exception(Strings.ValidationError_RenameNotAllowed);
+            }
+
+            var validationResult = Naming.Validate(_selectedNames, value);
+
+            HandleValidation(validationResult);
         }
 
         private bool IsValid() => _isValid;

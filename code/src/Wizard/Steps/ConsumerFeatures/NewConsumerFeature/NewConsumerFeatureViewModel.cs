@@ -58,9 +58,7 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
             {
                 SetProperty(ref _itemName, value);
 
-                var validationResult = Naming.Validate(_selectedNames, value);
-
-                HandleValidation(validationResult);
+                Validate(value);
 
                 OnPropertyChanged(nameof(OkCommand));
             }
@@ -124,6 +122,19 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
                 }
                 throw new Exception(message);
             }
+        }
+
+        private void Validate(string value)
+        {
+            //TODO: CREATE VALIDATION ERROR CLASS
+            if (!TemplateSelected.MultipleInstances)
+            {
+                throw new Exception(Strings.ValidationError_RenameNotAllowed);
+            }
+
+            var validationResult = Naming.Validate(_selectedNames, value);
+
+            HandleValidation(validationResult);
         }
 
         private bool IsValid() => _isValid;
