@@ -11,9 +11,10 @@ namespace ItemNamespace.MasterDetailPage
 {
     public class MasterDetailPageViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        const double UseNavigationWithRequested = 900;
+        const string NarrowStateName = "NarrowState";
+        const string DefaultStateName = "DefaultState";
 
-        private bool _useNavigation;
+        private VisualState _currentState;
 
         private Visibility _masterVisibility;
         public Visibility MasterVisibility
@@ -29,68 +30,58 @@ namespace ItemNamespace.MasterDetailPage
             set { Set(ref _detailVisibility, value); }
         }
 
-        private DessertModel _selected;
-        public DessertModel Selected
+        private SampleModel _selected;
+        public SampleModel Selected
         {
             get { return _selected; }
             set { Set(ref _selected, value); }
         }
-
-        public ICommand LoadDataCommand { get; private set; }
+        
         public ICommand ItemClickCommand { get; private set; }
 
-        public ObservableCollection<DessertModel> DessertList { get; private set; } = new ObservableCollection<DessertModel>();
+        public ObservableCollection<SampleModel> SampleItems { get; private set; } = new ObservableCollection<SampleModel>();
 
         public MasterDetailPageViewModel()
         {
-            this._useNavigation = Window.Current.Bounds.Width < UseNavigationWithRequested;
-            LoadDataCommand = new RelayCommand(async () => { await LoadDataAsync(); });
             ItemClickCommand = new RelayCommand<ItemClickEventArgs>(OnItemClick);
-            Window.Current.SizeChanged += OnWindowSizeChanged;
             SetGoBack();
-        }
+        }        
 
-        private void OnWindowSizeChanged(object sender, WindowSizeChangedEventArgs e)
+        public async Task LoadDataAsync(VisualState currentState)
         {
-            var newWidth = e.Size.Width;
-            if (!this._useNavigation && newWidth < UseNavigationWithRequested)
-            {
-                //Enter on navigation master detail
-                this.MasterVisibility = Visibility.Visible;
-                this.DetailVisibility = Visibility.Collapsed;
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
-            }
-            else if (this._useNavigation && newWidth >= UseNavigationWithRequested)
-            {
-                //Enter on full screen master detail
-                this.MasterVisibility = Visibility.Visible;
-                this.DetailVisibility = Visibility.Visible;
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
-            }
-            this._useNavigation = newWidth < UseNavigationWithRequested;
-        }
+            _currentState = currentState;
+            SampleItems.Clear();
 
-        private async Task LoadDataAsync()
-        {
-            this.DessertList.Clear();
-
-            var service = new DessertService();
+            var service = new SampleModelService();
             var data = await service.GetDataAsync();
 
             foreach (var item in data)
             {
-                this.DessertList.Add(item);
+                SampleItems.Add(item);
             }
-            if (Window.Current.Bounds.Width >= UseNavigationWithRequested)
+            Selected = SampleItems.First();
+            NavigateToDetail();
+        }
+
+        public void UpdateWindowState(VisualStateChangedEventArgs args)
+        {
+            _currentState = args.NewState;
+            if (args.OldState.Name == NarrowStateName && args.NewState.Name == DefaultStateName)
             {
-                Selected = DessertList.First();
-                NavigateToDetail();
+                MasterVisibility = Visibility.Visible;
+                DetailVisibility = Visibility.Visible;
             }
+            else
+            {
+                MasterVisibility = Visibility.Visible;
+                DetailVisibility = Visibility.Collapsed;
+            }
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
 
         private void OnItemClick(ItemClickEventArgs args)
         {
-            DessertModel item = args?.ClickedItem as DessertModel;
+            SampleModel item = args?.ClickedItem as SampleModel;
             if (item != null)
             {
                 Selected = item;
@@ -100,10 +91,10 @@ namespace ItemNamespace.MasterDetailPage
 
         private void NavigateToDetail()
         {
-            this.DetailVisibility = Visibility.Visible;
-            if (this._useNavigation)
+            DetailVisibility = Visibility.Visible;
+            if (_currentState.Name == NarrowStateName)
             {
-                this.MasterVisibility = Visibility.Collapsed;
+                MasterVisibility = Visibility.Collapsed;
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             }
         }
@@ -116,8 +107,8 @@ namespace ItemNamespace.MasterDetailPage
                 {
                     if (DetailVisibility == Visibility.Visible)
                     {
-                        this.MasterVisibility = Visibility.Visible;
-                        this.DetailVisibility = Visibility.Collapsed;
+                        MasterVisibility = Visibility.Visible;
+                        DetailVisibility = Visibility.Collapsed;
                         SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
                         e.Handled = true;
                     }

@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
+    Loaded="OnLoaded"
     mc:Ignorable="d">
 
   <Page.Resources>
@@ -16,98 +17,69 @@
         <Thickness x:Key="MediumTopMargin">0,8,0,0</Thickness>
         <Thickness x:Key="SmallTopMargin">0,4,0,0</Thickness>
         
-        <Thickness x:Key="ListItemMargin">12</Thickness>
-        <Thickness x:Key="ListTextMargin">12,-9,0,0</Thickness>
-
-        <Style TargetType="Image" x:Key="ThumbnailStyle">
-            <Setter Property="Width" Value="80"/>
-            <Setter Property="Height" Value="80"/>
-            <Setter Property="Stretch" Value="UniformToFill"/>
-        </Style>
+        <Thickness x:Key="ListItemMargin">8</Thickness>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState>
+            <VisualStateGroup x:Name="visualStateGroup" CurrentStateChanged="OnWindowStateChanged">
+                <VisualState x:Name="NarrowState">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0"/>
+                        <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="cd0.Width" Value="*"/>
-                        <Setter Target="cd1.Width" Value="0"/>
-                        <Setter Target="detailGrid.(Grid.Column)" Value="0"/>
+                        <Setter Target="cd0.Width" Value="*" />
+                        <Setter Target="cd1.Width" Value="0" />
+                        <Setter Target="detailGrid.(Grid.Column)" Value="0" />
                     </VisualState.Setters>
                 </VisualState>
-                <VisualState>
+                <VisualState x:Name="DefaultState">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="900"/>
+                        <AdaptiveTrigger MinWindowWidth="640" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="cd0.Width" Value="Auto"/>
-                        <Setter Target="cd1.Width" Value="*"/>
-                        <Setter Target="detailGrid.(Grid.Column)" Value="1"/>
+                        <Setter Target="cd0.Width" Value="296" />
+                        <Setter Target="cd1.Width" Value="*" />
+                        <Setter Target="detailGrid.(Grid.Column)" Value="1" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-
-        <i:Interaction.Behaviors>
-            <core:EventTriggerBehavior EventName="Loaded">
-                <core:InvokeCommandAction Command="{Binding LoadDataCommand}"/>
-            </core:EventTriggerBehavior>
-        </i:Interaction.Behaviors>
-
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="cd0" />
             <ColumnDefinition x:Name="cd1" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" x:Uid="MasterDetailPage_Title" Margin="{StaticResource PageHeaderMargin}" Style="{ThemeResource HeaderTextBlockStyle}"/>
+        <TextBlock Grid.Row="0" x:Uid="MasterDetailPage_Title" Margin="{StaticResource PageHeaderMargin}" Style="{ThemeResource HeaderTextBlockStyle}" />
         <Grid Visibility="{Binding MasterVisibility}" Grid.Row="1">
-            <ListView ItemsSource="{Binding DessertList}" SelectionMode="Single" IsItemClickEnabled="True" SelectedItem="{Binding Selected}">
+            <ListView ItemsSource="{Binding SampleItems}" SelectionMode="Single" IsItemClickEnabled="True" SelectedItem="{Binding Selected}">
                 <i:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="ItemClick">
-                        <core:InvokeCommandAction Command="{Binding ItemClickCommand}"/>
+                        <core:InvokeCommandAction Command="{Binding ItemClickCommand}" />
                     </core:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="{StaticResource ListItemMargin}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Source="{Binding Picture}" Style="{StaticResource ThumbnailStyle}" />
-                            <StackPanel Grid.Column="1" Margin="{StaticResource ListTextMargin}">
-                                <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}" />
-                                <TextBlock Text="{Binding Category}" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                            </StackPanel>
-                        </Grid>
+                        <StackPanel Margin="{StaticResource ListItemMargin}">
+                            <TextBlock Text="{Binding Title}" Style="{StaticResource SubtitleTextBlockStyle}" />
+                            <TextBlock Text="{Binding Category}" Style="{StaticResource BodyTextBlockStyle}" />
+                        </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
 
         <ScrollViewer Grid.Row="1" x:Name="detailGrid" Visibility="{Binding DetailVisibility}">
-            <StackPanel Margin="{StaticResource ContainerMargin}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="{Binding Selected.Picture}" Style="{StaticResource ThumbnailStyle}" />
-                    <StackPanel Grid.Column="1" Margin="{StaticResource ListTextMargin}">
-                        <TextBlock Text="{Binding Selected.Title}" Style="{StaticResource TitleTextBlockStyle}" />
-                        <TextBlock Text="{Binding Selected.Category}" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                    </StackPanel>
-                </Grid>
-                <TextBlock Text="{Binding Selected.Subtitle}" Margin="{StaticResource MediumTopMargin}" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                <TextBlock Text="{Binding Selected.Description}" Margin="{StaticResource SmallTopMargin}" Style="{StaticResource BodyTextBlockStyle}"/>
+            <StackPanel Margin="{StaticResource ContainerMargin}">                
+                <TextBlock Text="{Binding Selected.Title}" Style="{StaticResource TitleTextBlockStyle}" />
+                <TextBlock Text="{Binding Selected.Category}" Style="{StaticResource SubtitleTextBlockStyle}" />
+                <TextBlock Text="{Binding Selected.Subtitle}" Margin="{StaticResource MediumTopMargin}" Style="{StaticResource SubtitleTextBlockStyle}" />
+                <TextBlock Text="{Binding Selected.Description}" Margin="{StaticResource SmallTopMargin}" Style="{StaticResource BodyTextBlockStyle}" />
             </StackPanel>
         </ScrollViewer>
     </Grid>
