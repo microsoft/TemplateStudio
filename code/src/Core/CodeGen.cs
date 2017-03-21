@@ -56,6 +56,17 @@ namespace Microsoft.Templates.Core
         {
             Version.TryParse(currentPlace, out Version current);
             Version.TryParse(Path.GetFileName(newPlace), out Version newp);
+
+            if(newp == null)
+            {
+                return false;
+            }
+
+            if (newp != null && current == null)
+            {
+                return true;
+            }
+
             return newp > current;
         }
 
