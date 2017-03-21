@@ -158,5 +158,14 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures {
                 return ResourceManager.GetString("ValidationError_Empty", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is reserved.
+        /// </summary>
+        public static string ValidationError_ReservedName {
+            get {
+                return ResourceManager.GetString("ValidationError_ReservedName", resourceCulture);
+            }
+        }
     }
 }
