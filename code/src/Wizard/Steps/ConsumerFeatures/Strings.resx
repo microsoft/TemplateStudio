@@ -150,4 +150,7 @@
   <data name="ValidationError_Empty" xml:space="preserve">
     <value>Name cannot be empty</value>
   </data>
+  <data name="ValidationError_ReservedName" xml:space="preserve">
+    <value>Name is reserved</value>
+  </data>
 </root>
