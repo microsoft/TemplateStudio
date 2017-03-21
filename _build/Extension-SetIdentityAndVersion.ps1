@@ -20,8 +20,7 @@ $VersionRegex = "(\d+)\.(\d+)\.(\d+)\.(\d+)"
 
 if($buildNumber -match $VersionRegEx){
   $dateFromBuildNumber = [DateTime]::Now;
-
-  [DateTime]::TryParseExact($matches[2],"yyyyMMdd",
+  [DateTime]::TryParseExact($matches[3],"yyyyMMdd",
         [System.Globalization.CultureInfo]::InvariantCulture, 
         [System.Globalization.DateTimeStyles]::None, 
         [ref]$dateFromBuildNumber)
@@ -82,13 +81,20 @@ else
 ## APPLY VERSION TO PROJECT TEMPLATE WIZARD REFERENCE
 if($publicKeyToken){
   Write-Host "Setting Wizard Extension configuration in Project Template"
-  $projectTemplate = Get-ChildItem -include "*.vstemplate" -recurse |  Where-Object{ $_.FullName -notmatch "\\Templates\\" -and $_.FullName -match "\\ProjectTemplates\\"}
+  $projectTemplate = Get-ChildItem -include "*.vstemplate" -recurse |  Where-Object{ 
+        $_.FullName -notmatch "\\Templates\\" -and 
+        $_.FullName -notmatch "\\debug\\" -and
+        $_.FullName -notmatch "\\obj\\" -and
+        $_.FullName -match "\\ProjectTemplates\\"
+    }
   if($projectTemplate){
+  
+
     [xml]$projectTemplateContent = Get-Content $projectTemplate
 
     $newPublicKeyToken = "PublicKeyToken=$publicKeyToken"
     $wizardAssemblyStrongName = $projectTemplateContent.VSTemplate.WizardExtension.Assembly -replace $VersionRegEx, $versionNumber 
-    $wizardAssemblyStrongName = $wizardExtensioAssembly -replace "PublicKeyToken=.*</Assembly>", "$newPublicKeyToken</Assembly>"
+    $wizardAssemblyStrongName = $wizardAssemblyStrongName -replace "PublicKeyToken=.*</Assembly>", "$newPublicKeyToken</Assembly>"
 
     $projectTemplateContent.VSTemplate.WizardExtension.Assembly = $wizardAssemblyStrongName
     
