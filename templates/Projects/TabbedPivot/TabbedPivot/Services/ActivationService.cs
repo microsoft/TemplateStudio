@@ -46,6 +46,10 @@ namespace uct.TabbedPivotProject.Services
                 {
                     // Create a Frame to act as the navigation context and navigate to the first page
                     Window.Current.Content = _shell;
+                    NavigationService.Frame.NavigationFailed += (sender, e) =>
+                    {
+                        throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
+                    };
                 } 
             }
 
