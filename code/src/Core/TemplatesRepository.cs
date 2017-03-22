@@ -84,11 +84,13 @@ namespace Microsoft.Templates.Core
                 return null;
             }
 
-            string descriptionFile = Path.Combine(folderName, $"description.txt");
+            string descriptionFile = Path.Combine(folderName, $"info.json");
+            var metadata = JsonConvert.DeserializeObject<MetadataInfo>(File.ReadAllText(descriptionFile));
 
             var metadataInfo = new MetadataInfo()
             {
-                Description = File.Exists(descriptionFile) ? File.ReadAllText(descriptionFile) : String.Empty,
+                DisplayName = metadata.DisplayName,
+                Description = metadata.Description,
                 Icon = Path.Combine(folderName, $"icon.png")
             };
             return metadataInfo;
