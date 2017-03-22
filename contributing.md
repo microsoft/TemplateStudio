@@ -1,6 +1,6 @@
-# Contributing to UWP Community Template Generator
+# Contributing to Windows Template Studio
 
-The foundation of **UWP Community Template Generator** is get a developer's File->New Project experience up and going as fast possible. 
+The foundation of **Windows Template Studio** is get a developer's File->New Project experience up and going as fast possible. 
 
 A developer should be able to quickly and easily add features, pages, and have a solid foundation to start with.  The starting code and XAML will be best practices, follow design guidelines and be commented to help aid in enabling everything a developer to get started and understand **why** something is like it is. 
 
@@ -10,14 +10,14 @@ That's why many of the guidelines of this document are obvious and serve only on
 Every contribution has to come with:
 
 * Before starting coding, **you should open an issue** and start discussing with the community to see if your idea/feature is interesting enough
-* A documentation page in the [documentation folder](https://github.com/Microsoft/UWPCommunityTemplates/tree/dev/docs). Once validated, your documentation will be visible [here](TBD) (???http://docs.uwpcommunitytemplates.com/en/dev/)
+* A documentation page in the [documentation folder](https://github.com/Microsoft/WindowsTemplateStudio/tree/dev/docs). Once validated, your documentation will be visible [here](TBD) (???http://docs.WindowsTemplateStudio.com/en/dev/)
 * Unit tests (If applicable)
 * You tested your code with SDK 10586 and SDK 14393
 * PR has to target dev branch
 
 PR has to be validated by at least two core members before being merged.
 
-Once merged, you can get a pre-release package of the formulas and VSIX by adding this ([Gallery](TBD)(???https://dotnet.myget.org/gallery/UWPCommunityTemplates???)) to your Visual Studio.
+Once merged, you can get a pre-release package of the formulas and VSIX by adding this ([Gallery](TBD)(???https://dotnet.myget.org/gallery/WindowsTemplateStudio???)) to your Visual Studio.
 
 ## Quality insurance for pull requests for XAML
 We encourage developers to follow the following guidances when submitting pull requests for XAML:

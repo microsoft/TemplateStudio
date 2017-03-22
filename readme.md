@@ -3,9 +3,9 @@
 |dev|![CI Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/121/badge) | ![Templates Publishing Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/123/badge) | ![Extension Publishing Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/122/badge)|
 |pre-release|![CI Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/125/badge)|![Templates Publishing Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/124/badge)|![Extension Publishing Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/126/badge)|
 
-UWP Community Template Generator 
+Windows Template Studio 
 ===========
-The UWP Community Template Generator goal is to help developers with their File->New experience in Visual Studio.  It will generate a strong, generic foundation with the pages you need, but also integrate game changing features like Cortana, action center and background tasks from the start.  Any critical features will have code comments with links to MSDN, stack overflow and blogs to help unblock developers. Once the template is generated for the developer, it can provide base sample data and will be able to compile then run without issue.
+The Windows Template Studio goal is to help developers with their File->New experience in Visual Studio.  It will generate a strong, generic foundation with the pages you need, but also integrate game changing features like Cortana, action center and background tasks from the start.  Any critical features will have code comments with links to MSDN, stack overflow and blogs to help unblock developers. Once the template is generated for the developer, it can provide base sample data and will be able to compile then run without issue.
 
 Example scenario:
 I need an app that uses MVVM Light, uses Cortana, Speech APIs, Ink on one of the pages and will need Azure mobile services.   It will need a background service that does a query every 5 minutes.
@@ -13,7 +13,7 @@ I need an app that uses MVVM Light, uses Cortana, Speech APIs, Ink on one of the
 To reach our developers in an up-to-date fashion, the project is broken up into two primary parts, templates and the generator.  The generator is built on top of [dotnet Template Engine](https://github.com/dotnet/templating), it is a Visual Studio extension a developer will install while the templates will be hosted on a CDN so we can update what is created independntly of the generator.  The generator uses templates to create actual projects, pages and/or features for the developers. 
 
 ## Getting Started
-Please read the [Getting Started with the UWP Template Community Generator](docs/getting-started.md) page for more detailed information about using the UWP Community Template Generator.
+Please read the [Getting Started with the Windows Template Studio](docs/getting-started.md) page for more detailed information about using the Windows Template Studio.
 
 ## Features
 
@@ -34,7 +34,7 @@ Coming soon
 Coming soon
 
 ## Feedback and Requests
-Please use [GitHub issues](https://github.com/Microsoft/UWPCommunityTemplates/issues) for questions or comments.  If you have specific feature requests or would like to vote on what others are recommending, please go to the [GitHub issues](https://github.com/Microsoft/UWPCommunityTemplates/issues)section as well.  We would love to see what you are thinking.
+Please use [GitHub issues](https://github.com/Microsoft/WindowsTemplateStudio/issues) for questions or comments.  If you have specific feature requests or would like to vote on what others are recommending, please go to the [GitHub issues](https://github.com/Microsoft/WindowsTemplateStudio/issues)section as well.  We would love to see what you are thinking.
 
 ## Contributing
 Do you want to contribute? Here are our [contribution guidelines](contributing.md).
@@ -51,9 +51,9 @@ Do you want to contribute? Here are our [contribution guidelines](contributing.m
 This project has adopted the code of conduct defined by the [http://contributor-covenant.org/](Contributor Covenant) to clarify expected behavior in our community. 
 
 ## Roadmap
-Read what we [plan for next iteration](https://github.com/Microsoft/UWPCommunityTemplates/issues?q=is%3Aopen+is%3Aissue+milestone%3A0.5), and feel free to ask questions.
+Read what we [plan for next iteration](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3A0.5), and feel free to ask questions.
 
-You can add [this feed](https://www.myget.org/F/vsixextensions/vsix/) to your Extensions galleries and you can get the pre-release versions of the UWP Community Templates Visual Studio Extension. 
+You can add [this feed](https://www.myget.org/F/vsixextensions/vsix/) to your Extensions galleries and you can get the pre-release versions of the Windows Template Studio Visual Studio Extension. 
 
 ## License
 This code is distributed under the terms and conditions of the [MIT license](license.md). 
