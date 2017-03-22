@@ -1,7 +1,6 @@
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 
 namespace ItemNamespace.View
 {
@@ -12,7 +11,7 @@ namespace ItemNamespace.View
             this.InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
             if (ViewModel == null)
             {
