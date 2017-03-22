@@ -1,6 +1,6 @@
 private async Task InitializeAsync()
 {
-    Singleton<Services.LiveTileService>.Instance.EnableQueue();
+    await Singleton<Services.LiveTileService>.Instance.EnableQueueAsync();
 }
 private async Task StartupAsync()
 {

@@ -2,6 +2,7 @@ using System;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using RootNamespace.Extensions;
+using System.Threading.Tasks;
 
 namespace RootNamespace.Services
 {
@@ -12,28 +13,28 @@ namespace RootNamespace.Services
         public static bool IsLightThemeEnabled => Theme == ElementTheme.Light;
         public static ElementTheme Theme { get; set; }
 
-        static ThemeSelectorService()
+        public static async Task InitializeAsync()
         {
-            Theme = LoadThemeFromSettings();
+            Theme = await LoadThemeFromSettingsAsync();
         }
 
-        public static void SwitchTheme()
+        public static async Task SwitchThemeAsync()
         {
             if (Theme == ElementTheme.Dark)
             {
-                SetTheme(ElementTheme.Light);
+                await SetThemeAsync(ElementTheme.Light);
             }
             else
             {
-                SetTheme(ElementTheme.Dark);
+                await SetThemeAsync(ElementTheme.Dark);
             }
         }
         
-        public static void SetTheme(ElementTheme theme)
+        public static async Task SetThemeAsync(ElementTheme theme)
         {
             Theme = theme;
             SetRequestedTheme();
-            SaveThemeInSettings(Theme);
+            await SaveThemeInSettingsAsync(Theme);
         }
 
         public static void SetRequestedTheme()
@@ -45,10 +46,10 @@ namespace RootNamespace.Services
             }
         }
 
-        private static ElementTheme LoadThemeFromSettings()
+        private static async Task<ElementTheme> LoadThemeFromSettingsAsync()
         {
             ElementTheme cacheTheme = ElementTheme.Light;
-            string themeName = ApplicationData.Current.LocalSettings.Read<string>(SettingsKey);
+            string themeName = await ApplicationData.Current.LocalSettings.ReadAsync<string>(SettingsKey);
             if (String.IsNullOrEmpty(themeName))
             {
                 cacheTheme = Application.Current.RequestedTheme == ApplicationTheme.Dark ? ElementTheme.Dark : ElementTheme.Light;
@@ -60,9 +61,9 @@ namespace RootNamespace.Services
             return cacheTheme;
         }
 
-        private static void SaveThemeInSettings(ElementTheme theme)
+        private static async Task SaveThemeInSettingsAsync(ElementTheme theme)
         {
-            ApplicationData.Current.LocalSettings.Save<string>(SettingsKey, theme.ToString());
+            await ApplicationData.Current.LocalSettings.SaveAsync<string>(SettingsKey, theme.ToString());
         }
     }
 }

@@ -14,13 +14,13 @@ namespace RootNamespace.Services
     {
         private const string QueueEnabledKey = "NotificationQueueEnabled";
 
-        public void EnableQueue()
+        public async Task EnableQueueAsync()
         {
-            var queueEnabled = ApplicationData.Current.LocalSettings.Read<bool>(QueueEnabledKey);
+            var queueEnabled = await ApplicationData.Current.LocalSettings.ReadAsync<bool>(QueueEnabledKey);
             if (!queueEnabled)
             {
                 TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueue(true);
-                ApplicationData.Current.LocalSettings.Save(QueueEnabledKey, true);
+                await ApplicationData.Current.LocalSettings.SaveAsync(QueueEnabledKey, true);
             }
         }
         
