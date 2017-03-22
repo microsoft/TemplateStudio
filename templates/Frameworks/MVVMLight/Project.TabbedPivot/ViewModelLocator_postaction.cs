@@ -3,15 +3,14 @@
     public ViewModelLocator()
     {
         //^^
-        RegisterPivotView(navigationService);
+        RegisterPivotView();
     }
 
     public PivotViewModel PivotViewModel => ServiceLocator.Current.GetInstance<PivotViewModel>();
     //{[{
-    public void RegisterPivotView(NavigationService navigationService)
+    public void RegisterPivotView()
     {
         SimpleIoc.Default.Register<PivotViewModel>();
-        navigationService.Configure(typeof(PivotViewModel).FullName, typeof(PivotView));
     }
     //}]}
 }

@@ -5,7 +5,7 @@
 
     protected override async void OnBackgroundActivated(BackgroundActivatedEventArgs args)
     {
-        await _activationService.ActivateAsync(args);
+        await ActivationService.ActivateAsync(args);
     }
     //}]}
 }

@@ -8,11 +8,12 @@ namespace uct.SplitViewProject.View
     {
         public ShellView()
         {
+            DataContext = ViewModel;
             this.InitializeComponent();
+
+            ViewModel.Initialize(frame);
+
+            Unloaded += (sender, e) => ViewModel.CleanSuscriptions();
         }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e) => ViewModel.Initialize(e);
-
-        private void OnFrameNavigated(object sender, NavigationEventArgs e) => ViewModel.SetNavigationItem(e);
     }
 }

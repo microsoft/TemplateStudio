@@ -2,11 +2,10 @@
 {
     public class ShellViewModel : ViewModelBase
     {
-        public ShellViewModel() 
-        { 
+        private void PopulateNavItems()
+        {
             //^^
-            _navigationItems.Add(new ShellNavigationItem("Shell_uct.ItemName".GetLocalized(), Symbol.Document, typeof(uct.ItemNameViewModel).FullName));
-            SelectedItem = NavigationItems.FirstOrDefault();
+            _navigationItems.Add(ShellNavigationItem.FromType<uct.ItemNamePage>("Shell_uct.ItemName".GetLocalized(), Symbol.Document));
         }
     }
 }

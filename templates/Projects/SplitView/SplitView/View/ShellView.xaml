@@ -76,7 +76,7 @@
                     </ListView>
                 </Grid>
             </SplitView.Pane>
-            <Frame x:Name="frame" Navigated="OnFrameNavigated"/>
+            <Frame x:Name="frame" />
         </SplitView>
     </Grid>
 </Page>
