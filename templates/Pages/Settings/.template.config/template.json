@@ -21,13 +21,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\SettingsPage\\SettingsPagePage.xaml"
+      "path": ".\\View\\SettingsPagePage.xaml"
     },
     {
-      "path": ".\\SettingsPage\\SettingsPagePage.xaml.cs"
+      "path": ".\\View\\SettingsPagePage.xaml.cs"
     },
     {
-      "path": ".\\SettingsPage\\SettingsPageViewModel.cs"
+      "path": ".\\ViewModel\\SettingsPageViewModel.cs"
     },
     {
       "path": ".\\Services\\ThemeSelectorService.cs"

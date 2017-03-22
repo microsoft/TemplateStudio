@@ -20,10 +20,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\PivotPage\\PivotPageViewModel.cs"
-    },
-    {
-      "path": ".\\PivotPage\\ViewModelLocator.cs"
+      "path": ".\\ViewModel\\PivotViewModel.cs"
     }
   ],
   "symbols": {

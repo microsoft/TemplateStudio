@@ -20,19 +20,19 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\MasterDetailPage\\MasterDetailPagePage.xaml"
+      "path": ".\\View\\MasterDetailPagePage.xaml"
     },
     {
-      "path": ".\\MasterDetailPage\\MasterDetailPagePage.xaml.cs"
+      "path": ".\\View\\MasterDetailPagePage.xaml.cs"
     },
     {
-      "path": ".\\MasterDetailPage\\MasterDetailPageViewModel.cs"
+      "path": ".\\ViewModel\\MasterDetailPageViewModel.cs"
     },
     {
-      "path": ".\\MasterDetailPage\\SampleModel.cs"
+      "path": ".\\Model\\SampleModel.cs"
     },
     {
-      "path": ".\\MasterDetailPage\\SampleModelService.cs"
+      "path": ".\\Services\\SampleModelService.cs"
     }    
   ],
   "symbols": {

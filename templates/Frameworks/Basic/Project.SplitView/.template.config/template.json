@@ -20,10 +20,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Shell\\ShellNavigationItem.cs"
+      "path": ".\\Model\\ShellNavigationItem.cs"
     },
     {
-      "path": ".\\Shell\\ShellViewModel.cs"
+      "path": ".\\ViewModel\\ShellViewModel.cs"
     }
   ],
   "symbols": {

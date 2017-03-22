@@ -100,14 +100,14 @@
     <Compile Include="Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="PivotPage\PivotPage.xaml">
+    <Page Include="View\PivotView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="PivotPage\PivotPage.xaml.cs">
-      <DependentUpon>PivotPage.xaml</DependentUpon>
+    <Compile Include="View\PivotView.xaml.cs">
+      <DependentUpon>PivotView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PivotPage\PivotTabbedItem.cs" />
+    <Compile Include="Model\PivotTabbedItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">

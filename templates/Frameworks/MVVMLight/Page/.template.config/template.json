@@ -21,9 +21,6 @@
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\uct.ItemName\\ViewModelLocator.cs"
-    }
   ],
   "symbols": {
     "rootNamespace": {

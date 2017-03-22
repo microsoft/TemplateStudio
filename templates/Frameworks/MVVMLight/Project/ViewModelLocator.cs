@@ -1,15 +1,18 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using RootNamespace.Services;
+using RootNamespace.View;
+using RootNamespace.ViewModel;
 
 namespace RootNamespace
 {
-    public partial class ViewModelLocator
+    public class ViewModelLocator
     {
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            var navigationService = new Services.NavigationService();
+            var navigationService = new NavigationService();
             SimpleIoc.Default.Register(() => navigationService);
             
         }

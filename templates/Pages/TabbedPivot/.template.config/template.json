@@ -20,13 +20,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\TabbedPivotPage\\TabbedPivotPagePage.xaml"
+      "path": ".\\View\\TabbedPivotPagePage.xaml"
     },
     {
-      "path": ".\\TabbedPivotPage\\TabbedPivotPagePage.xaml.cs"
+      "path": ".\\View\\TabbedPivotPagePage.xaml.cs"
     },
     {
-      "path": ".\\TabbedPivotPage\\TabbedPivotPageViewModel.cs"
+      "path": ".\\ViewModel\\TabbedPivotPageViewModel.cs"
     }
   ],
   "symbols": {
