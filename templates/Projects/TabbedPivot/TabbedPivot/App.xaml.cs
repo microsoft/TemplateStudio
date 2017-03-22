@@ -64,7 +64,7 @@ namespace uct.TabbedPivotProject
 
         private ActivationService CreateActivationService()
         {
-            return new ActivationService(this, typeof(MainPage));
+            return new ActivationService(this, typeof(PivotView));
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ItemNamespace.View;
+using ItemNamespace.Extensions;
 namespace ItemNamespace.ViewModel
 {
     public class PivotViewModel : Observable
