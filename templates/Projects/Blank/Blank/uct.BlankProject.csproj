@@ -91,7 +91,6 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="project.json" />
     <PRIResource Include="Strings\en-us\Resources.resw" />
-    <Compile Include="Strings\ResourceExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
@@ -109,6 +108,9 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions\Resource.extensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Default.rd.xml" />
