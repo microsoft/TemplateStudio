@@ -20,56 +20,20 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\MasterDetailPage\\MasterDetailPagePage.xaml"
+      "path": ".\\View\\MasterDetailPagePage.xaml"
     },
     {
-      "path": ".\\MasterDetailPage\\MasterDetailPagePage.xaml.cs"
+      "path": ".\\View\\MasterDetailPagePage.xaml.cs"
     },
     {
-      "path": ".\\MasterDetailPage\\MasterDetailPageViewModel.cs"
+      "path": ".\\ViewModel\\MasterDetailPageViewModel.cs"
     },
     {
-      "path": ".\\MasterDetailPage\\DessertModel.cs"
+      "path": ".\\Model\\SampleModel.cs"
     },
     {
-      "path": ".\\MasterDetailPage\\DessertService.cs"
-    },
-    {
-      "path": ".\\MasterDetailPage\\Images\\60Banana.png"
-    },
-    {
-      "path": ".\\MasterDetailPage\\Images\\60Lemon.png"
-    },
-    {
-      "path": ".\\MasterDetailPage\\Images\\60Mint.png"
-    },
-    {
-      "path": ".\\MasterDetailPage\\Images\\60Orange.png"
-    },
-    {
-      "path": ".\\MasterDetailPage\\Images\\60SauceCaramel.png"
-    },
-    {
-      "path": ".\\MasterDetailPage\\Images\\60SauceChocolate.png"
-    },
-    {
-      "path": ".\\MasterDetailPage\\Images\\60SauceStrawberry.png"
-    },
-    {
-      "path": ".\\MasterDetailPage\\Images\\60SprinklesChocolate.png"
-    },
-    {
-      "path": ".\\MasterDetailPage\\Images\\60SprinklesRainbow.png"
-    },
-    {
-      "path": ".\\MasterDetailPage\\Images\\60SprinklesVanilla.png"
-    },
-    {
-      "path": ".\\MasterDetailPage\\Images\\60Strawberry.png"
-    },
-    {
-      "path": ".\\MasterDetailPage\\Images\\60Vanilla.png"
-    }
+      "path": ".\\Services\\SampleModelService.cs"
+    }    
   ],
   "symbols": {
     "rootNamespace": {

@@ -19,9 +19,9 @@
   "preferNameDirectory": true,
   "PrimaryOutputs":
   [
-    { "path": ".\\MapPage\\MapPagePage.xaml" },
-    { "path": ".\\MapPage\\MapPagePage.xaml.cs" },
-    { "path": ".\\MapPage\\MapPageViewModel.cs" },    
+    { "path": ".\\View\\MapPagePage.xaml" },
+    { "path": ".\\View\\MapPagePage.xaml.cs" },
+    { "path": ".\\ViewModel\\MapPageViewModel.cs" },    
     { "path": ".\\Assets\\map.png" }
   ],
   "symbols": {

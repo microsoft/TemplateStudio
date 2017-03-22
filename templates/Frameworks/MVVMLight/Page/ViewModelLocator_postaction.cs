@@ -1,5 +1,17 @@
-﻿public ViewModelLocator()
+﻿public class ViewModelLocator
 {
-    //^^         
-    Registeruct.ItemName(navigationService);
+    public ViewModelLocator()
+    {
+        //^^
+        Registeruct.ItemName(navigationService);
+    }
+
+    public uct.ItemNameViewModel uct.ItemNameViewModel => ServiceLocator.Current.GetInstance<uct.ItemNameViewModel>();
+    //{[{
+    public void Registeruct.ItemName(NavigationService navigationService)
+    {
+        SimpleIoc.Default.Register<uct.ItemNameViewModel>();
+        navigationService.Configure(typeof(uct.ItemNameViewModel).FullName, typeof(uct.ItemNamePage));
+    }
+    //}]}
 }

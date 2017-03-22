@@ -20,13 +20,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\WebViewPage\\WebViewPagePage.xaml"
+      "path": ".\\View\\WebViewPagePage.xaml"
     },
     {
-      "path": ".\\WebViewPage\\WebViewPagePage.xaml.cs"
+      "path": ".\\View\\WebViewPagePage.xaml.cs"
     },
     {
-      "path": ".\\WebViewPage\\WebViewPageViewModel.cs"
+      "path": ".\\ViewModel\\WebViewPageViewModel.cs"
     }
   ],
   "symbols": {

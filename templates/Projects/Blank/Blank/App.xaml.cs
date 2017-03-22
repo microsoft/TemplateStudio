@@ -15,7 +15,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-using uct.BlankProject.Main;
+using uct.BlankProject.Services;
+using uct.BlankProject.View;
 using uct.BlankProject.Activation;
 
 namespace uct.BlankProject
@@ -35,7 +36,7 @@ namespace uct.BlankProject
         {
             this.InitializeComponent();
 
-            _activationService = new ActivationService(this, typeof(Main.MainPage));
+            _activationService = new ActivationService(this, typeof(MainPage));
         }
 
         /// <summary>

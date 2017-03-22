@@ -15,7 +15,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using uct.SplitViewProject.Services;
 using uct.SplitViewProject.Activation;
+using uct.SplitViewProject.View;
 
 namespace uct.SplitViewProject
 {
@@ -34,7 +36,7 @@ namespace uct.SplitViewProject
         {
             this.InitializeComponent();
 
-            _activationService = new ActivationService(this, typeof(Shell.ShellPage));
+            _activationService = new ActivationService(this, typeof(ShellView));
         }
 
         /// <summary>
