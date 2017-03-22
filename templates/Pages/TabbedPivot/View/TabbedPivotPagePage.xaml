@@ -9,13 +9,23 @@
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Pivot x:Uid="TabbedPivotPage_Pivot">
             <PivotItem x:Uid="TabbedPivotPage_PivotItem1">
-                <!--TODO UWPTemplates: Add here your tab layout-->
-                
+                <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                    <!--
+                    The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+                    Place your content here.
+                    -->
+
+                </Grid>
             </PivotItem>
             
             <PivotItem x:Uid="TabbedPivotPage_PivotItem2">
-                <!--TODO UWPTemplates: Add here your tab layout-->
-                
+                <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                    <!--
+                    The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+                    Place your content here.
+                    -->
+
+                </Grid>
             </PivotItem>
         </Pivot>
     </Grid>
