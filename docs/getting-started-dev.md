@@ -178,6 +178,7 @@ using App147.Services;
 ```  
 
 But the Pages templates are Framework and Project type agnostics, and more over, pages itself have no conscience of ShellViewModel so, how this code can be generated?. Here is when the post-actions take place. 
+<<<<<<< HEAD
 
 After the code is generated, the [PostActionFactory]() review all the generated files and, for those which the name contains "_postaction", execute the post-action defined in its content.
 
@@ -203,6 +204,33 @@ TBD -> Probably in a differnt Page
 
 ### Add a new feature
 
+=======
+
+After the code is generated, the [PostActionFactory]() review all the generated files and, for those which the name contains "_postaction", execute the post-action defined in its content.
+
+### Post-Action Types
+
+### 
+
+## Frameworks Templates
+This templates contains all the generation information required by specific frameworks. Basically, contains the metadata and the post actions required to apply to a certain project or page during the generation to ensure the Framework infrastructure is added.
+
+This kind of templates have the following structure:
+* **Metadata Folder** (.metadata). Information about the framework. This information is displayed in the wizard.
+* **Code and folders structure**. The folder structure for this kind of templates is really important as it defines which specific code will be generated and which post-actions will be applied (as well as the post-action targets)when the user selects this kind of framewok. 
+
+
+## Project Type Templates
+### Layouts
+
+## Basic Authoring
+TBD -> Probably in a differnt Page
+
+### Add a new page
+
+### Add a new feature
+
+>>>>>>> b3995124d2106e965090226beb662b32b7bfda7c
 ## Advance Authoring
 TBD -> 
 ### Add custom post-actions??
