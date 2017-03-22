@@ -13,6 +13,13 @@ namespace Microsoft.Templates.Wizard.ViewModels
             set => SetProperty(ref _name, value);
         }
 
+        private string _displayName;
+        public string DisplayName
+        {
+            get => _displayName;
+            set => SetProperty(ref _displayName, value);
+        }
+
         private string _description;
         public string Description
         {
@@ -30,12 +37,13 @@ namespace Microsoft.Templates.Wizard.ViewModels
         public MetadataInfoViewModel(string name, MetadataInfo metadataInfo)
         {
             this.Name = name;
-
+            
             if (metadataInfo == null)
             {
                 return;
             }
 
+            this.DisplayName = metadataInfo.DisplayName;
             this.Description = metadataInfo.Description;
             this.Icon = Extensions.CreateIcon(metadataInfo.Icon);
         }
