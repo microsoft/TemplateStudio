@@ -178,7 +178,6 @@ using App147.Services;
 ```  
 
 But the Pages templates are Framework and Project type agnostics, and more over, pages itself have no conscience of ShellViewModel so, how this code can be generated?. Here is when the post-actions take place. 
-<<<<<<< HEAD
 
 After the code is generated, the [PostActionFactory]() review all the generated files and, for those which the name contains "_postaction", execute the post-action defined in its content.
 
@@ -204,7 +203,6 @@ TBD -> Probably in a differnt Page
 
 ### Add a new feature
 
-=======
 
 After the code is generated, the [PostActionFactory]() review all the generated files and, for those which the name contains "_postaction", execute the post-action defined in its content.
 
