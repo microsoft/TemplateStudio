@@ -38,11 +38,11 @@ namespace uct.ItemName.ViewModel
         {
             get
             {
-                if(_openPaneCommand == null)
+                if (_openPaneCommand == null)
                 {
                     _openPaneCommand = new RelayCommand(() => IsPaneOpen = !_isPaneOpen);
                 }
-                
+
                 return _openPaneCommand;
             }
         }
@@ -61,27 +61,22 @@ namespace uct.ItemName.ViewModel
             }
         }
 
-        public ShellViewModel() 
+        public void Initialize(Frame frame)
         {
-            //More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
-            //Edit String/en-US/Resources.resw: Add a menu item title for each page
+            NavigationService.Frame = frame;
+            NavigationService.Frame.Navigated += NavigationService_Navigated;
 
-            SelectedItem = NavigationItems.FirstOrDefault();
+            PopulateNavItems();
         }
 
-        public void Initialize(NavigationEventArgs args)
+        public void CleanSuscriptions()
         {
-            Type pageType = args?.Parameter as Type;
-            if (pageType == null)
-            {
-                pageType = typeof(MainPage);
-            }
-            NavigationService.Navigate(pageType);
+            NavigationService.Frame.Navigated -= NavigationService_Navigated;
         }
 
-        public void SetNavigationItem(NavigationEventArgs args)
+        private void NavigationService_Navigated(object sender, NavigationEventArgs e)
         {
-            var item = NavigationItems?.FirstOrDefault(i => i.PageType == args?.SourcePageType);
+            var item = NavigationItems?.FirstOrDefault(i => i.PageType == e?.SourcePageType);
             if (item != null)
             {
                 SelectedItem = item;
@@ -95,6 +90,14 @@ namespace uct.ItemName.ViewModel
             {
                 NavigationService.Navigate(navigationItem.PageType);
             }
+        }
+
+        private void PopulateNavItems()
+        {
+            _navigationItems.Clear();
+
+            //More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
+            //Edit String/en-US/Resources.resw: Add a menu item title for each page
         }
     }
 }

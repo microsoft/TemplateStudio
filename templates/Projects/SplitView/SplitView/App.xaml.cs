@@ -16,7 +16,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 using uct.SplitViewProject.Services;
-using uct.SplitViewProject.Activation;
 using uct.SplitViewProject.View;
 
 namespace uct.SplitViewProject
@@ -26,7 +25,8 @@ namespace uct.SplitViewProject
     /// </summary>
     sealed partial class App : Application
     {
-        private ActivationService _activationService;
+        private Lazy<ActivationService> _activationService;
+        private ActivationService ActivationService { get { return _activationService.Value; } }
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -36,7 +36,8 @@ namespace uct.SplitViewProject
         {
             this.InitializeComponent();
 
-            _activationService = new ActivationService(this, typeof(ShellView));
+            //delays the creation of the service until is used, in activation
+            _activationService = new Lazy<ActivationService>(CreateActivationService);
         }
 
         /// <summary>
@@ -48,7 +49,7 @@ namespace uct.SplitViewProject
         {
             if (!e.PrelaunchActivated)
             {
-                await _activationService.ActivateAsync(e); 
+                await ActivationService.ActivateAsync(e); 
             }
         }
 
@@ -58,7 +59,12 @@ namespace uct.SplitViewProject
         /// <param name="args">Event data for the event.</param>
         protected override async void OnActivated(IActivatedEventArgs args)
         {
-            await _activationService.ActivateAsync(args);
+            await ActivationService.ActivateAsync(args);
+        }
+
+        private ActivationService CreateActivationService()
+        {
+            return new ActivationService(this, typeof(MainPage), new ShellView());
         }
     }
 }

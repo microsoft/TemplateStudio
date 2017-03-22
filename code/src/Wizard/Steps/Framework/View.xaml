@@ -31,7 +31,7 @@
         <StackPanel DataContext="{Binding SelectedFramework}" Grid.Column="1" Style="{StaticResource TemplateInfoContainerStyle}">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Name:" Style="{StaticResource TemplateInfoPropertyNameStyle}"/>
-                <TextBlock Text="{Binding Name}" Style="{StaticResource TemplateInfoPropertyValueStyle}"/>
+                <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TemplateInfoPropertyValueStyle}"/>
             </StackPanel>
             <TextBlock Text="{Binding Description}" Style="{StaticResource TemplateInfoDescriptionStyle}"/>
         </StackPanel>

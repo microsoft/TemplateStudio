@@ -7,21 +7,31 @@ namespace RootNamespace.Services
 {
     public static class NavigationService
     {
-        private static Frame _frame = Window.Current.Content as Frame;
-        public static void SetNavigationFrame(Frame frame) => _frame = frame;
+        private static Frame _frame;
+        public static Frame Frame
+        {
+            get
+            {
+                if (_frame == null)
+                {
+                    _frame = Window.Current.Content as Frame;
+                }
 
-        public static bool CanGoBack => _frame.CanGoBack;
-        public static bool CanGoForward => _frame.CanGoForward;
+                return _frame;
+            }
+            set
+            {
+                _frame = value;
+            }
+        }
 
-        public static void GoBack() => _frame.GoBack();
-        public static void GoForward() => _frame.GoForward();
+        public static bool CanGoBack => Frame.CanGoBack;
+        public static bool CanGoForward => Frame.CanGoForward;
 
-        public static bool Navigate<T>() where T : Page => _frame.Navigate(typeof(T));
-        public static bool Navigate<T>(object parameter) where T : Page => _frame.Navigate(typeof(T), parameter);
-        public static bool Navigate<T>(object parameter, NavigationTransitionInfo infoOverride) where T : Page => _frame.Navigate(typeof(T), parameter, infoOverride);
+        public static void GoBack() => Frame.GoBack();
+        public static void GoForward() => Frame.GoForward();
 
-        public static bool Navigate(Type pageType) => _frame.Navigate(pageType);
-        public static bool Navigate(Type pageType, object parameter) => _frame.Navigate(pageType, parameter);
-        public static bool Navigate(Type pageType, object parameter, NavigationTransitionInfo infoOverride) => _frame.Navigate(pageType, parameter, infoOverride);
+        public static bool Navigate(Type pageType, object parameter = null, NavigationTransitionInfo infoOverride = null) => Frame.Navigate(pageType, parameter, infoOverride);
+        public static bool Navigate<T>(object parameter = null, NavigationTransitionInfo infoOverride = null) where T : Page => Navigate(typeof(T), parameter, infoOverride);
     }
 }

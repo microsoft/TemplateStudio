@@ -7,59 +7,33 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace RootNamespace.Services
 {
-    public class NavigationService
+    public static class NavigationService
     {
-        private Frame _frame;
-        private readonly Dictionary<string, Type> _pages = new Dictionary<string, Type>();
-
-        public NavigationService()
+        private static Frame _frame;
+        public static Frame Frame
         {
-            _frame = Window.Current.Content as Frame;
-        }
-
-        public string GetViewModel(Type page)
-        {
-            return _pages.FirstOrDefault(p => p.Value.FullName == page.FullName).Key;
-        }
-
-        public void SetNavigationFrame(Frame frame) => _frame = frame;
-
-        public bool CanGoBack => _frame.CanGoBack;
-        public bool CanGoForward => _frame.CanGoForward;
-
-        public void GoBack() => _frame.GoBack();
-        public void GoForward() => _frame.GoForward();
-
-        public bool Navigate(string pageKey) => Navigate(pageKey, null);
-        public bool Navigate(string pageKey, object parameter) => Navigate(pageKey, parameter, null);
-        public bool Navigate(string pageKey, object parameter, NavigationTransitionInfo infoOverride)
-        {
-            lock (_pages)
+            get
             {
-                if (!_pages.ContainsKey(pageKey))
+                if (_frame == null)
                 {
-                    throw new ArgumentException($"Page not found: {pageKey}. Did you forget to call NavigationService.Configure?", "pageKey");
+                    _frame = Window.Current.Content as Frame;
                 }
-                return _frame.Navigate(_pages[pageKey], parameter, infoOverride);
+
+                return _frame;
+            }
+            set
+            {
+                _frame = value;
             }
         }
 
-        public void Configure(string key, Type pageType)
-        {
-            lock (_pages)
-            {
-                if (_pages.ContainsKey(key))
-                {
-                    throw new ArgumentException($"The key {key} is already configured in NavigationService");
-                }
+        public static bool CanGoBack => Frame.CanGoBack;
+        public static bool CanGoForward => Frame.CanGoForward;
 
-                if (_pages.Any(p => p.Value == pageType))
-                {
-                    throw new ArgumentException($"This type is already configured with key {_pages.First(p => p.Value == pageType).Key}");
-                }
+        public static void GoBack() => Frame.GoBack();
+        public static void GoForward() => Frame.GoForward();
 
-                _pages.Add(key, pageType);
-            }
-        }
+        public static bool Navigate(Type pageType, object parameter = null, NavigationTransitionInfo infoOverride = null) => Frame.Navigate(pageType, parameter, infoOverride);
+        public static bool Navigate<T>(object parameter = null, NavigationTransitionInfo infoOverride = null) where T : Page => Navigate(typeof(T), parameter, infoOverride);
     }
 }

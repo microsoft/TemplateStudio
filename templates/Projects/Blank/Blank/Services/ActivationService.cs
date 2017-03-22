@@ -16,11 +16,13 @@ namespace uct.BlankProject.Services
     class ActivationService
     {
         private readonly App _app;
+        private readonly UIElement _shell;
         private readonly Type _defaultPage;
 
-        public ActivationService(App app, Type defaultPage)
+        public ActivationService(App app, Type defaultPage, UIElement shell = null)
         {
             _app = app;
+            _shell = shell ?? new Frame();
             _defaultPage = defaultPage;
         }
 
@@ -28,7 +30,7 @@ namespace uct.BlankProject.Services
         {
             // Initialize things like registering background task before the app is loaded
             await InitializeAsync();
-
+            
 //#if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
@@ -36,15 +38,18 @@ namespace uct.BlankProject.Services
             }
 //#endif
 
-            if (IsActivation(activationArgs))
+            if (IsInteractive(activationArgs))
             {
                 // Do not repeat app initialization when the Window already has content,
                 // just ensure that the window is active
                 if (Window.Current.Content == null)
                 {
                     // Create a Frame to act as the navigation context and navigate to the first page
-                    //TODO: MAYBE IS SHELLPAGE
-                    Window.Current.Content = new Frame();
+                    Window.Current.Content = _shell;
+                    NavigationService.Frame.NavigationFailed += (sender, e) =>
+                    {
+                        throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
+                    };
                 } 
             }
 
@@ -56,7 +61,7 @@ namespace uct.BlankProject.Services
                 await activationHandler.HandleAsync(activationArgs);
             }
 
-            if (IsActivation(activationArgs))
+            if (IsInteractive(activationArgs))
             {
                 var defaultHandler = new DefaultLaunchActivationHandler(_defaultPage);
                 if (defaultHandler.CanHandle(activationArgs))
@@ -88,7 +93,7 @@ namespace uct.BlankProject.Services
             yield break;
         }
 
-        private bool IsActivation(object args)
+        private bool IsInteractive(object args)
         {
             return args is IActivatedEventArgs;
         }

@@ -17,7 +17,6 @@ using Windows.UI.Xaml.Navigation;
 
 using uct.BlankProject.Services;
 using uct.BlankProject.View;
-using uct.BlankProject.Activation;
 
 namespace uct.BlankProject
 {
@@ -25,8 +24,9 @@ namespace uct.BlankProject
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
     sealed partial class App : Application
-    {
-        private ActivationService _activationService;
+    {        
+        private Lazy<ActivationService> _activationService;
+        private ActivationService ActivationService { get { return _activationService.Value; } }
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -36,7 +36,8 @@ namespace uct.BlankProject
         {
             this.InitializeComponent();
 
-            _activationService = new ActivationService(this, typeof(MainPage));
+            //delays the creation of the service until is used, in activation
+            _activationService = new Lazy<ActivationService>(CreateActivationService);
         }
 
         /// <summary>
@@ -48,7 +49,7 @@ namespace uct.BlankProject
         {
             if (!e.PrelaunchActivated)
             {
-                await _activationService.ActivateAsync(e); 
+                await ActivationService.ActivateAsync(e); 
             }
         }
 
@@ -58,7 +59,12 @@ namespace uct.BlankProject
         /// <param name="args">Event data for the event.</param>
         protected override async void OnActivated(IActivatedEventArgs args)
         {
-            await _activationService.ActivateAsync(args);
+            await ActivationService.ActivateAsync(args);
+        }
+
+        private ActivationService CreateActivationService()
+        {
+            return new ActivationService(this, typeof(MainPage));
         }
     }
 }

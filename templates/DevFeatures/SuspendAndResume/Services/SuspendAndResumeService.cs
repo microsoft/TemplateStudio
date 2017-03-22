@@ -51,7 +51,7 @@ namespace ItemNamespace.Services
            
             if (typeof(Page).IsAssignableFrom(saveState?.Page))
             {
-                //Navigate to page
+                NavigationService.Navigate(saveState.Page, saveState.SuspensionState);
             }
         }
     }

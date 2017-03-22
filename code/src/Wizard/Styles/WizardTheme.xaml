@@ -158,7 +158,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Image Source="{Binding Icon}" Style="{StaticResource TemplateIconStyle}" />
-            <TextBlock Text="{Binding Name}" Grid.Row="1" Style="{StaticResource TemplateTitleStyle}" />
+            <TextBlock Text="{Binding DisplayName}" Grid.Row="1" Style="{StaticResource TemplateTitleStyle}" />
         </Grid>
     </DataTemplate>
 

@@ -12,9 +12,6 @@ namespace RootNamespace
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            var navigationService = new NavigationService();
-            SimpleIoc.Default.Register(() => navigationService);
-            
         }
     }
 }
