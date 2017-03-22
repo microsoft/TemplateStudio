@@ -9,7 +9,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace uct.BlankProject.Activation
+using uct.SplitViewProject.Activation;
+
+namespace uct.SplitViewProject.Services
 {
     class ActivationService
     {

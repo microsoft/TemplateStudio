@@ -149,5 +149,23 @@ namespace Microsoft.Templates.Wizard.Steps.Pages {
                 return ResourceManager.GetString("ValidationError_Empty", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot set a custom name.
+        /// </summary>
+        public static string ValidationError_RenameNotAllowed {
+            get {
+                return ResourceManager.GetString("ValidationError_RenameNotAllowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is reserved.
+        /// </summary>
+        public static string ValidationError_ReservedName {
+            get {
+                return ResourceManager.GetString("ValidationError_ReservedName", resourceCulture);
+            }
+        }
     }
 }

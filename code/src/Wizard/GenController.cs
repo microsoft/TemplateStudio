@@ -68,9 +68,9 @@ namespace Microsoft.Templates.Wizard
             {
                 var genItems = GenComposer.Compose(userSelection).ToList();
 
-                Stopwatch chrono = Stopwatch.StartNew();
+                var chrono = Stopwatch.StartNew();
 
-                Dictionary<string, TemplateCreationResult> genResults = new Dictionary<string, TemplateCreationResult>();
+                var genResults = new Dictionary<string, TemplateCreationResult>();
 
                 foreach (var genInfo in genItems)
                 {
@@ -155,10 +155,21 @@ namespace Microsoft.Templates.Wizard
         private static void ShowError(Exception ex, WizardState userSelection = null)
         {
             AppHealth.Current.Error.TrackAsync(ex.ToString()).FireAndForget();
-            AppHealth.Current.Exception.TrackAsync(ex, userSelection?.ToString()).FireAndForget();
+            AppHealth.Current.Exception.TrackAsync(ex, GetExceptionTrackMessage(userSelection)).FireAndForget();
 
             var error = new ErrorDialog(ex);
             GenContext.ToolBox.Shell.ShowModal(error);
+        }
+
+        private static string GetExceptionTrackMessage(WizardState userSelection = null)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"Templates v: '{GenContext.ToolBox.Repo.GetVersion()}'");
+            if (userSelection != null)
+            {
+                sb.AppendLine(userSelection.ToString());
+            }
+            return sb.ToString();
         }
 
         private static void CleanStatusBar()
@@ -190,7 +201,7 @@ namespace Microsoft.Templates.Wizard
                     }
                 }
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 AppHealth.Current.Exception.TrackAsync(ex, "Exception tracking telemetry for Template Generation.").FireAndForget();
             }

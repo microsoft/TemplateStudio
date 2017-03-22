@@ -9,7 +9,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace uct.TabbedPivotProject.Activation
+using uct.BlankProject.Activation;
+
+namespace uct.BlankProject.Services
 {
     class ActivationService
     {

@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using uct.TabbedPivotProject.Services;
 using uct.TabbedPivotProject.Activation;
 using uct.TabbedPivotProject.View;
 

@@ -9,7 +9,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace uct.SplitViewProject.Activation
+using uct.TabbedPivotProject.Activation;
+
+namespace uct.TabbedPivotProject.Services
 {
     class ActivationService
     {

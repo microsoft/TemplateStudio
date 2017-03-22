@@ -9,7 +9,7 @@ namespace Microsoft.Templates.Core
 {
     public class Naming
     {
-        private static readonly string[] ReservedNames = new string[] { "WebView", "Page", "BackgroundTask", "PivotPage" };
+        private static readonly string[] ReservedNames = new string[] { "WebView", "Page", "BackgroundTask", "Pivot" };
 
         private const string ValidationPattern = @"^([a-zA-Z])([\w\-])*$";
         private const string InferInvalidPattern = @"[^a-zA-Z\d_\-]";
@@ -54,6 +54,15 @@ namespace Microsoft.Templates.Core
                     ErrorType = ValidationErrorType.AlreadyExists
                 };
             }
+            if (ReservedNames.Contains(value))
+            {
+                return new ValidationResult
+                {
+                    IsValid = false,
+                    ErrorType = ValidationErrorType.ReservedName
+                };
+            }
+
             var m = Regex.Match(value, ValidationPattern);
             if (!m.Success)
             {
@@ -88,6 +97,7 @@ namespace Microsoft.Templates.Core
         None,
         Empty,
         AlreadyExists,
-        BadFormat
+        BadFormat,
+        ReservedName
     }
 }
