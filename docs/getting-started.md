@@ -1,31 +1,37 @@
-Getting Started
+Getting Started with the Windows Template Studio
 ===============
-You can take advantage of Windows Template Studio by installing our Visual Studio Extension or by cloning the repo and working locally with the code and the available templates. If you plan to contribute, please follow the [contribution guidelines](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/contributing.md).  
+This section have the main concepts and definitions used in Windows Template Studio.
 
-You can install the Windows Template Studio Visual Studio Extension (pre-release nightly version) configuring the following extensions feed https://www.myget.org/F/vsixextensions/vsix/. Follow detailed installation instructions [below](#the-project).
+To start working with the latest version of this code, check [Getting Started for Developers](getting-started-developers.md)
 
-You can download the official extension from the [Visual Studio Gallery](https://visualstudiogallery.msdn.microsoft.com/) (coming soon).
+To start using the Windows Template Studio extension, [Getting Started with the Extension](getting-started-extension.md)
 
-We are currently targeting Visual Studio 2017 RC.
+To start authoring templates, check [Understanding the Templates](docs/templates.md)
 
-We mainly handle the following areas or concepts:
-* Templates
-* Generation
-* Templates Repository
-* Visual Studio Extension
+If you plan to contribute, please follow the [contribution guidelines](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/contributing.md) and remeber that the Pull Requests must be done aganist the "[dev](https://github.com/Microsoft/WindowsTemplateStudio/tree/dev)" branch.
 
 ## Main concepts
+Windows Template Studio is divided in the following main elements:
+* **Windows Template Studio Extension** --> This is a Visual Studio Extension project, which allows to install a new Visual Studio Project Template allowing the End-Users to have an improved experience when they want to create a new UWP App from the "File -> New Project...".  
+* **Generation Wizard** --> Once the End-User select the "Windows Template Studio" project type in the Visual Studio "File -> New Project..." dialog, the Generation Wizard will guide him through some steps to create users's preferred project. The Generation Wizard allows the user to select among the available Project Types, Frameworks, Pages, Developer Features and Customer Features 
+* **Templates** --> This is the repository of code templates used from the Generation Wizard. The templates are pieces of code used to generate the final project templates.
+
 ### What is a Template?
 A template is just code with some metadata. The metadata will contain the template information: name, description, licensing, remarks, programming language, type, guids, etc. The template definition is based on [dotnet Template Engine](https://github.com/dotnet/templating).
 
-There are four different types of templates:
+There are five different types of templates:
 * **Framework Templates**: Will contain the code used as infrastructure for the projects.
 * **Project Template**: project templates define the type of App you are about to generate (Basic, Split View, Tabbed...). 
 * **Page Template**: will contain the files and code needed to add a page to a certain App.
-* **Feature Templates**: will contain the files and code needed to add features to a certain App.
+* **Developer Feature Templates**: will contain the files and code needed to add features focused in developer experience.
+* **Customer Feature Templates**: will contain the files and code needed to add features focused in the final-user.
 
-### What is the Generation process?
-The generation is the process executed to create actual code from a selected template. That is, the process to create the real Visual Studio project (thought to be an App), or to create the XAML Page and its code behind, or the code to add/enable certain feature.
+### What is the Generation Wizard
+The Generation Wizard guide the user through the available templates allowing the user to compose an App project of his preference.
+
+The End-User can select among the different Frameworks and Project Types to define the basic layaout and base framework for his App. Then can add different Pages, Developer Features and Customer Features to complete his app. Once the user finish with the templates selections, the generation process is executed to create final App project code. 
+
+The generation is made in a composite way, where the Pages, Dev Features and Customer Features are Framework and Project Type agnostics and is only at the generation time where the particularities are included.  
 
 As well as templates, the generation is based on [dotnet Template Engine](https://github.com/dotnet/templating) code generation.
 
@@ -37,22 +43,10 @@ The Templates Repository is the place where we will gather all templates and wil
 ### What is the Visual Studio Extension?
 UWP App developers can take advantage of the Windows Template Studio by installing our Visual Studio extension. This extension will allow developers to create Apps, add pages and/or add features to existing apps based on the available Templates from the public Repository. 
 
-The Windows Template Studio Visual Studio Extension (pre-release nightly build) version is published [here](). The stable public version will be published through the [Visual Studio Gallery](https://visualstudiogallery.msdn.microsoft.com/) when ready.
+The Windows Template Studio Visual Studio Extension (pre-release) version is published [here](). The public version will be published through the [Visual Studio Gallery](https://visualstudiogallery.msdn.microsoft.com/) when ready.
 
-## Installing the Visual Studio Extension
-### Pre-release nightly build version
-Open Visual Studio 2017 and go to Tools -> Extensions & Updates, then click on "Change your Extensions and Updates settings" and create an Additional Extension Gallery using https://www.myget.org/F/vsixextensions/vsix/ as Url.
+## Getting Started for Developers
+To start working with the latest version of this code, check [Getting Started for Developers](getting-started-developers.md)
 
-![Configure Additional Extension Gallery](resources/vsix/configurefeed.jpg)
-
-Then, go again to Tools -> Extensions & Updates and using the recently added online gallery, install the Windows Template Studio Extension.
-
-![Install Windows Template Studio extension](resources/vsix/onlinefeed.jpg)
-
-Once installed, you will see a new Project Template which allows you to access to the available templates: Pre-Release version uses the VNext Template Repository.
-
-![File New Project](resources/vsix/filenew.jpg)
-
-### Official release version.
-Coming soon.
-
+## Getting Started with the Exension
+To start using the Windows Template Studio extension, [Getting Started with the Extension](getting-started-extension.md)

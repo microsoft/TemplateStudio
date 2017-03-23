@@ -15,6 +15,12 @@ To reach our developers in an up-to-date fashion, the project is broken up into 
 ## Getting Started
 Please read the [Getting Started with the Windows Template Studio](docs/getting-started.md) page for more detailed information about using the Windows Template Studio.
 
+To start working with the latest version of this code, check [Getting Started for Developers](docs/getting-started-developers.md)
+
+To start using the Windows Template Studio extension, check [Getting Started with the Extension](docs/getting-started-extension.md)
+
+To start authoring templates, check [Understanding the Templates](docs/templates.md)
+
 ## Features
 
 ### Supported Application Types
