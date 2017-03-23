@@ -16,7 +16,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 using uct.BlankProject.Services;
-using uct.BlankProject.View;
 
 namespace uct.BlankProject
 {
@@ -60,11 +59,6 @@ namespace uct.BlankProject
         protected override async void OnActivated(IActivatedEventArgs args)
         {
             await ActivationService.ActivateAsync(args);
-        }
-
-        private ActivationService CreateActivationService()
-        {
-            return new ActivationService(this, typeof(MainPage));
         }
     }
 }

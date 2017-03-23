@@ -15,6 +15,14 @@ namespace uct.ItemName.ViewModel
 {
     public class ShellViewModel : ViewModelBase
     {
+        public NavigationServiceExt NavigationService
+        {
+            get
+            {
+                return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<NavigationServiceExt>();
+            }
+        }
+
         private bool _isPaneOpen;
         public bool IsPaneOpen
         {
@@ -67,19 +75,19 @@ namespace uct.ItemName.ViewModel
         public void Initialize(Frame frame)
         {
             NavigationService.Frame = frame;
-            NavigationService.Frame.Navigated += NavigationService_Navigated;
+            NavigationService.Navigated += NavigationService_Navigated;
 
             PopulateNavItems();
         }
 
         public void CleanSuscriptions()
         {
-            NavigationService.Frame.Navigated -= NavigationService_Navigated;
+            NavigationService.Navigated -= NavigationService_Navigated;
         }
 
-        private void NavigationService_Navigated(object sender, NavigationEventArgs e)
+        private void NavigationService_Navigated(object sender, string e)
         {
-            var item = NavigationItems?.FirstOrDefault(i => i.PageType == e?.SourcePageType);
+            var item = NavigationItems?.FirstOrDefault(i => i.ViewModelName == e);
             if (item != null)
             {
                 SelectedItem = item;
@@ -91,7 +99,7 @@ namespace uct.ItemName.ViewModel
             var navigationItem = args?.ClickedItem as ShellNavigationItem;
             if (navigationItem != null)
             {
-                NavigationService.Navigate(navigationItem.PageType);
+                NavigationService.Navigate(navigationItem.ViewModelName);
             }
         }
 

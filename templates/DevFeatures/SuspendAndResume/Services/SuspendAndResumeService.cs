@@ -19,7 +19,7 @@ namespace ItemNamespace.Services
 
         //TODO UWPTEMPLATES: Subscribe to this event in pages in OnNavigatedTo event handler
         //to save page data, unsubscribe in OnNavigatedFrom
-        public event OnBackgroundEnteringEventHandler OnBackgroundEntering;
+        public event EventHandler<OnBackgroundEnteringEventArgs> OnBackgroundEntering;
 
         public async Task SaveStateAsync()
         {
@@ -28,8 +28,8 @@ namespace ItemNamespace.Services
                 SuspensionDate = DateTime.Now
             };
 
-            var page = OnBackgroundEntering?.Target.GetType();
-            var onBackgroundEnteringArgs = new OnBackgroundEnteringEventArgs(suspensionState, page);
+            var target = OnBackgroundEntering?.Target.GetType();
+            var onBackgroundEnteringArgs = new OnBackgroundEnteringEventArgs(suspensionState, target);
 
             OnBackgroundEntering?.Invoke(this, onBackgroundEnteringArgs);
             await ApplicationData.Current.LocalFolder.SaveAsync(stateFilename, onBackgroundEnteringArgs);
@@ -49,10 +49,6 @@ namespace ItemNamespace.Services
         {
             var saveState = await ApplicationData.Current.LocalFolder.ReadAsync<OnBackgroundEnteringEventArgs>(stateFilename);
            
-            if (typeof(Page).IsAssignableFrom(saveState?.Page))
-            {
-                NavigationService.Navigate(saveState.Page, saveState.SuspensionState);
-            }
         }
     }
 }

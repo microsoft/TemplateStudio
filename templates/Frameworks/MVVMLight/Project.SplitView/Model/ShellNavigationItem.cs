@@ -9,18 +9,13 @@ namespace uct.ItemName.Model
         public string Name { get; set; }
         public Symbol Symbol { get; set; }
         public char SymbolAsChar { get { return (char)Symbol; } }
-        public Type PageType { get; set; }
+        public string ViewModelName { get; set; }
 
-        private ShellNavigationItem(string name, Symbol symbol, Type pageType)
+        public ShellNavigationItem(string name, Symbol symbol, string viewModelName)
         {
             this.Name = name;
             this.Symbol = symbol;
-            this.PageType = pageType;
+            this.ViewModelName = viewModelName;
         }
-
-        public static ShellNavigationItem FromType<T>(string name, Symbol symbol) where T : Page
-        {
-            return new ShellNavigationItem(name, symbol, typeof(T));
-        }       
     }
 }

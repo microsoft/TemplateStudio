@@ -17,13 +17,13 @@ namespace uct.SplitViewProject.Services
     {
         private readonly App _app;
         private readonly UIElement _shell;
-        private readonly Type _defaultPage;
+        private readonly Type _defaultNavItem;
 
-        public ActivationService(App app, Type defaultPage, UIElement shell = null)
+        public ActivationService(App app, Type defaultNavItem, UIElement shell = null)
         {
             _app = app;
             _shell = shell ?? new Frame();
-            _defaultPage = defaultPage;
+            _defaultNavItem = defaultNavItem;
         }
 
         public async Task ActivateAsync(object activationArgs)
@@ -63,7 +63,7 @@ namespace uct.SplitViewProject.Services
 
             if (IsInteractive(activationArgs))
             {
-                var defaultHandler = new DefaultLaunchActivationHandler(_defaultPage);
+                var defaultHandler = new DefaultLaunchActivationHandler(_defaultNavItem);
                 if (defaultHandler.CanHandle(activationArgs))
                 {
                     await defaultHandler.HandleAsync(activationArgs);

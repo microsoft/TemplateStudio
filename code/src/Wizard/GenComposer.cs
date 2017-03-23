@@ -84,7 +84,8 @@ namespace Microsoft.Templates.Wizard
                 var featureTemplate = GenContext.ToolBox.Repo.Find(t => t.Name == feature.templateName);
                 if (featureTemplate != null)
                 {
-                   CreateGenInfo(feature.name, featureTemplate, genQueue);
+                    var genFeature = CreateGenInfo(feature.name, featureTemplate, genQueue);
+                    AddTemplate(genFeature, genQueue, userSelection.Framework, "Feature", featureTemplate.Name);
                 }
             }
         }

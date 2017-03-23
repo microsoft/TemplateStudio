@@ -16,7 +16,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 using uct.SplitViewProject.Services;
-using uct.SplitViewProject.View;
 
 namespace uct.SplitViewProject
 {
@@ -60,11 +59,6 @@ namespace uct.SplitViewProject
         protected override async void OnActivated(IActivatedEventArgs args)
         {
             await ActivationService.ActivateAsync(args);
-        }
-
-        private ActivationService CreateActivationService()
-        {
-            return new ActivationService(this, typeof(MainPage), new ShellView());
         }
     }
 }

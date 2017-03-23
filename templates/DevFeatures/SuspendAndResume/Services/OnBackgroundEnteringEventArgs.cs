@@ -2,18 +2,16 @@ using System;
 
 namespace ItemNamespace.Services
 {
-    public delegate void OnBackgroundEnteringEventHandler(object sender, OnBackgroundEnteringEventArgs e);
-
     public class OnBackgroundEnteringEventArgs : EventArgs
     {
         public SuspensionState SuspensionState { get; set; }
 
-        public Type Page { get; private set; }
+        public Type Target { get; private set; }
 
-        public OnBackgroundEnteringEventArgs(SuspensionState suspensionState, Type page) : base()
+        public OnBackgroundEnteringEventArgs(SuspensionState suspensionState, Type target) : base()
         {
             SuspensionState = suspensionState;
-            Page = page;
+            Target = target;
         }
     }
 

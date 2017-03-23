@@ -13,19 +13,12 @@ namespace uct.BlankProject.Activation
 {
     class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
     {
-        private readonly Type _page;
-
-        public DefaultLaunchActivationHandler(Type page)
-        {
-            _page = page;
-        }
-
         protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
         {
             // When the navigation stack isn't restored navigate to the first page,
             // configuring the new page by passing required information as a navigation
             // parameter
-            NavigationService.Navigate(_page, args.Arguments);
+            NavigationService.Navigate(_navElement, args.Arguments);
 
             await Task.CompletedTask;
         }
