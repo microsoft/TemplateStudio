@@ -111,18 +111,10 @@ namespace Microsoft.Templates.Core.Locations
         private async Task UpdateTemplatesCacheAsync()
         {
             SyncStatusChanged?.Invoke(this, SyncStatus.Updating);
+            await Task.Run(() => UpdateTemplatesCache());
 
-            bool updated = false;
-            await Task.Run(() => updated = UpdateTemplatesCache());
-
-            if (updated)
-            {
-                SyncStatusChanged?.Invoke(this, SyncStatus.Updated);
-            }
-            else
-            {
-                SyncStatusChanged?.Invoke(this, SyncStatus.None);
-            }
+            //TODO: Ensure updated is sent when updated content or when content available.
+            SyncStatusChanged?.Invoke(this, SyncStatus.Updated);
         }
 
         private async Task CheckContentOverVersion()
@@ -148,10 +140,8 @@ namespace Microsoft.Templates.Core.Locations
             });
         }
 
-        private bool UpdateTemplatesCache()
+        private void UpdateTemplatesCache()
         {
-            bool updated = false;
-
             try
             {
                 if (_content.ExitsNewerVersion(CurrentContentFolder) || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
@@ -161,16 +151,12 @@ namespace Microsoft.Templates.Core.Locations
                     CodeGen.Instance.Cache.WriteTemplateCaches();
 
                     CurrentContentFolder = CodeGen.Instance.GetCurrentContentSource(WorkingFolder);
-
-                    updated = CodeGen.Instance.Cache.TemplateInfo.Count > 0;
                 }
             }
             catch (Exception ex)
             {
                 throw new RepositorySynchronizationException(SyncStatus.Updating, ex);
             }
-
-            return updated;
         }
 
         private async Task PurgeContentAsync()
