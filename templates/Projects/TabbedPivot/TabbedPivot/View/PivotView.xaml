@@ -4,18 +4,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:uct.TabbedPivotProject.Model"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Pivot x:Uid="PivotView"  ItemsSource="{Binding Items}">
+        <Pivot x:Uid="PivotView"  ItemsSource="{x:Bind ViewModel.Items, Mode=OneWay}">
             <Pivot.HeaderTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Title}"/>
+                <DataTemplate x:DataType="model:PivotTabbedItem">
+                    <TextBlock Text="{x:Bind Title}"/>
                 </DataTemplate>
             </Pivot.HeaderTemplate>
             <Pivot.ItemTemplate>
-                <DataTemplate>
-                    <Frame Content="{Binding Page}"/>
+                <DataTemplate x:DataType="model:PivotTabbedItem">
+                    <Frame Content="{x:Bind Page}"/>
                 </DataTemplate>
             </Pivot.ItemTemplate>
         </Pivot>

@@ -1,7 +1,7 @@
 using ItemNamespace.ViewModel;
 namespace ItemNamespace.View
 {
-    public sealed partial class uct.ItemNamePage : Page
+    public sealed partial class uct.ItemNameView : Page
     {
         //{[{
         private uct.ItemNameViewModel ViewModel

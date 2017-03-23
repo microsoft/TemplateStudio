@@ -1,9 +1,10 @@
 <Page
-    x:Class="ItemNamespace.View.MasterDetailPagePage"
+    x:Class="ItemNamespace.View.MasterDetailViewView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:ItemNamespace.Model"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     Loaded="OnLoaded"
@@ -55,31 +56,31 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" x:Uid="MasterDetailPage_Title" Margin="{StaticResource PageHeaderMargin}" Style="{ThemeResource HeaderTextBlockStyle}" />
-        <Grid Visibility="{Binding MasterVisibility}" Grid.Row="1">
-            <ListView ItemsSource="{Binding SampleItems}" SelectionMode="Single" IsItemClickEnabled="True" SelectedItem="{Binding Selected}">
+        <TextBlock Grid.Row="0" x:Uid="MasterDetailView_Title" Margin="{StaticResource PageHeaderMargin}" Style="{ThemeResource HeaderTextBlockStyle}" />
+        <Grid Visibility="{x:Bind ViewModel.MasterVisibility, Mode=OneWay}" Grid.Row="1">
+            <ListView ItemsSource="{x:Bind ViewModel.SampleItems, Mode=OneWay}" SelectionMode="Single" IsItemClickEnabled="True" SelectedItem="{Binding Selected}">
                 <i:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="ItemClick">
-                        <core:InvokeCommandAction Command="{Binding ItemClickCommand}" />
+                        <core:InvokeCommandAction Command="{x:Bind ViewModel.ItemClickCommand}" />
                     </core:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
                 <ListView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="model:SampleModel">
                         <StackPanel Margin="{StaticResource ListItemMargin}">
-                            <TextBlock Text="{Binding Title}" Style="{StaticResource SubtitleTextBlockStyle}" />
-                            <TextBlock Text="{Binding Category}" Style="{StaticResource BodyTextBlockStyle}" />
+                            <TextBlock Text="{x:Bind Title}" Style="{StaticResource SubtitleTextBlockStyle}" />
+                            <TextBlock Text="{x:Bind Category}" Style="{StaticResource BodyTextBlockStyle}" />
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
 
-        <ScrollViewer Grid.Row="1" x:Name="detailGrid" Visibility="{Binding DetailVisibility}">
+        <ScrollViewer Grid.Row="1" x:Name="detailGrid" Visibility="{x:Bind ViewModel.DetailVisibility, Mode=OneWay}">
             <StackPanel Margin="{StaticResource ContainerMargin}">                
-                <TextBlock Text="{Binding Selected.Title}" Style="{StaticResource TitleTextBlockStyle}" />
-                <TextBlock Text="{Binding Selected.Category}" Style="{StaticResource SubtitleTextBlockStyle}" />
-                <TextBlock Text="{Binding Selected.Subtitle}" Margin="{StaticResource MediumTopMargin}" Style="{StaticResource SubtitleTextBlockStyle}" />
-                <TextBlock Text="{Binding Selected.Description}" Margin="{StaticResource SmallTopMargin}" Style="{StaticResource BodyTextBlockStyle}" />
+                <TextBlock Text="{x:Bind ViewModel.Selected.Title, Mode=OneWay}" Style="{StaticResource TitleTextBlockStyle}" />
+                <TextBlock Text="{x:Bind ViewModel.Selected.Category, Mode=OneWay}" Style="{StaticResource SubtitleTextBlockStyle}" />
+                <TextBlock Text="{x:Bind ViewModel.Selected.Subtitle, Mode=OneWay}" Margin="{StaticResource MediumTopMargin}" Style="{StaticResource SubtitleTextBlockStyle}" />
+                <TextBlock Text="{x:Bind ViewModel.Selected.Description, Mode=OneWay}" Margin="{StaticResource SmallTopMargin}" Style="{StaticResource BodyTextBlockStyle}" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

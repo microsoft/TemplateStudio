@@ -3,9 +3,9 @@ using Windows.UI.Xaml.Controls;
 
 namespace ItemNamespace.View
 {
-    public sealed partial class MasterDetailPagePage : Page
+    public sealed partial class MasterDetailViewView : Page
     {
-        public MasterDetailPagePage()
+        public MasterDetailViewView()
         {
             this.InitializeComponent();
         }

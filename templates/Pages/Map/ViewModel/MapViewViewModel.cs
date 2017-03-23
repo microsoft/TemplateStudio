@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Controls.Maps;
 
 namespace ItemNamespace.ViewModel
 {
-    public class MapPageViewModel : System.ComponentModel.INotifyPropertyChanged
+    public class MapViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private const double defaultZoomLevel = 19;
         private const double defaultLatitude = 47.639627;
@@ -27,8 +27,10 @@ namespace ItemNamespace.ViewModel
             set { Set(ref _center, value); }
         }
 
-        public MapPageViewModel()
+        public MapViewViewModel()
         {
+            var position = new BasicGeoposition() { Latitude = defaultLatitude, Longitude = defaultLongitude };
+            Center = new Geopoint(position);
             ZoomLevel = defaultZoomLevel;
         }
 
@@ -41,9 +43,7 @@ namespace ItemNamespace.ViewModel
 
             //TODO UWPTemplates: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
             map.MapServiceToken = "";
-
-            var position = new BasicGeoposition() { Latitude = defaultLatitude, Longitude = defaultLongitude };
-            Center = new Geopoint(position);
+            
             AddMapIcon(map, Center, "Microsoft Corporation");
         }        
 

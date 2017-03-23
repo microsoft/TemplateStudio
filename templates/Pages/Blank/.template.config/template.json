@@ -16,17 +16,17 @@
     "uct.version": "1.0.0",
     "uct.order": "1"
   },
-  "sourceName": "BlankPage",
+  "sourceName": "BlankView",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\View\\BlankPagePage.xaml"
+      "path": ".\\View\\BlankViewView.xaml"
     },
     {
-      "path": ".\\View\\BlankPagePage.xaml.cs"
+      "path": ".\\View\\BlankViewView.xaml.cs"
     },
     {
-      "path": ".\\ViewModel\\BlankPageViewModel.cs"
+      "path": ".\\ViewModel\\BlankViewViewModel.cs"
     }
   ],
   "symbols": {

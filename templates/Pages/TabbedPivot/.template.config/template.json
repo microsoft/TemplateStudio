@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "TabbedPivotPage",
+  "name": "TabbedPivotView",
   "groupIdentity": "Microsoft.UWPTemplates.TabbedPivotPage",
   "identity": "Microsoft.UWPTemplates.TabbedPivotPage.CSharp",
   "shortName": "tabbedpivotpage",
@@ -16,17 +16,17 @@
     "uct.version": "1.0.0",
     "uct.order": "1"
   },
-  "sourceName": "TabbedPivotPage",
+  "sourceName": "TabbedPivotView",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\View\\TabbedPivotPagePage.xaml"
+      "path": ".\\View\\TabbedPivotViewView.xaml"
     },
     {
-      "path": ".\\View\\TabbedPivotPagePage.xaml.cs"
+      "path": ".\\View\\TabbedPivotViewView.xaml.cs"
     },
     {
-      "path": ".\\ViewModel\\TabbedPivotPageViewModel.cs"
+      "path": ".\\ViewModel\\TabbedPivotViewViewModel.cs"
     }
   ],
   "symbols": {

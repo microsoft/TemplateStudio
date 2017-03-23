@@ -7,7 +7,7 @@ using RootNamespace.Services;
 
 namespace ItemNamespace.ViewModel
 {
-    public class SettingsPageViewModel : System.ComponentModel.INotifyPropertyChanged
+    public class SettingsViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private bool _isLightThemeEnabled;
         public bool IsLightThemeEnabled
@@ -25,16 +25,15 @@ namespace ItemNamespace.ViewModel
 
         public ICommand SwitchThemeCommand { get; private set; }
 
-        public SettingsPageViewModel()
+        public SettingsViewViewModel()
         {
             IsLightThemeEnabled = ThemeSelectorService.IsLightThemeEnabled;
-            SwitchThemeCommand = new RelayCommand(SwitchTheme);
-            AppDescription = GetAppDescription();
+            SwitchThemeCommand = new RelayCommand(async () => { await ThemeSelectorService.SwitchThemeAsync(); });
         }
 
-        private void SwitchTheme()
+        public void Initialize()
         {
-            ThemeSelectorService.SwitchTheme();
+            AppDescription = GetAppDescription();
         }
 
         private string GetAppDescription()

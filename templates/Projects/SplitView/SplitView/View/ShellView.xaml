@@ -1,10 +1,10 @@
 <Page
     x:Class="uct.SplitViewProject.View.ShellView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:model="using:uct.SplitViewProject.Model"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:uct.SplitViewProject.Model"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
@@ -35,7 +35,7 @@
         <SplitView
             DisplayMode="CompactInline"
             PaneBackground="{ThemeResource SystemBaseLowColor}"
-            IsPaneOpen="{Binding IsPaneOpen, Mode=TwoWay}">
+            IsPaneOpen="{x:Bind ViewModel.IsPaneOpen, Mode=TwoWay}">
             <SplitView.Pane>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -48,7 +48,7 @@
                         Width="48"
                         Height="48"
                         Foreground="{ThemeResource SystemBaseHighColor}"
-                        Command="{Binding OpenPaneCommand}"
+                        Command="{x:Bind ViewModel.OpenPaneCommand}"
                         Background="Transparent">
                         <FontIcon                        
                             FontFamily="Segoe MDL2 Assets"
@@ -59,13 +59,13 @@
                         Grid.Row="1"    
                         IsItemClickEnabled="True"                        
                         ItemTemplate="{StaticResource SplitViewItemTemplate}"
-                        ItemsSource="{Binding NavigationItems}"
-                        SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                        ItemsSource="{x:Bind ViewModel.NavigationItems, Mode=OneWay}"
+                        SelectedItem="{x:Bind ViewModel.SelectedItem, Mode=OneWay}"
                         SelectionMode="Single"
                         TabIndex="1">
                         <i:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="ItemClick">
-                                <core:InvokeCommandAction Command="{Binding ItemClickCommand}"/>
+                                <core:InvokeCommandAction Command="{x:Bind ViewModel.ItemClickCommand}"/>
                             </core:EventTriggerBehavior>
                         </i:Interaction.Behaviors>
                         <ListView.ItemContainerStyle>

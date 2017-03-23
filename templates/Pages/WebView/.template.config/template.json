@@ -16,17 +16,17 @@
     "uct.version": "1.0.0",
     "uct.order": "1"
   },
-  "sourceName": "WebViewPage",
+  "sourceName": "WebViewView",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\View\\WebViewPagePage.xaml"
+      "path": ".\\View\\WebViewViewView.xaml"
     },
     {
-      "path": ".\\View\\WebViewPagePage.xaml.cs"
+      "path": ".\\View\\WebViewViewView.xaml.cs"
     },
     {
-      "path": ".\\ViewModel\\WebViewPageViewModel.cs"
+      "path": ".\\ViewModel\\WebViewViewViewModel.cs"
     }
   ],
   "symbols": {

@@ -22,6 +22,9 @@
   "PrimaryOutputs": [
     {
       "path": ".\\Extensions\\SettingsStorage.extensions.cs"
+    },
+    {
+      "path": ".\\Json.cs"
     }
   ],
   "symbols": {

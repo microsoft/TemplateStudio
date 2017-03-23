@@ -1,5 +1,5 @@
 <Page
-    x:Class="ItemNamespace.View.TabbedPivotPagePage"
+    x:Class="ItemNamespace.View.TabbedPivotViewView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,8 +7,8 @@
     mc:Ignorable="d">
 
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Pivot x:Uid="TabbedPivotPage_Pivot">
-            <PivotItem x:Uid="TabbedPivotPage_PivotItem1">
+        <Pivot x:Uid="TabbedPivotView_Pivot">
+            <PivotItem x:Uid="TabbedPivotView_PivotItem1">
                 <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
                     <!--
                     The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
@@ -18,7 +18,7 @@
                 </Grid>
             </PivotItem>
             
-            <PivotItem x:Uid="TabbedPivotPage_PivotItem2">
+            <PivotItem x:Uid="TabbedPivotView_PivotItem2">
                 <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
                     <!--
                     The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 

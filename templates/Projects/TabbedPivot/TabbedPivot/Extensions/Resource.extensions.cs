@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 
-namespace uct.BlankProject
+namespace uct.TabbedPivotProject.Extensions
 {
     static class ResourceExtensions
     {

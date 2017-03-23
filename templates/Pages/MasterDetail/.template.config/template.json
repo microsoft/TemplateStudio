@@ -16,17 +16,17 @@
     "uct.version": "1.0.0",
     "uct.order": "1"
   },
-  "sourceName": "MasterDetailPage",
+  "sourceName": "MasterDetailView",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\View\\MasterDetailPagePage.xaml"
+      "path": ".\\View\\MasterDetailViewView.xaml"
     },
     {
-      "path": ".\\View\\MasterDetailPagePage.xaml.cs"
+      "path": ".\\View\\MasterDetailViewView.xaml.cs"
     },
     {
-      "path": ".\\ViewModel\\MasterDetailPageViewModel.cs"
+      "path": ".\\ViewModel\\MasterDetailViewViewModel.cs"
     },
     {
       "path": ".\\Model\\SampleModel.cs"
