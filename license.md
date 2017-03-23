@@ -1,4 +1,4 @@
-# UWP Community Template Generator
+# Windows Template Studio
 
 Copyright (c) Microsoft and Contributors
 

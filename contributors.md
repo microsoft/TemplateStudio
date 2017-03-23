@@ -1,6 +1,6 @@
-# Contributors to UWP Community Template Generator
+# Contributors to Windows Template Studio
 
-We would like to directly call out our wonderful community that help directly and be sure you can see where to reach out to them other than the [contributors tab](https://github.com/Microsoft/UWPCommunityTemplates/graphs/contributors).  If we are missing someone, please tell us!
+We would like to directly call out our wonderful Windows Template Studio that help directly and be sure you can see where to reach out to them other than the [contributors tab](https://github.com/Microsoft/WindowsTemplateStudio/graphs/contributors).  If we are missing someone, please tell us!
 
 ## Community
 * Coming Soon!
