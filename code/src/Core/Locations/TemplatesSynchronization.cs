@@ -11,7 +11,7 @@ namespace Microsoft.Templates.Core.Locations
 {
     public enum SyncStatus
     {
-        Undefined = 0,
+        None = 0,
         Updating = 1,
         Updated = 2,
         Adquiring = 3,
@@ -47,7 +47,17 @@ namespace Microsoft.Templates.Core.Locations
 
         public async Task Do(bool forced = false)
         {
-            if (!await ExistsUnderVersion())
+            bool contentIsUnderVersion = _content.ExistUnderVersion();
+
+            if(contentIsUnderVersion)
+            {
+                await CheckMandatoryAdquisitionAsync(true);
+
+                await UpdateTemplatesCacheAsync();
+
+                await CheckContentUnderVersion();
+            }
+            else
             {
                 await CheckMandatoryAdquisitionAsync(forced);
 
@@ -55,10 +65,13 @@ namespace Microsoft.Templates.Core.Locations
 
                 await CheckExpirationAdquisitionAsync();
 
-                await CheckOverVersion();
-
-                PurgeContentAsync().FireAndForget();
+                await CheckContentOverVersion();
             }
+
+
+            PurgeContentAsync().FireAndForget();
+
+
         }
 
         private async Task AdquireContentAsync()
@@ -98,11 +111,21 @@ namespace Microsoft.Templates.Core.Locations
         private async Task UpdateTemplatesCacheAsync()
         {
             SyncStatusChanged?.Invoke(this, SyncStatus.Updating);
-            await Task.Run(() => UpdateTemplatesCache());
-            SyncStatusChanged?.Invoke(this, SyncStatus.Updated);
+
+            bool updated = false;
+            await Task.Run(() => updated = UpdateTemplatesCache());
+
+            if (updated)
+            {
+                SyncStatusChanged?.Invoke(this, SyncStatus.Updated);
+            }
+            else
+            {
+                SyncStatusChanged?.Invoke(this, SyncStatus.None);
+            }
         }
 
-        private async Task CheckOverVersion()
+        private async Task CheckContentOverVersion()
         {
             await Task.Run(() =>
             {
@@ -113,24 +136,24 @@ namespace Microsoft.Templates.Core.Locations
             });
         }
 
-        private async Task<bool> ExistsUnderVersion()
+        private async Task CheckContentUnderVersion()
         {
-            return await Task.Run(() =>
+            await Task.Run(() =>
             {
                 bool result = _content.ExistUnderVersion();
                 if (result)
                 {
                     SyncStatusChanged?.Invoke(this, SyncStatus.UnderVersion);
                 }
-                return result;
             });
         }
 
-        private void UpdateTemplatesCache()
+        private bool UpdateTemplatesCache()
         {
+            bool updated = false;
+
             try
             {
-
                 if (_content.ExitsNewerVersion(CurrentContentFolder) || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
                 {
                     CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
@@ -138,12 +161,16 @@ namespace Microsoft.Templates.Core.Locations
                     CodeGen.Instance.Cache.WriteTemplateCaches();
 
                     CurrentContentFolder = CodeGen.Instance.GetCurrentContentSource(WorkingFolder);
+
+                    updated = CodeGen.Instance.Cache.TemplateInfo.Count > 0;
                 }
             }
             catch (Exception ex)
             {
                 throw new RepositorySynchronizationException(SyncStatus.Updating, ex);
             }
+
+            return updated;
         }
 
         private async Task PurgeContentAsync()

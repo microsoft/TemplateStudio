@@ -83,16 +83,24 @@ namespace Microsoft.Templates.Wizard.Host
                 Navigate(step);
             }
 
+
             if (status == SyncStatus.OverVersion)
             {
-                MessageBox.Show(StringRes.StatusOverVersionContent, StringRes.StatusOverVersionTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+                Host.Dispatcher.Invoke(() => 
+                {
+                    MessageBox.Show(Host, StringRes.StatusOverVersionContent, StringRes.StatusOverVersionTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+                });
+
                 //TODO: Review message and behavior.
             }
 
             if (status == SyncStatus.UnderVersion)
             {
-                MessageBox.Show(StringRes.StatusLowerVersionContent, StringRes.StatusLowerVersionContent, MessageBoxButton.OK, MessageBoxImage.Error);
-                //TODO: Review message and behavior.
+                Host.Dispatcher.Invoke(() =>
+                {
+                    MessageBox.Show(Host, StringRes.StatusLowerVersionContent, StringRes.StatusLowerVersionContent, MessageBoxButton.OK, MessageBoxImage.Error);
+                    //TODO: Review message and behavior.
+                });
             }
         }
 
