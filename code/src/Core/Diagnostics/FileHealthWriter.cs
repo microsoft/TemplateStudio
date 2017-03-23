@@ -10,21 +10,12 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
-    public class FileHealthWriter: IHealthWriter, IDisposable
+    public class FileHealthWriter: IHealthWriter
     {
         private static SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
         private string _workingFolder;
 
-        private StreamWriter _fileStream;
-
-        private string _fileName;
-        public string LogFileName
-        {
-            get
-            {
-                return _fileName;
-            }
-        }
+        public string LogFileName { get; private set; }
 
         private static FileHealthWriter _current;
         public static FileHealthWriter Current
@@ -41,19 +32,17 @@ namespace Microsoft.Templates.Core.Diagnostics
         private FileHealthWriter(Configuration currentConfig)
         {        
             _workingFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), currentConfig.LogFileFolderPath);
-
+            InitializeLogFile();
             PurgeOldLogs(_workingFolder, Configuration.Current.DaysToKeepDiagnosticsLogs);
         }
 
-        public static void SetConfiguration(Configuration config)
-        {
-            _current = new FileHealthWriter(config);
-        }
+        //public static void SetConfiguration(Configuration config)
+        //{
+        //    _current = new FileHealthWriter(config);
+        //}
 
         public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex=null)
         {
-            await InitializeLogFileAsync();
-
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{eventType.ToString()}\t{message}");
             if(ex != null)
@@ -64,8 +53,6 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
 
             await WriteAndFlushAsync(sb.ToString());
-
-
         }
         public async Task WriteExceptionAsync(Exception ex, string message = null)
         {
@@ -73,9 +60,6 @@ namespace Microsoft.Templates.Core.Diagnostics
             {
                 throw new ArgumentNullException("ex");
             }
-
-            await InitializeLogFileAsync();
-
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{TraceEventType.Critical.ToString():11}\tException Tracked. {(message ?? "")}");
             if (ex != null)
@@ -93,26 +77,39 @@ namespace Microsoft.Templates.Core.Diagnostics
             return false;
         }
 
-        private async Task InitializeLogFileAsync()
+        private async Task WriteAndFlushAsync(string data)
         {
             await semaphoreSlim.WaitAsync();
             try
             {
-                if (_fileStream == null)
-                {
-                    _fileName = Path.Combine(_workingFolder, $"UWPTemplates_{DateTime.Now.ToString("yyyyMMdd")}.log");
-                    if (!Directory.Exists(_workingFolder))
-                    {
-                        Directory.CreateDirectory(_workingFolder);
-                    }
-                    if (CheckLogFileInUse())
-                    {
-                        _fileName = _fileName.Replace(".log", $"_{Guid.NewGuid().ToString()}.log");
-                    }
-                    _fileStream = OpenSharedFileStream(_fileName);
+                File.WriteAllText(LogFileName, data);
+            }
+            catch (Exception exception)
+            {
+                Trace.TraceError($"Error writing to the stream. Exception:\r\n{exception.ToString()}");
+            }
+            finally
+            {
+                semaphoreSlim.Release();
+            }
+        }
 
-                    StartLog();
+        private void InitializeLogFile()
+        {
+            semaphoreSlim.Wait();
+            try
+            {
+                LogFileName = Path.Combine(_workingFolder, $"UWPTemplates_{DateTime.Now.ToString("yyyyMMdd")}.log");
+                if (!Directory.Exists(_workingFolder))
+                {
+                    Directory.CreateDirectory(_workingFolder);
                 }
+                if (CheckLogFileInUse(LogFileName))
+                {
+                    LogFileName = LogFileName.Replace(".log", $"_{Guid.NewGuid().ToString()}.log");
+                }
+
+                StartLog();
             }
             catch (Exception exception)
             {
@@ -124,24 +121,13 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
 
-        private StreamWriter OpenSharedFileStream(string fileName)
-        {
-            FileMode mode = File.Exists(fileName) ? FileMode.Append : FileMode.CreateNew;
-            FileStream fs = new FileStream(fileName, mode, FileAccess.Write, FileShare.ReadWrite | FileShare.Read);
-            StreamWriter fileStream = new StreamWriter(fs, Encoding.UTF8)
-            {
-                AutoFlush = true
-            };
-
-            return fileStream;
-        }
-
         private void StartLog()
         {
-            StackTrace stackTrace = new StackTrace();           
-            StackFrame[] stackFrames = stackTrace.GetFrames(); 
+            StackTrace stackTrace = new StackTrace();
+            StackFrame[] stackFrames = stackTrace.GetFrames();
 
-            //StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
+
             //sb.AppendLine("Stack:");
             //foreach (StackFrame stackFrame in stackFrames)
             //{
@@ -149,9 +135,9 @@ namespace Microsoft.Templates.Core.Diagnostics
             //}
             //sb.AppendLine("");
 
-            _fileStream?.WriteLine($"\r\n>>>>>>>>>>>>>> Log started {DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}");
-            _fileStream?.WriteLine($">>>>>>>>>>>>>> Assembly File Version: {GetVersion()}");
-            //_fileStream?.WriteLine(sb.ToString());
+            sb.AppendLine($"\r\n>>>>>>>>>>>>>> Log started {DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}");
+            sb.AppendLine($">>>>>>>>>>>>>> Assembly File Version: {GetVersion()}");
+            File.WriteAllText(LogFileName, sb.ToString());
         }
 
         private static string GetVersion()
@@ -160,12 +146,12 @@ namespace Microsoft.Templates.Core.Diagnostics
             return FileVersionInfo.GetVersionInfo(assemblyLocation).FileVersion;
         }
 
-        private bool CheckLogFileInUse()
+        private static bool CheckLogFileInUse(string logFileName)
         {
             FileStream stream = null;
             try
             {
-                stream = new FileStream(_fileName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read);
+                stream = new FileStream(logFileName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read);
             }
             catch (IOException)
             {
@@ -176,26 +162,8 @@ namespace Microsoft.Templates.Core.Diagnostics
                 if (stream != null)
                     stream.Close();
             }
-            
-            return false;
-        }
 
-        public async Task WriteAndFlushAsync(string data)
-        {
-            await semaphoreSlim.WaitAsync();
-            try
-            {
-                await _fileStream.WriteLineAsync(data);
-                await _fileStream.FlushAsync();
-            }
-            catch (Exception exception)
-            {
-                Trace.TraceError($"Error writing to the stream. Exception:\r\n{exception.ToString()}");
-            }
-            finally
-            {
-                semaphoreSlim.Release();
-            }
+            return false;
         }
 
         private static void PurgeOldLogs(string logFolder, int daysToKeep)
@@ -217,31 +185,6 @@ namespace Microsoft.Templates.Core.Diagnostics
                     }
                 }
             }
-        }
-
-
-
-        ~FileHealthWriter()
-        {
-            Dispose(false);
-        }
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                // free managed resources 
-                if (_fileStream != null)
-                {
-                    _fileStream.Dispose();
-                }
-            }
-            //free native resources if any.
         }
     }
 }
