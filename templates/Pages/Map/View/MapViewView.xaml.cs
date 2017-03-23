@@ -4,9 +4,9 @@ using Windows.UI.Xaml.Controls;
 
 namespace ItemNamespace.View
 {
-    public sealed partial class MapPagePage : Page
+    public sealed partial class MapViewView : Page
     {
-        public MapPagePage()
+        public MapViewView()
         {
             this.InitializeComponent();
         }

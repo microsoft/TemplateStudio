@@ -1,8 +1,8 @@
 <root>
   <!--^^-->
   <!--{[{-->
-  <data name="BlankPage_Title.Text" xml:space="preserve">
-    <value>BlankPage</value>
+  <data name="BlankView_Title.Text" xml:space="preserve">
+    <value>BlankView</value>
   </data>
   <!--}]}-->
 </root>

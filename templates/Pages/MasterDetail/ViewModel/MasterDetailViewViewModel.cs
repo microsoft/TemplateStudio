@@ -11,7 +11,7 @@ using ItemNamespace.Services;
 
 namespace ItemNamespace.ViewModel
 {
-    public class MasterDetailPageViewModel : System.ComponentModel.INotifyPropertyChanged
+    public class MasterDetailViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         const string NarrowStateName = "NarrowState";
         const string DefaultStateName = "DefaultState";
@@ -43,7 +43,7 @@ namespace ItemNamespace.ViewModel
 
         public ObservableCollection<SampleModel> SampleItems { get; private set; } = new ObservableCollection<SampleModel>();
 
-        public MasterDetailPageViewModel()
+        public MasterDetailViewViewModel()
         {
             ItemClickCommand = new RelayCommand<ItemClickEventArgs>(OnItemClick);
             SetGoBack();

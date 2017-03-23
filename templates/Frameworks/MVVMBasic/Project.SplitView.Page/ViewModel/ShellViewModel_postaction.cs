@@ -8,7 +8,7 @@ namespace ItemNamespace.ViewModel
         private void PopulateNavItems()
         {
             //^^
-            _navigationItems.Add(ShellNavigationItem.FromType<uct.ItemNamePage>("Shell_uct.ItemName".GetLocalized(), Symbol.Document));
+            _navigationItems.Add(ShellNavigationItem.FromType<uct.ItemNameView>("Shell_uct.ItemName".GetLocalized(), Symbol.Document));
         }
     }
 }

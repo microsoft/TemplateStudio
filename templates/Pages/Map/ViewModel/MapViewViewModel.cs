@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Controls.Maps;
 
 namespace ItemNamespace.ViewModel
 {
-    public class MapPageViewModel : System.ComponentModel.INotifyPropertyChanged
+    public class MapViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private const double defaultZoomLevel = 19;
         private const double defaultLatitude = 47.639627;
@@ -27,7 +27,7 @@ namespace ItemNamespace.ViewModel
             set { Set(ref _center, value); }
         }
 
-        public MapPageViewModel()
+        public MapViewViewModel()
         {
             ZoomLevel = defaultZoomLevel;
         }

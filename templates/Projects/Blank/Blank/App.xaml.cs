@@ -64,7 +64,7 @@ namespace uct.BlankProject
 
         private ActivationService CreateActivationService()
         {
-            return new ActivationService(this, typeof(MainPage));
+            return new ActivationService(this, typeof(MainView));
         }
     }
 }

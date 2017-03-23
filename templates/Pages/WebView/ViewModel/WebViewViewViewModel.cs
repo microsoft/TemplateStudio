@@ -2,7 +2,7 @@ using System;
 
 namespace ItemNamespace.ViewModel
 {
-    public class WebViewPageViewModel : System.ComponentModel.INotifyPropertyChanged
+    public class WebViewViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private Uri _source;
         public Uri Source
@@ -11,7 +11,7 @@ namespace ItemNamespace.ViewModel
             set { Set(ref _source, value); }
         }
 
-        public WebViewPageViewModel()
+        public WebViewViewViewModel()
         {
         }
 

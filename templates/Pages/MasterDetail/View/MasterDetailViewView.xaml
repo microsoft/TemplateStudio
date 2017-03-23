@@ -1,5 +1,5 @@
 <Page
-    x:Class="ItemNamespace.View.MasterDetailPagePage"
+    x:Class="ItemNamespace.View.MasterDetailViewView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -55,7 +55,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" x:Uid="MasterDetailPage_Title" Margin="{StaticResource PageHeaderMargin}" Style="{ThemeResource HeaderTextBlockStyle}" />
+        <TextBlock Grid.Row="0" x:Uid="MasterDetailView_Title" Margin="{StaticResource PageHeaderMargin}" Style="{ThemeResource HeaderTextBlockStyle}" />
         <Grid Visibility="{Binding MasterVisibility}" Grid.Row="1">
             <ListView ItemsSource="{Binding SampleItems}" SelectionMode="Single" IsItemClickEnabled="True" SelectedItem="{Binding Selected}">
                 <i:Interaction.Behaviors>

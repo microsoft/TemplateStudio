@@ -64,7 +64,7 @@ namespace uct.SplitViewProject
 
         private ActivationService CreateActivationService()
         {
-            return new ActivationService(this, typeof(MainPage), new ShellView());
+            return new ActivationService(this, typeof(MainView), new ShellView());
         }
     }
 }

@@ -8,7 +8,7 @@ namespace ItemNamespace.ViewModel
         public PivotViewModel()
         {
             //^^
-            Items.Add(new PivotTabbedItem("PivotView_uct.ItemName".GetLocalized(), new uct.ItemNamePage()));
+            Items.Add(new PivotTabbedItem("PivotView_uct.ItemName".GetLocalized(), new uct.ItemNameView()));
         }
     }
 }

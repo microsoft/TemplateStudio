@@ -4,9 +4,9 @@ using Windows.UI.Xaml.Controls;
 
 namespace ItemNamespace.View
 {
-    public sealed partial class WebViewPagePage : Page
+    public sealed partial class WebViewViewView : Page
     {
-        public WebViewPagePage()
+        public WebViewViewView()
         {
             this.InitializeComponent();
         }

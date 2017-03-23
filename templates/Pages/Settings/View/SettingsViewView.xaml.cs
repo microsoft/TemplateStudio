@@ -2,9 +2,9 @@ using Windows.UI.Xaml.Controls;
 
 namespace ItemNamespace.View
 {
-    public sealed partial class TabbedPivotPagePage : Page
+    public sealed partial class SettingsViewView : Page
     {
-        public TabbedPivotPagePage()
+        public SettingsViewView()
         {
             this.InitializeComponent();
         }
