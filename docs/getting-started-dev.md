@@ -33,12 +33,6 @@ There are different test projects in the solution:
 * [Templates.Test](../code/test/): Contains integration automated test for the Templates. This project scans the Templates folder and ensure that every template is generating and building properly.
 * [VsEmulator](../code/test/): test application able to run End-To-End the generation using the local templates repository.
 
-## VS Solutions
-We have the following solutions to help get focused in the different development areas:
-* Big.sln: contains all the projects including the test projects.
-* Core.sln: contains the Core assembly and it's tests.
-* Installer.sln: contains the assemblys needed by the extension to be able to run it with in the Visual Studio Experimental IDE.
-
 ## Build and Test
 Clone the repo and you should can start working with Windows Template Studio. All projects must build and run without any special configuration.
 
