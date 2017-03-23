@@ -13,7 +13,7 @@ First of all, be sure you are running [Visual Studio 2017 RC](https://www.visual
 * Step 4: Configure the "Installer.2017" project to launch the [Visual Studio Experimental instance](https://msdn.microsoft.com/library/bb166560(v=vs.140).aspx) when run.
     * Step 4.1: Open the "Installer.2017" project properties.
     * Step 4.2: Go to "Debug" properties.
-    * Step 4.3: In "Start Action", select "Start external program" and browse for your Visual Studio executable (devenv.exe), tipically in the path "C:\Program Files (x86)\Microsoft Visual Studio\2017\<YOUR_VS_EDITION>\Common7\IDE\" 
+    * Step 4.3: In "Start Action", select "Start external program" and browse for your Visual Studio executable (devenv.exe), tipically in the path "C:\Program Files (x86)\Microsoft Visual Studio\2017\*YOUR_VS_EDITION*\Common7\IDE\" 
     * Step 4.4: In the "Start options", for the "Command line arguments" set the following: "/RootSuffix Exp
     * Step 4.5: Save the chages.
     
