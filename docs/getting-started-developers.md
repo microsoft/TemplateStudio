@@ -2,7 +2,7 @@ Getting Started for Developers
 ==============================
 If you are authoring templates for Windows Template Studio, or interested in contributing to this repo, then you are likely interested in how to use the latest version of this code. The required steps are outlined below.
 
-Be sure you are running [Visual Studio 2017 RC] (https://www.visualstudio.com/downloads/) (the Community edition -free- is ok!)
+Be sure you are running [Visual Studio 2017 RC](https://www.visualstudio.com/downloads/) (the Community edition -free- is ok!)
 
 ## Running the Extension Locally
 * Step 1: Clone this repo to your local machine
