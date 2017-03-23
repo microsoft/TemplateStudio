@@ -77,7 +77,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             await semaphoreSlim.WaitAsync();
             try
             {
-                File.WriteAllText(LogFileName, data);
+                File.AppendAllText(LogFileName, data);
             }
             catch (Exception exception)
             {
@@ -132,7 +132,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
             sb.AppendLine($"\r\n>>>>>>>>>>>>>> Log started {DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}");
             sb.AppendLine($">>>>>>>>>>>>>> Assembly File Version: {GetVersion()}");
-            File.WriteAllText(LogFileName, sb.ToString());
+            File.AppendAllText(LogFileName, sb.ToString());
         }
 
         private static string GetVersion()
