@@ -24,22 +24,17 @@ namespace Microsoft.Templates.Core.Diagnostics
             {
                 if(_current == null)
                 {
-                    _current = new FileHealthWriter(Configuration.Current);
+                    _current = new FileHealthWriter();
                 }
                 return _current;
             }
         }
-        private FileHealthWriter(Configuration currentConfig)
+        private FileHealthWriter()
         {        
-            _workingFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), currentConfig.LogFileFolderPath);
+            _workingFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), Configuration.Current.LogFileFolderPath);
             InitializeLogFile();
             PurgeOldLogs(_workingFolder, Configuration.Current.DaysToKeepDiagnosticsLogs);
         }
-
-        //public static void SetConfiguration(Configuration config)
-        //{
-        //    _current = new FileHealthWriter(config);
-        //}
 
         public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex=null)
         {
@@ -99,7 +94,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             semaphoreSlim.Wait();
             try
             {
-                LogFileName = Path.Combine(_workingFolder, $"UWPTemplates_{DateTime.Now.ToString("yyyyMMdd")}.log");
+                LogFileName = Path.Combine(_workingFolder, $"WTS_{Configuration.Current.Environment}_{DateTime.Now.ToString("yyyyMMdd")}.log");
                 if (!Directory.Exists(_workingFolder))
                 {
                     Directory.CreateDirectory(_workingFolder);
