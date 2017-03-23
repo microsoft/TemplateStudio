@@ -8,7 +8,7 @@ If you just want to take advantage from Windows Template Studio extension, check
 First of all, be sure you are running [Visual Studio 2017 RC](https://www.visualstudio.com/downloads/) (the Community edition -free- is ok!)
 
 * Step 1: Clone this repo to your local machine
-* Step 2: Open the solution [Big.sln](../code/Big.sln)
+* Step 2: Open the solution [Big.sln](../code/)
 * Step 3: Set the project "Installer.2017" as StartUp Project for the solution. This is the Visual Studio Extension project for Windows Template Studio. 
 * Step 4: Configure the "Installer.2017" project to launch the [Visual Studio Experimental instance](https://msdn.microsoft.com/library/bb166560(v=vs.140).aspx) when run.
     * Step 4.1: Open the "Installer.2017" project properties.
@@ -25,7 +25,7 @@ First of all, be sure you are running [Visual Studio 2017 RC](https://www.visual
 
 With this steps, the Windows Template Studio Extension is deployed to a new instance of Visual Studio (the experimental instance). Now you can go to "File -> New Project..." to launch the Wizard.
 
-The extension wizard, when runs locally, uses the local [templates folder](..\templates) as source for the Templates Repository. 
+The extension wizard, when runs locally, uses the local [templates folder](../templates) as source for the Templates Repository. 
 
 ## Repo Solutions
 Under the [code](../code/) folder, the repo have different solutions to aid developers get focused on certain development areas:
@@ -37,7 +37,7 @@ Under the [code](../code/) folder, the repo have different solutions to aid deve
 * **Test.sln**: This solution is used to work with the project integration tests.
 
 ## Using the Wizard.sln solution
-To speed up the execution and development experience, we have created a [VsEmulator application](..\src\test) which can be used to launch and test the Windows Template Studio Wizard. This application, as well as the Wizard assembly, are available thru the Wizard.sln solution. To use it, follow this steps:
+To speed up the execution and development experience, we have created a [VsEmulator application](../src/test) which can be used to launch and test the Windows Template Studio Wizard. This application, as well as the Wizard assembly, are available thru the Wizard.sln solution. To use it, follow this steps:
 
 * Step 1: Open the Wizard.sln solution
 * Step 2: Set the "test\VsEmulator" project as "StartUp"

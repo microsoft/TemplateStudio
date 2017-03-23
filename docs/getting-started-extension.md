@@ -24,7 +24,7 @@ Once installed, you will see a new Project Template which allows you to access t
 
 You can start working with Windows Template Studio by cloning [our repo](https://github.com/Microsoft/WindowsTemplateStudio) and working locally with the code and the available templates.
 
-If you plan to contribute, please follow the [contribution guidelines](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/contributing.md) and remeber that the Pull Requests must be done aganist the "[dev](https://github.com/Microsoft/WindowsTemplateStudio/tree/dev)" branch.
+If you plan to contribute, please follow the [contribution guidelines](../contributing.md) and remeber that the Pull Requests must be done aganist the "[dev](https://github.com/Microsoft/WindowsTemplateStudio/tree/dev)" branch.
 
 ## Nighlty Dev-release  
 If you want to have updates from in-progress changes, you can confiure the Nightly-Dev feed using this url: https://www.myget.org/F/vsixextensions/vsix/ 
