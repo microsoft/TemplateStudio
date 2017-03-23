@@ -28,13 +28,12 @@ namespace ItemNamespace.ViewModel
         public SettingsViewViewModel()
         {
             IsLightThemeEnabled = ThemeSelectorService.IsLightThemeEnabled;
-            SwitchThemeCommand = new RelayCommand(SwitchThemeAsync);
-            AppDescription = GetAppDescription();
+            SwitchThemeCommand = new RelayCommand(async () => { await ThemeSelectorService.SwitchThemeAsync(); });
         }
 
-        private async void SwitchThemeAsync()
+        public void Initialize()
         {
-            await ThemeSelectorService.SwitchThemeAsync();
+            AppDescription = GetAppDescription();
         }
 
         private string GetAppDescription()
