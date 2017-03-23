@@ -11,8 +11,8 @@
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <maps:MapControl
             x:Name="mapControl"
-            ZoomLevel="{Binding ZoomLevel, Mode=OneWay}"
-            Center="{Binding Center, Mode=OneWay}"/>
+            ZoomLevel="{x:Bind ViewModel.ZoomLevel, Mode=OneWay}"
+            Center="{x:Bind ViewModel.Center, Mode=OneWay}"/>
         <TickBar/>
     </Grid>
 </Page>

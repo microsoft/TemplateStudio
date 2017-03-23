@@ -4,6 +4,9 @@ namespace ItemNamespace.ViewModel
 {
     public class WebViewViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
+        //TODO UWPTemplates: Setup here your web url
+        private const string defaultUrl = "https://www.microsoft.com/";
+
         private Uri _source;
         public Uri Source
         {
@@ -13,12 +16,7 @@ namespace ItemNamespace.ViewModel
 
         public WebViewViewViewModel()
         {
-        }
-
-        public void Initialize()
-        {
-            //TODO UWPTemplates: Setup here your web url
-            Source = new Uri("https://www.microsoft.com/");   
+            Source = new Uri(defaultUrl);
         }
     }
 }

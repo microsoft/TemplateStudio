@@ -32,11 +32,11 @@
                     Style="{ThemeResource TitleTextBlockStyle}"/>
                 <ToggleSwitch
                     x:Uid="SettingsView_Toggle"
-                    IsOn="{Binding IsLightThemeEnabled, Mode=TwoWay}"
+                    IsOn="{x:Bind ViewModel.IsLightThemeEnabled, Mode=TwoWay}"
                     Margin="{StaticResource SmallTopMargin}">
                     <i:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="Toggled">
-                            <core:InvokeCommandAction Command="{Binding SwitchThemeCommand}"/>
+                            <core:InvokeCommandAction Command="{x:Bind ViewModel.SwitchThemeCommand}"/>
                         </core:EventTriggerBehavior>
                     </i:Interaction.Behaviors>
                 </ToggleSwitch>
@@ -47,7 +47,7 @@
                     x:Uid="SettingsView_About"
                     Style="{ThemeResource TitleTextBlockStyle}"/>
                 <TextBlock
-                    Text="{Binding AppDescription}"
+                    Text="{x:Bind ViewModel.AppDescription, Mode=OneWay}"
                     Style="{ThemeResource SubtitleTextBlockStyle}"
                     Margin="{StaticResource SmallTopMargin}"/>
                 <TextBlock

@@ -29,6 +29,8 @@ namespace ItemNamespace.ViewModel
 
         public MapViewViewModel()
         {
+            var position = new BasicGeoposition() { Latitude = defaultLatitude, Longitude = defaultLongitude };
+            Center = new Geopoint(position);
             ZoomLevel = defaultZoomLevel;
         }
 
@@ -41,9 +43,7 @@ namespace ItemNamespace.ViewModel
 
             //TODO UWPTemplates: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
             map.MapServiceToken = "";
-
-            var position = new BasicGeoposition() { Latitude = defaultLatitude, Longitude = defaultLongitude };
-            Center = new Geopoint(position);
+            
             AddMapIcon(map, Center, "Microsoft Corporation");
         }        
 
