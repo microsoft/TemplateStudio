@@ -2,14 +2,14 @@ Getting Started for Developers
 ==============================
 If you are authoring templates for Windows Template Studio, or interested in contributing to this repo, then you are likely interested in how to use the latest version of this code. The required steps are outlined below.
 
-If you just want to take advantage from the Windows Template Studio extension, check the [Getting Started with the Extension](getting-started-extension.md) page.
+If you just want to take advantage from Windows Template Studio extension, check the [Getting Started with the Extension](getting-started-extension.md) page.
 
 ## Running the Extension Locally
 First of all, be sure you are running [Visual Studio 2017 RC](https://www.visualstudio.com/downloads/) (the Community edition -free- is ok!)
 
 * Step 1: Clone this repo to your local machine
 * Step 2: Open the solution [Big.sln](../code/Big.sln)
-* Step 3: Set the project "Installer.2017" as StartUp Project for the solution. This is the Windows Template Studio Visual Studio Extension project. 
+* Step 3: Set the project "Installer.2017" as StartUp Project for the solution. This is the Visual Studio Extension project for Windows Template Studio. 
 * Step 4: Configure the "Installer.2017" project to launch the [Visual Studio Experimental instance](https://msdn.microsoft.com/library/bb166560(v=vs.140).aspx) when run.
     * Step 4.1: Open the "Installer.2017" project properties.
     * Step 4.2: Go to "Debug" properties.

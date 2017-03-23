@@ -41,9 +41,7 @@ The Templates Repository is the place where we will gather all templates and wil
 * VNext: The ongoing version of the templates.
 
 ### What is the Visual Studio Extension?
-UWP App developers can take advantage of the Windows Template Studio by installing our Visual Studio extension. This extension will allow developers to create Apps, add pages and/or add features to existing apps based on the available Templates from the public Repository. 
-
-The Windows Template Studio Visual Studio Extension (pre-release) version is published [here](). The public version will be published through the [Visual Studio Gallery](https://visualstudiogallery.msdn.microsoft.com/) when ready.
+UWP App developers can take advantage of Windows Template Studio by installing our Visual Studio extension. This extension will allow developers to create Apps, with pages and/or features based on the Templates available in the public Repository. 
 
 ## Getting Started for Developers
 To start working with the latest version of this code, check [Getting Started for Developers](getting-started-developers.md)

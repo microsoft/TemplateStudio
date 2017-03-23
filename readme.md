@@ -5,7 +5,7 @@
 
 Windows Template Studio 
 ===========
-The Windows Template Studio goal is to help developers with their File->New experience in Visual Studio.  It will generate a strong, generic foundation with the pages you need, but also integrate game changing features like Cortana, action center and background tasks from the start.  Any critical features will have code comments with links to MSDN, stack overflow and blogs to help unblock developers. Once the template is generated for the developer, it can provide base sample data and will be able to compile then run without issue.
+Windows Template Studio goal is to help developers with their File->New experience in Visual Studio.  It will generate a strong, generic foundation with the pages you need, but also integrate game changing features like Cortana, action center and background tasks from the start.  Any critical features will have code comments with links to MSDN, stack overflow and blogs to help unblock developers. Once the template is generated for the developer, it can provide base sample data and will be able to compile then run without issue.
 
 Example scenario:
 I need an app that uses MVVM Light, uses Cortana, Speech APIs, Ink on one of the pages and will need Azure mobile services.   It will need a background service that does a query every 5 minutes.
@@ -13,7 +13,7 @@ I need an app that uses MVVM Light, uses Cortana, Speech APIs, Ink on one of the
 To reach our developers in an up-to-date fashion, the project is broken up into two primary parts, templates and the generator.  The generator is built on top of [dotnet Template Engine](https://github.com/dotnet/templating), it is a Visual Studio extension a developer will install while the templates will be hosted on a CDN so we can update what is created independntly of the generator.  The generator uses templates to create actual projects, pages and/or features for the developers. 
 
 ## Getting Started
-Please read the [Getting Started with the Windows Template Studio](docs/getting-started.md) page for more detailed information about using the Windows Template Studio.
+Please read the [Getting Started with Windows Template Studio](docs/getting-started.md) page for more detailed information about using Windows Template Studio.
 
 To start working with the latest version of this code, check [Getting Started for Developers](docs/getting-started-developers.md)
 
