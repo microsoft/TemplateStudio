@@ -74,7 +74,7 @@ namespace Microsoft.Templates.Wizard.VisualStudio
 
         public async void RunFinished()
         {
-            AppHealth.Current.Verbose.TrackAsync("Creating UWP Community Templates project...").FireAndForget();
+            AppHealth.Current.Verbose.TrackAsync("Creating Windows Template Studio project...").FireAndForget();
             await GenController.GenerateAsync(_userSelection);
             AppHealth.Current.Verbose.TrackAsync("Generation finished").FireAndForget();
 

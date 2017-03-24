@@ -31,12 +31,12 @@ namespace Microsoft.Templates.Wizard.VisualStudio
 {
     class VsOutputPane
     {
-        private const string UWPCommunityTemplatesPaneGuid = "45480fff-0658-42e1-97f0-82cac23603aa";
+        private const string TemplatesPaneGuid = "45480fff-0658-42e1-97f0-82cac23603aa";
         private OutputWindowPane _pane;
 
         public VsOutputPane() 
         {
-            _pane = GetOrCreatePane(Guid.Parse(UWPCommunityTemplatesPaneGuid), true, false);
+            _pane = GetOrCreatePane(Guid.Parse(TemplatesPaneGuid), true, false);
             if (_pane != null)
             {
                 _pane.Activate();
@@ -51,7 +51,7 @@ namespace Microsoft.Templates.Wizard.VisualStudio
             OutputWindowPane result = null;
             try
             {
-                string title = "UWP Community Templates";
+                string title = "Windows Template Studio";
                 if (ServiceProvider.GlobalProvider.GetService(typeof(DTE)) is DTE2 dte)
                 {
                     result = GetUwpPane(dte, paneGuid);

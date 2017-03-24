@@ -58,7 +58,7 @@ namespace Microsoft.Templates.Core.Test.Config
             var configInstance = new Configuration();
             Assert.NotNull(configInstance);
             Assert.Equal(TraceEventType.Verbose, configInstance.DiagnosticsTraceLevel);
-            Assert.Equal("https://uwpcommunitytemplates.blob.core.windows.net/vnext/Latest", configInstance.CdnUrl);
+            Assert.Equal("https://wtsrepository.blob.core.windows.net/dev/Latest", configInstance.CdnUrl);
 
         }
 

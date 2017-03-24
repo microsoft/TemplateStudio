@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="110" xml:space="preserve">
-    <value>UWP Community Templates Extension</value>
+    <value>Windows Template Studio Extension</value>
   </data>
   <data name="112" xml:space="preserve">
-    <value>UWP Community Templates Visual Studio Extension Detailed Info</value>
+    <value>Windows Template Studio Visual Studio Extension Detailed Info</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="400" type="System.Resources.ResXFileRef, System.Windows.Forms">

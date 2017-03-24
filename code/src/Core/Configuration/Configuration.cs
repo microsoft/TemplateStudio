@@ -31,16 +31,16 @@ namespace Microsoft.Templates.Core
     public class Configuration
     {
         public string Environment { get; set; } = "Local";
-        public string CdnUrl { get; set; } = "https://uwpcommunitytemplates.blob.core.windows.net/vnext/Latest";
-        public string RemoteTelemetryKey { get; set; } = "<SET_YOUR_OWN_KEY>"; //Or configure it in a UWPTemplates.config.json located in the working folder.
-        public string LogFileFolderPath { get; set; } = @"UWPTemplates\Logs";
-        public string RepositoryFolderName { get; set; } = @"UWPTemplates";
+        public string CdnUrl { get; set; } = "https://wtsrepository.blob.core.windows.net/dev/Latest";
+        public string RemoteTelemetryKey { get; set; } = "<SET_YOUR_OWN_KEY>"; //Or configure it in a WindowsTemplateStudio.config.json located in the working folder.
+        public string LogFileFolderPath { get; set; } = @"WindowsTemplateStudio\Logs";
+        public string RepositoryFolderName { get; set; } = @"WindowsTemplateStudio";
         public TraceEventType DiagnosticsTraceLevel { get; set; } = TraceEventType.Verbose;
         public int DaysToKeepDiagnosticsLogs { get; set; } = 5;
         public int VersionCheckingExpirationMinutes { get; set; } = 0;
         public List<string> AllowedPublicKeysPins { get; set; } = new List<string>() { };
 
-        public const string DefaultJsonConfigFileName = "UwpTemplates.config.json";
+        public const string DefaultJsonConfigFileName = "WindowsTemplateStudio.config.json";
 
         private static Configuration _current;
         public static Configuration Current

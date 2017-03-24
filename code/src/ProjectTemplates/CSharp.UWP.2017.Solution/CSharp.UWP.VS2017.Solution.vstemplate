@@ -3,8 +3,8 @@
             Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" 
             xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name>Uwp Templates based App (vs2017 local)</Name>
-    <Description>Access to the UWP gallery from Microsoft Templates</Description>
+    <Name>Windows Template Studio based App (vs2017 local)</Name>
+    <Description>Access to the UWP Template Gallery from Windows Template Studio</Description>
     <Icon>CSharp.UWP.VS2017.Solution.ico</Icon>
     <ProjectType>CSharp</ProjectType>
     <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
@@ -16,8 +16,8 @@
   </TemplateData>
   <TemplateContent>
     <CustomParameters>
-      <CustomParameter Name="$uwptemplates.category$" Value="Windows Universal"/>
-      <CustomParameter Name="$uwptemplates.version$" Value="1.0.0.0"/>
+      <CustomParameter Name="$wts.category$" Value="Windows Universal"/>
+      <CustomParameter Name="$wts.version$" Value="1.0.0.0"/>
     </CustomParameters>
   </TemplateContent>
   <WizardExtension>

@@ -277,7 +277,7 @@ namespace Microsoft.Templates.Wizard.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UWP Community Templates: {0}.
+        ///   Looks up a localized string similar to Windows Template Studio: {0}.
         /// </summary>
         public static string UIMessageBoxTitlePattern {
             get {

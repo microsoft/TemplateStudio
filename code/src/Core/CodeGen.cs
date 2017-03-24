@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Core
 {
     public class CodeGen
     {
-        public const string BaseName = "UWPTemplates";
+        public const string BaseName = "WindowsTemplateStudio";
 
         public EngineEnvironmentSettings Settings { get; }
         public TemplateCache Cache { get; }

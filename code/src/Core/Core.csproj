@@ -180,7 +180,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Configuration\UwpTemplates.tokenized.config.json">
+    <None Include="Configuration\WindowsTemplateStudio.tokenized.config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

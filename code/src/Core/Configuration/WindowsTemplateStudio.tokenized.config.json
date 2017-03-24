@@ -1,12 +1,12 @@
 {
-  "Environment" :  "LocalVsix",
-  "CdnUrl": "https://uwpcommunitytemplates.blob.core.windows.net/vnext/Latest",
-  "RemoteTelemetryKey": "VSIX Key",
-  "LogFileFolderPath": "UWPTemplates\\Logs",
-  "RepositoryFolderName": "UWPTemplates",
-  "DiagnosticsTraceLevel": "Verbose",
+  "Environment": "###Environment###",
+  "CdnUrl": "###CdnUrl###",
+  "RemoteTelemetryKey": "###RemoteTelemetryKey###",
+  "LogFileFolderPath": "WindowsTemplateStudio\\Logs",
+  "RepositoryFolderName": "WindowsTemplateStudio",
+  "DiagnosticsTraceLevel": "###DiagnosticsTraceLevel###",
   "DaysToKeepDiagnosticsLogs": 5,
-  "VersionCheckingExpirationMinutes": 1,
+  "VersionCheckingExpirationMinutes": 120,
   "AllowedPublicKeysPins": [
     "51E93470FD838DFCE5F4ADF0D7750D2B66635677499A73160B9CB3BA84884A9EBA5F4E80C346323C0F61D2A8EDDC8EE5E02E7F186D13C953270F68AEB44CFE3D",
     "8A79BF09C49440C614229A2338384348443353A4B3DBA4AD46EDC0FE1054ED220A0D3445783493869186DEADBF0D9D8627E0EAC2D37475C9EC991A0324038EA4"

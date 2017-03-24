@@ -13,10 +13,10 @@
     <Menus>
       <Menu guid="guidTemplatesCommandsPackageCmdSet" id="TemplatesContextMenu" type="Context" priority="0x0100">
         <Strings>
-          <CommandName>UWP Community Templates</CommandName>
-          <ButtonText>UWP Community Templates</ButtonText>
-          <MenuText>UWP Community Templates</MenuText>
-          <ToolTipText>UWP Community Templates</ToolTipText>
+          <CommandName>Windows Template Studio</CommandName>
+          <ButtonText>Windows Template Studio</ButtonText>
+          <MenuText>Windows Template Studio</MenuText>
+          <ToolTipText>Windows Template Studio</ToolTipText>
         </Strings>
       </Menu>
     </Menus>

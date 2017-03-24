@@ -190,7 +190,7 @@
     <value>Something went wrong. The project can't be generated.</value>
   </data>
   <data name="UIMessageBoxTitlePattern" xml:space="preserve">
-    <value>UWP Community Templates: {0}</value>
+    <value>Windows Template Studio: {0}</value>
     <comment>Generic MessageBox Title</comment>
   </data>
   <data name="UINoActiveProjectMessage" xml:space="preserve">
