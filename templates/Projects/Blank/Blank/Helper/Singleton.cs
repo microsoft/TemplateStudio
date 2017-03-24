@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace uct.SplitViewProject
+namespace uct.BlankProject.Helper
 {
     static class Singleton<T> where T : new()
     {

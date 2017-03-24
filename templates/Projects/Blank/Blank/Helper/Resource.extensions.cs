@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 
-namespace uct.BlankProject.Extensions
+namespace uct.BlankProject.Helper
 {
     static class ResourceExtensions
     {

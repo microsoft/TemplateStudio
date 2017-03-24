@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace uct.BlankProject
+namespace uct.TabbedPivotProject.Helper
 {
     static class Singleton<T> where T : new()
     {
