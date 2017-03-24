@@ -6,8 +6,6 @@
   "name": "MVVMBasic.Project",
   "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project",
   "identity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.CSharp",
-  "shortName": "",
-  "description": "",
   "tags": {
     "language": "C#",
     "type": "item",

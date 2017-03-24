@@ -6,8 +6,6 @@
   "name": "MVVMLight.Feature.SuspendAndResume",
   "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMLight.Feature.SuspendAndResume",
   "identity": "Microsoft.UWPTemplates.Framework.MVVMLight.Feature.SuspendAndResume.CSharp",
-  "shortName": "",
-  "description": "",
   "tags": {
     "language": "C#",
     "type": "item",

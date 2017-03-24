@@ -6,8 +6,6 @@
   "name": "MVVMLight.Project.SplitView.Page",
   "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMLight.Project.SplitView.Page",
   "identity": "Microsoft.UWPTemplates.Framework.MVVMLight.Project.SplitView.Page.CSharp",
-  "shortName": "",
-  "description": "",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -6,8 +6,6 @@
   "name": "MVVMLight.Page",
   "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMLight.Page",
   "identity": "Microsoft.UWPTemplates.Framework.MVVMLight.Page.CSharp",
-  "shortName": "",
-  "description": "",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -6,8 +6,6 @@
   "name": "MVVMLight.Project.TabbedPivot",
   "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMLight.Project.TabbedPivot",
   "identity": "Microsoft.UWPTemplates.Framework.MVVMLight.Project.TabbedPivot.CSharp",
-  "shortName": "",
-  "description": "",
   "tags": {
     "language": "C#",
     "type": "item",

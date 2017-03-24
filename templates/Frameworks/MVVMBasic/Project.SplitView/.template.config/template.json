@@ -6,8 +6,6 @@
   "name": "MVVMBasic.Project.SplitView",
   "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.SplitView",
   "identity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.SplitView.CSharp",
-  "shortName": "",
-  "description": "",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -6,8 +6,6 @@
   "name": "MVVMLight.Project.Blank",
   "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMLight.Project.Blank",
   "identity": "Microsoft.UWPTemplates.Framework.MVVMLight.Project.Blank.CSharp",
-  "shortName": "",
-  "description": "",
   "tags": {
     "language": "C#",
     "type": "item",

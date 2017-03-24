@@ -6,8 +6,6 @@
   "name": "MVVMBasic.Project.TabbedPivot.Page",
   "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.TabbedPivot.Page",
   "identity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.TabbedPivot.Page.CSharp",
-  "shortName": "",
-  "description": "",
   "tags": {
     "language": "C#",
     "type": "item",
