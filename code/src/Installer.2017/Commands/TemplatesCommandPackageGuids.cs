@@ -10,6 +10,8 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+// AUTO-GENERATED CLASS by the Auto-Sync Command from https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ExtensibilityTools 
+
 namespace Microsoft.Templates.Extension.Commands
 {
     using System;
