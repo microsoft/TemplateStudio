@@ -42,8 +42,7 @@ namespace Microsoft.Templates.Core.PostActions
             var postActions = new List<PostAction>();
 
             //TODO: REVIEW THIS FACTORY AND MAGIC STRINGS IN NAMES
-
-            if (genItems.Any(g => g.Template.GetTemplateType() == TemplateType.DevFeature && g.Template.Name == "BackgroundTask"))
+            if (genItems.Any(g => g.Template.GetTemplateType() == TemplateType.DevFeature && g.Template.GetSafeIdentity().Equals("backgroundtask", StringComparison.OrdinalIgnoreCase)))
             {
                 postActions.Add(new BackgroundTaskPostAction());
             }
