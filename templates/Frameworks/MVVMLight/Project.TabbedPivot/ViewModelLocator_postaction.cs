@@ -8,7 +8,7 @@
 
     public PivotViewModel PivotViewModel => ServiceLocator.Current.GetInstance<PivotViewModel>();
     //{[{
-    public void RegisterPivotView(NavigationServiceExt navigationService)
+    public void RegisterPivotView(NavigationServiceEx navigationService)
     {
         SimpleIoc.Default.Register<PivotViewModel>();
         navigationService.Configure(typeof(PivotViewModel).FullName, typeof(PivotView));

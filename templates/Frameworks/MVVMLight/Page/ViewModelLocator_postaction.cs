@@ -8,7 +8,7 @@
 
     public uct.ItemNameViewModel uct.ItemNameViewModel => ServiceLocator.Current.GetInstance<uct.ItemNameViewModel>();
     //{[{
-    public void Registeruct.ItemName(NavigationServiceExt navigationService)
+    public void Registeruct.ItemName(NavigationServiceEx navigationService)
     {
         SimpleIoc.Default.Register<uct.ItemNameViewModel>();
         navigationService.Configure(typeof(uct.ItemNameViewModel).FullName, typeof(uct.ItemNameView));
