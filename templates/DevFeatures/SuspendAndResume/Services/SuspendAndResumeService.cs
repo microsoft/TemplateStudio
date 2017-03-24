@@ -17,8 +17,7 @@ namespace ItemNamespace.Services
 
         private const string stateFilename = "suspensionState";
 
-        //TODO UWPTEMPLATES: Subscribe to this event in pages in OnNavigatedTo event handler
-        //to save page data, unsubscribe in OnNavigatedFrom
+        //TODO UWPTEMPLATES: This event is fired just before the app enters in background. Subscribe to this event if you want to save your current state.
         public event EventHandler<OnBackgroundEnteringEventArgs> OnBackgroundEntering;
 
         public async Task SaveStateAsync()
