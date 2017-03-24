@@ -10,10 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.Wizard;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,6 +19,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 //using System.Windows.Forms;
+
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.Wizard;
 
 namespace Microsoft.Templates.VsEmulator.TemplatesContent
 {
