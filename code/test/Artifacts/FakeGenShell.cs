@@ -10,10 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Test.Artifacts.MSBuild;
-using Microsoft.VisualStudio.TemplateWizard;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,6 +18,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Test.Artifacts.MSBuild;
+using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.Test.Artifacts
 {
