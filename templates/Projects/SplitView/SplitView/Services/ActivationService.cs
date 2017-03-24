@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 using uct.SplitViewProject.Activation;
+using uct.SplitViewProject.Helper;
 
 namespace uct.SplitViewProject.Services
 {

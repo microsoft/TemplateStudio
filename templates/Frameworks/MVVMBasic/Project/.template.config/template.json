@@ -23,10 +23,10 @@
       "path": ".\\Services\\NavigationService.cs"
     },
     {
-      "path": ".\\_Mvvm\\Observable.cs"
+      "path": ".\\Helper\\Observable.cs"
     },
     {
-      "path": ".\\_Mvvm\\RelayCommand.cs"
+      "path": ".\\Helper\\RelayCommand.cs"
     }
   ],
   "symbols": {
