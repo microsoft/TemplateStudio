@@ -15,15 +15,16 @@
 //     Copyright (c) Company.  All rights reserved.
 // </copyright>
 //------------------------------------------------------------------------------
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Extension.Resources;
 using Microsoft.Templates.Wizard;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.VisualStudio.Shell;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.InteropServices;
-using System.Windows.Forms;
 
 namespace Microsoft.Templates.Extension.Commands
 {
