@@ -10,7 +10,12 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
+using System.IO;
+using System.Linq;
+
 using EnvDTE;
+
 using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
@@ -18,11 +23,9 @@ using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
+
 using NuGet;
 using NuGet.VisualStudio;
-using System;
-using System.IO;
-using System.Linq;
 
 namespace Microsoft.Templates.Wizard.VisualStudio
 {

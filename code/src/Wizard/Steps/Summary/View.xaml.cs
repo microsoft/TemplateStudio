@@ -10,7 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Wizard.Host;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +24,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
+using Microsoft.Templates.Wizard.Host;
 
 namespace Microsoft.Templates.Wizard.Steps.Summary
 {

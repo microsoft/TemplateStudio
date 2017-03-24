@@ -12,17 +12,18 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Templates.Wizard.Host;
 using System.Windows.Input;
-using System.Collections.ObjectModel;
-using Microsoft.Templates.Wizard.ViewModels;
+
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Wizard.Steps.Pages;
-using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.Wizard.Host;
+using Microsoft.Templates.Wizard.ViewModels;
+using Microsoft.Templates.Wizard.Steps.Pages;
 
 namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
 {

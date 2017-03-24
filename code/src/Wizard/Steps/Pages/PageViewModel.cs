@@ -10,13 +10,14 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.Wizard.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.Wizard.ViewModels;
 
 namespace Microsoft.Templates.Wizard.Steps.Pages
 {

@@ -12,13 +12,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Core;
-using System.Collections.ObjectModel;
 using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Wizard.Steps.Summary

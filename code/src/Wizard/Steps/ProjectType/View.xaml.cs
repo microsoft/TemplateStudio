@@ -10,9 +10,10 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Wizard.Host;
 using System.Windows;
 using System.Windows.Controls;
+
+using Microsoft.Templates.Wizard.Host;
 
 namespace Microsoft.Templates.Wizard.Steps.ProjectType
 {

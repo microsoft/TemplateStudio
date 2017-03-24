@@ -10,10 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.Wizard.Host;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,6 +17,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
+
+using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.Wizard.Host;
 
 namespace Microsoft.Templates.Wizard.ViewModels
 {

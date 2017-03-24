@@ -10,6 +10,15 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core;
@@ -22,14 +31,6 @@ using Microsoft.Templates.Wizard.Error;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Wizard.Resources;
 using Microsoft.VisualStudio.TemplateWizard;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace Microsoft.Templates.Wizard
 {

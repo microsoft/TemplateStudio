@@ -10,10 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using EnvDTE;
-using EnvDTE100;
-using EnvDTE80;
-using Microsoft.VisualStudio.Shell;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -22,6 +18,12 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+
+using EnvDTE;
+using EnvDTE100;
+using EnvDTE80;
+
+using Microsoft.VisualStudio.Shell;
 
 namespace Microsoft.Templates.Wizard.VisualStudio
 {

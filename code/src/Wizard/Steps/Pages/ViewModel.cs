@@ -10,10 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.Templates.Core;
-using Microsoft.Templates.Wizard.Host;
-using Microsoft.Templates.Wizard.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,8 +18,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Controls;
-using Microsoft.Templates.Core.Mvvm;
+
+using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.Wizard.Host;
+using Microsoft.Templates.Wizard.ViewModels;
 
 namespace Microsoft.Templates.Wizard.Steps.Pages
 {

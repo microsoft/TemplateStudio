@@ -10,9 +10,10 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System.Windows.Media.Imaging;
+
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
-using System.Windows.Media.Imaging;
 
 namespace Microsoft.Templates.Wizard.ViewModels
 {

@@ -10,7 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +17,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+
+using Microsoft.Templates.Core.Mvvm;
 
 namespace Microsoft.Templates.Wizard.Error
 {

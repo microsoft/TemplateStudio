@@ -10,15 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Extensions;
-using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.Wizard.Resources;
-using Microsoft.Templates.Wizard.Steps;
-using Microsoft.Templates.Wizard.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -28,6 +19,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.Wizard.Resources;
+using Microsoft.Templates.Wizard.Steps;
+using Microsoft.Templates.Wizard.ViewModels;
 
 namespace Microsoft.Templates.Wizard.Host
 {

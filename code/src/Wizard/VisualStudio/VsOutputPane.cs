@@ -10,20 +10,22 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core.Diagnostics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using SystemTasks = System.Threading.Tasks;
-using System.Diagnostics;
+using System.Reflection;
+
+using EnvDTE;
+using EnvDTE80;
+
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio;
-using EnvDTE;
-using EnvDTE80;
-using System.Reflection;
-using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.Wizard.VisualStudio
 {

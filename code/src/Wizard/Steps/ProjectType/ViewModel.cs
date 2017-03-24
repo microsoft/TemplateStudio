@@ -10,10 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Wizard.Host;
-using Microsoft.Templates.Wizard.ViewModels;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -21,6 +17,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Wizard.Host;
+using Microsoft.Templates.Wizard.ViewModels;
 
 namespace Microsoft.Templates.Wizard.Steps.ProjectType
 {
