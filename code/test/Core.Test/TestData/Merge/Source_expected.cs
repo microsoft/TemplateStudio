@@ -16,6 +16,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+
+using App38.Shell;
+using App38.BackgroundTask;
+using App38.Services;
+
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -27,9 +32,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using App38.Shell;
-using App38.BackgroundTask;
-using App38.Services;
 
 namespace App38
 {

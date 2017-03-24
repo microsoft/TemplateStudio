@@ -14,7 +14,9 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+
 using Microsoft.TemplateEngine.Abstractions;
+
 using Xunit;
 using Xunit.Sdk;
 

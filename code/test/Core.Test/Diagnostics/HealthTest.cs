@@ -10,15 +10,16 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core.Diagnostics;
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xunit;
-using System.Diagnostics;
 
+using Microsoft.Templates.Core.Diagnostics;
+
+using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Diagnostics
 {

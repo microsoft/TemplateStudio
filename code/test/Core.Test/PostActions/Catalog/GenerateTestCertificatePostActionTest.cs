@@ -10,16 +10,18 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.PostActions.Catalog;
-using Microsoft.Templates.Core.Test.Locations;
-using Microsoft.Templates.Test.Artifacts;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.PostActions.Catalog;
+using Microsoft.Templates.Core.Test.Locations;
+using Microsoft.Templates.Test.Artifacts;
+
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog

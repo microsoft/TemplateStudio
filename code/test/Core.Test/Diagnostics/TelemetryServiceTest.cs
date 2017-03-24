@@ -12,14 +12,15 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xunit;
 
-using System.Diagnostics;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
+
+using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Diagnostics
 {

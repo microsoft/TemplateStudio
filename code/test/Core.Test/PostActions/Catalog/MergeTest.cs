@@ -10,13 +10,15 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog

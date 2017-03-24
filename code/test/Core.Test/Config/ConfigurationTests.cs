@@ -10,21 +10,24 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Xunit;
+
 using Microsoft.Templates.Core;
-using System.Diagnostics;
 using Microsoft.Templates.Core.Test.Diagnostics;
 using Microsoft.Templates.Core.Diagnostics;
-using System.Configuration;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
+using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Config
 {

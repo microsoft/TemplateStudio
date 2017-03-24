@@ -10,7 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core.Locations;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,6 +20,9 @@ using System.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+
+using Microsoft.Templates.Core.Locations;
+
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Locations
