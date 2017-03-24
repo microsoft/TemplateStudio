@@ -10,8 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,6 +18,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
 
 namespace Microsoft.Templates.Core.Locations
 {

@@ -10,17 +10,18 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.TemplateEngine.Edge.Template;
-using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.PostActions.Catalog;
-using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.TemplateEngine.Edge.Template;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.PostActions.Catalog;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 
 namespace Microsoft.Templates.Core.PostActions
 {

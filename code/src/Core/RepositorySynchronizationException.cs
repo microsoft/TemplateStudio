@@ -10,9 +10,10 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core.Locations;
 using System;
 using System.Runtime.Serialization;
+
+using Microsoft.Templates.Core.Locations;
 
 namespace Microsoft.Templates.Core
 {

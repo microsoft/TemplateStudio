@@ -10,10 +10,11 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core.Gen;
 using System;
 using System.Diagnostics;
 using SystemTasks = System.Threading.Tasks;
+
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {

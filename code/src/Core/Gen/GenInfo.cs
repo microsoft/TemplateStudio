@@ -10,9 +10,10 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.TemplateEngine.Abstractions;
 using System;
 using System.Collections.Generic;
+
+using Microsoft.TemplateEngine.Abstractions;
 
 namespace Microsoft.Templates.Core.Gen
 {

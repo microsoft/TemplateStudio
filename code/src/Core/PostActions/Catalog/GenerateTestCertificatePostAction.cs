@@ -10,10 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using CERTENROLLLib;
-using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Extensions;
-using Microsoft.Templates.Core.Gen;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,6 +17,12 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+
+using CERTENROLLLib;
+
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {

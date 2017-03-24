@@ -10,17 +10,19 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.TemplateEngine.Edge.Template;
-using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Extensions;
-using Microsoft.Templates.Core.Locations;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+
+using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.TemplateEngine.Edge.Template;
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
+using Microsoft.Templates.Core.Locations;
+
+using Newtonsoft.Json;
 
 namespace Microsoft.Templates.Core
 {
