@@ -98,7 +98,7 @@ namespace Microsoft.Templates.Wizard
                 if (featureTemplate != null)
                 {
                     var genFeature = CreateGenInfo(feature.name, featureTemplate, genQueue);
-                    AddTemplate(genFeature, genQueue, userSelection.Framework, "Feature", featureTemplate.Name);
+                    AddTemplate(genFeature, genQueue, userSelection.Framework, "Feature", featureTemplate.GetSafeIdentity());
                 }
             }
         }

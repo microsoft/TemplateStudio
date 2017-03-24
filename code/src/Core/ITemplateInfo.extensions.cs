@@ -53,18 +53,22 @@ namespace Microsoft.Templates.Core
             }
         }
 
-        public static string GetPostActionConfigPath(this ITemplateInfo ti)
-        {
-            var configDir = GetConfigDir(ti);
-
-            return Directory.EnumerateFiles(configDir, "postactions.json").FirstOrDefault();
-        }
-
         public static string GetIcon(this ITemplateInfo ti)
         {
             var configDir = GetConfigDir(ti);
 
             return Directory.EnumerateFiles(configDir, "icon.*").FirstOrDefault();
+        }
+
+        public static string GetSafeIdentity(this ITemplateInfo ti)
+        {
+            if (!string.IsNullOrEmpty(ti.GroupIdentity))
+            {
+                var identityChunks = ti.GroupIdentity.Split(".".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                return identityChunks.Last();
+            }
+
+            return ti.Identity;
         }
 
         public static IEnumerable<(string text, string url)> GetLicences(this ITemplateInfo ti)
