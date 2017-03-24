@@ -3,11 +3,11 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MasterDetail",
+  "name": "Master/Detail",
   "groupIdentity": "Microsoft.UWPTemplates.MasterDetailPage",
   "identity": "Microsoft.UWPTemplates.MasterDetailPage.CSharp",
-  "shortName": "masterdetailpage",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "shortName": "Master/Detail Page",
+  "description": "The master-detail page (https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/master-details) has a master pane and a details pane for content. When an item in the master list is selected, the details pane is updated. This pattern is frequently used for email and address books.",
   "tags": {
     "language": "C#",
     "type": "item",

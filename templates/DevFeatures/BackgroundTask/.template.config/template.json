@@ -1,11 +1,11 @@
 {
   "author": "Microsoft",
   "classifications": ["Universal"],
-  "name": "BackgroundTask",
+  "name": "Background Task",
   "groupIdentity": "Microsoft.UWPTemplates.BackgroundTaskFeature",
   "identity": "Microsoft.UWPTemplates.BackgroundTaskFeature.CSharp",
-  "shortName": "backgroundtask",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "shortName": "Background task",
+  "description": "This creates an in-process background task.  This will allow you to run code even while the app is not in the foreground.  The in-process model enhances the application lifecycle with improved notifications for when your app is in the foreground or in the background.\\nTo find out more about in-process background tasks, head to https://docs.microsoft.com/en-us/windows/uwp/launch-resume/create-and-register-an-inproc-background-task.",
   "tags": {
     "language": "C#",
     "type": "item",

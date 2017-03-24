@@ -3,11 +3,11 @@
   "classifications": [
     "Universal"
   ],
-  "name": "HubNotifications",
+  "name": "Azure Notification Hub",
   "groupIdentity": "Microsoft.UWPTemplates.HubNotifications",
   "identity": "Microsoft.UWPTemplates.HubNotifications.CSharp",
-  "shortName": "HubNotifications",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "shortName": "Hub Notifications",
+  "description": "Azure Notification Hubs provide an easy-to-use, multi-platform, scaled-out push engine. With a single cross-platform API call, you can easily send targeted and personalized push notifications to any mobile platform from any cloud or on-premises backend.\\nTo find out more about Live Tiles, head to https://docs.microsoft.com/en-us/azure/notification-hubs/notification-hubs-push-notification-overview.",
   "tags": {
     "language": "C#",
     "type": "item",

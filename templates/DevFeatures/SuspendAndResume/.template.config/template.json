@@ -1,11 +1,11 @@
 {
   "author": "Microsoft",
   "classifications": ["Universal"],
-  "name": "SuspendAndResume",
+  "name": "Suspend and Resume",
   "groupIdentity": "Microsoft.UWPTemplates.SuspendAndResumeFeature",
   "identity": "Microsoft.UWPTemplates.SuspendAndResumeFeature.CSharp",
-  "shortName": "suspendandresume",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "shortName": "Suspend and resume",
+  "description": "A user can suspend your app at any time so let's be ready for it.  We have a nifty suspend and resume service you can hook into that can help you in bringing your app back to the state it was before!\\nSee these three great topics on the application lifecycle, https://docs.microsoft.com/en-us/windows/uwp/launch-resume/app-lifecycle,  https://docs.microsoft.com/en-us/windows/uwp/launch-resume/resume-an-app and  https://docs.microsoft.com/en-us/windows/uwp/launch-resume/suspend-an-app for more information.",
   "tags": {
     "language": "C#",
     "type": "item",
