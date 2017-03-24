@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace RootNamespace.Services
 {
-    public class NavigationServiceExt
+    public class NavigationServiceEx
     {
         private readonly Dictionary<string, Type> _pages = new Dictionary<string, Type>();
 

@@ -3,11 +3,11 @@ class ActivationService
     private readonly Type _defaultNavItem;
     //{[{
 
-    private NavigationServiceExt NavigationService
+    private NavigationServiceEx NavigationService
     {
         get
         {
-            return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<NavigationServiceExt>();
+            return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
         }
     }
     

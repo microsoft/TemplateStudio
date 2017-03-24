@@ -15,11 +15,11 @@ namespace uct.ItemName.ViewModel
 {
     public class ShellViewModel : ViewModelBase
     {
-        public NavigationServiceExt NavigationService
+        public NavigationServiceEx NavigationService
         {
             get
             {
-                return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<NavigationServiceExt>();
+                return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
             }
         }
 

@@ -24,7 +24,7 @@
       "path": ".\\ViewModelLocator.cs"
     },
     {
-      "path": ".\\Services\\NavigationServiceExt.cs"
+      "path": ".\\Services\\NavigationServiceEx.cs"
     }
   ],
   "symbols": {
