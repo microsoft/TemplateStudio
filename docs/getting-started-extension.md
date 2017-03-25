@@ -14,13 +14,13 @@ The Pre-release build version allows you to get updates with stable features not
 
 This feed will have stable extension versions so it is not thought to have breaking changes (and can be installed side by side with the official one), anyway, installing this extension is at your own risk.
 
-Open Visual Studio 2017 and go to Tools -> Extensions & Updates, then click on "Change your Extensions and Updates settings" and create an Additional Extension Gallery.
+Open Visual Studio 2017 and go to **Tools -> Extensions & Updates**, then click on **Change your Extensions and Updates settings** and create an Additional Extension Gallery.
 
-![Configure Additional Extension Gallery](resources/vsix/configurefeed.jpg)
+![Configure Additional Extension Gallery](resources/vsix/configurefeed.png)
 
-Then, go again to Tools -> Extensions & Updates and using the recently added online gallery, install the Windows Template Studio extension.
+Then, go again to **Tools -> Extensions & Updates** and using the recently added online gallery, install the Windows Template Studio extension.
 
-![Install UWP Community Templates extension](resources/vsix/onlinefeed.jpg)
+![Install UWP Community Templates extension](resources/vsix/onlinefeed.png)
 
 Once installed, you will see a new Project Template which allows you to access to the available templates: Pre-Release version uses the VNext Template Repository.
 
