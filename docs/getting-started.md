@@ -1,14 +1,12 @@
-Getting Started with Windows Template Studio
-===============
+#Getting Started with Windows Template Studio
+
 This section have the main concepts and definitions used in Windows Template Studio.
 
-To start working with the latest version of this code, check [Getting Started for Developers](getting-started-developers.md)
-
-To start using the Windows Template Studio extension, [Getting Started with the Extension](getting-started-extension.md)
-
-To start authoring templates, check [Understanding the Templates](templates.md)
-
-If you plan to contribute, please follow the [contribution guidelines](../contributing.md) and remeber that the Pull Requests must be done aganist the "[dev](https://github.com/Microsoft/WindowsTemplateStudio/tree/dev)" branch.
+* [Getting Started](docs/getting-started.md)
+* [Installing / Using the extension](docs/getting-started-extension.md)
+* [Getting started with the generator codebase](docs/getting-started-developers.md)
+* [Authoring Templates](docs/templates.md)
+* [Contribution guidelines](contributing.md)
 
 ## Main concepts
 Windows Template Studio is divided in the following main elements:

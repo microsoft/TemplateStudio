@@ -6,11 +6,13 @@ A developer should be able to quickly and easily add features, pages, and have a
 
 That's why many of the guidelines of this document are obvious and serve only one purpose: Simplicity.
 
+Also remeber that the Pull Requests must be done aganist the **[dev branch](https://github.com/Microsoft/WindowsTemplateStudio/tree/dev)**.
+
 ## A good pull request
 
 Every contribution has to come with:
 
-* Before starting coding, **you should open an issue** and start discussing with the community to see if your idea/feature is interesting enough
+* Before starting coding, **you must open an issue** and start discussing with the community to see if the idea/feature is interesting enough.
 * A documentation page in the [documentation folder](https://github.com/Microsoft/WindowsTemplateStudio/tree/dev/docs).
 * Unit tests (If applicable)
 * You tested your code with two most recent Windows 10 SDKs. (Build 14393 and 15063)
