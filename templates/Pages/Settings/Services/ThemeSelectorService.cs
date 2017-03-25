@@ -1,8 +1,10 @@
 using System;
+using System.Threading.Tasks;
+
 using Windows.Storage;
 using Windows.UI.Xaml;
+
 using RootNamespace.Extensions;
-using System.Threading.Tasks;
 
 namespace RootNamespace.Services
 {

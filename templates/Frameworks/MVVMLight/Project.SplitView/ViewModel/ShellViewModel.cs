@@ -1,12 +1,16 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+
+using Microsoft.Practices.ServiceLocation;
+
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+
 using uct.ItemName.Services;
 using uct.ItemName.Model;
 using uct.ItemName.View;

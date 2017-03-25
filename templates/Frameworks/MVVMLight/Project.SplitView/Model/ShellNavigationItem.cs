@@ -1,4 +1,5 @@
 ﻿using System;
+
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Controls;
 
@@ -13,9 +14,9 @@ namespace uct.ItemName.Model
 
         public ShellNavigationItem(string name, Symbol symbol, string viewModelName)
         {
-            this.Name = name;
-            this.Symbol = symbol;
-            this.ViewModelName = viewModelName;
+            Name = name;
+            Symbol = symbol;
+            ViewModelName = viewModelName;
         }
     }
 }

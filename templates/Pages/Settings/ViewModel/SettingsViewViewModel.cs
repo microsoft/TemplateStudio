@@ -1,8 +1,10 @@
 using System;
 using System.Windows.Input;
+
 using Windows.ApplicationModel;
-using Windows.UI.Xaml;
 using Windows.Storage;
+using Windows.UI.Xaml;
+
 using RootNamespace.Services;
 
 namespace ItemNamespace.ViewModel

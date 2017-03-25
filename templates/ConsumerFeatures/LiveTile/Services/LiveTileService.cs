@@ -1,12 +1,14 @@
-using RootNamespace.Activation;
-using RootNamespace.Extensions;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Windows.ApplicationModel.Activation;
 using Windows.Storage;
 using Windows.UI.Notifications;
 using Windows.UI.StartScreen;
+
+using RootNamespace.Activation;
+using RootNamespace.Extensions;
 
 namespace RootNamespace.Services
 {

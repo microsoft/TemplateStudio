@@ -1,7 +1,8 @@
-﻿using Windows.ApplicationModel.Background;
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+
+using Windows.ApplicationModel.Background;
 using Windows.System.Threading;
 
 namespace ItemNamespace.BackgroundTasks

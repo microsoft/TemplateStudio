@@ -9,8 +9,8 @@ namespace uct.TabbedPivotProject.Model
 
         public PivotTabbedItem(string title, Page page)
         {
-            this.Title = title;
-            this.Page = page;
+            Title = title;
+            Page = page;
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
+
 using Microsoft.Practices.ServiceLocation;
+
 using RootNamespace.Services;
 using RootNamespace.View;
 using RootNamespace.ViewModel;
