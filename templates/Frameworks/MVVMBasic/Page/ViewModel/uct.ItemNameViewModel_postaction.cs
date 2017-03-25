@@ -1,2 +1,3 @@
-using RootNamespace.Mvvm;
 using System;
+
+using RootNamespace.Mvvm;

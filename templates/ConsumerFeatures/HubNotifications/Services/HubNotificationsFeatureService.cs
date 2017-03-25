@@ -1,6 +1,8 @@
-using Microsoft.WindowsAzure.Messaging;
 using System;
 using System.Threading.Tasks;
+
+using Microsoft.WindowsAzure.Messaging;
+
 using Windows.ApplicationModel.Activation;
 using Windows.Networking.PushNotifications;
 

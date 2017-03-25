@@ -5,7 +5,7 @@ namespace ItemNamespace.ViewModel
     public class WebViewViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         //TODO UWPTemplates: Setup here your web url
-        private const string defaultUrl = "https://www.microsoft.com/";
+        private const string defaultUrl = "https://YourPrivacyStatementUrl/";
 
         private Uri _source;
         public Uri Source
