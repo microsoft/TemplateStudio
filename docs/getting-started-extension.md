@@ -16,15 +16,15 @@ This feed will have stable extension versions so it is not thought to have break
 
 Open Visual Studio 2017 and go to **Tools -> Extensions & Updates**, then click on **Change your Extensions and Updates settings** and create an Additional Extension Gallery.
 
-![Configure Additional Extension Gallery](vsix/configurefeed.png)
+![Configure Additional Extension Gallery](resources/vsix/configurefeed.PNG)
 
 Then, go again to **Tools -> Extensions & Updates** and using the recently added online gallery, install the Windows Template Studio extension.
 
-![Install UWP Community Templates extension](vsix/onlinefeed.png)
+![Install UWP Community Templates extension](resources/vsix/onlinefeed.PNG)
 
 Once installed, you will see a new Project Template which allows you to access to the available templates: Pre-Release version uses the VNext Template Repository.
 
-![File New Project](vsix/filenew.png)
+![File New Project](resources/vsix/filenew.PNG)
 
 You can start working with Windows Template Studio by cloning [our repo](https://github.com/Microsoft/WindowsTemplateStudio) and working locally with the code and the available templates.  If you plan to contribute, please follow the [contribution guidelines](../contributing.md)
 
