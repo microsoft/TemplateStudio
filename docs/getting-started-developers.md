@@ -1,4 +1,4 @@
-#Getting Started for Developers
+# Getting Started for Developers
 
 If you are authoring templates for Windows Template Studio, or interested in contributing to this repo, then you are likely interested in how to use the latest version of this code. The required steps are outlined below.
 
