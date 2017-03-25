@@ -1,5 +1,4 @@
 using ItemNamespace.ViewModel;
-
 namespace ItemNamespace.View
 {
     public sealed partial class uct.ItemNameView : Page

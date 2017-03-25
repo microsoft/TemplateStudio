@@ -1,12 +1,10 @@
-using System;
+using Windows.ApplicationModel.Background;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-
-using Windows.ApplicationModel.Activation;
-using Windows.ApplicationModel.Background;
-
+using System;
 using RootNamespace.Activation;
+using Windows.ApplicationModel.Activation;
 using RootNamespace.BackgroundTasks;
 using RootNamespace.Extensions;
 

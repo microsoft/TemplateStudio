@@ -1,7 +1,5 @@
-﻿using Microsoft.Practices.ServiceLocation;
-
-using ItemNamespace.ViewModel;
-
+﻿using ItemNamespace.ViewModel;
+using Microsoft.Practices.ServiceLocation;
 namespace uct.ItemName.View
 {
     public sealed partial class ShellView : Page

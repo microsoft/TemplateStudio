@@ -1,7 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-
 using GalaSoft.MvvmLight;
-
 using uct.ItemName.Model;
 
 namespace uct.ItemName.ViewModel

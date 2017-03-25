@@ -1,7 +1,6 @@
+using ItemNamespace.Model;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
-using ItemNamespace.Model;
 
 namespace ItemNamespace.Services
 {

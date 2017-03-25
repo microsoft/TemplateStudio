@@ -1,8 +1,6 @@
+using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Threading.Tasks;
-
-using Microsoft.Toolkit.Uwp.Notifications;
-
 using Windows.UI.Notifications;
 using Windows.UI.StartScreen;
 

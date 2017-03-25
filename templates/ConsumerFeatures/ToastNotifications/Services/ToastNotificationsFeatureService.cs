@@ -1,9 +1,8 @@
-using System.Threading.Tasks;
-
 using Microsoft.Toolkit.Uwp.Notifications;
-
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Notifications;
+
+using System.Threading.Tasks;
 
 using RootNamespace.Activation;
 

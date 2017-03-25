@@ -1,6 +1,5 @@
-using Windows.UI.Xaml.Controls;
-
 using uct.TabbedPivotProject.ViewModel;
+using Windows.UI.Xaml.Controls;
 
 namespace uct.TabbedPivotProject.View
 {

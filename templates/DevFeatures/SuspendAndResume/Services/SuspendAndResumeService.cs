@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Reflection;
 using System.Threading.Tasks;
-
+using RootNamespace.Extensions;
 using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 using Windows.ApplicationModel.Activation;
 
 using RootNamespace.Activation;
-using RootNamespace.Extensions;
 
 namespace ItemNamespace.Services
 {
