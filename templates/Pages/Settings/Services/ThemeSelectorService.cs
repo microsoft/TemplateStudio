@@ -1,7 +1,7 @@
 using System;
 using Windows.Storage;
 using Windows.UI.Xaml;
-using RootNamespace.Extensions;
+using RootNamespace.Helper;
 using System.Threading.Tasks;
 
 namespace RootNamespace.Services

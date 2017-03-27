@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 using uct.TabbedPivotProject.Activation;
+using uct.TabbedPivotProject.Helper;
 
 namespace uct.TabbedPivotProject.Services
 {

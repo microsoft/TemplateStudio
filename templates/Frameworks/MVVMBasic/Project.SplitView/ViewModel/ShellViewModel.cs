@@ -5,7 +5,7 @@ using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using uct.ItemName.Model;
-using uct.ItemName.Mvvm;
+using uct.ItemName.Helper;
 using uct.ItemName.Services;
 
 namespace uct.ItemName.ViewModel

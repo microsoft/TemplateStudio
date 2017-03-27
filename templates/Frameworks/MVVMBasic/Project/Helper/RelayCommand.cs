@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace RootNamespace.Mvvm
+namespace RootNamespace.Helper
 {
     public class RelayCommand : ICommand
     {

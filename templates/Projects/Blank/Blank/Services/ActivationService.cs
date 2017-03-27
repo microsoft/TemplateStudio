@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 using uct.BlankProject.Activation;
+using uct.BlankProject.Helper;
 
 namespace uct.BlankProject.Services
 {

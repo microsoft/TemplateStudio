@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
 
-namespace ItemNamespace.Extensions
+namespace ItemNamespace.Helper
 {
     public static class SettingsStorageExtensions
     {

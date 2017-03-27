@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 
-namespace uct.TabbedPivotProject.Extensions
+namespace uct.SplitViewProject.Helper
 {
     static class ResourceExtensions
     {
