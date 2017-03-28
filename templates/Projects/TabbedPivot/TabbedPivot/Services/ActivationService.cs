@@ -14,7 +14,7 @@ using uct.TabbedPivotProject.Helper;
 
 namespace uct.TabbedPivotProject.Services
 {
-    class ActivationService
+    internal class ActivationService
     {
         private readonly App _app;
         private readonly UIElement _shell;

@@ -10,7 +10,7 @@ using Windows.UI.StartScreen;
 
 namespace RootNamespace.Services
 {
-    partial class LiveTileService : ActivationHandler<LaunchActivatedEventArgs>
+    internal partial class LiveTileService : ActivationHandler<LaunchActivatedEventArgs>
     {
         private const string QueueEnabledKey = "NotificationQueueEnabled";
 

@@ -14,7 +14,7 @@ using uct.BlankProject.Helper;
 
 namespace uct.BlankProject.Services
 {
-    class ActivationService
+    internal class ActivationService
     {
         private readonly App _app;
         private readonly UIElement _shell;
