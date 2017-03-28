@@ -2,11 +2,11 @@
 
 This section have the main concepts and definitions used in Windows Template Studio.
 
-* [Getting Started](docs/getting-started.md)
-* [Installing / Using the extension](docs/getting-started-extension.md)
-* [Getting started with the generator codebase](docs/getting-started-developers.md)
-* [Authoring Templates](docs/templates.md)
-* [Contribution guidelines](contributing.md)
+* [Getting Started](getting-started.md)
+* [Installing / Using the extension](getting-started-extension.md)
+* [Getting started with the generator codebase](getting-started-developers.md)
+* [Authoring Templates](templates.md)
+* [Contribution guidelines](../contributing.md)
 
 ## Main concepts
 Windows Template Studio is divided in the following main elements:
