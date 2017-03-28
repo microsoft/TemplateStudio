@@ -1,11 +1,12 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace ItemNamespace.View
 {
-    public sealed partial class MasterDetailViewView : Page
+    public sealed partial class MasterDetailView : Page
     {
-        public MasterDetailViewView()
+        public MasterDetailView()
         {
             this.InitializeComponent();
         }
@@ -15,7 +16,7 @@ namespace ItemNamespace.View
             ViewModel.UpdateWindowState(e);
         }
 
-        private async void OnLoaded(object sender, RoutedEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             await ViewModel.LoadDataAsync(visualStateGroup.CurrentState);
         }
