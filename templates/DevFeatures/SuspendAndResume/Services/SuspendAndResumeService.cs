@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Threading.Tasks;
-using RootNamespace.Extensions;
+using RootNamespace.Helper;
 using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 using Windows.ApplicationModel.Activation;

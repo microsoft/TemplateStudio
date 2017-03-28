@@ -11,6 +11,7 @@
 
     <Window.Resources>
         <Image x:Key="VsImage" Source="/VsEmulator;component/Assets/vs.jpg"/>
+        <Image x:Key="VsCodeImage" Source="/VsEmulator;component/Assets/vscode.jpg"/>
         <Image x:Key="FolderImage" Source="/VsEmulator;component/Assets/folder.png"/>
     </Window.Resources>
 
@@ -46,6 +47,7 @@
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal">
                     <Button Command="{Binding OpenInVsCommand}" Content="{StaticResource VsImage}" Style="{StaticResource IconButton}" />
+                    <Button Command="{Binding OpenInVsCodeCommand}" Content="{StaticResource VsCodeImage}" Style="{StaticResource IconButton}" />
                     <Button Command="{Binding OpenInExplorerCommand}" Content="{StaticResource FolderImage}" Style="{StaticResource IconButton}"  />
                 </StackPanel>
                 <Grid Grid.Row="1" Style="{StaticResource HorizontalSeparator}" />

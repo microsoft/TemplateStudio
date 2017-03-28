@@ -71,7 +71,9 @@ namespace Microsoft.Templates.Wizard
                     var genPage = CreateGenInfo(page.name, pageTemplate, genQueue);
 
                     AddTemplate(genPage, genQueue, userSelection.Framework, "Page");
+                    AddTemplate(genPage, genQueue, userSelection.Framework, "Page", pageTemplate.GetSafeIdentity());
                     AddTemplate(genPage, genQueue, userSelection.Framework, "Project", userSelection.ProjectType, "Page");
+                    AddTemplate(genPage, genQueue, userSelection.Framework, "Project", userSelection.ProjectType, "Page", pageTemplate.GetSafeIdentity());
                 }
             }
         }

@@ -16,17 +16,32 @@
     "uct.version": "1.0.0",
     "uct.order": "1"
   },
-  "sourceName": "MasterDetailView",
+  "sourceName": "MasterDetail",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\View\\MasterDetailViewView.xaml"
+    {      
+      "path": ".\\View\\MasterDetailView.xaml"
     },
     {
-      "path": ".\\View\\MasterDetailViewView.xaml.cs"
+      "path": ".\\View\\MasterDetailView.xaml.cs"
     },
     {
-      "path": ".\\ViewModel\\MasterDetailViewViewModel.cs"
+      "path": ".\\View\\MasterDetailDetailView.xaml"
+    },
+    {
+      "path": ".\\View\\MasterDetailDetailView.xaml.cs"
+    },
+    {
+      "path": ".\\View\\MasterDetailDetailControl.xaml"
+    },
+    {
+      "path": ".\\View\\MasterDetailDetailControl.xaml.cs"
+    },
+    {
+      "path": ".\\ViewModel\\MasterDetailViewModel.cs"
+    },
+    {
+      "path": ".\\ViewModel\\MasterDetailDetailViewModel.cs"
     },
     {
       "path": ".\\Model\\SampleModel.cs"

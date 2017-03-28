@@ -6,7 +6,7 @@ using System;
 using RootNamespace.Activation;
 using Windows.ApplicationModel.Activation;
 using RootNamespace.BackgroundTasks;
-using RootNamespace.Extensions;
+using RootNamespace.Helper;
 
 namespace ItemNamespace.Services
 {
