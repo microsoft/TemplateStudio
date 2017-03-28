@@ -12,21 +12,17 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-using Microsoft.Templates.Core.Diagnostics;
-
-namespace Microsoft.Templates.Core.Locations
+namespace Microsoft.Templates.Core
 {
-    public abstract class TemplatesSource
+    public static class VersionExtensions
     {
-        protected const string SourceFolderName = "Templates";
-
-        public abstract string Id { get; }
-        public abstract void Adquire(string targetFolder);
+        public static bool IsDefault(this Version v)
+        {
+            return (v.Major + v.Minor + v.Build + v.Revision) == 0;
+        }
     }
 }

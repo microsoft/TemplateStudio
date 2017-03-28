@@ -19,7 +19,6 @@ using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Locations;
 
 using Newtonsoft.Json;
