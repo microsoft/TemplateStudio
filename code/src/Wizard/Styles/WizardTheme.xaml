@@ -150,6 +150,7 @@
             </Setter.Value>
         </Setter>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+        <Setter Property="SelectionMode" Value="Single" />
     </Style>
     <DataTemplate x:Key="ProjectInfoTemplate">
         <Grid Width="80" Height="100">
