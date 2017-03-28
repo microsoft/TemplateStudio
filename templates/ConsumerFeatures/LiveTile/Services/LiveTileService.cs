@@ -1,5 +1,5 @@
 using RootNamespace.Activation;
-using RootNamespace.Extensions;
+using RootNamespace.Helper;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,7 +10,7 @@ using Windows.UI.StartScreen;
 
 namespace RootNamespace.Services
 {
-    partial class LiveTileService : ActivationHandler<LaunchActivatedEventArgs>
+    internal partial class LiveTileService : ActivationHandler<LaunchActivatedEventArgs>
     {
         private const string QueueEnabledKey = "NotificationQueueEnabled";
 

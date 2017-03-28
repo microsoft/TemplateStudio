@@ -1,0 +1,31 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMBasic.Project.TabbedPivot.Page.MapPage",
+  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.TabbedPivot.Page.MapPage",
+  "identity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Page.Project.TabbedPivot.MapPage.CSharp",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "uct.type": "framework",
+    "uct.framework": "MVVMBasic",
+    "uct.version": "1.0.0",
+    "uct.order": "1"
+  },
+  "sourceName": "uct.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    }
+  }
+}

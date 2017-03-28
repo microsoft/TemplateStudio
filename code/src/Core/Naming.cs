@@ -12,6 +12,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -28,7 +29,7 @@ namespace Microsoft.Templates.Core
 
         public static string Infer(IEnumerable<string> existing, string suggestedName)
         {
-            suggestedName = Regex.Replace(suggestedName, InferInvalidPattern, string.Empty);
+            suggestedName = Regex.Replace(ToTitleCase(suggestedName), InferInvalidPattern, string.Empty);
 
             if (!Exist(existing, suggestedName))
             {
@@ -95,6 +96,28 @@ namespace Microsoft.Templates.Core
         private static bool Exist(IEnumerable<string> existing, string suggestedName)
         {
             return ReservedNames.Contains(suggestedName) || existing.Contains(suggestedName);
+        }
+
+        private static string ToTitleCase(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return value;
+            }
+
+            var valueChunks = value.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            if (valueChunks.Length == 1)
+            {
+                return value;
+            }
+
+            var result = new StringBuilder();
+            foreach (var chunk in valueChunks)
+            {
+                result.Append(string.Concat(char.ToUpper(chunk[0]), chunk.Substring(1), ""));
+            }
+
+            return result.ToString();
         }
     }
 

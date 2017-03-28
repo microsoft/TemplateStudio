@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace uct.SplitViewProject.Activation
 {
-    abstract class ActivationHandler
+    internal abstract class ActivationHandler
     {
         public abstract bool CanHandle(object args);
         public abstract Task HandleAsync(object args);
     }
 
-    abstract class ActivationHandler<T> : ActivationHandler where T : class
+    internal abstract class ActivationHandler<T> : ActivationHandler where T : class
     {
         protected abstract Task HandleInternalAsync(T args);
 

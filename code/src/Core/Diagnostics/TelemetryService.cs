@@ -23,7 +23,6 @@ using System.Threading.Tasks;
 
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.Extensibility;
-using Microsoft.Templates.Core.Extensions;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
@@ -131,9 +130,8 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         private void SetSessionData()
         {
-            string clearUser = (Environment.UserDomainName + Environment.UserName).ToLower();
-            string userToTrack = clearUser.Obfuscate();
-            string machineToTrack = Environment.MachineName.Obfuscate();
+            string userToTrack =  Guid.NewGuid().ToString();
+            string machineToTrack = Guid.NewGuid().ToString();
 
             _client.Context.User.Id = userToTrack;
             _client.Context.User.AccountId = userToTrack;

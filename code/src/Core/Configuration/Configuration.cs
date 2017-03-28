@@ -21,7 +21,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Extensions;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;

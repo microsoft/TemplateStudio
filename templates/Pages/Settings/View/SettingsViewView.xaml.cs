@@ -8,11 +8,6 @@ namespace ItemNamespace.View
         public SettingsViewView()
         {
             this.InitializeComponent();
-        }
-
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            ViewModel.Initialize();
-        }
+        }        
     }
 }

@@ -1,0 +1,5 @@
+<Page
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding uct.ItemNameDetailViewModel, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+</Page>

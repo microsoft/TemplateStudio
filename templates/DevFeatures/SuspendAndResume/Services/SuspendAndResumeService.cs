@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Threading.Tasks;
-using RootNamespace.Extensions;
+using RootNamespace.Helper;
 using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 using Windows.ApplicationModel.Activation;
@@ -10,7 +10,7 @@ using RootNamespace.Activation;
 
 namespace ItemNamespace.Services
 {
-    class SuspendAndResumeService : ActivationHandler<LaunchActivatedEventArgs>
+    internal class SuspendAndResumeService : ActivationHandler<LaunchActivatedEventArgs>
     {
         //TODO UWPTEMPLATES: For more information regarding the application lifecycle and how to handle suspend and resume, please see: 
         //https://docs.microsoft.com/windows/uwp/launch-resume/app-lifecycle
