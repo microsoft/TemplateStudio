@@ -21,7 +21,6 @@ using System.Threading.Tasks;
 using CERTENROLLLib;
 
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog

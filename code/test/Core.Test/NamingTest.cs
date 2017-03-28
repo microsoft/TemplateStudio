@@ -50,6 +50,15 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Fact]
+        public void Infer_TitleCase()
+        {
+            var existing = new string[] { };
+            var result = Naming.Infer(existing, "blank page");
+
+            Assert.Equal("BlankPage", result);
+        }
+
+        [Fact]
         public void Validate()
         {
             var existing = new string[] { };

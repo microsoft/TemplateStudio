@@ -5,15 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 using uct.TabbedPivotProject.Activation;
+using uct.TabbedPivotProject.Helper;
 
 namespace uct.TabbedPivotProject.Services
 {
-    class ActivationService
+    internal class ActivationService
     {
         private readonly App _app;
         private readonly UIElement _shell;
@@ -50,6 +52,11 @@ namespace uct.TabbedPivotProject.Services
                     {
                         throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
                     };
+                    NavigationService.Frame.Navigated += OnFrameNavigated;
+                    if (SystemNavigationManager.GetForCurrentView() != null)
+                    {
+                        SystemNavigationManager.GetForCurrentView().BackRequested += OnAppViewBackButtonRequested;
+                    }
                 } 
             }
 
@@ -96,6 +103,27 @@ namespace uct.TabbedPivotProject.Services
         private bool IsInteractive(object args)
         {
             return args is IActivatedEventArgs;
+        }
+
+        private void OnFrameNavigated(object sender, NavigationEventArgs e)
+        {
+            if (NavigationService.CanGoBack)
+            {
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            }
+            else
+            {
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+            }
+        }
+
+        private void OnAppViewBackButtonRequested(object sender, BackRequestedEventArgs e)
+        {
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+                e.Handled = true;
+            }
         }
     }
 }

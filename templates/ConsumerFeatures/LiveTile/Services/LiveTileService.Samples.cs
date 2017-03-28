@@ -6,7 +6,7 @@ using Windows.UI.StartScreen;
 
 namespace RootNamespace.Services
 {
-    partial class LiveTileService
+    internal partial class LiveTileService
     {
         public void SampleUpdate()
         {
