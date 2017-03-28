@@ -37,14 +37,6 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         }
 
         [Fact]
-        public void ObfuscateUserName()
-        {
-            string hiddenUserName = (Environment.UserDomainName + Environment.UserName).ToLower().Obfuscate();
-
-            Assert.NotEqual(hiddenUserName, Environment.UserName.ToUpper());
-        }
-
-        [Fact]
         public async Task TrackEventAsync()
         {
             Dictionary<string, string> props = new Dictionary<string, string>
