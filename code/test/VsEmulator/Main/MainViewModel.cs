@@ -45,6 +45,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
 
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
+        public RelayCommand OpenInVsCodeCommand => new RelayCommand(OpenInVsCode);
         public RelayCommand OpenInExplorerCommand => new RelayCommand(OpenInExplorer);
         public RelayCommand TemplatesContentCommand => new RelayCommand(TemplatesContent);
 
@@ -139,6 +140,14 @@ namespace Microsoft.Templates.VsEmulator.Main
             if (!string.IsNullOrEmpty(SolutionPath))
             {
                 System.Diagnostics.Process.Start(SolutionPath);
+            }
+        }
+
+        private void OpenInVsCode()
+        {
+            if (!string.IsNullOrEmpty(SolutionPath))
+            {
+                System.Diagnostics.Process.Start("code", $@"--new-window ""{Path.GetDirectoryName(SolutionPath)}""");
             }
         }
 

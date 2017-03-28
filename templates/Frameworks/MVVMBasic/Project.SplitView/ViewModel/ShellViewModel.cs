@@ -69,11 +69,6 @@ namespace uct.ItemName.ViewModel
             PopulateNavItems();
         }
 
-        public void CleanSuscriptions()
-        {
-            NavigationService.Frame.Navigated -= NavigationService_Navigated;
-        }
-
         private void NavigationService_Navigated(object sender, NavigationEventArgs e)
         {
             var item = NavigationItems?.FirstOrDefault(i => i.PageType == e?.SourcePageType);

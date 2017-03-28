@@ -12,8 +12,6 @@ namespace uct.SplitViewProject.View
             this.InitializeComponent();
 
             ViewModel.Initialize(frame);
-
-            Unloaded += (sender, e) => ViewModel.CleanSuscriptions();
         }
     }
 }
