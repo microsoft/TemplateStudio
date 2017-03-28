@@ -1,4 +1,4 @@
-#Getting Started with Windows Template Studio
+# Getting Started with Windows Template Studio
 
 This section have the main concepts and definitions used in Windows Template Studio.
 
