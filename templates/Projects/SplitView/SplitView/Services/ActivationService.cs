@@ -15,7 +15,7 @@ using uct.SplitViewProject.Helper;
 
 namespace uct.SplitViewProject.Services
 {
-    class ActivationService
+    internal class ActivationService
     {
         private readonly App _app;
         private readonly UIElement _shell;

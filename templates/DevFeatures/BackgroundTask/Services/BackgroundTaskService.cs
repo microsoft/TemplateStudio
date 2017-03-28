@@ -10,7 +10,7 @@ using RootNamespace.Helper;
 
 namespace ItemNamespace.Services
 {
-    class BackgroundTaskService : ActivationHandler<BackgroundActivatedEventArgs>
+    internal class BackgroundTaskService : ActivationHandler<BackgroundActivatedEventArgs>
     {
         public static IEnumerable<BackgroundTask> BackgroundTasks => backgroundTasks.Value;
 
@@ -58,8 +58,6 @@ namespace ItemNamespace.Services
         private static IEnumerable<BackgroundTask> CreateInstances()
         {
             var backgroundTasks = new List<BackgroundTask>();
-            //BACKGROUNDTASK_ANCHOR
-
             return backgroundTasks;
         }
     }

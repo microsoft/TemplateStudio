@@ -17,7 +17,6 @@ using System.Linq;
 using EnvDTE;
 
 using Microsoft.Internal.VisualStudio.PlatformUI;
-using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
@@ -26,6 +25,7 @@ using Microsoft.VisualStudio.TemplateWizard;
 
 using NuGet;
 using NuGet.VisualStudio;
+using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.Wizard.VisualStudio
 {

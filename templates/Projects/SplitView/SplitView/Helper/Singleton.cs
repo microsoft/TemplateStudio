@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace uct.SplitViewProject.Helper
 {
-    static class Singleton<T> where T : new()
+    internal static class Singleton<T> where T : new()
     {
         private static ConcurrentDictionary<Type, T> _instances = new ConcurrentDictionary<Type, T>();
 

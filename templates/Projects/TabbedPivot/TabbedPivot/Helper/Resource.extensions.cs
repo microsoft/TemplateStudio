@@ -8,7 +8,7 @@ using Windows.ApplicationModel.Resources;
 
 namespace uct.TabbedPivotProject.Helper
 {
-    static class ResourceExtensions
+    internal static class ResourceExtensions
     {
         public static string GetLocalized(this string resourceKey)
         {

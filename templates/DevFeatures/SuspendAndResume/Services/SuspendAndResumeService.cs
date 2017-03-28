@@ -10,7 +10,7 @@ using RootNamespace.Activation;
 
 namespace ItemNamespace.Services
 {
-    class SuspendAndResumeService : ActivationHandler<LaunchActivatedEventArgs>
+    internal class SuspendAndResumeService : ActivationHandler<LaunchActivatedEventArgs>
     {
         //TODO UWPTEMPLATES: For more information regarding the application lifecycle and how to handle suspend and resume, please see: 
         //https://docs.microsoft.com/windows/uwp/launch-resume/app-lifecycle

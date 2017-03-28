@@ -1,4 +1,4 @@
-class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
+internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
 {
     //{[{
     private readonly string _navElement;

@@ -38,6 +38,7 @@
             <ListView.Style>
                 <Style TargetType="ListView">
                     <Setter Property="Visibility" Value="Visible" />
+                    <Setter Property="SelectionMode" Value="Single" />
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Templates.Count}" Value="0">
                             <Setter Property="Visibility" Value="Collapsed" />
