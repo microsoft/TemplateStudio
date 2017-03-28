@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
@@ -22,6 +23,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
     public class MergePostAction : PostAction<string>
     {
         public const string Extension = "_postaction.";
+        public const string GlobalExtension = "$*_gpostaction.";
+        public const string PostactionRegex = @"(\$\S*)?(_postaction|_gpostaction)\.";
 
         public MergePostAction(string config) : base(config)
         {
@@ -29,7 +32,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         public override void Execute()
         {
-            var originalFilePath = _config.Replace(Extension, ".");
+            var originalFilePath = Regex.Replace(_config, PostactionRegex, ".");
 
             var source = File.ReadAllLines(originalFilePath).ToList();
             var merge = File.ReadAllLines(_config).ToList();

@@ -58,8 +58,6 @@ namespace ItemNamespace.Services
         private static IEnumerable<BackgroundTask> CreateInstances()
         {
             var backgroundTasks = new List<BackgroundTask>();
-            //BACKGROUNDTASK_ANCHOR
-
             return backgroundTasks;
         }
     }

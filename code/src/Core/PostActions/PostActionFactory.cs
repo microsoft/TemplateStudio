@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core.PostActions
             var postActions = new List<PostAction>();
 
             AddPredefinedActions(genInfo, genResult, postActions);
-            AddMergeActions(genInfo,postActions);
+            AddMergeActions(postActions, $"*{MergePostAction.Extension}*");
 
             return postActions;
         }
@@ -41,12 +41,8 @@ namespace Microsoft.Templates.Core.PostActions
         {
             var postActions = new List<PostAction>();
 
-            //TODO: REVIEW THIS FACTORY AND MAGIC STRINGS IN NAMES
-            if (genItems.Any(g => g.Template.GetTemplateType() == TemplateType.DevFeature && g.Template.GetSafeIdentity().Equals("backgroundtask", StringComparison.OrdinalIgnoreCase)))
-            {
-                postActions.Add(new BackgroundTaskPostAction());
-            }
-
+            AddMergeActions(postActions, $"*{MergePostAction.GlobalExtension}*");
+           
             return postActions;
         }
 
@@ -76,10 +72,10 @@ namespace Microsoft.Templates.Core.PostActions
             }
         }
 
-        private static void AddMergeActions(GenInfo genInfo, List<PostAction> postActions)
+        private static void AddMergeActions(List<PostAction> postActions, string searchPattern)
         {
             Directory
-               .EnumerateFiles(GenContext.Current.OutputPath, $"*{MergePostAction.Extension}*", SearchOption.AllDirectories)
+               .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
                .ToList()
                .ForEach(f => postActions.Add(new MergePostAction(f)));
         }
