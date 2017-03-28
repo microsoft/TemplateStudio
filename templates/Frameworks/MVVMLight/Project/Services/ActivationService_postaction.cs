@@ -1,4 +1,4 @@
-class ActivationService
+internal class ActivationService
 {
     private readonly Type _defaultNavItem;
     //{[{

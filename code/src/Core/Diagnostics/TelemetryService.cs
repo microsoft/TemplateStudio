@@ -23,7 +23,6 @@ using System.Threading.Tasks;
 
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.Extensibility;
-using Microsoft.Templates.Core.Extensions;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {

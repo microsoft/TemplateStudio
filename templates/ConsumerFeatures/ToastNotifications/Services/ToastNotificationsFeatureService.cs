@@ -8,7 +8,7 @@ using RootNamespace.Activation;
 
 namespace RootNamespace.Services
 {
-    class ToastNotificationsFeatureService : ActivationHandler<ToastNotificationActivatedEventArgs>
+    internal class ToastNotificationsFeatureService : ActivationHandler<ToastNotificationActivatedEventArgs>
     {
         public void ShowToastNotification(ToastNotification toastNotification)
         {

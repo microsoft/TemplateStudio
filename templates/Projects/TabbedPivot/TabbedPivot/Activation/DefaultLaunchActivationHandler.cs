@@ -11,7 +11,7 @@ using uct.TabbedPivotProject.Services;
 
 namespace uct.TabbedPivotProject.Activation
 {
-    class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
+    internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
     {
         protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
         {
