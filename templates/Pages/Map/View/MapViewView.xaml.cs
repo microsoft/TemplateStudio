@@ -8,17 +8,7 @@ namespace ItemNamespace.View
     {
         public MapViewView()
         {
-            this.InitializeComponent();
-        }
-
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            if (ViewModel == null)
-            {
-                throw new ArgumentNullException("ViewModel");
-            }
-            
-            ViewModel.Initialize(mapControl);
-        }
+            InitializeComponent();
+        }        
     }
 }

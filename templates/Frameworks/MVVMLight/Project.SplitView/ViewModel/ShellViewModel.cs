@@ -80,11 +80,6 @@ namespace uct.ItemName.ViewModel
             PopulateNavItems();
         }
 
-        public void CleanSuscriptions()
-        {
-            NavigationService.Navigated -= NavigationService_Navigated;
-        }
-
         private void NavigationService_Navigated(object sender, string e)
         {
             var item = NavigationItems?.FirstOrDefault(i => i.ViewModelName == e);
