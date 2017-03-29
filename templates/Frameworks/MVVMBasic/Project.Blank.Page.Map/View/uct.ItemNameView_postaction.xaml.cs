@@ -6,7 +6,7 @@ namespace ItemNamespace.View
         //^^
         
         //{[{        
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (ViewModel == null)
             {
