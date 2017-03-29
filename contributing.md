@@ -13,7 +13,7 @@ Also remeber that the Pull Requests must be done aganist the **[dev branch](http
 Every contribution has to come with:
 
 * Before starting coding, **you must open an issue** and start discussing with the community to see if the idea/feature is interesting enough.
-* A documentation page in the [documentation folder](https://github.com/Microsoft/WindowsTemplateStudio/tree/dev/docs).
+* A documentation page in the [documentation folder](https://github.com/Microsoft/WindowsTemplateStudio/tree/master/docs).
 * Unit tests (If applicable)
 * You tested your code with two most recent Windows 10 SDKs. (Build 14393 and 15063)
 * PR has to target dev branch

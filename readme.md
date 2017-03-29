@@ -92,4 +92,4 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 
 ## Privacy Statement
 
-The extention does log basic telemetry for what is being selected. Please read our [privacy statement](http://go.microsoft.com/fwlink/?LinkId=521839)
+The extension does log basic telemetry for what is being selected. Please read our [privacy statement](http://go.microsoft.com/fwlink/?LinkId=521839)
