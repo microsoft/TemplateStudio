@@ -120,7 +120,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helper\Resource.extensions.cs" />
+    <Compile Include="Helper\ResourceExtensions.cs" />
     <Compile Include="Helper\Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
