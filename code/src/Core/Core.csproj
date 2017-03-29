@@ -130,9 +130,9 @@
     <Compile Include="Diagnostics\TelemetryTracker.cs" />
     <Compile Include="Diagnostics\TraceHealthWriter.cs" />
     <Compile Include="Diagnostics\ShellHealthWriter.cs" />
-    <Compile Include="Extensions\String.extensions.cs" />
-    <Compile Include="Extensions\Task.extensions.cs" />
-    <Compile Include="Extensions\Version.extensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\TaskExtensions.cs" />
+    <Compile Include="Extensions\VersionExtensions.cs" />
     <Compile Include="Gen\GenInfo.cs" />
     <Compile Include="Gen\GenParams.cs" />
     <Compile Include="Gen\GenShell.cs" />
@@ -141,7 +141,7 @@
     <Compile Include="Locations\Fs.cs" />
     <Compile Include="Locations\InvalidSignatureException.cs" />
     <Compile Include="Locations\LocalTemplatesSource.cs" />
-    <Compile Include="ITemplateInfo.extensions.cs" />
+    <Compile Include="ITemplateInfoExtensions.cs" />
     <Compile Include="Locations\RemoteTemplatesSource.cs" />
     <Compile Include="Locations\TemplatesSynchronization.cs" />
     <Compile Include="Locations\TemplatesContent.cs" />
@@ -162,7 +162,7 @@
     <Compile Include="PostActions\PostAction.cs" />
     <Compile Include="PostActions\PostActionFactory.cs" />
     <Compile Include="PostActions\Catalog\SetDefaultSolutionConfigurationPostAction.cs" />
-    <Compile Include="Extensions\XElement.extensions.cs" />
+    <Compile Include="Extensions\XElementExtensions.cs" />
     <Compile Include="RepositorySynchronizationException.cs" />
     <Compile Include="TemplatesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
