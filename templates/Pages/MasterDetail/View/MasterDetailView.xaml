@@ -30,12 +30,6 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Page.Transitions>
-        <TransitionCollection>
-            <NavigationThemeTransition />
-        </TransitionCollection>
-    </Page.Transitions>
-
     <Grid
         x:Name="ContentArea"
         Padding="12,0,12,0">
