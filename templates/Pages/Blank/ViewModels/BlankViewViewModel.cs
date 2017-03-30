@@ -1,5 +1,5 @@
 using System;
-namespace ItemNamespace.ViewModel
+namespace ItemNamespace.ViewModels
 {
     public class BlankViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {

@@ -3,7 +3,7 @@ using System.Windows.Input;
 using uct.ItemName.Model;
 using uct.ItemName.Helper;
 
-namespace uct.ItemName.ViewModel
+namespace uct.ItemName.ViewModels
 {
     public class PivotViewModel : Observable
     {

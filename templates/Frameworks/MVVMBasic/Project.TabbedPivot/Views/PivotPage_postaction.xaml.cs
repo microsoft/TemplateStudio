@@ -1,8 +1,8 @@
-public sealed partial class PivotView : Page
+public sealed partial class PivotPage : Page
 {
     public PivotViewModel ViewModel { get; } = new PivotViewModel();
 
-    public PivotView()
+    public PivotPage()
     {
         DataContext = ViewModel;
         this.InitializeComponent();

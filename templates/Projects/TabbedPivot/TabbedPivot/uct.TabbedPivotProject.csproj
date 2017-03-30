@@ -98,12 +98,12 @@
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="View\PivotView.xaml">
+    <Page Include="Views\PivotPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="View\PivotView.xaml.cs">
-      <DependentUpon>PivotView.xaml</DependentUpon>
+    <Compile Include="Views\PivotPage.xaml.cs">
+      <DependentUpon>PivotPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\PivotTabbedItem.cs" />
   </ItemGroup>

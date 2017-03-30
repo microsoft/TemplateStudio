@@ -21,7 +21,7 @@
       "path": ".\\Model\\ShellNavigationItem.cs"
     },
     {
-      "path": ".\\ViewModel\\ShellViewModel.cs"
+      "path": ".\\ViewModels\\ShellViewModel.cs"
     }
   ],
   "symbols": {

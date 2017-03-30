@@ -8,7 +8,7 @@ using uct.ItemName.Model;
 using uct.ItemName.Helper;
 using uct.ItemName.Services;
 
-namespace uct.ItemName.ViewModel
+namespace uct.ItemName.ViewModels
 {
     public class ShellViewModel : Observable
     {

@@ -18,7 +18,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\ViewModel\\PivotViewModel.cs"
+      "path": ".\\ViewModels\\PivotViewModel.cs"
     }
   ],
   "symbols": {
