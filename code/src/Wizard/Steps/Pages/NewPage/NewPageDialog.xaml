@@ -82,6 +82,19 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal">
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Visibility" Value="Visible" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Templates.Count}" Value="0">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding TemplateSelected.MultipleInstances}" Value="false">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
                 <TextBlock Text="{x:Static local:Strings.PageName_Text}" />
                 <TextBox Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30">
                     <TextBox.Style>

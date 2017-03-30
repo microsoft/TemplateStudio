@@ -2,7 +2,7 @@
 
 This section have the main concepts and definitions used in Windows Template Studio.
 
-* [Getting Started](getting-started.md)
+* [Getting Started](readme.md)
 * [Installing / Using the extension](getting-started-extension.md)
 * [Getting started with the generator codebase](getting-started-developers.md)
 * [Authoring Templates](templates.md)

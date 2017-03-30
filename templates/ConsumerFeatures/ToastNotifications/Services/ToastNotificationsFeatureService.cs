@@ -25,11 +25,13 @@ namespace RootNamespace.Services
         }
 
         public void ShowToastNotificationSample()
-        {
+        {            
             // Create the toast content
             var content = new ToastContent()
             {
-                Launch = "action=view&id=5",
+                //TODO UWPTemplates: Check this documentation to know more about the Launch property
+                //https://developer.microsoft.com/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastcontent                
+                Launch = "ToastContentActivationParams",
 
                 Visual = new ToastVisual()
                 {
@@ -54,7 +56,9 @@ namespace RootNamespace.Services
                 {
                     Buttons =
                     {
-                        new ToastButton("Ok", "action=ok&id=5")
+                        //TODO UWPTemplates: Check this documentation to know more about Toast Buttons
+                        //https://developer.microsoft.com/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastbutton
+                        new ToastButton("Ok", "ToastButtonActivationArguments")
                         {
                             ActivationType = ToastActivationType.Foreground
                         },
@@ -67,8 +71,9 @@ namespace RootNamespace.Services
             // Create the toast
             var toast = new ToastNotification(content.GetXml())
             {
-                // Assign a tag (and optionally a group) so you can remove this notification in the future
-                Tag = "toast5"
+                //TODO UWPTemplates: Gets or sets the unique identifier of this notification within the notification Group. Max Lenght 16 char.
+                //https://docs.microsoft.com/uwp/api/windows.ui.notifications.toastnotification
+                Tag = "ToastTag"
             };
 
             // And show the toast

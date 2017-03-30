@@ -148,8 +148,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="Extensions\ObservableCollection.extensions.cs" />
-    <Compile Include="Extensions\Window.extensions.cs" />
+    <Compile Include="Extensions\ObservableCollectionExtensions.cs" />
+    <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="GenComposer.cs" />
     <Compile Include="GenException.cs" />
     <Compile Include="Resources\ResourcesExtensions.cs" />
@@ -243,7 +243,7 @@
     </Compile>
     <Compile Include="Host\WizardHostViewModel.cs" />
     <Compile Include="Host\WizardSteps.cs" />
-    <Compile Include="VisualStudio\VsShell.extensions.cs" />
+    <Compile Include="VisualStudio\VsShellExtensions.cs" />
     <Compile Include="VisualStudio\SolutionWizard.cs" />
     <Compile Include="VisualStudio\VsGenShell.cs" />
     <Compile Include="VisualStudio\VsOutputPane.cs" />

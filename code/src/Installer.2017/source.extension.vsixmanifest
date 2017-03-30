@@ -6,7 +6,7 @@
     <Description xml:space="preserve">Windows Template Studio</Description>
     <MoreInfo>https://github.com/Microsoft/WindowsTemplateStudio/</MoreInfo>
     <License>Content\EULA.rtf</License>
-    <GettingStartedGuide>https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/docs/getting-started.md</GettingStartedGuide>
+    <GettingStartedGuide>https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/readme.md</GettingStartedGuide>
     <ReleaseNotes>https://github.com/Microsoft/WindowsTemplateStudio/</ReleaseNotes>
     <Tags>Windows Template Studio UWP XAML MVVM</Tags>
   </Metadata>

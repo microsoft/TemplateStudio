@@ -12,7 +12,7 @@ Param(
   [Parameter(Mandatory=$True,Position=4)]
   [string]$buildNumber,
 
-  [Parameter(Mandatory=$False,Position=3)]
+  [Parameter(Mandatory=$False,Position=5)]
   [string]$publicKeyToken = "e4ef4cc7a47ae0c5" #TestKey.snk
 )
 
@@ -91,9 +91,8 @@ if($publicKeyToken){
 
     [xml]$projectTemplateContent = Get-Content $projectTemplate
 
-    $newPublicKeyToken = "PublicKeyToken=$publicKeyToken"
     $wizardAssemblyStrongName = $projectTemplateContent.VSTemplate.WizardExtension.Assembly -replace $VersionRegEx, $versionNumber 
-    $wizardAssemblyStrongName = $wizardAssemblyStrongName -replace "PublicKeyToken=.*</Assembly>", "$newPublicKeyToken</Assembly>"
+    $wizardAssemblyStrongName = $wizardAssemblyStrongName -replace "PublicKeyToken=.*", "PublicKeyToken=$publicKeyToken"
 
     $projectTemplateContent.VSTemplate.WizardExtension.Assembly = $wizardAssemblyStrongName
     
