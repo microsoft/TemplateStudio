@@ -26,6 +26,7 @@ using Microsoft.Templates.Wizard;
 using Microsoft.Templates.Wizard.Host;
 
 using Xunit;
+using System.Text.RegularExpressions;
 
 namespace Microsoft.Templates.Test
 {
@@ -60,14 +61,14 @@ namespace Microsoft.Templates.Test
 
                 AddLayoutItems(wizardState, projectTemplate);
 
-                await GenController.GenerateAsync(wizardState);
+                await GenController.UnsafeGenerateAsync(wizardState);
 
                 //Build solution
                 var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);
                 var result = BuildSolution(projectName, outputPath);
 
                 //Assert
-                Assert.True(result.exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", projectTemplate.Name, Path.GetFullPath(result.outputFile)));
+                Assert.True(result.exitCode.Equals(0), $"Solution {projectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
                 //Clean
                 Directory.Delete(outputPath, true);
@@ -94,14 +95,14 @@ namespace Microsoft.Templates.Test
                 AddItems(wizardState, GetTemplates(framework, TemplateType.DevFeature));
                 AddItems(wizardState, GetTemplates(framework, TemplateType.ConsumerFeature));
 
-                await GenController.GenerateAsync(wizardState);
+                await GenController.UnsafeGenerateAsync(wizardState);
 
                 //Build solution
                 var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);
                 var result = BuildSolution(projectName, outputPath);
 
                 //Assert
-                Assert.True(result.exitCode.Equals(0), string.Format("Solution {0} was not built successfully. Please see {1} for more details.", targetProjectTemplate.Name, Path.GetFullPath(result.outputFile)));
+                Assert.True(result.exitCode.Equals(0), $"Solution {targetProjectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
                 //Clean
                 Directory.Delete(outputPath, true);
@@ -206,6 +207,17 @@ namespace Microsoft.Templates.Test
                 }
             }
             return path;
+        }
+
+        private string GetErrorLines(string filePath)
+        {
+            Regex re = new Regex(@"^.*error .*$", RegexOptions.Multiline & RegexOptions.IgnoreCase);
+
+            var outputLines = File.ReadAllLines(filePath);
+
+            var errorLines = outputLines.Where(l => re.IsMatch(l));
+
+            return errorLines.Count() > 0 ? errorLines.Aggregate((i, j) => i + Environment.NewLine + j) : String.Empty;
         }
     }
 }

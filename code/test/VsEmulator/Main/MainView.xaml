@@ -11,6 +11,7 @@
 
     <Window.Resources>
         <Image x:Key="VsImage" Source="/VsEmulator;component/Assets/vs.jpg"/>
+        <Image x:Key="VsCodeImage" Source="/VsEmulator;component/Assets/vscode.jpg"/>
         <Image x:Key="FolderImage" Source="/VsEmulator;component/Assets/folder.png"/>
     </Window.Resources>
 
@@ -25,18 +26,27 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <TextBlock>           
-                    <Hyperlink Command="{Binding NewProjectCommand}">
-                        <TextBlock Text="New Project..."/>
-                    </Hyperlink>
-                </TextBlock>
-                <TextBlock>           
-                    <Hyperlink Command="{Binding TemplatesContentCommand}">
-                        <TextBlock Text="Templates versioning..."/>
-                    </Hyperlink>
-                </TextBlock>
-            </StackPanel>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel>
+                    <TextBlock>           
+                        <Hyperlink Command="{Binding NewProjectCommand}">
+                            <TextBlock Text="New Project..."/>
+                        </Hyperlink>
+                    </TextBlock>
+                    <TextBlock>           
+                        <Hyperlink Command="{Binding TemplatesContentCommand}">
+                            <TextBlock Text="Templates versioning..."/>
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+                <ScrollViewer x:Name="logScroll" Grid.Row="1" VerticalAlignment="Bottom" VerticalScrollBarVisibility="Auto" Height="200">
+                    <TextBlock Text="{Binding Log}" TextWrapping="Wrap"></TextBlock>
+                </ScrollViewer>
+            </Grid>
             <Grid Grid.Column="1" Style="{StaticResource VerticalSeparator}" />
             <Grid Grid.Column="2" Visibility="{Binding IsProjectLoaded}">
                 <Grid.RowDefinitions>
@@ -46,6 +56,7 @@
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal">
                     <Button Command="{Binding OpenInVsCommand}" Content="{StaticResource VsImage}" Style="{StaticResource IconButton}" />
+                    <Button Command="{Binding OpenInVsCodeCommand}" Content="{StaticResource VsCodeImage}" Style="{StaticResource IconButton}" />
                     <Button Command="{Binding OpenInExplorerCommand}" Content="{StaticResource FolderImage}" Style="{StaticResource IconButton}"  />
                 </StackPanel>
                 <Grid Grid.Row="1" Style="{StaticResource HorizontalSeparator}" />

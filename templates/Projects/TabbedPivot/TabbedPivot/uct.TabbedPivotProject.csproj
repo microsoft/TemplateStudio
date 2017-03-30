@@ -96,7 +96,6 @@
     <Compile Include="Activation\ActivationHandler.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
-    <Compile Include="Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="View\PivotView.xaml">
@@ -120,7 +119,8 @@
     </AppxManifest>   
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\Resource.extensions.cs" />
+    <Compile Include="Helper\ResourceExtensions.cs" />
+    <Compile Include="Helper\Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Default.rd.xml" />

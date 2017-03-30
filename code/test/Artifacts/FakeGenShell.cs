@@ -29,6 +29,7 @@ namespace Microsoft.Templates.Test.Artifacts
     public class FakeGenShell : GenShell
     {
         private readonly Action<string> _changeStatus;
+        private readonly Action<string> _addLog;
         private readonly Window _owner;
 
         public string SolutionPath
@@ -43,9 +44,10 @@ namespace Microsoft.Templates.Test.Artifacts
             }
         }
 
-        public FakeGenShell(Action<string> changeStatus = null, Window owner = null)
+        public FakeGenShell(Action<string> changeStatus = null, Action<string> addLog = null, Window owner = null)
         {
             _changeStatus = changeStatus;
+            _addLog = addLog;
             _owner = owner;
         }
 
@@ -146,7 +148,7 @@ namespace Microsoft.Templates.Test.Artifacts
 
         public override void WriteOutput(string data)
         {
-            Console.Out.WriteLine(data);
+            _addLog?.Invoke(data);
         }
 
         public override void CloseSolution()

@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using uct.ItemName.Model;
-using uct.ItemName.Mvvm;
+using uct.ItemName.Helper;
 
 namespace uct.ItemName.ViewModel
 {

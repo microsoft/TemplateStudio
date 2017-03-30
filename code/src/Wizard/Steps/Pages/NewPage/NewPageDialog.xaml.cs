@@ -37,9 +37,9 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
 
         public (string name, string templateName) Result { get; set; }
 
-        public NewPageDialog(WizardContext context, IEnumerable<string> selectedNames)
+        public NewPageDialog(WizardContext context, IEnumerable<PageViewModel> selectedTemplates)
         {
-            ViewModel = new NewPageViewModel(context, this, selectedNames);
+            ViewModel = new NewPageViewModel(context, this, selectedTemplates);
 
             DataContext = ViewModel;
             Loaded += PagesTemplatesDialog_Loaded;

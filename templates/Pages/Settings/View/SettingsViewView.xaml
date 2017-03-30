@@ -6,7 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
-    Loaded="OnLoaded"
     mc:Ignorable="d">
     <Page.Resources>
         <Thickness x:Key="ContainerMargin">24,12</Thickness>
@@ -33,7 +32,7 @@
                     Style="{ThemeResource TitleTextBlockStyle}"/>
                 <ToggleSwitch
                     x:Uid="SettingsView_Toggle"
-                    IsOn="{x:Bind ViewModel.IsLightThemeEnabled, Mode=TwoWay}"
+                    IsOn="{x:Bind ViewModel.IsLightThemeEnabled, Mode=OneWay}"
                     Margin="{StaticResource SmallTopMargin}">
                     <i:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="Toggled">

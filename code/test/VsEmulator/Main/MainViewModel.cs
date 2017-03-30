@@ -33,18 +33,19 @@ namespace Microsoft.Templates.VsEmulator.Main
 {
     public class MainViewModel : Observable
     {
-        private readonly Window _host;
+        private readonly MainView _host;
 
-        public MainViewModel(Window host)
+        public MainViewModel(MainView host)
         {
             _host = host;
 
-            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(msg => SetStateAsync(msg), _host));
+            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(msg => SetState(msg), l => AddLog(l), _host));
         }
 
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
 
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
+        public RelayCommand OpenInVsCodeCommand => new RelayCommand(OpenInVsCode);
         public RelayCommand OpenInExplorerCommand => new RelayCommand(OpenInExplorer);
         public RelayCommand TemplatesContentCommand => new RelayCommand(TemplatesContent);
 
@@ -54,6 +55,13 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             get { return _state; }
             set { SetProperty(ref _state, value); }
+        }
+
+        private string _log;
+        public string Log
+        {
+            get { return _log; }
+            set { SetProperty(ref _log, value); }
         }
 
         private Visibility _isProjectLoaded;
@@ -142,6 +150,14 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
+        private void OpenInVsCode()
+        {
+            if (!string.IsNullOrEmpty(SolutionPath))
+            {
+                System.Diagnostics.Process.Start("code", $@"--new-window ""{Path.GetDirectoryName(SolutionPath)}""");
+            }
+        }
+
         private void OpenInExplorer()
         {
             if (!string.IsNullOrEmpty(SolutionPath))
@@ -173,10 +189,19 @@ namespace Microsoft.Templates.VsEmulator.Main
             var result = dialog.ShowDialog();
         }
 
-        private void SetStateAsync(string message)
+        private void SetState(string message)
         {
             State = message;
             DoEvents();
+        }
+
+        private void AddLog(string message)
+        {
+            Log += message + Environment.NewLine;
+            _host.Dispatcher.Invoke(() =>
+            {
+                _host.logScroll.ScrollToEnd();
+            });
         }
 
         public void DoEvents()

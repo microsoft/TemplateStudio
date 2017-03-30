@@ -19,7 +19,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Extensions;
 
 namespace Microsoft.Templates.Core.Locations
 {

@@ -21,10 +21,10 @@
   "guids": [ "5b9d2eee-b648-4ca1-837e-9abb8f3dffdd" ],
   "PrimaryOutputs": [
     {
-      "path": ".\\Extensions\\SettingsStorage.extensions.cs"
+      "path": ".\\Helper\\SettingsStorageExtensions.cs"
     },
     {
-      "path": ".\\Json.cs"
+      "path": ".\\Helper\\Json.cs"
     }
   ],
   "symbols": {

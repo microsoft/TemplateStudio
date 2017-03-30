@@ -24,6 +24,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Wizard.ViewModels;
+using Microsoft.TemplateEngine.Abstractions;
 
 namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
 {
@@ -34,12 +35,14 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
         private readonly WizardContext _context;
         private readonly NewPageDialog _dialog;
         private readonly IEnumerable<string> _selectedNames;
+        private readonly IEnumerable<PageViewModel> _selectedTemplates;
 
-        public NewPageViewModel(WizardContext context, NewPageDialog dialog, IEnumerable<string> selectedNames)
+        public NewPageViewModel(WizardContext context, NewPageDialog dialog, IEnumerable<PageViewModel> selectedTemplates)
         {
             _context = context;
             _dialog = dialog;
-            _selectedNames = selectedNames;
+            _selectedNames = selectedTemplates.Select(t => t.Name);
+            _selectedTemplates = selectedTemplates;
         }
 
         public ICommand OkCommand => new RelayCommand(SaveAndClose, IsValid);
@@ -80,9 +83,9 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
         {
             Templates.Clear();
 
-            var pageTemplates = GenContext.ToolBox.Repo.GetAll()
-                                                            .Where(f => f.GetTemplateType() == TemplateType.Page
-                                                                && f.GetFrameworkList().Contains(_context.State.Framework))
+            var pageTemplates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page
+                                                                && t.GetFrameworkList().Contains(_context.State.Framework)
+                                                                 && (t.GetMultipleInstance() == true || !IsAlreadyDefined(t)))
                                                             .Select(t => new TemplateViewModel(t, GenContext.ToolBox.Repo.GetDependencies(t)))
                                                             .OrderBy(t => t.Order)
                                                             .ToList();
@@ -100,6 +103,10 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
             }
 
             await Task.CompletedTask;
+        }
+        private bool IsAlreadyDefined(ITemplateInfo template)
+        {
+            return _selectedTemplates.Any(t => t.TemplateName == template.Name);
         }
 
         private void SaveAndClose()

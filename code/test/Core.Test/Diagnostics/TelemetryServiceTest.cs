@@ -18,7 +18,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Extensions;
 
 using Xunit;
 
@@ -35,14 +34,6 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         public void Instantiated()
         {
             Assert.NotNull(_fixture.Telemetry);
-        }
-
-        [Fact]
-        public void ObfuscateUserName()
-        {
-            string hiddenUserName = (Environment.UserDomainName + Environment.UserName).ToLower().Obfuscate();
-
-            Assert.NotEqual(hiddenUserName, Environment.UserName.ToUpper());
         }
 
         [Fact]

@@ -5,7 +5,7 @@ using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using uct.ItemName.Model;
-using uct.ItemName.Mvvm;
+using uct.ItemName.Helper;
 using uct.ItemName.Services;
 
 namespace uct.ItemName.ViewModel
@@ -67,11 +67,6 @@ namespace uct.ItemName.ViewModel
             NavigationService.Frame.Navigated += NavigationService_Navigated;
 
             PopulateNavItems();
-        }
-
-        public void CleanSuscriptions()
-        {
-            NavigationService.Frame.Navigated -= NavigationService_Navigated;
         }
 
         private void NavigationService_Navigated(object sender, NavigationEventArgs e)

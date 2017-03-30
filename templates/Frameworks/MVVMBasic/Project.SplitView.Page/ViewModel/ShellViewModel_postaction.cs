@@ -1,6 +1,6 @@
 ﻿using ItemNamespace.Model;
 using ItemNamespace.View;
-using ItemNamespace.Extensions;
+using ItemNamespace.Helper;
 namespace ItemNamespace.ViewModel
 {
     public class ShellViewModel : Observable

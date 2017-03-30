@@ -8,7 +8,7 @@ using RootNamespace.Activation;
 
 namespace RootNamespace.Services
 {
-    class HubNotificationsFeatureService : ActivationHandler<ToastNotificationActivatedEventArgs>
+    internal class HubNotificationsFeatureService : ActivationHandler<ToastNotificationActivatedEventArgs>
     {
         public async void InitializeAsync()
         {

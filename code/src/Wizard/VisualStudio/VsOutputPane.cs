@@ -80,7 +80,7 @@ namespace Microsoft.Templates.Wizard.VisualStudio
                 Convert.ToInt32(clearWithSolution));
 
             output.GetPane(ref paneGuid, out var pane);
-            pane.OutputString($"UWP Communit Templates {DateTime.Now.ToString("yyyyMMdd HH:mm:ss.fff")}\n");
+            pane.OutputString($"Windows Template Studio {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}\n");
             pane.OutputString($"Version: {GetVersion()}\n");
             pane.OutputString($">\n");
         }

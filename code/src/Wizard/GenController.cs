@@ -23,7 +23,6 @@ using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions;
@@ -79,44 +78,7 @@ namespace Microsoft.Templates.Wizard
         {
             try
             {
-                var genItems = GenComposer.Compose(userSelection).ToList();
-
-                var chrono = Stopwatch.StartNew();
-
-                var genResults = new Dictionary<string, TemplateCreationResult>();
-
-                foreach (var genInfo in genItems)
-                {
-                    if (genInfo.Template == null)
-                    {
-                        continue;
-                    }
-
-                    var statusText = GetStatusText(genInfo);
-
-                    if (!string.IsNullOrEmpty(statusText))
-                    {
-                        GenContext.ToolBox.Shell.ShowStatusBarMessage(statusText);
-                    }
-
-                    AppHealth.Current.Verbose.TrackAsync($"Generating the template {genInfo.Template.Name} to {GenContext.Current.OutputPath}.").FireAndForget();
-
-                    var result = await CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, GenContext.Current.OutputPath, genInfo.Parameters, false, false);
-
-                    genResults.Add($"{genInfo.Template.Identity}_{genInfo.Name}", result);
-
-                    if (result.Status != CreationResultStatus.Success)
-                    {
-                        throw new GenException(genInfo.Name, genInfo.Template.Name, result.Message);
-                    }
-
-                    ExecutePostActions(genInfo, result);
-                }
-
-                ExecuteGlobalPostActions(genItems);
-
-                chrono.Stop();
-                TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.Framework);
+                await UnsafeGenerateAsync(userSelection);
             }
             catch (Exception ex)
             {
@@ -126,6 +88,48 @@ namespace Microsoft.Templates.Wizard
 
                 GenContext.ToolBox.Shell.CancelWizard(false);
             }
+        }
+
+        public static async Task UnsafeGenerateAsync(WizardState userSelection)
+        {
+            var genItems = GenComposer.Compose(userSelection).ToList();
+
+            var chrono = Stopwatch.StartNew();
+
+            var genResults = new Dictionary<string, TemplateCreationResult>();
+
+            foreach (var genInfo in genItems)
+            {
+                if (genInfo.Template == null)
+                {
+                    continue;
+                }
+
+                var statusText = GetStatusText(genInfo);
+
+                if (!string.IsNullOrEmpty(statusText))
+                {
+                    GenContext.ToolBox.Shell.ShowStatusBarMessage(statusText);
+                }
+
+                AppHealth.Current.Verbose.TrackAsync($"Generating the template {genInfo.Template.Name} to {GenContext.Current.OutputPath}.").FireAndForget();
+
+                var result = await CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, GenContext.Current.OutputPath, genInfo.Parameters, false, false);
+
+                genResults.Add($"{genInfo.Template.Identity}_{genInfo.Name}", result);
+
+                if (result.Status != CreationResultStatus.Success)
+                {
+                    throw new GenException(genInfo.Name, genInfo.Template.Name, result.Message);
+                }
+
+                ExecutePostActions(genInfo, result);
+            }
+
+            ExecuteGlobalPostActions(genItems);
+
+            chrono.Stop();
+            TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.Framework);
         }
 
         private static void ExecuteGlobalPostActions(List<GenInfo> genItems)

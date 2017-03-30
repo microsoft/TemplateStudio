@@ -7,7 +7,7 @@
         Width="600" 
         Height="400"
         mc:Ignorable="d"
-        Title="Add new dev feature"
+        Title="Add new consumer feature"
         WindowStartupLocation="CenterScreen" 
         ResizeMode="NoResize" 
         ShowInTaskbar="False">

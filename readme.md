@@ -9,7 +9,7 @@ To reach our developers in an up-to-date fashion, the project is broken up into 
 
 ## Getting Started
 
-* [Getting Started](docs/getting-started.md)
+* [Getting Started](docs/readme.md)
 * [Installing / Using the extension](docs/getting-started-extension.md)
 * [Getting started with the generator codebase](docs/getting-started-developers.md)
 * [Authoring Templates](docs/templates.md)
@@ -89,3 +89,7 @@ This code is distributed under the terms and conditions of the [MIT license](lic
 ## Code of Conduct
 
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
+## Privacy Statement
+
+The extension does log basic telemetry for what is being selected. Please read our [privacy statement](http://go.microsoft.com/fwlink/?LinkId=521839)
