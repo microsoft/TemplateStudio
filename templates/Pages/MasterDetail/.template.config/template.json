@@ -44,7 +44,7 @@
       "path": ".\\ViewModel\\MasterDetailDetailViewModel.cs"
     },
     {
-      "path": ".\\Model\\SampleModel.cs"
+      "path": ".\\Models\\SampleModel.cs"
     },
     {
       "path": ".\\Services\\SampleModelService.cs"
