@@ -71,9 +71,9 @@ namespace RootNamespace.Services
             // Create the toast
             var toast = new ToastNotification(content.GetXml())
             {
-                //TODO UWPTemplates: Gets or sets the unique identifier of this notification within the notification Group
+                //TODO UWPTemplates: Gets or sets the unique identifier of this notification within the notification Group. Max Lenght 16 char.
                 //https://docs.microsoft.com/uwp/api/windows.ui.notifications.toastnotification
-                Tag = "ToastNotificationTag"
+                Tag = "ToastTag"
             };
 
             // And show the toast
