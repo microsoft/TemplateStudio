@@ -17,17 +17,17 @@
     "uct.order": "1",
     "uct.dependencies":"Microsoft.UWPTemplates.SettingsStorageFeature.CSharp"
   },
-  "sourceName": "SettingsView",
+  "sourceName": "SettingsPage",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\View\\SettingsViewView.xaml"
+      "path": ".\\Views\\SettingsPagePage.xaml"
     },
     {
-      "path": ".\\View\\SettingsViewView.xaml.cs"
+      "path": ".\\Views\\SettingsPagePage.xaml.cs"
     },
     {
-      "path": ".\\ViewModel\\SettingsViewViewModel.cs"
+      "path": ".\\ViewModels\\SettingsPageViewModel.cs"
     },
     {
       "path": ".\\Services\\ThemeSelectorService.cs"

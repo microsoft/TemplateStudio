@@ -1,7 +1,7 @@
 <root>
   <!--^^-->
   <!--{[{-->
-  <data name="MasterDetailView_Title.Text" xml:space="preserve">
+  <data name="MasterDetailPage_Title.Text" xml:space="preserve">
     <value>MasterDetail</value>
   </data>
   <!--}]}-->

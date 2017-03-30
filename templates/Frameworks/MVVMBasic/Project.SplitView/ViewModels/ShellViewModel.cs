@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using uct.ItemName.Model;
+using uct.ItemName.Models;
 using uct.ItemName.Helper;
 using uct.ItemName.Services;
 

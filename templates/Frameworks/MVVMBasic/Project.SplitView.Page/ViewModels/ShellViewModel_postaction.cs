@@ -1,4 +1,4 @@
-﻿using ItemNamespace.Model;
+﻿using ItemNamespace.Models;
 using ItemNamespace.Views;
 using ItemNamespace.Helper;
 namespace ItemNamespace.ViewModels

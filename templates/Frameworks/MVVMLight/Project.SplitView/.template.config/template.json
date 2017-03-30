@@ -18,10 +18,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Model\\ShellNavigationItem.cs"
+      "path": ".\\Models\\ShellNavigationItem.cs"
     },
     {
-      "path": ".\\ViewModel\\ShellViewModel.cs"
+      "path": ".\\ViewModels\\ShellViewModel.cs"
     }
   ],
   "symbols": {
