@@ -24,6 +24,7 @@ using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Wizard.Steps.Pages;
 using Microsoft.Templates.Wizard.ViewModels;
+using Microsoft.TemplateEngine.Abstractions;
 
 namespace Microsoft.Templates.Wizard.Steps.DevFeatures.NewDevFeature
 {
@@ -83,17 +84,21 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures.NewDevFeature
 
             var devFeatTemplates = GenContext.ToolBox.Repo
                                                         .Get(t => t.GetTemplateType() == TemplateType.DevFeature
-                                                            && t.GetFrameworkList().Contains(_context.State.Framework))
+                                                            && t.GetFrameworkList().Contains(_context.State.Framework)
+                                                            && (t.GetMultipleInstance() == true || !IsAlreadyDefined(t)))
                                                         .Select(t => new TemplateViewModel(t, GenContext.ToolBox.Repo.GetDependencies(t)))
                                                         .OrderBy(t => t.Order)
                                                         .ToList();
-            foreach (var template in devFeatTemplates)
-            {
-                if (template.MultipleInstances == true || !IsAlreadyDefined(template))
-                {
-                    Templates.Add(template);
-                }
-            }
+
+            Templates.AddRange(devFeatTemplates);
+
+            //foreach (var template in devFeatTemplates)
+            //{
+            //    if (template.MultipleInstances == true || !IsAlreadyDefined(template))
+            //    {
+            //        Templates.Add(template);
+            //    }
+            //}
 
             if (Templates.Any())
             {
@@ -108,7 +113,7 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures.NewDevFeature
             await Task.CompletedTask;
         }
 
-        private bool IsAlreadyDefined(TemplateViewModel template)
+        private bool IsAlreadyDefined(ITemplateInfo template)
         {
             return _selectedTemplates.Any(t => t.TemplateName == template.Name);
         }
