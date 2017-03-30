@@ -21,15 +21,26 @@ namespace Microsoft.Templates.Wizard.ViewModels
         public const string DefaultProjectIcon = "pack://application:,,,/Microsoft.Templates.Wizard;component/Assets/DefaultProjectIcon.png";
         public static BitmapImage CreateIcon(string path)
         {
-            Uri source;
-            if (string.IsNullOrWhiteSpace(path) || !File.Exists(path))
+            try
             {
-                source = new Uri(DefaultProjectIcon);
+                if (string.IsNullOrWhiteSpace(path) || !File.Exists(path))
+                {
+                    return CreateBitMap(new Uri(DefaultProjectIcon));
+                }
+                else
+                {
+                    return CreateBitMap(new Uri(path));
+                }
             }
-            else
+            catch (IOException)
             {
-                source = new Uri(path);
-            }            
+                //SYNC AT SAME TIME IS LOADING THE ICON OR ICON IS LOCKED
+                return CreateBitMap(new Uri(DefaultProjectIcon));
+            }
+        }
+
+        private static BitmapImage CreateBitMap(Uri source)
+        {
             var image = new BitmapImage();
             image.BeginInit();
             image.CacheOption = BitmapCacheOption.OnLoad;
