@@ -105,7 +105,7 @@
     <Compile Include="View\PivotView.xaml.cs">
       <DependentUpon>PivotView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\PivotTabbedItem.cs" />
+    <Compile Include="Models\PivotTabbedItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">

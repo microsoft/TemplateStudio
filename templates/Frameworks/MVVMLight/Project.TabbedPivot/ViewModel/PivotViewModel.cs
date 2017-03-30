@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
-using uct.ItemName.Model;
+using uct.ItemName.Models;
 
 namespace uct.ItemName.ViewModel
 {

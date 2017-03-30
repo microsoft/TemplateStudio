@@ -1,4 +1,4 @@
-namespace ItemNamespace.Model
+namespace ItemNamespace.Models
 {
     public class SampleModel
     {

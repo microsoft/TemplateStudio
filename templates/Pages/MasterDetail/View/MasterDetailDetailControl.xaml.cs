@@ -1,7 +1,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-using ItemNamespace.Model;
+using ItemNamespace.Models;
 
 namespace ItemNamespace.View
 {

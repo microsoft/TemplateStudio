@@ -1,6 +1,6 @@
 using Windows.UI.Xaml.Controls;
 
-namespace uct.TabbedPivotProject.Model
+namespace uct.TabbedPivotProject.Models
 {
     public class PivotTabbedItem
     {

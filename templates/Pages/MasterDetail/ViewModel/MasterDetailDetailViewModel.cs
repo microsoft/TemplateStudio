@@ -6,7 +6,7 @@ using System.Windows.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using ItemNamespace.Model;
+using ItemNamespace.Models;
 using ItemNamespace.Services;
 
 namespace ItemNamespace.ViewModel

@@ -2,7 +2,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-using ItemNamespace.Model;
+using ItemNamespace.Models;
 using ItemNamespace.Services;
 
 namespace ItemNamespace.View
