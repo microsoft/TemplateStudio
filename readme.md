@@ -9,7 +9,7 @@ To reach our developers in an up-to-date fashion, the project is broken up into 
 
 ## Getting Started
 
-* [Getting Started](docs/getting-started.md)
+* [Getting Started](docs/readme.md)
 * [Installing / Using the extension](docs/getting-started-extension.md)
 * [Getting started with the generator codebase](docs/getting-started-developers.md)
 * [Authoring Templates](docs/templates.md)
