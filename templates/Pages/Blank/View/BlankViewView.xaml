@@ -5,13 +5,27 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Page.Resources>
-        <Thickness x:Key="ContainerMargin">24,12</Thickness>
-    </Page.Resources>
+    <Grid
+        x:Name="ContentArea"
+        Margin="12,0,12,0">
 
-  <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <StackPanel Margin="{StaticResource ContainerMargin}">
-      <TextBlock x:Uid="BlankView_Title" Style="{ThemeResource HeaderTextBlockStyle}"/>
-    </StackPanel>
-  </Grid>  
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="TitleRow" Height="48"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            x:Name="TitlePage"
+            x:Uid="BlankView_Title"
+            Text="Navigation Item 2"
+            FontSize="28" FontWeight="SemiLight" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" VerticalAlignment="Center"
+            Margin="0,0,12,7"/>
+
+        <Grid 
+            Grid.Row="1" 
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+                Place your content here.-->
+        </Grid>
+    </Grid>
 </Page>
