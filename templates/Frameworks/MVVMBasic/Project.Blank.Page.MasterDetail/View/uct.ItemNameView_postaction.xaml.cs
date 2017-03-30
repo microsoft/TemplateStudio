@@ -8,7 +8,7 @@ namespace ItemNamespace.View
         //{[{
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            await ViewModel.LoadDataAsync(visualStateGroup.CurrentState);
+            await ViewModel.LoadDataAsync(AdaptiveStates.CurrentState);
         }        
         //}]}
     }

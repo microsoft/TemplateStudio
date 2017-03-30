@@ -5,34 +5,31 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="using:ItemNamespace.View"
-    mc:Ignorable="d">
-    <Page.Resources>
-        <Thickness x:Key="ContainerMargin">24,0</Thickness>
+    mc:Ignorable="d">    
 
-        <Thickness x:Key="LargeTopMargin">0,16,0,0</Thickness>
-        <Thickness x:Key="MediumTopMargin">0,8,0,0</Thickness>
-        <Thickness x:Key="SmallTopMargin">0,4,0,0</Thickness>
-    </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid
+        x:Name="ContentArea"
+        Background="{ThemeResource SystemControlBackgroundAltHighBrush}"
+        Margin="12,0,12,0">
+
+        <views:MasterDetailDetailControl
+            MasterMenuItem="{x:Bind ViewModel.Item}"/>
+
+        <!--  Adaptive triggers  -->
         <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="visualStateGroup" CurrentStateChanged="OnWindowStateChanged">
-                <VisualState x:Name="NarrowState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                    </VisualState.Setters>
-                </VisualState>
+            <VisualStateGroup x:Name="AdaptiveStates" CurrentStateChanged="OnAdaptiveStatesCurrentStateChanged">
                 <VisualState x:Name="WideState">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="640" />
+                        <AdaptiveTrigger MinWindowWidth="640"/>
                     </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <views:MasterDetailDetailControl Item="{x:Bind ViewModel.Item}"/>
     </Grid>
 </Page>

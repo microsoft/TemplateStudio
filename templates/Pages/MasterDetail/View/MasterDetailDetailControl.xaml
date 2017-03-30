@@ -7,18 +7,38 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-    <UserControl.Resources>
-        <Thickness x:Key="ContainerMargin">24,0</Thickness>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <Thickness x:Key="LargeTopMargin">0,16,0,0</Thickness>
-        <Thickness x:Key="MediumTopMargin">0,8,0,0</Thickness>
-        <Thickness x:Key="SmallTopMargin">0,4,0,0</Thickness>
-    </UserControl.Resources>
+        <TextBlock
+            x:Name="TitlePage"
+            Text="{x:Bind MasterMenuItem.Title, Mode=OneWay}"
+            FontSize="28" FontWeight="SemiLight" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" VerticalAlignment="Center"
+            Margin="0,0,12,7"/>
+            
+        <ScrollViewer
+            Grid.Row="1"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            ScrollViewer.VerticalScrollMode="Auto">
 
-    <StackPanel Margin="{StaticResource ContainerMargin}">
-        <TextBlock Text="{x:Bind Item.Title, Mode=OneWay}" Style="{StaticResource TitleTextBlockStyle}" />
-        <TextBlock Text="{x:Bind Item.Category, Mode=OneWay}" Style="{StaticResource SubtitleTextBlockStyle}" />
-        <TextBlock Text="{x:Bind Item.Subtitle, Mode=OneWay}" Style="{StaticResource SubtitleTextBlockStyle}" Margin="{StaticResource MediumTopMargin}" />
-        <TextBlock Text="{x:Bind Item.Description, Mode=OneWay}" Style="{StaticResource BodyTextBlockStyle}" Margin="{StaticResource SmallTopMargin}"  />
-    </StackPanel>
+            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your detail content.-->
+            <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+
+                <!--Replate FontIcon and TextBlock with your detail content.-->
+                <FontIcon 
+                    FontSize="90" 
+                    Glyph="{x:Bind MasterMenuItem.SymbolAsChar, Mode=OneWay}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"/>
+                <TextBlock
+                    Text="{x:Bind MasterMenuItem.Description, Mode=OneWay}"
+                    FontSize="16" FontWeight="Normal" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"
+                    VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="12,12,12,12"/>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
 </UserControl>

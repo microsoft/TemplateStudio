@@ -7,12 +7,12 @@ namespace ItemNamespace.View
 {
     public sealed partial class MasterDetailDetailControl : UserControl
     {
-        public SampleModel Item
+        public SampleModel MasterMenuItem
         {
-            get { return GetValue(ItemProperty) as SampleModel; }
-            set { SetValue(ItemProperty, value); }
+            get { return GetValue(MasterMenuItemProperty) as SampleModel; }
+            set { SetValue(MasterMenuItemProperty, value); }
         }
-        public static DependencyProperty ItemProperty = DependencyProperty.Register("Item",typeof(SampleModel),typeof(MasterDetailDetailControl),new PropertyMetadata(null));
+        public static DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem",typeof(SampleModel),typeof(MasterDetailDetailControl),new PropertyMetadata(null));
 
         public MasterDetailDetailControl()
         {

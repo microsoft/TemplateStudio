@@ -20,7 +20,7 @@ namespace ItemNamespace.View
             ViewModel.Item = e.Parameter as SampleModel;
         }
 
-        private void OnWindowStateChanged(object sender, VisualStateChangedEventArgs e)
+        private void OnAdaptiveStatesCurrentStateChanged(object sender, VisualStateChangedEventArgs e)
         {
             ViewModel.UpdateWindowState(e);
         }

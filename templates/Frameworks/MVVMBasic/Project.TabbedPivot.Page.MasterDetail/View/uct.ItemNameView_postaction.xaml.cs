@@ -11,7 +11,7 @@ namespace ItemNamespace.View
         //{[{
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
-            await ViewModel.LoadDataAsync(visualStateGroup.CurrentState);
+            await ViewModel.LoadDataAsync(AdaptiveStates.CurrentState);
         }        
         //}]}
     }
