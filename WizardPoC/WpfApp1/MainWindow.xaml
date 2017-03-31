@@ -19,7 +19,7 @@
             <ColumnDefinition Width="300" />
         </Grid.ColumnDefinitions>
         <Image Source="vsCapture.png" Grid.ColumnSpan="3" Grid.RowSpan="3" Stretch="None" />
-        <Grid Name="Top" Grid.Row="0" Grid.ColumnSpan="2">
+        <Grid Name="TopItem" Grid.Row="0" Grid.ColumnSpan="2">
             <StackPanel Margin="10, 0" Orientation="Horizontal" VerticalAlignment="Center">
                 <TextBlock FontFamily="Segoe UI Symbol" Text="" FontSize="16" Margin="0, 0, 10, 0" VerticalAlignment="Center" />
                 <TextBlock FontSize="30">Select your options and generate</TextBlock>
@@ -47,6 +47,7 @@
                     <local:SingletonWithBorder />
                     <local:SingletonWithBorder />
                     <local:SingletonWithBorder />
+
                 </WrapPanel>
             </GroupBox>
         </Grid>
@@ -58,36 +59,52 @@
             <Grid Grid.Row="1" Margin="10">
                 <TextBlock TextWrapping="Wrap">By continuing, you agree to the licenses in the licensing section for the generated project. By continuing, you agree to those licenses.</TextBlock>
             </Grid>
-            <StackPanel Margin="10, 0" Grid.Row="0">
-                <TextBlock Foreground="#3399ff" FontSize="16">Summary</TextBlock>
-                <Expander Header="Project Style" FontSize="16">
-                    <Grid>
-                        
-                    </Grid>
-                </Expander>
-                <Expander Header="Framework" FontSize="16">
-                    <Grid>
+            <ScrollViewer Margin="10, 10, 0, 10" Grid.Row="0">
+                <StackPanel >
+                    <TextBlock Foreground="#3399ff" FontSize="16">Summary</TextBlock>
+                    <Expander Header="Project Style" FontSize="16" IsExpanded="True">
+                        <StackPanel Margin="25, 0, 0, 0">
+                            <TextBlock>Item 1</TextBlock>
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="Framework" FontSize="16" IsExpanded="True">
+                        <StackPanel Margin="25, 0, 0, 0">
+                            <TextBlock>Item 2</TextBlock>
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="Pages" FontSize="16" IsExpanded="True">
+                        <Grid>
+                            <StackPanel Margin="25, 0, 0, 0">
+                                <TextBlock>Item 1</TextBlock>
+                                <TextBlock>Item 1</TextBlock>
+                                <TextBlock>Item 1</TextBlock>
+                                <TextBlock>Item 1</TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </Expander>
+                    <Expander Header="Features" FontSize="16" IsExpanded="True">
+                        <Grid>
+                            <StackPanel Margin="25, 0, 0, 0">
+                                <TextBlock>Item 1</TextBlock>
+                                <TextBlock>Item 1</TextBlock>
+                                <TextBlock>Item 1</TextBlock>
+                                <TextBlock>Item 1</TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </Expander>
+                    <Expander Header="Licenses" FontSize="16" IsExpanded="True">
+                        <Grid>
+                            <StackPanel Margin="25, 0, 0, 0">
+                                <TextBlock>Item 1</TextBlock>
+                                <TextBlock>Item 1</TextBlock>
+                                <TextBlock>Item 1</TextBlock>
+                                <TextBlock>Item 1</TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </Expander>
 
-                    </Grid>
-                </Expander>
-                <Expander Header="Pages" FontSize="16">
-                    <Grid>
-
-                    </Grid>
-                </Expander>
-                <Expander Header="Features" FontSize="16">
-                    <Grid>
-
-                    </Grid>
-                </Expander>
-                <Expander Header="Licenses" FontSize="16">
-                    <Grid>
-
-                    </Grid>
-                </Expander>
-
-            </StackPanel>
-            
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </Window>
