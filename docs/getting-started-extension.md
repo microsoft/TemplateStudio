@@ -28,6 +28,6 @@ Once installed, you will see a new Project Template which allows you to access t
 
 You can start working with Windows Template Studio by cloning [our repo](https://github.com/Microsoft/WindowsTemplateStudio) and working locally with the code and the available templates.  If you plan to contribute, please follow the [contribution guidelines](../contributing.md)
 
-## Nighlty Dev-release
+## Nightly Dev-release
 
-If you want to have updates from in-progress changes.  This feed will have the result of the daily dev-branch integration so expect some instability. This extension can be installed side by side with the offical and pre-release, anyway, installing this extension is at your own risk.
+If you want to have updates from in-progress changes.  This feed will have the result of the daily dev-branch integration so expect some instability. This extension can be installed side by side with the official and pre-release, anyway, installing this extension is at your own risk.
