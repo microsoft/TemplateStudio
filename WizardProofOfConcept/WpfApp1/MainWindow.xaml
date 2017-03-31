@@ -24,7 +24,7 @@
         </Grid>
         <Grid Name="Bottom" Grid.Row="2" Grid.ColumnSpan="2" Background="#f1f1f1" >
             <Grid Margin="10, 0">
-                <StackPanel VerticalAlignment="Center" >
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
                     <TextBlock>Wizard: 0.4.17086.3</TextBlock>
                     <TextBlock>Tempalte: 0.4.17090.2</TextBlock>
                 </StackPanel>
