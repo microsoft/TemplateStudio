@@ -30,7 +30,7 @@ namespace RootNamespace.Services
             var content = new ToastContent()
             {
                 //TODO UWPTemplates: Check this documentation to know more about the Launch property
-                //https://developer.microsoft.com/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastcontent                
+                //https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastcontent                
                 Launch = "ToastContentActivationParams",
 
                 Visual = new ToastVisual()
@@ -57,7 +57,7 @@ namespace RootNamespace.Services
                     Buttons =
                     {
                         //TODO UWPTemplates: Check this documentation to know more about Toast Buttons
-                        //https://developer.microsoft.com/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastbutton
+                        //https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastbutton
                         new ToastButton("Ok", "ToastButtonActivationArguments")
                         {
                             ActivationType = ToastActivationType.Foreground
