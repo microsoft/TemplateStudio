@@ -9,15 +9,25 @@ namespace ItemNamespace.View
         }        
         
         //{[{
-        private void OnLoaded(object sender, RoutedEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             if (ViewModel == null)
             {
                 throw new ArgumentNullException("ViewModel");
             }
             
-            ViewModel.Initialize(mapControl);
-        }        
+            await ViewModel.InitializeAsync(mapControl);
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            if (ViewModel == null)
+            {
+                throw new ArgumentNullException("ViewModel");
+            }
+
+            ViewModel.Cleanup();
+        }   
         //}]}
     }
 }

@@ -1,13 +1,12 @@
 {
   "author": "Microsoft",
-  "classifications": ["Universal"],
+  "classifications": [ "Universal" ],
   "name": "Map",
   "groupIdentity": "Microsoft.UWPTemplates.MapPage",
   "identity": "Microsoft.UWPTemplates.MapPage.CSharp",
   "shortName": "Map Page",
-  "description": "The map page is based around the Map Control.  Code includes adding a Map Icon and setting the location.",
-  "tags":
-  {
+  "description": "The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting a location from the Location Service and setting the map's center point.",
+  "tags": {
     "language": "C#",
     "type": "item",
     "uct.type": "page",
@@ -17,12 +16,13 @@
   },
   "sourceName": "MapView",
   "preferNameDirectory": true,
-  "PrimaryOutputs":
-  [
+  "PrimaryOutputs": [
     { "path": ".\\View\\MapViewView.xaml" },
     { "path": ".\\View\\MapViewView.xaml.cs" },
     { "path": ".\\ViewModel\\MapViewViewModel.cs" },
-    { "path": ".\\Assets\\map.png" }
+    { "path": ".\\Assets\\map.png" },
+    { "path": ".\\Services\\ILocationService.cs" },
+    { "path": ".\\Services\\LocationService.cs" }
   ],
   "symbols": {
     "rootNamespace": {
