@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Height="800px" Width="1300px">
+        Title="Windows Template Studio - http://aka.ms/Wts"
+        Height="800px" Width="1300px" 
+        SnapsToDevicePixels="True">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -16,11 +18,12 @@
             <ColumnDefinition />
             <ColumnDefinition Width="300" />
         </Grid.ColumnDefinitions>
-        <Image Source="vsCapture.png" Grid.ColumnSpan="3" Grid.RowSpan="3" Stretch="None" Opacity=".3" />
-        <Grid Name="Top" Grid.Row="0" Grid.ColumnSpan="2" Background="#f1f1f1" >
-            <Grid Margin="10, 0">
-                <TextBlock FontSize="36">Windows Template Studio</TextBlock>
-            </Grid>
+        <Image Source="vsCapture.png" Grid.ColumnSpan="3" Grid.RowSpan="3" Stretch="None" />
+        <Grid Name="Top" Grid.Row="0" Grid.ColumnSpan="2">
+            <StackPanel Margin="10, 0" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock FontFamily="Segoe UI Symbol" Text="" FontSize="16" Margin="0, 0, 10, 0" VerticalAlignment="Center" />
+                <TextBlock FontSize="30">Select your options and generate</TextBlock>
+            </StackPanel>
         </Grid>
         <Grid Name="Bottom" Grid.Row="2" Grid.ColumnSpan="2" Background="#f1f1f1" >
             <Grid Margin="10, 0">
@@ -35,9 +38,17 @@
                 </StackPanel>
             </Grid>
         </Grid>
-        <Grid Name="MiddleLeft" Grid.Row="1" Grid.Column="0" Background="White">
-            <Grid Margin="10, 0">
-            </Grid>
+        <Grid Name="MiddleLeft" Grid.Row="1" Grid.Column="0" Background="White" Opacity="1">
+            <GroupBox Padding="10" Header="Foo (X) [ I NEED CUSTOM STYLE ]">
+                <WrapPanel>
+                    <local:SingletonWithBorder />
+                    <local:SingletonWithBorder />
+                    <local:SingletonWithBorder />
+                    <local:SingletonWithBorder />
+                    <local:SingletonWithBorder />
+                    <local:SingletonWithBorder />
+                </WrapPanel>
+            </GroupBox>
         </Grid>
         <Grid Name="MiddleRight" Grid.Row="1" Grid.Column="1"  Background="White">
             <Grid.RowDefinitions>
