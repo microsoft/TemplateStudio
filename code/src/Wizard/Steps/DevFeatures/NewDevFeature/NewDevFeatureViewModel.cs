@@ -92,14 +92,6 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures.NewDevFeature
 
             Templates.AddRange(devFeatTemplates);
 
-            //foreach (var template in devFeatTemplates)
-            //{
-            //    if (template.MultipleInstances == true || !IsAlreadyDefined(template))
-            //    {
-            //        Templates.Add(template);
-            //    }
-            //}
-
             if (Templates.Any())
             {
                 TemplateSelected = Templates.FirstOrDefault();
