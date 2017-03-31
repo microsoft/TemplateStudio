@@ -8,6 +8,33 @@
         Title="Windows Template Studio - http://aka.ms/Wts"
         Height="800px" Width="1300px" 
         SnapsToDevicePixels="True">
+    <Window.Resources>
+        <ControlTemplate x:Key="GroupBoxControlTemplate1" TargetType="{x:Type GroupBox}">
+            <Grid SnapsToDevicePixels="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid x:Name="Header" Grid.Column="0" Grid.Row="0">
+                    <ContentPresenter ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" ContentStringFormat="{TemplateBinding HeaderStringFormat}" ContentSource="Header" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                </Grid>
+                <Rectangle Fill="#d7d7d7" Grid.Column="1" Grid.Row="0" Height="2" Margin="5, 0, 5, -3" />
+                <ContentPresenter 
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2" 
+                    Grid.Row="1"
+                    Margin="{TemplateBinding Padding}"
+                    ContentTemplate="{TemplateBinding ContentTemplate}" 
+                    Content="{TemplateBinding Content}" 
+                    ContentStringFormat="{TemplateBinding ContentStringFormat}" 
+                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+            </Grid>
+        </ControlTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -39,17 +66,19 @@
             </Grid>
         </Grid>
         <Grid Name="MiddleLeft" Grid.Row="1" Grid.Column="0" Background="White" Opacity="1">
-            <GroupBox Padding="10" Header="Foo (X) [ I NEED CUSTOM STYLE ]">
-                <WrapPanel>
-                    <local:SingletonWithBorder />
-                    <local:SingletonWithBorder />
-                    <local:SingletonWithBorder />
-                    <local:SingletonWithBorder />
-                    <local:SingletonWithBorder />
-                    <local:SingletonWithBorder />
+            <ScrollViewer Margin="10, 10, 0, 10" Grid.Row="0">
+                <GroupBox Padding="0, 10" Header="Foo (X) [ I NEED CUSTOM STYLE ]" Template="{DynamicResource GroupBoxControlTemplate1}">
+                    <WrapPanel>
+                        <local:SingletonWithBorder />
+                        <local:SingletonWithBorder />
+                        <local:SingletonWithBorder />
+                        <local:SingletonWithBorder />
+                        <local:SingletonWithBorder />
+                        <local:SingletonWithBorder />
 
-                </WrapPanel>
-            </GroupBox>
+                    </WrapPanel>
+                </GroupBox>
+            </ScrollViewer>
         </Grid>
         <Grid Name="MiddleRight" Grid.Row="1" Grid.Column="1"  Background="White">
             <Grid.RowDefinitions>

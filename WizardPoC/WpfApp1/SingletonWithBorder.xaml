@@ -8,8 +8,7 @@
     <Border 
         Margin="0, 0, 10, 10" 
         Height="80" 
-        MinWidth="400" 
-        MaxWidth="500" 
+        MaxWidth="400" 
         BorderBrush="#3399ff" 
         BorderThickness="5,1,1,1" 
         Background="White">
