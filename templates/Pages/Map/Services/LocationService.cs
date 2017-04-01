@@ -29,10 +29,10 @@ namespace ItemNamespace.Services
         /// <inheritdoc />
         public async Task InitializeAsync(uint desiredAccuracyInMeters, double movementThreshold)
         {
-            if (this.geolocator != null)
+            if (geolocator != null)
             {
-                this.geolocator.PositionChanged -= GeolocatorOnPositionChanged;
-                this.geolocator = null;
+                geolocator.PositionChanged -= GeolocatorOnPositionChanged;
+                geolocator = null;
             }
 
             var access = await Geolocator.RequestAccessAsync();
@@ -40,7 +40,7 @@ namespace ItemNamespace.Services
             switch (access)
             {
                 case GeolocationAccessStatus.Allowed:
-                    this.geolocator = new Geolocator
+                    geolocator = new Geolocator
                     {
                         DesiredAccuracyInMeters = desiredAccuracyInMeters,
                         MovementThreshold = movementThreshold
@@ -52,32 +52,32 @@ namespace ItemNamespace.Services
         /// <inheritdoc />
         public async Task StartListeningAsync()
         {
-            if (this.geolocator == null)
+            if (geolocator == null)
                 throw new InvalidOperationException(
                     "The StartListening method cannot be called before the InitializeAsync method.");
 
-            this.geolocator.PositionChanged += GeolocatorOnPositionChanged;
+            geolocator.PositionChanged += GeolocatorOnPositionChanged;
 
-            this.CurrentPosition = await this.geolocator.GetGeopositionAsync();
+            CurrentPosition = await geolocator.GetGeopositionAsync();
         }
 
         /// <inheritdoc />
         public void StopListening()
         {
-            if (this.geolocator == null) return;
+            if (geolocator == null) return;
 
-            this.geolocator.PositionChanged -= GeolocatorOnPositionChanged;
+            geolocator.PositionChanged -= GeolocatorOnPositionChanged;
         }
 
         private async void GeolocatorOnPositionChanged(Geolocator sender, PositionChangedEventArgs args)
         {
             if (args == null) return;
 
-            this.CurrentPosition = args.Position;
+            CurrentPosition = args.Position;
 
             await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                this.PositionChanged?.Invoke(this, this.CurrentPosition);
+                PositionChanged?.Invoke(this, CurrentPosition);
             });
         }
     }

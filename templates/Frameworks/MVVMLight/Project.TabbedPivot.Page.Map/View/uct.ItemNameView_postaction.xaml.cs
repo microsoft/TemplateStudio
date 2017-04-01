@@ -18,6 +18,6 @@ namespace ItemNamespace.View
             
             await ViewModel.InitializeAsync(mapControl);
         }
-//}]}
+        //}]}
     }
 }
