@@ -3,8 +3,8 @@
             Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" 
             xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name>Windows Template Studio based App (vs2017 local)</Name>
-    <Description>Access to the UWP Template Gallery from Windows Template Studio</Description>
+    <Name>App via Windows Template Studio (local)</Name>
+    <Description>Access to Windows Template Studio wizard and create an App template with your preferences and features</Description>
     <Icon>CSharp.UWP.VS2017.Solution.ico</Icon>
     <ProjectType>CSharp</ProjectType>
     <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
