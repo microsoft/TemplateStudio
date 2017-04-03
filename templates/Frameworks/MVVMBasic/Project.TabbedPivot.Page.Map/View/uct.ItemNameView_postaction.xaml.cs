@@ -9,15 +9,15 @@ namespace ItemNamespace.View
         }        
         
         //{[{
-        private void OnLoaded(object sender, RoutedEventArgs e)
+        private async void OnLoaded(object sender, RoutedEventArgs e)
         {
             if (ViewModel == null)
             {
                 throw new ArgumentNullException("ViewModel");
             }
             
-            ViewModel.Initialize(mapControl);
-        }        
+            await ViewModel.InitializeAsync(mapControl);
+        }
         //}]}
     }
 }

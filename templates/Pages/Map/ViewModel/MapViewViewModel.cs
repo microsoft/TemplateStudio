@@ -1,17 +1,25 @@
 using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls.Maps;
+using ItemNamespace.Services;
 
 namespace ItemNamespace.ViewModel
 {
     public class MapViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private const double defaultZoomLevel = 19;
-        private const double defaultLatitude = 47.639627;
-        private const double defaultLongitude = -122.128227;
+
+        private readonly ILocationService locationService;
+
+        private readonly BasicGeoposition defaultPosition = new BasicGeoposition()
+        {
+            Latitude = 47.639627,
+            Longitude = -122.128227
+        };
 
         private double _zoomLevel;
         public double ZoomLevel
@@ -29,23 +37,56 @@ namespace ItemNamespace.ViewModel
 
         public MapViewViewModel()
         {
-            var position = new BasicGeoposition() { Latitude = defaultLatitude, Longitude = defaultLongitude };
-            Center = new Geopoint(position);
+            locationService = new LocationService();
+            Center = new Geopoint(defaultPosition);
             ZoomLevel = defaultZoomLevel;
         }
 
-        public void Initialize(MapControl map)
+        public async Task InitializeAsync(MapControl map)
         {
-            if (map == null)
+            if (locationService != null)
             {
-                return;
+                //TODO UWPTemplates: The Location capability needs to be enabled in the Package.appxmanifest in order to use the location service.
+                locationService.PositionChanged += LocationServicePositionChanged;
+
+                await locationService.InitializeAsync();
+                await locationService.StartListeningAsync();
+
+                if (locationService.CurrentPosition != null)
+                {
+                    Center = locationService.CurrentPosition.Coordinate.Point;
+                }
+                else
+                {
+                    Center = new Geopoint(defaultPosition);
+                }
             }
 
-            //TODO UWPTemplates: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
-            map.MapServiceToken = "";
-            
-            AddMapIcon(map, Center, "Microsoft Corporation");
-        }        
+            if (map != null)
+            {
+                //TODO UWPTemplates: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
+                map.MapServiceToken = "";
+
+                AddMapIcon(map, Center, "Your location");
+            }
+        }
+
+        public void Cleanup()
+        {
+            if (locationService != null)
+            {
+                locationService.PositionChanged -= LocationServicePositionChanged;
+                locationService.StopListening();
+            }
+        }
+
+        private void LocationServicePositionChanged(object sender, Geoposition geoposition)
+        {
+            if (geoposition != null)
+            {
+                Center = geoposition.Coordinate.Point;
+            }
+        }
 
         private void AddMapIcon(MapControl map, Geopoint position, string title)
         {
