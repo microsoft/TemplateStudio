@@ -18,15 +18,16 @@ using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Wizard.ViewModels;
+using Microsoft.TemplateEngine.Abstractions;
 
 namespace Microsoft.Templates.Wizard.Steps.Pages
 {
     public class PageViewModel : Observable
     {
-        public PageViewModel(string name, string templateName, bool @readonly = false)
+        public PageViewModel(string name, ITemplateInfo template, bool @readonly = false)
         {
             Name = name;
-            TemplateName = templateName;
+            Template = template;
             Readonly = @readonly;
         }
 
@@ -40,13 +41,13 @@ namespace Microsoft.Templates.Wizard.Steps.Pages
             }
         }
 
-        private string _templateName;
-        public string TemplateName
+        private ITemplateInfo _template;
+        public ITemplateInfo Template
         {
-            get { return _templateName; }
+            get { return _template; }
             set
             {
-                SetProperty(ref _templateName, value);
+                SetProperty(ref _template, value);
             }
         }
 
