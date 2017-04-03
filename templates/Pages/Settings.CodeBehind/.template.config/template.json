@@ -1,0 +1,52 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Settings",
+  "groupIdentity": "Microsoft.UWPTemplates.SettingsPage",
+  "identity": "Microsoft.UWPTemplates.SettingsPage.CodeBehind.CSharp",
+  "shortName": "Settings Page",
+  "description": "The settings page is the page where we recommend putting the configuration settings for your application such as setting a dark / light theme.  This could also include any licenses, version number and your privacy terms.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "uct.type": "page",
+    "uct.framework": "CodeBehind",
+    "uct.version": "1.0.0",
+    "uct.order": "1",
+    "uct.dependencies":"Microsoft.UWPTemplates.SettingsStorageFeature.CSharp",
+    "uct.multipleInstance": "false"
+  },
+  "sourceName": "SettingsPage",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Views\\SettingsPagePage.xaml"
+    },
+    {
+      "path": ".\\Views\\SettingsPagePage.xaml.cs"
+    },
+    {
+      "path": ".\\Services\\ThemeSelectorService.cs"
+    }
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Set"
+    }
+  }
+}
