@@ -42,6 +42,8 @@ namespace Microsoft.Templates.Core.Diagnostics
     {
         public static string ProjectGen { get; private set; } = TelemetryTracker.PropertiesPrefix + "ProjectGen";
         public static string PageGen { get; private set; } = TelemetryTracker.PropertiesPrefix + "PageGen";
+        public static string DevFeatureGen { get; private set; } = TelemetryTracker.PropertiesPrefix + "DevFeatureGen";
+        public static string CustomerFeatureGen { get; private set; } = TelemetryTracker.PropertiesPrefix + "CustomerFeatureGen";
         public static string Wizard { get; private set; } = TelemetryTracker.PropertiesPrefix + "Wizard";
         public static string SessionStart { get; private set; } = TelemetryTracker.PropertiesPrefix + "SessionStart"; 
     }
@@ -62,6 +64,7 @@ namespace Microsoft.Templates.Core.Diagnostics
     {
         public static string PagesCount {get; private set;} = TelemetryTracker.PropertiesPrefix + "PagesCount";
         public static string TimeSpent { get; private set; } = TelemetryTracker.PropertiesPrefix + "TimeSpent";
-        public static string FeaturesCount { get; private set; } = TelemetryTracker.PropertiesPrefix + "FeaturesCount";
+        public static string DevFeaturesCount { get; private set; } = TelemetryTracker.PropertiesPrefix + "DevFeaturesCount";
+        public static string ConsumerFeaturesCount { get; private set; } = TelemetryTracker.PropertiesPrefix + "ConsumerFeaturesCount";
     }
 }

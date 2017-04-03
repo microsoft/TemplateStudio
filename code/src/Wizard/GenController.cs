@@ -198,7 +198,11 @@ namespace Microsoft.Templates.Wizard
         {
             try
             {
-                var pagesAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Count();
+                int pagesAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Count();
+                int devfeaturesAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.DevFeature).Count();
+                int consumerfeaturesAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.ConsumerFeature).Count();
+
+                //TODO: Peding to track items removed from a default layout.
 
                 foreach (var genInfo in genItems)
                 {
@@ -210,11 +214,11 @@ namespace Microsoft.Templates.Wizard
                     string resultsKey = $"{genInfo.Template.Identity}_{genInfo.Name}";
                     if (genInfo.Template.GetTemplateType() == TemplateType.Project)
                     {
-                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, appFx, genResults[resultsKey], pagesAdded, null, timeSpent).FireAndForget();
+                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, appFx, genResults[resultsKey], pagesAdded, devfeaturesAdded, consumerfeaturesAdded, timeSpent).FireAndForget();
                     }
                     else
                     {
-                        AppHealth.Current.Telemetry.TrackPageOrFeatureTemplateGenAsync(genInfo.Template, appFx, genResults[resultsKey]).FireAndForget();
+                        AppHealth.Current.Telemetry.TrackItemGenAsync(genInfo.Template, appFx, genResults[resultsKey]).FireAndForget();
                     }
                 }
             }
