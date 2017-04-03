@@ -4,11 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
     <Page.Resources>
-        <Thickness x:Key="ContainerMargin">24,12</Thickness>
+        <Thickness x:Key="ContainerMargin">12,0</Thickness>
         <Thickness x:Key="LargeTopMargin">0,16,0,0</Thickness>
         <Thickness x:Key="MediumTopMargin">0,8,0,0</Thickness>
         <Thickness x:Key="SmallTopMargin">0,4,0,0</Thickness>
@@ -17,14 +17,16 @@
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid Margin="{StaticResource ContainerMargin}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="48"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <TextBlock
                 Grid.Row="0"
                 x:Uid="SettingsPage_Title"
-                Style="{ThemeResource HeaderTextBlockStyle}"/>
+                x:Name="TitlePage"
+                FontSize="28" FontWeight="SemiLight" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" VerticalAlignment="Center"
+                Margin="0,0,12,7"/>            
 
             <StackPanel Grid.Row="1" Margin="{StaticResource LargeTopMargin}">
                 <TextBlock
@@ -35,9 +37,9 @@
                     IsOn="{x:Bind ViewModel.IsLightThemeEnabled, Mode=OneWay}"
                     Margin="{StaticResource SmallTopMargin}">
                     <i:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="Toggled">
-                            <core:InvokeCommandAction Command="{x:Bind ViewModel.SwitchThemeCommand}"/>
-                        </core:EventTriggerBehavior>
+                        <ic:EventTriggerBehavior EventName="Toggled">
+                            <ic:InvokeCommandAction Command="{x:Bind ViewModel.SwitchThemeCommand}"/>
+                        </ic:EventTriggerBehavior>
                     </i:Interaction.Behaviors>
                 </ToggleSwitch>
             </StackPanel>
@@ -56,8 +58,7 @@
                 <HyperlinkButton
                     x:Uid="SettingsPage_PrivacyTermsLink"
                     Margin="{StaticResource MediumTopMargin}"/>
-            </StackPanel>
-            
+            </StackPanel>            
         </Grid>
     </Grid>
 </Page>

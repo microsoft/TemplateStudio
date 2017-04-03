@@ -16,6 +16,8 @@ namespace ItemNamespace.ViewModels
         const string NarrowStateName = "NarrowState";
         const string WideStateName = "WideState";
 
+        public ICommand StateChangedCommand { get; private set; }
+
         private SampleModel _item;
         public SampleModel Item
         {
@@ -25,11 +27,12 @@ namespace ItemNamespace.ViewModels
 
         public MasterDetailDetailViewModel()
         {
+            StateChangedCommand = new RelayCommand<VisualStateChangedEventArgs>(OnStateChanged);
         }
-
-        public void UpdateWindowState(VisualStateChangedEventArgs e)
+        
+        private void OnStateChanged(VisualStateChangedEventArgs args)
         {
-            if (e.OldState.Name == NarrowStateName && e.NewState.Name == WideStateName)
+            if (args.OldState.Name == NarrowStateName && args.NewState.Name == WideStateName)
             {
                 NavigationService.GoBack();
             }

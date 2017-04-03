@@ -1,4 +1,5 @@
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 namespace ItemNamespace.ViewModels
 {
     public class uct.ItemNameDetailViewModel : ViewModelBase
