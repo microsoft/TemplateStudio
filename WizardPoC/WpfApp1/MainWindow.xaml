@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Windows Template Studio - http://aka.ms/Wts"
+        Title="Windows Template Studio"
         Width="800px" 
         SnapsToDevicePixels="True">
     <Window.Resources>
@@ -34,6 +34,95 @@
                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
             </Grid>
         </ControlTemplate>
+        <ControlTemplate x:Key="ExpanderControlTemplate1" TargetType="{x:Type Expander}">
+            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="3" SnapsToDevicePixels="True">
+                <DockPanel>
+                    <ToggleButton x:Name="HeaderSite" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" DockPanel.Dock="Top" Foreground="{TemplateBinding Foreground}" FontWeight="{TemplateBinding FontWeight}" FontStyle="{TemplateBinding FontStyle}" FontStretch="{TemplateBinding FontStretch}" FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" MinWidth="0" MinHeight="0" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
+                        <ToggleButton.FocusVisualStyle>
+                            <Style>
+                                <Setter Property="Control.Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <Border>
+                                                <Rectangle Margin="0" SnapsToDevicePixels="True" Stroke="Black" StrokeThickness="1" StrokeDashArray="1 2"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ToggleButton.FocusVisualStyle>
+                        <ToggleButton.Style>
+                            <Style TargetType="{x:Type ToggleButton}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                            <Border Padding="{TemplateBinding Padding}">
+                                                <Grid Background="Transparent" SnapsToDevicePixels="False">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="19"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock
+                                                        x:Name="arrow"
+                                                        HorizontalAlignment="Center" SnapsToDevicePixels="False" VerticalAlignment="Center" 
+                                                        FontFamily="Segoe UI Symbol" FontSize="16" FontWeight="Bold" 
+                                                        Foreground="#FF333333"
+                                                        Text=""
+                                                    />
+                                                    <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="1" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="Left" Margin="4,0,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center"/>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <!--<Setter Property="Data" TargetName="arrow" Value="M1,1.5L4.5,5 8,1.5"/>-->
+                                                    <Setter Property="Text" TargetName="arrow" Value="" />
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Foreground" TargetName="arrow" Value="Black"/>
+                                                </Trigger>
+                                                <Trigger Property="IsPressed" Value="True">
+                                                    <Setter Property="Foreground" TargetName="arrow" Value="Black"/>
+                                                </Trigger>
+                                                <Trigger Property="IsEnabled" Value="False">
+                                                    <Setter Property="Foreground" TargetName="arrow" Value="#FF707070"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ToggleButton.Style>
+                    </ToggleButton>
+                    <ContentPresenter x:Name="ExpandSite" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" DockPanel.Dock="Bottom" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" Visibility="Collapsed" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                </DockPanel>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsExpanded" Value="True">
+                    <Setter Property="Visibility" TargetName="ExpandSite" Value="Visible"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <Style TargetType="GroupBox">
+            <Setter Property="Template" Value="{DynamicResource GroupBoxControlTemplate1}" />
+            <Setter Property="Padding" Value="0, 10" />
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" FontWeight="Bold"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SummaryTextBlocks" TargetType="TextBlock">
+            <Setter Property="Margin" Value="0, 0, 0, 2" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="#555555" />
+        </Style>
+
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -48,15 +137,17 @@
         <!--<Image Source="vsCapture.png" Grid.ColumnSpan="3" Grid.RowSpan="3" Stretch="None" />-->
         <Grid Name="TopItem" Grid.Row="0" Grid.ColumnSpan="2" Background="#3399ff">
             <StackPanel Margin="10, 0" Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBlock Foreground="White" FontFamily="Segoe UI Symbol" Text="" FontSize="16" Margin="0, 0, 10, 0" VerticalAlignment="Center" />
-                <TextBlock Foreground="White" FontSize="30">Select your options and generate</TextBlock>
+                <TextBlock Foreground="White" FontSize="30">
+                    <Run FontFamily="Segoe UI Symbol" FontSize="16" BaselineAlignment="Center"></Run>
+                    Select your options and generate [placeholder]
+                </TextBlock>
             </StackPanel>
         </Grid>
         <Grid Name="Bottom" Grid.Row="2" Grid.ColumnSpan="2" Background="#f1f1f1" >
             <Grid Margin="10, 0">
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <TextBlock>Wizard: 0.4.17086.3</TextBlock>
-                    <TextBlock>Tempalte: 0.4.17090.2</TextBlock>
+                    <TextBlock Foreground="#555555" FontSize="10">Wizard: 0.4.17086.3</TextBlock>
+                    <TextBlock Foreground="#555555" FontSize="10">Template: 0.4.17090.2</TextBlock>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
@@ -67,18 +158,27 @@
         </Grid>
         <Grid Name="MiddleLeft" Grid.Row="1" Grid.Column="0" Background="White" Opacity="1">
             <ScrollViewer Margin="10, 10, 0, 10" Grid.Row="0">
-                <GroupBox Padding="0, 10" Header="Foo (X) [ I NEED CUSTOM STYLE ]" Template="{DynamicResource GroupBoxControlTemplate1}">
-                    <WrapPanel>
-                        <local:SingletonWithBorder />
-                        <local:MultipleAddItemWithBorder />
-                        <local:SingletonWithBorder />
-                        <local:MultipleAddItemWithBorder />
-                        <local:SingletonWithBorder />
-                        <local:SingletonWithBorder />
-                        <local:MultipleAddItemWithBorder />
-                        <local:MultipleAddItemWithBorder />
-                    </WrapPanel>
-                </GroupBox>
+                <StackPanel>
+                    <GroupBox Header="Frameworks (3)">
+                        <WrapPanel>
+                            <local:SingletonWithBorder />
+                            <local:SingletonWithBorder />
+                            <local:SingletonWithBorder />
+                        </WrapPanel>
+                    </GroupBox>
+                    <GroupBox Header="Pages (8)" >
+                        <WrapPanel>
+                            <local:SingletonWithBorder />
+                            <local:MultipleAddItemWithBorder />
+                            <local:SingletonWithBorder />
+                            <local:MultipleAddItemWithBorder />
+                            <local:SingletonWithBorder />
+                            <local:SingletonWithBorder />
+                            <local:MultipleAddItemWithBorder />
+                            <local:MultipleAddItemWithBorder />
+                        </WrapPanel>
+                    </GroupBox>
+                </StackPanel>
             </ScrollViewer>
         </Grid>
         <Grid Name="MiddleRight" Grid.Row="1" Grid.Column="1"  Background="White">
@@ -92,43 +192,86 @@
             <ScrollViewer Margin="10, 10, 0, 10" Grid.Row="0">
                 <StackPanel >
                     <TextBlock Foreground="#3399ff" FontSize="16">Summary</TextBlock>
-                    <Expander Header="Project Style" FontSize="16" IsExpanded="True">
+                    <Expander Header="Project Style" FontSize="16" IsExpanded="True" Template="{DynamicResource ExpanderControlTemplate1}">
                         <StackPanel Margin="25, 0, 0, 0">
-                            <TextBlock>Item 1</TextBlock>
+                            <TextBlock 
+                                FontSize="12" 
+                                Foreground="Red" 
+                                FontWeight="SemiBold"> 
+                                <Run FontFamily="Segoe UI Symbol" FontSize="8" BaselineAlignment="Center" Foreground="Red">i</Run>
+                                Please select a framework [needs i w/ triangle]
+                            </TextBlock>
                         </StackPanel>
                     </Expander>
-                    <Expander Header="Framework" FontSize="16" IsExpanded="True">
+                    <Expander Header="Framework" FontSize="16" IsExpanded="False" Foreground="#292929" Template="{DynamicResource ExpanderControlTemplate1}">
                         <StackPanel Margin="25, 0, 0, 0">
-                            <TextBlock>Item 2</TextBlock>
+                            <TextBlock
+                                Foreground="#555555"
+                                FontSize="12" >
+                                MVVM Basic
+                            </TextBlock>
                         </StackPanel>
                     </Expander>
-                    <Expander Header="Pages" FontSize="16" IsExpanded="True">
+                    <Expander Header="Pages" FontSize="16" IsExpanded="False" Template="{DynamicResource ExpanderControlTemplate1}">
                         <Grid>
                             <StackPanel Margin="25, 0, 0, 0">
-                                <TextBlock>Item 1</TextBlock>
-                                <TextBlock>Item 1</TextBlock>
-                                <TextBlock>Item 1</TextBlock>
-                                <TextBlock>Item 1</TextBlock>
+                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
+                                    MainPage [Blank]
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
+                                    Consectetur [Adipiscing]
+                                    <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
+                                    CurabiturMagna [Tellus]
+                                    <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
+                                    DolorSit [Convallis]
+                                    <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
+                                    LoremIpsum4 [Lorem]
+                                    <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
+                                </TextBlock>
                             </StackPanel>
                         </Grid>
                     </Expander>
-                    <Expander Header="Features" FontSize="16" IsExpanded="True">
+                    <Expander Header="Features" FontSize="16" IsExpanded="True" Template="{DynamicResource ExpanderControlTemplate1}">
                         <Grid>
                             <StackPanel Margin="25, 0, 0, 0">
-                                <TextBlock>Item 1</TextBlock>
-                                <TextBlock>Item 1</TextBlock>
-                                <TextBlock>Item 1</TextBlock>
-                                <TextBlock>Item 1</TextBlock>
+                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
+                                    MyName [TheActualFeatureName] <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
+                                    <LineBreak/>
+                                    <TextBlock Margin="20,0" FontSize="8">Made by Microsoft</TextBlock>                                    
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
+                                    CurabiturMagna [Tellus] <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
+                                    <LineBreak/>
+                                    <TextBlock Margin="20,0" FontSize="8">Made by Microsoft - Community Contribution</TextBlock>                                    
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
+                                    DolorSit [Convallis], Made By In
+                                    <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
+                                    LoremIpsum4 [Lorem]
+                                    <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
+                                </TextBlock>
                             </StackPanel>
                         </Grid>
                     </Expander>
-                    <Expander Header="Licenses" FontSize="16" IsExpanded="True">
+                    <Expander Header="Licenses" FontSize="16" IsExpanded="True" Template="{DynamicResource ExpanderControlTemplate1}">
                         <Grid>
                             <StackPanel Margin="25, 0, 0, 0">
-                                <TextBlock>Item 1</TextBlock>
-                                <TextBlock>Item 1</TextBlock>
-                                <TextBlock>Item 1</TextBlock>
-                                <TextBlock>Item 1</TextBlock>
+                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
+                                    <Hyperlink NavigateUri="http://TestURL/">MVVM Light</Hyperlink>
+                                    [My Awesome App]
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
+                                    <Hyperlink NavigateUri="http://TestURL/">Newtonsoft.JSON</Hyperlink>
+                                    [Setting Storage]
+                                </TextBlock>
                             </StackPanel>
                         </Grid>
                     </Expander>

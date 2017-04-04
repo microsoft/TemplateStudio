@@ -38,9 +38,22 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.RowSpan="2" FontFamily="Segoe UI Symbol" Text="" FontSize="36" HorizontalAlignment="Center" />
             <CheckBox Grid.Row="0" Grid.Column="2"  Margin="0, 5, 5, 0" HorizontalAlignment="Right" />
-            <TextBlock Grid.Row="0" Grid.Column="1" FontWeight="Bold" VerticalAlignment="Bottom">Lorem ipsum dolor sit amet</TextBlock>
+            <TextBlock 
+                Grid.Row="0" 
+                Grid.Column="1" 
+                FontWeight="Bold" 
+                Foreground="#292929"
+                VerticalAlignment="Bottom">
+                Lorem ipsum dolor sit amet
+            </TextBlock>
             <!-- margin bottom here is so checkbox and title line up-->
-            <TextBlock Grid.Row="1" Grid.Column="1" TextWrapping="WrapWithOverflow">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur magna tellus, malesuada laoreet convallis sit amet, congue ut lectus.</TextBlock>
+            <TextBlock 
+                Grid.Row="1" 
+                Grid.Column="1" 
+                Foreground="#555555"
+                TextWrapping="WrapWithOverflow">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur magna tellus, malesuada laoreet convallis sit amet, congue ut lectus.
+            </TextBlock>
         </Grid>
     </Border>
 </UserControl>
