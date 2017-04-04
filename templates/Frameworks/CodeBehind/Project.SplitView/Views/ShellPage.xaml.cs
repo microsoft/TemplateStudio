@@ -1,24 +1,19 @@
-﻿using System.Collections.ObjectModel;
+using uct.ItemName.Services;
+using uct.ItemName.Helper;
+using uct.ItemName.Models;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using uct.ItemName.Models;
-using uct.ItemName.Services;
-using uct.ItemName.Views;
 
-namespace uct.ItemName.ViewModels
+namespace uct.ItemName.Views
 {
-    public class ShellViewModel : Observable
-    {
-        private const string PanoramicStateName = "PanoramicState";
-        private const string WideStateName = "WideState";
-        private const string NarrowStateName = "NarrowState";
-
-        private ListView _primaryListView;
-        private ListView _secondaryListView;
-
+    public sealed partial class ShellPage : Page, INotifyPropertyChanged
+    {     
         private bool _isPaneOpen;
         public bool IsPaneOpen
         {
@@ -125,30 +120,15 @@ namespace uct.ItemName.ViewModels
             }
         }
 
-        private void OnStateChanged(VisualStateChangedEventArgs args)
+        public ShellPage()
         {
-            if (args.NewState.Name == PanoramicStateName)
-            {
-                DisplayMode = SplitViewDisplayMode.CompactInline;
-            }
-            else if (args.NewState.Name == WideStateName)
-            {
-                DisplayMode = SplitViewDisplayMode.CompactInline;
-                IsPaneOpen = false;
-            }
-            else if (args.NewState.Name == NarrowStateName)
-            {
-                DisplayMode = SplitViewDisplayMode.Overlay;
-                IsPaneOpen = false;
-            }
-
+            this.InitializeComponent();
+            Initialize();
         }
 
-        public void Initialize(Frame frame, ListView primaryListView, ListView secondaryListView)
+        private void Initialize()
         {
-            _primaryListView = primaryListView;
-            _secondaryListView = secondaryListView;
-            NavigationService.Frame = frame;
+            NavigationService.Frame = shellFrame;
             NavigationService.Frame.Navigated += NavigationService_Navigated;            
             PopulateNavItems();
         }
@@ -162,37 +142,55 @@ namespace uct.ItemName.ViewModels
             //Edit String/en-US/Resources.resw: Add a menu item title for each page
         }
 
+        private void OnStateChanged(VisualStateChangedEventArgs args)
+        {
+            if (args.NewState == PanoramicState)
+            {
+                DisplayMode = SplitViewDisplayMode.CompactInline;
+            }
+            else if (args.NewState == WideState)
+            {
+                DisplayMode = SplitViewDisplayMode.CompactInline;
+                IsPaneOpen = false;
+            }
+            else if (args.NewState == NarrowState)
+            {
+                DisplayMode = SplitViewDisplayMode.Overlay;
+                IsPaneOpen = false;
+            }
+        }
+
         private void OnPrimaryListViewSelectionChanged(SelectionChangedEventArgs e)
         {
-            if (e.AddedItems != null && e.AddedItems.Any() && _secondaryListView != null)
+            if (e.AddedItems != null && e.AddedItems.Any() && secondaryListView != null)
             {
                 if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
                 {
                     IsPaneOpen = false;
                 }
 
-                _secondaryListView.SelectedIndex = -1;
-                _secondaryListView.SelectedItem = null;
+                secondaryListView.SelectedIndex = -1;
+                secondaryListView.SelectedItem = null;
 
                 //Navigate to selected item
-                Navigate(_primaryListView.SelectedItem);
+                Navigate(primaryListView.SelectedItem);
             }
         }
 
         private void OnSecondaryListViewSelectionChanged(SelectionChangedEventArgs e)
         {
-            if (e.AddedItems != null && e.AddedItems.Any() && _primaryListView != null)
+            if (e.AddedItems != null && e.AddedItems.Any() && primaryListView != null)
             {
                 if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
                 {
                     IsPaneOpen = false;
                 }
 
-                _primaryListView.SelectedIndex = -1;
-                _primaryListView.SelectedItem = null;
+                primaryListView.SelectedIndex = -1;
+                primaryListView.SelectedItem = null;
 
                 //Navigate to selected item
-                Navigate(_secondaryListView.SelectedItem);
+                Navigate(secondaryListView.SelectedItem);
             }
         }
 
@@ -225,6 +223,20 @@ namespace uct.ItemName.ViewModels
                 NavigationService.Navigate(navigationItem.PageType);
             }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
+        {
+            if (Equals(storage, value))
+            {
+                return;
+            }
+
+            storage = value;
+            OnPropertyChanged(propertyName);
+        }
+
+        private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
-        

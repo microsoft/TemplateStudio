@@ -1,14 +1,14 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using System.Windows.Input;
+using ItemNamespace.Helper;
 using ItemNamespace.Models;
 using ItemNamespace.Services;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace ItemNamespace.Views
 {
-    public sealed partial class MasterDetailDetailPage : Page, INotifyPropertyChanged
+    public sealed partial class MasterDetailDetailPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
         private SampleModel _item;
         public SampleModel Item
@@ -16,6 +16,8 @@ namespace ItemNamespace.Views
             get { return _item; }
             set { Set(ref _item, value); }
         }
+
+        public ICommand StateChangedCommand { get; private set; }
 
         public MasterDetailDetailPage()
         {
@@ -25,29 +27,21 @@ namespace ItemNamespace.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            Initialize();
             Item = e.Parameter as SampleModel;
         }
 
-        private void OnAdaptiveStatesCurrentStateChanged(object sender, VisualStateChangedEventArgs e)
+        private void Initialize()
         {
-            if (e.OldState == NarrowState && e.NewState == WideState)
+            StateChangedCommand = new RelayCommand<VisualStateChangedEventArgs>(OnStateChanged);
+        }
+
+        private void OnStateChanged(VisualStateChangedEventArgs args)
+        {
+            if (args.OldState == NarrowState && args.NewState == WideState)
             {
                 NavigationService.GoBack();
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
-        {
-            if (Equals(storage, value))
-            {
-                return;
-            }
-
-            storage = value;
-            OnPropertyChanged(propertyName);
-        }
-
-        private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

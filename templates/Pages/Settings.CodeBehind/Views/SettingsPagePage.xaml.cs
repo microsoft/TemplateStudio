@@ -1,15 +1,13 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using System.ComponentModel;
 using System.Windows.Input;
 using ItemNamespace.Services;
 using ItemNamespace.Helper;
-using System.Runtime.CompilerServices;
 using Windows.ApplicationModel;
 
 namespace ItemNamespace.Views
 {
-    public sealed partial class SettingsPagePage : Page, INotifyPropertyChanged
+    public sealed partial class SettingsPagePage : Page, System.ComponentModel.INotifyPropertyChanged
     {
         private bool _isLightThemeEnabled;
         public bool IsLightThemeEnabled
@@ -47,19 +45,5 @@ namespace ItemNamespace.Views
 
             return $"{package.DisplayName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
-        {
-            if (Equals(storage, value))
-            {
-                return;
-            }
-
-            storage = value;
-            OnPropertyChanged(propertyName);
-        }
-
-        private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

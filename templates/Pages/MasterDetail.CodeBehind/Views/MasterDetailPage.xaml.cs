@@ -2,8 +2,6 @@ using Windows.UI.Xaml.Controls;
 using ItemNamespace.Helper;
 using ItemNamespace.Models;
 using ItemNamespace.Services;
-using System.Runtime.CompilerServices;
-using System.ComponentModel;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -11,7 +9,7 @@ using System.Linq;
 
 namespace ItemNamespace.Views
 {
-    public sealed partial class MasterDetailPage : Page, INotifyPropertyChanged
+    public sealed partial class MasterDetailPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
         private SampleModel _selected;
         public SampleModel Selected
@@ -21,7 +19,7 @@ namespace ItemNamespace.Views
         }
 
         public ICommand ItemClickCommand { get; private set; }
-
+ 
         public ObservableCollection<SampleModel> SampleItems { get; private set; } = new ObservableCollection<SampleModel>();  
 
         public MasterDetailPage()
@@ -34,12 +32,27 @@ namespace ItemNamespace.Views
             ItemClickCommand = new RelayCommand<ItemClickEventArgs>(OnItemClick);
         }
 
+        private async Task LoadDataAsync() 
+        {  
+            SampleItems.Clear(); 
+
+            var service = new SampleModelService(); 
+            var data = await service.GetDataAsync(); 
+
+            foreach (var item in data) 
+            { 
+                SampleItems.Add(item); 
+            } 
+            Selected = SampleItems.First(); 
+        } 
+
+
         private void OnItemClick(ItemClickEventArgs args)
         {
             SampleModel item = args?.ClickedItem as SampleModel;
             if (item != null)
             {
-                if (AdaptiveStates.CurrentState == NarrowState)
+                if (WindowStates.CurrentState == NarrowState)
                 {
                     NavigationService.Navigate<Views.MasterDetailDetailPage>(item);
                 }
@@ -49,19 +62,5 @@ namespace ItemNamespace.Views
                 }
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
-        {
-            if (Equals(storage, value))
-            {
-                return;
-            }
-
-            storage = value;
-            OnPropertyChanged(propertyName);
-        }
-
-        private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

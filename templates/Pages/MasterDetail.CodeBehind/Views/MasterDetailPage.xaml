@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:model="using:ItemNamespace.Models"
     xmlns:views="using:ItemNamespace.Views"
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
     <Page.Resources>
@@ -77,9 +77,9 @@
                 IsItemClickEnabled="True"
                 Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
                 <i:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="ItemClick">
-                        <core:InvokeCommandAction Command="{x:Bind ItemClickCommand}" />
-                    </core:EventTriggerBehavior>
+                    <ic:EventTriggerBehavior EventName="ItemClick">
+                        <ic:InvokeCommandAction Command="{x:Bind ItemClickCommand}" />
+                    </ic:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
@@ -103,7 +103,7 @@
 
         <!--  Adaptive triggers  -->
         <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="AdaptiveStates">
+            <VisualStateGroup x:Name="WindowStates">
                 <VisualState x:Name="WideState">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="640"/>

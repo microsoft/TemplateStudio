@@ -1,11 +1,14 @@
-using uct.SplitViewProject.Services;
+using uct.ItemName.Services;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using uct.ItemName.ViewModels;
 
-namespace uct.SplitViewProject.Views
+namespace uct.ItemName.Views
 {
     public sealed partial class ShellPage : Page
     {
+        private ShellViewModel ViewModel { get { return DataContext as ShellViewModel; } }
+        
         public ShellPage()
         {
             this.InitializeComponent();

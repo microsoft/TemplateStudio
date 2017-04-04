@@ -3,32 +3,20 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMLight.Project.SplitView",
-  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMLight.Project.SplitView",
-  "identity": "Microsoft.UWPTemplates.Framework.MVVMLight.Project.SplitView.CSharp",
+  "name": "CodeBehind.Project.SplitView.Page.SettingsPage",
+  "groupIdentity": "Microsoft.UWPTemplates.Framework.CodeBehind.Project.SplitView.Page.SettingsPage",
+  "identity": "Microsoft.UWPTemplates.Framework.CodeBehind.Page.Project.SplitView.SettingsPage.CSharp",
   "tags": {
     "language": "C#",
     "type": "item",
     "uct.type": "framework",
-    "uct.framework": "MVVMLight",
+    "uct.framework": "CodeBehind",
     "uct.version": "1.0.0",
     "uct.order": "1"
   },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\Models\\ShellNavigationItem.cs"
-    },
-    {
-      "path": ".\\ViewModels\\ShellViewModel.cs"
-    },
-    {
-      "path": ".\\Views\\ShellPage.xaml"
-    },
-    {
-      "path": ".\\Views\\ShellPage.xaml.cs"
-    }
   ],
   "symbols": {
     "rootNamespace": {
