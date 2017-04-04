@@ -21,57 +21,12 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Wizard.Host;
+using Microsoft.Templates.Core.Composition;
 
 namespace Microsoft.Templates.Wizard
 {
     public class GenComposer
     {
-        public static IEnumerable<GenInfo> Compose2(WizardState userSelection)
-        {
-            var genQueue = new List<GenInfo>();
-
-            if (string.IsNullOrEmpty(userSelection.ProjectType))
-            {
-                return genQueue;
-            }
-
-            var compositionTemplates = GetCompositionTemplates();
-
-            AddProject(userSelection, compositionTemplates, genQueue);
-
-            AddMissingDependencies(genQueue);
-
-            return genQueue;
-        }
-
-        private static void AddProject(WizardState userSelection, IEnumerable<ITemplateInfo> composition, List<GenInfo> genQueue)
-        {
-            var projectTemplate = GenContext.ToolBox.Repo
-                                                        .Find(t => t.GetTemplateType() == TemplateType.Project
-                                                            && t.GetProjectType() == userSelection.ProjectType
-                                                            && t.GetFrameworkList().Any(f => f == userSelection.Framework));
-
-            var genProject = CreateGenInfo(GenContext.Current.ProjectName, projectTemplate, genQueue);
-            genProject.Parameters.Add(GenParams.Username, Environment.UserName);
-
-            foreach (var template in composition)
-            {
-                var rawQuery = template.GetCompositionFilter();
-                var query = CompositionQuery.Parse(rawQuery);
-
-
-            }
-        }
-
-        private static IEnumerable<ITemplateInfo> GetCompositionTemplates()
-        {
-            return GenContext.ToolBox.Repo
-                                        .Get(t => t.GetTemplateType() == TemplateType.Composition)
-                                        .ToList();
-        }
-
-
-
         public static IEnumerable<GenInfo> Compose(WizardState userSelection)
         {
             var genQueue = new List<GenInfo>();
@@ -81,13 +36,39 @@ namespace Microsoft.Templates.Wizard
                 return genQueue;
             }
 
-            AddProjects(userSelection, genQueue);
-            AddPages(userSelection, genQueue);
-            AddDevFeatures(userSelection, genQueue);
-            AddConsumerFeatures(userSelection, genQueue);
+            AddProject(userSelection, genQueue);
+            AddTemplates(userSelection.Pages, genQueue);
+            AddTemplates(userSelection.DevFeatures, genQueue);
+            AddTemplates(userSelection.ConsumerFeatures, genQueue);
 
             AddMissingDependencies(genQueue);
+
+            AddCompositionTemplates(genQueue);
+
             return genQueue;
+        }
+
+        private static void AddProject(WizardState userSelection, List<GenInfo> genQueue)
+        {
+            var projectTemplate = GenContext.ToolBox.Repo
+                                                        .Find(t => t.GetTemplateType() == TemplateType.Project
+                                                            && t.GetProjectType() == userSelection.ProjectType
+                                                            && t.GetFrameworkList().Any(f => f == userSelection.Framework));
+
+            var genProject = CreateGenInfo(GenContext.Current.ProjectName, projectTemplate, genQueue);
+            genProject.Parameters.Add(GenParams.Username, Environment.UserName);
+        }
+
+        private static void AddTemplates(List<(string name, string templateName)> userSelectedItems, List<GenInfo> genQueue)
+        {
+            foreach (var page in userSelectedItems)
+            {
+                var pageTemplate = GenContext.ToolBox.Repo.Find(t => t.Name == page.templateName);
+                if (pageTemplate != null)
+                {
+                    CreateGenInfo(page.name, pageTemplate, genQueue);
+                }
+            }
         }
 
         private static void AddMissingDependencies(List<GenInfo> genQueue)
@@ -107,75 +88,41 @@ namespace Microsoft.Templates.Wizard
             }
         }
 
-        private static void AddPages(WizardState userSelection, List<GenInfo> genQueue)
+        private static void AddCompositionTemplates(List<GenInfo> genQueue)
         {
-            foreach (var page in userSelection.Pages)
-            {
-                var pageTemplate = GenContext.ToolBox.Repo.Find(t => t.Name == page.templateName);
-                if (pageTemplate != null)
-                {
-                    var genPage = CreateGenInfo(page.name, pageTemplate, genQueue);
+            var compositionCatalog = GetCompositionCatalog().ToList();
 
-                    AddTemplate(genPage, genQueue, userSelection.Framework, "Page");
-                    AddTemplate(genPage, genQueue, userSelection.Framework, "Page", pageTemplate.GetSafeIdentity());
-                    AddTemplate(genPage, genQueue, userSelection.Framework, "Project", userSelection.ProjectType, "Page");
-                    AddTemplate(genPage, genQueue, userSelection.Framework, "Project", userSelection.ProjectType, "Page", pageTemplate.GetSafeIdentity());
+            var context = genQueue
+                                .Select(g => g.Template)
+                                .ToList();
+
+            var compositionQueue = new List<GenInfo>();
+
+            foreach (var genItem in genQueue)
+            {
+                foreach (var compositionItem in compositionCatalog)
+                {
+                    if (compositionItem.query.Execute(genItem.Template, context.Where(t => t.Identity != genItem.Template.Identity).ToList()))
+                    {
+                        AddTemplate(genItem, compositionQueue, compositionItem.template);
+                    }
+
                 }
             }
+
+            genQueue.AddRange(compositionQueue);
         }
 
-        private static void AddProjects(WizardState userSelection, List<GenInfo> genQueue)
+        private static IEnumerable<(CompositionQuery query, ITemplateInfo template)> GetCompositionCatalog()
         {
-            var projectTemplate = GenContext.ToolBox.Repo
-                                                        .Find(t => t.GetTemplateType() == TemplateType.Project
-                                                            && t.GetProjectType() == userSelection.ProjectType
-                                                            && t.GetFrameworkList().Any(f => f == userSelection.Framework));
-
-            var genProject = CreateGenInfo(GenContext.Current.ProjectName, projectTemplate, genQueue);
-            genProject.Parameters.Add(GenParams.Username, Environment.UserName);
-
-            AddTemplate(genProject, genQueue, userSelection.Framework, "Project");
-            AddTemplate(genProject, genQueue, userSelection.Framework, "Project", userSelection.ProjectType);
+            return GenContext.ToolBox.Repo
+                                        .Get(t => t.GetTemplateType() == TemplateType.Composition)
+                                        .Select(t => (CompositionQuery.Parse(t.GetCompositionFilter()), t))
+                                        .ToList();
         }
 
-        private static void AddDevFeatures(WizardState userSelection, List<GenInfo> genQueue)
+        private static void AddTemplate(GenInfo mainGenInfo, List<GenInfo> queue, ITemplateInfo targetTemplate)
         {
-            foreach (var feature in userSelection.DevFeatures)
-            {
-                var featureTemplate = GenContext.ToolBox.Repo.Find(t => t.Name == feature.templateName);
-                if (featureTemplate != null)
-                {
-                    var genFeature = CreateGenInfo(feature.name, featureTemplate, genQueue);
-                    AddTemplate(genFeature, genQueue, userSelection.Framework, "Feature", featureTemplate.GetSafeIdentity());
-                }
-            }
-        }
-
-        private static void AddConsumerFeatures(WizardState userSelection, List<GenInfo> genQueue)
-        {
-            foreach (var feature in userSelection.ConsumerFeatures)
-            {
-                var featureTemplate = GenContext.ToolBox.Repo.Find(t => t.Name == feature.templateName);
-                if (featureTemplate != null)
-                {
-                    CreateGenInfo(feature.name, featureTemplate, genQueue);
-                }
-            }
-        }
-
-        private static void AddTemplate(GenInfo mainGenInfo, List<GenInfo> queue, params string[] predicates)
-        {
-            var predicate = string.Join(".", predicates.Select(p => p.ToLower()));
-
-            AddTemplate(mainGenInfo, queue, t => t.Name.Equals(predicate, StringComparison.OrdinalIgnoreCase));
-        }
-
-        private static void AddTemplate(GenInfo mainGenInfo, List<GenInfo> queue, Func<ITemplateInfo, bool> predicate)
-        {
-            var targetTemplate = GenContext.ToolBox.Repo
-                                                        .Get(t => t.GetTemplateType() == TemplateType.Framework)
-                                                        .FirstOrDefault(predicate);
-
             if (targetTemplate != null)
             {
                 foreach (var export in targetTemplate.GetExports())

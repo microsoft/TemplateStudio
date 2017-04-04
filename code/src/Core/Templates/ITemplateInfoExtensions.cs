@@ -22,6 +22,7 @@ using System.Text.RegularExpressions;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Abstractions.Mount;
 using Microsoft.TemplateEngine.Edge.Settings;
+using Microsoft.Templates.Core.Composition;
 
 using Newtonsoft.Json;
 
@@ -42,8 +43,6 @@ namespace Microsoft.Templates.Core
                     return TemplateType.Project;
                 case "page":
                     return TemplateType.Page;
-                case "framework":
-                    return TemplateType.Framework;
                 case "devfeature":
                     return TemplateType.DevFeature;
                 case "consumerfeature":
@@ -100,20 +99,20 @@ namespace Microsoft.Templates.Core
             return result;
         }
 
-        public static Dictionary<string, string> GetQueryableProperties(this ITemplateInfo ti)
+        public static QueryablePropertyDictionary GetQueryableProperties(this ITemplateInfo ti)
         {
-            var properties = new Dictionary<string, string>();
+            var properties = new QueryablePropertyDictionary();
 
             if (ti != null)
             {
-                properties.Add(nameof(ti.Name), ti.Name);
-                properties.Add(nameof(ti.Identity), ti.Identity);
+                properties.Add(new QueryableProperty(nameof(ti.Name).ToLower(), ti.Name));
+                properties.Add(new QueryableProperty(nameof(ti.Identity).ToLower(), ti.Identity));
+
                 foreach (var t in ti.Tags)
                 {
-                    properties.Add(t.Key, t.Value);
+                    properties.Add(new QueryableProperty(t.Key, t.Value));
                 }
             }
-
             return properties;
         }
 

@@ -123,7 +123,7 @@
     <Compile Include="Locations\TemplatexTests.cs" />
     <Compile Include="Locations\UnitTestTemplatesSource.cs" />
     <Compile Include="NamingTest.cs" />
-    <Compile Include="Templates\CompositionQueryTest.cs" />
+    <Compile Include="Composition\CompositionQueryTest.cs" />
     <None Include="TestData\Merge\Source_expected.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

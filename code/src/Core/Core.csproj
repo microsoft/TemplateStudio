@@ -117,6 +117,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeGen.cs" />
+    <Compile Include="Composition\QueryableProperty.cs" />
+    <Compile Include="Composition\QueryNode.cs" />
     <Compile Include="Configuration\Configuration.cs" />
     <Compile Include="Diagnostics\FormattedWriterMessages.cs" />
     <Compile Include="Diagnostics\HealthWriters.cs" />
@@ -141,7 +143,7 @@
     <Compile Include="Locations\Fs.cs" />
     <Compile Include="Locations\InvalidSignatureException.cs" />
     <Compile Include="Locations\LocalTemplatesSource.cs" />
-    <Compile Include="Templates\CompositionQuery.cs" />
+    <Compile Include="Composition\CompositionQuery.cs" />
     <Compile Include="Templates\ITemplateInfoExtensions.cs" />
     <Compile Include="Locations\RemoteTemplatesSource.cs" />
     <Compile Include="Locations\TemplatesSynchronization.cs" />
@@ -197,5 +199,6 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

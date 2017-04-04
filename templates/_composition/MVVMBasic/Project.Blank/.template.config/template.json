@@ -1,0 +1,28 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMBasic.Project.Blank",
+  "groupIdentity": "Microsoft.UWPTemplates.Composition.MVVMBasic.Project.Blank",
+  "identity": "Microsoft.UWPTemplates.Composition.MVVMBasic.Project.Blank.CSharp",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "uct.type": "composition",
+    "uct.version": "1.0.0",
+    "uct.compositionFilter": "uct.framework==MVVMBasic&uct.type==project&name==Blank"
+  },
+  "sourceName": "uct.ItemName",
+  "preferNameDirectory": true,
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    }
+  }
+}
