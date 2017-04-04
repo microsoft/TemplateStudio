@@ -177,7 +177,7 @@
             <Grid Grid.Row="1" Margin="10">
                 <TextBlock Style="{StaticResource SummaryLicenseAgreement}">By continuing, you agree to the licenses in the licensing section for the generated project. By continuing, you agree to those licenses.</TextBlock>
             </Grid>
-            <ScrollViewer Margin="10, 10, 0, 10" Grid.Row="0">
+            <ScrollViewer Margin="10, 10, 0, 0" Grid.Row="0">
                 <StackPanel >
                     <TextBlock Style="{StaticResource SummaryTitle}">Summary</TextBlock>
                     <Expander Header="Project Style" Style="{StaticResource Expanders}">
