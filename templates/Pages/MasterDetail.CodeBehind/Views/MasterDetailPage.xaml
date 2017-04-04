@@ -103,7 +103,7 @@
 
         <!--  Adaptive triggers  -->
         <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="AdaptiveStates" CurrentStateChanged="OnAdaptiveStatesCurrentStateChanged">
+            <VisualStateGroup x:Name="AdaptiveStates">
                 <VisualState x:Name="WideState">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="640"/>

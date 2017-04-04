@@ -10,9 +10,6 @@ namespace ItemNamespace.Views
 {
     public sealed partial class MasterDetailDetailPage : Page, INotifyPropertyChanged
     {
-        const string NarrowStateName = "NarrowState";
-        const string WideStateName = "WideState";
-
         private SampleModel _item;
         public SampleModel Item
         {
@@ -33,7 +30,7 @@ namespace ItemNamespace.Views
 
         private void OnAdaptiveStatesCurrentStateChanged(object sender, VisualStateChangedEventArgs e)
         {
-            if (e.OldState.Name == NarrowStateName && e.NewState.Name == WideStateName)
+            if (e.OldState == NarrowState && e.NewState == WideState)
             {
                 NavigationService.GoBack();
             }
@@ -52,6 +49,5 @@ namespace ItemNamespace.Views
         }
 
         private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
     }
 }
