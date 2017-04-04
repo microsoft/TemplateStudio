@@ -105,24 +105,6 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
-        <Style TargetType="GroupBox">
-            <Setter Property="Template" Value="{DynamicResource GroupBoxControlTemplate1}" />
-            <Setter Property="Padding" Value="0, 10" />
-            <Setter Property="HeaderTemplate">
-                <Setter.Value>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}" FontWeight="Bold"/>
-                    </DataTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style x:Key="SummaryTextBlocks" TargetType="TextBlock">
-            <Setter Property="Margin" Value="0, 0, 0, 2" />
-            <Setter Property="FontSize" Value="12" />
-            <Setter Property="Foreground" Value="#555555" />
-        </Style>
-
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -135,19 +117,25 @@
             <ColumnDefinition Width="300" />
         </Grid.ColumnDefinitions>
         <!--<Image Source="vsCapture.png" Grid.ColumnSpan="3" Grid.RowSpan="3" Stretch="None" />-->
-        <Grid Name="TopItem" Grid.Row="0" Grid.ColumnSpan="2" Background="#3399ff">
+        <Grid Name="TopItem" Grid.Row="0" Grid.ColumnSpan="2" Background="{StaticResource highlightBlueBrush}">
             <StackPanel Margin="10, 0" Orientation="Horizontal" VerticalAlignment="Center">
                 <TextBlock Foreground="White" FontSize="30">
                     <Run FontFamily="Segoe UI Symbol" FontSize="16" BaselineAlignment="Center"></Run>
-                    Select your options and generate [placeholder]
+                    Select your options and generate [placeholder, icon will be img]
                 </TextBlock>
             </StackPanel>
         </Grid>
-        <Grid Name="Bottom" Grid.Row="2" Grid.ColumnSpan="2" Background="#f1f1f1" >
+        <Grid Name="Bottom" Grid.Row="2" Grid.ColumnSpan="2" Background="{StaticResource lightGrayBrush}" >
             <Grid Margin="10, 0">
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <TextBlock Foreground="#555555" FontSize="10">Wizard: 0.4.17086.3</TextBlock>
-                    <TextBlock Foreground="#555555" FontSize="10">Template: 0.4.17090.2</TextBlock>
+                    <TextBlock Style="{StaticResource WindowsTemplateStudioVersion}">
+                        <Run>Wizard: </Run>
+                        <Run>0.4.17090.2</Run>
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource WindowsTemplateStudioVersion}">
+                        <Run>Template: </Run>
+                        <Run>0.4.17090.2</Run>
+                    </TextBlock>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
@@ -157,7 +145,7 @@
             </Grid>
         </Grid>
         <Grid Name="MiddleLeft" Grid.Row="1" Grid.Column="0" Background="White" Opacity="1">
-            <ScrollViewer Margin="10, 10, 0, 10" Grid.Row="0">
+            <ScrollViewer Margin="10, 10, 0, 0" Grid.Row="0">
                 <StackPanel>
                     <GroupBox Header="Frameworks (3) - Pick one">
                         <WrapPanel>
@@ -187,13 +175,13 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="1" Margin="10">
-                <TextBlock TextWrapping="Wrap">By continuing, you agree to the licenses in the licensing section for the generated project. By continuing, you agree to those licenses.</TextBlock>
+                <TextBlock Style="{StaticResource SummaryLicenseAgreement}">By continuing, you agree to the licenses in the licensing section for the generated project. By continuing, you agree to those licenses.</TextBlock>
             </Grid>
             <ScrollViewer Margin="10, 10, 0, 10" Grid.Row="0">
                 <StackPanel >
-                    <TextBlock Foreground="#3399ff" FontSize="16">Summary</TextBlock>
-                    <Expander Header="Project Style" FontSize="16" IsExpanded="True" Template="{DynamicResource ExpanderControlTemplate1}">
-                        <StackPanel Margin="25, 0, 0, 0">
+                    <TextBlock Style="{StaticResource SummaryTitle}">Summary</TextBlock>
+                    <Expander Header="Project Style" Style="{StaticResource Expanders}">
+                        <StackPanel Style="{StaticResource ExpanderStackPanel}">
                             <TextBlock 
                                 FontSize="12" 
                                 Foreground="Red" 
@@ -201,85 +189,38 @@
                                 <Run FontFamily="Segoe UI Symbol" FontSize="8" BaselineAlignment="Center" Foreground="Red">i</Run>
                                 Please select a framework [needs i w/ triangle]
                             </TextBlock>
+                            <local:FeatureItem />
                         </StackPanel>
                     </Expander>
-                    <Expander Header="Framework" FontSize="16" IsExpanded="False" Foreground="#292929" Template="{DynamicResource ExpanderControlTemplate1}">
-                        <StackPanel Margin="25, 0, 0, 0">
-                            <TextBlock Style="{StaticResource SummaryTextBlocks}">
-                                MVVM Basic
-                            </TextBlock>
+                    <Expander Header="Framework" Style="{StaticResource Expanders}">
+                        <StackPanel Style="{StaticResource ExpanderStackPanel}">
+                            <local:FeatureItem />
                         </StackPanel>
                     </Expander>
-                    <Expander Header="Pages" FontSize="16" IsExpanded="False" Template="{DynamicResource ExpanderControlTemplate1}">
-                        <Grid>
-                            <StackPanel Margin="25, 0, 0, 0">
-                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
-                                    MainPage [Blank]
-                                    <LineBreak/>
-                                    <TextBlock Margin="20,0" FontSize="8">Made by Microsoft</TextBlock>                                    
-                                </TextBlock>
-                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
-                                    Consectetur [Adipiscing] <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
-                                    <LineBreak/>
-                                    <TextBlock Margin="20,0" FontSize="8">Made by Microsoft - Community Contribution</TextBlock>                                    
-                                </TextBlock>
-                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
-                                    CurabiturMagna [Tellus] <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
-                                    <LineBreak/>
-                                    <TextBlock Margin="20,0" FontSize="8">Made by Microsoft</TextBlock>                                    
-                                </TextBlock>
-                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
-                                    DolorSit [Convallis] <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
-                                    <LineBreak/>
-                                    <TextBlock Margin="20,0" FontSize="8">Made by Microsoft</TextBlock>                                    
-                                </TextBlock>
-                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
-                                    LoremIpsum4 [Lorem] <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
-                                    <LineBreak/>
-                                    <TextBlock Margin="20,0" FontSize="8">Made by Microsoft</TextBlock>                                    
-                                </TextBlock>
-                            </StackPanel>
-                        </Grid>
+                    <Expander Header="Pages" Style="{StaticResource Expanders}">
+                        <StackPanel Style="{StaticResource ExpanderStackPanel}">
+                            <local:FeatureItem />
+                            <local:FeatureItem />
+                            <local:FeatureItem />
+                            <local:FeatureItem />
+                            <local:FeatureItem />
+                        </StackPanel>
                     </Expander>
-                    <Expander Header="Features" FontSize="16" IsExpanded="True" Template="{DynamicResource ExpanderControlTemplate1}">
-                        <Grid>
-                            <StackPanel Margin="25, 0, 0, 0">
-                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
-                                    MyName [TheActualFeatureName] <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
-                                    <LineBreak/>
-                                    <TextBlock Margin="20,0" FontSize="8">Made by Microsoft</TextBlock>                                    
-                                </TextBlock>
-                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
-                                    CurabiturMagna [Tellus] <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
-                                    <LineBreak/>
-                                    <TextBlock Margin="20,0" FontSize="8">Made by Microsoft - Community Contribution</TextBlock>                                    
-                                </TextBlock>
-                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
-                                    DolorSit [Convallis] <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
-                                    <LineBreak/>
-                                    <TextBlock Margin="20,0" FontSize="8">Made by Microsoft - Community Contribution</TextBlock>                                    
-                                </TextBlock>
-                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
-                                    LoremIpsum4 [Lorem] <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
-                                    <LineBreak/>
-                                    <TextBlock Margin="20,0" FontSize="8">Made by Microsoft</TextBlock>                                    
-                                </TextBlock>
-                            </StackPanel>
-                        </Grid>
+                    <Expander Header="Features" Style="{StaticResource Expanders}">
+                        <StackPanel Style="{StaticResource ExpanderStackPanel}">
+                            <local:FeatureItem />
+                            <local:FeatureItem />
+                            <local:FeatureItem />
+                            <local:FeatureItem />
+                            <local:FeatureItem />
+                        </StackPanel>
                     </Expander>
-                    <Expander Header="Licenses" FontSize="16" IsExpanded="True" Template="{DynamicResource ExpanderControlTemplate1}">
-                        <Grid>
-                            <StackPanel Margin="25, 0, 0, 0">
-                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
-                                    <Hyperlink NavigateUri="http://TestURL/">MVVM Light</Hyperlink>
-                                    [My Awesome App]
-                                </TextBlock>
-                                <TextBlock Style="{StaticResource SummaryTextBlocks}">
-                                    <Hyperlink NavigateUri="http://TestURL/">Newtonsoft.JSON</Hyperlink>
-                                    [Setting Storage]
-                                </TextBlock>
-                            </StackPanel>
-                        </Grid>
+                    <Expander Header="Licenses" Style="{StaticResource Expanders}">
+                        <StackPanel Style="{StaticResource ExpanderStackPanel}">
+                            <local:LicenseLink />
+                            <local:LicenseLink />
+                            <local:LicenseLink />
+                        </StackPanel>
                     </Expander>
 
                 </StackPanel>

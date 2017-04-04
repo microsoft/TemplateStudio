@@ -11,21 +11,12 @@
     
         Check shoudld an inverse as well.  Background being 3399ff and the check being white
     -->
-    <Border 
-        Margin="0, 0, 10, 10" 
-        Height="80" 
-        MaxWidth="400" 
-        BorderBrush="#c6c6c6"  
-        BorderThickness="5,1,1,1" 
-        Background="White">
+    <Border Style="{StaticResource AddOnItemsBorderNormal}">
         <!-- 
         TODO:
         on click, this highlight, currently it is in a "highlight state"
         we need a multi-item varient with the "add hover concept"
 -->
-        <Border.Effect>
-            <DropShadowEffect Opacity="0.2" />
-        </Border.Effect>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50" />
@@ -41,17 +32,14 @@
             <TextBlock 
                 Grid.Row="0" 
                 Grid.Column="1" 
-                FontWeight="Bold" 
-                Foreground="#292929"
-                VerticalAlignment="Bottom">
+                Style="{StaticResource AddOnItemsTitleText}">
                 Lorem ipsum dolor sit amet
             </TextBlock>
             <!-- margin bottom here is so checkbox and title line up-->
             <TextBlock 
                 Grid.Row="1" 
                 Grid.Column="1" 
-                Foreground="#555555"
-                TextWrapping="WrapWithOverflow">
+                Style="{StaticResource AddOnItemsBodyText}">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur magna tellus, malesuada laoreet convallis sit amet, congue ut lectus.
             </TextBlock>
         </Grid>
