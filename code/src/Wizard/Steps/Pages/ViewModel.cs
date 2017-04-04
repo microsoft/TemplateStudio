@@ -106,7 +106,7 @@ namespace Microsoft.Templates.Wizard.Steps.Pages
 
             foreach (var item in layout)
             {
-                var template = GenContext.ToolBox.Repo.Find(t => t.GroupIdentity == item.templateGroupIdentity && t.GetFrameworkList().Any(f => f.Equals(Context.State.Framework, StringComparison.OrdinalIgnoreCase)));
+                var template = GenContext.ToolBox.Repo.GetLayoutTemplate(item, Context.State.Framework);
                 if (template != null && template.GetTemplateType() == TemplateType.Page)
                 {
                     Templates.Add(new PageViewModel(item.name, template, item.@readonly));
