@@ -8,10 +8,9 @@ namespace uct.SplitViewProject.Views
     {
         public ShellPage()
         {
-            DataContext = ViewModel;
             this.InitializeComponent();
 
-            ViewModel.Initialize(frame);
+            ViewModel.Initialize(shellFrame, primaryListView, secondaryListView);
         }
     }
 }

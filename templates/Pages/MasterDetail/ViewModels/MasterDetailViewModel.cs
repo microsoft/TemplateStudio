@@ -26,12 +26,14 @@ namespace ItemNamespace.ViewModels
         }
         
         public ICommand ItemClickCommand { get; private set; }
+        public ICommand StateChangedCommand { get; private set; }
 
         public ObservableCollection<SampleModel> SampleItems { get; private set; } = new ObservableCollection<SampleModel>();
 
         public MasterDetailViewModel()
         {
             ItemClickCommand = new RelayCommand<ItemClickEventArgs>(OnItemClick);
+            StateChangedCommand = new RelayCommand<VisualStateChangedEventArgs>(OnStateChanged);
         }        
 
         public async Task LoadDataAsync(VisualState currentState)
@@ -49,13 +51,13 @@ namespace ItemNamespace.ViewModels
             Selected = SampleItems.First();
         }
 
-        public void UpdateWindowState(VisualStateChangedEventArgs args)
+        private void OnStateChanged(VisualStateChangedEventArgs args)
         {
             _currentState = args.NewState;
         }
 
         private void OnItemClick(ItemClickEventArgs args)
-        {            
-        }        
+        {
+        }
     }
 }

@@ -1,7 +1,7 @@
 <root>
   <!--^^-->
   <!--{[{-->
-  <data name="TabbedPivotPage_Pivot.Title" xml:space="preserve">  
+  <data name="TabbedPivotPage_Pivot.Text" xml:space="preserve">  
     <value>TabbedPivotPage</value>
   </data>
   <data name="TabbedPivotPage_PivotItem1.Header" xml:space="preserve">  

@@ -9,10 +9,5 @@ namespace ItemNamespace.Views
         {
             this.InitializeComponent();
         }
-
-        private void OnAdaptiveStatesCurrentStateChanged(object sender, VisualStateChangedEventArgs e)
-        {
-            ViewModel.UpdateWindowState(e);
-        }
     }
 }

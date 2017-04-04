@@ -19,10 +19,5 @@ namespace ItemNamespace.Views
             base.OnNavigatedTo(e);
             ViewModel.Item = e.Parameter as SampleModel;
         }
-
-        private void OnAdaptiveStatesCurrentStateChanged(object sender, VisualStateChangedEventArgs e)
-        {
-            ViewModel.UpdateWindowState(e);
-        }
     }
 }
