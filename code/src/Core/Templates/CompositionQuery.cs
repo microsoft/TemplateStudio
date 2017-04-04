@@ -8,21 +8,56 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core
 {
-    public class CompositionQuery
+    public class QueryNode
     {
-        private const string QueryPattern = "(?<field>[^=&]*)={2}(?<value>[^=&]*)&?";
         private const string ContextPrefix = "$";
 
-        public Dictionary<string, string> Items { get; }
-
-        private CompositionQuery(Dictionary<string, string> queryItems)
+        public QueryNode(string field, string @operator, string value)
         {
-            Items = queryItems;
+            IsContext = field.StartsWith(ContextPrefix);
+            Field = field?.Replace(ContextPrefix, string.Empty);
+            Operator = ParseOperator(@operator);
+            Value = value;
+        }
+
+        private QueryOperator ParseOperator(string @operator)
+        {
+            if (@operator?.Equals("==") == true)
+            {
+                return QueryOperator.Equals;
+            }
+            else
+            {
+                return QueryOperator.NotEquals;
+            }
+        }
+
+        public string Field { get; set; }
+        public QueryOperator Operator { get; set; }
+        public string Value { get; set; }
+
+        public bool IsContext { get; }
+    }
+
+    public enum QueryOperator
+    {
+        Equals,
+        NotEquals
+    }
+
+    public class CompositionQuery
+    {
+        private const string QueryPattern = "(?<field>[^=&]*)(?<operator>={2}|!=)(?<value>[^=&]*)&?";
+
+        public List<QueryNode> Items { get; } = new List<QueryNode>();
+
+        private CompositionQuery()
+        {
         }
 
         public static CompositionQuery Parse(string value)
         {
-            var queryItems = new Dictionary<string, string>();
+            var query = new CompositionQuery();
 
             if (!string.IsNullOrWhiteSpace(value))
             {
@@ -30,22 +65,21 @@ namespace Microsoft.Templates.Core
                 for (int i = 0; i < queryMatches.Count; i++)
                 {
                     var m = queryMatches[i];
-                    queryItems.Add(m.Groups["field"].Value, m.Groups["value"].Value);
+                    query.Items.Add(new QueryNode(m.Groups["field"].Value, m.Groups["operator"].Value, m.Groups["value"].Value));
                 }
             }
 
-            return new CompositionQuery(queryItems);
+            return query;
         }
 
 
         public bool Execute(ITemplateInfo source, IEnumerable<ITemplateInfo> context)
         {
             var itemQuery = Items
-                                .Where(i => !i.Key.StartsWith(ContextPrefix))
+                                .Where(i => !i.IsContext)
                                 .ToList();
             var contextQuery = Items
-                                .Where(i => i.Key.StartsWith(ContextPrefix))
-                                .Select(i => new KeyValuePair<string, string>(i.Key.Replace(ContextPrefix, string.Empty), i.Value))
+                                .Where(i => i.IsContext)
                                 .ToList();
 
             var itemResult = Match(itemQuery, source);
@@ -59,9 +93,27 @@ namespace Microsoft.Templates.Core
             return itemResult && contextResult;
         }
 
-        private static bool Match(List<KeyValuePair<string, string>> query, ITemplateInfo template)
+        private static bool Match(IEnumerable<QueryNode> query, ITemplateInfo template)
         {
-            return query.All(i => SafeGet(template.GetQueryableProperties(), i.Key) == i.Value);
+            var queryableProperties = template.GetQueryableProperties();
+            foreach (var itemQuery in query)
+            {
+                if (itemQuery.Operator == QueryOperator.Equals)
+                {
+                    if (!SafeGet(queryableProperties, itemQuery.Field).Equals(itemQuery.Value))
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    if (SafeGet(queryableProperties, itemQuery.Field).Equals(itemQuery.Value))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
 
         private static string SafeGet(Dictionary<string, string> properties, string key)

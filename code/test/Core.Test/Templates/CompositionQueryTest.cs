@@ -13,24 +13,30 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void Parse()
         {
-            var query = "uct.framework==framework&uct.type==Page&$name==Map";
+            var query = "uct.framework==framework&uct.type!=Page&$name==Map";
             var result = CompositionQuery.Parse(query);
 
             Assert.Collection(result.Items,
                 r1 =>
                 {
-                    Assert.Equal(r1.Key, "uct.framework");
+                    Assert.Equal(r1.Field, "uct.framework");
+                    Assert.Equal(r1.Operator, QueryOperator.Equals);
                     Assert.Equal(r1.Value, "framework");
+                    Assert.False(r1.IsContext);
                 },
                 r2 =>
                 {
-                    Assert.Equal(r2.Key, "uct.type");
+                    Assert.Equal(r2.Field, "uct.type");
+                    Assert.Equal(r2.Operator, QueryOperator.NotEquals);
                     Assert.Equal(r2.Value, "Page");
+                    Assert.False(r2.IsContext);
                 }, 
                 r3 =>
                 {
-                    Assert.Equal(r3.Key, "$name");
+                    Assert.Equal(r3.Field, "name");
+                    Assert.Equal(r3.Operator, QueryOperator.Equals);
                     Assert.Equal(r3.Value, "Map");
+                    Assert.True(r3.IsContext);
                 });
         }
 
@@ -43,8 +49,7 @@ namespace Microsoft.Templates.Core.Test
             Assert.Collection(result.Items,
                 r1 =>
                 {
-                    Assert.Equal(r1.Key, "uct.framework");
-                    Assert.Equal(r1.Value, "framework");
+                    Assert.Equal(r1.Field, "uct.framework");
                 });
         }
 
@@ -66,6 +71,17 @@ namespace Microsoft.Templates.Core.Test
 
             var target = CompositionQuery.Parse("Identity==item0&item0-tag2==item0-tagVal2&$Name==item2-name");
             var result = target.Execute(data[0], data.Skip(1).ToList());
+
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void Execute_NotEquals()
+        {
+            var data = GetFactData(1).FirstOrDefault();
+
+            var target = CompositionQuery.Parse("Identity==item0&item0-tag2!=item0-tagVal1");
+            var result = target.Execute(data, null);
 
             Assert.True(result);
         }
