@@ -48,6 +48,8 @@ namespace Microsoft.Templates.Core
                     return TemplateType.DevFeature;
                 case "consumerfeature":
                     return TemplateType.ConsumerFeature;
+                case "composition":
+                    return TemplateType.Composition;
                 default:
                     return TemplateType.Unspecified;
             }
@@ -71,6 +73,11 @@ namespace Microsoft.Templates.Core
             return ti.Identity;
         }
 
+        public static string GetCompositionFilter(this ITemplateInfo ti)
+        {
+            return GetValueFromTag(ti, TagPrefix + "compositionFilter");
+        }
+
         public static IEnumerable<(string text, string url)> GetLicences(this ITemplateInfo ti)
         {
             var licences = GetValueFromTag(ti, TagPrefix + "licences");
@@ -91,6 +98,23 @@ namespace Microsoft.Templates.Core
 
             }
             return result;
+        }
+
+        public static Dictionary<string, string> GetQueryableProperties(this ITemplateInfo ti)
+        {
+            var properties = new Dictionary<string, string>();
+
+            if (ti != null)
+            {
+                properties.Add(nameof(ti.Name), ti.Name);
+                properties.Add(nameof(ti.Identity), ti.Identity);
+                foreach (var t in ti.Tags)
+                {
+                    properties.Add(t.Key, t.Value);
+                }
+            }
+
+            return properties;
         }
 
         public static IEnumerable<(string name, string value)> GetExports(this ITemplateInfo ti)
@@ -201,7 +225,7 @@ namespace Microsoft.Templates.Core
                 {
                     return boolResult;
                 }
-            }            
+            }
             return true;
         }
 

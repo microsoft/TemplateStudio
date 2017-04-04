@@ -26,6 +26,52 @@ namespace Microsoft.Templates.Wizard
 {
     public class GenComposer
     {
+        public static IEnumerable<GenInfo> Compose2(WizardState userSelection)
+        {
+            var genQueue = new List<GenInfo>();
+
+            if (string.IsNullOrEmpty(userSelection.ProjectType))
+            {
+                return genQueue;
+            }
+
+            var compositionTemplates = GetCompositionTemplates();
+
+            AddProject(userSelection, compositionTemplates, genQueue);
+
+            AddMissingDependencies(genQueue);
+
+            return genQueue;
+        }
+
+        private static void AddProject(WizardState userSelection, IEnumerable<ITemplateInfo> composition, List<GenInfo> genQueue)
+        {
+            var projectTemplate = GenContext.ToolBox.Repo
+                                                        .Find(t => t.GetTemplateType() == TemplateType.Project
+                                                            && t.GetProjectType() == userSelection.ProjectType
+                                                            && t.GetFrameworkList().Any(f => f == userSelection.Framework));
+
+            var genProject = CreateGenInfo(GenContext.Current.ProjectName, projectTemplate, genQueue);
+            genProject.Parameters.Add(GenParams.Username, Environment.UserName);
+
+            foreach (var template in composition)
+            {
+                var rawQuery = template.GetCompositionFilter();
+                var query = CompositionQuery.Parse(rawQuery);
+
+
+            }
+        }
+
+        private static IEnumerable<ITemplateInfo> GetCompositionTemplates()
+        {
+            return GenContext.ToolBox.Repo
+                                        .Get(t => t.GetTemplateType() == TemplateType.Composition)
+                                        .ToList();
+        }
+
+
+
         public static IEnumerable<GenInfo> Compose(WizardState userSelection)
         {
             var genQueue = new List<GenInfo>();

@@ -25,6 +25,7 @@ namespace Microsoft.Templates.Core
         Framework = 4,
         DevFeature = 5,
         ConsumerFeature = 6,
+        Composition = 7,
         Unspecified = 100
     }
 }
