@@ -83,7 +83,7 @@ namespace Microsoft.Templates.Core.Locations
 
             PurgeContentAsync().FireAndForget();
 
-            TelemetryService.Current.SetContentVersionToContext(CurrentContentVersion.ToString());
+            TelemetryService.Current.SetContentVersionToContext(CurrentContentVersion);
         }
 
         private async Task AdquireContentAsync()

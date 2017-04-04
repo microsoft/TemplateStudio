@@ -148,15 +148,18 @@ namespace Microsoft.Templates.Core.Diagnostics
             _client.Context.Properties.Add(TelemetryProperties.WizardFileVersion, GetFileVersion());
         }
 
-        public void SetContentVersionToContext(string wizardContentVersion)
+        public void SetContentVersionToContext(Version wizardContentVersion)
         {
-            if (!_client.Context.Properties.ContainsKey(TelemetryProperties.WizardContentVersion))
+            if (wizardContentVersion != null)
             {
-                _client.Context.Properties.Add(TelemetryProperties.WizardContentVersion, wizardContentVersion);
-            }
-            else
-            {
-                _client.Context.Properties[TelemetryProperties.WizardContentVersion] = wizardContentVersion;
+                if (!_client.Context.Properties.ContainsKey(TelemetryProperties.WizardContentVersion))
+                {
+                    _client.Context.Properties.Add(TelemetryProperties.WizardContentVersion, wizardContentVersion.ToString());
+                }
+                else
+                {
+                    _client.Context.Properties[TelemetryProperties.WizardContentVersion] = wizardContentVersion.ToString();
+                }
             }
 
         }
