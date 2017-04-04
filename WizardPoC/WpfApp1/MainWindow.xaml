@@ -159,14 +159,14 @@
         <Grid Name="MiddleLeft" Grid.Row="1" Grid.Column="0" Background="White" Opacity="1">
             <ScrollViewer Margin="10, 10, 0, 10" Grid.Row="0">
                 <StackPanel>
-                    <GroupBox Header="Frameworks (3)">
+                    <GroupBox Header="Frameworks (3) - Pick one">
                         <WrapPanel>
                             <local:SingletonWithBorder />
                             <local:SingletonWithBorder />
                             <local:SingletonWithBorder />
                         </WrapPanel>
                     </GroupBox>
-                    <GroupBox Header="Pages (8)" >
+                    <GroupBox Header="Pages (8) - Add Multiple" >
                         <WrapPanel>
                             <local:SingletonWithBorder />
                             <local:MultipleAddItemWithBorder />
@@ -205,9 +205,7 @@
                     </Expander>
                     <Expander Header="Framework" FontSize="16" IsExpanded="False" Foreground="#292929" Template="{DynamicResource ExpanderControlTemplate1}">
                         <StackPanel Margin="25, 0, 0, 0">
-                            <TextBlock
-                                Foreground="#555555"
-                                FontSize="12" >
+                            <TextBlock Style="{StaticResource SummaryTextBlocks}">
                                 MVVM Basic
                             </TextBlock>
                         </StackPanel>
@@ -217,22 +215,28 @@
                             <StackPanel Margin="25, 0, 0, 0">
                                 <TextBlock Style="{StaticResource SummaryTextBlocks}">
                                     MainPage [Blank]
+                                    <LineBreak/>
+                                    <TextBlock Margin="20,0" FontSize="8">Made by Microsoft</TextBlock>                                    
                                 </TextBlock>
                                 <TextBlock Style="{StaticResource SummaryTextBlocks}">
-                                    Consectetur [Adipiscing]
-                                    <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
+                                    Consectetur [Adipiscing] <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
+                                    <LineBreak/>
+                                    <TextBlock Margin="20,0" FontSize="8">Made by Microsoft - Community Contribution</TextBlock>                                    
                                 </TextBlock>
                                 <TextBlock Style="{StaticResource SummaryTextBlocks}">
-                                    CurabiturMagna [Tellus]
-                                    <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
+                                    CurabiturMagna [Tellus] <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
+                                    <LineBreak/>
+                                    <TextBlock Margin="20,0" FontSize="8">Made by Microsoft</TextBlock>                                    
                                 </TextBlock>
                                 <TextBlock Style="{StaticResource SummaryTextBlocks}">
-                                    DolorSit [Convallis]
-                                    <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
+                                    DolorSit [Convallis] <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
+                                    <LineBreak/>
+                                    <TextBlock Margin="20,0" FontSize="8">Made by Microsoft</TextBlock>                                    
                                 </TextBlock>
                                 <TextBlock Style="{StaticResource SummaryTextBlocks}">
-                                    LoremIpsum4 [Lorem]
-                                    <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
+                                    LoremIpsum4 [Lorem] <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
+                                    <LineBreak/>
+                                    <TextBlock Margin="20,0" FontSize="8">Made by Microsoft</TextBlock>                                    
                                 </TextBlock>
                             </StackPanel>
                         </Grid>
@@ -251,12 +255,14 @@
                                     <TextBlock Margin="20,0" FontSize="8">Made by Microsoft - Community Contribution</TextBlock>                                    
                                 </TextBlock>
                                 <TextBlock Style="{StaticResource SummaryTextBlocks}">
-                                    DolorSit [Convallis], Made By In
-                                    <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
+                                    DolorSit [Convallis] <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
+                                    <LineBreak/>
+                                    <TextBlock Margin="20,0" FontSize="8">Made by Microsoft - Community Contribution</TextBlock>                                    
                                 </TextBlock>
                                 <TextBlock Style="{StaticResource SummaryTextBlocks}">
-                                    LoremIpsum4 [Lorem]
-                                    <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
+                                    LoremIpsum4 [Lorem] <Run FontFamily="Segoe UI Symbol" FontSize="8" Foreground="Red"></Run>
+                                    <LineBreak/>
+                                    <TextBlock Margin="20,0" FontSize="8">Made by Microsoft</TextBlock>                                    
                                 </TextBlock>
                             </StackPanel>
                         </Grid>
