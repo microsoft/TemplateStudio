@@ -154,7 +154,7 @@
                             <local:SingletonWithBorder />
                         </WrapPanel>
                     </GroupBox>
-                    <GroupBox Header="Pages (8) - Add Multiple" >
+                    <GroupBox Header="Pages (8) - Add Multiple">
                         <WrapPanel>
                             <local:SingletonWithBorder />
                             <local:MultipleAddItemWithBorder />

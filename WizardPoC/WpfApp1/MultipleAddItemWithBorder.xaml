@@ -30,6 +30,7 @@
                 <RowDefinition />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
+            <!--  this will be an icon -->
             <TextBlock 
                 Grid.RowSpan="2" 
                 FontFamily="Segoe UI Symbol" 
@@ -43,6 +44,7 @@
                 Style="{StaticResource AddOnItemsTitleText}">
                 Lorem ipsum Multiples
             </TextBlock>
+            
             <!-- margin bottom here is so checkbox and title line up-->
             <Grid Grid.Row="1" Grid.Column="1" >
                 <TextBlock 
@@ -64,7 +66,9 @@
                     Grid.Column="0">
                     LoremIpsum1
                 </TextBox>
-                <Button Margin="5, 0, 0, 0"
+                <Button 
+                    Margin="5, 0, 0, 0"
+                    Padding="5, 0"
                     Grid.Column="1">
                     Add
                 </Button>

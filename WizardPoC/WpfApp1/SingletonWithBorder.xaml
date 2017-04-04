@@ -6,10 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     mc:Ignorable="d">
     <!-- 
-        Not checked: c6c6c6 
-        Checked: 3399ff 
+        Not checked: AddOnItemsBorderNormal 
+        Checked: AddOnItemsBorderHighlighted 
     
-        Check shoudld an inverse as well.  Background being 3399ff and the check being white
+        the check background color shoudl be the highlighted color with foreground being white
     -->
     <Border Style="{StaticResource AddOnItemsBorderNormal}">
         <!-- 
@@ -27,8 +27,15 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
+            
+            <!--  this will be an icon -->
             <TextBlock Grid.RowSpan="2" FontFamily="Segoe UI Symbol" Text="" FontSize="36" HorizontalAlignment="Center" />
-            <CheckBox Grid.Row="0" Grid.Column="2"  Margin="0, 5, 5, 0" HorizontalAlignment="Right" />
+            <CheckBox 
+                Grid.Row="0" 
+                Grid.Column="2" 
+                Margin="0, 5, 5, 0" 
+                HorizontalAlignment="Right" />
+            
             <TextBlock 
                 Grid.Row="0" 
                 Grid.Column="1" 
