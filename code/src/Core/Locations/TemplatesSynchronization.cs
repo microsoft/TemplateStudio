@@ -186,7 +186,7 @@ namespace Microsoft.Templates.Core.Locations
 
         private Version GetCurrentVersion()
         {
-            return _content.GetVersionFromFolder(CurrentContentFolder);
+            return _content?.GetVersionFromFolder(CurrentContentFolder);
         }
     }
 }

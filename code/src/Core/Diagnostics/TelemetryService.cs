@@ -150,7 +150,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public void SetContentVersionToContext(Version wizardContentVersion)
         {
-            if (wizardContentVersion != null)
+            if (wizardContentVersion != null && _client != null)
             {
                 if (!_client.Context.Properties.ContainsKey(TelemetryProperties.WizardContentVersion))
                 {
