@@ -39,6 +39,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             {
                 { TelemetryProperties.WizardStatus, WizardStatusEnum.Completed.ToString() },
                 { TelemetryProperties.WizardType, wizardType.ToString() },
+                { TelemetryProperties.EventName, TelemetryEvents.Wizard}
             };
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.Wizard, properties).ConfigureAwait(false);
         }
@@ -50,6 +51,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             {
                 { TelemetryProperties.WizardStatus, WizardStatusEnum.Completed.ToString() },
                 { TelemetryProperties.WizardType, WizardTypeEnum.NewProject.ToString() },
+                { TelemetryProperties.EventName, TelemetryEvents.Wizard}
             };
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.Wizard, properties).ConfigureAwait(false);
         }
@@ -60,6 +62,8 @@ namespace Microsoft.Templates.Core.Diagnostics
             {
                 { TelemetryProperties.WizardStatus, WizardStatusEnum.Cancelled.ToString() },
                 { TelemetryProperties.WizardType, wizardType.ToString() },
+                { TelemetryProperties.EventName, TelemetryEvents.Wizard}
+
             };
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.Wizard, properties).ConfigureAwait(false);
         }
@@ -107,11 +111,12 @@ namespace Microsoft.Templates.Core.Diagnostics
             Dictionary<string, string> properties = new Dictionary<string, string>()
             {
                 { TelemetryProperties.Status, status.ToString() },
-                { TelemetryProperties.AppType, appType },
-                { TelemetryProperties.AppFx, appFx },
+                { TelemetryProperties.ProjectType, appType },
+                { TelemetryProperties.Framework, appFx },
                 { TelemetryProperties.TemplateName, templateName },
                 { TelemetryProperties.GenEngineStatus, genStatus.ToString() },
-                { TelemetryProperties.GenEngineMessage, message }
+                { TelemetryProperties.GenEngineMessage, message },
+                { TelemetryProperties.EventName, TelemetryEvents.ProjectGen}
             };
 
             Dictionary<string, double> metrics = new Dictionary<string, double>();
@@ -147,10 +152,11 @@ namespace Microsoft.Templates.Core.Diagnostics
             Dictionary<string, string> properties = new Dictionary<string, string>()
             {
                 { TelemetryProperties.Status, status.ToString() },
-                { TelemetryProperties.AppFx, pageFx },
+                { TelemetryProperties.Framework, pageFx },
                 { TelemetryProperties.TemplateName, templateName },
                 { TelemetryProperties.GenEngineStatus, genStatus.ToString() },
-                { TelemetryProperties.GenEngineMessage, message }
+                { TelemetryProperties.GenEngineMessage, message },
+                { TelemetryProperties.EventName, eventToTrack}
             };
 
             await TelemetryService.Current.TrackEventAsync(eventToTrack, properties).ConfigureAwait(false);

@@ -140,14 +140,25 @@ namespace Microsoft.Templates.Core.Diagnostics
             _client.Context.Device.Id = machineToTrack;
             _client.Context.Device.OperatingSystem = Environment.OSVersion.VersionString;
 
-            _client.Context.Cloud.RoleInstance = "VSIX";
-            _client.Context.Cloud.RoleName = "VSIX";
+            _client.Context.Cloud.RoleInstance = TelemetryProperties.RoleInstanceName;
+            _client.Context.Cloud.RoleName = TelemetryProperties.RoleInstanceName;
 
             _client.Context.Session.Id = Guid.NewGuid().ToString();
-
             _client.Context.Component.Version = GetVersion();
+            _client.Context.Properties.Add(TelemetryProperties.WizardFileVersion, GetFileVersion());
+        }
 
-            _client.Context.Properties.Add("VSIX FileVersion", GetFileVersion());
+        public void SetContentVersionToContext(string wizardContentVersion)
+        {
+            if (!_client.Context.Properties.ContainsKey(TelemetryProperties.WizardContentVersion))
+            {
+                _client.Context.Properties.Add(TelemetryProperties.WizardContentVersion, wizardContentVersion);
+            }
+            else
+            {
+                _client.Context.Properties[TelemetryProperties.WizardContentVersion] = wizardContentVersion;
+            }
+
         }
 
         private async Task SafeExecuteAsync(Action action)

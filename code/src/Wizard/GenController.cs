@@ -172,21 +172,10 @@ namespace Microsoft.Templates.Wizard
         private static void ShowError(Exception ex, WizardState userSelection = null)
         {
             AppHealth.Current.Error.TrackAsync(ex.ToString()).FireAndForget();
-            AppHealth.Current.Exception.TrackAsync(ex, GetExceptionTrackMessage(userSelection)).FireAndForget();
+            AppHealth.Current.Exception.TrackAsync(ex, userSelection?.ToString()).FireAndForget();
 
             var error = new ErrorDialog(ex);
             GenContext.ToolBox.Shell.ShowModal(error);
-        }
-
-        private static string GetExceptionTrackMessage(WizardState userSelection = null)
-        {
-            var sb = new StringBuilder();
-            sb.AppendLine($"Templates v: '{GenContext.ToolBox.Repo.GetVersion()}'");
-            if (userSelection != null)
-            {
-                sb.AppendLine(userSelection.ToString());
-            }
-            return sb.ToString();
         }
 
         private static void CleanStatusBar()
@@ -214,7 +203,9 @@ namespace Microsoft.Templates.Wizard
                     string resultsKey = $"{genInfo.Template.Identity}_{genInfo.Name}";
                     if (genInfo.Template.GetTemplateType() == TemplateType.Project)
                     {
-                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, appFx, genResults[resultsKey], pagesAdded, devfeaturesAdded, consumerfeaturesAdded, timeSpent).FireAndForget();
+                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, 
+                            appFx, genResults[resultsKey], pagesAdded, devfeaturesAdded, 
+                            consumerfeaturesAdded, timeSpent).FireAndForget();
                     }
                     else
                     {

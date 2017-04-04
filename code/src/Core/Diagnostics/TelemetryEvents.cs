@@ -49,15 +49,19 @@ namespace Microsoft.Templates.Core.Diagnostics
     }
     public class TelemetryProperties
     {
+        public static string WizardFileVersion { get; internal set; } = TelemetryTracker.PropertiesPrefix + "WizardFileVersion"; 
+        public static string WizardContentVersion { get; internal set; } = TelemetryTracker.PropertiesPrefix + "WizardContentVersion";
+        public static string RoleInstanceName { get; internal set; } = TelemetryTracker.PropertiesPrefix + "WizardClient";
         public static string Status { get; private set; } = TelemetryTracker.PropertiesPrefix + "Status";
-        public static string AppType { get; private set; } = TelemetryTracker.PropertiesPrefix + "AppType";
-        public static string AppFx { get; private set; } = TelemetryTracker.PropertiesPrefix + "AppFx";
+        public static string ProjectType { get; private set; } = TelemetryTracker.PropertiesPrefix + "ProjectType";
+        public static string Framework { get; private set; } = TelemetryTracker.PropertiesPrefix + "Framework";
         public static string TemplateName { get; private set; } = TelemetryTracker.PropertiesPrefix + "TemplateName";
         public static string GenEngineStatus { get; private set; } = TelemetryTracker.PropertiesPrefix + "GenEngineStatus";
         public static string GenEngineMessage { get; private set; } = TelemetryTracker.PropertiesPrefix + "GenEngineMessage";
         public static string WizardType { get; private set; } = TelemetryTracker.PropertiesPrefix + "WizardType";
         public static string WizardStatus { get; private set; } = TelemetryTracker.PropertiesPrefix + "WizardStatus";
         public static string LastStep { get; private set; } = TelemetryTracker.PropertiesPrefix + "LastStep";
+        public static string EventName { get; internal set; } = TelemetryTracker.PropertiesPrefix + "EventName";
     }
 
     public class TelemetryMetrics

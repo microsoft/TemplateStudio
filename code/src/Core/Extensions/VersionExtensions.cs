@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Core
 {
     public static class VersionExtensions
     {
-        public static bool IsDefault(this Version v)
+        public static bool IsZero(this Version v)
         {
             return (v.Major + v.Minor + v.Build + v.Revision) == 0;
         }

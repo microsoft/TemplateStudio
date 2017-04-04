@@ -61,7 +61,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             bool contentIsUnderVersion = _content.ExistUnderVersion();
 
-            if(contentIsUnderVersion)
+            if(contentIsUnderVersion || CurrentContentVersion.IsZero())
             {
                 await CheckMandatoryAdquisitionAsync(true);
 
@@ -83,7 +83,7 @@ namespace Microsoft.Templates.Core.Locations
 
             PurgeContentAsync().FireAndForget();
 
-
+            TelemetryService.Current.SetContentVersionToContext(CurrentContentVersion.ToString());
         }
 
         private async Task AdquireContentAsync()
