@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="Windows Template Studio - http://aka.ms/Wts"
-        Height="800px" Width="1300px" 
+        Width="800px" 
         SnapsToDevicePixels="True">
     <Window.Resources>
         <ControlTemplate x:Key="GroupBoxControlTemplate1" TargetType="{x:Type GroupBox}">
@@ -45,11 +45,11 @@
             <ColumnDefinition />
             <ColumnDefinition Width="300" />
         </Grid.ColumnDefinitions>
-        <Image Source="vsCapture.png" Grid.ColumnSpan="3" Grid.RowSpan="3" Stretch="None" />
-        <Grid Name="TopItem" Grid.Row="0" Grid.ColumnSpan="2">
+        <!--<Image Source="vsCapture.png" Grid.ColumnSpan="3" Grid.RowSpan="3" Stretch="None" />-->
+        <Grid Name="TopItem" Grid.Row="0" Grid.ColumnSpan="2" Background="#3399ff">
             <StackPanel Margin="10, 0" Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBlock FontFamily="Segoe UI Symbol" Text="" FontSize="16" Margin="0, 0, 10, 0" VerticalAlignment="Center" />
-                <TextBlock FontSize="30">Select your options and generate</TextBlock>
+                <TextBlock Foreground="White" FontFamily="Segoe UI Symbol" Text="" FontSize="16" Margin="0, 0, 10, 0" VerticalAlignment="Center" />
+                <TextBlock Foreground="White" FontSize="30">Select your options and generate</TextBlock>
             </StackPanel>
         </Grid>
         <Grid Name="Bottom" Grid.Row="2" Grid.ColumnSpan="2" Background="#f1f1f1" >
@@ -70,12 +70,13 @@
                 <GroupBox Padding="0, 10" Header="Foo (X) [ I NEED CUSTOM STYLE ]" Template="{DynamicResource GroupBoxControlTemplate1}">
                     <WrapPanel>
                         <local:SingletonWithBorder />
+                        <local:MultipleAddItemWithBorder />
+                        <local:SingletonWithBorder />
+                        <local:MultipleAddItemWithBorder />
                         <local:SingletonWithBorder />
                         <local:SingletonWithBorder />
-                        <local:SingletonWithBorder />
-                        <local:SingletonWithBorder />
-                        <local:SingletonWithBorder />
-
+                        <local:MultipleAddItemWithBorder />
+                        <local:MultipleAddItemWithBorder />
                     </WrapPanel>
                 </GroupBox>
             </ScrollViewer>

@@ -54,6 +54,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MultipleAddItemWithBorder.xaml.cs">
+      <DependentUpon>MultipleAddItemWithBorder.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MultipleAddItemWithBorder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="SingletonWithBorder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -5,14 +5,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     mc:Ignorable="d">
+    <!-- 
+        Not checked: c6c6c6 
+        Checked: 3399ff 
+    
+        Check shoudld an inverse as well.  Background being 3399ff and the check being white
+    -->
     <Border 
         Margin="0, 0, 10, 10" 
         Height="80" 
         MaxWidth="400" 
-        BorderBrush="#3399ff" 
+        BorderBrush="#c6c6c6"  
         BorderThickness="5,1,1,1" 
         Background="White">
-<!-- 
+        <!-- 
         TODO:
         on click, this highlight, currently it is in a "highlight state"
         we need a multi-item varient with the "add hover concept"
@@ -24,14 +30,16 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50" />
                 <ColumnDefinition />
+                <ColumnDefinition Width="25" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
             <TextBlock Grid.RowSpan="2" FontFamily="Segoe UI Symbol" Text="" FontSize="36" HorizontalAlignment="Center" />
-            <CheckBox Grid.Row="0" Grid.Column="1" Margin="5" HorizontalAlignment="Right" />
-            <TextBlock Grid.Row="0" Grid.Column="1" FontWeight="Bold" Margin="0,0,0,5" VerticalAlignment="Bottom">Lorem ipsum dolor sit amet</TextBlock> <!-- margin bottom here is so checkbox and title line up-->
+            <CheckBox Grid.Row="0" Grid.Column="2"  Margin="0, 5, 5, 0" HorizontalAlignment="Right" />
+            <TextBlock Grid.Row="0" Grid.Column="1" FontWeight="Bold" VerticalAlignment="Bottom">Lorem ipsum dolor sit amet</TextBlock>
+            <!-- margin bottom here is so checkbox and title line up-->
             <TextBlock Grid.Row="1" Grid.Column="1" TextWrapping="WrapWithOverflow">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur magna tellus, malesuada laoreet convallis sit amet, congue ut lectus.</TextBlock>
         </Grid>
     </Border>
