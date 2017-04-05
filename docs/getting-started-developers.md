@@ -22,9 +22,9 @@ First of all, be sure you are running [Visual Studio 2017](https://www.visualstu
 4. Configure the "Installer.2017" project to launch the [Visual Studio Experimental instance](https://msdn.microsoft.com/library/bb166560(v=vs.140).aspx) when run.
    1. Open the "Installer.2017" project properties.
    2. Go to "Debug" properties.
-   3. In "Start Action", select "Start external program" and browse for your Visual Studio executable (devenv.exe), tipically in the path "C:\Program Files (x86)\Microsoft Visual Studio\2017\*YOUR_VS_EDITION*\Common7\IDE\" 
+   3. In "Start Action", select "Start external program" and browse for your Visual Studio executable (devenv.exe), typically in the path "C:\Program Files (x86)\Microsoft Visual Studio\2017\*YOUR_VS_EDITION*\Common7\IDE\" 
    4. In the "Start options", for the "Command line arguments" set the following: "/RootSuffix Exp
-   5. Save the chages.
+   5. Save the changes.
     
     ![Installer.2017 Configuration](./resources/getting-started/Installer2017.Debug.Config.JPG)
     *The project configuration should looks like this*
@@ -45,16 +45,16 @@ To speed up the execution and development experience, we have created a [VsEmula
 
 Using this solution while authoring templates or improving the Wizard have the following advantages:
 1. Speed up the development since it does not deploy the VSIX to the VS Experimental instance every time you build.
-2. Simple and lightwight run / debug experience since it does not require to launch another instance of Visual Studio. 
+2. Simple and lightweight run / debug experience since it does not require to launch another instance of Visual Studio. 
 
 So we encourage to use this solution for the general template authoring or code development and, once you are done, make some final local tests using the Installer.sln or Big.sln solution.
 
 ## Inside the Code folder
-Follwing are described the contents for each folder:
+Following are described the contents for each folder:
 
 * [_tools](../code/_tools): tooling required for testing / validations.
 * [src](../code/src): solution source code
-    * [Core](../code/src/core): Core VS Project for the solution Core clases, i.e.: enable the generation of code wrapping the "Template Engine generator", deals with templates source location and synchronization, provide the diagnostics infrastructure, etc .  
+    * [Core](../code/src/core): Core VS Project for the solution Core classes, i.e.: enable the generation of code wrapping the "Template Engine generator", deals with templates source location and synchronization, provide the diagnostics infrastructure, etc .  
     * [Installer.2017](../code/src/Installer.2017): This is the Visual Studio Extension project. Enables the installation of the extension to enable the access to the Windows Template Studio Project Template and ensures that all required assets are deployed with it.
     * [ProjectTemplates](../code/src/ProjectTemplates): This folder contains the [Visual Studio Project Templates](https://msdn.microsoft.com/library/ms247121.aspx) deployed with the extension to enable the "File --> New Project..." experience (currently just one).
     * [Wizard](../code/src/Wizard): This project handles the generation as well as the UI dialogs required by the generation workflow.

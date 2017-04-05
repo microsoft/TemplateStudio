@@ -31,7 +31,8 @@ namespace Microsoft.Templates.Core
     {
         public string Environment { get; set; } = "Local";
         public string CdnUrl { get; set; } = "https://wtsrepository.blob.core.windows.net/dev/Latest";
-        public string RemoteTelemetryKey { get; set; } = "<SET_YOUR_OWN_KEY>"; //Or configure it in a WindowsTemplateStudio.config.json located in the working folder.
+        //Set your Application Insights telemetry instrumentation key here (configure it in a WindowsTemplateStudio.config.json located in the working folder).
+        public string RemoteTelemetryKey { get; set; } = "<SET_YOUR_OWN_KEY>"; 
         public string LogFileFolderPath { get; set; } = @"WindowsTemplateStudio\Logs";
         public string RepositoryFolderName { get; set; } = @"WindowsTemplateStudio";
         public TraceEventType DiagnosticsTraceLevel { get; set; } = TraceEventType.Verbose;

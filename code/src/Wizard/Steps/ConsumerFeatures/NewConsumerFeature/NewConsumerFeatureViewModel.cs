@@ -91,13 +91,6 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
                                                             .ToList();
 
             Templates.AddRange(consumerFeatTemplates);
-            //foreach (var template in consumerFeatTemplates)
-            //{
-            //    if (template.MultipleInstances == true || !IsAlreadyDefined(template))
-            //    {
-            //        Templates.Add(template);
-            //    }
-            //}
 
             if (Templates.Any())
             {

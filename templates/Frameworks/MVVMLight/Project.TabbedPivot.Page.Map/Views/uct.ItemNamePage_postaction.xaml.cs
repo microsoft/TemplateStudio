@@ -10,10 +10,10 @@ namespace ItemNamespace.Views
         }        
         
         //{[{
-        private void OnLoaded(object sender, RoutedEventArgs e)
+        private async void OnLoaded(object sender, RoutedEventArgs e)
         {
-            ViewModel.Initialize(mapControl);
-        }        
+            await ViewModel.InitializeAsync(mapControl);
+        }
         //}]}
     }
 }
