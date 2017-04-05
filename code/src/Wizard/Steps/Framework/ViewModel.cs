@@ -76,14 +76,14 @@ namespace Microsoft.Templates.Wizard.Steps.Framework
         {
             Frameworks.Clear();
 
-            foreach (var fx in GetSupportedFx(Context.State.ProjectType))
-            {
-                var pi = GenContext.ToolBox.Repo.GetFrameworkTypeInfo(fx);
-                if (pi != null)
-                {
-                    Frameworks.Add(new MetadataInfoViewModel(fx, pi));
-                }
-            }
+            var projectFrameworks = GetSupportedFx(Context.State.ProjectType);
+
+            var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks()
+                                                                .Where(m => projectFrameworks.Contains(m.Name))
+                                                                .Select(m => new MetadataInfoViewModel(m))
+                                                                .ToList();
+
+            Frameworks.AddRange(targetFrameworks);
 
             if (string.IsNullOrEmpty(Context.State.Framework))
             {

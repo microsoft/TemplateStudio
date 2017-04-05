@@ -27,9 +27,7 @@ namespace Microsoft.Templates.Core
 {
     public class TemplatesRepository
     {
-        private const string ProjectTypes = "Projects";
-        private const string Frameworks = "Frameworks";
-        private const string Metadata = ".metadata";
+        private const string Catalog = "_catalog";
 
         public TemplatesSynchronization Sync { get; private set; }
 
@@ -80,33 +78,30 @@ namespace Microsoft.Templates.Core
         }
 
 
-        public MetadataInfo GetProjectTypeInfo(string projectType)
+        public IEnumerable<MetadataInfo> GetProjectTypes()
         {
-            return GetMetadataInfo(Path.Combine(Sync.CurrentContentFolder, ProjectTypes, projectType, Metadata));
+            return GetMetadataInfo("projectTypes");
         }
 
-        public MetadataInfo GetFrameworkTypeInfo(string fxType)
+        public IEnumerable<MetadataInfo> GetFrameworks()
         {
-            return GetMetadataInfo(Path.Combine(Sync.CurrentContentFolder, Frameworks, fxType, Metadata));
+            return GetMetadataInfo("frameworks");
         }
 
-        private MetadataInfo GetMetadataInfo(string folderName)
+        private IEnumerable<MetadataInfo> GetMetadataInfo(string type)
         {
+            var folderName = Path.Combine(Sync.CurrentContentFolder, Catalog);
             if (!Directory.Exists(folderName))
             {
                 return null;
             }
 
-            string descriptionFile = Path.Combine(folderName, $"info.json");
-            var metadata = JsonConvert.DeserializeObject<MetadataInfo>(File.ReadAllText(descriptionFile));
+            var metadataFile = Path.Combine(folderName, $"{type}.json");
+            var metadata = JsonConvert.DeserializeObject<List<MetadataInfo>>(File.ReadAllText(metadataFile));
 
-            var metadataInfo = new MetadataInfo()
-            {
-                DisplayName = metadata.DisplayName,
-                Description = metadata.Description,
-                Icon = Path.Combine(folderName, $"icon.png")
-            };
-            return metadataInfo;
+            metadata.ForEach(m => m.Icon = Path.Combine(folderName, type, $"{m.Name}.png"));
+
+            return metadata.OrderBy(m => m.Order);
         }
     }
 }

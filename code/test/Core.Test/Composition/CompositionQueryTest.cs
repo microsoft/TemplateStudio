@@ -71,7 +71,7 @@ namespace Microsoft.Templates.Core.Test.Composition
         {
             var data = GetFactData(1).FirstOrDefault();
 
-            var target = CompositionQuery.Parse("Identity==item0&item0-tag2==item0-tagVal2");
+            var target = CompositionQuery.Parse("identity==item0&item0-tag2==item0-tagVal2");
             var result = target.Execute(data, null);
 
             Assert.True(result);
@@ -82,7 +82,7 @@ namespace Microsoft.Templates.Core.Test.Composition
         {
             var data = GetFactData(4).ToList();
 
-            var target = CompositionQuery.Parse("Identity==item0&item0-tag2==item0-tagVal2&$Name==item2-name");
+            var target = CompositionQuery.Parse("identity==item0&item0-tag2==item0-tagVal2&$name==item2-name");
             var result = target.Execute(data[0], data.Skip(1).ToList());
 
             Assert.True(result);
@@ -93,7 +93,7 @@ namespace Microsoft.Templates.Core.Test.Composition
         {
             var data = GetFactData(1).FirstOrDefault();
 
-            var target = CompositionQuery.Parse("Identity==item0&item0-tag2!=item0-tagVal1");
+            var target = CompositionQuery.Parse("identity==item0&item0-tag2!=item0-tagVal1");
             var result = target.Execute(data, null);
 
             Assert.True(result);
@@ -109,7 +109,7 @@ namespace Microsoft.Templates.Core.Test.Composition
             };
             data.AddTag($"item-tag", $"item-tagVal1|item-tagVal2");
 
-            var target = CompositionQuery.Parse("Identity==item&item-tag==item-tagVal2");
+            var target = CompositionQuery.Parse("identity==item&item-tag==item-tagVal2");
             var result = target.Execute(data, null);
 
             Assert.True(result);
