@@ -7,7 +7,7 @@ namespace ItemNamespace.Views
         public uct.ItemNamePage()
         {
             Loaded += OnLoaded;
-            UnLoaded += OnUnLoaded;
+            Unloaded += OnUnLoaded;
             InitializeComponent();
         }        
         
