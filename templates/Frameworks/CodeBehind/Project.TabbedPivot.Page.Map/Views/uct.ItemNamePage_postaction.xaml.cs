@@ -7,17 +7,20 @@ namespace ItemNamespace.Views
         public uct.ItemNamePage()
         {
             Loaded += OnLoaded;
+            UnLoaded += OnUnLoaded;
             InitializeComponent();
         }        
         
         //{[{
-        private void OnLoaded(object sender, RoutedEventArgs e)
+        private async void OnLoaded(object sender, RoutedEventArgs e)
         {
-            //TODO UWPTemplates: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
-            mapControl.MapServiceToken = "";
-            
-            AddMapIcon(Center, "Microsoft Corporation");
-        }        
+            await InitializeAsync();
+        }
+
+        private void OnUnLoaded(object sender, RoutedEventArgs e)
+        {
+            Cleanup();
+        }         
         //}]}
     }
 }

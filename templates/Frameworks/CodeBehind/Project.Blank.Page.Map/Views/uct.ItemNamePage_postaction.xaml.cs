@@ -8,12 +8,14 @@ namespace ItemNamespace.Views
         }  
         
         //{[{        
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //TODO UWPTemplates: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
-            mapControl.MapServiceToken = "";
-            
-            AddMapIcon(Center, "Microsoft Corporation");
+            await InitializeAsync();
+        }        
+               
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            Cleanup();
         }        
         //}]}
     }
