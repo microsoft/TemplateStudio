@@ -7,12 +7,18 @@ namespace ItemNamespace.Views
         {
             InitializeComponent();
             Loaded += OnLoaded;
+            Unloaded += OnUnloaded;
         }        
         
         //{[{
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
             await ViewModel.InitializeAsync(mapControl);
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel.Cleanup();
         }
         //}]}
     }
