@@ -140,7 +140,10 @@
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <Button Padding="5" Width="75" Margin="10, 0">Cancel</Button>
-                    <Button Padding="5" Width="75">Generate</Button>
+                    <Button Padding="5" Width="75" 
+                            Foreground="White"
+                            FontWeight="Bold"
+                            Background="{StaticResource highlightBlueBrush}">Create</Button>
                 </StackPanel>
             </Grid>
         </Grid>
@@ -180,6 +183,13 @@
             <ScrollViewer Margin="10, 10, 0, 0" Grid.Row="0">
                 <StackPanel >
                     <TextBlock Style="{StaticResource SummaryTitle}">Summary</TextBlock>
+                    <Expander Header="Licenses" Style="{StaticResource Expanders}">
+                        <StackPanel Style="{StaticResource ExpanderStackPanel}">
+                            <local:LicenseLink />
+                            <local:LicenseLink />
+                            <local:LicenseLink />
+                        </StackPanel>
+                    </Expander>
                     <Expander Header="Project Style" Style="{StaticResource Expanders}">
                         <StackPanel Style="{StaticResource ExpanderStackPanel}">
                             <TextBlock 
@@ -190,13 +200,6 @@
                                 Please select a XYZ [needs i w/ triangle]
                             </TextBlock>
                             <local:FeatureItem />
-                        </StackPanel>
-                    </Expander>
-                    <Expander Header="Licenses" Style="{StaticResource Expanders}">
-                        <StackPanel Style="{StaticResource ExpanderStackPanel}">
-                            <local:LicenseLink />
-                            <local:LicenseLink />
-                            <local:LicenseLink />
                         </StackPanel>
                     </Expander>
                     <Expander Header="Framework" Style="{StaticResource Expanders}">
