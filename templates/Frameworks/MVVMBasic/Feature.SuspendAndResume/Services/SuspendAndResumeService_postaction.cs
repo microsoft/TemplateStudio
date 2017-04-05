@@ -1,8 +1,16 @@
-private async Task RestoreStateAsync()
-{  
-    //^^
-    if (typeof(Page).IsAssignableFrom(saveState?.Target))
+using System.Reflection;
+using Windows.UI.Xaml.Controls;
+namespace ItemNamespace.Services
+{
+    internal class SuspendAndResumeService : ActivationHandler<LaunchActivatedEventArgs>
     {
-        NavigationService.Navigate(saveState.Target, saveState.SuspensionState);
+        private async Task RestoreStateAsync()
+        {  
+            //^^
+            if (typeof(Page).IsAssignableFrom(saveState?.Target))
+            {
+                NavigationService.Navigate(saveState.Target, saveState.SuspensionState);
+            }
+        }
     }
 }

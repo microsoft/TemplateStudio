@@ -1,6 +1,4 @@
-using uct.SplitViewProject.Services;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 
 namespace uct.SplitViewProject.Views
 {
@@ -8,7 +6,7 @@ namespace uct.SplitViewProject.Views
     {
         public ShellPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             ViewModel.Initialize(shellFrame, primaryListView, secondaryListView);
         }

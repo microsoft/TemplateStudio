@@ -1,18 +1,24 @@
-sealed partial class App : Application
+using System;
+using Windows.ApplicationModel;
+
+namespace RootNamespace
 {
-    public App()
+    sealed partial class App : Application
     {
-        this.InitializeComponent();
-        this.EnteredBackground += App_EnteredBackground;
+        public App()
+        {
+            InitializeComponent();
+            EnteredBackground += App_EnteredBackground;
+        }
+        //^^
+        //{[{
+            
+        private async void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e)
+        {
+            var deferral = e.GetDeferral();
+            await Helper.Singleton<SuspendAndResumeService>.Instance.SaveStateAsync();
+            deferral.Complete();
+        }
+        //}]}
     }
-    //^^
-    //{[{
-        
-    private async void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e)
-    {
-        var deferral = e.GetDeferral();
-        await Helper.Singleton<Services.SuspendAndResumeService>.Instance.SaveStateAsync();
-        deferral.Complete();
-    }
-    //}]}
 }

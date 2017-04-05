@@ -7,7 +7,7 @@ namespace uct.TabbedPivotProject.Views
     {
         public PivotPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

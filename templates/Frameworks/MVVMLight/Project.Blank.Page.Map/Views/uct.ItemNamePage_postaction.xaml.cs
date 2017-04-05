@@ -8,11 +8,6 @@ namespace ItemNamespace.Views
         //{[{        
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (ViewModel == null)
-            {
-                throw new ArgumentNullException("ViewModel");
-            }
-            
             ViewModel.Initialize(mapControl);
         }        
         //}]}

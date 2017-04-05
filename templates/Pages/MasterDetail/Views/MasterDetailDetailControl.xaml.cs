@@ -16,7 +16,7 @@ namespace ItemNamespace.Views
 
         public MasterDetailDetailControl()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

@@ -5,6 +5,6 @@ public sealed partial class PivotPage : Page
     public PivotPage()
     {
         DataContext = ViewModel;
-        this.InitializeComponent();
+        InitializeComponent();
     }
 }

@@ -1,8 +1,17 @@
-private async Task StartupAsync()
+using System;
+using RootNamespace.Helper;
+
+namespace ItemNamespace.Services
 {
-    //Singleton<Services.HubNotificationsService>.Instance.InitializeAsync();
-}
-private IEnumerable<ActivationHandler> GetActivationHandlers()
-{
-    yield return Singleton<Services.HubNotificationsService>.Instance;
+    internal class ActivationService
+    {
+        private async Task StartupAsync()
+        {
+            //Singleton<HubNotificationsService>.Instance.InitializeAsync();
+        }
+        private IEnumerable<ActivationHandler> GetActivationHandlers()
+        {
+            yield return Singleton<HubNotificationsService>.Instance;
+        }
+    }
 }

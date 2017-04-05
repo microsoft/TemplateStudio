@@ -6,7 +6,7 @@ namespace ItemNamespace.Views
     {
         public TabbedPivotPagePage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }
