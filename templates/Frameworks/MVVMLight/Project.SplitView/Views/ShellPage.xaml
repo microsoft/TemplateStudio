@@ -1,0 +1,142 @@
+<Page
+    x:Class="uct.ItemName.Views.ShellPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding ShellViewModel, Source={StaticResource Locator}}"
+    xmlns:model="using:uct.ItemName.Models"
+    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="NavigationMenuItemDataTemplate" x:DataType="model:ShellNavigationItem">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Rectangle
+                    Width="6"
+                    Fill="{ThemeResource SystemControlForegroundAccentBrush}"
+                    Visibility="{x:Bind SelectedVis, Mode=TwoWay}"
+                    VerticalAlignment="Stretch" HorizontalAlignment="Left"/>
+                <FontIcon 
+                    FontSize="16" 
+                    Glyph="{x:Bind SymbolAsChar}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"/>
+                <TextBlock 
+                    Grid.Column="1" 
+                    Text="{x:Bind Label}"
+                    VerticalAlignment="Center"
+                    TextTrimming="CharacterEllipsis"
+                    Margin="0,0,24,0"/>
+            </Grid>
+        </DataTemplate>
+        <Style x:Key="NavigationMenuListViewItemStyle" TargetType="ListViewItem">
+            <Setter Property="Padding" Value="0,0,0,0" />
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <ListViewItemPresenter ContentTransitions="{TemplateBinding ContentTransitions}"
+                            Control.IsTemplateFocusTarget="True"
+                            SelectionCheckMarkVisualEnabled="False"
+                            PointerOverBackground="{ThemeResource SystemControlHighlightListLowBrush}"
+                            PointerOverForeground="{ThemeResource ListViewItemForegroundPointerOver}"
+                            SelectedBackground="Transparent"
+                            SelectedForeground="{ThemeResource SystemControlForegroundAccentBrush}"
+                            SelectedPointerOverBackground="{ThemeResource SystemControlHighlightListLowBrush}"
+                            PressedBackground="{ThemeResource SystemControlHighlightListMediumBrush}"
+                            SelectedPressedBackground="{ThemeResource SystemControlHighlightListMediumBrush}"
+                            DisabledOpacity="{ThemeResource ListViewItemDisabledThemeOpacity}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            ContentMargin="{TemplateBinding Padding}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid x:Name="ShellContent" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!--  Top-level navigation menu + app content  -->
+        <SplitView
+            x:Name="NavigationMenu"
+            Grid.RowSpan="2"
+            DisplayMode="{x:Bind ViewModel.DisplayMode, Mode=OneWay}"
+            PaneBackground="{ThemeResource SystemControlBackgroundAltHighBrush}"
+            IsPaneOpen="{x:Bind ViewModel.IsPaneOpen, Mode=TwoWay}">
+            <SplitView.Pane>
+                <Grid Margin="0,48,0,0">
+                    <ListView
+                        x:Name="primaryListView"
+                        ItemContainerStyle="{StaticResource NavigationMenuListViewItemStyle}"
+                        VerticalAlignment="Top" 
+                        ItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
+                        ItemsSource="{x:Bind ViewModel.PrimaryItems, Mode=OneWay}"
+                        SelectedItem="{x:Bind ViewModel.PrimarySelectedItem, Mode=TwoWay}">
+                        <i:Interaction.Behaviors>
+                            <ic:EventTriggerBehavior EventName="SelectionChanged">
+                                <ic:InvokeCommandAction Command="{x:Bind ViewModel.PrimaryListViewSelectionChangedCommand}"/>
+                            </ic:EventTriggerBehavior>
+                        </i:Interaction.Behaviors>
+                    </ListView>
+
+                    <ListView
+                        x:Name="secondaryListView"
+                        ItemContainerStyle="{StaticResource NavigationMenuListViewItemStyle}"
+                        VerticalAlignment="Bottom"
+                        ItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
+                        ItemsSource="{x:Bind ViewModel.SecondaryItems}" Margin="0,0,0,6"
+                        SelectedItem="{x:Bind ViewModel.SecondarySelectedItem, Mode=TwoWay}">
+                        <i:Interaction.Behaviors>
+                            <ic:EventTriggerBehavior EventName="SelectionChanged">
+                                <ic:InvokeCommandAction Command="{x:Bind ViewModel.SecondaryListViewSelectionChangedCommand}"/>
+                            </ic:EventTriggerBehavior>
+                        </i:Interaction.Behaviors>
+                    </ListView>
+                </Grid>
+            </SplitView.Pane>
+
+            <Grid Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+                <Frame x:Name="shellFrame"/>
+            </Grid>
+        </SplitView>
+        <!--  Mavigation menu button  -->
+        <Button Width="48" Height="48" BorderThickness="0" Background="Transparent" Command="{x:Bind ViewModel.OpenPaneCommand}">
+            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" FontSize="16"/>
+        </Button>
+
+        <!--  Adaptive triggers  -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <i:Interaction.Behaviors>
+                    <ic:EventTriggerBehavior EventName="CurrentStateChanged">
+                        <ic:InvokeCommandAction Command="{x:Bind ViewModel.StateChangedCommand}"/>
+                    </ic:EventTriggerBehavior>
+                </i:Interaction.Behaviors>
+                <VisualState x:Name="PanoramicState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1024"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>

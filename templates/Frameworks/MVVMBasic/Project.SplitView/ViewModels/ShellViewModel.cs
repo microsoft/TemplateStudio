@@ -4,11 +4,10 @@ using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-
 using uct.ItemName.Models;
-using uct.ItemName.Helper;
 using uct.ItemName.Services;
 using uct.ItemName.Views;
+using uct.ItemName.Helper;
 
 namespace uct.ItemName.ViewModels
 {

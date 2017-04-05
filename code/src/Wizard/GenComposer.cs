@@ -65,7 +65,7 @@ namespace Microsoft.Templates.Wizard
         {
             foreach (var page in userSelection.Pages)
             {
-                var pageTemplate = GenContext.ToolBox.Repo.Find(t => t.Name == page.templateName);
+                var pageTemplate = GenContext.ToolBox.Repo.Find(t => t.Identity == page.template.Identity);
                 if (pageTemplate != null)
                 {
                     var genPage = CreateGenInfo(page.name, pageTemplate, genQueue);
@@ -96,7 +96,7 @@ namespace Microsoft.Templates.Wizard
         {
             foreach (var feature in userSelection.DevFeatures)
             {
-                var featureTemplate = GenContext.ToolBox.Repo.Find(t => t.Name == feature.templateName);
+                var featureTemplate = GenContext.ToolBox.Repo.Find(t => t.Identity == feature.template.Identity);
                 if (featureTemplate != null)
                 {
                     var genFeature = CreateGenInfo(feature.name, featureTemplate, genQueue);
@@ -109,7 +109,7 @@ namespace Microsoft.Templates.Wizard
         {
             foreach (var feature in userSelection.ConsumerFeatures)
             {
-                var featureTemplate = GenContext.ToolBox.Repo.Find(t => t.Name == feature.templateName);
+                var featureTemplate = GenContext.ToolBox.Repo.Find(t => t.Identity == feature.template.Identity);
                 if (featureTemplate != null)
                 {
                     CreateGenInfo(feature.name, featureTemplate, genQueue);
