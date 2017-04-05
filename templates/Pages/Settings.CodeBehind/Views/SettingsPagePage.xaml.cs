@@ -1,4 +1,3 @@
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using System.Windows.Input;
 using ItemNamespace.Services;

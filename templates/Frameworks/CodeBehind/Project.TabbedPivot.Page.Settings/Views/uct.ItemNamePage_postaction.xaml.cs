@@ -1,3 +1,4 @@
+using Windows.UI.Xaml;
 namespace ItemNamespace.Views
 {
     public sealed partial class uct.ItemNamePage : Page, INotifyPropertyChanged
