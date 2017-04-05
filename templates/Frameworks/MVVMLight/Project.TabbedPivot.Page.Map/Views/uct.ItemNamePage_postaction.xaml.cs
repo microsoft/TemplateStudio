@@ -10,7 +10,7 @@ namespace ItemNamespace.Views
         }        
         
         //{[{
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        private async void OnLoaded(object sender, RoutedEventArgs e)
         {
             await ViewModel.InitializeAsync(mapControl);
         }
