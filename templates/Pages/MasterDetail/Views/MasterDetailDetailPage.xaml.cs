@@ -1,9 +1,6 @@
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-
 using ItemNamespace.Models;
-using ItemNamespace.Services;
 
 namespace ItemNamespace.Views
 {
@@ -11,18 +8,13 @@ namespace ItemNamespace.Views
     {
         public MasterDetailDetailPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             ViewModel.Item = e.Parameter as SampleModel;
-        }
-
-        private void OnAdaptiveStatesCurrentStateChanged(object sender, VisualStateChangedEventArgs e)
-        {
-            ViewModel.UpdateWindowState(e);
         }
     }
 }

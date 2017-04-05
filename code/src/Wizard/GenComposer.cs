@@ -59,15 +59,11 @@ namespace Microsoft.Templates.Wizard
             genProject.Parameters.Add(GenParams.Username, Environment.UserName);
         }
 
-        private static void AddTemplates(List<(string name, string templateName)> userSelectedItems, List<GenInfo> genQueue)
+        private static void AddTemplates(IEnumerable<(string name, ITemplateInfo template)> userSelection, List<GenInfo> genQueue)
         {
-            foreach (var page in userSelectedItems)
+            foreach (var selectionItem in userSelection)
             {
-                var pageTemplate = GenContext.ToolBox.Repo.Find(t => t.Name == page.templateName);
-                if (pageTemplate != null)
-                {
-                    CreateGenInfo(page.name, pageTemplate, genQueue);
-                }
+                CreateGenInfo(selectionItem.name, selectionItem.template, genQueue);
             }
         }
 

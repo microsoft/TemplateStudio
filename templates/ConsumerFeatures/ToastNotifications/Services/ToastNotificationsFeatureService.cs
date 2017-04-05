@@ -18,7 +18,7 @@ namespace RootNamespace.Services
         protected override async Task HandleInternalAsync(ToastNotificationActivatedEventArgs args)
         {
             //TODO UWPTemplates: Handle activation from toast notification,
-            //for more info handling activation see
+            //for more info on handling activation see
             //https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/
 
             await Task.CompletedTask;
@@ -30,7 +30,7 @@ namespace RootNamespace.Services
             var content = new ToastContent()
             {
                 //TODO UWPTemplates: Check this documentation to know more about the Launch property
-                //https://developer.microsoft.com/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastcontent                
+                //https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastcontent                
                 Launch = "ToastContentActivationParams",
 
                 Visual = new ToastVisual()
@@ -57,7 +57,7 @@ namespace RootNamespace.Services
                     Buttons =
                     {
                         //TODO UWPTemplates: Check this documentation to know more about Toast Buttons
-                        //https://developer.microsoft.com/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastbutton
+                        //https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastbutton
                         new ToastButton("Ok", "ToastButtonActivationArguments")
                         {
                             ActivationType = ToastActivationType.Foreground
@@ -71,7 +71,7 @@ namespace RootNamespace.Services
             // Create the toast
             var toast = new ToastNotification(content.GetXml())
             {
-                //TODO UWPTemplates: Gets or sets the unique identifier of this notification within the notification Group. Max Lenght 16 char.
+                //TODO UWPTemplates: Gets or sets the unique identifier of this notification within the notification Group. Max length 16 characters.
                 //https://docs.microsoft.com/uwp/api/windows.ui.notifications.toastnotification
                 Tag = "ToastTag"
             };

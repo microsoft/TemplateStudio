@@ -103,5 +103,10 @@ namespace Microsoft.Templates.Core
 
             return metadata.OrderBy(m => m.Order);
         }
+
+        public ITemplateInfo GetLayoutTemplate(LayoutItem item, string framework)
+        {
+            return Find(t => t.GroupIdentity == item.templateGroupIdentity && t.GetFrameworkList().Any(f => f.Equals(framework, StringComparison.OrdinalIgnoreCase)));
+        }
     }
 }

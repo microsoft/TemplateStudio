@@ -22,6 +22,12 @@
     },
     {
       "path": ".\\ViewModels\\ShellViewModel.cs"
+    },
+    {
+      "path": ".\\Views\\ShellPage.xaml"
+    },
+    {
+      "path": ".\\Views\\ShellPage.xaml.cs"
     }
   ],
   "symbols": {

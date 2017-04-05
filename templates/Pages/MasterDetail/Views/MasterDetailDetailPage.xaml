@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:views="using:ItemNamespace.Views"
     mc:Ignorable="d">    
 
@@ -18,7 +20,12 @@
 
         <!--  Adaptive triggers  -->
         <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="AdaptiveStates" CurrentStateChanged="OnAdaptiveStatesCurrentStateChanged">
+            <VisualStateGroup x:Name="WindowStates">
+                <i:Interaction.Behaviors>
+                    <ic:EventTriggerBehavior EventName="CurrentStateChanged">
+                        <ic:InvokeCommandAction Command="{x:Bind ViewModel.StateChangedCommand}"/>
+                    </ic:EventTriggerBehavior>
+                </i:Interaction.Behaviors>
                 <VisualState x:Name="WideState">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="640"/>

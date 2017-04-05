@@ -1,3 +1,4 @@
+using Windows.UI.Xaml;
 namespace ItemNamespace.Views
 {
     public sealed partial class uct.ItemNamePage : Page
@@ -6,18 +7,19 @@ namespace ItemNamespace.Views
         {
             InitializeComponent();
             Loaded += OnLoaded;
+            Unloaded += OnUnloaded;
         }        
         
         //{[{
-        private void OnLoaded(object sender, RoutedEventArgs e)
+        private async void OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (ViewModel == null)
-            {
-                throw new ArgumentNullException("ViewModel");
-            }
-            
-            ViewModel.Initialize(mapControl);
-        }        
+            await ViewModel.InitializeAsync(mapControl);
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel.Cleanup();
+        }
         //}]}
     }
 }

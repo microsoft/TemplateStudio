@@ -61,7 +61,7 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures
             else
             {
                 var selectedFeatures = Context.State.DevFeatures
-                                                        .Select(p => new PageViewModel(p.name, p.templateName));
+                                                        .Select(p => new PageViewModel(p.name, p.template));
 
                 Templates.AddRange(selectedFeatures);
             }
@@ -72,7 +72,7 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures
         public override void SaveState()
         {
             Context.State.DevFeatures.Clear();
-            Context.State.DevFeatures.AddRange(Templates.Select(t => (t.Name, t.TemplateName)));
+            Context.State.DevFeatures.AddRange(Templates.Select(t => (t.Name, t.Template)));
         }
 
         protected override Page GetPageInternal()
@@ -87,10 +87,10 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures
 
             foreach (var item in layout)
             {
-                var template = GenContext.ToolBox.Repo.Find(t => t.Identity == item.templateIdentity);
-                if (template != null && template.GetTemplateType() == TemplateType.DevFeature && template.GetFrameworkList().Any(f => f.Equals(Context.State.Framework, StringComparison.OrdinalIgnoreCase)))
+                var template = GenContext.ToolBox.Repo.GetLayoutTemplate(item, Context.State.Framework);
+                if (template != null && template.GetTemplateType() == TemplateType.DevFeature)
                 {
-                    Templates.Add(new PageViewModel(item.name, template.Name, item.@readonly));
+                    Templates.Add(new PageViewModel(item.name, template, item.@readonly));
                 }
             }
         }
@@ -106,7 +106,7 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures
 
             if (dialogResult.HasValue && dialogResult.Value)
             {
-                Templates.Add(new PageViewModel(dialog.Result.name, dialog.Result.templateName));
+                Templates.Add(new PageViewModel(dialog.Result.name, dialog.Result.template));
             }
         }
 

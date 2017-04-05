@@ -1,4 +1,3 @@
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace ItemNamespace.Views
@@ -7,12 +6,7 @@ namespace ItemNamespace.Views
     {
         public MasterDetailPage()
         {
-            this.InitializeComponent();
-        }
-
-        private void OnAdaptiveStatesCurrentStateChanged(object sender, VisualStateChangedEventArgs e)
-        {
-            ViewModel.UpdateWindowState(e);
+            InitializeComponent();
         }
     }
 }

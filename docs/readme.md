@@ -11,7 +11,7 @@ This section have the main concepts and definitions used in Windows Template Stu
 ## Main concepts
 Windows Template Studio is divided in the following main elements:
 * **Windows Template Studio Extension** --> This is a Visual Studio Extension project, which allows to install a new Visual Studio Project Template allowing the End-Users to have an improved experience when they want to create a new UWP App from the "File -> New Project...".  
-* **Generation Wizard** --> Once the End-User select the "Windows Template Studio" project type in the Visual Studio "File -> New Project..." dialog, the Generation Wizard will guide him through some steps to create users's preferred project. The Generation Wizard allows the user to select among the available Project Types, Frameworks, Pages, Developer Features and Customer Features 
+* **Generation Wizard** --> Once the End-User select the "Windows Template Studio" project type in the Visual Studio "File -> New Project..." dialog, the Generation Wizard will guide him through some steps to create user's preferred project. The Generation Wizard allows the user to select among the available Project Types, Frameworks, Pages, Developer Features and Customer Features 
 * **Templates** --> This is the repository of code templates used from the Generation Wizard. The templates are pieces of code used to generate the final project templates.
 
 ### What is a Template?
@@ -27,7 +27,7 @@ There are five different types of templates:
 ### What is the Generation Wizard
 The Generation Wizard guide the user through the available templates allowing the user to compose an App project of his preference.
 
-The End-User can select among the different Frameworks and Project Types to define the basic layaout and base framework for his App. Then can add different Pages, Developer Features and Customer Features to complete his app. Once the user finish with the templates selections, the generation process is executed to create final App project code. 
+The End-User can select among the different Frameworks and Project Types to define the basic layout and base framework for his App. Then can add different Pages, Developer Features and Customer Features to complete his app. Once the user finish with the templates selections, the generation process is executed to create final App project code. 
 
 The generation is made in a composite way, where the Pages, Dev Features and Customer Features are Framework and Project Type agnostics and is only at the generation time where the particularities are included.  
 
@@ -44,5 +44,5 @@ UWP App developers can take advantage of Windows Template Studio by installing o
 ## Getting Started for Developers
 To start working with the latest version of this code, check [Getting Started for Developers](getting-started-developers.md)
 
-## Getting Started with the Exension
+## Getting Started with the Extension
 To start using the Windows Template Studio extension, [Getting Started with the Extension](getting-started-extension.md)

@@ -92,14 +92,6 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures.NewDevFeature
 
             Templates.AddRange(devFeatTemplates);
 
-            //foreach (var template in devFeatTemplates)
-            //{
-            //    if (template.MultipleInstances == true || !IsAlreadyDefined(template))
-            //    {
-            //        Templates.Add(template);
-            //    }
-            //}
-
             if (Templates.Any())
             {
                 TemplateSelected = Templates.FirstOrDefault();
@@ -115,13 +107,13 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures.NewDevFeature
 
         private bool IsAlreadyDefined(ITemplateInfo template)
         {
-            return _selectedTemplates.Any(t => t.TemplateName == template.Name);
+            return _selectedTemplates.Any(t => t.Template.Identity == template.Identity);
         }
 
         private void SaveAndClose()
         {            
             _dialog.DialogResult = true;
-            _dialog.Result = (ItemName, TemplateSelected.Name);
+            _dialog.Result = (ItemName, TemplateSelected.Info);
 
             _dialog.Close();
         }

@@ -18,7 +18,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
+      "path": ".\\Models\\PivotTabbedItem.cs"
+    },
+    {
       "path": ".\\ViewModels\\PivotViewModel.cs"
+    },
+    {
+      "path": ".\\Views\\PivotPage.xaml"
+    },
+    {
+      "path": ".\\Views\\PivotPage.xaml.cs"
     }
   ],
   "symbols": {

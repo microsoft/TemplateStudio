@@ -42,8 +42,8 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
             Dictionary<string, string> props = new Dictionary<string, string>
             {
                 { TelemetryProperties.TemplateName, "TestTelemetrySampleTemplate" },
-                { TelemetryProperties.AppFx, "MVVMLight" },
-                { TelemetryProperties.AppType, "Blank" }
+                { TelemetryProperties.Framework, "MVVMLight" },
+                { TelemetryProperties.ProjectType, "Blank" }
             };
             await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.ProjectGen, props);
         }
@@ -54,14 +54,14 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
             Dictionary<string, string> props = new Dictionary<string, string>
             {
                 { TelemetryProperties.TemplateName, "TestTelemetrySampleTemplate" },
-                { TelemetryProperties.AppFx, "MVVMLight" },
-                { TelemetryProperties.AppType, "Blank" }
+                { TelemetryProperties.Framework, "MVVMLight" },
+                { TelemetryProperties.ProjectType, "Blank" }
             };
             await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.ProjectGen, props);
 
             props[TelemetryProperties.TemplateName] = "OtherData";
-            props[TelemetryProperties.AppFx] = "Caliburn";
-            props[TelemetryProperties.AppType] = "SplitView";
+            props[TelemetryProperties.Framework] = "Caliburn";
+            props[TelemetryProperties.ProjectType] = "SplitView";
             await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.ProjectGen, props);
 
         }

@@ -10,7 +10,7 @@
     "language": "C#",
     "type": "project",
     "uct.type": "project",
-    "uct.framework": "MVVMBasic|MVVMLight",
+    "uct.framework": "MVVMBasic|MVVMLight|CodeBehind",
     "uct.ProjectType":"Blank",
     "uct.version": "1.0.0",
     "uct.order": "1"
