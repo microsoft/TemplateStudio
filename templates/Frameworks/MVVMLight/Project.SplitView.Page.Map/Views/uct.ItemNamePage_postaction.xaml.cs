@@ -6,10 +6,10 @@ namespace ItemNamespace.Views
         //^^
         
         //{[{        
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ViewModel.Initialize(mapControl);
-        }        
+            await ViewModel.InitializeAsync(mapControl);
+        }       
         //}]}
     }
 }
