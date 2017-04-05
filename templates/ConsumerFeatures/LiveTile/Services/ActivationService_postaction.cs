@@ -1,12 +1,21 @@
-private async Task InitializeAsync()
+using System;
+using RootNamespace.Helper;
+
+namespace ItemNamespace.Services
 {
-    await Singleton<Services.LiveTileService>.Instance.EnableQueueAsync();
-}
-private async Task StartupAsync()
-{
-    Singleton<Services.LiveTileService>.Instance.SampleUpdate();
-}
-private IEnumerable<ActivationHandler> GetActivationHandlers()
-{
-    yield return Singleton<Services.LiveTileService>.Instance;
+    internal class ActivationService
+    {
+        private async Task InitializeAsync()
+        {
+            await Singleton<LiveTileService>.Instance.EnableQueueAsync();
+        }
+        private async Task StartupAsync()
+        {
+            Singleton<LiveTileService>.Instance.SampleUpdate();
+        }
+        private IEnumerable<ActivationHandler> GetActivationHandlers()
+        {
+            yield return Singleton<LiveTileService>.Instance;
+        }
+    }
 }

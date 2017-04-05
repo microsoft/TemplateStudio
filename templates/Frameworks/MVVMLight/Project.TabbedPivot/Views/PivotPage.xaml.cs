@@ -9,7 +9,7 @@ namespace uct.ItemName.Views
 
         public PivotPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

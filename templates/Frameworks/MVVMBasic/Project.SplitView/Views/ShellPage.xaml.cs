@@ -1,7 +1,4 @@
-using uct.ItemName.Services;
-using uct.ItemName.ViewModels;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 
 namespace uct.ItemName.Views
 {
@@ -11,7 +8,7 @@ namespace uct.ItemName.Views
         
         public ShellPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             ViewModel.Initialize(shellFrame, primaryListView, secondaryListView);
         }

@@ -6,7 +6,7 @@ namespace ItemNamespace.Views
     {
         public WebViewPagePage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }
