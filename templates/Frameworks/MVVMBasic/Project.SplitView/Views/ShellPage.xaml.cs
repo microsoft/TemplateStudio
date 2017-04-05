@@ -1,4 +1,5 @@
 using Windows.UI.Xaml.Controls;
+using uct.ItemName.ViewModels;
 
 namespace uct.ItemName.Views
 {

@@ -10,7 +10,7 @@ namespace uct.ItemName.Views
         public PivotPage()
         {
             DataContext = ViewModel;
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

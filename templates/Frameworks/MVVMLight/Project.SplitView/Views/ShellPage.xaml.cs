@@ -11,7 +11,7 @@ namespace uct.ItemName.Views
         
         public ShellPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             ViewModel.Initialize(shellFrame, primaryListView, secondaryListView);
         }

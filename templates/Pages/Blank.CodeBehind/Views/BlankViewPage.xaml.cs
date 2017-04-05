@@ -6,7 +6,7 @@ namespace ItemNamespace.Views
     {
         public BlankViewPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

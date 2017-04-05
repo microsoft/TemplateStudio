@@ -22,7 +22,7 @@ namespace ItemNamespace.Views
         public MasterDetailDetailPage()
         {
             Initialize();
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

@@ -2,7 +2,6 @@ using System;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Storage.Streams;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
 

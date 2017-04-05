@@ -122,7 +122,7 @@ namespace uct.ItemName.Views
 
         public ShellPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             Initialize();
         }
 
