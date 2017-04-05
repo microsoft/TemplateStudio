@@ -32,13 +32,14 @@
             </Grid.RowDefinitions>
 
             <!--  this will be an XAML path -->
-            <TextBlock 
-                Grid.RowSpan="2" 
-                FontFamily="Segoe UI Symbol" 
-                Text="" 
-                FontSize="36" 
-                HorizontalAlignment="Center" />
-            
+            <Viewbox Stretch="Uniform" Grid.RowSpan="2"  Margin="5, 0" >
+                <Path Name="path10" Fill="#000000">
+                    <Path.Data>
+                        <PathGeometry Figures="M13 4H0V42H48V4ZM12 6V16H2V6ZM2 40V22H12V40Zm44 0H14V6H46ZM9 13H5V9H9Zm19-1H18V10H28ZM9 25v4H5V25ZM5 32H9v4H5ZM42 16H18V36H42ZM40 34H20V18H40Z" FillRule="NonZero"/>
+                    </Path.Data>
+                </Path>
+            </Viewbox>
+
             <TextBlock 
                 Grid.Row="0" 
                 Grid.Column="1" 
