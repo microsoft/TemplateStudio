@@ -10,6 +10,11 @@ namespace ItemNamespace.Views
         {
             await ViewModel.InitializeAsync(mapControl);
         }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            ViewModel.Cleanup();
+        }
         //}]}
     }
 }
