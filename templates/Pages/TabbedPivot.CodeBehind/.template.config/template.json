@@ -1,0 +1,47 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Tabbed",
+  "groupIdentity": "Microsoft.UWPTemplates.TabbedPivotPage",
+  "identity": "Microsoft.UWPTemplates.TabbedPivotPage.CodeBehind.CSharp",
+  "shortName": "Tabbed Page",
+  "description": "The tabbed page is used for navigating frequently accessed, distinct content categories. Pivots allow for navigation between two or more content panes and relies on text headers to articulate the different sections of content.\\nTo find out more if this is a good solution for you, head to https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tabs-pivot.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "uct.type": "page",
+    "uct.framework": "CodeBehind",
+    "uct.version": "1.0.0",
+    "uct.order": "1"
+  },
+  "sourceName": "TabbedPivotPage",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Views\\TabbedPivotPagePage.xaml"
+    },
+    {
+      "path": ".\\Views\\TabbedPivotPagePage.xaml.cs"
+    }
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Set"
+    }
+  }
+}
