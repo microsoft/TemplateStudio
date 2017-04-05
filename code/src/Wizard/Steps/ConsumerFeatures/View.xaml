@@ -57,7 +57,7 @@
                         <Image Source="/Microsoft.Templates.Wizard;component/Assets/DefaultProjectIcon.png" Style="{StaticResource SelectedPageIcon}" />
                         <StackPanel Grid.Column="1" Style="{StaticResource SelectedPageTextContainer}" >
                             <TextBlock Text="{Binding Name}" Style="{StaticResource SelectedPageTitle}"  />
-                            <TextBlock Text="{Binding TemplateName}" Grid.Column="1" Style="{StaticResource SelectedPageSubtitle}"  />
+                            <TextBlock Text="{Binding Template.Name}" Grid.Column="1" Style="{StaticResource SelectedPageSubtitle}"  />
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
