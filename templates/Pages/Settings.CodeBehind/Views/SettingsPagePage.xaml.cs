@@ -27,14 +27,13 @@ namespace ItemNamespace.Views
      
         public SettingsPagePage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void Initialize()
         {
             IsLightThemeEnabled = ThemeSelectorService.IsLightThemeEnabled;
             SwitchThemeCommand = new RelayCommand(async () => { await ThemeSelectorService.SwitchThemeAsync(); });
-            AppDescription = GetAppDescription();
         }
 
         private string GetAppDescription()

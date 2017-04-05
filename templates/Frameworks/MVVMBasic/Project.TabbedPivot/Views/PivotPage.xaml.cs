@@ -1,12 +1,15 @@
-using uct.TabbedPivotProject.ViewModels;
+using uct.ItemName.ViewModels;
 using Windows.UI.Xaml.Controls;
 
-namespace uct.TabbedPivotProject.Views
+namespace uct.ItemName.Views
 {
     public sealed partial class PivotPage : Page
     {
+        public PivotViewModel ViewModel { get; } = new PivotViewModel();
+
         public PivotPage()
         {
+            DataContext = ViewModel;
             this.InitializeComponent();
         }
     }
