@@ -8,6 +8,7 @@
         <SolidColorBrush x:Key="darkText" Color="#555555"/>
         <SolidColorBrush x:Key="titleTextBrush" Color="#222222" />
         <SolidColorBrush x:Key="errorBrush" Color="Red" />
+        <SolidColorBrush x:Key="mediumGrayBrush" Color="#aaaaaa" />
         <SolidColorBrush x:Key="lightGrayBrush" Color="#f1f1f1" />
 
         <SolidColorBrush x:Key="normalBorderBrush" Color="#c6c6c6" />
@@ -56,6 +57,7 @@
         <Style x:Key="SummaryTextSymbol" TargetType="Run">
             <Setter Property="FontSize" Value="{StaticResource SmallFontSize}" />
             <Setter Property="FontFamily" Value="Segoe UI Symbol" />
+            <Setter Property="Foreground" Value="{StaticResource mediumGrayBrush}" />
         </Style>
 
         <Style x:Key="SummaryTextSymbolError" TargetType="Run" BasedOn="{StaticResource SummaryTextSymbol}">

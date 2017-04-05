@@ -30,7 +30,8 @@
                 <RowDefinition />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <!--  this will be an icon -->
+
+            <!--  this will be an XAML path -->
             <TextBlock 
                 Grid.RowSpan="2" 
                 FontFamily="Segoe UI Symbol" 

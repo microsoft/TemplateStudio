@@ -187,9 +187,16 @@
                                 Foreground="Red" 
                                 FontWeight="SemiBold"> 
                                 <Run FontFamily="Segoe UI Symbol" FontSize="8" BaselineAlignment="Center" Foreground="Red">i</Run>
-                                Please select a framework [needs i w/ triangle]
+                                Please select a XYZ [needs i w/ triangle]
                             </TextBlock>
                             <local:FeatureItem />
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="Licenses" Style="{StaticResource Expanders}">
+                        <StackPanel Style="{StaticResource ExpanderStackPanel}">
+                            <local:LicenseLink />
+                            <local:LicenseLink />
+                            <local:LicenseLink />
                         </StackPanel>
                     </Expander>
                     <Expander Header="Framework" Style="{StaticResource Expanders}">
@@ -206,7 +213,7 @@
                             <local:FeatureItem />
                         </StackPanel>
                     </Expander>
-                    <Expander Header="Features" Style="{StaticResource Expanders}">
+                    <Expander Header="Selected Features" Style="{StaticResource Expanders}">
                         <StackPanel Style="{StaticResource ExpanderStackPanel}">
                             <local:FeatureItem />
                             <local:FeatureItem />
@@ -215,14 +222,6 @@
                             <local:FeatureItem />
                         </StackPanel>
                     </Expander>
-                    <Expander Header="Licenses" Style="{StaticResource Expanders}">
-                        <StackPanel Style="{StaticResource ExpanderStackPanel}">
-                            <local:LicenseLink />
-                            <local:LicenseLink />
-                            <local:LicenseLink />
-                        </StackPanel>
-                    </Expander>
-
                 </StackPanel>
             </ScrollViewer>
         </Grid>
