@@ -5,12 +5,15 @@ namespace ItemNamespace.Views
     {
         public uct.ItemNamePage()
         {
-        }
+        }  
         
         //{[{        
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            AppDescription = GetAppDescription();
+            //TODO UWPTemplates: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
+            mapControl.MapServiceToken = "";
+            
+            AddMapIcon(Center, "Microsoft Corporation");
         }        
         //}]}
     }

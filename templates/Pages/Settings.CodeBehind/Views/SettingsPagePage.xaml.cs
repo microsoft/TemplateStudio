@@ -27,6 +27,7 @@ namespace ItemNamespace.Views
      
         public SettingsPagePage()
         {
+            Initialize();
             InitializeComponent();
         }
 

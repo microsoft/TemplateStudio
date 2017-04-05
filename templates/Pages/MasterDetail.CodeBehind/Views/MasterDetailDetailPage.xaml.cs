@@ -21,13 +21,12 @@ namespace ItemNamespace.Views
 
         public MasterDetailDetailPage()
         {
+            Initialize();
             this.InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            Initialize();
+        {   
             Item = e.Parameter as SampleModel;
         }
 

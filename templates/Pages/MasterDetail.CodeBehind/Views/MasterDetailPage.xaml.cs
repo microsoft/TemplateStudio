@@ -24,6 +24,7 @@ namespace ItemNamespace.Views
 
         public MasterDetailPage()
         {
+            Initialize();
             InitializeComponent();
         }
 

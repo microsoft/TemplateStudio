@@ -10,7 +10,6 @@ namespace ItemNamespace.Views
         //{[{
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Initialize();
             await LoadDataAsync();
         }        
         //}]}

@@ -6,12 +6,15 @@ namespace ItemNamespace.Views
         {
             Loaded += OnLoaded;
             InitializeComponent();
-        }
+        }        
         
         //{[{
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            AppDescription = GetAppDescription();
+            //TODO UWPTemplates: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
+            mapControl.MapServiceToken = "";
+            
+            AddMapIcon(Center, "Microsoft Corporation");
         }        
         //}]}
     }

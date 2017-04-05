@@ -5,7 +5,6 @@ namespace ItemNamespace.Views
     {
         public uct.ItemNamePage()
         {
-            Initialize();
             Loaded += OnLoaded;
             InitializeComponent();
         }
