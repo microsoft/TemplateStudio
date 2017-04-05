@@ -3,18 +3,20 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMBasic.Project.Blank",
-  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.Blank",
-  "identity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.Blank.CSharp",
+  "name": "MVVMBasic.Project.Blank.Page.MapPage",
+  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.Blank.Page.MapPage",
+  "identity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Page.Project.Blank.MapPage.CSharp",
   "tags": {
     "language": "C#",
     "type": "item",
     "uct.type": "composition",
     "uct.version": "1.0.0",
-    "uct.compositionFilter": "uct.framework==MVVMBasic&identity==Microsoft.UWPTemplates.BlankProject.CSharp"
+    "uct.compositionFilter": "uct.framework==MVVMBasic&identity==Microsoft.UWPTemplates.MapPage.CSharp&$identity==Microsoft.UWPTemplates.BlankProject.CSharp"
   },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
   "symbols": {
     "rootNamespace": {
       "type": "parameter",

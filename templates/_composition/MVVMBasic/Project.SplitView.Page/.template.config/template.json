@@ -3,18 +3,20 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMBasic.Project.Blank",
-  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.Blank",
-  "identity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.Blank.CSharp",
+  "name": "MVVMBasic.Project.SplitView.Page",
+  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.SplitView.Page",
+  "identity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.SplitView.Page.CSharp",
   "tags": {
     "language": "C#",
     "type": "item",
     "uct.type": "composition",
     "uct.version": "1.0.0",
-    "uct.compositionFilter": "uct.framework==MVVMBasic&identity==Microsoft.UWPTemplates.BlankProject.CSharp"
+    "uct.compositionFilter": "uct.framework==MVVMBasic&uct.type==page&$identity==Microsoft.UWPTemplates.uct.SplitViewProject.CSharp"
   },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
   "symbols": {
     "rootNamespace": {
       "type": "parameter",

@@ -3,17 +3,15 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMBasic.Page",
-  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Page",
-  "identity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Page.CSharp",
+  "name": "MVVMBasic.Project.SplitView.Page.SettingsPage",
+  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.SplitView.Page.SettingsPage",
+  "identity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Page.Project.SplitView.SettingsPage.CSharp",
   "tags": {
     "language": "C#",
     "type": "item",
     "uct.type": "composition",
     "uct.version": "1.0.0",
-    "uct.compositionFilter": "uct.framework==MVVMBasic&uct.type==page",
-    "uct.export.baseclass": "Observable",
-    "uct.export.setter": "Set"
+    "uct.compositionFilter": "uct.framework==MVVMBasic&identity==Microsoft.UWPTemplates.SettingsPage.CSharp&$identity==Microsoft.UWPTemplates.uct.SplitViewProject.CSharp"
   },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,

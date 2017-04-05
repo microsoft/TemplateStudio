@@ -2,16 +2,19 @@
     {
         "name": "Blank",
         "displayName": "Blank",
-        "description": "This is the most basic style.  A blank canvas to build your application out.  The blank project type does not provide scaffolding and leaves everything up to you to how an end user would navigate around."
+        "description": "This is the most basic style.  A blank canvas to build your application out.  The blank project type does not provide scaffolding and leaves everything up to you to how an end user would navigate around.",
+        "order": "1"
     },
     {
         "name": "SplitView",
         "displayName": "Navigation Pane",
-        "description": "A navigation pane (or just \"nav\" pane) is a pattern that allows for many top-level navigation items while conserving screen real estate. The nav pane is widely used for mobile apps, but also works well on larger screens. When used as an overlay, the pane remains collapsed and out-of-the way until the user presses the button, which is handy for smaller screens. When used in its docked mode, the pane remains open, which allows greater utility if there's enough screen real estate."
+        "description": "A navigation pane (or just \"nav\" pane) is a pattern that allows for many top-level navigation items while conserving screen real estate. The nav pane is widely used for mobile apps, but also works well on larger screens. When used as an overlay, the pane remains collapsed and out-of-the way until the user presses the button, which is handy for smaller screens. When used in its docked mode, the pane remains open, which allows greater utility if there's enough screen real estate.",
+        "order": "2"
     },
     {
         "name": "TabbedPivot",
         "displayName": "Pivot and Tabs",
-        "description": "The Pivot control and related tabs pattern are used for navigating frequently accessed, distinct content categories. Pivots allow for navigation between two or more content panes and relies on text headers to articulate the different sections of content."
+        "description": "The Pivot control and related tabs pattern are used for navigating frequently accessed, distinct content categories. Pivots allow for navigation between two or more content panes and relies on text headers to articulate the different sections of content.",
+        "order": "3"
     }
 ]

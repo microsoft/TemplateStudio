@@ -4,8 +4,8 @@
     "Universal"
   ],
   "name": "MVVMBasic.Project",
-  "groupIdentity": "Microsoft.UWPTemplates.Composition.MVVMBasic.Project",
-  "identity": "Microsoft.UWPTemplates.Composition.MVVMBasic.Project.CSharp",
+  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project",
+  "identity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.CSharp",
   "tags": {
     "language": "C#",
     "type": "item",
