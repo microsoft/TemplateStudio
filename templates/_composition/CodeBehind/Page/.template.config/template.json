@@ -12,7 +12,7 @@
     "uct.type": "composition",
     "uct.framework": "CodeBehind",
     "uct.version": "1.0.0",
-    "uct.compositionFilter": "uct.framework==CodeBehind&uct.type==page",
+    "uct.compositionFilter": "$framework == CodeBehind & uct.type==page",
     "uct.export.baseclass": "INotifyPropertyChanged",
     "uct.export.setter": "Set"
   },

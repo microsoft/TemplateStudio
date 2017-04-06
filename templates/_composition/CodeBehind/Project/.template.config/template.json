@@ -12,7 +12,7 @@
     "uct.type": "composition",
     "uct.framework": "CodeBehind",
     "uct.version": "1.0.0",
-    "uct.compositionFilter": "uct.framework==CodeBehind&uct.type==project"
+    "uct.compositionFilter": "$framework == CodeBehind & uct.type == project"
   },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,

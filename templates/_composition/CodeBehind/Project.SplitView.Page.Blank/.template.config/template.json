@@ -12,7 +12,7 @@
     "uct.type": "composition",
     "uct.framework": "CodeBehind",
     "uct.version": "1.0.0",
-    "uct.compositionFilter": "identity==Microsoft.UWPTemplates.BlankPage.CodeBehind.CSharp&$identity==Microsoft.UWPTemplates.uct.SplitViewProject.CSharp"
+    "uct.compositionFilter": "identity == Microsoft.UWPTemplates.BlankPage.CodeBehind.CSharp & $projectType == SplitView"
  },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,
