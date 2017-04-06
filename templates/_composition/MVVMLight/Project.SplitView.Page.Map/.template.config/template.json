@@ -11,7 +11,7 @@
     "type": "item",
     "uct.type": "composition",
     "uct.version": "1.0.0",
-    "uct.compositionFilter": "uct.framework==MVVMLight&identity==Microsoft.UWPTemplates.MapPage.CSharp&$identity==Microsoft.UWPTemplates.uct.SplitViewProject.CSharp"
+    "uct.compositionFilter": "$framework == MVVMLight & $projectType == SplitView & identity == Microsoft.UWPTemplates.MapPage.CSharp"
   },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,
