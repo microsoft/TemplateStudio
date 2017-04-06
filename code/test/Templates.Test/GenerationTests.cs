@@ -124,10 +124,10 @@ namespace Microsoft.Templates.Test
 
             foreach (var layoutItem in layouts)
             {
-                var template = GenerationTestsFixture.Templates.Where(t => t.Identity == layoutItem.templateIdentity).FirstOrDefault();
+                var template = GenerationTestsFixture.Templates.FirstOrDefault(t => t.GroupIdentity == layoutItem.templateGroupIdentity && t.GetFrameworkList().Any(f => f.Equals(wizardState.Framework, StringComparison.OrdinalIgnoreCase)));
                 if (template == null)
                 {
-                    throw new Exception($"Template {layoutItem.templateIdentity} could not be found");
+                    throw new Exception($"Template {layoutItem.templateGroupIdentity} could not be found");
                 }
                 AddItem(wizardState, layoutItem.name, template);
             }
@@ -147,13 +147,13 @@ namespace Microsoft.Templates.Test
             switch (template.GetTemplateType())
             {
                 case TemplateType.Page:
-                    wizardState.Pages.Add((itemName, template.Name));
+                    wizardState.Pages.Add((itemName, template));
                     break;
                 case TemplateType.DevFeature:
-                    wizardState.DevFeatures.Add((itemName, template.Name));
+                    wizardState.DevFeatures.Add((itemName, template));
                     break;
                 case TemplateType.ConsumerFeature:
-                    wizardState.ConsumerFeatures.Add((itemName, template.Name));
+                    wizardState.ConsumerFeatures.Add((itemName, template));
                     break;
 
 

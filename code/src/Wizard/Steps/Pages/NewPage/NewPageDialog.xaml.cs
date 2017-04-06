@@ -25,6 +25,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 using Microsoft.Templates.Wizard.Host;
+using Microsoft.TemplateEngine.Abstractions;
 
 namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
 {
@@ -35,7 +36,7 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
     {
         public NewPageViewModel ViewModel { get; }
 
-        public (string name, string templateName) Result { get; set; }
+        public (string name, ITemplateInfo template) Result { get; set; }
 
         public NewPageDialog(WizardContext context, IEnumerable<PageViewModel> selectedTemplates)
         {

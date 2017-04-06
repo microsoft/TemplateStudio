@@ -90,6 +90,11 @@ namespace Microsoft.Templates.Core
             return GetMetadataInfo(Path.Combine(Sync.CurrentContentFolder, Frameworks, fxType, Metadata));
         }
 
+        public ITemplateInfo GetLayoutTemplate(LayoutItem item, string framework)
+        {
+            return Find(t => t.GroupIdentity == item.templateGroupIdentity && t.GetFrameworkList().Any(f => f.Equals(framework, StringComparison.OrdinalIgnoreCase)));
+        }
+
         private MetadataInfo GetMetadataInfo(string folderName)
         {
             if (!Directory.Exists(folderName))

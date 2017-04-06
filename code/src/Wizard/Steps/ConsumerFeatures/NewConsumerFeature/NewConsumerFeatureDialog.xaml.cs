@@ -26,6 +26,7 @@ using System.Windows.Shapes;
 
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Wizard.Steps.Pages;
+using Microsoft.TemplateEngine.Abstractions;
 
 namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
 {
@@ -35,7 +36,7 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
     public partial class NewConsumerFeatureDialog : Window
     {
         public NewConsumerFeatureViewModel ViewModel { get; }
-        public (string name, string templateName) Result { get; set; }
+        public (string name, ITemplateInfo template) Result { get; set; }
 
         public NewConsumerFeatureDialog(WizardContext context, IEnumerable<PageViewModel> selectedTemplates)
         {

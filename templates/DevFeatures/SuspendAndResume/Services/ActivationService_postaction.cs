@@ -1,4 +1,13 @@
-private IEnumerable<ActivationHandler> GetActivationHandlers()
+using System;
+using RootNamespace.Helper;
+
+namespace ItemNamespace.Services
 {
-    yield return Singleton<Services.SuspendAndResumeService>.Instance;
+    internal class ActivationService
+    {
+        private IEnumerable<ActivationHandler> GetActivationHandlers()
+        {
+            yield return Singleton<SuspendAndResumeService>.Instance;
+        }
+    }
 }

@@ -11,7 +11,7 @@
     public void RegisterPivotView(NavigationServiceEx navigationService)
     {
         SimpleIoc.Default.Register<PivotViewModel>();
-        navigationService.Configure(typeof(PivotViewModel).FullName, typeof(PivotView));
+        navigationService.Configure(typeof(PivotViewModel).FullName, typeof(PivotPage));
     }
     //}]}
 }

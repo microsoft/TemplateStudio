@@ -1,0 +1,40 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "CodeBehind.Project.SplitView",
+  "groupIdentity": "Microsoft.UWPTemplates.Framework.CodeBehind.Project.SplitView",
+  "identity": "Microsoft.UWPTemplates.Framework.CodeBehind.Project.SplitView.CSharp",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "uct.type": "framework",
+    "uct.framework": "CodeBehind",
+    "uct.version": "1.0.0",
+    "uct.order": "1"
+  },
+  "sourceName": "uct.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Models\\ShellNavigationItem.cs"
+    },
+    {
+      "path": ".\\Views\\ShellPage.xaml"
+    },
+    {
+      "path": ".\\Views\\ShellPage.xaml.cs"
+    }
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    }
+  }
+}

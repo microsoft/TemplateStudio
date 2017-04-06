@@ -1,7 +1,7 @@
 [
     {
         "name": "Main",
-        "templateIdentity": "Microsoft.UWPTemplates.BlankPage.CSharp",
+        "templateGroupIdentity": "Microsoft.UWPTemplates.BlankPage",
         "readonly": "true"
     }
 ]

@@ -177,13 +177,13 @@ namespace Microsoft.Templates.Core.Test
                 e1 =>
                 {
                     Assert.Equal("Item1", e1.name);
-                    Assert.Equal("Microsoft.UWPTemplates.Test.ProjectTemplate.CSharp", e1.templateIdentity);
+                    Assert.Equal("Microsoft.UWPTemplates.Test.ProjectTemplate", e1.templateGroupIdentity);
                     Assert.Equal(true, e1.@readonly);
                 },
                 e2 =>
                 {
                     Assert.Equal("Item2", e2.name);
-                    Assert.Equal("Microsoft.UWPTemplates.Test.PageTemplate.CSharp", e2.templateIdentity);
+                    Assert.Equal("Microsoft.UWPTemplates.Test.PageTemplate", e2.templateGroupIdentity);
                     Assert.Equal(false, e2.@readonly);
                 }
                 );

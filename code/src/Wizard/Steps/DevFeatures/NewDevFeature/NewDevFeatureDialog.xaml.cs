@@ -26,6 +26,7 @@ using System.Windows.Shapes;
 
 using Microsoft.Templates.Wizard.Host;
 using Microsoft.Templates.Wizard.Steps.Pages;
+using Microsoft.TemplateEngine.Abstractions;
 
 namespace Microsoft.Templates.Wizard.Steps.DevFeatures.NewDevFeature
 {
@@ -35,7 +36,7 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures.NewDevFeature
     public partial class NewDevFeatureDialog : Window
     {
         public NewConsumerFeatureViewModel ViewModel { get; }
-        public (string name, string templateName) Result { get; set; }
+        public (string name, ITemplateInfo template) Result { get; set; }
 
         public NewDevFeatureDialog(WizardContext context, IEnumerable<PageViewModel> selectedTemplates)
         {

@@ -11,7 +11,7 @@
     public void Registeruct.ItemNameDetail(NavigationServiceEx navigationService)
     {
         SimpleIoc.Default.Register<uct.ItemNameDetailViewModel>();
-        navigationService.Configure(typeof(uct.ItemNameDetailViewModel).FullName, typeof(uct.ItemNameDetailView));
+        navigationService.Configure(typeof(uct.ItemNameDetailViewModel).FullName, typeof(uct.ItemNameDetailPage));
     }
     //}]}
 }

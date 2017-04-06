@@ -1,7 +1,7 @@
 <root>
   <!--^^-->
   <!--{[{-->
-  <data name="PivotView_uct.ItemName" xml:space="preserve">
+  <data name="PivotItem_uct.ItemName" xml:space="preserve">
     <value>uct.ItemName</value>
   </data>
   <!--}]}-->
