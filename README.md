@@ -3,14 +3,15 @@
 Windows Template Studio goal is to help developers with their File->New experience in Visual Studio.  It will generate a strong, generic foundation with the pages you need, but also integrate game changing features from the start.  Any critical features will have code comments with links to MSDN, stack overflow and blogs to help unblock developers. Once the template is generated for the developer, it can provide base sample data and will be able to compile then run without issue.
 
 Example scenario:
-I need an app that uses MVVM Light, uses master detail, can suspend and resume, settings, maps on one of the pages and will need Azure hub notifations.   It will need a background service that does a query every 5 minutes.
+I need an app that uses MVVM Light, uses master detail, can suspend and resume, settings, maps on one of the pages and will need Azure hub notifications.   It will need a background service that does a query every 5 minutes.
 
-To reach our developers in an up-to-date fashion, the project is broken up into two primary parts, templates and the generator.  The generator is built on top of [dotnet Template Engine](https://github.com/dotnet/templating), it is a Visual Studio extension a developer will install while the templates will be hosted on a CDN so we can update what is created independntly of the generator.  The generator uses templates to create actual projects, pages and/or features for the developers. 
+To reach our developers in an up-to-date fashion, the project is broken up into two primary parts, templates and the generator.  The generator is built on top of [dotnet Template Engine](https://github.com/dotnet/templating), it is a Visual Studio extension a developer will install while the templates will be hosted on a CDN so we can update what is created independently of the generator.  The generator uses templates to create actual projects, pages and/or features for the developers. 
 
 ## Getting Started
 
 * [Getting Started](docs/readme.md)
 * [Installing / Using the extension](docs/getting-started-extension.md)
+* [Using and extending the generated code](docs/getting-started-endusers.md)
 * [Getting started with the generator codebase](docs/getting-started-developers.md)
 * [Authoring Templates](docs/templates.md)
 * [Contribution guidelines](contributing.md)
@@ -71,7 +72,7 @@ Do you want to contribute? Here are our [contribution guidelines](contributing.m
 * Principle #2: Generated templates are a starting point, not a completed application.
 * Principle #3: Generated templates once generated, must be able to be compiled and run.
 * Principle #4: Generated templates should work on all device families.
-* Principle #5: Templates should have comments to aid developers.  This includes links to singup pages for keys, MSDN, blogs and how-to's.  All guidance provide should be validated from either the framework/SDK/library’s creator.
+* Principle #5: Templates should have comments to aid developers.  This includes links to signup pages for keys, MSDN, blogs and how-to's.  All guidance provide should be validated from either the framework/SDK/library’s creator.
 * Principle #6: All features will be supported for two current Windows SDK for Windows 10 release cycles or until another principle supersedes it.
 * Principle #7: Templates released in production will try to adhere to the design language used in the current release of Windows 10.
 * Principle #8: Code should follow [.NET Core coding style](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md)
