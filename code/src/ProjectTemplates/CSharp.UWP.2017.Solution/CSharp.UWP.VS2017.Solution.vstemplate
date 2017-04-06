@@ -7,7 +7,7 @@
     <Description>Access to Windows Template Studio wizard and create an App template with your preferences and features</Description>
     <Icon>CSharp.UWP.VS2017.Solution.ico</Icon>
     <ProjectType>CSharp</ProjectType>
-    <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
+    <RequiredFrameworkVersion>4.0</RequiredFrameworkVersion>
     <SortOrder>1000</SortOrder>
     <TemplateID>5471541a-7eac-4feb-a834-0d6ca271a946</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>

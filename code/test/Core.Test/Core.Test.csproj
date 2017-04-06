@@ -123,6 +123,9 @@
     <Compile Include="Locations\TemplatexTests.cs" />
     <Compile Include="Locations\UnitTestTemplatesSource.cs" />
     <Compile Include="NamingTest.cs" />
+    <None Include="Locations\MsSigned\Templates.mstx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestData\Merge\Source_expected.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
