@@ -11,7 +11,7 @@
     "type": "item",
     "uct.type": "composition",
     "uct.version": "1.0.0",
-    "uct.compositionFilter": "uct.framework==MVVMBasic&identity==Microsoft.UWPTemplates.BlankProject.CSharp"
+    "uct.compositionFilter": "$framework == MVVMBasic & identity == Microsoft.UWPTemplates.BlankProject.CSharp"
   },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,

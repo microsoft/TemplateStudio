@@ -43,7 +43,7 @@ namespace Microsoft.Templates.Wizard
 
             AddMissingDependencies(genQueue);
 
-            AddCompositionTemplates(genQueue);
+            AddCompositionTemplates(genQueue, userSelection);
 
             return genQueue;
         }
@@ -84,13 +84,14 @@ namespace Microsoft.Templates.Wizard
             }
         }
 
-        private static void AddCompositionTemplates(List<GenInfo> genQueue)
+        private static void AddCompositionTemplates(List<GenInfo> genQueue, WizardState userSelection)
         {
             var compositionCatalog = GetCompositionCatalog().ToList();
 
-            var context = genQueue
-                                .Select(g => g.Template)
-                                .ToList();
+            var context = new QueryablePropertyDictionary();
+
+            context.Add(new QueryableProperty("projectType", userSelection.ProjectType));
+            context.Add(new QueryableProperty("framework", userSelection.Framework));
 
             var compositionQueue = new List<GenInfo>();
 
@@ -98,7 +99,7 @@ namespace Microsoft.Templates.Wizard
             {
                 foreach (var compositionItem in compositionCatalog)
                 {
-                    if (compositionItem.query.Execute(genItem.Template, context.Where(t => t.Identity != genItem.Template.Identity).ToList()))
+                    if (compositionItem.query.Match(genItem.Template, context))
                     {
                         AddTemplate(genItem, compositionQueue, compositionItem.template);
                     }

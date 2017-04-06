@@ -11,7 +11,7 @@
     "type": "item",
     "uct.type": "composition",
     "uct.version": "1.0.0",
-    "uct.compositionFilter": "uct.framework==MVVMBasic&identity==Microsoft.UWPTemplates.SettingsPage.CSharp&$identity==Microsoft.UWPTemplates.uct.TabbedPivotProject.CSharp"
+    "uct.compositionFilter": "$framework == MVVMBasic & $projectType == TabbedPivot & identity == Microsoft.UWPTemplates.SettingsPage.CSharp"
   },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,

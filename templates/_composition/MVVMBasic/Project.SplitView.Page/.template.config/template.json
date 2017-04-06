@@ -11,7 +11,7 @@
     "type": "item",
     "uct.type": "composition",
     "uct.version": "1.0.0",
-    "uct.compositionFilter": "uct.framework==MVVMBasic&uct.type==page&$identity==Microsoft.UWPTemplates.uct.SplitViewProject.CSharp"
+    "uct.compositionFilter": "$framework == MVVMBasic & $projectType == SplitView & uct.type==page"
   },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,

@@ -20,7 +20,8 @@ namespace Microsoft.Templates.Core.Composition
 {
     public class CompositionQuery
     {
-        private const string QueryPattern = "(?<field>[^=&]*)(?<operator>={2}|!=)(?<value>[^=&]*)&?";
+        private const string Separator = "&";
+        private const string QueryPattern = "(?<field>[^=" + Separator + "]*)(?<operator>={2}|!=)(?<value>[^=" + Separator + "]*)" + Separator + "?";
 
         public List<QueryNode> Items { get; } = new List<QueryNode>();
 
@@ -28,25 +29,30 @@ namespace Microsoft.Templates.Core.Composition
         {
         }
 
-        public static CompositionQuery Parse(string value)
+        public static CompositionQuery Parse(string rawQuery)
         {
             var query = new CompositionQuery();
 
-            if (!string.IsNullOrWhiteSpace(value))
+            if (!string.IsNullOrWhiteSpace(rawQuery))
             {
-                var queryMatches = Regex.Matches(value, QueryPattern);
+                var queryMatches = Regex.Matches(rawQuery, QueryPattern);
                 for (int i = 0; i < queryMatches.Count; i++)
                 {
                     var m = queryMatches[i];
-                    query.Items.Add(new QueryNode(m.Groups["field"].Value, m.Groups["operator"].Value, m.Groups["value"].Value));
+                    query.Items.Add(new QueryNode(m.Groups["field"].Value.Trim(), m.Groups["operator"].Value.Trim(), m.Groups["value"].Value.Trim()));
                 }
             }
 
             return query;
         }
 
+        public static CompositionQuery Parse(IEnumerable<string> rawQuery)
+        {
+            return Parse(string.Join("&", rawQuery.ToArray()));
+        }
 
-        public bool Execute(ITemplateInfo source, IEnumerable<ITemplateInfo> context)
+
+        public bool Match(ITemplateInfo source, QueryablePropertyDictionary context)
         {
             var itemQuery = Items
                                 .Where(i => !i.IsContext)
@@ -60,7 +66,7 @@ namespace Microsoft.Templates.Core.Composition
 
             if (itemResult && context != null)
             {
-                contextResult = context.Any(t => Match(contextQuery, t));
+                contextResult = Match(contextQuery, context);
             }
 
             return itemResult && contextResult;
@@ -68,8 +74,11 @@ namespace Microsoft.Templates.Core.Composition
 
         private static bool Match(IEnumerable<QueryNode> query, ITemplateInfo template)
         {
-            var queryableProperties = template.GetQueryableProperties();
+            return Match(query, template.GetQueryableProperties());
+        }
 
+        private static bool Match(IEnumerable<QueryNode> query, QueryablePropertyDictionary queryableProperties)
+        {
             return query
                     .All(q => queryableProperties.SafeGet(q.Field).Compare(q));
         }

@@ -26,7 +26,7 @@ namespace Microsoft.Templates.Core.Test.Composition
         [Fact]
         public void Parse()
         {
-            var query = "uct.framework==framework&uct.type!=Page&$name==Map";
+            var query = "uct.framework == framework & uct.type != Page&$name == Map";
             var result = CompositionQuery.Parse(query);
 
             Assert.Collection(result.Items,
@@ -43,7 +43,42 @@ namespace Microsoft.Templates.Core.Test.Composition
                     Assert.Equal(r2.Operator, QueryOperator.NotEquals);
                     Assert.Equal(r2.Value, "Page");
                     Assert.False(r2.IsContext);
-                }, 
+                },
+                r3 =>
+                {
+                    Assert.Equal(r3.Field, "name");
+                    Assert.Equal(r3.Operator, QueryOperator.Equals);
+                    Assert.Equal(r3.Value, "Map");
+                    Assert.True(r3.IsContext);
+                });
+        }
+
+        [Fact]
+        public void Parse_MultipleItems()
+        {
+            var query = new string[] 
+            {
+                "uct.framework == framework",
+                "uct.type != Page",
+                "$name == Map"
+            };
+            var result = CompositionQuery.Parse(query);
+
+            Assert.Collection(result.Items,
+                r1 =>
+                {
+                    Assert.Equal(r1.Field, "uct.framework");
+                    Assert.Equal(r1.Operator, QueryOperator.Equals);
+                    Assert.Equal(r1.Value, "framework");
+                    Assert.False(r1.IsContext);
+                },
+                r2 =>
+                {
+                    Assert.Equal(r2.Field, "uct.type");
+                    Assert.Equal(r2.Operator, QueryOperator.NotEquals);
+                    Assert.Equal(r2.Value, "Page");
+                    Assert.False(r2.IsContext);
+                },
                 r3 =>
                 {
                     Assert.Equal(r3.Field, "name");
@@ -56,7 +91,7 @@ namespace Microsoft.Templates.Core.Test.Composition
         [Fact]
         public void Parse_NoValueInParam()
         {
-            var query = "uct.framework==framework&uct.type";
+            var query = "uct.framework == framework & uct.type";
             var result = CompositionQuery.Parse(query);
 
             Assert.Collection(result.Items,
@@ -67,68 +102,76 @@ namespace Microsoft.Templates.Core.Test.Composition
         }
 
         [Fact]
-        public void Execute()
+        public void Match()
         {
-            var data = GetFactData(1).FirstOrDefault();
+            var data = GetFactData();
 
-            var target = CompositionQuery.Parse("identity==item0&item0-tag2==item0-tagVal2");
-            var result = target.Execute(data, null);
+            var target = CompositionQuery.Parse("identity==item-identity&tag2==tagVal2");
+            var result = target.Match(data, null);
 
             Assert.True(result);
         }
 
         [Fact]
-        public void Execute_WithContext()
+        public void Match_WithContext()
         {
-            var data = GetFactData(4).ToList();
-
-            var target = CompositionQuery.Parse("identity==item0&item0-tag2==item0-tagVal2&$name==item2-name");
-            var result = target.Execute(data[0], data.Skip(1).ToList());
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void Execute_NotEquals()
-        {
-            var data = GetFactData(1).FirstOrDefault();
-
-            var target = CompositionQuery.Parse("identity==item0&item0-tag2!=item0-tagVal1");
-            var result = target.Execute(data, null);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void Execute_MultiValue()
-        {
-            var data = new FakeTemplateInfo
+            var data = GetFactData();
+            var context = new QueryablePropertyDictionary
             {
-                Identity = "item",
-                Name = "item-name"
+                new QueryableProperty("name", "context-name")
             };
-            data.AddTag($"item-tag", $"item-tagVal1|item-tagVal2");
 
-            var target = CompositionQuery.Parse("identity==item&item-tag==item-tagVal2");
-            var result = target.Execute(data, null);
+            var target = CompositionQuery.Parse("identity==item-identity&tag2==tagVal2&$name==context-name");
+            var result = target.Match(data, context);
 
             Assert.True(result);
         }
 
-        private IEnumerable<ITemplateInfo> GetFactData(int items)
+        [Fact]
+        public void Match_NotEquals()
         {
-            for (int i = 0; i < items; i++)
-            {
-                var templateInfo = new FakeTemplateInfo
-                {
-                    Identity = $"item{i}",
-                    Name = $"item{i}-name"
-                };
-                templateInfo.AddTag($"item{i}-tag1", $"item{i}-tagVal1");
-                templateInfo.AddTag($"item{i}-tag2", $"item{i}-tagVal2");
+            var data = GetFactData();
 
-                yield return templateInfo;
-            }
+            var target = CompositionQuery.Parse("identity==item-identity&tag2!=tagVal1");
+            var result = target.Match(data, null);
+
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void Match_MultiValue()
+        {
+            var data = GetFactData();
+
+            var target = CompositionQuery.Parse("identity==item-identity&tag3==tag3Val1");
+            var result = target.Match(data, null);
+
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void Match_MultiValueBoth()
+        {
+            var data = GetFactData();
+
+            var target = CompositionQuery.Parse("identity==item-identity&tag3==tag3Val1|tag3Val3");
+            var result = target.Match(data, null);
+
+            Assert.True(result);
+        }
+
+        private ITemplateInfo GetFactData()
+        {
+            var templateInfo = new FakeTemplateInfo
+            {
+                Identity = $"item-identity",
+                Name = $"item-name"
+            };
+            templateInfo.AddTag($"tag1", $"tagVal1");
+            templateInfo.AddTag($"tag2", $"tagVal2");
+            templateInfo.AddTag($"tag3", $"tag3Val1|tag3Val2");
+
+            return templateInfo;
         }
     }
 

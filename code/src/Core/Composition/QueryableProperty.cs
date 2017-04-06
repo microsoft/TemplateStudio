@@ -19,23 +19,6 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Composition
 {
-    public class QueryablePropertyDictionary : Dictionary<string, QueryableProperty>
-    {
-        public void Add(QueryableProperty property)
-        {
-            Add(property.Name, property);
-        }
-
-        public QueryableProperty SafeGet(string name)
-        {
-            if (ContainsKey(name))
-            {
-                return base[name];
-            }
-            return QueryableProperty.Empty;
-        }
-    }
-
     public class QueryableProperty
     {
         public string Name { get; }
@@ -68,30 +51,24 @@ namespace Microsoft.Templates.Core.Composition
             }
         }
 
-        private bool Compare(string value)
+        private bool Compare(string toCompare)
         {
-            if (IsMultiValue())
+            if (Value.IsMultiValue() && toCompare.IsMultiValue())
             {
-                return GetMultiValue().Any(v => v.Equals(value));
+                return Value.GetMultiValue().Any(v => toCompare.GetMultiValue().Contains(v));
+            }
+            else if (Value.IsMultiValue() && !toCompare.IsMultiValue())
+            {
+                return Value.GetMultiValue().Any(v => v.Equals(toCompare));
+            }
+            else if (!Value.IsMultiValue() && toCompare.IsMultiValue())
+            {
+                return toCompare.GetMultiValue().Any(v => v.Equals(Value));
             }
             else
             {
-                return Value.Equals(value);
+                return Value.Equals(toCompare);
             }
-        }
-
-        public string[] GetMultiValue()
-        {
-            if (string.IsNullOrWhiteSpace(Value))
-            {
-                return new string[0];
-            }
-            return Value.Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-        }
-
-        public bool IsMultiValue()
-        {
-            return GetMultiValue().Length > 1;
         }
     }
 }
