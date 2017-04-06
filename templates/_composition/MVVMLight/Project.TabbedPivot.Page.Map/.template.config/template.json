@@ -9,10 +9,9 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "framework",
-    "uct.framework": "MVVMLight",
+    "uct.type": "composition",
     "uct.version": "1.0.0",
-    "uct.order": "1"
+    "uct.compositionFilter": "uct.framework==MVVMLight&identity==Microsoft.UWPTemplates.MapPage.CSharp&$identity==Microsoft.UWPTemplates.uct.TabbedPivotProject.CSharp"
   },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,

@@ -9,11 +9,10 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "framework",
-    "uct.framework": "MVVMLight",
-    "uct.version": "1.0.0",
-    "uct.order": "1",
-    "uct.licences": "[MVVMLight](http://mvvmlight.codeplex.com/license)"
+    "uct.type": "composition",    
+    "uct.version": "1.0.0",    
+    "uct.licences": "[MVVMLight](http://mvvmlight.codeplex.com/license)",
+    "uct.compositionFilter": "uct.framework==MVVMLight&uct.type==project"
   },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,

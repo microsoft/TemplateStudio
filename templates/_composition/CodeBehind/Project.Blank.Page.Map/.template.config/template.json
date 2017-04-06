@@ -9,10 +9,10 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "framework",
+    "uct.type": "composition",
     "uct.framework": "CodeBehind",
     "uct.version": "1.0.0",
-    "uct.order": "1"
+    "uct.compositionFilter": "identity==Microsoft.UWPTemplates.MapPage.CodeBehind.CSharp&$identity==Microsoft.UWPTemplates.BlankProject.CSharp"
   },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,
