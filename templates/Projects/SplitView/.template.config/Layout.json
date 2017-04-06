@@ -1,0 +1,7 @@
+[
+    {
+        "name": "Main",
+        "templateGroupIdentity": "Microsoft.UWPTemplates.BlankPage",
+        "readonly": "true"
+    }    
+]

@@ -16,17 +16,17 @@
     "uct.version": "1.0.0",
     "uct.order": "1"
   },
-  "sourceName": "TabbedPivotView",
+  "sourceName": "TabbedPivotPage",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\View\\TabbedPivotViewView.xaml"
+      "path": ".\\Views\\TabbedPivotPagePage.xaml"
     },
     {
-      "path": ".\\View\\TabbedPivotViewView.xaml.cs"
+      "path": ".\\Views\\TabbedPivotPagePage.xaml.cs"
     },
     {
-      "path": ".\\ViewModel\\TabbedPivotViewViewModel.cs"
+      "path": ".\\ViewModels\\TabbedPivotPageViewModel.cs"
     }
   ],
   "symbols": {

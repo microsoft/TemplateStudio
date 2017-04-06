@@ -1,0 +1,37 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMLight.Project",
+  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMLight.Project",
+  "identity": "Microsoft.UWPTemplates.Framework.MVVMLight.Projectk.CSharp",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "uct.type": "composition",    
+    "uct.version": "1.0.0",    
+    "uct.licences": "[MVVMLight](http://mvvmlight.codeplex.com/license)",
+    "uct.compositionFilter": "$framework == MVVMLight &uct.type == project"
+  },
+  "sourceName": "uct.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\ViewModelLocator.cs"
+    },
+    {
+      "path": ".\\Services\\NavigationServiceEx.cs"
+    }
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    }
+  }
+}

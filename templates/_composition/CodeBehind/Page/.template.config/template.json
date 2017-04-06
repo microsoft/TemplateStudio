@@ -1,0 +1,33 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "CodeBehind.Page",
+  "groupIdentity": "Microsoft.UWPTemplates.Framework.CodeBehind.Page",
+  "identity": "Microsoft.UWPTemplates.Framework.CodeBehind.Page.CSharp",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "uct.type": "composition",
+    "uct.framework": "CodeBehind",
+    "uct.version": "1.0.0",
+    "uct.compositionFilter": "$framework == CodeBehind & uct.type==page",
+    "uct.export.baseclass": "INotifyPropertyChanged",
+    "uct.export.setter": "Set"
+  },
+  "sourceName": "uct.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "author": "Microsoft",
+  "classifications": ["Universal"],
+  "name": "Map",
+  "groupIdentity": "Microsoft.UWPTemplates.MapPage",
+  "identity": "Microsoft.UWPTemplates.MapPage.CodeBehind.CSharp",
+  "shortName": "Map Page",
+  "description": "The map page is based around the Map Control.  Code includes adding a Map Icon and setting the location.",
+  "tags":
+  {
+    "language": "C#",
+    "type": "item",
+    "uct.type": "page",
+    "uct.framework": "CodeBehind",
+    "uct.version": "1.0.0",
+    "uct.order": "1"
+  },
+  "sourceName": "MapPage",
+  "preferNameDirectory": true,
+  "PrimaryOutputs":
+  [
+    { "path": ".\\Views\\MapPagePage.xaml" },
+    { "path": ".\\Views\\MapPagePage.xaml.cs" },
+    { "path": ".\\Assets\\map.png" },
+    { "path": ".\\Services\\ILocationService.cs" },
+    { "path": ".\\Services\\LocationService.cs" }
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Set"
+    }
+  }
+}
