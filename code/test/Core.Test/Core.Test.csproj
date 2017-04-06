@@ -119,10 +119,11 @@
     <Compile Include="Diagnostics\FileHealthWriterTest.cs" />
     <Compile Include="Diagnostics\TelemetryFixture.cs" />
     <Compile Include="Diagnostics\TelemetryServiceTest.cs" />
-    <Compile Include="ITemplateInfoExtensionsTest.cs" />
+    <Compile Include="Templates\ITemplateInfoExtensionsTest.cs" />
     <Compile Include="Locations\TemplatexTests.cs" />
     <Compile Include="Locations\UnitTestTemplatesSource.cs" />
     <Compile Include="NamingTest.cs" />
+    <Compile Include="Composition\CompositionQueryTest.cs" />
     <None Include="Locations\MsSigned\Templates.mstx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -143,7 +144,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="TemplatesFixture.cs" />
+    <Compile Include="Templates\TemplatesFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Core\Core.csproj">

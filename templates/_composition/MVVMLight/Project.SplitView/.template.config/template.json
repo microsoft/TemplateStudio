@@ -1,0 +1,42 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMLight.Project.SplitView",
+  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMLight.Project.SplitView",
+  "identity": "Microsoft.UWPTemplates.Framework.MVVMLight.Project.SplitView.CSharp",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "uct.type": "composition",
+    "uct.version": "1.0.0",
+    "uct.compositionFilter": "$framework == MVVMLight & identity == Microsoft.UWPTemplates.uct.SplitViewProject.CSharp"
+  },
+  "sourceName": "uct.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Models\\ShellNavigationItem.cs"
+    },
+    {
+      "path": ".\\ViewModels\\ShellViewModel.cs"
+    },
+    {
+      "path": ".\\Views\\ShellPage.xaml"
+    },
+    {
+      "path": ".\\Views\\ShellPage.xaml.cs"
+    }
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    }
+  }
+}

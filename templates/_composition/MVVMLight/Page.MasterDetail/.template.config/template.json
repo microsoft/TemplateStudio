@@ -1,0 +1,30 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMLight.Page.MasterDetailPage",
+  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMLight.Page.MasterDetailPage",
+  "identity": "Microsoft.UWPTemplates.Framework.MVVMLight.Page.MasterDetailPage.CSharp",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "uct.type": "composition",
+    "uct.version": "1.0.0",
+    "uct.compositionFilter": "$framework == MVVMLight & identity == Microsoft.UWPTemplates.MasterDetailPage.CSharp"
+  },
+  "sourceName": "uct.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMBasic.Project.TabbedPivot",
+  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.TabbedPivot",
+  "identity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.TabbedPivot.CSharp",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "uct.type": "composition",
+    "uct.version": "1.0.0",
+    "uct.compositionFilter": "$framework == MVVMBasic & identity == Microsoft.UWPTemplates.uct.TabbedPivotProject.CSharp"
+  },
+  "sourceName": "uct.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Models\\PivotTabbedItem.cs"
+    },
+    {
+      "path": ".\\ViewModels\\PivotViewModel.cs"
+    },
+    {
+      "path": ".\\Views\\PivotPage.xaml"
+    },
+    {
+      "path": ".\\Views\\PivotPage.xaml.cs"
+    }
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    }
+  }
+}
