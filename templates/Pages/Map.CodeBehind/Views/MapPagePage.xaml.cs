@@ -50,10 +50,14 @@ namespace ItemNamespace.Views
                 //TODO UWPTemplates: The Location capability needs to be enabled in the Package.appxmanifest in order to use the location service.
                 locationService.PositionChanged += LocationServicePositionChanged;
 
-                await locationService.InitializeAsync();
-                await locationService.StartListeningAsync();
+                var initializationSuccessful = await locationService.InitializeAsync();
+                
+                if (initializationSuccessful)
+                {
+                    await locationService.StartListeningAsync();
+                }
 
-                if (locationService.CurrentPosition != null)
+                if (initializationSuccessful && locationService.CurrentPosition != null)
                 {
                     Center = locationService.CurrentPosition.Coordinate.Point;
                 }
