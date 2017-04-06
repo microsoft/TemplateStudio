@@ -12,7 +12,7 @@
     "uct.type": "composition",    
     "uct.version": "1.0.0",    
     "uct.licences": "[MVVMLight](http://mvvmlight.codeplex.com/license)",
-    "uct.compositionFilter": "uct.framework==MVVMLight&uct.type==project"
+    "uct.compositionFilter": "&framework == MVVMLight &uct.type == project"
   },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,

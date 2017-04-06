@@ -11,7 +11,7 @@
     "type": "item",
     "uct.type": "composition",
     "uct.version": "1.0.0",
-    "uct.compositionFilter": "uct.framework==MVVMLight&uct.type==page",
+    "uct.compositionFilter": "$framework == MVVMLight & uct.type==page",
     "uct.export.baseclass": "ViewModelBase",
     "uct.export.setter": "Set"
   },
