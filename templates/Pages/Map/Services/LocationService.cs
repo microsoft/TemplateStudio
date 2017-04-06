@@ -15,19 +15,19 @@ namespace ItemNamespace.Services
         public Geoposition CurrentPosition { get; private set; }
 
         /// <inheritdoc />
-        public Task InitializeAsync()
+        public async Task<bool> InitializeAsync()
         {
-            return InitializeAsync(100);
+            return await InitializeAsync(100);
         }
 
         /// <inheritdoc />
-        public Task InitializeAsync(uint desiredAccuracyInMeters)
+        public async Task<bool> InitializeAsync(uint desiredAccuracyInMeters)
         {
-            return InitializeAsync(desiredAccuracyInMeters, (double)desiredAccuracyInMeters / 2);
+            return await InitializeAsync(desiredAccuracyInMeters, (double)desiredAccuracyInMeters / 2);
         }
 
         /// <inheritdoc />
-        public async Task InitializeAsync(uint desiredAccuracyInMeters, double movementThreshold)
+        public async Task<bool> InitializeAsync(uint desiredAccuracyInMeters, double movementThreshold)
         {
             if (geolocator != null)
             {
@@ -37,6 +37,8 @@ namespace ItemNamespace.Services
 
             var access = await Geolocator.RequestAccessAsync();
 
+            bool result;
+
             switch (access)
             {
                 case GeolocationAccessStatus.Allowed:
@@ -45,8 +47,16 @@ namespace ItemNamespace.Services
                         DesiredAccuracyInMeters = desiredAccuracyInMeters,
                         MovementThreshold = movementThreshold
                     };
+                    result = true;
+                    break;
+                case GeolocationAccessStatus.Unspecified:
+                case GeolocationAccessStatus.Denied:
+                default:
+                    result = false;
                     break;
             }
+
+            return result;
         }
 
         /// <inheritdoc />
@@ -54,7 +64,7 @@ namespace ItemNamespace.Services
         {
             if (geolocator == null)
                 throw new InvalidOperationException(
-                    "The StartListening method cannot be called before the InitializeAsync method.");
+                    "The StartListening method cannot be called before the InitializeAsync method is called and returns true.");
 
             geolocator.PositionChanged += GeolocatorOnPositionChanged;
 
