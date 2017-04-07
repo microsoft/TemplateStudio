@@ -88,8 +88,15 @@
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <None Include="project.json" />
+	  <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>5.3.1</Version>
+    </PackageReference>
+	  <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
+      <Version>1.0.3</Version>
+    </PackageReference>
+    <!-- Nuget package references -->
+  </ItemGroup> 
+  <ItemGroup>
     <PRIResource Include="Strings\en-us\Resources.resw" />
   </ItemGroup>
   <ItemGroup>

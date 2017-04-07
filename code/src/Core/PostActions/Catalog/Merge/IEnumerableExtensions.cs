@@ -59,10 +59,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var _diffTrivia = FindDiffLeadingTrivia(source, merge);
             var result = source.ToList();
 
+            var currentLineIndex = -1;
+
             foreach (var mergeLine in merge)
             {
-                var currentLineIndex = -1;
-
                 if (!isInBlock)
                 {
                     currentLineIndex = result.SafeIndexOf(mergeLine.WithLeadingTrivia(_diffTrivia), lastLineIndex);
@@ -70,15 +70,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
                 if (currentLineIndex > -1)
                 {
-                    if (insertionBuffer.Any() && !BlockExists(insertionBuffer, result, lastLineIndex))
-                    {
-                        var insertIndex = GetInsertLineIndex(currentLineIndex, lastLineIndex, beforeMode);
-                        result.InsertRange(insertIndex, insertionBuffer);
+                    TryAddBufferContent(lastLineIndex, insertionBuffer, beforeMode, result, currentLineIndex);
 
-                        if (beforeMode)
-                        {
-                            beforeMode = false;
-                        }
+                    if (beforeMode)
+                    {
+                        beforeMode = false;
                     }
 
                     lastLineIndex = currentLineIndex + insertionBuffer.Count;
@@ -105,7 +101,18 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 }
             }
 
+            TryAddBufferContent(lastLineIndex, insertionBuffer, beforeMode, result, currentLineIndex);
+
             return result;
+        }
+
+        private static void TryAddBufferContent(int lastLineIndex, List<string> insertionBuffer, bool beforeMode, List<string> result, int currentLineIndex)
+        {
+            if (insertionBuffer.Any() && !BlockExists(insertionBuffer, result, lastLineIndex))
+            {
+                var insertIndex = GetInsertLineIndex(currentLineIndex, lastLineIndex, beforeMode);
+                result.InsertRange(insertIndex, insertionBuffer);
+            }
         }
 
         private static bool BlockExists(IEnumerable<string> blockBuffer, IEnumerable<string> target, int skip)

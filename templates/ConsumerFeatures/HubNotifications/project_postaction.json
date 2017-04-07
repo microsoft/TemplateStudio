@@ -1,5 +1,0 @@
-{
-  "dependencies": {
-    "WindowsAzure.Messaging.Managed": "0.1.7.9",
-  },
-}
