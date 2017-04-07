@@ -107,6 +107,7 @@ namespace Microsoft.Templates.Core
             {
                 properties.Add(new QueryableProperty(nameof(ti.Name).ToLower(), ti.Name));
                 properties.Add(new QueryableProperty(nameof(ti.Identity).ToLower(), ti.Identity));
+                properties.Add(new QueryableProperty(nameof(ti.GroupIdentity).ToLower(), ti.GroupIdentity));
 
                 foreach (var t in ti.Tags)
                 {

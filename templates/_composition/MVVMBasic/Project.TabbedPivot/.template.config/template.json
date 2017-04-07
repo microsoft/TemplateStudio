@@ -17,9 +17,6 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Models\\PivotTabbedItem.cs"
-    },
-    {
       "path": ".\\ViewModels\\PivotViewModel.cs"
     },
     {

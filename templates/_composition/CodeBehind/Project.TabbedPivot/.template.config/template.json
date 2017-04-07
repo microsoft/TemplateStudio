@@ -3,9 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CodeBehind.Project.TabbedPivot",
-  "groupIdentity": "Microsoft.UWPTemplates.Framework.CodeBehind.Project.TabbedPivot",
-  "identity": "Microsoft.UWPTemplates.Framework.CodeBehind.Project.TabbedPivot.CSharp",
+  "name": "Project.TabbedPivot.CodeBehind",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -17,9 +15,6 @@
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\Models\\PivotTabbedItem.cs"
-    },
     {
       "path": ".\\Views\\PivotPage.xaml"
     },

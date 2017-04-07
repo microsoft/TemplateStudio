@@ -3,9 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CodeBehind.Project.SplitView",
-  "groupIdentity": "Microsoft.UWPTemplates.Framework.CodeBehind.Project.SplitView",
-  "identity": "Microsoft.UWPTemplates.Framework.CodeBehind.Project.SplitView.CSharp",
+  "name": "Project.SplitView.CodeBehind",
   "tags": {
     "language": "C#",
     "type": "item",

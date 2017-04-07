@@ -3,9 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CodeBehind.Project",
-  "groupIdentity": "Microsoft.UWPTemplates.Framework.CodeBehind.Project",
-  "identity": "Microsoft.UWPTemplates.Framework.CodeBehind.Project.CSharp",
+  "name": "Project.CodeBehind",
   "tags": {
     "language": "C#",
     "type": "item",
