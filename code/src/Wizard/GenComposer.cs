@@ -87,6 +87,8 @@ namespace Microsoft.Templates.Wizard
 
             var genProject = CreateGenInfo(GenContext.Current.ProjectName, projectTemplate, genQueue);
             genProject.Parameters.Add(GenParams.Username, Environment.UserName);
+            genProject.Parameters.Add(GenParams.WizardVersion, GenContext.GetWizardVersion());
+            genProject.Parameters.Add(GenParams.TemplatesVersion, GenContext.ToolBox.Repo.GetTemplatesVersion());
 
             AddTemplate(genProject, genQueue, userSelection.Framework, "Project");
             AddTemplate(genProject, genQueue, userSelection.Framework, "Project", userSelection.ProjectType);

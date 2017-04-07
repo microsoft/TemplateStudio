@@ -40,8 +40,8 @@ namespace Microsoft.Templates.Core
             Sync = new TemplatesSynchronization(source);
         }
 
-
-        public string GetVersion()
+         
+        public string GetTemplatesVersion()
         {
             return Sync.CurrentContentVersion?.ToString();
         }
