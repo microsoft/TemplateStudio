@@ -108,7 +108,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private static void TryAddBufferContent(int lastLineIndex, List<string> insertionBuffer, bool beforeMode, List<string> result, int currentLineIndex)
         {
-            if (insertionBuffer.Any() && !BlockExists(insertionBuffer, result, lastLineIndex))
+            if (insertionBuffer.Any() && !BlockExists(insertionBuffer, result, lastLineIndex) && currentLineIndex > -1)
             {
                 var insertIndex = GetInsertLineIndex(currentLineIndex, lastLineIndex, beforeMode);
                 result.InsertRange(insertIndex, insertionBuffer);
