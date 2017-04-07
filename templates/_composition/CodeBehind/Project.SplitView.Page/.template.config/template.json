@@ -1,0 +1,31 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "CodeBehind.Project.SplitView.Page",
+  "groupIdentity": "Microsoft.UWPTemplates.Framework.CodeBehind.Project.SplitView.Page",
+  "identity": "Microsoft.UWPTemplates.Framework.CodeBehind.Project.SplitView.Page.CSharp",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "uct.type": "composition",
+    "uct.framework": "CodeBehind",
+    "uct.version": "1.0.0",
+    "uct.compositionFilter": "$framework == CodeBehind & uct.type==page & $projectType == SplitView"
+ },
+  "sourceName": "uct.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    }
+  }
+}

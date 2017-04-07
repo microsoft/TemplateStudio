@@ -1,0 +1,32 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMLight.Page",
+  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMLight.Page",
+  "identity": "Microsoft.UWPTemplates.Framework.MVVMLight.Page.CSharp",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "uct.type": "composition",
+    "uct.version": "1.0.0",
+    "uct.compositionFilter": "$framework == MVVMLight & uct.type==page",
+    "uct.export.baseclass": "ViewModelBase",
+    "uct.export.setter": "Set"
+  },
+  "sourceName": "uct.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    }
+  }
+}
