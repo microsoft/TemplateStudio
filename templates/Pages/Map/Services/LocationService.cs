@@ -4,7 +4,7 @@ using Windows.Devices.Geolocation;
 
 namespace ItemNamespace.Services
 {
-    public class LocationService : ILocationService
+    public class LocationService
     {
         private Geolocator geolocator;
 
@@ -15,15 +15,15 @@ namespace ItemNamespace.Services
         public Geoposition CurrentPosition { get; private set; }
 
         /// <inheritdoc />
-        public async Task<bool> InitializeAsync()
+        public Task<bool> InitializeAsync()
         {
-            return await InitializeAsync(100);
+            return InitializeAsync(100);
         }
 
         /// <inheritdoc />
-        public async Task<bool> InitializeAsync(uint desiredAccuracyInMeters)
+        public Task<bool> InitializeAsync(uint desiredAccuracyInMeters)
         {
-            return await InitializeAsync(desiredAccuracyInMeters, (double)desiredAccuracyInMeters / 2);
+            return InitializeAsync(desiredAccuracyInMeters, (double)desiredAccuracyInMeters / 2);
         }
 
         /// <inheritdoc />

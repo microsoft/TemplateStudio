@@ -13,7 +13,7 @@ namespace ItemNamespace.ViewModels
     {
         private const double defaultZoomLevel = 19;
 
-        private readonly ILocationService locationService;
+        private readonly LocationService locationService;
 
         private readonly BasicGeoposition defaultPosition = new BasicGeoposition()
         {
@@ -46,7 +46,6 @@ namespace ItemNamespace.ViewModels
         {
             if (locationService != null)
             {
-                //TODO UWPTemplates: The Location capability needs to be enabled in the Package.appxmanifest in order to use the location service.
                 locationService.PositionChanged += LocationServicePositionChanged;
 
                 var initializationSuccessful = await locationService.InitializeAsync();
