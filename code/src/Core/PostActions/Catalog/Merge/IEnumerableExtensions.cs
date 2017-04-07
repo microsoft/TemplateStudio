@@ -70,7 +70,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
                 if (currentLineIndex > -1)
                 {
-                    TryAddBufferContent(lastLineIndex, insertionBuffer, beforeMode, result, currentLineIndex);
+                    TryAddBufferContent(insertionBuffer, result, lastLineIndex, currentLineIndex, beforeMode);
 
                     if (beforeMode)
                     {
@@ -101,17 +101,20 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 }
             }
 
-            TryAddBufferContent(lastLineIndex, insertionBuffer, beforeMode, result, currentLineIndex);
+            TryAddBufferContent(insertionBuffer, result, lastLineIndex);
 
             return result;
         }
 
-        private static void TryAddBufferContent(int lastLineIndex, List<string> insertionBuffer, bool beforeMode, List<string> result, int currentLineIndex)
+        private static void TryAddBufferContent(List<string> insertionBuffer, List<string> result, int lastLineIndex, int currentLineIndex = 0, bool beforeMode = false)
         {
             if (insertionBuffer.Any() && !BlockExists(insertionBuffer, result, lastLineIndex) && currentLineIndex > -1)
             {
                 var insertIndex = GetInsertLineIndex(currentLineIndex, lastLineIndex, beforeMode);
-                result.InsertRange(insertIndex, insertionBuffer);
+                if (insertIndex < result.Count)
+                {
+                    result.InsertRange(insertIndex, insertionBuffer);
+                }
             }
         }
 
