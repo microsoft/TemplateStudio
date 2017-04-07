@@ -9,7 +9,7 @@
     "type": "item",
     "uct.type": "composition",
     "uct.version": "1.0.0",
-    "uct.compositionFilter": "$projectType == Blank|SplitView & identity == Microsoft.UWPTemplates.MasterDetailPage.CSharp"
+    "uct.compositionFilter": "$projectType == Blank|SplitView & groupidentity == Microsoft.UWPTemplates.MasterDetailPage"
   },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,

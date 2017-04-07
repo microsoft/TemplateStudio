@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.Settings.AddInitialization_TabbedPivot",
+  "name": "CodeBehind.Page.Settings.AddInitialization_TabbedPivot",
   "tags": {
     "language": "C#",
     "type": "item",

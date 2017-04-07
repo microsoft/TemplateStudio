@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.Settings.AddInitialization_Blank_SplitView",
+  "name": "CodeBehind.Page.Settings.AddInitialization_Blank_SplitView",
    "tags": {
     "language": "C#",
     "type": "item",

@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.MasterDetail.AddINotifyPropertyChanged",
+  "name": "CodeBehind.Page.MasterDetail.AddINotifyPropertyChanged",
   "tags": {
     "language": "C#",
     "type": "item",
