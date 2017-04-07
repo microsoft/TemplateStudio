@@ -8,25 +8,41 @@ namespace ItemNamespace.Services
     {
         private Geolocator geolocator;
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Raised when the current position is updated.
+        /// </summary>
         public event EventHandler<Geoposition> PositionChanged;
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Gets the last known recorded position.
+        /// </summary>
         public Geoposition CurrentPosition { get; private set; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Initializes the location service with a default accuracy (100 meters) and movement threshold.
+        /// </summary>
+        /// <returns>True if the initialization was successful and the service can be used.</returns>
         public Task<bool> InitializeAsync()
         {
             return InitializeAsync(100);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Initializes the location service with the specified accuracy and default movement threshold.
+        /// </summary>
+        /// <param name="desiredAccuracyInMeters">The desired accuracy at which the service provides location updates.</param>
+        /// <returns>True if the initialization was successful and the service can be used.</returns>
         public Task<bool> InitializeAsync(uint desiredAccuracyInMeters)
         {
             return InitializeAsync(desiredAccuracyInMeters, (double)desiredAccuracyInMeters / 2);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Initializes the location service with the specified accuracy and movement threshold.
+        /// </summary>
+        /// <param name="desiredAccuracyInMeters">The desired accuracy at which the service provides location updates.</param>
+        /// <param name="movementThreshold">The distance of movement, in meters, that is required for the service to raise the PositionChanged event.</param>
+        /// <returns>True if the initialization was successful and the service can be used.</returns>
         public async Task<bool> InitializeAsync(uint desiredAccuracyInMeters, double movementThreshold)
         {
             if (geolocator != null)
@@ -59,7 +75,10 @@ namespace ItemNamespace.Services
             return result;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Starts the service listening for location updates.
+        /// </summary>
+        /// <returns>An object that is used to manage the asynchronous operation.</returns>
         public async Task StartListeningAsync()
         {
             if (geolocator == null)
@@ -71,7 +90,9 @@ namespace ItemNamespace.Services
             CurrentPosition = await geolocator.GetGeopositionAsync();
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Stops the service listening for location updates.
+        /// </summary>
         public void StopListening()
         {
             if (geolocator == null) return;
