@@ -3,15 +3,13 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMBasic.Project.SplitView.Page.SettingsPage",
-  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.SplitView.Page.SettingsPage",
-  "identity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Page.Project.SplitView.SettingsPage.CSharp",
+  "name": "MVVMBasic.Project.SplitView.AddToPrimaryNavigationItems",
   "tags": {
     "language": "C#",
     "type": "item",
     "uct.type": "composition",
     "uct.version": "1.0.0",
-    "uct.compositionFilter": "$framework == MVVMBasic & $projectType == SplitView & identity == Microsoft.UWPTemplates.SettingsPage.CSharp"
+    "uct.compositionFilter": "uct.type == page & identity != Microsoft.UWPTemplates.SettingsPage.CSharp & $framework == MVVMBasic & $projectType == SplitView"
   },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,

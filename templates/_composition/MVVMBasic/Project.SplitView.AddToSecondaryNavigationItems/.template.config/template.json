@@ -3,15 +3,13 @@
   "classifications": [
     "Universal"
   ],
-  "name": "SuspendAndResume_AddNavigation",
-  "groupIdentity": "WTS.Composition.SuspendAndResume.AddNavigation",
-  "identity": "WTS.Composition.SuspendAndResume.AddNavigation_MVVMLight",
+  "name": "MVVMBasic.Project.SplitView.AddToSecondaryNavigationItems",
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "composition",    
+    "uct.type": "composition",
     "uct.version": "1.0.0",
-    "uct.compositionFilter": "$framework == MVVMLight & identity == Microsoft.UWPTemplates.DevFeatures.SuspendAndResume.CSharp"
+    "uct.compositionFilter": "$framework == MVVMBasic & $projectType == SplitView & identity == Microsoft.UWPTemplates.SettingsPage.CSharp"
   },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,

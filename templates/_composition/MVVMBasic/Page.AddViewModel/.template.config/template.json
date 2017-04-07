@@ -3,15 +3,15 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMBasic.Page.MasterDetailPage",
-  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Page.MasterDetailPage",
-  "identity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Page.MasterDetailPage.CSharp",
+  "name": "MVVMBasic.Page.AddViewModel",
   "tags": {
     "language": "C#",
     "type": "item",
     "uct.type": "composition",
     "uct.version": "1.0.0",
-    "uct.compositionFilter": "$framework == MVVMBasic & identity == Microsoft.UWPTemplates.MasterDetailPage.CSharp"
+    "uct.compositionFilter": "$framework == MVVMBasic & uct.type==page",
+    "uct.export.baseclass": "Observable",
+    "uct.export.setter": "Set"
   },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,

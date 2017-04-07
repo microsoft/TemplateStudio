@@ -3,15 +3,13 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMBasic.Project.SplitView.Page.TabbedPivotPage",
-  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.SplitView.Page.TabbedPivotPage",
-  "identity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Page.Project.SplitView.TabbedPivotPage.CSharp",
+  "name": "MVVMBasic.Page.MasterDetailPage.AddViewModel",
   "tags": {
     "language": "C#",
     "type": "item",
     "uct.type": "composition",
     "uct.version": "1.0.0",
-    "uct.compositionFilter": "$framework == MVVMBasic & $projectType == SplitView & identity == Microsoft.UWPTemplates.TabbedPivotPage.CSharp"
+    "uct.compositionFilter": "$framework == MVVMBasic & identity == Microsoft.UWPTemplates.MasterDetailPage.CSharp"
   },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,

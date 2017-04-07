@@ -3,17 +3,13 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMBasic.Page",
-  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Page",
-  "identity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Page.CSharp",
+  "name": "Feature.SuspendAndResume.AddNavigation",
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "composition",
+    "uct.type": "composition",    
     "uct.version": "1.0.0",
-    "uct.compositionFilter": "$framework == MVVMBasic & uct.type==page",
-    "uct.export.baseclass": "Observable",
-    "uct.export.setter": "Set"
+    "uct.compositionFilter": "$framework == MVVMLight & identity == Microsoft.UWPTemplates.DevFeatures.SuspendAndResume.CSharp"
   },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,

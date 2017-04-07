@@ -4,8 +4,6 @@
     "Universal"
   ],
   "name": "MVVMBasic.Project.TabbedPivot",
-  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.TabbedPivot",
-  "identity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.TabbedPivot.CSharp",
   "tags": {
     "language": "C#",
     "type": "item",

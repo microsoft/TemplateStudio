@@ -10,7 +10,7 @@
     "uct.type": "composition",
     "uct.framework": "CodeBehind",
     "uct.version": "1.0.0",
-    "uct.compositionFilter": "uct.type == page & identity != Microsoft.UWPTemplates.SettingsPage.CodeBehind.CSharp & $projectType == SplitView"
+    "uct.compositionFilter": "uct.type == page & identity != Microsoft.UWPTemplates.SettingsPage.CodeBehind.CSharp & $projectType == SplitView & $framework == CodeBehind"
  },
   "sourceName": "uct.ItemName",
   "preferNameDirectory": true,
