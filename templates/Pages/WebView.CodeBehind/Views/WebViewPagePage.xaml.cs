@@ -6,7 +6,7 @@ namespace ItemNamespace.Views
     public sealed partial class WebViewPagePage : Page, System.ComponentModel.INotifyPropertyChanged
     {
         //TODO UWPTemplates: Set your hyperlink default here
-        private const string defaultUrl = "https://YourUrlGoesHere/";
+        private const string defaultUrl = "https://developer.microsoft.com/en-us/windows/apps";
 
         private Uri _source;
         public Uri Source
