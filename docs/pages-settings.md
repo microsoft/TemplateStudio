@@ -21,10 +21,15 @@ Add the following below the `ToggleSwitch` inside the `StackPanel` in **Settings
 ```xml
 <CheckBox IsChecked="{x:Bind ViewModel.IsAutoErrorReportingEnabled, Mode=TwoWay}"
           x:Uid="Settings_EnableAutoErrorReporting"
-          Margin="{StaticResource SmallTopMargin}" />
+          Margin="0,8,0,0" />
 ```
 
-When run it will now look like this.
+Add an entry to **Srtings/en-us/Resources.resw**
+
+Name: Settings_EnableAutoErrorReporting.Content  
+Value: Automatically report errors
+
+When run it will now look like this:
 
 ![](resources/modifications/Settings_added_checkbox.png)
 
@@ -32,89 +37,16 @@ But if you try and run it now you will get build errors as the ViewModel hasn't 
 
 ### Update the ViewModel
 
-There are two ways to do this. 
+The `IsLightThemeEnabled` property uses a static `ThemeSelectorService`. It is not necessary to create equivalent services for every setting but is appropriate for the theme preference as this is needed when the app launches.
 
-1. The quick and dirty way (not recommended)
-2. Change the ViewModel to be a singleton (recommended)
+Because we may want to access settings in various parts of the app it's important that the same settings values are used in all locations. The simplest way to do this is to have a single instance of the `SettingsViewModel` and use it for all access to settings values.
 
-Note that the `IsLightThemeEnabled` does not suffer the issues affected by 'the quick and dirty way' because it uses a static `ThemeSelectorService`. It is not necessary to create equivalent services for every setting but is appropriate for the theme preference as this is needed when the app launches.
+The generated code in includes a Singleton helper class to provide access to a single instance of the view model which we can use everywhere.
 
-#### The quick and dirty way  (NOT recommended)
-
+With this knowledge we can now add the new property for accessing our stored setting. We also need to add a new, awaitable initializer for the property too.  
 Add the following to **SettingsViewModel.cs**
 
 ```csharp
-private bool? _isAutomaticErrorReportingEnabled;
-
-public bool? IsAutoErrorReportingEnabled
-{
-    get
-    {
-        if (_isAutomaticErrorReportingEnabled == null)
-        {
-            LoadAutoSetting();
-        }
-
-        return _isAutomaticErrorReportingEnabled ?? false;
-    }
-
-    set
-    {
-        if (value != _isAutomaticErrorReportingEnabled)
-        {
-            Task.Run(async () => await ApplicationData.Current.LocalSettings.SaveAsync(nameof(IsAutoErrorReportingEnabled), value ?? false));
-        }
-
-        Set(ref _isAutomaticErrorReportingEnabled, value);
-    }
-}
-
-private async void LoadAutoSetting()
-{
-    await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
-        Windows.UI.Core.CoreDispatcherPriority.Normal,
-        async () =>
-        {
-            IsAutoErrorReportingEnabled =
-                await ApplicationData.Current.LocalSettings.ReadAsync<bool>(
-                    nameof(IsAutoErrorReportingEnabled));
-        });
-}
-```
-
-The reason this is bad is because of its use of `async void` which should really only be used for top level event handling. For more on this see [this MSDN article](https://msdn.microsoft.com/en-us/magazine/jj991977.aspx) or [this Channel9 video](https://channel9.msdn.com/Series/Three-Essential-Tips-for-Async/Tip-1-Async-void-is-for-top-level-event-handlers-only).
-
-#### Change the ViewModel to be a singleton (recommended)
-
-It would be unusual for an app to have a configurable setting that wasn't also used in another part of the app. In this scenario it's important that the same settings values are used in all location. The simplest way to do this is to have a single instance of the `SettingsViewModel` and use it for all access to settings values.
-
-The generated code allows you to create multiple instances of the `SettingsViewModel` but this could potentially lead to a scenario where you had multiple different values for the same setting. Instead we can change things so there's only a single instance of `SettingsViewModel` being used.
-
-Add the following to **SettingsViewModel.cs**
-
-```csharp
-private static readonly SettingsViewModel _singletonInstance = new SettingsViewModel();
-
-public static SettingsViewModel GetInstance()
-{
-    return _singletonInstance;
-}
-
-private static bool _hasStaticInstanceBeenInitialized = false;
-
-public static async Task EnsureInstanceInitialized()
-{
-    if (!_hasStaticInstanceBeenInitialized)
-    {
-        _hasStaticInstanceBeenInitialized = true;
-
-        _singletonInstance.IsAutoErrorReportingEnabled =
-            await ApplicationData.Current.LocalSettings.ReadAsync<bool>(nameof(IsAutoErrorReportingEnabled));
-
-        _singletonInstance.Initialize();
-    }
-}
-
 private bool? _isAutomaticErrorReportingEnabled;
 
 public bool? IsAutoErrorReportingEnabled
@@ -125,28 +57,44 @@ public bool? IsAutoErrorReportingEnabled
     {
         if (value != _isAutomaticErrorReportingEnabled)
         {
-            Task.Run(async () => await ApplicationData.Current.LocalSettings.SaveAsync(nameof(IsAutoErrorReportingEnabled), value ?? false));
+            Task.Run(async () => await Windows.Storage.ApplicationData.Current.LocalSettings.SaveAsync(nameof(IsAutoErrorReportingEnabled), value ?? false));
         }
 
         Set(ref _isAutomaticErrorReportingEnabled, value);
     }
 }
+
+private bool _hasInstanceBeenInitialized = false;
+
+public async Task EnsureInstanceInitialized()
+{
+    if (!_hasInstanceBeenInitialized)
+    {
+        _hasInstanceBeenInitialized = true;
+
+        IsAutoErrorReportingEnabled =
+            await Windows.Storage.ApplicationData.Current.LocalSettings.ReadAsync<bool>(nameof(IsAutoErrorReportingEnabled));
+
+        Initialize();
+    }
+}
 ```
 
-The will now allow us to reference a single instance of the `SettingsViewModel` class anywhere.  
-**SettingsView.xaml.cs** currently creates an instance of the ViewModel so we should change it.  
-Change the property declaration from this
+We must now update our uses of the ViewModel.   
+In **SettingsView.xaml.cs** change the property declaration from this:
 
 ```csharp
 public SettingsViewModel ViewModel { get; } = new SettingsViewModel();
 ```
 
-to this
+to this:
 
 ```csharp
-public SettingsViewModel ViewModel { get; } = SettingsViewModel.GetInstance();
+public SettingsViewModel ViewModel { get; } = Singleton<SettingsViewModel>.Instance;
 ```
-and change the `OnNavigatedTo()` method so that instead of being like
+so it uses the single instance.  
+
+Then change the `OnNavigatedTo()` method so that instead of calling the old Initialize method, like this:
 
 ```csharp
 protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -155,16 +103,20 @@ protected override void OnNavigatedTo(NavigationEventArgs e)
 }
 ```
 
-It looks like
+It now awaits the call to the new Initializer like this:
 
 ```csharp
 protected override async void OnNavigatedTo(NavigationEventArgs e)
 {
-    await SettingsViewModel.EnsureInstanceInitialized();
+    await Singleton<SettingsViewModel>.Instance.EnsureInstanceInitialized();
 }
 ```
 
-Then, whenever you want to access something from the ViewModel, anywhere in the app, ensure you have called `await SettingsViewModel.EnsureInstanceInitialized();`. You can get or set the property with `SettingsViewModel.GetInstance().IsAutoErrorReportingEnabled`.  
+Everything is now complete and you can run the app and it will remember the value between invocations of the app.
+
+if you want to access the property elsewhere in the app, ensure you have called 
+`await Singleton<SettingsViewModel>.Instance.EnsureInstanceInitialized();`.   
+Then you can get or set the property with `Singleton<SettingsViewModel>.Instance.IsAutoErrorReportingEnabled`.  
 For example:
 
 ```csharp
@@ -174,12 +126,13 @@ try
 }
 catch (Exception exc)
 {
-    if (SettingsViewModel.GetInstance().IsAutoErrorReportingEnabled)
+    await Singleton<SettingsViewModel>.Instance.EnsureInstanceInitialized();
+    if (Singleton<SettingsViewModel>.Instance.IsAutoErrorReportingEnabled)
     {
         // Send the error details to the server 
     }
 }
 ```
 
-If you only use the instance in one or two places you could call `EnsureInstanceInitialized()` each time before you call `GetInstance()`. As `EnsureInstanceInitialized()` only needs to be called once before it is used, if you have lots of settings or need to access them in many places you could call it once as part of the `InitializeAsync()` method in **ActivationService.cs**.
+If you only use the value in one or two places you could call `EnsureInstanceInitialized()` each time before you access `Singleton<SettingsViewModel>.Instance`. But, as `EnsureInstanceInitialized()` only needs to be called once before it is used, if you have lots of settings or need to access them in many places you could call it once as part of the `InitializeAsync()` method in **ActivationService.cs**.
 
