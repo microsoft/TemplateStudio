@@ -1,0 +1,65 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Master/Detail",
+  "groupIdentity": "Microsoft.UWPTemplates.MasterDetailPage",
+  "identity": "Microsoft.UWPTemplates.MasterDetailPage.CodeBehind.CSharp",
+  "shortName": "Master/Detail Page",
+  "description": "The master-detail page (https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/master-details) has a master pane and a details pane for content. When an item in the master list is selected, the details pane is updated. This pattern is frequently used for email and address books.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "uct.type": "page",
+    "uct.framework": "CodeBehind",
+    "uct.version": "1.0.0",
+    "uct.order": "1"
+  },
+  "sourceName": "MasterDetail",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {      
+      "path": ".\\Views\\MasterDetailPage.xaml"
+    },
+    {
+      "path": ".\\Views\\MasterDetailPage.xaml.cs"
+    },
+    {
+      "path": ".\\Views\\MasterDetailDetailPage.xaml"
+    },
+    {
+      "path": ".\\Views\\MasterDetailDetailPage.xaml.cs"
+    },
+    {
+      "path": ".\\Views\\MasterDetailDetailControl.xaml"
+    },
+    {
+      "path": ".\\Views\\MasterDetailDetailControl.xaml.cs"
+    },
+    {
+      "path": ".\\Models\\SampleModel.cs"
+    },
+    {
+      "path": ".\\Services\\SampleModelService.cs"
+    }    
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Set"
+    }
+  }
+}

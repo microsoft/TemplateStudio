@@ -14,14 +14,14 @@
     "uct.version": "1.0.0",
     "uct.order": "1"
   },
-  "sourceName": "MapView",
+  "sourceName": "MapPage",
   "preferNameDirectory": true,
-  "PrimaryOutputs": [
-    { "path": ".\\View\\MapViewView.xaml" },
-    { "path": ".\\View\\MapViewView.xaml.cs" },
-    { "path": ".\\ViewModel\\MapViewViewModel.cs" },
+  "PrimaryOutputs":
+  [
+    { "path": ".\\Views\\MapPagePage.xaml" },
+    { "path": ".\\Views\\MapPagePage.xaml.cs" },
+    { "path": ".\\ViewModels\\MapPageViewModel.cs" },
     { "path": ".\\Assets\\map.png" },
-    { "path": ".\\Services\\ILocationService.cs" },
     { "path": ".\\Services\\LocationService.cs" }
   ],
   "symbols": {

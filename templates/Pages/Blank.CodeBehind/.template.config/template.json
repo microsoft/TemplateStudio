@@ -1,0 +1,47 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Blank",
+  "groupIdentity": "Microsoft.UWPTemplates.BlankPage",
+  "identity": "Microsoft.UWPTemplates.BlankPage.CodeBehind.CSharp",
+  "shortName": "Blank Page",
+  "description": "This is the most basic page.  A blank canvas to mold into whatever you wish.  The blank page leaves pretty much everything up to you.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "uct.type": "page",
+    "uct.framework": "CodeBehind",
+    "uct.version": "1.0.0",
+    "uct.order": "1"
+  },
+  "sourceName": "BlankView",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Views\\BlankViewPage.xaml"
+    },
+    {
+      "path": ".\\Views\\BlankViewPage.xaml.cs"
+    }
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Set"
+    }
+  }
+}

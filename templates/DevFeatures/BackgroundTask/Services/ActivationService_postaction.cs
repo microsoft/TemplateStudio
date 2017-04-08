@@ -1,8 +1,17 @@
-private async Task InitializeAsync()
+using System;
+using RootNamespace.Helper;
+
+namespace ItemNamespace.Services
 {
-    Singleton<Services.BackgroundTaskService>.Instance.RegisterBackgroundTasks();
-}
-private IEnumerable<ActivationHandler> GetActivationHandlers()
-{
-    yield return Singleton<Services.BackgroundTaskService>.Instance;
+    internal class ActivationService
+    {
+        private async Task InitializeAsync()
+        {
+            Singleton<BackgroundTaskService>.Instance.RegisterBackgroundTasks();
+        }
+        private IEnumerable<ActivationHandler> GetActivationHandlers()
+        {
+            yield return Singleton<BackgroundTaskService>.Instance;
+        }
+    }
 }

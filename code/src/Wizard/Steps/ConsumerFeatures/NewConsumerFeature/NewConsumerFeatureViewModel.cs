@@ -41,7 +41,7 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
         {
             _context = context;
             _dialog = newDevFeatureDialog;
-            _selectedNames = selectedTemplates.Select(t => t.Name);
+            _selectedNames = selectedTemplates.Select(t => t.Template.Name);
             _selectedTemplates = selectedTemplates;
         }
 
@@ -107,13 +107,13 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
 
         private bool IsAlreadyDefined(ITemplateInfo template)
         {
-            return _selectedTemplates.Any(t => t.TemplateName == template.Name);
+            return _selectedTemplates.Any(t => t.Template.Identity == template.Identity);
         }
 
         private void SaveAndClose()
         {            
             _dialog.DialogResult = true;
-            _dialog.Result = (ItemName, TemplateSelected.Name);
+            _dialog.Result = (ItemName, TemplateSelected.Info);
 
             _dialog.Close();
         }

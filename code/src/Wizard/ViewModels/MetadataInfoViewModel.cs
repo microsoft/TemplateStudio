@@ -47,18 +47,17 @@ namespace Microsoft.Templates.Wizard.ViewModels
             set { SetProperty(ref _icon, value); }
         }
 
-        public MetadataInfoViewModel(string name, MetadataInfo metadataInfo)
+        public MetadataInfoViewModel(MetadataInfo metadataInfo)
         {
-            this.Name = name;
-            
             if (metadataInfo == null)
             {
                 return;
             }
 
-            this.DisplayName = metadataInfo.DisplayName;
-            this.Description = metadataInfo.Description;
-            this.Icon = Extensions.CreateIcon(metadataInfo.Icon);
+            Name = metadataInfo.Name;
+            DisplayName = metadataInfo.DisplayName;
+            Description = metadataInfo.Description;
+            Icon = Extensions.CreateIcon(metadataInfo.Icon);
         }
     }
 }

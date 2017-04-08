@@ -31,5 +31,10 @@ namespace Microsoft.Templates.Core.Gen
             }
             return String.Empty;
         }
+
+        public override string ToString()
+        {
+            return $"{Name}, {Template?.Name}";
+        }
     }
 }

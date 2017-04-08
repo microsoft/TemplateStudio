@@ -20,31 +20,31 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {      
-      "path": ".\\View\\MasterDetailView.xaml"
+      "path": ".\\Views\\MasterDetailPage.xaml"
     },
     {
-      "path": ".\\View\\MasterDetailView.xaml.cs"
+      "path": ".\\Views\\MasterDetailPage.xaml.cs"
     },
     {
-      "path": ".\\View\\MasterDetailDetailView.xaml"
+      "path": ".\\Views\\MasterDetailDetailPage.xaml"
     },
     {
-      "path": ".\\View\\MasterDetailDetailView.xaml.cs"
+      "path": ".\\Views\\MasterDetailDetailPage.xaml.cs"
     },
     {
-      "path": ".\\View\\MasterDetailDetailControl.xaml"
+      "path": ".\\Views\\MasterDetailDetailControl.xaml"
     },
     {
-      "path": ".\\View\\MasterDetailDetailControl.xaml.cs"
+      "path": ".\\Views\\MasterDetailDetailControl.xaml.cs"
     },
     {
-      "path": ".\\ViewModel\\MasterDetailViewModel.cs"
+      "path": ".\\ViewModels\\MasterDetailViewModel.cs"
     },
     {
-      "path": ".\\ViewModel\\MasterDetailDetailViewModel.cs"
+      "path": ".\\ViewModels\\MasterDetailDetailViewModel.cs"
     },
     {
-      "path": ".\\Model\\SampleModel.cs"
+      "path": ".\\Models\\SampleModel.cs"
     },
     {
       "path": ".\\Services\\SampleModelService.cs"

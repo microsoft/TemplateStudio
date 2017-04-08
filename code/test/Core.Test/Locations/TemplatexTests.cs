@@ -255,7 +255,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
         [Fact]
-        public void ValidateSignature()
+        public void ValidateSignatureTamperedPackage()
         {
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = Templatex.LoadCert(@"Locations\TestCert.pfx", certPass);
@@ -270,6 +270,13 @@ namespace Microsoft.Templates.Core.Test.Locations
             Assert.False(Templatex.ValidateSignatures(outFile));
 
             File.Delete(outFile);
+        }
+
+        [Fact]
+        public void ValidateSignatureFromMsSigned()
+        {
+            var msSignedFile = @"Locations\MsSigned\Templates.mstx";
+            Assert.True(Templatex.ValidateSignatures(msSignedFile));
         }
 
         //TODO: Refactor this methods to other class
