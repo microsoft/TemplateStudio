@@ -45,6 +45,7 @@ namespace ItemNamespace.Services
         /// <returns>True if the initialization was successful and the service can be used.</returns>
         public async Task<bool> InitializeAsync(uint desiredAccuracyInMeters, double movementThreshold)
         {
+            // to find out more about getting location, go to https://docs.microsoft.com/en-us/windows/uwp/maps-and-location/get-location
             if (geolocator != null)
             {
                 geolocator.PositionChanged -= GeolocatorOnPositionChanged;
