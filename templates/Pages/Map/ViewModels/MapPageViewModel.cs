@@ -11,14 +11,16 @@ namespace ItemNamespace.ViewModels
 {
     public class MapPageViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        private const double defaultZoomLevel = 19;
+        // TODO UWPTemplates: Set your perferred default zoom level
+        private const double defaultZoomLevel = 17;
 
         private readonly LocationService locationService;
 
+        // TODO UWPTemplates: Set your perferred default location if a geolock can't be found.
         private readonly BasicGeoposition defaultPosition = new BasicGeoposition()
         {
-            Latitude = 47.639627,
-            Longitude = -122.128227
+            Latitude = 47.609425, 
+            Longitude = -122.3417
         };
 
         private double _zoomLevel;
