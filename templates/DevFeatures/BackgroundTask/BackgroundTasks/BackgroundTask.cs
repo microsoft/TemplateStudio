@@ -28,6 +28,7 @@ namespace ItemNamespace.BackgroundTasks
         public Task RunAsync(IBackgroundTaskInstance taskInstance)
         {
             SubscribeToEvents(taskInstance);
+
             return RunAsyncInternal(taskInstance);
         }
 
