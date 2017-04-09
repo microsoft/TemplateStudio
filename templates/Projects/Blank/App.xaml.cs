@@ -22,7 +22,7 @@ namespace uct.BlankProject
         {
             InitializeComponent();
 
-            //delays the creation of the service until is used, in activation
+            // delays the creation of the service until is used, in activation
             _activationService = new Lazy<ActivationService>(CreateActivationService);
         }
 

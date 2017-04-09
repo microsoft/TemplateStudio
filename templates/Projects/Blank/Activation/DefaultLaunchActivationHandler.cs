@@ -20,7 +20,7 @@ namespace uct.BlankProject.Activation
 
         protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
         {
-            //None of the ActivationHandlers has handled the app activation
+            // None of the ActivationHandlers has handled the app activation
             return NavigationService.Frame.Content == null;
         }
     }
