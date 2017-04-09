@@ -10,9 +10,9 @@ This section have the main concepts and definitions used in Windows Template Stu
 
 ## Main concepts
 Windows Template Studio is divided in the following main elements:
-* **Windows Template Studio Extension** --> This is a Visual Studio Extension project, which allows to install a new Visual Studio Project Template allowing the End-Users to have an improved experience when they want to create a new UWP App from the "File -> New Project...".  
-* **Generation Wizard** --> Once the End-User select the "Windows Template Studio" project type in the Visual Studio "File -> New Project..." dialog, the Generation Wizard will guide him through some steps to create user's preferred project. The Generation Wizard allows the user to select among the available Project Types, Frameworks, Pages, Developer Features and Customer Features 
-* **Templates** --> This is the repository of code templates used from the Generation Wizard. The templates are pieces of code used to generate the final project templates.
+* **Windows Template Studio Extension**: This is a Visual Studio Extension project, which allows to install a new Visual Studio Project Template allowing the End-Users to have an improved experience when they want to create a new UWP App from the "File -> New Project...".  
+* **Generation Wizard**: Once the End-User select the "Windows Template Studio" project type in the Visual Studio "File -> New Project..." dialog, the Generation Wizard will guide him through some steps to create user's preferred project. The Generation Wizard allows the user to select among the available Project Types, Frameworks, Pages, Developer Features and Customer Features 
+* **Templates**: This is the repository of code templates used from the Generation Wizard. The templates are pieces of code used to generate the final project templates.
 
 ### What is a Template?
 A template is just code with some metadata. The metadata will contain the template information: name, description, licensing, remarks, programming language, type, guids, etc. The template definition is based on [dotnet Template Engine](https://github.com/dotnet/templating).
@@ -35,8 +35,8 @@ As well as templates, the generation is based on [dotnet Template Engine](https:
 
 ### What is the Template Repository?
 The Templates Repository is the place where we will gather all templates and will make them available for the community (hosted on a CDN). We will have two repositories publicly available:
-* Master: The stable and public version of the templates.
-* VNext: The ongoing version of the templates.
+* **Master:** The stable and public version of the templates.
+* **VNext:** The ongoing version of the templates.
 
 ### What is the Visual Studio Extension?
 UWP App developers can take advantage of Windows Template Studio by installing our Visual Studio extension. This extension will allow developers to create Apps, with pages and/or features based on the Templates available in the public Repository. 
