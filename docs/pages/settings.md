@@ -1,4 +1,4 @@
-﻿# Settings Page
+# Settings Page
 
 By default the settings page uses contains a single boolean setting to track whether the app should be displayed with the Light or Dark theme.
 
@@ -31,7 +31,7 @@ Value: Automatically report errors
 
 When run it will now look like this:
 
-![](resources/modifications/Settings_added_checkbox.png)
+![](../resources/modifications/Settings_added_checkbox.png)
 
 But if you try and run it now you will get build errors as the ViewModel hasn't been updated to add the new property.
 
@@ -135,4 +135,3 @@ catch (Exception exc)
 ```
 
 If you only use the value in one or two places you could call `EnsureInstanceInitialized()` each time before you access `Singleton<SettingsViewModel>.Instance`. But, as `EnsureInstanceInitialized()` only needs to be called once before it is used, if you have lots of settings or need to access them in many places you could call it once as part of the `InitializeAsync()` method in **ActivationService.cs**.
-
