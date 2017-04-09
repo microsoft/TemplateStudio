@@ -17,6 +17,7 @@ namespace ItemNamespace.BackgroundTasks
         public override void Register()
         {
             var taskName = GetType().Name;
+
             if (!BackgroundTaskRegistration.AllTasks.Any(t => t.Value.Name == taskName))
             {
                 var builder = new BackgroundTaskBuilder()
@@ -24,13 +25,13 @@ namespace ItemNamespace.BackgroundTasks
                     Name = taskName
                 };
 
-                //TODO UWPTemplates: Define your trigger here, 
-                //for more info regarding background task registration, see 
-                //https://docs.microsoft.com/windows/uwp/launch-resume/create-and-register-an-inproc-background-task
-                builder.SetTrigger(new TimeTrigger(15, false));
+                // TODO UWPTemplates: Define your trigger here and set your conditions
+                // Note conditions are optional
+                // Documentation: https://docs.microsoft.com/windows/uwp/launch-resume/create-and-register-an-inproc-background-task
 
-                //TODO UWPTemplates: Add your conditions here, conditions are optional.
+                builder.SetTrigger(new TimeTrigger(15, false));
                 builder.AddCondition(new SystemCondition(SystemConditionType.UserPresent));
+                
                 builder.Register();
             }
         }
@@ -46,22 +47,27 @@ namespace ItemNamespace.BackgroundTasks
 
             return Task.Run(() =>
             {
-                //TODO UWPTemplates: Insert the code that should be executed in the background task here. 
-                //Documentation: https://docs.microsoft.com/en-us/windows/uwp/launch-resume/support-your-app-with-background-tasks
 
-                //This sample initializes a timer, the timer counts in steps of 10 until 100 and updates the values for progress and message in each step. 
-                //To show the background progress and message on any page in the application, subcribe to the events 
-                //Progress and Completed exposed by the backgroundtask registration.  
-                //Documentation: https://docs.microsoft.com/windows/uwp/launch-resume/monitor-background-task-progress-and-completion
+                // TODO UWPTemplates: Insert the code that should be executed in the background task here. 
+                // This sample initializes a timer that counts to 100 in steps of 10.  It updates Message each time.
+
+                // Documentation: 
+                //      * General: https://docs.microsoft.com/en-us/windows/uwp/launch-resume/support-your-app-with-background-tasks
+                //      * Debug: https://docs.microsoft.com/en-us/windows/uwp/launch-resume/debug-a-background-task 
+                //      * Monitoring: https://docs.microsoft.com/windows/uwp/launch-resume/monitor-background-task-progress-and-completion
+
+                // To show the background progress and message on any page in the application,  
+                // subscribe to the Progress and Completed events. 
+                // You can do this via "BackgroundTaskService.GetBackgroundTasksRegistration"
+
                 _taskInstance = taskInstance;
                 ThreadPoolTimer.CreatePeriodicTimer(new TimerElapsedHandler(SampleTimerCallback), TimeSpan.FromSeconds(1));
             });
         }
-
         public override void OnCanceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason)
         {
-           //TODO UWPTemplates: Insert code to handle the cancelation request here. 
-           //Documentation: https://docs.microsoft.com/windows/uwp/launch-resume/handle-a-cancelled-background-task
+           // TODO UWPTemplates: Insert code to handle the cancelation request here. 
+           // Documentation: https://docs.microsoft.com/windows/uwp/launch-resume/handle-a-cancelled-background-task
         }
 
         private void SampleTimerCallback(ThreadPoolTimer timer)
