@@ -11,12 +11,12 @@ namespace ItemNamespace.ViewModels
 {
     public class MapPageViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        // TODO UWPTemplates: Set your perferred default zoom level
+        // TODO UWPTemplates: Set your preferred default zoom level
         private const double defaultZoomLevel = 17;
 
         private readonly LocationService locationService;
 
-        // TODO UWPTemplates: Set your perferred default location if a geolock can't be found.
+        // TODO UWPTemplates: Set your preferred default location if a geolock can't be found.
         private readonly BasicGeoposition defaultPosition = new BasicGeoposition()
         {
             Latitude = 47.609425, 
@@ -73,15 +73,6 @@ namespace ItemNamespace.ViewModels
                 map.MapServiceToken = "";
 
                 AddMapIcon(map, Center, "Your location");
-            }
-        }
-
-        public void Cleanup()
-        {
-            if (locationService != null)
-            {
-                locationService.PositionChanged -= LocationServicePositionChanged;
-                locationService.StopListening();
             }
         }
 
