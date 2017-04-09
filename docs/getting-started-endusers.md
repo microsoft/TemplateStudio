@@ -7,7 +7,7 @@ The following explain common ways to extend what is generated for you.
 ## Project Types
 
 * Basic
-* [Navigation Pane](projecttype-navigationpane.md)
+* [Navigation Pane](projectTypes/navigationpane.md)
 * Pivot and Tabs
 
 ## Frameworks
@@ -20,7 +20,7 @@ The following explain common ways to extend what is generated for you.
 * Blank
 * Map
 * Master/Detail
-* [Settings](pages-settings.md)
+* [Settings](pages/settings.md)
 * Tab
 * Web View
 

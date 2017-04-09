@@ -1,5 +1,4 @@
-Windows Template Studio Telemetry
-=================================
+# Windows Template Studio Telemetry
 
 Windows Template Studio wizard is ready to gather basic diagnostics telemetry and usage data through [Application Insights](https://azure.microsoft.com/en-us/services/application-insights/). 
 
@@ -58,5 +57,4 @@ WindowsTemplateStudio.config.json
   "RemoteTelemetryKey": "your-key",
   "DiagnosticsTraceLevel": "Warning"
 }
-``` 
-
+```
