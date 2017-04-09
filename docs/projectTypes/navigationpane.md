@@ -10,7 +10,7 @@ The navigation pane project type includes a navigation menu displayed in a panel
 By default every item in the navigation pane is displayed with the symbol for a document.
 When every item has the same icon it is hard to differentiate between them when the navigation panel is collapsed. In almost all cases you will want to change the icon used 
 
-![](resources/modifications/NavMenu_Different_Symbols.png)
+![](../resources/modifications/NavMenu_Different_Symbols.png)
 
 Navigate to `ViewModel/ShellViewModel.cs` and change the `PopulateNavItems` method.
 
