@@ -1,4 +1,4 @@
-﻿# Navigation Pane
+# Navigation Pane
 
 The navigation pane project type includes a navigation menu displayed in a panel at the side of the screen and which can be expanded with the Hamburger icon. The menu can be modified in the following ways.
 
