@@ -220,6 +220,10 @@ namespace Microsoft.Templates.Core.Test
         {
             var allTemplates = _fixture.Repository.GetAll();
             var target = allTemplates.FirstOrDefault(t => t.Name == templateName);
+            if (target == null)
+            {
+                throw new ArgumentException($"There is no template with name '{templateName}'. Number of templates: '{allTemplates.Count()}'");
+            }
             return target;
         }
     }

@@ -20,9 +20,10 @@ namespace Microsoft.Templates.Core.Gen
 {
     public class GenParams
     {
-        public const string Framework = "framework";
-        public const string Username = "UserName";
+        public const string Username = "wts.userName";
         public const string RootNamespace = "RootNamespace";
         public const string ItemNamespace = "ItemNamespace";
+        public const string WizardVersion = "wts.wizardVersion";
+        public const string TemplatesVersion = "wts.templatesVersion";
     }
 }
