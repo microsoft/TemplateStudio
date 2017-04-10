@@ -42,7 +42,8 @@ namespace Microsoft.Templates.Core.PostActions
             var postActions = new List<PostAction>();
 
             AddMergeActions(postActions, $"*{MergePostAction.GlobalExtension}*");
-           
+            postActions.Add(new SetDefaultSolutionConfigurationPostAction());
+
             return postActions;
         }
 
@@ -53,7 +54,6 @@ namespace Microsoft.Templates.Core.PostActions
                 case TemplateType.Project:
                     postActions.Add(new AddProjectToSolutionPostAction( genResult.ResultInfo.PrimaryOutputs));
                     postActions.Add(new GenerateTestCertificatePostAction(genInfo.GetUserName()));
-                    postActions.Add(new SetDefaultSolutionConfigurationPostAction());
                     break;
                 case TemplateType.Page:
                     postActions.Add(new AddItemToProjectPostAction(genResult.ResultInfo.PrimaryOutputs));
