@@ -165,7 +165,8 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
                     CodeGen.Instance.Cache.Scan(_content.LatestContentFolder);
-                    CodeGen.Instance.Cache.WriteTemplateCaches();
+
+                    CodeGen.Instance.Settings.SettingsLoader.Save();
 
                     CurrentContentFolder = CodeGen.Instance.GetCurrentContentSource(WorkingFolder);
                 }
