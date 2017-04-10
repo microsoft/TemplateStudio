@@ -203,7 +203,7 @@ namespace uct.ItemName.ViewModels
                 _primaryListView.SelectedIndex = -1;
                 _primaryListView.SelectedItem = null;
 
-                //Navigate to selected item
+                // Navigate to selected item
                 Navigate(_secondaryListView.SelectedItem);
             }
         }
