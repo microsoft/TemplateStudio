@@ -121,8 +121,8 @@ using App147.Services;
         {
             _navigationItems.Clear();
 
-            //More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
-            //Edit String/en-US/Resources.resw: Add a menu item title for each page
+            // More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
+            // Edit String/en-US/Resources.resw: Add a menu item title for each page
             _navigationItems.Add(ShellNavigationItem.FromType<MainPage>("Shell_Main".GetLocalized(), Symbol.Document));
             _navigationItems.Add(ShellNavigationItem.FromType<ProductsPage>("Shell_Products".GetLocalized(), Symbol.Document));
             _navigationItems.Add(ShellNavigationItem.FromType<FindUsPage>("Shell_FindUs".GetLocalized(), Symbol.Document));

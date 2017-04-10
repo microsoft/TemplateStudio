@@ -69,7 +69,7 @@ namespace ItemNamespace.ViewModels
 
             if (map != null)
             {
-                //TODO UWPTemplates: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
+                // TODO UWPTemplates: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
                 map.MapServiceToken = "";
 
                 AddMapIcon(map, Center, "Your location");

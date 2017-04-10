@@ -33,7 +33,7 @@ The instrumentation key is setup through the wizard configuration. The default c
 public class Configuration
 {
     ...
-    //Set your Application Insights telemetry instrumentation key here (configure it in a WindowsTemplateStudio.config.json located in the working folder).
+    // Set your Application Insights telemetry instrumentation key here (configure it in a WindowsTemplateStudio.config.json located in the working folder).
     public string RemoteTelemetryKey { get; set; } = "<SET_YOUR_OWN_KEY>"; 
     ...
 }

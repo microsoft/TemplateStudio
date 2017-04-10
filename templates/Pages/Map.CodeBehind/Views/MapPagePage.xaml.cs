@@ -70,7 +70,7 @@ namespace ItemNamespace.Views
 
             if (mapControl != null)
             {
-                //TODO UWPTemplates: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
+                // TODO UWPTemplates: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
                 mapControl.MapServiceToken = "";
 
                 AddMapIcon(Center, "Your location");

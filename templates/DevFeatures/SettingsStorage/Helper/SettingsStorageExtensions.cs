@@ -7,10 +7,10 @@ namespace ItemNamespace.Helper
 {
     public static class SettingsStorageExtensions
     {
-        //TODO UWPTemplates: Use this extension methods to store and retrieve in local and roaming app data 
-        //For mor info regarding storing and retrieving app data, 
-        //please see: https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data
-        
+        // TODO UWPTemplates: Use this extension methods to store and retrieve in local and roaming app data 
+        // For more info regarding storing and retrieving app data, 
+        // Documentation: https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data
+
         private const string fileExtension = ".json";
 
         public static bool IsRoamingStorageAvailable(this ApplicationData appData)
