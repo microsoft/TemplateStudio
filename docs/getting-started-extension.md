@@ -4,9 +4,9 @@
 
 ### Visual Studio Extension Feed URLs for Windows Template Studio
 
+* **(Coming soon)** The official extension from the [Visual Studio Gallery](https://visualstudiogallery.msdn.microsoft.com/)
 * **Pre-release (stable)** <https://www.myget.org/F/prerelease/vsix/>
 * **Nightly** <https://www.myget.org/F/vsixextensions/vsix/>
-* **(Coming soon)** The official extension from the [Visual Studio Gallery](https://visualstudiogallery.msdn.microsoft.com/)
 
 ### Pre-release build version
 
