@@ -7,20 +7,7 @@ namespace uct.TabbedPivotProject.Helper
     {
         public static string GetLocalized(this string resourceKey)
         {
-            try
-            {
-                var result = new ResourceLoader().GetString(resourceKey);
-
-                if (!string.IsNullOrEmpty(result))
-                {
-                    return result;
-                }
-            }
-            catch (COMException)
-            {
-                //IF .RESW FILE IS MISSING WE GET THIS EXCEPTION
-            }
-            return resourceKey;
+            return new ResourceLoader().GetString(resourceKey);
         }
     }
 }
