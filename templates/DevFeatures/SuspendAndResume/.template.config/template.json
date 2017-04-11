@@ -23,8 +23,11 @@
     {
       "path": ".\\Services\\SuspendAndResumeService.cs"
     },
-    { 
-      "path":".\\Services\\OnBackgroundEnteringEventArgs.cs"
+    {
+      "path": ".\\Services\\OnBackgroundEnteringEventArgs.cs"
+    },
+    {
+      "path": ".\\Services\\SuspensionState.cs"
     }
   ],
   "symbols": {

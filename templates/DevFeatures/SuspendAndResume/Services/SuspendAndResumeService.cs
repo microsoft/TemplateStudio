@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using RootNamespace.Helper;
+
+using Windows.ApplicationModel.Activation;
 using Windows.Storage;
 using Windows.UI.Xaml.Controls;
-using Windows.ApplicationModel.Activation;
 
 using RootNamespace.Activation;
+using RootNamespace.Helper;
 
 namespace ItemNamespace.Services
 {
@@ -30,6 +31,7 @@ namespace ItemNamespace.Services
             var onBackgroundEnteringArgs = new OnBackgroundEnteringEventArgs(suspensionState, target);
 
             OnBackgroundEntering?.Invoke(this, onBackgroundEnteringArgs);
+
             await ApplicationData.Current.LocalFolder.SaveAsync(stateFilename, onBackgroundEnteringArgs);
         }
 
@@ -46,7 +48,6 @@ namespace ItemNamespace.Services
         private async Task RestoreStateAsync()
         {
             var saveState = await ApplicationData.Current.LocalFolder.ReadAsync<OnBackgroundEnteringEventArgs>(stateFilename);
-           
         }
     }
 }
