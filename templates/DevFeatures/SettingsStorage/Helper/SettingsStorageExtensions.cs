@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+
 using Windows.Storage;
 
 namespace ItemNamespace.Helper
@@ -33,6 +34,7 @@ namespace ItemNamespace.Helper
             {
                 return default(T);
             }
+
             var file = await folder.GetFileAsync($"{name}.json");
             var fileContent = await FileIO.ReadTextAsync(file);
 
@@ -56,11 +58,13 @@ namespace ItemNamespace.Helper
             if (settings.Values.ContainsKey(key))
             {
                 var value = (string)settings.Values[key];
+
                 if (value != null)
                 {
                     return await Json.ToObjectAsync<T>(value);
                 }
             }
+
             return default(T);
         }
 
