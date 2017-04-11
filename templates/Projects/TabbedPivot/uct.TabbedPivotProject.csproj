@@ -1,3 +1,4 @@
+<!--/-:msbuild-conditional:noEmit -->
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -88,8 +89,15 @@
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <None Include="project.json" />
+	  <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>5.3.1</Version>
+    </PackageReference>
+	  <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
+      <Version>1.0.3</Version>
+    </PackageReference>
+    <!-- Nuget package references -->
+  </ItemGroup> 
+  <ItemGroup>
     <PRIResource Include="Strings\en-us\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
@@ -142,3 +150,4 @@
   </Target>
   -->
 </Project>
+<!--/+:msbuild-conditional:noEmit -->

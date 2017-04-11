@@ -26,6 +26,7 @@ using Microsoft.VisualStudio.TemplateWizard;
 using NuGet;
 using NuGet.VisualStudio;
 using Microsoft.Templates.Core;
+using EnvDTE80;
 
 namespace Microsoft.Templates.Wizard.VisualStudio
 {
@@ -54,6 +55,16 @@ namespace Microsoft.Templates.Wizard.VisualStudio
             }
 
             proj.Save();
+        }
+
+        public override void RefreshProject()
+        {
+            var proj = GetActiveProject();
+
+            var path = proj.FullName;
+
+            Dte.Solution.Remove(proj);
+            Dte.Solution.AddFromFile(path);
         }
 
         public override bool SetActiveConfigurationAndPlatform(string configurationName, string platformName)
@@ -243,8 +254,12 @@ namespace Microsoft.Templates.Wizard.VisualStudio
             var installedPackages = installerServices.GetInstalledPackages().ToList();
             var activeProject = GetActiveProject();
 
-            installedPackages.ForEach(p => uninstaller.UninstallPackage(activeProject, p.Id, false));
-            installedPackages.ForEach(p => installer.InstallPackage("All", activeProject, p.Id, p.VersionString, true));
+            var p = installedPackages.FirstOrDefault();
+            if (p != null)
+            {
+                uninstaller.UninstallPackage(activeProject, p.Id, false);
+                installer.InstallPackage("All", activeProject, p.Id, p.VersionString, true);
+            }
         }
 
         public override void CollapseSolutionItems()
