@@ -1,4 +1,4 @@
-# Getting Started with the Extension
+# Installing / Using the extension
 
 ## Installing the Visual Studio Extension
 
@@ -31,3 +31,11 @@ You can start working with Windows Template Studio by cloning [our repo](https:/
 ## Nightly Dev-release
 
 If you want to have updates from in-progress changes.  This feed will have the result of the daily dev-branch integration so expect some instability. This extension can be installed side by side with the official and pre-release, anyway, installing this extension is at your own risk.
+
+## Table of Contents
+
+* [**Installing / Using the extension**](getting-started-extension.md)
+* [Using and extending your file->new](getting-started-endusers.md)
+* [Concepts of Windows Template Studio](readme.md)
+* [Getting started with the generator codebase](getting-started-developers.md)
+* [Authoring Templates](templates.md)
