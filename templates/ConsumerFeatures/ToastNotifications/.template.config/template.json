@@ -24,6 +24,9 @@
   "PrimaryOutputs": [
     {
       "path": ".\\Services\\ToastNotificationsFeatureService.cs"
+    },
+    {
+      "path": ".\\Services\\ToastNotificationsFeatureService.Samples.cs"
     }
   ],
   "symbols": {
