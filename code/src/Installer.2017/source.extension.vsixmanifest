@@ -19,6 +19,7 @@
   <Prerequisites>
     <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" DisplayName="Visual Studio core editor" />
     <Prerequisite Id="Microsoft.VisualStudio.Component.Windows10SDK.15063.UWP" Version="[15.0,16.0)" DisplayName="Windows 10 SDK (10.0.15063.0) for UWP: C#, VB, JS" />
+    <Prerequisite Id="Microsoft.VisualStudio.Component.Windows10SDK.14393" Version="[15.0,16.0)" DisplayName="Windows 10 SDK (10.0.14393.0)" />
     <Prerequisite Id="Microsoft.VisualStudio.Component.UWP.Support" Version="[15.0,16.0)" DisplayName="Universal Windows Platform tools" />
   </Prerequisites>
   <Assets>
