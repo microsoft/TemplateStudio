@@ -49,6 +49,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             File.WriteAllLines(originalFilePath, result);
 
             File.Delete(_config);
+
+            //REFRESH PROJECT TO UN-DIRTY IT
+            if (Path.GetExtension(_config).Equals(".csproj", StringComparison.OrdinalIgnoreCase))
+            {
+                Gen.GenContext.ToolBox.Shell.RefreshProject();
+            }
         }
 
         private string GetFilePath()

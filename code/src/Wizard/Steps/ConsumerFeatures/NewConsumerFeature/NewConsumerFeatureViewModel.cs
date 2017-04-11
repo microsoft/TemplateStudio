@@ -41,7 +41,7 @@ namespace Microsoft.Templates.Wizard.Steps.ConsumerFeatures.NewConsumerFeature
         {
             _context = context;
             _dialog = newDevFeatureDialog;
-            _selectedNames = selectedTemplates.Select(t => t.Template.Name);
+            _selectedNames = selectedTemplates.Select(t => t.Name);
             _selectedTemplates = selectedTemplates;
         }
 
