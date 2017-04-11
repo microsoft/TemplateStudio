@@ -48,7 +48,6 @@ namespace ItemNamespace.Services
         private async Task RestoreStateAsync()
         {
             var saveState = await ApplicationData.Current.LocalFolder.ReadAsync<OnBackgroundEnteringEventArgs>(stateFilename);
-           
         }
     }
 }
