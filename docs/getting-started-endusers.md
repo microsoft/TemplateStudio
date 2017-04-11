@@ -1,4 +1,4 @@
-﻿# Getting Started for End Users
+﻿# Using and extending your file->new
 
 Projects created with the Template Studio are intended as a starting point. They aren't complete apps and will require modification and extension before they're finished.
 
@@ -33,7 +33,10 @@ The following explain common ways to extend what is generated for you.
 * Live Tile
 * Toast Notification
 
-## Other
+## Table of Contents
 
-* Localization
-
+* [Installing / Using the extension](getting-started-extension.md)
+* [**Using and extending your file->new**](getting-started-endusers.md)
+* [Concepts of Windows Template Studio](readme.md)
+* [Getting started with the generator codebase](getting-started-developers.md)
+* [Authoring Templates](templates.md)

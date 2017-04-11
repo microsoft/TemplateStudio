@@ -24,9 +24,9 @@ Add the following below the `ToggleSwitch` inside the `StackPanel` in **Settings
           Margin="0,8,0,0" />
 ```
 
-Add an entry to **Srtings/en-us/Resources.resw**
+Add an entry to **Strings/en-us/Resources.resw**
 
-Name: Settings_EnableAutoErrorReporting.Content  
+Name: Settings_EnableAutoErrorReporting.Content
 Value: Automatically report errors
 
 When run it will now look like this:
@@ -43,7 +43,7 @@ Because we may want to access settings in various parts of the app it's importan
 
 The generated code in includes a Singleton helper class to provide access to a single instance of the view model which we can use everywhere.
 
-With this knowledge we can now add the new property for accessing our stored setting. We also need to add a new, awaitable initializer for the property too.  
+With this knowledge we can now add the new property for accessing our stored setting. We also need to add a new, awaitable initializer for the property too.
 Add the following to **SettingsViewModel.cs**
 
 ```csharp
@@ -80,8 +80,7 @@ public async Task EnsureInstanceInitialized()
 }
 ```
 
-We must now update our uses of the ViewModel.   
-In **SettingsView.xaml.cs** change the property declaration from this:
+We must now update our uses of the ViewModel. In **SettingsView.xaml.cs** change the property declaration from this:
 
 ```csharp
 public SettingsViewModel ViewModel { get; } = new SettingsViewModel();
@@ -92,7 +91,8 @@ to this:
 ```csharp
 public SettingsViewModel ViewModel { get; } = Singleton<SettingsViewModel>.Instance;
 ```
-so it uses the single instance.  
+
+so it uses the single instance.
 
 Then change the `OnNavigatedTo()` method so that instead of calling the old Initialize method, like this:
 
@@ -114,9 +114,7 @@ protected override async void OnNavigatedTo(NavigationEventArgs e)
 
 Everything is now complete and you can run the app and it will remember the value between invocations of the app.
 
-if you want to access the property elsewhere in the app, ensure you have called 
-`await Singleton<SettingsViewModel>.Instance.EnsureInstanceInitialized();`.   
-Then you can get or set the property with `Singleton<SettingsViewModel>.Instance.IsAutoErrorReportingEnabled`.  
+if you want to access the property elsewhere in the app, ensure you have called `await Singleton<SettingsViewModel>.Instance.EnsureInstanceInitialized();`. Then you can get or set the property with `Singleton<SettingsViewModel>.Instance.IsAutoErrorReportingEnabled`.
 For example:
 
 ```csharp
@@ -129,7 +127,7 @@ catch (Exception exc)
     await Singleton<SettingsViewModel>.Instance.EnsureInstanceInitialized();
     if (Singleton<SettingsViewModel>.Instance.IsAutoErrorReportingEnabled)
     {
-        // Send the error details to the server 
+        // Send the error details to the server
     }
 }
 ```

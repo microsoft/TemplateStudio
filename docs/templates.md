@@ -2,9 +2,13 @@
 
 Templates are used to generate the code. In Windows Template Studio we have the following kind of templates: Frameworks, Projects Types, Pages, Developer Features and Consumer Features.
 
-For example, you may want to generate a project to create an App which use the Split View (hamburger) menu, based on MVVM Light framework, with some pages (Home, Products -a master detail page-, Find Us -a map page-, etc. ) and which include some developer features. Or maybe you want to create the same project but avoiding to depend on a certain external framework, in other words, you want the same stuff but using a MVVM Basic framework.  
+For example, you may want to generate a project to create an App which use the Split View (hamburger) menu, based on MVVM Light framework, with some pages (Home, Products -a master detail page-, Find Us -a map page-, etc. ) and which include some developer features. Or maybe you want to create the same project but avoiding to depend on a certain external framework, in other words, you want the same stuff but using a MVVM Basic framework.
 
 The Window Template Studio allow to combine the templates at your own convenience to generate the project you want, using your preferred framework and using the features you most like.
+
+## Interesting in contributing
+
+Do you want to contribute? Here are our [contribution guidelines](../contributing.md).
 
 ## Template Authoring principles
 
@@ -129,15 +133,15 @@ using App147.Services;
             _navigationItems.Add(ShellNavigationItem.FromType<SettingsPage>("Shell_Settings".GetLocalized(), Symbol.Document));
         }
 ...
-```  
+```
 
 But the Pages templates are Framework and Project type agnostics, and more over, pages itself have no conscience of ShellViewModel so, how this code can be generated?. Here is when the post-actions take place. 
 
 After the code is generated, the [PostActionFactory]() review all the generated files and, for those which the name contains "_postaction", execute the post-action defined in its content.
 
 ### Post-Action Types
+
 *TODO:* complete types of postactions
-### 
 
 ## Frameworks Templates
 
@@ -167,8 +171,6 @@ This kind of templates have the following structure:
 After the code is generated, the [PostActionFactory]() review all the generated files and, for those which the name contains "_postaction", execute the post-action defined in its content.
 
 ### Post-Action Types
-
-### 
 
 ## Frameworks Templates
 
@@ -202,3 +204,10 @@ This kind of templates have the following structure:
 
 
 
+## Table of Contents
+
+* [Installing / Using the extension](getting-started-extension.md)
+* [Using and extending your file->new](getting-started-endusers.md)
+* [Concepts of Windows Template Studio](readme.md)
+* [Getting started with the generator codebase](getting-started-developers.md)
+* [**Authoring Templates**](templates.md)

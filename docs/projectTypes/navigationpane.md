@@ -8,7 +8,7 @@ The navigation pane project type includes a navigation menu displayed in a panel
 ## Change the icon for an item
 
 By default every item in the navigation pane is displayed with the symbol for a document.
-When every item has the same icon it is hard to differentiate between them when the navigation panel is collapsed. In almost all cases you will want to change the icon used 
+When every item has the same icon it is hard to differentiate between them when the navigation panel is collapsed. In almost all cases you will want to change the icon used.
 
 ![](../resources/modifications/NavMenu_Different_Symbols.png)
 
@@ -30,9 +30,8 @@ private void PopulateNavItems()
 }
 ```
 
-The icons are created using the `Windows.UI.Xaml.Controls.Symbol` enumeration. You can view all the symbols available at https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.symbol  
+The icons are created using the `Windows.UI.Xaml.Controls.Symbol` enumeration. You can view all the symbols available at <https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.symbol>
 
 ## Change the text for an item
 
-The text for a shell navigation item comes from the localized string resources.  
-For an item which defines the text with `"Shell_Main".GetLocalized()` the value "Shell_Main" corresponds with an entry in `Resources.resw`. Change the value in the resources file to alter what is displayed in the navigation menu.
+The text for a shell navigation item comes from the localized string resources. For an item which defines the text with `"Shell_Main".GetLocalized()` the value "Shell_Main" corresponds with an entry in `Resources.resw`. Change the value in the resources file to alter what is displayed in the navigation menu.

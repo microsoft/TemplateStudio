@@ -1,12 +1,12 @@
-# Getting Started with the Extension
+# Installing / Using the extension
 
 ## Installing the Visual Studio Extension
 
 ### Visual Studio Extension Feed URLs for Windows Template Studio
 
+* **(Coming soon)** The official extension from the [Visual Studio Gallery](https://visualstudiogallery.msdn.microsoft.com/)
 * **Pre-release (stable)** <https://www.myget.org/F/prerelease/vsix/>
 * **Nightly** <https://www.myget.org/F/vsixextensions/vsix/>
-* **(Coming soon)** The official extension from the [Visual Studio Gallery](https://visualstudiogallery.msdn.microsoft.com/)
 
 ### Pre-release build version
 
@@ -31,3 +31,11 @@ You can start working with Windows Template Studio by cloning [our repo](https:/
 ## Nightly Dev-release
 
 If you want to have updates from in-progress changes.  This feed will have the result of the daily dev-branch integration so expect some instability. This extension can be installed side by side with the official and pre-release, anyway, installing this extension is at your own risk.
+
+## Table of Contents
+
+* [**Installing / Using the extension**](getting-started-extension.md)
+* [Using and extending your file->new](getting-started-endusers.md)
+* [Concepts of Windows Template Studio](readme.md)
+* [Getting started with the generator codebase](getting-started-developers.md)
+* [Authoring Templates](templates.md)
