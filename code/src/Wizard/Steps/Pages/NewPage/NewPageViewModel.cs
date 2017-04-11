@@ -78,7 +78,6 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
             }
         }
 
-        //TODO: MAKE THIS METHOD TRULY ASYNC
         public async Task InitializeAsync()
         {
             Templates.Clear();
