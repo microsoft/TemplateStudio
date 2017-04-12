@@ -18,8 +18,7 @@ namespace RootNamespace
         private async void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e)
         {
             var deferral = e.GetDeferral();
-            await Helper.Singleton<SuspendAndResumeService>.Instance.SaveStateAsync();
-
+            await Helpers.Singleton<SuspendAndResumeService>.Instance.SaveStateAsync();
             deferral.Complete();
         }
         //}]}

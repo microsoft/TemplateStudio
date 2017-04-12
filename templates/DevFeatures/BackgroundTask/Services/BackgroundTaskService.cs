@@ -8,7 +8,7 @@ using Windows.ApplicationModel.Background;
 
 using RootNamespace.Activation;
 using RootNamespace.BackgroundTasks;
-using RootNamespace.Helper;
+using RootNamespace.Helpers;
 
 namespace ItemNamespace.Services
 {

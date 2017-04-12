@@ -1,5 +1,5 @@
 using RootNamespace.Activation;
-using RootNamespace.Helper;
+using RootNamespace.Helpers;
 using System;
 using System.Linq;
 using System.Threading.Tasks;

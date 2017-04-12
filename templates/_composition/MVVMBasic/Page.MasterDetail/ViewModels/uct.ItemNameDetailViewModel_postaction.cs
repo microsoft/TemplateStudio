@@ -1,2 +1,2 @@
-using RootNamespace.Helper;
+using RootNamespace.Helpers;
 using System;

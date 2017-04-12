@@ -5,10 +5,9 @@
         public ViewModelLocator()
         {
             //^^
-            RegisterShell();
+            SimpleIoc.Default.Register<ShellViewModel>();
         }
 
         public ShellViewModel ShellViewModel => ServiceLocator.Current.GetInstance<ShellViewModel>();
-        public void RegisterShell() => SimpleIoc.Default.Register<ShellViewModel>();
     }
 }

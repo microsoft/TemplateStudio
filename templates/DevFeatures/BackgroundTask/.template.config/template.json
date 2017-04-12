@@ -29,7 +29,7 @@
       "path": ".\\BackgroundTasks\\BackgroundTaskFeature.cs"
     },
     {
-      "path": ".\\Helper\\TaskExtensions.cs"
+      "path": ".\\Helpers\\TaskExtensions.cs"
     }
   ],
   "symbols": {

@@ -1,4 +1,4 @@
-﻿using uct.ItemName.Helper;
+﻿using uct.ItemName.Helpers;
 
 namespace uct.ItemName.ViewModels
 {

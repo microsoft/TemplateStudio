@@ -2,7 +2,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using System.Windows.Input;
-using ItemNamespace.Helper;
+using ItemNamespace.Helpers;
 using ItemNamespace.Models;
 using ItemNamespace.Services;
 
