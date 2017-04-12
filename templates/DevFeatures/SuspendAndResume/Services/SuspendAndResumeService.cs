@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using RootNamespace.Helper;
+using RootNamespace.Helpers;
 using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 using Windows.ApplicationModel.Activation;

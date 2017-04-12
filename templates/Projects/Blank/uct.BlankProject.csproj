@@ -121,8 +121,8 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helper\ResourceExtensions.cs" />
-    <Compile Include="Helper\Singleton.cs" />
+    <Compile Include="Helpers\ResourceExtensions.cs" />
+    <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

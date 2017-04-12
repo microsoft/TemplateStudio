@@ -1,5 +1,5 @@
 using System;
-using RootNamespace.Helper;
+using RootNamespace.Helpers;
 
 namespace ItemNamespace.Services
 {

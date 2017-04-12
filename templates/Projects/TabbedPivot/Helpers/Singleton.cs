@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 
-namespace uct.BlankProject.Helper
+namespace uct.TabbedPivotProject.Helpers
 {
     internal static class Singleton<T> where T : new()
     {
