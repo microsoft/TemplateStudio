@@ -2,9 +2,8 @@
 using Microsoft.Practices.ServiceLocation;
 using RootNamespace.Services;
 using RootNamespace.Views;
-using RootNamespace.ViewModels;
 
-namespace RootNamespace
+namespace RootNamespace.ViewModels
 {
     public class ViewModelLocator
     {
