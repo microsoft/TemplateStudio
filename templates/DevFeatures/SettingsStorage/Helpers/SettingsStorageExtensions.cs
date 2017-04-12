@@ -1,16 +1,17 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+
 using Windows.Storage;
 
 namespace ItemNamespace.Helpers
 {
     public static class SettingsStorageExtensions
     {
-        //TODO UWPTemplates: Use this extension methods to store and retrieve in local and roaming app data 
-        //For mor info regarding storing and retrieving app data, 
-        //please see: https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data
-        
+        // TODO UWPTemplates: Use this extension methods to store and retrieve in local and roaming app data 
+        // For more info regarding storing and retrieving app data, 
+        // Documentation: https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data
+
         private const string fileExtension = ".json";
 
         public static bool IsRoamingStorageAvailable(this ApplicationData appData)
@@ -33,6 +34,7 @@ namespace ItemNamespace.Helpers
             {
                 return default(T);
             }
+
             var file = await folder.GetFileAsync($"{name}.json");
             var fileContent = await FileIO.ReadTextAsync(file);
 
@@ -56,11 +58,13 @@ namespace ItemNamespace.Helpers
             if (settings.Values.ContainsKey(key))
             {
                 var value = (string)settings.Values[key];
+
                 if (value != null)
                 {
                     return await Json.ToObjectAsync<T>(value);
                 }
             }
+
             return default(T);
         }
 

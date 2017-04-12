@@ -1,4 +1,5 @@
 using System;
+
 using Windows.ApplicationModel;
 
 namespace RootNamespace
@@ -8,6 +9,7 @@ namespace RootNamespace
         public App()
         {
             InitializeComponent();
+
             EnteredBackground += App_EnteredBackground;
         }
         //^^

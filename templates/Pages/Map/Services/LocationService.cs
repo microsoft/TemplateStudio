@@ -4,31 +4,48 @@ using Windows.Devices.Geolocation;
 
 namespace ItemNamespace.Services
 {
-    public class LocationService : ILocationService
+    public class LocationService
     {
         private Geolocator geolocator;
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Raised when the current position is updated.
+        /// </summary>
         public event EventHandler<Geoposition> PositionChanged;
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Gets the last known recorded position.
+        /// </summary>
         public Geoposition CurrentPosition { get; private set; }
 
-        /// <inheritdoc />
-        public Task InitializeAsync()
+        /// <summary>
+        /// Initializes the location service with a default accuracy (100 meters) and movement threshold.
+        /// </summary>
+        /// <returns>True if the initialization was successful and the service can be used.</returns>
+        public Task<bool> InitializeAsync()
         {
             return InitializeAsync(100);
         }
 
-        /// <inheritdoc />
-        public Task InitializeAsync(uint desiredAccuracyInMeters)
+        /// <summary>
+        /// Initializes the location service with the specified accuracy and default movement threshold.
+        /// </summary>
+        /// <param name="desiredAccuracyInMeters">The desired accuracy at which the service provides location updates.</param>
+        /// <returns>True if the initialization was successful and the service can be used.</returns>
+        public Task<bool> InitializeAsync(uint desiredAccuracyInMeters)
         {
             return InitializeAsync(desiredAccuracyInMeters, (double)desiredAccuracyInMeters / 2);
         }
 
-        /// <inheritdoc />
-        public async Task InitializeAsync(uint desiredAccuracyInMeters, double movementThreshold)
+        /// <summary>
+        /// Initializes the location service with the specified accuracy and movement threshold.
+        /// </summary>
+        /// <param name="desiredAccuracyInMeters">The desired accuracy at which the service provides location updates.</param>
+        /// <param name="movementThreshold">The distance of movement, in meters, that is required for the service to raise the PositionChanged event.</param>
+        /// <returns>True if the initialization was successful and the service can be used.</returns>
+        public async Task<bool> InitializeAsync(uint desiredAccuracyInMeters, double movementThreshold)
         {
+            // to find out more about getting location, go to https://docs.microsoft.com/en-us/windows/uwp/maps-and-location/get-location
             if (geolocator != null)
             {
                 geolocator.PositionChanged -= GeolocatorOnPositionChanged;
@@ -36,6 +53,8 @@ namespace ItemNamespace.Services
             }
 
             var access = await Geolocator.RequestAccessAsync();
+
+            bool result;
 
             switch (access)
             {
@@ -45,23 +64,36 @@ namespace ItemNamespace.Services
                         DesiredAccuracyInMeters = desiredAccuracyInMeters,
                         MovementThreshold = movementThreshold
                     };
+                    result = true;
+                    break;
+                case GeolocationAccessStatus.Unspecified:
+                case GeolocationAccessStatus.Denied:
+                default:
+                    result = false;
                     break;
             }
+
+            return result;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Starts the service listening for location updates.
+        /// </summary>
+        /// <returns>An object that is used to manage the asynchronous operation.</returns>
         public async Task StartListeningAsync()
         {
             if (geolocator == null)
                 throw new InvalidOperationException(
-                    "The StartListening method cannot be called before the InitializeAsync method.");
+                    "The StartListening method cannot be called before the InitializeAsync method is called and returns true.");
 
             geolocator.PositionChanged += GeolocatorOnPositionChanged;
 
             CurrentPosition = await geolocator.GetGeopositionAsync();
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Stops the service listening for location updates.
+        /// </summary>
         public void StopListening()
         {
             if (geolocator == null) return;

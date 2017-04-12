@@ -8,6 +8,8 @@ namespace ItemNamespace.Views
 {
     public sealed partial class SettingsPagePage : Page, System.ComponentModel.INotifyPropertyChanged
     {
+        // TODO UWPTemplates: Setup your privacy web in your Resource File, currently set to https://YourPrivacyUrlGoesHere
+
         private bool _isLightThemeEnabled;
         public bool IsLightThemeEnabled
         {

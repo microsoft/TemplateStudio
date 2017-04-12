@@ -9,6 +9,7 @@ namespace ItemNamespace.Services
         {
             Singleton<BackgroundTaskService>.Instance.RegisterBackgroundTasks();
         }
+
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
             yield return Singleton<BackgroundTaskService>.Instance;
