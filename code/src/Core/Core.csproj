@@ -146,6 +146,9 @@
     <Compile Include="Locations\InvalidSignatureException.cs" />
     <Compile Include="Locations\LocalTemplatesSource.cs" />
     <Compile Include="Composition\CompositionQuery.cs" />
+    <Compile Include="PostActions\Catalog\SortUsings\SortUsingsPostAction.cs" />
+    <Compile Include="PostActions\Catalog\SortUsings\IEnumerableExtensions.cs" />
+    <Compile Include="PostActions\Catalog\SortUsings\UsingComparer.cs" />
     <Compile Include="Templates\ITemplateInfoExtensions.cs" />
     <Compile Include="Locations\RemoteTemplatesSource.cs" />
     <Compile Include="Locations\TemplatesSynchronization.cs" />

@@ -22,6 +22,7 @@ using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.Core.PostActions.Catalog.SortUsings;
 
 namespace Microsoft.Templates.Core.PostActions
 {
@@ -42,7 +43,9 @@ namespace Microsoft.Templates.Core.PostActions
             var postActions = new List<PostAction>();
 
             AddMergeActions(postActions, $"*{MergePostAction.GlobalExtension}*");
+
             postActions.Add(new SetDefaultSolutionConfigurationPostAction());
+            postActions.Add(new SortUsingsPostAction());
 
             return postActions;
         }
