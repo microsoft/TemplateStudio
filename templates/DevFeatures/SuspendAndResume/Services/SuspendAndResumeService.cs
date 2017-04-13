@@ -6,7 +6,7 @@ using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 
 using RootNamespace.Activation;
-using RootNamespace.Helper;
+using RootNamespace.Helpers;
 
 namespace ItemNamespace.Services
 {

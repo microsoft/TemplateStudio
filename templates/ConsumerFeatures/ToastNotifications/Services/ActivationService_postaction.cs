@@ -1,5 +1,5 @@
 using System;
-using RootNamespace.Helper;
+using RootNamespace.Helpers;
 
 namespace ItemNamespace.Services
 {
@@ -9,6 +9,7 @@ namespace ItemNamespace.Services
         {
             Singleton<ToastNotificationsService>.Instance.ShowToastNotificationSample();
         }
+
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
             yield return Singleton<ToastNotificationsService>.Instance;

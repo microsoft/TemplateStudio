@@ -1,7 +1,7 @@
 using Windows.UI.Xaml.Controls;
 using System.Windows.Input;
 using ItemNamespace.Services;
-using ItemNamespace.Helper;
+using ItemNamespace.Helpers;
 using Windows.ApplicationModel;
 
 namespace ItemNamespace.Views

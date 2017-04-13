@@ -18,7 +18,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\ViewModelLocator.cs"
+      "path": ".\\ViewModels\\ViewModelLocator.cs"
     },
     {
       "path": ".\\Services\\NavigationServiceEx.cs"

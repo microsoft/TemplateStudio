@@ -1,5 +1,5 @@
 using Windows.UI.Xaml.Controls;
-using ItemNamespace.Helper;
+using ItemNamespace.Helpers;
 using ItemNamespace.Models;
 using ItemNamespace.Services;
 using System.Windows.Input;
