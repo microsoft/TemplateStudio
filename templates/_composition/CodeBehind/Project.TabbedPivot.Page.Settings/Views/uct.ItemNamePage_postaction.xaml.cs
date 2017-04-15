@@ -8,12 +8,12 @@ namespace ItemNamespace.Views
             Loaded += OnLoaded;
             InitializeComponent();
         }
-        
+
         //{[{
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             AppDescription = GetAppDescription();
-        }        
+        }
         //}]}
     }
 }

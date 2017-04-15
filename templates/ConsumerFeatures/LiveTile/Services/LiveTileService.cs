@@ -54,7 +54,7 @@ namespace RootNamespace.Services
             await Task.CompletedTask;
         }
 
-        protected override bool CanHandleInternal(LaunchActivatedEventArgs args)                        
+        protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
         {
             return LaunchFromSecondaryTile(args) || LaunchFromLiveTileUpdate(args);
         }

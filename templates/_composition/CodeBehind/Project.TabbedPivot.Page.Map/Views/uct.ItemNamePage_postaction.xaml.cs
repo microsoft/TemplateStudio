@@ -9,8 +9,8 @@ namespace ItemNamespace.Views
             Loaded += OnLoaded;
             Unloaded += OnUnLoaded;
             InitializeComponent();
-        }        
-        
+        }
+
         //{[{
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
@@ -20,7 +20,7 @@ namespace ItemNamespace.Views
         private void OnUnLoaded(object sender, RoutedEventArgs e)
         {
             Cleanup();
-        }         
+        }
         //}]}
     }
 }

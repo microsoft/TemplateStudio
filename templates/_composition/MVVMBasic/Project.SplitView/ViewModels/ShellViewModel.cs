@@ -142,7 +142,6 @@ namespace uct.ItemName.ViewModels
                 DisplayMode = SplitViewDisplayMode.Overlay;
                 IsPaneOpen = false;
             }
-
         }
 
         public void Initialize(Frame frame, ListView primaryListView, ListView secondaryListView)
@@ -204,7 +203,7 @@ namespace uct.ItemName.ViewModels
             {
                 PrimarySelectedItem = item;
             }
-        }        
+        }
 
         private void ChangeSelected(object oldValue, object newValue)
         {
@@ -228,4 +227,3 @@ namespace uct.ItemName.ViewModels
         }
     }
 }
-        

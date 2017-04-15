@@ -54,7 +54,7 @@ namespace uct.BlankProject.Services
                     {
                         SystemNavigationManager.GetForCurrentView().BackRequested += OnAppViewBackButtonRequested;
                     }
-                } 
+                }
             }
 
             var activationHandler = GetActivationHandlers()

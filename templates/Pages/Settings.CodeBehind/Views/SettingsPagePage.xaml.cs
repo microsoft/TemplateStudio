@@ -25,7 +25,7 @@ namespace ItemNamespace.Views
         }
 
         public ICommand SwitchThemeCommand { get; private set; }
-     
+
         public SettingsPagePage()
         {
             Initialize();

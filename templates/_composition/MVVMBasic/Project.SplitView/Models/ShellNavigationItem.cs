@@ -41,6 +41,6 @@ namespace uct.ItemName.Models
         public static ShellNavigationItem FromType<T>(string name, Symbol symbol) where T : Page
         {
             return new ShellNavigationItem(name, symbol, typeof(T));
-        }       
+        }
     }
 }

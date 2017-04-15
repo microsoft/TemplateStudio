@@ -6,7 +6,7 @@ namespace RootNamespace.Services
     internal partial class ToastNotificationsFeatureService
     {
         public void ShowToastNotificationSample()
-        {            
+        {
             // Create the toast content
             var content = new ToastContent()
             {

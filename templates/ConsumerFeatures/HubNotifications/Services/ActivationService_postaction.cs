@@ -13,6 +13,7 @@ namespace ItemNamespace.Services
 
             //Singleton<HubNotificationsService>.Instance.InitializeAsync();
         }
+
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
             yield return Singleton<HubNotificationsService>.Instance;

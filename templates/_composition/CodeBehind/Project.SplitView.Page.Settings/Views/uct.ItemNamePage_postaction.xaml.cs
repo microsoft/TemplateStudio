@@ -6,12 +6,12 @@ namespace ItemNamespace.Views
         public uct.ItemNamePage()
         {
         }
-        
-        //{[{        
+
+        //{[{
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             AppDescription = GetAppDescription();
-        }        
+        }
         //}]}
     }
 }
