@@ -9,10 +9,12 @@ namespace ItemNamespace.Services
         {
             await Singleton<LiveTileService>.Instance.EnableQueueAsync();
         }
+
         private async Task StartupAsync()
         {
             Singleton<LiveTileService>.Instance.SampleUpdate();
         }
+
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
             yield return Singleton<LiveTileService>.Instance;

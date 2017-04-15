@@ -8,12 +8,12 @@ namespace ItemNamespace.Views
             Loaded += OnLoaded;
             InitializeComponent();
         }
-        
+
         //{[{
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
             await LoadDataAsync();
-        }        
+        }
         //}]}
     }
 }

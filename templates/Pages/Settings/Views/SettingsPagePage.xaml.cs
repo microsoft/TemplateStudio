@@ -9,6 +9,6 @@ namespace ItemNamespace.Views
         public SettingsPagePage()
         {
             InitializeComponent();
-        }        
+        }
     }
 }

@@ -3,7 +3,7 @@ using System.ComponentModel;
 namespace ItemNamespace.Views
 {
     public sealed partial class uct.ItemNamePage : Page, INotifyPropertyChanged
-    {    
+    {
         //^^
 
         //{[{

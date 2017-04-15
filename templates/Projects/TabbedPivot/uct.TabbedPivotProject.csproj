@@ -93,10 +93,10 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-	  <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>5.3.1</Version>
     </PackageReference>
-	  <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
       <Version>1.0.3</Version>
     </PackageReference>
     <!-- Nuget package references -->
@@ -134,6 +134,9 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".editorconfig" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

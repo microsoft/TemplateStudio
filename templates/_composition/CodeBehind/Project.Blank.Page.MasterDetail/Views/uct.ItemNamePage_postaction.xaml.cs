@@ -6,12 +6,12 @@ namespace ItemNamespace.Views
         public uct.ItemNamePage()
         {
         }
-        
+
         //{[{
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             await LoadDataAsync();
-        }        
+        }
         //}]}
     }
 }

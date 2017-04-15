@@ -54,7 +54,7 @@ namespace uct.TabbedPivotProject.Services
                     {
                         SystemNavigationManager.GetForCurrentView().BackRequested += OnAppViewBackButtonRequested;
                     }
-                } 
+                }
             }
 
             var activationHandler = GetActivationHandlers()

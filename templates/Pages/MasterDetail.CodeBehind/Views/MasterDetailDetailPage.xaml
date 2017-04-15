@@ -7,8 +7,7 @@
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:views="using:ItemNamespace.Views"
-    mc:Ignorable="d">    
-
+    mc:Ignorable="d">
 
     <Grid
         x:Name="ContentArea"

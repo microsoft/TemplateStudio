@@ -8,12 +8,12 @@ namespace ItemNamespace.Views
             InitializeComponent();
             Loaded += OnLoaded;
         }
-        
+
         //{[{
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             ViewModel.Initialize();
-        }        
+        }
         //}]}
     }
 }

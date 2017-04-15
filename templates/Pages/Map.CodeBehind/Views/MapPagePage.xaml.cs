@@ -92,7 +92,7 @@ namespace ItemNamespace.Views
             {
                 Center = geoposition.Coordinate.Point;
             }
-        }        
+        }
 
         private void AddMapIcon(Geopoint position, string title)
         {
@@ -105,6 +105,6 @@ namespace ItemNamespace.Views
                 ZIndex = 0
             };
             mapControl.MapElements.Add(mapIcon);
-        }        
+        }
     }
 }

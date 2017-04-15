@@ -54,7 +54,7 @@ namespace uct.SplitViewProject.Services
                     {
                         SystemNavigationManager.GetForCurrentView().BackRequested += OnAppViewBackButtonRequested;
                     }
-                } 
+                }
             }
 
             var activationHandler = GetActivationHandlers()

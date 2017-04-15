@@ -37,7 +37,7 @@
                     </i:Interaction.Behaviors>
                 </ToggleSwitch>
             </StackPanel>
-            
+
             <StackPanel Grid.Row="2" Margin="0,16,0,0">
                 <TextBlock
                     x:Uid="SettingsPage_About"
@@ -53,7 +53,7 @@
                     x:Uid="SettingsPage_PrivacyTermsLink"
                     Margin="0,8,0,0"/>
             </StackPanel>
-            
+
         </Grid>
     </Grid>
 </Page>

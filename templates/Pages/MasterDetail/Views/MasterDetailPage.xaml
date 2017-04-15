@@ -21,7 +21,7 @@
                     Text="{x:Bind Title}" 
                     FontSize="16" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
 
-                <TextBlock                    
+                <TextBlock
                     Grid.Row="1"
                     Opacity="0.6"
                     Text="{x:Bind Description}"
@@ -33,7 +33,7 @@
     <Grid
         x:Name="ContentArea"
         Padding="12,0,12,0">
-        
+
         <Grid.RowDefinitions>
             <RowDefinition x:Name="TitleRow" Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -137,5 +137,5 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-    </Grid>  
+    </Grid>
 </Page>

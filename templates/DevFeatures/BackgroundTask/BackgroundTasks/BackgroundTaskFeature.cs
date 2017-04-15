@@ -65,6 +65,7 @@ namespace ItemNamespace.BackgroundTasks
                 ThreadPoolTimer.CreatePeriodicTimer(new TimerElapsedHandler(SampleTimerCallback), TimeSpan.FromSeconds(1));
             });
         }
+
         public override void OnCanceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason)
         {
            // TODO UWPTemplates: Insert code to handle the cancelation request here. 
