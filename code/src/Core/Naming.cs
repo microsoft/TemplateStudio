@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Core
 {
     public class Naming
     {
-        private static readonly string[] ReservedNames = new string[] { "WebView", "Page", "BackgroundTask", "Pivot" };
+        private static readonly string[] ReservedNames = new string[] { "Page", "BackgroundTask", "Pivot" };
 
         private const string ValidationPattern = @"^([a-zA-Z])([\w\-])*$";
         private const string InferInvalidPattern = @"[^a-zA-Z\d_\-]";
