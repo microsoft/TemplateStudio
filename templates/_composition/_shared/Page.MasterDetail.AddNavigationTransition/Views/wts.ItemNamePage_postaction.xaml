@@ -1,0 +1,10 @@
+<Page
+    mc:Ignorable="d">
+    <!--{[{-->
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition />
+        </TransitionCollection>
+    </Page.Transitions>
+    <!--}]}-->
+</Page>

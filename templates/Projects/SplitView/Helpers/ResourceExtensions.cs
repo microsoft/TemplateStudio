@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
 using Windows.ApplicationModel.Resources;
 
-namespace uct.SplitViewProject.Helpers
+namespace wts.SplitViewProject.Helpers
 {
     internal static class ResourceExtensions
     {

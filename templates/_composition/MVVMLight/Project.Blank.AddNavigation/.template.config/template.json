@@ -1,0 +1,26 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMLight.Project.Blank.AddNavigation",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$framework == MVVMLight & identity == wts.Proj.Blank"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    }
+  }
+}

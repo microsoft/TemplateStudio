@@ -25,22 +25,56 @@ namespace Microsoft.Templates.Core.Test.Composition
     public class CompositionQueryTest
     {
         [Fact]
+        public void ParseIvalidQueries()
+        {
+            var query1 = "wts.framework = framework & wts.type != Page&$name == Map";
+
+            Assert.Throws<InvalidCompositionQueryException>(() =>
+           {
+               var result = CompositionQuery.Parse(query1);
+           });
+
+            var query2 = "wts.framework= framework &wts.type ! Page&$name != Map";
+
+            Assert.Throws<InvalidCompositionQueryException>(() =>
+            {
+                var result = CompositionQuery.Parse(query2);
+            });
+
+
+            var query3 = "wts.framework==framework&wts.type!Page&$name == Map";
+
+            Assert.Throws<InvalidCompositionQueryException>(() =>
+            {
+                var result = CompositionQuery.Parse(query3);
+            });
+
+            var query4 = "wts.framework   == framework & wts.type=Page& $name == Map";
+
+            Assert.Throws<InvalidCompositionQueryException>(() =>
+            {
+                var result = CompositionQuery.Parse(query4);
+            });
+        }
+
+
+        [Fact]
         public void Parse()
         {
-            var query = "uct.framework == framework & uct.type != Page&$name == Map";
+            var query = "wts.framework == framework & wts.type != Page&$name == Map";
             var result = CompositionQuery.Parse(query);
 
             Assert.Collection(result.Items,
                 r1 =>
                 {
-                    Assert.Equal(r1.Field, "uct.framework");
+                    Assert.Equal(r1.Field, "wts.framework");
                     Assert.Equal(r1.Operator, QueryOperator.Equals);
                     Assert.Equal(r1.Value, "framework");
                     Assert.False(r1.IsContext);
                 },
                 r2 =>
                 {
-                    Assert.Equal(r2.Field, "uct.type");
+                    Assert.Equal(r2.Field, "wts.type");
                     Assert.Equal(r2.Operator, QueryOperator.NotEquals);
                     Assert.Equal(r2.Value, "Page");
                     Assert.False(r2.IsContext);
@@ -59,8 +93,8 @@ namespace Microsoft.Templates.Core.Test.Composition
         {
             var query = new string[] 
             {
-                "uct.framework == framework",
-                "uct.type != Page",
+                "wts.framework == framework",
+                "wts.type != Page",
                 "$name == Map"
             };
             var result = CompositionQuery.Parse(query);
@@ -68,14 +102,14 @@ namespace Microsoft.Templates.Core.Test.Composition
             Assert.Collection(result.Items,
                 r1 =>
                 {
-                    Assert.Equal(r1.Field, "uct.framework");
+                    Assert.Equal(r1.Field, "wts.framework");
                     Assert.Equal(r1.Operator, QueryOperator.Equals);
                     Assert.Equal(r1.Value, "framework");
                     Assert.False(r1.IsContext);
                 },
                 r2 =>
                 {
-                    Assert.Equal(r2.Field, "uct.type");
+                    Assert.Equal(r2.Field, "wts.type");
                     Assert.Equal(r2.Operator, QueryOperator.NotEquals);
                     Assert.Equal(r2.Value, "Page");
                     Assert.False(r2.IsContext);
@@ -92,14 +126,12 @@ namespace Microsoft.Templates.Core.Test.Composition
         [Fact]
         public void Parse_NoValueInParam()
         {
-            var query = "uct.framework == framework & uct.type";
-            var result = CompositionQuery.Parse(query);
+            var query = "wts.framework == framework & wts.type";
 
-            Assert.Collection(result.Items,
-                r1 =>
-                {
-                    Assert.Equal(r1.Field, "uct.framework");
-                });
+            Assert.Throws<InvalidCompositionQueryException>(() =>
+            {
+                var result = CompositionQuery.Parse(query);
+            });
         }
 
         [Fact]

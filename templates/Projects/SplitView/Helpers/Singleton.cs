@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 
-namespace uct.SplitViewProject.Helpers
+namespace wts.SplitViewProject.Helpers
 {
     internal static class Singleton<T> where T : new()
     {
