@@ -7,12 +7,11 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "composition",
-    "uct.framework": "CodeBehind",
-    "uct.version": "1.0.0",
-    "uct.compositionFilter": "$framework == CodeBehind|MVVMBasic & identity == Microsoft.UWPTemplates.DevFeatures.SuspendAndResume.CSharp"
+    "wts.type": "composition",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$framework == CodeBehind|MVVMBasic & identity == wts.Feat.SuspendAndResume"
   },
-  "sourceName": "uct.ItemName",
+  "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
   ],

@@ -2,9 +2,9 @@
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 
-using uct.SplitViewProject.Services;
+using wts.SplitViewProject.Services;
 
-namespace uct.SplitViewProject
+namespace wts.SplitViewProject
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.

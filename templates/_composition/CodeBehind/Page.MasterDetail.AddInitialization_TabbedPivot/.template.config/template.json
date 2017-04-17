@@ -7,12 +7,12 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "composition",
-    "uct.framework": "CodeBehind",
-    "uct.version": "1.0.0",
-    "uct.compositionFilter": "identity == Microsoft.UWPTemplates.MasterDetailPage.CodeBehind.CSharp & $projectType == TabbedPivot"
+    "wts.type": "composition",
+    "wts.framework": "CodeBehind",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "identity == wts.Page.MasterDetail.CodeBehind & $projectType == TabbedPivot"
   },
-  "sourceName": "uct.ItemName",
+  "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
   ],

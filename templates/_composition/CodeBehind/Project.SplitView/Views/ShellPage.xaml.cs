@@ -1,6 +1,6 @@
-using uct.ItemName.Services;
-using uct.ItemName.Helpers;
-using uct.ItemName.Models;
+using wts.ItemName.Services;
+using wts.ItemName.Helpers;
+using wts.ItemName.Models;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -10,7 +10,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace uct.ItemName.Views
+namespace wts.ItemName.Views
 {
     public sealed partial class ShellPage : Page, INotifyPropertyChanged
     {     

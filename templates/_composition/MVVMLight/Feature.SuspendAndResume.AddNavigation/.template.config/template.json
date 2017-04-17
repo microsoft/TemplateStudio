@@ -3,15 +3,15 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Feature.SuspendAndResume.AddNavigation",
+  "name": "MVVMLight.Feature.SuspendAndResume.AddNavigation",
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "composition",    
-    "uct.version": "1.0.0",
-    "uct.compositionFilter": "$framework == MVVMLight & identity == Microsoft.UWPTemplates.DevFeatures.SuspendAndResume.CSharp"
+    "wts.type": "composition",    
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$framework == MVVMLight & identity == wts.Feat.SuspendAndResume"
   },
-  "sourceName": "uct.ItemName",
+  "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
   ],

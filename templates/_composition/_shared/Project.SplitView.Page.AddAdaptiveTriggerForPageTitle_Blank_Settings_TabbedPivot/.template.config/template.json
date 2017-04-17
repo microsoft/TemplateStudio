@@ -7,11 +7,11 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "composition",
-    "uct.version": "1.0.0",
-    "uct.compositionFilter": "$projectType == SplitView & groupidentity == Microsoft.UWPTemplates.BlankPage|Microsoft.UWPTemplates.SettingsPage|Microsoft.UWPTemplates.TabbedPivotPage"
+    "wts.type": "composition",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$projectType == SplitView & groupidentity == wts.Page.Blank|wts.Page.Settings|wts.Page.TabbedPivot"
   },
-  "sourceName": "uct.ItemName",
+  "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
   ],

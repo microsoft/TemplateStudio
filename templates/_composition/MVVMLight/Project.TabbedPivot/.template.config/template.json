@@ -4,16 +4,14 @@
     "Universal"
   ],
   "name": "MVVMLight.Project.TabbedPivot",
-  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMLight.Project.TabbedPivot",
-  "identity": "Microsoft.UWPTemplates.Framework.MVVMLight.Project.TabbedPivot.CSharp",
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "composition",
-    "uct.version": "1.0.0",
-    "uct.compositionFilter": "$framework == MVVMLight & identity == Microsoft.UWPTemplates.uct.TabbedPivotProject.CSharp"
+    "wts.type": "composition",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$framework == MVVMLight & identity == wts.Proj.TabbedPivot"
   },
-  "sourceName": "uct.ItemName",
+  "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
   {

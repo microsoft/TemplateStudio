@@ -7,11 +7,11 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "composition",
-    "uct.version": "1.0.0",
-    "uct.compositionFilter": "$framework == MVVMBasic|MVVMLight & $projectType == Blank|SplitView & identity == Microsoft.UWPTemplates.MasterDetailPage.CSharp"
+    "wts.type": "composition",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight & $projectType == Blank|SplitView & identity == wts.Page.MasterDetail"
   },
-  "sourceName": "uct.ItemName",
+  "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
   ],

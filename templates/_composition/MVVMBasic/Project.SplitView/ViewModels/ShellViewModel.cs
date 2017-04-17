@@ -4,12 +4,12 @@ using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using uct.ItemName.Models;
-using uct.ItemName.Services;
-using uct.ItemName.Views;
-using uct.ItemName.Helpers;
+using wts.ItemName.Models;
+using wts.ItemName.Services;
+using wts.ItemName.Views;
+using wts.ItemName.Helpers;
 
-namespace uct.ItemName.ViewModels
+namespace wts.ItemName.ViewModels
 {
     public class ShellViewModel : Observable
     {

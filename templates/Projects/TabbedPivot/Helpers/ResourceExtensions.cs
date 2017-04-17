@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
 using Windows.ApplicationModel.Resources;
 
-namespace uct.TabbedPivotProject.Helpers
+namespace wts.TabbedPivotProject.Helpers
 {
     internal static class ResourceExtensions
     {

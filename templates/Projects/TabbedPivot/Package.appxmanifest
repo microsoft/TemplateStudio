@@ -15,7 +15,7 @@
   <mp:PhoneIdentity PhoneProductId="78ca7868-383f-4f7e-8036-9c97d91dc4c3" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>uct.TabbedPivotProject</DisplayName>
+    <DisplayName>wts.TabbedPivotProject</DisplayName>
     <PublisherDisplayName>Param_UserName</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -31,12 +31,12 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="uct.TabbedPivotProject.App">
+      EntryPoint="wts.TabbedPivotProject.App">
       <uap:VisualElements
-        DisplayName="uct.TabbedPivotProject"
+        DisplayName="wts.TabbedPivotProject"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="uct.TabbedPivotProject"
+        Description="wts.TabbedPivotProject"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />

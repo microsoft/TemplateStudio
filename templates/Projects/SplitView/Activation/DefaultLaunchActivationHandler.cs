@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 
-using uct.SplitViewProject.Services;
+using wts.SplitViewProject.Services;
 
-namespace uct.SplitViewProject.Activation
+namespace wts.SplitViewProject.Activation
 {
     internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
     {

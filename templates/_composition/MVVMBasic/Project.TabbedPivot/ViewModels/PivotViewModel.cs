@@ -1,6 +1,6 @@
-﻿using uct.ItemName.Helpers;
+﻿using wts.ItemName.Helpers;
 
-namespace uct.ItemName.ViewModels
+namespace wts.ItemName.ViewModels
 {
     public class PivotViewModel : Observable
     {        

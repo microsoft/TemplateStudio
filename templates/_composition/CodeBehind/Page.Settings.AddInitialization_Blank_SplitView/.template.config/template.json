@@ -7,12 +7,12 @@
    "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "composition",
-    "uct.framework": "CodeBehind",
-    "uct.version": "1.0.0",
-    "uct.compositionFilter": "identity == Microsoft.UWPTemplates.SettingsPage.CodeBehind.CSharp & $projectType == Blank|SplitView"
+    "wts.type": "composition",
+    "wts.framework": "CodeBehind",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "identity == wts.Page.Settings.CodeBehind & $projectType == Blank|SplitView"
   },
-  "sourceName": "uct.ItemName",
+  "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
   ],

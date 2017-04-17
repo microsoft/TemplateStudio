@@ -7,12 +7,12 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "composition",
-    "uct.framework": "CodeBehind",
-    "uct.version": "1.0.0",
-    "uct.compositionFilter": "uct.type==page & $projectType == SplitView"
+    "wts.type": "composition",
+    "wts.framework": "CodeBehind",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "wts.type==page & $projectType == SplitView"
  },
-  "sourceName": "uct.ItemName",
+  "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
   ],

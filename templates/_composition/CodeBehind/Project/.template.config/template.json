@@ -7,12 +7,12 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "composition",
-    "uct.framework": "CodeBehind",
-    "uct.version": "1.0.0",
-    "uct.compositionFilter": "$framework == CodeBehind & uct.type == project"
+    "wts.type": "composition",
+    "wts.framework": "CodeBehind",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$framework == CodeBehind & wts.type == project"
   },
-  "sourceName": "uct.ItemName",
+  "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {

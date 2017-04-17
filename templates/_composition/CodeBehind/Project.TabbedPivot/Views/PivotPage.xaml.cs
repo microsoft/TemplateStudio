@@ -1,6 +1,6 @@
 using Windows.UI.Xaml.Controls;
 
-namespace uct.ItemName.Views
+namespace wts.ItemName.Views
 {
     public sealed partial class PivotPage : Page
     {

@@ -1,9 +1,9 @@
         <Pivot x:Uid="PivotPage">
             <!--^^-->
             <!--{[{-->
-            <PivotItem x:Uid="PivotItem_uct.ItemName">
+            <PivotItem x:Uid="PivotItem_wts.ItemName">
                 <Frame>
-                    <views:uct.ItemNamePage/>
+                    <views:wts.ItemNamePage/>
                 </Frame>
             </PivotItem>
             <!--}]}-->

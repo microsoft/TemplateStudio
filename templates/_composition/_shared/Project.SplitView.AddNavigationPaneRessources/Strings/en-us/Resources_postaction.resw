@@ -1,8 +1,8 @@
 <root>
   <!--^^-->
   <!--{[{-->
-  <data name="Shell_uct.ItemName" xml:space="preserve">
-    <value>uct.ItemName</value>
+  <data name="Shell_wts.ItemName" xml:space="preserve">
+    <value>wts.ItemName</value>
   </data>
   <!--}]}-->
 </root>
