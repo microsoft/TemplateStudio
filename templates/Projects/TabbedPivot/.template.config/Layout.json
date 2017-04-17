@@ -1,7 +1,7 @@
 [
     {
         "name": "Main",
-        "templateGroupIdentity": "Microsoft.UWPTemplates.BlankPage",
+        "templateGroupIdentity": "wts.Page.Blank",
         "readonly": "true"
     }
 ]

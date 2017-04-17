@@ -1,0 +1,31 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "CodeBehind.Page.AddINotifyPropertyChanged",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.framework": "CodeBehind",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$framework == CodeBehind & wts.type == page",
+    "wts.export.baseclass": "INotifyPropertyChanged",
+    "wts.export.setter": "Set"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    }
+  }
+}

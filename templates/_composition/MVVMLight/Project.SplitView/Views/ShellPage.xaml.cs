@@ -1,9 +1,9 @@
-using uct.ItemName.Services;
+using wts.ItemName.Services;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using uct.ItemName.ViewModels;
+using wts.ItemName.ViewModels;
 
-namespace uct.ItemName.Views
+namespace wts.ItemName.Views
 {
     public sealed partial class ShellPage : Page
     {

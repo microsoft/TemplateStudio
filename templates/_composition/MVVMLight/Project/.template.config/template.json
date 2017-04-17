@@ -4,17 +4,15 @@
     "Universal"
   ],
   "name": "MVVMLight.Project",
-  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMLight.Project",
-  "identity": "Microsoft.UWPTemplates.Framework.MVVMLight.Projectk.CSharp",
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "composition",    
-    "uct.version": "1.0.0",    
-    "uct.licences": "[MVVMLight](http://mvvmlight.codeplex.com/license)",
-    "uct.compositionFilter": "$framework == MVVMLight &uct.type == project"
+    "wts.type": "composition",    
+    "wts.version": "1.0.0",    
+    "wts.licences": "[MVVMLight](http://mvvmlight.codeplex.com/license)",
+    "wts.compositionFilter": "$framework == MVVMLight & wts.type == project"
   },
-  "sourceName": "uct.ItemName",
+  "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {

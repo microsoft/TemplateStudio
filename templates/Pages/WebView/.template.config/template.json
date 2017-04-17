@@ -4,17 +4,17 @@
     "Universal"
   ],
   "name": "Web View",
-  "groupIdentity": "Microsoft.UWPTemplates.WebViewPage",
-  "identity": "Microsoft.UWPTemplates.WebViewPage.CSharp",
+  "groupIdentity": "wts.Page.WebView",
+  "identity": "wts.Page.WebView",
   "shortName": "Web View Page",
   "description": "The web view page embeds a view into your app that renders web content using the Microsoft Edge rendering engine. Hyperlinks can also appear and function in a web view control.  You can use a web view control to display richly formatted HTML content from a remote web server, dynamically generated code, or content files in your app package. Rich content can also contain script code and communicate between the script and your app's code.\\nTo find out more if this is a good solution for you, head to https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/web-view.",
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "page",
-    "uct.framework": "MVVMBasic|MVVMLight",
-    "uct.version": "1.0.0",
-    "uct.order": "1"
+    "wts.type": "page",
+    "wts.framework": "MVVMBasic|MVVMLight",
+    "wts.version": "1.0.0",
+    "wts.order": "1"
   },
   "sourceName": "WebViewPage",
   "preferNameDirectory": true,

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace uct.BlankProject.Activation
+namespace wts.BlankProject.Activation
 {
     internal abstract class ActivationHandler
     {
