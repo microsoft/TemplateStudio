@@ -88,7 +88,7 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures
             foreach (var item in layout)
             {
                 var template = GenContext.ToolBox.Repo.GetLayoutTemplate(item, Context.State.Framework);
-                if (template != null && template.GetTemplateType() == TemplateType.DevFeature)
+                if (template != null && template.GetTemplateType() == TemplateType.Feature)
                 {
                     Templates.Add(new PageViewModel(item.name, template, item.@readonly));
                 }

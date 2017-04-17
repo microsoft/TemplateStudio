@@ -83,7 +83,7 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures.NewDevFeature
             Templates.Clear();
 
             var devFeatTemplates = GenContext.ToolBox.Repo
-                                                        .Get(t => t.GetTemplateType() == TemplateType.DevFeature
+                                                        .Get(t => t.GetTemplateType() == TemplateType.Feature
                                                             && t.GetFrameworkList().Contains(_context.State.Framework)
                                                             && (t.GetMultipleInstance() == true || !IsAlreadyDefined(t)))
                                                         .Select(t => new TemplateViewModel(t, GenContext.ToolBox.Repo.GetDependencies(t)))

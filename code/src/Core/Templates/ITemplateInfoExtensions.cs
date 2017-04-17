@@ -43,10 +43,8 @@ namespace Microsoft.Templates.Core
                     return TemplateType.Project;
                 case "page":
                     return TemplateType.Page;
-                case "devfeature":
-                    return TemplateType.DevFeature;
-                case "consumerfeature":
-                    return TemplateType.ConsumerFeature;
+                case "feature":
+                    return TemplateType.Feature;
                 case "composition":
                     return TemplateType.Composition;
                 default:
@@ -169,6 +167,10 @@ namespace Microsoft.Templates.Core
             return result;
         }
 
+        public static string GetGroup(this ITemplateInfo ti)
+        {
+            return GetValueFromTag(ti, TagPrefix + "group");
+        }
 
         public static string GetVersion(this ITemplateInfo ti)
         {

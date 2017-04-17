@@ -137,6 +137,24 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Fact]
+        public void GetGroup()
+        {
+            var target = GetTarget("ProjectTemplate");
+
+            var result = target.GetGroup();
+            Assert.Equal("group1", result);
+        }
+
+        [Fact]
+        public void GetGroup_unspecified()
+        {
+            var target = GetTarget("UnspecifiedTemplate");
+
+            var result = target.GetGroup();
+            Assert.Null(result);
+        }
+
+        [Fact]
         public void GetOrder()
         {
             var target = GetTarget("ProjectTemplate");
