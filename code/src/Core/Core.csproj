@@ -117,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeGen.cs" />
+    <Compile Include="Composition\InvalidCompositionQueryException.cs" />
     <Compile Include="Composition\QueryableProperty.cs" />
     <Compile Include="Composition\QueryablePropertyDictionary.cs" />
     <Compile Include="Composition\QueryNode.cs" />
