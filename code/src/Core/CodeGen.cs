@@ -33,7 +33,13 @@ namespace Microsoft.Templates.Core
         public const string BaseName = "WindowsTemplateStudio";
 
         public EngineEnvironmentSettings Settings { get; }
-        public TemplateCache Cache { get; }
+        public TemplateCache Cache
+        {
+            get
+            {
+                return ((SettingsLoader)Settings.SettingsLoader).UserTemplateCache;
+            }
+        }
         public TemplateCreator Creator { get; }
 
         public static CodeGen Instance { get; private set; }
@@ -42,7 +48,6 @@ namespace Microsoft.Templates.Core
         {
             var host = CreateHost(locationId);
             Settings = new EngineEnvironmentSettings(host, x => new SettingsLoader(x));
-            Cache = new TemplateCache(Settings);
             Creator = new TemplateCreator(Settings);
         }
 

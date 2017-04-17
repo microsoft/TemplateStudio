@@ -68,7 +68,7 @@ namespace Microsoft.Templates.Wizard.Host
                 await GenContext.ToolBox.Repo.SynchronizeAsync();
                 Status = string.Empty;
 
-                TemplatesVersion = GenContext.ToolBox.Repo.GetVersion();
+                TemplatesVersion = GenContext.ToolBox.Repo.GetTemplatesVersion();
             }
             catch (Exception ex)
             {
@@ -87,7 +87,7 @@ namespace Microsoft.Templates.Wizard.Host
 
             if (status == SyncStatus.Updated)
             {
-                TemplatesVersion = GenContext.ToolBox.Repo.GetVersion();
+                TemplatesVersion = GenContext.ToolBox.Repo.GetTemplatesVersion();
 
                 _context.CanGoForward = true;
                 

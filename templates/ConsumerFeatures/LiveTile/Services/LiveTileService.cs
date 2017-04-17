@@ -1,5 +1,5 @@
 using RootNamespace.Activation;
-using RootNamespace.Helper;
+using RootNamespace.Helpers;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -46,11 +46,11 @@ namespace RootNamespace.Services
 
         protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
         {
-            //If app is launched from a SecondaryTile, tile arguments property is contained in args.Arguments
-            //var secondaryTileArguments = args.Arguments;
+            // If app is launched from a SecondaryTile, tile arguments property is contained in args.Arguments
+            // var secondaryTileArguments = args.Arguments;
 
-            //If app is launched from a LiveTile notification update, TileContent arguments property is contained in args.TileActivatedInfo.RecentlyShownNotifications
-            //var tileUpdatesArguments = args.TileActivatedInfo.RecentlyShownNotifications;
+            // If app is launched from a LiveTile notification update, TileContent arguments property is contained in args.TileActivatedInfo.RecentlyShownNotifications
+            // var tileUpdatesArguments = args.TileActivatedInfo.RecentlyShownNotifications;
             await Task.CompletedTask;
         }
 
@@ -61,15 +61,15 @@ namespace RootNamespace.Services
 
         private bool LaunchFromSecondaryTile(LaunchActivatedEventArgs args)
         {
-            //If app is launched from a SecondaryTile, tile arguments property is contained in args.Arguments
-            //TODO UWPTemplates: Implement your own logic to determine if you can handle the SecondaryTile activation
+            // If app is launched from a SecondaryTile, tile arguments property is contained in args.Arguments
+            // TODO UWPTemplates: Implement your own logic to determine if you can handle the SecondaryTile activation
             return false;
         }
 
         private bool LaunchFromLiveTileUpdate(LaunchActivatedEventArgs args)
         {
-            //If app is launched from a LiveTile notification update, TileContent arguments property is contained in args.TileActivatedInfo.RecentlyShownNotifications
-            //TODO UWPTemplates: Implement your own logic to determine if you can handle the LiveTile nptification update activation
+            // If app is launched from a LiveTile notification update, TileContent arguments property is contained in args.TileActivatedInfo.RecentlyShownNotifications
+            // TODO UWPTemplates: Implement your own logic to determine if you can handle the LiveTile nptification update activation
             return false;
         }
     }

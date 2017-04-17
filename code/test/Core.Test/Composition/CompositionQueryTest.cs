@@ -18,6 +18,7 @@ using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.Composition;
 
 using Xunit;
+using Microsoft.TemplateEngine.Utils;
 
 namespace Microsoft.Templates.Core.Test.Composition
 {
@@ -177,16 +178,18 @@ namespace Microsoft.Templates.Core.Test.Composition
 
     public class FakeTemplateInfo : ITemplateInfo
     {
-        private readonly Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private readonly Dictionary<string, ICacheTag> _tags = new Dictionary<string, ICacheTag>();
 
         public string Identity { get; set; }
         public string Name { get; set; }
-        public IReadOnlyDictionary<string, string> Tags => _tags;
+        //public IReadOnlyDictionary<string, string> Tags => _tags;
+        public IReadOnlyDictionary<string, ICacheTag> Tags => _tags;
         public string GroupIdentity { get; set; }
 
         public void AddTag(string key, string value)
         {
-            _tags.Add(key, value);
+            var cacheTag = new CacheTag("", new Dictionary<string, string>(), value);
+            _tags.Add(key, cacheTag);
         }
 
         public string Author => throw new NotImplementedException();
@@ -208,5 +211,17 @@ namespace Microsoft.Templates.Core.Test.Composition
         public Guid LocaleConfigMountPointId => throw new NotImplementedException();
 
         public string LocaleConfigPlace => throw new NotImplementedException();
+
+        public int Precedence => throw new NotImplementedException();
+
+        public IReadOnlyDictionary<string, ICacheParameter> CacheParameters => throw new NotImplementedException();
+
+        public IReadOnlyList<ITemplateParameter> Parameters => throw new NotImplementedException();
+
+        public Guid HostConfigMountPointId => throw new NotImplementedException();
+
+        public string HostConfigPlace => throw new NotImplementedException();
+
+        public string ThirdPartyNotices => throw new NotImplementedException();
     }
 }

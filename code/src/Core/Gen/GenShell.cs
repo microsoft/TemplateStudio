@@ -46,6 +46,10 @@ namespace Microsoft.Templates.Core.Gen
 
         public virtual void CollapseSolutionItems()
         {
+        }
+
+        public virtual void RefreshProject()
+        {
 
         }
     }

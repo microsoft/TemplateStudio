@@ -29,14 +29,14 @@ namespace uct.SplitViewProject.Services
         {
             // Initialize things like registering background task before the app is loaded
             await InitializeAsync();
-            
+//-:cnd:noEmit   
 //#if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 _app.DebugSettings.EnableFrameRateCounter = true;
             }
 //#endif
-
+//+:cnd:noEmit
             if (IsInteractive(activationArgs))
             {
                 // Do not repeat app initialization when the Window already has content,

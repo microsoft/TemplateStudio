@@ -1,5 +1,5 @@
 using uct.ItemName.Services;
-using uct.ItemName.Helper;
+using uct.ItemName.Helpers;
 using uct.ItemName.Models;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -138,8 +138,8 @@ namespace uct.ItemName.Views
             _primaryItems.Clear();
             _secondaryItems.Clear();
 
-            //More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
-            //Edit String/en-US/Resources.resw: Add a menu item title for each page
+            // More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
+            // Edit String/en-US/Resources.resw: Add a menu item title for each page
         }
 
         private void OnStateChanged(VisualStateChangedEventArgs args)
@@ -172,7 +172,7 @@ namespace uct.ItemName.Views
                 secondaryListView.SelectedIndex = -1;
                 secondaryListView.SelectedItem = null;
 
-                //Navigate to selected item
+                // Navigate to selected item
                 Navigate(primaryListView.SelectedItem);
             }
         }
@@ -189,7 +189,7 @@ namespace uct.ItemName.Views
                 primaryListView.SelectedIndex = -1;
                 primaryListView.SelectedItem = null;
 
-                //Navigate to selected item
+                // Navigate to selected item
                 Navigate(secondaryListView.SelectedItem);
             }
         }

@@ -11,14 +11,17 @@
 // ******************************************************************
 
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Locations;
+
 
 namespace Microsoft.Templates.Core.Gen
 {
@@ -41,6 +44,13 @@ namespace Microsoft.Templates.Core.Gen
             ToolBox = new GenToolBox(repository, shell);
 
             IsInitialized = true;
+        }
+
+        public static string GetWizardVersion()
+        {
+            string assemblyLocation = Assembly.GetExecutingAssembly().Location;
+            var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
+            return versionInfo.FileVersion;
         }
 
         private GenContext(string projectName, string outputPath)

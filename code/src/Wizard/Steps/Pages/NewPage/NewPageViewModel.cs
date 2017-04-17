@@ -41,7 +41,7 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
         {
             _context = context;
             _dialog = dialog;
-            _selectedNames = selectedTemplates.Select(t => t.Template.Name);
+            _selectedNames = selectedTemplates.Select(t => t.Name);
             _selectedTemplates = selectedTemplates;
         }
 
@@ -78,7 +78,6 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
             }
         }
 
-        //TODO: MAKE THIS METHOD TRULY ASYNC
         public async Task InitializeAsync()
         {
             Templates.Clear();

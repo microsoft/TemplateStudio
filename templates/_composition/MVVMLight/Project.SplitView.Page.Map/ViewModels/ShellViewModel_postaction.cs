@@ -1,4 +1,4 @@
-﻿using ItemNamespace.Helper;
+﻿using ItemNamespace.Helpers;
 namespace ItemNamespace.ViewModels
 {
     public class ShellViewModel : ViewModelBase

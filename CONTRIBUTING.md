@@ -1,6 +1,6 @@
 # Contributing to Windows Template Studio
 
-The foundation of **Windows Template Studio** is get a developer's File->New Project experience up and going as fast possible. 
+The foundation of **Windows Template Studio** is get a developer's File->New Project experience up and going as fast possible.
 
 A developer should be able to quickly and easily add features, pages, and have a solid foundation to start with.  The starting code and XAML will be best practices, follow design guidelines and be commented to help aid in enabling everything a developer to get started and understand **why** something is like it is.
 
@@ -45,7 +45,7 @@ You can find more information about these topics [here](https://blogs.msdn.micro
 * DO NOT return true or false to give sucess status. Throw exceptions if there was a failure.
 * DO provide good defaults for all values associated with parameters, options, etc.
 * DO ensure that APIs are intuitive and can be successfully used in basic scenarios without referring to the reference documentation.
-* DO communicate incorrect usage of APIs as soon as possible. 
+* DO communicate incorrect usage of APIs as soon as possible.
 * DO design an API by writing code samples for the main scenarios. Only then, you define the object model that supports those code samples.
 * DO declare static dependency properties at the top of their file.
 * DO use extension methods over static methods where possible.

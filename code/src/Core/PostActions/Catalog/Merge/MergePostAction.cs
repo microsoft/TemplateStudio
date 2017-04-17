@@ -22,9 +22,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
     public class MergePostAction : PostAction<string>
     {
-        public const string Extension = "_postaction.";
-        public const string GlobalExtension = "$*_gpostaction.";
-        public const string PostactionRegex = @"(\$\S*)?(_postaction|_gpostaction)\.";
+        private const string Suffix = "postaction";
+
+        public const string Extension = "_" + Suffix + ".";
+        public const string GlobalExtension = "$*_g" + Suffix + ".";
+        public const string PostactionRegex = @"(\$\S*)?(_" + Suffix + "|_g" + Suffix + @")\.";
 
         public MergePostAction(string config) : base(config)
         {
@@ -32,7 +34,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         public override void Execute()
         {
-            var originalFilePath = Regex.Replace(_config, PostactionRegex, ".");
+            string originalFilePath = GetFilePath();
+
+            if (string.IsNullOrEmpty(originalFilePath))
+            {
+                throw new FileNotFoundException($"There is not merge target for file'{_config}'");
+            }
 
             var source = File.ReadAllLines(originalFilePath).ToList();
             var merge = File.ReadAllLines(_config).ToList();
@@ -40,7 +47,30 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var result = source.Merge(merge);
 
             File.WriteAllLines(originalFilePath, result);
+
             File.Delete(_config);
+
+            //REFRESH PROJECT TO UN-DIRTY IT
+            if (Path.GetExtension(_config).Equals(".csproj", StringComparison.OrdinalIgnoreCase))
+            {
+                Gen.GenContext.ToolBox.Shell.RefreshProject();
+            }
+        }
+
+        private string GetFilePath()
+        {
+            var path = Regex.Replace(_config, PostactionRegex, ".");
+            if (File.Exists(path))
+            {
+                return path;
+            }
+            else
+            {
+                var extension = Path.GetExtension(_config);
+                var directory = Path.GetDirectoryName(_config);
+
+                return Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !f.Contains(Suffix));
+            }
         }
     }
 }

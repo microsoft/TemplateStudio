@@ -1,13 +1,15 @@
 using Windows.UI.Xaml.Controls;
 using System.Windows.Input;
 using ItemNamespace.Services;
-using ItemNamespace.Helper;
+using ItemNamespace.Helpers;
 using Windows.ApplicationModel;
 
 namespace ItemNamespace.Views
 {
     public sealed partial class SettingsPagePage : Page, System.ComponentModel.INotifyPropertyChanged
     {
+        // TODO UWPTemplates: Setup your privacy web in your Resource File, currently set to https://YourPrivacyUrlGoesHere
+
         private bool _isLightThemeEnabled;
         public bool IsLightThemeEnabled
         {

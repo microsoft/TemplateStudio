@@ -11,14 +11,16 @@ namespace ItemNamespace.Views
 {
     public sealed partial class MapPagePage : Page, System.ComponentModel.INotifyPropertyChanged
     {
-        private const double defaultZoomLevel = 19;
+        // TODO UWPTemplates: Set your perferred default zoom level
+        private const double defaultZoomLevel = 17;
 
-        private readonly ILocationService locationService;
+        private readonly LocationService locationService;
 
+        // TODO UWPTemplates: Set your perferred default location if a geolock can't be found.
         private readonly BasicGeoposition defaultPosition = new BasicGeoposition()
         {
-            Latitude = 47.639627,
-            Longitude = -122.128227
+            Latitude = 47.609425,
+            Longitude = -122.3417
         };
 
         private double _zoomLevel;
@@ -47,13 +49,16 @@ namespace ItemNamespace.Views
         {
             if (locationService != null)
             {
-                //TODO UWPTemplates: The Location capability needs to be enabled in the Package.appxmanifest in order to use the location service.
                 locationService.PositionChanged += LocationServicePositionChanged;
 
-                await locationService.InitializeAsync();
-                await locationService.StartListeningAsync();
+                var initializationSuccessful = await locationService.InitializeAsync();
+                
+                if (initializationSuccessful)
+                {
+                    await locationService.StartListeningAsync();
+                }
 
-                if (locationService.CurrentPosition != null)
+                if (initializationSuccessful && locationService.CurrentPosition != null)
                 {
                     Center = locationService.CurrentPosition.Coordinate.Point;
                 }
@@ -65,7 +70,7 @@ namespace ItemNamespace.Views
 
             if (mapControl != null)
             {
-                //TODO UWPTemplates: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
+                // TODO UWPTemplates: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
                 mapControl.MapServiceToken = "";
 
                 AddMapIcon(Center, "Your location");

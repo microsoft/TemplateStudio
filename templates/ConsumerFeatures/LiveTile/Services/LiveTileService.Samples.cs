@@ -11,7 +11,7 @@ namespace RootNamespace.Services
         public void SampleUpdate()
         {
             // See more information about Live Tiles Notifications
-            //https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-sending-a-local-tile-notification
+            // Documentation: https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-sending-a-local-tile-notification
 
             // These would be initialized with actual data
             string from = "Jennifer Parker";
@@ -75,15 +75,15 @@ namespace RootNamespace.Services
                 }
             };
 
-            //// Then create the tile notification            
+            // Then create the tile notification            
             var notification = new TileNotification(content.GetXml());
             UpdateTile(notification);
         }
 
         public async Task SamplePinSecondary(string pageName)
         {
-            //TODO UWPTemplates: Call this method to Pin a Secondary Tile from a page.
-            //You also must implement the navigation to this specific page in the OnLaunched event handler on App.xaml.cs
+            // TODO UWPTemplates: Call this method to Pin a Secondary Tile from a page.
+            // You also must implement the navigation to this specific page in the OnLaunched event handler on App.xaml.cs
             SecondaryTile tile = new SecondaryTile(DateTime.Now.Ticks.ToString());
             tile.Arguments = pageName;
             tile.DisplayName = pageName;

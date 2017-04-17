@@ -22,7 +22,6 @@
     { "path": ".\\Views\\MapPagePage.xaml" },
     { "path": ".\\Views\\MapPagePage.xaml.cs" },
     { "path": ".\\Assets\\map.png" },
-    { "path": ".\\Services\\ILocationService.cs" },
     { "path": ".\\Services\\LocationService.cs" }
   ],
   "symbols": {

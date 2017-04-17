@@ -19,7 +19,7 @@
       "path": ".\\Services\\NavigationService.cs"
     },
     {
-      "path": ".\\Helper\\RelayCommand.cs"
+      "path": ".\\Helpers\\RelayCommand.cs"
     }
   ],
   "symbols": {

@@ -111,7 +111,7 @@ namespace Microsoft.Templates.Core
 
                 foreach (var t in ti.Tags)
                 {
-                    properties.Add(new QueryableProperty(t.Key, t.Value));
+                    properties.Add(new QueryableProperty(t.Key, t.Value.DefaultValue));
                 }
             }
             return properties;
@@ -126,7 +126,7 @@ namespace Microsoft.Templates.Core
 
             return ti.Tags
                         .Where(t => t.Key.Contains(TagPrefix + "export."))
-                        .Select(t => (t.Key.Replace(TagPrefix + "export.", string.Empty), t.Value))
+                        .Select(t => (t.Key.Replace(TagPrefix + "export.", string.Empty), t.Value.DefaultValue))
                         .ToList();
         }
 
@@ -231,19 +231,20 @@ namespace Microsoft.Templates.Core
 
         private static string GetConfigDir(ITemplateInfo ti)
         {
-            CodeGen.Instance.Settings.SettingsLoader.TryGetFileFromIdAndPath(ti.ConfigMountPointId, ti.ConfigPlace, out IFile file);
-            if (file?.Parent == null)
+            CodeGen.Instance.Settings.SettingsLoader.TryGetFileFromIdAndPath(ti.ConfigMountPointId, ti.ConfigPlace, out IFile file, out IMountPoint mountPoint);
+
+            if (file?.Parent == null || mountPoint == null)
             {
                 return null;
             }
-            return Path.GetFullPath(file.Parent.FullPath);
+            return Path.GetFullPath(mountPoint.Info.Place + file.Parent.FullPath);
         }
 
         private static string GetValueFromTag(this ITemplateInfo templateInfo, string tagName)
         {
-            if (templateInfo.Tags != null && !string.IsNullOrEmpty(tagName) && templateInfo.Tags.TryGetValue(tagName, out string tagValue))
+            if (templateInfo.Tags != null && !string.IsNullOrEmpty(tagName) && templateInfo.Tags.TryGetValue(tagName, out ICacheTag tagValue))
             {
-                return tagValue;
+                return tagValue.DefaultValue;
             }
             return null;
         }
