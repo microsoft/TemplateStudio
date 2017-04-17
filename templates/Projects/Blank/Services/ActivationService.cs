@@ -8,9 +8,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-using uct.BlankProject.Activation;
+using wts.BlankProject.Activation;
 
-namespace uct.BlankProject.Services
+namespace wts.BlankProject.Services
 {
     internal class ActivationService
     {

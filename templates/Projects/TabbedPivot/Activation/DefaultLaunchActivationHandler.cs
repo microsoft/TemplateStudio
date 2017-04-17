@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 
-using uct.TabbedPivotProject.Services;
+using wts.TabbedPivotProject.Services;
 
-namespace uct.TabbedPivotProject.Activation
+namespace wts.TabbedPivotProject.Activation
 {
     internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
     {

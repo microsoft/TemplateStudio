@@ -43,7 +43,7 @@ namespace Microsoft.Templates.Test
             GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
         }
 
-        [STAThread]
+
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
         public async void GenerateEmptyProject(string name, string framework, string projId)
         {

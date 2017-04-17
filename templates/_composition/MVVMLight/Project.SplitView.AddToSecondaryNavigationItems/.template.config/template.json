@@ -1,0 +1,28 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMLight.Project.SplitView.AddToSecondaryNavigationItems",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$framework == MVVMLight & $projectType == SplitView & identity == wts.Page.Settings"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    }
+  }
+}

@@ -8,11 +8,11 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using uct.ItemName.Services;
-using uct.ItemName.Models;
-using uct.ItemName.Views;
+using wts.ItemName.Services;
+using wts.ItemName.Models;
+using wts.ItemName.Views;
 
-namespace uct.ItemName.ViewModels
+namespace wts.ItemName.ViewModels
 {
     public class ShellViewModel : ViewModelBase
     {
