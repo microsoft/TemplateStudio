@@ -19,7 +19,7 @@
   "sourceName": "MasterDetail",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {      
+    {
       "path": ".\\Views\\MasterDetailPage.xaml"
     },
     {
