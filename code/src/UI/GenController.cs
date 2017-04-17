@@ -27,6 +27,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions;
 using Microsoft.VisualStudio.TemplateWizard;
+using Microsoft.Templates.UI.Views;
 
 namespace Microsoft.Templates.UI
 {
@@ -40,37 +41,35 @@ namespace Microsoft.Templates.UI
 
         public static WizardState GetUserSelection()
         {
-            // TODO: Compleate
-            throw new NotImplementedException();
-            //var host = new WizardHost(selectionSteps);
+            var host = new MainView();
 
-            //try
-            //{
-            //    CleanStatusBar();
+            try
+            {
+                CleanStatusBar();
 
-            //    GenContext.ToolBox.Shell.ShowModal(host);
+                GenContext.ToolBox.Shell.ShowModal(host);
 
-            //    if (host.Result != null)
-            //    {
-            //        //TODO: Review when right-click-actions available to track Project or Page completed.
-            //        AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject).FireAndForget();
+                if (host.Result != null)
+                {
+                    //TODO: Review when right-click-actions available to track Project or Page completed.
+                    AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject).FireAndForget();
 
-            //        return host.Result;
-            //    }
-            //    else
-            //    {
-            //        //TODO: Review when right-click-actions available to track Project or Page cancelled.
-            //        AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewProject).FireAndForget();
-            //    }
+                    return host.Result;
+                }
+                else
+                {
+                    //TODO: Review when right-click-actions available to track Project or Page cancelled.
+                    AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewProject).FireAndForget();
+                }
 
-            //}
-            //catch (Exception ex) when (!(ex is WizardBackoutException))
-            //{
-            //    host.SafeClose();
-            //    ShowError(ex);
-            //}
-            //GenContext.ToolBox.Shell.CancelWizard();
-            //return null;
+            }
+            catch (Exception ex) when (!(ex is WizardBackoutException))
+            {
+                host.SafeClose();
+                ShowError(ex);
+            }
+            GenContext.ToolBox.Shell.CancelWizard();
+            return null;
         }
 
         public static async Task GenerateAsync(WizardState userSelection)

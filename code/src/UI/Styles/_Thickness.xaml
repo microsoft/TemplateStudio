@@ -1,0 +1,7 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Thickness x:Key="LeftMargin">10,0,0,0</Thickness>
+    <Thickness x:Key="LeftRightMargin">10,0</Thickness>
+    
+</ResourceDictionary>
