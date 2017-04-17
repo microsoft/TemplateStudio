@@ -25,6 +25,7 @@ using Microsoft.Templates.Test.Artifacts;
 using Microsoft.Templates.VsEmulator.NewProject;
 using Microsoft.Templates.VsEmulator.TemplatesContent;
 using Microsoft.VisualStudio.TemplateWizard;
+using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
@@ -96,37 +97,37 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private async void NewProject()
         {
-            //try
-            //{
-            //    var newProjectInfo = ShowNewProjectDialog();
-            //    if (!string.IsNullOrEmpty(newProjectInfo.name))
-            //    {
-            //        var outputPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
-            //        using (var context = GenContext.CreateNew(newProjectInfo.name, outputPath))
-            //        {
-            //            var userSelection = GenController.GetUserSelection(WizardSteps.Project);
-            //            if (userSelection != null)
-            //            {
-            //                SolutionName = null;
+            try
+            {
+                var newProjectInfo = ShowNewProjectDialog();
+                if (!string.IsNullOrEmpty(newProjectInfo.name))
+                {
+                    var outputPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
+                    using (var context = GenContext.CreateNew(newProjectInfo.name, outputPath))
+                    {
+                        var userSelection = GenController.GetUserSelection();
+                        if (userSelection != null)
+                        {
+                            SolutionName = null;
 
-            //                await GenController.GenerateAsync(userSelection);
+                            await GenController.GenerateAsync(userSelection);
 
-            //                GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
+                            GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
 
-            //                SolutionName = newProjectInfo.name;
-            //                SolutionPath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
-            //            }
-            //        }
-            //    }
-            //}
-            //catch (WizardBackoutException)
-            //{
-            //    GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
-            //}
-            //catch (WizardCancelledException)
-            //{
-            //    GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
-            //}
+                            SolutionName = newProjectInfo.name;
+                            SolutionPath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
+                        }
+                    }
+                }
+            }
+            catch (WizardBackoutException)
+            {
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
+            }
+            catch (WizardCancelledException)
+            {
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
+            }
         }
 
         private void TemplatesContent()
