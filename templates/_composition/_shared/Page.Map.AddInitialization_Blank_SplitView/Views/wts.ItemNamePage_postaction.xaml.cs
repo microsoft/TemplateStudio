@@ -4,7 +4,7 @@ namespace ItemNamespace.Views
     public sealed partial class wts.ItemNamePage : Page
     {
         //^^
-        
+
         //{[{
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
