@@ -61,6 +61,17 @@ namespace Microsoft.Templates.Core
             return Directory.EnumerateFiles(configDir, "icon.*").FirstOrDefault();
         }
 
+        public static string GetRichDescription(this ITemplateInfo ti)
+        {
+            var configDir = GetConfigDir(ti);
+            var descriptionFile = Directory.EnumerateFiles(configDir, "description.md").FirstOrDefault();
+            if (!string.IsNullOrEmpty(descriptionFile))
+            {
+                return File.ReadAllText(descriptionFile);
+            }
+            return null;
+        }
+
         public static string GetSafeIdentity(this ITemplateInfo ti)
         {
             if (!string.IsNullOrEmpty(ti.GroupIdentity))

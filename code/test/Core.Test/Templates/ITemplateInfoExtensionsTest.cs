@@ -79,6 +79,24 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Fact]
+        public void GetRichDescription()
+        {
+            var target = GetTarget("ProjectTemplate");
+
+            var result = target.GetRichDescription();
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public void GetRichDescription_unspecified()
+        {
+            var target = GetTarget("UnspecifiedTemplate");
+
+            var result = target.GetRichDescription();
+            Assert.Null(result);
+        }
+
+        [Fact]
         public void GetFramework()
         {
             var target = GetTarget("ProjectTemplate");

@@ -1,0 +1,1 @@
+This is the most basic style.  A blank canvas to build your application out.  The blank project type does not provide scaffolding and leaves everything up to you to how an end user would navigate around.
