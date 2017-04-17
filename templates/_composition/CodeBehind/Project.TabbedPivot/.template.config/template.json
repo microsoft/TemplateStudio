@@ -4,22 +4,17 @@
     "Universal"
   ],
   "name": "CodeBehind.Project.TabbedPivot",
-  "groupIdentity": "Microsoft.UWPTemplates.Framework.CodeBehind.Project.TabbedPivot",
-  "identity": "Microsoft.UWPTemplates.Framework.CodeBehind.Project.TabbedPivot.CSharp",
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "composition",
-    "uct.framework": "CodeBehind",
-    "uct.version": "1.0.0",
-    "uct.compositionFilter": "$framework == CodeBehind & identity == Microsoft.UWPTemplates.uct.TabbedPivotProject.CSharp"
+    "wts.type": "composition",
+    "wts.framework": "CodeBehind",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$framework == CodeBehind & identity == wts.Proj.TabbedPivot"
   },
-  "sourceName": "uct.ItemName",
+  "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\Models\\PivotTabbedItem.cs"
-    },
     {
       "path": ".\\Views\\PivotPage.xaml"
     },

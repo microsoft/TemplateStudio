@@ -8,12 +8,12 @@
   "tags": {
     "language": "C#",
     "type": "project",
-    "uct.type": "project",
-    "uct.framework": "fx1",
-    "uct.version": "1.0.0",
-    "uct.licences": "[text1](url1)|[text2](url2)",
-    "uct.order": "1",
-    "uct.defaultInstance": "DefaultName"
+    "wts.type": "project",
+    "wts.framework": "fx1",
+    "wts.version": "1.0.0",
+    "wts.licences": "[text1](url1)|[text2](url2)",
+    "wts.order": "1",
+    "wts.defaultInstance": "DefaultName"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

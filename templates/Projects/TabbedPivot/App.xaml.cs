@@ -2,9 +2,9 @@
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 
-using uct.TabbedPivotProject.Services;
+using wts.TabbedPivotProject.Services;
 
-namespace uct.TabbedPivotProject
+namespace wts.TabbedPivotProject
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.

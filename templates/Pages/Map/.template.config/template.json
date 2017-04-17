@@ -2,17 +2,17 @@
   "author": "Microsoft",
   "classifications": [ "Universal" ],
   "name": "Map",
-  "groupIdentity": "Microsoft.UWPTemplates.MapPage",
-  "identity": "Microsoft.UWPTemplates.MapPage.CSharp",
+  "groupIdentity": "wts.Page.Map",
+  "identity": "wts.Page.Map",
   "shortName": "Map Page",
   "description": "The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting a location from the Location Service and setting the map's center point.",
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "page",
-    "uct.framework": "MVVMBasic|MVVMLight",
-    "uct.version": "1.0.0",
-    "uct.order": "1"
+    "wts.type": "page",
+    "wts.framework": "MVVMBasic|MVVMLight",
+    "wts.version": "1.0.0",
+    "wts.order": "1"
   },
   "sourceName": "MapPage",
   "preferNameDirectory": true,
