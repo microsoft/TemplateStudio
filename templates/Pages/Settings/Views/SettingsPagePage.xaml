@@ -8,7 +8,7 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
 
-  <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid Margin="12,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="48"/>
@@ -20,7 +20,7 @@
                 x:Uid="SettingsPage_Title"
                 x:Name="TitlePage"
                 FontSize="28" FontWeight="SemiLight" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" VerticalAlignment="Center"
-                Margin="0,0,12,7"/>            
+                Margin="0,0,12,7"/>
 
             <StackPanel Grid.Row="1" Margin="0,16,0,0">
                 <TextBlock
@@ -37,7 +37,7 @@
                     </i:Interaction.Behaviors>
                 </ToggleSwitch>
             </StackPanel>
-            
+
             <StackPanel Grid.Row="2" Margin="0,16,0,0">
                 <TextBlock
                     x:Uid="SettingsPage_About"
@@ -52,7 +52,7 @@
                 <HyperlinkButton
                     x:Uid="SettingsPage_PrivacyTermsLink"
                     Margin="0,8,0,0"/>
-            </StackPanel>            
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>

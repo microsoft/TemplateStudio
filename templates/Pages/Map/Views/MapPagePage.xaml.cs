@@ -7,6 +7,6 @@ namespace ItemNamespace.Views
         public MapPagePage()
         {
             InitializeComponent();
-        }        
+        }
     }
 }

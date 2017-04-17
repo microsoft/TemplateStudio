@@ -4,12 +4,12 @@ using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using uct.ItemName.Models;
-using uct.ItemName.Services;
-using uct.ItemName.Views;
-using uct.ItemName.Helpers;
+using wts.ItemName.Models;
+using wts.ItemName.Services;
+using wts.ItemName.Views;
+using wts.ItemName.Helpers;
 
-namespace uct.ItemName.ViewModels
+namespace wts.ItemName.ViewModels
 {
     public class ShellViewModel : Observable
     {
@@ -142,7 +142,6 @@ namespace uct.ItemName.ViewModels
                 DisplayMode = SplitViewDisplayMode.Overlay;
                 IsPaneOpen = false;
             }
-
         }
 
         public void Initialize(Frame frame, ListView primaryListView, ListView secondaryListView)
@@ -204,7 +203,7 @@ namespace uct.ItemName.ViewModels
             {
                 PrimarySelectedItem = item;
             }
-        }        
+        }
 
         private void ChangeSelected(object oldValue, object newValue)
         {
@@ -228,4 +227,3 @@ namespace uct.ItemName.ViewModels
         }
     }
 }
-        

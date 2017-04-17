@@ -8,7 +8,7 @@ namespace ItemNamespace.Helpers
 {
     public static class SettingsStorageExtensions
     {
-        // TODO UWPTemplates: Use this extension methods to store and retrieve in local and roaming app data 
+        // Use this extension methods to store and retrieve in local and roaming app data 
         // For more info regarding storing and retrieving app data, 
         // Documentation: https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data
 
@@ -22,7 +22,6 @@ namespace ItemNamespace.Helpers
         public static async Task SaveAsync<T>(this StorageFolder folder, string name, T content)
         {
             var file = await folder.CreateFileAsync(GetFileName(name), CreationCollisionOption.ReplaceExisting);
-
             var fileContent = await Json.StringifyAsync(content);
 
             await FileIO.WriteTextAsync(file, fileContent);
@@ -43,26 +42,16 @@ namespace ItemNamespace.Helpers
 
         public static async Task SaveAsync<T>(this ApplicationDataContainer settings, string key, T value)
         {
-            if (settings.Values.ContainsKey(key))
-            {
-                settings.Values[key] = await Json.StringifyAsync(value);
-            }
-            else
-            {
-                settings.Values.Add(key, await Json.StringifyAsync(value));
-            }
+            settings.Values[key] = await Json.StringifyAsync(value);
         }
 
         public static async Task<T> ReadAsync<T>(this ApplicationDataContainer settings, string key)
         {
-            if (settings.Values.ContainsKey(key))
-            {
-                var value = (string)settings.Values[key];
+            object obj = null;
 
-                if (value != null)
-                {
-                    return await Json.ToObjectAsync<T>(value);
-                }
+            if (settings.Values.TryGetValue(key, out obj))
+            {
+                return await Json.ToObjectAsync<T>((string)obj);
             }
 
             return default(T);

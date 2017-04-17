@@ -23,7 +23,7 @@ namespace ItemNamespace.Services
         {
             foreach (var task in BackgroundTasks)
             {
-                task.Register();               
+                task.Register();
             }
         }
 

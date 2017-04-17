@@ -23,7 +23,7 @@ namespace ItemNamespace.ViewModels
             get { return _selected; }
             set { Set(ref _selected, value); }
         }
-        
+
         public ICommand ItemClickCommand { get; private set; }
         public ICommand StateChangedCommand { get; private set; }
 
@@ -33,7 +33,7 @@ namespace ItemNamespace.ViewModels
         {
             ItemClickCommand = new RelayCommand<ItemClickEventArgs>(OnItemClick);
             StateChangedCommand = new RelayCommand<VisualStateChangedEventArgs>(OnStateChanged);
-        }        
+        }
 
         public async Task LoadDataAsync(VisualState currentState)
         {

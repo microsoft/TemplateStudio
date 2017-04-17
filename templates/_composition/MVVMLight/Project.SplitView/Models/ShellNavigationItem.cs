@@ -2,7 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace uct.ItemName.Models
+namespace wts.ItemName.Models
 {
     public class ShellNavigationItem : ViewModelBase
     {

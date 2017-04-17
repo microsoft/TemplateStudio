@@ -13,7 +13,7 @@ namespace RootNamespace.Services
         public async void InitializeAsync()
         {
             // See more about adding push notifications to your Windows app
-            // Documentation: https://docs.microsoft.com/azure/app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push            
+            // Documentation: https://docs.microsoft.com/azure/app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push
 
             // Use your Hub Name here
             var hubName = "";

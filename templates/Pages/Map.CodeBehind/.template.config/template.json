@@ -2,18 +2,18 @@
   "author": "Microsoft",
   "classifications": ["Universal"],
   "name": "Map",
-  "groupIdentity": "Microsoft.UWPTemplates.MapPage",
-  "identity": "Microsoft.UWPTemplates.MapPage.CodeBehind.CSharp",
+  "groupIdentity": "wts.Page.Map",
+  "identity": "wts.Page.Map.CodeBehind",
   "shortName": "Map Page",
   "description": "The map page is based around the Map Control.  Code includes adding a Map Icon and setting the location.",
   "tags":
   {
     "language": "C#",
     "type": "item",
-    "uct.type": "page",
-    "uct.framework": "CodeBehind",
-    "uct.version": "1.0.0",
-    "uct.order": "1"
+    "wts.type": "page",
+    "wts.framework": "CodeBehind",
+    "wts.version": "1.0.0",
+    "wts.order": "1"
   },
   "sourceName": "MapPage",
   "preferNameDirectory": true,

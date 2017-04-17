@@ -20,7 +20,7 @@ namespace ItemNamespace.Views
 
         public ICommand ItemClickCommand { get; private set; }
  
-        public ObservableCollection<SampleModel> SampleItems { get; private set; } = new ObservableCollection<SampleModel>();  
+        public ObservableCollection<SampleModel> SampleItems { get; private set; } = new ObservableCollection<SampleModel>();
 
         public MasterDetailPage()
         {
@@ -34,19 +34,18 @@ namespace ItemNamespace.Views
         }
 
         private async Task LoadDataAsync() 
-        {  
+        {
             SampleItems.Clear(); 
 
             var service = new SampleModelService(); 
             var data = await service.GetDataAsync(); 
 
             foreach (var item in data) 
-            { 
+            {
                 SampleItems.Add(item); 
-            } 
+            }
             Selected = SampleItems.First(); 
-        } 
-
+        }
 
         private void OnItemClick(ItemClickEventArgs args)
         {

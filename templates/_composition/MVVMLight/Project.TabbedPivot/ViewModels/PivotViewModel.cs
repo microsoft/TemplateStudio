@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 
-namespace uct.ItemName.ViewModels
+namespace wts.ItemName.ViewModels
 {
     public class PivotViewModel : ViewModelBase
     {
