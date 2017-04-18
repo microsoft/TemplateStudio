@@ -178,7 +178,7 @@ namespace Microsoft.Templates.Wizard.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is templates content available with higher version than the wizard. Consider to update the extension to access the latest content..
+        ///   Looks up a localized string similar to An update to the templates is available. Update the extension to get the latest content..
         /// </summary>
         public static string StatusOverVersionContent {
             get {
