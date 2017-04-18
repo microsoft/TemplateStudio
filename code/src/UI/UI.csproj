@@ -179,9 +179,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StringRes.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Extensions.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MetadataInfoViewModel.cs" />
+    <Compile Include="ViewModels\ProjectSetupViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProjectSetupView.xaml.cs">
+      <DependentUpon>ProjectSetupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProjectTemplatesView.xaml.cs">
+      <DependentUpon>ProjectTemplatesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="VisualStudio\SolutionWizard.cs" />
     <Compile Include="VisualStudio\VsGenShell.cs" />
@@ -217,6 +226,14 @@
     <Folder Include="Controls\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Styles\StyleDataTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\StyleListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\StyleTextBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -242,6 +259,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectSetupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectTemplatesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

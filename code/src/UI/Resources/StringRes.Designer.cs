@@ -88,11 +88,29 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Project Type.
+        /// </summary>
+        public static string GroupProjectType {
+            get {
+                return ResourceManager.GetString("GroupProjectType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project Type ({0}) - Pick one.
+        /// </summary>
+        public static string GroupProjectTypeHeader_SF {
+            get {
+                return ResourceManager.GetString("GroupProjectTypeHeader_SF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select project type and framework.
         /// </summary>
-        public static string Step1Title {
+        public static string ProjectSetupTitle {
             get {
-                return ResourceManager.GetString("Step1Title", resourceCulture);
+                return ResourceManager.GetString("ProjectSetupTitle", resourceCulture);
             }
         }
     }

@@ -9,10 +9,33 @@
     <Style TargetType="TextBlock" x:Key="TextTitleStyle">
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Margin" Value="{StaticResource LeftMargin}"/>
+        <Setter Property="Margin" Value="{StaticResource MediumLeftMargin}"/>
         <Setter Property="Foreground" Value="{StaticResource UIWhite}"/>
         <Setter Property="FontSize" Value="30"/>
         <Setter Property="FontWeight" Value="Regular"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="TextTemplateTitleStyle">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="Margin" Value="{StaticResource SmallLeftMargin}" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="TextTemplateSubtitleStyle">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="{StaticResource UIBlack}" />
+        <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="Margin" Value="{StaticResource SmallLeftMargin}" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="TextTemplateAuthorStyle">
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="Foreground" Value="{StaticResource UIMidleDarkGray}" />
+        <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="Margin" Value="{StaticResource SmallLeftMargin}" />
     </Style>
 
 </ResourceDictionary>

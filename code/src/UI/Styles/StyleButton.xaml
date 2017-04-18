@@ -8,7 +8,7 @@
 
 
     <Style TargetType="Button" x:Key="ButtonNavigationStyle">
-        <Setter Property="Margin" Value="{StaticResource LeftMargin}" />
+        <Setter Property="Margin" Value="{StaticResource MediumLeftMargin}" />
         <Setter Property="Width" Value="75" />
         <Setter Property="Height" Value="27" />
         <Setter Property="Foreground" Value="{StaticResource UIBlack}" />

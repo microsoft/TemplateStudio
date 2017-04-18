@@ -21,6 +21,7 @@ namespace Microsoft.Templates.UI.Views
             Loaded += async (sender, e) =>
             {
                 await ViewModel.IniatializeAsync();
+                stepFrame.Navigate(new ProjectSetupView());
             };
 
             Unloaded += (sender, e) =>

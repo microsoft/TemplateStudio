@@ -12,6 +12,7 @@ namespace Microsoft.Templates.UI.ViewModels
 {
     public class MainViewModel : Observable
     {
+        public static MainViewModel Current;
         private MainView _mainView;
 
         private string _title;
@@ -36,14 +37,17 @@ namespace Microsoft.Templates.UI.ViewModels
         public ICommand BackCommand => _backCommand ?? new RelayCommand(OnBack, () => CanGoBack);
         public ICommand NextCommand => _nextCommand ?? new RelayCommand(OnNext);
 
+        public ProjectSetupViewModel ProjectSetup { get; private set; } = new ProjectSetupViewModel();
+
         public MainViewModel(MainView mainView)
         {
             _mainView = mainView;
+            Current = this;
         }
 
         public async Task IniatializeAsync()
         {
-            Title = StringRes.Step1Title;
+            Title = StringRes.ProjectSetupTitle;
         }
 
         public void UnsuscribeEventHandlers()

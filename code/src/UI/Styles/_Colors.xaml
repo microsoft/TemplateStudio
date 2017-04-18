@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Color x:Key="UIBlueColor">#3399ff</Color>
+    <Color x:Key="UIDarkBlueColor">#017af3</Color>
     
     <Color x:Key="UIWhiteColor">#ffffff</Color>
 
@@ -10,8 +11,10 @@
     <Color x:Key="UILightGrayColor">#f0f0f0</Color>
     <Color x:Key="UIMidleLightGrayColor">#dddddd</Color>
     <Color x:Key="UIGrayColor">#c6c6c6</Color>
+    <Color x:Key="UIMidleDarkGrayColor">#999999</Color>
 
     <SolidColorBrush x:Key="UIBlue" Color="{StaticResource UIBlueColor}"/>
+    <SolidColorBrush x:Key="UIDarkBlue" Color="{StaticResource UIDarkBlueColor}"/>
     
     <SolidColorBrush x:Key="UIWhite" Color="{StaticResource UIWhiteColor}"/>
 
@@ -20,5 +23,6 @@
     <SolidColorBrush x:Key="UILightGray" Color="{StaticResource UILightGrayColor}"/>
     <SolidColorBrush x:Key="UIMidleLightGray" Color="{StaticResource UIMidleLightGrayColor}"/>
     <SolidColorBrush x:Key="UIGray" Color="{StaticResource UIGrayColor}"/>
+    <SolidColorBrush x:Key="UIMidleDarkGray" Color="{StaticResource UIMidleDarkGrayColor}"/>
 
 </ResourceDictionary>

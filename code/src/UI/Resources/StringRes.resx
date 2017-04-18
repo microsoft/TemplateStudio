@@ -126,7 +126,13 @@
   <data name="ButtonNext" xml:space="preserve">
     <value>Next</value>
   </data>
-  <data name="Step1Title" xml:space="preserve">
+  <data name="GroupProjectType" xml:space="preserve">
+    <value>Project Type</value>
+  </data>
+  <data name="GroupProjectTypeHeader_SF" xml:space="preserve">
+    <value>Project Type ({0}) - Pick one</value>
+  </data>
+  <data name="ProjectSetupTitle" xml:space="preserve">
     <value>Select project type and framework</value>
   </data>
 </root>
