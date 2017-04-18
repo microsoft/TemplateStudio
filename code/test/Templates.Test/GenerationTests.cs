@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Test
             GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
         }
 
-        [STAThread]
+
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
         public async void GenerateEmptyProject(string name, string framework, string projId)
         {
@@ -91,8 +91,7 @@ namespace Microsoft.Templates.Test
 
                 AddLayoutItems(wizardState, targetProjectTemplate);
                 AddItems(wizardState, GetTemplates(framework, TemplateType.Page));
-                AddItems(wizardState, GetTemplates(framework, TemplateType.DevFeature));
-                AddItems(wizardState, GetTemplates(framework, TemplateType.ConsumerFeature));
+                AddItems(wizardState, GetTemplates(framework, TemplateType.Feature));
 
                 await GenController.UnsafeGenerateAsync(wizardState);
 
@@ -148,14 +147,9 @@ namespace Microsoft.Templates.Test
                 case TemplateType.Page:
                     wizardState.Pages.Add((itemName, template));
                     break;
-                case TemplateType.DevFeature:
+                case TemplateType.Feature:
                     wizardState.DevFeatures.Add((itemName, template));
                     break;
-                case TemplateType.ConsumerFeature:
-                    wizardState.ConsumerFeatures.Add((itemName, template));
-                    break;
-
-
             }
             UsedNames.Add(itemName);
         }

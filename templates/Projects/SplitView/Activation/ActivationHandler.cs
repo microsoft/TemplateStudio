@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace uct.SplitViewProject.Activation
+namespace wts.SplitViewProject.Activation
 {
     internal abstract class ActivationHandler
     {

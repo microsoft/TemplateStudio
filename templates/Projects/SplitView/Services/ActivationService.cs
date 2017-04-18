@@ -8,9 +8,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-using uct.SplitViewProject.Activation;
+using wts.SplitViewProject.Activation;
 
-namespace uct.SplitViewProject.Services
+namespace wts.SplitViewProject.Services
 {
     internal class ActivationService
     {
@@ -54,7 +54,7 @@ namespace uct.SplitViewProject.Services
                     {
                         SystemNavigationManager.GetForCurrentView().BackRequested += OnAppViewBackButtonRequested;
                     }
-                } 
+                }
             }
 
             var activationHandler = GetActivationHandlers()

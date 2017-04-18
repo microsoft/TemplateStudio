@@ -29,7 +29,7 @@ namespace RootNamespace.Services
                 await SetThemeAsync(ElementTheme.Dark);
             }
         }
-        
+
         public static async Task SetThemeAsync(ElementTheme theme)
         {
             Theme = theme;

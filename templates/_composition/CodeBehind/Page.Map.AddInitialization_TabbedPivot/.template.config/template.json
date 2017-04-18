@@ -1,0 +1,29 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "CodeBehind.Page.Map.AddInitialization_TabbedPivot",
+   "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.framework": "CodeBehind",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "identity == wts.Page.Map.CodeBehind & $projectType == TabbedPivot"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    }
+  }
+}

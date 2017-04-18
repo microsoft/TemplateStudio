@@ -31,7 +31,7 @@ namespace Microsoft.Templates.Core
     public static class ITemplateInfoExtensions
     {
         private const string Separator = "|";
-        private const string TagPrefix = "uct.";
+        private const string TagPrefix = "wts.";
         private const string LicencesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
 
         public static TemplateType GetTemplateType(this ITemplateInfo ti)
@@ -43,10 +43,8 @@ namespace Microsoft.Templates.Core
                     return TemplateType.Project;
                 case "page":
                     return TemplateType.Page;
-                case "devfeature":
-                    return TemplateType.DevFeature;
-                case "consumerfeature":
-                    return TemplateType.ConsumerFeature;
+                case "feature":
+                    return TemplateType.Feature;
                 case "composition":
                     return TemplateType.Composition;
                 default:
@@ -59,6 +57,17 @@ namespace Microsoft.Templates.Core
             var configDir = GetConfigDir(ti);
 
             return Directory.EnumerateFiles(configDir, "icon.*").FirstOrDefault();
+        }
+
+        public static string GetRichDescription(this ITemplateInfo ti)
+        {
+            var configDir = GetConfigDir(ti);
+            var descriptionFile = Directory.EnumerateFiles(configDir, "description.md").FirstOrDefault();
+            if (!string.IsNullOrEmpty(descriptionFile))
+            {
+                return File.ReadAllText(descriptionFile);
+            }
+            return null;
         }
 
         public static string GetSafeIdentity(this ITemplateInfo ti)
@@ -107,6 +116,7 @@ namespace Microsoft.Templates.Core
             {
                 properties.Add(new QueryableProperty(nameof(ti.Name).ToLower(), ti.Name));
                 properties.Add(new QueryableProperty(nameof(ti.Identity).ToLower(), ti.Identity));
+                properties.Add(new QueryableProperty(nameof(ti.GroupIdentity).ToLower(), ti.GroupIdentity));
 
                 foreach (var t in ti.Tags)
                 {
@@ -157,6 +167,10 @@ namespace Microsoft.Templates.Core
             return result;
         }
 
+        public static string GetGroup(this ITemplateInfo ti)
+        {
+            return GetValueFromTag(ti, TagPrefix + "group");
+        }
 
         public static string GetVersion(this ITemplateInfo ti)
         {

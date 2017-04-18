@@ -1,0 +1,44 @@
+{
+  "author": "Microsoft",
+  "classifications": ["Universal"],
+  "name": "Suspend and Resume",
+  "groupIdentity": "wts.Feat.SuspendAndResume",
+  "identity": "wts.Feat.SuspendAndResume",
+  "shortName": "Suspend and resume",
+  "description": "A user can suspend your app at any time so let's be ready for it.  We have a nifty suspend and resume service you can hook into that can help you in bringing your app back to the state it was before!\\nSee these three great topics on the application lifecycle, https://docs.microsoft.com/en-us/windows/uwp/launch-resume/app-lifecycle,  https://docs.microsoft.com/en-us/windows/uwp/launch-resume/resume-an-app and  https://docs.microsoft.com/en-us/windows/uwp/launch-resume/suspend-an-app for more information.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.version": "1.0.0",
+    "wts.order": "1",
+    "wts.group": "ApplicationLifecycle",
+    "wts.multipleInstance": "false",
+    "wts.dependencies":"wts.Feat.SettingsStorage"
+  },
+  "sourceName": "SuspendAndResumeFeature",
+  "preferNameDirectory": true,
+  "guids": [ "5b9d2eee-b648-4ca1-837e-9abb8f3dffdd" ],
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Services\\SuspendAndResumeService.cs"
+    },
+    {
+      "path": ".\\Services\\OnBackgroundEnteringEventArgs.cs"
+    },
+    {
+      "path": ".\\Services\\SuspensionState.cs"
+    }
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    }
+  }
+}

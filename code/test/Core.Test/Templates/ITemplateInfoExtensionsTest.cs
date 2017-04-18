@@ -79,6 +79,24 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Fact]
+        public void GetRichDescription()
+        {
+            var target = GetTarget("ProjectTemplate");
+
+            var result = target.GetRichDescription();
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public void GetRichDescription_unspecified()
+        {
+            var target = GetTarget("UnspecifiedTemplate");
+
+            var result = target.GetRichDescription();
+            Assert.Null(result);
+        }
+
+        [Fact]
         public void GetFramework()
         {
             var target = GetTarget("ProjectTemplate");
@@ -115,6 +133,24 @@ namespace Microsoft.Templates.Core.Test
             var target = GetTarget("UnspecifiedTemplate");
 
             var result = target.GetVersion();
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void GetGroup()
+        {
+            var target = GetTarget("ProjectTemplate");
+
+            var result = target.GetGroup();
+            Assert.Equal("group1", result);
+        }
+
+        [Fact]
+        public void GetGroup_unspecified()
+        {
+            var target = GetTarget("UnspecifiedTemplate");
+
+            var result = target.GetGroup();
             Assert.Null(result);
         }
 

@@ -8,9 +8,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-using uct.TabbedPivotProject.Activation;
+using wts.TabbedPivotProject.Activation;
 
-namespace uct.TabbedPivotProject.Services
+namespace wts.TabbedPivotProject.Services
 {
     internal class ActivationService
     {
@@ -54,7 +54,7 @@ namespace uct.TabbedPivotProject.Services
                     {
                         SystemNavigationManager.GetForCurrentView().BackRequested += OnAppViewBackButtonRequested;
                     }
-                } 
+                }
             }
 
             var activationHandler = GetActivationHandlers()

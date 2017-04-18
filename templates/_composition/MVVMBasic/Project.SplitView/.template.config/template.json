@@ -4,16 +4,14 @@
     "Universal"
   ],
   "name": "MVVMBasic.Project.SplitView",
-  "groupIdentity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.SplitView",
-  "identity": "Microsoft.UWPTemplates.Framework.MVVMBasic.Project.SplitView.CSharp",
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "composition",
-    "uct.version": "1.0.0",
-    "uct.compositionFilter": "$framework == MVVMBasic & identity == Microsoft.UWPTemplates.uct.SplitViewProject.CSharp"
+    "wts.type": "composition",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$framework == MVVMBasic & identity == wts.Proj.SplitView"
   },
-  "sourceName": "uct.ItemName",
+  "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {

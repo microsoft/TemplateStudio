@@ -7,6 +7,7 @@ namespace ItemNamespace.ViewModels
 {
     public class SettingsPageViewModel : System.ComponentModel.INotifyPropertyChanged
     {
+        // TODO UWPTemplates: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/pages/settings.md
         private bool _isLightThemeEnabled;
         public bool IsLightThemeEnabled
         {

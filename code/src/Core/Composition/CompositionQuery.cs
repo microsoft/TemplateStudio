@@ -10,11 +10,13 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
 using Microsoft.TemplateEngine.Abstractions;
+using System.Text;
 
 namespace Microsoft.Templates.Core.Composition
 {
@@ -36,14 +38,34 @@ namespace Microsoft.Templates.Core.Composition
             if (!string.IsNullOrWhiteSpace(rawQuery))
             {
                 var queryMatches = Regex.Matches(rawQuery, QueryPattern);
-                for (int i = 0; i < queryMatches.Count; i++)
+
+                if (Validate(queryMatches, rawQuery))
                 {
-                    var m = queryMatches[i];
-                    query.Items.Add(new QueryNode(m.Groups["field"].Value.Trim(), m.Groups["operator"].Value.Trim(), m.Groups["value"].Value.Trim()));
+                    for (int i = 0; i < queryMatches.Count; i++)
+                    {
+                        var m = queryMatches[i];
+                        query.Items.Add(new QueryNode(m.Groups["field"].Value.Trim(), m.Groups["operator"].Value.Trim(), m.Groups["value"].Value.Trim()));
+                    }
+                }
+                else
+                {
+                    throw new InvalidCompositionQueryException($"The query \"{rawQuery}\" is invalid. Allowed operators are '==' or '!='. Multiple conditions are separated by '&'.");
                 }
             }
 
             return query;
+        }
+
+        private static bool Validate(MatchCollection queryMatches, string rawQuery)
+        {
+            //Basic validation: matches concatenation must be equal than rawQuery
+            StringBuilder sb = new StringBuilder();
+            foreach(Match m in queryMatches)
+            {
+                sb.Append(m.Value.Replace(" ", "").Trim());
+            }
+
+            return sb.ToString() == rawQuery.Replace(" ", "").Trim();
         }
 
         public static CompositionQuery Parse(IEnumerable<string> rawQuery)

@@ -8,7 +8,7 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "uct.type": "feature"
+    "wts.type": "feature"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

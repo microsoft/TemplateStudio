@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace uct.TabbedPivotProject.Activation
+namespace wts.TabbedPivotProject.Activation
 {
     internal abstract class ActivationHandler
     {
