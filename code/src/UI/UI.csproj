@@ -169,6 +169,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ImageEx.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="GenComposer.cs" />
     <Compile Include="GenController.cs" />
@@ -213,9 +214,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="Styles\StyleTextBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
