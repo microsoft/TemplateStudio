@@ -43,7 +43,7 @@ namespace Microsoft.Templates.Test
             GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
         }
 
-        [STAThread]
+
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
         public async void GenerateEmptyProject(string name, string framework, string projId)
         {
@@ -92,8 +92,7 @@ namespace Microsoft.Templates.Test
 
                 AddLayoutItems(wizardState, targetProjectTemplate);
                 AddItems(wizardState, GetTemplates(framework, TemplateType.Page));
-                AddItems(wizardState, GetTemplates(framework, TemplateType.DevFeature));
-                AddItems(wizardState, GetTemplates(framework, TemplateType.ConsumerFeature));
+                AddItems(wizardState, GetTemplates(framework, TemplateType.Feature));
 
                 await GenController.UnsafeGenerateAsync(wizardState);
 
@@ -124,10 +123,10 @@ namespace Microsoft.Templates.Test
 
             foreach (var layoutItem in layouts)
             {
-                var template = GenerationTestsFixture.Templates.Where(t => t.Identity == layoutItem.templateIdentity).FirstOrDefault();
+                var template = GenerationTestsFixture.Templates.FirstOrDefault(t => t.GroupIdentity == layoutItem.templateGroupIdentity && t.GetFrameworkList().Any(f => f.Equals(wizardState.Framework, StringComparison.OrdinalIgnoreCase)));
                 if (template == null)
                 {
-                    throw new Exception($"Template {layoutItem.templateIdentity} could not be found");
+                    throw new Exception($"Template {layoutItem.templateGroupIdentity} could not be found");
                 }
                 AddItem(wizardState, layoutItem.name, template);
             }
@@ -147,16 +146,11 @@ namespace Microsoft.Templates.Test
             switch (template.GetTemplateType())
             {
                 case TemplateType.Page:
-                    wizardState.Pages.Add((itemName, template.Name));
+                    wizardState.Pages.Add((itemName, template));
                     break;
-                case TemplateType.DevFeature:
-                    wizardState.DevFeatures.Add((itemName, template.Name));
+                case TemplateType.Feature:
+                    wizardState.DevFeatures.Add((itemName, template));
                     break;
-                case TemplateType.ConsumerFeature:
-                    wizardState.ConsumerFeatures.Add((itemName, template.Name));
-                    break;
-
-
             }
             UsedNames.Add(itemName);
         }

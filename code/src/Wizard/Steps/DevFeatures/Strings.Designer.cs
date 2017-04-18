@@ -115,7 +115,7 @@ namespace Microsoft.Templates.Wizard.Steps.DevFeatures {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select your developer features:.
+        ///   Looks up a localized string similar to Select your features:.
         /// </summary>
         public static string PageTitle {
             get {

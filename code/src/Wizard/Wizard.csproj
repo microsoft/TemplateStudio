@@ -56,22 +56,22 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.TemplateEngine.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Abstractions.1.0.0-beta1-20170223-126\lib\net45\Microsoft.TemplateEngine.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Abstractions.1.0.0-beta2-20170405-182\lib\net45\Microsoft.TemplateEngine.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.1.0.0-beta1-20170223-126\lib\net45\Microsoft.TemplateEngine.Core.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.1.0.0-beta2-20170405-182\lib\net45\Microsoft.TemplateEngine.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Core.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.Contracts.1.0.0-beta1-20170223-126\lib\net45\Microsoft.TemplateEngine.Core.Contracts.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.Contracts.1.0.0-beta2-20170405-182\lib\net45\Microsoft.TemplateEngine.Core.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Edge, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Edge.1.0.0-beta1-20170223-126\lib\net45\Microsoft.TemplateEngine.Edge.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Edge.1.0.0-beta2-20170405-182\lib\net45\Microsoft.TemplateEngine.Edge.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.1.0.0-beta1-20170223-126\lib\net45\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.1.0.0-beta2-20170405-182\lib\net45\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Utils, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Utils.1.0.0-beta1-20170223-126\lib\net45\Microsoft.TemplateEngine.Utils.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Utils.1.0.0-beta2-20170405-182\lib\net45\Microsoft.TemplateEngine.Utils.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Shell.14.0, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -158,19 +158,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Steps\ConsumerFeatures\NewConsumerFeature\NewConsumerFeatureDialog.xaml.cs">
-      <DependentUpon>NewConsumerFeatureDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Steps\ConsumerFeatures\NewConsumerFeature\NewConsumerFeatureViewModel.cs" />
-    <Compile Include="Steps\ConsumerFeatures\Strings.Designer.cs">
-      <DependentUpon>Strings.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Steps\ConsumerFeatures\View.xaml.cs">
-      <DependentUpon>View.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Steps\ConsumerFeatures\ViewModel.cs" />
     <Compile Include="Steps\DevFeatures\NewDevFeature\NewDevFeatureDialog.xaml.cs">
       <DependentUpon>NewDevFeatureDialog.xaml</DependentUpon>
     </Compile>
@@ -251,14 +238,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Steps\ConsumerFeatures\NewConsumerFeature\NewConsumerFeatureDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Steps\ConsumerFeatures\View.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Steps\DevFeatures\NewDevFeature\NewDevFeatureDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -321,10 +300,6 @@
     <EmbeddedResource Include="Resources\StringRes.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Steps\ConsumerFeatures\Strings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Steps\DevFeatures\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

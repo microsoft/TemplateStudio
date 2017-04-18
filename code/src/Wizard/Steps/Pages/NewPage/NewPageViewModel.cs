@@ -78,7 +78,6 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
             }
         }
 
-        //TODO: MAKE THIS METHOD TRULY ASYNC
         public async Task InitializeAsync()
         {
             Templates.Clear();
@@ -106,13 +105,13 @@ namespace Microsoft.Templates.Wizard.Steps.Pages.NewPage
         }
         private bool IsAlreadyDefined(ITemplateInfo template)
         {
-            return _selectedTemplates.Any(t => t.TemplateName == template.Name);
+            return _selectedTemplates.Any(t => t.Template.Identity == template.Identity);
         }
 
         private void SaveAndClose()
         {
             _dialog.DialogResult = true;
-            _dialog.Result = (ItemName, TemplateSelected.Name);
+            _dialog.Result = (ItemName, TemplateSelected.Info);
 
             _dialog.Close();
         }

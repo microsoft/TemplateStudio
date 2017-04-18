@@ -35,9 +35,9 @@ namespace Microsoft.Templates.Core.Test
         public void Infer_Reserved()
         {
             var existing = new string[] { };
-            var result = Naming.Infer(existing, "WebView");
+            var result = Naming.Infer(existing, "Page");
 
-            Assert.Equal("WebView1", result);
+            Assert.Equal("Page1", result);
         }
 
         [Fact]

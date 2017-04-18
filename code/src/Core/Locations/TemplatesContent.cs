@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Core.Locations
             {
                 Version currentVersion = GetVersionFromFolder(currentContentFolder);
                 Version latestVersion = GetVersionFromFolder(LatestContentFolder);
-                return currentVersion==null || currentVersion < latestVersion;
+                return currentVersion==null || currentVersion < latestVersion || latestVersion.IsZero();
             }
             else
             {
@@ -59,7 +59,7 @@ namespace Microsoft.Templates.Core.Locations
             string targetFolder = GetLatestContentFolder(false);
             Version targetVersion = GetVersionFromFolder(targetFolder);
 
-            if (ExistsContent(targetFolder) && !targetVersion.IsDefault())
+            if (ExistsContent(targetFolder) && !targetVersion.IsZero())
             {
                 return IsVersionOverWizard(targetVersion);
             }
@@ -74,7 +74,7 @@ namespace Microsoft.Templates.Core.Locations
             string targetFolder = GetLatestContentFolder(false);
             Version targetVersion = GetVersionFromFolder(targetFolder);
 
-            if (ExistsContent(targetFolder) && !targetVersion.IsDefault())
+            if (ExistsContent(targetFolder) && !targetVersion.IsZero())
             {
                 return IsVersionUnderWizard(targetVersion);
             }
@@ -105,7 +105,7 @@ namespace Microsoft.Templates.Core.Locations
                 foreach (var sdi in di.EnumerateDirectories())
                 {
                     Version.TryParse(sdi.Name, out Version v);
-                    if (!v.IsDefault() && v < GetVersionFromFolder(currentContent))
+                    if (!v.IsZero() && v < GetVersionFromFolder(currentContent))
                     {
                         Fs.SafeDeleteDirectory(sdi.FullName);
                     }
@@ -203,7 +203,7 @@ namespace Microsoft.Templates.Core.Locations
         private bool IsWizardAligned(Version v)
         {
             Version wizardVersion = GetWizardVersion();
-            return wizardVersion.IsDefault() || (v.Major == wizardVersion.Major && v.Minor == wizardVersion.Minor);
+            return wizardVersion.IsZero() || (v.Major == wizardVersion.Major && v.Minor == wizardVersion.Minor);
         }
         
     }

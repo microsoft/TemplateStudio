@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Wizard.Steps.Pages
             else
             {
                 var selectedPages = Context.State.Pages
-                                    .Select(p => new PageViewModel(p.name, p.templateName));
+                                    .Select(p => new PageViewModel(p.name, p.template));
 
                 Templates.AddRange(selectedPages);
             }
@@ -73,7 +73,7 @@ namespace Microsoft.Templates.Wizard.Steps.Pages
         public override void SaveState()
         {
             Context.State.Pages.Clear();
-            Context.State.Pages.AddRange(Templates.Select(t => (t.Name, t.TemplateName)));
+            Context.State.Pages.AddRange(Templates.Select(t => (t.Name, t.Template)));
         }
 
         private void ShowAddPageDialog()
@@ -87,7 +87,7 @@ namespace Microsoft.Templates.Wizard.Steps.Pages
 
             if (dialogResult.HasValue && dialogResult.Value)
             {
-                Templates.Add(new PageViewModel(dialog.Result.name, dialog.Result.templateName));
+                Templates.Add(new PageViewModel(dialog.Result.name, dialog.Result.template));
             }
         }
 
@@ -106,10 +106,10 @@ namespace Microsoft.Templates.Wizard.Steps.Pages
 
             foreach (var item in layout)
             {
-                var template = GenContext.ToolBox.Repo.Find(t => t.Identity == item.templateIdentity);
-                if (template != null && template.GetTemplateType() == TemplateType.Page && template.GetFrameworkList().Any(f => f.Equals(Context.State.Framework, StringComparison.OrdinalIgnoreCase)))
+                var template = GenContext.ToolBox.Repo.GetLayoutTemplate(item, Context.State.Framework);
+                if (template != null && template.GetTemplateType() == TemplateType.Page)
                 {
-                    Templates.Add(new PageViewModel(item.name, template.Name, item.@readonly));
+                    Templates.Add(new PageViewModel(item.name, template, item.@readonly));
                 }
             }
         }

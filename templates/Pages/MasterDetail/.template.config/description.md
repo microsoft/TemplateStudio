@@ -1,0 +1,1 @@
+The master-detail page (https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/master-details) has a master pane and a details pane for content. When an item in the master list is selected, the details pane is updated. This pattern is frequently used for email and address books.

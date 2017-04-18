@@ -56,22 +56,22 @@
       <HintPath>..\..\packages\Microsoft.ApplicationInsights.2.3.0-beta1\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Abstractions.1.0.0-beta1-20170223-126\lib\net45\Microsoft.TemplateEngine.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Abstractions.1.0.0-beta2-20170405-182\lib\net45\Microsoft.TemplateEngine.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.1.0.0-beta1-20170223-126\lib\net45\Microsoft.TemplateEngine.Core.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.1.0.0-beta2-20170405-182\lib\net45\Microsoft.TemplateEngine.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Core.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.Contracts.1.0.0-beta1-20170223-126\lib\net45\Microsoft.TemplateEngine.Core.Contracts.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.Contracts.1.0.0-beta2-20170405-182\lib\net45\Microsoft.TemplateEngine.Core.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Edge, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Edge.1.0.0-beta1-20170223-126\lib\net45\Microsoft.TemplateEngine.Edge.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Edge.1.0.0-beta2-20170405-182\lib\net45\Microsoft.TemplateEngine.Edge.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.1.0.0-beta1-20170223-126\lib\net45\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.1.0.0-beta2-20170405-182\lib\net45\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Utils, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Utils.1.0.0-beta1-20170223-126\lib\net45\Microsoft.TemplateEngine.Utils.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Utils.1.0.0-beta2-20170405-182\lib\net45\Microsoft.TemplateEngine.Utils.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -119,10 +119,15 @@
     <Compile Include="Diagnostics\FileHealthWriterTest.cs" />
     <Compile Include="Diagnostics\TelemetryFixture.cs" />
     <Compile Include="Diagnostics\TelemetryServiceTest.cs" />
-    <Compile Include="ITemplateInfoExtensionsTest.cs" />
+    <Compile Include="PostActions\Catalog\SortUsingsTest.cs" />
+    <Compile Include="Templates\ITemplateInfoExtensionsTest.cs" />
     <Compile Include="Locations\TemplatexTests.cs" />
     <Compile Include="Locations\UnitTestTemplatesSource.cs" />
     <Compile Include="NamingTest.cs" />
+    <Compile Include="Composition\CompositionQueryTest.cs" />
+    <None Include="Locations\MsSigned\Templates.mstx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="TestData\Merge\Source_expected.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -140,7 +145,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="TemplatesFixture.cs" />
+    <Compile Include="Templates\TemplatesFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Core\Core.csproj">
@@ -159,6 +164,7 @@
     <Content Include="packages.config" />
     <Content Include="TestData\Templates\FeatureTemplate\.template.config\template.json" />
     <Content Include="TestData\Templates\PageTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\ProjectTemplate\.template.config\description.md" />
     <Content Include="TestData\Templates\ProjectTemplate\.template.config\icon.png" />
     <Content Include="TestData\Templates\ProjectTemplate\.template.config\template.json" />
     <Content Include="TestData\Templates\UnspecifiedTemplate\.template.config\template.json" />

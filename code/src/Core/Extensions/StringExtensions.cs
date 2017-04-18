@@ -45,7 +45,7 @@ namespace Microsoft.Templates.Core
             return result.ToUpper();
         }
 
-        static string GetHash(HashAlgorithm md5Hash, byte[] inputData)
+        private static string GetHash(HashAlgorithm md5Hash, byte[] inputData)
         {
             byte[] data = md5Hash.ComputeHash(inputData);
 
@@ -57,6 +57,20 @@ namespace Microsoft.Templates.Core
             }
 
             return sBuilder.ToString();
+        }
+
+        public static string[] GetMultiValue(this string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return new string[0];
+            }
+            return value.Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        public static bool IsMultiValue(this string value)
+        {
+            return value.GetMultiValue().Length > 1;
         }
     }
 }

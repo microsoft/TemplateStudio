@@ -22,6 +22,7 @@ using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.Core.PostActions.Catalog.SortUsings;
 
 namespace Microsoft.Templates.Core.PostActions
 {
@@ -42,7 +43,10 @@ namespace Microsoft.Templates.Core.PostActions
             var postActions = new List<PostAction>();
 
             AddMergeActions(postActions, $"*{MergePostAction.GlobalExtension}*");
-           
+
+            postActions.Add(new SetDefaultSolutionConfigurationPostAction());
+            postActions.Add(new SortUsingsPostAction());
+
             return postActions;
         }
 
@@ -53,18 +57,14 @@ namespace Microsoft.Templates.Core.PostActions
                 case TemplateType.Project:
                     postActions.Add(new AddProjectToSolutionPostAction( genResult.ResultInfo.PrimaryOutputs));
                     postActions.Add(new GenerateTestCertificatePostAction(genInfo.GetUserName()));
-                    postActions.Add(new SetDefaultSolutionConfigurationPostAction());
                     break;
                 case TemplateType.Page:
                     postActions.Add(new AddItemToProjectPostAction(genResult.ResultInfo.PrimaryOutputs));
                     break;
-                case TemplateType.DevFeature:
+                case TemplateType.Feature:
                     postActions.Add(new AddItemToProjectPostAction(genResult.ResultInfo.PrimaryOutputs));
                     break;
-                case TemplateType.ConsumerFeature:
-                    postActions.Add(new AddItemToProjectPostAction(genResult.ResultInfo.PrimaryOutputs));
-                    break;
-                case TemplateType.Framework:
+                case TemplateType.Composition:
                     postActions.Add(new AddItemToProjectPostAction(genResult.ResultInfo.PrimaryOutputs));
                     break;
                 default:

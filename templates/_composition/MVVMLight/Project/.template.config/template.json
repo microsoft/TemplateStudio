@@ -1,0 +1,35 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMLight.Project",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",    
+    "wts.version": "1.0.0",    
+    "wts.licences": "[MVVMLight](http://mvvmlight.codeplex.com/license)",
+    "wts.compositionFilter": "$framework == MVVMLight & wts.type == project"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\ViewModels\\ViewModelLocator.cs"
+    },
+    {
+      "path": ".\\Services\\NavigationServiceEx.cs"
+    }
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    }
+  }
+}

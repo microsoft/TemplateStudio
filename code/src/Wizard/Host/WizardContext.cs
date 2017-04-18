@@ -29,9 +29,9 @@ namespace Microsoft.Templates.Wizard.Host
     {
         public string ProjectType { get; set; }
         public string Framework { get; set; }
-        public List<(string name, string templateName)> Pages { get; } = new List<(string name, string templateName)>();
-        public List<(string name, string templateName)> DevFeatures { get; } = new List<(string name, string templateName)>();
-        public List<(string name, string templateName)> ConsumerFeatures { get; } = new List<(string name, string templateName)>();
+        public List<(string name, ITemplateInfo template)> Pages { get; } = new List<(string name, ITemplateInfo template)>();
+        public List<(string name, ITemplateInfo template)> DevFeatures { get; } = new List<(string name, ITemplateInfo template)>();
+        public List<(string name, ITemplateInfo template)> ConsumerFeatures { get; } = new List<(string name, ITemplateInfo template)>();
 
         public override string ToString()
         {
@@ -51,19 +51,19 @@ namespace Microsoft.Templates.Wizard.Host
 
             if (Pages.Any())
             {
-                sb.AppendFormat("Pages: '{0}'", string.Join(", ", Pages.Select(p => $"{p.name} - {p.templateName}").ToArray()));
+                sb.AppendFormat("Pages: '{0}'", string.Join(", ", Pages.Select(p => $"{p.name} - {p.template.Name}").ToArray()));
                 sb.AppendLine();
             }
 
             if (DevFeatures.Any())
             {
-                sb.AppendFormat("DevFeatures: '{0}'", string.Join(", ", DevFeatures.Select(p => $"{p.name} - {p.templateName}").ToArray()));
+                sb.AppendFormat("DevFeatures: '{0}'", string.Join(", ", DevFeatures.Select(p => $"{p.name} - {p.template.Name}").ToArray()));
                 sb.AppendLine();
             }
 
             if (ConsumerFeatures.Any())
             {
-                sb.AppendFormat("ConsumerFeatures: '{0}'", string.Join(", ", ConsumerFeatures.Select(p => $"{p.name} - {p.templateName}").ToArray()));
+                sb.AppendFormat("ConsumerFeatures: '{0}'", string.Join(", ", ConsumerFeatures.Select(p => $"{p.name} - {p.template.Name}").ToArray()));
                 sb.AppendLine();
             }
 

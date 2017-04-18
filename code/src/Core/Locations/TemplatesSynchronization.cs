@@ -61,7 +61,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             bool contentIsUnderVersion = _content.ExistUnderVersion();
 
-            if(contentIsUnderVersion)
+            if (contentIsUnderVersion || CurrentContentVersion.IsZero())
             {
                 await CheckMandatoryAdquisitionAsync(true);
 
@@ -83,7 +83,12 @@ namespace Microsoft.Templates.Core.Locations
 
             PurgeContentAsync().FireAndForget();
 
+            TelemetryService.Current.SetContentVersionToContext(CurrentContentVersion);
+        }
 
+        private void SafeSetContentVersionInTelemetry()
+        {
+            
         }
 
         private async Task AdquireContentAsync()
@@ -160,7 +165,8 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
                     CodeGen.Instance.Cache.Scan(_content.LatestContentFolder);
-                    CodeGen.Instance.Cache.WriteTemplateCaches();
+
+                    CodeGen.Instance.Settings.SettingsLoader.Save();
 
                     CurrentContentFolder = CodeGen.Instance.GetCurrentContentSource(WorkingFolder);
                 }
@@ -186,7 +192,7 @@ namespace Microsoft.Templates.Core.Locations
 
         private Version GetCurrentVersion()
         {
-            return _content.GetVersionFromFolder(CurrentContentFolder);
+            return _content?.GetVersionFromFolder(CurrentContentFolder);
         }
     }
 }

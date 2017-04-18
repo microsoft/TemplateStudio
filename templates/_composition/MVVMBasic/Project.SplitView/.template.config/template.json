@@ -1,0 +1,40 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMBasic.Project.SplitView",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$framework == MVVMBasic & identity == wts.Proj.SplitView"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\ViewModels\\ShellNavigationItem.cs"
+    },
+    {
+      "path": ".\\ViewModels\\ShellViewModel.cs"
+    },
+    {
+      "path": ".\\Views\\ShellPage.xaml"
+    },
+    {
+      "path": ".\\Views\\ShellPage.xaml.cs"
+    }
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    }
+  }
+}

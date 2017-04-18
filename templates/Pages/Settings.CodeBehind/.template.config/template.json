@@ -1,0 +1,52 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Settings",
+  "groupIdentity": "wts.Page.Settings",
+  "identity": "wts.Page.Settings.CodeBehind",
+  "shortName": "Settings Page",
+  "description": "The settings page is the page where we recommend putting the configuration settings for your application such as setting a dark / light theme.  This could also include any licenses, version number and your privacy terms.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "page",
+    "wts.framework": "CodeBehind",
+    "wts.version": "1.0.0",
+    "wts.order": "1",
+    "wts.dependencies":"wts.Feat.SettingsStorage",
+    "wts.multipleInstance": "false"
+  },
+  "sourceName": "SettingsPage",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Views\\SettingsPagePage.xaml"
+    },
+    {
+      "path": ".\\Views\\SettingsPagePage.xaml.cs"
+    },
+    {
+      "path": ".\\Services\\ThemeSelectorService.cs"
+    }
+  ],
+  "symbols": {
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Set"
+    }
+  }
+}

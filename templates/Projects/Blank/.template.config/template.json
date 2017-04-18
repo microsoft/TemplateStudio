@@ -1,0 +1,51 @@
+{
+  "author": "Microsoft",
+  "classifications": ["Universal"],
+  "name": "Blank",
+  "groupIdentity": "wts.Proj.Blank",
+  "identity": "wts.Proj.Blank",
+  "shortName": "blank",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "wts.type": "project",
+    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.ProjectType":"Blank",
+    "wts.version": "1.0.0",
+    "wts.order": "1"
+  },
+  "sourceName": "wts.BlankProject",
+  "preferNameDirectory": true,
+  "guids": [ "7cf740f7-735f-48ea-8b7b-3ffa4902371c", "be236938-efed-4037-b3f2-70788b43ca20" ],
+  "PrimaryOutputs":
+  [
+    { "path": "wts.BlankProject.csproj" }
+  ],
+  "symbols":
+  {
+    "wts.userName":
+    {
+      "type": "parameter",
+      "replaces": "Param_UserName"
+    },
+    "wts.wizardVersion":
+    {
+      "type": "parameter",
+      "replaces": "Param_Wizard.Version"
+    },
+    "wts.templatesVersion":
+    {
+      "type": "parameter",
+      "replaces": "Param_Templates.Version"
+    }
+  },
+  "copyrightYear": {
+      "type": "generated",
+      "generator": "now",
+      "replaces": "1976",
+      "parameters": {
+        "format": "yyyy"
+    }
+  }
+}

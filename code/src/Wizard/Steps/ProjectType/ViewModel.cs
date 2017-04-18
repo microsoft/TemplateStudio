@@ -79,12 +79,9 @@ namespace Microsoft.Templates.Wizard.Steps.ProjectType
         {
             ProjectTypes.Clear();
 
-            var projectTypes = GenContext.ToolBox.Repo.GetAll()
-                                                        .Where(t => t.GetTemplateType() == TemplateType.Project && !String.IsNullOrWhiteSpace(t.GetProjectType()))
-                                                        .Select(t => t.GetProjectType())
-                                                        .Distinct()
-                                                        .Select(t => new MetadataInfoViewModel(t, GenContext.ToolBox.Repo.GetProjectTypeInfo(t)))
-                                                        .ToList();
+            var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes()
+                                                            .Select(m => new MetadataInfoViewModel(m))
+                                                            .ToList();
 
             ProjectTypes.AddRange(projectTypes.Where(p => !string.IsNullOrEmpty(p.Description)));
 
