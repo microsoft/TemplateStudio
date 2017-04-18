@@ -170,6 +170,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ImageEx.cs" />
+    <Compile Include="Controls\Markdown.cs" />
+    <Compile Include="Controls\MarkdownBlock.xaml.cs">
+      <DependentUpon>MarkdownBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="GenComposer.cs" />
     <Compile Include="GenController.cs" />
@@ -216,6 +221,14 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="Controls\MarkdownBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\MarkdownStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\StyleTextBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
