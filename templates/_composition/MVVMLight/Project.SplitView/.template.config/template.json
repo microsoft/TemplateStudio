@@ -15,7 +15,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Models\\ShellNavigationItem.cs"
+      "path": ".\\ViewModels\\ShellNavigationItem.cs"
     },
     {
       "path": ".\\ViewModels\\ShellViewModel.cs"

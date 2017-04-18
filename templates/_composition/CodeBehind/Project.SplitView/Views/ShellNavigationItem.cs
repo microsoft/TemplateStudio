@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace wts.ItemName.Models
+namespace wts.ItemName.Views
 {
     public class ShellNavigationItem : INotifyPropertyChanged
     {

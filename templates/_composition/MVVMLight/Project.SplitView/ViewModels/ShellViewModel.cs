@@ -9,7 +9,6 @@ using Windows.UI.Xaml.Navigation;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using wts.ItemName.Services;
-using wts.ItemName.Models;
 using wts.ItemName.Views;
 
 namespace wts.ItemName.ViewModels
