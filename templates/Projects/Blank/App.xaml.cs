@@ -2,15 +2,15 @@
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 
-using uct.BlankProject.Services;
+using wts.BlankProject.Services;
 
-namespace uct.BlankProject
+namespace wts.BlankProject
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
     sealed partial class App : Application
-    {        
+    {
         private Lazy<ActivationService> _activationService;
         private ActivationService ActivationService { get { return _activationService.Value; } }
 

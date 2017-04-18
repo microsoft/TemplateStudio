@@ -8,6 +8,7 @@ namespace ItemNamespace.Views
 {
     public sealed partial class SettingsPagePage : Page, System.ComponentModel.INotifyPropertyChanged
     {
+        // TODO UWPTemplates: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/pages/settings.md
         // TODO UWPTemplates: Setup your privacy web in your Resource File, currently set to https://YourPrivacyUrlGoesHere
 
         private bool _isLightThemeEnabled;
@@ -25,7 +26,7 @@ namespace ItemNamespace.Views
         }
 
         public ICommand SwitchThemeCommand { get; private set; }
-     
+
         public SettingsPagePage()
         {
             Initialize();

@@ -190,8 +190,7 @@ namespace Microsoft.Templates.UI
             try
             {
                 int pagesAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Count();
-                int devfeaturesAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.DevFeature).Count();
-                int consumerfeaturesAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.ConsumerFeature).Count();
+                int featuresAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Count();
 
                 //TODO: Peding to track items removed from a default layout.
 
@@ -206,8 +205,7 @@ namespace Microsoft.Templates.UI
                     if (genInfo.Template.GetTemplateType() == TemplateType.Project)
                     {
                         AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, 
-                            appFx, genResults[resultsKey], pagesAdded, devfeaturesAdded, 
-                            consumerfeaturesAdded, timeSpent).FireAndForget();
+                            appFx, genResults[resultsKey], pagesAdded, featuresAdded, timeSpent).FireAndForget();
                     }
                     else
                     {

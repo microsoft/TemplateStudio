@@ -4,7 +4,9 @@ By default the settings page uses contains a single boolean setting to track whe
 
 You can add additional settings by following the instructions below.
 
-## Add another boolean setting
+Note there are separate instructions if using [MVVM Basic or MVVM Light](#mvvm), or if using [Code Behind](#cb).
+
+## <a name="mvvm"></a>Add another boolean setting (MVVM Basic or MVVM Light)
 
 Let's add a boolean setting to control whether errors should be automatically reported.  
 Adding a setting requires you to:
@@ -26,7 +28,7 @@ Add the following below the `ToggleSwitch` inside the `StackPanel` in **Settings
 
 Add an entry to **Strings/en-us/Resources.resw**
 
-Name: Settings_EnableAutoErrorReporting.Content
+Name: Settings_EnableAutoErrorReporting.Content  
 Value: Automatically report errors
 
 When run it will now look like this:
@@ -114,7 +116,9 @@ protected override async void OnNavigatedTo(NavigationEventArgs e)
 
 Everything is now complete and you can run the app and it will remember the value between invocations of the app.
 
-if you want to access the property elsewhere in the app, ensure you have called `await Singleton<SettingsViewModel>.Instance.EnsureInstanceInitialized();`. Then you can get or set the property with `Singleton<SettingsViewModel>.Instance.IsAutoErrorReportingEnabled`.
+### Accessing the setting from elsewhere in the app
+
+If you want to access the property elsewhere in the app, ensure you have called `await Singleton<SettingsViewModel>.Instance.EnsureInstanceInitialized();`. Then you can get or set the property with `Singleton<SettingsViewModel>.Instance.IsAutoErrorReportingEnabled`.
 For example:
 
 ```csharp
@@ -133,3 +137,67 @@ catch (Exception exc)
 ```
 
 If you only use the value in one or two places you could call `EnsureInstanceInitialized()` each time before you access `Singleton<SettingsViewModel>.Instance`. But, as `EnsureInstanceInitialized()` only needs to be called once before it is used, if you have lots of settings or need to access them in many places you could call it once as part of the `InitializeAsync()` method in **ActivationService.cs**.
+
+## <a name="cb"></a>Add another boolean setting (Code Behind)
+
+Add the following below the `ToggleSwitch` inside the `StackPanel` in **SettingsView.xaml**
+
+```xml
+<CheckBox IsChecked="{x:Bind IsAutoErrorReportingEnabled, Mode=OneWay}"
+          x:Uid="Settings_EnableAutoErrorReporting"
+          Checked="CheckBoxChecked"
+          Unchecked="CheckBoxUnchecked"
+          Margin="0,8,0,0" />
+```
+
+Add an entry to **Strings/en-us/Resources.resw**
+
+Name: Settings_EnableAutoErrorReporting.Content  
+Value: Automatically report errors
+
+When run it will now look like this:
+
+![](../resources/modifications/Settings_added_checkbox.png)
+
+But if you try and run it now you will get build errors as the code behind file hasn't been updated to add the new property and event handlers.
+
+### Update the code behind file
+
+In **SettingsPage.xaml.cs**, change the `OnNavigatedTo` method to be like this
+
+```csharp
+protected override async void OnNavigatedTo(NavigationEventArgs e)
+{
+    AppDescription = GetAppDescription();
+    IsAutoErrorReportingEnabled = await Windows.Storage.ApplicationData.Current.LocalSettings.ReadAsync<bool>(nameof(IsAutoErrorReportingEnabled));
+}
+```
+also add the following to **SettingsPage.xaml.cs**.
+
+```csharp
+private bool _isAutoErrorReportingEnabled;
+public bool IsAutoErrorReportingEnabled
+{
+    get { return _isAutoErrorReportingEnabled; }
+    set { Set(ref _isAutoErrorReportingEnabled, value); }
+}
+
+private async void CheckBoxChecked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+{
+        await Windows.Storage.ApplicationData.Current.LocalSettings.SaveAsync(nameof(IsAutoErrorReportingEnabled), true);
+}
+
+private async void CheckBoxUnchecked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+{
+    await Windows.Storage.ApplicationData.Current.LocalSettings.SaveAsync(nameof(IsAutoErrorReportingEnabled), false);
+}
+```
+
+### Accessing the setting from elsewhere in the app
+
+If you want to access the property elsewhere in the app, the easiest way to do this is to read the setting directly. The code below reads the value into a variable called `isEnabled` which you can then query as needed.
+
+```csharp
+var isEnabled = await Helpers.SettingsStorageExtensions.ReadAsync<bool>(Windows.Storage.ApplicationData.Current.LocalSettings, "IsAutoErrorReportingEnabled");
+```
+

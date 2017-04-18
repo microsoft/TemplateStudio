@@ -1,4 +1,5 @@
 ﻿using Microsoft.Templates.UI.ViewModels;
+using System.IO;
 using System.Windows;
 
 namespace Microsoft.Templates.UI.Views

@@ -29,7 +29,7 @@
 
                 </Grid>
             </PivotItem>
-            
+
             <PivotItem x:Uid="TabbedPivotPage_PivotItem2">
                 <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
                     <!--

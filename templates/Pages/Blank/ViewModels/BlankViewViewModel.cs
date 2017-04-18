@@ -6,6 +6,6 @@ namespace ItemNamespace.ViewModels
     {
         public BlankViewViewModel()
         {
-        }        
+        }
     }
 }

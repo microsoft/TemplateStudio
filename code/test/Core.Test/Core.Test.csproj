@@ -164,6 +164,7 @@
     <Content Include="packages.config" />
     <Content Include="TestData\Templates\FeatureTemplate\.template.config\template.json" />
     <Content Include="TestData\Templates\PageTemplate\.template.config\template.json" />
+    <None Include="TestData\Templates\ProjectTemplate\.template.config\description.md" />
     <Content Include="TestData\Templates\ProjectTemplate\.template.config\icon.png" />
     <Content Include="TestData\Templates\ProjectTemplate\.template.config\template.json" />
     <Content Include="TestData\Templates\UnspecifiedTemplate\.template.config\template.json" />

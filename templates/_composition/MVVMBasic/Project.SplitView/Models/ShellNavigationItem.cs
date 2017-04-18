@@ -3,7 +3,7 @@ using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace uct.ItemName.Models
+namespace wts.ItemName.Models
 {
     public class ShellNavigationItem : Observable
     {
@@ -41,6 +41,6 @@ namespace uct.ItemName.Models
         public static ShellNavigationItem FromType<T>(string name, Symbol symbol) where T : Page
         {
             return new ShellNavigationItem(name, symbol, typeof(T));
-        }       
+        }
     }
 }
