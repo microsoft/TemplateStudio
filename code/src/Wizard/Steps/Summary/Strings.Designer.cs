@@ -79,7 +79,7 @@ namespace Microsoft.Templates.Wizard.Steps.Summary {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Developer feature templates selected:.
+        ///   Looks up a localized string similar to Feature templates selected:.
         /// </summary>
         public static string DevFeaturesTitle {
             get {

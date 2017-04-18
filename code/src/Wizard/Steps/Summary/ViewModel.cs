@@ -66,8 +66,7 @@ namespace Microsoft.Templates.Wizard.Steps.Summary
 
             AddTemplates(Strings.ProjectsTitle, FilterTemplates(allTemplates, TemplateType.Project));
             AddTemplates(Strings.PagesTitle, FilterTemplates(allTemplates, TemplateType.Page));
-            AddTemplates(Strings.DevFeaturesTitle, FilterTemplates(allTemplates, TemplateType.DevFeature));
-            AddTemplates(Strings.ConsumerFeaturesTitle, FilterTemplates(allTemplates, TemplateType.ConsumerFeature));
+            AddTemplates(Strings.DevFeaturesTitle, FilterTemplates(allTemplates, TemplateType.Feature));
 
             AddLicences(allTemplates);
 

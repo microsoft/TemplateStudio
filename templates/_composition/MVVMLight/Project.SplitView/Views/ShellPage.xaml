@@ -5,12 +5,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding ShellViewModel, Source={StaticResource Locator}}"
-    xmlns:model="using:wts.ItemName.Models"
+    xmlns:vm="using:wts.ItemName.ViewModels"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
     <Page.Resources>
-        <DataTemplate x:Key="NavigationMenuItemDataTemplate" x:DataType="model:ShellNavigationItem">
+        <DataTemplate x:Key="NavigationMenuItemDataTemplate" x:DataType="vm:ShellNavigationItem">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48"/>

@@ -13,6 +13,7 @@
     "wts.version": "1.0.0",
     "wts.licences": "[text1](url1)|[text2](url2)",
     "wts.order": "1",
+    "wts.group": "group1",
     "wts.defaultInstance": "DefaultName"
   },
   "sourceName": "App_Name",

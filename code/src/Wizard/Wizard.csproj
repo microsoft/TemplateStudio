@@ -158,19 +158,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Steps\ConsumerFeatures\NewConsumerFeature\NewConsumerFeatureDialog.xaml.cs">
-      <DependentUpon>NewConsumerFeatureDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Steps\ConsumerFeatures\NewConsumerFeature\NewConsumerFeatureViewModel.cs" />
-    <Compile Include="Steps\ConsumerFeatures\Strings.Designer.cs">
-      <DependentUpon>Strings.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Steps\ConsumerFeatures\View.xaml.cs">
-      <DependentUpon>View.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Steps\ConsumerFeatures\ViewModel.cs" />
     <Compile Include="Steps\DevFeatures\NewDevFeature\NewDevFeatureDialog.xaml.cs">
       <DependentUpon>NewDevFeatureDialog.xaml</DependentUpon>
     </Compile>
@@ -251,14 +238,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Steps\ConsumerFeatures\NewConsumerFeature\NewConsumerFeatureDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Steps\ConsumerFeatures\View.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Steps\DevFeatures\NewDevFeature\NewDevFeatureDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -321,10 +300,6 @@
     <EmbeddedResource Include="Resources\StringRes.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Steps\ConsumerFeatures\Strings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Steps\DevFeatures\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

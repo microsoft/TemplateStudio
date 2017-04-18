@@ -16,7 +16,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Models\\ShellNavigationItem.cs"
+      "path": ".\\Views\\ShellNavigationItem.cs"
     },
     {
       "path": ".\\Views\\ShellPage.xaml"

@@ -22,9 +22,8 @@ namespace Microsoft.Templates.Core
     {
         Project = 1,
         Page = 2,
-        DevFeature = 3,
-        ConsumerFeature = 4,
-        Composition = 5,
+        Feature = 3,
+        Composition = 4,
         Unspecified = 100
     }
 }
