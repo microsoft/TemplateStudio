@@ -28,6 +28,7 @@ namespace Microsoft.Templates.Core
     public class TemplatesRepository
     {
         private const string Catalog = "_catalog";
+        private static readonly string[] SupportedIconTypes = new string[] { ".jpg", ".jpeg", ".png", ".xaml" };
 
         public TemplatesSynchronization Sync { get; private set; }
 
@@ -99,9 +100,32 @@ namespace Microsoft.Templates.Core
             var metadataFile = Path.Combine(folderName, $"{type}.json");
             var metadata = JsonConvert.DeserializeObject<List<MetadataInfo>>(File.ReadAllText(metadataFile));
 
-            metadata.ForEach(m => m.Icon = Path.Combine(folderName, type, $"{m.Name}.png"));
+            metadata.ForEach(m => SetMetadataDescription(m, folderName, type));
+            metadata.ForEach(m => SetMetadataIcon(m, folderName, type));
 
             return metadata.OrderBy(m => m.Order);
+        }
+
+        private static void SetMetadataDescription(MetadataInfo mInfo, string folderName, string type)
+        {
+            var descriptionFile = Path.Combine(folderName, type, $"{mInfo.Name}.md");
+            if (File.Exists(descriptionFile))
+            {
+                mInfo.Description = File.ReadAllText(descriptionFile);
+            }
+        }
+
+        private static void SetMetadataIcon(MetadataInfo mInfo, string folderName, string type)
+        {
+            var iconFile = Directory
+                            .EnumerateFiles(Path.Combine(folderName, type))
+                            .Where(f => SupportedIconTypes.Contains(Path.GetExtension(f)))
+                            .FirstOrDefault(f => Path.GetFileNameWithoutExtension(f).Equals(mInfo.Name, StringComparison.OrdinalIgnoreCase));
+
+            if (File.Exists(iconFile))
+            {
+                mInfo.Icon = iconFile;
+            }
         }
 
         public ITemplateInfo GetLayoutTemplate(LayoutItem item, string framework)

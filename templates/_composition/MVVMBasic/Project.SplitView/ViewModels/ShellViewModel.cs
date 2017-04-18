@@ -4,7 +4,6 @@ using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using wts.ItemName.Models;
 using wts.ItemName.Services;
 using wts.ItemName.Views;
 using wts.ItemName.Helpers;
