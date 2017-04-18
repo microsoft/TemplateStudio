@@ -49,7 +49,7 @@ namespace Microsoft.Templates.Core.Composition
                 }
                 else
                 {
-                    throw new InvalidCompositionQueryException($"The query \"{rawQuery}\" is invalid. Allowed operators are '==' or '!='. Multiple conditions are separated by '&'.");
+                    throw new InvalidCompositionQueryException($"The query \"{rawQuery}\" is not valid. Allowed operators are '==' or '!='. Multiple conditions are separated by '&'.");
                 }
             }
 

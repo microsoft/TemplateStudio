@@ -191,7 +191,7 @@
   </data>
   <data name="UIMessageBoxTitlePattern" xml:space="preserve">
     <value>Windows Template Studio: {0}</value>
-    <comment>Generic MessageBox Title</comment>
+    <comment>Generic Message Box Title</comment>
   </data>
   <data name="UINoActiveProjectMessage" xml:space="preserve">
     <value>Before adding a page you must select a project in the Solution Explorer.</value>
