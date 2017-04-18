@@ -1,5 +1,4 @@
-﻿using ItemNamespace.Models;
-using ItemNamespace.Views;
+﻿using ItemNamespace.Views;
 namespace ItemNamespace.ViewModels
 {
     public class ShellViewModel : Observable
