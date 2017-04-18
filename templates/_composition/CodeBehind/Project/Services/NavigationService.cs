@@ -31,7 +31,19 @@ namespace RootNamespace.Services
         public static void GoBack() => Frame.GoBack();
         public static void GoForward() => Frame.GoForward();
 
-        public static bool Navigate(Type pageType, object parameter = null, NavigationTransitionInfo infoOverride = null) => Frame.Navigate(pageType, parameter, infoOverride);
+        public static bool Navigate(Type pageType, object parameter = null, NavigationTransitionInfo infoOverride = null)
+        {
+            // Don't open the same page multiple times
+            if (Frame.Content?.GetType() != pageType)
+            {
+                return Frame.Navigate(pageType, parameter, infoOverride);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public static bool Navigate<T>(object parameter = null, NavigationTransitionInfo infoOverride = null) where T : Page => Navigate(typeof(T), parameter, infoOverride);
     }
 }

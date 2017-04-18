@@ -2,6 +2,7 @@
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -30,7 +31,32 @@ namespace wts.ItemName.Models
             {
                 Set(ref _isSelected, value);
                 SelectedVis = value ? Visibility.Visible : Visibility.Collapsed;
+                SelectedForeground = value
+                    ? Application.Current.Resources["SystemControlForegroundAccentBrush"] as SolidColorBrush
+                    : GetStandardTextColorBrush();
             }
+        }
+
+        private SolidColorBrush GetStandardTextColorBrush()
+        {
+            if (Services.ThemeSelectorService.IsLightThemeEnabled)
+            {
+                return Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
+            }
+            else
+            {
+                return Application.Current.Resources["SystemControlForegroundAltHighBrush"] as SolidColorBrush;
+            }
+        }
+
+        private SolidColorBrush _selectedForeground = null;
+        public SolidColorBrush SelectedForeground
+        {
+            get
+            {
+                return _selectedForeground ?? (_selectedForeground = GetStandardTextColorBrush());
+            }
+            set { Set(ref _selectedForeground, value); }
         }
 
         private ShellNavigationItem(string name, Symbol symbol, Type pageType)
@@ -38,6 +64,8 @@ namespace wts.ItemName.Models
             this.Label = name;
             this.Symbol = symbol;
             this.PageType = pageType;
+
+            Services.ThemeSelectorService.OnThemeChanged += (s, e) => { if (!IsSelected) SelectedForeground = GetStandardTextColorBrush(); };
         }
 
         public static ShellNavigationItem FromType<T>(string name, Symbol symbol) where T : Page

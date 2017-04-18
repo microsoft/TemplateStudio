@@ -20,9 +20,6 @@ namespace wts.ItemName.ViewModels
         private const string WideStateName = "WideState";
         private const string NarrowStateName = "NarrowState";
 
-        private ListView _primaryListView;
-        private ListView _secondaryListView;
-
         public NavigationServiceEx NavigationService
         {
             get
@@ -45,27 +42,7 @@ namespace wts.ItemName.ViewModels
             set { Set(ref _displayMode, value); }
         }
 
-        private object _primarySelectedItem;
-        public object PrimarySelectedItem
-        {
-            get { return _primarySelectedItem; }
-            set
-            {
-                ChangeSelected(_primarySelectedItem, value);
-                Set(ref _primarySelectedItem, value);
-            }
-        }
-
-        private object _secondarySelectedItem;
-        public object SecondarySelectedItem
-        {
-            get { return _secondarySelectedItem; }
-            set
-            {
-                ChangeSelected(_secondarySelectedItem, value);
-                Set(ref _secondarySelectedItem, value);
-            }
-        }
+        private object _lastSelectedItem;
 
         private ObservableCollection<ShellNavigationItem> _primaryItems = new ObservableCollection<ShellNavigationItem>();
         public ObservableCollection<ShellNavigationItem> PrimaryItems
@@ -95,31 +72,17 @@ namespace wts.ItemName.ViewModels
             }
         }
 
-        private ICommand _primaryListViewSelectionChangedCommand;
-        public ICommand PrimaryListViewSelectionChangedCommand
+        private ICommand _itemSelected;
+        public ICommand ItemSelectedCommand
         {
             get
             {
-                if (_primaryListViewSelectionChangedCommand == null)
+                if (_itemSelected == null)
                 {
-                    _primaryListViewSelectionChangedCommand = new RelayCommand<SelectionChangedEventArgs>(OnPrimaryListViewSelectionChanged);
+                    _itemSelected = new RelayCommand<ShellNavigationItem>(ItemSelected);
                 }
 
-                return _primaryListViewSelectionChangedCommand;
-            }
-        }
-
-        private ICommand _secondaryListViewSelectionChangedCommand;
-        public ICommand SecondaryListViewSelectionChangedCommand
-        {
-            get
-            {
-                if (_secondaryListViewSelectionChangedCommand == null)
-                {
-                    _secondaryListViewSelectionChangedCommand = new RelayCommand<SelectionChangedEventArgs>(OnSecondaryListViewSelectionChanged);
-                }
-
-                return _secondaryListViewSelectionChangedCommand;
+                return _itemSelected;
             }
         }
 
@@ -156,12 +119,10 @@ namespace wts.ItemName.ViewModels
 
         }
 
-        public void Initialize(Frame frame, ListView primaryListView, ListView secondaryListView)
+        public void Initialize(Frame frame)
         {
-            _primaryListView = primaryListView;
-            _secondaryListView = secondaryListView;
             NavigationService.Frame = frame;
-            NavigationService.Navigated += NavigationService_Navigated;            
+            NavigationService.Frame.Navigated += NavigationService_Navigated;
             PopulateNavItems();
         }
 
@@ -174,46 +135,31 @@ namespace wts.ItemName.ViewModels
             // Edit String/en-US/Resources.resw: Add a menu item title for each page
         }
 
-        private void OnPrimaryListViewSelectionChanged(SelectionChangedEventArgs e)
+        private void ItemSelected(ShellNavigationItem e)
         {
-            if (e.AddedItems != null && e.AddedItems.Any() && _secondaryListView != null)
+            if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
             {
-                if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
-                {
-                    IsPaneOpen = false;
-                }
-
-                _secondaryListView.SelectedIndex = -1;
-                _secondaryListView.SelectedItem = null;
-
-                // Navigate to selected item
-                Navigate(_primaryListView.SelectedItem);
+                IsPaneOpen = false;
             }
+            Navigate(e);
         }
 
-        private void OnSecondaryListViewSelectionChanged(SelectionChangedEventArgs e)
+        private void NavigationService_Navigated(object sender, NavigationEventArgs e)
         {
-            if (e.AddedItems != null && e.AddedItems.Any() && _primaryListView != null)
+            if (e != null)
             {
-                if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
+                var vm = NavigationService.GetNameOfRegisteredPage(e.SourcePageType);
+                var item = PrimaryItems?.FirstOrDefault(i => i.ViewModelName == vm);
+                if (item == null)
                 {
-                    IsPaneOpen = false;
+                    item = SecondaryItems?.FirstOrDefault(i => i.ViewModelName == vm);
                 }
 
-                _primaryListView.SelectedIndex = -1;
-                _primaryListView.SelectedItem = null;
-
-                // Navigate to selected item
-                Navigate(_secondaryListView.SelectedItem);
-            }
-        }
-
-        private void NavigationService_Navigated(object sender, string e)
-        {
-            var item = PrimaryItems?.FirstOrDefault(i => i.ViewModelName == e);
-            if (item != null)
-            {
-                PrimarySelectedItem = item;
+                if (item != null)
+                {
+                    ChangeSelected(_lastSelectedItem, item);
+                    _lastSelectedItem = item;
+                }
             }
         }
 
