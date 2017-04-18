@@ -11,53 +11,45 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="NavigationMenuItemDataTemplate" x:DataType="vm:ShellNavigationItem">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="48"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Rectangle
-                    Width="6"
-                    Fill="{ThemeResource SystemControlForegroundAccentBrush}"
-                    Visibility="{x:Bind SelectedVis, Mode=TwoWay}"
-                    VerticalAlignment="Stretch" HorizontalAlignment="Left"/>
-                <FontIcon 
-                    FontSize="16" 
-                    Glyph="{x:Bind SymbolAsChar}"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"/>
-                <TextBlock 
-                    Grid.Column="1" 
-                    Text="{x:Bind Label}"
-                    VerticalAlignment="Center"
-                    TextTrimming="CharacterEllipsis"
-                    Margin="0,0,24,0"/>
-            </Grid>
+            <Button
+                Margin="0"
+                Padding="0,9"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                Background="Transparent"
+                BorderThickness="0"
+                AutomationProperties.AccessibilityView="Control"
+                AutomationProperties.LandmarkType="Navigation"
+                AutomationProperties.Name="{x:Bind Label}"
+                Command="{Binding ElementName=ShellContent, Path=DataContext.ItemSelectedCommand}"
+                CommandParameter="{Binding}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="48" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Rectangle
+                        Width="6"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Stretch"
+                        Fill="{ThemeResource SystemControlForegroundAccentBrush}"
+                        Visibility="{x:Bind SelectedVis, Mode=OneWay}" />
+                    <FontIcon
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="16"
+                        Foreground="{x:Bind SelectedForeground, Mode=OneWay}"
+                        Glyph="{x:Bind SymbolAsChar}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="0,0,24,0"
+                        VerticalAlignment="Center"
+                        Foreground="{x:Bind SelectedForeground, Mode=OneWay}"
+                        Text="{x:Bind Label}"
+                        TextTrimming="CharacterEllipsis" />
+                </Grid>
+            </Button>
         </DataTemplate>
-        <Style x:Key="NavigationMenuListViewItemStyle" TargetType="ListViewItem">
-            <Setter Property="Padding" Value="0,0,0,0" />
-            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ListViewItem">
-                        <ListViewItemPresenter ContentTransitions="{TemplateBinding ContentTransitions}"
-                            Control.IsTemplateFocusTarget="True"
-                            SelectionCheckMarkVisualEnabled="False"
-                            PointerOverBackground="{ThemeResource SystemControlHighlightListLowBrush}"
-                            PointerOverForeground="{ThemeResource ListViewItemForegroundPointerOver}"
-                            SelectedBackground="Transparent"
-                            SelectedForeground="{ThemeResource SystemControlForegroundAccentBrush}"
-                            SelectedPointerOverBackground="{ThemeResource SystemControlHighlightListLowBrush}"
-                            PressedBackground="{ThemeResource SystemControlHighlightListMediumBrush}"
-                            SelectedPressedBackground="{ThemeResource SystemControlHighlightListMediumBrush}"
-                            DisabledOpacity="{ThemeResource ListViewItemDisabledThemeOpacity}"
-                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                            ContentMargin="{TemplateBinding Padding}"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </Page.Resources>
 
     <Grid x:Name="ShellContent" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -74,33 +66,25 @@
             IsPaneOpen="{x:Bind ViewModel.IsPaneOpen, Mode=TwoWay}">
             <SplitView.Pane>
                 <Grid Margin="0,48,0,0">
-                    <ListView
-                        x:Name="primaryListView"
-                        ItemContainerStyle="{StaticResource NavigationMenuListViewItemStyle}"
-                        VerticalAlignment="Top" 
-                        ItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
-                        ItemsSource="{x:Bind ViewModel.PrimaryItems, Mode=OneWay}"
-                        SelectedItem="{x:Bind ViewModel.PrimarySelectedItem, Mode=TwoWay}">
-                        <i:Interaction.Behaviors>
-                            <ic:EventTriggerBehavior EventName="SelectionChanged">
-                                <ic:InvokeCommandAction Command="{x:Bind ViewModel.PrimaryListViewSelectionChangedCommand}"/>
-                            </ic:EventTriggerBehavior>
-                        </i:Interaction.Behaviors>
-                    </ListView>
-
-                    <ListView
-                        x:Name="secondaryListView"
-                        ItemContainerStyle="{StaticResource NavigationMenuListViewItemStyle}"
-                        VerticalAlignment="Bottom"
-                        ItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
-                        ItemsSource="{x:Bind ViewModel.SecondaryItems}" Margin="0,0,0,6"
-                        SelectedItem="{x:Bind ViewModel.SecondarySelectedItem, Mode=TwoWay}">
-                        <i:Interaction.Behaviors>
-                            <ic:EventTriggerBehavior EventName="SelectionChanged">
-                                <ic:InvokeCommandAction Command="{x:Bind ViewModel.SecondaryListViewSelectionChangedCommand}"/>
-                            </ic:EventTriggerBehavior>
-                        </i:Interaction.Behaviors>
-                    </ListView>
+                    <ScrollViewer VerticalAlignment="Stretch" TabNavigation="Local">
+                        <Grid VerticalAlignment="Stretch">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <ItemsControl
+                                VerticalAlignment="Top"
+                                IsTabStop="False"
+                                ItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
+                                ItemsSource="{x:Bind ViewModel.PrimaryItems}" />
+                            <ItemsControl
+                                Grid.Row="1"
+                                VerticalAlignment="Bottom"
+                                IsTabStop="False"
+                                ItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
+                                ItemsSource="{x:Bind ViewModel.SecondaryItems}" />
+                        </Grid>
+                    </ScrollViewer>
                 </Grid>
             </SplitView.Pane>
 
