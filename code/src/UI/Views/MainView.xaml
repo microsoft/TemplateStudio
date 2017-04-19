@@ -40,7 +40,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
-            <Frame x:Name="stepFrame"/>
+            <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden"/>
             <Grid Grid.Column="1">
                 
             </Grid>

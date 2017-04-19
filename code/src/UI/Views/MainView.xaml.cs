@@ -1,5 +1,5 @@
-﻿using Microsoft.Templates.UI.ViewModels;
-using System.IO;
+﻿using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.ViewModels;
 using System.Windows;
 
 namespace Microsoft.Templates.UI.Views
@@ -22,14 +22,14 @@ namespace Microsoft.Templates.UI.Views
             Loaded += async (sender, e) =>
             {
                 await ViewModel.IniatializeAsync();
-                stepFrame.Navigate(new ProjectSetupView());
+                NavigationService.Initialize(stepFrame, new ProjectSetupView());
             };
 
             Unloaded += (sender, e) =>
             {
                 ViewModel.UnsuscribeEventHandlers();
             };
-            InitializeComponent();
+            InitializeComponent();            
         }
     }
 }
