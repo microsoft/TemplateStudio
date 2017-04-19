@@ -1,6 +1,4 @@
-﻿using System.Windows.Media.Imaging;
-
-using Microsoft.Templates.Core;
+﻿using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
 
 namespace Microsoft.Templates.UI.ViewModels
@@ -28,8 +26,8 @@ namespace Microsoft.Templates.UI.ViewModels
             set => SetProperty(ref _description, value);
         }
 
-        private BitmapImage _icon;
-        public BitmapImage Icon
+        private string _icon;
+        public string Icon
         {
             get { return _icon; }
             set { SetProperty(ref _icon, value); }
@@ -41,11 +39,10 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 return;
             }
-
             Name = metadataInfo.Name;
             DisplayName = metadataInfo.DisplayName;
             Description = metadataInfo.Description;
-            Icon = Extensions.CreateIcon(metadataInfo.Icon);
+            Icon = metadataInfo.Icon;
         }
     }
 }

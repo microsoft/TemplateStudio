@@ -185,7 +185,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StringRes.resx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Extensions.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MetadataInfoViewModel.cs" />
     <Compile Include="ViewModels\ProjectSetupViewModel.cs" />
@@ -229,9 +228,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="Styles\StyleDataTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>

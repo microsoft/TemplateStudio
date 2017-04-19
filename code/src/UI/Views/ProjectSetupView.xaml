@@ -19,11 +19,20 @@
                 <GroupBox Header="{Binding ProjectTypesHeader}" Margin="{StaticResource SmallMargin}">
                     <ListView
                         SelectionMode="Single"
-                        Margin="{StaticResource MediumLeftTopMargin}"                        
-                        Style="{StaticResource ListViewProjectSetupStyle}"
                         ItemsSource="{Binding ProjectTypes}"
+                        Margin="{StaticResource MediumLeftTopMargin}"                        
+                        Style="{StaticResource ListViewProjectSetupStyle}"                        
                         ItemTemplate="{StaticResource ProjectSetupItemTemplate}"
                         SelectedItem="{Binding SelectedProjectType, Mode=TwoWay}" />
+                </GroupBox>
+                <GroupBox Header="{Binding FrameworkHeader}" Margin="{StaticResource SmallMargin}">
+                    <ListView
+                        SelectionMode="Single"
+                        ItemsSource="{Binding Frameworks}"
+                        Margin="{StaticResource MediumLeftTopMargin}"
+                        Style="{StaticResource ListViewProjectSetupStyle}"
+                        ItemTemplate="{StaticResource ProjectSetupItemTemplate}"
+                        SelectedItem="{Binding SelectedFramework, Mode=TwoWay}" />
                 </GroupBox>
             </StackPanel>
         </ScrollViewer>

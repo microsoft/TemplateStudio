@@ -19,7 +19,7 @@
         <Setter Property="FontSize" Value="12" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
-        <Setter Property="Margin" Value="{StaticResource SmallLeftMargin}" />
+        <Setter Property="Margin" Value="{StaticResource MediumLeftMargin}" />
     </Style>
 
     <Style TargetType="TextBlock" x:Key="TextTemplateSubtitleStyle">
@@ -27,7 +27,7 @@
         <Setter Property="Foreground" Value="{StaticResource UIBlack}" />
         <Setter Property="TextWrapping" Value="WrapWithOverflow" />
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
-        <Setter Property="Margin" Value="{StaticResource SmallLeftMargin}" />
+        <Setter Property="Margin" Value="{StaticResource MediumLeftMargin}" />
     </Style>
 
     <Style TargetType="TextBlock" x:Key="TextTemplateAuthorStyle">
@@ -35,7 +35,7 @@
         <Setter Property="Foreground" Value="{StaticResource UIMidleDarkGray}" />
         <Setter Property="TextWrapping" Value="WrapWithOverflow" />
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
-        <Setter Property="Margin" Value="{StaticResource SmallLeftMargin}" />
+        <Setter Property="Margin" Value="{StaticResource MediumLeftMargin}" />
     </Style>
 
 </ResourceDictionary>

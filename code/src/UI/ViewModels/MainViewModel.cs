@@ -1,11 +1,17 @@
-﻿using Microsoft.Templates.Core.Mvvm;
+﻿using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Views;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Microsoft.Templates.UI.ViewModels
@@ -14,6 +20,27 @@ namespace Microsoft.Templates.UI.ViewModels
     {
         public static MainViewModel Current;
         private MainView _mainView;
+
+        private string _status;
+        public string Status
+        {
+            get { return _status; }
+            set { SetProperty(ref _status, value); }
+        }
+
+        private string _wizardVersion;
+        public string WizardVersion
+        {
+            get { return _wizardVersion; }
+            set { SetProperty(ref _wizardVersion, value); }
+        }
+
+        private string _templatesVersion;
+        public string TemplatesVersion
+        {
+            get { return _templatesVersion; }
+            set { SetProperty(ref _templatesVersion, value); }
+        }
 
         private string _title;
         public string Title
@@ -48,10 +75,90 @@ namespace Microsoft.Templates.UI.ViewModels
         public async Task IniatializeAsync()
         {
             Title = StringRes.ProjectSetupTitle;
+            GenContext.ToolBox.Repo.Sync.SyncStatusChanged += Sync_SyncStatusChanged;
+            try
+            {
+                WizardVersion = GetWizardVersion();
+
+                await GenContext.ToolBox.Repo.SynchronizeAsync();
+                Status = string.Empty;
+
+                TemplatesVersion = GenContext.ToolBox.Repo.GetTemplatesVersion();
+            }
+            catch (Exception ex)
+            {
+                Status = StringRes.ErrorSync;
+
+                await AppHealth.Current.Error.TrackAsync(ex.ToString());
+                await AppHealth.Current.Exception.TrackAsync(ex);
+            }
+        }
+
+        private string GetWizardVersion()
+        {
+            string assemblyLocation = Assembly.GetExecutingAssembly().Location;
+            var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
+
+            return versionInfo.FileVersion;
         }
 
         public void UnsuscribeEventHandlers()
         {
+            GenContext.ToolBox.Repo.Sync.SyncStatusChanged -= Sync_SyncStatusChanged;
+        }
+
+        private void Sync_SyncStatusChanged(object sender, SyncStatus status)
+        {
+
+            Status = GetStatusText(status);
+
+            if (status == SyncStatus.Updated)
+            {
+                TemplatesVersion = GenContext.ToolBox.Repo.GetTemplatesVersion();
+
+                //mvegaca
+                //_context.CanGoForward = true;
+
+                //var step = Steps.First();
+                //Navigate(step);
+            }
+
+
+            if (status == SyncStatus.OverVersion)
+            {
+                _mainView.Dispatcher.Invoke(() =>
+                {
+                    MessageBox.Show(_mainView, StringRes.StatusOverVersionContent, StringRes.StatusOverVersionTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+                });
+
+                //TODO: Review message and behavior.
+            }
+
+            if (status == SyncStatus.UnderVersion)
+            {
+                _mainView.Dispatcher.Invoke(() =>
+                {
+                    MessageBox.Show(_mainView, StringRes.StatusLowerVersionContent, StringRes.StatusLowerVersionContent, MessageBoxButton.OK, MessageBoxImage.Error);
+                    //TODO: Review message and behavior.
+                });
+            }
+        }
+
+        private string GetStatusText(SyncStatus status)
+        {
+            switch (status)
+            {
+                case SyncStatus.Updating:
+                    return StringRes.StatusUpdating;
+                case SyncStatus.Updated:
+                    return StringRes.StatusUpdated;
+                case SyncStatus.Adquiring:
+                    return StringRes.StatusAdquiring;
+                case SyncStatus.Adquired:
+                    return StringRes.StatusAdquired;
+                default:
+                    return string.Empty;
+            }
         }
 
         private void OnCancel()

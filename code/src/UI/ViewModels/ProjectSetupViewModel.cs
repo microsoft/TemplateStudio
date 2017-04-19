@@ -1,4 +1,5 @@
-﻿using Microsoft.Templates.Core.Gen;
+﻿using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using System;
@@ -20,26 +21,38 @@ namespace Microsoft.Templates.UI.ViewModels
             set { SetProperty(ref _projectTypesHeader, value); }
         }
 
+        private string _frameworkHeader;
+        public string FrameworkHeader
+        {
+            get { return _frameworkHeader; }
+            set { SetProperty(ref _frameworkHeader, value); }
+        }
+
         private MetadataInfoViewModel _selectedProjectType;
         public MetadataInfoViewModel SelectedProjectType
         {
             get { return _selectedProjectType; }
-            set { SetProperty(ref _selectedProjectType, value); }
+            set
+            {
+                SetProperty(ref _selectedProjectType, value);
+                LoadFrameworks(value);
+            }
+        }
+
+        private MetadataInfoViewModel _selectedFramework;
+        public MetadataInfoViewModel SelectedFramework
+        {
+            get { return _selectedFramework; }
+            set { SetProperty(ref _selectedFramework, value); }
         }
 
         public ObservableCollection<MetadataInfoViewModel> ProjectTypes { get; } = new ObservableCollection<MetadataInfoViewModel>();
-
-        private ICommand _itemClickCommand;
-        public ICommand ItemClickCommand => _itemClickCommand ?? new RelayCommand(OnItemClickCommand);
-
-        private void OnItemClickCommand()
-        {
-        }
+        public ObservableCollection<MetadataInfoViewModel> Frameworks { get; } = new ObservableCollection<MetadataInfoViewModel>();
 
         public async Task IniatializeAsync()
         {
             ProjectTypes.Clear();
-            var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes().Select(m => new MetadataInfoViewModel(m)).ToList();            
+            var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes().Select(m => new MetadataInfoViewModel(m)).ToList();
             foreach (var projectType in projectTypes.Where(p => !string.IsNullOrEmpty(p.Description)))
             {
                 ProjectTypes.Add(projectType);
@@ -47,6 +60,32 @@ namespace Microsoft.Templates.UI.ViewModels
             SelectedProjectType = ProjectTypes.First();
             ProjectTypesHeader = String.Format(StringRes.GroupProjectTypeHeader_SF, ProjectTypes.Count);
             await Task.CompletedTask;
+        }
+
+        private void LoadFrameworks(MetadataInfoViewModel projectType)
+        {
+            var projectFrameworks = GetSupportedFx(projectType.Name);
+
+            var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks()
+                                                                .Where(m => projectFrameworks.Contains(m.Name))
+                                                                .Select(m => new MetadataInfoViewModel(m))
+                                                                .ToList();
+
+            Frameworks.Clear();
+            foreach (var framework in targetFrameworks)
+            {
+                Frameworks.Add(framework);
+            }
+            SelectedFramework = Frameworks.FirstOrDefault();
+            FrameworkHeader = String.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
+        }
+
+        private IEnumerable<string> GetSupportedFx(string projectType)
+        {
+            return GenContext.ToolBox.Repo.GetAll()
+                .Where(t => t.GetProjectType() == projectType)
+                .SelectMany(t => t.GetFrameworkList())
+                .Distinct();
         }
     }
 }

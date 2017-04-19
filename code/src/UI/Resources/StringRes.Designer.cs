@@ -88,6 +88,24 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error updating templates. See output for more details..
+        /// </summary>
+        public static string ErrorSync {
+            get {
+                return ResourceManager.GetString("ErrorSync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Framework ({0}) - Pick one.
+        /// </summary>
+        public static string GroupFrameworkHeader_SF {
+            get {
+                return ResourceManager.GetString("GroupFrameworkHeader_SF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Project Type.
         /// </summary>
         public static string GroupProjectType {
@@ -111,6 +129,69 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ProjectSetupTitle {
             get {
                 return ResourceManager.GetString("ProjectSetupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Templates downloaded.
+        /// </summary>
+        public static string StatusAdquired {
+            get {
+                return ResourceManager.GetString("StatusAdquired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downloading templates....
+        /// </summary>
+        public static string StatusAdquiring {
+            get {
+                return ResourceManager.GetString("StatusAdquiring", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no templates content available for the current wizard version. Please ensure you have connectivity and restart the wizard again..
+        /// </summary>
+        public static string StatusLowerVersionContent {
+            get {
+                return ResourceManager.GetString("StatusLowerVersionContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is templates content available with higher version than the wizard. Consider to update the extension to access the latest content..
+        /// </summary>
+        public static string StatusOverVersionContent {
+            get {
+                return ResourceManager.GetString("StatusOverVersionContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wizard update available.
+        /// </summary>
+        public static string StatusOverVersionTitle {
+            get {
+                return ResourceManager.GetString("StatusOverVersionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Templates updated.
+        /// </summary>
+        public static string StatusUpdated {
+            get {
+                return ResourceManager.GetString("StatusUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updating templates....
+        /// </summary>
+        public static string StatusUpdating {
+            get {
+                return ResourceManager.GetString("StatusUpdating", resourceCulture);
             }
         }
     }

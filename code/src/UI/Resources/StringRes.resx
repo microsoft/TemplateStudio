@@ -126,6 +126,12 @@
   <data name="ButtonNext" xml:space="preserve">
     <value>Next</value>
   </data>
+  <data name="ErrorSync" xml:space="preserve">
+    <value>Error updating templates. See output for more details.</value>
+  </data>
+  <data name="GroupFrameworkHeader_SF" xml:space="preserve">
+    <value>Framework ({0}) - Pick one</value>
+  </data>
   <data name="GroupProjectType" xml:space="preserve">
     <value>Project Type</value>
   </data>
@@ -134,5 +140,26 @@
   </data>
   <data name="ProjectSetupTitle" xml:space="preserve">
     <value>Select project type and framework</value>
+  </data>
+  <data name="StatusAdquired" xml:space="preserve">
+    <value>Templates downloaded</value>
+  </data>
+  <data name="StatusAdquiring" xml:space="preserve">
+    <value>Downloading templates...</value>
+  </data>
+  <data name="StatusLowerVersionContent" xml:space="preserve">
+    <value>There is no templates content available for the current wizard version. Please ensure you have connectivity and restart the wizard again.</value>
+  </data>
+  <data name="StatusOverVersionContent" xml:space="preserve">
+    <value>There is templates content available with higher version than the wizard. Consider to update the extension to access the latest content.</value>
+  </data>
+  <data name="StatusOverVersionTitle" xml:space="preserve">
+    <value>Wizard update available</value>
+  </data>
+  <data name="StatusUpdated" xml:space="preserve">
+    <value>Templates updated</value>
+  </data>
+  <data name="StatusUpdating" xml:space="preserve">
+    <value>Updating templates...</value>
   </data>
 </root>
