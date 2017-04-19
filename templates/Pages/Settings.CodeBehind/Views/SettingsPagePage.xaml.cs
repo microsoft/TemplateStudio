@@ -25,13 +25,13 @@ namespace ItemNamespace.Views
 
         public SettingsPagePage()
         {
-            Initialize();
             InitializeComponent();
         }
 
         private void Initialize()
         {
             IsLightThemeEnabled = ThemeSelectorService.IsLightThemeEnabled;
+            AppDescription = GetAppDescription();
         }
 
         private string GetAppDescription()

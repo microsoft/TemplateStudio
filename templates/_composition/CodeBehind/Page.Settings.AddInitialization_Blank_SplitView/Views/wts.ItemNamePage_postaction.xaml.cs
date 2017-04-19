@@ -10,7 +10,7 @@ namespace ItemNamespace.Views
         //{[{
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            AppDescription = GetAppDescription();
+            Initialize();
         }
         //}]}
     }
