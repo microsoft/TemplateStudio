@@ -76,7 +76,7 @@ namespace Microsoft.Templates.Test
         }
 
         
-        [Theory (Skip ="Long running"), MemberData("GetPageAndFeatureTemplates"), Trait("Type", "ProjectWithIsolatedItemGeneration")]
+        [Theory , MemberData("GetPageAndFeatureTemplates"), Trait("Type", "OneByOneItemGeneration")]
         public async void GenerateProjectWithIsolatedItems(string itemName, string name, string framework, string projId, string itemId)
         {
             var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
