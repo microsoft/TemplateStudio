@@ -1,63 +1,95 @@
 # Understanding the Templates
 
-Templates are used to generate the code. In Windows Template Studio we have the following kind of templates: Frameworks, Projects Types, Pages, Developer Features and Consumer Features.
+Templates are used to generate the code. In Windows Template Studio we have the following kind of templates: Frameworks, Projects Types, Pages and Features.
 
-For example, you may want to generate a project to create an App which use the Split View (hamburger) menu, based on MVVM Light framework, with some pages (Home, Products -a master detail page-, Find Us -a map page-, etc. ) and which include some developer features. Or maybe you want to create the same project but avoiding to depend on a certain external framework, in other words, you want the same stuff but using a MVVM Basic framework.
+For example, consider the following samples:
+* **Sample #1**: you want to generate a project to create a target app which use the Split View (hamburger) menu, based on MVVM Light framework, with some pages (Home, Products -a master detail page-, Find Us -a map page-, etc. ) and including some extra features like local storage handling, background execution... 
+* **Sample #2** you want to create a like the *Sample #1* but avoiding to depend on a external frameworks and adding Live Tiles support.
 
-The Window Template Studio allow to combine the templates at your own convenience to generate the project you want, using your preferred framework and using the features you most like.
+The Window Template Studio allow you to combine different templates at your own convenience to generate the project you want, using your preferred framework and using the features you most like. Moreover, the templates available in Windows Template Studio are extensible.
 
 ## Interesting in contributing
 
 Do you want to contribute? Here are our [contribution guidelines](../contributing.md).
 
-## Template Authoring principles
+## Template Authoring
 
-As mentioned, you can combine Frameworks with Project Types and add Pages and Features. That is, you can have "Count(Frameworks) * Count(Project Types)" combinations and all the pages and frameworks must fit for each combination. If we have 3 frameworks and 3 project types, we will have 9 combinations. We need to support all the pages for this combinations, so if we have 6 types of pages, we will need to maintain 9x6 = 54 Pages (mainly with the same code). The same happen for Features. Having templates created linearly is unmanageable, this is what we call M*N issue.
+### The MxN Issue
+Windows Template Studio works as a shopping basket where a developer can combine the available Frameworks with the available projects Project Types and add the Pages and Features wanted for the target application. This leads to a complexity issue. Consider we have 3 frameworks (Fx) and 3 project types (Pj), then we will have 9 combinations, that is *Fx X Pj* app configurations. Now, consider we want to have 6 different types of Pages (P), all supported among the different app configurations, so we will need to maintain 9x6 = 54 pages, that is, *Fx X Pj X P* pages, with basically the same code. The same happen for Features (F), considering 6 types of features, we will have 9x6 = 54 features to maintain. 
 
-To avoid the M*X issue, we have designed the Templates as composable items (frameworks, projects, pages and features), which make the Template authoring a bit complex, but infinite more maintainable in long term.
+Creating templates linearly is unmanageable, we would require to maintain Fx X Pj X (P + F) *[3 x 3 x (6 + 6)=108]* different templates just to be able to combine all together under our preferences, but if the page types and/or features grow, then the number templates to maintain grow faster. This is what we call **The M*N issue**.
 
-We strong follow two principles for Template authoring:
+To avoid the M*X issue, we have designed the Templates as composable items (frameworks, projects, pages and features), starting from the template definition from [dotnet Template Engine](https://github.com/dotnet/templating) and extending it  to allow to define compositions and post-actions to reduce the template proliferation. The drawback here is that we have had to design a couple of software elements (the Composer and the Post-Actions), which makes the templates authoring a bit complex, but infinite more maintenable in long term.
 
-* Principle #1: Templates are composable.
-* Principle #2: Avoid code duplication.
+### Templates authoring principles
+We follow these principles for template authoring:
+
+* **Principle #1: Templates are composable**. In general, the templates should be composable with the existing frameworks and projecte types, that is, a certain page template should be available to be generated no matter the target framework and project type.  
+* **Principle #2: Reduce code duplication as much as possible**. As far as posible avoid to have templates with the same code for different frameworks and/or project types.
+* **Principle #3: Balance between maintenability and complexity.** Avoiding code duplication benefits the maintenability in long term and it is always a benefit. At the same time, reducing code duplication would require much more complexity in the Composer and the Post-Actions. We need to ensure that advance developers are able to contribute authoring templates so, we need to ensure the right balance between code reusability and templates complexity. 
+
 
 ## Templates repository structure
 
+Basically, a template is just code (some source files and folders structure) with some metadata which drives how the code is generated. The template metadata contains informational data (name, description, licensing, remarks, programming language, type, guids, etc.) as well as replacement data, used to replace matching text in the source content by the actual values (think of a class name). The templates definition is based on [dotnet Template Engine](https://github.com/dotnet/templating), you can visit their repo for a deep understanding on how the Template Engine works.
+
 The [Templates Repository](../templates) have the following structure:
 
-* [Projects](../templates/Projects) --> Project type templates. This kind of templates define the navigation and global layout for the app.
-* [Frameworks](../templates/Frameworks) --> Framework templates. This kind of templates define the base frameworks / coding style for the app.
-* [Pages](../templates/Pages) --> Page Templates. This kind of templates define the different types of pages available for the apps.
-* [DevFeatures](../templates/DevFeatures) --> Developer features templates. Define developer focused features available.
-* [ConsumerFeatures](../templates/ConsumerFeatures) --> Consumer feature templates. Define consumer focused features available.
+* [_catalog](../templates/_catalog): this folder contains the Frameworks and Project Types available catalog, including the required information and metadata (descriptions, icons, images, etc.) to be displayed in the Wizard. You can consider all the content within the *_catalog* folder as metadata for framworks and project types.
 
-At the end, a Template is just code with some metadata. The metadata will contain the template information: name, description, licensing, remarks, programming language, type, guids, etc. The templates definition is based on [dotnet Template Engine](https://github.com/dotnet/templating), you can visit their repo for deep understanding on how the Template Engine works.
+* [_composition](../templates/composition): this folder contains the partial code templates that will be generated when certain constraints are meet, including shared or specific framwork templates.  
 
-## Templates anatomy
+* [Projects](../templates/Projects): Project templates which define the actual folder structure, source files and auxiliary files to create a base project.
 
-In general, a template will have a folder and files structure which defines itself as a template. Depending on the kind of template the internal structure may differ but, in general, all the Templates define some metadata and a folder structure with files where the Template Engine apply the replacements.
+* [Pages](../templates/Pages): Page templates which define the source files needed to create a page of a certain type.
 
-TBD: Templates and Generation
-TBD: Mention Templates Composer && Post Actions
+* [Features](../templates/Features): Feature templates whith the sources required to add different features and / or capabilities to the target app.
 
-### Pages, DevFeatures and CustomerFeatures Templates
 
-This kind of templates have the following structure:
+## Anatomy of templates
 
-* **Metadata Folder** (.template.config). Here we can find the template definition file (this is the [dotnet Template Engine](https://github.com/dotnet/templating) definition file). In this file is defined the metadata used while the engine make the code generation.
-* **Code and folders structure**. This structure will be maintained once generated.
+As mentioned, a basic [dotnet Template Engine](https://github.com/dotnet/templating) template is defined by the following elements:
+* **Metadata**: a json file within the *".template.config"* folder  information which defines the template and its properties. The metadata includes the replacements to be done.
+* **Folder Structure**: A folder structure that will be maintained afer the generation is done.
+* **Files**: Text files, basically, the source code, where replacements are made.
 
-Let examine the template anatomy for the ["Blank" Page](../../templates/Pages/Blank):
+The metadata drives how the generation is done, let's see a template content sample:
 
-* .template.config: Folder containing the Template metadata configuration.
-* icon.png: icon that will be shown in the Wizard.
-* template.json: this is the template definition file itself. The template definition file determine which replacements will be done and which information will be returned to the generation engine. For example, the template definition defines "Blank" as "name" for the template. This means that "Blank" will be replaced by the parameterized name during the generation. 
-* View: Folder containing the source code files for the page view (.xaml, and .xaml.cs)
-* ViewModel: Folder containing the source files for the view model. 
+``` c#
+├───.template.config
+│       description.md      //Rich template description in markdown. Displayed in the wizard.
+│       icon.xaml           //SVG XAML definition for the template icon (.png or .jpg are accepted as well).
+│       template.json       //Template definition json file
+│
+├───Strings
+│   └───en-us
+│           Resources_postaction.resw //Post-Action to be applied after main generation of this template.
+│
+├───ViewModels
+│       BlankViewViewModel.cs         //Source file
+│
+└───Views
+        BlankViewPage.xaml            //Source file
+        BlankViewPage.xaml.cs         //Source file
+```
 
-Following you can see some details from the template.json file.
+If we generate this template using "MyTest" as page name, the result will be as follows:
+``` c#
+├───Strings
+│   └───en-us
+│           Resources.resw
+│
+├───ViewModels
+│       MyTestViewModel.cs
+│
+└───Views
+        MyTestPage.xaml
+        MyTestPage.xaml.cs
+```
 
-Templates Properties:
+Yo can observe that the folder structure is maintained but in the source files the "BlankView" word has been replaced by "MyTest" (the actual value for the *sourceName* parameter).
+
+The replacements are done based on the configuration established in the *template.json* file. Let's have a look to it:
 
 ``` json
 {
@@ -66,34 +98,58 @@ Templates Properties:
     "Universal"
   ],
   "name": "Blank",
-  "groupIdentity": "Microsoft.UWPTemplates.BlankPage",
-  "identity": "Microsoft.UWPTemplates.BlankPage.CSharp",
-  ...
-```
-
-Custom tags (starting with 'utc.') that are used to organize the templates information in the Wizard and drive the generation :
-
-``` json
-    "tags": {
-        "language": "C#",
-        "type": "item",
-        "uct.type": "page",
-        "uct.framework": "Basic|MVVMLight",
-        "uct.version": "1.0.0",
-        "uct.order": "1"
+  "groupIdentity": "wts.Page.Blank",              //Used for filtering and grouping in the wizard
+  "identity": "wts.Page.Blank",         
+  "shortName": "Blank Page",                      //This is the displayed name in the wizard.
+  "description": "This is the most basic page.",  //This is the short description displayed in the wizard.
+  "tags": {                                       //Tags are used to filter and handled the composition
+    "language": "C#",
+    "type": "item",
+    "wts.type": "page",
+    "wts.framework": "MVVMBasic|MVVMLight",       //Frameworks where this template can be used.
+    "wts.version": "1.0.0",
+    "wts.order": "1"
+  },
+  "sourceName": "BlankView",                      //The generation engine will replace any occurence of "BlankView" by the parameter provided in the source file name.               
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [                             //The primary outputs are the list of items that are returned to the caller after the generation.
+    {
+      "path": ".\\Views\\BlankViewPage.xaml"
     },
-    ...
+    {
+      "path": ".\\Views\\BlankViewPage.xaml.cs"
+    },
+    {
+      "path": ".\\ViewModels\\BlankViewViewModel.cs"
+    }
+  ],
+  "symbols": {                                    //Symbols define a collection of replacements to be done while generating.        
+    "rootNamespace": {
+      "type": "parameter",
+      "replaces": "RootNamespace"                //Each instance of "RootNamespace" in the source files will be replaced by the actual value passed in the "rootNamespace" parameter.
+    },
+    "itemNamespace": {
+      "type": "parameter",
+      "replaces": "ItemNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Set"
+    }
+  }
+}
 ```
 
-If we generate this template using the name "MyPage", the result will be a folder structure as follow:
+Pages, DevFeatures and CustomerFeatures templates are Framework and Project Type agnostic. We use two mechanisms to be able to compose and configure the templates to create actual projects, Compositions and Post-Actions.
 
-* View (Folder)
-  * MyPageView.xaml
-  * MyPageView.xaml.cs
-* ViewModel (Folder)
-  * MyPageViewModel.cs
 
-Pages, DevFeatures and CustomerFeatures templates are Framework and Project Type agnostic. Once generated, some Post-Actions are executed to adjust the generation to the framework and project type select by the user. 
+TBD: Templates and Generation
+TBD: Mention Templates Composer && Post Actions
+
 
 ## Composable Generation
 
