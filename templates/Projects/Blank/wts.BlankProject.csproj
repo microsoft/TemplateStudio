@@ -94,10 +94,10 @@
   </PropertyGroup>
   <ItemGroup>
 	  <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>5.3.1</Version>
+      <Version>5.3.2</Version>
     </PackageReference>
 	  <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
-      <Version>1.0.3</Version>
+      <Version>2.0.0</Version>
     </PackageReference>
     <!-- Nuget package references -->
   </ItemGroup> 

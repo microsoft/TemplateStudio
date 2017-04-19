@@ -10,6 +10,8 @@ namespace RootNamespace.Services
     {
         private const string SettingsKey = "RequestedTheme";
 
+        public static event EventHandler<ElementTheme> OnThemeChanged = delegate { };
+
         public static bool IsLightThemeEnabled => Theme == ElementTheme.Light;
         public static ElementTheme Theme { get; set; }
 
@@ -43,6 +45,7 @@ namespace RootNamespace.Services
             if (frameworkElement != null)
             {
                 frameworkElement.RequestedTheme = Theme;
+                OnThemeChanged(null, Theme);
             }
         }
 

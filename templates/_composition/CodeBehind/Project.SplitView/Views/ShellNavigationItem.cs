@@ -1,7 +1,7 @@
-﻿using ItemNamespace.Helpers;
-using System;
+﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -30,7 +30,27 @@ namespace wts.ItemName.Views
             {
                 Set(ref _isSelected, value);
                 SelectedVis = value ? Visibility.Visible : Visibility.Collapsed;
+                SelectedForeground = value
+                    ? Application.Current.Resources["SystemControlForegroundAccentBrush"] as SolidColorBrush
+                    : GetStandardTextColorBrush();
             }
+        }
+
+        private SolidColorBrush GetStandardTextColorBrush()
+        {
+            var result = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
+
+            return result;
+        }
+
+        private SolidColorBrush _selectedForeground = null;
+        public SolidColorBrush SelectedForeground
+        {
+            get
+            {
+                return _selectedForeground ?? (_selectedForeground = GetStandardTextColorBrush());
+            }
+            set { Set(ref _selectedForeground, value); }
         }
 
         private ShellNavigationItem(string name, Symbol symbol, Type pageType)
