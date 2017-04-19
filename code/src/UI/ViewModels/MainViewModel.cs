@@ -166,7 +166,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnNext()
         {
-            NavigationService.Navigate(new ProjectTemplatesView());
+            NavigationService.Navigate(new ProjectTemplatesView(ProjectSetup.SelectedFramework.Name));
             _canGoBack = true;
             BackCommand.OnCanExecuteChanged();
         }

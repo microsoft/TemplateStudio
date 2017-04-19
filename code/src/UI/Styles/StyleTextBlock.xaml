@@ -19,6 +19,7 @@
         <Setter Property="FontSize" Value="12" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextWrapping" Value="WrapWithOverflow" />
         <Setter Property="Margin" Value="{StaticResource MediumLeftMargin}" />
     </Style>
 

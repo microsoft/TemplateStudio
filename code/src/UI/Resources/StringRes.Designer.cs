@@ -97,11 +97,29 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Features ({0}) - Add multiple.
+        /// </summary>
+        public static string GroupFeaturesHeader_SF {
+            get {
+                return ResourceManager.GetString("GroupFeaturesHeader_SF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Framework ({0}) - Pick one.
         /// </summary>
         public static string GroupFrameworkHeader_SF {
             get {
                 return ResourceManager.GetString("GroupFrameworkHeader_SF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pages ({0}) - Add multiple.
+        /// </summary>
+        public static string GroupPagesHeader_SF {
+            get {
+                return ResourceManager.GetString("GroupPagesHeader_SF", resourceCulture);
             }
         }
         

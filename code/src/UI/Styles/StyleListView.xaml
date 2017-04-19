@@ -5,12 +5,16 @@
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Colors.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Thickness.xaml" />
     </ResourceDictionary.MergedDictionaries>
+    
+    
+    
 
 
-    <Style x:Key="ListViewProjectSetupStyle" TargetType="ListView">
+    <Style x:Key="ListViewBaseStyle" TargetType="ListView">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Margin" Value="{StaticResource MediumLeftTopMargin}"/>
         <Setter Property="Foreground" Value="{StaticResource UIBlack}"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
@@ -27,6 +31,20 @@
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style TargetType="Border" x:Key="ListViewItemBorderStyle">
+        <Setter Property="BorderThickness" Value="5,1,1,1"/>
+        <Setter Property="BorderBrush" Value="{StaticResource UIGray}"/>
+        <Setter Property="Margin" Value="{StaticResource BigRightBottomMargin}"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Opacity="0.2" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="ListViewProjectSetupStyle" TargetType="ListView" BasedOn="{StaticResource ListViewBaseStyle}">
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
                 <Style TargetType="{x:Type ListViewItem}">
@@ -34,10 +52,7 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">
-                                <Border x:Name="ContentBorder" BorderThickness="5,1,1,1" BorderBrush="{StaticResource UIGray}" Margin="{StaticResource BigRightBottomMargin}">
-                                    <Border.Effect>
-                                        <DropShadowEffect Opacity="0.2" />
-                                    </Border.Effect>
+                                <Border x:Name="ContentBorder" Style="{StaticResource ListViewItemBorderStyle}">
                                     <ContentPresenter/>
                                 </Border>
                                 <ControlTemplate.Triggers>
@@ -71,6 +86,25 @@
                                         </MultiTrigger.Setters>
                                     </MultiTrigger>
                                 </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ListViewProjectTemplatesStyle" TargetType="ListView" BasedOn="{StaticResource ListViewBaseStyle}">
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Foreground" Value="{StaticResource UIBlack}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <Border x:Name="ContentBorder" Style="{StaticResource ListViewItemBorderStyle}">
+                                    <ContentPresenter/>
+                                </Border>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>

@@ -9,40 +9,42 @@
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="ItemTemplateBorderBase" TargetType="Border">
-        <Setter Property="Background" Value="{StaticResource UIWhite}" />
-        <Setter Property="Height" Value="84" />
-        <Setter Property="Width" Value="436" />
-    </Style>
-
     <DataTemplate x:Key="ProjectSetupItemTemplate">
-        <Border Style="{StaticResource ItemTemplateBorderBase}">
+        <Border Width="436" Height="84" Background="{StaticResource UIWhite}">
             <Grid Margin="{StaticResource MediumMargin}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+                
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <controls:ImageEx
-                    Grid.RowSpan="3"
-                    Focusable="False"
-                    SourcePath="{Binding Icon}"/>
-                <TextBlock Grid.Column="1" Style="{StaticResource TextTemplateTitleStyle}" Text="{Binding DisplayName}"/>
-                <Button Grid.Column="2" Style="{StaticResource TemplateInfoButtonStyle}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!--Row 0-->
+                <controls:ImageEx Grid.Row="0" Grid.RowSpan="3" Focusable="False" SourcePath="{Binding Icon}"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateTitleStyle}" Text="{Binding DisplayName}"/>
+                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top">
                     <Button.Content>
-                        <TextBlock Text="&#xE946;" FontFamily="Segoe MDL2 Assets" FontSize="18"/>
+                        <TextBlock Text="&#xE946;" FontFamily="Segoe MDL2 Assets" FontSize="18" />
                     </Button.Content>
                 </Button>
-                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Style="{StaticResource TextTemplateSubtitleStyle}" Text="{Binding Description}"/>
-                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Style="{StaticResource TextTemplateAuthorStyle}">
-                    1.0.0.0 - by Microsoft
-                </TextBlock>
+
+                <!--Row 1-->
+                <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateSubtitleStyle}" Text="{Binding Description}"/>
+                
+                <!--Row 2-->
+                <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateAuthorStyle}">1.0.0.0 - by Microsoft</TextBlock>
             </Grid>
         </Border>
+    </DataTemplate>
+
+    <DataTemplate x:Key="ProjectTemplatesItemTemplate">
+        <controls:TemplateInfoControl
+                    TemplateInfo="{Binding}"
+                    AddCommand="{Binding DataContext.AddCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}" />
     </DataTemplate>
 </ResourceDictionary>

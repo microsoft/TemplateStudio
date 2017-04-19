@@ -3,8 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"      
-      mc:Ignorable="d"
-      Title="ProjectSetupView">
+      mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -20,8 +19,7 @@
                     <ListView
                         SelectionMode="Single"
                         ItemsSource="{Binding ProjectTypes}"
-                        Margin="{StaticResource MediumLeftTopMargin}"                        
-                        Style="{StaticResource ListViewProjectSetupStyle}"                        
+                        Style="{StaticResource ListViewProjectSetupStyle}"
                         ItemTemplate="{StaticResource ProjectSetupItemTemplate}"
                         SelectedItem="{Binding SelectedProjectType, Mode=TwoWay}" />
                 </GroupBox>
@@ -29,7 +27,6 @@
                     <ListView
                         SelectionMode="Single"
                         ItemsSource="{Binding Frameworks}"
-                        Margin="{StaticResource MediumLeftTopMargin}"
                         Style="{StaticResource ListViewProjectSetupStyle}"
                         ItemTemplate="{StaticResource ProjectSetupItemTemplate}"
                         SelectedItem="{Binding SelectedFramework, Mode=TwoWay}" />

@@ -129,8 +129,14 @@
   <data name="ErrorSync" xml:space="preserve">
     <value>Error updating templates. See output for more details.</value>
   </data>
+  <data name="GroupFeaturesHeader_SF" xml:space="preserve">
+    <value>Features ({0}) - Add multiple</value>
+  </data>
   <data name="GroupFrameworkHeader_SF" xml:space="preserve">
     <value>Framework ({0}) - Pick one</value>
+  </data>
+  <data name="GroupPagesHeader_SF" xml:space="preserve">
+    <value>Pages ({0}) - Add multiple</value>
   </data>
   <data name="GroupProjectType" xml:space="preserve">
     <value>Project Type</value>
