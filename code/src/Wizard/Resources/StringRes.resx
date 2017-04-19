@@ -157,7 +157,7 @@
     <value>Wizard compatible with templates content</value>
   </data>
   <data name="StatusOverVersionContent" xml:space="preserve">
-    <value>There is templates content available with higher version than the wizard. Consider to update the extension to access the latest content.</value>
+    <value>An update to the templates is available. Update the extension to get the latest content.</value>
   </data>
   <data name="StatusOverVersionTitle" xml:space="preserve">
     <value>Wizard update available</value>
