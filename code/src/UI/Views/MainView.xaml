@@ -42,7 +42,50 @@
             </Grid.ColumnDefinitions>
             <Frame x:Name="stepFrame"/>
             <Grid Grid.Column="1">
-                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="{x:Static res:StringRes.SummaryTitle}" />
+                <Expander Grid.Row="1" Header="{x:Static res:StringRes.SummaryLicenseTitle}">
+                    
+                </Expander>
+                <Expander Grid.Row="2" Header="{x:Static res:StringRes.SummaryProjectTypeTitle}" DataContext="{Binding ProjectSetup.SelectedProjectType}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding DisplayName}" />
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="Made by {0}">
+                                    <Binding Path="Author" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </StackPanel>
+                </Expander>
+                <Expander Grid.Row="3" Header="{x:Static res:StringRes.SummaryFrameworkTitle}" DataContext="{Binding ProjectSetup.SelectedFramework}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding DisplayName}" />
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="Made by {0}">
+                                    <Binding Path="Author" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </StackPanel>
+                </Expander>
+                <Expander Grid.Row="4" Header="{x:Static res:StringRes.SummaryPagesTitle}">
+
+                </Expander>
+                <Expander Grid.Row="5" Header="{x:Static res:StringRes.SummaryFeaturesTitle}">
+
+                </Expander>
+                <TextBlock Grid.Row="6" Text="{x:Static res:StringRes.SummaryTerms}" TextWrapping="Wrap" />
             </Grid>
         </Grid>
         <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">

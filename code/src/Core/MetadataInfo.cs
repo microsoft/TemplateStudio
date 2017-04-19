@@ -25,6 +25,7 @@ namespace Microsoft.Templates.Core
         public string Icon { get; set; }
         public string Summary { get; set; }
         public string Description { get; set; }
+        public string Author { get; set; }
         public int Order { get; set; }
     }
 }

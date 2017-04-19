@@ -39,9 +39,7 @@
                     </Button.Content>
                 </Button>
                 <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Style="{StaticResource TextTemplateSubtitleStyle}" Text="{Binding Description}"/>
-                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Style="{StaticResource TextTemplateAuthorStyle}">
-                    1.0.0.0 - by Microsoft
-                </TextBlock>
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Style="{StaticResource TextTemplateAuthorStyle}" Text="{Binding Author}" />
             </Grid>
         </Border>
     </DataTemplate>

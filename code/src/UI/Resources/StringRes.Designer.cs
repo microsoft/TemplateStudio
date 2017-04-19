@@ -194,5 +194,68 @@ namespace Microsoft.Templates.UI.Resources {
                 return ResourceManager.GetString("StatusUpdating", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Features.
+        /// </summary>
+        public static string SummaryFeaturesTitle {
+            get {
+                return ResourceManager.GetString("SummaryFeaturesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Framework.
+        /// </summary>
+        public static string SummaryFrameworkTitle {
+            get {
+                return ResourceManager.GetString("SummaryFrameworkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Licenses.
+        /// </summary>
+        public static string SummaryLicenseTitle {
+            get {
+                return ResourceManager.GetString("SummaryLicenseTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pages.
+        /// </summary>
+        public static string SummaryPagesTitle {
+            get {
+                return ResourceManager.GetString("SummaryPagesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project Type.
+        /// </summary>
+        public static string SummaryProjectTypeTitle {
+            get {
+                return ResourceManager.GetString("SummaryProjectTypeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By continuing, you agree to the licenses in the licensing section for the generated project. By continuing, you agree to those licenses..
+        /// </summary>
+        public static string SummaryTerms {
+            get {
+                return ResourceManager.GetString("SummaryTerms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Summary.
+        /// </summary>
+        public static string SummaryTitle {
+            get {
+                return ResourceManager.GetString("SummaryTitle", resourceCulture);
+            }
+        }
     }
 }
