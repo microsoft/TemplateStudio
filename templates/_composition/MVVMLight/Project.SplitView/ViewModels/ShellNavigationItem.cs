@@ -46,14 +46,9 @@ namespace wts.ItemName.ViewModels
 
         private SolidColorBrush GetStandardTextColorBrush()
         {
-            if (Services.ThemeSelectorService.IsLightThemeEnabled)
-            {
-                return Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
-            }
-            else
-            {
-                return Application.Current.Resources["SystemControlForegroundAltHighBrush"] as SolidColorBrush;
-            }
+            var result = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
+
+            return result;
         }
 
         public ShellNavigationItem(string label, Symbol symbol, string viewModelName)
@@ -61,8 +56,6 @@ namespace wts.ItemName.ViewModels
             this.Label = label;
             this.Symbol = symbol;
             this.ViewModelName = viewModelName;
-
-            Services.ThemeSelectorService.OnThemeChanged += (s, e) => { if (!IsSelected) SelectedForeground = GetStandardTextColorBrush(); };
         }
     }
 }

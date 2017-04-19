@@ -47,14 +47,9 @@ namespace wts.ItemName.ViewModels
 
         private SolidColorBrush GetStandardTextColorBrush()
         {
-            if (Services.ThemeSelectorService.IsLightThemeEnabled)
-            {
-                return Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
-            }
-            else
-            {
-                return Application.Current.Resources["SystemControlForegroundAltHighBrush"] as SolidColorBrush;
-            }
+            var result = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
+
+            return result;
         }
 
         private ShellNavigationItem(string name, Symbol symbol, Type pageType)
@@ -62,8 +57,6 @@ namespace wts.ItemName.ViewModels
             this.Label = name;
             this.Symbol = symbol;
             this.PageType = pageType;
-
-            Services.ThemeSelectorService.OnThemeChanged += (s, e) => { if (!IsSelected) SelectedForeground = GetStandardTextColorBrush(); };
         }
 
         public static ShellNavigationItem FromType<T>(string name, Symbol symbol) where T : Page
