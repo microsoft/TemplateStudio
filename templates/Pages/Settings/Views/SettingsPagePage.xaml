@@ -27,7 +27,7 @@
                     x:Uid="SettingsPage_Theme"
                     Style="{ThemeResource TitleTextBlockStyle}"/>
                 <ToggleSwitch
-                    x:Uid="SettingsPage_Toggle"
+                    x:Uid="SettingsPage_ThemeToggle"
                     IsOn="{x:Bind ViewModel.IsLightThemeEnabled, Mode=OneWay}"
                     Margin="0,4,0,0">
                     <i:Interaction.Behaviors>
