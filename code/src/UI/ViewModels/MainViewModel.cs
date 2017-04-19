@@ -3,6 +3,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Views;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace Microsoft.Templates.UI.ViewModels
 {
     public class MainViewModel : Observable
     {
+        private bool _canGoBack;
         public static MainViewModel Current;
         private MainView _mainView;
 
@@ -49,22 +51,16 @@ namespace Microsoft.Templates.UI.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        private bool _canGoBack;
-        public bool CanGoBack
-        {
-            get { return _canGoBack; }
-            set { SetProperty(ref _canGoBack, value); }
-        }
+        private RelayCommand _cancelCommand;
+        private RelayCommand _goBackCommand;
+        private RelayCommand _nextCommand;
 
-        private ICommand _cancelCommand;
-        private ICommand _backCommand;
-        private ICommand _nextCommand;
-
-        public ICommand CancelCommand => _cancelCommand ?? new RelayCommand(OnCancel);
-        public ICommand BackCommand => _backCommand ?? new RelayCommand(OnBack, () => CanGoBack);
-        public ICommand NextCommand => _nextCommand ?? new RelayCommand(OnNext);
+        public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
+        public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));                
+        public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext));
 
         public ProjectSetupViewModel ProjectSetup { get; private set; } = new ProjectSetupViewModel();
+        public ProjectTemplatesViewModel ProjectTemplates { get; private set; } = new ProjectTemplatesViewModel();
 
         public MainViewModel(MainView mainView)
         {
@@ -166,14 +162,20 @@ namespace Microsoft.Templates.UI.ViewModels
             _mainView.DialogResult = false;
             _mainView.Result = null;
             _mainView.Close();
-        }
-
-        private void OnBack()
-        {
-        }
+        }        
 
         private void OnNext()
         {
+            NavigationService.Navigate(new ProjectTemplatesView());
+            _canGoBack = true;
+            BackCommand.OnCanExecuteChanged();
+        }
+
+        private void OnGoBack()
+        {
+            NavigationService.GoBack();
+            _canGoBack = false;
+            BackCommand.OnCanExecuteChanged();
         }
     }
 }
