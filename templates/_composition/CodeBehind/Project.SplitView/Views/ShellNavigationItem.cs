@@ -1,5 +1,4 @@
-﻿using ItemNamespace.Helpers;
-using System;
+﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -39,14 +38,9 @@ namespace wts.ItemName.Views
 
         private SolidColorBrush GetStandardTextColorBrush()
         {
-            if (Services.ThemeSelectorService.IsLightThemeEnabled)
-            {
-                return Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
-            }
-            else
-            {
-                return Application.Current.Resources["SystemControlForegroundAltHighBrush"] as SolidColorBrush;
-            }
+            var result = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
+
+            return result;
         }
 
         private SolidColorBrush _selectedForeground = null;
@@ -64,8 +58,6 @@ namespace wts.ItemName.Views
             this.Label = name;
             this.Symbol = symbol;
             this.PageType = pageType;
-
-            Services.ThemeSelectorService.OnThemeChanged += (s, e) => { if (!IsSelected) SelectedForeground = GetStandardTextColorBrush(); };
         }
 
         public static ShellNavigationItem FromType<T>(string name, Symbol symbol) where T : Page
