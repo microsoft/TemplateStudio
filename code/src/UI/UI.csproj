@@ -186,6 +186,7 @@
       <DependentUpon>StringRes.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="ViewModels\LicenseViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MetadataInfoViewModel.cs" />
     <Compile Include="ViewModels\ProjectSetupViewModel.cs" />

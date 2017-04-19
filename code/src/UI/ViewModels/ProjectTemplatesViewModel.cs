@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
@@ -24,7 +25,22 @@ namespace Microsoft.Templates.UI.ViewModels
             set { SetProperty(ref _featuresHeader, value); }
         }
 
+        private RelayCommand<TemplateInfoViewModel> _removeItemCommand;
+        public RelayCommand<TemplateInfoViewModel> RemoveItemCommand => _removeItemCommand ?? (_removeItemCommand = new RelayCommand<TemplateInfoViewModel>(RemoveItem));
+        private void RemoveItem(TemplateInfoViewModel item)
+        {
+            if (Pages.Contains(item))
+            {
+                Pages.Remove(item);
+            }
+            else if (Features.Contains(item))
+            {
+                Features.Remove(item);
+            }
+        }
+
         public ObservableCollection<TemplateInfoViewModel> Pages { get; } = new ObservableCollection<TemplateInfoViewModel>();
+        public ObservableCollection<TemplateInfoViewModel> Features { get; } = new ObservableCollection<TemplateInfoViewModel>();
 
         public async Task IniatializeAsync()
         {

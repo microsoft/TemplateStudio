@@ -23,6 +23,30 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate x:Key="TemplateItem">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding DisplayText}" />
+                    <TextBlock Grid.Row="1" >
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="Made by {0}">
+                                <Binding Path="Author" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <Button Grid.Column="1" Grid.Row="1" 
+                            Content="X" IsEnabled="{Binding IsEnabled}"
+                            Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.ProjectTemplates.RemoveItemCommand}" CommandParameter="{Binding}" />
+                </Grid>
+            </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
 
@@ -41,55 +65,60 @@
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
             <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden"/>
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <TextBlock Text="{x:Static res:StringRes.SummaryTitle}" />
-                <Expander Grid.Row="1" Header="{x:Static res:StringRes.SummaryLicenseTitle}">
-                    
-                </Expander>
-                <Expander Grid.Row="2" Header="{x:Static res:StringRes.SummaryProjectTypeTitle}" DataContext="{Binding ProjectSetup.SelectedProjectType}">
-                    <StackPanel>
-                        <TextBlock Text="{Binding DisplayName}" />
-                        <TextBlock>
-                            <TextBlock.Text>
-                                <MultiBinding StringFormat="Made by {0}">
-                                    <Binding Path="Author" />
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>
-                    </StackPanel>
-                </Expander>
-                <Expander Grid.Row="3" Header="{x:Static res:StringRes.SummaryFrameworkTitle}" DataContext="{Binding ProjectSetup.SelectedFramework}">
-                    <StackPanel>
-                        <TextBlock Text="{Binding DisplayName}" />
-                        <TextBlock>
-                            <TextBlock.Text>
-                                <MultiBinding StringFormat="Made by {0}">
-                                    <Binding Path="Author" />
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>
-                    </StackPanel>
-                </Expander>
-                <Expander Grid.Row="4" Header="{x:Static res:StringRes.SummaryPagesTitle}">
+            <ScrollViewer Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{x:Static res:StringRes.SummaryTitle}" />
+                    <Expander Grid.Row="1" Header="{x:Static res:StringRes.SummaryLicenseTitle}" IsExpanded="True">
 
-                </Expander>
-                <Expander Grid.Row="5" Header="{x:Static res:StringRes.SummaryFeaturesTitle}">
-
-                </Expander>
-                <TextBlock Grid.Row="6" Text="{x:Static res:StringRes.SummaryTerms}" TextWrapping="Wrap" />
-            </Grid>
+                    </Expander>
+                    <Expander Grid.Row="2" Header="{x:Static res:StringRes.SummaryProjectTypeTitle}" IsExpanded="True" DataContext="{Binding ProjectSetup.SelectedProjectType}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding DisplayName}" />
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="Made by {0}">
+                                        <Binding Path="Author" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                    </Expander>
+                    <Expander Grid.Row="3" Header="{x:Static res:StringRes.SummaryFrameworkTitle}" IsExpanded="True" DataContext="{Binding ProjectSetup.SelectedFramework}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding DisplayName}" />
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="Made by {0}">
+                                        <Binding Path="Author" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                    </Expander>
+                    <Expander Grid.Row="4" Header="{x:Static res:StringRes.SummaryPagesTitle}" IsExpanded="True">
+                        <ItemsControl ItemsSource="{Binding ProjectTemplates.Pages}" ItemTemplate="{StaticResource TemplateItem}" />
+                    </Expander>
+                    <Expander Grid.Row="5" Header="{x:Static res:StringRes.SummaryFeaturesTitle}" IsExpanded="True">
+                        <ItemsControl ItemsSource="{Binding ProjectTemplates.Features}" ItemTemplate="{StaticResource TemplateItem}" />
+                    </Expander>
+                    <TextBlock Grid.Row="6" Text="{x:Static res:StringRes.SummaryTerms}" TextWrapping="Wrap" />
+                </Grid>
+            </ScrollViewer>
         </Grid>
         <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
             <StackPanel Style="{StaticResource StackPanelBottomBarStyle}">
+                <Button Content="Add page" Click="Button_Click" Style="{StaticResource ButtonNavigationStyle}" />
+                <Button Content="Add feature" Click="Button_Click_1" Style="{StaticResource ButtonNavigationStyle}" />
+                
                 <Button Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonCancel}" Command="{Binding CancelCommand}" />
                 <Button Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonBack}" Command="{Binding BackCommand}" />
                 <Button Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonNext}" Command="{Binding NextCommand}" />

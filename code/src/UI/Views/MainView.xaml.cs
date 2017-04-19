@@ -31,5 +31,28 @@ namespace Microsoft.Templates.UI.Views
             };
             InitializeComponent();            
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.ProjectTemplates.Pages.Add(new TemplateInfoViewModel
+            {
+                Name = "Page",
+                TemplateName = "Blank Page",
+                Author = "Javito",
+                IsEnabled = false
+            });
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ViewModel.ProjectTemplates.Features.Add(new TemplateInfoViewModel
+            {
+                Name = "Feature",
+                TemplateName = "Suspend and Resume",
+                Author = "Javito",
+                IsEnabled = true,
+                HasDefaultName = true
+            });
+        }
     }
 }
