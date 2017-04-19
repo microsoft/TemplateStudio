@@ -17,9 +17,6 @@
   "PrimaryOutputs": [
     {
       "path": ".\\Services\\NavigationService.cs"
-    },
-    {
-      "path": ".\\Helpers\\RelayCommand.cs"
     }
   ],
   "symbols": {

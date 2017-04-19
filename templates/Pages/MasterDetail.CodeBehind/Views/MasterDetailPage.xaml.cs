@@ -1,8 +1,6 @@
 using Windows.UI.Xaml.Controls;
-using ItemNamespace.Helpers;
 using ItemNamespace.Models;
 using ItemNamespace.Services;
-using System.Windows.Input;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Linq;
@@ -18,19 +16,11 @@ namespace ItemNamespace.Views
             set { Set(ref _selected, value); }
         }
 
-        public ICommand ItemClickCommand { get; private set; }
- 
         public ObservableCollection<SampleModel> SampleItems { get; private set; } = new ObservableCollection<SampleModel>();
 
         public MasterDetailPage()
         {
-            Initialize();
             InitializeComponent();
-        }
-
-        private void Initialize()
-        {
-            ItemClickCommand = new RelayCommand<ItemClickEventArgs>(OnItemClick);
         }
 
         private async Task LoadDataAsync() 
@@ -47,9 +37,9 @@ namespace ItemNamespace.Views
             Selected = SampleItems.First(); 
         }
 
-        private void OnItemClick(ItemClickEventArgs args)
+        private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            SampleModel item = args?.ClickedItem as SampleModel;
+            var item = e?.ClickedItem as SampleModel;
             if (item != null)
             {
                 if (WindowStates.CurrentState == NarrowState)

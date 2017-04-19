@@ -12,7 +12,7 @@ namespace ItemNamespace.Views
         //{[{
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            AppDescription = GetAppDescription();
+            Initialize();
         }
         //}]}
     }

@@ -6,8 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:model="using:ItemNamespace.Models"
     xmlns:views="using:ItemNamespace.Views"
-    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="MasterListViewItemTemplate" x:DataType="model:SampleModel">
@@ -75,12 +73,8 @@
                 ItemContainerTransitions="{x:Null}"
                 ItemTemplate="{StaticResource MasterListViewItemTemplate}"
                 IsItemClickEnabled="True"
-                Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-                <i:Interaction.Behaviors>
-                    <ic:EventTriggerBehavior EventName="ItemClick">
-                        <ic:InvokeCommandAction Command="{x:Bind ItemClickCommand}" />
-                    </ic:EventTriggerBehavior>
-                </i:Interaction.Behaviors>
+                Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
+                ItemClick="MasterListView_ItemClick">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
