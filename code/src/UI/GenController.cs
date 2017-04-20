@@ -28,6 +28,7 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.Templates.UI.Views;
+using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI
 {
@@ -153,20 +154,17 @@ namespace Microsoft.Templates.UI
 
         private static string GetStatusText(GenInfo genInfo)
         {
-            // TODO: Compleate
-            throw new NotImplementedException();
-            //switch (genInfo.Template.GetTemplateType())
-            //{
-            //    case TemplateType.Project:
-            //        return string.Format(StringRes.AddProjectMessage, genInfo.Name);
-            //    case TemplateType.Page:
-            //        return string.Format(StringRes.AddPageMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
-            //    case TemplateType.DevFeature:
-            //    case TemplateType.ConsumerFeature:
-            //        return string.Format(StringRes.AddFeatureMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
-            //    default:
-            //        return null;
-            //}
+            switch (genInfo.Template.GetTemplateType())
+            {
+                case TemplateType.Project:
+                    return string.Format(StringRes.GeneratingProjectMessage, genInfo.Name);
+                case TemplateType.Page:
+                    return string.Format(StringRes.GeneratingPageMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
+                case TemplateType.Feature:
+                    return string.Format(StringRes.GeneratingFeatureMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
+                default:
+                    return null;
+            }
         }
 
         private static void ShowError(Exception ex, WizardState userSelection = null)

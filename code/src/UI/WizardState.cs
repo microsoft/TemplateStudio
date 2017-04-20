@@ -29,8 +29,7 @@ namespace Microsoft.Templates.UI
         public string ProjectType { get; set; }
         public string Framework { get; set; }
         public List<(string name, ITemplateInfo template)> Pages { get; } = new List<(string name, ITemplateInfo template)>();
-        public List<(string name, ITemplateInfo template)> DevFeatures { get; } = new List<(string name, ITemplateInfo template)>();
-        public List<(string name, ITemplateInfo template)> ConsumerFeatures { get; } = new List<(string name, ITemplateInfo template)>();
+        public List<(string name, ITemplateInfo template)> Features { get; } = new List<(string name, ITemplateInfo template)>();
 
         public override string ToString()
         {
@@ -54,15 +53,9 @@ namespace Microsoft.Templates.UI
                 sb.AppendLine();
             }
 
-            if (DevFeatures.Any())
+            if (Features.Any())
             {
-                sb.AppendFormat("DevFeatures: '{0}'", string.Join(", ", DevFeatures.Select(p => $"{p.name} - {p.template.Name}").ToArray()));
-                sb.AppendLine();
-            }
-
-            if (ConsumerFeatures.Any())
-            {
-                sb.AppendFormat("ConsumerFeatures: '{0}'", string.Join(", ", ConsumerFeatures.Select(p => $"{p.name} - {p.template.Name}").ToArray()));
+                sb.AppendFormat("Features: '{0}'", string.Join(", ", Features.Select(p => $"{p.name} - {p.template.Name}").ToArray()));
                 sb.AppendLine();
             }
 

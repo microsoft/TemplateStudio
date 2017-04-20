@@ -132,6 +132,15 @@
   <data name="ErrorSync" xml:space="preserve">
     <value>Error updating templates. See output for more details.</value>
   </data>
+  <data name="GeneratingFeatureMessage" xml:space="preserve">
+    <value>Adding '{0}' feature to project...</value>
+  </data>
+  <data name="GeneratingPageMessage" xml:space="preserve">
+    <value>Adding '{0}' page to project...</value>
+  </data>
+  <data name="GeneratingProjectMessage" xml:space="preserve">
+    <value>Creating project '{0}'...</value>
+  </data>
   <data name="GroupFeaturesHeader_SF" xml:space="preserve">
     <value>Features ({0}) - Add multiple</value>
   </data>
