@@ -37,8 +37,7 @@ namespace Microsoft.Templates.UI
 
             AddProject(userSelection, genQueue);
             AddTemplates(userSelection.Pages, genQueue);
-            AddTemplates(userSelection.DevFeatures, genQueue);
-            AddTemplates(userSelection.ConsumerFeatures, genQueue);
+            AddTemplates(userSelection.Features, genQueue);
 
             AddMissingDependencies(genQueue);
 

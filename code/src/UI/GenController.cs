@@ -159,7 +159,7 @@ namespace Microsoft.Templates.UI
                 case TemplateType.Project:
                     return string.Format(StringRes.GeneratingProjectMessage, genInfo.Name);
                 case TemplateType.Page:
-                    return string.Format(StringRes.GeneratingProjectMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
+                    return string.Format(StringRes.GeneratingPageMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
                 case TemplateType.Feature:
                     return string.Format(StringRes.GeneratingFeatureMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
                 default:

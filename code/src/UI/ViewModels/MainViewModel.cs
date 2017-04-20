@@ -1,4 +1,5 @@
-﻿using Microsoft.Templates.Core.Diagnostics;
+﻿using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
@@ -205,6 +206,8 @@ namespace Microsoft.Templates.UI.ViewModels
                 ProjectType = ProjectSetup.SelectedProjectType.Name,
                 Framework = ProjectSetup.SelectedFramework.Name
             };
+            wizardState.Pages.AddRange(ProjectTemplates.SavedTemplates.Where(t => t.Template.GetTemplateType() == TemplateType.Page));
+            wizardState.Features.AddRange(ProjectTemplates.SavedTemplates.Where(t => t.Template.GetTemplateType() == TemplateType.Feature));
             _mainView.DialogResult = true;
             _mainView.Result = wizardState;
             _mainView.Close();
