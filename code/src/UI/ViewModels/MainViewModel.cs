@@ -3,6 +3,7 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Views;
@@ -24,9 +25,9 @@ namespace Microsoft.Templates.UI.ViewModels
         public static MainViewModel Current;
         private MainView _mainView;
 
-        private string _status;
-        public string Status
-        {
+        private (StatusType StatusType, string StatusMessage) _status;
+        public (StatusType StatusType, string StatusMessage) Status
+        {            
             get { return _status; }
             set { SetProperty(ref _status, value); }
         }
@@ -94,13 +95,13 @@ namespace Microsoft.Templates.UI.ViewModels
                 WizardVersion = GetWizardVersion();
 
                 await GenContext.ToolBox.Repo.SynchronizeAsync();
-                Status = string.Empty;
+                Status = StatusControl.EmptyStatus;
 
                 TemplatesVersion = GenContext.ToolBox.Repo.GetTemplatesVersion();
             }
             catch (Exception ex)
             {
-                Status = StringRes.ErrorSync;
+                Status = (StatusType.Information, StringRes.ErrorSync);
 
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);
@@ -123,7 +124,7 @@ namespace Microsoft.Templates.UI.ViewModels
         private void Sync_SyncStatusChanged(object sender, SyncStatus status)
         {
 
-            Status = GetStatusText(status);
+            Status = (StatusType.Information, GetStatusText(status));
 
             if (status == SyncStatus.Updated)
             {
