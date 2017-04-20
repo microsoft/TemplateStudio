@@ -200,6 +200,14 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnCreate()
         {
+            var wizardState = new WizardState()
+            {
+                ProjectType = ProjectSetup.SelectedProjectType.Name,
+                Framework = ProjectSetup.SelectedFramework.Name
+            };
+            _mainView.DialogResult = true;
+            _mainView.Result = wizardState;
+            _mainView.Close();
         }
     }
 }

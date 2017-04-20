@@ -106,6 +106,33 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adding &apos;{0}&apos; feature to project....
+        /// </summary>
+        public static string GeneratingFeatureMessage {
+            get {
+                return ResourceManager.GetString("GeneratingFeatureMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding &apos;{0}&apos; page to project....
+        /// </summary>
+        public static string GeneratingPageMessage {
+            get {
+                return ResourceManager.GetString("GeneratingPageMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creating project &apos;{0}&apos;....
+        /// </summary>
+        public static string GeneratingProjectMessage {
+            get {
+                return ResourceManager.GetString("GeneratingProjectMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Features ({0}) - Add multiple.
         /// </summary>
         public static string GroupFeaturesHeader_SF {
