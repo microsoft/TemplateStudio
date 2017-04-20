@@ -53,8 +53,8 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" />
-                <Button Grid.Column="1" Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonCancel}" Command="{Binding CancelCommand}" />
+                <TextBlock Grid.Column="0" Style="{StaticResource TextTemplateSubtitleStyle}" Text="{Binding Status}" />
+                <Button Grid.Column="1" Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonCancel}" Command="{Binding CancelCommand}" Margin="{StaticResource MediumLeftMargin}" />
                 <Button Grid.Column="2" Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonBack}" Command="{Binding BackCommand}" />
                 <Button Grid.Column="3" Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonNext}" Command="{Binding NextCommand}" Visibility="{Binding NoFinishContentVisibility}" />
                 <Button Grid.Column="3" Style="{StaticResource ButtonFinishStyle}" Content="{x:Static res:StringRes.ButtonCreate}" Command="{Binding CreateCommand}" Visibility="{Binding FinishContentVisibility}" />
