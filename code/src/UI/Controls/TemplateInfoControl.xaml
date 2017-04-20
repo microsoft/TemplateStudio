@@ -19,7 +19,6 @@
     </UserControl.Resources>
 
     <Border Width="205" Height="180" Background="{StaticResource UIWhite}">
-
         <Grid Margin="{StaticResource MediumMargin}">
 
             <Grid.RowDefinitions>
@@ -42,7 +41,7 @@
                 </Grid.ColumnDefinitions>
 
                 <controls:ImageEx Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Center" Focusable="False" SourcePath="{Binding TemplateInfo.Icon, ElementName=root}" />
-                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateTitleStyle}" Text="{Binding TemplateInfo.Name, ElementName=root}" Margin="{StaticResource MediumLeftMargin}" />
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateTitleStyle}" Text="{Binding TemplateInfo.Name, ElementName=root}" Margin="{StaticResource MediumLeftMargin}" Foreground="{Binding TitleForeground, ElementName=root}" />
                 <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateAuthorStyle}" Text="{Binding TemplateInfo.Author, ElementName=root}" Margin="{StaticResource MediumLeftMargin}" />
 
                 <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="{Binding NoEditingContentVisibility, ElementName=root}">
@@ -90,27 +89,25 @@
                 </Grid>
 
 
-                <Button Grid.Column="1" Style="{StaticResource AddTemplateInfoButtonStyle}" Click="OnAddClicked" Visibility="{Binding NoEditingContentVisibility, ElementName=root}">
-                    <Button.Content>
-                        <Grid>
-                            <TextBlock Text="&#xECCA;" FontFamily="Segoe MDL2 Assets" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
-                            <TextBlock Text="&#xE948;" FontFamily="Segoe MDL2 Assets" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
-                        </Grid>
-                    </Button.Content>
-                </Button>
+                <Grid Grid.Column="1" Visibility="{Binding AddingVisibility, ElementName=root}">
+                    <Button Style="{StaticResource AddTemplateInfoButtonStyle}" Click="OnAddClicked" Visibility="{Binding NoEditingContentVisibility, ElementName=root}">
+                        <Button.Content>
+                            <Grid>
+                                <TextBlock Text="&#xECCA;" FontFamily="Segoe MDL2 Assets" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
+                                <TextBlock Text="&#xE948;" FontFamily="Segoe MDL2 Assets" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
+                            </Grid>
+                        </Button.Content>
+                    </Button>
 
-                <Button
-                    Grid.Column="1" Style="{StaticResource AddTemplateInfoButtonStyle}"
-                    Click="OnSaveClicked"
-                    IsEnabled="{Binding IsValid, ElementName=root}"
-                    Visibility="{Binding EditingContentVisibility, ElementName=root}">
-                    <Button.Content>
-                        <Grid>
-                            <TextBlock Text="&#xECCA;" FontFamily="Segoe MDL2 Assets" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
-                            <TextBlock Text="&#xE8FB;" FontFamily="Segoe MDL2 Assets" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
-                        </Grid>
-                    </Button.Content>
-                </Button>
+                    <Button Style="{StaticResource AddTemplateInfoButtonStyle}" Click="OnSaveClicked" IsEnabled="{Binding IsValid, ElementName=root}" Visibility="{Binding EditingContentVisibility, ElementName=root}">
+                        <Button.Content>
+                            <Grid>
+                                <TextBlock Text="&#xECCA;" FontFamily="Segoe MDL2 Assets" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
+                                <TextBlock Text="&#xE8FB;" FontFamily="Segoe MDL2 Assets" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+                </Grid>
             </Grid>
         </Grid>
     </Border>
