@@ -46,7 +46,12 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
-            <StackPanel Style="{StaticResource StackPanelBottomBarStyle}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" />
+            <StackPanel Grid.Column="1" Style="{StaticResource StackPanelBottomBarStyle}">
                 <Button Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonCancel}" Command="{Binding CancelCommand}" />
                 <Button Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonBack}" Command="{Binding BackCommand}" />
                 <Button Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonNext}" Command="{Binding NextCommand}" />

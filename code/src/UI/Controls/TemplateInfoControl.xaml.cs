@@ -21,6 +21,20 @@ namespace Microsoft.Templates.UI.Controls
         }
         public static readonly DependencyProperty AddCommandProperty = DependencyProperty.Register("AddCommand", typeof(ICommand), typeof(TemplateInfoControl), new PropertyMetadata(null));
 
+        public Visibility NoEditingContentVisibility
+        {
+            get { return (Visibility)GetValue(NoEditingContentVisibilityProperty); }
+            set { SetValue(NoEditingContentVisibilityProperty, value); }
+        }
+        public static readonly DependencyProperty NoEditingContentVisibilityProperty = DependencyProperty.Register("NoEditingContentVisibility", typeof(Visibility), typeof(TemplateInfoControl), new PropertyMetadata(Visibility.Visible));
+
+        public Visibility EditingContentVisibility
+        {
+            get { return (Visibility)GetValue(EditingContentVisibilityProperty); }
+            set { SetValue(EditingContentVisibilityProperty, value); }
+        }
+        public static readonly DependencyProperty EditingContentVisibilityProperty = DependencyProperty.Register("EditingContentVisibility", typeof(Visibility), typeof(TemplateInfoControl), new PropertyMetadata(Visibility.Collapsed));
+
 
 
         public TemplateInfoControl()
@@ -31,6 +45,44 @@ namespace Microsoft.Templates.UI.Controls
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+        }
+
+        private void OnAddClicked(object sender, RoutedEventArgs e)
+        {
+            SwichVisibilities();
+        }
+
+        private void OnSaveClicked(object sender, RoutedEventArgs e)
+        {
+            AddCommand.Execute(TemplateInfo);
+            SwichVisibilities();
+        }
+
+        private void SwichVisibilities()
+        {
+            if (EditingContentVisibility == Visibility.Collapsed)
+            {
+                EditingContentVisibility = Visibility.Visible;
+                NoEditingContentVisibility = Visibility.Collapsed;
+            }
+            else
+            {
+                EditingContentVisibility = Visibility.Collapsed;
+                NoEditingContentVisibility = Visibility.Visible;
+            }
+        }
+
+        private void OnMouseLeave(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void OnCloseEdition(object sender, RoutedEventArgs e)
+        {
+            if (EditingContentVisibility == Visibility.Visible)
+            {
+                SwichVisibilities();
+            }
         }
     }
 }

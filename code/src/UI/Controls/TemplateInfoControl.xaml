@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
+             MouseLeave="OnMouseLeave"
              x:Name="root"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -23,7 +24,7 @@
         <Grid Margin="{StaticResource MediumMargin}">
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="70" />
+                <RowDefinition Height="60" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="30" />
             </Grid.RowDefinitions>
@@ -42,27 +43,58 @@
 
                 <controls:ImageEx Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Center" Focusable="False" SourcePath="{Binding TemplateInfo.Icon, ElementName=root}" />
                 <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateTitleStyle}" Text="{Binding TemplateInfo.Name, ElementName=root}" />
-
-                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource TextTemplateAuthorStyle}">1.0.0.0 - by Microsoft</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource TextTemplateAuthorStyle}" Text="{Binding TemplateInfo.Author, ElementName=root}" />
             </Grid>
 
-            <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateSubtitleStyle}" Text="{Binding TemplateInfo.Description, ElementName=root}" />
+            <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateSubtitleStyle}" Text="{Binding TemplateInfo.Description, ElementName=root}" Visibility="{Binding NoEditingContentVisibility, ElementName=root}"/>
+            <Grid Grid.Row="1" Visibility="{Binding EditingContentVisibility, ElementName=root}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource TextTemplateSubtitleStyle}" Text="Enter a valid name for this page. Click save to add this page."/>
+                <Button Grid.Column="1" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Click="OnCloseEdition">
+                    <Button.Content>
+                        <Grid>
+                            <TextBlock Text="&#xECCA;" FontFamily="Segoe MDL2 Assets" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
+                            <TextBlock Text="&#xE894;" FontFamily="Segoe MDL2 Assets" FontSize="9" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
+                        </Grid>
+                    </Button.Content>
+                </Button>
+            </Grid>
 
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="30" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Grid Visibility="{Binding EditingContentVisibility, ElementName=root}">
+                    <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </Grid>
+                <Button Grid.Column="0" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="{Binding NoEditingContentVisibility, ElementName=root}">
                     <Button.Content>
                         <TextBlock Text="&#xE946;" FontFamily="Segoe MDL2 Assets" FontSize="18" />
                     </Button.Content>
                 </Button>
-                <Button Grid.Column="1" Style="{StaticResource AddTemplateInfoButtonStyle}" Command="{Binding AddCommand, ElementName=root}" CommandParameter="{Binding TemplateInfo, ElementName=root}">
+
+
+                <Button Grid.Column="1" Style="{StaticResource AddTemplateInfoButtonStyle}" Click="OnAddClicked" Visibility="{Binding NoEditingContentVisibility, ElementName=root}">
                     <Button.Content>
                         <Grid>
                             <TextBlock Text="&#xECCA;" FontFamily="Segoe MDL2 Assets" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
                             <TextBlock Text="&#xE948;" FontFamily="Segoe MDL2 Assets" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
+                        </Grid>
+                    </Button.Content>
+                </Button>
+
+                <Button
+                    Grid.Column="1" Style="{StaticResource AddTemplateInfoButtonStyle}"
+                    Click="OnSaveClicked"
+                    Visibility="{Binding EditingContentVisibility, ElementName=root}">
+                    <Button.Content>
+                        <Grid>
+                            <TextBlock Text="&#xECCA;" FontFamily="Segoe MDL2 Assets" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
+                            <TextBlock Text="&#xE74E;" FontFamily="Segoe MDL2 Assets" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
                         </Grid>
                     </Button.Content>
                 </Button>
