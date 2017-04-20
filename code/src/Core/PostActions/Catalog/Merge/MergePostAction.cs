@@ -59,17 +59,17 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetFilePath()
         {
-            var path = Regex.Replace(_config, PostactionRegex, ".");
-            if (File.Exists(path))
-            {
-                return path;
-            }
-            else
+            if (Path.GetFileName(_config).StartsWith(Extension))
             {
                 var extension = Path.GetExtension(_config);
                 var directory = Path.GetDirectoryName(_config);
 
                 return Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !f.Contains(Suffix));
+            }
+            else
+            {
+                var path = Regex.Replace(_config, PostactionRegex, ".");
+                return (File.Exists(path) ? path : String.Empty);
             }
         }
     }
