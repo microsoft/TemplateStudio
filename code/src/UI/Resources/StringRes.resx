@@ -180,4 +180,19 @@
   <data name="StatusUpdating" xml:space="preserve">
     <value>Updating templates...</value>
   </data>
+  <data name="ValidationError_AlreadyExists" xml:space="preserve">
+    <value>Name already exists</value>
+  </data>
+  <data name="ValidationError_BadFormat" xml:space="preserve">
+    <value>Only alphanumeric and '-' characters are allowed</value>
+  </data>
+  <data name="ValidationError_Empty" xml:space="preserve">
+    <value>Name cannot be empty</value>
+  </data>
+  <data name="ValidationError_RenameNotAllowed" xml:space="preserve">
+    <value>Cannot set a custom name</value>
+  </data>
+  <data name="ValidationError_ReservedName" xml:space="preserve">
+    <value>Name is reserved</value>
+  </data>
 </root>

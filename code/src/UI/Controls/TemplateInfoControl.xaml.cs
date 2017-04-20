@@ -1,4 +1,5 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -50,7 +51,26 @@ namespace Microsoft.Templates.UI.Controls
             get { return (string)GetValue(NewTemplateNameProperty); }
             set { SetValue(NewTemplateNameProperty, value); }
         }
-        public static readonly DependencyProperty NewTemplateNameProperty = DependencyProperty.Register("NewTemplateName", typeof(string), typeof(TemplateInfoControl), new PropertyMetadata(String.Empty));
+        public static readonly DependencyProperty NewTemplateNameProperty = DependencyProperty.Register("NewTemplateName", typeof(string), typeof(TemplateInfoControl), new PropertyMetadata(String.Empty, OnNewTemplateNamePropertyChanged));        
+        private static void OnNewTemplateNamePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as TemplateInfoControl;
+            control.Validate(e.NewValue as string);
+        }
+
+        public string ErrorMessage
+        {
+            get { return (string)GetValue(ErrorMessageProperty); }
+            set { SetValue(ErrorMessageProperty, value); }
+        }
+        public static readonly DependencyProperty ErrorMessageProperty = DependencyProperty.Register("ErrorMessage", typeof(string), typeof(TemplateInfoControl), new PropertyMetadata(String.Empty));
+
+        public bool IsValid
+        {
+            get { return (bool)GetValue(IsValidProperty); }
+            set { SetValue(IsValidProperty, value); }
+        }
+        public static readonly DependencyProperty IsValidProperty = DependencyProperty.Register("IsValid", typeof(bool), typeof(TemplateInfoControl), new PropertyMetadata(true));        
 
 
 
@@ -73,8 +93,11 @@ namespace Microsoft.Templates.UI.Controls
 
         private void OnSaveClicked(object sender, RoutedEventArgs e)
         {
-            AddCommand.Execute((NewTemplateName, TemplateInfo.Template));
-            SwichVisibilities();
+            if (IsValid)
+            {
+                AddCommand.Execute((NewTemplateName, TemplateInfo.Template));
+                SwichVisibilities();
+            }            
         }
 
         private void SwichVisibilities()
@@ -91,17 +114,32 @@ namespace Microsoft.Templates.UI.Controls
             }
         }
 
-        private void OnMouseLeave(object sender, MouseEventArgs e)
+        private void OnCloseEdition(object sender, RoutedEventArgs e) => SwichVisibilities();
+
+        private void HandleValidation(Core.ValidationResult validationResult)
         {
-            
+            IsValid = validationResult.IsValid;
+
+            if (!validationResult.IsValid)
+            {
+                ErrorMessage = StringRes.ResourceManager.GetString($"ValidationError_{validationResult.ErrorType}");
+                if (string.IsNullOrWhiteSpace(ErrorMessage))
+                {
+                    ErrorMessage = "UndefinedError";
+                }                
+                throw new Exception(ErrorMessage);
+            }
+            else
+            {
+                ErrorMessage = String.Empty;
+            }
         }
 
-        private void OnCloseEdition(object sender, RoutedEventArgs e)
+        public void Validate(string name)
         {
-            if (EditingContentVisibility == Visibility.Visible)
-            {
-                SwichVisibilities();
-            }
+            var names = GetUsedNames.Invoke();
+            var validationResult = Core.Naming.Validate(names, name);
+            HandleValidation(validationResult);
         }
     }
 }

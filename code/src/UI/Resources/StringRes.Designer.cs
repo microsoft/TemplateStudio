@@ -248,5 +248,50 @@ namespace Microsoft.Templates.UI.Resources {
                 return ResourceManager.GetString("StatusUpdating", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name already exists.
+        /// </summary>
+        public static string ValidationError_AlreadyExists {
+            get {
+                return ResourceManager.GetString("ValidationError_AlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only alphanumeric and &apos;-&apos; characters are allowed.
+        /// </summary>
+        public static string ValidationError_BadFormat {
+            get {
+                return ResourceManager.GetString("ValidationError_BadFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name cannot be empty.
+        /// </summary>
+        public static string ValidationError_Empty {
+            get {
+                return ResourceManager.GetString("ValidationError_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot set a custom name.
+        /// </summary>
+        public static string ValidationError_RenameNotAllowed {
+            get {
+                return ResourceManager.GetString("ValidationError_RenameNotAllowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is reserved.
+        /// </summary>
+        public static string ValidationError_ReservedName {
+            get {
+                return ResourceManager.GetString("ValidationError_ReservedName", resourceCulture);
+            }
+        }
     }
 }

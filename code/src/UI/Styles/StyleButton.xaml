@@ -78,6 +78,9 @@
                     <Setter Property="Foreground" Value="{StaticResource UIDarkBlue}"/>
                 </Trigger.Setters>
             </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource UILightGray}"/>
+            </Trigger>
         </Style.Triggers>
     </Style>
 
