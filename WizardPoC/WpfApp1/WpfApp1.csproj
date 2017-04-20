@@ -54,9 +54,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ColumnCountConverter.cs" />
     <Compile Include="FeatureItem.xaml.cs">
       <DependentUpon>FeatureItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FixedWidthConverter.cs" />
+    <Compile Include="ItemAlignmentConverter.cs" />
     <Compile Include="LicenseLink.xaml.cs">
       <DependentUpon>LicenseLink.xaml</DependentUpon>
     </Compile>

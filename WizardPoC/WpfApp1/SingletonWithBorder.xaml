@@ -4,12 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    d:DesignWidth="400"
     mc:Ignorable="d">
     <!-- 
         Not checked: AddOnItemsBorderNormal 
         Checked: AddOnItemsBorderHighlighted 
     
-        the check background color shoudl be the highlighted color with foreground being white
+        the check background color should be the highlighted color with foreground being white
     -->
     <Border Style="{StaticResource AddOnItemsBorderNormal}">
         <!-- 
@@ -20,7 +21,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="25" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -46,6 +47,9 @@
             <TextBlock 
                 Grid.Row="1" 
                 Grid.Column="1" 
+                MaxHeight="58"
+                LineStackingStrategy="BlockLineHeight"
+                TextTrimming="WordEllipsis"
                 Style="{StaticResource AddOnItemsBodyText}">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur magna tellus, malesuada laoreet convallis sit amet, congue ut lectus.
             </TextBlock>

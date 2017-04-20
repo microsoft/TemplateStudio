@@ -6,9 +6,12 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="Windows Template Studio"
-        Width="800px" 
+        Width="900" 
         SnapsToDevicePixels="True">
     <Window.Resources>
+        <local:ColumnCountConverter x:Key="ColumnConverter" />
+        <local:ItemAlignmentConverter x:Key="ItemAlignmentConverter" />
+        <local:FixedWidthConverter x:Key="FixedWidthConverter" />
         <ControlTemplate x:Key="GroupBoxControlTemplate1" TargetType="{x:Type GroupBox}">
             <Grid SnapsToDevicePixels="True">
                 <Grid.ColumnDefinitions>
@@ -151,23 +154,38 @@
             <ScrollViewer Margin="10, 10, 0, 0" Grid.Row="0">
                 <StackPanel>
                     <GroupBox Header="Frameworks (3) - Pick one">
-                        <WrapPanel>
-                            <local:SingletonWithBorder />
-                            <local:SingletonWithBorder />
-                            <local:SingletonWithBorder />
-                        </WrapPanel>
+                        <UniformGrid VerticalAlignment="Top"
+                                     x:Name="FrameworksGrid"
+                                     Columns="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource ColumnConverter}, ConverterParameter=500}">
+                            <local:SingletonWithBorder MinWidth="250" HorizontalAlignment="{Binding ElementName=FrameworksGrid, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}"
+                                                       MaxWidth="{Binding RelativeSource={RelativeSource Self}, Path=HorizontalAlignment, Converter={StaticResource FixedWidthConverter}, ConverterParameter=250}"/>
+                            <local:SingletonWithBorder MinWidth="250" HorizontalAlignment="{Binding ElementName=FrameworksGrid, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}"
+                                                       MaxWidth="{Binding RelativeSource={RelativeSource Self}, Path=HorizontalAlignment, Converter={StaticResource FixedWidthConverter}, ConverterParameter=250}"/>
+                            <local:SingletonWithBorder MinWidth="250" HorizontalAlignment="{Binding ElementName=FrameworksGrid, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}"
+                                                       MaxWidth="{Binding RelativeSource={RelativeSource Self}, Path=HorizontalAlignment, Converter={StaticResource FixedWidthConverter}, ConverterParameter=250}"/>
+                        </UniformGrid>
                     </GroupBox>
                     <GroupBox Header="Pages (8) - Add Multiple">
-                        <WrapPanel>
-                            <local:SingletonWithBorder />
-                            <local:MultipleAddItemWithBorder />
-                            <local:SingletonWithBorder />
-                            <local:MultipleAddItemWithBorder />
-                            <local:SingletonWithBorder />
-                            <local:SingletonWithBorder />
-                            <local:MultipleAddItemWithBorder />
-                            <local:MultipleAddItemWithBorder />
-                        </WrapPanel>
+                        <UniformGrid VerticalAlignment="Top"
+                                     x:Name="PagesGrid"
+                                     Columns="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource ColumnConverter}, ConverterParameter=500}">
+                            <local:SingletonWithBorder MinWidth="250" HorizontalAlignment="{Binding ElementName=PagesGrid, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}"
+                                                       MaxWidth="{Binding RelativeSource={RelativeSource Self}, Path=HorizontalAlignment, Converter={StaticResource FixedWidthConverter}, ConverterParameter=250}"/>
+                            <local:MultipleAddItemWithBorder MinWidth="250" HorizontalAlignment="{Binding ElementName=PagesGrid, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}"
+                                                             MaxWidth="{Binding RelativeSource={RelativeSource Self}, Path=HorizontalAlignment, Converter={StaticResource FixedWidthConverter}, ConverterParameter=250}"/>
+                            <local:SingletonWithBorder MinWidth="250" HorizontalAlignment="{Binding ElementName=PagesGrid, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}"
+                                                       MaxWidth="{Binding RelativeSource={RelativeSource Self}, Path=HorizontalAlignment, Converter={StaticResource FixedWidthConverter}, ConverterParameter=250}"/>
+                            <local:MultipleAddItemWithBorder MinWidth="250" HorizontalAlignment="{Binding ElementName=PagesGrid, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}"
+                                                             MaxWidth="{Binding RelativeSource={RelativeSource Self}, Path=HorizontalAlignment, Converter={StaticResource FixedWidthConverter}, ConverterParameter=250}"/>
+                            <local:SingletonWithBorder MinWidth="250" HorizontalAlignment="{Binding ElementName=PagesGrid, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}"
+                                                       MaxWidth="{Binding RelativeSource={RelativeSource Self}, Path=HorizontalAlignment, Converter={StaticResource FixedWidthConverter}, ConverterParameter=250}"/>
+                            <local:SingletonWithBorder MinWidth="250" HorizontalAlignment="{Binding ElementName=PagesGrid, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}"
+                                                       MaxWidth="{Binding RelativeSource={RelativeSource Self}, Path=HorizontalAlignment, Converter={StaticResource FixedWidthConverter}, ConverterParameter=250}"/>
+                            <local:MultipleAddItemWithBorder MinWidth="250" HorizontalAlignment="{Binding ElementName=PagesGrid, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}"
+                                                             MaxWidth="{Binding RelativeSource={RelativeSource Self}, Path=HorizontalAlignment, Converter={StaticResource FixedWidthConverter}, ConverterParameter=250}"/>
+                            <local:MultipleAddItemWithBorder MinWidth="250" HorizontalAlignment="{Binding ElementName=PagesGrid, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}"
+                                                             MaxWidth="{Binding RelativeSource={RelativeSource Self}, Path=HorizontalAlignment, Converter={StaticResource FixedWidthConverter}, ConverterParameter=250}"/>
+                        </UniformGrid>
                     </GroupBox>
                 </StackPanel>
             </ScrollViewer>

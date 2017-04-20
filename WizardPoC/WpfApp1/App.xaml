@@ -78,7 +78,6 @@
         <!-- Add on singleton and multiple borders -->
         <Style x:Key="AddOnItemsBorderBase" TargetType="Border">
             <Setter Property="Height" Value="80" />
-            <Setter Property="MaxWidth" Value="400" />
             <Setter Property="BorderThickness" Value="5,1,1,1" />
             <Setter Property="Background" Value="White" />
             <Setter Property="Margin" Value="0, 0, 10, 10" />
