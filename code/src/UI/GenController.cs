@@ -41,20 +41,20 @@ namespace Microsoft.Templates.UI
 
         public static WizardState GetUserSelection()
         {
-            var host = new MainView();
+            var mainView = new MainView();
 
             try
             {
                 CleanStatusBar();
 
-                GenContext.ToolBox.Shell.ShowModal(host);
+                GenContext.ToolBox.Shell.ShowModal(mainView);
 
-                if (host.Result != null)
+                if (mainView.Result != null)
                 {
                     //TODO: Review when right-click-actions available to track Project or Page completed.
                     AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject).FireAndForget();
 
-                    return host.Result;
+                    return mainView.Result;
                 }
                 else
                 {
@@ -65,7 +65,7 @@ namespace Microsoft.Templates.UI
             }
             catch (Exception ex) when (!(ex is WizardBackoutException))
             {
-                host.SafeClose();
+                mainView.SafeClose();
                 ShowError(ex);
             }
             GenContext.ToolBox.Shell.CancelWizard();
