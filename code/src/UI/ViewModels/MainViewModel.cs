@@ -183,7 +183,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnNext()
         {
-            NavigationService.Navigate(new ProjectTemplatesView(ProjectSetup.SelectedFramework.Name));
+            NavigationService.Navigate(new ProjectTemplatesView(ProjectSetup.SelectedProjectType.Name, ProjectSetup.SelectedFramework.Name));
             _canGoBack = true;
             BackCommand.OnCanExecuteChanged();
             FinishContentVisibility = Visibility.Visible;
