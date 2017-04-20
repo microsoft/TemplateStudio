@@ -51,13 +51,29 @@ namespace Microsoft.Templates.UI.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
+        private Visibility _finishContentVisibility = Visibility.Collapsed;
+        public Visibility FinishContentVisibility
+        {
+            get { return _finishContentVisibility; }
+            set { SetProperty(ref _finishContentVisibility, value); }
+        }
+
+        private Visibility _noFinishContentVisibility = Visibility.Visible;
+        public Visibility NoFinishContentVisibility
+        {
+            get { return _noFinishContentVisibility; }
+            set { SetProperty(ref _noFinishContentVisibility, value); }
+        }
+
         private RelayCommand _cancelCommand;
         private RelayCommand _goBackCommand;
         private RelayCommand _nextCommand;
+        private RelayCommand _createCommand;
 
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
         public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));                
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext));
+        public RelayCommand CreateCommand => _createCommand ?? (_createCommand = new RelayCommand(OnCreate));        
 
         public ProjectSetupViewModel ProjectSetup { get; private set; } = new ProjectSetupViewModel();
         public ProjectTemplatesViewModel ProjectTemplates { get; private set; } = new ProjectTemplatesViewModel();
@@ -169,6 +185,8 @@ namespace Microsoft.Templates.UI.ViewModels
             NavigationService.Navigate(new ProjectTemplatesView(ProjectSetup.SelectedFramework.Name));
             _canGoBack = true;
             BackCommand.OnCanExecuteChanged();
+            FinishContentVisibility = Visibility.Visible;
+            NoFinishContentVisibility = Visibility.Collapsed;
         }
 
         private void OnGoBack()
@@ -176,6 +194,12 @@ namespace Microsoft.Templates.UI.ViewModels
             NavigationService.GoBack();
             _canGoBack = false;
             BackCommand.OnCanExecuteChanged();
+            FinishContentVisibility = Visibility.Collapsed;
+            NoFinishContentVisibility = Visibility.Visible;
+        }
+
+        private void OnCreate()
+        {
         }
     }
 }

@@ -18,11 +18,4 @@
         <Setter Property="Background" Value="{StaticResource UILightGray}"/>
     </Style>
 
-    <Style TargetType="StackPanel" x:Key="StackPanelBottomBarStyle">
-        <Setter Property="Margin" Value="{StaticResource MediumLeftRightMargin}"/>
-        <Setter Property="Orientation" Value="Horizontal"/>
-        <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-    </Style>
-
 </ResourceDictionary>

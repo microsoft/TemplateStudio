@@ -14,7 +14,7 @@
     WindowStartupLocation="CenterScreen" 
     ResizeMode="CanResize" 
     ShowInTaskbar="False">
-    
+
     <!--1294 is 1280 (real) + 14
     727 is 720 (real) + 7-->
 
@@ -42,20 +42,23 @@
             </Grid.ColumnDefinitions>
             <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden"/>
             <Grid Grid.Column="1">
-                
+
             </Grid>
         </Grid>
         <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" />
-            <StackPanel Grid.Column="1" Style="{StaticResource StackPanelBottomBarStyle}">
-                <Button Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonCancel}" Command="{Binding CancelCommand}" />
-                <Button Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonBack}" Command="{Binding BackCommand}" />
-                <Button Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonNext}" Command="{Binding NextCommand}" />
-            </StackPanel>
+            <Grid Margin="{StaticResource MediumLeftRightMargin}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" />
+                <Button Grid.Column="1" Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonCancel}" Command="{Binding CancelCommand}" />
+                <Button Grid.Column="2" Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonBack}" Command="{Binding BackCommand}" />
+                <Button Grid.Column="3" Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonNext}" Command="{Binding NextCommand}" Visibility="{Binding NoFinishContentVisibility}" />
+                <Button Grid.Column="3" Style="{StaticResource ButtonFinishStyle}" Content="{x:Static res:StringRes.ButtonCreate}" Command="{Binding CreateCommand}" Visibility="{Binding FinishContentVisibility}" />
+            </Grid>
         </Grid>
     </Grid>
 </Window>

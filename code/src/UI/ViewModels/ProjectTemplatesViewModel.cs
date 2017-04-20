@@ -29,7 +29,9 @@ namespace Microsoft.Templates.UI.ViewModels
         }        
 
         public ObservableCollection<TemplateInfoViewModel> Pages { get; } = new ObservableCollection<TemplateInfoViewModel>();
-        public ObservableCollection<TemplateInfoViewModel> Features { get; } = new ObservableCollection<TemplateInfoViewModel>();
+        public ObservableCollection<TemplateInfoViewModel> Features { get; } = new ObservableCollection<TemplateInfoViewModel>();        
+
+        public ObservableCollection<TemplateInfoViewModel> SavedTemplates { get; } = new ObservableCollection<TemplateInfoViewModel>();
 
         private RelayCommand<TemplateInfoViewModel> _addCommand;
         public RelayCommand<TemplateInfoViewModel> AddCommand => _addCommand ?? (_addCommand = new RelayCommand<TemplateInfoViewModel>(OnAddItem));        
@@ -75,6 +77,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnAddItem(TemplateInfoViewModel item)
         {
+            SavedTemplates.Add(item);
         }
     }
 }
