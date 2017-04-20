@@ -69,7 +69,7 @@
                     <ColumnDefinition Width="30" />
                 </Grid.ColumnDefinitions>
                 <Grid Visibility="{Binding EditingContentVisibility, ElementName=root}">
-                    <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding NewTemplateName, ElementName=root, Mode=TwoWay}"/>
                 </Grid>
                 <Button Grid.Column="0" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="{Binding NoEditingContentVisibility, ElementName=root}">
                     <Button.Content>

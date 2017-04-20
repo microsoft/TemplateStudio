@@ -74,6 +74,8 @@ namespace Microsoft.Templates.UI.ViewModels
             set { SetProperty(ref _dependencies, value); }
         }
 
+        public ITemplateInfo Template { get; set; }
+
         public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies)
         {
             Name = template.Name;
@@ -83,6 +85,7 @@ namespace Microsoft.Templates.UI.ViewModels
             Version = template.GetVersion();
             Order = template.GetOrder();
             MultipleInstances = template.GetMultipleInstance();
+            Template = template;
             Dependencies = string.Join(",", dependencies.Select(d => d.Name));
         }
     }

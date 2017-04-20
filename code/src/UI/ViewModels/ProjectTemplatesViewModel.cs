@@ -26,15 +26,16 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             get { return _featuresHeader; }
             set { SetProperty(ref _featuresHeader, value); }
-        }        
+        }
+        public Func<IEnumerable<string>> GetUsedNamesFunc { get { return () => SavedTemplates.Select(t => t.Name); } }
 
         public ObservableCollection<TemplateInfoViewModel> Pages { get; } = new ObservableCollection<TemplateInfoViewModel>();
-        public ObservableCollection<TemplateInfoViewModel> Features { get; } = new ObservableCollection<TemplateInfoViewModel>();        
+        public ObservableCollection<TemplateInfoViewModel> Features { get; } = new ObservableCollection<TemplateInfoViewModel>();
 
-        public ObservableCollection<TemplateInfoViewModel> SavedTemplates { get; } = new ObservableCollection<TemplateInfoViewModel>();
+        public List<(string Name, ITemplateInfo Template)> SavedTemplates { get; } = new List<(string Name, ITemplateInfo Template)>();
 
-        private RelayCommand<TemplateInfoViewModel> _addCommand;
-        public RelayCommand<TemplateInfoViewModel> AddCommand => _addCommand ?? (_addCommand = new RelayCommand<TemplateInfoViewModel>(OnAddItem));        
+        private RelayCommand<(string Name, ITemplateInfo Template)> _addCommand;
+        public RelayCommand<(string Name, ITemplateInfo Template)> AddCommand => _addCommand ?? (_addCommand = new RelayCommand<(string Name, ITemplateInfo Template)>(OnAddItem));
 
         public async Task IniatializeAsync(string frameworkName)
         {
@@ -75,7 +76,7 @@ namespace Microsoft.Templates.UI.ViewModels
             return false;
         }
 
-        private void OnAddItem(TemplateInfoViewModel item)
+        private void OnAddItem((string Name, ITemplateInfo Template) item)
         {
             SavedTemplates.Add(item);
         }
