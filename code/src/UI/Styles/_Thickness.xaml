@@ -4,6 +4,7 @@
     <Thickness x:Key="SmallMargin">5</Thickness>
     <Thickness x:Key="SmallLeftMargin">5,0,0,0</Thickness>
     <Thickness x:Key="SmallLeftTopMargin">5,5,0,0</Thickness>
+    <Thickness x:Key="SmallBottomMargin">0,0,0,5</Thickness>
     
     <Thickness x:Key="MediumMargin">10</Thickness>
     <Thickness x:Key="MediumLeftMargin">10,0,0,0</Thickness>

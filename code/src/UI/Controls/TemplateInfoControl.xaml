@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
-             MouseLeave="OnMouseLeave"
              x:Name="root"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -19,7 +18,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Border Width="159" Height="188" Background="{StaticResource UIWhite}">
+    <Border Width="205" Height="180" Background="{StaticResource UIWhite}">
 
         <Grid Margin="{StaticResource MediumMargin}">
 
@@ -39,21 +38,19 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <controls:ImageEx Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Center" Focusable="False" SourcePath="{Binding TemplateInfo.Icon, ElementName=root}" />
-                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateTitleStyle}" Text="{Binding TemplateInfo.Name, ElementName=root}" />
-                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource TextTemplateAuthorStyle}" Text="{Binding TemplateInfo.Author, ElementName=root}" />
-            </Grid>
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateTitleStyle}" Text="{Binding TemplateInfo.Name, ElementName=root}" Margin="{StaticResource MediumLeftMargin}" />
+                <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateAuthorStyle}" Text="{Binding TemplateInfo.Author, ElementName=root}" Margin="{StaticResource MediumLeftMargin}" />
 
-            <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateSubtitleStyle}" Text="{Binding TemplateInfo.Description, ElementName=root}" Visibility="{Binding NoEditingContentVisibility, ElementName=root}"/>
-            <Grid Grid.Row="1" Visibility="{Binding EditingContentVisibility, ElementName=root}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Style="{StaticResource TextTemplateSubtitleStyle}" Text="Enter a valid name for this page. Click save to add this page."/>
-                <Button Grid.Column="1" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Click="OnCloseEdition">
+                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="{Binding NoEditingContentVisibility, ElementName=root}">
+                    <Button.Content>
+                        <TextBlock Text="&#xE946;" FontFamily="Segoe MDL2 Assets" FontSize="18" />
+                    </Button.Content>
+                </Button>
+                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Click="OnCloseEdition" Visibility="{Binding EditingContentVisibility, ElementName=root}">
                     <Button.Content>
                         <Grid>
                             <TextBlock Text="&#xECCA;" FontFamily="Segoe MDL2 Assets" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
@@ -63,19 +60,34 @@
                 </Button>
             </Grid>
 
+            <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateSubtitleStyle}" Text="{Binding TemplateInfo.Description, ElementName=root}" Visibility="{Binding NoEditingContentVisibility, ElementName=root}" Margin="{StaticResource MediumLeftMargin}"/>
+            <Grid Grid.Row="1" Visibility="{Binding EditingContentVisibility, ElementName=root}" VerticalAlignment="Bottom" Margin="{StaticResource SmallBottomMargin}" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource TextTemplateSubtitleStyle}" Text="{Binding ErrorMessage, ElementName=root}" Foreground="{StaticResource UIRed}" Margin="{StaticResource SmallBottomMargin}" />
+                <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateSubtitleStyle}" Text="Enter a page name:" />
+            </Grid>
+
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="30" />
                 </Grid.ColumnDefinitions>
                 <Grid Visibility="{Binding EditingContentVisibility, ElementName=root}">
-                    <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding NewTemplateName, ElementName=root, Mode=TwoWay}"/>
+                    <TextBox Text="{Binding NewTemplateName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, ElementName=root}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Style.Triggers>
+                                    <Trigger Property="Validation.HasError" Value="True">
+                                        <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
                 </Grid>
-                <Button Grid.Column="0" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="{Binding NoEditingContentVisibility, ElementName=root}">
-                    <Button.Content>
-                        <TextBlock Text="&#xE946;" FontFamily="Segoe MDL2 Assets" FontSize="18" />
-                    </Button.Content>
-                </Button>
 
 
                 <Button Grid.Column="1" Style="{StaticResource AddTemplateInfoButtonStyle}" Click="OnAddClicked" Visibility="{Binding NoEditingContentVisibility, ElementName=root}">
@@ -90,11 +102,12 @@
                 <Button
                     Grid.Column="1" Style="{StaticResource AddTemplateInfoButtonStyle}"
                     Click="OnSaveClicked"
+                    IsEnabled="{Binding IsValid, ElementName=root}"
                     Visibility="{Binding EditingContentVisibility, ElementName=root}">
                     <Button.Content>
                         <Grid>
                             <TextBlock Text="&#xECCA;" FontFamily="Segoe MDL2 Assets" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
-                            <TextBlock Text="&#xE74E;" FontFamily="Segoe MDL2 Assets" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
+                            <TextBlock Text="&#xE8FB;" FontFamily="Segoe MDL2 Assets" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
                         </Grid>
                     </Button.Content>
                 </Button>
