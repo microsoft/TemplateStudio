@@ -146,9 +146,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
-    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
-    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
@@ -173,6 +171,12 @@
     <Compile Include="Controls\Markdown.cs" />
     <Compile Include="Controls\MarkdownBlock.xaml.cs">
       <DependentUpon>MarkdownBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatusControl.xaml.cs">
+      <DependentUpon>StatusControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TemplateInfoControl.xaml.cs">
+      <DependentUpon>TemplateInfoControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
@@ -234,6 +238,14 @@
   <ItemGroup />
   <ItemGroup />
   <ItemGroup>
+    <Page Include="Controls\StatusControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TemplateInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\StyleDataTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -1,11 +1,8 @@
-﻿using Microsoft.Templates.Core;
+﻿using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
@@ -55,6 +52,48 @@ namespace Microsoft.Templates.UI.ViewModels
             set => SetProperty(ref _author, value);
         }
 
+        private string _description;
+        public string Description
+        {
+            get { return _description; }
+            set { SetProperty(ref _description, value); }
+        }
+
+        private string _icon;
+        public string Icon
+        {
+            get { return _icon; }
+            set { SetProperty(ref _icon, value); }
+        }
+
+        private string _version;
+        public string Version
+        {
+            get { return _version; }
+            set { SetProperty(ref _version, value); }
+        }
+
+        private int _order;
+        public int Order
+        {
+            get { return _order; }
+            set { SetProperty(ref _order, value); }
+        }
+
+        private bool _multipleInstances;
+        public bool MultipleInstances
+        {
+            get { return _multipleInstances; }
+            set { SetProperty(ref _multipleInstances, value); }
+        }
+
+        private string _licenceTerms;
+        public string LicenceTerms
+        {
+            get { return _licenceTerms; }
+            set { SetProperty(ref _licenceTerms, value); }
+        }
+
         private bool _isEnabled;
         public bool IsEnabled
         {
@@ -62,11 +101,33 @@ namespace Microsoft.Templates.UI.ViewModels
             set => SetProperty(ref _isEnabled, value);
         }
 
+        private string _dependencies;
+        public string Dependencies
+        {
+            get { return _dependencies; }
+            set { SetProperty(ref _dependencies, value); }
+        }
+
+        public ITemplateInfo Template { get; set; }
+
         private bool _hasDefaultName;
         public bool HasDefaultName
         {
             get => _hasDefaultName;
             set => SetProperty(ref _hasDefaultName, value);
+        }
+
+        public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies)
+        {
+            Name = template.Name;
+            Description = template.Description;
+            Author = template.Author;
+            Icon = template.GetIcon();
+            Version = template.GetVersion();
+            Order = template.GetOrder();
+            MultipleInstances = template.GetMultipleInstance();
+            Template = template;
+            Dependencies = string.Join(",", dependencies.Select(d => d.Name));
         }
     }
 }

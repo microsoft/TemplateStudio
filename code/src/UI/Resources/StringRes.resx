@@ -123,14 +123,32 @@
   <data name="ButtonCancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="ButtonCreate" xml:space="preserve">
+    <value>Create</value>
+  </data>
   <data name="ButtonNext" xml:space="preserve">
     <value>Next</value>
   </data>
   <data name="ErrorSync" xml:space="preserve">
     <value>Error updating templates. See output for more details.</value>
   </data>
+  <data name="GeneratingFeatureMessage" xml:space="preserve">
+    <value>Adding '{0}' feature to project...</value>
+  </data>
+  <data name="GeneratingPageMessage" xml:space="preserve">
+    <value>Adding '{0}' page to project...</value>
+  </data>
+  <data name="GeneratingProjectMessage" xml:space="preserve">
+    <value>Creating project '{0}'...</value>
+  </data>
+  <data name="GroupFeaturesHeader_SF" xml:space="preserve">
+    <value>Features ({0}) - Add multiple</value>
+  </data>
   <data name="GroupFrameworkHeader_SF" xml:space="preserve">
     <value>Framework ({0}) - Pick one</value>
+  </data>
+  <data name="GroupPagesHeader_SF" xml:space="preserve">
+    <value>Pages ({0}) - Add multiple</value>
   </data>
   <data name="GroupProjectType" xml:space="preserve">
     <value>Project Type</value>
@@ -182,5 +200,20 @@
   </data>
   <data name="SummaryTitle" xml:space="preserve">
     <value>Summary</value>
+  </data>
+  <data name="ValidationError_AlreadyExists" xml:space="preserve">
+    <value>Name already exists</value>
+  </data>
+  <data name="ValidationError_BadFormat" xml:space="preserve">
+    <value>Only alphanumeric and '-' characters are allowed</value>
+  </data>
+  <data name="ValidationError_Empty" xml:space="preserve">
+    <value>Name cannot be empty</value>
+  </data>
+  <data name="ValidationError_RenameNotAllowed" xml:space="preserve">
+    <value>Cannot set a custom name</value>
+  </data>
+  <data name="ValidationError_ReservedName" xml:space="preserve">
+    <value>Name is reserved</value>
   </data>
 </root>

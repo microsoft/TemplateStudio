@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"    
+    xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
+    xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
     mc:Ignorable="d"
     Title="Windows Template Studio"
     Width="1294"
@@ -14,7 +15,7 @@
     WindowStartupLocation="CenterScreen" 
     ResizeMode="CanResize" 
     ShowInTaskbar="False">
-    
+
     <!--1294 is 1280 (real) + 14
     727 is 720 (real) + 7-->
 
@@ -115,14 +116,24 @@
             </ScrollViewer>
         </Grid>
         <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
-            <StackPanel Style="{StaticResource StackPanelBottomBarStyle}">
-                <Button Content="Add page" Click="Button_Click" Style="{StaticResource ButtonNavigationStyle}" />
-                <Button Content="Add feature" Click="Button_Click_1" Style="{StaticResource ButtonNavigationStyle}" />
-                
-                <Button Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonCancel}" Command="{Binding CancelCommand}" />
-                <Button Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonBack}" Command="{Binding BackCommand}" />
-                <Button Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonNext}" Command="{Binding NextCommand}" />
-            </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="300"/>
+                </Grid.ColumnDefinitions>
+                <controls:StatusControl Grid.Column="0" Status="{Binding Status}"/>
+                <Grid Grid.Column="1" Margin="{StaticResource MediumLeftRightMargin}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonCancel}" Command="{Binding CancelCommand}" />
+                    <Button Grid.Column="1" Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonBack}" Command="{Binding BackCommand}" />
+                    <Button Grid.Column="2" Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonNext}" Command="{Binding NextCommand}" Visibility="{Binding NoFinishContentVisibility}" />
+                    <Button Grid.Column="2" Style="{StaticResource ButtonFinishStyle}" Content="{x:Static res:StringRes.ButtonCreate}" Command="{Binding CreateCommand}" Visibility="{Binding FinishContentVisibility}" />
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

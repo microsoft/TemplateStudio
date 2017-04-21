@@ -35,7 +35,10 @@ namespace Microsoft.Templates.UI.ViewModels
             set
             {
                 SetProperty(ref _selectedProjectType, value);
-                LoadFrameworks(value);
+                if (value!= null)
+                { 
+                    LoadFrameworks(value);
+                }
             }
         }
 
@@ -51,14 +54,18 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public async Task IniatializeAsync()
         {
-            ProjectTypes.Clear();
-            var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes().Select(m => new MetadataInfoViewModel(m)).ToList();
-            foreach (var projectType in projectTypes.Where(p => !string.IsNullOrEmpty(p.Description)))
+            if (SelectedProjectType == null)
             {
-                ProjectTypes.Add(projectType);
+                ProjectTypes.Clear();
+                var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes().Select(m => new MetadataInfoViewModel(m)).ToList();
+                foreach (var projectType in projectTypes.Where(p => !string.IsNullOrEmpty(p.Description)))
+                {
+                    ProjectTypes.Add(projectType);
+                }
+                SelectedProjectType = ProjectTypes.First();
+                ProjectTypesHeader = String.Format(StringRes.GroupProjectTypeHeader_SF, ProjectTypes.Count);
             }
-            SelectedProjectType = ProjectTypes.First();
-            ProjectTypesHeader = String.Format(StringRes.GroupProjectTypeHeader_SF, ProjectTypes.Count);
+
             await Task.CompletedTask;
         }
 

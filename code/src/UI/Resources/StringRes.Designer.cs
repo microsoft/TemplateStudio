@@ -79,6 +79,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string ButtonCreate {
+            get {
+                return ResourceManager.GetString("ButtonCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
         public static string ButtonNext {
@@ -97,11 +106,56 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adding &apos;{0}&apos; feature to project....
+        /// </summary>
+        public static string GeneratingFeatureMessage {
+            get {
+                return ResourceManager.GetString("GeneratingFeatureMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding &apos;{0}&apos; page to project....
+        /// </summary>
+        public static string GeneratingPageMessage {
+            get {
+                return ResourceManager.GetString("GeneratingPageMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creating project &apos;{0}&apos;....
+        /// </summary>
+        public static string GeneratingProjectMessage {
+            get {
+                return ResourceManager.GetString("GeneratingProjectMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Features ({0}) - Add multiple.
+        /// </summary>
+        public static string GroupFeaturesHeader_SF {
+            get {
+                return ResourceManager.GetString("GroupFeaturesHeader_SF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Framework ({0}) - Pick one.
         /// </summary>
         public static string GroupFrameworkHeader_SF {
             get {
                 return ResourceManager.GetString("GroupFrameworkHeader_SF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pages ({0}) - Add multiple.
+        /// </summary>
+        public static string GroupPagesHeader_SF {
+            get {
+                return ResourceManager.GetString("GroupPagesHeader_SF", resourceCulture);
             }
         }
         
@@ -255,6 +309,51 @@ namespace Microsoft.Templates.UI.Resources {
         public static string SummaryTitle {
             get {
                 return ResourceManager.GetString("SummaryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name already exists.
+        /// </summary>
+        public static string ValidationError_AlreadyExists {
+            get {
+                return ResourceManager.GetString("ValidationError_AlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only alphanumeric and &apos;-&apos; characters are allowed.
+        /// </summary>
+        public static string ValidationError_BadFormat {
+            get {
+                return ResourceManager.GetString("ValidationError_BadFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name cannot be empty.
+        /// </summary>
+        public static string ValidationError_Empty {
+            get {
+                return ResourceManager.GetString("ValidationError_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot set a custom name.
+        /// </summary>
+        public static string ValidationError_RenameNotAllowed {
+            get {
+                return ResourceManager.GetString("ValidationError_RenameNotAllowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is reserved.
+        /// </summary>
+        public static string ValidationError_ReservedName {
+            get {
+                return ResourceManager.GetString("ValidationError_ReservedName", resourceCulture);
             }
         }
     }
