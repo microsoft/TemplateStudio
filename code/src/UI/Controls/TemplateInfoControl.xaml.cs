@@ -61,15 +61,21 @@ namespace Microsoft.Templates.UI.Controls
             get { return (Func<IEnumerable<string>>)GetValue(GetUsedTemplatesIdentitiesProperty); }
             set { SetValue(GetUsedTemplatesIdentitiesProperty, value); }
         }
-        public static readonly DependencyProperty GetUsedTemplatesIdentitiesProperty = DependencyProperty.Register("GetUsedTemplatesIdentities", typeof(Func<IEnumerable<string>>), typeof(TemplateInfoControl), new PropertyMetadata(null));
+        public static readonly DependencyProperty GetUsedTemplatesIdentitiesProperty = DependencyProperty.Register("GetUsedTemplatesIdentities", typeof(Func<IEnumerable<string>>), typeof(TemplateInfoControl), new PropertyMetadata(null, OnGetUsedTemplatesIdentitiesPropertyChanged));
+
+        private static void OnGetUsedTemplatesIdentitiesPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as TemplateInfoControl;
+            control.CheckAddingStatus();
+        }
 
         public string NewTemplateName
         {
             get { return (string)GetValue(NewTemplateNameProperty); }
             set { SetValue(NewTemplateNameProperty, value); }
         }
-        public static readonly DependencyProperty NewTemplateNameProperty = DependencyProperty.Register("NewTemplateName", typeof(string), typeof(TemplateInfoControl), new PropertyMetadata(String.Empty, OnNewTemplateNamePropertyChanged));
-        private static void OnNewTemplateNamePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        public static readonly DependencyProperty NewTemplateNameProperty = DependencyProperty.Register("NewTemplateName", typeof(string), typeof(TemplateInfoControl), new PropertyMetadata(String.Empty, OnControlPropertyChanged));
+        private static void OnControlPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as TemplateInfoControl;
             control.Validate(e.NewValue as string);
@@ -104,11 +110,6 @@ namespace Microsoft.Templates.UI.Controls
             TitleForeground = FindResource("UIBlack") as SolidColorBrush;
         }
 
-        public override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
-        }
-
         private void OnAddClicked(object sender, RoutedEventArgs e)
         {
             var names = GetUsedNames.Invoke();
@@ -121,17 +122,22 @@ namespace Microsoft.Templates.UI.Controls
             if (IsValid)
             {
                 AddCommand.Execute((NewTemplateName, TemplateInfo.Template));
-                SwichVisibilities();                
-                if (TemplateInfo.MultipleInstances == false && IsAlreadyDefined)
-                {
-                    AddingVisibility = Visibility.Collapsed;
-                    TitleForeground = FindResource("UIMidleLightGray") as SolidColorBrush;
-                }
-                else
-                {
-                    AddingVisibility = Visibility.Visible;
-                    TitleForeground = FindResource("UIBlack") as SolidColorBrush;
-                }
+                SwichVisibilities();
+                CheckAddingStatus();
+            }
+        }
+
+        private void CheckAddingStatus()
+        {
+            if (TemplateInfo.MultipleInstances == false && IsAlreadyDefined)
+            {
+                AddingVisibility = Visibility.Collapsed;
+                TitleForeground = FindResource("UIMidleLightGray") as SolidColorBrush;
+            }
+            else
+            {
+                AddingVisibility = Visibility.Visible;
+                TitleForeground = FindResource("UIBlack") as SolidColorBrush;
             }
         }
 

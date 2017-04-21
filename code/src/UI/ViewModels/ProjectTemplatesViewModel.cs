@@ -45,40 +45,37 @@ namespace Microsoft.Templates.UI.ViewModels
         public RelayCommand<(string Name, ITemplateInfo Template)> AddCommand => _addCommand ?? (_addCommand = new RelayCommand<(string Name, ITemplateInfo Template)>(OnAddItem));
 
         public Func<IEnumerable<string>> GetUsedNamesFunc => () => SavedTemplates.Select(t => t.Name);
-        public Func<IEnumerable<string>> GetUsedTemplatesIdentitiesFunc => () => SavedTemplates.Select(t => t.Template.Identity);        
-        
+        public Func<IEnumerable<string>> GetUsedTemplatesIdentitiesFunc => () => SavedTemplates.Select(t => t.Template.Identity);
+
 
         public async Task IniatializeAsync(string projectTypeName, string frameworkName)
         {
-            var pageTemplates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page && t.GetFrameworkList().Contains(frameworkName))
+            if (Pages.Count == 0)
+            {
+                var pageTemplates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page && t.GetFrameworkList().Contains(frameworkName))
                                                             .Select(t => new TemplateInfoViewModel(t, GenContext.ToolBox.Repo.GetDependencies(t)))
                                                             .OrderBy(t => t.Order)
                                                             .ToList();
 
-            var featureTemplates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Feature && t.GetFrameworkList().Contains(frameworkName))
+                foreach (var pageTemplate in pageTemplates)
+                {                    
+                    Pages.Add(pageTemplate);
+                }
+                PagesHeader = String.Format(StringRes.GroupPagesHeader_SF, Pages.Count);
+            }
+
+            if (Features.Count == 0)
+            {
+                var featureTemplates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Feature && t.GetFrameworkList().Contains(frameworkName))
                                                             .Select(t => new TemplateInfoViewModel(t, GenContext.ToolBox.Repo.GetDependencies(t)))
                                                             .OrderBy(t => t.Order)
                                                             .ToList();
-            
-
-            Pages.Clear();
-            Features.Clear();
-
-            SummaryPages.Clear();
-            SummaryFeatures.Clear();
-
-            foreach (var pageTemplate in pageTemplates)
-            {
-                Pages.Add(pageTemplate);
-            }
-
-            foreach (var featureTemplate in featureTemplates)
-            {
-                Features.Add(featureTemplate);
-            }
-
-            PagesHeader = String.Format(StringRes.GroupPagesHeader_SF, Pages.Count);
-            FeaturesHeader = String.Format(StringRes.GroupFeaturesHeader_SF, Pages.Count);
+                foreach (var featureTemplate in featureTemplates)
+                {
+                    Features.Add(featureTemplate);
+                }
+                FeaturesHeader = String.Format(StringRes.GroupFeaturesHeader_SF, Pages.Count);
+            }                       
 
             if (SavedTemplates == null || SavedTemplates.Count == 0)
             {
@@ -101,14 +98,14 @@ namespace Microsoft.Templates.UI.ViewModels
                     SaveNewTemplate((item.name, template), !item.@readonly);
                 }
             }
-        }        
+        }
 
         private void OnAddItem((string Name, ITemplateInfo Template) item) => SaveNewTemplate(item);
 
 
         private void SaveNewTemplate((string Name, ITemplateInfo Template) item, bool isRemoveEnabled = true)
         {
-            SavedTemplates.Add(item);            
+            SavedTemplates.Add(item);
             if (item.Template.GetTemplateType() == TemplateType.Page)
             {
                 SummaryPages.Add(new SummaryItemViewModel()
@@ -140,8 +137,9 @@ namespace Microsoft.Templates.UI.ViewModels
             else if (SummaryFeatures.Contains(item))
             {
                 SummaryFeatures.Remove(item);
-            }
+            }            
             SavedTemplates.Remove(SavedTemplates.First(st => st.Name == item.ItemName));
+            OnPropertyChanged("GetUsedTemplatesIdentitiesFunc");
         }
     }
 }
