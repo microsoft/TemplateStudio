@@ -1,4 +1,5 @@
 ﻿using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.ViewModels;
 using System;
@@ -112,7 +113,7 @@ namespace Microsoft.Templates.UI.Controls
 
         private void OnAddClicked(object sender, RoutedEventArgs e)
         {
-            if (TemplateInfo.MultipleInstances)
+            if (TemplateInfo.Template.GetTemplateType() == TemplateType.Page || TemplateInfo.MultipleInstances)
             {
                 var names = GetUsedNames.Invoke();
                 NewTemplateName = Core.Naming.Infer(names, TemplateInfo.Name);
