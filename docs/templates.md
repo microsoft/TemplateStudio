@@ -145,7 +145,9 @@ The replacements are done based on the configuration established in the `templat
 
 ### Template Layouts
 
-Project templates can define a default layout of pages to be considered in the wizard by adding    a `Layout.json` file within the `.template.config` folder. Using the layouts you can determine what pages are automatically added to a certain project type and if those pages are mandatory or can be removed. In other words, layout definition provides a way to pre-configure pages associated to a certain project type.
+Project templates can define a default layout of pages to be considered in the wizard. To do so, you need to add a `Layout.json` file within the `.template.config` folder. 
+
+By using template layouts, you can determine what pages are automatically added to a certain project type and if those pages are mandatory or can be removed. In other words, layout definition provides a way to pre-configure pages associated to a certain project type.
 
 Layout.json
 ``` json
