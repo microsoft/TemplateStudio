@@ -183,6 +183,27 @@
   <data name="StatusUpdating" xml:space="preserve">
     <value>Updating templates...</value>
   </data>
+  <data name="SummaryFeaturesTitle" xml:space="preserve">
+    <value>Features</value>
+  </data>
+  <data name="SummaryFrameworkTitle" xml:space="preserve">
+    <value>Framework</value>
+  </data>
+  <data name="SummaryLicenseTitle" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
+  <data name="SummaryPagesTitle" xml:space="preserve">
+    <value>Pages</value>
+  </data>
+  <data name="SummaryProjectTypeTitle" xml:space="preserve">
+    <value>Project Type</value>
+  </data>
+  <data name="SummaryTerms" xml:space="preserve">
+    <value>By continuing, you agree to the licenses in the licensing section for the generated project. By continuing, you agree to those licenses.</value>
+  </data>
+  <data name="SummaryTitle" xml:space="preserve">
+    <value>Summary</value>
+  </data>
   <data name="ValidationError_AlreadyExists" xml:space="preserve">
     <value>Name already exists</value>
   </data>

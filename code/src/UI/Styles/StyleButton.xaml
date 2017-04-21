@@ -51,6 +51,12 @@
                                 <Setter Property="FontWeight" Value="Bold"/>
                             </Trigger.Setters>
                         </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Trigger.Setters>
+                                <Setter Property="Foreground" Value="{StaticResource UILightGray}"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource UILightGray}"/>
+                            </Trigger.Setters>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

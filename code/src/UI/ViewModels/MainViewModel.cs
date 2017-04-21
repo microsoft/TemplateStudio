@@ -200,8 +200,8 @@ namespace Microsoft.Templates.UI.ViewModels
                 ProjectType = ProjectSetup.SelectedProjectType.Name,
                 Framework = ProjectSetup.SelectedFramework.Name
             };
-            wizardState.Pages.AddRange(ProjectTemplates.SavedTemplates.Where(t => t.Template.GetTemplateType() == TemplateType.Page));
-            wizardState.Features.AddRange(ProjectTemplates.SavedTemplates.Where(t => t.Template.GetTemplateType() == TemplateType.Feature));
+            wizardState.Pages.AddRange(ProjectTemplates.SavedPages);
+            wizardState.Features.AddRange(ProjectTemplates.SavedFeatures);
             _mainView.DialogResult = true;
             _mainView.Result = wizardState;
             _mainView.Close();

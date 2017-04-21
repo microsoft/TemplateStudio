@@ -29,8 +29,15 @@ namespace Microsoft.Templates.UI.ViewModels
         private string _icon;
         public string Icon
         {
-            get { return _icon; }
-            set { SetProperty(ref _icon, value); }
+            get => _icon; 
+            set => SetProperty(ref _icon, value);
+        }
+
+        private string _author;
+        public string Author
+        {
+            get => _author;
+            set => SetProperty(ref _author, value);
         }
 
         public MetadataInfoViewModel(MetadataInfo metadataInfo)
@@ -42,6 +49,7 @@ namespace Microsoft.Templates.UI.ViewModels
             Name = metadataInfo.Name;
             DisplayName = metadataInfo.DisplayName;
             Description = metadataInfo.Description;
+            Author = metadataInfo.Author;
             Icon = metadataInfo.Icon;
         }
     }

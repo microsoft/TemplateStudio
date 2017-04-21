@@ -1,11 +1,8 @@
-﻿using Microsoft.Templates.Core.Mvvm;
-using System;
+﻿using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Mvvm;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
@@ -14,22 +11,52 @@ namespace Microsoft.Templates.UI.ViewModels
         private string _name;
         public string Name
         {
-            get { return _name; }
-            set { SetProperty(ref _name, value); }
-        }        
+            get => _name;
+            set
+            {
+                SetProperty(ref _name, value);
+                OnPropertyChanged(nameof(DisplayText));
+            }
+        }
+
+        private string _templateName;
+        public string TemplateName
+        {
+            get => _templateName;
+            set
+            {
+                SetProperty(ref _templateName, value);
+                OnPropertyChanged(nameof(DisplayText));
+            }
+        }
+
+        public string DisplayText
+        {
+            get
+            {
+                if (HasDefaultName)
+                {
+                    return Name;
+                }
+                else
+                {
+                    return $"{Name} [{TemplateName}]";
+                }
+            }
+        }
+
+        private string _author;
+        public string Author
+        {
+            get => _author;
+            set => SetProperty(ref _author, value);
+        }
 
         private string _description;
         public string Description
         {
             get { return _description; }
             set { SetProperty(ref _description, value); }
-        }
-
-        private string _author;
-        public string Author
-        {
-            get { return _author; }
-            set { SetProperty(ref _author, value); }
         }
 
         private string _icon;
@@ -67,6 +94,13 @@ namespace Microsoft.Templates.UI.ViewModels
             set { SetProperty(ref _licenceTerms, value); }
         }
 
+        private bool _isEnabled;
+        public bool IsEnabled
+        {
+            get => _isEnabled;
+            set => SetProperty(ref _isEnabled, value);
+        }
+
         private string _dependencies;
         public string Dependencies
         {
@@ -75,6 +109,13 @@ namespace Microsoft.Templates.UI.ViewModels
         }
 
         public ITemplateInfo Template { get; set; }
+
+        private bool _hasDefaultName;
+        public bool HasDefaultName
+        {
+            get => _hasDefaultName;
+            set => SetProperty(ref _hasDefaultName, value);
+        }
 
         public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies)
         {

@@ -51,9 +51,9 @@ namespace Microsoft.Templates.UI.Controls
                 case StatusType.Warning:
                     txtIcon.Text = Char.ConvertFromUtf32(0xEA39);
                     txtIcon.Foreground = FindResource("UIDarkYellow") as SolidColorBrush;
-                    this.Background = FindResource("UIYellow") as SolidColorBrush;
-                    //Color yellow = (Color)FindResource("UIYellowColor");
-                    //this.Background = new LinearGradientBrush(yellow, Colors.Transparent, 0);
+                    //this.Background = FindResource("UIYellow") as SolidColorBrush;
+                    Color yellow = (Color)FindResource("UIYellowColor");
+                    this.Background = new LinearGradientBrush(yellow, Colors.Transparent, 0);
                     break;
                 case StatusType.Error:
                     txtIcon.Text = Char.ConvertFromUtf32(0xEB90);
