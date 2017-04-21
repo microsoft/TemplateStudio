@@ -1,11 +1,11 @@
 using Windows.UI.Xaml.Controls;
-using ItemNamespace.Models;
-using ItemNamespace.Services;
+using Param_ItemNamespace.Models;
+using Param_ItemNamespace.Services;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Linq;
 
-namespace ItemNamespace.Views
+namespace Param_ItemNamespace.Views
 {
     public sealed partial class MasterDetailPage : Page, System.ComponentModel.INotifyPropertyChanged
     {

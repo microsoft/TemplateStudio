@@ -1,6 +1,6 @@
 using System;
 
-namespace ItemNamespace.Services
+namespace Param_ItemNamespace.Services
 {
     public class SuspensionState
     {

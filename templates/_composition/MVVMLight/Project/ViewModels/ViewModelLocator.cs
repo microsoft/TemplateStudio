@@ -1,9 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using RootNamespace.Services;
-using RootNamespace.Views;
+using Param_RootNamespace.Services;
+using Param_RootNamespace.Views;
 
-namespace RootNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels
 {
     public class ViewModelLocator
     {

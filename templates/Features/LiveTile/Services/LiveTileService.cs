@@ -1,5 +1,5 @@
-using RootNamespace.Activation;
-using RootNamespace.Helpers;
+using Param_RootNamespace.Activation;
+using Param_RootNamespace.Helpers;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,7 +8,7 @@ using Windows.Storage;
 using Windows.UI.Notifications;
 using Windows.UI.StartScreen;
 
-namespace RootNamespace.Services
+namespace Param_RootNamespace.Services
 {
     internal partial class LiveTileService : ActivationHandler<LaunchActivatedEventArgs>
     {

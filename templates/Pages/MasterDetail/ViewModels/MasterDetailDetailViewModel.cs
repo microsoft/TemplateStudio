@@ -1,10 +1,10 @@
 using System;
 using System.Windows.Input;
 using Windows.UI.Xaml;
-using ItemNamespace.Models;
-using ItemNamespace.Services;
+using Param_ItemNamespace.Models;
+using Param_ItemNamespace.Services;
 
-namespace ItemNamespace.ViewModels
+namespace Param_ItemNamespace.ViewModels
 {
     public class MasterDetailDetailViewModel : System.ComponentModel.INotifyPropertyChanged
     {

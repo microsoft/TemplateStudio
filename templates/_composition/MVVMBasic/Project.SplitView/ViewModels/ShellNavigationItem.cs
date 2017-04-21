@@ -1,4 +1,4 @@
-﻿using ItemNamespace.Helpers;
+﻿using Param_ItemNamespace.Helpers;
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;

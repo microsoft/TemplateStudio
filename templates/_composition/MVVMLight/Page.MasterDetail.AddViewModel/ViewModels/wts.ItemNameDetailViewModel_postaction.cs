@@ -1,6 +1,6 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-namespace ItemNamespace.ViewModels
+namespace Param_ItemNamespace.ViewModels
 {
     public class wts.ItemNameDetailViewModel : ViewModelBase
     {

@@ -1,7 +1,7 @@
 using Microsoft.Toolkit.Uwp.Notifications;
 using Windows.UI.Notifications;
 
-namespace RootNamespace.Services
+namespace Param_RootNamespace.Services
 {
     internal partial class ToastNotificationsFeatureService
     {

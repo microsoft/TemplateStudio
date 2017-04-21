@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace ItemNamespace.Helpers
+namespace Param_ItemNamespace.Helpers
 {
     public static class TaskExtensions
     {

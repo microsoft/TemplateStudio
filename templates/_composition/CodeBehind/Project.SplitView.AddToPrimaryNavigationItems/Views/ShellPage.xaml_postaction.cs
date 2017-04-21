@@ -1,4 +1,4 @@
-﻿namespace ItemNamespace.Views
+﻿namespace Param_ItemNamespace.Views
 {
     public sealed partial class ShellPage : Page, INotifyPropertyChanged
     {
