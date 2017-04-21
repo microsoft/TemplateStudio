@@ -1,4 +1,4 @@
-﻿namespace RootNamespace.ViewModels
+﻿namespace Param_RootNamespace.ViewModels
 {
     public class ViewModelLocator
     {

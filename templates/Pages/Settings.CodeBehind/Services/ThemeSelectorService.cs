@@ -1,10 +1,10 @@
 using System;
 using Windows.Storage;
 using Windows.UI.Xaml;
-using RootNamespace.Helpers;
+using Param_RootNamespace.Helpers;
 using System.Threading.Tasks;
 
-namespace RootNamespace.Services
+namespace Param_RootNamespace.Services
 {
     public static class ThemeSelectorService
     {

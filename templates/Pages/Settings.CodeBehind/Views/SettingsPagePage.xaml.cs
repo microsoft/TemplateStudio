@@ -1,8 +1,8 @@
 using Windows.UI.Xaml.Controls;
-using ItemNamespace.Services;
+using Param_ItemNamespace.Services;
 using Windows.ApplicationModel;
 
-namespace ItemNamespace.Views
+namespace Param_ItemNamespace.Views
 {
     public sealed partial class SettingsPagePage : Page, System.ComponentModel.INotifyPropertyChanged
     {

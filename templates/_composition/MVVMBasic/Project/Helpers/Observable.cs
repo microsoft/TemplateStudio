@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace RootNamespace.Helpers
+namespace Param_RootNamespace.Helpers
 {
     public class Observable : INotifyPropertyChanged
     {

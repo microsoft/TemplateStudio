@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 using Windows.Storage;
 
-namespace ItemNamespace.Helpers
+namespace Param_ItemNamespace.Helpers
 {
     public static class SettingsStorageExtensions
     {

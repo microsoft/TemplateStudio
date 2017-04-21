@@ -1,5 +1,5 @@
-﻿using ItemNamespace.Helpers;
-namespace ItemNamespace.ViewModels
+﻿using Param_ItemNamespace.Helpers;
+namespace Param_ItemNamespace.ViewModels
 {
     public class ShellViewModel : ViewModelBase
     {

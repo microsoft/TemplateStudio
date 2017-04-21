@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Windows.UI.Notifications;
 using Windows.UI.StartScreen;
 
-namespace RootNamespace.Services
+namespace Param_RootNamespace.Services
 {
     internal partial class LiveTileService
     {

@@ -3,9 +3,9 @@ using Windows.UI.Notifications;
 
 using System.Threading.Tasks;
 
-using RootNamespace.Activation;
+using Param_RootNamespace.Activation;
 
-namespace RootNamespace.Services
+namespace Param_RootNamespace.Services
 {
     internal partial class ToastNotificationsFeatureService : ActivationHandler<ToastNotificationActivatedEventArgs>
     {

@@ -4,10 +4,10 @@ using Windows.Foundation;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
-using ItemNamespace.Services;
+using Param_ItemNamespace.Services;
 using System.Threading.Tasks;
 
-namespace ItemNamespace.Views
+namespace Param_ItemNamespace.Views
 {
     public sealed partial class MapPagePage : Page, System.ComponentModel.INotifyPropertyChanged
     {

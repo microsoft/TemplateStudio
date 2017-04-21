@@ -1,9 +1,9 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-using ItemNamespace.Models;
+using Param_ItemNamespace.Models;
 
-namespace ItemNamespace.Views
+namespace Param_ItemNamespace.Views
 {
     public sealed partial class MasterDetailDetailControl : UserControl
     {

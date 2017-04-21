@@ -5,7 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 
-namespace RootNamespace.Services
+namespace Param_RootNamespace.Services
 {
     public class NavigationServiceEx
     {

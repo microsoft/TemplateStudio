@@ -1,4 +1,4 @@
 using GalaSoft.MvvmLight.Command;
-namespace ItemNamespace.ViewModels
+namespace Param_ItemNamespace.ViewModels
 {
 }
