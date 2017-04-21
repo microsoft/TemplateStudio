@@ -112,9 +112,17 @@ namespace Microsoft.Templates.UI.Controls
 
         private void OnAddClicked(object sender, RoutedEventArgs e)
         {
-            var names = GetUsedNames.Invoke();
-            NewTemplateName = Core.Naming.Infer(names, TemplateInfo.Name);
-            SwichVisibilities();
+            if (TemplateInfo.MultipleInstances)
+            {
+                var names = GetUsedNames.Invoke();
+                NewTemplateName = Core.Naming.Infer(names, TemplateInfo.Name);
+                SwichVisibilities();
+            }
+            else
+            {
+                AddCommand.Execute((NewTemplateName, TemplateInfo.Template));
+                CheckAddingStatus();
+            }
         }
 
         private void OnSaveClicked(object sender, RoutedEventArgs e)
