@@ -6,7 +6,7 @@ namespace ItemNamespace.ViewModels
         private void PopulateNavItems()
         {
             //^^
-            _secondaryItems.Add(new ShellNavigationItem("Shell_wts.ItemName".GetLocalized(), Symbol.Document, typeof(wts.ItemNameViewModel).FullName));
+            _secondaryItems.Add(new ShellNavigationItem("Shell_wts.ItemName".GetLocalized(), Symbol.Setting, typeof(wts.ItemNameViewModel).FullName));
         }
     }
 }
