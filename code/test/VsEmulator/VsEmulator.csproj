@@ -77,7 +77,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
-    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
     </Reference>
@@ -159,7 +161,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.manifest" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -176,9 +180,9 @@
       <Project>{51DDB424-2DA2-4871-A042-4F4F9B622515}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Wizard\Wizard.csproj">
-      <Project>{9e58eacc-c798-43a0-89a0-a5a32815272d}</Project>
-      <Name>Wizard</Name>
+    <ProjectReference Include="..\..\src\UI\UI.csproj">
+      <Project>{dcfd282d-d91c-49b5-8dbf-d943bafef5aa}</Project>
+      <Name>UI</Name>
     </ProjectReference>
     <ProjectReference Include="..\Artifacts\Artifacts.csproj">
       <Project>{fb3c81ad-823e-409c-bf6d-27534b84a8af}</Project>

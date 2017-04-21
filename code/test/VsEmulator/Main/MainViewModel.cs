@@ -24,10 +24,8 @@ using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Test.Artifacts;
 using Microsoft.Templates.VsEmulator.NewProject;
 using Microsoft.Templates.VsEmulator.TemplatesContent;
-using Microsoft.Templates.Wizard;
-using Microsoft.Templates.Wizard.Error;
-using Microsoft.Templates.Wizard.Host;
 using Microsoft.VisualStudio.TemplateWizard;
+using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
@@ -107,7 +105,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     var outputPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
                     using (var context = GenContext.CreateNew(newProjectInfo.name, outputPath))
                     {
-                        var userSelection = GenController.GetUserSelection(WizardSteps.Project);
+                        var userSelection = GenController.GetUserSelection();
                         if (userSelection != null)
                         {
                             SolutionName = null;

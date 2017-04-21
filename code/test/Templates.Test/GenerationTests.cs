@@ -22,11 +22,10 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Test.Artifacts;
-using Microsoft.Templates.Wizard;
-using Microsoft.Templates.Wizard.Host;
 
 using Xunit;
 using System.Text.RegularExpressions;
+using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.Test
 {

@@ -2,19 +2,22 @@
     {
         "name": "MVVMBasic",
         "displayName": "MVVM Basic",
-        "summary": "This is a generic version of a MVVM pattern.  The Model-View-ViewModel pattern can be used on all XAML platforms. Its intent is to provide a clean separation of concerns between the user interface controls and their logic.\\nThere are three core components in the MVVM pattern: the model, the view, and the view model. Each serves a distinct and separate role.",
+        "summary": "This is a generic version of a MVVM pattern. The Model-View-ViewModel pattern can be used on all XAML platforms.",
+        "author": "Microsoft",
         "order": "1"
     },
     {
         "name": "MVVMLight",
         "displayName": "MVVM Light",
-        "summary": "MVVM Light is a popular, 3rd party framework based on the Model-View-ViewModel pattern by Laurent Bugnion.  The MVVM Light Toolkit helps you to separate your View from your Model which creates applications that are cleaner and easier to maintain and extend. It also creates testable applications and allows you to have a much thinner user interface layer (which is more difficult to test automatically).\\nThis toolkit puts a special emphasis on the \"blend ability\" of the created application (i.e. the ability to open and edit the user interface into Blend), including the creation of design-time data to enable the Blend users to \"see something\" when they work with data controls.\\nYou can find more out at http://www.mvvmlight.net/",
+        "summary": "MVVM Light is a popular, 3rd party framework based on the Model-View-ViewModel pattern by Laurent Bugnion.",
+        "author": "Microsoft",
         "order": "2"
     },
     {
         "name": "CodeBehind",
         "displayName": "Code Behind",
         "summary": "Lorem ipsum",
+        "author": "Microsoft",
         "order": "3"
     }
 ]

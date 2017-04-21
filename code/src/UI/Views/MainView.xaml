@@ -1,0 +1,115 @@
+﻿<Window
+    x:Class="Microsoft.Templates.UI.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
+    xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
+    mc:Ignorable="d"
+    Title="Windows Template Studio"
+    Width="1294"
+    Height="727"
+    MinWidth="800"
+    MinHeight="600"
+    WindowStartupLocation="CenterScreen" 
+    ResizeMode="CanResize" 
+    ShowInTaskbar="False">
+
+    <!--1294 is 1280 (real) + 14
+    727 is 720 (real) + 7-->
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Style="{StaticResource GridTitleStyle}">
+            <TextBlock Style="{StaticResource TextTitleStyle}" Text="{Binding Title}"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+            <Grid Background="{StaticResource UILightGray}" VerticalAlignment="Stretch" HorizontalAlignment="Right" Width="17"/>
+            <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden" />
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{x:Static res:StringRes.SummaryTitle}" Style="{StaticResource TextTemplateTitleStyle}" Margin="{StaticResource MediumMargin}"/>
+                <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}"/>
+                <ScrollViewer Grid.Row="2">
+                    <StackPanel Margin="{StaticResource MediumMargin}">
+                        <StackPanel Margin="{StaticResource ExtraBigLeftMargin}" DataContext="{Binding ProjectSetup.SelectedProjectType}">
+                            <TextBlock Text="{x:Static res:StringRes.SummaryProjectTypeTitle}" Style="{StaticResource TextTemplateTitleStyle}"/>
+                            <TextBlock Text="{Binding DisplayName, FallbackValue=Blank}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
+                            <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="Made by {0}" FallbackValue="Made by Microsoft">
+                                        <Binding Path="Author" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                        <Grid Margin="{StaticResource MediumTopMargin}">
+                            <StackPanel Margin="{StaticResource ExtraBigLeftMargin}" DataContext="{Binding ProjectSetup.SelectedFramework}">
+                                <TextBlock Text="{x:Static res:StringRes.SummaryFrameworkTitle}" Style="{StaticResource TextTemplateTitleStyle}"/>
+                                <TextBlock Text="{Binding DisplayName, FallbackValue='MVVM Basic'}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
+                                <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="Made by {0}" FallbackValue="Made by Microsoft">
+                                            <Binding Path="Author" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+                        <Expander Header="{x:Static res:StringRes.SummaryPagesTitle}" IsExpanded="True" Margin="{StaticResource MediumTopMargin}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}">
+                            <ItemsControl Margin="{StaticResource ExtraBigLeftMargin}" ItemsSource="{Binding ProjectTemplates.SummaryPages}" ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}" />
+                        </Expander>
+                        <Expander Header="{x:Static res:StringRes.SummaryFeaturesTitle}" IsExpanded="True" Margin="{StaticResource MediumTopMargin}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}">
+                            <ItemsControl Margin="{StaticResource ExtraBigLeftMargin}" ItemsSource="{Binding ProjectTemplates.SummaryFeatures}" ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}" />
+                        </Expander>
+                    </StackPanel>
+                </ScrollViewer>
+                <Grid Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}"/>
+                <TextBlock Grid.Row="4" Text="{x:Static res:StringRes.SummaryTerms}" Style="{StaticResource TextTemplateSubtitleStyle}" VerticalAlignment="Bottom" Margin="{StaticResource MediumMargin}"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="300"/>
+                </Grid.ColumnDefinitions>
+                <controls:StatusControl Grid.Column="0" Status="{Binding Status}"/>
+                <Grid Grid.Column="1" Margin="{StaticResource MediumLeftRightMargin}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonCancel}" Command="{Binding CancelCommand}" />
+                    <Button Grid.Column="1" Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonBack}" Command="{Binding BackCommand}" />
+                    <Button Grid.Column="2" Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonNext}" Command="{Binding NextCommand}" Visibility="{Binding NoFinishContentVisibility}" />
+                    <Button Grid.Column="2" Style="{StaticResource ButtonFinishStyle}" Content="{x:Static res:StringRes.ButtonCreate}" Command="{Binding CreateCommand}" Visibility="{Binding FinishContentVisibility}" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

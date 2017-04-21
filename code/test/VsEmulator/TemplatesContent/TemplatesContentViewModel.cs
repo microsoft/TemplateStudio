@@ -23,7 +23,6 @@ using System.Windows;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.Wizard;
 
 namespace Microsoft.Templates.VsEmulator.TemplatesContent
 {

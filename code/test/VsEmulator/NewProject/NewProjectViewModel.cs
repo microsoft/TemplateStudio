@@ -21,7 +21,6 @@ using System.Windows.Forms;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.Wizard;
 
 namespace Microsoft.Templates.VsEmulator.NewProject
 {
