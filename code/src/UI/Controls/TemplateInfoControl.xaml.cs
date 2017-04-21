@@ -113,10 +113,11 @@ namespace Microsoft.Templates.UI.Controls
 
         private void OnAddClicked(object sender, RoutedEventArgs e)
         {
+            var names = GetUsedNames.Invoke();
+            NewTemplateName = Core.Naming.Infer(names, TemplateInfo.Name);
+
             if (TemplateInfo.Template.GetTemplateType() == TemplateType.Page || TemplateInfo.MultipleInstances)
             {
-                var names = GetUsedNames.Invoke();
-                NewTemplateName = Core.Naming.Infer(names, TemplateInfo.Name);
                 SwichVisibilities();
             }
             else
