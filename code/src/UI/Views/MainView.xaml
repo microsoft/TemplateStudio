@@ -24,30 +24,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
-            <DataTemplate x:Key="TemplateItem">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="{Binding DisplayText}" />
-                    <TextBlock Grid.Row="1" >
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="Made by {0}">
-                                <Binding Path="Author" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
-                    <Button Grid.Column="1" Grid.Row="1" 
-                            Content="X" IsEnabled="{Binding IsEnabled}"
-                            Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.ProjectTemplates.RemoveItemCommand}" CommandParameter="{Binding}" />
-                </Grid>
-            </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
 
@@ -66,54 +42,51 @@
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
             <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden"/>
-            <ScrollViewer Grid.Column="1">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="{x:Static res:StringRes.SummaryTitle}" />
-                    <Expander Grid.Row="1" Header="{x:Static res:StringRes.SummaryLicenseTitle}" IsExpanded="True">
+            <Grid Grid.Column="1" Margin="{StaticResource SmallMargin}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock Text="{x:Static res:StringRes.SummaryTitle}" />
+                        <Expander Header="{x:Static res:StringRes.SummaryLicenseTitle}" IsExpanded="True">
 
-                    </Expander>
-                    <Expander Grid.Row="2" Header="{x:Static res:StringRes.SummaryProjectTypeTitle}" IsExpanded="True" DataContext="{Binding ProjectSetup.SelectedProjectType}">
-                        <StackPanel>
-                            <TextBlock Text="{Binding DisplayName}" />
-                            <TextBlock>
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="Made by {0}">
-                                        <Binding Path="Author" />
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                        </StackPanel>
-                    </Expander>
-                    <Expander Grid.Row="3" Header="{x:Static res:StringRes.SummaryFrameworkTitle}" IsExpanded="True" DataContext="{Binding ProjectSetup.SelectedFramework}">
-                        <StackPanel>
-                            <TextBlock Text="{Binding DisplayName}" />
-                            <TextBlock>
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="Made by {0}">
-                                        <Binding Path="Author" />
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                        </StackPanel>
-                    </Expander>
-                    <Expander Grid.Row="4" Header="{x:Static res:StringRes.SummaryPagesTitle}" IsExpanded="True">
-                        <ItemsControl ItemsSource="{Binding ProjectTemplates.Pages}" ItemTemplate="{StaticResource TemplateItem}" />
-                    </Expander>
-                    <Expander Grid.Row="5" Header="{x:Static res:StringRes.SummaryFeaturesTitle}" IsExpanded="True">
-                        <ItemsControl ItemsSource="{Binding ProjectTemplates.Features}" ItemTemplate="{StaticResource TemplateItem}" />
-                    </Expander>
-                    <TextBlock Grid.Row="6" Text="{x:Static res:StringRes.SummaryTerms}" TextWrapping="Wrap" />
-                </Grid>
-            </ScrollViewer>
+                        </Expander>
+                        <Expander Header="{x:Static res:StringRes.SummaryProjectTypeTitle}" IsExpanded="True" DataContext="{Binding ProjectSetup.SelectedProjectType}">
+                            <StackPanel Margin="{StaticResource BigLeftMargin}">
+                                <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
+                                <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="Made by {0}">
+                                            <Binding Path="Author" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+                        </Expander>
+                        <Expander Header="{x:Static res:StringRes.SummaryFrameworkTitle}" IsExpanded="True" DataContext="{Binding ProjectSetup.SelectedFramework}">
+                            <StackPanel Margin="{StaticResource BigLeftMargin}">
+                                <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
+                                <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="Made by {0}">
+                                            <Binding Path="Author" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+                        </Expander>
+                        <Expander Header="{x:Static res:StringRes.SummaryPagesTitle}" IsExpanded="True">
+                            <ItemsControl Margin="{StaticResource BigLeftMargin}" ItemsSource="{Binding ProjectTemplates.SummaryPages}" ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}" />
+                        </Expander>
+                        <Expander Header="{x:Static res:StringRes.SummaryFeaturesTitle}" IsExpanded="True">
+                            <ItemsControl Margin="{StaticResource BigLeftMargin}" ItemsSource="{Binding ProjectTemplates.SummaryFeatures}" ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}" />
+                        </Expander>
+                    </StackPanel>
+                </ScrollViewer>
+                <TextBlock Grid.Row="1" Text="{x:Static res:StringRes.SummaryTerms}" Style="{StaticResource TextTemplateSubtitleStyle}" VerticalAlignment="Bottom"/>
+            </Grid>
         </Grid>
         <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
             <Grid>

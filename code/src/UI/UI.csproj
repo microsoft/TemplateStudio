@@ -195,6 +195,7 @@
     <Compile Include="ViewModels\MetadataInfoViewModel.cs" />
     <Compile Include="ViewModels\ProjectSetupViewModel.cs" />
     <Compile Include="ViewModels\ProjectTemplatesViewModel.cs" />
+    <Compile Include="ViewModels\SummaryItemViewModel.cs" />
     <Compile Include="ViewModels\TemplateInfoViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>

@@ -1,15 +1,13 @@
-﻿using Microsoft.Templates.Core;
+﻿using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Resources;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
@@ -18,40 +16,37 @@ namespace Microsoft.Templates.UI.ViewModels
         private string _pagesHeader;
         public string PagesHeader
         {
-            get { return _pagesHeader; }
-            set { SetProperty(ref _pagesHeader, value); }
+            get => _pagesHeader;
+            set => SetProperty(ref _pagesHeader, value);
         }
 
         private string _featuresHeader;
         public string FeaturesHeader
         {
-            get { return _featuresHeader; }
-            set { SetProperty(ref _featuresHeader, value); }
+            get => _featuresHeader;
+            set => SetProperty(ref _featuresHeader, value);
         }
-
-        private RelayCommand<TemplateInfoViewModel> _removeItemCommand;
-        public RelayCommand<TemplateInfoViewModel> RemoveItemCommand => _removeItemCommand ?? (_removeItemCommand = new RelayCommand<TemplateInfoViewModel>(RemoveItem));
-        private void RemoveItem(TemplateInfoViewModel item)
-        {
-            if (Pages.Contains(item))
-            {
-                Pages.Remove(item);
-            }
-            else if (Features.Contains(item))
-            {
-                Features.Remove(item);
-            }
-        }
-        public Func<IEnumerable<string>> GetUsedNamesFunc => () => SavedTemplates.Select(t => t.Name);
-        public Func<IEnumerable<string>> GetUsedTemplatesIdentitiesFunc => () => SavedTemplates.Select(t => t.Template.Identity);
 
         public ObservableCollection<TemplateInfoViewModel> Pages { get; } = new ObservableCollection<TemplateInfoViewModel>();
         public ObservableCollection<TemplateInfoViewModel> Features { get; } = new ObservableCollection<TemplateInfoViewModel>();
 
+        public ObservableCollection<SummaryItemViewModel> SummaryPages { get; } = new ObservableCollection<SummaryItemViewModel>();
+        public ObservableCollection<SummaryItemViewModel> SummaryFeatures { get; } = new ObservableCollection<SummaryItemViewModel>();
+
         public List<(string Name, ITemplateInfo Template)> SavedTemplates { get; } = new List<(string Name, ITemplateInfo Template)>();
+
+        public IEnumerable<(string Name, ITemplateInfo Template)> SavedFeatures { get => SavedTemplates.Where(st => st.Template.GetTemplateType() == TemplateType.Feature); }
+        public IEnumerable<(string Name, ITemplateInfo Template)> SavedPages { get => SavedTemplates.Where(st => st.Template.GetTemplateType() == TemplateType.Page); }
+
+        private RelayCommand<SummaryItemViewModel> _removeItemCommand;
+        public RelayCommand<SummaryItemViewModel> RemoveItemCommand => _removeItemCommand ?? (_removeItemCommand = new RelayCommand<SummaryItemViewModel>(RemoveItem));
 
         private RelayCommand<(string Name, ITemplateInfo Template)> _addCommand;
         public RelayCommand<(string Name, ITemplateInfo Template)> AddCommand => _addCommand ?? (_addCommand = new RelayCommand<(string Name, ITemplateInfo Template)>(OnAddItem));
+
+        public Func<IEnumerable<string>> GetUsedNamesFunc => () => SavedTemplates.Select(t => t.Name);
+        public Func<IEnumerable<string>> GetUsedTemplatesIdentitiesFunc => () => SavedTemplates.Select(t => t.Template.Identity);        
+        
 
         public async Task IniatializeAsync(string projectTypeName, string frameworkName)
         {
@@ -68,6 +63,9 @@ namespace Microsoft.Templates.UI.ViewModels
 
             Pages.Clear();
             Features.Clear();
+
+            SummaryPages.Clear();
+            SummaryFeatures.Clear();
 
             foreach (var pageTemplate in pageTemplates)
             {
@@ -100,14 +98,50 @@ namespace Microsoft.Templates.UI.ViewModels
                 var template = GenContext.ToolBox.Repo.GetLayoutTemplate(item, frameworkName);
                 if (template != null && template.GetTemplateType() == TemplateType.Page)
                 {
-                    SavedTemplates.Add((item.name, template));
+                    SaveNewTemplate((item.name, template), !item.@readonly);
                 }
             }
         }        
 
-        private void OnAddItem((string Name, ITemplateInfo Template) item)
+        private void OnAddItem((string Name, ITemplateInfo Template) item) => SaveNewTemplate(item);
+
+
+        private void SaveNewTemplate((string Name, ITemplateInfo Template) item, bool isRemoveEnabled = true)
         {
-            SavedTemplates.Add(item);
-        }        
+            SavedTemplates.Add(item);            
+            if (item.Template.GetTemplateType() == TemplateType.Page)
+            {
+                SummaryPages.Add(new SummaryItemViewModel()
+                {
+                    ItemName = item.Name,
+                    TemplateName = item.Template.Name,
+                    Author = item.Template.Author,
+                    IsRemoveEnabled = isRemoveEnabled
+                });
+            }
+            else if (item.Template.GetTemplateType() == TemplateType.Feature)
+            {
+                SummaryFeatures.Add(new SummaryItemViewModel()
+                {
+                    ItemName = item.Name,
+                    TemplateName = item.Template.Name,
+                    Author = item.Template.Author,
+                    IsRemoveEnabled = isRemoveEnabled
+                });
+            }
+        }
+
+        private void RemoveItem(SummaryItemViewModel item)
+        {
+            if (SummaryPages.Contains(item))
+            {
+                SummaryPages.Remove(item);
+            }
+            else if (SummaryFeatures.Contains(item))
+            {
+                SummaryFeatures.Remove(item);
+            }
+            SavedTemplates.Remove(SavedTemplates.First(st => st.Name == item.ItemName));
+        }
     }
 }
