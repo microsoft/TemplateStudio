@@ -168,6 +168,9 @@
   <data name="StatusLowerVersionContent" xml:space="preserve">
     <value>There is no templates content available for the current wizard version. Please ensure you have connectivity and restart the wizard again.</value>
   </data>
+  <data name="StatusLowerVersionTitle" xml:space="preserve">
+    <value>Wizard incompatible with templates content</value>
+  </data>
   <data name="StatusOverVersionContent" xml:space="preserve">
     <value>There is templates content available with higher version than the wizard. Consider to update the extension to access the latest content.</value>
   </data>

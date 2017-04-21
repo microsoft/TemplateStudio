@@ -214,6 +214,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wizard incompatible with templates content.
+        /// </summary>
+        public static string StatusLowerVersionTitle {
+            get {
+                return ResourceManager.GetString("StatusLowerVersionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is templates content available with higher version than the wizard. Consider to update the extension to access the latest content..
         /// </summary>
         public static string StatusOverVersionContent {

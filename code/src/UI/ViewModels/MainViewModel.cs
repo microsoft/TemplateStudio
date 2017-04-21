@@ -152,7 +152,7 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 _mainView.Dispatcher.Invoke(() =>
                 {
-                    MessageBox.Show(_mainView, StringRes.StatusLowerVersionContent, StringRes.StatusLowerVersionContent, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(_mainView, StringRes.StatusLowerVersionContent, StringRes.StatusLowerVersionTitle, MessageBoxButton.OK, MessageBoxImage.Error);
                     //TODO: Review message and behavior.
                 });
             }
