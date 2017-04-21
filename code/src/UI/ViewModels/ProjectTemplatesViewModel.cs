@@ -27,7 +27,8 @@ namespace Microsoft.Templates.UI.ViewModels
             get { return _featuresHeader; }
             set { SetProperty(ref _featuresHeader, value); }
         }
-        public Func<IEnumerable<string>> GetUsedNamesFunc { get { return () => SavedTemplates.Select(t => t.Name); } }
+        public Func<IEnumerable<string>> GetUsedNamesFunc => () => SavedTemplates.Select(t => t.Name);
+        public Func<IEnumerable<string>> GetUsedTemplatesIdentitiesFunc => () => SavedTemplates.Select(t => t.Template.Identity);
 
         public ObservableCollection<TemplateInfoViewModel> Pages { get; } = new ObservableCollection<TemplateInfoViewModel>();
         public ObservableCollection<TemplateInfoViewModel> Features { get; } = new ObservableCollection<TemplateInfoViewModel>();
@@ -39,19 +40,16 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public async Task IniatializeAsync(string projectTypeName, string frameworkName)
         {
-            var pageTemplates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page
-                                                                && t.GetFrameworkList().Contains(frameworkName)
-                                                                && (t.GetMultipleInstance() == true || !IsAlreadyDefined(t)))
+            var pageTemplates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page && t.GetFrameworkList().Contains(frameworkName))
                                                             .Select(t => new TemplateInfoViewModel(t, GenContext.ToolBox.Repo.GetDependencies(t)))
                                                             .OrderBy(t => t.Order)
                                                             .ToList();
 
-            var featureTemplates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Feature
-                                                                && t.GetFrameworkList().Contains(frameworkName)
-                                                                && (t.GetMultipleInstance() == true || !IsAlreadyDefined(t)))
+            var featureTemplates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Feature && t.GetFrameworkList().Contains(frameworkName))
                                                             .Select(t => new TemplateInfoViewModel(t, GenContext.ToolBox.Repo.GetDependencies(t)))
                                                             .OrderBy(t => t.Order)
                                                             .ToList();
+            
 
             Pages.Clear();
             Features.Clear();
@@ -90,16 +88,11 @@ namespace Microsoft.Templates.UI.ViewModels
                     SavedTemplates.Add((item.name, template));
                 }
             }
-        }
-
-        private bool IsAlreadyDefined(ITemplateInfo t)
-        {
-            return false;
-        }
+        }        
 
         private void OnAddItem((string Name, ITemplateInfo Template) item)
         {
             SavedTemplates.Add(item);
-        }
+        }        
     }
 }

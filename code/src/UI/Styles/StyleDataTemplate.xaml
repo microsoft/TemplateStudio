@@ -46,6 +46,7 @@
         <controls:TemplateInfoControl
                     TemplateInfo="{Binding}"
                     AddCommand="{Binding DataContext.AddCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
-                    GetUsedNames="{Binding DataContext.GetUsedNamesFunc, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"/>
+                    GetUsedNames="{Binding DataContext.GetUsedNamesFunc, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
+                    GetUsedTemplatesIdentities="{Binding DataContext.GetUsedTemplatesIdentitiesFunc, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"/>
     </DataTemplate>
 </ResourceDictionary>
