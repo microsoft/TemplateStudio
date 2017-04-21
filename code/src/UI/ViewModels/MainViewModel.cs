@@ -22,6 +22,7 @@ namespace Microsoft.Templates.UI.ViewModels
     public class MainViewModel : Observable
     {
         private bool _canGoBack;
+        private bool _canGoForward;
         public static MainViewModel Current;
         private MainView _mainView;
 
@@ -74,7 +75,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
         public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));                
-        public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext));
+        public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _canGoForward));
         public RelayCommand CreateCommand => _createCommand ?? (_createCommand = new RelayCommand(OnCreate));        
 
         public ProjectSetupViewModel ProjectSetup { get; private set; } = new ProjectSetupViewModel();
@@ -95,7 +96,6 @@ namespace Microsoft.Templates.UI.ViewModels
                 WizardVersion = GetWizardVersion();
 
                 await GenContext.ToolBox.Repo.SynchronizeAsync();
-                Status = StatusControl.EmptyStatus;
 
                 TemplatesVersion = GenContext.ToolBox.Repo.GetTemplatesVersion();
             }
@@ -129,31 +129,24 @@ namespace Microsoft.Templates.UI.ViewModels
             if (status == SyncStatus.Updated)
             {
                 TemplatesVersion = GenContext.ToolBox.Repo.GetTemplatesVersion();
+                Status = StatusControl.EmptyStatus;
 
-                //mvegaca
-                //_context.CanGoForward = true;
-
-                //var step = Steps.First();
-                //Navigate(step);
+                _canGoForward = true;
+                NextCommand.OnCanExecuteChanged();
             }
-
 
             if (status == SyncStatus.OverVersion)
             {
-                _mainView.Dispatcher.Invoke(() =>
-                {
-                    MessageBox.Show(_mainView, StringRes.StatusOverVersionContent, StringRes.StatusOverVersionTitle, MessageBoxButton.OK, MessageBoxImage.Information);
-                });
-
-                //TODO: Review message and behavior.
+                Status = (StatusType.Information, StringRes.StatusOverVersionContent);
             }
 
             if (status == SyncStatus.UnderVersion)
             {
                 _mainView.Dispatcher.Invoke(() =>
                 {
-                    MessageBox.Show(_mainView, StringRes.StatusLowerVersionContent, StringRes.StatusLowerVersionTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                    //TODO: Review message and behavior.
+                    Status = (StatusType.Error, StringRes.StatusLowerVersionContent);
+                    _canGoForward = false;
+                    NextCommand.OnCanExecuteChanged();
                 });
             }
         }
