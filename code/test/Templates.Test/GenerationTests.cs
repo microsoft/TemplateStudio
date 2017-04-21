@@ -148,7 +148,7 @@ namespace Microsoft.Templates.Test
                     wizardState.Pages.Add((itemName, template));
                     break;
                 case TemplateType.Feature:
-                    wizardState.DevFeatures.Add((itemName, template));
+                    wizardState.Features.Add((itemName, template));
                     break;
             }
             UsedNames.Add(itemName);
