@@ -322,6 +322,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Windows Template Studio: {0}.
+        /// </summary>
+        public static string UIMessageBoxTitlePattern {
+            get {
+                return ResourceManager.GetString("UIMessageBoxTitlePattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name already exists.
         /// </summary>
         public static string ValidationError_AlreadyExists {

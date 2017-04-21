@@ -203,6 +203,7 @@
   </data>
   <data name="SummaryTitle" xml:space="preserve">
     <value>Summary</value>
+  </data>
   <data name="UIMessageBoxTitlePattern" xml:space="preserve">
     <value>Windows Template Studio: {0}</value>
     <comment>Generic Message Box Title</comment>
