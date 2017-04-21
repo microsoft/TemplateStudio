@@ -9,10 +9,13 @@
     <Thickness x:Key="MediumMargin">10</Thickness>
     <Thickness x:Key="MediumLeftMargin">10,0,0,0</Thickness>
     <Thickness x:Key="MediumLeftTopMargin">10,10,0,0</Thickness>
+    <Thickness x:Key="MediumTopMargin">0,10,0,0</Thickness>
     <Thickness x:Key="MediumLeftRightMargin">10,0</Thickness>
     <Thickness x:Key="MediumRightBottomMargin">0,0,10,10</Thickness>
 
     <Thickness x:Key="BigLeftMargin">20,0,0,0</Thickness>
     <Thickness x:Key="BigRightBottomMargin">0,0,20,20</Thickness>
+
+    <Thickness x:Key="ExtraBigLeftMargin">25,0,0,0</Thickness>
 
 </ResourceDictionary>

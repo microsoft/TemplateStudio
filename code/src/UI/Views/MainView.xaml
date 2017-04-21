@@ -41,53 +41,54 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
-            <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden"/>
+            <Grid Background="{StaticResource UILightGray}" VerticalAlignment="Stretch" HorizontalAlignment="Right" Width="17"/>
+            <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden" />
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <ScrollViewer>
+                <TextBlock Text="{x:Static res:StringRes.SummaryTitle}" Style="{StaticResource TextTemplateTitleStyle}" Margin="{StaticResource MediumMargin}"/>
+                <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}"/>
+                <ScrollViewer Grid.Row="2">
                     <StackPanel Margin="{StaticResource MediumMargin}">
-                        <TextBlock Text="{x:Static res:StringRes.SummaryTitle}" />
-                        <Expander Header="{x:Static res:StringRes.SummaryLicenseTitle}" IsExpanded="True">
-
-                        </Expander>
-                        <Expander Header="{x:Static res:StringRes.SummaryProjectTypeTitle}" IsExpanded="True" DataContext="{Binding ProjectSetup.SelectedProjectType}">
-                            <StackPanel Margin="{StaticResource BigLeftMargin}">
-                                <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
+                        <StackPanel Margin="{StaticResource ExtraBigLeftMargin}" DataContext="{Binding ProjectSetup.SelectedProjectType}">
+                            <TextBlock Text="{x:Static res:StringRes.SummaryProjectTypeTitle}" Style="{StaticResource TextTemplateTitleStyle}"/>
+                            <TextBlock Text="{Binding DisplayName, FallbackValue=Blank}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
+                            <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="Made by {0}" FallbackValue="Made by Microsoft">
+                                        <Binding Path="Author" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                        <Grid Margin="{StaticResource MediumTopMargin}">
+                            <StackPanel Margin="{StaticResource ExtraBigLeftMargin}" DataContext="{Binding ProjectSetup.SelectedFramework}">
+                                <TextBlock Text="{x:Static res:StringRes.SummaryFrameworkTitle}" Style="{StaticResource TextTemplateTitleStyle}"/>
+                                <TextBlock Text="{Binding DisplayName, FallbackValue='MVVM Basic'}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
                                 <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
                                     <TextBlock.Text>
-                                        <MultiBinding StringFormat="Made by {0}">
+                                        <MultiBinding StringFormat="Made by {0}" FallbackValue="Made by Microsoft">
                                             <Binding Path="Author" />
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>
                             </StackPanel>
+                        </Grid>
+                        <Expander Header="{x:Static res:StringRes.SummaryPagesTitle}" IsExpanded="True" Margin="{StaticResource MediumTopMargin}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}">
+                            <ItemsControl Margin="{StaticResource ExtraBigLeftMargin}" ItemsSource="{Binding ProjectTemplates.SummaryPages}" ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}" />
                         </Expander>
-                        <Expander Header="{x:Static res:StringRes.SummaryFrameworkTitle}" IsExpanded="True" DataContext="{Binding ProjectSetup.SelectedFramework}">
-                            <StackPanel Margin="{StaticResource BigLeftMargin}">
-                                <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
-                                <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
-                                    <TextBlock.Text>
-                                        <MultiBinding StringFormat="Made by {0}">
-                                            <Binding Path="Author" />
-                                        </MultiBinding>
-                                    </TextBlock.Text>
-                                </TextBlock>
-                            </StackPanel>
-                        </Expander>
-                        <Expander Header="{x:Static res:StringRes.SummaryPagesTitle}" IsExpanded="True">
-                            <ItemsControl Margin="{StaticResource BigLeftMargin}" ItemsSource="{Binding ProjectTemplates.SummaryPages}" ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}" />
-                        </Expander>
-                        <Expander Header="{x:Static res:StringRes.SummaryFeaturesTitle}" IsExpanded="True">
-                            <ItemsControl Margin="{StaticResource BigLeftMargin}" ItemsSource="{Binding ProjectTemplates.SummaryFeatures}" ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}" />
+                        <Expander Header="{x:Static res:StringRes.SummaryFeaturesTitle}" IsExpanded="True" Margin="{StaticResource MediumTopMargin}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}">
+                            <ItemsControl Margin="{StaticResource ExtraBigLeftMargin}" ItemsSource="{Binding ProjectTemplates.SummaryFeatures}" ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}" />
                         </Expander>
                     </StackPanel>
                 </ScrollViewer>
-                <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}"/>
-                <TextBlock Grid.Row="2" Text="{x:Static res:StringRes.SummaryTerms}" Style="{StaticResource TextTemplateSubtitleStyle}" VerticalAlignment="Bottom" Margin="{StaticResource MediumMargin}"/>
+                <Grid Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}"/>
+                <TextBlock Grid.Row="4" Text="{x:Static res:StringRes.SummaryTerms}" Style="{StaticResource TextTemplateSubtitleStyle}" VerticalAlignment="Bottom" Margin="{StaticResource MediumMargin}"/>
             </Grid>
         </Grid>
         <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
