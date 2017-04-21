@@ -48,7 +48,7 @@ namespace Microsoft.Templates.UI.ViewModels
             }
             Name = metadataInfo.Name;
             DisplayName = metadataInfo.DisplayName;
-            Description = metadataInfo.Description;
+            Description = metadataInfo.Summary;//Description; TODO: Review with Javi
             Author = metadataInfo.Author;
             Icon = metadataInfo.Icon;
         }
