@@ -4,10 +4,32 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <WebView Source="{x:Bind ViewModel.Source, Mode=OneWay}" />
-        <!--Consider giving feedback to the user for waiting in the navigation-->
+        <WebView x:Name="webView" Source="{x:Bind ViewModel.Source, Mode=OneWay}">
+            <i:Interaction.Behaviors>
+                <ic:EventTriggerBehavior EventName="NavigationCompleted">
+                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.NavCompletedCommand}"/>
+                </ic:EventTriggerBehavior>
+                <ic:EventTriggerBehavior EventName="NavigationFailed">
+                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.NavFailedCommand}"/>
+                </ic:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
+        </WebView>
+        <StackPanel Visibility="{x:Bind ViewModel.IsLoadingVisibility, Mode=OneWay}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <ProgressRing IsActive="{x:Bind ViewModel.IsLoading, Mode=OneWay}" />
+            <TextBlock x:Uid="WebView_Loading" />
+        </StackPanel>
+        <StackPanel Visibility="{x:Bind ViewModel.FailedMesageVisibility, Mode=OneWay}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <TextBlock HorizontalAlignment="Center" x:Uid="WebView_FailedMessage" TextWrapping="WrapWholeWords" />
+            <HyperlinkButton Command="{x:Bind ViewModel.RetryCommand}" x:Uid="WebView_Retry" HorizontalAlignment="Center" />
+        </StackPanel>
     </Grid>
 </Page>

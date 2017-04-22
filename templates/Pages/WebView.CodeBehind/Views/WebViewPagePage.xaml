@@ -7,7 +7,20 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <WebView Source="{x:Bind Source, Mode=OneWay}" />
-        <!--Consider giving feedback to the user for waiting in the navigation-->
+        <WebView x:Name="webView" Source="{x:Bind Source, Mode=OneWay}"
+                 NavigationCompleted="OnNavigationCompleted"
+                 NavigationFailed="OnNavigationFailed" />
+        <StackPanel Visibility="{x:Bind IsLoadingVisibility, Mode=OneWay}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <ProgressRing IsActive="{x:Bind IsLoading, Mode=OneWay}" />
+            <TextBlock x:Uid="WebView_Loading" />
+        </StackPanel>
+        <StackPanel Visibility="{x:Bind FailedMesageVisibility, Mode=OneWay}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <TextBlock HorizontalAlignment="Center" x:Uid="WebView_FailedMessage" TextWrapping="WrapWholeWords" />
+            <HyperlinkButton Click="OnRetry" x:Uid="WebView_Retry" HorizontalAlignment="Center" />
+        </StackPanel>
     </Grid>
 </Page>

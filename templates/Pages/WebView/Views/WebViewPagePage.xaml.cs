@@ -7,6 +7,7 @@ namespace Param_ItemNamespace.Views
         public WebViewPagePage()
         {
             InitializeComponent();
+            ViewModel.Initialize(webView);
         }
     }
 }
