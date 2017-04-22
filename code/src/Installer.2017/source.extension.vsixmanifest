@@ -8,6 +8,8 @@
     <License>Content\EULA.rtf</License>
     <GettingStartedGuide>https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/readme.md</GettingStartedGuide>
     <ReleaseNotes>https://github.com/Microsoft/WindowsTemplateStudio/</ReleaseNotes>
+    <Icon>Resources\windowsTemplateStudio_Logo_32x32.png</Icon>
+    <PreviewImage>Resources\windowsTemplateStudio_Logo_200x200.png</PreviewImage>
     <Tags>Windows Template Studio UWP XAML MVVM</Tags>
   </Metadata>
   <Installation>
