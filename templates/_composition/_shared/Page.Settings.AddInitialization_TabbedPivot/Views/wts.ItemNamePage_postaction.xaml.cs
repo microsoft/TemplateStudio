@@ -6,14 +6,7 @@ namespace Param_ItemNamespace.Views
         public wts.ItemNamePage()
         {
             InitializeComponent();
-            Loaded += OnLoaded;
-        }
-
-        //{[{
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
             ViewModel.Initialize();
         }
-        //}]}
     }
 }
