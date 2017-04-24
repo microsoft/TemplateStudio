@@ -4,7 +4,7 @@
             xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
     <Name>Windows Template Studio (local)</Name>
-    <Description>Windows Template Studio creates a strong, generic foundation for UWP apps with a few easy clicks.</Description>
+    <Description>Windows Template Studio quickly builds a UWP app, using a wizard-based UI to turn your needs into a foundation of Windows 10 patterns and best practices.</Description>
     <Icon>windowsTemplateStudio_Logo_256x256.png</Icon>
     <ProjectType>CSharp</ProjectType>
     <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
