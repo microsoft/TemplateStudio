@@ -59,7 +59,7 @@
                 </Button>
             </Grid>
 
-            <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateSubtitleStyle}" Text="{Binding TemplateInfo.Description, ElementName=root}" Visibility="{Binding NoEditingContentVisibility, ElementName=root}" Margin="{StaticResource MediumLeftMargin}"/>
+            <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateSubtitleStyle}" Text="{Binding TemplateInfo.Summary, ElementName=root}" Visibility="{Binding NoEditingContentVisibility, ElementName=root}" Margin="{StaticResource MediumLeftMargin}"/>
             <Grid Grid.Row="1" Visibility="{Binding EditingContentVisibility, ElementName=root}" VerticalAlignment="Bottom" Margin="{StaticResource SmallBottomMargin}" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
