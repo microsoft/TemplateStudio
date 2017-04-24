@@ -85,29 +85,29 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <ProgressRing IsActive="{x:Bind IsLoading, Mode=OneWay}" />
-            <TextBlock x:Uid="WebView_Loading" />
+            <TextBlock x:Uid="WebViewPage_Loading" />
         </StackPanel>
         <StackPanel Visibility="{x:Bind FailedMesageVisibility, Mode=OneWay}"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-            <TextBlock HorizontalAlignment="Center" x:Uid="WebView_FailedMessage" TextWrapping="WrapWholeWords" />
-            <HyperlinkButton Click="OnRetry" x:Uid="WebView_Retry" HorizontalAlignment="Center" />
+            <TextBlock HorizontalAlignment="Center" x:Uid="WebViewPage_FailedMessage" TextWrapping="WrapWholeWords" />
+            <HyperlinkButton Click="OnRetry" x:Uid="WebViewPage_Retry" HorizontalAlignment="Center" />
         </StackPanel>
 
         <Grid Grid.Row="1" Background="{ThemeResource SystemControlBackgroundBaseLowBrush}">
             <StackPanel Orientation="Horizontal">
-                <Button IsEnabled="{x:Bind IsBackEnabled, Mode=OneWay}" Style="{StaticResource BrowserButtonStyle}" Click="OnGoBack" x:Uid="WebView_BrowserBackButton">
+                <Button IsEnabled="{x:Bind IsBackEnabled, Mode=OneWay}" Style="{StaticResource BrowserButtonStyle}" Click="OnGoBack" x:Uid="WebViewPage_BrowserBackButton">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72B;" />
                 </Button>
-                <Button IsEnabled="{x:Bind IsForwardEnabled, Mode=OneWay}" Style="{StaticResource BrowserButtonStyle}" Click="OnGoForward" x:Uid="WebView_BrowserForwardButton">
+                <Button IsEnabled="{x:Bind IsForwardEnabled, Mode=OneWay}" Style="{StaticResource BrowserButtonStyle}" Click="OnGoForward" x:Uid="WebViewPage_BrowserForwardButton">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72A;" />
                 </Button>
             </StackPanel >
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Style="{StaticResource BrowserButtonStyle}" Click="OnRefresh" x:Uid="WebView_RefreshBrowserButton">
+                <Button Style="{StaticResource BrowserButtonStyle}" Click="OnRefresh" x:Uid="WebViewPage_RefreshBrowserButton">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72C;" />
                 </Button>
-                <Button Style="{StaticResource BrowserButtonStyle}" Click="OnOpenInBrowser" x:Uid="WebView_OpenInBrowserButton">
+                <Button Style="{StaticResource BrowserButtonStyle}" Click="OnOpenInBrowser" x:Uid="WebViewPage_OpenInBrowserButton">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE774;" />
                 </Button>
             </StackPanel>

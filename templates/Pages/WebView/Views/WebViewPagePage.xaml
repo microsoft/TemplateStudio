@@ -94,29 +94,29 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <ProgressRing IsActive="{x:Bind ViewModel.IsLoading, Mode=OneWay}" />
-            <TextBlock x:Uid="WebView_Loading" />
+            <TextBlock x:Uid="WebViewPage_Loading" />
         </StackPanel>
         <StackPanel Visibility="{x:Bind ViewModel.FailedMesageVisibility, Mode=OneWay}"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-            <TextBlock HorizontalAlignment="Center" x:Uid="WebView_FailedMessage" TextWrapping="WrapWholeWords" />
-            <HyperlinkButton Command="{x:Bind ViewModel.RetryCommand}" x:Uid="WebView_Retry" HorizontalAlignment="Center" />
+            <TextBlock HorizontalAlignment="Center" x:Uid="WebViewPage_FailedMessage" TextWrapping="WrapWholeWords" />
+            <HyperlinkButton Command="{x:Bind ViewModel.RetryCommand}" x:Uid="WebViewPage_Retry" HorizontalAlignment="Center" />
         </StackPanel>
 
         <Grid Grid.Row="1" Background="{ThemeResource SystemControlBackgroundBaseLowBrush}">
             <StackPanel Orientation="Horizontal">
-                <Button Style="{StaticResource BrowserButtonStyle}" Command="{x:Bind ViewModel.BrowserBackCommand, Mode=OneWay}" x:Uid="WebView_BrowserBackButton">
+                <Button Style="{StaticResource BrowserButtonStyle}" Command="{x:Bind ViewModel.BrowserBackCommand, Mode=OneWay}" x:Uid="WebViewPage_BrowserBackButton">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72B;" />
                 </Button>
-                <Button Style="{StaticResource BrowserButtonStyle}" Command="{x:Bind ViewModel.BrowserForwardCommand, Mode=OneWay}" x:Uid="WebView_BrowserForwardButton">
+                <Button Style="{StaticResource BrowserButtonStyle}" Command="{x:Bind ViewModel.BrowserForwardCommand, Mode=OneWay}" x:Uid="WebViewPage_BrowserForwardButton">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72A;" />
                 </Button>
             </StackPanel >
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Style="{StaticResource BrowserButtonStyle}" Command="{x:Bind ViewModel.RefreshCommand}" x:Uid="WebView_RefreshBrowserButton">
+                <Button Style="{StaticResource BrowserButtonStyle}" Command="{x:Bind ViewModel.RefreshCommand}" x:Uid="WebViewPage_RefreshBrowserButton">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72C;" />
                 </Button>
-                <Button Style="{StaticResource BrowserButtonStyle}" Command="{x:Bind ViewModel.OpenInBrowserCommand}" x:Uid="WebView_OpenInBrowserButton">
+                <Button Style="{StaticResource BrowserButtonStyle}" Command="{x:Bind ViewModel.OpenInBrowserCommand}" x:Uid="WebViewPage_OpenInBrowserButton">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE774;" />
                 </Button>
             </StackPanel>
