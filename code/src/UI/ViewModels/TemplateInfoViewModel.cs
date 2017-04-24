@@ -52,6 +52,13 @@ namespace Microsoft.Templates.UI.ViewModels
             set => SetProperty(ref _author, value);
         }
 
+        private string _summary;
+        public string Summary
+        {
+            get { return _summary; }
+            set { SetProperty(ref _summary, value); }
+        }
+
         private string _description;
         public string Description
         {
@@ -120,7 +127,8 @@ namespace Microsoft.Templates.UI.ViewModels
         public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies)
         {
             Name = template.Name;
-            Description = template.Description;
+            Summary = template.Description;
+            Description = template.GetRichDescription();
             Author = template.Author;
             Icon = template.GetIcon();
             Version = template.GetVersion();
@@ -131,3 +139,4 @@ namespace Microsoft.Templates.UI.ViewModels
         }
     }
 }
+ 
