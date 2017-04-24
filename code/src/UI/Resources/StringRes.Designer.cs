@@ -349,6 +349,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can not remove {0} because it depends on {1} {2}..
+        /// </summary>
+        public static string ValidationError_CanNotRemoveTemplate_SF {
+            get {
+                return ResourceManager.GetString("ValidationError_CanNotRemoveTemplate_SF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name cannot be empty.
         /// </summary>
         public static string ValidationError_Empty {

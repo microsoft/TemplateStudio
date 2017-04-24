@@ -214,6 +214,9 @@
   <data name="ValidationError_BadFormat" xml:space="preserve">
     <value>Only alphanumeric and '-' characters are allowed</value>
   </data>
+  <data name="ValidationError_CanNotRemoveTemplate_SF" xml:space="preserve">
+    <value>You can not remove {0} because it depends on {1} {2}.</value>
+  </data>
   <data name="ValidationError_Empty" xml:space="preserve">
     <value>Name cannot be empty</value>
   </data>

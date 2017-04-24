@@ -8,6 +8,7 @@ namespace Microsoft.Templates.UI.ViewModels
 {
     public class SummaryItemViewModel : Observable
     {
+        public string Identity { get; set; }
         public string ItemName { get; set; }
         public string TemplateName { get; set; }
         public string Author { get; set; }
