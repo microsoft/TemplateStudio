@@ -349,7 +349,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can not remove {0} because it depends on {1} {2}..
+        ///   Looks up a localized string similar to You can not remove {0} because {1} {2} depends on it..
         /// </summary>
         public static string ValidationError_CanNotRemoveTemplate_SF {
             get {

@@ -32,7 +32,7 @@ namespace Microsoft.Templates.UI.Controls
         private static void OnStatusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as StatusControl;
-            control.UpdateStatus();
+            control.UpdateStatus(e.NewValue as StatusViewModel);
         }
 
         private DispatcherTimer _hideTimer;
@@ -48,13 +48,13 @@ namespace Microsoft.Templates.UI.Controls
         private void OnHideTick(object sender, EventArgs e)
         {
             _hideTimer.Stop();
-            Status = EmptyStatus;            
+            UpdateStatus(EmptyStatus);
         }
 
-        private void UpdateStatus()
+        private void UpdateStatus(StatusViewModel status)
         {
-            txtStatus.Text = Status.Message;
-            switch (Status.Status)
+            txtStatus.Text = status.Message;
+            switch (status.Status)
             {
                 case StatusType.Information:
                     txtIcon.Text = Char.ConvertFromUtf32(0xE930);
@@ -78,7 +78,7 @@ namespace Microsoft.Templates.UI.Controls
                     this.Background = new SolidColorBrush(Colors.Transparent);
                     break;
             }
-            if (Status.AutoHide == true)
+            if (status.AutoHide == true)
             {
                 _hideTimer.Start();
             }

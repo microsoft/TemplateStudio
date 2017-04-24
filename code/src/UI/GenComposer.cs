@@ -39,7 +39,7 @@ namespace Microsoft.Templates.UI
             AddTemplates(userSelection.Pages, genQueue);
             AddTemplates(userSelection.Features, genQueue);
 
-            AddMissingDependencies(genQueue);
+            //AddMissingDependencies(genQueue);
 
             AddCompositionTemplates(genQueue, userSelection);
 
@@ -67,19 +67,16 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        private static void AddMissingDependencies(List<GenInfo> genQueue)
+        public static void AddMissingDependencies(ITemplateInfo newTemplate, List<(string Name, ITemplateInfo Template)> savedTemplates, Action<(string, ITemplateInfo)> saveDependency)
         {
-            var currentGenQueue = genQueue.ToList();
-            foreach (var item in currentGenQueue)
+            var dependencies = newTemplate.GetDependencyList();
+            foreach (var dependency in dependencies)
             {
-                var dependencies = item.Template.GetDependencyList();
-                foreach (var dependency in dependencies)
+                if (!savedTemplates.Any(st => st.Template.Identity == dependency))
                 {
-                    if (!genQueue.ToList().Any(g => g.Template.Identity == dependency))
-                    {
-                        var dependencyTemplate = GenContext.ToolBox.Repo.Find(t => t.Identity == dependency);
-                        CreateGenInfo(dependencyTemplate.Name, dependencyTemplate, genQueue);
-                    }
+                    var dependencyTemplate = GenContext.ToolBox.Repo.Find(t => t.Identity == dependency);
+                    (string, ITemplateInfo) newItem = (dependencyTemplate.Name, dependencyTemplate);
+                    saveDependency.Invoke(newItem);
                 }
             }
         }
