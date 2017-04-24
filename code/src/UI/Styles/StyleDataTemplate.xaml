@@ -81,4 +81,11 @@
             </Button>
         </Grid>
     </DataTemplate>
+
+    <DataTemplate x:Key="LicenceSummaryItemTemplate">
+        <Grid>
+            <TextBlock Text="{Binding Text}" Style="{StaticResource TextTemplateSubtitleStyle}" />
+        </Grid>
+    </DataTemplate>
+
 </ResourceDictionary>

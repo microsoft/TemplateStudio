@@ -199,6 +199,7 @@
     <Compile Include="ViewModels\ProjectTemplatesViewModel.cs" />
     <Compile Include="ViewModels\StatusViewModel.cs" />
     <Compile Include="ViewModels\SummaryItemViewModel.cs" />
+    <Compile Include="ViewModels\SummaryLicenceViewModel.cs" />
     <Compile Include="ViewModels\TemplateInfoViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>

@@ -21,6 +21,8 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Composition;
+using System.Collections.ObjectModel;
+using Microsoft.Templates.UI.ViewModels;
 
 namespace Microsoft.Templates.UI
 {
@@ -67,9 +69,9 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        public static void AddMissingDependencies(ITemplateInfo newTemplate, List<(string Name, ITemplateInfo Template)> savedTemplates, Action<(string, ITemplateInfo)> saveDependency)
+        public static void AddMissingDependencies(ITemplateInfo template, List<(string Name, ITemplateInfo Template)> savedTemplates, Action<(string, ITemplateInfo)> saveDependency)
         {
-            var dependencies = newTemplate.GetDependencyList();
+            var dependencies = template.GetDependencyList();
             foreach (var dependency in dependencies)
             {
                 if (!savedTemplates.Any(st => st.Template.Identity == dependency))
@@ -77,6 +79,22 @@ namespace Microsoft.Templates.UI
                     var dependencyTemplate = GenContext.ToolBox.Repo.Find(t => t.Identity == dependency);
                     (string, ITemplateInfo) newItem = (dependencyTemplate.Name, dependencyTemplate);
                     saveDependency.Invoke(newItem);
+                }
+            }
+        }
+
+        public static void AddMissingLicences(ITemplateInfo template, ObservableCollection<SummaryLicenceViewModel> summaryLicences)
+        {
+            var licences = template.GetLicences();
+            foreach (var licence in licences)
+            {
+                if (!summaryLicences.Any(st => st.Text == licence.text))
+                {
+                    summaryLicences.Add(new SummaryLicenceViewModel()
+                    {
+                        Text = licence.text,
+                        Url = licence.url
+                    });
                 }
             }
         }

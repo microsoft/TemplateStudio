@@ -32,6 +32,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public ObservableCollection<SummaryItemViewModel> SummaryPages { get; } = new ObservableCollection<SummaryItemViewModel>();
         public ObservableCollection<SummaryItemViewModel> SummaryFeatures { get; } = new ObservableCollection<SummaryItemViewModel>();
+        public ObservableCollection<SummaryLicenceViewModel> SummaryLicences { get; } = new ObservableCollection<SummaryLicenceViewModel>();
 
         public List<(string Name, ITemplateInfo Template)> SavedTemplates { get; } = new List<(string Name, ITemplateInfo Template)>();
 
@@ -103,12 +104,12 @@ namespace Microsoft.Templates.UI.ViewModels
         private void OnAddItem((string Name, ITemplateInfo Template) item, bool isRemoveEnabled = true)
         {
             SaveNewTemplate(item);
-            GenComposer.AddMissingDependencies(item.Template, SavedTemplates, ((string, ITemplateInfo) newItem) => { SaveNewTemplate(newItem); });
+            GenComposer.AddMissingDependencies(item.Template, SavedTemplates, ((string, ITemplateInfo) newItem) => { SaveNewTemplate(newItem); });            
         }
 
 
         private void SaveNewTemplate((string Name, ITemplateInfo Template) item, bool isRemoveEnabled = true)
-        {
+        {            
             SavedTemplates.Add(item);
             if (item.Template.GetTemplateType() == TemplateType.Page)
             {
@@ -132,7 +133,8 @@ namespace Microsoft.Templates.UI.ViewModels
                     IsRemoveEnabled = isRemoveEnabled
                 });
             }
-            OnPropertyChanged("GetUsedTemplatesIdentitiesFunc");
+            GenComposer.AddMissingLicences(item.Template, SummaryLicences);
+            OnPropertyChanged("GetUsedTemplatesIdentitiesFunc");            
         }
 
         private void RemoveItem(SummaryItemViewModel item)

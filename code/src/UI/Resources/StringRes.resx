@@ -192,6 +192,9 @@
   <data name="SummaryFrameworkTitle" xml:space="preserve">
     <value>Framework</value>
   </data>
+  <data name="SummaryLicencesTitle" xml:space="preserve">
+    <value>Licences</value>
+  </data>
   <data name="SummaryLicenseTitle" xml:space="preserve">
     <value>Licenses</value>
   </data>

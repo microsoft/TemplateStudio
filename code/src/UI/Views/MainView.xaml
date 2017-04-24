@@ -83,6 +83,9 @@
                                 </TextBlock>
                             </StackPanel>
                         </Grid>
+                        <Expander Header="{x:Static res:StringRes.SummaryLicencesTitle}" IsExpanded="True" Margin="{StaticResource MediumTopMargin}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}">
+                            <ItemsControl Margin="{StaticResource ExtraBigLeftMargin}" ItemsSource="{Binding ProjectTemplates.SummaryLicences}" ItemTemplate="{StaticResource LicenceSummaryItemTemplate}" />
+                        </Expander>
                         <Expander Header="{x:Static res:StringRes.SummaryPagesTitle}" IsExpanded="True" Margin="{StaticResource MediumTopMargin}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}">
                             <ItemsControl Margin="{StaticResource ExtraBigLeftMargin}" ItemsSource="{Binding ProjectTemplates.SummaryPages}" ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}" />
                         </Expander>
