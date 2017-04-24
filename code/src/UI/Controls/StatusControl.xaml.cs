@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Templates.UI.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,20 +13,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Microsoft.Templates.UI.Controls
 {
     public enum StatusType { Empty, Information, Warning, Error }
     public partial class StatusControl : UserControl
     {
-        public static (StatusType, string) EmptyStatus = (StatusType.Empty, String.Empty);
+        public static StatusViewModel EmptyStatus = new StatusViewModel(StatusType.Empty, String.Empty);
 
-        public (StatusType StatusType, string StatusMessage) Status
+        public StatusViewModel Status
         {
-            get { return ((StatusType StatusType, string StatusMessage))GetValue(StatusProperty); }
+            get { return (StatusViewModel)GetValue(StatusProperty); }
             set { SetValue(StatusProperty, value); }
         }
-        public static readonly DependencyProperty StatusProperty = DependencyProperty.Register("Status", typeof((StatusType StatusType, string StatusMessage)), typeof(StatusControl), new PropertyMetadata((StatusType.Empty, String.Empty), OnStatusPropertyChanged));
+        public static readonly DependencyProperty StatusProperty = DependencyProperty.Register("Status", typeof(StatusViewModel), typeof(StatusControl), new PropertyMetadata(new StatusViewModel(StatusType.Empty, String.Empty), OnStatusPropertyChanged));
 
         private static void OnStatusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -33,15 +35,26 @@ namespace Microsoft.Templates.UI.Controls
             control.UpdateStatus();
         }
 
+        private DispatcherTimer _hideTimer;
+
         public StatusControl()
         {
             InitializeComponent();
+            _hideTimer = new DispatcherTimer();
+            _hideTimer.Interval = TimeSpan.FromSeconds(5);
+            _hideTimer.Tick += OnHideTick;
+        }
+
+        private void OnHideTick(object sender, EventArgs e)
+        {
+            _hideTimer.Stop();
+            Status = EmptyStatus;
         }
 
         private void UpdateStatus()
         {
-            txtStatus.Text = Status.StatusMessage;
-            switch (Status.StatusType)
+            txtStatus.Text = Status.Message;
+            switch (Status.Status)
             {
                 case StatusType.Information:
                     txtIcon.Text = Char.ConvertFromUtf32(0xE930);
@@ -64,6 +77,10 @@ namespace Microsoft.Templates.UI.Controls
                     txtIcon.Text = String.Empty;
                     this.Background = new SolidColorBrush(Colors.Transparent);
                     break;
+            }
+            if (Status.AutoHide == true)
+            {
+                _hideTimer.Start();
             }
         }
     }

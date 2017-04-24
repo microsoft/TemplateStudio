@@ -26,8 +26,8 @@ namespace Microsoft.Templates.UI.ViewModels
         public static MainViewModel Current;
         private MainView _mainView;
 
-        private (StatusType StatusType, string StatusMessage) _status;
-        public (StatusType StatusType, string StatusMessage) Status
+        private StatusViewModel _status = StatusControl.EmptyStatus;
+        public StatusViewModel Status
         {            
             get { return _status; }
             set { SetProperty(ref _status, value); }
@@ -101,12 +101,25 @@ namespace Microsoft.Templates.UI.ViewModels
             }
             catch (Exception ex)
             {
-                Status = (StatusType.Information, StringRes.ErrorSync);
+                Status = new StatusViewModel(StatusType.Information, StringRes.ErrorSync);
 
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);
             }
         }
+
+        public void AlertProjectSetupChanged()
+        {
+            if (CheckProjectSetupChanged())
+            {
+                Status = new StatusViewModel(StatusType.Warning, string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName));
+            }    
+            else
+            {
+                Status = StatusControl.EmptyStatus;
+            }   
+        }
+
 
         private string GetWizardVersion()
         {
@@ -124,7 +137,7 @@ namespace Microsoft.Templates.UI.ViewModels
         private void Sync_SyncStatusChanged(object sender, SyncStatus status)
         {
 
-            Status = (StatusType.Information, GetStatusText(status));
+            Status = new StatusViewModel(StatusType.Information, GetStatusText(status));
 
             if (status == SyncStatus.Updated)
             {
@@ -137,14 +150,14 @@ namespace Microsoft.Templates.UI.ViewModels
 
             if (status == SyncStatus.OverVersion)
             {
-                Status = (StatusType.Information, StringRes.StatusOverVersionContent);
+                Status = new StatusViewModel(StatusType.Warning, StringRes.StatusOverVersionContent);
             }
 
             if (status == SyncStatus.UnderVersion)
             {
                 _mainView.Dispatcher.Invoke(() =>
                 {
-                    Status = (StatusType.Error, StringRes.StatusLowerVersionContent);
+                    Status = new StatusViewModel(StatusType.Error, StringRes.StatusLowerVersionContent);
                     _canGoForward = false;
                     NextCommand.OnCanExecuteChanged();
                 });
@@ -177,7 +190,13 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnNext()
         {
-            NavigationService.Navigate(new ProjectTemplatesView(ProjectSetup.SelectedProjectType.Name, ProjectSetup.SelectedFramework.Name));
+           if (CheckProjectSetupChanged())
+            {
+                ProjectTemplates.ResetSelection();
+                Status = StatusControl.EmptyStatus;
+            }
+            
+            NavigationService.Navigate(new ProjectTemplatesView());
             _canGoBack = true;
             BackCommand.OnCanExecuteChanged();
             FinishContentVisibility = Visibility.Visible;
@@ -193,17 +212,30 @@ namespace Microsoft.Templates.UI.ViewModels
             NoFinishContentVisibility = Visibility.Visible;
         }
 
+        private bool CheckProjectSetupChanged()
+        {
+            if (ProjectTemplates.SavedTemplates != null && ProjectTemplates.SavedTemplates.Count != 0)
+            {
+                if (ProjectTemplates.ContextFramework.Name != ProjectSetup.SelectedFramework.Name || 
+                    ProjectTemplates.ContextProjectType.Name != ProjectSetup.SelectedProjectType.Name)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void OnCreate()
         {
-            var wizardState = new WizardState()
+            var userSelection = new UserSelection()
             {
                 ProjectType = ProjectSetup.SelectedProjectType.Name,
                 Framework = ProjectSetup.SelectedFramework.Name
             };
-            wizardState.Pages.AddRange(ProjectTemplates.SavedPages);
-            wizardState.Features.AddRange(ProjectTemplates.SavedFeatures);
+            userSelection.Pages.AddRange(ProjectTemplates.SavedPages);
+            userSelection.Features.AddRange(ProjectTemplates.SavedFeatures);
             _mainView.DialogResult = true;
-            _mainView.Result = wizardState;
+            _mainView.Result = userSelection;
             _mainView.Close();
         }
     }

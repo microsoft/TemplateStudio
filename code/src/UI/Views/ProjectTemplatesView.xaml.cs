@@ -9,14 +9,14 @@ namespace Microsoft.Templates.UI.Views
     public partial class ProjectTemplatesView : Page
     {
         public ProjectTemplatesViewModel ViewModel { get; }
-        public ProjectTemplatesView(string projectType, string framework)
+        public ProjectTemplatesView()
         {
             ViewModel = MainViewModel.Current.ProjectTemplates;
             DataContext = ViewModel;
 
             Loaded += async (sender, e) =>
             {
-                await ViewModel.IniatializeAsync(projectType, framework);
+                await ViewModel.IniatializeAsync();
             };
 
             InitializeComponent();            

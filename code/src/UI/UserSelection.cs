@@ -24,7 +24,7 @@ using Microsoft.Templates.Core.Mvvm;
 
 namespace Microsoft.Templates.UI
 {
-    public class WizardState
+    public class UserSelection
     {
         public string ProjectType { get; set; }
         public string Framework { get; set; }

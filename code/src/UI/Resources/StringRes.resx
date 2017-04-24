@@ -159,6 +159,12 @@
   <data name="ProjectSetupTitle" xml:space="preserve">
     <value>Select project type and framework</value>
   </data>
+  <data name="ResetSelection" xml:space="preserve">
+    <value>You have changed your project type or framework selection. If you continue you will lose all pages and features added previously. To conserve pages and features, you can go back to your original selection ({0}, {1}).</value>
+  </data>
+  <data name="ResetSelectionTitle" xml:space="preserve">
+    <value>Reset selection</value>
+  </data>
   <data name="StatusAdquired" xml:space="preserve">
     <value>Templates downloaded</value>
   </data>
