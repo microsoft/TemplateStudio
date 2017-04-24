@@ -159,7 +159,7 @@ Layout.json
 ]
 ```  
 
-## Export Parameters
+### Export Parameters
 A template can define an "export parameter" that will be handled by the `Composer` by extracting the replacemente parameter value from one template) and providing it as parameter to the following templates. Here is a sample of how an export parameter is defined:
 
   "tags": {
