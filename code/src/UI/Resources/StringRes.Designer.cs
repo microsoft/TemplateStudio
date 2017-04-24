@@ -196,6 +196,24 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have changed your project type or framework selection. If you continue you will lose all pages and features added previously. To conserve pages and features, you can go back to your original selection ({0}, {1})..
+        /// </summary>
+        public static string ResetSelection {
+            get {
+                return ResourceManager.GetString("ResetSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset selection.
+        /// </summary>
+        public static string ResetSelectionTitle {
+            get {
+                return ResourceManager.GetString("ResetSelectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Templates downloaded.
         /// </summary>
         public static string StatusAdquired {

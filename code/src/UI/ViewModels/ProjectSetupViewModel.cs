@@ -8,12 +8,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
     public class ProjectSetupViewModel : Observable
     {
+
         private string _projectTypesHeader;
         public string ProjectTypesHeader
         {
@@ -34,10 +36,13 @@ namespace Microsoft.Templates.UI.ViewModels
             get { return _selectedProjectType; }
             set
             {
+                var orgframework = _selectedFramework;
+
                 SetProperty(ref _selectedProjectType, value);
-                if (value!= null)
-                { 
-                    LoadFrameworks(value);
+                if (value != null)
+                {
+                    LoadFrameworks(value, orgframework);
+                    MainViewModel.Current.AlertProjectSetupChanged();
                 }
             }
         }
@@ -46,7 +51,13 @@ namespace Microsoft.Templates.UI.ViewModels
         public MetadataInfoViewModel SelectedFramework
         {
             get { return _selectedFramework; }
-            set { SetProperty(ref _selectedFramework, value); }
+            set {
+                SetProperty(ref _selectedFramework, value);
+                if (value != null)
+                {
+                    MainViewModel.Current.AlertProjectSetupChanged();
+                }
+            }
         }
 
         public ObservableCollection<MetadataInfoViewModel> ProjectTypes { get; } = new ObservableCollection<MetadataInfoViewModel>();
@@ -69,7 +80,7 @@ namespace Microsoft.Templates.UI.ViewModels
             await Task.CompletedTask;
         }
 
-        private void LoadFrameworks(MetadataInfoViewModel projectType)
+        private void LoadFrameworks(MetadataInfoViewModel projectType, MetadataInfoViewModel orgFramework)
         {
             var projectFrameworks = GetSupportedFx(projectType.Name);
 
@@ -83,7 +94,14 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 Frameworks.Add(framework);
             }
-            SelectedFramework = Frameworks.FirstOrDefault();
+
+            SelectedFramework = Frameworks.FirstOrDefault(f => f.Name == orgFramework?.Name);
+                
+            if (SelectedFramework == null)
+            {
+                SelectedFramework = Frameworks.FirstOrDefault();
+            }
+            
             FrameworkHeader = String.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
         }
 

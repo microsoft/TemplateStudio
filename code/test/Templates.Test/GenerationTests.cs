@@ -52,15 +52,15 @@ namespace Microsoft.Templates.Test
 
             using (var context = GenContext.CreateNew(projectName, Path.Combine(fixture.TestProjectsPath, projectName, projectName)))
             {
-                var wizardState = new WizardState
+                var userSelection = new UserSelection
                 {
                     Framework = framework,
                     ProjectType = projectTemplate.GetProjectType(),
                 };
 
-                AddLayoutItems(wizardState, projectTemplate);
+                AddLayoutItems(userSelection, projectTemplate);
 
-                await GenController.UnsafeGenerateAsync(wizardState);
+                await GenController.UnsafeGenerateAsync(userSelection);
 
                 //Build solution
                 var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);
@@ -86,16 +86,16 @@ namespace Microsoft.Templates.Test
 
             using (var context = GenContext.CreateNew(projectName, Path.Combine(fixture.TestProjectsPath, projectName, projectName)))
             {
-                var wizardState = new WizardState
+                var userSelection = new UserSelection
                 {
                     Framework = framework,
                     ProjectType = projectTemplate.GetProjectType(),
                 };
 
-                AddLayoutItems(wizardState, projectTemplate);
-                AddItem(wizardState, itemInferredName, itemTemplate);
+                AddLayoutItems(userSelection, projectTemplate);
+                AddItem(userSelection, itemInferredName, itemTemplate);
 
-                await GenController.UnsafeGenerateAsync(wizardState);
+                await GenController.UnsafeGenerateAsync(userSelection);
 
                 //Build solution
                 var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);
@@ -118,17 +118,17 @@ namespace Microsoft.Templates.Test
 
             using (var context = GenContext.CreateNew(projectName, Path.Combine(fixture.TestProjectsPath, projectName, projectName)))
             {
-                var wizardState = new WizardState
+                var userSelection = new UserSelection
                 {
                     Framework = framework,
                     ProjectType = targetProjectTemplate.GetProjectType(),
                 };
 
-                AddLayoutItems(wizardState, targetProjectTemplate);
-                AddItems(wizardState, GetTemplates(framework, TemplateType.Page));
-                AddItems(wizardState, GetTemplates(framework, TemplateType.Feature));
+                AddLayoutItems(userSelection, targetProjectTemplate);
+                AddItems(userSelection, GetTemplates(framework, TemplateType.Page));
+                AddItems(userSelection, GetTemplates(framework, TemplateType.Feature));
 
-                await GenController.UnsafeGenerateAsync(wizardState);
+                await GenController.UnsafeGenerateAsync(userSelection);
 
                 //Build solution
                 var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);
@@ -150,40 +150,40 @@ namespace Microsoft.Templates.Test
                                               t.GetTemplateType() == templateType);
         }
 
-        private void AddLayoutItems(WizardState wizardState, ITemplateInfo projectTemplate)
+        private void AddLayoutItems(UserSelection userSelection, ITemplateInfo projectTemplate)
         {
             var pages = new List<(string name, string templateName)>();
             var layouts = projectTemplate.GetLayout();
 
             foreach (var layoutItem in layouts)
             {
-                var template = GenerationTestsFixture.Templates.FirstOrDefault(t => t.GroupIdentity == layoutItem.templateGroupIdentity && t.GetFrameworkList().Any(f => f.Equals(wizardState.Framework, StringComparison.OrdinalIgnoreCase)));
+                var template = GenerationTestsFixture.Templates.FirstOrDefault(t => t.GroupIdentity == layoutItem.templateGroupIdentity && t.GetFrameworkList().Any(f => f.Equals(userSelection.Framework, StringComparison.OrdinalIgnoreCase)));
                 if (template == null)
                 {
                     throw new Exception($"Template {layoutItem.templateGroupIdentity} could not be found");
                 }
-                AddItem(wizardState, layoutItem.name, template);
+                AddItem(userSelection, layoutItem.name, template);
             }
         }
 
-        private void AddItems(WizardState wizardState, IEnumerable<ITemplateInfo> templates)
+        private void AddItems(UserSelection userSelection, IEnumerable<ITemplateInfo> templates)
         {
             foreach (var template in templates)
             {
                 var itemName = Naming.Infer(UsedNames, template.GetDefaultName());
-                AddItem(wizardState, itemName, template);
+                AddItem(userSelection, itemName, template);
             }
         }
 
-        private void AddItem(WizardState wizardState, string itemName, ITemplateInfo template)
+        private void AddItem(UserSelection userSelection, string itemName, ITemplateInfo template)
         {
             switch (template.GetTemplateType())
             {
                 case TemplateType.Page:
-                    wizardState.Pages.Add((itemName, template));
+                    userSelection.Pages.Add((itemName, template));
                     break;
                 case TemplateType.Feature:
-                    wizardState.Features.Add((itemName, template));
+                    userSelection.Features.Add((itemName, template));
                     break;
             }
             UsedNames.Add(itemName);

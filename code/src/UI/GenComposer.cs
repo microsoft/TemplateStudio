@@ -28,7 +28,7 @@ namespace Microsoft.Templates.UI
 {
     public class GenComposer
     {
-        public static IEnumerable<GenInfo> Compose(WizardState userSelection)
+        public static IEnumerable<GenInfo> Compose(UserSelection userSelection)
         {
             var genQueue = new List<GenInfo>();
 
@@ -48,7 +48,7 @@ namespace Microsoft.Templates.UI
             return genQueue;
         }
 
-        private static void AddProject(WizardState userSelection, List<GenInfo> genQueue)
+        private static void AddProject(UserSelection userSelection, List<GenInfo> genQueue)
         {
             var projectTemplate = GenContext.ToolBox.Repo
                                                         .Find(t => t.GetTemplateType() == TemplateType.Project

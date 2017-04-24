@@ -214,7 +214,7 @@
     <Compile Include="VisualStudio\VsGenShell.cs" />
     <Compile Include="VisualStudio\VsOutputPane.cs" />
     <Compile Include="VisualStudio\VsShellExtensions.cs" />
-    <Compile Include="WizardState.cs" />
+    <Compile Include="UserSelection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\TestKey.snk">

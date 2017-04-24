@@ -40,7 +40,7 @@ namespace Microsoft.Templates.UI
             AppHealth.Current.AddWriter(new ShellHealthWriter());
         }
 
-        public static WizardState GetUserSelection()
+        public static UserSelection GetUserSelection()
         {
             var mainView = new MainView();
 
@@ -73,7 +73,7 @@ namespace Microsoft.Templates.UI
             return null;
         }
 
-        public static async Task GenerateAsync(WizardState userSelection)
+        public static async Task GenerateAsync(UserSelection userSelection)
         {
             try
             {
@@ -89,7 +89,7 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        public static async Task UnsafeGenerateAsync(WizardState userSelection)
+        public static async Task UnsafeGenerateAsync(UserSelection userSelection)
         {
             var genItems = GenComposer.Compose(userSelection).ToList();
 
@@ -167,7 +167,7 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        private static void ShowError(Exception ex, WizardState userSelection = null)
+        private static void ShowError(Exception ex, UserSelection userSelection = null)
         {
             // TODO: Compleate
             throw new NotImplementedException();

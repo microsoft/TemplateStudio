@@ -35,7 +35,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 {
     public class SolutionWizard : IWizard, IDisposable
     {
-        private WizardState _userSelection;
+        private UserSelection _userSelection;
         private GenContext _context;
 
         public SolutionWizard()

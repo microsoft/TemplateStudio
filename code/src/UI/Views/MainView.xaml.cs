@@ -10,7 +10,7 @@ namespace Microsoft.Templates.UI.Views
     public partial class MainView : Window
     {
         public MainViewModel ViewModel { get; }
-        public WizardState Result { get; set; }
+        public UserSelection Result { get; set; }
 
         public MainView()
         {

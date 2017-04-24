@@ -127,6 +127,19 @@ namespace Microsoft.Templates.UI.ViewModels
             }
         }
 
+        public void AlertProjectSetupChanged()
+        {
+            if (CheckProjectSetupChanged())
+            {
+                Status = new StatusViewModel(StatusType.Warning, string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName));
+            }    
+            else
+            {
+                Status = StatusControl.EmptyStatus;
+            }   
+        }
+
+
         private string GetWizardVersion()
         {
             string assemblyLocation = Assembly.GetExecutingAssembly().Location;
@@ -156,7 +169,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
             if (status == SyncStatus.OverVersion)
             {
-                Status = new StatusViewModel(StatusType.Information, StringRes.StatusOverVersionContent);
+                Status = new StatusViewModel(StatusType.Warning, StringRes.StatusOverVersionContent);
             }
 
             if (status == SyncStatus.UnderVersion)
@@ -196,7 +209,13 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnNext()
         {
-            NavigationService.Navigate(new ProjectTemplatesView(ProjectSetup.SelectedProjectType.Name, ProjectSetup.SelectedFramework.Name));
+           if (CheckProjectSetupChanged())
+            {
+                ProjectTemplates.ResetSelection();
+                Status = StatusControl.EmptyStatus;
+            }
+            
+            NavigationService.Navigate(new ProjectTemplatesView());
             _canGoBack = true;
             BackCommand.OnCanExecuteChanged();
             CreateButtonVisibility = Visibility.Visible;
@@ -212,17 +231,30 @@ namespace Microsoft.Templates.UI.ViewModels
             NextButtonVisibility = Visibility.Visible;
         }
 
+        private bool CheckProjectSetupChanged()
+        {
+            if (ProjectTemplates.SavedTemplates != null && ProjectTemplates.SavedTemplates.Count != 0)
+            {
+                if (ProjectTemplates.ContextFramework.Name != ProjectSetup.SelectedFramework.Name || 
+                    ProjectTemplates.ContextProjectType.Name != ProjectSetup.SelectedProjectType.Name)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void OnCreate()
         {
-            var wizardState = new WizardState()
+            var userSelection = new UserSelection()
             {
                 ProjectType = ProjectSetup.SelectedProjectType.Name,
                 Framework = ProjectSetup.SelectedFramework.Name
             };
-            wizardState.Pages.AddRange(ProjectTemplates.SavedPages);
-            wizardState.Features.AddRange(ProjectTemplates.SavedFeatures);
+            userSelection.Pages.AddRange(ProjectTemplates.SavedPages);
+            userSelection.Features.AddRange(ProjectTemplates.SavedFeatures);
             _mainView.DialogResult = true;
-            _mainView.Result = wizardState;
+            _mainView.Result = userSelection;
             _mainView.Close();
         }
     }

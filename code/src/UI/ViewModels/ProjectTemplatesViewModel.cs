@@ -13,6 +13,9 @@ namespace Microsoft.Templates.UI.ViewModels
 {
     public class ProjectTemplatesViewModel : Observable
     {
+        public MetadataInfoViewModel ContextFramework { get; set; }
+        public MetadataInfoViewModel ContextProjectType { get; set; }
+
         private string _pagesHeader;
         public string PagesHeader
         {
@@ -49,11 +52,14 @@ namespace Microsoft.Templates.UI.ViewModels
         public Func<IEnumerable<string>> GetUsedTemplatesIdentitiesFunc => () => SavedTemplates.Select(t => t.Template.Identity);
 
 
-        public async Task IniatializeAsync(string projectTypeName, string frameworkName)
+        public async Task IniatializeAsync()
         {
+            ContextProjectType = MainViewModel.Current.ProjectSetup.SelectedProjectType;
+            ContextFramework = MainViewModel.Current.ProjectSetup.SelectedFramework;
+            
             if (Pages.Count == 0)
             {
-                var pageTemplates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page && t.GetFrameworkList().Contains(frameworkName))
+                var pageTemplates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page && t.GetFrameworkList().Contains(ContextFramework.Name))
                                                             .Select(t => new TemplateInfoViewModel(t, GenContext.ToolBox.Repo.GetDependencies(t)))
                                                             .OrderBy(t => t.Order)
                                                             .ToList();
@@ -67,7 +73,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
             if (Features.Count == 0)
             {
-                var featureTemplates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Feature && t.GetFrameworkList().Contains(frameworkName))
+                var featureTemplates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Feature && t.GetFrameworkList().Contains(ContextFramework.Name))
                                                             .Select(t => new TemplateInfoViewModel(t, GenContext.ToolBox.Repo.GetDependencies(t)))
                                                             .OrderBy(t => t.Order)
                                                             .ToList();
@@ -80,10 +86,18 @@ namespace Microsoft.Templates.UI.ViewModels
 
             if (SavedTemplates == null || SavedTemplates.Count == 0)
             {
-                AddFromLayout(projectTypeName, frameworkName);
+                AddFromLayout(ContextProjectType.Name, ContextFramework.Name);
             }
 
             await Task.CompletedTask;
+        }
+
+        internal void ResetSelection()
+        {
+            SummaryPages.Clear();
+            SummaryFeatures.Clear();
+            SavedTemplates.Clear();
+            
         }
 
         private void AddFromLayout(string projectTypeName, string frameworkName)
