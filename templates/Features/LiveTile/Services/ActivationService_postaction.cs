@@ -1,7 +1,7 @@
 using System;
-using RootNamespace.Helpers;
+using Param_RootNamespace.Helpers;
 
-namespace ItemNamespace.Services
+namespace Param_ItemNamespace.Services
 {
     internal class ActivationService
     {

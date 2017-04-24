@@ -15,7 +15,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Models\\ShellNavigationItem.cs"
+      "path": ".\\ViewModels\\ShellNavigationItem.cs"
     },
     {
       "path": ".\\ViewModels\\ShellViewModel.cs"
@@ -28,13 +28,13 @@
     }
   ],
   "symbols": {
-    "rootNamespace": {
+    "wts.rootNamespace": {
       "type": "parameter",
-      "replaces": "RootNamespace"
+      "replaces": "Param_RootNamespace"
     },
-    "itemNamespace": {
+    "wts.itemNamespace": {
       "type": "parameter",
-      "replaces": "ItemNamespace"
+      "replaces": "Param_ItemNamespace"
     }
   }
 }

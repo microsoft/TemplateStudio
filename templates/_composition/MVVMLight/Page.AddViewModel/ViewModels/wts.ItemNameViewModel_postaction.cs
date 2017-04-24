@@ -1,5 +1,5 @@
 using GalaSoft.MvvmLight;
 
-namespace ItemNamespace.ViewModels
+namespace Param_ItemNamespace.ViewModels
 {
 }

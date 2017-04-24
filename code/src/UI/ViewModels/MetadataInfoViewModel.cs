@@ -19,6 +19,13 @@ namespace Microsoft.Templates.UI.ViewModels
             set => SetProperty(ref _displayName, value);
         }
 
+        private string _summary;
+        public string Summary
+        {
+            get => _summary;
+            set => SetProperty(ref _summary, value);
+        }
+
         private string _description;
         public string Description
         {
@@ -48,7 +55,8 @@ namespace Microsoft.Templates.UI.ViewModels
             }
             Name = metadataInfo.Name;
             DisplayName = metadataInfo.DisplayName;
-            Description = metadataInfo.Summary;//Description; TODO: Review with Javi
+            Summary = metadataInfo.Summary;
+            Description = metadataInfo.Description;
             Author = metadataInfo.Author;
             Icon = metadataInfo.Icon;
         }

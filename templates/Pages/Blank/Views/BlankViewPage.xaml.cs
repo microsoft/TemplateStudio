@@ -1,6 +1,6 @@
 using Windows.UI.Xaml.Controls;
 
-namespace ItemNamespace.Views
+namespace Param_ItemNamespace.Views
 {
     public sealed partial class BlankViewPage : Page
     {

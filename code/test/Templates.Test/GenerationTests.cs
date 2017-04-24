@@ -74,6 +74,41 @@ namespace Microsoft.Templates.Test
             }
         }
 
+        
+        [Theory , MemberData("GetPageAndFeatureTemplates"), Trait("Type", "OneByOneItemGeneration")]
+        public async void GenerateProjectWithIsolatedItems(string itemName, string name, string framework, string projId, string itemId)
+        {
+            var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
+            var itemTemplate = GenerationTestsFixture.Templates.FirstOrDefault(t => t.Identity == itemId);
+            var itemInferredName = Naming.Infer(UsedNames, itemTemplate.GetDefaultName());
+
+            var projectName = $"{name}{framework}{itemInferredName}";
+
+            using (var context = GenContext.CreateNew(projectName, Path.Combine(fixture.TestProjectsPath, projectName, projectName)))
+            {
+                var wizardState = new WizardState
+                {
+                    Framework = framework,
+                    ProjectType = projectTemplate.GetProjectType(),
+                };
+
+                AddLayoutItems(wizardState, projectTemplate);
+                AddItem(wizardState, itemInferredName, itemTemplate);
+
+                await GenController.UnsafeGenerateAsync(wizardState);
+
+                //Build solution
+                var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);
+                var result = BuildSolution(projectName, outputPath);
+
+                //Assert
+                Assert.True(result.exitCode.Equals(0), $"Solution {projectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
+
+                //Clean
+                Directory.Delete(outputPath, true);
+            }
+        }
+
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
         public async void GenerateAllPagesAndFeatures(string name, string framework, string projId)
         {
@@ -161,7 +196,24 @@ namespace Microsoft.Templates.Test
             {
                 foreach (var framework in template.GetFrameworkList())
                 {
-                    yield return new object[] { template.Name,  framework, template.Identity };
+                    yield return new object[] { template.Name, framework, template.Identity };
+                }
+            }
+        }
+
+        public static IEnumerable<object[]> GetPageAndFeatureTemplates()
+        {
+            var projectTemplates = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project);
+            foreach (var template in projectTemplates)
+            {
+                foreach (var framework in template.GetFrameworkList())
+                {
+                    var itemTemplates = GenerationTestsFixture.Templates.Where(t => t.GetFrameworkList().Contains(framework) && t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature);
+
+                    foreach (var itemTemplate in itemTemplates)
+                    {
+                        yield return new object[] { itemTemplate.Name, template.Name, framework, template.Identity,  itemTemplate.Identity };
+                    }
                 }
             }
         }

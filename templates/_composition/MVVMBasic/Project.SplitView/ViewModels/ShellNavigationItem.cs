@@ -1,13 +1,12 @@
-﻿using ItemNamespace.Helpers;
+﻿using Param_ItemNamespace.Helpers;
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using Windows.UI.Xaml.Media;
 
-namespace wts.ItemName.Models
+namespace wts.ItemName.ViewModels
 {
-    public class ShellNavigationItem : INotifyPropertyChanged
+    public class ShellNavigationItem : Observable
     {
         private bool _isSelected;
 
@@ -16,6 +15,16 @@ namespace wts.ItemName.Models
         {
             get { return _selectedVis; }
             set { Set(ref _selectedVis, value); }
+        }
+
+        private SolidColorBrush _selectedForeground = null;
+        public SolidColorBrush SelectedForeground
+        {
+            get
+            {
+                return _selectedForeground ?? (_selectedForeground = GetStandardTextColorBrush());
+            }
+            set { Set(ref _selectedForeground, value); }
         }
 
         public string Label { get; set; }
@@ -30,7 +39,17 @@ namespace wts.ItemName.Models
             {
                 Set(ref _isSelected, value);
                 SelectedVis = value ? Visibility.Visible : Visibility.Collapsed;
+                SelectedForeground = value
+                    ? Application.Current.Resources["SystemControlForegroundAccentBrush"] as SolidColorBrush
+                    : GetStandardTextColorBrush();
             }
+        }
+
+        private SolidColorBrush GetStandardTextColorBrush()
+        {
+            var result = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
+
+            return result;
         }
 
         private ShellNavigationItem(string name, Symbol symbol, Type pageType)
@@ -44,20 +63,5 @@ namespace wts.ItemName.Models
         {
             return new ShellNavigationItem(name, symbol, typeof(T));
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
-        {
-            if (Equals(storage, value))
-            {
-                return;
-            }
-
-            storage = value;
-            OnPropertyChanged(propertyName);
-        }
-
-        private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

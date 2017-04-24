@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Background;
 
-using RootNamespace.Activation;
-using RootNamespace.BackgroundTasks;
-using RootNamespace.Helpers;
+using Param_RootNamespace.Activation;
+using Param_RootNamespace.BackgroundTasks;
+using Param_RootNamespace.Helpers;
 
-namespace ItemNamespace.Services
+namespace Param_ItemNamespace.Services
 {
     internal class BackgroundTaskService : ActivationHandler<BackgroundActivatedEventArgs>
     {
@@ -31,7 +31,8 @@ namespace ItemNamespace.Services
         {
             if (!BackgroundTaskRegistration.AllTasks.Any(t => t.Value.Name == typeof(T).Name))
             {
-                //TODO: Handle this condition
+                // This condition should not be met, if so it means the background task was not registered correctly.
+                // Please check CreateInstances to see if the background task was properly added to the BackgroundTasks property.
                 return null;
             }
             return (BackgroundTaskRegistration)BackgroundTaskRegistration.AllTasks.FirstOrDefault(t => t.Value.Name == typeof(T).Name).Value;
@@ -43,7 +44,8 @@ namespace ItemNamespace.Services
 
             if (task == null)
             {
-                //TODO: Handle this condition
+                // This condition should not be met, if so it means the background task to start was not found in the background tasks managed by this service. 
+                // Please check CreateInstances to see if the background task was properly added to the BackgroundTasks property.
                 return;
             }
 

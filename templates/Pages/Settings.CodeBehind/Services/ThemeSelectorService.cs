@@ -1,14 +1,16 @@
 using System;
 using Windows.Storage;
 using Windows.UI.Xaml;
-using RootNamespace.Helpers;
+using Param_RootNamespace.Helpers;
 using System.Threading.Tasks;
 
-namespace RootNamespace.Services
+namespace Param_RootNamespace.Services
 {
     public static class ThemeSelectorService
     {
         private const string SettingsKey = "RequestedTheme";
+
+        public static event EventHandler<ElementTheme> OnThemeChanged = delegate { };
 
         public static bool IsLightThemeEnabled => Theme == ElementTheme.Light;
         public static ElementTheme Theme { get; set; }
@@ -35,6 +37,7 @@ namespace RootNamespace.Services
             Theme = theme;
             SetRequestedTheme();
             await SaveThemeInSettingsAsync(Theme);
+            OnThemeChanged(null, Theme);
         }
 
         public static void SetRequestedTheme()

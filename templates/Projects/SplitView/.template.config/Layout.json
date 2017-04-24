@@ -3,5 +3,10 @@
         "name": "Main",
         "templateGroupIdentity": "wts.Page.Blank",
         "readonly": "true"
-    }    
+    },
+    {
+        "name": "Settings",
+        "templateGroupIdentity": "wts.Page.Settings",
+        "readonly": "true"
+    }
 ]

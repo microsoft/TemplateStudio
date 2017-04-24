@@ -1,12 +1,10 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using System.Windows.Input;
-using ItemNamespace.Helpers;
-using ItemNamespace.Models;
-using ItemNamespace.Services;
+using Param_ItemNamespace.Models;
+using Param_ItemNamespace.Services;
 
-namespace ItemNamespace.Views
+namespace Param_ItemNamespace.Views
 {
     public sealed partial class MasterDetailDetailPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
@@ -17,11 +15,8 @@ namespace ItemNamespace.Views
             set { Set(ref _item, value); }
         }
 
-        public ICommand StateChangedCommand { get; private set; }
-
         public MasterDetailDetailPage()
         {
-            Initialize();
             InitializeComponent();
         }
 
@@ -30,14 +25,9 @@ namespace ItemNamespace.Views
             Item = e.Parameter as SampleModel;
         }
 
-        private void Initialize()
+        private void WindowStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
         {
-            StateChangedCommand = new RelayCommand<VisualStateChangedEventArgs>(OnStateChanged);
-        }
-
-        private void OnStateChanged(VisualStateChangedEventArgs args)
-        {
-            if (args.OldState == NarrowState && args.NewState == WideState)
+            if (e.OldState == NarrowState && e.NewState == WideState)
             {
                 NavigationService.GoBack();
             }

@@ -1,5 +1,5 @@
 using Microsoft.Practices.ServiceLocation;
-namespace ItemNamespace.Services
+namespace Param_ItemNamespace.Services
 {
     internal class SuspendAndResumeService : ActivationHandler<LaunchActivatedEventArgs>
     {

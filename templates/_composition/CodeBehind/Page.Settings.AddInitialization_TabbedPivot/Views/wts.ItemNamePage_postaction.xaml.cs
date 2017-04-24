@@ -1,5 +1,5 @@
 using Windows.UI.Xaml;
-namespace ItemNamespace.Views
+namespace Param_ItemNamespace.Views
 {
     public sealed partial class wts.ItemNamePage : Page, INotifyPropertyChanged
     {
@@ -12,7 +12,7 @@ namespace ItemNamespace.Views
         //{[{
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            AppDescription = GetAppDescription();
+            Initialize();
         }
         //}]}
     }

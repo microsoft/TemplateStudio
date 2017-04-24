@@ -2,7 +2,7 @@ using System;
 
 using Windows.ApplicationModel;
 
-namespace RootNamespace
+namespace Param_RootNamespace
 {
     sealed partial class App : Application
     {

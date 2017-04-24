@@ -1,10 +1,8 @@
 using Windows.UI.Xaml.Controls;
-using System.Windows.Input;
-using ItemNamespace.Services;
-using ItemNamespace.Helpers;
+using Param_ItemNamespace.Services;
 using Windows.ApplicationModel;
 
-namespace ItemNamespace.Views
+namespace Param_ItemNamespace.Views
 {
     public sealed partial class SettingsPagePage : Page, System.ComponentModel.INotifyPropertyChanged
     {
@@ -25,18 +23,15 @@ namespace ItemNamespace.Views
             set { Set(ref _appDescription, value); }
         }
 
-        public ICommand SwitchThemeCommand { get; private set; }
-
         public SettingsPagePage()
         {
-            Initialize();
             InitializeComponent();
         }
 
         private void Initialize()
         {
             IsLightThemeEnabled = ThemeSelectorService.IsLightThemeEnabled;
-            SwitchThemeCommand = new RelayCommand(async () => { await ThemeSelectorService.SwitchThemeAsync(); });
+            AppDescription = GetAppDescription();
         }
 
         private string GetAppDescription()
@@ -46,6 +41,19 @@ namespace ItemNamespace.Views
             var version = packageId.Version;
 
             return $"{package.DisplayName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+        }
+
+        private async void ThemeToggle_Toggled(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            //Only switch theme if value has changed (not on initialization)
+            var toggleSwitch = sender as ToggleSwitch;
+            if (toggleSwitch != null)
+            {
+                if (toggleSwitch.IsOn != ThemeSelectorService.IsLightThemeEnabled)
+                {
+                    await ThemeSelectorService.SwitchThemeAsync();
+                }
+            }
         }
     }
 }

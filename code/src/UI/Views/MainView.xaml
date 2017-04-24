@@ -42,7 +42,11 @@
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
             <Grid Background="{StaticResource UILightGray}" VerticalAlignment="Stretch" HorizontalAlignment="Right" Width="17"/>
-            <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden" />
+            <Grid Visibility="{Binding LoadingContentVisibility}">
+                <TextBlock Text="{x:Static res:StringRes.LoadingTemplatesText}" Style="{StaticResource TextTemplateAuthorStyle}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+            <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden"/>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -53,14 +57,14 @@
                 </Grid.RowDefinitions>
                 <TextBlock Text="{x:Static res:StringRes.SummaryTitle}" Style="{StaticResource TextTemplateTitleStyle}" Margin="{StaticResource MediumMargin}"/>
                 <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}"/>
-                <ScrollViewer Grid.Row="2">
+                <ScrollViewer Grid.Row="2" Visibility="{Binding LoadedContentVisibility}">
                     <StackPanel Margin="{StaticResource MediumMargin}">
                         <StackPanel Margin="{StaticResource ExtraBigLeftMargin}" DataContext="{Binding ProjectSetup.SelectedProjectType}">
                             <TextBlock Text="{x:Static res:StringRes.SummaryProjectTypeTitle}" Style="{StaticResource TextTemplateTitleStyle}"/>
-                            <TextBlock Text="{Binding DisplayName, FallbackValue=Blank}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
+                            <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
                             <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
                                 <TextBlock.Text>
-                                    <MultiBinding StringFormat="Made by {0}" FallbackValue="Made by Microsoft">
+                                    <MultiBinding StringFormat="Made by {0}">
                                         <Binding Path="Author" />
                                     </MultiBinding>
                                 </TextBlock.Text>
@@ -69,10 +73,10 @@
                         <Grid Margin="{StaticResource MediumTopMargin}">
                             <StackPanel Margin="{StaticResource ExtraBigLeftMargin}" DataContext="{Binding ProjectSetup.SelectedFramework}">
                                 <TextBlock Text="{x:Static res:StringRes.SummaryFrameworkTitle}" Style="{StaticResource TextTemplateTitleStyle}"/>
-                                <TextBlock Text="{Binding DisplayName, FallbackValue='MVVM Basic'}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
+                                <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
                                 <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
                                     <TextBlock.Text>
-                                        <MultiBinding StringFormat="Made by {0}" FallbackValue="Made by Microsoft">
+                                        <MultiBinding StringFormat="Made by {0}">
                                             <Binding Path="Author" />
                                         </MultiBinding>
                                     </TextBlock.Text>
@@ -106,8 +110,8 @@
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0" Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonCancel}" Command="{Binding CancelCommand}" />
                     <Button Grid.Column="1" Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonBack}" Command="{Binding BackCommand}" />
-                    <Button Grid.Column="2" Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonNext}" Command="{Binding NextCommand}" Visibility="{Binding NoFinishContentVisibility}" />
-                    <Button Grid.Column="2" Style="{StaticResource ButtonFinishStyle}" Content="{x:Static res:StringRes.ButtonCreate}" Command="{Binding CreateCommand}" Visibility="{Binding FinishContentVisibility}" />
+                    <Button Grid.Column="2" Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonNext}" Command="{Binding NextCommand}" Visibility="{Binding NextButtonVisibility}" />
+                    <Button Grid.Column="2" Style="{StaticResource ButtonFinishStyle}" Content="{x:Static res:StringRes.ButtonCreate}" Command="{Binding CreateCommand}" Visibility="{Binding CreateButtonVisibility}" />
                 </Grid>
             </Grid>
         </Grid>

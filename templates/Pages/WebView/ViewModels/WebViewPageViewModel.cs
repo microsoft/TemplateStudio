@@ -1,6 +1,6 @@
 using System;
 
-namespace ItemNamespace.ViewModels
+namespace Param_ItemNamespace.ViewModels
 {
     public class WebViewPageViewModel : System.ComponentModel.INotifyPropertyChanged
     {

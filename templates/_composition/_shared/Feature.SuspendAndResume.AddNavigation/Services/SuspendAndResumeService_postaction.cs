@@ -1,6 +1,6 @@
 using System.Reflection;
 using Windows.UI.Xaml.Controls;
-namespace ItemNamespace.Services
+namespace Param_ItemNamespace.Services
 {
     internal class SuspendAndResumeService : ActivationHandler<LaunchActivatedEventArgs>
     {

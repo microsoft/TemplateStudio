@@ -5,7 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 
-namespace RootNamespace.Services
+namespace Param_RootNamespace.Services
 {
     public class NavigationServiceEx
     {
@@ -29,8 +29,6 @@ namespace RootNamespace.Services
             }
         }
 
-        public EventHandler<string> Navigated;
-
         public bool CanGoBack => Frame.CanGoBack;
         public bool CanGoForward => Frame.CanGoForward;
 
@@ -46,7 +44,6 @@ namespace RootNamespace.Services
                     throw new ArgumentException($"Page not found: {pageKey}. Did you forget to call NavigationService.Configure?", "pageKey");
                 }
                 var navigationResult = Frame.Navigate(_pages[pageKey], parameter, infoOverride);
-                Navigated?.Invoke(this, pageKey);
                 return navigationResult;
             }
         }
@@ -66,6 +63,21 @@ namespace RootNamespace.Services
                 }
 
                 _pages.Add(key, pageType);
+            }
+        }
+
+        public string GetNameOfRegisteredPage(Type page)
+        {
+            lock (_pages)
+            {
+                if (_pages.ContainsValue(page))
+                {
+                    return _pages.FirstOrDefault(p => p.Value == page).Key;
+                }
+                else
+                {
+                    throw new ArgumentException($"The page '{page.Name}' is unknown by the NavigationService");
+                }
             }
         }
     }

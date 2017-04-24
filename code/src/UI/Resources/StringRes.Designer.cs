@@ -178,6 +178,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading available templates....
+        /// </summary>
+        public static string LoadingTemplatesText {
+            get {
+                return ResourceManager.GetString("LoadingTemplatesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select project type and framework.
         /// </summary>
         public static string ProjectSetupTitle {
@@ -241,7 +250,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is templates content available with higher version than the wizard. Consider to update the extension to access the latest content..
+        ///   Looks up a localized string similar to An update to the templates is available. Update the extension to get the latest content..
         /// </summary>
         public static string StatusOverVersionContent {
             get {
@@ -340,6 +349,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Windows Template Studio: {0}.
+        /// </summary>
+        public static string UIMessageBoxTitlePattern {
+            get {
+                return ResourceManager.GetString("UIMessageBoxTitlePattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name already exists.
         /// </summary>
         public static string ValidationError_AlreadyExists {
@@ -354,6 +372,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ValidationError_BadFormat {
             get {
                 return ResourceManager.GetString("ValidationError_BadFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can not remove {0} because {1} {2} depends on it..
+        /// </summary>
+        public static string ValidationError_CanNotRemoveTemplate_SF {
+            get {
+                return ResourceManager.GetString("ValidationError_CanNotRemoveTemplate_SF", resourceCulture);
             }
         }
         
