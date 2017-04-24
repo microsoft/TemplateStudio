@@ -86,16 +86,16 @@ namespace Microsoft.Templates.Test
 
             using (var context = GenContext.CreateNew(projectName, Path.Combine(fixture.TestProjectsPath, projectName, projectName)))
             {
-                var wizardState = new WizardState
+                var userSelection = new UserSelection
                 {
                     Framework = framework,
                     ProjectType = projectTemplate.GetProjectType(),
                 };
 
-                AddLayoutItems(wizardState, projectTemplate);
-                AddItem(wizardState, itemInferredName, itemTemplate);
+                AddLayoutItems(userSelection, projectTemplate);
+                AddItem(userSelection, itemInferredName, itemTemplate);
 
-                await GenController.UnsafeGenerateAsync(wizardState);
+                await GenController.UnsafeGenerateAsync(userSelection);
 
                 //Build solution
                 var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);
