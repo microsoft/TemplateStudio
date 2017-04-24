@@ -99,7 +99,7 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        private static void AddCompositionTemplates(List<GenInfo> genQueue, WizardState userSelection)
+        private static void AddCompositionTemplates(List<GenInfo> genQueue, UserSelection userSelection)
         {
             var compositionCatalog = GetCompositionCatalog().ToList();
 
