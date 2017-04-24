@@ -192,10 +192,10 @@ namespace Microsoft.Templates.Test
             allTemplates.AddRange(userSelection.Pages.Select(p => p.template));
             allTemplates.AddRange(userSelection.Features.Select(f => f.template));
 
-            var newTemplates = GenComposer.GetNewDependencies(template, allTemplates);
+            var newTemplates = GenComposer.GetNotAddedDependencies(template, allTemplates);
             foreach (var newTemplate in newTemplates)
             {
-                AddItem(userSelection, newTemplate.Name, newTemplate);
+                AddItem(userSelection, newTemplate.GetDefaultName(), newTemplate);
             }
         }
 

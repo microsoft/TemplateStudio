@@ -69,13 +69,13 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        public static List<ITemplateInfo> GetNewDependencies(ITemplateInfo template, List<ITemplateInfo> savedTemplates)
+        public static List<ITemplateInfo> GetNotAddedDependencies(ITemplateInfo template, List<ITemplateInfo> currentTemplates)
         {
             List<ITemplateInfo> newTemplates = new List<ITemplateInfo>(); ;
             var dependencies = template.GetDependencyList();
             foreach (var dependency in dependencies)
             {
-                if (!savedTemplates.Any(t => t.Identity == dependency))
+                if (!currentTemplates.Any(t => t.Identity == dependency))
                 {
                     var dependencyTemplate = GenContext.ToolBox.Repo.Find(t => t.Identity == dependency);
                     newTemplates.Add(dependencyTemplate);

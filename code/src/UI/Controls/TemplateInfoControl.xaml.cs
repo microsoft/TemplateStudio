@@ -114,7 +114,7 @@ namespace Microsoft.Templates.UI.Controls
         private void OnAddClicked(object sender, RoutedEventArgs e)
         {
             var names = GetUsedNames.Invoke();
-            NewTemplateName = Core.Naming.Infer(names, TemplateInfo.Name);
+            NewTemplateName = Core.Naming.Infer(names, TemplateInfo.Template.GetDefaultName());
 
             if (TemplateInfo.Template.GetTemplateType() == TemplateType.Page || TemplateInfo.MultipleInstances)
             {
