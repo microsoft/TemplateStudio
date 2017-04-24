@@ -162,6 +162,7 @@ Layout.json
 ### Export Parameters
 A template can define an "export parameter" that will be handled by the `Composer` by extracting the replacemente parameter value from one template) and providing it as parameter to the following templates. Here is a sample of how an export parameter is defined:
 
+``` json
   "tags": {
     "language": "C#",
     "type": "item",
@@ -171,7 +172,8 @@ A template can define an "export parameter" that will be handled by the `Compose
     "wts.export.baseclass": "Observable",
     "wts.export.setter": "Set"
   },
-This template is defining two export parameters "baseclass" and "setter". Those params will be provided to the following templates. Those export parameter allow to have the same code base for MVVMLight and MVVMBasic in that case.
+```
+This template is defining two export parameters **baseclass** and **setter**. Those params will be provided to the following templates. Those export parameter allow to have the same code base for MVVMLight and MVVMBasic in that case.
 
 ## Composable Templates
 
