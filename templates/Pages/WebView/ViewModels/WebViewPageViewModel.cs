@@ -122,6 +122,62 @@ namespace Param_ItemNamespace.ViewModels
             _webView?.Refresh();
         }
 
+        private ICommand _browserBackCommand;
+        public ICommand BrowserBackCommand
+        {
+            get
+            {
+                if (_browserBackCommand == null)
+                {
+                    _browserBackCommand = new RelayCommand(() => _webView?.GoBack(), () => _webView?.CanGoBack ?? false);
+                }
+
+                return _browserBackCommand;
+            }
+        }
+
+        private ICommand _browserForwardCommand;
+        public ICommand BrowserForwardCommand
+        {
+            get
+            {
+                if (_browserForwardCommand == null)
+                {
+                    _browserForwardCommand = new RelayCommand(() => _webView?.GoForward(), () => _webView?.CanGoForward ?? false);
+                }
+
+                return _browserForwardCommand;
+            }
+        }
+
+        private ICommand _refreshCommand;
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                if (_refreshCommand == null)
+                {
+                    _refreshCommand = new RelayCommand(() => _webView?.Refresh());
+                }
+
+                return _refreshCommand;
+            }
+        }
+
+        private ICommand _openInBrowserCommand;
+        public ICommand OpenInBrowserCommand
+        {
+            get
+            {
+                if (_openInBrowserCommand == null)
+                {
+                    _openInBrowserCommand = new RelayCommand(async () => await Windows.System.Launcher.LaunchUriAsync(Source));
+                }
+
+                return _openInBrowserCommand;
+            }
+        }
+
         private WebView _webView;
 
         public WebViewPageViewModel()

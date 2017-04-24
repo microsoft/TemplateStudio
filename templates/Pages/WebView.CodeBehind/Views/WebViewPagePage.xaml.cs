@@ -63,6 +63,8 @@ namespace Param_ItemNamespace.Views
         private void OnNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
         {
             IsLoading = false;
+            OnPropertyChanged(nameof(IsBackEnabled));
+            OnPropertyChanged(nameof(IsForwardEnabled));
         }
 
         private void OnNavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
@@ -77,6 +79,36 @@ namespace Param_ItemNamespace.Views
             IsLoading = true;
 
             webView.Refresh();
+        }
+
+        public bool IsBackEnabled
+        {
+            get { return webView.CanGoBack; }
+        }
+
+        public bool IsForwardEnabled
+        {
+            get { return webView.CanGoForward; }
+        }
+
+        private void OnGoBack(object sender, RoutedEventArgs e)
+        {
+            webView.GoBack();
+        }
+
+        private void OnGoForward(object sender, RoutedEventArgs e)
+        {
+            webView.GoForward();
+        }
+
+        private void OnRefresh(object sender, RoutedEventArgs e)
+        {
+            webView.Refresh();
+        }
+
+        private async void OnOpenInBrowser(object sender, RoutedEventArgs e)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(webView.Source);
         }
 
         public WebViewPagePage()
