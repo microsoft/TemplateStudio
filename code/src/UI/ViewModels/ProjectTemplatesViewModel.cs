@@ -118,7 +118,11 @@ namespace Microsoft.Templates.UI.ViewModels
         private void OnAddItem((string Name, ITemplateInfo Template) item, bool isRemoveEnabled = true)
         {
             SaveNewTemplate(item);
-            GenComposer.AddMissingDependencies(item.Template, SavedTemplates, ((string, ITemplateInfo) newItem) => { SaveNewTemplate(newItem); });            
+            var newTemplates = GenComposer.GetNewDependencies(item.Template, SavedTemplates.Select(s => s.Template).ToList());
+            foreach (var newTemplate in newTemplates)
+            {
+                OnAddItem((newTemplate.Name, newTemplate));
+            }
         }
 
 

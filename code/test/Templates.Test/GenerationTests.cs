@@ -187,6 +187,16 @@ namespace Microsoft.Templates.Test
                     break;
             }
             UsedNames.Add(itemName);
+
+            List<ITemplateInfo> allTemplates = new List<ITemplateInfo>();
+            allTemplates.AddRange(userSelection.Pages.Select(p => p.template));
+            allTemplates.AddRange(userSelection.Features.Select(f => f.template));
+
+            var newTemplates = GenComposer.GetNewDependencies(template, allTemplates);
+            foreach (var newTemplate in newTemplates)
+            {
+                AddItem(userSelection, newTemplate.Name, newTemplate);
+            }
         }
 
         public static IEnumerable<object[]> GetProjectTemplates()

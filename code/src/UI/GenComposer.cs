@@ -69,18 +69,19 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        public static void AddMissingDependencies(ITemplateInfo template, List<(string Name, ITemplateInfo Template)> savedTemplates, Action<(string, ITemplateInfo)> saveDependency)
+        public static List<ITemplateInfo> GetNewDependencies(ITemplateInfo template, List<ITemplateInfo> savedTemplates)
         {
+            List<ITemplateInfo> newTemplates = new List<ITemplateInfo>(); ;
             var dependencies = template.GetDependencyList();
             foreach (var dependency in dependencies)
             {
-                if (!savedTemplates.Any(st => st.Template.Identity == dependency))
+                if (!savedTemplates.Any(t => t.Identity == dependency))
                 {
                     var dependencyTemplate = GenContext.ToolBox.Repo.Find(t => t.Identity == dependency);
-                    (string, ITemplateInfo) newItem = (dependencyTemplate.Name, dependencyTemplate);
-                    saveDependency.Invoke(newItem);
+                    newTemplates.Add(dependencyTemplate);
                 }
             }
+            return newTemplates;
         }
 
         public static void AddMissingLicences(ITemplateInfo template, ObservableCollection<SummaryLicenceViewModel> summaryLicences)
@@ -99,7 +100,7 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        private static void AddCompositionTemplates(List<GenInfo> genQueue, WizardState userSelection)
+        private static void AddCompositionTemplates(List<GenInfo> genQueue, UserSelection userSelection)
         {
             var compositionCatalog = GetCompositionCatalog().ToList();
 
