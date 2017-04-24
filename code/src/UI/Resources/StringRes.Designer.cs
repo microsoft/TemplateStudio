@@ -178,6 +178,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading available templates....
+        /// </summary>
+        public static string LoadingTemplatesText {
+            get {
+                return ResourceManager.GetString("LoadingTemplatesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select project type and framework.
         /// </summary>
         public static string ProjectSetupTitle {

@@ -156,6 +156,9 @@
   <data name="GroupProjectTypeHeader_SF" xml:space="preserve">
     <value>Project Type ({0}) - Pick one</value>
   </data>
+  <data name="LoadingTemplatesText" xml:space="preserve">
+    <value>Loading available templates...</value>
+  </data>
   <data name="ProjectSetupTitle" xml:space="preserve">
     <value>Select project type and framework</value>
   </data>

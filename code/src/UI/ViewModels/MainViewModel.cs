@@ -54,18 +54,32 @@ namespace Microsoft.Templates.UI.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        private Visibility _finishContentVisibility = Visibility.Collapsed;
-        public Visibility FinishContentVisibility
+        private Visibility _loadingContentVisibility = Visibility.Visible;
+        public Visibility LoadingContentVisibility
         {
-            get { return _finishContentVisibility; }
-            set { SetProperty(ref _finishContentVisibility, value); }
+            get { return _loadingContentVisibility; }
+            set { SetProperty(ref _loadingContentVisibility, value); }
         }
 
-        private Visibility _noFinishContentVisibility = Visibility.Visible;
-        public Visibility NoFinishContentVisibility
+        private Visibility _loadedContentVisibility = Visibility.Collapsed;
+        public Visibility LoadedContentVisibility
         {
-            get { return _noFinishContentVisibility; }
-            set { SetProperty(ref _noFinishContentVisibility, value); }
+            get { return _loadedContentVisibility; }
+            set { SetProperty(ref _loadedContentVisibility, value); }
+        }
+
+        private Visibility _createButtonVisibility = Visibility.Collapsed;
+        public Visibility CreateButtonVisibility
+        {
+            get { return _createButtonVisibility; }
+            set { SetProperty(ref _createButtonVisibility, value); }
+        }
+
+        private Visibility _nextButtonVisibility = Visibility.Visible;
+        public Visibility NextButtonVisibility
+        {
+            get { return _nextButtonVisibility; }
+            set { SetProperty(ref _nextButtonVisibility, value); }
         }
 
         private RelayCommand _cancelCommand;
@@ -105,6 +119,11 @@ namespace Microsoft.Templates.UI.ViewModels
 
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);
+            }
+            finally
+            {
+                MainViewModel.Current.LoadingContentVisibility = Visibility.Collapsed;
+                MainViewModel.Current.LoadedContentVisibility = Visibility.Visible;
             }
         }
 
@@ -180,8 +199,8 @@ namespace Microsoft.Templates.UI.ViewModels
             NavigationService.Navigate(new ProjectTemplatesView(ProjectSetup.SelectedProjectType.Name, ProjectSetup.SelectedFramework.Name));
             _canGoBack = true;
             BackCommand.OnCanExecuteChanged();
-            FinishContentVisibility = Visibility.Visible;
-            NoFinishContentVisibility = Visibility.Collapsed;
+            CreateButtonVisibility = Visibility.Visible;
+            NextButtonVisibility = Visibility.Collapsed;
         }
 
         private void OnGoBack()
@@ -189,8 +208,8 @@ namespace Microsoft.Templates.UI.ViewModels
             NavigationService.GoBack();
             _canGoBack = false;
             BackCommand.OnCanExecuteChanged();
-            FinishContentVisibility = Visibility.Collapsed;
-            NoFinishContentVisibility = Visibility.Visible;
+            CreateButtonVisibility = Visibility.Collapsed;
+            NextButtonVisibility = Visibility.Visible;
         }
 
         private void OnCreate()
