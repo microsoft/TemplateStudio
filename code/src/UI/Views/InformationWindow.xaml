@@ -30,8 +30,7 @@
         <Grid Style="{StaticResource GridTitleStyle}">
             <TextBlock Text="Information" Style="{StaticResource TextTitleStyle}" Margin="{StaticResource BigHorizontalMediumVerticalMargin}"/>
         </Grid>
-        <ScrollViewer Grid.Row="1">
-            <Grid Margin="{StaticResource BigMargin}">
+        <Grid Grid.Row="1" Margin="{StaticResource BigMargin}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
@@ -58,10 +57,9 @@
                         <ItemsControl ItemsSource="{Binding LicenceTerms}" Margin="{StaticResource MediumLeftMargin}" ItemTemplate="{StaticResource LicenceSummaryItemTemplate}"/>
                     </StackPanel>
                 </StackPanel>
-                <controls:MarkdownBlock Grid.Row="1" Margin="{StaticResource MediumTopMargin}" Text="{Binding InformationMD}" />
+            <controls:MarkdownBlock Grid.Row="1" Margin="{StaticResource MediumTopRightMargin}" Text="{Binding InformationMD}" />
             </Grid>
-        </ScrollViewer>
-        <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
+            <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="{StaticResource MediumMargin}">
                 <Button Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonOk}" Command="{Binding OkCommand}" />
             </StackPanel>

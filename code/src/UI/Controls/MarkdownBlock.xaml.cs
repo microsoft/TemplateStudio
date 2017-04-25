@@ -22,6 +22,7 @@ namespace Microsoft.Templates.UI.Controls
             set { SetValue(TextProperty, value); }
         }
 
+
         private void SafeNavigate(object parameter)
         {
             if (parameter is string uri && Uri.IsWellFormedUriString(uri, UriKind.Absolute))

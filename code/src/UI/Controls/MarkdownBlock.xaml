@@ -25,14 +25,13 @@
                         LinkStyle="{StaticResource LinkStyle}"
                         ImageStyle="{StaticResource ImageStyle}"
                         SeparatorStyle="{StaticResource SeparatorStyle}"
-                        AssetPathRoot="{x:Static system:Environment.CurrentDirectory}"/>
+                        AssetPathRoot="{x:Static system:Environment.CurrentDirectory}" />
 
             <converters:TextToFlowDocumentConverter x:Key="TextToFlowDocumentConverter" Markdown="{StaticResource Markdown}"/>
         </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid>
-        <FlowDocumentPageViewer Document="{Binding Text, ElementName=root, Converter={StaticResource TextToFlowDocumentConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="0">
-        </FlowDocumentPageViewer>
+        <FlowDocumentScrollViewer Document="{Binding Text, ElementName=root, Converter={StaticResource TextToFlowDocumentConverter}}" VerticalScrollBarVisibility="Auto" />
     </Grid>
 </UserControl>
