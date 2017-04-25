@@ -95,7 +95,7 @@ namespace Microsoft.Templates.Core
             var folderName = Path.Combine(Sync.CurrentContentFolder, Catalog);
             if (!Directory.Exists(folderName))
             {
-                return null;
+                return Enumerable.Empty<MetadataInfo>();
             }
 
             var metadataFile = Path.Combine(folderName, $"{type}.json");
