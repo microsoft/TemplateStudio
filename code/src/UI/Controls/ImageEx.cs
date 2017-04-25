@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
@@ -22,7 +18,8 @@ namespace Microsoft.Templates.UI.Controls
                 return;
             }
 
-            var sourceExtension = System.IO.Path.GetExtension(SourcePath);
+            var sourceExtension = Path.GetExtension(SourcePath);
+
             if (File.Exists(SourcePath) && sourceExtension?.Equals(XamlExtension, StringComparison.OrdinalIgnoreCase) == true)
             {
                 using (var sr = new StreamReader(SourcePath))
@@ -42,8 +39,8 @@ namespace Microsoft.Templates.UI.Controls
                 {
                     Source = bitmap
                 };
-                Content = image;
 
+                Content = image;
             }
         }
 
@@ -84,11 +81,15 @@ namespace Microsoft.Templates.UI.Controls
         private static BitmapImage CreateBitMap(Uri source)
         {
             var image = new BitmapImage();
+
             image.BeginInit();
+
             image.CacheOption = BitmapCacheOption.OnLoad;
             image.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
             image.UriSource = source;
+
             image.EndInit();
+
             return image;
         }
 
@@ -98,6 +99,7 @@ namespace Microsoft.Templates.UI.Controls
             {
                 return null;
             }
+
             return CreateBitMap(new Uri(FallbackImage));
         }
     }

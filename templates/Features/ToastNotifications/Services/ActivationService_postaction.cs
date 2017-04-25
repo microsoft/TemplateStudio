@@ -7,12 +7,12 @@ namespace Param_ItemNamespace.Services
     {
         private async Task StartupAsync()
         {
-            Singleton<ToastNotificationsService>.Instance.ShowToastNotificationSample();
+            Singleton<ToastNotificationsFeatureService>.Instance.ShowToastNotificationSample();
         }
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
-            yield return Singleton<ToastNotificationsService>.Instance;
+            yield return Singleton<ToastNotificationsFeatureService>.Instance;
         }
     }
 }

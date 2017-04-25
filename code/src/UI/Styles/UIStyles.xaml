@@ -5,6 +5,8 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleButton.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleDataTemplate.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleExpander.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleGroupBox.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleListView.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StylePanel.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleTextBlock.xaml" />

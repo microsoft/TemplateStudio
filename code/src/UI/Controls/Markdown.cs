@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace Microsoft.Templates.UI.Controls
 {
     /// <summary>
-    /// Taked from https://github.com/theunrepentantgeek/Markdown.XAML
+    /// Taken from https://github.com/theunrepentantgeek/Markdown.XAML
     /// </summary>
     public class Markdown : DependencyObject
     {
