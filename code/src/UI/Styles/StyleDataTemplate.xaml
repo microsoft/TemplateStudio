@@ -12,7 +12,7 @@
     <DataTemplate x:Key="ProjectSetupItemTemplate">
         <Border Width="436" Height="84" Background="{StaticResource UIWhite}">
             <Grid Margin="{StaticResource MediumMargin}">
-                
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
@@ -35,7 +35,7 @@
 
                 <!--Row 1-->
                 <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateSubtitleStyle}" Text="{Binding Summary}" Margin="{StaticResource MediumLeftMargin}"/>
-                
+
                 <!--Row 2-->
                 <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateAuthorStyle}" Margin="{StaticResource MediumLeftMargin}">1.0.0.0 - by Microsoft</TextBlock>
             </Grid>
@@ -84,7 +84,11 @@
 
     <DataTemplate x:Key="LicenceSummaryItemTemplate">
         <Grid>
-            <TextBlock Text="{Binding Text}" Style="{StaticResource TextTemplateSubtitleStyle}" />
+            <TextBlock>           
+                <Hyperlink Command="{Binding NavigateCommand}">
+                    <TextBlock Text="{Binding Text}" Style="{StaticResource TextTemplateSubtitleStyle}" />
+                </Hyperlink>
+            </TextBlock>
         </Grid>
     </DataTemplate>
 
