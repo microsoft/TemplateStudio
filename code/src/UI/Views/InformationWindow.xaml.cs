@@ -17,9 +17,9 @@ namespace Microsoft.Templates.UI.Views
             ViewModel = new InformationViewModel(this);
             DataContext = ViewModel;
 
-            Loaded += async (sender, e) =>
+            Loaded += (sender, e) =>
             {
-                await ViewModel.IniatializeAsync(template);
+                ViewModel.Iniatialize(template);
                 CenterWindow(mainWindow);
                 ViewModel.InformationVisibility = Visibility.Visible;
             };
@@ -37,9 +37,9 @@ namespace Microsoft.Templates.UI.Views
             ViewModel = new InformationViewModel(this);
             DataContext = ViewModel;
 
-            Loaded += async (sender, e) =>
+            Loaded += (sender, e) =>
             {
-                await ViewModel.IniatializeAsync(metadataInfo);
+                ViewModel.Iniatialize(metadataInfo);
                 CenterWindow(mainWindow);
                 ViewModel.InformationVisibility = Visibility.Visible;
             };
