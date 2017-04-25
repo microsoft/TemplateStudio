@@ -84,6 +84,11 @@ namespace Microsoft.Templates.UI.ViewModels
                         ProjectTypes.Add(projectType);
                     }
                     SelectedProjectType = ProjectTypes.First();
+                    MainViewModel.Current.LoadedContentVisibility = Visibility.Visible;
+                }
+                else
+                {
+                    MainViewModel.Current.NoContentVisibility = Visibility.Visible;
                 }
 
                 ProjectTypesHeader = String.Format(StringRes.GroupProjectTypeHeader_SF, ProjectTypes.Count);

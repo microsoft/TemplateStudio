@@ -1,18 +1,5 @@
 ﻿using Microsoft.Templates.UI.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Microsoft.Templates.UI.Views
 {
@@ -21,15 +8,15 @@ namespace Microsoft.Templates.UI.Views
     /// </summary>
     public partial class ProjectSetupView : Page
     {
-        public ProjectSetupViewModel ViewModel { get; }
+        public MainViewModel ViewModel { get; }
         public ProjectSetupView()
         {
-            ViewModel = MainViewModel.Current.ProjectSetup;
+            ViewModel = MainViewModel.Current;
             DataContext = ViewModel;
 
             Loaded += async (sender, e) =>
             {
-                await ViewModel.IniatializeAsync();
+                await ViewModel.ProjectSetup.IniatializeAsync();
             };
 
             InitializeComponent();

@@ -223,6 +223,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No content available.
+        /// </summary>
+        public static string NoContentText {
+            get {
+                return ResourceManager.GetString("NoContentText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No data.
         /// </summary>
         public static string NoData {

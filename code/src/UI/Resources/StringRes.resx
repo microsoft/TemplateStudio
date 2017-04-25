@@ -171,6 +171,9 @@
   <data name="MoreDetail" xml:space="preserve">
     <value>More detail</value>
   </data>
+  <data name="NoContentText" xml:space="preserve">
+    <value>No content available</value>
+  </data>
   <data name="NoData" xml:space="preserve">
     <value>No data</value>
   </data>

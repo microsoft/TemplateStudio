@@ -76,6 +76,13 @@ namespace Microsoft.Templates.UI.ViewModels
             set { SetProperty(ref _loadedContentVisibility, value); }
         }
 
+        private Visibility _noContentVisibility = Visibility.Collapsed;
+        public Visibility NoContentVisibility
+        {
+            get { return _noContentVisibility; }
+            set { SetProperty(ref _noContentVisibility, value); }
+        }
+
         private Visibility _createButtonVisibility = Visibility.Collapsed;
         public Visibility CreateButtonVisibility
         {
@@ -130,8 +137,7 @@ namespace Microsoft.Templates.UI.ViewModels
             }
             finally
             {
-                MainViewModel.Current.LoadingContentVisibility = Visibility.Collapsed;
-                MainViewModel.Current.LoadedContentVisibility = Visibility.Visible;
+                MainViewModel.Current.LoadingContentVisibility = Visibility.Collapsed;                
             }
         }
 
