@@ -35,7 +35,7 @@
                     <TextBlock Margin="0,0,0,10">
                         <StackPanel >
                             <Label Content="Use Wizard Version:" />
-                            <TextBox Text="{Binding UseWizardVersion}"></TextBox>
+                            <TextBox Text="{Binding UseWizardVersion}" IsEnabled="{Binding IsWizardVersionReconfigurable}"></TextBox>
                         </StackPanel>
                         <StackPanel >
                             <Label Content="Use Templates Version:" />

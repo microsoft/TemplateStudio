@@ -37,6 +37,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             _host = host;
             _newProjectLabel = "New Project...";
+            _isWizardVersionReconfigurable = true;
             UseWizardVersion = "0.0.0.0";
             UseTemplatesVersion = "0.0.0.0";
         }
@@ -93,6 +94,12 @@ namespace Microsoft.Templates.VsEmulator.Main
             set { SetProperty(ref _newProjectLabel, value); }
         }
 
+        private bool _isWizardVersionReconfigurable;
+        public bool IsWizardVersionReconfigurable
+        {
+            get { return _isWizardVersionReconfigurable; }
+            set { SetProperty(ref _isWizardVersionReconfigurable, value); }
+        }
 
         private string _solutionName;
         public string SolutionName
@@ -227,6 +234,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 , new Version(UseWizardVersion));
 
             NewProjectLabel = $"New Project (w:{UseWizardVersion}; t:{UseTemplatesVersion})...";
+            IsWizardVersionReconfigurable = false;
         }
         public void DoEvents()
         {
