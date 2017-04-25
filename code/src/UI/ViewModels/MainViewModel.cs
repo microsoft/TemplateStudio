@@ -9,6 +9,7 @@ using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -24,7 +25,7 @@ namespace Microsoft.Templates.UI.ViewModels
         private bool _canGoBack;
         private bool _canGoForward;
         public static MainViewModel Current;
-        private MainView _mainView;
+        public MainView MainView;
 
         private StatusViewModel _status = StatusControl.EmptyStatus;
         public StatusViewModel Status
@@ -52,6 +53,13 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             get { return _title; }
             set { SetProperty(ref _title, value); }
+        }
+
+        private Visibility _infoShapeVisibility = Visibility.Collapsed;
+        public Visibility InfoShapeVisibility
+        {
+            get { return _infoShapeVisibility; }
+            set { SetProperty(ref _infoShapeVisibility, value); }
         }
 
         private Visibility _loadingContentVisibility = Visibility.Visible;
@@ -95,15 +103,16 @@ namespace Microsoft.Templates.UI.ViewModels
         public ProjectSetupViewModel ProjectSetup { get; private set; } = new ProjectSetupViewModel();
         public ProjectTemplatesViewModel ProjectTemplates { get; private set; } = new ProjectTemplatesViewModel();
 
+        public ObservableCollection<SummaryLicenceViewModel> SummaryLicences { get; } = new ObservableCollection<SummaryLicenceViewModel>();
+
         public MainViewModel(MainView mainView)
         {
-            _mainView = mainView;
+            MainView = mainView;
             Current = this;
         }
 
         public async Task IniatializeAsync()
-        {
-            Title = StringRes.ProjectSetupTitle;
+        {            
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += Sync_SyncStatusChanged;
             try
             {
@@ -143,6 +152,19 @@ namespace Microsoft.Templates.UI.ViewModels
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged -= Sync_SyncStatusChanged;
         }
 
+        public void RebuildLicenses()
+        {
+            var userSelection = CreateUserSelection();
+            var genItems = GenComposer.Compose(userSelection);
+
+            var genLicences = genItems
+                                .SelectMany(s => s.Template.GetLicences())
+                                .Distinct(new TemplateLicenseEqualityComparer())
+                                .ToList();
+
+            SyncLicences(genLicences);
+        }
+
         private void Sync_SyncStatusChanged(object sender, SyncStatus status)
         {
 
@@ -167,7 +189,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
             if (status == SyncStatus.UnderVersion)
             {
-                _mainView.Dispatcher.Invoke(() =>
+                MainView.Dispatcher.Invoke(() =>
                 {
                     Status = new StatusViewModel(StatusType.Error, StringRes.StatusLowerVersionContent);
                     _canGoForward = false;
@@ -195,9 +217,9 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnCancel()
         {
-            _mainView.DialogResult = false;
-            _mainView.Result = null;
-            _mainView.Close();
+            MainView.DialogResult = false;
+            MainView.Result = null;
+            MainView.Close();
         }        
 
         private void OnNext()
@@ -239,16 +261,49 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnCreate()
         {
+            var userSelection = CreateUserSelection();
+
+            MainView.DialogResult = true;
+            MainView.Result = userSelection;
+            MainView.Close();
+        }
+
+        private UserSelection CreateUserSelection()
+        {
             var userSelection = new UserSelection()
             {
-                ProjectType = ProjectSetup.SelectedProjectType.Name,
-                Framework = ProjectSetup.SelectedFramework.Name
+                ProjectType = ProjectSetup.SelectedProjectType?.Name,
+                Framework = ProjectSetup.SelectedFramework?.Name
             };
             userSelection.Pages.AddRange(ProjectTemplates.SavedPages);
             userSelection.Features.AddRange(ProjectTemplates.SavedFeatures);
-            _mainView.DialogResult = true;
-            _mainView.Result = userSelection;
-            _mainView.Close();
+            return userSelection;
+        }
+
+        private void SyncLicences(IEnumerable<TemplateLicense> licenses)
+        {
+            var toRemove = new List<SummaryLicenceViewModel>();
+
+            foreach (var summaryLicense in SummaryLicences)
+            {
+                if (!licenses.Any(l => l.Url == summaryLicense.Url))
+                {
+                    toRemove.Add(summaryLicense);
+                }
+            }
+
+            foreach (var licenseToRemove in toRemove)
+            {
+                SummaryLicences.Remove(licenseToRemove);
+            }
+
+            foreach (var license in licenses)
+            {
+                if (!SummaryLicences.Any(l => l.Url == license.Url))
+                {
+                    SummaryLicences.Add(new SummaryLicenceViewModel(license));
+                }
+            }            
         }
     }
 }

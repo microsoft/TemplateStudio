@@ -7,17 +7,17 @@ namespace Param_ItemNamespace.Services
     {
         private async Task InitializeAsync()
         {
-            await Singleton<LiveTileService>.Instance.EnableQueueAsync();
+            await Singleton<LiveTileFeatureService>.Instance.EnableQueueAsync();
         }
 
         private async Task StartupAsync()
         {
-            Singleton<LiveTileService>.Instance.SampleUpdate();
+            Singleton<LiveTileFeatureService>.Instance.SampleUpdate();
         }
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
-            yield return Singleton<LiveTileService>.Instance;
+            yield return Singleton<LiveTileFeatureService>.Instance;
         }
     }
 }

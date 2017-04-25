@@ -12,7 +12,7 @@
     <DataTemplate x:Key="ProjectSetupItemTemplate">
         <Border Width="436" Height="84" Background="{StaticResource UIWhite}">
             <Grid Margin="{StaticResource MediumMargin}">
-                
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
@@ -27,7 +27,7 @@
                 <!--Row 0-->
                 <controls:ImageEx Grid.Row="0" Grid.RowSpan="3" Focusable="False" SourcePath="{Binding Icon}"/>
                 <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateTitleStyle}" Text="{Binding DisplayName}" Margin="{StaticResource MediumLeftMargin}" />
-                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding ShowInfoCommand}">
                     <Button.Content>
                         <TextBlock Text="&#xE946;" FontFamily="Segoe MDL2 Assets" FontSize="18" />
                     </Button.Content>
@@ -35,7 +35,7 @@
 
                 <!--Row 1-->
                 <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateSubtitleStyle}" Text="{Binding Summary}" Margin="{StaticResource MediumLeftMargin}"/>
-                
+
                 <!--Row 2-->
                 <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateAuthorStyle}" Margin="{StaticResource MediumLeftMargin}">1.0.0.0 - Microsoft</TextBlock>
             </Grid>
@@ -46,6 +46,7 @@
         <controls:TemplateInfoControl
                     TemplateInfo="{Binding}"
                     AddCommand="{Binding DataContext.AddCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
+                    ShowInfoCommand="{Binding DataContext.ShowInfoCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
                     GetUsedNames="{Binding DataContext.GetUsedNamesFunc, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
                     GetUsedTemplatesIdentities="{Binding DataContext.GetUsedTemplatesIdentitiesFunc, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"/>
     </DataTemplate>
@@ -84,7 +85,11 @@
 
     <DataTemplate x:Key="LicenceSummaryItemTemplate">
         <Grid>
-            <TextBlock Text="{Binding Text}" Style="{StaticResource TextTemplateSubtitleStyle}" />
+            <TextBlock>           
+                <Hyperlink Command="{Binding NavigateCommand}">
+                    <TextBlock Text="{Binding Text}" Style="{StaticResource TextTemplateSubtitleStyle}" />
+                </Hyperlink>
+            </TextBlock>
         </Grid>
     </DataTemplate>
 
