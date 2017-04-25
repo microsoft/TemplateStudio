@@ -12,24 +12,24 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid>
+    <Grid Visibility="{Binding LoadedContentVisibility}">
         <ScrollViewer>
             <StackPanel>
-                <GroupBox Header="{Binding ProjectTypesHeader}" Margin="{StaticResource SmallMargin}">
+                <GroupBox Header="{Binding ProjectSetup.ProjectTypesHeader}" Margin="{StaticResource SmallMargin}">
                     <ListView
                         SelectionMode="Single"
-                        ItemsSource="{Binding ProjectTypes}"
+                        ItemsSource="{Binding ProjectSetup.ProjectTypes}"
                         Style="{StaticResource ListViewProjectSetupStyle}"
                         ItemTemplate="{StaticResource ProjectSetupItemTemplate}"
-                        SelectedItem="{Binding SelectedProjectType, Mode=TwoWay}" />
+                        SelectedItem="{Binding ProjectSetup.SelectedProjectType, Mode=TwoWay}" />
                 </GroupBox>
-                <GroupBox Header="{Binding FrameworkHeader}" Margin="{StaticResource SmallMargin}">
+                <GroupBox Header="{Binding ProjectSetup.FrameworkHeader}" Margin="{StaticResource SmallMargin}">
                     <ListView
                         SelectionMode="Single"
-                        ItemsSource="{Binding Frameworks}"
+                        ItemsSource="{Binding ProjectSetup.Frameworks}"
                         Style="{StaticResource ListViewProjectSetupStyle}"
                         ItemTemplate="{StaticResource ProjectSetupItemTemplate}"
-                        SelectedItem="{Binding SelectedFramework, Mode=TwoWay}" />
+                        SelectedItem="{Binding ProjectSetup.SelectedFramework, Mode=TwoWay}" />
                 </GroupBox>
             </StackPanel>
         </ScrollViewer>

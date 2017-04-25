@@ -1,9 +1,40 @@
-﻿using Microsoft.Templates.Core.Mvvm;
+﻿using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Mvvm;
+using System;
+using System.Diagnostics;
+using System.Windows.Input;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
     public class SummaryLicenceViewModel : Observable
     {
+        public SummaryLicenceViewModel()
+        {
+        }
+
+        public SummaryLicenceViewModel(TemplateLicense license)
+        {
+            if (license == null)
+            {
+                return;
+            }
+
+            Text = license.Text;
+            Url = license.Url;
+        }
+
+        private ICommand _navigateCommand;
+        public ICommand NavigateCommand => _navigateCommand ?? (_navigateCommand = new RelayCommand(Navigate));
+
+        private void Navigate()
+        {
+            if (!string.IsNullOrWhiteSpace(Url) && Uri.IsWellFormedUriString(Url, UriKind.Absolute))
+            {
+                Process.Start(Url);
+            }
+        }
+
+
         private string _text;
         public string Text
         {

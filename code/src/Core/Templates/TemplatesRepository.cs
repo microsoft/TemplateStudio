@@ -22,6 +22,9 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Locations;
 
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace Microsoft.Templates.Core
 {
@@ -31,19 +34,16 @@ namespace Microsoft.Templates.Core
         private static readonly string[] SupportedIconTypes = new string[] { ".jpg", ".jpeg", ".png", ".xaml" };
 
         public TemplatesSynchronization Sync { get; private set; }
-
+        public string WizardVersion { get; private set; }
         public string CurrentContentFolder { get => Sync?.CurrentContentFolder; }
+        public string TemplatesVersion { get => Sync.CurrentContentVersion?.ToString() ?? String.Empty; }
 
-        public TemplatesRepository(TemplatesSource source)
+        public TemplatesRepository(TemplatesSource source, Version wizardVersion)
         {
-            Sync = new TemplatesSynchronization(source);
+            WizardVersion = wizardVersion.ToString();
+            Sync = new TemplatesSynchronization(source, wizardVersion);
         }
 
-         
-        public string GetTemplatesVersion()
-        {
-            return Sync.CurrentContentVersion?.ToString();
-        }
 
         public async Task SynchronizeAsync(bool force = false)
         {
@@ -94,7 +94,7 @@ namespace Microsoft.Templates.Core
             var folderName = Path.Combine(Sync.CurrentContentFolder, Catalog);
             if (!Directory.Exists(folderName))
             {
-                return null;
+                return Enumerable.Empty<MetadataInfo>();
             }
 
             var metadataFile = Path.Combine(folderName, $"{type}.json");
@@ -102,8 +102,37 @@ namespace Microsoft.Templates.Core
 
             metadata.ForEach(m => SetMetadataDescription(m, folderName, type));
             metadata.ForEach(m => SetMetadataIcon(m, folderName, type));
+            metadata.ForEach(m => m.MetadataType = type);
+            metadata.ForEach(m => SetLicenceTerms(m));
 
             return metadata.OrderBy(m => m.Order);
+        }
+
+        private const string Separator = "|";
+        private const string LicencesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
+
+        private void SetLicenceTerms(MetadataInfo metadataInfo)
+        {
+            if (!string.IsNullOrWhiteSpace(metadataInfo.Licences))
+            {
+                var result = new List<TemplateLicense>();
+
+                var licencesMatches = Regex.Matches(metadataInfo.Licences, LicencesPattern);
+                for (int i = 0; i < licencesMatches.Count; i++)
+                {
+                    var m = licencesMatches[i];
+                    if (m.Success)
+                    {
+                        result.Add(new TemplateLicense
+                        {
+                            Text = m.Groups["text"].Value,
+                            Url = m.Groups["url"].Value
+                        });
+                    }
+
+                }
+                metadataInfo.LicenceTerms = result;
+            }
         }
 
         private static void SetMetadataDescription(MetadataInfo mInfo, string folderName, string type)

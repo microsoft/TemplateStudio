@@ -94,8 +94,8 @@ namespace Microsoft.Templates.UI.ViewModels
             set { SetProperty(ref _multipleInstances, value); }
         }
 
-        private string _licenceTerms;
-        public string LicenceTerms
+        private IEnumerable<TemplateLicense> _licenceTerms;
+        public IEnumerable<TemplateLicense> LicenceTerms
         {
             get { return _licenceTerms; }
             set { SetProperty(ref _licenceTerms, value); }
@@ -113,6 +113,13 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             get { return _dependencies; }
             set { SetProperty(ref _dependencies, value); }
+        }
+
+        private TemplateType _templateType;
+        public TemplateType TemplateType
+        {
+            get { return _templateType; }
+            set { SetProperty(ref _templateType, value); }
         }
 
         public ITemplateInfo Template { get; set; }
@@ -134,8 +141,10 @@ namespace Microsoft.Templates.UI.ViewModels
             Version = template.GetVersion();
             Order = template.GetOrder();
             MultipleInstances = template.GetMultipleInstance();
+            TemplateType = template.GetTemplateType();
             Template = template;
             Dependencies = string.Join(",", dependencies.Select(d => d.Name));
+            LicenceTerms = template.GetLicences();
         }
     }
 }

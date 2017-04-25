@@ -20,6 +20,6 @@ namespace Microsoft.Templates.UI.Views
             };
 
             InitializeComponent();            
-        }
+        }        
     }
 }
