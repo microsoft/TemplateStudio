@@ -107,11 +107,10 @@ namespace Microsoft.Templates.UI.ViewModels
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += Sync_SyncStatusChanged;
             try
             {
-                WizardVersion = GetWizardVersion();
-
                 await GenContext.ToolBox.Repo.SynchronizeAsync();
 
-                TemplatesVersion = GenContext.ToolBox.Repo.GetTemplatesVersion();
+                TemplatesVersion = GenContext.ToolBox.TemplatesVersion;
+                WizardVersion = GenContext.ToolBox.WizardVersion;
             }
             catch (Exception ex)
             {
@@ -139,15 +138,6 @@ namespace Microsoft.Templates.UI.ViewModels
             }   
         }
 
-
-        private string GetWizardVersion()
-        {
-            string assemblyLocation = Assembly.GetExecutingAssembly().Location;
-            var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
-
-            return versionInfo.FileVersion;
-        }
-
         public void UnsuscribeEventHandlers()
         {
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged -= Sync_SyncStatusChanged;
@@ -160,7 +150,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
             if (status == SyncStatus.Updated)
             {
-                TemplatesVersion = GenContext.ToolBox.Repo.GetTemplatesVersion();
+                TemplatesVersion = GenContext.ToolBox.Repo.TemplatesVersion;
                 Status = StatusControl.EmptyStatus;
 
                 _canGoForward = true;
@@ -169,7 +159,10 @@ namespace Microsoft.Templates.UI.ViewModels
 
             if (status == SyncStatus.OverVersion)
             {
-                Status = new StatusViewModel(StatusType.Warning, StringRes.StatusOverVersionContent);
+                _mainView.Dispatcher.Invoke(() =>
+                {
+                    Status = new StatusViewModel(StatusType.Warning, StringRes.StatusOverVersionContent);
+                });
             }
 
             if (status == SyncStatus.UnderVersion)

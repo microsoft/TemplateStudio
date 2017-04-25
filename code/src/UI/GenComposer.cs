@@ -57,8 +57,8 @@ namespace Microsoft.Templates.UI
 
             var genProject = CreateGenInfo(GenContext.Current.ProjectName, projectTemplate, genQueue);
             genProject.Parameters.Add(GenParams.Username, Environment.UserName);
-            genProject.Parameters.Add(GenParams.WizardVersion, GenContext.GetWizardVersion());
-            genProject.Parameters.Add(GenParams.TemplatesVersion, GenContext.ToolBox.Repo.GetTemplatesVersion());
+            genProject.Parameters.Add(GenParams.WizardVersion, GenContext.ToolBox.WizardVersion);
+            genProject.Parameters.Add(GenParams.TemplatesVersion, GenContext.ToolBox.TemplatesVersion);
         }
 
         private static void AddTemplates(IEnumerable<(string name, ITemplateInfo template)> userSelection, List<GenInfo> genQueue)

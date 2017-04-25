@@ -36,8 +36,9 @@ namespace Microsoft.Templates.VsEmulator.Main
         public MainViewModel(MainView host)
         {
             _host = host;
-
-            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(msg => SetState(msg), l => AddLog(l), _host));
+            _newProjectLabel = "New Project...";
+            UseWizardVersion = "0.0.0.0";
+            UseTemplatesVersion = "0.0.0.0";
         }
 
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
@@ -46,6 +47,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         public RelayCommand OpenInVsCodeCommand => new RelayCommand(OpenInVsCode);
         public RelayCommand OpenInExplorerCommand => new RelayCommand(OpenInExplorer);
         public RelayCommand TemplatesContentCommand => new RelayCommand(TemplatesContent);
+        public RelayCommand SetVersionCommand => new RelayCommand(ConfigureGenContext);
 
 
         private string _state;
@@ -68,6 +70,29 @@ namespace Microsoft.Templates.VsEmulator.Main
             get { return _isProjectLoaded; }
             set { SetProperty(ref _isProjectLoaded, value); }
         }
+
+
+        private String _useWizardVersion;
+        public String UseWizardVersion
+        {
+            get { return _useWizardVersion; }
+            set { SetProperty(ref _useWizardVersion, value); }
+        }
+
+        private String _useTemplatesVersion;
+        public String UseTemplatesVersion
+        {
+            get { return _useTemplatesVersion; }
+            set { SetProperty(ref _useTemplatesVersion, value); }
+        }
+
+        private String _newProjectLabel;
+        public String NewProjectLabel
+        {
+            get { return _newProjectLabel; }
+            set { SetProperty(ref _newProjectLabel, value); }
+        }
+
 
         private string _solutionName;
         public string SolutionName
@@ -97,6 +122,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private async void NewProject()
         {
+            ConfigureGenContext();
+
             try
             {
                 var newProjectInfo = ShowNewProjectDialog();
@@ -132,7 +159,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void TemplatesContent()
         {
-            var dialog = new TemplatesContentView()
+            var dialog = new TemplatesContentView(UseWizardVersion)
             {
                 Owner = _host
             };
@@ -178,15 +205,6 @@ namespace Microsoft.Templates.VsEmulator.Main
             return (null, null, null);
         }
 
-        private void ShowTemplatesContentDialog()
-        {
-            var dialog = new TemplatesContentView()
-            {
-                Owner = _host
-            };
-            var result = dialog.ShowDialog();
-        }
-
         private void SetState(string message)
         {
             State = message;
@@ -202,6 +220,14 @@ namespace Microsoft.Templates.VsEmulator.Main
             });
         }
 
+        private void ConfigureGenContext()
+        {
+            GenContext.Bootstrap(new LocalTemplatesSource(UseTemplatesVersion)
+                , new FakeGenShell(msg => SetState(msg), l => AddLog(l), _host)
+                , new Version(UseWizardVersion));
+
+            NewProjectLabel = $"New Project (w:{UseWizardVersion}; t:{UseTemplatesVersion})...";
+        }
         public void DoEvents()
         {
             var frame = new DispatcherFrame(true);

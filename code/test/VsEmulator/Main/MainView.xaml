@@ -32,16 +32,29 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackPanel>
+                    <TextBlock Margin="0,0,0,10">
+                        <StackPanel >
+                            <Label Content="Use Wizard Version:" />
+                            <TextBox Text="{Binding UseWizardVersion}"></TextBox>
+                        </StackPanel>
+                        <StackPanel >
+                            <Label Content="Use Templates Version:" />
+                            <TextBox Text="{Binding UseTemplatesVersion}"></TextBox>
+                        </StackPanel>
+                        <Button Content="Reconfigure" Command="{Binding SetVersionCommand}"></Button>
+                    </TextBlock>
+                    
                     <TextBlock>           
                         <Hyperlink Command="{Binding NewProjectCommand}">
-                            <TextBlock Text="New Project..."/>
+                            <TextBlock Text="{Binding NewProjectLabel}"/>
                         </Hyperlink>
                     </TextBlock>
-                    <TextBlock>           
+                    <TextBlock>
                         <Hyperlink Command="{Binding TemplatesContentCommand}">
-                            <TextBlock Text="Templates versioning..."/>
+                            <TextBlock Text="Templates content..."/>
                         </Hyperlink>
                     </TextBlock>
+
                 </StackPanel>
                 <ScrollViewer x:Name="logScroll" Grid.Row="1" VerticalAlignment="Bottom" VerticalScrollBarVisibility="Auto" Height="200">
                     <TextBlock Text="{Binding Log}" TextWrapping="Wrap"></TextBlock>

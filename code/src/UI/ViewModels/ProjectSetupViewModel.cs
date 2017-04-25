@@ -68,13 +68,22 @@ namespace Microsoft.Templates.UI.ViewModels
             if (SelectedProjectType == null)
             {
                 ProjectTypes.Clear();
-                var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes().Select(m => new MetadataInfoViewModel(m)).ToList();
-                foreach (var projectType in projectTypes.Where(p => !string.IsNullOrEmpty(p.Description)))
+
+                var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes();
+                if (projectTypes != null)
                 {
-                    ProjectTypes.Add(projectType);
+                    var data = projectTypes.Select(m => new MetadataInfoViewModel(m)).ToList();
+                    foreach (var projectType in data.Where(p => !string.IsNullOrEmpty(p.Description)))
+                    {
+                        ProjectTypes.Add(projectType);
+                    }
+                    SelectedProjectType = ProjectTypes.First();
+                    ProjectTypesHeader = String.Format(StringRes.GroupProjectTypeHeader_SF, ProjectTypes.Count);
                 }
-                SelectedProjectType = ProjectTypes.First();
-                ProjectTypesHeader = String.Format(StringRes.GroupProjectTypeHeader_SF, ProjectTypes.Count);
+                else
+                {
+                    ProjectTypesHeader = String.Format(StringRes.GroupProjectTypeHeader_SF, 0);
+                }
             }
 
             await Task.CompletedTask;

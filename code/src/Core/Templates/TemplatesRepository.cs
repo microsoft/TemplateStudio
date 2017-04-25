@@ -22,6 +22,8 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Locations;
 
 using Newtonsoft.Json;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace Microsoft.Templates.Core
 {
@@ -31,19 +33,16 @@ namespace Microsoft.Templates.Core
         private static readonly string[] SupportedIconTypes = new string[] { ".jpg", ".jpeg", ".png", ".xaml" };
 
         public TemplatesSynchronization Sync { get; private set; }
-
+        public string WizardVersion { get; private set; }
         public string CurrentContentFolder { get => Sync?.CurrentContentFolder; }
+        public string TemplatesVersion { get => Sync.CurrentContentVersion?.ToString() ?? String.Empty; }
 
-        public TemplatesRepository(TemplatesSource source)
+        public TemplatesRepository(TemplatesSource source, Version wizardVersion)
         {
-            Sync = new TemplatesSynchronization(source);
+            WizardVersion = wizardVersion.ToString();
+            Sync = new TemplatesSynchronization(source, wizardVersion);
         }
 
-         
-        public string GetTemplatesVersion()
-        {
-            return Sync.CurrentContentVersion?.ToString();
-        }
 
         public async Task SynchronizeAsync(bool force = false)
         {

@@ -38,19 +38,17 @@ namespace Microsoft.Templates.Core.Gen
 
         public static void Bootstrap(TemplatesSource source, GenShell shell)
         {
-            CodeGen.Initialize(source.Id);
-            TemplatesRepository repository = new TemplatesRepository(source);
+            Bootstrap(source, shell, GetWizardVersionFromAssembly());
+        }
+        public static void Bootstrap(TemplatesSource source, GenShell shell, Version wizardVersion)
+        {
+            string hostVersion = $"{wizardVersion.Major}.{wizardVersion.Minor}";
+            CodeGen.Initialize(source.Id, hostVersion);
+            TemplatesRepository repository = new TemplatesRepository(source, wizardVersion);
 
             ToolBox = new GenToolBox(repository, shell);
 
             IsInitialized = true;
-        }
-
-        public static string GetWizardVersion()
-        {
-            string assemblyLocation = Assembly.GetExecutingAssembly().Location;
-            var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
-            return versionInfo.FileVersion;
         }
 
         private GenContext(string projectName, string outputPath)
@@ -140,6 +138,15 @@ namespace Microsoft.Templates.Core.Gen
                 return id.ToString();
             }
             return null;
+        }
+
+        private static Version GetWizardVersionFromAssembly()
+        {
+            string assemblyLocation = Assembly.GetExecutingAssembly().Location;
+            var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
+            Version.TryParse(versionInfo.FileVersion, out Version v);
+
+            return v;
         }
     }
 }

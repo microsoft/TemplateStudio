@@ -12,10 +12,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,14 +24,20 @@ namespace Microsoft.Templates.Core.Locations
     public class TemplatesContent
     {
         private const string TemplatesFolderName = "Templates";
-        
-        public string TemplatesFolder { get; private set; }
-        public string LatestContentFolder => GetLatestContentFolder(true); 
-        private string DefaultContentFolder => Path.Combine(TemplatesFolder, "0.0.0.0");
+        private string _defaultContentFolder;
 
-        public TemplatesContent(string workingFolder, string sourceId)
+        public string TemplatesFolder { get; private set; }
+        public Version WizardVersion { get; private set; }
+
+        public string LatestContentFolder => GetLatestContentFolder(true);
+
+        public TemplatesContent(string workingFolder, string sourceId, Version wizardVersion)
         {
             TemplatesFolder = Path.Combine(workingFolder, TemplatesFolderName, sourceId);
+            _defaultContentFolder = Path.Combine(TemplatesFolder, "0.0.0.0");
+
+            WizardVersion = wizardVersion;
+
         }
 
         public bool Exists()
@@ -113,6 +117,7 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
+
         public Version GetVersionFromFolder(string contentFolder)
         {
             string versionPart = Path.GetFileName(contentFolder);
@@ -138,8 +143,8 @@ namespace Microsoft.Templates.Core.Locations
 
         private string GetLatestContentFolder(bool ensureWizardAligmnent)
         {
-            Version latestVersion = new Version(0, 0, 0, 0);
-            string latestContent = DefaultContentFolder;
+            Version latestVersion = new Version(0,0,0,0);
+            string latestContent = _defaultContentFolder;
             if (Directory.Exists(TemplatesFolder))
             {
                 DirectoryInfo di = new DirectoryInfo(TemplatesFolder);
@@ -160,51 +165,38 @@ namespace Microsoft.Templates.Core.Locations
             return latestContent;
         }
 
-        private static Version GetWizardVersion()
-        {
-            string assemblyLocation = Assembly.GetExecutingAssembly().Location;
-            var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
-            Version.TryParse(versionInfo.FileVersion, out Version v);
-
-            return v;
-        }
-
         private bool CheckDefaultVersionContent()
         {
-            return Directory.Exists(DefaultContentFolder);
+            return Directory.Exists(_defaultContentFolder);
         }
 
         private bool IsVersionOverWizard(Version v)
         {
-            Version wizardVersion = GetWizardVersion();
             if (IsWizardAligned(v))
             {
                 return false;
             }
             else
             {
-                return (v.Major > wizardVersion.Major || (v.Major == wizardVersion.Major && (v.Minor > wizardVersion.Minor)));
+                return (v.Major > WizardVersion.Major || (v.Major == WizardVersion.Major && (v.Minor > WizardVersion.Minor)));
             }
         }
 
         private bool IsVersionUnderWizard(Version v)
         {
-            Version wizardVersion = GetWizardVersion();
             if (IsWizardAligned(v))
             {
                 return false;
             }
             else
             {
-                return (v.Major < wizardVersion.Major || (v.Major == wizardVersion.Major && (v.Minor < wizardVersion.Minor)));
+                return (v.Major < WizardVersion.Major || (v.Major == WizardVersion.Major && (v.Minor < WizardVersion.Minor)));
             }
         }
 
         private bool IsWizardAligned(Version v)
         {
-            Version wizardVersion = GetWizardVersion();
-            return wizardVersion.IsZero() || (v.Major == wizardVersion.Major && v.Minor == wizardVersion.Minor);
+            return WizardVersion.IsZero() || (v.Major == WizardVersion.Major && v.Minor == WizardVersion.Minor);
         }
-        
     }
 }
