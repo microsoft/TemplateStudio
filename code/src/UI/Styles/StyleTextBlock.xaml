@@ -9,7 +9,6 @@
     <Style TargetType="TextBlock" x:Key="TextTitleStyle">
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Margin" Value="{StaticResource MediumLeftMargin}"/>
         <Setter Property="Foreground" Value="{StaticResource UIWhite}"/>
         <Setter Property="FontSize" Value="30"/>
         <Setter Property="FontWeight" Value="Regular"/>

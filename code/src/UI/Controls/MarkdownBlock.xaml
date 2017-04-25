@@ -30,8 +30,9 @@
             <converters:TextToFlowDocumentConverter x:Key="TextToFlowDocumentConverter" Markdown="{StaticResource Markdown}"/>
         </ResourceDictionary>
     </UserControl.Resources>
-    
+
     <Grid>
-        <FlowDocumentScrollViewer Document="{Binding Text, ElementName=root, Converter={StaticResource TextToFlowDocumentConverter}}" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="0"/>
+        <FlowDocumentPageViewer Document="{Binding Text, ElementName=root, Converter={StaticResource TextToFlowDocumentConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="0">
+        </FlowDocumentPageViewer>
     </Grid>
 </UserControl>
