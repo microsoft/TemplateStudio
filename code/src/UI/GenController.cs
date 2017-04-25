@@ -29,6 +29,7 @@ using Microsoft.Templates.Core.PostActions;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.Templates.UI.Views;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Error;
 
 namespace Microsoft.Templates.UI
 {
@@ -49,7 +50,6 @@ namespace Microsoft.Templates.UI
                 CleanStatusBar();
 
                 GenContext.ToolBox.Shell.ShowModal(mainView);
-
                 if (mainView.Result != null)
                 {
                     //TODO: Review when right-click-actions available to track Project or Page completed.
@@ -169,13 +169,11 @@ namespace Microsoft.Templates.UI
 
         private static void ShowError(Exception ex, UserSelection userSelection = null)
         {
-            // TODO: Compleate
-            throw new NotImplementedException();
-            //AppHealth.Current.Error.TrackAsync(ex.ToString()).FireAndForget();
-            //AppHealth.Current.Exception.TrackAsync(ex, userSelection?.ToString()).FireAndForget();
+            AppHealth.Current.Error.TrackAsync(ex.ToString()).FireAndForget();
+            AppHealth.Current.Exception.TrackAsync(ex, userSelection?.ToString()).FireAndForget();
 
-            //var error = new ErrorDialog(ex);
-            //GenContext.ToolBox.Shell.ShowModal(error);
+            var error = new ErrorDialog(ex);
+            GenContext.ToolBox.Shell.ShowModal(error);
         }
 
         private static void CleanStatusBar()

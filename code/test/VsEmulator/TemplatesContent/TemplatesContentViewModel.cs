@@ -36,11 +36,11 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
         LocalTemplatesSource _templatesSource;
 
 
-        public TemplatesContentViewModel(Window host)
+        public TemplatesContentViewModel(Window host, string wizardVersion)
         {
             _host = host;
             _templatesSource = new LocalTemplatesSource();
-            _templatesSync = new TemplatesSynchronization(_templatesSource);
+            _templatesSync = new TemplatesSynchronization(_templatesSource, new Version(wizardVersion));
             AvailableContent = new ObservableCollection<string>();
         }
 
@@ -100,7 +100,6 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
             }
         }
 
-        //private bool CanClean() { return AvailableContent != null ? AvailableContent.Count > 1 : false; }
         private bool CanClean() => true;
 
         private void Clean()
@@ -108,13 +107,8 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
             DirectoryInfo di = new DirectoryInfo(_templatesSync.CurrentTemplatesFolder);
             foreach(var sdi in di.EnumerateDirectories())
             {
-                if(sdi.Name != "0.0.0.0")
-                {
-                    Fs.SafeDeleteDirectory(sdi.FullName);
-                }
+                Fs.SafeDeleteDirectory(sdi.FullName);
             }
-
-            MessageBox.Show("Done!", $"Clean created content.", MessageBoxButton.OK, MessageBoxImage.Information);
 
             LoadProperties();
         }
@@ -123,8 +117,6 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
         private void CreateContent()
         {
             Fs.CopyRecursive(_templatesSource.Origin, Path.Combine(_templatesSync.CurrentTemplatesFolder, VersionInfo));
-
-            MessageBox.Show("Done!", $"Create Content for v{VersionInfo}", MessageBoxButton.OK, MessageBoxImage.Information);
 
             LoadProperties();
         }

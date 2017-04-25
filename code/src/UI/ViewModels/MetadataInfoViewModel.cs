@@ -81,7 +81,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 MainViewModel.Current.InfoShapeVisibility = Visibility.Collapsed;
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }        

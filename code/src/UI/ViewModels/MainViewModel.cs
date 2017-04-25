@@ -76,6 +76,13 @@ namespace Microsoft.Templates.UI.ViewModels
             set { SetProperty(ref _loadedContentVisibility, value); }
         }
 
+        private Visibility _noContentVisibility = Visibility.Collapsed;
+        public Visibility NoContentVisibility
+        {
+            get { return _noContentVisibility; }
+            set { SetProperty(ref _noContentVisibility, value); }
+        }
+
         private Visibility _createButtonVisibility = Visibility.Collapsed;
         public Visibility CreateButtonVisibility
         {
@@ -116,11 +123,10 @@ namespace Microsoft.Templates.UI.ViewModels
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += Sync_SyncStatusChanged;
             try
             {
-                WizardVersion = GetWizardVersion();
-
                 await GenContext.ToolBox.Repo.SynchronizeAsync();
 
-                TemplatesVersion = GenContext.ToolBox.Repo.GetTemplatesVersion();
+                TemplatesVersion = GenContext.ToolBox.TemplatesVersion;
+                WizardVersion = GenContext.ToolBox.WizardVersion;
             }
             catch (Exception ex)
             {
@@ -131,8 +137,7 @@ namespace Microsoft.Templates.UI.ViewModels
             }
             finally
             {
-                MainViewModel.Current.LoadingContentVisibility = Visibility.Collapsed;
-                MainViewModel.Current.LoadedContentVisibility = Visibility.Visible;
+                MainViewModel.Current.LoadingContentVisibility = Visibility.Collapsed;                
             }
         }
 
@@ -146,15 +151,6 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 Status = StatusControl.EmptyStatus;
             }   
-        }
-
-
-        private string GetWizardVersion()
-        {
-            string assemblyLocation = Assembly.GetExecutingAssembly().Location;
-            var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
-
-            return versionInfo.FileVersion;
         }
 
         public void UnsuscribeEventHandlers()
@@ -182,7 +178,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
             if (status == SyncStatus.Updated)
             {
-                TemplatesVersion = GenContext.ToolBox.Repo.GetTemplatesVersion();
+                TemplatesVersion = GenContext.ToolBox.Repo.TemplatesVersion;
                 Status = StatusControl.EmptyStatus;
 
                 _canGoForward = true;
@@ -191,7 +187,20 @@ namespace Microsoft.Templates.UI.ViewModels
 
             if (status == SyncStatus.OverVersion)
             {
-                Status = new StatusViewModel(StatusType.Warning, StringRes.StatusOverVersionContent);
+                MainView.Dispatcher.Invoke(() =>
+                {
+                    Status = new StatusViewModel(StatusType.Warning, StringRes.StatusOverVersionContent);
+                });
+            }
+
+            if (status == SyncStatus.OverVersionNoContent)
+            {
+                MainView.Dispatcher.Invoke(() =>
+                {
+                    Status = new StatusViewModel(StatusType.Error, StringRes.StatusOverVersionNoContent);
+                    _canGoForward = false;
+                    NextCommand.OnCanExecuteChanged();
+                });
             }
 
             if (status == SyncStatus.UnderVersion)

@@ -74,16 +74,27 @@ namespace Microsoft.Templates.UI.ViewModels
             if (SelectedProjectType == null)
             {
                 ProjectTypes.Clear();
-                var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes().Select(m => new MetadataInfoViewModel(m)).ToList();
-                foreach (var projectType in projectTypes.Where(p => !string.IsNullOrEmpty(p.Description)))
-                {
-                    ProjectTypes.Add(projectType);
-                }
-                SelectedProjectType = ProjectTypes.First();
-                ProjectTypesHeader = String.Format(StringRes.GroupProjectTypeHeader_SF, ProjectTypes.Count);
-            }
 
-            await Task.CompletedTask;
+                var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes();
+                if (projectTypes.Count() > 0)
+                {
+                    var data = projectTypes.Select(m => new MetadataInfoViewModel(m)).ToList();
+                    foreach (var projectType in data.Where(p => !string.IsNullOrEmpty(p.Description)))
+                    {
+                        ProjectTypes.Add(projectType);
+                    }
+                    SelectedProjectType = ProjectTypes.First();
+                    MainViewModel.Current.LoadedContentVisibility = Visibility.Visible;
+                }
+                else
+                {
+                    MainViewModel.Current.NoContentVisibility = Visibility.Visible;
+                }
+
+                ProjectTypesHeader = String.Format(StringRes.GroupProjectTypeHeader_SF, ProjectTypes.Count);
+
+                await Task.CompletedTask;
+            }
         }
 
         private void LoadFrameworks(MetadataInfoViewModel projectType, MetadataInfoViewModel orgFramework)

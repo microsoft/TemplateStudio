@@ -147,7 +147,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 GenContext.ToolBox.Shell.ShowModal(infoView);
                 MainViewModel.Current.InfoShapeVisibility = Visibility.Collapsed;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }

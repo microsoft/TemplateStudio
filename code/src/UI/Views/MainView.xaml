@@ -46,6 +46,9 @@
             <Grid Visibility="{Binding LoadingContentVisibility}">
                 <TextBlock Text="{x:Static res:StringRes.LoadingTemplatesText}" Style="{StaticResource TextTemplateAuthorStyle}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
+            <Grid Visibility="{Binding NoContentVisibility}">
+                <TextBlock Text="{x:Static res:StringRes.NoContentText}" Style="{StaticResource TextTemplateAuthorStyle}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
 
             <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden"/>
             <Grid Grid.Column="1">

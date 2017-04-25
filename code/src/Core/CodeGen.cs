@@ -44,18 +44,23 @@ namespace Microsoft.Templates.Core
 
         public static CodeGen Instance { get; private set; }
 
-        private CodeGen(string locationId)
+        private CodeGen(string locationId, string hostVersion)
         {
-            var host = CreateHost(locationId);
+            var host = CreateHost(locationId, hostVersion);
             Settings = new EngineEnvironmentSettings(host, x => new SettingsLoader(x));
             Creator = new TemplateCreator(Settings);
         }
 
-        public static void Initialize(string locationId)
+        public static void Initialize(string locationId, string hostVersion)
         {
-            Instance = new CodeGen(locationId);
+            Instance = new CodeGen(locationId, hostVersion);
             Instance.Init();
         }
+
+        //public static void Initialize(string locationId)
+        //{
+        //    Initialize(locationId, GetHostVersion());
+        //}
 
         public string GetCurrentContentSource(string workingFolder)
         {
@@ -99,19 +104,19 @@ namespace Microsoft.Templates.Core
             }
         }
 
-        private static ITemplateEngineHost CreateHost(string locationId)
+        private static ITemplateEngineHost CreateHost(string locationId, string hostVersion)
         {
-            return new DefaultTemplateEngineHost($"{BaseName}_{locationId}", GetVersion(), CultureInfo.CurrentCulture.Name, new Dictionary<string, string>());
+            return new DefaultTemplateEngineHost($"{BaseName}_{locationId}", hostVersion, CultureInfo.CurrentCulture.Name, new Dictionary<string, string>());
         }
 
-        private static string GetVersion()
-        {
-            string assemblyLocation = Assembly.GetExecutingAssembly().Location;
-            var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
-            Version.TryParse(versionInfo.FileVersion, out Version v);
+        //private static string GetHostVersion()
+        //{
+        //    string assemblyLocation = Assembly.GetExecutingAssembly().Location;
+        //    var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
+        //    Version.TryParse(versionInfo.FileVersion, out Version v);
 
-            return v.ToString();
-        }
+        //    return $"{v.Major}.{v.Minor}";
+        //}
 
     }
 }

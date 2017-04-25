@@ -77,29 +77,43 @@ namespace Microsoft.Templates.UI.ViewModels
             _infoWindow = infoWindow;
         }
 
-        public async Task IniatializeAsync(TemplateInfoViewModel template)
+        public void Iniatialize(TemplateInfoViewModel template)
         {
             Name = template.Name;
             InformationType = GetInformationType(template.TemplateType.ToString());
             Version = template.Version;
             Author = template.Author;
-            LicenceTerms.AddRange(template.LicenceTerms.Select(l => new SummaryLicenceViewModel(l)));
-            LicencesVisibility = template.LicenceTerms != null && template.LicenceTerms.Any() ? Visibility.Visible : Visibility.Collapsed;
+            if (template.LicenceTerms != null && template.LicenceTerms.Any())
+            {
+                LicenceTerms.AddRange(template.LicenceTerms.Select(l => new SummaryLicenceViewModel(l)));
+                LicencesVisibility = Visibility.Visible;
+            }
+            else
+            {
+                LicencesVisibility = Visibility.Collapsed;
+            }
             InformationMD = template.Description;
-        }
+        }        
 
-        public void UnsuscribeEventHandlers()
-        {
-        }
-
-        public async Task IniatializeAsync(MetadataInfoViewModel metadataInfo)
+        public void Iniatialize(MetadataInfoViewModel metadataInfo)
         {
             Name = metadataInfo.Name;
             InformationType = GetInformationType(metadataInfo.MetadataType);
             Author = metadataInfo.Author;
-            LicenceTerms.AddRange(metadataInfo.LicenceTerms.Select(l => new SummaryLicenceViewModel(l)));
-            LicencesVisibility = metadataInfo.LicenceTerms != null && metadataInfo.LicenceTerms.Any() ? Visibility.Visible : Visibility.Collapsed;
+            if(metadataInfo.LicenceTerms != null && metadataInfo.LicenceTerms.Any())
+            {
+                LicenceTerms.AddRange(metadataInfo.LicenceTerms.Select(l => new SummaryLicenceViewModel(l)));
+                LicencesVisibility = Visibility.Visible;
+            }
+            else
+            {
+                LicencesVisibility = Visibility.Collapsed;
+            }
             InformationMD = metadataInfo.Description;
+        }
+
+        public void UnsuscribeEventHandlers()
+        {
         }
 
         private void OnOk()
