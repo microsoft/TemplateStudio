@@ -313,6 +313,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is no content available for this extension version. Update the extension to access to the latest content..
+        /// </summary>
+        public static string StatusOverVersionNoContent {
+            get {
+                return ResourceManager.GetString("StatusOverVersionNoContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wizard update available.
         /// </summary>
         public static string StatusOverVersionTitle {

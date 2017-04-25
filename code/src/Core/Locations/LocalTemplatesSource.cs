@@ -21,7 +21,16 @@ namespace Microsoft.Templates.Core.Locations
 {
     public class LocalTemplatesSource : TemplatesSource
     {
-        private string LocalVersion = "0.0.0.0";
+        public string LocalVersion { get; private set; }
+
+        public LocalTemplatesSource() : this ("0.0.0.0")
+        {
+        }
+        public LocalTemplatesSource(string version)
+        {
+            LocalVersion = version;
+        }
+
 
         public override string Id { get => "Local"; }
 
