@@ -82,7 +82,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void LoadFrameworks(MetadataInfoViewModel projectType, MetadataInfoViewModel orgFramework)
         {
-            var projectFrameworks = GetSupportedFx(projectType.Name);
+            var projectFrameworks = GenComposer.GetSupportedFx(projectType.Name);
 
             var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks()
                                                                 .Where(m => projectFrameworks.Contains(m.Name))
@@ -103,14 +103,6 @@ namespace Microsoft.Templates.UI.ViewModels
             }
             
             FrameworkHeader = String.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
-        }
-
-        private IEnumerable<string> GetSupportedFx(string projectType)
-        {
-            return GenContext.ToolBox.Repo.GetAll()
-                .Where(t => t.GetProjectType() == projectType)
-                .SelectMany(t => t.GetFrameworkList())
-                .Distinct();
         }
     }
 }

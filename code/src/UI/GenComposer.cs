@@ -28,6 +28,45 @@ namespace Microsoft.Templates.UI
 {
     public class GenComposer
     {
+        public static IEnumerable<string> GetSupportedFx(string projectType)
+        {
+            return GenContext.ToolBox.Repo.GetAll()
+                .Where(t => t.GetProjectType() == projectType)
+                .SelectMany(t => t.GetFrameworkList())
+                .Distinct();
+        }
+
+        public static IEnumerable<(LayoutItem Layout, ITemplateInfo Template)> GetLayoutTemplates(string projectType, string framework)
+        {
+            var projectTemplate = GetProjectTemplate(projectType, framework);
+            var layout = projectTemplate?.GetLayout();
+
+            foreach (var item in layout)
+            {
+                var template = GenContext.ToolBox.Repo.Find(t => t.GroupIdentity == item.templateGroupIdentity && t.GetFrameworkList().Any(f => f.Equals(framework, StringComparison.OrdinalIgnoreCase)));
+                var templateType = template?.GetTemplateType();
+                //Only pages and features can be layout items
+                if (templateType == TemplateType.Page || templateType == TemplateType.Feature)
+                {
+                    yield return (item, template);
+                }
+                else
+                {
+                    //TODO: trace this
+                }
+            }
+        }
+
+        public static IEnumerable<ITemplateInfo> GetDependencies(ITemplateInfo template)
+        {
+            //TODO: Make this recursive
+            //TODO: Only return dependencies for current framework, feature or page and multipleinstance = false, 
+            //otherwise trace
+            return template.GetDependencyList()
+                         .Select(d => GenContext.ToolBox.Repo.Find(t => t.Identity == d));
+
+        }
+
         public static IEnumerable<GenInfo> Compose(UserSelection userSelection)
         {
             var genQueue = new List<GenInfo>();
@@ -41,8 +80,6 @@ namespace Microsoft.Templates.UI
             AddTemplates(userSelection.Pages, genQueue);
             AddTemplates(userSelection.Features, genQueue);
 
-            //AddMissingDependencies(genQueue);
-
             AddCompositionTemplates(genQueue, userSelection);
 
             return genQueue;
@@ -50,15 +87,20 @@ namespace Microsoft.Templates.UI
 
         private static void AddProject(UserSelection userSelection, List<GenInfo> genQueue)
         {
-            var projectTemplate = GenContext.ToolBox.Repo
-                                                        .Find(t => t.GetTemplateType() == TemplateType.Project
-                                                            && t.GetProjectType() == userSelection.ProjectType
-                                                            && t.GetFrameworkList().Any(f => f == userSelection.Framework));
+            var projectTemplate = GetProjectTemplate(userSelection.ProjectType, userSelection.Framework);
 
             var genProject = CreateGenInfo(GenContext.Current.ProjectName, projectTemplate, genQueue);
             genProject.Parameters.Add(GenParams.Username, Environment.UserName);
             genProject.Parameters.Add(GenParams.WizardVersion, GenContext.GetWizardVersion());
             genProject.Parameters.Add(GenParams.TemplatesVersion, GenContext.ToolBox.Repo.GetTemplatesVersion());
+        }
+
+        private static ITemplateInfo GetProjectTemplate(string projectType, string framework)
+        {
+            return GenContext.ToolBox.Repo
+                                    .Find(t => t.GetTemplateType() == TemplateType.Project
+                                            && t.GetProjectType() == projectType
+                                            && t.GetFrameworkList().Any(f => f == framework));
         }
 
         private static void AddTemplates(IEnumerable<(string name, ITemplateInfo template)> userSelection, List<GenInfo> genQueue)
@@ -67,21 +109,6 @@ namespace Microsoft.Templates.UI
             {
                 CreateGenInfo(selectionItem.name, selectionItem.template, genQueue);
             }
-        }
-
-        public static List<ITemplateInfo> GetNotAddedDependencies(ITemplateInfo template, List<ITemplateInfo> currentTemplates)
-        {
-            List<ITemplateInfo> newTemplates = new List<ITemplateInfo>(); ;
-            var dependencies = template.GetDependencyList();
-            foreach (var dependency in dependencies)
-            {
-                if (!currentTemplates.Any(t => t.Identity == dependency))
-                {
-                    var dependencyTemplate = GenContext.ToolBox.Repo.Find(t => t.Identity == dependency);
-                    newTemplates.Add(dependencyTemplate);
-                }
-            }
-            return newTemplates;
         }
 
         public static void AddMissingLicences(ITemplateInfo template, ObservableCollection<SummaryLicenceViewModel> summaryLicences)

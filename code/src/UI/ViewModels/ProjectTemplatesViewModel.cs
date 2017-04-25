@@ -60,7 +60,7 @@ namespace Microsoft.Templates.UI.ViewModels
             if (Pages.Count == 0)
             {
                 var pageTemplates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page && t.GetFrameworkList().Contains(ContextFramework.Name))
-                                                            .Select(t => new TemplateInfoViewModel(t, GenContext.ToolBox.Repo.GetDependencies(t)))
+                                                            .Select(t => new TemplateInfoViewModel(t, GenComposer.GetDependencies(t)))
                                                             .OrderBy(t => t.Order)
                                                             .ToList();
 
@@ -74,7 +74,7 @@ namespace Microsoft.Templates.UI.ViewModels
             if (Features.Count == 0)
             {
                 var featureTemplates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Feature && t.GetFrameworkList().Contains(ContextFramework.Name))
-                                                            .Select(t => new TemplateInfoViewModel(t, GenContext.ToolBox.Repo.GetDependencies(t)))
+                                                            .Select(t => new TemplateInfoViewModel(t, GenComposer.GetDependencies(t)))
                                                             .OrderBy(t => t.Order)
                                                             .ToList();
                 foreach (var featureTemplate in featureTemplates)
@@ -102,15 +102,13 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void AddFromLayout(string projectTypeName, string frameworkName)
         {
-            var projectTemplate = GenContext.ToolBox.Repo.Find(t => t.GetProjectType() == projectTypeName && t.GetFrameworkList().Any(f => f == frameworkName));
-            var layout = projectTemplate.GetLayout();
+            var layout = GenComposer.GetLayoutTemplates(projectTypeName, frameworkName);
 
             foreach (var item in layout)
             {
-                var template = GenContext.ToolBox.Repo.GetLayoutTemplate(item, frameworkName);
-                if (template != null && template.GetTemplateType() == TemplateType.Page)
+                if (item.Template != null)
                 {
-                    OnAddItem((item.name, template), !item.@readonly);
+                    OnAddItem((item.Layout.name, item.Template), !item.Layout.@readonly);
                 }
             }
         }
@@ -118,10 +116,14 @@ namespace Microsoft.Templates.UI.ViewModels
         private void OnAddItem((string Name, ITemplateInfo Template) item, bool isRemoveEnabled = true)
         {
             SaveNewTemplate(item);
-            var newTemplates = GenComposer.GetNotAddedDependencies(item.Template, SavedTemplates.Select(s => s.Template).ToList());
-            foreach (var newTemplate in newTemplates)
+            var dependencies = GenComposer.GetDependencies(item.Template);
+
+            foreach (var dependencyTemplate in dependencies)
             {
-                OnAddItem((newTemplate.Name, newTemplate));
+                if (!SavedTemplates.Any(s => s.Template.Identity == dependencyTemplate.Identity))
+                {
+                    OnAddItem((dependencyTemplate.Name, dependencyTemplate));
+                }
             }
         }
 
