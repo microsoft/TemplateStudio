@@ -15,7 +15,14 @@
     <Grid>
         <ScrollViewer>
             <StackPanel>
+                <!-- Margin needs to be adjusted still -->
                 <GroupBox Header="{Binding ProjectTypesHeader}" Margin="{StaticResource SmallMargin}">
+                    <!--<UniformGrid
+                        Columns="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource ColumnConverter}, ConverterParameter=500}">
+                        <ItemsControl 
+                            ItemsSource="{Binding Pages}"
+                            ItemTemplate="{StaticResource ProjectTemplatesItemTemplate}" />
+                    </UniformGrid>-->
                     <ListView
                         SelectionMode="Single"
                         ItemsSource="{Binding ProjectTypes}"
