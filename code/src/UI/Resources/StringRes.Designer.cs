@@ -97,6 +97,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string ButtonOk {
+            get {
+                return ResourceManager.GetString("ButtonOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error updating templates. See output for more details..
         /// </summary>
         public static string ErrorSync {
@@ -192,6 +201,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ProjectSetupTitle {
             get {
                 return ResourceManager.GetString("ProjectSetupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select page and features.
+        /// </summary>
+        public static string ProjectTemplatesTitle {
+            get {
+                return ResourceManager.GetString("ProjectTemplatesTitle", resourceCulture);
             }
         }
         
@@ -354,6 +372,42 @@ namespace Microsoft.Templates.UI.Resources {
         public static string SummaryTitle {
             get {
                 return ResourceManager.GetString("SummaryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feature.
+        /// </summary>
+        public static string TemplateTypeFeature {
+            get {
+                return ResourceManager.GetString("TemplateTypeFeature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Framework.
+        /// </summary>
+        public static string TemplateTypeFramework {
+            get {
+                return ResourceManager.GetString("TemplateTypeFramework", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page.
+        /// </summary>
+        public static string TemplateTypePage {
+            get {
+                return ResourceManager.GetString("TemplateTypePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project type.
+        /// </summary>
+        public static string TemplateTypeProjectType {
+            get {
+                return ResourceManager.GetString("TemplateTypeProjectType", resourceCulture);
             }
         }
         

@@ -3,11 +3,13 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
@@ -48,12 +50,16 @@ namespace Microsoft.Templates.UI.ViewModels
         private RelayCommand<(string Name, ITemplateInfo Template)> _addCommand;
         public RelayCommand<(string Name, ITemplateInfo Template)> AddCommand => _addCommand ?? (_addCommand = new RelayCommand<(string Name, ITemplateInfo Template)>((item)=> { OnAddItem(item); }));
 
+        private RelayCommand<TemplateInfoViewModel> _showInfoCommand;
+        public RelayCommand<TemplateInfoViewModel> ShowInfoCommand => _showInfoCommand ?? (_showInfoCommand = new RelayCommand<TemplateInfoViewModel>((template) => { OnShowInfo(template); }));
+
         public Func<IEnumerable<string>> GetUsedNamesFunc => () => SavedTemplates.Select(t => t.Name);
         public Func<IEnumerable<string>> GetUsedTemplatesIdentitiesFunc => () => SavedTemplates.Select(t => t.Template.Identity);
 
 
         public async Task IniatializeAsync()
         {
+            MainViewModel.Current.Title = StringRes.ProjectTemplatesTitle;
             ContextProjectType = MainViewModel.Current.ProjectSetup.SelectedProjectType;
             ContextFramework = MainViewModel.Current.ProjectSetup.SelectedFramework;
             
@@ -122,6 +128,20 @@ namespace Microsoft.Templates.UI.ViewModels
             foreach (var newTemplate in newTemplates)
             {
                 OnAddItem((newTemplate.Name, newTemplate));
+            }
+        }
+
+        private void OnShowInfo(TemplateInfoViewModel template)
+        {
+            MainViewModel.Current.InfoShapeVisibility = Visibility.Visible;
+            var infoView = new InformationWindow(template, MainViewModel.Current.MainView);
+            try
+            {
+                GenContext.ToolBox.Shell.ShowModal(infoView);
+                MainViewModel.Current.InfoShapeVisibility = Visibility.Collapsed;
+            }
+            catch (Exception ex)
+            {
             }
         }
 

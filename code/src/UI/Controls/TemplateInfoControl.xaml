@@ -44,7 +44,7 @@
                 <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateTitleStyle}" Text="{Binding TemplateInfo.Name, ElementName=root}" Margin="{StaticResource MediumLeftMargin}" Foreground="{Binding TitleForeground, ElementName=root}" />
                 <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateAuthorStyle}" Text="{Binding TemplateInfo.Author, ElementName=root}" Margin="{StaticResource MediumLeftMargin}" />
 
-                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="{Binding NoEditingContentVisibility, ElementName=root}">
+                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="{Binding NoEditingContentVisibility, ElementName=root}" Click="OnShowInfo">
                     <Button.Content>
                         <TextBlock Text="&#xE946;" FontFamily="Segoe MDL2 Assets" FontSize="18" />
                     </Button.Content>

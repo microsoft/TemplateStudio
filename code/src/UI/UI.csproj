@@ -183,6 +183,7 @@
     <Compile Include="Converters\ColumnCountConverter.cs" />
     <Compile Include="Converters\FixedWidthConverter.cs" />
     <Compile Include="Converters\ItemAlignmentConverter.cs" />
+    <Compile Include="Converters\StringVisibilityConverter.cs" />
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="GenComposer.cs" />
@@ -195,6 +196,7 @@
       <DependentUpon>StringRes.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="ViewModels\InformationViewModel.cs" />
     <Compile Include="ViewModels\LicenseViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MetadataInfoViewModel.cs" />
@@ -204,6 +206,9 @@
     <Compile Include="ViewModels\SummaryItemViewModel.cs" />
     <Compile Include="ViewModels\SummaryLicenceViewModel.cs" />
     <Compile Include="ViewModels\TemplateInfoViewModel.cs" />
+    <Compile Include="Views\InformationWindow.xaml.cs">
+      <DependentUpon>InformationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -301,6 +306,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\_Thickness.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InformationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

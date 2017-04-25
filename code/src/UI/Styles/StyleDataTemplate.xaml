@@ -27,7 +27,7 @@
                 <!--Row 0-->
                 <controls:ImageEx Grid.Row="0" Grid.RowSpan="3" Focusable="False" SourcePath="{Binding Icon}"/>
                 <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateTitleStyle}" Text="{Binding DisplayName}" Margin="{StaticResource MediumLeftMargin}" />
-                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding ShowInfoCommand}">
                     <Button.Content>
                         <TextBlock Text="&#xE946;" FontFamily="Segoe MDL2 Assets" FontSize="18" />
                     </Button.Content>
@@ -46,6 +46,7 @@
         <controls:TemplateInfoControl
                     TemplateInfo="{Binding}"
                     AddCommand="{Binding DataContext.AddCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
+                    ShowInfoCommand="{Binding DataContext.ShowInfoCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
                     GetUsedNames="{Binding DataContext.GetUsedNamesFunc, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
                     GetUsedTemplatesIdentities="{Binding DataContext.GetUsedTemplatesIdentitiesFunc, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"/>
     </DataTemplate>

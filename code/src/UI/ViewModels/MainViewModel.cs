@@ -24,7 +24,7 @@ namespace Microsoft.Templates.UI.ViewModels
         private bool _canGoBack;
         private bool _canGoForward;
         public static MainViewModel Current;
-        private MainView _mainView;
+        public MainView MainView;
 
         private StatusViewModel _status = StatusControl.EmptyStatus;
         public StatusViewModel Status
@@ -52,6 +52,13 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             get { return _title; }
             set { SetProperty(ref _title, value); }
+        }
+
+        private Visibility _infoShapeVisibility = Visibility.Collapsed;
+        public Visibility InfoShapeVisibility
+        {
+            get { return _infoShapeVisibility; }
+            set { SetProperty(ref _infoShapeVisibility, value); }
         }
 
         private Visibility _loadingContentVisibility = Visibility.Visible;
@@ -97,13 +104,12 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public MainViewModel(MainView mainView)
         {
-            _mainView = mainView;
+            MainView = mainView;
             Current = this;
         }
 
         public async Task IniatializeAsync()
-        {
-            Title = StringRes.ProjectSetupTitle;
+        {            
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += Sync_SyncStatusChanged;
             try
             {
@@ -174,7 +180,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
             if (status == SyncStatus.UnderVersion)
             {
-                _mainView.Dispatcher.Invoke(() =>
+                MainView.Dispatcher.Invoke(() =>
                 {
                     Status = new StatusViewModel(StatusType.Error, StringRes.StatusLowerVersionContent);
                     _canGoForward = false;
@@ -202,9 +208,9 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnCancel()
         {
-            _mainView.DialogResult = false;
-            _mainView.Result = null;
-            _mainView.Close();
+            MainView.DialogResult = false;
+            MainView.Result = null;
+            MainView.Close();
         }        
 
         private void OnNext()
@@ -253,9 +259,9 @@ namespace Microsoft.Templates.UI.ViewModels
             };
             userSelection.Pages.AddRange(ProjectTemplates.SavedPages);
             userSelection.Features.AddRange(ProjectTemplates.SavedFeatures);
-            _mainView.DialogResult = true;
-            _mainView.Result = userSelection;
-            _mainView.Close();
+            MainView.DialogResult = true;
+            MainView.Result = userSelection;
+            MainView.Close();
         }
     }
 }

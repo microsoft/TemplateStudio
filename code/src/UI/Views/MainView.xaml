@@ -118,5 +118,10 @@
                 </Grid>
             </Grid>
         </Grid>
+        <Grid Grid.Row="0" Grid.RowSpan="3" Visibility="{Binding InfoShapeVisibility, FallbackValue=Collapsed}">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.4"/>
+            </Grid.Background>
+        </Grid>
     </Grid>
 </Window>

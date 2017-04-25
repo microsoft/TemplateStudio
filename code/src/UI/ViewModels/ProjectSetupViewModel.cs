@@ -65,6 +65,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public async Task IniatializeAsync()
         {
+            MainViewModel.Current.Title = StringRes.ProjectSetupTitle;
             if (SelectedProjectType == null)
             {
                 ProjectTypes.Clear();

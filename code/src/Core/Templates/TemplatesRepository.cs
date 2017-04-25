@@ -22,6 +22,7 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Locations;
 
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace Microsoft.Templates.Core
 {
@@ -102,8 +103,30 @@ namespace Microsoft.Templates.Core
 
             metadata.ForEach(m => SetMetadataDescription(m, folderName, type));
             metadata.ForEach(m => SetMetadataIcon(m, folderName, type));
+            metadata.ForEach(m => m.MetadataType = type);
+            metadata.ForEach(m => SetLicenceTerms(m));
 
             return metadata.OrderBy(m => m.Order);
+        }
+
+        private const string Separator = "|";
+        private const string LicencesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
+
+        private void SetLicenceTerms(MetadataInfo metadataInfo)
+        {            
+            var result = new List<(string text, string url)>();
+
+            var licencesMatches = Regex.Matches(metadataInfo.Licences, LicencesPattern);
+            for (int i = 0; i < licencesMatches.Count; i++)
+            {
+                var m = licencesMatches[i];
+                if (m.Success)
+                {
+                    result.Add((m.Groups["text"].Value, m.Groups["url"].Value));
+                }
+
+            }
+            metadataInfo.LicenceTerms = result;
         }
 
         private static void SetMetadataDescription(MetadataInfo mInfo, string folderName, string type)
