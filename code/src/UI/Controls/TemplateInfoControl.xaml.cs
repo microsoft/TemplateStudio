@@ -1,14 +1,15 @@
-﻿using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.Templates.Core;
-using Microsoft.Templates.UI.Resources;
-using Microsoft.Templates.UI.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+
+using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.Core;
+using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.ViewModels;
 
 namespace Microsoft.Templates.UI.Controls
 {
@@ -102,9 +103,7 @@ namespace Microsoft.Templates.UI.Controls
             set { SetValue(TitleForegroundProperty, value); }
         }
         public static readonly DependencyProperty TitleForegroundProperty = DependencyProperty.Register("TitleForeground", typeof(SolidColorBrush), typeof(TemplateInfoControl), new PropertyMetadata(null));
-
-
-
+        
         public TemplateInfoControl()
         {
             InitializeComponent();
@@ -114,7 +113,7 @@ namespace Microsoft.Templates.UI.Controls
         private void OnAddClicked(object sender, RoutedEventArgs e)
         {
             var names = GetUsedNames.Invoke();
-            NewTemplateName = Core.Naming.Infer(names, TemplateInfo.Template.GetDefaultName());
+            NewTemplateName = Naming.Infer(names, TemplateInfo.Template.GetDefaultName());
 
             if (TemplateInfo.Template.GetTemplateType() == TemplateType.Page || TemplateInfo.MultipleInstances)
             {
@@ -132,6 +131,7 @@ namespace Microsoft.Templates.UI.Controls
             if (IsValid)
             {
                 AddCommand.Execute((NewTemplateName, TemplateInfo.Template));
+
                 SwichVisibilities();
                 CheckAddingStatus();
             }
@@ -172,19 +172,18 @@ namespace Microsoft.Templates.UI.Controls
         private void HandleValidation(Core.ValidationResult validationResult)
         {
             IsValid = validationResult.IsValid;
+            ErrorMessage = String.Empty;
 
             if (!validationResult.IsValid)
             {
                 ErrorMessage = StringRes.ResourceManager.GetString($"ValidationError_{validationResult.ErrorType}");
+
                 if (string.IsNullOrWhiteSpace(ErrorMessage))
                 {
                     ErrorMessage = "UndefinedError";
                 }
+
                 throw new Exception(ErrorMessage);
-            }
-            else
-            {
-                ErrorMessage = String.Empty;
             }
         }
 
@@ -192,6 +191,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             var names = GetUsedNames.Invoke();
             var validationResult = Core.Naming.Validate(names, name);
+
             HandleValidation(validationResult);
         }
     }

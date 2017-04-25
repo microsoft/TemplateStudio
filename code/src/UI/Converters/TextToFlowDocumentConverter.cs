@@ -1,13 +1,9 @@
-﻿using Microsoft.Templates.UI.Controls;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+﻿using System;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+
+using Microsoft.Templates.UI.Controls;
 
 namespace Microsoft.Templates.UI.Converters
 {
@@ -16,6 +12,8 @@ namespace Microsoft.Templates.UI.Converters
     /// </summary>
     public class TextToFlowDocumentConverter : DependencyObject, IValueConverter
     {
+        private Lazy<Markdown> _markdown = new Lazy<Markdown>(() => new Markdown());
+
         public Markdown Markdown
         {
             get { return (Markdown)GetValue(MarkdownProperty); }
@@ -45,7 +43,7 @@ namespace Microsoft.Templates.UI.Converters
 
             var text = (string)value;
 
-            var engine = Markdown ?? mMarkdown.Value;
+            var engine = Markdown ?? _markdown.Value;
 
             return engine.Transform(text);
         }
@@ -64,8 +62,5 @@ namespace Microsoft.Templates.UI.Converters
         {
             throw new NotImplementedException();
         }
-
-        private Lazy<Markdown> mMarkdown
-            = new Lazy<Markdown>(() => new Markdown());
     }
 }

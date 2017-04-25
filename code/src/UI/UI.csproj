@@ -180,6 +180,9 @@
     <Compile Include="Controls\TemplateInfoControl.xaml.cs">
       <DependentUpon>TemplateInfoControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\ColumnCountConverter.cs" />
+    <Compile Include="Converters\FixedWidthConverter.cs" />
+    <Compile Include="Converters\ItemAlignmentConverter.cs" />
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="GenComposer.cs" />
