@@ -20,7 +20,7 @@
     "wts.defaultInstance": "LiveTile",
     "wts.multipleInstance": "false"    
   },
-  "sourceName": "LiveTile",
+  "sourceName": "LiveTileFeature",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {

@@ -37,7 +37,6 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public ObservableCollection<SummaryItemViewModel> SummaryPages { get; } = new ObservableCollection<SummaryItemViewModel>();
         public ObservableCollection<SummaryItemViewModel> SummaryFeatures { get; } = new ObservableCollection<SummaryItemViewModel>();
-        public ObservableCollection<SummaryLicenceViewModel> SummaryLicences { get; } = new ObservableCollection<SummaryLicenceViewModel>();
 
         public List<(string Name, ITemplateInfo Template)> SavedTemplates { get; } = new List<(string Name, ITemplateInfo Template)>();
 
@@ -93,6 +92,7 @@ namespace Microsoft.Templates.UI.ViewModels
             if (SavedTemplates == null || SavedTemplates.Count == 0)
             {
                 AddFromLayout(ContextProjectType.Name, ContextFramework.Name);
+                MainViewModel.Current.RebuildLicenses();
             }
 
             await Task.CompletedTask;
@@ -122,6 +122,13 @@ namespace Microsoft.Templates.UI.ViewModels
         }
 
         private void OnAddItem((string Name, ITemplateInfo Template) item, bool isRemoveEnabled = true)
+        {
+            AddItem(item, isRemoveEnabled);
+
+            MainViewModel.Current.RebuildLicenses();
+        }
+
+        private void AddItem((string Name, ITemplateInfo Template) item, bool isRemoveEnabled = true)
         {
             SaveNewTemplate(item);
             var newTemplates = GenComposer.GetNotAddedDependencies(item.Template, SavedTemplates.Select(s => s.Template).ToList());
@@ -171,7 +178,6 @@ namespace Microsoft.Templates.UI.ViewModels
                     IsRemoveEnabled = isRemoveEnabled
                 });
             }
-            GenComposer.AddMissingLicences(item.Template, SummaryLicences);
             OnPropertyChanged("GetUsedTemplatesIdentitiesFunc");            
         }
 
@@ -194,6 +200,8 @@ namespace Microsoft.Templates.UI.ViewModels
             }
             SavedTemplates.Remove(SavedTemplates.First(st => st.Name == item.ItemName));
             OnPropertyChanged("GetUsedTemplatesIdentitiesFunc");
+
+            MainViewModel.Current.RebuildLicenses();
         }
     }
 }

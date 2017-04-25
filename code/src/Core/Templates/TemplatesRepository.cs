@@ -40,7 +40,7 @@ namespace Microsoft.Templates.Core
             Sync = new TemplatesSynchronization(source);
         }
 
-         
+
         public string GetTemplatesVersion()
         {
             return Sync.CurrentContentVersion?.ToString();
@@ -113,20 +113,27 @@ namespace Microsoft.Templates.Core
         private const string LicencesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
 
         private void SetLicenceTerms(MetadataInfo metadataInfo)
-        {            
-            var result = new List<(string text, string url)>();
-
-            var licencesMatches = Regex.Matches(metadataInfo.Licences, LicencesPattern);
-            for (int i = 0; i < licencesMatches.Count; i++)
+        {
+            if (!string.IsNullOrWhiteSpace(metadataInfo.Licences))
             {
-                var m = licencesMatches[i];
-                if (m.Success)
-                {
-                    result.Add((m.Groups["text"].Value, m.Groups["url"].Value));
-                }
+                var result = new List<TemplateLicense>();
 
+                var licencesMatches = Regex.Matches(metadataInfo.Licences, LicencesPattern);
+                for (int i = 0; i < licencesMatches.Count; i++)
+                {
+                    var m = licencesMatches[i];
+                    if (m.Success)
+                    {
+                        result.Add(new TemplateLicense
+                        {
+                            Text = m.Groups["text"].Value,
+                            Url = m.Groups["url"].Value
+                        });
+                    }
+
+                }
+                metadataInfo.LicenceTerms = result;
             }
-            metadataInfo.LicenceTerms = result;
         }
 
         private static void SetMetadataDescription(MetadataInfo mInfo, string folderName, string type)

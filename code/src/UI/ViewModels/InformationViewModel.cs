@@ -9,12 +9,20 @@ using Microsoft.Templates.Core;
 using System.Windows.Input;
 using Microsoft.Templates.UI.Views;
 using Microsoft.Templates.UI.Resources;
+using System.Windows;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
     public class InformationViewModel : Observable
     {
         private InformationWindow _infoWindow;
+
+        private Visibility _informationVisibility = Visibility.Collapsed;
+        public Visibility InformationVisibility
+        {
+            get => _informationVisibility;
+            set => SetProperty(ref _informationVisibility, value);
+        }
 
         private string _name;
         public string Name
@@ -51,11 +59,18 @@ namespace Microsoft.Templates.UI.ViewModels
             set => SetProperty(ref _informationMD, value);
         }
 
-        private IEnumerable<(string text, string url)> _licenceTerms;
-        public IEnumerable<(string text, string url)> LicenceTerms
+        private IEnumerable<TemplateLicense> _licenceTerms;
+        public IEnumerable<TemplateLicense> LicenceTerms
         {
             get => _licenceTerms;
             set => SetProperty(ref _licenceTerms, value);
+        }
+
+        private Visibility _licencesVisibility = Visibility.Collapsed;
+        public Visibility LicencesVisibility
+        {
+            get => _licencesVisibility;
+            set => SetProperty(ref _licencesVisibility, value);
         }
 
         private ICommand _okCommand;
@@ -74,6 +89,7 @@ namespace Microsoft.Templates.UI.ViewModels
             Version = template.Version;
             Author = template.Author;
             LicenceTerms = template.LicenceTerms;
+            LicencesVisibility = template.LicenceTerms != null && template.LicenceTerms.Any() ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public void UnsuscribeEventHandlers()
@@ -86,7 +102,7 @@ namespace Microsoft.Templates.UI.ViewModels
             InformationType = GetInformationType(metadataInfo.MetadataType);
             Author = metadataInfo.Author;
             LicenceTerms = metadataInfo.LicenceTerms;
-            InformationMD = metadataInfo.Description;
+            InformationMD = metadataInfo.Description;            
         }
 
         private void OnOk()

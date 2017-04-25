@@ -44,6 +44,8 @@ namespace Microsoft.Templates.UI.ViewModels
                     LoadFrameworks(value, orgframework);
                     MainViewModel.Current.AlertProjectSetupChanged();
                 }
+
+                MainViewModel.Current.RebuildLicenses();
             }
         }
 
@@ -51,12 +53,15 @@ namespace Microsoft.Templates.UI.ViewModels
         public MetadataInfoViewModel SelectedFramework
         {
             get { return _selectedFramework; }
-            set {
+            set
+            {
                 SetProperty(ref _selectedFramework, value);
                 if (value != null)
                 {
                     MainViewModel.Current.AlertProjectSetupChanged();
                 }
+
+                MainViewModel.Current.RebuildLicenses();
             }
         }
 
@@ -97,12 +102,12 @@ namespace Microsoft.Templates.UI.ViewModels
             }
 
             SelectedFramework = Frameworks.FirstOrDefault(f => f.Name == orgFramework?.Name);
-                
+
             if (SelectedFramework == null)
             {
                 SelectedFramework = Frameworks.FirstOrDefault();
             }
-            
+
             FrameworkHeader = String.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
         }
 

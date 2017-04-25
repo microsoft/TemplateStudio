@@ -94,8 +94,8 @@ namespace Microsoft.Templates.UI.ViewModels
             set { SetProperty(ref _multipleInstances, value); }
         }
 
-        private IEnumerable<(string text, string url)> _licenceTerms;
-        public IEnumerable<(string text, string url)> LicenceTerms
+        private IEnumerable<TemplateLicense> _licenceTerms;
+        public IEnumerable<TemplateLicense> LicenceTerms
         {
             get { return _licenceTerms; }
             set { SetProperty(ref _licenceTerms, value); }

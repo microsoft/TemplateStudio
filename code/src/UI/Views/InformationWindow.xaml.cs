@@ -40,6 +40,7 @@ namespace Microsoft.Templates.UI.Views
             {
                 await ViewModel.IniatializeAsync(metadataInfo);
                 CenterWindow(mainWindow);
+                ViewModel.InformationVisibility = Visibility.Visible;
             };
 
             Unloaded += (sender, e) =>

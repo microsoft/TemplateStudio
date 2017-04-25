@@ -86,14 +86,14 @@ namespace Microsoft.Templates.Core
             return GetValueFromTag(ti, TagPrefix + "compositionFilter");
         }
 
-        public static IEnumerable<(string text, string url)> GetLicences(this ITemplateInfo ti)
+        public static IEnumerable<TemplateLicense> GetLicences(this ITemplateInfo ti)
         {
             var licences = GetValueFromTag(ti, TagPrefix + "licences");
             if (string.IsNullOrWhiteSpace(licences))
             {
-                return Enumerable.Empty<(string text, string url)>();
+                return Enumerable.Empty<TemplateLicense>();
             }
-            var result = new List<(string text, string url)>();
+            var result = new List<TemplateLicense>();
 
             var licencesMatches = Regex.Matches(licences, LicencesPattern);
             for (int i = 0; i < licencesMatches.Count; i++)
@@ -101,7 +101,11 @@ namespace Microsoft.Templates.Core
                 var m = licencesMatches[i];
                 if (m.Success)
                 {
-                    result.Add((m.Groups["text"].Value, m.Groups["url"].Value));
+                    result.Add(new TemplateLicense
+                    {
+                        Text = m.Groups["text"].Value,
+                        Url = m.Groups["url"].Value
+                    });
                 }
 
             }

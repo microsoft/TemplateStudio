@@ -9,6 +9,7 @@ using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -102,6 +103,8 @@ namespace Microsoft.Templates.UI.ViewModels
         public ProjectSetupViewModel ProjectSetup { get; private set; } = new ProjectSetupViewModel();
         public ProjectTemplatesViewModel ProjectTemplates { get; private set; } = new ProjectTemplatesViewModel();
 
+        public ObservableCollection<SummaryLicenceViewModel> SummaryLicences { get; } = new ObservableCollection<SummaryLicenceViewModel>();
+
         public MainViewModel(MainView mainView)
         {
             MainView = mainView;
@@ -157,6 +160,19 @@ namespace Microsoft.Templates.UI.ViewModels
         public void UnsuscribeEventHandlers()
         {
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged -= Sync_SyncStatusChanged;
+        }
+
+        public void RebuildLicenses()
+        {
+            var userSelection = CreateUserSelection();
+            var genItems = GenComposer.Compose(userSelection);
+
+            var genLicences = genItems
+                                .SelectMany(s => s.Template.GetLicences())
+                                .Distinct(new TemplateLicenseEqualityComparer())
+                                .ToList();
+
+            SyncLicences(genLicences);
         }
 
         private void Sync_SyncStatusChanged(object sender, SyncStatus status)
@@ -252,16 +268,49 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnCreate()
         {
-            var userSelection = new UserSelection()
-            {
-                ProjectType = ProjectSetup.SelectedProjectType.Name,
-                Framework = ProjectSetup.SelectedFramework.Name
-            };
-            userSelection.Pages.AddRange(ProjectTemplates.SavedPages);
-            userSelection.Features.AddRange(ProjectTemplates.SavedFeatures);
+            var userSelection = CreateUserSelection();
+
             MainView.DialogResult = true;
             MainView.Result = userSelection;
             MainView.Close();
+        }
+
+        private UserSelection CreateUserSelection()
+        {
+            var userSelection = new UserSelection()
+            {
+                ProjectType = ProjectSetup.SelectedProjectType?.Name,
+                Framework = ProjectSetup.SelectedFramework?.Name
+            };
+            userSelection.Pages.AddRange(ProjectTemplates.SavedPages);
+            userSelection.Features.AddRange(ProjectTemplates.SavedFeatures);
+            return userSelection;
+        }
+
+        private void SyncLicences(IEnumerable<TemplateLicense> licenses)
+        {
+            var toRemove = new List<SummaryLicenceViewModel>();
+
+            foreach (var summaryLicense in SummaryLicences)
+            {
+                if (!licenses.Any(l => l.Url == summaryLicense.Url))
+                {
+                    toRemove.Add(summaryLicense);
+                }
+            }
+
+            foreach (var licenseToRemove in toRemove)
+            {
+                SummaryLicences.Remove(licenseToRemove);
+            }
+
+            foreach (var license in licenses)
+            {
+                if (!SummaryLicences.Any(l => l.Url == license.Url))
+                {
+                    SummaryLicences.Add(new SummaryLicenceViewModel(license));
+                }
+            }            
         }
     }
 }
