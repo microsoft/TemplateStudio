@@ -76,7 +76,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 ProjectTypes.Clear();
 
                 var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes();
-                if (projectTypes != null)
+                if (projectTypes.Count() > 0)
                 {
                     var data = projectTypes.Select(m => new MetadataInfoViewModel(m)).ToList();
                     foreach (var projectType in data.Where(p => !string.IsNullOrEmpty(p.Description)))
@@ -84,15 +84,12 @@ namespace Microsoft.Templates.UI.ViewModels
                         ProjectTypes.Add(projectType);
                     }
                     SelectedProjectType = ProjectTypes.First();
-                    ProjectTypesHeader = String.Format(StringRes.GroupProjectTypeHeader_SF, ProjectTypes.Count);
                 }
-                else
-                {
-                    ProjectTypesHeader = String.Format(StringRes.GroupProjectTypeHeader_SF, 0);
-                }
-            }
 
-            await Task.CompletedTask;
+                ProjectTypesHeader = String.Format(StringRes.GroupProjectTypeHeader_SF, ProjectTypes.Count);
+
+                await Task.CompletedTask;
+            }
         }
 
         private void LoadFrameworks(MetadataInfoViewModel projectType, MetadataInfoViewModel orgFramework)

@@ -31,7 +31,8 @@ namespace Microsoft.Templates.Core.Locations
         Adquiring = 3,
         Adquired = 4,
         OverVersion = 5,
-        UnderVersion = 6
+        OverVersionNoContent = 6,
+        UnderVersion = 7
     }
 
     public class TemplatesSynchronization
@@ -145,7 +146,14 @@ namespace Microsoft.Templates.Core.Locations
             {
                 if (_content.ExistOverVersion())
                 {
-                    SyncStatusChanged?.Invoke(this, SyncStatus.OverVersion);
+                    if (CurrentContentVersion.IsNull())
+                    {
+                        SyncStatusChanged?.Invoke(this, SyncStatus.OverVersionNoContent);
+                    }
+                    else
+                    {
+                        SyncStatusChanged?.Invoke(this, SyncStatus.OverVersion);
+                    }
                 }
             });
         }

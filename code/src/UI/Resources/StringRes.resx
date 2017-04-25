@@ -189,6 +189,9 @@
   <data name="StatusOverVersionContent" xml:space="preserve">
     <value>An update to the templates is available. Update the extension to get the latest content.</value>
   </data>
+  <data name="StatusOverVersionNoContent" xml:space="preserve">
+    <value>There is no content available for this extension version. Update the extension to access to the latest content.</value>
+  </data>
   <data name="StatusOverVersionTitle" xml:space="preserve">
     <value>Wizard update available</value>
   </data>

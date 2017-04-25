@@ -181,9 +181,19 @@ namespace Microsoft.Templates.UI.ViewModels
 
             if (status == SyncStatus.OverVersion)
             {
-                _mainView.Dispatcher.Invoke(() =>
+                MainView.Dispatcher.Invoke(() =>
                 {
                     Status = new StatusViewModel(StatusType.Warning, StringRes.StatusOverVersionContent);
+                });
+            }
+
+            if (status == SyncStatus.OverVersionNoContent)
+            {
+                MainView.Dispatcher.Invoke(() =>
+                {
+                    Status = new StatusViewModel(StatusType.Error, StringRes.StatusOverVersionNoContent);
+                    _canGoForward = false;
+                    NextCommand.OnCanExecuteChanged();
                 });
             }
 
