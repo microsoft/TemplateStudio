@@ -15,6 +15,7 @@
     "wts.order": "1",
     "wts.group": "ApplicationLifecycle",
     "wts.licences": "[Newtonsoft.Json](https://raw.githubusercontent.com/JamesNK/Newtonsoft.Json/master/LICENSE.md)",
+    "wts.defaultInstance": "SettingsStorage",
     "wts.multipleInstance": "false"
   },
   "sourceName": "SettingsStorageFeature",

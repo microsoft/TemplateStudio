@@ -20,6 +20,8 @@ namespace Microsoft.Templates.UI.Controls
     public enum StatusType { Empty, Information, Warning, Error }
     public partial class StatusControl : UserControl
     {
+        private const string _defaultVersion = "1.0.0.0";
+
         public static StatusViewModel EmptyStatus = new StatusViewModel(StatusType.Empty, String.Empty);
 
         public StatusViewModel Status
@@ -28,6 +30,20 @@ namespace Microsoft.Templates.UI.Controls
             set { SetValue(StatusProperty, value); }
         }
         public static readonly DependencyProperty StatusProperty = DependencyProperty.Register("Status", typeof(StatusViewModel), typeof(StatusControl), new PropertyMetadata(new StatusViewModel(StatusType.Empty, String.Empty), OnStatusPropertyChanged));
+
+        public string WizardVersion
+        {
+            get { return (string)GetValue(WizardVersionProperty); }
+            set { SetValue(WizardVersionProperty, value); }
+        }
+        public static readonly DependencyProperty WizardVersionProperty = DependencyProperty.Register("WizardVersion", typeof(string), typeof(StatusControl), new PropertyMetadata(_defaultVersion));
+
+        public string TemplatesVersion
+        {
+            get { return (string)GetValue(TemplatesVersionProperty); }
+            set { SetValue(TemplatesVersionProperty, value); }
+        }
+        public static readonly DependencyProperty TemplatesVersionProperty = DependencyProperty.Register("TemplatesVersion", typeof(string), typeof(StatusControl), new PropertyMetadata(_defaultVersion));
 
         private static void OnStatusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -53,29 +69,27 @@ namespace Microsoft.Templates.UI.Controls
 
         private void UpdateStatus(StatusViewModel status)
         {
-            txtStatus.Text = status.Message;
             switch (status.Status)
             {
                 case StatusType.Information:
                     txtIcon.Text = Char.ConvertFromUtf32(0xE930);
                     txtIcon.Foreground = FindResource("UIBlack") as SolidColorBrush;
-                    this.Background = new SolidColorBrush(Colors.Transparent);
+                    this.Background = new SolidColorBrush(Colors.Transparent);                    
                     break;
                 case StatusType.Warning:
                     txtIcon.Text = Char.ConvertFromUtf32(0xEA39);
-                    txtIcon.Foreground = FindResource("UIDarkYellow") as SolidColorBrush;
-                    //this.Background = FindResource("UIYellow") as SolidColorBrush;
+                    txtIcon.Foreground = FindResource("UIDarkYellow") as SolidColorBrush;                    
                     Color yellow = (Color)FindResource("UIYellowColor");
-                    this.Background = new LinearGradientBrush(yellow, Colors.Transparent, 0);
+                    this.Background = new LinearGradientBrush(yellow, Colors.Transparent, 0);                    
                     break;
                 case StatusType.Error:
                     txtIcon.Text = Char.ConvertFromUtf32(0xEB90);
                     txtIcon.Foreground = FindResource("UIRed") as SolidColorBrush;
-                    this.Background = new SolidColorBrush(Colors.Transparent);
+                    this.Background = new SolidColorBrush(Colors.Transparent);                    
                     break;
                 default:
                     txtIcon.Text = String.Empty;
-                    this.Background = new SolidColorBrush(Colors.Transparent);
+                    this.Background = new SolidColorBrush(Colors.Transparent);                    
                     break;
             }
             if (status.AutoHide == true)
