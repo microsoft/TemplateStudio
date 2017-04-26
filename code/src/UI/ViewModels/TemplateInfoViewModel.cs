@@ -101,6 +101,13 @@ namespace Microsoft.Templates.UI.ViewModels
             set { SetProperty(ref _licenceTerms, value); }
         }
 
+        private string _group;
+        public string Group
+        {
+            get { return _group; }
+            set { SetProperty(ref _group, value); }
+        }
+
         private bool _isEnabled;
         public bool IsEnabled
         {
@@ -145,6 +152,7 @@ namespace Microsoft.Templates.UI.ViewModels
             Template = template;
             Dependencies = string.Join(",", dependencies.Select(d => d.Name));
             LicenceTerms = template.GetLicences();
+            Group = template.GetGroup();
         }
     }
 }

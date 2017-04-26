@@ -32,9 +32,9 @@ namespace Microsoft.Templates.Test
         private static TemplatesRepository CreateNewRepos()
         {
             var source = new LocalTemplatesSource();
-            CodeGen.Initialize(source.Id);
+            CodeGen.Initialize(source.Id, "0.0");
 
-            var repos = new TemplatesRepository(source);
+            var repos = new TemplatesRepository(source, Version.Parse("0.0.0.0"));
 
             repos.SynchronizeAsync(true).Wait();
             return repos;

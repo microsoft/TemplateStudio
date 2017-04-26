@@ -22,20 +22,6 @@ namespace Microsoft.Templates.UI.Controls
         }
         public static readonly DependencyProperty TemplateInfoProperty = DependencyProperty.Register("TemplateInfo", typeof(TemplateInfoViewModel), typeof(TemplateInfoControl), new PropertyMetadata(null));
 
-        public ICommand AddCommand
-        {
-            get { return (ICommand)GetValue(AddCommandProperty); }
-            set { SetValue(AddCommandProperty, value); }
-        }
-        public static readonly DependencyProperty AddCommandProperty = DependencyProperty.Register("AddCommand", typeof(ICommand), typeof(TemplateInfoControl), new PropertyMetadata(null));
-
-        public ICommand ShowInfoCommand
-        {
-            get { return (ICommand)GetValue(ShowInfoCommandProperty); }
-            set { SetValue(ShowInfoCommandProperty, value); }
-        }
-        public static readonly DependencyProperty ShowInfoCommandProperty = DependencyProperty.Register("ShowInfoCommand", typeof(ICommand), typeof(TemplateInfoControl), new PropertyMetadata(null));
-
         public Visibility NoEditingContentVisibility
         {
             get { return (Visibility)GetValue(NoEditingContentVisibilityProperty); }
@@ -56,27 +42,6 @@ namespace Microsoft.Templates.UI.Controls
             set { SetValue(AddingVisibilityProperty, value); }
         }
         public static readonly DependencyProperty AddingVisibilityProperty = DependencyProperty.Register("AddingVisibility", typeof(Visibility), typeof(TemplateInfoControl), new PropertyMetadata(Visibility.Visible));
-
-
-        public Func<IEnumerable<string>> GetUsedNames
-        {
-            get { return (Func<IEnumerable<string>>)GetValue(GetUsedNamesProperty); }
-            set { SetValue(GetUsedNamesProperty, value); }
-        }
-        public static readonly DependencyProperty GetUsedNamesProperty = DependencyProperty.Register("GetUsedNames", typeof(Func<IEnumerable<string>>), typeof(TemplateInfoControl), new PropertyMetadata(null));
-
-        public Func<IEnumerable<string>> GetUsedTemplatesIdentities
-        {
-            get { return (Func<IEnumerable<string>>)GetValue(GetUsedTemplatesIdentitiesProperty); }
-            set { SetValue(GetUsedTemplatesIdentitiesProperty, value); }
-        }
-        public static readonly DependencyProperty GetUsedTemplatesIdentitiesProperty = DependencyProperty.Register("GetUsedTemplatesIdentities", typeof(Func<IEnumerable<string>>), typeof(TemplateInfoControl), new PropertyMetadata(null, OnGetUsedTemplatesIdentitiesPropertyChanged));
-
-        private static void OnGetUsedTemplatesIdentitiesPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var control = d as TemplateInfoControl;
-            control.CheckAddingStatus();
-        }
 
         public string NewTemplateName
         {
@@ -115,11 +80,12 @@ namespace Microsoft.Templates.UI.Controls
         {
             InitializeComponent();
             TitleForeground = FindResource("UIBlack") as SolidColorBrush;
+            MainViewModel.Current.ProjectTemplates.UpdateTemplateAvailable += (sender, args) => CheckAddingStatus();
         }
 
         private void OnAddClicked(object sender, RoutedEventArgs e)
         {
-            var names = GetUsedNames.Invoke();
+            var names = MainViewModel.Current.ProjectTemplates.GetUsedNamesFunc.Invoke();
             NewTemplateName = Naming.Infer(names, TemplateInfo.Template.GetDefaultName());
 
             if (TemplateInfo.Template.GetTemplateType() == TemplateType.Page || TemplateInfo.MultipleInstances)
@@ -128,7 +94,7 @@ namespace Microsoft.Templates.UI.Controls
             }
             else
             {
-                AddCommand.Execute((NewTemplateName, TemplateInfo.Template));
+                MainViewModel.Current.ProjectTemplates.AddCommand.Execute((NewTemplateName, TemplateInfo.Template));
                 CheckAddingStatus();
             }
         }
@@ -137,7 +103,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (IsValid)
             {
-                AddCommand.Execute((NewTemplateName, TemplateInfo.Template));
+                MainViewModel.Current.ProjectTemplates.AddCommand.Execute((NewTemplateName, TemplateInfo.Template));
 
                 SwichVisibilities();
                 CheckAddingStatus();
@@ -158,7 +124,7 @@ namespace Microsoft.Templates.UI.Controls
             }
         }
 
-        private bool IsAlreadyDefined => GetUsedTemplatesIdentities.Invoke().Any(name => name == TemplateInfo.Template.Identity);
+        private bool IsAlreadyDefined => MainViewModel.Current.ProjectTemplates.GetUsedTemplatesIdentitiesFunc.Invoke().Any(name => name == TemplateInfo.Template.Identity);
 
         private void SwichVisibilities()
         {
@@ -196,7 +162,7 @@ namespace Microsoft.Templates.UI.Controls
 
         public void Validate(string name)
         {
-            var names = GetUsedNames.Invoke();
+            var names = MainViewModel.Current.ProjectTemplates.GetUsedNamesFunc.Invoke();
             var validationResult = Core.Naming.Validate(names, name);
 
             HandleValidation(validationResult);
@@ -204,7 +170,7 @@ namespace Microsoft.Templates.UI.Controls
 
         private void OnShowInfo(object sender, RoutedEventArgs e)
         {
-            ShowInfoCommand.Execute(TemplateInfo);
+            MainViewModel.Current.ProjectTemplates.ShowInfoCommand.Execute(TemplateInfo);
         }
     }
 }

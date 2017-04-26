@@ -15,6 +15,7 @@ namespace Microsoft.Templates.UI.ViewModels
 {
     public class ProjectTemplatesViewModel : Observable
     {
+        public event EventHandler UpdateTemplateAvailable;
         public MetadataInfoViewModel ContextFramework { get; set; }
         public MetadataInfoViewModel ContextProjectType { get; set; }
 
@@ -32,8 +33,8 @@ namespace Microsoft.Templates.UI.ViewModels
             set => SetProperty(ref _featuresHeader, value);
         }
 
-        public ObservableCollection<TemplateInfoViewModel> Pages { get; } = new ObservableCollection<TemplateInfoViewModel>();
-        public ObservableCollection<TemplateInfoViewModel> Features { get; } = new ObservableCollection<TemplateInfoViewModel>();
+        public ObservableCollection<GroupTemplateInfoViewModel> PagesGroups { get; } = new ObservableCollection<GroupTemplateInfoViewModel>();
+        public ObservableCollection<GroupTemplateInfoViewModel> FeatureGroups { get; } = new ObservableCollection<GroupTemplateInfoViewModel>();
 
         public ObservableCollection<SummaryItemViewModel> SummaryPages { get; } = new ObservableCollection<SummaryItemViewModel>();
         public ObservableCollection<SummaryItemViewModel> SummaryFeatures { get; } = new ObservableCollection<SummaryItemViewModel>();
@@ -62,31 +63,26 @@ namespace Microsoft.Templates.UI.ViewModels
             ContextProjectType = MainViewModel.Current.ProjectSetup.SelectedProjectType;
             ContextFramework = MainViewModel.Current.ProjectSetup.SelectedFramework;
             
-            if (Pages.Count == 0)
+            if (PagesGroups.Count == 0)
             {
-                var pageTemplates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page && t.GetFrameworkList().Contains(ContextFramework.Name))
-                                                            .Select(t => new TemplateInfoViewModel(t, GenContext.ToolBox.Repo.GetDependencies(t)))
-                                                            .OrderBy(t => t.Order)
-                                                            .ToList();
+                var pages = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page && t.GetFrameworkList().Contains(ContextFramework.Name))
+                                                   .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name)));
 
-                foreach (var pageTemplate in pageTemplates)
-                {
-                    Pages.Add(pageTemplate);
-                }
-                PagesHeader = String.Format(StringRes.GroupPagesHeader_SF, Pages.Count);
+                var groups = pages.GroupBy(t => t.Group).Select(gr => new GroupTemplateInfoViewModel(gr.Key as string, gr.ToList())).OrderBy(gr => gr.Title);
+
+                PagesGroups.AddRange(groups);
+                PagesHeader = String.Format(StringRes.GroupPagesHeader_SF, pages.Count());
             }
 
-            if (Features.Count == 0)
+            if (FeatureGroups.Count == 0)
             {
-                var featureTemplates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Feature && t.GetFrameworkList().Contains(ContextFramework.Name))
-                                                            .Select(t => new TemplateInfoViewModel(t, GenContext.ToolBox.Repo.GetDependencies(t)))
-                                                            .OrderBy(t => t.Order)
-                                                            .ToList();
-                foreach (var featureTemplate in featureTemplates)
-                {
-                    Features.Add(featureTemplate);
-                }
-                FeaturesHeader = String.Format(StringRes.GroupFeaturesHeader_SF, Pages.Count);
+                var features = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Feature && t.GetFrameworkList().Contains(ContextFramework.Name))
+                                                      .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name)));
+
+                var groups = features.GroupBy(t => t.Group).Select(gr => new GroupTemplateInfoViewModel(gr.Key as string, gr.ToList())).OrderBy(gr => gr.Title);
+
+                FeatureGroups.AddRange(groups);
+                FeaturesHeader = String.Format(StringRes.GroupFeaturesHeader_SF, features.Count());
             }
 
             if (SavedTemplates == null || SavedTemplates.Count == 0)
@@ -103,39 +99,34 @@ namespace Microsoft.Templates.UI.ViewModels
             SummaryPages.Clear();
             SummaryFeatures.Clear();
             SavedTemplates.Clear();
-            
         }
 
         private void AddFromLayout(string projectTypeName, string frameworkName)
         {
-            var projectTemplate = GenContext.ToolBox.Repo.Find(t => t.GetProjectType() == projectTypeName && t.GetFrameworkList().Any(f => f == frameworkName));
-            var layout = projectTemplate.GetLayout();
+            var layout = GenComposer.GetLayoutTemplates(projectTypeName, frameworkName);
 
             foreach (var item in layout)
             {
-                var template = GenContext.ToolBox.Repo.GetLayoutTemplate(item, frameworkName);
-                if (template != null && template.GetTemplateType() == TemplateType.Page)
+                if (item.Template != null)
                 {
-                    OnAddItem((item.name, template), !item.@readonly);
+                    OnAddItem((item.Layout.name, item.Template), !item.Layout.@readonly);
                 }
             }
         }
 
         private void OnAddItem((string Name, ITemplateInfo Template) item, bool isRemoveEnabled = true)
         {
-            AddItem(item, isRemoveEnabled);
+            SaveNewTemplate(item, isRemoveEnabled);
+            var dependencies = GenComposer.GetAllDependencies(item.Template, ContextFramework.Name);
 
-            MainViewModel.Current.RebuildLicenses();
-        }
-
-        private void AddItem((string Name, ITemplateInfo Template) item, bool isRemoveEnabled = true)
-        {
-            SaveNewTemplate(item);
-            var newTemplates = GenComposer.GetNotAddedDependencies(item.Template, SavedTemplates.Select(s => s.Template).ToList());
-            foreach (var newTemplate in newTemplates)
+            foreach (var dependencyTemplate in dependencies)
             {
-                OnAddItem((newTemplate.Name, newTemplate));
+                if (!SavedTemplates.Any(s => s.Template.Identity == dependencyTemplate.Identity))
+                {
+                    SaveNewTemplate((dependencyTemplate.GetDefaultName(), dependencyTemplate), isRemoveEnabled);
+                }
             }
+            MainViewModel.Current.RebuildLicenses();
         }
 
         private void OnShowInfo(TemplateInfoViewModel template)
@@ -151,7 +142,6 @@ namespace Microsoft.Templates.UI.ViewModels
             {
             }
         }
-
 
         private void SaveNewTemplate((string Name, ITemplateInfo Template) item, bool isRemoveEnabled = true)
         {            
@@ -178,7 +168,7 @@ namespace Microsoft.Templates.UI.ViewModels
                     IsRemoveEnabled = isRemoveEnabled
                 });
             }
-            OnPropertyChanged("GetUsedTemplatesIdentitiesFunc");            
+            UpdateTemplateAvailable?.Invoke(this, EventArgs.Empty);
         }
 
         private void RemoveItem(SummaryItemViewModel item)
@@ -199,7 +189,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 SummaryFeatures.Remove(item);
             }
             SavedTemplates.Remove(SavedTemplates.First(st => st.Name == item.ItemName));
-            OnPropertyChanged("GetUsedTemplatesIdentitiesFunc");
+            UpdateTemplateAvailable?.Invoke(this, EventArgs.Empty);
 
             MainViewModel.Current.RebuildLicenses();
         }

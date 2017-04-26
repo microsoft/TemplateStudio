@@ -138,6 +138,27 @@
   <data name="ErrorSync" xml:space="preserve">
     <value>Error updating templates. See output for more details.</value>
   </data>
+  <data name="ExceptionDependencyCircularReference" xml:space="preserve">
+    <value>Circular dependency detected on template {0} with {1}.</value>
+  </data>
+  <data name="ExceptionDependencyMultipleInstance" xml:space="preserve">
+    <value>Invalid dependency item {0}. Dependencies have to be configured as multpleInstance = false.</value>
+  </data>
+  <data name="ExceptionDependencyNotFound" xml:space="preserve">
+    <value>Dependency template {0} not found for framework {1}.</value>
+  </data>
+  <data name="ExceptionDependencyType" xml:space="preserve">
+    <value>Invalid dependency item {0}. Dependency items must be of type Page or Feature.</value>
+  </data>
+  <data name="ExceptionGenerating" xml:space="preserve">
+    <value>Template '{0}', name: '{1}', reason: '{2}'</value>
+  </data>
+  <data name="ExceptionLayoutNotFound" xml:space="preserve">
+    <value>Layout template {0} not found for framework {1}.</value>
+  </data>
+  <data name="ExceptionLayoutType" xml:space="preserve">
+    <value>Invalid layout item {0}. Layout items must be of type Page or Feature.</value>
+  </data>
   <data name="GeneratingFeatureMessage" xml:space="preserve">
     <value>Adding '{0}' feature to project...</value>
   </data>
@@ -189,6 +210,9 @@
   <data name="ResetSelectionTitle" xml:space="preserve">
     <value>Reset selection</value>
   </data>
+  <data name="RestoringMessage" xml:space="preserve">
+    <value>Restoring packages...</value>
+  </data>
   <data name="StatusAdquired" xml:space="preserve">
     <value>Templates downloaded</value>
   </data>
@@ -236,6 +260,15 @@
   </data>
   <data name="SummaryTitle" xml:space="preserve">
     <value>Summary</value>
+  </data>
+  <data name="TemplateGroup_ApplicationLifecycle" xml:space="preserve">
+    <value>Application Lifecycle</value>
+  </data>
+  <data name="TemplateGroup_BackgroundWork" xml:space="preserve">
+    <value>Background Work</value>
+  </data>
+  <data name="TemplateGroup_UserInteraction" xml:space="preserve">
+    <value>User Interaction</value>
   </data>
   <data name="TemplateTypeFeature" xml:space="preserve">
     <value>Feature</value>
