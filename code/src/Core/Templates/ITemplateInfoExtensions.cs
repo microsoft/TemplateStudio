@@ -181,12 +181,6 @@ namespace Microsoft.Templates.Core
             return GetValueFromTag(ti, TagPrefix + "version");
         }
 
-        //TODO: Create Enum for this
-        public static string GetTemplateOutputType(this ITemplateInfo ti)
-        {
-            return GetValueFromTag(ti, "type");
-        }
-
         public static int GetOrder(this ITemplateInfo ti)
         {
             var rawOrder = GetValueFromTag(ti, TagPrefix + "order");

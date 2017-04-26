@@ -124,6 +124,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Template &apos;{0}&apos;, name: &apos;{1}&apos;, reason: &apos;{2}&apos;.
+        /// </summary>
+        public static string ExceptionGenerating {
+            get {
+                return ResourceManager.GetString("ExceptionGenerating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adding &apos;{0}&apos; feature to project....
         /// </summary>
         public static string GeneratingFeatureMessage {
@@ -273,6 +282,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ResetSelectionTitle {
             get {
                 return ResourceManager.GetString("ResetSelectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restoring packages....
+        /// </summary>
+        public static string RestoringMessage {
+            get {
+                return ResourceManager.GetString("RestoringMessage", resourceCulture);
             }
         }
         
