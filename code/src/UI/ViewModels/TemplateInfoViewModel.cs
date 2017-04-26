@@ -12,38 +12,16 @@ namespace Microsoft.Templates.UI.ViewModels
         public string Name
         {
             get => _name;
-            set
-            {
-                SetProperty(ref _name, value);
-                OnPropertyChanged(nameof(DisplayText));
-            }
+            set => SetProperty(ref _name, value);
         }
 
         private string _templateName;
         public string TemplateName
         {
             get => _templateName;
-            set
-            {
-                SetProperty(ref _templateName, value);
-                OnPropertyChanged(nameof(DisplayText));
-            }
+            set => SetProperty(ref _templateName, value);
         }
 
-        public string DisplayText
-        {
-            get
-            {
-                if (HasDefaultName)
-                {
-                    return Name;
-                }
-                else
-                {
-                    return $"{Name} [{TemplateName}]";
-                }
-            }
-        }
 
         private string _author;
         public string Author
