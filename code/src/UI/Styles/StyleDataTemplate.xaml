@@ -106,11 +106,7 @@
             </TextBlock>
             <Button x:Name="RemoveButton" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="{Binding IsRemoveEnabled}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.ProjectTemplates.RemoveItemCommand}" CommandParameter="{Binding}" Opacity="0" >
                 <Button.Content>
-                    <Grid>
-                        <TextBlock Text="&#xEA3B;" FontFamily="Segoe MDL2 Assets" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="Red" />
-                        <TextBlock Text="&#xEA3A;" FontFamily="Segoe MDL2 Assets" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
-                        <TextBlock Text="&#xE894;" FontFamily="Segoe MDL2 Assets" FontSize="9" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
-                    </Grid>
+                    <TextBlock Text="&#xEB90;" FontFamily="Segoe MDL2 Assets" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="Red" />
                 </Button.Content>
             </Button>
         </Grid>
