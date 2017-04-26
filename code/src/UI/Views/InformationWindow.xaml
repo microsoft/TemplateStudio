@@ -57,9 +57,9 @@
                         </TextBlock.Text>
                     </TextBlock>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding LicencesVisibility, FallbackValue=Collapsed}">
-                    <TextBlock Text="Licences:" Style="{StaticResource TextTemplateTitleStyle}" MinWidth="60"/>
-                    <ItemsControl ItemsSource="{Binding LicenceTerms}" Margin="{StaticResource MediumLeftMargin}" ItemTemplate="{StaticResource LicenceSummaryItemTemplate}"/>
+                <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding LicensesVisibility, FallbackValue=Collapsed}">
+                    <TextBlock Text="Licenses:" Style="{StaticResource TextTemplateTitleStyle}" MinWidth="60"/>
+                    <ItemsControl ItemsSource="{Binding LicenseTerms}" Margin="{StaticResource MediumLeftMargin}" ItemTemplate="{StaticResource LicenseSummaryItemTemplate}"/>
                 </StackPanel>
             </StackPanel>
             <controls:MarkdownBlock Grid.Row="1" Margin="{StaticResource BigTopRightBottomMargin}" Text="{Binding InformationMD}" />

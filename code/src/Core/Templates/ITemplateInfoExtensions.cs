@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core
     {
         private const string Separator = "|";
         private const string TagPrefix = "wts.";
-        private const string LicencesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
+        private const string LicensesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
 
         public static TemplateType GetTemplateType(this ITemplateInfo ti)
         {
@@ -86,19 +86,19 @@ namespace Microsoft.Templates.Core
             return GetValueFromTag(ti, TagPrefix + "compositionFilter");
         }
 
-        public static IEnumerable<TemplateLicense> GetLicences(this ITemplateInfo ti)
+        public static IEnumerable<TemplateLicense> GetLicenses(this ITemplateInfo ti)
         {
-            var licences = GetValueFromTag(ti, TagPrefix + "licences");
-            if (string.IsNullOrWhiteSpace(licences))
+            var licenses = GetValueFromTag(ti, TagPrefix + "licenses");
+            if (string.IsNullOrWhiteSpace(licenses))
             {
                 return Enumerable.Empty<TemplateLicense>();
             }
             var result = new List<TemplateLicense>();
 
-            var licencesMatches = Regex.Matches(licences, LicencesPattern);
-            for (int i = 0; i < licencesMatches.Count; i++)
+            var licensesMatches = Regex.Matches(licenses, LicensesPattern);
+            for (int i = 0; i < licensesMatches.Count; i++)
             {
-                var m = licencesMatches[i];
+                var m = licensesMatches[i];
                 if (m.Success)
                 {
                     result.Add(new TemplateLicense

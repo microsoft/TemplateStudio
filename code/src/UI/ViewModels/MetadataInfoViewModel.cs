@@ -54,11 +54,11 @@ namespace Microsoft.Templates.UI.ViewModels
             set => SetProperty(ref _author, value);
         }
 
-        private IEnumerable<TemplateLicense> _licenceTerms;
-        public IEnumerable<TemplateLicense> LicenceTerms
+        private IEnumerable<TemplateLicense> _licenseTerms;
+        public IEnumerable<TemplateLicense> LicenseTerms
         {
-            get => _licenceTerms;
-            set => SetProperty(ref _licenceTerms, value);
+            get => _licenseTerms;
+            set => SetProperty(ref _licenseTerms, value);
         }
 
         private string _metadataType;
@@ -100,7 +100,7 @@ namespace Microsoft.Templates.UI.ViewModels
             Author = metadataInfo.Author;
             Icon = metadataInfo.Icon;
             MetadataType = metadataInfo.MetadataType;
-            LicenceTerms = metadataInfo.LicenceTerms;
+            LicenseTerms = metadataInfo.LicenseTerms;
         }
     }
 }

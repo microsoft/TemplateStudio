@@ -59,13 +59,13 @@ namespace Microsoft.Templates.UI.ViewModels
             get => _informationMD;
             set => SetProperty(ref _informationMD, value);
         }        
-        public ObservableCollection<SummaryLicenceViewModel> LicenceTerms { get; } = new ObservableCollection<SummaryLicenceViewModel>();
+        public ObservableCollection<SummaryLicenseViewModel> LicenseTerms { get; } = new ObservableCollection<SummaryLicenseViewModel>();
 
-        private Visibility _licencesVisibility = Visibility.Collapsed;
-        public Visibility LicencesVisibility
+        private Visibility _licensesVisibility = Visibility.Collapsed;
+        public Visibility LicensesVisibility
         {
-            get => _licencesVisibility;
-            set => SetProperty(ref _licencesVisibility, value);
+            get => _licensesVisibility;
+            set => SetProperty(ref _licensesVisibility, value);
         }
 
         private ICommand _okCommand;
@@ -83,14 +83,14 @@ namespace Microsoft.Templates.UI.ViewModels
             InformationType = GetInformationType(template.TemplateType.ToString());
             Version = template.Version;
             Author = template.Author;
-            if (template.LicenceTerms != null && template.LicenceTerms.Any())
+            if (template.LicenseTerms != null && template.LicenseTerms.Any())
             {
-                LicenceTerms.AddRange(template.LicenceTerms.Select(l => new SummaryLicenceViewModel(l)));
-                LicencesVisibility = Visibility.Visible;
+                LicenseTerms.AddRange(template.LicenseTerms.Select(l => new SummaryLicenseViewModel(l)));
+                LicensesVisibility = Visibility.Visible;
             }
             else
             {
-                LicencesVisibility = Visibility.Collapsed;
+                LicensesVisibility = Visibility.Collapsed;
             }
             InformationMD = template.Description;
         }        
@@ -100,14 +100,14 @@ namespace Microsoft.Templates.UI.ViewModels
             Name = metadataInfo.Name;
             InformationType = GetInformationType(metadataInfo.MetadataType);
             Author = metadataInfo.Author;
-            if(metadataInfo.LicenceTerms != null && metadataInfo.LicenceTerms.Any())
+            if(metadataInfo.LicenseTerms != null && metadataInfo.LicenseTerms.Any())
             {
-                LicenceTerms.AddRange(metadataInfo.LicenceTerms.Select(l => new SummaryLicenceViewModel(l)));
-                LicencesVisibility = Visibility.Visible;
+                LicenseTerms.AddRange(metadataInfo.LicenseTerms.Select(l => new SummaryLicenseViewModel(l)));
+                LicensesVisibility = Visibility.Visible;
             }
             else
             {
-                LicencesVisibility = Visibility.Collapsed;
+                LicensesVisibility = Visibility.Collapsed;
             }
             InformationMD = metadataInfo.Description;
         }

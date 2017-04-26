@@ -85,7 +85,7 @@
         </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Key="LicenceSummaryItemTemplate">
+    <DataTemplate x:Key="LicenseSummaryItemTemplate">
         <Grid>
             <TextBlock>           
                 <Hyperlink Command="{Binding NavigateCommand}">

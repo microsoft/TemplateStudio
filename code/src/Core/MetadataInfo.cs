@@ -28,7 +28,7 @@ namespace Microsoft.Templates.Core
         public string Author { get; set; }
         public int Order { get; set; }
         public string MetadataType { get; set; }
-        public string Licences { get; set; }
-        public IEnumerable<TemplateLicense> LicenceTerms { get; set; }
+        public string Licenses { get; set; }
+        public IEnumerable<TemplateLicense> LicenseTerms { get; set; }
     }
 }
