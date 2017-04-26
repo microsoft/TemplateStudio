@@ -252,6 +252,9 @@
   <data name="TemplateGroup_UserInteraction" xml:space="preserve">
     <value>User Interaction</value>
   </data>
+  <data name="TemplatesVersion" xml:space="preserve">
+    <value>Templates version:</value>
+  </data>
   <data name="TemplateTypeFeature" xml:space="preserve">
     <value>Feature</value>
   </data>
@@ -288,5 +291,8 @@
   </data>
   <data name="ValidationError_ReservedName" xml:space="preserve">
     <value>Name is reserved</value>
+  </data>
+  <data name="WizardVersion" xml:space="preserve">
+    <value>Wizard version:</value>
   </data>
 </root>
