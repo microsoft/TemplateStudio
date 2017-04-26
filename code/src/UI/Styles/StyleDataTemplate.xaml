@@ -43,12 +43,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="ProjectTemplatesItemTemplate">
-        <controls:TemplateInfoControl
-                    TemplateInfo="{Binding}"
-                    AddCommand="{Binding DataContext.AddCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
-                    ShowInfoCommand="{Binding DataContext.ShowInfoCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
-                    GetUsedNames="{Binding DataContext.GetUsedNamesFunc, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
-                    GetUsedTemplatesIdentities="{Binding DataContext.GetUsedTemplatesIdentitiesFunc, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"/>
+        <controls:TemplateInfoControl TemplateInfo="{Binding}"/>
     </DataTemplate>
 
     <DataTemplate x:Key="SummaryExpanderHeaderTemplate">

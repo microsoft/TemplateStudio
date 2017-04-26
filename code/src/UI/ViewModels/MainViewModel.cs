@@ -97,6 +97,13 @@ namespace Microsoft.Templates.UI.ViewModels
             set { SetProperty(ref _nextButtonVisibility, value); }
         }
 
+        private Visibility _wizardInfoVisibility = Visibility.Collapsed;
+        public Visibility WizardInfoVisibility
+        {
+            get { return _wizardInfoVisibility; }
+            set { SetProperty(ref _wizardInfoVisibility, value); }
+        }
+
         private RelayCommand _cancelCommand;
         private RelayCommand _goBackCommand;
         private RelayCommand _nextCommand;

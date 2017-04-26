@@ -15,6 +15,7 @@ namespace Microsoft.Templates.UI.ViewModels
 {
     public class ProjectTemplatesViewModel : Observable
     {
+        public event EventHandler UpdateTemplateAvailable;
         public MetadataInfoViewModel ContextFramework { get; set; }
         public MetadataInfoViewModel ContextProjectType { get; set; }
 
@@ -172,7 +173,7 @@ namespace Microsoft.Templates.UI.ViewModels
                     IsRemoveEnabled = isRemoveEnabled
                 });
             }
-            OnPropertyChanged("GetUsedTemplatesIdentitiesFunc");            
+            UpdateTemplateAvailable?.Invoke(this, EventArgs.Empty);
         }
 
         private void RemoveItem(SummaryItemViewModel item)
@@ -193,7 +194,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 SummaryFeatures.Remove(item);
             }
             SavedTemplates.Remove(SavedTemplates.First(st => st.Name == item.ItemName));
-            OnPropertyChanged("GetUsedTemplatesIdentitiesFunc");
+            UpdateTemplateAvailable?.Invoke(this, EventArgs.Empty);
 
             MainViewModel.Current.RebuildLicenses();
         }
