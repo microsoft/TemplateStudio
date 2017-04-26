@@ -22,7 +22,12 @@ namespace Microsoft.Templates.Core
     {
         public static bool IsZero(this Version v)
         {
-            return v is null || (v.Major + v.Minor + v.Build + v.Revision) == 0;
+            return !(v is null) && (v.Major + v.Minor + v.Build + v.Revision) == 0;
+        }
+
+        public static bool IsNull(this Version v)
+        {
+            return (v is null);
         }
     }
 }

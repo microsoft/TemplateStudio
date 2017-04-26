@@ -22,6 +22,9 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Locations;
 
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace Microsoft.Templates.Core
 {
@@ -31,19 +34,16 @@ namespace Microsoft.Templates.Core
         private static readonly string[] SupportedIconTypes = new string[] { ".jpg", ".jpeg", ".png", ".xaml" };
 
         public TemplatesSynchronization Sync { get; private set; }
-
+        public string WizardVersion { get; private set; }
         public string CurrentContentFolder { get => Sync?.CurrentContentFolder; }
+        public string TemplatesVersion { get => Sync.CurrentContentVersion?.ToString() ?? String.Empty; }
 
-        public TemplatesRepository(TemplatesSource source)
+        public TemplatesRepository(TemplatesSource source, Version wizardVersion)
         {
-            Sync = new TemplatesSynchronization(source);
+            WizardVersion = wizardVersion.ToString();
+            Sync = new TemplatesSynchronization(source, wizardVersion);
         }
 
-         
-        public string GetTemplatesVersion()
-        {
-            return Sync.CurrentContentVersion?.ToString();
-        }
 
         public async Task SynchronizeAsync(bool force = false)
         {
@@ -66,10 +66,11 @@ namespace Microsoft.Templates.Core
                         .Where(predicate);
         }
 
-        public IEnumerable<ITemplateInfo> GetDependencies(ITemplateInfo ti)
-        {
-            return ti.GetDependencyList().Select(d => GetAll().FirstOrDefault(t => t.Identity == d));
-        }
+        //public IEnumerable<ITemplateInfo> GetDependencies(ITemplateInfo ti)
+        //{
+        //    return ti.GetDependencyList()
+        //                .Select(d => Find(t => t.Identity == d));
+        //}
 
 
         public ITemplateInfo Find(Func<ITemplateInfo, bool> predicate)
@@ -94,7 +95,7 @@ namespace Microsoft.Templates.Core
             var folderName = Path.Combine(Sync.CurrentContentFolder, Catalog);
             if (!Directory.Exists(folderName))
             {
-                return null;
+                return Enumerable.Empty<MetadataInfo>();
             }
 
             var metadataFile = Path.Combine(folderName, $"{type}.json");
@@ -102,8 +103,37 @@ namespace Microsoft.Templates.Core
 
             metadata.ForEach(m => SetMetadataDescription(m, folderName, type));
             metadata.ForEach(m => SetMetadataIcon(m, folderName, type));
+            metadata.ForEach(m => m.MetadataType = type);
+            metadata.ForEach(m => SetLicenseTerms(m));
 
             return metadata.OrderBy(m => m.Order);
+        }
+
+        private const string Separator = "|";
+        private const string LicensesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
+
+        private void SetLicenseTerms(MetadataInfo metadataInfo)
+        {
+            if (!string.IsNullOrWhiteSpace(metadataInfo.Licenses))
+            {
+                var result = new List<TemplateLicense>();
+
+                var licensesMatches = Regex.Matches(metadataInfo.Licenses, LicensesPattern);
+                for (int i = 0; i < licensesMatches.Count; i++)
+                {
+                    var m = licensesMatches[i];
+                    if (m.Success)
+                    {
+                        result.Add(new TemplateLicense
+                        {
+                            Text = m.Groups["text"].Value,
+                            Url = m.Groups["url"].Value
+                        });
+                    }
+
+                }
+                metadataInfo.LicenseTerms = result;
+            }
         }
 
         private static void SetMetadataDescription(MetadataInfo mInfo, string folderName, string type)
@@ -128,9 +158,9 @@ namespace Microsoft.Templates.Core
             }
         }
 
-        public ITemplateInfo GetLayoutTemplate(LayoutItem item, string framework)
-        {
-            return Find(t => t.GroupIdentity == item.templateGroupIdentity && t.GetFrameworkList().Any(f => f.Equals(framework, StringComparison.OrdinalIgnoreCase)));
-        }
+        //public ITemplateInfo GetLayoutTemplate(LayoutItem item, string framework)
+        //{
+        //    return Find(t => t.GroupIdentity == item.templateGroupIdentity && t.GetFrameworkList().Any(f => f.Equals(framework, StringComparison.OrdinalIgnoreCase)));
+        //}
     }
 }

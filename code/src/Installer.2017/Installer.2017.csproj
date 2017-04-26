@@ -236,9 +236,11 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
     </ProjectReference>
-    <ProjectReference Include="..\Wizard\Wizard.csproj">
-      <Project>{9e58eacc-c798-43a0-89a0-a5a32815272d}</Project>
-      <Name>Wizard</Name>
+    <ProjectReference Include="..\UI\UI.csproj">
+      <Project>{DCFD282D-D91C-49B5-8DBF-D943BAFEF5AA}</Project>
+      <Name>UI</Name>
+      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

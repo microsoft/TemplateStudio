@@ -22,7 +22,8 @@ namespace Microsoft.Templates.Core.Gen
     {
         public TemplatesRepository Repo { get; }
         public GenShell Shell { get; }
-
+        public string WizardVersion => Repo.WizardVersion;
+        public string TemplatesVersion => Repo.TemplatesVersion;
         public GenToolBox(TemplatesRepository repo, GenShell shell)
         {
             Repo = repo;

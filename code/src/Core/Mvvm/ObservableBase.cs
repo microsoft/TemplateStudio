@@ -20,7 +20,6 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Mvvm
 {
-    //TODO: THIS IS DUPLICATED
     public class Observable : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

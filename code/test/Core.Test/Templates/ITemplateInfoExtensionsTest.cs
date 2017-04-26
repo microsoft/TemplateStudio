@@ -173,33 +173,33 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Fact]
-        public void GetLicences()
+        public void GetLicenses()
         {
             var target = GetTarget("ProjectTemplate");
 
-            var result = target.GetLicences().ToList();
+            var result = target.GetLicenses().ToList();
             Assert.NotNull(result);
 
             Assert.Collection(result,
                 e1 =>
                 {
-                    Assert.Equal("text1", e1.text);
-                    Assert.Equal("url1", e1.url);
+                    Assert.Equal("text1", e1.Text);
+                    Assert.Equal("url1", e1.Url);
                 },
                 e2 =>
                 {
-                    Assert.Equal("text2", e2.text);
-                    Assert.Equal("url2", e2.url);
+                    Assert.Equal("text2", e2.Text);
+                    Assert.Equal("url2", e2.Url);
                 }
                 );
         }
 
         [Fact]
-        public void GetLicences_unspecified()
+        public void GetLicenses_unspecified()
         {
             var target = GetTarget("UnspecifiedTemplate");
 
-            var result = target.GetLicences().ToList();
+            var result = target.GetLicenses().ToList();
             Assert.Collection(result);
         }
 

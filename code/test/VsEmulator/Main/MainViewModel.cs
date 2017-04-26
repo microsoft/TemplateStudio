@@ -24,10 +24,8 @@ using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Test.Artifacts;
 using Microsoft.Templates.VsEmulator.NewProject;
 using Microsoft.Templates.VsEmulator.TemplatesContent;
-using Microsoft.Templates.Wizard;
-using Microsoft.Templates.Wizard.Error;
-using Microsoft.Templates.Wizard.Host;
 using Microsoft.VisualStudio.TemplateWizard;
+using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
@@ -38,16 +36,15 @@ namespace Microsoft.Templates.VsEmulator.Main
         public MainViewModel(MainView host)
         {
             _host = host;
-
-            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(msg => SetState(msg), l => AddLog(l), _host));
+            _wizardVersion = "0.0.0.0";
+            _templatesVersion = "0.0.0.0";
         }
 
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
-
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
         public RelayCommand OpenInVsCodeCommand => new RelayCommand(OpenInVsCode);
         public RelayCommand OpenInExplorerCommand => new RelayCommand(OpenInExplorer);
-        public RelayCommand TemplatesContentCommand => new RelayCommand(TemplatesContent);
+        public RelayCommand ConfigureVersionsCommand => new RelayCommand(ConfigureVersions);
 
 
         private string _state;
@@ -69,6 +66,21 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             get { return _isProjectLoaded; }
             set { SetProperty(ref _isProjectLoaded, value); }
+        }
+
+        private string _wizardVersion;
+        public string WizardVersion
+        {
+            get { return _wizardVersion; }
+            set { SetProperty(ref _wizardVersion, value); }
+        }
+
+
+        private string _templatesVersion;
+        public string TemplatesVersion
+        {
+            get { return _templatesVersion; }
+            set { SetProperty(ref _templatesVersion, value); }
         }
 
         private string _solutionName;
@@ -99,6 +111,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private async void NewProject()
         {
+            ConfigureGenContext();
+
             try
             {
                 var newProjectInfo = ShowNewProjectDialog();
@@ -107,7 +121,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     var outputPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
                     using (var context = GenContext.CreateNew(newProjectInfo.name, outputPath))
                     {
-                        var userSelection = GenController.GetUserSelection(WizardSteps.Project);
+                        var userSelection = GenController.GetUserSelection();
                         if (userSelection != null)
                         {
                             SolutionName = null;
@@ -132,13 +146,20 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
-        private void TemplatesContent()
+        private void ConfigureVersions()
         {
-            var dialog = new TemplatesContentView()
+            var dialog = new TemplatesContentView(WizardVersion, TemplatesVersion)
             {
                 Owner = _host
             };
-            dialog.Show();
+
+            var dialogRes = dialog.ShowDialog();
+            if (dialogRes.HasValue && dialogRes.Value)
+            {
+                WizardVersion = dialog.ViewModel.Result.WizardVersion;
+                TemplatesVersion = dialog.ViewModel.Result.TemplatesVersion;
+                ConfigureGenContext();
+            }
         }
 
 
@@ -180,15 +201,6 @@ namespace Microsoft.Templates.VsEmulator.Main
             return (null, null, null);
         }
 
-        private void ShowTemplatesContentDialog()
-        {
-            var dialog = new TemplatesContentView()
-            {
-                Owner = _host
-            };
-            var result = dialog.ShowDialog();
-        }
-
         private void SetState(string message)
         {
             State = message;
@@ -204,6 +216,12 @@ namespace Microsoft.Templates.VsEmulator.Main
             });
         }
 
+        private void ConfigureGenContext()
+        {
+            GenContext.Bootstrap(new LocalTemplatesSource(TemplatesVersion)
+                , new FakeGenShell(msg => SetState(msg), l => AddLog(l), _host)
+                , new Version(WizardVersion));
+        }
         public void DoEvents()
         {
             var frame = new DispatcherFrame(true);

@@ -18,6 +18,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -29,7 +31,8 @@ namespace Microsoft.Templates.Core.Locations
         Adquiring = 3,
         Adquired = 4,
         OverVersion = 5,
-        UnderVersion = 6
+        OverVersionNoContent = 6,
+        UnderVersion = 7
     }
 
     public class TemplatesSynchronization
@@ -43,19 +46,22 @@ namespace Microsoft.Templates.Core.Locations
         private readonly TemplatesSource _source;
         private readonly TemplatesContent _content;
 
+
         public string WorkingFolder => _workingFolder.Value;
 
         public string CurrentTemplatesFolder { get => _content?.TemplatesFolder; }
         public string CurrentContentFolder { get; private set; }
-        public Version CurrentContentVersion { get => GetCurrentVersion(); }
+        public Version CurrentContentVersion { get => GetCurrentContentVersion(); }
+        public Version CurrentWizardVersion { get; private set; }
 
 
-        public TemplatesSynchronization(TemplatesSource source)
+        public TemplatesSynchronization(TemplatesSource source, Version wizardVersion)
         {
             _source = source ?? throw new ArgumentNullException("location");
-            _content = new TemplatesContent(WorkingFolder, source.Id);
+            _content = new TemplatesContent(WorkingFolder, source.Id, wizardVersion);
             CurrentContentFolder = CodeGen.Instance?.GetCurrentContentSource(WorkingFolder);
         }
+
 
         public async Task Do(bool forced = false)
         {
@@ -130,7 +136,6 @@ namespace Microsoft.Templates.Core.Locations
             SyncStatusChanged?.Invoke(this, SyncStatus.Updating);
             await Task.Run(() => UpdateTemplatesCache());
 
-            //TODO: Ensure updated is sent when updated content or when content available.
             SyncStatusChanged?.Invoke(this, SyncStatus.Updated);
         }
 
@@ -140,7 +145,14 @@ namespace Microsoft.Templates.Core.Locations
             {
                 if (_content.ExistOverVersion())
                 {
-                    SyncStatusChanged?.Invoke(this, SyncStatus.OverVersion);
+                    if (CurrentContentVersion.IsNull())
+                    {
+                        SyncStatusChanged?.Invoke(this, SyncStatus.OverVersionNoContent);
+                    }
+                    else
+                    {
+                        SyncStatusChanged?.Invoke(this, SyncStatus.OverVersion);
+                    }
                 }
             });
         }
@@ -190,7 +202,7 @@ namespace Microsoft.Templates.Core.Locations
         }
 
 
-        private Version GetCurrentVersion()
+        private Version GetCurrentContentVersion()
         {
             return _content?.GetVersionFromFolder(CurrentContentFolder);
         }

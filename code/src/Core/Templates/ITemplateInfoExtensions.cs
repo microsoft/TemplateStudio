@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core
     {
         private const string Separator = "|";
         private const string TagPrefix = "wts.";
-        private const string LicencesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
+        private const string LicensesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
 
         public static TemplateType GetTemplateType(this ITemplateInfo ti)
         {
@@ -86,22 +86,26 @@ namespace Microsoft.Templates.Core
             return GetValueFromTag(ti, TagPrefix + "compositionFilter");
         }
 
-        public static IEnumerable<(string text, string url)> GetLicences(this ITemplateInfo ti)
+        public static IEnumerable<TemplateLicense> GetLicenses(this ITemplateInfo ti)
         {
-            var licences = GetValueFromTag(ti, TagPrefix + "licences");
-            if (string.IsNullOrWhiteSpace(licences))
+            var licenses = GetValueFromTag(ti, TagPrefix + "licenses");
+            if (string.IsNullOrWhiteSpace(licenses))
             {
-                return Enumerable.Empty<(string text, string url)>();
+                return Enumerable.Empty<TemplateLicense>();
             }
-            var result = new List<(string text, string url)>();
+            var result = new List<TemplateLicense>();
 
-            var licencesMatches = Regex.Matches(licences, LicencesPattern);
-            for (int i = 0; i < licencesMatches.Count; i++)
+            var licensesMatches = Regex.Matches(licenses, LicensesPattern);
+            for (int i = 0; i < licensesMatches.Count; i++)
             {
-                var m = licencesMatches[i];
+                var m = licensesMatches[i];
                 if (m.Success)
                 {
-                    result.Add((m.Groups["text"].Value, m.Groups["url"].Value));
+                    result.Add(new TemplateLicense
+                    {
+                        Text = m.Groups["text"].Value,
+                        Url = m.Groups["url"].Value
+                    });
                 }
 
             }
@@ -175,12 +179,6 @@ namespace Microsoft.Templates.Core
         public static string GetVersion(this ITemplateInfo ti)
         {
             return GetValueFromTag(ti, TagPrefix + "version");
-        }
-
-        //TODO: Create Enum for this
-        public static string GetTemplateOutputType(this ITemplateInfo ti)
-        {
-            return GetValueFromTag(ti, "type");
         }
 
         public static int GetOrder(this ITemplateInfo ti)
