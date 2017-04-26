@@ -115,11 +115,29 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Windows Template Studio Error.
+        /// </summary>
+        public static string ErrorDialogTitle {
+            get {
+                return ResourceManager.GetString("ErrorDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error updating templates. See output for more details..
         /// </summary>
         public static string ErrorSync {
             get {
                 return ResourceManager.GetString("ErrorSync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View problem details.
+        /// </summary>
+        public static string ErrorViewProblemDetails {
+            get {
+                return ResourceManager.GetString("ErrorViewProblemDetails", resourceCulture);
             }
         }
         
@@ -273,6 +291,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string LoadingTemplatesText {
             get {
                 return ResourceManager.GetString("LoadingTemplatesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Made by {0}.
+        /// </summary>
+        public static string MadeBy {
+            get {
+                return ResourceManager.GetString("MadeBy", resourceCulture);
             }
         }
         
@@ -520,6 +547,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Templates version:.
+        /// </summary>
+        public static string TemplatesVersion {
+            get {
+                return ResourceManager.GetString("TemplatesVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Feature.
         /// </summary>
         public static string TemplateTypeFeature {
@@ -624,6 +660,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ValidationError_ReservedName {
             get {
                 return ResourceManager.GetString("ValidationError_ReservedName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wizard version:.
+        /// </summary>
+        public static string WizardVersion {
+            get {
+                return ResourceManager.GetString("WizardVersion", resourceCulture);
             }
         }
     }

@@ -27,6 +27,7 @@ using NuGet;
 using NuGet.VisualStudio;
 using Microsoft.Templates.Core;
 using EnvDTE80;
+using Microsoft.Templates.Core.Diagnostics;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -245,20 +246,27 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void RestorePackages()
         {
-            var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
-
-            var installer = componentModel.GetService<IVsPackageInstaller>();
-            var uninstaller = componentModel.GetService<IVsPackageUninstaller>();
-            var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
-
-            var installedPackages = installerServices.GetInstalledPackages().ToList();
-            var activeProject = GetActiveProject();
-
-            var p = installedPackages.FirstOrDefault();
-            if (p != null)
+            try
             {
-                uninstaller.UninstallPackage(activeProject, p.Id, false);
-                installer.InstallPackage("All", activeProject, p.Id, p.VersionString, true);
+                var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
+
+                var installer = componentModel.GetService<IVsPackageInstaller>();
+                var uninstaller = componentModel.GetService<IVsPackageUninstaller>();
+                var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
+
+                var installedPackages = installerServices.GetInstalledPackages().ToList();
+                var activeProject = GetActiveProject();
+
+                var p = installedPackages.FirstOrDefault();
+                if (p != null)
+                {
+                    uninstaller.UninstallPackage(activeProject, p.Id, false);
+                    installer.InstallPackage("All", activeProject, p.Id, p.VersionString, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                AppHealth.Current.Error.TrackAsync($"There was an error restoring the packages. Ex {ex.ToString()}").FireAndForget();
             }
         }
 

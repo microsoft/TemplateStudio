@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
                     xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls">
 
     <ResourceDictionary.MergedDictionaries>
@@ -37,7 +38,13 @@
                 <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateSubtitleStyle}" Text="{Binding Summary}" Margin="{StaticResource MediumLeftMargin}"/>
 
                 <!--Row 2-->
-                <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateAuthorStyle}" Margin="{StaticResource MediumLeftMargin}">[AUTHOR]</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateAuthorStyle}" Margin="{StaticResource MediumLeftMargin}">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
+                            <Binding Path="Author" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
             </Grid>
         </Border>
     </DataTemplate>
@@ -92,7 +99,7 @@
             <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextTemplateSubtitleStyle}" Foreground="{Binding ItemForeground}" />
             <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateAuthorStyle}" Foreground="{Binding ItemForeground}">
                 <TextBlock.Text>
-                    <MultiBinding StringFormat="Made by {0}">
+                    <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
                         <Binding Path="Author" />
                     </MultiBinding>
                 </TextBlock.Text>
@@ -109,7 +116,7 @@
         </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Key="LicenceSummaryItemTemplate">
+    <DataTemplate x:Key="LicenseSummaryItemTemplate">
         <Grid>
             <TextBlock>           
                 <Hyperlink Command="{Binding NavigateCommand}">

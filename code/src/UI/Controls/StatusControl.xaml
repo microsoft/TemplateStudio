@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
+             x:Name="root"
+             mc:Ignorable="d">
     <!-- This control is at the bottom and gives status updates -->
     <UserControl.Resources>
         <ResourceDictionary>
@@ -20,11 +21,13 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="0" x:Name="txtIcon" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="18" Margin="{StaticResource MediumLeftMargin}"/>
-        <TextBlock Grid.Column="1" x:Name="txtStatus" Style="{StaticResource TextTemplateSubtitleStyle}" VerticalAlignment="Center" Margin="{StaticResource MediumLeftMargin}"/>
-        <StackPanel Grid.Column="0" Grid.ColumnSpan="2">
-            <TextBlock Text="1.0.0.0" Style="{StaticResource TextTemplateAuthorStyle}" />
-            <TextBlock Style="{StaticResource TextTemplateAuthorStyle}" />
+        <StackPanel x:Name="versionInfoPane" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="{StaticResource MediumMargin}">
+            <TextBlock Text="{x:Static res:StringRes.WizardVersion}" Style="{StaticResource TextTemplateAuthorStyle}"/>
+            <TextBlock Text="{Binding WizardVersion, ElementName=root}" Style="{StaticResource TextTemplateAuthorStyle}" Margin="{StaticResource SmallLeftMargin}"/>
+            <TextBlock Text="{x:Static res:StringRes.TemplatesVersion}" Style="{StaticResource TextTemplateAuthorStyle}" Margin="{StaticResource BigLeftMargin}"/>
+            <TextBlock Text="{Binding TemplatesVersion, ElementName=root}" Style="{StaticResource TextTemplateAuthorStyle}" Margin="{StaticResource SmallLeftMargin}"/>
         </StackPanel>
+        <TextBlock Grid.Column="0" x:Name="txtIcon" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="18" Margin="{StaticResource MediumLeftMargin}" />
+        <TextBlock Grid.Column="1" x:Name="txtStatus" Style="{StaticResource TextTemplateSubtitleStyle}" VerticalAlignment="Center" Margin="{StaticResource MediumLeftMargin}" />
     </Grid>
 </UserControl>

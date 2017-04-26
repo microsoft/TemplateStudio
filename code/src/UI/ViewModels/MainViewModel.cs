@@ -117,7 +117,7 @@ namespace Microsoft.Templates.UI.ViewModels
         public ProjectSetupViewModel ProjectSetup { get; private set; } = new ProjectSetupViewModel();
         public ProjectTemplatesViewModel ProjectTemplates { get; private set; } = new ProjectTemplatesViewModel();
 
-        public ObservableCollection<SummaryLicenceViewModel> SummaryLicences { get; } = new ObservableCollection<SummaryLicenceViewModel>();
+        public ObservableCollection<SummaryLicenseViewModel> SummaryLicenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
 
         public MainViewModel(MainView mainView)
         {
@@ -170,12 +170,12 @@ namespace Microsoft.Templates.UI.ViewModels
             var userSelection = CreateUserSelection();
             var genItems = GenComposer.Compose(userSelection);
 
-            var genLicences = genItems
-                                .SelectMany(s => s.Template.GetLicences())
+            var genLicenses = genItems
+                                .SelectMany(s => s.Template.GetLicenses())
                                 .Distinct(new TemplateLicenseEqualityComparer())
                                 .ToList();
 
-            SyncLicences(genLicences);
+            SyncLicenses(genLicenses);
         }
 
         private void Sync_SyncStatusChanged(object sender, SyncStatus status)
@@ -303,11 +303,11 @@ namespace Microsoft.Templates.UI.ViewModels
             return userSelection;
         }
 
-        private void SyncLicences(IEnumerable<TemplateLicense> licenses)
+        private void SyncLicenses(IEnumerable<TemplateLicense> licenses)
         {
-            var toRemove = new List<SummaryLicenceViewModel>();
+            var toRemove = new List<SummaryLicenseViewModel>();
 
-            foreach (var summaryLicense in SummaryLicences)
+            foreach (var summaryLicense in SummaryLicenses)
             {
                 if (!licenses.Any(l => l.Url == summaryLicense.Url))
                 {
@@ -317,14 +317,14 @@ namespace Microsoft.Templates.UI.ViewModels
 
             foreach (var licenseToRemove in toRemove)
             {
-                SummaryLicences.Remove(licenseToRemove);
+                SummaryLicenses.Remove(licenseToRemove);
             }
 
             foreach (var license in licenses)
             {
-                if (!SummaryLicences.Any(l => l.Url == license.Url))
+                if (!SummaryLicenses.Any(l => l.Url == license.Url))
                 {
-                    SummaryLicences.Add(new SummaryLicenceViewModel(license));
+                    SummaryLicenses.Add(new SummaryLicenseViewModel(license));
                 }
             }            
         }

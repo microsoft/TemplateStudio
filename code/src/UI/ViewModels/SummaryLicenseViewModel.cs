@@ -6,13 +6,13 @@ using System.Windows.Input;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
-    public class SummaryLicenceViewModel : Observable
+    public class SummaryLicenseViewModel : Observable
     {
-        public SummaryLicenceViewModel()
+        public SummaryLicenseViewModel()
         {
         }
 
-        public SummaryLicenceViewModel(TemplateLicense license)
+        public SummaryLicenseViewModel(TemplateLicense license)
         {
             if (license == null)
             {

@@ -5,7 +5,7 @@
         "summary": "This is the most basic style. A blank canvas to build your application out.",
         "author": "Microsoft",
         "order": "1",
-        "licences": ""
+        "licenses": ""
     },
     {
         "name": "SplitView",
@@ -13,7 +13,7 @@
         "summary": "A navigation pane (or just 'nav') is a pattern that allows for many top-level navigation items while conserving screen real estate.",
         "author": "Microsoft",
         "order": "2",
-        "licences": ""
+        "licenses": ""
     },
     {
         "name": "TabbedPivot",
@@ -21,6 +21,6 @@
         "summary": "The Pivot control and related tabs pattern are used for navigating frequently accessed, distinct content categories.",
         "author": "Microsoft",
         "order": "3",
-        "licences": ""
+        "licenses": ""
     }
 ]

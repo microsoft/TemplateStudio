@@ -12,38 +12,16 @@ namespace Microsoft.Templates.UI.ViewModels
         public string Name
         {
             get => _name;
-            set
-            {
-                SetProperty(ref _name, value);
-                OnPropertyChanged(nameof(DisplayText));
-            }
+            set => SetProperty(ref _name, value);
         }
 
         private string _templateName;
         public string TemplateName
         {
             get => _templateName;
-            set
-            {
-                SetProperty(ref _templateName, value);
-                OnPropertyChanged(nameof(DisplayText));
-            }
+            set => SetProperty(ref _templateName, value);
         }
 
-        public string DisplayText
-        {
-            get
-            {
-                if (HasDefaultName)
-                {
-                    return Name;
-                }
-                else
-                {
-                    return $"{Name} [{TemplateName}]";
-                }
-            }
-        }
 
         private string _author;
         public string Author
@@ -94,11 +72,11 @@ namespace Microsoft.Templates.UI.ViewModels
             set { SetProperty(ref _multipleInstances, value); }
         }
 
-        private IEnumerable<TemplateLicense> _licenceTerms;
-        public IEnumerable<TemplateLicense> LicenceTerms
+        private IEnumerable<TemplateLicense> _licenseTerms;
+        public IEnumerable<TemplateLicense> LicenseTerms
         {
-            get { return _licenceTerms; }
-            set { SetProperty(ref _licenceTerms, value); }
+            get { return _licenseTerms; }
+            set { SetProperty(ref _licenseTerms, value); }
         }
 
         private string _group;
@@ -151,7 +129,7 @@ namespace Microsoft.Templates.UI.ViewModels
             TemplateType = template.GetTemplateType();
             Template = template;
             Dependencies = string.Join(",", dependencies.Select(d => d.Name));
-            LicenceTerms = template.GetLicences();
+            LicenseTerms = template.GetLicenses();
             Group = template.GetGroup();
         }
     }

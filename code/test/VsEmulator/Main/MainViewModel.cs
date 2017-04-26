@@ -36,19 +36,15 @@ namespace Microsoft.Templates.VsEmulator.Main
         public MainViewModel(MainView host)
         {
             _host = host;
-            _newProjectLabel = "New Project...";
-            _isWizardVersionReconfigurable = true;
-            UseWizardVersion = "0.0.0.0";
-            UseTemplatesVersion = "0.0.0.0";
+            _wizardVersion = "0.0.0.0";
+            _templatesVersion = "0.0.0.0";
         }
 
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
-
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
         public RelayCommand OpenInVsCodeCommand => new RelayCommand(OpenInVsCode);
         public RelayCommand OpenInExplorerCommand => new RelayCommand(OpenInExplorer);
-        public RelayCommand TemplatesContentCommand => new RelayCommand(TemplatesContent);
-        public RelayCommand SetVersionCommand => new RelayCommand(ConfigureGenContext);
+        public RelayCommand ConfigureVersionsCommand => new RelayCommand(ConfigureVersions);
 
 
         private string _state;
@@ -72,33 +68,19 @@ namespace Microsoft.Templates.VsEmulator.Main
             set { SetProperty(ref _isProjectLoaded, value); }
         }
 
-
-        private String _useWizardVersion;
-        public String UseWizardVersion
+        private string _wizardVersion;
+        public string WizardVersion
         {
-            get { return _useWizardVersion; }
-            set { SetProperty(ref _useWizardVersion, value); }
+            get { return _wizardVersion; }
+            set { SetProperty(ref _wizardVersion, value); }
         }
 
-        private String _useTemplatesVersion;
-        public String UseTemplatesVersion
-        {
-            get { return _useTemplatesVersion; }
-            set { SetProperty(ref _useTemplatesVersion, value); }
-        }
 
-        private String _newProjectLabel;
-        public String NewProjectLabel
+        private string _templatesVersion;
+        public string TemplatesVersion
         {
-            get { return _newProjectLabel; }
-            set { SetProperty(ref _newProjectLabel, value); }
-        }
-
-        private bool _isWizardVersionReconfigurable;
-        public bool IsWizardVersionReconfigurable
-        {
-            get { return _isWizardVersionReconfigurable; }
-            set { SetProperty(ref _isWizardVersionReconfigurable, value); }
+            get { return _templatesVersion; }
+            set { SetProperty(ref _templatesVersion, value); }
         }
 
         private string _solutionName;
@@ -164,13 +146,20 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
-        private void TemplatesContent()
+        private void ConfigureVersions()
         {
-            var dialog = new TemplatesContentView(UseWizardVersion)
+            var dialog = new TemplatesContentView(WizardVersion, TemplatesVersion)
             {
                 Owner = _host
             };
-            dialog.Show();
+
+            var dialogRes = dialog.ShowDialog();
+            if (dialogRes.HasValue && dialogRes.Value)
+            {
+                WizardVersion = dialog.ViewModel.Result.WizardVersion;
+                TemplatesVersion = dialog.ViewModel.Result.TemplatesVersion;
+                ConfigureGenContext();
+            }
         }
 
 
@@ -229,12 +218,9 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void ConfigureGenContext()
         {
-            GenContext.Bootstrap(new LocalTemplatesSource(UseTemplatesVersion)
+            GenContext.Bootstrap(new LocalTemplatesSource(TemplatesVersion)
                 , new FakeGenShell(msg => SetState(msg), l => AddLog(l), _host)
-                , new Version(UseWizardVersion));
-
-            NewProjectLabel = $"New Project (w:{UseWizardVersion}; t:{UseTemplatesVersion})...";
-            IsWizardVersionReconfigurable = false;
+                , new Version(WizardVersion));
         }
         public void DoEvents()
         {

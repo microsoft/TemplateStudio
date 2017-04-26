@@ -32,15 +32,6 @@ namespace wts.TabbedPivotProject.Services
                 // Initialize things like registering background task before the app is loaded
                 await InitializeAsync();
                 
-//-:cnd:noEmit
-//#if DEBUG
-                if (System.Diagnostics.Debugger.IsAttached)
-                {
-                    _app.DebugSettings.EnableFrameRateCounter = true;
-                }
-//#endif
-//+:cnd:noEmit
-
                 // Do not repeat app initialization when the Window already has content,
                 // just ensure that the window is active
                 if (Window.Current.Content == null)

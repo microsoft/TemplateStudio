@@ -16,7 +16,7 @@
     "wts.version": "1.0.0",
     "wts.order": "1",
     "wts.group": "UserInteraction",
-    "wts.licences": "[Microsoft.Toolkit.Uwp.Notifications](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)|[WindowsAzure.Messaging.Managed](http://go.microsoft.com/fwlink/?LinkId=218949)",
+    "wts.licenses": "[Microsoft.Toolkit.Uwp.Notifications](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)|[WindowsAzure.Messaging.Managed](http://go.microsoft.com/fwlink/?LinkId=218949)",
     "wts.defaultInstance": "HubNotifications",
     "wts.multipleInstance": "false"
   },

@@ -211,7 +211,7 @@
     <Compile Include="ViewModels\ProjectTemplatesViewModel.cs" />
     <Compile Include="ViewModels\StatusViewModel.cs" />
     <Compile Include="ViewModels\SummaryItemViewModel.cs" />
-    <Compile Include="ViewModels\SummaryLicenceViewModel.cs" />
+    <Compile Include="ViewModels\SummaryLicenseViewModel.cs" />
     <Compile Include="ViewModels\TemplateInfoViewModel.cs" />
     <Compile Include="Views\InformationWindow.xaml.cs">
       <DependentUpon>InformationWindow.xaml</DependentUpon>
@@ -257,7 +257,6 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup />
   <ItemGroup>
     <Page Include="Controls\StatusControl.xaml">
