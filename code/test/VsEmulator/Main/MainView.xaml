@@ -32,33 +32,28 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackPanel>
-                    <TextBlock Margin="0,0,0,10">
-                        <StackPanel >
-                            <Label Content="Use Wizard Version:" />
-                            <TextBox Text="{Binding UseWizardVersion}" IsEnabled="{Binding IsWizardVersionReconfigurable}"></TextBox>
-                        </StackPanel>
-                        <StackPanel >
-                            <Label Content="Use Templates Version:" />
-                            <TextBox Text="{Binding UseTemplatesVersion}"></TextBox>
-                        </StackPanel>
-                        <Button Content="Reconfigure" Command="{Binding SetVersionCommand}"></Button>
-                    </TextBlock>
-                    
                     <TextBlock>           
                         <Hyperlink Command="{Binding NewProjectCommand}">
-                            <TextBlock Text="{Binding NewProjectLabel}"/>
+                            <TextBlock Text="New project..."/>
                         </Hyperlink>
                     </TextBlock>
                     <TextBlock>
-                        <Hyperlink Command="{Binding TemplatesContentCommand}">
-                            <TextBlock Text="Templates content..."/>
+                        <Hyperlink Command="{Binding ConfigureVersionsCommand}">
+                            <TextBlock Text="Configure versions..."/>
                         </Hyperlink>
                     </TextBlock>
-
+                    
                 </StackPanel>
+                
                 <ScrollViewer x:Name="logScroll" Grid.Row="1" VerticalAlignment="Bottom" VerticalScrollBarVisibility="Auto" Height="200">
                     <TextBlock Text="{Binding Log}" TextWrapping="Wrap"></TextBlock>
                 </ScrollViewer>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Bottom">
+                    <TextBlock Text="Wizard version: "></TextBlock>
+                    <TextBlock Text="{Binding WizardVersion}"></TextBlock>
+                    <TextBlock Margin="10,0,0,0" Text="Templates Version: "></TextBlock>
+                    <TextBlock Text="{Binding TemplatesVersion}"></TextBlock>
+                </StackPanel>
             </Grid>
             <Grid Grid.Column="1" Style="{StaticResource VerticalSeparator}" />
             <Grid Grid.Column="2" Visibility="{Binding IsProjectLoaded}">

@@ -33,9 +33,9 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
     {
         public TemplatesContentViewModel ViewModel { get; set; }
 
-        public TemplatesContentView(string wizardVersion)
+        public TemplatesContentView(string wizardVersion, string templateVersion)
         {
-            ViewModel = new TemplatesContentViewModel(this, wizardVersion);
+            ViewModel = new TemplatesContentViewModel(this, wizardVersion, templateVersion);
             InitializeComponent();
 
             DataContext = ViewModel;
