@@ -49,7 +49,13 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding Author, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
                     <TextBlock Text="Author:" Style="{StaticResource TextTemplateTitleStyle}" MinWidth="60"/>
-                    <TextBlock Margin="{StaticResource MediumLeftMargin}" Text="{Binding Author}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
+                    <TextBlock Margin="{StaticResource MediumLeftMargin}" Style="{StaticResource TextTemplateSubtitleStyle}">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
+                                <Binding Path="Author" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding LicencesVisibility, FallbackValue=Collapsed}">
                     <TextBlock Text="Licences:" Style="{StaticResource TextTemplateTitleStyle}" MinWidth="60"/>
