@@ -101,14 +101,13 @@ namespace wts.ItemName.Views
             }
         }
 
-        private void NavigationButton_Click(object sender, RoutedEventArgs e)
+        private void ItemClicked(object sender, ItemClickEventArgs e)
         {
-            var navigationButton = sender as Button;
             if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
             {
                 IsPaneOpen = false;
             }
-            Navigate(navigationButton.DataContext);
+            Navigate(e.ClickedItem);
         }
 
         private void OpenPane_Click(object sender, RoutedEventArgs e)
