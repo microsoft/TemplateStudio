@@ -30,6 +30,7 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
+using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -40,7 +41,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public SolutionWizard()
         {
-            //TODO: LOCK THIS?
             if (!GenContext.IsInitialized)
             {
 #if DEBUG
@@ -75,8 +75,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             AppHealth.Current.Verbose.TrackAsync("Generation finished").FireAndForget();
 
 
-            // TODO: Compleate
-            //GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.RestoringMessage);
+            GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.RestoringMessage);
             GenContext.ToolBox.Shell.RestorePackages();
 
             GenContext.ToolBox.Shell.CollapseSolutionItems();

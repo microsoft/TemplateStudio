@@ -340,6 +340,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restoring packages....
+        /// </summary>
+        public static string RestoringMessage {
+            get {
+                return ResourceManager.GetString("RestoringMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Templates downloaded.
         /// </summary>
         public static string StatusAdquired {

@@ -210,6 +210,9 @@
   <data name="ResetSelectionTitle" xml:space="preserve">
     <value>Reset selection</value>
   </data>
+  <data name="RestoringMessage" xml:space="preserve">
+    <value>Restoring packages...</value>
+  </data>
   <data name="StatusAdquired" xml:space="preserve">
     <value>Templates downloaded</value>
   </data>

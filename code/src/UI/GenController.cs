@@ -37,7 +37,7 @@ namespace Microsoft.Templates.UI
     {
         static GenController()
         {
-            //TODO: WHERE INITIALIZE THIS??
+            //TODO: EVALUATE TO DO THIS IN SHELL BOOTSTRAP
             AppHealth.Current.AddWriter(new ShellHealthWriter());
         }
 
@@ -187,8 +187,6 @@ namespace Microsoft.Templates.UI
             {
                 int pagesAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Count();
                 int featuresAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Count();
-
-                //TODO: Peding to track items removed from a default layout.
 
                 foreach (var genInfo in genItems)
                 {

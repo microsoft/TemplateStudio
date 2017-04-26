@@ -34,7 +34,6 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task TrackWizardCompletedAsync(WizardTypeEnum wizardType)
         {
-            //TODO: Now only record cancellation for projects
             Dictionary<string, string> properties = new Dictionary<string, string>()
             {
                 { TelemetryProperties.WizardStatus, WizardStatusEnum.Completed.ToString() },
@@ -46,7 +45,6 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task TrackWizardCompletedAsync()
         {
-            //TODO: Now only record cancellation for projects
             Dictionary<string, string> properties = new Dictionary<string, string>()
             {
                 { TelemetryProperties.WizardStatus, WizardStatusEnum.Completed.ToString() },
@@ -57,7 +55,6 @@ namespace Microsoft.Templates.Core.Diagnostics
         }
         public async Task TrackWizardCancelledAsync(WizardTypeEnum wizardType)
         {
-            //TODO: Now only record cancellation for projects
             Dictionary<string, string> properties = new Dictionary<string, string>()
             {
                 { TelemetryProperties.WizardStatus, WizardStatusEnum.Cancelled.ToString() },
