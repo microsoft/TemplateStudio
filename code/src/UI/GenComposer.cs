@@ -23,6 +23,7 @@ using Microsoft.Templates.Core.Composition;
 using System.Collections.ObjectModel;
 using Microsoft.Templates.UI.ViewModels;
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI
 {
@@ -46,15 +47,15 @@ namespace Microsoft.Templates.UI
                 var template = GenContext.ToolBox.Repo.Find(t => t.GroupIdentity == item.templateGroupIdentity && t.GetFrameworkList().Contains(framework));
                 if (template == null)
                 {
-                    LogOrAlertException($"Layout template {item.templateGroupIdentity} not found for framework {framework}");
+                    LogOrAlertException(string.Format(StringRes.ExceptionLayoutNotFound, item.templateGroupIdentity, framework));
                 }
                 else
                 {
                     var templateType = template.GetTemplateType();
-                    //Only pages and features can be layout items
+                    
                     if (templateType != TemplateType.Page && templateType != TemplateType.Feature)
                     {
-                        LogOrAlertException($"Invalid layout item {template.Identity}. Layout items must be of type Page or Feature.");
+                        LogOrAlertException(string.Format(StringRes.ExceptionLayoutType, template.Identity));
                     }
                     else
                     {
@@ -65,10 +66,8 @@ namespace Microsoft.Templates.UI
         }
 
         public static IEnumerable<ITemplateInfo> GetAllDependencies(ITemplateInfo template, string framework)
-        {
-            var dependencyList = new List<ITemplateInfo>();
-            return GetDependencies(template, framework, dependencyList);
-            
+        {            
+           return GetDependencies(template, framework, new List<ITemplateInfo>());
         }
 
         private static IEnumerable<ITemplateInfo> GetDependencies(ITemplateInfo template, string framework, IList<ITemplateInfo> dependencyList)
@@ -80,20 +79,24 @@ namespace Microsoft.Templates.UI
                 var dependencyTemplate =  GenContext.ToolBox.Repo.Find(t => t.Identity == dependency && t.GetFrameworkList().Contains(framework));
                 if (dependencyTemplate == null)
                 {
-                    LogOrAlertException($"Dependency template {dependency} not found for framework {framework}");
+                    LogOrAlertException(string.Format(StringRes.ExceptionDependencyNotFound, dependency, framework));
                 }
                 else
                 {
                     var templateType = dependencyTemplate?.GetTemplateType();
                     if (templateType != TemplateType.Page && templateType != TemplateType.Feature)
                     {
-                        LogOrAlertException($"Invalid dependency item {dependencyTemplate.Identity}. Dependency items must be of type Page or Feature.");
+                        LogOrAlertException(string.Format(StringRes.ExceptionDependencyType, dependencyTemplate.Identity));
                     }
                     else if (dependencyTemplate.GetMultipleInstance())
                     {
-                        LogOrAlertException($"Invalid dependency item {dependencyTemplate.Identity}. Dependencies have to be configured as multpleInstance = false.");
+                        LogOrAlertException(string.Format(StringRes.ExceptionDependencyMultipleInstance, dependencyTemplate.Identity));
                     }
-                    else if (!dependencyList.Any(d => d.Identity == dependencyTemplate.Identity))
+                    else if (dependencyList.Any(d => d.Identity == template.Identity))
+                    {
+                        LogOrAlertException(string.Format(StringRes.ExceptionDependencyCircularReference, template.Identity, dependencyTemplate.Identity));
+                    }
+                    else
                     {
                         dependencyList.Add(dependencyTemplate);
                         GetDependencies(dependencyTemplate, framework, dependencyList);
@@ -104,15 +107,7 @@ namespace Microsoft.Templates.UI
             return dependencyList;
         }
 
-        private static void LogOrAlertException(string message)
-        {
-#if DEBUG
-            throw new ApplicationException(message);
-#else
-            //TODO: Log this
-            AppHealth.Current.Warning.TrackAsync(message).FireAndForget();
-#endif
-        }
+        
 
         public static IEnumerable<GenInfo> Compose(UserSelection userSelection)
         {
@@ -203,6 +198,15 @@ namespace Microsoft.Templates.UI
 
                 CreateGenInfo(mainGenInfo.Name, targetTemplate, queue);
             }
+        }
+
+        private static void LogOrAlertException(string message)
+        {
+#if DEBUG
+            throw new GenException(message);
+#else
+            AppHealth.Current.Error.TrackAsync(message).FireAndForget();
+#endif
         }
 
         private static GenInfo CreateGenInfo(string name, ITemplateInfo template, List<GenInfo> queue)

@@ -128,7 +128,7 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 if (!SavedTemplates.Any(s => s.Template.Identity == dependencyTemplate.Identity))
                 {
-                    SaveNewTemplate((dependencyTemplate.DefaultName, dependencyTemplate), isRemoveEnabled);
+                    SaveNewTemplate((dependencyTemplate.GetDefaultName(), dependencyTemplate), isRemoveEnabled);
                 }
             }
             MainViewModel.Current.RebuildLicenses();
