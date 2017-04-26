@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"      
       xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
+      xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
       xmlns:local="clr-namespace:Microsoft.Templates.UI.Converters"
       mc:Ignorable="d">
     <Page.Resources>
@@ -11,6 +12,7 @@
             <local:ColumnCountConverter x:Key="ColumnConverter" />
             <local:ItemAlignmentConverter x:Key="ItemAlignmentConverter" />
             <local:FixedWidthConverter x:Key="FixedWidthConverter" />
+            <converters:StringVisibilityConverter x:Key="StringVisibilityConverter"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -19,24 +21,37 @@
     <Grid>
         <ScrollViewer>
             <StackPanel>
-                <!-- Margin needs to be adjusted still -->
                 <GroupBox Header="{Binding PagesHeader}" Margin="{StaticResource SmallMargin}">
-                    <!--<UniformGrid
-                        Columns="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource ColumnConverter}, ConverterParameter=500}">
-                        <ItemsControl 
-                            ItemsSource="{Binding Pages}"
-                            ItemTemplate="{StaticResource ProjectTemplatesItemTemplate}" />
-                    </UniformGrid>-->
-                    <ListView
-                        ItemsSource="{Binding Pages}"
-                        Style="{StaticResource ListViewProjectTemplatesStyle}"
-                        ItemTemplate="{StaticResource ProjectTemplatesItemTemplate}"/>
+                    <ItemsControl ItemsSource="{Binding PagesGroups}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Title}" Margin="{StaticResource MediumLeftTopMargin}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
+                                    <ListView
+                                        Margin="{StaticResource MediumMargin}"
+                                        ItemsSource="{Binding Templates}"
+                                        Style="{StaticResource ListViewProjectTemplatesStyle}"
+                                        ItemTemplate="{StaticResource ProjectTemplatesItemTemplate}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </GroupBox>
                 <GroupBox Header="{Binding FeaturesHeader}" Margin="{StaticResource SmallMargin}">
-                    <ListView
-                        ItemsSource="{Binding Features}"
-                        Style="{StaticResource ListViewProjectTemplatesStyle}"
-                        ItemTemplate="{StaticResource ProjectTemplatesItemTemplate}" />
+                    <ItemsControl ItemsSource="{Binding FeatureGroups}" Margin="{StaticResource MediumTopMargin}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Title}" Margin="{StaticResource MediumLeftTopMargin}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
+                                    <ListView
+                                        Margin="{StaticResource MediumMargin}"
+                                        ItemsSource="{Binding Templates}"
+                                        Style="{StaticResource ListViewProjectTemplatesStyle}"
+                                        ItemTemplate="{StaticResource ProjectTemplatesItemTemplate}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </GroupBox>
             </StackPanel>
         </ScrollViewer>

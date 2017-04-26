@@ -243,6 +243,15 @@
   <data name="SummaryTitle" xml:space="preserve">
     <value>Summary</value>
   </data>
+  <data name="TemplateGroup_ApplicationLifecycle" xml:space="preserve">
+    <value>Application Lifecycle</value>
+  </data>
+  <data name="TemplateGroup_BackgroundWork" xml:space="preserve">
+    <value>Background Work</value>
+  </data>
+  <data name="TemplateGroup_UserInteraction" xml:space="preserve">
+    <value>User Interaction</value>
+  </data>
   <data name="TemplateTypeFeature" xml:space="preserve">
     <value>Feature</value>
   </data>

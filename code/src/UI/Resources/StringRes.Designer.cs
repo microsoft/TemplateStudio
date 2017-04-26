@@ -439,6 +439,33 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Application Lifecycle.
+        /// </summary>
+        public static string TemplateGroup_ApplicationLifecycle {
+            get {
+                return ResourceManager.GetString("TemplateGroup_ApplicationLifecycle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Background Work.
+        /// </summary>
+        public static string TemplateGroup_BackgroundWork {
+            get {
+                return ResourceManager.GetString("TemplateGroup_BackgroundWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Interaction.
+        /// </summary>
+        public static string TemplateGroup_UserInteraction {
+            get {
+                return ResourceManager.GetString("TemplateGroup_UserInteraction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Feature.
         /// </summary>
         public static string TemplateTypeFeature {
