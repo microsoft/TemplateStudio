@@ -59,7 +59,7 @@
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="{x:Static res:StringRes.SummaryTitle}" Style="{StaticResource TextTemplateTitleStyle}" Margin="{StaticResource MediumMargin}"/>
+                <TextBlock Text="{x:Static res:StringRes.SummaryTitle}" Style="{StaticResource SummaryTitle}" Margin="{StaticResource MediumMargin}"/>
                 <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}"/>
                 <ScrollViewer Grid.Row="2" Visibility="{Binding LoadedContentVisibility}">
                     <StackPanel Margin="{StaticResource MediumMargin}">

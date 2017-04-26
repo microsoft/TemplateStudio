@@ -33,17 +33,29 @@
                                                     <Border Padding="{TemplateBinding Padding}">
                                                         <Grid Background="Transparent" SnapsToDevicePixels="False">
                                                             <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="19"/>
+                                                                <ColumnDefinition Width="20"/>
                                                                 <ColumnDefinition Width="*"/>
                                                             </Grid.ColumnDefinitions>
                                                             <TextBlock
                                                                 x:Name="arrow"
-                                                                HorizontalAlignment="Center" SnapsToDevicePixels="False" VerticalAlignment="Center" 
-                                                                Text="&#xE970;" FontFamily="Segoe MDL2 Assets" 
-                                                                FontSize="16" 
+                                                                HorizontalAlignment="Center" 
+                                                                SnapsToDevicePixels="False" 
+                                                                VerticalAlignment="Center" 
+                                                                Text="&#xE970;" 
+                                                                FontFamily="Segoe MDL2 Assets" 
+                                                                FontSize="10" 
                                                                 Foreground="#FF333333"
                                                             />
-                                                            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="1" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="Left" Margin="4,0,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center"/>
+                                                            <ContentPresenter 
+                                                                ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                                                Content="{TemplateBinding Content}"
+                                                                Grid.Column="1"
+                                                                ContentStringFormat="{TemplateBinding ContentStringFormat}" 
+                                                                HorizontalAlignment="Left"
+                                                                Margin="5,0,0,0" 
+                                                                RecognizesAccessKey="True" 
+                                                                SnapsToDevicePixels="True"
+                                                                VerticalAlignment="Top" />
                                                         </Grid>
                                                     </Border>
                                                     <ControlTemplate.Triggers>

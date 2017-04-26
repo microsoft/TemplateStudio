@@ -30,9 +30,18 @@
 
     <Style TargetType="TextBlock" x:Key="TextTemplateAuthorStyle">
         <Setter Property="FontSize" Value="10" />
-        <Setter Property="Foreground" Value="{StaticResource UIMidleDarkGray}" />
+        <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkGray}" />
         <Setter Property="TextWrapping" Value="WrapWithOverflow" />
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
     </Style>
 
+    <Style TargetType="TextBlock" x:Key="SummaryTitle">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="Foreground" Value="{StaticResource UIBlue}" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="SummarySubTitle">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="Foreground" Value="{StaticResource UIDarkGray}" />
+    </Style>
+    
 </ResourceDictionary>

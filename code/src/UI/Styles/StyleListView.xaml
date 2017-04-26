@@ -96,7 +96,7 @@
                                             <Condition Property="IsMouseOver" Value="True"/>
                                         </MultiTrigger.Conditions>
                                         <MultiTrigger.Setters>
-                                            <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{StaticResource UIMidleDarkGray}"/>
+                                            <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{StaticResource UIMiddleDarkGray}"/>
                                         </MultiTrigger.Setters>
                                     </MultiTrigger>
                                 </ControlTemplate.Triggers>

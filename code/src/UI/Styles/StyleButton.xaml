@@ -13,7 +13,7 @@
         <Setter Property="Height" Value="27" />
         <Setter Property="Foreground" Value="{StaticResource UIBlack}" />
         <Setter Property="BorderBrush" Value="{StaticResource UIBlack}" />
-        <Setter Property="Background" Value="{StaticResource UIMidleLightGray}" />
+        <Setter Property="Background" Value="{StaticResource UIMiddleLightGray}" />
         <Setter Property="BorderThickness" Value="1" />
     </Style>
 

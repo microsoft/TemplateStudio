@@ -52,7 +52,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="SummaryExpanderHeaderTemplate">
-        <TextBlock Text="{Binding}" Style="{StaticResource TextTemplateTitleStyle}"/>
+        <TextBlock Text="{Binding}" Style="{StaticResource SummarySubTitle}"/>
     </DataTemplate>
     <DataTemplate x:Key="ProjectTemplatesSummaryItemTemplate">
         <Grid>

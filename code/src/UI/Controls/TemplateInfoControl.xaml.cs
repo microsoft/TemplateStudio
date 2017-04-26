@@ -149,7 +149,7 @@ namespace Microsoft.Templates.UI.Controls
             if (TemplateInfo.MultipleInstances == false && IsAlreadyDefined)
             {
                 AddingVisibility = Visibility.Collapsed;
-                TitleForeground = FindResource("UIMidleLightGray") as SolidColorBrush;
+                TitleForeground = FindResource("UIMiddleLightGray") as SolidColorBrush;
             }
             else
             {
