@@ -115,11 +115,29 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Windows Template Studio Error.
+        /// </summary>
+        public static string ErrorDialogTitle {
+            get {
+                return ResourceManager.GetString("ErrorDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error updating templates. See output for more details..
         /// </summary>
         public static string ErrorSync {
             get {
                 return ResourceManager.GetString("ErrorSync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View problem details.
+        /// </summary>
+        public static string ErrorViewProblemDetails {
+            get {
+                return ResourceManager.GetString("ErrorViewProblemDetails", resourceCulture);
             }
         }
         
