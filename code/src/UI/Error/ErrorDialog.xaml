@@ -15,7 +15,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="TextBox" x:Key="TextTitleStyle">
+            <Style TargetType="TextBox" x:Key="ErrorTitleStyle">
                 <Setter Property="Height" Value="240" />
                 <Setter Property="IsReadOnly" Value="True" />
                 <Setter Property="TextWrapping" Value="Wrap" />
@@ -39,7 +39,7 @@
             <!--<Image Source="/Microsoft.Templates.Wizard;component/Resources/NodeFailed.png" Style="{StaticResource ErrorImageStyle}" />-->
             <TextBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource TextTemplateTitleStyle}" Margin="{StaticResource MediumLeftMargin}"/>
         </Grid>
-        <TextBox Grid.Row="1" Text="{Binding MessageDetail}" Visibility="{Binding MessageDetailVisibility}" Style="{StaticResource TextTitleStyle}" />
+        <TextBox Grid.Row="1" Text="{Binding MessageDetail}" Visibility="{Binding MessageDetailVisibility}" Style="{StaticResource ErrorTitleStyle}" />
         <TextBlock Grid.Row="2" Margin="{StaticResource MediumTopMargin}" HorizontalAlignment="Right">
             <Hyperlink Command="{Binding ToggleDetailVisibleCommand}">
                 <TextBlock Text="{Binding ToggleText}"/>
