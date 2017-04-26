@@ -258,7 +258,6 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup />
   <ItemGroup>
     <Page Include="Controls\StatusControl.xaml">
       <SubType>Designer</SubType>

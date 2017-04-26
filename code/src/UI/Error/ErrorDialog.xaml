@@ -4,10 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
-        mc:Ignorable="d"                
-        Title="{x:Static res:StringRes.Title}" 
-        Height="{Binding HostHeight, Mode=TwoWay}" 
-        Width="600" 
+        mc:Ignorable="d"
+        Icon="{x:Null}"
+        Title="{x:Static res:StringRes.ErrorDialogTitle}"
+        Height="{Binding HostHeight, Mode=TwoWay}"
+        Width="500"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize">
     <Window.Resources>
@@ -15,36 +16,48 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="TextBox" x:Key="ErrorTitleStyle">
-                <Setter Property="Height" Value="240" />
-                <Setter Property="IsReadOnly" Value="True" />
-                <Setter Property="TextWrapping" Value="Wrap" />
-                <Setter Property="Margin" Value="{StaticResource MediumTopMargin}" />
-            </Style>
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid Margin="{StaticResource MediumMargin}">
+    <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MaxHeight="150"/>
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <Grid>
+        <Grid Margin="{StaticResource BigLeftTopRightMargin}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <!--<Image Source="/Microsoft.Templates.Wizard;component/Resources/NodeFailed.png" Style="{StaticResource ErrorImageStyle}" />-->
-            <TextBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource TextTemplateTitleStyle}" Margin="{StaticResource MediumLeftMargin}"/>
+            <Grid VerticalAlignment="Top" Height="40" Width="40">
+                <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="#CC0000"/>
+                <TextBlock Text="&#xE10A;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource UIWhite}" FontSize="20"/>
+            </Grid>
+            <TextBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource TextTemplateTitleStyle}" Margin="{StaticResource MediumLeftMargin}" VerticalAlignment="Center"/>
         </Grid>
-        <TextBox Grid.Row="1" Text="{Binding MessageDetail}" Visibility="{Binding MessageDetailVisibility}" Style="{StaticResource ErrorTitleStyle}" />
-        <TextBlock Grid.Row="2" Margin="{StaticResource MediumTopMargin}" HorizontalAlignment="Right">
-            <Hyperlink Command="{Binding ToggleDetailVisibleCommand}">
-                <TextBlock Text="{Binding ToggleText}"/>
-            </Hyperlink>
-        </TextBlock>
-        <Button Grid.Row="3" Content="{x:Static res:StringRes.ButtonOk}" Command="{Binding CloseCommand}" Style="{StaticResource ButtonNavigationStyle}" Margin="{StaticResource MediumTopMargin}" HorizontalAlignment="Right"/>
+        <ScrollViewer Grid.Row="1" Visibility="{Binding MessageDetailVisibility}">
+            <TextBox Text="{Binding MessageDetail}" Style="{StaticResource ErrorTitleStyle}" Margin="{StaticResource BigMargin}"/>
+        </ScrollViewer>
+        <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
+            <Grid Margin="{StaticResource MediumMargin}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                    <Button Style="{StaticResource InfoTemplateInfoButtonStyle}" VerticalAlignment="Center" Command="{Binding ToggleDetailVisibleCommand}">
+                        <Button.Content>
+                            <Grid>
+                                <TextBlock Text="&#xECCA;" FontFamily="Segoe MDL2 Assets" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource UIDarkGray}"/>
+                                <TextBlock Text="{Binding ToggleButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource UIBlack}"/>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+                    <TextBlock Text="{x:Static res:StringRes.ErrorViewProblemDetails}" Margin="{StaticResource MediumLeftMargin}" VerticalAlignment="Center"/>
+                </StackPanel>
+                <Button Grid.Column="1" Content="{x:Static res:StringRes.ButtonOk}" Command="{Binding CloseCommand}" Style="{StaticResource ButtonNavigationStyle}"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
