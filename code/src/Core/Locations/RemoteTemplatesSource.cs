@@ -113,7 +113,7 @@ namespace Microsoft.Templates.Core.Locations
             var version = "0.0.0.0";
             if (File.Exists(versionFilePath))
             {
-                version = File.ReadAllText(versionFilePath).Replace("v", ""); //TODO: quitar cuando no sea necesario.
+                version = File.ReadAllText(versionFilePath);
             }
             if (!Version.TryParse(version, out Version result))
             {

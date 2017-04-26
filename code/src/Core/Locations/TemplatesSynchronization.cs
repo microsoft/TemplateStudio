@@ -136,7 +136,6 @@ namespace Microsoft.Templates.Core.Locations
             SyncStatusChanged?.Invoke(this, SyncStatus.Updating);
             await Task.Run(() => UpdateTemplatesCache());
 
-            //TODO: Ensure updated is sent when updated content or when content available.
             SyncStatusChanged?.Invoke(this, SyncStatus.Updated);
         }
 

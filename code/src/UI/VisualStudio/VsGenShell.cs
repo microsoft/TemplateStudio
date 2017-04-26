@@ -38,8 +38,8 @@ namespace Microsoft.Templates.UI.VisualStudio
         private Lazy<IVsUIShell> _uiShell = new Lazy<IVsUIShell>(() => ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell)) as IVsUIShell, true);
         private IVsUIShell UIShell => _uiShell.Value;
 
-        //TODO: CACHE ON THIS
-        private VsOutputPane OutputPane => new VsOutputPane(); 
+        private Lazy<VsOutputPane> _outputPane = new Lazy<VsOutputPane>(() => new VsOutputPane());
+        private VsOutputPane OutputPane => _outputPane.Value; 
         
         public override void AddItems(params string[] itemsFullPath)
         {

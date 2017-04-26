@@ -138,6 +138,9 @@
   <data name="ErrorSync" xml:space="preserve">
     <value>Error updating templates. See output for more details.</value>
   </data>
+  <data name="ExceptionGenerating" xml:space="preserve">
+    <value>Template '{0}', name: '{1}', reason: '{2}'</value>
+  </data>
   <data name="GeneratingFeatureMessage" xml:space="preserve">
     <value>Adding '{0}' feature to project...</value>
   </data>
@@ -188,6 +191,9 @@
   </data>
   <data name="ResetSelectionTitle" xml:space="preserve">
     <value>Reset selection</value>
+  </data>
+  <data name="RestoringMessage" xml:space="preserve">
+    <value>Restoring packages...</value>
   </data>
   <data name="StatusAdquired" xml:space="preserve">
     <value>Templates downloaded</value>
