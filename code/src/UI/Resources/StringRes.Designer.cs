@@ -376,15 +376,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Licences.
-        /// </summary>
-        public static string SummaryLicencesTitle {
-            get {
-                return ResourceManager.GetString("SummaryLicencesTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Licenses.
         /// </summary>
         public static string SummaryLicenseTitle {

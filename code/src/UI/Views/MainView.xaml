@@ -63,9 +63,7 @@
                 <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}"/>
                 <ScrollViewer Grid.Row="2" Visibility="{Binding LoadedContentVisibility}">
                     <StackPanel Margin="{StaticResource MediumMargin}">
-                        <Expander Header="{x:Static res:StringRes.SummaryLicencesTitle}" IsExpanded="True" Margin="{StaticResource MediumTopMargin}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}">
-                            <ItemsControl Margin="{StaticResource ExtraBigLeftMargin}" ItemsSource="{Binding SummaryLicences}" ItemTemplate="{StaticResource LicenceSummaryItemTemplate}" />
-                        </Expander>
+                        
                         <StackPanel Margin="{StaticResource ExtraBigLeftMargin}" DataContext="{Binding ProjectSetup.SelectedProjectType}">
                             <TextBlock Text="{x:Static res:StringRes.SummaryProjectTypeTitle}" Style="{StaticResource TextTemplateTitleStyle}"/>
                             <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
@@ -90,6 +88,9 @@
                                 </TextBlock>
                             </StackPanel>
                         </Grid>
+                        <Expander Header="{x:Static res:StringRes.SummaryLicenseTitle}" IsExpanded="True" Margin="{StaticResource MediumTopMargin}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}">
+                            <ItemsControl Margin="{StaticResource ExtraBigLeftMargin}" ItemsSource="{Binding SummaryLicences}" ItemTemplate="{StaticResource LicenceSummaryItemTemplate}" />
+                        </Expander>
                         <Expander Header="{x:Static res:StringRes.SummaryPagesTitle}" IsExpanded="True" Margin="{StaticResource MediumTopMargin}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}">
                             <ItemsControl Margin="{StaticResource ExtraBigLeftMargin}" ItemsSource="{Binding ProjectTemplates.SummaryPages}" ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}" />
                         </Expander>
