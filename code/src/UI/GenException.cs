@@ -20,9 +20,7 @@ namespace Microsoft.Templates.UI
 {
     public class GenException : Exception
     {
-        // TODO: Compleate
-        public GenException(string name, string template, string reason) : base("Message TODO")
-        //public GenException(string name, string template, string reason) : base (string.Format(Resources.StringRes.ExceptionGenerating, template, name, reason))
+        public GenException(string name, string template, string reason) : base (string.Format(Resources.StringRes.ExceptionGenerating, template, name, reason))
         {
         }
     }
