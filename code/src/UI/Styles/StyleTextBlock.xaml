@@ -21,7 +21,13 @@
         <Setter Property="FontSize" Value="{StaticResource UIExtraBigFontSize}"/>
         <Setter Property="FontWeight" Value="Regular"/>
     </Style>
-    
+    <Style TargetType="TextBlock" x:Key="TextSubTitleStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{StaticResource UIWhite}"/>
+        <Setter Property="FontSize" Value="{StaticResource UIMediumFontSize}"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+    </Style>
+
     <!--Project Setup and Project Templates Text Styles-->
     <Style TargetType="TextBlock" x:Key="TextTemplateTitleStyle">
         <Setter Property="FontSize" Value="{StaticResource UIMediumFontSize}" />

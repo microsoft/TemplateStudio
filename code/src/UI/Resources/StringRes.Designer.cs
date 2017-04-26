@@ -124,11 +124,65 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Circular dependency detected on template {0} with {1}..
+        /// </summary>
+        public static string ExceptionDependencyCircularReference {
+            get {
+                return ResourceManager.GetString("ExceptionDependencyCircularReference", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid dependency item {0}. Dependencies have to be configured as multpleInstance = false..
+        /// </summary>
+        public static string ExceptionDependencyMultipleInstance {
+            get {
+                return ResourceManager.GetString("ExceptionDependencyMultipleInstance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dependency template {0} not found for framework {1}..
+        /// </summary>
+        public static string ExceptionDependencyNotFound {
+            get {
+                return ResourceManager.GetString("ExceptionDependencyNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid dependency item {0}. Dependency items must be of type Page or Feature..
+        /// </summary>
+        public static string ExceptionDependencyType {
+            get {
+                return ResourceManager.GetString("ExceptionDependencyType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Template &apos;{0}&apos;, name: &apos;{1}&apos;, reason: &apos;{2}&apos;.
         /// </summary>
         public static string ExceptionGenerating {
             get {
                 return ResourceManager.GetString("ExceptionGenerating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layout template {0} not found for framework {1}..
+        /// </summary>
+        public static string ExceptionLayoutNotFound {
+            get {
+                return ResourceManager.GetString("ExceptionLayoutNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid layout item {0}. Layout items must be of type Page or Feature..
+        /// </summary>
+        public static string ExceptionLayoutType {
+            get {
+                return ResourceManager.GetString("ExceptionLayoutType", resourceCulture);
             }
         }
         

@@ -21,7 +21,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Locations;
-
+using Microsoft.Templates.Core.Diagnostics;
 
 namespace Microsoft.Templates.Core.Gen
 {
@@ -42,6 +42,8 @@ namespace Microsoft.Templates.Core.Gen
         }
         public static void Bootstrap(TemplatesSource source, GenShell shell, Version wizardVersion)
         {
+            AppHealth.Current.AddWriter(new ShellHealthWriter());
+
             string hostVersion = $"{wizardVersion.Major}.{wizardVersion.Minor}";
             CodeGen.Initialize(source.Id, hostVersion);
             TemplatesRepository repository = new TemplatesRepository(source, wizardVersion);

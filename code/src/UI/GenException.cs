@@ -20,6 +20,10 @@ namespace Microsoft.Templates.UI
 {
     public class GenException : Exception
     {
+        public GenException(string message) : base(message)
+        {
+        }
+        
         public GenException(string name, string template, string reason) : base (string.Format(Resources.StringRes.ExceptionGenerating, template, name, reason))
         {
         }

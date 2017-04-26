@@ -20,11 +20,95 @@ using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Composition;
+using System.Collections.ObjectModel;
+using Microsoft.Templates.UI.ViewModels;
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI
 {
     public class GenComposer
     {
+        public static IEnumerable<string> GetSupportedFx(string projectType)
+        {
+            return GenContext.ToolBox.Repo.GetAll()
+                .Where(t => t.GetProjectType() == projectType)
+                .SelectMany(t => t.GetFrameworkList())
+                .Distinct();
+        }
+
+        public static IEnumerable<(LayoutItem Layout, ITemplateInfo Template)> GetLayoutTemplates(string projectType, string framework)
+        {
+            var projectTemplate = GetProjectTemplate(projectType, framework);
+            var layout = projectTemplate?.GetLayout();
+
+            foreach (var item in layout)
+            {
+                var template = GenContext.ToolBox.Repo.Find(t => t.GroupIdentity == item.templateGroupIdentity && t.GetFrameworkList().Contains(framework));
+                if (template == null)
+                {
+                    LogOrAlertException(string.Format(StringRes.ExceptionLayoutNotFound, item.templateGroupIdentity, framework));
+                }
+                else
+                {
+                    var templateType = template.GetTemplateType();
+                    
+                    if (templateType != TemplateType.Page && templateType != TemplateType.Feature)
+                    {
+                        LogOrAlertException(string.Format(StringRes.ExceptionLayoutType, template.Identity));
+                    }
+                    else
+                    {
+                        yield return (item, template);
+                    }
+                }
+            }
+        }
+
+        public static IEnumerable<ITemplateInfo> GetAllDependencies(ITemplateInfo template, string framework)
+        {            
+           return GetDependencies(template, framework, new List<ITemplateInfo>());
+        }
+
+        private static IEnumerable<ITemplateInfo> GetDependencies(ITemplateInfo template, string framework, IList<ITemplateInfo> dependencyList)
+        {
+            var dependencies = template.GetDependencyList();
+
+            foreach (var dependency in dependencies)
+            {
+                var dependencyTemplate =  GenContext.ToolBox.Repo.Find(t => t.Identity == dependency && t.GetFrameworkList().Contains(framework));
+                if (dependencyTemplate == null)
+                {
+                    LogOrAlertException(string.Format(StringRes.ExceptionDependencyNotFound, dependency, framework));
+                }
+                else
+                {
+                    var templateType = dependencyTemplate?.GetTemplateType();
+                    if (templateType != TemplateType.Page && templateType != TemplateType.Feature)
+                    {
+                        LogOrAlertException(string.Format(StringRes.ExceptionDependencyType, dependencyTemplate.Identity));
+                    }
+                    else if (dependencyTemplate.GetMultipleInstance())
+                    {
+                        LogOrAlertException(string.Format(StringRes.ExceptionDependencyMultipleInstance, dependencyTemplate.Identity));
+                    }
+                    else if (dependencyList.Any(d => d.Identity == template.Identity))
+                    {
+                        LogOrAlertException(string.Format(StringRes.ExceptionDependencyCircularReference, template.Identity, dependencyTemplate.Identity));
+                    }
+                    else
+                    {
+                        dependencyList.Add(dependencyTemplate);
+                        GetDependencies(dependencyTemplate, framework, dependencyList);
+                    }
+                }
+            }
+
+            return dependencyList;
+        }
+
+        
+
         public static IEnumerable<GenInfo> Compose(UserSelection userSelection)
         {
             var genQueue = new List<GenInfo>();
@@ -38,8 +122,6 @@ namespace Microsoft.Templates.UI
             AddTemplates(userSelection.Pages, genQueue);
             AddTemplates(userSelection.Features, genQueue);
 
-            //AddMissingDependencies(genQueue);
-
             AddCompositionTemplates(genQueue, userSelection);
 
             return genQueue;
@@ -47,15 +129,20 @@ namespace Microsoft.Templates.UI
 
         private static void AddProject(UserSelection userSelection, List<GenInfo> genQueue)
         {
-            var projectTemplate = GenContext.ToolBox.Repo
-                                                        .Find(t => t.GetTemplateType() == TemplateType.Project
-                                                            && t.GetProjectType() == userSelection.ProjectType
-                                                            && t.GetFrameworkList().Any(f => f == userSelection.Framework));
+            var projectTemplate = GetProjectTemplate(userSelection.ProjectType, userSelection.Framework);
 
             var genProject = CreateGenInfo(GenContext.Current.ProjectName, projectTemplate, genQueue);
             genProject.Parameters.Add(GenParams.Username, Environment.UserName);
             genProject.Parameters.Add(GenParams.WizardVersion, GenContext.ToolBox.WizardVersion);
             genProject.Parameters.Add(GenParams.TemplatesVersion, GenContext.ToolBox.TemplatesVersion);
+        }
+
+        private static ITemplateInfo GetProjectTemplate(string projectType, string framework)
+        {
+            return GenContext.ToolBox.Repo
+                                    .Find(t => t.GetTemplateType() == TemplateType.Project
+                                            && t.GetProjectType() == projectType
+                                            && t.GetFrameworkList().Any(f => f == framework));
         }
 
         private static void AddTemplates(IEnumerable<(string name, ITemplateInfo template)> userSelection, List<GenInfo> genQueue)
@@ -64,21 +151,6 @@ namespace Microsoft.Templates.UI
             {
                 CreateGenInfo(selectionItem.name, selectionItem.template, genQueue);
             }
-        }
-
-        public static List<ITemplateInfo> GetNotAddedDependencies(ITemplateInfo template, List<ITemplateInfo> currentTemplates)
-        {
-            List<ITemplateInfo> newTemplates = new List<ITemplateInfo>(); ;
-            var dependencies = template.GetDependencyList();
-            foreach (var dependency in dependencies)
-            {
-                if (!currentTemplates.Any(t => t.Identity == dependency))
-                {
-                    var dependencyTemplate = GenContext.ToolBox.Repo.Find(t => t.Identity == dependency);
-                    newTemplates.Add(dependencyTemplate);
-                }
-            }
-            return newTemplates;
         }
 
         private static void AddCompositionTemplates(List<GenInfo> genQueue, UserSelection userSelection)
@@ -126,6 +198,15 @@ namespace Microsoft.Templates.UI
 
                 CreateGenInfo(mainGenInfo.Name, targetTemplate, queue);
             }
+        }
+
+        private static void LogOrAlertException(string message)
+        {
+#if DEBUG
+            throw new GenException(message);
+#else
+            AppHealth.Current.Error.TrackAsync(message).FireAndForget();
+#endif
         }
 
         private static GenInfo CreateGenInfo(string name, ITemplateInfo template, List<GenInfo> queue)
