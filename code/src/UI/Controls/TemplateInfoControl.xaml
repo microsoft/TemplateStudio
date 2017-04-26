@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
              xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
              x:Name="root"
              mc:Ignorable="d" 
@@ -42,7 +43,13 @@
 
                 <controls:ImageEx Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Center" Focusable="False" SourcePath="{Binding TemplateInfo.Icon, ElementName=root}" />
                 <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateTitleStyle}" Text="{Binding TemplateInfo.Name, ElementName=root}" Margin="{StaticResource MediumLeftMargin}" Foreground="{Binding TitleForeground, ElementName=root}" />
-                <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateAuthorStyle}" Text="{Binding TemplateInfo.Author, ElementName=root}" Margin="{StaticResource MediumLeftMargin}" />
+                <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateAuthorStyle}" Margin="{StaticResource MediumLeftMargin}">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
+                            <Binding Path="TemplateInfo.Author" ElementName="root" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
 
                 <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="{Binding NoEditingContentVisibility, ElementName=root}" Click="OnShowInfo">
                     <Button.Content>
