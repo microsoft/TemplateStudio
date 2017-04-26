@@ -15,6 +15,7 @@
     "wts.order": "1",
     "wts.group": "ApplicationLifecycle",
     "wts.multipleInstance": "false",
+    "wts.defaultInstance": "SuspendAndResume",
     "wts.dependencies":"wts.Feat.SettingsStorage"
   },
   "sourceName": "SuspendAndResumeFeature",
