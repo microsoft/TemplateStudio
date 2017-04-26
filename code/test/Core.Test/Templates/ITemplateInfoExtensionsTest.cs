@@ -173,7 +173,7 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Fact]
-        public void GetLicences()
+        public void GetLicenses()
         {
             var target = GetTarget("ProjectTemplate");
 
