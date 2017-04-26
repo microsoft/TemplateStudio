@@ -12,8 +12,8 @@ namespace Microsoft.Templates.UI.ViewModels
 {
     public class ErrorViewModel : Observable
     {
-        private const double HostHeightCollapsed = 180;
-        private const double HostHeightExpanded = 420;
+        private const double HostHeightCollapsed = 250;
+        private const double HostHeightExpanded = 500;
 
         private readonly Window _host;
 
@@ -44,11 +44,11 @@ namespace Microsoft.Templates.UI.ViewModels
             set { SetProperty(ref _hostHeight, value); }
         }
 
-        private string _toggleText;
-        public string ToggleText
+        private string _toggleButtonIcon;
+        public string ToggleButtonIcon
         {
-            get { return _toggleText; }
-            set { SetProperty(ref _toggleText, value); }
+            get { return _toggleButtonIcon; }
+            set { SetProperty(ref _toggleButtonIcon, value); }
         }
 
         private string _message;
@@ -76,12 +76,12 @@ namespace Microsoft.Templates.UI.ViewModels
                 if (value == Visibility.Visible)
                 {
                     HostHeight = HostHeightExpanded;
-                    ToggleText = StringRes.LessDetail;
+                    ToggleButtonIcon = "\xE014";
                 }
                 else
                 {
                     HostHeight = HostHeightCollapsed;
-                    ToggleText = StringRes.MoreDetail;
+                    ToggleButtonIcon = "\xE015";
                 }
             }
         }

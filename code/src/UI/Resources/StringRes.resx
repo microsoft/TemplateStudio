@@ -189,6 +189,9 @@
   <data name="LoadingTemplatesText" xml:space="preserve">
     <value>Loading available templates...</value>
   </data>
+  <data name="MadeBy" xml:space="preserve">
+    <value>Made by {0}</value>
+  </data>
   <data name="MoreDetail" xml:space="preserve">
     <value>More detail</value>
   </data>
@@ -270,6 +273,9 @@
   <data name="TemplateGroup_UserInteraction" xml:space="preserve">
     <value>User Interaction</value>
   </data>
+  <data name="TemplatesVersion" xml:space="preserve">
+    <value>Templates version:</value>
+  </data>
   <data name="TemplateTypeFeature" xml:space="preserve">
     <value>Feature</value>
   </data>
@@ -306,5 +312,14 @@
   </data>
   <data name="ValidationError_ReservedName" xml:space="preserve">
     <value>Name is reserved</value>
+  </data>
+  <data name="WizardVersion" xml:space="preserve">
+    <value>Wizard version:</value>
+  </data>
+  <data name="ErrorDialogTitle" xml:space="preserve">
+    <value>Windows Template Studio Error</value>
+  </data>
+  <data name="ErrorViewProblemDetails" xml:space="preserve">
+    <value>View problem details</value>
   </data>
 </root>

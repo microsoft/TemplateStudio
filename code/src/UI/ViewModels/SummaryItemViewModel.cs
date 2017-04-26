@@ -13,7 +13,22 @@ namespace Microsoft.Templates.UI.ViewModels
         public string TemplateName { get; set; }
         public string Author { get; set; }
         public bool IsRemoveEnabled { get; set; }
-        public string DisplayText { get => $"{ItemName} [{TemplateName}]"; }
+        public bool HasDefaultName { get; set; }
+
+        public string DisplayText
+        {
+            get
+            {
+                if (HasDefaultName)
+                {
+                    return ItemName;
+                }
+                else
+                {
+                    return $"{ItemName} [{TemplateName}]";
+                }
+            }
+        }
 
         private FontWeight _itemFontWeight = FontWeights.Normal;        
 

@@ -104,24 +104,24 @@ namespace Microsoft.Templates.Core
             metadata.ForEach(m => SetMetadataDescription(m, folderName, type));
             metadata.ForEach(m => SetMetadataIcon(m, folderName, type));
             metadata.ForEach(m => m.MetadataType = type);
-            metadata.ForEach(m => SetLicenceTerms(m));
+            metadata.ForEach(m => SetLicenseTerms(m));
 
             return metadata.OrderBy(m => m.Order);
         }
 
         private const string Separator = "|";
-        private const string LicencesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
+        private const string LicensesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
 
-        private void SetLicenceTerms(MetadataInfo metadataInfo)
+        private void SetLicenseTerms(MetadataInfo metadataInfo)
         {
-            if (!string.IsNullOrWhiteSpace(metadataInfo.Licences))
+            if (!string.IsNullOrWhiteSpace(metadataInfo.Licenses))
             {
                 var result = new List<TemplateLicense>();
 
-                var licencesMatches = Regex.Matches(metadataInfo.Licences, LicencesPattern);
-                for (int i = 0; i < licencesMatches.Count; i++)
+                var licensesMatches = Regex.Matches(metadataInfo.Licenses, LicensesPattern);
+                for (int i = 0; i < licensesMatches.Count; i++)
                 {
-                    var m = licencesMatches[i];
+                    var m = licensesMatches[i];
                     if (m.Success)
                     {
                         result.Add(new TemplateLicense
@@ -132,7 +132,7 @@ namespace Microsoft.Templates.Core
                     }
 
                 }
-                metadataInfo.LicenceTerms = result;
+                metadataInfo.LicenseTerms = result;
             }
         }
 

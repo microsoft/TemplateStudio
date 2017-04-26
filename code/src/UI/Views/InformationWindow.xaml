@@ -28,38 +28,43 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Style="{StaticResource GridTitleStyle}">
-            <TextBlock Text="Information" Style="{StaticResource TextTitleStyle}" Margin="{StaticResource BigHorizontalMediumVerticalMargin}"/>
+            <TextBlock Style="{StaticResource TextTitleStyle}" Margin="{StaticResource BigHorizontalMediumVerticalMargin}">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0} ({1})">
+                        <Binding Path="Name" />
+                        <Binding Path="InformationType" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
         </Grid>
-        <Grid Grid.Row="1" Margin="{StaticResource BigMargin}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}">
-                        <TextBlock Text="Name:" Style="{StaticResource TextTemplateTitleStyle}" MinWidth="60"/>
-                        <TextBlock Margin="{StaticResource MediumLeftMargin}" Text="{Binding Name}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}">
-                        <TextBlock Text="Template:" Style="{StaticResource TextTemplateTitleStyle}" MinWidth="60"/>
-                        <TextBlock Margin="{StaticResource MediumLeftMargin}" Text="{Binding InformationType}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding Version, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
-                        <TextBlock Text="Version:" Style="{StaticResource TextTemplateTitleStyle}" MinWidth="60"/>
-                        <TextBlock Margin="{StaticResource MediumLeftMargin}" Text="{Binding Version}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding Author, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
-                        <TextBlock Text="Author:" Style="{StaticResource TextTemplateTitleStyle}" MinWidth="60"/>
-                        <TextBlock Margin="{StaticResource MediumLeftMargin}" Text="{Binding Author}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding LicencesVisibility, FallbackValue=Collapsed}">
-                        <TextBlock Text="Licences:" Style="{StaticResource TextTemplateTitleStyle}" MinWidth="60"/>
-                        <ItemsControl ItemsSource="{Binding LicenceTerms}" Margin="{StaticResource MediumLeftMargin}" ItemTemplate="{StaticResource LicenceSummaryItemTemplate}"/>
-                    </StackPanel>
+        <Grid Grid.Row="1" Margin="{StaticResource BigLeftMargin}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding Version, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
+                    <TextBlock Text="Version:" Style="{StaticResource TextTemplateTitleStyle}" MinWidth="60"/>
+                    <TextBlock Margin="{StaticResource MediumLeftMargin}" Text="{Binding Version}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
                 </StackPanel>
-            <controls:MarkdownBlock Grid.Row="1" Margin="{StaticResource MediumTopRightMargin}" Text="{Binding InformationMD}" />
-            </Grid>
-            <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
+                <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding Author, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
+                    <TextBlock Text="Author:" Style="{StaticResource TextTemplateTitleStyle}" MinWidth="60"/>
+                    <TextBlock Margin="{StaticResource MediumLeftMargin}" Style="{StaticResource TextTemplateSubtitleStyle}">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
+                                <Binding Path="Author" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding LicensesVisibility, FallbackValue=Collapsed}">
+                    <TextBlock Text="Licenses:" Style="{StaticResource TextTemplateTitleStyle}" MinWidth="60"/>
+                    <ItemsControl ItemsSource="{Binding LicenseTerms}" Margin="{StaticResource MediumLeftMargin}" ItemTemplate="{StaticResource LicenseSummaryItemTemplate}"/>
+                </StackPanel>
+            </StackPanel>
+            <controls:MarkdownBlock Grid.Row="1" Margin="{StaticResource BigTopRightBottomMargin}" Text="{Binding InformationMD}" />
+        </Grid>
+        <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="{StaticResource MediumMargin}">
                 <Button Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonOk}" Command="{Binding OkCommand}" />
             </StackPanel>

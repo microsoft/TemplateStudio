@@ -89,7 +89,7 @@
                             </StackPanel>
                         </Grid>
                         <Expander Header="{x:Static res:StringRes.SummaryLicenseTitle}" IsExpanded="True" Margin="{StaticResource MediumTopMargin}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}">
-                            <ItemsControl Margin="{StaticResource ExtraBigLeftMargin}" ItemsSource="{Binding SummaryLicences}" ItemTemplate="{StaticResource LicenceSummaryItemTemplate}" />
+                            <ItemsControl Margin="{StaticResource ExtraBigLeftMargin}" ItemsSource="{Binding SummaryLicenses}" ItemTemplate="{StaticResource LicenseSummaryItemTemplate}" />
                         </Expander>
                         <Expander Header="{x:Static res:StringRes.SummaryPagesTitle}" IsExpanded="True" Margin="{StaticResource MediumTopMargin}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}">
                             <ItemsControl Margin="{StaticResource ExtraBigLeftMargin}" ItemsSource="{Binding ProjectTemplates.SummaryPages}" ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}" />
@@ -109,7 +109,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
-                <controls:StatusControl Grid.Column="0" Status="{Binding Status}" WizardVersion="{Binding WizardVersion}" Template="{Binding TemplatesVersion}"/>
+                <controls:StatusControl Grid.Column="0" Status="{Binding Status}" WizardVersion="{Binding WizardVersion}" TemplatesVersion="{Binding TemplatesVersion}" />
                 <Grid Grid.Column="1" Margin="{StaticResource MediumLeftRightMargin}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
