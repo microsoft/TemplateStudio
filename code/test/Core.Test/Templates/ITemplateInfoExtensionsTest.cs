@@ -183,13 +183,13 @@ namespace Microsoft.Templates.Core.Test
             Assert.Collection(result,
                 e1 =>
                 {
-                    Assert.Equal("text1", e1.text);
-                    Assert.Equal("url1", e1.url);
+                    Assert.Equal("text1", e1.Text);
+                    Assert.Equal("url1", e1.Url);
                 },
                 e2 =>
                 {
-                    Assert.Equal("text2", e2.text);
-                    Assert.Equal("url2", e2.url);
+                    Assert.Equal("text2", e2.Text);
+                    Assert.Equal("url2", e2.Url);
                 }
                 );
         }

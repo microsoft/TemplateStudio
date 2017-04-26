@@ -7,11 +7,12 @@
     <Color x:Key="UIWhiteColor">#ffffff</Color>
 
     <Color x:Key="UIBlackColor">#000000</Color>
-
+    
+    <Color x:Key="UIDarkGrayColor">#222222</Color>
     <Color x:Key="UILightGrayColor">#f0f0f0</Color>
-    <Color x:Key="UIMidleLightGrayColor">#dddddd</Color>
+    <Color x:Key="UIMiddleLightGrayColor">#dddddd</Color>
     <Color x:Key="UIGrayColor">#c6c6c6</Color>
-    <Color x:Key="UIMidleDarkGrayColor">#999999</Color>
+    <Color x:Key="UIMiddleDarkGrayColor">#999999</Color>
 
     <Color x:Key="UIRedColor">#FF0000</Color>
     <Color x:Key="UIYellowColor">#FDFBAC</Color>
@@ -24,10 +25,11 @@
 
     <SolidColorBrush x:Key="UIBlack" Color="{StaticResource UIBlackColor}"/>
 
+    <SolidColorBrush x:Key="UIDarkGray" Color="{StaticResource UIDarkGrayColor}"/>
     <SolidColorBrush x:Key="UILightGray" Color="{StaticResource UILightGrayColor}"/>
-    <SolidColorBrush x:Key="UIMidleLightGray" Color="{StaticResource UIMidleLightGrayColor}"/>
+    <SolidColorBrush x:Key="UIMiddleLightGray" Color="{StaticResource UIMiddleLightGrayColor}"/>
     <SolidColorBrush x:Key="UIGray" Color="{StaticResource UIGrayColor}"/>
-    <SolidColorBrush x:Key="UIMidleDarkGray" Color="{StaticResource UIMidleDarkGrayColor}"/>
+    <SolidColorBrush x:Key="UIMiddleDarkGray" Color="{StaticResource UIMiddleDarkGrayColor}"/>
 
     <SolidColorBrush x:Key="UIRed" Color="{StaticResource UIRedColor}"/>
     <SolidColorBrush x:Key="UIYellow" Color="{StaticResource UIYellowColor}"/>

@@ -29,6 +29,13 @@ namespace Microsoft.Templates.UI.Controls
         }
         public static readonly DependencyProperty AddCommandProperty = DependencyProperty.Register("AddCommand", typeof(ICommand), typeof(TemplateInfoControl), new PropertyMetadata(null));
 
+        public ICommand ShowInfoCommand
+        {
+            get { return (ICommand)GetValue(ShowInfoCommandProperty); }
+            set { SetValue(ShowInfoCommandProperty, value); }
+        }
+        public static readonly DependencyProperty ShowInfoCommandProperty = DependencyProperty.Register("ShowInfoCommand", typeof(ICommand), typeof(TemplateInfoControl), new PropertyMetadata(null));
+
         public Visibility NoEditingContentVisibility
         {
             get { return (Visibility)GetValue(NoEditingContentVisibilityProperty); }
@@ -142,7 +149,7 @@ namespace Microsoft.Templates.UI.Controls
             if (TemplateInfo.MultipleInstances == false && IsAlreadyDefined)
             {
                 AddingVisibility = Visibility.Collapsed;
-                TitleForeground = FindResource("UIMidleLightGray") as SolidColorBrush;
+                TitleForeground = FindResource("UIMiddleLightGray") as SolidColorBrush;
             }
             else
             {
@@ -193,6 +200,11 @@ namespace Microsoft.Templates.UI.Controls
             var validationResult = Core.Naming.Validate(names, name);
 
             HandleValidation(validationResult);
+        }
+
+        private void OnShowInfo(object sender, RoutedEventArgs e)
+        {
+            ShowInfoCommand.Execute(TemplateInfo);
         }
     }
 }

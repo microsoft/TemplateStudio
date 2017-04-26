@@ -19,7 +19,6 @@ using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Composition;
 using System.Collections.ObjectModel;
 using Microsoft.Templates.UI.ViewModels;
@@ -119,7 +118,7 @@ namespace Microsoft.Templates.UI
         {
             var genQueue = new List<GenInfo>();
 
-            if (string.IsNullOrEmpty(userSelection.ProjectType))
+            if (string.IsNullOrEmpty(userSelection.ProjectType) || string.IsNullOrEmpty(userSelection.Framework))
             {
                 return genQueue;
             }
@@ -139,8 +138,8 @@ namespace Microsoft.Templates.UI
 
             var genProject = CreateGenInfo(GenContext.Current.ProjectName, projectTemplate, genQueue);
             genProject.Parameters.Add(GenParams.Username, Environment.UserName);
-            genProject.Parameters.Add(GenParams.WizardVersion, GenContext.GetWizardVersion());
-            genProject.Parameters.Add(GenParams.TemplatesVersion, GenContext.ToolBox.Repo.GetTemplatesVersion());
+            genProject.Parameters.Add(GenParams.WizardVersion, GenContext.ToolBox.WizardVersion);
+            genProject.Parameters.Add(GenParams.TemplatesVersion, GenContext.ToolBox.TemplatesVersion);
         }
 
         private static ITemplateInfo GetProjectTemplate(string projectType, string framework)
@@ -156,22 +155,6 @@ namespace Microsoft.Templates.UI
             foreach (var selectionItem in userSelection)
             {
                 CreateGenInfo(selectionItem.name, selectionItem.template, genQueue);
-            }
-        }
-
-        public static void AddMissingLicences(ITemplateInfo template, ObservableCollection<SummaryLicenceViewModel> summaryLicences)
-        {
-            var licences = template.GetLicences();
-            foreach (var licence in licences)
-            {
-                if (!summaryLicences.Any(st => st.Text == licence.text))
-                {
-                    summaryLicences.Add(new SummaryLicenceViewModel()
-                    {
-                        Text = licence.text,
-                        Url = licence.url
-                    });
-                }
             }
         }
 

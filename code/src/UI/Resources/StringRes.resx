@@ -123,11 +123,17 @@
   <data name="ButtonCancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="ButtonClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
   <data name="ButtonCreate" xml:space="preserve">
     <value>Create</value>
   </data>
   <data name="ButtonNext" xml:space="preserve">
     <value>Next</value>
+  </data>
+  <data name="ButtonOk" xml:space="preserve">
+    <value>Ok</value>
   </data>
   <data name="ErrorSync" xml:space="preserve">
     <value>Error updating templates. See output for more details.</value>
@@ -156,11 +162,26 @@
   <data name="GroupProjectTypeHeader_SF" xml:space="preserve">
     <value>Project Type ({0}) - Pick one</value>
   </data>
+  <data name="LessDetail" xml:space="preserve">
+    <value>Less detail</value>
+  </data>
   <data name="LoadingTemplatesText" xml:space="preserve">
     <value>Loading available templates...</value>
   </data>
+  <data name="MoreDetail" xml:space="preserve">
+    <value>More detail</value>
+  </data>
+  <data name="NoContentText" xml:space="preserve">
+    <value>No content available</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>No data</value>
+  </data>
   <data name="ProjectSetupTitle" xml:space="preserve">
     <value>Select project type and framework</value>
+  </data>
+  <data name="ProjectTemplatesTitle" xml:space="preserve">
+    <value>Select page and features</value>
   </data>
   <data name="ResetSelection" xml:space="preserve">
     <value>You have changed your project type or framework selection. If you continue you will lose all pages and features added previously. To conserve pages and features, you can go back to your original selection ({0}, {1}).</value>
@@ -183,6 +204,9 @@
   <data name="StatusOverVersionContent" xml:space="preserve">
     <value>An update to the templates is available. Update the extension to get the latest content.</value>
   </data>
+  <data name="StatusOverVersionNoContent" xml:space="preserve">
+    <value>There is no content available for this extension version. Update the extension to access to the latest content.</value>
+  </data>
   <data name="StatusOverVersionTitle" xml:space="preserve">
     <value>Wizard update available</value>
   </data>
@@ -198,9 +222,6 @@
   <data name="SummaryFrameworkTitle" xml:space="preserve">
     <value>Framework</value>
   </data>
-  <data name="SummaryLicencesTitle" xml:space="preserve">
-    <value>Licences</value>
-  </data>
   <data name="SummaryLicenseTitle" xml:space="preserve">
     <value>Licenses</value>
   </data>
@@ -215,6 +236,21 @@
   </data>
   <data name="SummaryTitle" xml:space="preserve">
     <value>Summary</value>
+  </data>
+  <data name="TemplateTypeFeature" xml:space="preserve">
+    <value>Feature</value>
+  </data>
+  <data name="TemplateTypeFramework" xml:space="preserve">
+    <value>Framework</value>
+  </data>
+  <data name="TemplateTypePage" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="TemplateTypeProjectType" xml:space="preserve">
+    <value>Project type</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Windows Template Studio</value>
   </data>
   <data name="UIMessageBoxTitlePattern" xml:space="preserve">
     <value>Windows Template Studio: {0}</value>

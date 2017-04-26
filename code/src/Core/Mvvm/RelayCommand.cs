@@ -20,7 +20,6 @@ using System.Windows.Input;
 
 namespace Microsoft.Templates.Core.Mvvm
 {
-    //TODO: THIS IS DUPLICATED
     public class RelayCommand : ICommand
     {
         private readonly Action execute;

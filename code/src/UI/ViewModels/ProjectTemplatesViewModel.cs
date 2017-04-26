@@ -3,11 +3,13 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
@@ -35,7 +37,6 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public ObservableCollection<SummaryItemViewModel> SummaryPages { get; } = new ObservableCollection<SummaryItemViewModel>();
         public ObservableCollection<SummaryItemViewModel> SummaryFeatures { get; } = new ObservableCollection<SummaryItemViewModel>();
-        public ObservableCollection<SummaryLicenceViewModel> SummaryLicences { get; } = new ObservableCollection<SummaryLicenceViewModel>();
 
         public List<(string Name, ITemplateInfo Template)> SavedTemplates { get; } = new List<(string Name, ITemplateInfo Template)>();
 
@@ -48,12 +49,16 @@ namespace Microsoft.Templates.UI.ViewModels
         private RelayCommand<(string Name, ITemplateInfo Template)> _addCommand;
         public RelayCommand<(string Name, ITemplateInfo Template)> AddCommand => _addCommand ?? (_addCommand = new RelayCommand<(string Name, ITemplateInfo Template)>((item)=> { OnAddItem(item); }));
 
+        private RelayCommand<TemplateInfoViewModel> _showInfoCommand;
+        public RelayCommand<TemplateInfoViewModel> ShowInfoCommand => _showInfoCommand ?? (_showInfoCommand = new RelayCommand<TemplateInfoViewModel>((template) => { OnShowInfo(template); }));
+
         public Func<IEnumerable<string>> GetUsedNamesFunc => () => SavedTemplates.Select(t => t.Name);
         public Func<IEnumerable<string>> GetUsedTemplatesIdentitiesFunc => () => SavedTemplates.Select(t => t.Template.Identity);
 
 
         public async Task IniatializeAsync()
         {
+            MainViewModel.Current.Title = StringRes.ProjectTemplatesTitle;
             ContextProjectType = MainViewModel.Current.ProjectSetup.SelectedProjectType;
             ContextFramework = MainViewModel.Current.ProjectSetup.SelectedFramework;
             
@@ -87,6 +92,7 @@ namespace Microsoft.Templates.UI.ViewModels
             if (SavedTemplates == null || SavedTemplates.Count == 0)
             {
                 AddFromLayout(ContextProjectType.Name, ContextFramework.Name);
+                MainViewModel.Current.RebuildLicenses();
             }
 
             await Task.CompletedTask;
@@ -125,6 +131,21 @@ namespace Microsoft.Templates.UI.ViewModels
                     SaveNewTemplate((dependencyTemplate.DefaultName, dependencyTemplate), isRemoveEnabled);
                 }
             }
+            MainViewModel.Current.RebuildLicenses();
+        }
+
+        private void OnShowInfo(TemplateInfoViewModel template)
+        {
+            MainViewModel.Current.InfoShapeVisibility = Visibility.Visible;
+            var infoView = new InformationWindow(template, MainViewModel.Current.MainView);
+            try
+            {
+                GenContext.ToolBox.Shell.ShowModal(infoView);
+                MainViewModel.Current.InfoShapeVisibility = Visibility.Collapsed;
+            }
+            catch (Exception)
+            {
+            }
         }
 
 
@@ -153,7 +174,6 @@ namespace Microsoft.Templates.UI.ViewModels
                     IsRemoveEnabled = isRemoveEnabled
                 });
             }
-            GenComposer.AddMissingLicences(item.Template, SummaryLicences);
             OnPropertyChanged("GetUsedTemplatesIdentitiesFunc");            
         }
 
@@ -176,6 +196,8 @@ namespace Microsoft.Templates.UI.ViewModels
             }
             SavedTemplates.Remove(SavedTemplates.First(st => st.Name == item.ItemName));
             OnPropertyChanged("GetUsedTemplatesIdentitiesFunc");
+
+            MainViewModel.Current.RebuildLicenses();
         }
     }
 }
