@@ -35,11 +35,11 @@ namespace Microsoft.Templates.UI
 {
     public class GenController
     {
-        static GenController()
-        {
-            //TODO: WHERE INITIALIZE THIS??
-            AppHealth.Current.AddWriter(new ShellHealthWriter());
-        }
+        //static GenController()
+        //{
+        //    //TODO: WHERE INITIALIZE THIS??
+        //    AppHealth.Current.AddWriter(new ShellHealthWriter());
+        //}
 
         public static UserSelection GetUserSelection()
         {
