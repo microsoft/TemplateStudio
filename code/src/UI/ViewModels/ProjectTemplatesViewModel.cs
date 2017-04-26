@@ -60,7 +60,7 @@ namespace Microsoft.Templates.UI.ViewModels
             if (Pages.Count == 0)
             {
                 var pageTemplates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page && t.GetFrameworkList().Contains(ContextFramework.Name))
-                                                            .Select(t => new TemplateInfoViewModel(t, GenComposer.GetDependencies(t)))
+                                                            .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name)))
                                                             .OrderBy(t => t.Order)
                                                             .ToList();
 
@@ -74,7 +74,7 @@ namespace Microsoft.Templates.UI.ViewModels
             if (Features.Count == 0)
             {
                 var featureTemplates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Feature && t.GetFrameworkList().Contains(ContextFramework.Name))
-                                                            .Select(t => new TemplateInfoViewModel(t, GenComposer.GetDependencies(t)))
+                                                            .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name)))
                                                             .OrderBy(t => t.Order)
                                                             .ToList();
                 foreach (var featureTemplate in featureTemplates)
@@ -115,14 +115,14 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnAddItem((string Name, ITemplateInfo Template) item, bool isRemoveEnabled = true)
         {
-            SaveNewTemplate(item);
-            var dependencies = GenComposer.GetDependencies(item.Template);
+            SaveNewTemplate(item, isRemoveEnabled);
+            var dependencies = GenComposer.GetAllDependencies(item.Template, ContextFramework.Name);
 
             foreach (var dependencyTemplate in dependencies)
             {
                 if (!SavedTemplates.Any(s => s.Template.Identity == dependencyTemplate.Identity))
                 {
-                    OnAddItem((dependencyTemplate.Name, dependencyTemplate));
+                    SaveNewTemplate((dependencyTemplate.DefaultName, dependencyTemplate), isRemoveEnabled);
                 }
             }
         }

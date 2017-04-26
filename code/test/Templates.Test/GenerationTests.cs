@@ -219,7 +219,7 @@ namespace Microsoft.Templates.Test
             }
             UsedNames.Add(itemName);
 
-            var dependencies = GenComposer.GetDependencies(template);
+            var dependencies = GenComposer.GetAllDependencies(template, userSelection.Framework);
             foreach (var item in dependencies)
             {
                 if (!AlreadyAdded(userSelection, item))

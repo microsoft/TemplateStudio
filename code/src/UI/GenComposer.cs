@@ -23,6 +23,7 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Composition;
 using System.Collections.ObjectModel;
 using Microsoft.Templates.UI.ViewModels;
+using Microsoft.Templates.Core.Diagnostics;
 
 namespace Microsoft.Templates.UI
 {
@@ -43,28 +44,75 @@ namespace Microsoft.Templates.UI
 
             foreach (var item in layout)
             {
-                var template = GenContext.ToolBox.Repo.Find(t => t.GroupIdentity == item.templateGroupIdentity && t.GetFrameworkList().Any(f => f.Equals(framework, StringComparison.OrdinalIgnoreCase)));
-                var templateType = template?.GetTemplateType();
-                //Only pages and features can be layout items
-                if (templateType == TemplateType.Page || templateType == TemplateType.Feature)
+                var template = GenContext.ToolBox.Repo.Find(t => t.GroupIdentity == item.templateGroupIdentity && t.GetFrameworkList().Contains(framework));
+                if (template == null)
                 {
-                    yield return (item, template);
+                    LogOrAlertException($"Layout template {item.templateGroupIdentity} not found for framework {framework}");
                 }
                 else
                 {
-                    //TODO: trace this
+                    var templateType = template.GetTemplateType();
+                    //Only pages and features can be layout items
+                    if (templateType != TemplateType.Page && templateType != TemplateType.Feature)
+                    {
+                        LogOrAlertException($"Invalid layout item {template.Identity}. Layout items must be of type Page or Feature.");
+                    }
+                    else
+                    {
+                        yield return (item, template);
+                    }
                 }
             }
         }
 
-        public static IEnumerable<ITemplateInfo> GetDependencies(ITemplateInfo template)
+        public static IEnumerable<ITemplateInfo> GetAllDependencies(ITemplateInfo template, string framework)
         {
-            //TODO: Make this recursive
-            //TODO: Only return dependencies for current framework, feature or page and multipleinstance = false, 
-            //otherwise trace
-            return template.GetDependencyList()
-                         .Select(d => GenContext.ToolBox.Repo.Find(t => t.Identity == d));
+            var dependencyList = new List<ITemplateInfo>();
+            return GetDependencies(template, framework, dependencyList);
+            
+        }
 
+        private static IEnumerable<ITemplateInfo> GetDependencies(ITemplateInfo template, string framework, IList<ITemplateInfo> dependencyList)
+        {
+            var dependencies = template.GetDependencyList();
+
+            foreach (var dependency in dependencies)
+            {
+                var dependencyTemplate =  GenContext.ToolBox.Repo.Find(t => t.Identity == dependency && t.GetFrameworkList().Contains(framework));
+                if (dependencyTemplate == null)
+                {
+                    LogOrAlertException($"Dependency template {dependency} not found for framework {framework}");
+                }
+                else
+                {
+                    var templateType = dependencyTemplate?.GetTemplateType();
+                    if (templateType != TemplateType.Page && templateType != TemplateType.Feature)
+                    {
+                        LogOrAlertException($"Invalid dependency item {dependencyTemplate.Identity}. Dependency items must be of type Page or Feature.");
+                    }
+                    else if (dependencyTemplate.GetMultipleInstance())
+                    {
+                        LogOrAlertException($"Invalid dependency item {dependencyTemplate.Identity}. Dependencies have to be configured as multpleInstance = false.");
+                    }
+                    else if (!dependencyList.Any(d => d.Identity == dependencyTemplate.Identity))
+                    {
+                        dependencyList.Add(dependencyTemplate);
+                        GetDependencies(dependencyTemplate, framework, dependencyList);
+                    }
+                }
+            }
+
+            return dependencyList;
+        }
+
+        private static void LogOrAlertException(string message)
+        {
+#if DEBUG
+            throw new ApplicationException(message);
+#else
+            //TODO: Log this
+            AppHealth.Current.Warning.TrackAsync(message).FireAndForget();
+#endif
         }
 
         public static IEnumerable<GenInfo> Compose(UserSelection userSelection)
