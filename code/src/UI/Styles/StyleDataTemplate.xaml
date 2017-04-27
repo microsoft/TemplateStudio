@@ -28,9 +28,9 @@
                 <!--Row 0-->
                 <controls:ImageEx Grid.Row="0" Grid.RowSpan="3" Focusable="False" SourcePath="{Binding Icon}"/>
                 <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateTitleStyle}" Text="{Binding DisplayName}" Margin="{StaticResource MediumLeftMargin}" />
-                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding ShowInfoCommand}">
+                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource BlackBaseTemplateInfoButtonStyle}" Command="{Binding ShowInfoCommand}">
                     <Button.Content>
-                        <TextBlock Text="&#xE946;" FontFamily="Segoe MDL2 Assets" FontSize="18" />
+                        <TextBlock Text="&#xE946;" FontSize="18" Style="{StaticResource RoundButtonTextStyle}" />
                     </Button.Content>
                 </Button>
 
@@ -56,6 +56,7 @@
     <DataTemplate x:Key="SummaryExpanderHeaderTemplate">
         <TextBlock Text="{Binding}" Style="{StaticResource SummarySubTitle}"/>
     </DataTemplate>
+    
     <DataTemplate x:Key="ProjectTemplatesSummaryItemTemplate">
         <Grid x:Name="ItemGrid" Background="Transparent">
             <Grid.Triggers>
@@ -65,7 +66,7 @@
                             <ColorAnimation
                                 Storyboard.TargetName="ItemGrid"
                                 Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
-                                To="#FDF4BF"
+                                To="{StaticResource UILightGrayColor}"
                                 Duration="0:0:0.5" />
                             <DoubleAnimation Duration="0:0:1" To="1"
                                              Storyboard.TargetName="RemoveButton"
@@ -104,9 +105,9 @@
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
-            <Button x:Name="RemoveButton" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="{Binding IsRemoveEnabled}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.ProjectTemplates.RemoveItemCommand}" CommandParameter="{Binding}" Opacity="0" >
+            <Button x:Name="RemoveButton" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Style="{StaticResource RemoveButtonStyle}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.ProjectTemplates.RemoveItemCommand}" CommandParameter="{Binding}" IsEnabled="{Binding IsRemoveEnabled}" Opacity="0" Margin="{StaticResource MediumRightMargin}">
                 <Button.Content>
-                    <TextBlock Text="&#xEB90;" FontFamily="Segoe MDL2 Assets" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="Red" />
+                    <TextBlock Text="&#xEB90;" FontSize="18" Style="{StaticResource RoundButtonTextStyle}"/>
                 </Button.Content>
             </Button>
         </Grid>
