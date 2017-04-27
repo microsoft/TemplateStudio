@@ -56,7 +56,7 @@
                         <TextBlock Text="&#xE946;" FontFamily="Segoe MDL2 Assets" FontSize="18" />
                     </Button.Content>
                 </Button>
-                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Click="OnCloseEdition" Visibility="{Binding EditingContentVisibility, ElementName=root}">
+                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding CloseEditionCommand, ElementName=root}" Visibility="{Binding EditingContentVisibility, ElementName=root}">
                     <Button.Content>
                         <Grid>
                             <TextBlock Text="&#xECCA;" FontFamily="Segoe MDL2 Assets" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
@@ -82,7 +82,7 @@
                     <ColumnDefinition Width="30" />
                 </Grid.ColumnDefinitions>
                 <Grid Visibility="{Binding EditingContentVisibility, ElementName=root}">
-                    <TextBox Text="{Binding NewTemplateName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, ElementName=root}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
+                    <TextBox x:Name="templateName" Text="{Binding NewTemplateName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, ElementName=root}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
                         <TextBox.Style>
                             <Style TargetType="TextBox">
                                 <Style.Triggers>
@@ -92,6 +92,11 @@
                                 </Style.Triggers>
                             </Style>
                         </TextBox.Style>
+                        
+                        <TextBox.InputBindings>
+                            <KeyBinding Command="{Binding SaveItemCommand, ElementName=root}" Key="Enter"  />
+                            <KeyBinding Command="{Binding CloseEditionCommand, ElementName=root}" Key="Esc"  />
+                        </TextBox.InputBindings>
                     </TextBox>
                 </Grid>
 
@@ -106,7 +111,7 @@
                         </Button.Content>
                     </Button>
 
-                    <Button Style="{StaticResource AddTemplateInfoButtonStyle}" Click="OnSaveClicked" IsEnabled="{Binding IsValid, ElementName=root}" Visibility="{Binding EditingContentVisibility, ElementName=root}">
+                    <Button Style="{StaticResource AddTemplateInfoButtonStyle}" Command="{Binding SaveItemCommand, ElementName=root}" IsEnabled="{Binding IsValid, ElementName=root}" Visibility="{Binding EditingContentVisibility, ElementName=root}">
                         <Button.Content>
                             <Grid>
                                 <TextBlock Text="&#xECCA;" FontFamily="Segoe MDL2 Assets" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
