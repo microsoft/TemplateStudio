@@ -11,7 +11,7 @@
         ShowInTaskbar="False"
         ShowActivated="True"
         WindowState="Normal"
-        WindowStyle="None">
+        WindowStyle="None" WindowStartupLocation="CenterOwner">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -44,16 +44,16 @@
             </Grid.RowDefinitions>
             <StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding Version, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
-                    <TextBlock Text="Version:" Style="{StaticResource TextTemplateTitleStyle}" MinWidth="60"/>
-                    <TextBlock Margin="{StaticResource MediumLeftMargin}" Text="{Binding Version}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
+                    <TextBlock Text="Version:" Style="{StaticResource TextInformationPropertyTitle}" MinWidth="60"/>
+                    <TextBlock Margin="{StaticResource MediumLeftMargin}" Text="{Binding Version}" Style="{StaticResource TextInformationPropertyValue}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding Author, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
-                    <TextBlock Text="Author:" Style="{StaticResource TextTemplateTitleStyle}" MinWidth="60"/>
-                    <TextBlock Text="{Binding Author}" Margin="{StaticResource MediumLeftMargin}" Style="{StaticResource TextTemplateSubtitleStyle}" />
+                    <TextBlock Text="Author:" Style="{StaticResource TextInformationPropertyTitle}" MinWidth="60"/>
+                    <TextBlock Text="{Binding Author}" Margin="{StaticResource MediumLeftMargin}" Style="{StaticResource TextInformationPropertyValue}" />
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding LicensesVisibility, FallbackValue=Collapsed}">
-                    <TextBlock Text="Licenses:" Style="{StaticResource TextTemplateTitleStyle}" MinWidth="60"/>
+                    <TextBlock Text="Licenses:" Style="{StaticResource TextInformationPropertyTitle}" MinWidth="60"/>
                     <ItemsControl ItemsSource="{Binding LicenseTerms}" Margin="{StaticResource MediumLeftMargin}" ItemTemplate="{StaticResource LicenseSummaryItemTemplate}"/>
                 </StackPanel>
             </StackPanel>
@@ -61,7 +61,7 @@
         </Grid>
         <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="{StaticResource MediumMargin}">
-                <Button Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonOk}" Command="{Binding OkCommand}" />
+                <Button Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonOk}" Command="{Binding OkCommand}" IsCancel="True" />
             </StackPanel>
         </Grid>
     </Grid>

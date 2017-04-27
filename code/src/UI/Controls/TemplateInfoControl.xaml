@@ -42,8 +42,8 @@
                 </Grid.ColumnDefinitions>
 
                 <controls:ImageEx Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Center" Focusable="False" SourcePath="{Binding TemplateInfo.Icon, ElementName=root}" />
-                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateTitleStyle}" Text="{Binding TemplateInfo.Name, ElementName=root}" Margin="{StaticResource MediumLeftMargin}" Foreground="{Binding TitleForeground, ElementName=root}" />
-                <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateAuthorStyle}" Margin="{StaticResource MediumLeftMargin}">
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding TemplateInfo.Name, ElementName=root}" Margin="{StaticResource MediumLeftMargin}" Foreground="{Binding TitleForeground, ElementName=root}" />
+                <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateItemAuthorStyle}" Margin="{StaticResource MediumLeftMargin}">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
                             <Binding Path="TemplateInfo.Author" ElementName="root" />
@@ -52,17 +52,17 @@
                 </TextBlock>
 
                 <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" Visibility="{Binding NoEditingContentVisibility, ElementName=root}" Click="OnShowInfo" />
-                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource CloseEditionInfoButtonStyle}" Visibility="{Binding EditingContentVisibility, ElementName=root}" Click="OnCloseEdition" />
+                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource CloseEditionInfoButtonStyle}" Visibility="{Binding EditingContentVisibility, ElementName=root}" Command="{Binding CloseEditionCommand, ElementName=root}" />
             </Grid>
 
-            <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateSubtitleStyle}" Text="{Binding TemplateInfo.Summary, ElementName=root}" Visibility="{Binding NoEditingContentVisibility, ElementName=root}" Margin="{StaticResource MediumLeftMargin}"/>
+            <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding TemplateInfo.Summary, ElementName=root}" Visibility="{Binding NoEditingContentVisibility, ElementName=root}" Margin="{StaticResource MediumLeftMargin}"/>
             <Grid Grid.Row="1" Visibility="{Binding EditingContentVisibility, ElementName=root}" VerticalAlignment="Bottom" Margin="{StaticResource SmallBottomMargin}" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Style="{StaticResource TextTemplateSubtitleStyle}" Text="{Binding ErrorMessage, ElementName=root}" Foreground="{StaticResource UIRed}" Margin="{StaticResource SmallBottomMargin}" />
-                <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateSubtitleStyle}" Text="Enter a page name:" />
+                <TextBlock Style="{StaticResource TextEditTemplateErrorStyle}" Text="{Binding ErrorMessage, ElementName=root}" Margin="{StaticResource SmallBottomMargin}" />
+                <TextBlock Grid.Row="1" Style="{StaticResource TextEditTemplateDescriptionStyle}" Text="{x:Static res:StringRes.EditTemplateDescription}" />
             </Grid>
 
             <Grid Grid.Row="2">
@@ -71,7 +71,7 @@
                     <ColumnDefinition Width="30" />
                 </Grid.ColumnDefinitions>
                 <Grid Visibility="{Binding EditingContentVisibility, ElementName=root}">
-                    <TextBox Text="{Binding NewTemplateName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, ElementName=root}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
+                    <TextBox x:Name="templateName" Text="{Binding NewTemplateName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, ElementName=root}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
                         <TextBox.Style>
                             <Style TargetType="TextBox">
                                 <Style.Triggers>
@@ -81,12 +81,17 @@
                                 </Style.Triggers>
                             </Style>
                         </TextBox.Style>
+                        
+                        <TextBox.InputBindings>
+                            <KeyBinding Command="{Binding SaveItemCommand, ElementName=root}" Key="Enter"  />
+                            <KeyBinding Command="{Binding CloseEditionCommand, ElementName=root}" Key="Esc"  />
+                        </TextBox.InputBindings>
                     </TextBox>
                 </Grid>
 
                 <Grid Grid.Column="1" Visibility="{Binding AddingVisibility, ElementName=root}">
                     <Button Style="{StaticResource AddTemplateInfoButtonStyle}" Click="OnAddClicked" Visibility="{Binding NoEditingContentVisibility, ElementName=root}"/>
-                    <Button Style="{StaticResource SaveTemplateInfoButtonStyle}" Click="OnSaveClicked" IsEnabled="{Binding IsValid, ElementName=root}" Visibility="{Binding EditingContentVisibility, ElementName=root}"/>
+                    <Button Style="{StaticResource SaveTemplateInfoButtonStyle}" Command="{Binding SaveItemCommand, ElementName=root}" IsEnabled="{Binding IsValid, ElementName=root}" Visibility="{Binding EditingContentVisibility, ElementName=root}"/>
                 </Grid>
             </Grid>
         </Grid>

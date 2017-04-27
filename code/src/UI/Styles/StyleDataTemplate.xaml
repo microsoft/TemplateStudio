@@ -27,7 +27,7 @@
 
                 <!--Row 0-->
                 <controls:ImageEx Grid.Row="0" Grid.RowSpan="3" Focusable="False" SourcePath="{Binding Icon}"/>
-                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateTitleStyle}" Text="{Binding DisplayName}" Margin="{StaticResource MediumLeftMargin}" />
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding DisplayName}" Margin="{StaticResource MediumLeftMargin}" />
                 <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource BlackBaseTemplateInfoButtonStyle}" Command="{Binding ShowInfoCommand}">
                     <Button.Content>
                         <TextBlock Text="&#xE946;" FontSize="18" Style="{StaticResource RoundButtonTextStyle}" />
@@ -35,10 +35,10 @@
                 </Button>
 
                 <!--Row 1-->
-                <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateSubtitleStyle}" Text="{Binding Summary}" Margin="{StaticResource MediumLeftMargin}"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding Summary}" Margin="{StaticResource MediumLeftMargin}"/>
 
                 <!--Row 2-->
-                <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateAuthorStyle}" Margin="{StaticResource MediumLeftMargin}">
+                <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateItemAuthorStyle}" Margin="{StaticResource MediumLeftMargin}">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
                             <Binding Path="Author" />
@@ -54,7 +54,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="SummaryExpanderHeaderTemplate">
-        <TextBlock Text="{Binding}" Style="{StaticResource SummarySubTitle}"/>
+        <TextBlock Text="{Binding}" Style="{StaticResource TextSummaryGroupHeader}"/>
     </DataTemplate>
     
     <DataTemplate x:Key="ProjectTemplatesSummaryItemTemplate">
@@ -97,8 +97,8 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextTemplateSubtitleStyle}" Foreground="{Binding ItemForeground}" />
-            <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateAuthorStyle}" Foreground="{Binding ItemForeground}">
+            <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}"/>
+            <TextBlock Grid.Row="1" Style="{StaticResource TextSummaryAuthorStyle}" Foreground="{Binding AuthorForeground}">
                 <TextBlock.Text>
                     <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
                         <Binding Path="Author" />
@@ -115,9 +115,9 @@
 
     <DataTemplate x:Key="LicenseSummaryItemTemplate">
         <Grid>
-            <TextBlock>           
+            <TextBlock>
                 <Hyperlink Command="{Binding NavigateCommand}">
-                    <TextBlock Text="{Binding Text}" Style="{StaticResource TextTemplateSubtitleStyle}" />
+                    <TextBlock Text="{Binding Text}" Style="{StaticResource TextSumaryLicenseStyle}" />
                 </Hyperlink>
             </TextBlock>
         </Grid>

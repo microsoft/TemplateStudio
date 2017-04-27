@@ -2,8 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
-    <sys:Double x:Key="UISmallFontSize">10</sys:Double>
-    <sys:Double x:Key="UIMediumFontSize">12</sys:Double>
-    <sys:Double x:Key="UIBigFontSize">16</sys:Double>
-    <sys:Double x:Key="UIExtraBigFontSize">30</sys:Double>
+    <sys:Double x:Key="UI_XS_FontSize">10</sys:Double>
+    <sys:Double x:Key="UI_S_FontSize">12</sys:Double>
+    <sys:Double x:Key="UI_M_FontSize">16</sys:Double>
+    <sys:Double x:Key="UI_L_FontSize">20</sys:Double>
+    <sys:Double x:Key="UI_XL_FontSize">30</sys:Double>
 </ResourceDictionary>
