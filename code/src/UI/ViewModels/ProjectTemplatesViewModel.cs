@@ -164,7 +164,7 @@ namespace Microsoft.Templates.UI.ViewModels
                     TemplateName = item.Template.Name,
                     Author = item.Template.Author,
                     IsRemoveEnabled = isRemoveEnabled,
-                    HasDefaultName = !item.Template.GetMultipleInstance()
+                    HasDefaultName = !item.Template.GetItemNameEditable()
                 });
             }
             else if (item.Template.GetTemplateType() == TemplateType.Feature)
@@ -176,7 +176,7 @@ namespace Microsoft.Templates.UI.ViewModels
                     TemplateName = item.Template.Name,
                     Author = item.Template.Author,
                     IsRemoveEnabled = isRemoveEnabled,
-                    HasDefaultName = !item.Template.GetMultipleInstance()
+                    HasDefaultName = !item.Template.GetItemNameEditable()
                 });
             }
             UpdateTemplateAvailable?.Invoke(this, EventArgs.Empty);

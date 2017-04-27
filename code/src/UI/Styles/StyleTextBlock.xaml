@@ -68,5 +68,13 @@
         <Setter Property="TextWrapping" Value="Wrap" />
         <Setter Property="Margin" Value="{StaticResource MediumTopMargin}" />
     </Style>
+    
+    <!--Buttons-->
+    <Style TargetType="TextBlock" x:Key="RoundButtonTextStyle">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+    </Style>
 
 </ResourceDictionary>

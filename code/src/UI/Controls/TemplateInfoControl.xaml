@@ -51,19 +51,8 @@
                     </TextBlock.Text>
                 </TextBlock>
 
-                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="{Binding NoEditingContentVisibility, ElementName=root}" Click="OnShowInfo">
-                    <Button.Content>
-                        <TextBlock Text="&#xE946;" FontFamily="Segoe MDL2 Assets" FontSize="18" />
-                    </Button.Content>
-                </Button>
-                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Click="OnCloseEdition" Visibility="{Binding EditingContentVisibility, ElementName=root}">
-                    <Button.Content>
-                        <Grid>
-                            <TextBlock Text="&#xECCA;" FontFamily="Segoe MDL2 Assets" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
-                            <TextBlock Text="&#xE894;" FontFamily="Segoe MDL2 Assets" FontSize="9" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
-                        </Grid>
-                    </Button.Content>
-                </Button>
+                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" Visibility="{Binding NoEditingContentVisibility, ElementName=root}" Click="OnShowInfo" />
+                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource CloseEditionInfoButtonStyle}" Visibility="{Binding EditingContentVisibility, ElementName=root}" Click="OnCloseEdition" />
             </Grid>
 
             <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateSubtitleStyle}" Text="{Binding TemplateInfo.Summary, ElementName=root}" Visibility="{Binding NoEditingContentVisibility, ElementName=root}" Margin="{StaticResource MediumLeftMargin}"/>
@@ -95,25 +84,9 @@
                     </TextBox>
                 </Grid>
 
-
                 <Grid Grid.Column="1" Visibility="{Binding AddingVisibility, ElementName=root}">
-                    <Button Style="{StaticResource AddTemplateInfoButtonStyle}" Click="OnAddClicked" Visibility="{Binding NoEditingContentVisibility, ElementName=root}">
-                        <Button.Content>
-                            <Grid>
-                                <TextBlock Text="&#xECCA;" FontFamily="Segoe MDL2 Assets" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
-                                <TextBlock Text="&#xE948;" FontFamily="Segoe MDL2 Assets" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
-                            </Grid>
-                        </Button.Content>
-                    </Button>
-
-                    <Button Style="{StaticResource AddTemplateInfoButtonStyle}" Click="OnSaveClicked" IsEnabled="{Binding IsValid, ElementName=root}" Visibility="{Binding EditingContentVisibility, ElementName=root}">
-                        <Button.Content>
-                            <Grid>
-                                <TextBlock Text="&#xECCA;" FontFamily="Segoe MDL2 Assets" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
-                                <TextBlock Text="&#xE8FB;" FontFamily="Segoe MDL2 Assets" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" />
-                            </Grid>
-                        </Button.Content>
-                    </Button>
+                    <Button Style="{StaticResource AddTemplateInfoButtonStyle}" Click="OnAddClicked" Visibility="{Binding NoEditingContentVisibility, ElementName=root}"/>
+                    <Button Style="{StaticResource SaveTemplateInfoButtonStyle}" Click="OnSaveClicked" IsEnabled="{Binding IsValid, ElementName=root}" Visibility="{Binding EditingContentVisibility, ElementName=root}"/>
                 </Grid>
             </Grid>
         </Grid>

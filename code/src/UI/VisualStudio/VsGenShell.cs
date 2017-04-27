@@ -40,8 +40,8 @@ namespace Microsoft.Templates.UI.VisualStudio
         private IVsUIShell UIShell => _uiShell.Value;
 
         private Lazy<VsOutputPane> _outputPane = new Lazy<VsOutputPane>(() => new VsOutputPane());
-        private VsOutputPane OutputPane => _outputPane.Value; 
-        
+        private VsOutputPane OutputPane => _outputPane.Value;
+
         public override void AddItems(params string[] itemsFullPath)
         {
             if (itemsFullPath == null || itemsFullPath.Length == 0)
@@ -124,7 +124,14 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void ShowStatusBarMessage(string message)
         {
-            Dte.StatusBar.Text = message;
+            try
+            {
+                Dte.StatusBar.Text = message;
+            }
+            catch (Exception ex)
+            {
+                AppHealth.Current.Error.TrackAsync($"There was an error showing status message. Ex: {ex.ToString()}").FireAndForget();
+            }
         }
 
         public override void ShowTaskList()
@@ -181,12 +188,12 @@ namespace Microsoft.Templates.UI.VisualStudio
             return GetActiveProjectPath();
         }
 
-        
+
 
         protected override string GetActiveProjectName()
         {
             var p = GetActiveProject();
-            
+
             return p?.Name;
         }
 
@@ -266,18 +273,25 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"There was an error restoring the packages. Ex {ex.ToString()}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"There was an error restoring the packages. Ex: {ex.ToString()}").FireAndForget();
             }
         }
 
         public override void CollapseSolutionItems()
         {
-            var solutionExplorer = Dte.Windows.Item(EnvDTE.Constants.vsext_wk_SProjectWindow).Object as UIHierarchy;
-            var projectNode = solutionExplorer.UIHierarchyItems.Item(1)?.UIHierarchyItems.Item(1);
-
-            foreach (UIHierarchyItem item in projectNode.UIHierarchyItems)
+            try
             {
-                Collapse(item);
+                var solutionExplorer = Dte.Windows.Item(EnvDTE.Constants.vsext_wk_SProjectWindow).Object as UIHierarchy;
+                var projectNode = solutionExplorer.UIHierarchyItems.Item(1)?.UIHierarchyItems.Item(1);
+
+                foreach (UIHierarchyItem item in projectNode.UIHierarchyItems)
+                {
+                    Collapse(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                AppHealth.Current.Error.TrackAsync($"There was an error collapsing the solution tree. Ex: {ex.ToString()}").FireAndForget();
             }
         }
 
