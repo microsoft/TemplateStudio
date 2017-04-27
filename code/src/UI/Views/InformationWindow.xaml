@@ -11,7 +11,7 @@
         ShowInTaskbar="False"
         ShowActivated="True"
         WindowState="Normal"
-        WindowStyle="None">
+        WindowStyle="None" WindowStartupLocation="CenterOwner">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -66,7 +66,7 @@
         </Grid>
         <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="{StaticResource MediumMargin}">
-                <Button Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonOk}" Command="{Binding OkCommand}" />
+                <Button Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonOk}" Command="{Binding OkCommand}" IsCancel="True" />
             </StackPanel>
         </Grid>
     </Grid>

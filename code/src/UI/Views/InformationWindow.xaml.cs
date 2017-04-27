@@ -21,38 +21,30 @@ namespace Microsoft.Templates.UI.Views
     /// </summary>
     public partial class InformationWindow : Window
     {
-        public InformationViewModel ViewModel { get; }
+        public InformationViewModel ViewModel { get; private set; }
 
         public InformationWindow(TemplateInfoViewModel template, Window mainWindow)
         {
-            ViewModel = new InformationViewModel(this);
-            DataContext = ViewModel;
-
-            Loaded += (sender, e) =>
-            {
-                ViewModel.Iniatialize(template);
-                CenterWindow(mainWindow);
-                ViewModel.InformationVisibility = Visibility.Visible;
-            };
-
-            Unloaded += (sender, e) =>
-            {
-                ViewModel.UnsuscribeEventHandlers();
-            };
-
-            InitializeComponent();
+            Init(template, mainWindow);
         }        
 
         public InformationWindow(MetadataInfoViewModel  metadataInfo, Window mainWindow)
         {
+            Init(metadataInfo, mainWindow);
+        }
+
+        private void Init(object info, Window mainWindow)
+        {
             ViewModel = new InformationViewModel(this);
             DataContext = ViewModel;
 
+            Owner = mainWindow;
+
+            SetWindowSize(mainWindow);
+
             Loaded += (sender, e) =>
             {
-                ViewModel.Iniatialize(metadataInfo);
-                CenterWindow(mainWindow);
-                ViewModel.InformationVisibility = Visibility.Visible;
+                IntilizeViewModel(info);
             };
 
             Unloaded += (sender, e) =>
@@ -63,7 +55,24 @@ namespace Microsoft.Templates.UI.Views
             InitializeComponent();
         }
 
-        private void CenterWindow(Window mainWindow)
+        private void IntilizeViewModel(object info)
+        {
+            if (info is MetadataInfoViewModel metadataInfo)
+            {
+                ViewModel.Iniatialize(metadataInfo);
+            }
+            else if(info is TemplateInfoViewModel templateInfo)
+            {
+                ViewModel.Iniatialize(templateInfo);
+            }
+            else
+            {
+                throw new System.Exception($"{info.GetType().ToString()} is not expected as valid type for the Information Window.");
+            }
+            ViewModel.InformationVisibility = Visibility.Visible;
+        }
+
+        private void SetWindowSize(Window mainWindow)
         {            
             if (mainWindow.Width < 1200)
             {
@@ -81,9 +90,6 @@ namespace Microsoft.Templates.UI.Views
             {
                 Height = mainWindow.Height * 0.6;
             }
-
-            Left = mainWindow.Left + (mainWindow.Width - ActualWidth) / 2;
-            Top = mainWindow.Top + (mainWindow.Height - ActualHeight) / 2;
         }
     }
 }

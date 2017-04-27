@@ -146,14 +146,10 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             MainViewModel.Current.InfoShapeVisibility = Visibility.Visible;
             var infoView = new InformationWindow(template, MainViewModel.Current.MainView);
-            try
-            {
-                GenContext.ToolBox.Shell.ShowModal(infoView);
-                MainViewModel.Current.InfoShapeVisibility = Visibility.Collapsed;
-            }
-            catch (Exception)
-            {
-            }
+
+            infoView.ShowDialog();
+            MainViewModel.Current.InfoShapeVisibility = Visibility.Collapsed;
+
         }
 
         private void SaveNewTemplate((string Name, ITemplateInfo Template) item, bool isRemoveEnabled = true)

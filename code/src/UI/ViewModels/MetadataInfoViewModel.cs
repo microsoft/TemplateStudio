@@ -90,14 +90,8 @@ namespace Microsoft.Templates.UI.ViewModels
             MainViewModel.Current.InfoShapeVisibility = Visibility.Visible;
             var infoView = new InformationWindow(this, MainViewModel.Current.MainView);
 
-            try
-            {
-                GenContext.ToolBox.Shell.ShowModal(infoView);
-                MainViewModel.Current.InfoShapeVisibility = Visibility.Collapsed;
-            }
-            catch (Exception)
-            {
-            }
+            infoView.ShowDialog();
+            MainViewModel.Current.InfoShapeVisibility = Visibility.Collapsed;
         }        
 
         public MetadataInfoViewModel(MetadataInfo metadataInfo)
