@@ -13,7 +13,7 @@
         "summary": "MVVM Light is a popular, 3rd party framework based on the Model-View-ViewModel pattern by Laurent Bugnion.",
         "author": "Microsoft",
         "order": "2",
-        "licenses": "[MVVMLight](http://mvvmlight.codeplex.com/license)"
+        "licenses": "[MVVM Light](http://mvvmlight.codeplex.com/license)"
     },
     {
         "name": "CodeBehind",
