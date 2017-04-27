@@ -12,6 +12,12 @@
         <Setter Property="Background" Value="{StaticResource UIBlue}"/>
     </Style>
 
+    <Style TargetType="Grid" x:Key="ErrorGridTitleStyle">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Background" Value="{StaticResource UIRed}"/>
+    </Style>
+
     <Style TargetType="Grid" x:Key="GridBottomBarStyle">
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
