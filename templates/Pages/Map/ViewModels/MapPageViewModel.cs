@@ -5,9 +5,9 @@ using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls.Maps;
-using ItemNamespace.Services;
+using Param_ItemNamespace.Services;
 
-namespace ItemNamespace.ViewModels
+namespace Param_ItemNamespace.ViewModels
 {
     public class MapPageViewModel : System.ComponentModel.INotifyPropertyChanged
     {

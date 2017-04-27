@@ -5,10 +5,10 @@ using Windows.ApplicationModel.Activation;
 using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 
-using RootNamespace.Activation;
-using RootNamespace.Helpers;
+using Param_RootNamespace.Activation;
+using Param_RootNamespace.Helpers;
 
-namespace ItemNamespace.Services
+namespace Param_ItemNamespace.Services
 {
     internal class SuspendAndResumeService : ActivationHandler<LaunchActivatedEventArgs>
     {

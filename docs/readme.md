@@ -7,37 +7,36 @@ This section have the main concepts and definitions used in Windows Template Stu
 Windows Template Studio is divided in the following main elements:
 
 * **Windows Template Studio Extension**: This is a Visual Studio Extension project, which allows to install a new Visual Studio Project Template allowing the End-Users to have an improved experience when they want to create a new UWP App from the "File -> New Project...".
-* **Generation Wizard**: Once the End-User select the "Windows Template Studio" project type in the Visual Studio "File -> New Project..." dialog, the Generation Wizard will guide him through some steps to create user's preferred project. The Generation Wizard allows the user to select among the available Project Types, Frameworks, Pages, Developer Features and Customer Features 
+* **Generation Wizard**: Once the End-User select the "Windows Template Studio" project type in the Visual Studio "File -> New Project..." dialog, the Generation Wizard will guide him through some steps to create user's preferred project. The Generation Wizard allows the user to select among the available Project Types, Frameworks, Pages and Features 
 * **Templates**: This is the repository of code templates used from the Generation Wizard. The templates are pieces of code used to generate the final project templates.
 
 ### What is a Template
 
 A template is just code with some metadata. The metadata will contain the template information: name, description, licensing, remarks, programming language, type, guids, etc. The template definition is based on [dotnet Template Engine](https://github.com/dotnet/templating).
 
-There are five different types of templates:
+There are four different types of templates:
 
 * **Framework Templates**: Will contain the code used as infrastructure for the projects.
 * **Project Template**: project templates define the type of App you are about to generate (Basic, Split View, Tabbed...).
 * **Page Template**: will contain the files and code needed to add a page to a certain App.
-* **Developer Feature Templates**: will contain the files and code needed to add features focused in developer experience.
-* **Customer Feature Templates**: will contain the files and code needed to add features focused in the final-user.
+* **Feature Templates**: will contain the files and code needed to add features to the target generated template.
 
 ### What is the Generation Wizard
 
 The Generation Wizard guide the user through the available templates allowing the user to compose an App project of his preference.
 
-The End-User can select among the different Frameworks and Project Types to define the basic layout and base framework for his App. Then can add different Pages, Developer Features and Customer Features to complete his app. Once the user finish with the templates selections, the generation process is executed to create final App project code.
+The End-User can select among the different Frameworks and Project Types to define the basic layout and base framework for his App. Then can add different Pages and Features to complete his app template. Once the user finish with the templates selections, the generation process is executed to create final App project template code.
 
-The generation is made in a composite way, where the Pages, Dev Features and Customer Features are Framework and Project Type agnostics and is only at the generation time where the particularities are included.
+The generation is made in a composite way, where Pages and Customer Features are Framework and Project Type agnostics and is only at the generation time where the particularities are included.
 
-As well as templates, the generation is based on [dotnet Template Engine](https://github.com/dotnet/templating) code generation.
+As well as templates definition, the generation is based on [dotnet Template Engine](https://github.com/dotnet/templating) project.
 
 ### What is the Template Repository
 
 The Templates Repository is the place where we will gather all templates and will make them available for the community (hosted on a CDN). We will have two repositories publicly available:
 
 * **Master:** The stable and public version of the templates.
-* **VNext:** The ongoing version of the templates.
+* **Dev:** The ongoing version of the templates.
 
 ## Table of Contents
 

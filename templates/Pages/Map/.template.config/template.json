@@ -5,7 +5,7 @@
   "groupIdentity": "wts.Page.Map",
   "identity": "wts.Page.Map",
   "shortName": "Map Page",
-  "description": "The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting a location from the Location Service and setting the map's center point.",
+  "description": "The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting your location.",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -25,13 +25,13 @@
     { "path": ".\\Services\\LocationService.cs" }
   ],
   "symbols": {
-    "rootNamespace": {
+    "wts.rootNamespace": {
       "type": "parameter",
-      "replaces": "RootNamespace"
+      "replaces": "Param_RootNamespace"
     },
-    "itemNamespace": {
+    "wts.itemNamespace": {
       "type": "parameter",
-      "replaces": "ItemNamespace"
+      "replaces": "Param_ItemNamespace"
     },
     "baseclass": {
       "type": "parameter",

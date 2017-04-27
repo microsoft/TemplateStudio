@@ -1,6 +1,6 @@
 using Windows.UI.Xaml.Controls;
 
-namespace ItemNamespace.Models
+namespace Param_ItemNamespace.Models
 {
     public class SampleModel
     {

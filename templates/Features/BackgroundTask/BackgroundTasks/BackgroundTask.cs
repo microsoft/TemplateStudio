@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 
 using Windows.ApplicationModel.Background;
 
-namespace ItemNamespace.BackgroundTasks
+namespace Param_ItemNamespace.BackgroundTasks
 {
     public abstract class BackgroundTask
     {

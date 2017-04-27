@@ -1,4 +1,4 @@
-namespace ItemNamespace.ViewModels
+namespace Param_ItemNamespace.ViewModels
 {
     public class wts.ItemNameViewModel : Observable
     {

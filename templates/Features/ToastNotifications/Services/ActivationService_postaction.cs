@@ -1,18 +1,18 @@
 using System;
-using RootNamespace.Helpers;
+using Param_RootNamespace.Helpers;
 
-namespace ItemNamespace.Services
+namespace Param_ItemNamespace.Services
 {
     internal class ActivationService
     {
         private async Task StartupAsync()
         {
-            Singleton<ToastNotificationsService>.Instance.ShowToastNotificationSample();
+            Singleton<ToastNotificationsFeatureService>.Instance.ShowToastNotificationSample();
         }
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
-            yield return Singleton<ToastNotificationsService>.Instance;
+            yield return Singleton<ToastNotificationsFeatureService>.Instance;
         }
     }
 }

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Background;
 
-using RootNamespace.Activation;
-using RootNamespace.BackgroundTasks;
-using RootNamespace.Helpers;
+using Param_RootNamespace.Activation;
+using Param_RootNamespace.BackgroundTasks;
+using Param_RootNamespace.Helpers;
 
-namespace ItemNamespace.Services
+namespace Param_ItemNamespace.Services
 {
     internal class BackgroundTaskService : ActivationHandler<BackgroundActivatedEventArgs>
     {

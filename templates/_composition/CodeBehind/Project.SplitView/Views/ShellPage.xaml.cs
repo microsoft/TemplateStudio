@@ -2,7 +2,6 @@ using wts.ItemName.Services;
 using wts.ItemName.Helpers;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Input;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.UI.Xaml;
@@ -43,48 +42,6 @@ namespace wts.ItemName.Views
             set { Set(ref _secondaryItems, value); }
         }
 
-        private ICommand _openPaneCommand;
-        public ICommand OpenPaneCommand
-        {
-            get
-            {
-                if (_openPaneCommand == null)
-                {
-                    _openPaneCommand = new RelayCommand(() => IsPaneOpen = !_isPaneOpen);
-                }
-
-                return _openPaneCommand;
-            }
-        }
-
-        private ICommand _itemSelected;
-        public ICommand ItemSelectedCommand
-        {
-            get
-            {
-                if (_itemSelected == null)
-                {
-                    _itemSelected = new RelayCommand<ShellNavigationItem>(ItemSelected);
-                }
-
-                return _itemSelected;
-            }
-        }
-
-        private ICommand _stateChangedCommand;
-        public ICommand StateChangedCommand
-        {
-            get
-            {
-                if (_stateChangedCommand == null)
-                {
-                    _stateChangedCommand = new RelayCommand<Windows.UI.Xaml.VisualStateChangedEventArgs>(OnStateChanged);
-                }
-
-                return _stateChangedCommand;
-            }
-        }
-
         public ShellPage()
         {
             InitializeComponent();
@@ -106,33 +63,6 @@ namespace wts.ItemName.Views
 
             // More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
             // Edit String/en-US/Resources.resw: Add a menu item title for each page
-        }
-
-        private void OnStateChanged(VisualStateChangedEventArgs args)
-        {
-            if (args.NewState == PanoramicState)
-            {
-                DisplayMode = SplitViewDisplayMode.CompactInline;
-            }
-            else if (args.NewState == WideState)
-            {
-                DisplayMode = SplitViewDisplayMode.CompactInline;
-                IsPaneOpen = false;
-            }
-            else if (args.NewState == NarrowState)
-            {
-                DisplayMode = SplitViewDisplayMode.Overlay;
-                IsPaneOpen = false;
-            }
-        }
-
-        private void ItemSelected(ShellNavigationItem e)
-        {
-            if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
-            {
-                IsPaneOpen = false;
-            }
-            Navigate(e);
         }
 
         private void NavigationService_Navigated(object sender, NavigationEventArgs e)
@@ -168,6 +98,39 @@ namespace wts.ItemName.Views
             if (navigationItem != null)
             {
                 NavigationService.Navigate(navigationItem.PageType);
+            }
+        }
+
+        private void NavigationButton_Click(object sender, RoutedEventArgs e)
+        {
+            var navigationButton = sender as Button;
+            if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
+            {
+                IsPaneOpen = false;
+            }
+            Navigate(navigationButton.DataContext);
+        }
+
+        private void OpenPane_Click(object sender, RoutedEventArgs e)
+        {
+            IsPaneOpen = !_isPaneOpen;
+        }
+
+        private void WindowStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
+        {
+            if (e.NewState == PanoramicState)
+            {
+                DisplayMode = SplitViewDisplayMode.CompactInline;
+            }
+            else if (e.NewState == WideState)
+            {
+                DisplayMode = SplitViewDisplayMode.CompactInline;
+                IsPaneOpen = false;
+            }
+            else if (e.NewState == NarrowState)
+            {
+                DisplayMode = SplitViewDisplayMode.Overlay;
+                IsPaneOpen = false;
             }
         }
 

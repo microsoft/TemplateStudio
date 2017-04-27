@@ -1,9 +1,9 @@
-using ItemNamespace.Models;
+using Param_ItemNamespace.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 
-namespace ItemNamespace.Services
+namespace Param_ItemNamespace.Services
 {
     public class SampleModelService
     {

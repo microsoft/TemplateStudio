@@ -8,6 +8,7 @@
     <License>Content\EULA.rtf</License>
     <GettingStartedGuide>https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/readme.md</GettingStartedGuide>
     <ReleaseNotes>https://github.com/Microsoft/WindowsTemplateStudio/</ReleaseNotes>
+    <Icon>Resources\windowsTemplateStudio_Logo_200x200.png</Icon>
     <Tags>Windows Template Studio UWP XAML MVVM</Tags>
   </Metadata>
   <Installation>
@@ -24,7 +25,7 @@
   </Prerequisites>
   <Assets>
     <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Core" Path="|Core|" AssemblyName="|Core;AssemblyName|" />
-    <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Wizard" Path="|Wizard|" AssemblyName="|Wizard;AssemblyName|" />
     <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.UWP.VS2017.Solution" d:TargetPath="|CSharp.UWP.VS2017.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+    <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="UI" Path="|UI|" AssemblyName="|UI;AssemblyName|" />
   </Assets>
 </PackageManifest>

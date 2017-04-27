@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
 
-namespace ItemNamespace.Services
+namespace Param_ItemNamespace.Services
 {
     public class LocationService
     {

@@ -1,5 +1,5 @@
 {
-  "author": "Microsoft",
+  "author": "GalaSoft",
   "classifications": [
     "Universal"
   ],
@@ -9,7 +9,7 @@
     "type": "item",
     "wts.type": "composition",    
     "wts.version": "1.0.0",    
-    "wts.licences": "[MVVMLight](http://mvvmlight.codeplex.com/license)",
+    "wts.licenses": "[MVVMLight](http://mvvmlight.codeplex.com/license)",
     "wts.compositionFilter": "$framework == MVVMLight & wts.type == project"
   },
   "sourceName": "wts.ItemName",
@@ -23,13 +23,13 @@
     }
   ],
   "symbols": {
-    "rootNamespace": {
+    "wts.rootNamespace": {
       "type": "parameter",
-      "replaces": "RootNamespace"
+      "replaces": "Param_RootNamespace"
     },
-    "itemNamespace": {
+    "wts.itemNamespace": {
       "type": "parameter",
-      "replaces": "ItemNamespace"
+      "replaces": "Param_ItemNamespace"
     }
   }
 }

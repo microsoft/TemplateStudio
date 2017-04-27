@@ -19,10 +19,10 @@ Through Application Insights API, telemetry events are collected to track gather
 |:-------------:|:-----|
 | **Session** | Tracked every time the user starts a new session with the Windows Template Studio Wizard, that is, every time the Wizard is instantiated for the first time within a Visual Studio session.|
 | **Wizard** | Tracked every time the Wizard has been executed recording the wizard finalization status.|
-| **ProjectGen** | After a project is generated, this event is tracked to collect detailed *project information* (like generation status, project type, framework, template Name, generation engine info) and *project metrics* (as generation duration, # of pages, # of dev features and # customer features).|
+| **ProjectGen** | After a project is generated, this event is tracked to collect detailed *project information* (like generation status, project type, framework, template Name, generation engine info) and *project metrics* (as generation duration, # of pages and # of features).|
 | **PageGen** | After a project is generated, this event is tracked for each page added to the project. It collects the *page information* (page template, framework and generation engine info).|
-| **DevFeatureGen** | After a project is generated, this event is tracked for each developer feature included in the project. It collects the *dev feature information* (dev feature template, framework and generation engine info).|
-| **CustomerFeatureGen** | After a project is generated, this event is tracked for each customer feature included in the project. It collects the *customer feature information* (dev feature template, framework and generation engine info).|
+| **FeatureGen** | After a project is generated, this event is tracked for each developer feature included in the project. It collects the *feature information* (template, framework and generation engine info).|
+
 
 ## Telemetry Configuration
 

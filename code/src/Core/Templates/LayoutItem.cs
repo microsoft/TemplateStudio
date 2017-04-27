@@ -10,14 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Microsoft.TemplateEngine.Abstractions;
-
 namespace Microsoft.Templates.Core
 {
     public class LayoutItem

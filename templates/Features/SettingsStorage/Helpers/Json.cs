@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 
-namespace RootNamespace.Helpers
+namespace Param_RootNamespace.Helpers
 {
     public static class Json
     {

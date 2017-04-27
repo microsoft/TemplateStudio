@@ -48,7 +48,6 @@ namespace Microsoft.Templates.Test.Artifacts.MSBuild
 
         private MsBuildProject(string path)
         {
-            //TODO: CHECK FILE EXISTS
             _path = path;
             Name = Path.GetFileNameWithoutExtension(path);
             _root = XElement.Load(path);

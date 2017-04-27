@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.Networking.PushNotifications;
 
-using RootNamespace.Activation;
+using Param_RootNamespace.Activation;
 
-namespace RootNamespace.Services
+namespace Param_RootNamespace.Services
 {
     internal class HubNotificationsFeatureService : ActivationHandler<ToastNotificationActivatedEventArgs>
     {

@@ -18,12 +18,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-//using System.Windows.Forms;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.Wizard;
+
 
 namespace Microsoft.Templates.VsEmulator.TemplatesContent
 {
@@ -33,21 +32,20 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
 
         private readonly Window _host;
 
-        TemplatesSynchronization _templatesSync;
-        LocalTemplatesSource _templatesSource;
-
-
-        public TemplatesContentViewModel(Window host)
+        public TemplatesContentViewModel(Window host, string wizardVersion, string templateVersion)
         {
             _host = host;
-            _templatesSource = new LocalTemplatesSource();
-            _templatesSync = new TemplatesSynchronization(_templatesSource);
+            _useWizardVersion = wizardVersion;
+            _useTemplatesVersion = templateVersion;
+            _isWizardVersionReconfigurable = (wizardVersion == "0.0.0.0");
             AvailableContent = new ObservableCollection<string>();
         }
 
-        public RelayCommand CloseCommand => new RelayCommand(_host.Close);
+        public RelayCommand CloseCommand => new RelayCommand(Close);
+
+        public RelayCommand SetVersionAndCloseCommand => new RelayCommand(SetVersionAndClose);
+
         public RelayCommand CleanCommand => new RelayCommand(Clean, CanClean);
-        public RelayCommand CreateContentCommand => new RelayCommand(CreateContent);
 
         private string _versionInfo;
         public string VersionInfo
@@ -63,6 +61,29 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
             set { SetProperty(ref _templatesLocation, value); }
         }
 
+        private String _useWizardVersion;
+        public String UseWizardVersion
+        {
+            get { return _useWizardVersion; }
+            set { SetProperty(ref _useWizardVersion, value); }
+        }
+
+        private String _useTemplatesVersion;
+        public String UseTemplatesVersion
+        {
+            get { return _useTemplatesVersion; }
+            set { SetProperty(ref _useTemplatesVersion, value); }
+        }
+
+        private bool _isWizardVersionReconfigurable;
+        public bool IsWizardVersionReconfigurable
+        {
+            get { return _isWizardVersionReconfigurable; }
+            set { SetProperty(ref _isWizardVersionReconfigurable, value); }
+        }
+
+        public (string WizardVersion, string TemplatesVersion) Result { get; private set; }
+
         private ObservableCollection<string> _availableContent;
         public ObservableCollection<string> AvailableContent
         {
@@ -72,28 +93,13 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
 
         public void Initialize()
         {
-            TemplatesLocation = _templatesSync.CurrentTemplatesFolder;
+            TemplatesLocation = GetTemplatesFolder();
             LoadProperties();
-        }
-
-        private void SetVersion()
-        {
-            Version latest = new Version(0, 0, 0, 0);
-            DirectoryInfo di = new DirectoryInfo(_templatesSync.CurrentTemplatesFolder);
-            foreach(var sdi in di.EnumerateDirectories())
-            {
-                Version.TryParse(sdi.Name, out Version v);
-                if(v > latest)
-                {
-                    latest = v;
-                }
-            }
-            VersionInfo = new Version(latest.Major, latest.Minor, latest.Build, latest.Revision + 1).ToString();
         }
 
         private void ReadAvailableContent()
         {
-            DirectoryInfo di = new DirectoryInfo(_templatesSync.CurrentTemplatesFolder);
+            DirectoryInfo di = new DirectoryInfo(GetTemplatesFolder());
             AvailableContent.Clear();
             foreach(var sdi in di.EnumerateDirectories())
             {
@@ -101,39 +107,44 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
             }
         }
 
-        //private bool CanClean() { return AvailableContent != null ? AvailableContent.Count > 1 : false; }
         private bool CanClean() => true;
 
         private void Clean()
         {
-            DirectoryInfo di = new DirectoryInfo(_templatesSync.CurrentTemplatesFolder);
-            foreach(var sdi in di.EnumerateDirectories())
+            DirectoryInfo di = new DirectoryInfo(GetTemplatesFolder());
+            foreach (var sdi in di.EnumerateDirectories())
             {
-                if(sdi.Name != "0.0.0.0")
-                {
-                    Fs.SafeDeleteDirectory(sdi.FullName);
-                }
+                Fs.SafeDeleteDirectory(sdi.FullName);
             }
-
-            MessageBox.Show("Done!", $"Clean created content.", MessageBoxButton.OK, MessageBoxImage.Information);
 
             LoadProperties();
         }
 
 
-        private void CreateContent()
+        private void SetVersionAndClose()
         {
-            Fs.CopyRecursive(_templatesSource.Origin, Path.Combine(_templatesSync.CurrentTemplatesFolder, VersionInfo));
+            Result = (_useWizardVersion, _useTemplatesVersion);
+            _host.DialogResult = true;
+            _host.Close();
+        }
 
-            MessageBox.Show("Done!", $"Create Content for v{VersionInfo}", MessageBoxButton.OK, MessageBoxImage.Information);
-
-            LoadProperties();
+        private void Close()
+        {
+            _host.DialogResult = false;
+            _host.Close();
         }
 
         private void LoadProperties()
         {
-            SetVersion();
             ReadAvailableContent();
+        }
+
+        private string GetTemplatesFolder()
+        {
+            LocalTemplatesSource _templatesSource = new LocalTemplatesSource(_useTemplatesVersion);
+            TemplatesSynchronization _templatesSync = new TemplatesSynchronization(_templatesSource, new Version(_useWizardVersion));
+            string currentTemplatesFolder = _templatesSync.CurrentTemplatesFolder;
+            return currentTemplatesFolder;
         }
     }
 }

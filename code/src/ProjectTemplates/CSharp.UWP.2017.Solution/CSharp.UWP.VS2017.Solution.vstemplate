@@ -4,8 +4,8 @@
             xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
     <Name>Windows Template Studio (local)</Name>
-    <Description>Windows Template Studio creates a strong, generic foundation for UWP apps with a few easy clicks.</Description>
-    <Icon>CSharp.UWP.VS2017.Solution.ico</Icon>
+    <Description>Windows Template Studio quickly builds a UWP app, using a wizard-based UI to turn your needs into a foundation of Windows 10 patterns and best practices.</Description>
+    <Icon>windowsTemplateStudio_Logo_256x256.png</Icon>
     <ProjectType>CSharp</ProjectType>
     <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
     <SortOrder>1000</SortOrder>
@@ -21,7 +21,7 @@
     </CustomParameters>
   </TemplateContent>
   <WizardExtension>
-    <Assembly>Microsoft.Templates.Wizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e4ef4cc7a47ae0c5</Assembly>
-    <FullClassName>Microsoft.Templates.Wizard.VisualStudio.SolutionWizard</FullClassName>
+    <Assembly>Microsoft.Templates.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e4ef4cc7a47ae0c5</Assembly>
+    <FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizard</FullClassName>
   </WizardExtension>
 </VSTemplate>

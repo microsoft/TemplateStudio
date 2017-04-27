@@ -1,5 +1,5 @@
 using Windows.UI.Xaml.Navigation;
-namespace ItemNamespace.Views
+namespace Param_ItemNamespace.Views
 {
     public sealed partial class wts.ItemNamePage : Page
     {
