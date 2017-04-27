@@ -109,7 +109,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="317"/>
                 </Grid.ColumnDefinitions>
                 <controls:StatusControl 
                     Grid.Column="0" 
@@ -118,7 +118,7 @@
                     Margin="{StaticResource MediumLeftMargin}"
                     WizardVersion="{Binding WizardVersion}" 
                     TemplatesVersion="{Binding TemplatesVersion}" />
-                <Grid Grid.Column="1" Margin="{StaticResource MediumLeftRightMargin}">
+                <Grid Grid.Column="1" Margin="0,0,17,0" HorizontalAlignment="Right">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
