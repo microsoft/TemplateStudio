@@ -46,14 +46,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                    <Button Style="{StaticResource InfoTemplateInfoButtonStyle}" VerticalAlignment="Center" Command="{Binding ToggleDetailVisibleCommand}">
-                        <Button.Content>
-                            <Grid>
-                                <TextBlock Text="&#xECCA;" FontFamily="Segoe MDL2 Assets" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource UIDarkGray}"/>
-                                <TextBlock Text="{Binding ToggleButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource UIBlack}"/>
-                            </Grid>
-                        </Button.Content>
-                    </Button>
+                    <Button Style="{StaticResource MoreInfoButtonStyle}" Command="{Binding ToggleDetailVisibleCommand}" />
                     <TextBlock Text="{x:Static res:StringRes.ErrorViewProblemDetails}" Margin="{StaticResource MediumLeftMargin}" VerticalAlignment="Center"/>
                 </StackPanel>
                 <Button Grid.Column="1" Content="{x:Static res:StringRes.ButtonOk}" Command="{Binding CloseCommand}" Style="{StaticResource ButtonNavigationStyle}"/>
