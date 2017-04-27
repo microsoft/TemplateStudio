@@ -34,10 +34,10 @@
                 <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="#CC0000"/>
                 <TextBlock Text="&#xE10A;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource UIWhite}" FontSize="20"/>
             </Grid>
-            <TextBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource TextTemplateTitleStyle}" Margin="{StaticResource MediumLeftMargin}" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource TextErrorTitleStyle}" Margin="{StaticResource MediumLeftMargin}" VerticalAlignment="Center"/>
         </Grid>
         <ScrollViewer Grid.Row="1" Visibility="{Binding MessageDetailVisibility}">
-            <TextBox Text="{Binding MessageDetail}" Style="{StaticResource ErrorTitleStyle}" Margin="{StaticResource BigMargin}"/>
+            <TextBox Text="{Binding MessageDetail}" Style="{StaticResource ErrorDetailsStyle}" Margin="{StaticResource BigMargin}"/>
         </ScrollViewer>
         <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
             <Grid Margin="{StaticResource MediumMargin}">

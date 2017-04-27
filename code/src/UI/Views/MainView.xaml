@@ -43,30 +43,31 @@
             </Grid.ColumnDefinitions>
             <Grid Background="{StaticResource UILightGray}" VerticalAlignment="Stretch" HorizontalAlignment="Right" Width="17"/>
             <Grid Visibility="{Binding LoadingContentVisibility}">
-                <TextBlock Text="{x:Static res:StringRes.LoadingTemplatesText}" Style="{StaticResource TextTemplateAuthorStyle}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="{x:Static res:StringRes.LoadingTemplatesText}" Style="{StaticResource TextMainLoadingStyle}"/>
             </Grid>
             <Grid Visibility="{Binding NoContentVisibility}">
-                <TextBlock Text="{x:Static res:StringRes.NoContentText}" Style="{StaticResource TextTemplateAuthorStyle}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="{x:Static res:StringRes.NoContentText}" Style="{StaticResource TextMainLoadingStyle}"/>
             </Grid>
 
             <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden"/>
+            <Grid Grid.Column="1" Width="17" VerticalAlignment="Stretch" HorizontalAlignment="Right" Background="{StaticResource UILightGray}" />
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="0"/> <!-- was 10 -->
+                    <RowDefinition Height="0"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="0"/> <!-- was 10 -->
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="{x:Static res:StringRes.SummaryTitle}" Style="{StaticResource SummaryTitle}" Margin="{StaticResource MediumMargin}"/>
-                <!--<Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}"/>-->
+                <TextBlock Text="{x:Static res:StringRes.SummaryTitle}" Style="{StaticResource TextSummaryTitle}" Margin="{StaticResource MediumMargin}"/>
+                <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}" Margin="0,0,17,0"/>
                 <ScrollViewer Grid.Row="2" Visibility="{Binding LoadedContentVisibility}">
                     <StackPanel Margin="{StaticResource MediumMargin}">
 
                         <StackPanel Margin="{StaticResource ExtraBigLeftMargin}" DataContext="{Binding ProjectSetup.SelectedProjectType}">
-                            <TextBlock Text="{x:Static res:StringRes.SummaryProjectTypeTitle}" Style="{StaticResource SummarySubTitle}"/>
-                            <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
-                            <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
+                            <TextBlock Text="{x:Static res:StringRes.SummaryProjectTypeTitle}" Style="{StaticResource TextSummaryGroupHeader}"/>
+                            <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TextSummaryItemStyle}"/>
+                            <TextBlock Style="{StaticResource TextSummaryAuthorStyle}">
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="Made by {0}">
                                         <Binding Path="Author" />
@@ -76,9 +77,9 @@
                         </StackPanel>
                         <Grid Margin="{StaticResource MediumTopMargin}">
                             <StackPanel Margin="{StaticResource ExtraBigLeftMargin}" DataContext="{Binding ProjectSetup.SelectedFramework}">
-                                <TextBlock Text="{x:Static res:StringRes.SummaryFrameworkTitle}" Style="{StaticResource SummarySubTitle}"/>
-                                <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
-                                <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
+                                <TextBlock Text="{x:Static res:StringRes.SummaryFrameworkTitle}" Style="{StaticResource TextSummaryGroupHeader}"/>
+                                <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TextSummaryItemStyle}"/>
+                                <TextBlock Style="{StaticResource TextSummaryAuthorStyle}">
                                     <TextBlock.Text>
                                         <MultiBinding StringFormat="Made by {0}">
                                             <Binding Path="Author" />
@@ -98,8 +99,10 @@
                         </Expander>
                     </StackPanel>
                 </ScrollViewer>
-                <!--<Grid Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}"/>-->
-                <TextBlock Grid.Row="4" Text="{x:Static res:StringRes.SummaryTerms}" Style="{StaticResource TextTemplateSubtitleStyle}" VerticalAlignment="Bottom" Margin="{StaticResource MediumMargin}"/>
+                <Grid Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}"/>
+                <Grid Grid.Row="4" Margin="0,0,17,0">
+                    <TextBlock Text="{x:Static res:StringRes.SummaryTerms}" Style="{StaticResource TextSummaryTermsStyle}" VerticalAlignment="Bottom" Margin="{StaticResource MediumMargin}" />
+                </Grid>
             </Grid>
         </Grid>
         <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">

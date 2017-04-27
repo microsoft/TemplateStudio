@@ -19,14 +19,14 @@
     
     <Grid>
         <StackPanel x:Name="versionInfoPane">
-            <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
+            <TextBlock Style="{StaticResource TextWizardInformationStyle}">
                 <Run Text="{x:Static res:StringRes.WizardVersion}" /> <Run Text="{Binding WizardVersion, ElementName=root}" />
             </TextBlock>
-            <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
+            <TextBlock Style="{StaticResource TextWizardInformationStyle}">
                 <Run Text="{x:Static res:StringRes.TemplatesVersion}" /> <Run Text="{Binding TemplatesVersion, ElementName=root}" />
             </TextBlock>
         </StackPanel>
-        <TextBlock Style="{StaticResource TextTemplateSubtitleStyle}">
+        <TextBlock Style="{StaticResource TextWizardStatusStyle}">
             <Run x:Name="txtIcon" FontFamily="Segoe MDL2 Assets" FontSize="18" BaselineAlignment="Center" Text=" " /> <Run x:Name="txtStatus" />
         </TextBlock>
     </Grid>
