@@ -171,6 +171,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ImageEx.cs" />
+    <Compile Include="Controls\LogoDisplay.xaml.cs">
+      <DependentUpon>LogoDisplay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Markdown.cs" />
     <Compile Include="Controls\MarkdownBlock.xaml.cs">
       <DependentUpon>MarkdownBlock.xaml</DependentUpon>
@@ -261,6 +264,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="Controls\LogoDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\StatusControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
