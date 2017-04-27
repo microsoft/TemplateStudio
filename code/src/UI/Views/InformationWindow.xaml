@@ -44,16 +44,16 @@
             </Grid.RowDefinitions>
             <StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding Version, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
-                    <TextBlock Text="Version:" Style="{StaticResource TextTemplateTitleStyle}" MinWidth="60"/>
-                    <TextBlock Margin="{StaticResource MediumLeftMargin}" Text="{Binding Version}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
+                    <TextBlock Text="Version:" Style="{StaticResource TextInformationPropertyTitle}" MinWidth="60"/>
+                    <TextBlock Margin="{StaticResource MediumLeftMargin}" Text="{Binding Version}" Style="{StaticResource TextInformationPropertyValue}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding Author, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
-                    <TextBlock Text="Author:" Style="{StaticResource TextTemplateTitleStyle}" MinWidth="60"/>
-                    <TextBlock Text="{Binding Author}" Margin="{StaticResource MediumLeftMargin}" Style="{StaticResource TextTemplateSubtitleStyle}" />
+                    <TextBlock Text="Author:" Style="{StaticResource TextInformationPropertyTitle}" MinWidth="60"/>
+                    <TextBlock Text="{Binding Author}" Margin="{StaticResource MediumLeftMargin}" Style="{StaticResource TextInformationPropertyValue}" />
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding LicensesVisibility, FallbackValue=Collapsed}">
-                    <TextBlock Text="Licenses:" Style="{StaticResource TextTemplateTitleStyle}" MinWidth="60"/>
+                    <TextBlock Text="Licenses:" Style="{StaticResource TextInformationPropertyTitle}" MinWidth="60"/>
                     <ItemsControl ItemsSource="{Binding LicenseTerms}" Margin="{StaticResource MediumLeftMargin}" ItemTemplate="{StaticResource LicenseSummaryItemTemplate}"/>
                 </StackPanel>
             </StackPanel>

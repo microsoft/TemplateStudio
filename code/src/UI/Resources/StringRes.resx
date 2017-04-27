@@ -322,4 +322,7 @@
   <data name="ErrorViewProblemDetails" xml:space="preserve">
     <value>View problem details</value>
   </data>
+  <data name="EditTemplateDescription" xml:space="preserve">
+    <value>Enter a name</value>
+  </data>
 </root>

@@ -8,25 +8,25 @@
     </Style>
 
     <Style x:Key="H1Style" TargetType="Paragraph">
-        <Setter Property="FontSize" Value="42" />
+        <Setter Property="FontSize" Value="{StaticResource UI_XL_FontSize}" />
         <Setter Property="Foreground" Value="#ff000000" />
         <Setter Property="FontWeight" Value="Light" />
     </Style>
 
     <Style x:Key="H2Style" TargetType="Paragraph">
-        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontSize" Value="{StaticResource UI_M_FontSize}" />
         <Setter Property="Foreground" Value="#ff000000" />
         <Setter Property="FontWeight" Value="Light" />
     </Style>
 
     <Style x:Key="H3Style" TargetType="Paragraph">
-        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontSize" Value="{StaticResource UI_M_FontSize}" />
         <Setter Property="Foreground" Value="#99000000" />
         <Setter Property="FontWeight" Value="Light" />
     </Style>
 
     <Style x:Key="H4Style" TargetType="Paragraph">
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
         <Setter Property="Foreground" Value="#99000000" />
         <Setter Property="FontWeight" Value="Light" />
     </Style>
