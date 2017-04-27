@@ -107,7 +107,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public void Initialize(MetadataInfoViewModel metadataInfo)
         {
-            Name = metadataInfo.Name;
+            Name = metadataInfo.DisplayName;
             InformationType = GetInformationType(metadataInfo.MetadataType);
             Author = metadataInfo.Author;
 
