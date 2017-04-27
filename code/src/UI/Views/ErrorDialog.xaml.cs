@@ -15,7 +15,7 @@ using System.Windows;
 
 using Microsoft.Templates.UI.ViewModels;
 
-namespace Microsoft.Templates.UI.Error
+namespace Microsoft.Templates.UI.Views
 {
     /// <summary>
     /// Interaction logic for ErrorDialog.xaml

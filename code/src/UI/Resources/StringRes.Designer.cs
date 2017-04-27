@@ -115,7 +115,16 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Windows Template Studio Error.
+        ///   Looks up a localized string similar to Enter a name.
+        /// </summary>
+        public static string EditTemplateDescription {
+            get {
+                return ResourceManager.GetString("EditTemplateDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Something went wrong :-(.
         /// </summary>
         public static string ErrorDialogTitle {
             get {

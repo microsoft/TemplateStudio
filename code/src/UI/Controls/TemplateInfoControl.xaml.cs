@@ -19,6 +19,9 @@ using System.Windows.Media;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.ViewModels;
+using Microsoft.TemplateEngine.Abstractions;
+using System.Windows.Input;
+using Microsoft.Templates.Core.Mvvm;
 
 namespace Microsoft.Templates.UI.Controls
 {
@@ -57,11 +60,14 @@ namespace Microsoft.Templates.UI.Controls
             get { return (string)GetValue(NewTemplateNameProperty); }
             set { SetValue(NewTemplateNameProperty, value); }
         }
-        public static readonly DependencyProperty NewTemplateNameProperty = DependencyProperty.Register("NewTemplateName", typeof(string), typeof(TemplateInfoControl), new PropertyMetadata(String.Empty, OnControlPropertyChanged));
-        private static void OnControlPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        public static readonly DependencyProperty NewTemplateNameProperty = DependencyProperty.Register("NewTemplateName", typeof(string), typeof(TemplateInfoControl), new PropertyMetadata(String.Empty, OnNewTemplateNameChanged));
+        private static void OnNewTemplateNameChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as TemplateInfoControl;
-            control.Validate(e.NewValue as string);
+            if (control.TemplateInfo.CanChooseItemName)
+            {
+                control.Validate(e.NewValue as string);
+            }
         }
 
         public string ErrorMessage
@@ -84,7 +90,13 @@ namespace Microsoft.Templates.UI.Controls
             set { SetValue(TitleForegroundProperty, value); }
         }
         public static readonly DependencyProperty TitleForegroundProperty = DependencyProperty.Register("TitleForeground", typeof(SolidColorBrush), typeof(TemplateInfoControl), new PropertyMetadata(null));
-        
+
+        private ICommand _saveItemCommand;
+        public ICommand SaveItemCommand => _saveItemCommand ?? (_saveItemCommand = new RelayCommand(OnSaveClicked));
+
+        private ICommand _closeEditionCommand;
+        public ICommand CloseEditionCommand => _closeEditionCommand ?? (_closeEditionCommand = new RelayCommand(SwichVisibilities));
+
         public TemplateInfoControl()
         {
             InitializeComponent();
@@ -95,21 +107,25 @@ namespace Microsoft.Templates.UI.Controls
         private void OnAddClicked(object sender, RoutedEventArgs e)
         {
             var names = MainViewModel.Current.ProjectTemplates.GetUsedNamesFunc.Invoke();
-            NewTemplateName = Naming.Infer(names, TemplateInfo.Template.GetDefaultName());
 
-            if (TemplateInfo.Template.GetTemplateType() == TemplateType.Page || TemplateInfo.MultipleInstances)
+            if (TemplateInfo.CanChooseItemName)
             {
+                NewTemplateName = Naming.Infer(names, TemplateInfo.Template.GetDefaultName());
                 SwichVisibilities();
+
+                templateName.Focus();
+                templateName.SelectAll();
             }
             else
             {
+                NewTemplateName = TemplateInfo.Template.GetDefaultName();
                 MainViewModel.Current.ProjectTemplates.AddCommand.Execute((NewTemplateName, TemplateInfo.Template));
 
                 CheckAddingStatus();
             }
         }
 
-        private void OnSaveClicked(object sender, RoutedEventArgs e)
+        private void OnSaveClicked()
         {
             if (IsValid)
             {
@@ -149,8 +165,6 @@ namespace Microsoft.Templates.UI.Controls
                 NoEditingContentVisibility = Visibility.Visible;
             }
         }
-
-        private void OnCloseEdition(object sender, RoutedEventArgs e) => SwichVisibilities();
 
         private void HandleValidation(Core.ValidationResult validationResult)
         {

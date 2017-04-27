@@ -146,14 +146,10 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             MainViewModel.Current.InfoShapeVisibility = Visibility.Visible;
             var infoView = new InformationWindow(template, MainViewModel.Current.MainView);
-            try
-            {
-                GenContext.ToolBox.Shell.ShowModal(infoView);
-                MainViewModel.Current.InfoShapeVisibility = Visibility.Collapsed;
-            }
-            catch (Exception)
-            {
-            }
+
+            infoView.ShowDialog();
+            MainViewModel.Current.InfoShapeVisibility = Visibility.Collapsed;
+
         }
 
         private void SaveNewTemplate((string Name, ITemplateInfo Template) item, bool isRemoveEnabled = true)
@@ -168,7 +164,7 @@ namespace Microsoft.Templates.UI.ViewModels
                     TemplateName = item.Template.Name,
                     Author = item.Template.Author,
                     IsRemoveEnabled = isRemoveEnabled,
-                    HasDefaultName = !item.Template.GetMultipleInstance()
+                    HasDefaultName = !item.Template.GetItemNameEditable()
                 });
             }
             else if (item.Template.GetTemplateType() == TemplateType.Feature)
@@ -180,7 +176,7 @@ namespace Microsoft.Templates.UI.ViewModels
                     TemplateName = item.Template.Name,
                     Author = item.Template.Author,
                     IsRemoveEnabled = isRemoveEnabled,
-                    HasDefaultName = !item.Template.GetMultipleInstance()
+                    HasDefaultName = !item.Template.GetItemNameEditable()
                 });
             }
             UpdateTemplateAvailable?.Invoke(this, EventArgs.Empty);

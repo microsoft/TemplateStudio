@@ -43,6 +43,7 @@ namespace Microsoft.Templates.Core.Gen
         public static void Bootstrap(TemplatesSource source, GenShell shell, Version wizardVersion)
         {
             AppHealth.Current.AddWriter(new ShellHealthWriter());
+            AppHealth.Current.Info.TrackAsync($"Configuration file loaded: {Configuration.LoadedConfigFile}").FireAndForget();
 
             string hostVersion = $"{wizardVersion.Major}.{wizardVersion.Minor}";
             CodeGen.Initialize(source.Id, hostVersion);

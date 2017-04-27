@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
-             x:Name="root"
+             x:Name="root"             
              mc:Ignorable="d">
     <!-- This control is at the bottom and gives status updates -->
     <UserControl.Resources>
@@ -16,18 +16,27 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    
+
     <Grid>
         <StackPanel x:Name="versionInfoPane">
-            <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
+            <TextBlock Style="{StaticResource TextWizardInformationStyle}">
                 <Run Text="{x:Static res:StringRes.WizardVersion}" /> <Run Text="{Binding WizardVersion, ElementName=root}" />
             </TextBlock>
-            <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
+            <TextBlock Style="{StaticResource TextWizardInformationStyle}">
                 <Run Text="{x:Static res:StringRes.TemplatesVersion}" /> <Run Text="{Binding TemplatesVersion, ElementName=root}" />
             </TextBlock>
         </StackPanel>
-        <TextBlock Style="{StaticResource TextTemplateSubtitleStyle}">
-            <Run x:Name="txtIcon" FontFamily="Segoe MDL2 Assets" FontSize="18" BaselineAlignment="Center" Text=" " /> <Run x:Name="txtStatus" />
-        </TextBlock>
+        <Grid Margin="{StaticResource SmallMargin}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Style="{StaticResource TextWizardStatusStyle}">
+            <Run x:Name="txtIcon" FontFamily="Segoe MDL2 Assets" FontSize="18" BaselineAlignment="Center" Text=" " />
+            </TextBlock>
+            <TextBlock Margin="{StaticResource MediumLeftMargin}" Style="{StaticResource TextWizardStatusStyle}" Grid.Column="1">
+            <Run x:Name="txtStatus" />
+            </TextBlock>
+        </Grid>
     </Grid>
 </UserControl>
