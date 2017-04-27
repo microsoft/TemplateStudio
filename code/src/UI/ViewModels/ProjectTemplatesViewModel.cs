@@ -70,7 +70,7 @@ namespace Microsoft.Templates.UI.ViewModels
         public Func<IEnumerable<string>> GetUsedTemplatesIdentitiesFunc => () => SavedTemplates.Select(t => t.Template.Identity);
 
 
-        public async Task IniatializeAsync()
+        public async Task InitializeAsync()
         {
             MainViewModel.Current.Title = StringRes.ProjectTemplatesTitle;
             ContextProjectType = MainViewModel.Current.ProjectSetup.SelectedProjectType;
