@@ -53,9 +53,9 @@
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="0"/> <!-- was 10 -->
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="0"/> <!-- was 10 -->
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="{x:Static res:StringRes.SummaryTitle}" Style="{StaticResource SummaryTitle}" Margin="{StaticResource MediumMargin}"/>

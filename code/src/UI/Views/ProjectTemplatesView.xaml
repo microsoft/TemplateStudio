@@ -19,7 +19,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-        <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
+        <ScrollViewer>
             <StackPanel>
             <GroupBox Header="{Binding PagesHeader}" Margin="{StaticResource MediumLeftTopRightMargin}">
                     <ItemsControl ItemsSource="{Binding PagesGroups}">

@@ -13,7 +13,7 @@
     </Page.Resources>
 
     <Grid Visibility="{Binding LoadedContentVisibility}">
-        <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" >
+        <ScrollViewer>
             <StackPanel>
                 <GroupBox Header="{Binding ProjectSetup.ProjectTypesHeader}" Margin="{StaticResource MediumLeftTopRightMargin}">
                     <ListView
