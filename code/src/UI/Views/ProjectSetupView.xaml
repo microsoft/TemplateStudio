@@ -15,7 +15,7 @@
     <Grid Visibility="{Binding LoadedContentVisibility}">
         <ScrollViewer>
             <StackPanel>
-                <GroupBox Header="{Binding ProjectSetup.ProjectTypesHeader}" Margin="{StaticResource SmallMargin}">
+                <GroupBox Header="{Binding ProjectSetup.ProjectTypesHeader}" Margin="{StaticResource MediumLeftTopRightMargin}">
                     <ListView
                         SelectionMode="Single"
                         ItemsSource="{Binding ProjectSetup.ProjectTypes}"
@@ -23,7 +23,7 @@
                         ItemTemplate="{StaticResource ProjectSetupItemTemplate}"
                         SelectedItem="{Binding ProjectSetup.SelectedProjectType, Mode=TwoWay}" />
                 </GroupBox>
-                <GroupBox Header="{Binding ProjectSetup.FrameworkHeader}" Margin="{StaticResource SmallMargin}">
+                <GroupBox Header="{Binding ProjectSetup.FrameworkHeader}" Margin="{StaticResource MediumLeftTopRightMargin}">
                     <ListView
                         SelectionMode="Single"
                         ItemsSource="{Binding ProjectSetup.Frameworks}"

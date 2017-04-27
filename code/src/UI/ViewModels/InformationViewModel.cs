@@ -1,16 +1,26 @@
-﻿using Microsoft.Templates.Core.Mvvm;
+﻿// ******************************************************************
+// Copyright (c) Microsoft. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
+// ******************************************************************
+
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.Templates.Core;
-using System.Windows.Input;
-using Microsoft.Templates.UI.Views;
-using Microsoft.Templates.UI.Resources;
-using System.Windows;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Input;
+
+
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Views;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
@@ -100,6 +110,7 @@ namespace Microsoft.Templates.UI.ViewModels
             Name = metadataInfo.Name;
             InformationType = GetInformationType(metadataInfo.MetadataType);
             Author = metadataInfo.Author;
+
             if(metadataInfo.LicenseTerms != null && metadataInfo.LicenseTerms.Any())
             {
                 LicenseTerms.AddRange(metadataInfo.LicenseTerms.Select(l => new SummaryLicenseViewModel(l)));
@@ -109,6 +120,7 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 LicensesVisibility = Visibility.Collapsed;
             }
+
             InformationMD = metadataInfo.Description;
         }
 

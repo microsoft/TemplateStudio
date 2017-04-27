@@ -1,4 +1,23 @@
-﻿using Microsoft.Templates.Core;
+﻿// ******************************************************************
+// Copyright (c) Microsoft. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
+// ******************************************************************
+
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
+
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
@@ -7,17 +26,6 @@ using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Views;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-
 namespace Microsoft.Templates.UI.ViewModels
 {
     public class MainViewModel : Observable
@@ -128,6 +136,7 @@ namespace Microsoft.Templates.UI.ViewModels
         public async Task IniatializeAsync()
         {            
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += Sync_SyncStatusChanged;
+
             try
             {
                 await GenContext.ToolBox.Repo.SynchronizeAsync();
@@ -144,7 +153,7 @@ namespace Microsoft.Templates.UI.ViewModels
             }
             finally
             {
-                MainViewModel.Current.LoadingContentVisibility = Visibility.Collapsed;                
+                Current.LoadingContentVisibility = Visibility.Collapsed;                
             }
         }
 
@@ -242,6 +251,7 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             MainView.DialogResult = false;
             MainView.Result = null;
+
             MainView.Close();
         }        
 
@@ -263,8 +273,11 @@ namespace Microsoft.Templates.UI.ViewModels
         private void OnGoBack()
         {
             NavigationService.GoBack();
+
             _canGoBack = false;
+
             BackCommand.OnCanExecuteChanged();
+
             CreateButtonVisibility = Visibility.Collapsed;
             NextButtonVisibility = Visibility.Visible;
         }
@@ -279,6 +292,7 @@ namespace Microsoft.Templates.UI.ViewModels
                     return true;
                 }
             }
+
             return false;
         }
 
@@ -288,6 +302,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
             MainView.DialogResult = true;
             MainView.Result = userSelection;
+
             MainView.Close();
         }
 
@@ -298,8 +313,10 @@ namespace Microsoft.Templates.UI.ViewModels
                 ProjectType = ProjectSetup.SelectedProjectType?.Name,
                 Framework = ProjectSetup.SelectedFramework?.Name
             };
+
             userSelection.Pages.AddRange(ProjectTemplates.SavedPages);
             userSelection.Features.AddRange(ProjectTemplates.SavedFeatures);
+
             return userSelection;
         }
 

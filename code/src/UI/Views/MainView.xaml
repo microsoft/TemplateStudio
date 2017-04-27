@@ -5,7 +5,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
     xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
-    xmlns:Documents="clr-namespace:System.Windows.Documents;assembly=PresentationUI"
     x:Class="Microsoft.Templates.UI.Views.MainView"
     mc:Ignorable="d"
     Title="Windows Template Studio"
@@ -54,18 +53,18 @@
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="0"/> <!-- was 10 -->
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="0"/> <!-- was 10 -->
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="{x:Static res:StringRes.SummaryTitle}" Style="{StaticResource SummaryTitle}" Margin="{StaticResource MediumMargin}"/>
-                <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}"/>
+                <!--<Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}"/>-->
                 <ScrollViewer Grid.Row="2" Visibility="{Binding LoadedContentVisibility}">
                     <StackPanel Margin="{StaticResource MediumMargin}">
 
                         <StackPanel Margin="{StaticResource ExtraBigLeftMargin}" DataContext="{Binding ProjectSetup.SelectedProjectType}">
-                            <TextBlock Text="{x:Static res:StringRes.SummaryProjectTypeTitle}" Style="{StaticResource TextTemplateTitleStyle}"/>
+                            <TextBlock Text="{x:Static res:StringRes.SummaryProjectTypeTitle}" Style="{StaticResource SummarySubTitle}"/>
                             <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
                             <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
                                 <TextBlock.Text>
@@ -77,7 +76,7 @@
                         </StackPanel>
                         <Grid Margin="{StaticResource MediumTopMargin}">
                             <StackPanel Margin="{StaticResource ExtraBigLeftMargin}" DataContext="{Binding ProjectSetup.SelectedFramework}">
-                                <TextBlock Text="{x:Static res:StringRes.SummaryFrameworkTitle}" Style="{StaticResource TextTemplateTitleStyle}"/>
+                                <TextBlock Text="{x:Static res:StringRes.SummaryFrameworkTitle}" Style="{StaticResource SummarySubTitle}"/>
                                 <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
                                 <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
                                     <TextBlock.Text>
@@ -99,7 +98,7 @@
                         </Expander>
                     </StackPanel>
                 </ScrollViewer>
-                <Grid Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}"/>
+                <!--<Grid Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}"/>-->
                 <TextBlock Grid.Row="4" Text="{x:Static res:StringRes.SummaryTerms}" Style="{StaticResource TextTemplateSubtitleStyle}" VerticalAlignment="Bottom" Margin="{StaticResource MediumMargin}"/>
             </Grid>
         </Grid>
@@ -109,7 +108,13 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
-                <controls:StatusControl Grid.Column="0" Status="{Binding Status}" WizardVersion="{Binding WizardVersion}" TemplatesVersion="{Binding TemplatesVersion}" />
+                <controls:StatusControl 
+                    Grid.Column="0" 
+                    VerticalAlignment="Center"
+                    Status="{Binding Status}" 
+                    Margin="{StaticResource MediumLeftMargin}"
+                    WizardVersion="{Binding WizardVersion}" 
+                    TemplatesVersion="{Binding TemplatesVersion}" />
                 <Grid Grid.Column="1" Margin="{StaticResource MediumLeftRightMargin}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>

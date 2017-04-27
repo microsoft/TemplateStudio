@@ -80,6 +80,14 @@
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Resources\windowsTemplateStudio_Logo_200x200.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Resources\windowsTemplateStudio_Logo_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="WindowsTemplateStudio.config.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

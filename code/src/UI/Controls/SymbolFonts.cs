@@ -10,12 +10,13 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-namespace Microsoft.Templates.Core
+namespace Microsoft.Templates.UI.Controls
 {
-    public class LayoutItem
+    // more can be found at https://docs.microsoft.com/en-us/windows/uwp/style/segoe-ui-symbol-font
+    public enum SymbolFonts
     {
-        public string name { get; set; }
-        public string templateGroupIdentity { get; set; }
-        public bool @readonly { get; set; }
+        Completed = 0xE930,
+        StatusErrorFull = 0xEB90,
+        ErrorBadge = 0xEA39
     }
 }

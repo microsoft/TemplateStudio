@@ -49,7 +49,7 @@
                     <TextBlock Text="{Binding Log}" TextWrapping="Wrap"></TextBlock>
                 </ScrollViewer>
                 <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Bottom">
-                    <TextBlock Text="Wizard version: "></TextBlock>
+                    <TextBlock Text="Wizard Version: "></TextBlock>
                     <TextBlock Text="{Binding WizardVersion}"></TextBlock>
                     <TextBlock Margin="10,0,0,0" Text="Templates Version: "></TextBlock>
                     <TextBlock Text="{Binding TemplatesVersion}"></TextBlock>

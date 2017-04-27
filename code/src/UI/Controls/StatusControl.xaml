@@ -16,18 +16,18 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
+    
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel x:Name="versionInfoPane" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="{StaticResource MediumMargin}">
-            <TextBlock Text="{x:Static res:StringRes.WizardVersion}" Style="{StaticResource TextTemplateAuthorStyle}"/>
-            <TextBlock Text="{Binding WizardVersion, ElementName=root}" Style="{StaticResource TextTemplateAuthorStyle}" Margin="{StaticResource SmallLeftMargin}"/>
-            <TextBlock Text="{x:Static res:StringRes.TemplatesVersion}" Style="{StaticResource TextTemplateAuthorStyle}" Margin="{StaticResource BigLeftMargin}"/>
-            <TextBlock Text="{Binding TemplatesVersion, ElementName=root}" Style="{StaticResource TextTemplateAuthorStyle}" Margin="{StaticResource SmallLeftMargin}"/>
+        <StackPanel x:Name="versionInfoPane">
+            <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
+                <Run Text="{x:Static res:StringRes.WizardVersion}" /> <Run Text="{Binding WizardVersion, ElementName=root}" />
+            </TextBlock>
+            <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
+                <Run Text="{x:Static res:StringRes.TemplatesVersion}" /> <Run Text="{Binding TemplatesVersion, ElementName=root}" />
+            </TextBlock>
         </StackPanel>
-        <TextBlock Grid.Column="0" x:Name="txtIcon" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="18" Margin="{StaticResource MediumLeftMargin}" />
-        <TextBlock Grid.Column="1" x:Name="txtStatus" Style="{StaticResource TextTemplateSubtitleStyle}" VerticalAlignment="Center" Margin="{StaticResource MediumLeftMargin}" />
+        <TextBlock Style="{StaticResource TextTemplateSubtitleStyle}">
+            <Run x:Name="txtIcon" FontFamily="Segoe MDL2 Assets" FontSize="18" BaselineAlignment="Center" Text=" " /> <Run x:Name="txtStatus" />
+        </TextBlock>
     </Grid>
 </UserControl>

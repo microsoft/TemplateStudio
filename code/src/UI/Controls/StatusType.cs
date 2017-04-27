@@ -10,12 +10,13 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-namespace Microsoft.Templates.Core
+namespace Microsoft.Templates.UI.Controls
 {
-    public class LayoutItem
+    public enum StatusType
     {
-        public string name { get; set; }
-        public string templateGroupIdentity { get; set; }
-        public bool @readonly { get; set; }
+        Empty,
+        Information,
+        Warning,
+        Error
     }
 }

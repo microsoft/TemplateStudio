@@ -178,6 +178,8 @@
     <Compile Include="Controls\StatusControl.xaml.cs">
       <DependentUpon>StatusControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\StatusType.cs" />
+    <Compile Include="Controls\SymbolFonts.cs" />
     <Compile Include="Controls\TemplateInfoControl.xaml.cs">
       <DependentUpon>TemplateInfoControl.xaml</DependentUpon>
     </Compile>
