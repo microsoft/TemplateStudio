@@ -52,7 +52,7 @@
                 </TextBlock>
 
                 <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" Visibility="{Binding NoEditingContentVisibility, ElementName=root}" Click="OnShowInfo" />
-                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource CloseEditionInfoButtonStyle}" Visibility="{Binding EditingContentVisibility, ElementName=root}" Click="OnCloseEdition" />
+                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource CloseEditionInfoButtonStyle}" Visibility="{Binding EditingContentVisibility, ElementName=root}" Command="{Binding CloseEditionCommand, ElementName=root}" />
             </Grid>
 
             <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding TemplateInfo.Summary, ElementName=root}" Visibility="{Binding NoEditingContentVisibility, ElementName=root}" Margin="{StaticResource MediumLeftMargin}"/>
@@ -71,7 +71,7 @@
                     <ColumnDefinition Width="30" />
                 </Grid.ColumnDefinitions>
                 <Grid Visibility="{Binding EditingContentVisibility, ElementName=root}">
-                    <TextBox Text="{Binding NewTemplateName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, ElementName=root}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
+                    <TextBox x:Name="templateName" Text="{Binding NewTemplateName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, ElementName=root}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
                         <TextBox.Style>
                             <Style TargetType="TextBox">
                                 <Style.Triggers>
@@ -81,12 +81,17 @@
                                 </Style.Triggers>
                             </Style>
                         </TextBox.Style>
+                        
+                        <TextBox.InputBindings>
+                            <KeyBinding Command="{Binding SaveItemCommand, ElementName=root}" Key="Enter"  />
+                            <KeyBinding Command="{Binding CloseEditionCommand, ElementName=root}" Key="Esc"  />
+                        </TextBox.InputBindings>
                     </TextBox>
                 </Grid>
 
                 <Grid Grid.Column="1" Visibility="{Binding AddingVisibility, ElementName=root}">
                     <Button Style="{StaticResource AddTemplateInfoButtonStyle}" Click="OnAddClicked" Visibility="{Binding NoEditingContentVisibility, ElementName=root}"/>
-                    <Button Style="{StaticResource SaveTemplateInfoButtonStyle}" Click="OnSaveClicked" IsEnabled="{Binding IsValid, ElementName=root}" Visibility="{Binding EditingContentVisibility, ElementName=root}"/>
+                    <Button Style="{StaticResource SaveTemplateInfoButtonStyle}" Command="{Binding SaveItemCommand, ElementName=root}" IsEnabled="{Binding IsValid, ElementName=root}" Visibility="{Binding EditingContentVisibility, ElementName=root}"/>
                 </Grid>
             </Grid>
         </Grid>
