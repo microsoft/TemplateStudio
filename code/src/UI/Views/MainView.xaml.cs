@@ -1,6 +1,19 @@
-﻿using Microsoft.Templates.UI.Services;
-using Microsoft.Templates.UI.ViewModels;
+﻿// ******************************************************************
+// Copyright (c) Microsoft. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
+// ******************************************************************
+
 using System.Windows;
+
+using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.ViewModels;
 
 namespace Microsoft.Templates.UI.Views
 {
@@ -14,7 +27,6 @@ namespace Microsoft.Templates.UI.Views
 
         public MainView()
         {
-
             ViewModel = new MainViewModel(this);
 
             DataContext = ViewModel;
@@ -22,6 +34,7 @@ namespace Microsoft.Templates.UI.Views
             Loaded += async (sender, e) =>
             {
                 await ViewModel.IniatializeAsync();
+
                 NavigationService.Initialize(stepFrame, new ProjectSetupView());
             };
 
@@ -29,6 +42,7 @@ namespace Microsoft.Templates.UI.Views
             {
                 ViewModel.UnsuscribeEventHandlers();
             };
+
             InitializeComponent();            
         }
     }
