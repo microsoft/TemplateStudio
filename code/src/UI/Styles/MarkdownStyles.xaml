@@ -8,7 +8,7 @@
     </Style>
 
     <Style x:Key="H1Style" TargetType="Paragraph">
-        <Setter Property="FontSize" Value="{StaticResource UI_XL_FontSize}" />
+        <Setter Property="FontSize" Value="{StaticResource UI_XXL_FontSize}" />
         <Setter Property="Foreground" Value="#ff000000" />
         <Setter Property="FontWeight" Value="Light" />
     </Style>
