@@ -317,9 +317,12 @@
     <value>Wizard version:</value>
   </data>
   <data name="ErrorDialogTitle" xml:space="preserve">
-    <value>Windows Template Studio Error</value>
+    <value>Something went wrong :-(</value>
   </data>
   <data name="ErrorViewProblemDetails" xml:space="preserve">
     <value>View problem details</value>
+  </data>
+  <data name="EditTemplateDescription" xml:space="preserve">
+    <value>Enter a name</value>
   </data>
 </root>

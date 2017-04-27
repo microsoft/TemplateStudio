@@ -10,7 +10,7 @@ Under the [code](../code/) folder, the repo have different solutions to aid deve
 
 * **Big.sln**: This is the solution which contains all the projects available, including test projects.
 * **Installer.sln**: This solution is focused on the Visual Studio extension, have the extension project and all the dependencies and is thought to run the extension in the Visual Studio Experimental IDE.
-* **Wizard.sln**: This solution is focused in the Wizard itself. Using this solution (thru the VsEmulator project) you can launch the Windows Template Studio wizard in a more lightweight way since it does not deploy the extension to the VS experimental instance.
+* **UI.sln**: This solution is focused in the user interface, that is, the Wizard itself. Using this solution (by executing the VsEmulator project) you can launch the Windows Template Studio wizard in a more lightweight way since it does not deploy the extension to the VS experimental instance.
 * **Core.sln**: This solution contains the Core assembly and it's unit tests. Use this solution when common core code is developed.
 * **Test.sln**: This solution is used to work with the project integration tests.
 
@@ -36,11 +36,11 @@ With this steps, the Windows Template Studio Extension is deployed to a new inst
 
 The extension wizard, when runs locally, uses the local [templates folder](../templates) as source for the Templates Repository.
 
-## Using the Wizard.sln solution
+## Using the UI.sln solution
 
-To speed up the execution and development experience, we have created a [VsEmulator application](../src/test) which can be used to launch and test the Windows Template Studio Wizard. This application, as well as the Wizard assembly, are available thru the Wizard.sln solution. To use it, follow this steps:
+To speed up the execution and development experience, we have created a [VsEmulator application](../src/test) which can be used to launch and test the Windows Template Studio Wizard. This application, as well as the Wizard assembly, are available thru the UI.sln solution. To use it, follow this steps:
 
-1. Open the Wizard.sln solution
+1. Open the UI.sln solution
 1. Set the "test\VsEmulator" project as "StartUp"
 1. Start debugging (F5) or start without debugging (Ctrl+F5).
 

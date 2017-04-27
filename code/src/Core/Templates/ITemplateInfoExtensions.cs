@@ -236,6 +236,11 @@ namespace Microsoft.Templates.Core
             return true;
         }
 
+        public static bool GetItemNameEditable(this ITemplateInfo ti)
+        {
+            return (ti.GetTemplateType() == TemplateType.Page || ti.GetMultipleInstance());
+        }
+
         private static string GetConfigDir(ITemplateInfo ti)
         {
             CodeGen.Instance.Settings.SettingsLoader.TryGetFileFromIdAndPath(ti.ConfigMountPointId, ti.ConfigPlace, out IFile file, out IMountPoint mountPoint);

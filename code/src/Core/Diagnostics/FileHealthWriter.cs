@@ -135,13 +135,6 @@ namespace Microsoft.Templates.Core.Diagnostics
 
             StringBuilder sb = new StringBuilder();
 
-            //sb.AppendLine("Stack:");
-            //foreach (StackFrame stackFrame in stackFrames)
-            //{
-            //   sb.AppendLine(stackFrame.GetMethod().Module + "." + stackFrame.GetMethod().Name);   
-            //}
-            //sb.AppendLine("");
-
             sb.AppendLine($"\r\n>>>>>>>>>>>>>> Log started {DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}");
             sb.AppendLine($">>>>>>>>>>>>>> Assembly File Version: {GetVersion()}");
             File.AppendAllText(LogFileName, sb.ToString());

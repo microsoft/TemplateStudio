@@ -74,6 +74,11 @@ namespace Microsoft.Templates.UI.VisualStudio
             await GenController.GenerateAsync(_userSelection);
             AppHealth.Current.Verbose.TrackAsync("Generation finished").FireAndForget();
 
+            PostGenerationActions();
+        }
+
+        private static void PostGenerationActions()
+        {
 
             GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.RestoringMessage);
             GenContext.ToolBox.Shell.RestorePackages();

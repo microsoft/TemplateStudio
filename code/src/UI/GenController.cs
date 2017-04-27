@@ -29,18 +29,11 @@ using Microsoft.Templates.Core.PostActions;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.Templates.UI.Views;
 using Microsoft.Templates.UI.Resources;
-using Microsoft.Templates.UI.Error;
 
 namespace Microsoft.Templates.UI
 {
     public class GenController
     {
-        //static GenController()
-        //{
-        //    //TODO: WHERE INITIALIZE THIS??
-        //    AppHealth.Current.AddWriter(new ShellHealthWriter());
-        //}
-
         public static UserSelection GetUserSelection()
         {
             var mainView = new MainView();

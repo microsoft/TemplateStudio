@@ -47,13 +47,18 @@ namespace Microsoft.Templates.UI.ViewModels
             set
             {
                 var orgframework = _selectedFramework;
+                var orgProjectType = _selectedProjectType;
 
                 SetProperty(ref _selectedProjectType, value);
                 if (value != null)
                 {
                     LoadFrameworks(value, orgframework);
-                    MainViewModel.Current.AlertProjectSetupChanged();
+                    if (orgProjectType != null && orgProjectType != value)
+                    {
+                        MainViewModel.Current.AlertProjectSetupChanged();
+                    }
                 }
+                
 
                 MainViewModel.Current.RebuildLicenses();
             }
@@ -65,8 +70,10 @@ namespace Microsoft.Templates.UI.ViewModels
             get { return _selectedFramework; }
             set
             {
+                var orgframework = _selectedFramework;
+
                 SetProperty(ref _selectedFramework, value);
-                if (value != null)
+                if (value != null && orgframework != null && orgframework != _selectedFramework)
                 {
                     MainViewModel.Current.AlertProjectSetupChanged();
                 }

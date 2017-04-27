@@ -45,11 +45,18 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private FontWeight _itemFontWeight = FontWeights.Normal;        
 
-        private Brush _itemForeground = new SolidColorBrush(Color.FromRgb(1,122,243));
+        private Brush _itemForeground = MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
         public Brush ItemForeground
         {
             get => _itemForeground;
             set => SetProperty(ref _itemForeground, value);
+        }
+
+        private Brush _authorForeground = MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
+        public Brush AuthorForeground
+        {
+            get => _authorForeground;
+            set => SetProperty(ref _authorForeground, value);
         }
 
         private DispatcherTimer dt;
@@ -67,8 +74,8 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnTimerTick(object sender, EventArgs e)
         {
-            ItemForeground = new SolidColorBrush(Colors.Black);
-
+            ItemForeground = MainViewModel.Current.MainView.FindResource("UIBlack") as SolidColorBrush;
+            AuthorForeground = MainViewModel.Current.MainView.FindResource("UIGray") as SolidColorBrush;
             dt.Stop();
         }
     }
