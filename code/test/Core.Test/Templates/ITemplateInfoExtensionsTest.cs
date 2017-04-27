@@ -173,11 +173,11 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Fact]
-        public void GetLicences()
+        public void GetLicenses()
         {
             var target = GetTarget("ProjectTemplate");
 
-            var result = target.GetLicences().ToList();
+            var result = target.GetLicenses().ToList();
             Assert.NotNull(result);
 
             Assert.Collection(result,
@@ -195,11 +195,11 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Fact]
-        public void GetLicences_unspecified()
+        public void GetLicenses_unspecified()
         {
             var target = GetTarget("UnspecifiedTemplate");
 
-            var result = target.GetLicences().ToList();
+            var result = target.GetLicenses().ToList();
             Assert.Collection(result);
         }
 
