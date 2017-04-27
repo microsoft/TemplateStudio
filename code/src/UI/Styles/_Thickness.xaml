@@ -9,6 +9,7 @@
     <Thickness x:Key="MediumMargin">10</Thickness>
     <Thickness x:Key="MediumLeftMargin">10,0,0,0</Thickness>
     <Thickness x:Key="MediumLeftTopMargin">10,10,0,0</Thickness>
+    <Thickness x:Key="MediumLeftTopRightMargin">10,10,10,0</Thickness>
     <Thickness x:Key="MediumTopRightMargin">0,10,10,0</Thickness>
     <Thickness x:Key="MediumTopMargin">0,10,0,0</Thickness>
     <Thickness x:Key="MediumLeftRightMargin">10,0</Thickness>

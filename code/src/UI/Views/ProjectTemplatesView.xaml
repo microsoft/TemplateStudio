@@ -1,34 +1,33 @@
-﻿<Page x:Class="Microsoft.Templates.UI.Views.ProjectTemplatesView"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"      
-      xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
-      xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
-      xmlns:local="clr-namespace:Microsoft.Templates.UI.Converters"
-      mc:Ignorable="d">
+﻿<Page
+    x:Class="Microsoft.Templates.UI.Views.ProjectTemplatesView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
+    xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
+    xmlns:local="clr-namespace:Microsoft.Templates.UI.Converters"
+    mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary>
             <local:ColumnCountConverter x:Key="ColumnConverter" />
             <local:ItemAlignmentConverter x:Key="ItemAlignmentConverter" />
             <local:FixedWidthConverter x:Key="FixedWidthConverter" />
+            
             <converters:StringVisibilityConverter x:Key="StringVisibilityConverter"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid>
-        <ScrollViewer>
+        <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <GroupBox Header="{Binding PagesHeader}" Margin="{StaticResource SmallMargin}">
+            <GroupBox Header="{Binding PagesHeader}" Margin="{StaticResource MediumLeftTopRightMargin}">
                     <ItemsControl ItemsSource="{Binding PagesGroups}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding Title}" Margin="{StaticResource MediumLeftTopMargin}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
-                                    <ListView
-                                        Margin="{StaticResource MediumMargin}"
+                                    <TextBlock Text="{Binding Title}" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
+                                    <ListView                                        
                                         ItemsSource="{Binding Templates}"
                                         Style="{StaticResource ListViewProjectTemplatesStyle}"
                                         ItemTemplate="{StaticResource ProjectTemplatesItemTemplate}" />
@@ -37,12 +36,12 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </GroupBox>
-                <GroupBox Header="{Binding FeaturesHeader}" Margin="{StaticResource SmallMargin}">
+            <GroupBox Header="{Binding FeaturesHeader}" Margin="{StaticResource MediumLeftTopRightMargin}">
                     <ItemsControl ItemsSource="{Binding FeatureGroups}" Margin="{StaticResource MediumTopMargin}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding Title}" Margin="{StaticResource MediumLeftTopMargin}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
+                                <TextBlock Text="{Binding Title}" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
                                     <ListView
                                         Margin="{StaticResource MediumMargin}"
                                         ItemsSource="{Binding Templates}"
@@ -55,5 +54,4 @@
                 </GroupBox>
             </StackPanel>
         </ScrollViewer>
-    </Grid>
 </Page>
