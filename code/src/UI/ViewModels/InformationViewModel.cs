@@ -87,7 +87,7 @@ namespace Microsoft.Templates.UI.ViewModels
             _infoWindow = infoWindow;
         }
 
-        public void Iniatialize(TemplateInfoViewModel template)
+        public void Initialize(TemplateInfoViewModel template)
         {
             Name = template.Name;
             InformationType = GetInformationType(template.TemplateType.ToString());
@@ -105,7 +105,7 @@ namespace Microsoft.Templates.UI.ViewModels
             InformationMD = template.Description;
         }        
 
-        public void Iniatialize(MetadataInfoViewModel metadataInfo)
+        public void Initialize(MetadataInfoViewModel metadataInfo)
         {
             Name = metadataInfo.Name;
             InformationType = GetInformationType(metadataInfo.MetadataType);

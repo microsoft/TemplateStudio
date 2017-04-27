@@ -30,7 +30,7 @@ namespace Microsoft.Templates.UI.Views
 
             Loaded += (sender, e) =>
             {
-                ViewModel.Iniatialize(template);
+                ViewModel.Initialize(template);
                 CenterWindow(mainWindow);
                 ViewModel.InformationVisibility = Visibility.Visible;
             };
@@ -50,7 +50,7 @@ namespace Microsoft.Templates.UI.Views
 
             Loaded += (sender, e) =>
             {
-                ViewModel.Iniatialize(metadataInfo);
+                ViewModel.Initialize(metadataInfo);
                 CenterWindow(mainWindow);
                 ViewModel.InformationVisibility = Visibility.Visible;
             };

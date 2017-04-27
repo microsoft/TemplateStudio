@@ -133,7 +133,7 @@ namespace Microsoft.Templates.UI.ViewModels
             Current = this;
         }
 
-        public async Task IniatializeAsync()
+        public async Task InitializeAsync()
         {            
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += Sync_SyncStatusChanged;
 

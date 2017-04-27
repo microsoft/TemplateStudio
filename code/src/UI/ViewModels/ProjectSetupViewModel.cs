@@ -78,7 +78,7 @@ namespace Microsoft.Templates.UI.ViewModels
         public ObservableCollection<MetadataInfoViewModel> ProjectTypes { get; } = new ObservableCollection<MetadataInfoViewModel>();
         public ObservableCollection<MetadataInfoViewModel> Frameworks { get; } = new ObservableCollection<MetadataInfoViewModel>();
 
-        public async Task IniatializeAsync()
+        public async Task InitializeAsync()
         {
             MainViewModel.Current.Title = StringRes.ProjectSetupTitle;
             if (SelectedProjectType == null)
