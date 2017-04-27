@@ -1,26 +1,25 @@
-﻿using Microsoft.Templates.UI.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
+
+using Microsoft.Templates.UI.ViewModels;
 
 namespace Microsoft.Templates.UI.Controls
 {
     public enum StatusType { Empty, Information, Warning, Error }
+    public enum SymbolFonts
+    {
+        Completed = 0xE930,
+        StatusErrorFull = 0xEB90, 
+        ErrorBadge = 0xEA39
+    }
     public partial class StatusControl : UserControl
     {
         public static StatusViewModel EmptyStatus = new StatusViewModel(StatusType.Empty, String.Empty);
+
+        private DispatcherTimer _hideTimer;
 
         public StatusViewModel Status
         {
@@ -46,75 +45,87 @@ namespace Microsoft.Templates.UI.Controls
         private static void OnStatusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as StatusControl;
+
             control.UpdateStatus(e.NewValue as StatusViewModel);
         }
 
         private static void OnVersionInfoChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as StatusControl;
+
             control.UpdateVersionInfo();
         }
-
-        private DispatcherTimer _hideTimer;
 
         public StatusControl()
         {
             InitializeComponent();
-            _hideTimer = new DispatcherTimer();
-            _hideTimer.Interval = TimeSpan.FromSeconds(5);
+
+            _hideTimer = new DispatcherTimer()
+            {
+                Interval = TimeSpan.FromSeconds(5)
+            };
+
             _hideTimer.Tick += OnHideTick;
         }
 
         private void OnHideTick(object sender, EventArgs e)
         {
             _hideTimer.Stop();
+
             UpdateStatus(EmptyStatus);
         }
 
         private void UpdateStatus(StatusViewModel status)
         {
+            versionInfoPane.Visibility = Visibility.Collapsed;
+
             switch (status.Status)
             {
                 case StatusType.Information:
-                    versionInfoPane.Visibility = Visibility.Collapsed;
                     txtStatus.Text = status.Message;
-                    txtIcon.Text = Char.ConvertFromUtf32(0xE930);
+                    txtIcon.Text = ConvertToChar(SymbolFonts.Completed);
                     txtIcon.Foreground = FindResource("UIBlack") as SolidColorBrush;
-                    this.Background = new SolidColorBrush(Colors.Transparent);
+                    Background = new SolidColorBrush(Colors.Transparent);
                     break;
                 case StatusType.Warning:
-                    versionInfoPane.Visibility = Visibility.Collapsed;
                     txtStatus.Text = status.Message;
-                    txtIcon.Text = Char.ConvertFromUtf32(0xEA39);
+                    txtIcon.Text = ConvertToChar(SymbolFonts.ErrorBadge); 
                     txtIcon.Foreground = FindResource("UIDarkYellow") as SolidColorBrush;
                     Color yellow = (Color)FindResource("UIYellowColor");
-                    this.Background = new LinearGradientBrush(yellow, Colors.Transparent, 0);
+                    Background = new LinearGradientBrush(yellow, Colors.Transparent, 0);
                     break;
                 case StatusType.Error:
-                    versionInfoPane.Visibility = Visibility.Collapsed;
                     txtStatus.Text = status.Message;
-                    txtIcon.Text = Char.ConvertFromUtf32(0xEB90);
+                    txtIcon.Text = ConvertToChar(SymbolFonts.StatusErrorFull);
                     txtIcon.Foreground = FindResource("UIRed") as SolidColorBrush;
                     Color red = (Color)FindResource("UIRedColor");
                     var brush = new LinearGradientBrush(red, Colors.Transparent, 0);
                     brush.Opacity = 0.4;
-                    this.Background = brush;
+                    Background = brush;
                     break;
                 default:
                     UpdateVersionInfo();
-                    txtStatus.Text = String.Empty;
-                    txtIcon.Text = String.Empty;
-                    this.Background = new SolidColorBrush(Colors.Transparent);
+
+                    txtStatus.Text = " ";
+                    txtIcon.Text = " ";
+
+                    Background = new SolidColorBrush(Colors.Transparent);
                     break;
             }
+
             if (status.AutoHide == true)
             {
                 _hideTimer.Start();
             }
         }
 
-        private void UpdateVersionInfo() => versionInfoPane.Visibility = HasVersionInfo ? Visibility.Visible : Visibility.Collapsed;
+        private string ConvertToChar(SymbolFonts font)
+        {
+            return Char.ConvertFromUtf32((int)font);
+        }
 
-        private bool HasVersionInfo => !String.IsNullOrEmpty(WizardVersion) && !String.IsNullOrEmpty(TemplatesVersion);
+        private void UpdateVersionInfo() => versionInfoPane.Visibility = HasVersionInfo() ? Visibility.Visible : Visibility.Collapsed;
+
+        private bool HasVersionInfo() => !String.IsNullOrEmpty(WizardVersion) && !String.IsNullOrEmpty(TemplatesVersion);
     }
 }

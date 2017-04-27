@@ -65,7 +65,7 @@
                     <StackPanel Margin="{StaticResource MediumMargin}">
 
                         <StackPanel Margin="{StaticResource ExtraBigLeftMargin}" DataContext="{Binding ProjectSetup.SelectedProjectType}">
-                            <TextBlock Text="{x:Static res:StringRes.SummaryProjectTypeTitle}" Style="{StaticResource TextTemplateTitleStyle}"/>
+                            <TextBlock Text="{x:Static res:StringRes.SummaryProjectTypeTitle}" Style="{StaticResource SummarySubTitle}"/>
                             <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
                             <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
                                 <TextBlock.Text>
@@ -77,7 +77,7 @@
                         </StackPanel>
                         <Grid Margin="{StaticResource MediumTopMargin}">
                             <StackPanel Margin="{StaticResource ExtraBigLeftMargin}" DataContext="{Binding ProjectSetup.SelectedFramework}">
-                                <TextBlock Text="{x:Static res:StringRes.SummaryFrameworkTitle}" Style="{StaticResource TextTemplateTitleStyle}"/>
+                                <TextBlock Text="{x:Static res:StringRes.SummaryFrameworkTitle}" Style="{StaticResource SummarySubTitle}"/>
                                 <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TextTemplateSubtitleStyle}"/>
                                 <TextBlock Style="{StaticResource TextTemplateAuthorStyle}">
                                     <TextBlock.Text>
@@ -109,7 +109,13 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
-                <controls:StatusControl Grid.Column="0" Status="{Binding Status}" WizardVersion="{Binding WizardVersion}" TemplatesVersion="{Binding TemplatesVersion}" />
+                <controls:StatusControl 
+                    Grid.Column="0" 
+                    VerticalAlignment="Center"
+                    Status="{Binding Status}" 
+                    Margin="{StaticResource MediumLeftMargin}"
+                    WizardVersion="{Binding WizardVersion}" 
+                    TemplatesVersion="{Binding TemplatesVersion}" />
                 <Grid Grid.Column="1" Margin="{StaticResource MediumLeftRightMargin}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>

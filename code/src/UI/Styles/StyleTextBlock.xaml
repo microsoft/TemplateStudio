@@ -52,12 +52,12 @@
 
     <!--Summary Text Styles-->
     <Style TargetType="TextBlock" x:Key="SummaryTitle">
-        <Setter Property="FontSize" Value="{StaticResource UISmallFontSize}" />
+        <Setter Property="FontSize" Value="{StaticResource UIBigFontSize}" />
         <Setter Property="Foreground" Value="{StaticResource UIBlue}" />
     </Style>
     
     <Style TargetType="TextBlock" x:Key="SummarySubTitle">
-        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontSize" Value="{StaticResource UIBigFontSize}" />
         <Setter Property="Foreground" Value="{StaticResource UIDarkGray}" />
     </Style>
 

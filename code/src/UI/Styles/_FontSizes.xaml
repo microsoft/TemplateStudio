@@ -4,6 +4,6 @@
 
     <sys:Double x:Key="UISmallFontSize">10</sys:Double>
     <sys:Double x:Key="UIMediumFontSize">12</sys:Double>
-    
+    <sys:Double x:Key="UIBigFontSize">16</sys:Double>
     <sys:Double x:Key="UIExtraBigFontSize">30</sys:Double>
 </ResourceDictionary>
