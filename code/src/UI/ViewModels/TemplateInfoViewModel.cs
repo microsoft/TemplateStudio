@@ -122,11 +122,11 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public ITemplateInfo Template { get; set; }
 
-        private bool _hasDefaultName;
-        public bool HasDefaultName
+        private bool _canChooseItemName;
+        public bool CanChooseItemName
         {
-            get => _hasDefaultName;
-            set => SetProperty(ref _hasDefaultName, value);
+            get => _canChooseItemName;
+            set => SetProperty(ref _canChooseItemName, value);
         }
 
         public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies)
@@ -144,6 +144,7 @@ namespace Microsoft.Templates.UI.ViewModels
             Dependencies = string.Join(",", dependencies.Select(d => d.Name));
             LicenseTerms = template.GetLicenses();
             Group = template.GetGroup();
+            CanChooseItemName = template.GetItemNameEditable();
         }
     }
 }

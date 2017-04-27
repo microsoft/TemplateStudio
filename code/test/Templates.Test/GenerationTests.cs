@@ -81,9 +81,13 @@ namespace Microsoft.Templates.Test
         {
             var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
             var itemTemplate = GenerationTestsFixture.Templates.FirstOrDefault(t => t.Identity == itemId);
-            var itemInferredName = Naming.Infer(UsedNames, itemTemplate.GetDefaultName());
-
-            var projectName = $"{name}{framework}{itemInferredName}";
+            var finalName = itemTemplate.GetDefaultName();
+            if (itemTemplate.GetItemNameEditable())
+            {
+                finalName = Naming.Infer(UsedNames, itemTemplate.GetDefaultName());
+            }
+           
+            var projectName = $"{name}{framework}{finalName}";
 
             using (var context = GenContext.CreateNew(projectName, Path.Combine(fixture.TestProjectsPath, projectName, projectName)))
             {
@@ -94,7 +98,7 @@ namespace Microsoft.Templates.Test
                 };
 
                 AddLayoutItems(userSelection, projectTemplate);
-                AddItem(userSelection, itemInferredName, itemTemplate);
+                AddItem(userSelection, finalName, itemTemplate);
 
                 await GenController.UnsafeGenerateAsync(userSelection);
 
@@ -200,7 +204,12 @@ namespace Microsoft.Templates.Test
             {
                 if (template.GetMultipleInstance() || !AlreadyAdded(userSelection, template))
                 {
-                    var itemName = Naming.Infer(UsedNames, getName(template));
+                    var itemName = getName(template);
+                    if (template.GetItemNameEditable())
+                    {
+                        itemName = Naming.Infer(UsedNames, itemName);
+                    }
+                    
                     AddItem(userSelection, itemName, template);
                 }
             }

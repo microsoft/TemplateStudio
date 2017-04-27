@@ -19,6 +19,7 @@ using System.Windows.Media;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.ViewModels;
+using Microsoft.TemplateEngine.Abstractions;
 using System.Windows.Input;
 using Microsoft.Templates.Core.Mvvm;
 
@@ -63,7 +64,10 @@ namespace Microsoft.Templates.UI.Controls
         private static void OnNewTemplateNameChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as TemplateInfoControl;
-            control.Validate(e.NewValue as string);
+            if (control.TemplateInfo.CanChooseItemName)
+            {
+                control.Validate(e.NewValue as string);
+            }
         }
 
         public string ErrorMessage
@@ -103,10 +107,10 @@ namespace Microsoft.Templates.UI.Controls
         private void OnAddClicked(object sender, RoutedEventArgs e)
         {
             var names = MainViewModel.Current.ProjectTemplates.GetUsedNamesFunc.Invoke();
-            NewTemplateName = Naming.Infer(names, TemplateInfo.Template.GetDefaultName());
 
-            if (TemplateInfo.Template.GetTemplateType() == TemplateType.Page || TemplateInfo.MultipleInstances)
+            if (TemplateInfo.CanChooseItemName)
             {
+                NewTemplateName = Naming.Infer(names, TemplateInfo.Template.GetDefaultName());
                 SwichVisibilities();
 
                 templateName.Focus();
@@ -114,6 +118,7 @@ namespace Microsoft.Templates.UI.Controls
             }
             else
             {
+                NewTemplateName = TemplateInfo.Template.GetDefaultName();
                 MainViewModel.Current.ProjectTemplates.AddCommand.Execute((NewTemplateName, TemplateInfo.Template));
 
                 CheckAddingStatus();
