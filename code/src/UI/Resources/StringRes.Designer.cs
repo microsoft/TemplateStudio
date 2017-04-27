@@ -511,7 +511,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to By continuing, you agree to the licenses in the licensing section for the generated project. By continuing, you agree to those licenses..
+        ///   Looks up a localized string similar to By continuing, you agree to the terms of all the licenses in the licensing section above..
         /// </summary>
         public static string SummaryTerms {
             get {
