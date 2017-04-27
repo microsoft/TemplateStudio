@@ -42,7 +42,7 @@
                 </Grid.ColumnDefinitions>
 
                 <controls:ImageEx Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Center" Focusable="False" SourcePath="{Binding TemplateInfo.Icon, ElementName=root}" />
-                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding TemplateInfo.Name, ElementName=root}" Margin="{StaticResource MediumLeftMargin}" Foreground="{Binding TitleForeground, ElementName=root}" />
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding TemplateInfo.Name, ElementName=root}" Margin="{StaticResource MediumLeftRightMargin}" Foreground="{Binding TitleForeground, ElementName=root}" />
                 <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateItemAuthorStyle}" Margin="{StaticResource MediumLeftMargin}">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">

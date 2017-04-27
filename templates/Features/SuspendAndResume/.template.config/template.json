@@ -4,7 +4,7 @@
   "name": "Suspend and Resume",
   "groupIdentity": "wts.Feat.SuspendAndResume",
   "identity": "wts.Feat.SuspendAndResume",
-  "shortName": "Suspend and resume",
+  "shortName": "Suspend and Resume",
   "description": "A user can suspend your app at any time so let's be ready for it.  We have a nifty suspend and resume service you can hook into.",
   "tags": {
     "language": "C#",
