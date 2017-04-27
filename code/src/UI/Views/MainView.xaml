@@ -34,7 +34,12 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Style="{StaticResource GridTitleStyle}">
-            <TextBlock Style="{StaticResource TextTitleStyle}" Text="{Binding Title}" Margin="{StaticResource MediumLeftMargin}"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <controls:LogoDisplay Grid.Column="0" Width="40" Margin="{StaticResource MediumLeftMargin}" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Column="1" Style="{StaticResource TextTitleStyle}" Text="{Binding Title}" Margin="{StaticResource MediumLeftMargin}" VerticalAlignment="Center"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

@@ -59,11 +59,11 @@ namespace Microsoft.Templates.UI.Views
         {
             if (info is MetadataInfoViewModel metadataInfo)
             {
-                ViewModel.Iniatialize(metadataInfo);
+                ViewModel.Initialize(metadataInfo);
             }
             else if(info is TemplateInfoViewModel templateInfo)
             {
-                ViewModel.Iniatialize(templateInfo);
+                ViewModel.Initialize(templateInfo);
             }
             else
             {

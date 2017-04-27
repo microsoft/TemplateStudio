@@ -30,7 +30,7 @@ namespace Microsoft.Templates.UI.Views
 
             Loaded += async (sender, e) =>
             {
-                await ViewModel.ProjectSetup.IniatializeAsync();
+                await ViewModel.ProjectSetup.InitializeAsync();
             };
 
             InitializeComponent();

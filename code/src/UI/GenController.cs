@@ -42,8 +42,6 @@ namespace Microsoft.Templates.UI
             {
                 CleanStatusBar();
 
-                throw new Exception("Castañazo!!!");
-
                 GenContext.ToolBox.Shell.ShowModal(mainView);
                 if (mainView.Result != null)
                 {

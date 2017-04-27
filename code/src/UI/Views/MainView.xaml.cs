@@ -33,7 +33,7 @@ namespace Microsoft.Templates.UI.Views
 
             Loaded += async (sender, e) =>
             {
-                await ViewModel.IniatializeAsync();
+                await ViewModel.InitializeAsync();
 
                 NavigationService.Initialize(stepFrame, new ProjectSetupView());
             };
