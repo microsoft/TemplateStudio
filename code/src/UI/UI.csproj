@@ -188,7 +188,7 @@
     <Compile Include="Converters\ItemAlignmentConverter.cs" />
     <Compile Include="Converters\StringVisibilityConverter.cs" />
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
-    <Compile Include="Error\ErrorDialog.xaml.cs">
+    <Compile Include="Views\ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ObservableCollectionExtensions.cs" />
@@ -269,7 +269,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Error\ErrorDialog.xaml">
+    <Page Include="Views\ErrorDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

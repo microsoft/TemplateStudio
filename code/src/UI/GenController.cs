@@ -29,7 +29,6 @@ using Microsoft.Templates.Core.PostActions;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.Templates.UI.Views;
 using Microsoft.Templates.UI.Resources;
-using Microsoft.Templates.UI.Error;
 
 namespace Microsoft.Templates.UI
 {
@@ -42,6 +41,8 @@ namespace Microsoft.Templates.UI
             try
             {
                 CleanStatusBar();
+
+                throw new Exception("Castañazo!!!");
 
                 GenContext.ToolBox.Shell.ShowModal(mainView);
                 if (mainView.Result != null)

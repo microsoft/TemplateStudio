@@ -317,7 +317,7 @@
     <value>Wizard version:</value>
   </data>
   <data name="ErrorDialogTitle" xml:space="preserve">
-    <value>Windows Template Studio Error</value>
+    <value>Something went wrong :-(</value>
   </data>
   <data name="ErrorViewProblemDetails" xml:space="preserve">
     <value>View problem details</value>
