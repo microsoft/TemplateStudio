@@ -40,6 +40,8 @@ namespace Microsoft.Templates.Core
         public int VersionCheckingExpirationMinutes { get; set; } = 0;
         public List<string> AllowedPublicKeysPins { get; set; } = new List<string>() { };
 
+        public static string LoadedConfigFile { get; private set; }
+
         public const string DefaultJsonConfigFileName = "WindowsTemplateStudio.config.json";
 
         private static Configuration _current;
@@ -53,15 +55,16 @@ namespace Microsoft.Templates.Core
                     if (File.Exists(currentConfigFile))
                     {
                         _current = LoadFromFile(currentConfigFile);
+                        LoadedConfigFile = currentConfigFile;
 
-                        //TODO: Review recurrence...
-                        AppHealth.Current.Verbose.TrackAsync($"Using configuration file {currentConfigFile}").FireAndForget();
+                        TraceUsingDefault($"Using configuration file {currentConfigFile}");
                     }
                     else
                     {
-
                         _current = new Configuration();
-                        AppHealth.Current.Verbose.TrackAsync($"Tried to use the configuration file located at {currentConfigFile}, but not found. Using default configuration.").FireAndForget();
+                        LoadedConfigFile = "None";
+
+                        TraceUsingDefault($"Tried to use the configuration file located at {currentConfigFile}, but not found. Using default configuration.");
                     }
                 }            
                 return _current;

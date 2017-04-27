@@ -4,13 +4,14 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Colors.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Thickness.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleTextBlock.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
     <Style TargetType="GroupBox">
         <Setter Property="HeaderTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <TextBlock Text="{Binding}" Foreground="{StaticResource UIDarkGray}" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding}" Style="{StaticResource TextGroupTemplateItemsHeaderStyle}" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>

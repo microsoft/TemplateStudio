@@ -185,7 +185,7 @@
             <Setter.Value>
                 <Grid>
                     <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource RoundButtonTextStyle}" />
-                    <TextBlock Text="&#xE948;" FontSize="12" Style="{StaticResource RoundButtonTextStyle}" />
+                    <TextBlock Text="&#xE948;" Margin="1,1,0,0" FontSize="12" Style="{StaticResource RoundButtonTextStyle}" />
                 </Grid>
             </Setter.Value>
         </Setter>
@@ -198,7 +198,7 @@
             <Setter.Value>
                 <Grid>
                     <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource RoundButtonTextStyle}" />
-                    <TextBlock Text="&#xE8FB;" FontSize="12" Style="{StaticResource RoundButtonTextStyle}" />
+                    <TextBlock Text="&#xE8FB;" Margin="0,1,0,0" FontSize="12" Style="{StaticResource RoundButtonTextStyle}" />
                 </Grid>
             </Setter.Value>
         </Setter>
