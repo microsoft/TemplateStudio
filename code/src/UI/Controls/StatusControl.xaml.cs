@@ -20,13 +20,6 @@ using Microsoft.Templates.UI.ViewModels;
 
 namespace Microsoft.Templates.UI.Controls
 {
-    public enum StatusType { Empty, Information, Warning, Error }
-    public enum SymbolFonts
-    {
-        Completed = 0xE930,
-        StatusErrorFull = 0xEB90, 
-        ErrorBadge = 0xEA39
-    }
     public partial class StatusControl : UserControl
     {
         public static StatusViewModel EmptyStatus = new StatusViewModel(StatusType.Empty, String.Empty);
