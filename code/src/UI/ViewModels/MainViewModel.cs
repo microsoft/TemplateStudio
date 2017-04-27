@@ -190,7 +190,7 @@ namespace Microsoft.Templates.UI.ViewModels
         private void Sync_SyncStatusChanged(object sender, SyncStatus status)
         {
 
-            Status = new StatusViewModel(StatusType.Information, GetStatusText(status));
+            Status = new StatusViewModel(StatusType.Information, GetStatusText(status), true);
 
             if (status == SyncStatus.Updated)
             {

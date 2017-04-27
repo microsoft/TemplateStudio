@@ -76,7 +76,7 @@ namespace Microsoft.Templates.UI.Controls
         private void OnHideTick(object sender, EventArgs e)
         {
             _hideTimer.Stop();
-
+            Status.Status = StatusType.Empty;
             UpdateStatus(EmptyStatus);
         }
 
@@ -109,7 +109,7 @@ namespace Microsoft.Templates.UI.Controls
                     Background = brush;
                     break;
                 default:
-                    UpdateVersionInfo();
+                    
 
                     txtStatus.Text = " ";
                     txtIcon.Text = " ";
@@ -117,10 +117,14 @@ namespace Microsoft.Templates.UI.Controls
                     Background = new SolidColorBrush(Colors.Transparent);
                     break;
             }
-
+            UpdateVersionInfo();
             if (status.AutoHide == true)
             {
                 _hideTimer.Start();
+            }
+            else
+            {
+                _hideTimer.Stop();
             }
         }
 
@@ -129,7 +133,7 @@ namespace Microsoft.Templates.UI.Controls
             return Char.ConvertFromUtf32((int)font);
         }
 
-        private void UpdateVersionInfo() => versionInfoPane.Visibility = HasVersionInfo() ? Visibility.Visible : Visibility.Collapsed;
+        private void UpdateVersionInfo() => versionInfoPane.Visibility = HasVersionInfo() && (Status.Status == StatusType.Empty) ? Visibility.Visible : Visibility.Collapsed;
 
         private bool HasVersionInfo() => !String.IsNullOrEmpty(WizardVersion) && !String.IsNullOrEmpty(TemplatesVersion);
     }

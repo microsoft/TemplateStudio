@@ -26,7 +26,7 @@
                 <Run Text="{x:Static res:StringRes.TemplatesVersion}" /> <Run Text="{Binding TemplatesVersion, ElementName=root}" />
             </TextBlock>
         </StackPanel>
-        <TextBlock Style="{StaticResource TextTemplateSubtitleStyle}">
+        <TextBlock Style="{StaticResource TextTemplateSubtitleStyle}" Padding="5,5,5,5">
             <Run x:Name="txtIcon" FontFamily="Segoe MDL2 Assets" FontSize="18" BaselineAlignment="Center" Text=" " /> <Run x:Name="txtStatus" />
         </TextBlock>
     </Grid>
