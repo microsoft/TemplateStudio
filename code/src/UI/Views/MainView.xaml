@@ -5,6 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
     xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
+    xmlns:converter="clr-namespace:Microsoft.Templates.UI.Converters"
     x:Class="Microsoft.Templates.UI.Views.MainView"
     mc:Ignorable="d"
     Title="Windows Template Studio"
@@ -24,6 +25,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            
+            <converter:MicrosoftTemplatesAuthorConverter x:Key="MicrosoftTemplatesAuthorConverter"/>
         </ResourceDictionary>
     </Window.Resources>
 
@@ -64,7 +67,7 @@
                             <StackPanel Margin="{StaticResource MediumLeftMargin}" DataContext="{Binding ProjectSetup.SelectedProjectType}">
                                 <TextBlock Text="{x:Static res:StringRes.SummaryProjectTypeTitle}" Style="{StaticResource TextSummaryGroupHeader}"/>
                                 <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TextSummaryItemStyle}"/>
-                                <TextBlock Style="{StaticResource TextSummaryAuthorStyle}">
+                                <TextBlock Style="{StaticResource TextSummaryAuthorStyle}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}">
                                     <TextBlock.Text>
                                         <MultiBinding StringFormat="Made by {0}">
                                             <Binding Path="Author" />
@@ -79,7 +82,7 @@
                                 <StackPanel Margin="{StaticResource MediumLeftMargin}" DataContext="{Binding ProjectSetup.SelectedFramework}">
                                     <TextBlock Text="{x:Static res:StringRes.SummaryFrameworkTitle}" Style="{StaticResource TextSummaryGroupHeader}"/>
                                     <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TextSummaryItemStyle}"/>
-                                    <TextBlock Style="{StaticResource TextSummaryAuthorStyle}">
+                                    <TextBlock Style="{StaticResource TextSummaryAuthorStyle}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}">
                                         <TextBlock.Text>
                                             <MultiBinding StringFormat="Made by {0}">
                                                 <Binding Path="Author" />
