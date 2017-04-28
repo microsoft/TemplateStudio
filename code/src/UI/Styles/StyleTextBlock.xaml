@@ -70,7 +70,17 @@
         <Setter Property="Foreground" Value="{StaticResource UIDarkGray}" />
         <Setter Property="FontSize" Value="{StaticResource UI_L_FontSize}" />
     </Style>
-    
+
+    <Style TargetType="TextBlock" x:Key="TextSummaryIconPoint" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="Foreground" Value="{StaticResource UIBlack}" />
+        <Setter Property="FontSize" Value="{StaticResource UI_XS_FontSize}" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+        <Setter Property="Margin" Value="0,8,0,0" />
+        <Setter Property="Text" Value="&#xE1F5;"/>
+    </Style>
+
     <Style TargetType="TextBlock" x:Key="TextSummaryItemStyle" BasedOn="{StaticResource UIBaseText}">
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
         <Setter Property="Foreground" Value="{StaticResource UIBlack}" />
