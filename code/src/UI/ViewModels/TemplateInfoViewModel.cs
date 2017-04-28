@@ -16,6 +16,8 @@ using System.Linq;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
+using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
@@ -90,7 +92,7 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             get { return _licenseTerms; }
             set { SetProperty(ref _licenseTerms, value); }
-        }
+        }        
 
         private string _group;
         public string Group
@@ -112,6 +114,8 @@ namespace Microsoft.Templates.UI.ViewModels
             get { return _dependencies; }
             set { SetProperty(ref _dependencies, value); }
         }
+
+        public ObservableCollection<DependencyInfoViewModel> DependencyItems { get; } = new ObservableCollection<DependencyInfoViewModel>();        
 
         private TemplateType _templateType;
         public TemplateType TemplateType
@@ -141,7 +145,11 @@ namespace Microsoft.Templates.UI.ViewModels
             MultipleInstances = template.GetMultipleInstance();
             TemplateType = template.GetTemplateType();
             Template = template;
-            Dependencies = string.Join(",", dependencies.Select(d => d.Name));
+            if (dependencies != null && dependencies.Any())
+            {
+                DependencyItems.AddRange(dependencies.Select(d => new DependencyInfoViewModel(new TemplateInfoViewModel(d, GenComposer.GetAllDependencies(d, MainViewModel.Current.ProjectSetup.SelectedFramework.Name)))));
+                Dependencies = string.Join(",", dependencies.Select(d => d.Name));
+            }
             LicenseTerms = template.GetLicenses();
             Group = template.GetGroup();
             CanChooseItemName = template.GetItemNameEditable();

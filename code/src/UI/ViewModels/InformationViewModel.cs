@@ -21,11 +21,13 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Views;
+using System.Collections.Generic;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
     public class InformationViewModel : Observable
     {
+        public static InformationViewModel Current;
         private InformationWindow _infoWindow;
 
         private Visibility _informationVisibility = Visibility.Collapsed;
@@ -68,7 +70,8 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             get => _informationMD;
             set => SetProperty(ref _informationMD, value);
-        }        
+        }
+        
         public ObservableCollection<SummaryLicenseViewModel> LicenseTerms { get; } = new ObservableCollection<SummaryLicenseViewModel>();
 
         private Visibility _licensesVisibility = Visibility.Collapsed;
@@ -78,13 +81,28 @@ namespace Microsoft.Templates.UI.ViewModels
             set => SetProperty(ref _licensesVisibility, value);
         }
 
+        private Visibility _dependenciesVisibility = Visibility.Collapsed;
+        public Visibility DependenciesVisibility
+        {
+            get => _dependenciesVisibility;
+            set => SetProperty(ref _dependenciesVisibility, value);
+        }
+
         private ICommand _okCommand;
         public ICommand OkCommand => _okCommand ?? (_okCommand = new RelayCommand(OnOk));
 
 
         public InformationViewModel(InformationWindow infoWindow)
-        {
+        {            
             _infoWindow = infoWindow;
+            Current = this;
+        }
+
+        private IEnumerable<DependencyInfoViewModel> _dependencyItems;
+        public IEnumerable<DependencyInfoViewModel> DependencyItems
+        {
+            get => _dependencyItems;
+            set => SetProperty(ref _dependencyItems, value);
         }
 
         public void Initialize(TemplateInfoViewModel template)
@@ -93,6 +111,10 @@ namespace Microsoft.Templates.UI.ViewModels
             InformationType = GetInformationType(template.TemplateType.ToString());
             Version = template.Version;
             Author = template.Author;
+
+            DependencyItems = template.DependencyItems;
+            DependenciesVisibility = DependencyItems.Any() ? Visibility.Visible : Visibility.Collapsed;
+
             if (template.LicenseTerms != null && template.LicenseTerms.Any())
             {
                 LicenseTerms.AddRange(template.LicenseTerms.Select(l => new SummaryLicenseViewModel(l)));
@@ -101,7 +123,7 @@ namespace Microsoft.Templates.UI.ViewModels
             else
             {
                 LicensesVisibility = Visibility.Collapsed;
-            }
+            }            
             InformationMD = template.Description;
         }        
 

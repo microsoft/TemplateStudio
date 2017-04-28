@@ -126,4 +126,14 @@
         </Grid>
     </DataTemplate>
 
+    <DataTemplate x:Key="DependencyInfoModalTemplate">
+        <Grid>
+            <TextBlock>
+                <Hyperlink Command="{Binding ShowInfoCommand}">
+                  <TextBlock Text="{Binding Name}" Style="{StaticResource TextSumaryLicenseStyle}"/>
+                </Hyperlink>
+            </TextBlock>
+        </Grid>
+    </DataTemplate>
+
 </ResourceDictionary>
