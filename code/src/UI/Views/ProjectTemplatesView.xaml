@@ -26,7 +26,7 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding Title}" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
+                                <TextBlock Text="{Binding Title}" Style="{StaticResource TextSubGroupTemplateItemsHeaderStyle}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
                                     <ListView                                        
                                         ItemsSource="{Binding Templates}"
                                         Style="{StaticResource ListViewProjectTemplatesStyle}"
@@ -41,7 +41,7 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                <TextBlock Text="{Binding Title}" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
+                                <TextBlock Text="{Binding Title}" Style="{StaticResource TextSubGroupTemplateItemsHeaderStyle}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
                                     <ListView
                                         Margin="{StaticResource MediumMargin}"
                                         ItemsSource="{Binding Templates}"

@@ -189,8 +189,10 @@
     <Compile Include="Converters\ColumnCountConverter.cs" />
     <Compile Include="Converters\FixedWidthConverter.cs" />
     <Compile Include="Converters\ItemAlignmentConverter.cs" />
+    <Compile Include="Converters\MicrosoftTemplatesAuthorConverter.cs" />
     <Compile Include="Converters\StringVisibilityConverter.cs" />
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
+    <Compile Include="ViewModels\DependencyInfoViewModel.cs" />
     <Compile Include="Views\ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>
     </Compile>

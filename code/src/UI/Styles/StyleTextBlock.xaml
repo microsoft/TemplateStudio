@@ -38,6 +38,12 @@
         <Setter Property="FontSize" Value="{StaticResource UI_L_FontSize}" />
     </Style>
 
+    <Style TargetType="TextBlock" x:Key="TextSubGroupTemplateItemsHeaderStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="Foreground" Value="{StaticResource UIDarkGray}" />
+        <Setter Property="FontSize" Value="{StaticResource UI_M_FontSize}" />
+        <Setter Property="Margin" Value="{StaticResource MediumLeftTopMargin}" />
+    </Style>
+
     <Style TargetType="TextBlock" x:Key="TextTemplateItemTitleStyle" BasedOn="{StaticResource UIBaseText}">
         <Setter Property="FontWeight" Value="SemiBold" />
     </Style>
@@ -70,8 +76,19 @@
         <Setter Property="Foreground" Value="{StaticResource UIDarkGray}" />
         <Setter Property="FontSize" Value="{StaticResource UI_L_FontSize}" />
     </Style>
-    
+
+    <Style TargetType="TextBlock" x:Key="TextSummaryIconPoint" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="Foreground" Value="{StaticResource UIBlack}" />
+        <Setter Property="FontSize" Value="{StaticResource UI_XS_FontSize}" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+        <Setter Property="Margin" Value="0,8,0,0" />
+        <Setter Property="Text" Value="&#xE1F5;"/>
+    </Style>
+
     <Style TargetType="TextBlock" x:Key="TextSummaryItemStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
         <Setter Property="Foreground" Value="{StaticResource UIBlack}" />
         <!--Foreground is changed from ViewModel changing from UIBlue to UIBlack-->
@@ -88,7 +105,8 @@
     </Style>
 
     <Style TargetType="TextBlock" x:Key="TextSumaryLicenseStyle" BasedOn="{StaticResource UIBaseText}">
-        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
+        <Setter Property="FontSize" Value="{StaticResource UI_M_FontSize}" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
         <Setter Property="Foreground" Value="{StaticResource UIBlue}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
@@ -102,7 +120,6 @@
     <Style TargetType="TextBlock" x:Key="TextInformationPropertyTitle">
         <Setter Property="FontSize" Value="{StaticResource UI_M_FontSize}" />
         <Setter Property="FontWeight" Value="SemiBold" />
-        <Setter Property="MinWidth" Value="40" />
     </Style>
 
     <Style TargetType="TextBlock" x:Key="TextInformationPropertyValue">

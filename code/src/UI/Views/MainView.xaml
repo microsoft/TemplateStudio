@@ -5,6 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
     xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
+    xmlns:converter="clr-namespace:Microsoft.Templates.UI.Converters"
     x:Class="Microsoft.Templates.UI.Views.MainView"
     mc:Ignorable="d"
     Title="Windows Template Studio"
@@ -24,6 +25,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            
+            <converter:MicrosoftTemplatesAuthorConverter x:Key="MicrosoftTemplatesAuthorConverter"/>
         </ResourceDictionary>
     </Window.Resources>
 
@@ -55,42 +58,38 @@
             </Grid>
 
             <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden"/>
-            <Grid Grid.Column="1" Width="17" VerticalAlignment="Stretch" HorizontalAlignment="Right" Background="{StaticResource UILightGray}" />
             <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="0"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="10"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="{x:Static res:StringRes.SummaryTitle}" Style="{StaticResource TextSummaryTitle}" Margin="{StaticResource MediumMargin}"/>
-                <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}" Margin="0,0,17,0"/>
-                <ScrollViewer Grid.Row="2" Visibility="{Binding LoadedContentVisibility}">
-                    <StackPanel Margin="{StaticResource MediumMargin}">
+                <ScrollViewer Visibility="{Binding LoadedContentVisibility}" Padding="0,40,0,65">
+                    <StackPanel Margin="{StaticResource MediumLeftMargin}">
 
-                        <StackPanel Margin="{StaticResource ExtraBigLeftMargin}" DataContext="{Binding ProjectSetup.SelectedProjectType}">
-                            <TextBlock Text="{x:Static res:StringRes.SummaryProjectTypeTitle}" Style="{StaticResource TextSummaryGroupHeader}"/>
-                            <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TextSummaryItemStyle}"/>
-                            <TextBlock Style="{StaticResource TextSummaryAuthorStyle}">
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="Made by {0}">
-                                        <Binding Path="Author" />
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                        </StackPanel>
-                        <Grid Margin="{StaticResource MediumTopMargin}">
-                            <StackPanel Margin="{StaticResource ExtraBigLeftMargin}" DataContext="{Binding ProjectSetup.SelectedFramework}">
-                                <TextBlock Text="{x:Static res:StringRes.SummaryFrameworkTitle}" Style="{StaticResource TextSummaryGroupHeader}"/>
+                        <StackPanel Orientation="Horizontal" Margin="7,0,0,0">
+                            <TextBlock Style="{StaticResource TextSummaryIconPoint}"/>
+                            <StackPanel Margin="{StaticResource MediumLeftMargin}" DataContext="{Binding ProjectSetup.SelectedProjectType}">
+                                <TextBlock Text="{x:Static res:StringRes.SummaryProjectTypeTitle}" Style="{StaticResource TextSummaryGroupHeader}"/>
                                 <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TextSummaryItemStyle}"/>
-                                <TextBlock Style="{StaticResource TextSummaryAuthorStyle}">
+                                <TextBlock Style="{StaticResource TextSummaryAuthorStyle}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}">
                                     <TextBlock.Text>
                                         <MultiBinding StringFormat="Made by {0}">
                                             <Binding Path="Author" />
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <Grid Margin="{StaticResource MediumTopMargin}">
+                            <StackPanel Orientation="Horizontal" Margin="7,0,0,0">
+                                <TextBlock Style="{StaticResource TextSummaryIconPoint}"/>
+                                <StackPanel Margin="{StaticResource MediumLeftMargin}" DataContext="{Binding ProjectSetup.SelectedFramework}">
+                                    <TextBlock Text="{x:Static res:StringRes.SummaryFrameworkTitle}" Style="{StaticResource TextSummaryGroupHeader}"/>
+                                    <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TextSummaryItemStyle}"/>
+                                    <TextBlock Style="{StaticResource TextSummaryAuthorStyle}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="Made by {0}">
+                                                <Binding Path="Author" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </StackPanel>
                             </StackPanel>
                         </Grid>
                         <Expander Header="{x:Static res:StringRes.SummaryLicenseTitle}" IsExpanded="True" Margin="{StaticResource MediumTopMargin}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}">
@@ -104,8 +103,8 @@
                         </Expander>
                     </StackPanel>
                 </ScrollViewer>
-                <Grid Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}"/>
-                <Grid Grid.Row="4" Margin="0,0,17,0">
+                <Grid Margin="0,0,17,0">
+                    <TextBlock Text="{x:Static res:StringRes.SummaryTitle}" Style="{StaticResource TextSummaryTitle}" Margin="16,10,0,0"/>
                     <TextBlock Text="{x:Static res:StringRes.SummaryTerms}" Style="{StaticResource TextSummaryTermsStyle}" VerticalAlignment="Bottom" Margin="{StaticResource MediumMargin}" />
                 </Grid>
             </Grid>
