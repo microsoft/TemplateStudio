@@ -44,20 +44,20 @@
             </Grid.RowDefinitions>
             <StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding Version, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
-                    <TextBlock Text="{x:Static res:StringRes.InfoModalVersion}" Style="{StaticResource TextInformationPropertyTitle}" MinWidth="60"/>
+                    <TextBlock Text="{x:Static res:StringRes.InfoModalVersion}" Style="{StaticResource TextInformationPropertyTitle}" />
                     <TextBlock Margin="{StaticResource MediumLeftMargin}" Text="{Binding Version}" Style="{StaticResource TextInformationPropertyValue}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding Author, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
-                    <TextBlock Text="{x:Static res:StringRes.InfoModalAuthor}" Style="{StaticResource TextInformationPropertyTitle}" MinWidth="60"/>
+                    <TextBlock Text="{x:Static res:StringRes.InfoModalAuthor}" Style="{StaticResource TextInformationPropertyTitle}" />
                     <TextBlock Text="{Binding Author}" Margin="{StaticResource MediumLeftMargin}" Style="{StaticResource TextInformationPropertyValue}" />
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding LicensesVisibility, FallbackValue=Collapsed}">
-                    <TextBlock Text="{x:Static res:StringRes.InfoModalLicences}" Style="{StaticResource TextInformationPropertyTitle}" MinWidth="60"/>
+                    <TextBlock Text="{x:Static res:StringRes.InfoModalLicences}" Style="{StaticResource TextInformationPropertyTitle}" />
                     <ItemsControl ItemsSource="{Binding LicenseTerms}" Margin="{StaticResource MediumLeftMargin}" ItemTemplate="{StaticResource LicenseSummaryItemTemplate}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding DependenciesVisibility, FallbackValue=Collapsed}">
-                    <TextBlock Text="{x:Static res:StringRes.InfoModalDependencies}" Style="{StaticResource TextInformationPropertyTitle}" MinWidth="60"/>
+                    <TextBlock Text="{x:Static res:StringRes.InfoModalDependencies}" Style="{StaticResource TextInformationPropertyTitle}" />
                     <ItemsControl ItemsSource="{Binding DependencyItems}" Margin="{StaticResource MediumLeftMargin}" ItemTemplate="{StaticResource DependencyInfoModalTemplate}">
                     </ItemsControl>
                 </StackPanel>

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
@@ -15,9 +11,9 @@ namespace Microsoft.Templates.UI.Converters
         {
             if (value != null && value.ToString().ToLower() == "microsoft")
             {
-                return Visibility.Collapsed;
+                return parameter == null ? Visibility.Collapsed : Visibility.Visible;
             }
-            return Visibility.Visible;
+            return parameter == null ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
