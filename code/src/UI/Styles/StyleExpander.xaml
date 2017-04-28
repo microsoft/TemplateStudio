@@ -18,7 +18,7 @@
                                             <Setter.Value>
                                                 <ControlTemplate>
                                                     <Border>
-                                                        <Rectangle Margin="0" SnapsToDevicePixels="True" Stroke="Black" StrokeThickness="1" StrokeDashArray="1 2"/>
+                                                        <Rectangle Margin="0" SnapsToDevicePixels="True" Stroke="{StaticResource UIBlack}" StrokeThickness="1" StrokeDashArray="1 2"/>
                                                     </Border>
                                                 </ControlTemplate>
                                             </Setter.Value>
@@ -43,16 +43,15 @@
                                                                 VerticalAlignment="Center" 
                                                                 Text="&#xE970;" 
                                                                 FontFamily="Segoe MDL2 Assets" 
-                                                                FontSize="10" 
-                                                                Foreground="#FF333333"
-                                                            />
+                                                                FontSize="10"
+                                                                Foreground="{StaticResource UIBlack}" />
                                                             <ContentPresenter 
                                                                 ContentTemplate="{TemplateBinding ContentTemplate}" 
                                                                 Content="{TemplateBinding Content}"
                                                                 Grid.Column="1"
                                                                 ContentStringFormat="{TemplateBinding ContentStringFormat}" 
-                                                                HorizontalAlignment="Left"
-                                                                Margin="5,0,0,0" 
+                                                                HorizontalAlignment="Left"                                                                                                                                
+                                                                Margin="{StaticResource SmallLeftMargin}"
                                                                 RecognizesAccessKey="True" 
                                                                 SnapsToDevicePixels="True"
                                                                 VerticalAlignment="Top" />
@@ -63,13 +62,10 @@
                                                             <Setter Property="Text" TargetName="arrow" Value="&#xE96E;" />
                                                         </Trigger>
                                                         <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="Foreground" TargetName="arrow" Value="Black"/>
+                                                            <Setter Property="Foreground" TargetName="arrow" Value="{StaticResource UIBlue}"/>
                                                         </Trigger>
                                                         <Trigger Property="IsPressed" Value="True">
-                                                            <Setter Property="Foreground" TargetName="arrow" Value="Black"/>
-                                                        </Trigger>
-                                                        <Trigger Property="IsEnabled" Value="False">
-                                                            <Setter Property="Foreground" TargetName="arrow" Value="#FF707070"/>
+                                                            <Setter Property="FontWeight" TargetName="arrow" Value="Bold"/>
                                                         </Trigger>
                                                     </ControlTemplate.Triggers>
                                                 </ControlTemplate>

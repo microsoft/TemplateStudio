@@ -15,6 +15,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Microsoft.Templates.UI.Controls
@@ -49,11 +50,19 @@ namespace Microsoft.Templates.UI.Controls
 
                 var image = new Image
                 {
-                    Source = bitmap
+                    Source = bitmap,
+                    Stretch = Stretch
                 };
 
                 Content = image;
             }
+        }
+
+        public static readonly DependencyProperty StretchProperty = DependencyProperty.Register("Stretch", typeof(Stretch), typeof(ImageEx), new PropertyMetadata(Stretch.Uniform));
+        public Stretch Stretch
+        {
+            get { return (Stretch)GetValue(StretchProperty); }
+            set { SetValue(StretchProperty, value); }
         }
 
         public static readonly DependencyProperty SourcePathProperty = DependencyProperty.Register("SourcePath", typeof(string), typeof(ImageEx), new PropertyMetadata(null));

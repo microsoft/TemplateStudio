@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
              xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
+                    xmlns:converter="clr-namespace:Microsoft.Templates.UI.Converters"
              x:Name="root"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -16,6 +17,8 @@
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleTextBlock.xaml" />
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <converter:MicrosoftTemplatesAuthorConverter x:Key="MicrosoftTemplatesAuthorConverter"/>
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -36,14 +39,14 @@
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <controls:ImageEx Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Center" Focusable="False" SourcePath="{Binding TemplateInfo.Icon, ElementName=root}" />
+                <controls:ImageEx Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Focusable="False" SourcePath="{Binding TemplateInfo.Icon, ElementName=root}" MaxWidth="50"/>
                 <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding TemplateInfo.Name, ElementName=root}" Margin="{StaticResource MediumLeftRightMargin}" Foreground="{Binding TitleForeground, ElementName=root}" />
-                <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateItemAuthorStyle}" Margin="{StaticResource MediumLeftMargin}">
+                <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateItemAuthorStyle}" MaxHeight="40" Margin="{StaticResource MediumLeftMargin}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
                             <Binding Path="TemplateInfo.Author" ElementName="root" />
@@ -54,8 +57,8 @@
                 <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" Visibility="{Binding NoEditingContentVisibility, ElementName=root}" Click="OnShowInfo" />
                 <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource CloseEditionInfoButtonStyle}" Visibility="{Binding EditingContentVisibility, ElementName=root}" Command="{Binding CloseEditionCommand, ElementName=root}" />
             </Grid>
-
-            <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding TemplateInfo.Summary, ElementName=root}" Visibility="{Binding NoEditingContentVisibility, ElementName=root}" Margin="{StaticResource MediumLeftMargin}"/>
+            
+            <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding TemplateInfo.Summary, ElementName=root}" Visibility="{Binding NoEditingContentVisibility, ElementName=root}" />
             <Grid Grid.Row="1" Visibility="{Binding EditingContentVisibility, ElementName=root}" VerticalAlignment="Bottom" Margin="{StaticResource SmallBottomMargin}" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>

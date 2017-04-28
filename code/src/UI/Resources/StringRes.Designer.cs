@@ -286,6 +286,42 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Author:.
+        /// </summary>
+        public static string InfoModalAuthor {
+            get {
+                return ResourceManager.GetString("InfoModalAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dependencies:.
+        /// </summary>
+        public static string InfoModalDependencies {
+            get {
+                return ResourceManager.GetString("InfoModalDependencies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Licences:.
+        /// </summary>
+        public static string InfoModalLicences {
+            get {
+                return ResourceManager.GetString("InfoModalLicences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version:.
+        /// </summary>
+        public static string InfoModalVersion {
+            get {
+                return ResourceManager.GetString("InfoModalVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Less detail.
         /// </summary>
         public static string LessDetail {
@@ -511,7 +547,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to By continuing, you agree to the licenses in the licensing section for the generated project. By continuing, you agree to those licenses..
+        ///   Looks up a localized string similar to By continuing, you agree to the terms of all the licenses in the licensing section above..
         /// </summary>
         public static string SummaryTerms {
             get {

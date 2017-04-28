@@ -259,7 +259,7 @@
     <value>Project Type</value>
   </data>
   <data name="SummaryTerms" xml:space="preserve">
-    <value>By continuing, you agree to the licenses in the licensing section for the generated project. By continuing, you agree to those licenses.</value>
+    <value>By continuing, you agree to the terms of all the licenses in the licensing section above.</value>
   </data>
   <data name="SummaryTitle" xml:space="preserve">
     <value>Summary</value>
@@ -324,5 +324,17 @@
   </data>
   <data name="EditTemplateDescription" xml:space="preserve">
     <value>Enter a name</value>
+  </data>
+  <data name="InfoModalAuthor" xml:space="preserve">
+    <value>Author:</value>
+  </data>
+  <data name="InfoModalDependencies" xml:space="preserve">
+    <value>Dependencies:</value>
+  </data>
+  <data name="InfoModalLicences" xml:space="preserve">
+    <value>Licences:</value>
+  </data>
+  <data name="InfoModalVersion" xml:space="preserve">
+    <value>Version:</value>
   </data>
 </root>
