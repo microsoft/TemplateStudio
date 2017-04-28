@@ -38,6 +38,12 @@
         <Setter Property="FontSize" Value="{StaticResource UI_L_FontSize}" />
     </Style>
 
+    <Style TargetType="TextBlock" x:Key="TextSubGroupTemplateItemsHeaderStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="Foreground" Value="{StaticResource UIDarkGray}" />
+        <Setter Property="FontSize" Value="{StaticResource UI_M_FontSize}" />
+        <Setter Property="Margin" Value="{StaticResource MediumLeftTopMargin}" />
+    </Style>
+
     <Style TargetType="TextBlock" x:Key="TextTemplateItemTitleStyle" BasedOn="{StaticResource UIBaseText}">
         <Setter Property="FontWeight" Value="SemiBold" />
     </Style>
