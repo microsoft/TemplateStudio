@@ -2,6 +2,7 @@
 using Microsoft.Templates.Core.Mvvm;
 using System.Windows.Input;
 using System;
+using Microsoft.Templates.UI.Views;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
@@ -26,7 +27,9 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnItemClick()
         {
-            InformationViewModel.Current.Initialize(_item);
+            //InformationViewModel.Current.Initialize(_item);            
+            var infoView = new InformationWindow(_item, MainViewModel.Current.MainView);
+            infoView.ShowDialog();            
         }
     }
 }
