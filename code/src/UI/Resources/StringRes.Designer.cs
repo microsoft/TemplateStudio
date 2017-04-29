@@ -538,7 +538,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to None Selected.
+        ///   Looks up a localized string similar to None.
         /// </summary>
         public static string SummaryNoLicenses {
             get {
