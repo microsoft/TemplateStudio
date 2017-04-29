@@ -1,1 +1,10 @@
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Setting storage is a class to simplify storing your application data.  It handles loading, saving, serializing your data and easy access to your application's data.
+
+These are the main types of app data:
+* Local: stored on the device, backed up in the cloud, and persists across updates
+* LocalCache: persistent data that exists on the current device, not backed up, and persists across updates
+* SharedLocal: persistent across all app users
+* Roaming: exists on all devices where the user has installed the app
+* Temporary: can be deleted by the system at any time
+
+To find out more about storage, head to <https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata>.
