@@ -187,6 +187,7 @@
       <DependentUpon>TemplateInfoControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\ColumnCountConverter.cs" />
+    <Compile Include="Converters\EmptyCollectionVisibilityConverter.cs" />
     <Compile Include="Converters\FixedWidthConverter.cs" />
     <Compile Include="Converters\ItemAlignmentConverter.cs" />
     <Compile Include="Converters\MicrosoftTemplatesAuthorConverter.cs" />
