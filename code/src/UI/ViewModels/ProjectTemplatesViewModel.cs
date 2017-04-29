@@ -69,6 +69,11 @@ namespace Microsoft.Templates.UI.ViewModels
         public Func<IEnumerable<string>> GetUsedNamesFunc => () => SavedTemplates.Select(t => t.Name);
         public Func<IEnumerable<string>> GetUsedTemplatesIdentitiesFunc => () => SavedTemplates.Select(t => t.Template.Identity);
 
+        public ProjectTemplatesViewModel()
+        {
+            this.SummaryFeatures.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryFeatures)); };
+            this.SummaryPages.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryPages)); };
+        }
 
         public async Task InitializeAsync()
         {

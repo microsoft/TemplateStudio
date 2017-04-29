@@ -337,4 +337,13 @@
   <data name="InfoModalVersion" xml:space="preserve">
     <value>Version:</value>
   </data>
+  <data name="SummaryNoFeatures" xml:space="preserve">
+    <value>None Selected</value>
+  </data>
+  <data name="SummaryNoLicenses" xml:space="preserve">
+    <value>None Selected</value>
+  </data>
+  <data name="SummaryNoPages" xml:space="preserve">
+    <value>None Selected</value>
+  </data>
 </root>
