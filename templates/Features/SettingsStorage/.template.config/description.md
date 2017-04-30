@@ -7,4 +7,4 @@ These are the main types of app data:
 * Roaming: exists on all devices where the user has installed the app
 * Temporary: can be deleted by the system at any time
 
-To find out more about storage, head to <https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata>.
+To find out more about storage, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata).
