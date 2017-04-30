@@ -45,7 +45,7 @@ namespace Microsoft.Templates.Core.Locations
 
         private readonly TemplatesSource _source;
         private readonly TemplatesContent _content;
-
+        private readonly TemplatesSource _customSource = new CustomTemplatesSource();
 
         public string WorkingFolder => _workingFolder.Value;
 
@@ -124,6 +124,7 @@ namespace Microsoft.Templates.Core.Locations
             try
             {
                 _source.Adquire(_content.TemplatesFolder);
+                _customSource.Adquire(_content.TemplatesFolder);
             }
             catch (Exception ex)
             {

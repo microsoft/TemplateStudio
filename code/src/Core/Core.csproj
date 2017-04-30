@@ -145,6 +145,7 @@
     <Compile Include="Gen\GenShell.cs" />
     <Compile Include="Gen\GenContext.cs" />
     <Compile Include="Gen\GenToolBox.cs" />
+    <Compile Include="Locations\CustomTemplatesSource.cs" />
     <Compile Include="Locations\Fs.cs" />
     <Compile Include="Locations\InvalidSignatureException.cs" />
     <Compile Include="Locations\LocalTemplatesSource.cs" />
