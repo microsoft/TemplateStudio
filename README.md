@@ -39,7 +39,7 @@ I need an app that uses MVVM Light, uses master detail, can suspend and resume, 
 * Blank page
 * Map page
 * Master/Detail page
-* Settings page
+* [Settings page](docs/pages/settings.md`)
 * Tabbed page
 * Web view page
 
@@ -54,7 +54,9 @@ I need an app that uses MVVM Light, uses master detail, can suspend and resume, 
 
 ## Feedback, Requests and Roadmp
 
-Please use [GitHub issues](https://github.com/Microsoft/WindowsTemplateStudio/issues) for questions or comments.  If you have specific feature requests or would like to vote on what others are recommending, please go to the [GitHub issues](https://github.com/Microsoft/WindowsTemplateStudio/issues) section as well.  We would love to see what you are thinking.
+Please use [GitHub issues](https://github.com/Microsoft/WindowsTemplateStudio/issues) for feedback, questions or comments.  
+
+If you have specific feature requests or would like to vote on what others are recommending, please go to the [GitHub issues](https://github.com/Microsoft/WindowsTemplateStudio/issues) section as well.  We would love to see what you are thinking.
 
 Here is what we're currently thinking in our [roadmap](docs/roadmap.md)
 
@@ -64,14 +66,14 @@ Do you want to contribute? Here are our [contribution guidelines](contributing.m
 
 ## Principles
 
-* Principle #1: Generated templates will be kept simple.
-* Principle #2: Generated templates are a starting point, not a completed application.
-* Principle #3: Generated templates once generated, must be able to be compiled and run.
-* Principle #4: Generated templates should work on all device families.
-* Principle #5: Templates should have comments to aid developers.  This includes links to signup pages for keys, MSDN, blogs and how-to's.  All guidance provide should be validated from either the framework/SDK/library’s creator.
-* Principle #6: All features will be supported for two current Windows SDK for Windows 10 release cycles or until another principle supersedes it.
-* Principle #7: Templates released in production will try to adhere to the design language used in the current release of Windows 10.
-* Principle #8: Code should follow [.NET Core coding style](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md)
+1. Generated templates will be kept simple.
+1. Generated templates are a starting point, not a completed application.
+1. Generated templates once generated, must be able to be compiled and run.
+1. Generated templates should work on all device families.
+1. Templates should have comments to aid developers.  This includes links to signup pages for keys, MSDN, blogs and how-to's.  All guidance provide should be validated from either the framework/SDK/library’s creator.
+1. All features will be supported for two current Windows SDK for Windows 10 release cycles or until another principle supersedes it.
+1. Templates released in production will try to adhere to the design language used in the current release of Windows 10.
+1. Code should follow [.NET Core coding style](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md)
 
 ## License
 
