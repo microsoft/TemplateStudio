@@ -8,7 +8,7 @@
     xmlns:converter="clr-namespace:Microsoft.Templates.UI.Converters"
     x:Class="Microsoft.Templates.UI.Views.MainView"
     mc:Ignorable="d"
-    Title="Windows Template Studio"
+    Title="{x:Static res:StringRes.Title}"
     Width="1294"
     Height="727"
     MinWidth="800"
