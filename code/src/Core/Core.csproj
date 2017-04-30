@@ -124,6 +124,7 @@
     <Compile Include="Composition\QueryablePropertyDictionary.cs" />
     <Compile Include="Composition\QueryNode.cs" />
     <Compile Include="Configuration\Configuration.cs" />
+    <Compile Include="CustomSettings.cs" />
     <Compile Include="Diagnostics\FormattedWriterMessages.cs" />
     <Compile Include="Diagnostics\HealthWriters.cs" />
     <Compile Include="Diagnostics\ExceptionTracker.cs" />

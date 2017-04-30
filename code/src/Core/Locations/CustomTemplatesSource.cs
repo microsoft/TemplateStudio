@@ -10,8 +10,11 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
+using System.Collections.Generic;
 using System.IO;
 using Microsoft.Templates.Core.Diagnostics;
+using Newtonsoft.Json;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -19,19 +22,32 @@ namespace Microsoft.Templates.Core.Locations
     {
         public override string Id { get => "Custom"; }
 
-        // TODO [ML]: add ability to set this
-        // TODO [ML]: get this from settings
-        public string Origin { get => $@"C:\MyLocalWtsTemplates\"; }
+        //public string LocalPath { get => $@"C:\MyLocalWtsTemplates\"; }
+
+        public string _localPath;
+
+        public string LocalPath
+        {
+            get
+            {
+                if (_localPath == null)
+                {
+                    _localPath = CustomSettings.CustomTemplatePath;
+                }
+
+                return _localPath;
+            }
+        }
 
         public override void Adquire(string targetFolder)
         {
-            if (Origin != null && Directory.Exists(Origin))
+            if (LocalPath != null && Directory.Exists(LocalPath))
             {
-                AppHealth.Current.Info.TrackAsync($"Loading local templates from: {Origin}").FireAndForget();
+                AppHealth.Current.Info.TrackAsync($"Loading local templates from: {LocalPath}").FireAndForget();
 
                 // TODO [ML]: need to get version properly
                 var targetVersionFolder = Path.Combine(targetFolder, "0.0.0.0");
-                Fs.CopyRecursive(Origin, targetVersionFolder);
+                Fs.CopyRecursive(LocalPath, targetVersionFolder);
             }
             else
             {
