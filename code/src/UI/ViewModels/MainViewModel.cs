@@ -137,6 +137,8 @@ namespace Microsoft.Templates.UI.ViewModels
         {            
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += Sync_SyncStatusChanged;
 
+            this.SummaryLicenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryLicenses)); };
+
             try
             {
                 await GenContext.ToolBox.Repo.SynchronizeAsync();

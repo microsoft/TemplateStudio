@@ -529,6 +529,33 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to None Selected.
+        /// </summary>
+        public static string SummaryNoFeatures {
+            get {
+                return ResourceManager.GetString("SummaryNoFeatures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string SummaryNoLicenses {
+            get {
+                return ResourceManager.GetString("SummaryNoLicenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None Selected.
+        /// </summary>
+        public static string SummaryNoPages {
+            get {
+                return ResourceManager.GetString("SummaryNoPages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pages.
         /// </summary>
         public static string SummaryPagesTitle {
