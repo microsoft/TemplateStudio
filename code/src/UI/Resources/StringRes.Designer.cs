@@ -385,7 +385,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select page and features.
+        ///   Looks up a localized string similar to Select pages and features.
         /// </summary>
         public static string ProjectTemplatesTitle {
             get {
