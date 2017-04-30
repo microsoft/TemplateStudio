@@ -28,13 +28,13 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         FontSize="16"
-                        Foreground="{x:Bind SelectedForeground, Mode=OneWay}"
+                        Foreground="{ThemeResource SystemControlFocusVisualPrimaryBrush}"
                         Glyph="{x:Bind SymbolAsChar}" />
                 <TextBlock
                         Grid.Column="1"
                         Margin="0,0,24,0"
                         VerticalAlignment="Center"
-                        Foreground="{x:Bind SelectedForeground, Mode=OneWay}"
+                        Foreground="{ThemeResource SystemControlFocusVisualPrimaryBrush}"
                         Text="{x:Bind Label}"
                         TextTrimming="CharacterEllipsis" />
             </Grid>
