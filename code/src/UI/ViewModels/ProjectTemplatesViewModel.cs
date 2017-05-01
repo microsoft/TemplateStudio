@@ -159,32 +159,26 @@ namespace Microsoft.Templates.UI.ViewModels
         }
 
         private void SaveNewTemplate((string Name, ITemplateInfo Template) item, bool isRemoveEnabled = true)
-        {            
+        {
             SavedTemplates.Add(item);
+
+            var newItem = new SummaryItemViewModel
+            {
+                Author = item.Template.Author,
+                HasDefaultName = !item.Template.GetItemNameEditable(),
+                Identity = item.Template.Identity,
+                IsRemoveEnabled = isRemoveEnabled,
+                ItemName = item.Name,
+                TemplateName = item.Template.Name,
+            };
 
             if (item.Template.GetTemplateType() == TemplateType.Page)
             {
-                SummaryPages.Add(new SummaryItemViewModel()
-                {
-                    Author = item.Template.Author,
-                    HasDefaultName = !item.Template.GetItemNameEditable(),
-                    Identity = item.Template.Identity,
-                    IsRemoveEnabled = isRemoveEnabled,
-                    ItemName = item.Name,
-                    TemplateName = item.Template.Name,
-                });
+                SummaryPages.Add(newItem);
             }
             else if (item.Template.GetTemplateType() == TemplateType.Feature)
             {
-                SummaryFeatures.Add(new SummaryItemViewModel()
-                {
-                    Author = item.Template.Author,
-                    HasDefaultName = !item.Template.GetItemNameEditable(),
-                    Identity = item.Template.Identity,
-                    IsRemoveEnabled = isRemoveEnabled,
-                    ItemName = item.Name,
-                    TemplateName = item.Template.Name,
-                });
+                SummaryFeatures.Add(newItem);
             }
 
             UpdateTemplateAvailable?.Invoke(this, EventArgs.Empty);
