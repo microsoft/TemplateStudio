@@ -15,6 +15,7 @@ using System.Windows.Forms;
 
 namespace Microsoft.Templates.Extension
 {
+    // TODO [ML]: localize this UI
     public partial class GeneralSettingsPageControl : UserControl
     {
         internal GeneralSettingsPage settingsPage;
