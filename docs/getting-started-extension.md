@@ -8,7 +8,11 @@
 * **Pre-release (stable):** <https://www.myget.org/F/windows-template-studio-prerelease/vsix/>
 * **Nightly:** <https://www.myget.org/F/windows-template-studio-nightly/vsix/>
 
-### Pre-release build version
+## Public Release
+
+** Coming Soon **
+
+## Pre-release build version
 
 The Pre-release build version allows you to get updates with stable features not officially released yet (so, they are not definitive and may change).
 
