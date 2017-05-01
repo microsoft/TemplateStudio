@@ -2,9 +2,7 @@
 
 By default the settings page uses contains a single boolean setting to track whether the app should be displayed with the Light or Dark theme.
 
-You can add additional settings by following the instructions below.
-
-Note there are separate instructions if using [MVVM Basic or MVVM Light](#mvvm), or if using [Code Behind](#cb).
+You can add additional settings by following the instructions below.  Note there are separate instructions if you are using [MVVM Basic / MVVM Light](#mvvm) or [Code Behind](#cb).
 
 ## <a name="mvvm"></a>Add another boolean setting (MVVM Basic or MVVM Light)
 
