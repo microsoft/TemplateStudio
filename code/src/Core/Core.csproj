@@ -123,10 +123,14 @@
     <Compile Include="Composition\QueryableProperty.cs" />
     <Compile Include="Composition\QueryablePropertyDictionary.cs" />
     <Compile Include="Composition\QueryNode.cs" />
+    <Compile Include="Composition\QueryOperator.cs" />
     <Compile Include="Configuration\Configuration.cs" />
     <Compile Include="Diagnostics\FormattedWriterMessages.cs" />
+    <Compile Include="Diagnostics\GenStatusEnum.cs" />
     <Compile Include="Diagnostics\HealthWriters.cs" />
     <Compile Include="Diagnostics\ExceptionTracker.cs" />
+    <Compile Include="Diagnostics\TelemetryMetrics.cs" />
+    <Compile Include="Diagnostics\TelemetryProperties.cs" />
     <Compile Include="Diagnostics\TraceTracker.cs" />
     <Compile Include="Diagnostics\FileHealthWriter.cs" />
     <Compile Include="Diagnostics\IHealthWriter.cs" />
@@ -136,6 +140,8 @@
     <Compile Include="Diagnostics\TelemetryTracker.cs" />
     <Compile Include="Diagnostics\TraceHealthWriter.cs" />
     <Compile Include="Diagnostics\ShellHealthWriter.cs" />
+    <Compile Include="Diagnostics\WizardStatusEnum.cs" />
+    <Compile Include="Diagnostics\WizardTypeEnum.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />

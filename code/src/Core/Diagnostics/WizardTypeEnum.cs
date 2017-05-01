@@ -10,12 +10,12 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System.Collections.Generic;
-
 namespace Microsoft.Templates.Core.Diagnostics
 {
-    internal static class HealthWriters
+    public enum WizardTypeEnum
     {
-        public static List<IHealthWriter> Available { get; } = new List<IHealthWriter>();
+        NewProject = 0,
+        AddPage = 1,
+        AddFeature
     }
 }

@@ -10,12 +10,11 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System.Collections.Generic;
-
-namespace Microsoft.Templates.Core.Diagnostics
+namespace Microsoft.Templates.Core.Composition
 {
-    internal static class HealthWriters
+    public enum QueryOperator
     {
-        public static List<IHealthWriter> Available { get; } = new List<IHealthWriter>();
+        Equals,
+        NotEquals
     }
 }

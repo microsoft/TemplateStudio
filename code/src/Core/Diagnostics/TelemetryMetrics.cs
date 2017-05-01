@@ -10,12 +10,12 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System.Collections.Generic;
-
 namespace Microsoft.Templates.Core.Diagnostics
 {
-    internal static class HealthWriters
+    public class TelemetryMetrics
     {
-        public static List<IHealthWriter> Available { get; } = new List<IHealthWriter>();
+        public static string PagesCount { get; private set; } = TelemetryTracker.PropertiesPrefix + "PagesCount";
+        public static string TimeSpent { get; private set; } = TelemetryTracker.PropertiesPrefix + "TimeSpent";
+        public static string FeaturesCount { get; private set; } = TelemetryTracker.PropertiesPrefix + "FeaturesCount";
     }
 }
