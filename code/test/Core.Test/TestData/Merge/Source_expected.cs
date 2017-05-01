@@ -16,9 +16,9 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 
-using App38.Shell;
-using App38.BackgroundTask;
-using App38.Services;
+using TestData.Shell;
+using TestData.BackgroundTask;
+using TestData.Services;
 
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -33,7 +33,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 //USING
 
-namespace App38
+namespace TestData
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
