@@ -5,14 +5,14 @@
 ### Visual Studio Extension Feed URLs for Windows Template Studio
 
 * **Public Release (Coming soon):** The official extension from the [Visual Studio Gallery](https://visualstudiogallery.msdn.microsoft.com/)
-* **Pre-release (stable):** <https://www.myget.org/F/windows-template-studio-prerelease/vsix/>
 * **Nightly:** <https://www.myget.org/F/windows-template-studio-nightly/vsix/>
+* **Pre-release (stable):** <https://www.myget.org/F/windows-template-studio-prerelease/vsix/>
 
-## Public Release
+## Public Release instructions
 
 ** Coming Soon **
 
-## Pre-release build version
+## Nightly / Pre-release instructions
 
 The Pre-release build version allows you to get updates with stable features not officially released yet (so, they are not definitive and may change).
 
