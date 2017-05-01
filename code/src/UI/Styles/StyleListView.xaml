@@ -6,10 +6,6 @@
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Thickness.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-
-
-
-
     <Style x:Key="ListViewBaseStyle" TargetType="ListView">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
@@ -51,11 +47,6 @@
         <Setter Property="BorderThickness" Value="5,1,1,1"/>
         <Setter Property="BorderBrush" Value="{StaticResource UIGray}"/>
         <Setter Property="Margin" Value="{StaticResource BigRightBottomMargin}"/>
-        <Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect Opacity="0.2" />
-            </Setter.Value>
-        </Setter>
     </Style>
 
     <Style x:Key="ListViewProjectSetupStyle" TargetType="ListView" BasedOn="{StaticResource ListViewBaseStyle}">
