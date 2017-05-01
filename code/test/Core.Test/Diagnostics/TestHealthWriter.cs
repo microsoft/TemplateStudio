@@ -11,23 +11,32 @@
 // ******************************************************************
 
 using System;
+using System.Diagnostics;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
 
 namespace Microsoft.Templates.Core.Test.Diagnostics
 {
-    public sealed class TelemetryFixture : IDisposable
+    public class TestHealthWriter : IHealthWriter
     {
-        public TelemetryService Telemetry { get; }
+        public List<string> Events = new List<string>();
+        public List<Exception> Exceptions = new List<Exception>();
 
-        public TelemetryFixture()
+        public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
         {
-            Telemetry = TelemetryService.Current;
-        } 
+            await Task.Run(() => Events.Add($"{eventType.ToString()};{message};{ex?.ToString()}"));
+        }
 
-        public void Dispose()
+        public async Task WriteExceptionAsync(Exception ex, string message = null)
         {
-            TelemetryService.Current.Dispose();
+            await Task.Run(() => Exceptions.Add(ex));
+        }
+
+        public bool AllowMultipleInstances()
+        {
+            return true;
         }
     }
 }

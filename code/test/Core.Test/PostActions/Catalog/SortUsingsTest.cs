@@ -10,12 +10,10 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core.PostActions.Catalog.SortUsings;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using Microsoft.Templates.Core.PostActions.Catalog.SortUsings;
+
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog

@@ -12,9 +12,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
@@ -26,10 +23,12 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
     public class TelemetryServiceTest : IClassFixture<TelemetryFixture>
     {
         TelemetryFixture _fixture;
+
         public TelemetryServiceTest(TelemetryFixture fixture)
         {
             _fixture = fixture;
         }
+
         [Fact]
         public void Instantiated()
         {
@@ -45,6 +44,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
                 { TelemetryProperties.Framework, "MVVMLight" },
                 { TelemetryProperties.ProjectType, "Blank" }
             };
+
             await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.ProjectGen, props);
         }
 
@@ -57,11 +57,13 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
                 { TelemetryProperties.Framework, "MVVMLight" },
                 { TelemetryProperties.ProjectType, "Blank" }
             };
+
             await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.ProjectGen, props);
 
             props[TelemetryProperties.TemplateName] = "OtherData";
             props[TelemetryProperties.Framework] = "Caliburn";
             props[TelemetryProperties.ProjectType] = "SplitView";
+
             await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.ProjectGen, props);
 
         }
@@ -71,6 +73,5 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         {
             await _fixture.Telemetry.TrackExceptionAsync(new Exception("Telemetry Test TrackException"));
         }
-
     }
 }

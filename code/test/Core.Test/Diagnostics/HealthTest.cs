@@ -12,9 +12,6 @@
 
 using System;
 using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
@@ -23,26 +20,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Diagnostics
 {
-    public class TestHealthWriter : IHealthWriter
-    {
-        public List<string> Events = new List<string>();
-        public List<Exception> Exceptions = new List<Exception>();
 
-        public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
-        {
-            await Task.Run(()=>Events.Add($"{eventType.ToString()};{message};{ex?.ToString()}"));
-        }
-
-        public async Task WriteExceptionAsync(Exception ex, string message = null)
-        {
-            await Task.Run(() => Exceptions.Add(ex));
-        }
-
-        public bool AllowMultipleInstances()
-        {
-            return true;
-        }
-    }
     public class HealthTest
     {
         TestHealthWriter testWriter=null;
@@ -51,6 +29,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
             testWriter = new TestHealthWriter();
             AppHealth.Current.AddWriter(testWriter);
         }
+
         [Fact]
         public async Task UsageAsync()
         {
@@ -97,6 +76,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         public async Task VerifyTraceLevelChangeAsync()
         {
             TraceEventType previousLevel = Configuration.Current.DiagnosticsTraceLevel;
+
             try
             {
                 Configuration.Current.DiagnosticsTraceLevel = TraceEventType.Warning;
@@ -107,6 +87,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
                 await AppHealth.Current.Error.TrackAsync("ErrorMustBeRegistered");
 
                 Exception exToTest = new Exception("ExceptionMustBeRegistered");
+
                 await AppHealth.Current.Exception.TrackAsync(exToTest);
 
                 Assert.DoesNotContain("Verbose;VerboseShouldNotBeRegistered;", testWriter.Events);
