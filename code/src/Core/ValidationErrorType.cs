@@ -10,14 +10,14 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-namespace Microsoft.Templates.Core.Locations
+namespace Microsoft.Templates.Core
 {
-    public abstract class TemplatesSource
+    public enum ValidationErrorType
     {
-        protected const string SourceFolderName = "Templates";
-
-        public abstract string Id { get; }
-
-        public abstract void Adquire(string targetFolder);
+        None,
+        Empty,
+        AlreadyExists,
+        BadFormat,
+        ReservedName
     }
 }

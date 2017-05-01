@@ -11,12 +11,9 @@
 // ******************************************************************
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
@@ -47,7 +44,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var result = source.Merge(merge);
 
             File.WriteAllLines(originalFilePath, result);
-
             File.Delete(_config);
 
             //REFRESH PROJECT TO UN-DIRTY IT
@@ -69,6 +65,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             else
             {
                 var path = Regex.Replace(_config, PostactionRegex, ".");
+
                 return (File.Exists(path) ? path : String.Empty);
             }
         }

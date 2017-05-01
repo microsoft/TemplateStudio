@@ -16,13 +16,10 @@ using System.IO;
 using System.IO.Packaging;
 using System.Linq;
 using System.Net.Mime;
-using System.Reflection;
 using System.Security;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
-using System.Text;
-using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
 
@@ -30,35 +27,47 @@ namespace Microsoft.Templates.Core.Locations
 {
     public class Templatex
     {
+        const int bufSize = 0x1000;
         public const string DefaultExtension = ".mstx";
         const string TemplatesContentRelationshipType = "http://schemas.microsoft.com/opc/2006/06/templates/securecontent";
 
         public static string PackAndSign(string source, string certThumbprint, string mimeMediaType = MediaTypeNames.Text.Plain)
         {
             string signedPack = source + DefaultExtension;
+
             PackAndSign(source, signedPack, certThumbprint, mimeMediaType);
+
             return signedPack;
         }
         public static string PackAndSign(string source, X509Certificate signingCert, string mimeMediaType = MediaTypeNames.Text.Plain)
         {
             string signedPack = source + DefaultExtension;
+
             PackAndSign(source, signedPack, signingCert, mimeMediaType);
+
             return signedPack;
         } 
         public static void PackAndSign(string source, string signedFilePack, string certThumbprint, string mimeMediaType)
         {
             X509Certificate cert = LoadCert(certThumbprint);
-            if(cert == null)
+
+            if (cert == null)
             {
                 throw new SignCertNotFoundException($"The certificate with thumbprint {certThumbprint} can't be found in CurrentUser/My or LocalMachine/My.");
             }
+
             PackAndSign(source, signedFilePack, cert, mimeMediaType);
         }
         public static void PackAndSign(string source, string signedPack, X509Certificate signingCert, string mimeMediaType)
         {
-            if (String.IsNullOrWhiteSpace(source)) throw new ArgumentException("source");
-            if (String.IsNullOrWhiteSpace(signedPack)) throw new ArgumentException("signedPack");
-            if (signingCert == null) throw new ArgumentException("signingCert");
+            if (String.IsNullOrWhiteSpace(source))
+                throw new ArgumentException("source");
+
+            if (String.IsNullOrWhiteSpace(signedPack))
+                throw new ArgumentException("signedPack");
+
+            if (signingCert == null)
+                throw new ArgumentException("signingCert");
 
             FileInfo[] files = GetSourceFiles(source);
 
@@ -110,6 +119,7 @@ namespace Microsoft.Templates.Core.Locations
                 else
                 {
                     string msg = $"Invalid digital signatures in '{signedFilePack}'. The content has been tampered or the certificate is not present, not valid or not allowed.  Unable to continue.";
+
                     throw new InvalidSignatureException(msg);
                 }
             }
@@ -132,28 +142,36 @@ namespace Microsoft.Templates.Core.Locations
         public static X509Certificate2 LoadCert(string thumbprint)
         {
             X509Certificate2 certFound = FindCertificate(thumbprint, StoreLocation.CurrentUser);
+
             if (certFound == null)
             {
                 certFound = FindCertificate(thumbprint, StoreLocation.LocalMachine);
             }
+
             if (certFound == null)
             {
                 AppHealth.Current.Warning.TrackAsync($"No certificate found matching the thumbrint {thumbprint}. Searched on CurrentUser/My and LocalMachine/My stores.").FireAndForget();
             }
+
             return certFound;
         }
 
         private static X509Certificate2 FindCertificate(string thumbprint, StoreLocation location)
         {
             X509Certificate2 certFound = null;
+
             using (X509Store store = new X509Store(StoreName.My, location))
             {
                 store.Open(OpenFlags.ReadOnly);
+
                 var certs = store.Certificates.Find(X509FindType.FindByThumbprint, thumbprint, false);
+
                 AppHealth.Current.Info.TrackAsync($"Found {certs.Count} certificates matching the thumbprint {thumbprint} in the store {location.ToString()}").FireAndForget();
+
                 if (certs.Count >= 1)
                 {
                     certFound = certs[0];
+
                     if (certs.Count > 1)
                     {
                         AppHealth.Current.Warning.TrackAsync($"More than one certificate found matching the thumbrint. Returning the first one.").FireAndForget();
@@ -164,17 +182,17 @@ namespace Microsoft.Templates.Core.Locations
                         AppHealth.Current.Info.TrackAsync($"The certificate found does not have private key.").FireAndForget();
                     }
                 }
+
                 store.Close();
             }
+
             return certFound;
         }
         private static void ExtractPart(PackagePart packagePart, string targetDirectory)
         {
             string stringPart = packagePart.Uri.ToString().TrimStart('/');
-            
             Uri partUri = new Uri(stringPart, UriKind.Relative);
-
-            var dir = targetDirectory.EndsWith(Path.DirectorySeparatorChar.ToString()) ? targetDirectory : targetDirectory + Path.DirectorySeparatorChar;
+            string dir = targetDirectory.EndsWith(Path.DirectorySeparatorChar.ToString()) ? targetDirectory : targetDirectory + Path.DirectorySeparatorChar;
             Uri uriFullPartPath = new Uri(new Uri(dir, UriKind.Absolute), partUri);
 
             Directory.CreateDirectory(Path.GetDirectoryName(uriFullPartPath.LocalPath));
@@ -187,10 +205,12 @@ namespace Microsoft.Templates.Core.Locations
 
         private static bool ValidateSignatures(Package package)
         {
-            if (package == null) throw new ArgumentNullException("ValidateSignatures(package)");
+            if (package == null)
+                throw new ArgumentNullException("ValidateSignatures(package)");
 
             PackageDigitalSignatureManager dsm = new PackageDigitalSignatureManager(package);
             bool result = dsm.IsSigned;
+
             if (result)
             {
                 result = result && ValidatePackageCertificates(dsm);
@@ -201,12 +221,12 @@ namespace Microsoft.Templates.Core.Locations
                     result = result && verifyResult == VerifyResult.Success;
                 }
             }
+
             return result;
         }
 
         private static bool ValidatePackageCertificates(PackageDigitalSignatureManager dsm)
         {
-            
             Dictionary<string, X509Certificate> certs = GetPackageCertificates(dsm);
             bool certificatesOk = certs.Count > 0;
             
@@ -227,6 +247,7 @@ namespace Microsoft.Templates.Core.Locations
                     break;
                 }
             }
+
             return certificatesOk;
         }
 
@@ -238,6 +259,7 @@ namespace Microsoft.Templates.Core.Locations
         private static Dictionary<string, X509Certificate> GetPackageCertificates(PackageDigitalSignatureManager dsm)
         {
             Dictionary<string, X509Certificate> certs = new Dictionary<string, X509Certificate>();
+
             foreach (var signature in dsm.Signatures)
             {
                 if (!certs.Keys.Contains(signature.Signer.GetSerialNumberString()))
@@ -253,6 +275,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             var status = PackageDigitalSignatureManager.VerifyCertificate(cert);
             AppHealth.Current.Verbose.TrackAsync($"Certificate '{cert.Subject}' verification finished with status '{status.ToString()}'").FireAndForget();
+
             return (status == X509ChainStatusFlags.NoError);
         }
 
@@ -268,8 +291,11 @@ namespace Microsoft.Templates.Core.Locations
 
         private static void SignAllParts(Package package, X509Certificate cert)
         {
-            if (package == null) throw new ArgumentNullException("SignAllParts(package)");
-            if (cert == null) throw new ArgumentNullException("SignAllParts(cert)");
+            if (package == null)
+                throw new ArgumentNullException("SignAllParts(package)");
+
+            if (cert == null)
+                throw new ArgumentNullException("SignAllParts(cert)");
 
             PackageDigitalSignatureManager dsm = new PackageDigitalSignatureManager(package)
             {
@@ -278,15 +304,14 @@ namespace Microsoft.Templates.Core.Locations
             };
 
             List<Uri> toSign = new List<Uri>();
+
             foreach (PackagePart packagePart in package.GetParts())
             {
                 toSign.Add(packagePart.Uri);
             }
 
             toSign.Add(PackUriHelper.GetRelationshipPartUri(dsm.SignatureOrigin));
-
             toSign.Add(dsm.SignatureOrigin);
-
             toSign.Add(PackUriHelper.GetRelationshipPartUri(new Uri("/", UriKind.RelativeOrAbsolute)));
 
             try
@@ -296,16 +321,20 @@ namespace Microsoft.Templates.Core.Locations
             catch (CryptographicException ex)
             {
                 AppHealth.Current.Error.TrackAsync("Error sigingn package.", ex).FireAndForget();
+
                 throw;
             }
         }
+
         private static void CopyStream(Stream source, Stream target)
         {
-            const int bufSize = 0x1000;
             byte[] buf = new byte[bufSize];
             int bytesRead = 0;
+
             while ((bytesRead = source.Read(buf, 0, bufSize)) > 0)
+            {
                 target.Write(buf, 0, bytesRead);
+            }
         }
         private static void EnsureDirectory(string dir)
         {
@@ -330,12 +359,14 @@ namespace Microsoft.Templates.Core.Locations
         {
             Uri uriFile = rootUri.MakeRelativeUri(new Uri(file.FullName, UriKind.Absolute));
             Uri partUriFile = PackUriHelper.CreatePartUri(uriFile);
+
             return partUriFile;
         }
 
         private static Uri GetRootUri(string source)
         {
             string uriString;
+
             if (!Path.IsPathRooted(source))
             {
                 uriString = Path.GetDirectoryName(Path.GetFullPath(source)).Replace(source, "");
@@ -352,13 +383,16 @@ namespace Microsoft.Templates.Core.Locations
                     uriString = uriString + Path.DirectorySeparatorChar;
                 }
             }
+
             Uri rootUri = new Uri(uriString, UriKind.Absolute);
+
             return rootUri;
         }
 
         private static FileInfo[] GetSourceFiles(string source)
         {
             FileInfo[] files = null;
+
             if (!File.Exists(source))
             {
                 if (Directory.Exists(Path.GetFullPath(source)))
@@ -371,6 +405,7 @@ namespace Microsoft.Templates.Core.Locations
             {
                 files = new FileInfo[] { new FileInfo(source) };
             }
+
             if (files == null || files.Count() == 0)
             {
                 throw new FileNotFoundException($"The specified source '{source}' is invalid. Or the file does not exists or the folder is empty.");
@@ -379,5 +414,4 @@ namespace Microsoft.Templates.Core.Locations
             return files;
         }
     }
-
 }

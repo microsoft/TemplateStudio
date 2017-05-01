@@ -10,12 +10,7 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -23,18 +18,18 @@ namespace Microsoft.Templates.Core.Locations
     {
         public string LocalVersion { get; private set; }
 
-        public LocalTemplatesSource() : this ("0.0.0.0")
+        public override string Id { get => "Local"; }
+
+        public string Origin { get => $@"..\..\..\..\..\{SourceFolderName}"; }
+
+        public LocalTemplatesSource() : this("0.0.0.0")
         {
         }
+
         public LocalTemplatesSource(string version)
         {
             LocalVersion = version;
         }
-
-
-        public override string Id { get => "Local"; }
-
-        public string Origin { get => $@"..\..\..\..\..\{SourceFolderName}"; }
 
         public override void Adquire(string targetFolder)
         {

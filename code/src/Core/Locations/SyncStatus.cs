@@ -12,12 +12,15 @@
 
 namespace Microsoft.Templates.Core.Locations
 {
-    public abstract class TemplatesSource
+    public enum SyncStatus
     {
-        protected const string SourceFolderName = "Templates";
-
-        public abstract string Id { get; }
-
-        public abstract void Adquire(string targetFolder);
+        None = 0,
+        Updating = 1,
+        Updated = 2,
+        Adquiring = 3,
+        Adquired = 4,
+        OverVersion = 5,
+        OverVersionNoContent = 6,
+        UnderVersion = 7
     }
 }

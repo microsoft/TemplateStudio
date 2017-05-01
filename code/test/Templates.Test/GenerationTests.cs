@@ -16,30 +16,30 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.UI;
 using Microsoft.Templates.Test.Artifacts;
 
 using Xunit;
-using System.Text.RegularExpressions;
-using Microsoft.Templates.UI;
-
 
 namespace Microsoft.Templates.Test
 {
     public class GenerationTests : IClassFixture<GenerationTestsFixture>
     {
-        private GenerationTestsFixture fixture;
         private const string Platform = "x86";
         private const string Configuration = "Debug";
-        private List<string> UsedNames = new List<string>();
+
+        private GenerationTestsFixture _fixture;
+        private List<string> _usedNames = new List<string>();
 
         public GenerationTests(GenerationTestsFixture fixture)
         {
-            this.fixture = fixture;
+            _fixture = fixture;
             GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
         }
 
@@ -51,7 +51,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{name}{framework}";
 
-            using (var context = GenContext.CreateNew(projectName, Path.Combine(fixture.TestProjectsPath, projectName, projectName)))
+            using (var context = GenContext.CreateNew(projectName, Path.Combine(_fixture.TestProjectsPath, projectName, projectName)))
             {
                 var userSelection = new UserSelection
                 {
@@ -64,7 +64,7 @@ namespace Microsoft.Templates.Test
                 await GenController.UnsafeGenerateAsync(userSelection);
 
                 //Build solution
-                var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);
+                var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
                 var result = BuildSolution(projectName, outputPath);
 
                 //Assert
@@ -84,12 +84,12 @@ namespace Microsoft.Templates.Test
             var finalName = itemTemplate.GetDefaultName();
             if (itemTemplate.GetItemNameEditable())
             {
-                finalName = Naming.Infer(UsedNames, itemTemplate.GetDefaultName());
+                finalName = Naming.Infer(_usedNames, itemTemplate.GetDefaultName());
             }
            
             var projectName = $"{name}{framework}{finalName}";
 
-            using (var context = GenContext.CreateNew(projectName, Path.Combine(fixture.TestProjectsPath, projectName, projectName)))
+            using (var context = GenContext.CreateNew(projectName, Path.Combine(_fixture.TestProjectsPath, projectName, projectName)))
             {
                 var userSelection = new UserSelection
                 {
@@ -103,7 +103,7 @@ namespace Microsoft.Templates.Test
                 await GenController.UnsafeGenerateAsync(userSelection);
 
                 //Build solution
-                var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);
+                var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
                 var result = BuildSolution(projectName, outputPath);
 
                 //Assert
@@ -121,7 +121,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{name}{framework}All";
 
-            using (var context = GenContext.CreateNew(projectName, Path.Combine(fixture.TestProjectsPath, projectName, projectName)))
+            using (var context = GenContext.CreateNew(projectName, Path.Combine(_fixture.TestProjectsPath, projectName, projectName)))
             {
                 var userSelection = new UserSelection
                 {
@@ -136,7 +136,7 @@ namespace Microsoft.Templates.Test
                 await GenController.UnsafeGenerateAsync(userSelection);
 
                 //Build solution
-                var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);
+                var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
                 var result = BuildSolution(projectName, outputPath);
 
                 //Assert
@@ -154,7 +154,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{name}{framework}AllRandom";
 
-            using (var context = GenContext.CreateNew(projectName, Path.Combine(fixture.TestProjectsPath, projectName, projectName)))
+            using (var context = GenContext.CreateNew(projectName, Path.Combine(_fixture.TestProjectsPath, projectName, projectName)))
             {
                 var userSelection = new UserSelection
                 {
@@ -169,7 +169,7 @@ namespace Microsoft.Templates.Test
                 await GenController.UnsafeGenerateAsync(userSelection);
 
                 //Build solution
-                var outputPath = Path.Combine(fixture.TestProjectsPath, projectName);
+                var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
                 var result = BuildSolution(projectName, outputPath);
 
                 //Assert
@@ -207,7 +207,7 @@ namespace Microsoft.Templates.Test
                     var itemName = getName(template);
                     if (template.GetItemNameEditable())
                     {
-                        itemName = Naming.Infer(UsedNames, itemName);
+                        itemName = Naming.Infer(_usedNames, itemName);
                     }
                     
                     AddItem(userSelection, itemName, template);
@@ -226,7 +226,7 @@ namespace Microsoft.Templates.Test
                     userSelection.Features.Add((itemName, template));
                     break;
             }
-            UsedNames.Add(itemName);
+            _usedNames.Add(itemName);
 
             var dependencies = GenComposer.GetAllDependencies(template, userSelection.Framework);
             foreach (var item in dependencies)

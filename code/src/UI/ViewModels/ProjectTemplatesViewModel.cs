@@ -71,8 +71,8 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public ProjectTemplatesViewModel()
         {
-            this.SummaryFeatures.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryFeatures)); };
-            this.SummaryPages.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryPages)); };
+            SummaryFeatures.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryFeatures)); };
+            SummaryPages.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryPages)); };
         }
 
         public async Task InitializeAsync()
