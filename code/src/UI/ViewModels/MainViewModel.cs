@@ -26,12 +26,14 @@ using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Views;
+
 namespace Microsoft.Templates.UI.ViewModels
 {
     public class MainViewModel : Observable
     {
         private bool _canGoBack;
         private bool _canGoForward;
+
         public static MainViewModel Current;
         public MainView MainView;
 
@@ -123,6 +125,7 @@ namespace Microsoft.Templates.UI.ViewModels
         public RelayCommand CreateCommand => _createCommand ?? (_createCommand = new RelayCommand(OnCreate));        
 
         public ProjectSetupViewModel ProjectSetup { get; private set; } = new ProjectSetupViewModel();
+
         public ProjectTemplatesViewModel ProjectTemplates { get; private set; } = new ProjectTemplatesViewModel();
 
         public ObservableCollection<SummaryLicenseViewModel> SummaryLicenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
@@ -136,6 +139,8 @@ namespace Microsoft.Templates.UI.ViewModels
         public async Task InitializeAsync()
         {            
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += Sync_SyncStatusChanged;
+
+            SummaryLicenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryLicenses)); };
 
             try
             {
@@ -260,12 +265,16 @@ namespace Microsoft.Templates.UI.ViewModels
            if (CheckProjectSetupChanged())
             {
                 ProjectTemplates.ResetSelection();
+
                 Status = StatusControl.EmptyStatus;
             }
             
             NavigationService.Navigate(new ProjectTemplatesView());
+
             _canGoBack = true;
+
             BackCommand.OnCanExecuteChanged();
+
             CreateButtonVisibility = Visibility.Visible;
             NextButtonVisibility = Visibility.Collapsed;
         }

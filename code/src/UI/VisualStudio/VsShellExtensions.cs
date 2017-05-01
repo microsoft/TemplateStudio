@@ -11,19 +11,10 @@
 // ******************************************************************
 
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 using EnvDTE;
-using EnvDTE100;
-using EnvDTE80;
-
-using Microsoft.VisualStudio.Shell;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -31,7 +22,7 @@ namespace Microsoft.Templates.UI.VisualStudio
     public static class VsShellExtensions
     {
 
-        public static string GetSafeValue(this EnvDTE.Properties props, string propertyName)
+        public static string GetSafeValue(this Properties props, string propertyName)
         {
             if (props != null)
             {
@@ -50,7 +41,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public static T GetSafeValue<T>(this EnvDTE.Properties props, string propertyName)
+        public static T GetSafeValue<T>(this Properties props, string propertyName)
         {
             if (props != null)
             {

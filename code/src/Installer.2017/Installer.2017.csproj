@@ -54,6 +54,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GeneralSettingsPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GeneralSettingsPageControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -67,9 +70,7 @@
       <DependentUpon>StringRes.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ResourcesExtensions.cs" />
-    <Compile Include="SettingsPackage.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="SettingsPackage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\TestKey.snk">

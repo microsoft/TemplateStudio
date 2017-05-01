@@ -2,13 +2,11 @@
 
 By default the settings page uses contains a single boolean setting to track whether the app should be displayed with the Light or Dark theme.
 
-You can add additional settings by following the instructions below.
-
-Note there are separate instructions if using [MVVM Basic or MVVM Light](#mvvm), or if using [Code Behind](#cb).
+You can add additional settings by following the instructions below.  Note there are separate instructions if you are using [MVVM Basic / MVVM Light](#mvvm) or [Code Behind](#cb).
 
 ## <a name="mvvm"></a>Add another boolean setting (MVVM Basic or MVVM Light)
 
-Let's add a boolean setting to control whether errors should be automatically reported.  
+Let's add a boolean setting to control whether errors should be automatically reported.
 Adding a setting requires you to:
 
 * Update the View so it's possible to see and change the setting
@@ -152,7 +150,7 @@ Add the following below the `ToggleSwitch` inside the `StackPanel` in **Settings
 
 Add an entry to **Strings/en-us/Resources.resw**
 
-Name: Settings_EnableAutoErrorReporting.Content  
+Name: Settings_EnableAutoErrorReporting.Content
 Value: Automatically report errors
 
 When run it will now look like this:
@@ -172,6 +170,7 @@ protected override async void OnNavigatedTo(NavigationEventArgs e)
     IsAutoErrorReportingEnabled = await Windows.Storage.ApplicationData.Current.LocalSettings.ReadAsync<bool>(nameof(IsAutoErrorReportingEnabled));
 }
 ```
+
 also add the following to **SettingsPage.xaml.cs**.
 
 ```csharp

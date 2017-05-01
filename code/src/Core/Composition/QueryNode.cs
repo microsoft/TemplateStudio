@@ -10,17 +10,16 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Microsoft.Templates.Core.Composition
 {
     public class QueryNode
     {
         private const string ContextPrefix = "$";
+
+        public string Field { get; set; }
+        public QueryOperator Operator { get; set; }
+        public string Value { get; set; }
+        public bool IsContext { get; }
 
         public QueryNode(string field, string @operator, string value)
         {
@@ -41,17 +40,5 @@ namespace Microsoft.Templates.Core.Composition
                 return QueryOperator.NotEquals;
             }
         }
-
-        public string Field { get; set; }
-        public QueryOperator Operator { get; set; }
-        public string Value { get; set; }
-
-        public bool IsContext { get; }
-    }
-
-    public enum QueryOperator
-    {
-        Equals,
-        NotEquals
     }
 }

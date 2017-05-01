@@ -11,17 +11,16 @@
 // ******************************************************************
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
-
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Views;
-using System.Collections.Generic;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
@@ -90,8 +89,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private ICommand _okCommand;
         public ICommand OkCommand => _okCommand ?? (_okCommand = new RelayCommand(OnOk));
-
-
+        
         public InformationViewModel(InformationWindow infoWindow)
         {            
             _infoWindow = infoWindow;
@@ -107,35 +105,39 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public void Initialize(TemplateInfoViewModel template)
         {
-            Name = template.Name;
-            InformationType = GetInformationType(template.TemplateType.ToString());
-            Version = template.Version;
             Author = template.Author;
-
             DependencyItems = template.DependencyItems;
-            DependenciesVisibility = DependencyItems.Any() ? Visibility.Visible : Visibility.Collapsed;
+            InformationMD = template.Description;
+            Name = template.Name;
+            Version = template.Version;
 
+            DependenciesVisibility = DependencyItems.Any() ? Visibility.Visible : Visibility.Collapsed;
+            InformationType = GetInformationType(template.TemplateType.ToString());
+            
             if (template.LicenseTerms != null && template.LicenseTerms.Any())
             {
                 LicenseTerms.AddRange(template.LicenseTerms.Select(l => new SummaryLicenseViewModel(l)));
+
                 LicensesVisibility = Visibility.Visible;
             }
             else
             {
                 LicensesVisibility = Visibility.Collapsed;
-            }            
-            InformationMD = template.Description;
+            }
+            
         }        
 
         public void Initialize(MetadataInfoViewModel metadataInfo)
         {
-            Name = metadataInfo.DisplayName;
-            InformationType = GetInformationType(metadataInfo.MetadataType);
             Author = metadataInfo.Author;
-
+            Name = metadataInfo.DisplayName;
+            InformationMD = metadataInfo.Description;
+            InformationType = GetInformationType(metadataInfo.MetadataType);
+            
             if(metadataInfo.LicenseTerms != null && metadataInfo.LicenseTerms.Any())
             {
                 LicenseTerms.AddRange(metadataInfo.LicenseTerms.Select(l => new SummaryLicenseViewModel(l)));
+
                 LicensesVisibility = Visibility.Visible;
             }
             else
@@ -143,7 +145,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 LicensesVisibility = Visibility.Collapsed;
             }
 
-            InformationMD = metadataInfo.Description;
+            
         }
 
         public void UnsuscribeEventHandlers()
@@ -153,6 +155,7 @@ namespace Microsoft.Templates.UI.ViewModels
         private void OnOk()
         {
             _infoWindow.DialogResult = false;
+
             _infoWindow.Close();
         }
 

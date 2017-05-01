@@ -385,7 +385,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select page and features.
+        ///   Looks up a localized string similar to Select pages and features.
         /// </summary>
         public static string ProjectTemplatesTitle {
             get {
@@ -525,6 +525,33 @@ namespace Microsoft.Templates.UI.Resources {
         public static string SummaryLicenseTitle {
             get {
                 return ResourceManager.GetString("SummaryLicenseTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None Selected.
+        /// </summary>
+        public static string SummaryNoFeatures {
+            get {
+                return ResourceManager.GetString("SummaryNoFeatures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string SummaryNoLicenses {
+            get {
+                return ResourceManager.GetString("SummaryNoLicenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None Selected.
+        /// </summary>
+        public static string SummaryNoPages {
+            get {
+                return ResourceManager.GetString("SummaryNoPages", resourceCulture);
             }
         }
         

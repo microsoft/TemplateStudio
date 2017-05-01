@@ -12,8 +12,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.TemplateEngine.Abstractions;
@@ -23,10 +21,12 @@ namespace Microsoft.Templates.Core.Diagnostics
 {
     public class TelemetryTracker : IDisposable
     {
-        public const string PropertiesPrefix = "Wts";   
+        public const string PropertiesPrefix = "Wts";  
+        
         public TelemetryTracker()
         {
         }
+
         public TelemetryTracker(Configuration config)
         { 
             TelemetryService.SetConfiguration(config);
@@ -40,6 +40,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 { TelemetryProperties.WizardType, wizardType.ToString() },
                 { TelemetryProperties.EventName, TelemetryEvents.Wizard}
             };
+
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.Wizard, properties).ConfigureAwait(false);
         }
 
@@ -51,6 +52,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 { TelemetryProperties.WizardType, WizardTypeEnum.NewProject.ToString() },
                 { TelemetryProperties.EventName, TelemetryEvents.Wizard}
             };
+
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.Wizard, properties).ConfigureAwait(false);
         }
         public async Task TrackWizardCancelledAsync(WizardTypeEnum wizardType)
@@ -60,29 +62,36 @@ namespace Microsoft.Templates.Core.Diagnostics
                 { TelemetryProperties.WizardStatus, WizardStatusEnum.Cancelled.ToString() },
                 { TelemetryProperties.WizardType, wizardType.ToString() },
                 { TelemetryProperties.EventName, TelemetryEvents.Wizard}
-
             };
+
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.Wizard, properties).ConfigureAwait(false);
         }
 
         public async Task TrackProjectGenAsync(ITemplateInfo template, string appFx, TemplateCreationResult result, int? pagesCount = null, int? featuresCount = null, double? timeSpent = null)
         {
-            if (template == null) throw new ArgumentNullException("template");
-            if (result == null) throw new ArgumentNullException("result");
+            if (template == null)
+                throw new ArgumentNullException("template");
+
+            if (result == null)
+                throw new ArgumentNullException("result");
 
             if (template.GetTemplateType() != TemplateType.Project)
             {
                 return;
             }
 
-            GenStatusEnum telemetryStatus = result.Status == CreationResultStatus.Success ? GenStatusEnum.Completed : GenStatusEnum.Error;            
+            GenStatusEnum telemetryStatus = result.Status == CreationResultStatus.Success ? GenStatusEnum.Completed : GenStatusEnum.Error;
+
             await TrackProjectAsync(telemetryStatus, template.Name, template.GetProjectType(), appFx, pagesCount, featuresCount, timeSpent, result.Status, result.Message);
         }
 
         public async Task TrackItemGenAsync(ITemplateInfo template, string appFx, TemplateCreationResult result)
         {
-            if (template == null) throw new ArgumentNullException("template");
-            if (result == null) throw new ArgumentNullException("result");
+            if (template == null)
+                throw new ArgumentNullException("template");
+
+            if (result == null)
+                throw new ArgumentNullException("result");
 
             if (template != null && result != null)
             {
@@ -114,14 +123,17 @@ namespace Microsoft.Templates.Core.Diagnostics
             };
 
             Dictionary<string, double> metrics = new Dictionary<string, double>();
+
             if (pagesCount.HasValue)
             {
                 metrics.Add(TelemetryMetrics.PagesCount, pagesCount.Value);
             }
+
             if (timeSpent.HasValue)
             {
                 metrics.Add(TelemetryMetrics.TimeSpent, timeSpent.Value);
             }
+
             if (featuresCount.HasValue)
             {
                 metrics.Add(TelemetryMetrics.FeaturesCount, featuresCount.Value);
@@ -152,12 +164,11 @@ namespace Microsoft.Templates.Core.Diagnostics
             await TelemetryService.Current.TrackEventAsync(eventToTrack, properties).ConfigureAwait(false);
         }
 
-
-
         ~TelemetryTracker()
         {
             Dispose(false);
         }
+
         public void Dispose()
         {
             Dispose(true);

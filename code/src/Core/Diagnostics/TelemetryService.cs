@@ -13,12 +13,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Net.NetworkInformation;
 using System.Reflection;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.ApplicationInsights;
@@ -42,8 +37,10 @@ namespace Microsoft.Templates.Core.Diagnostics
                 {
                     _current = new TelemetryService(Configuration.Current);
                 }
+
                 return _current;
             }
+
             private set
             {
                 _current = value;
@@ -53,6 +50,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         private TelemetryService(Configuration config)
         {
             _currentConfig = config ?? throw new ArgumentNullException("config");
+
             IntializeTelemetryClient();
         }
 
@@ -124,6 +122,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             {
                 IsEnabled = false;
                 TelemetryConfiguration.Active.DisableTelemetry = true;
+
                 Trace.TraceError($"Exception instantiating TelemetryClient:\n\r{ex.ToString()}");
             }
         }
@@ -171,6 +170,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 var task = Task.Run(() => {
                     action();
                 });
+
                 await task;
             }
             catch (AggregateException aggEx)
@@ -194,6 +194,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                     _client.Flush();
                     _client = null;
                 }
+
                 await Task.Delay(1000);
             });
         }
@@ -224,21 +225,23 @@ namespace Microsoft.Templates.Core.Diagnostics
         private static string GetVersion()
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
+
             return assembly.GetName().Version.ToString(); 
         }
 
         private static string GetFileVersion()
         {
-            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+
             return fvi.FileVersion;
         }
-
 
         ~TelemetryService()
         {
             Dispose(false);
         }
+
         public void Dispose()
         {
             Dispose(true);
