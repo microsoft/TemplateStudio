@@ -12,6 +12,10 @@ namespace wts.ItemName.Views
 {
     public sealed partial class ShellPage : Page, INotifyPropertyChanged
     {
+        private const string PanoramicStateName = "PanoramicState";
+        private const string WideStateName = "WideState";
+        private const string NarrowStateName = "NarrowState";
+
         private bool _isPaneOpen;
         public bool IsPaneOpen
         {
@@ -118,20 +122,22 @@ namespace wts.ItemName.Views
 
         private void WindowStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
         {
-            if (e.NewState == PanoramicState)
+            switch (e.NewState.Name)
             {
-                DisplayMode = SplitViewDisplayMode.CompactInline;
-            }
-            else if (e.NewState == WideState)
-            {
-                DisplayMode = SplitViewDisplayMode.CompactInline;
-                IsPaneOpen = false;
-            }
-            else if (e.NewState == NarrowState)
-            {
-                DisplayMode = SplitViewDisplayMode.Overlay;
-                IsPaneOpen = false;
-            }
+                case PanoramicStateName:
+                    DisplayMode = SplitViewDisplayMode.CompactInline;
+                    break;
+                case WideStateName:
+                    DisplayMode = SplitViewDisplayMode.CompactInline;
+                    IsPaneOpen = false;
+                    break;
+                case NarrowStateName:
+                    DisplayMode = SplitViewDisplayMode.Overlay;
+                    IsPaneOpen = false;
+                    break;
+                default:
+                    break;
+            }            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
