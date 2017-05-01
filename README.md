@@ -39,7 +39,7 @@ I need an app that uses MVVM Light, uses master detail, can suspend and resume, 
 * Blank page
 * Map page
 * Master/Detail page
-* [Settings page](docs/pages/settings.md`)
+* [Settings page](docs/pages/settings.md)
 * Tabbed page
 * Web view page
 
