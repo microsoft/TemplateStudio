@@ -33,7 +33,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 //USING
 
-namespace TestData
+namespace App38
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.

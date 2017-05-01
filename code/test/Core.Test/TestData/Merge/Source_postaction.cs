@@ -12,7 +12,7 @@
 
 using Windows.UI.Xaml.Navigation;
 //USING
-namespace TestData
+namespace App38
 {
     sealed partial class App : Application
     {
