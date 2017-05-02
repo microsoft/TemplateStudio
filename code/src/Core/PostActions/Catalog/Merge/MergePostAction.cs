@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             if (string.IsNullOrEmpty(originalFilePath))
             {
-                throw new FileNotFoundException($"There is not merge target for file'{_config}'");
+                throw new FileNotFoundException($"There is no merge target for file '{_config}'");
             }
 
             var source = File.ReadAllLines(originalFilePath).ToList();
