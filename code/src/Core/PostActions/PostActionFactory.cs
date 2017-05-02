@@ -50,6 +50,7 @@ namespace Microsoft.Templates.Core.PostActions
         {
             switch (genInfo.Template.GetTemplateType())
             {
+                // TODO [ML]: add ability to have project (solution) with multiple projects
                 case TemplateType.Project:
                     postActions.Add(new AddProjectToSolutionPostAction( genResult.ResultInfo.PrimaryOutputs));
                     postActions.Add(new GenerateTestCertificatePostAction(genInfo.GetUserName()));

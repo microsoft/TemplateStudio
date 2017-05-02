@@ -12,6 +12,7 @@
 
 namespace Microsoft.Templates.Core.PostActions
 {
+    // TODO [ML]: add ability for postaction to operate on secondary projects
     public abstract class PostAction
     {
         public abstract void Execute();
