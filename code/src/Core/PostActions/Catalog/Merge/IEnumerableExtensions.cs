@@ -21,6 +21,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
     public static class IEnumerableExtensions
     {
         // TODO [ML]: add macro for removing section if exists "{--{" & "}--}"
+        // TODO [ML]: add prioritized merging (e.g. for setting start page)
         private const string MacroBeforeMode = "^^";
         private const string MacroStartGroup = "{[{";
         private const string MarcoEndGroup = "}]}";
