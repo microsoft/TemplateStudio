@@ -62,7 +62,7 @@ Here is what we're currently thinking in our [roadmap](docs/roadmap.md)
 
 ## Contributing
 
-Do you want to contribute? Here are our [contribution guidelines](contributing.md).
+Do you want to contribute? Here are our [contribution guidelines](CONTRIBUTING.md).
 
 ## Principles
 
@@ -77,7 +77,7 @@ Do you want to contribute? Here are our [contribution guidelines](contributing.m
 
 ## License
 
-This code is distributed under the terms and conditions of the [MIT license](license.md).
+This code is distributed under the terms and conditions of the [MIT license](LICENSE.md).
 
 ## Code of Conduct
 
