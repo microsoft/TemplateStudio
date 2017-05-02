@@ -44,7 +44,7 @@
             <Grid Style="{StaticResource ErrorGridTitleStyle}">
                 <TextBlock Text="{x:Static res:StringRes.ErrorDialogTitle}" Style="{StaticResource TextTitleStyle}" Margin="{StaticResource BigHorizontalMediumVerticalMargin}" />
             </Grid>
-            <TextBlock Grid.Row="1" Text="{Binding Message}" Margin="{StaticResource BigLeftTopRightMargin}" />
+            <TextBlock Grid.Row="1" Text="{Binding Message}" Margin="{StaticResource BigLeftTopRightMargin}" TextWrapping="Wrap" />
             <ScrollViewer Grid.Row="2" Visibility="{Binding MessageDetailVisibility}">
                 <TextBox Text="{Binding MessageDetail}" Style="{StaticResource ErrorDetailsStyle}" Margin="{StaticResource BigMargin}"/>
             </ScrollViewer>
