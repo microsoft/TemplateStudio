@@ -16,7 +16,7 @@ using System.Reflection;
 
 using EnvDTE;
 using EnvDTE80;
-
+using Microsoft.Templates.UI.Resources;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Shell;
 
@@ -47,15 +47,13 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             try
             {
-                string title = "Windows Template Studio";
-
                 if (ServiceProvider.GlobalProvider.GetService(typeof(DTE)) is DTE2 dte)
                 {
                     result = GetUwpPane(dte, paneGuid);
 
                     if (result == null)
                     {
-                        CreateUwpPane(paneGuid, visible, clearWithSolution, title);
+                        CreateUwpPane(paneGuid, visible, clearWithSolution, StringRes.Title);
                         result = GetUwpPane(dte, paneGuid);
                     }
                 }
