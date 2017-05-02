@@ -13,11 +13,15 @@
     </ResourceDictionary.MergedDictionaries>
 
     <converter:MicrosoftTemplatesAuthorConverter x:Key="MicrosoftTemplatesAuthorConverter"/>
+    <converter:ItemAlignmentConverter x:Key="ItemAlignmentConverter" />
+    <converter:FixedWidthConverter x:Key="FixedWidthConverter" />
 
     <DataTemplate x:Key="ProjectSetupItemTemplate">
-        <Grid>
+        <Grid MinWidth="350"
+              MaxWidth="{Binding RelativeSource={RelativeSource Self}, Path=HorizontalAlignment, Converter={StaticResource FixedWidthConverter}, ConverterParameter=350}"
+              HorizontalAlignment="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UniformGrid}}, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}">
             <Rectangle Style="{StaticResource RectangleDropShadowStyle}" />
-            <Border Width="436" Height="90" Background="{StaticResource UIWhite}">
+            <Border Height="90" Background="{StaticResource UIWhite}">
                 <Grid Margin="{StaticResource MediumMargin}">
 
                     <Grid.RowDefinitions>
