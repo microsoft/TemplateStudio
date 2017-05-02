@@ -11,11 +11,8 @@
 // ******************************************************************
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
@@ -31,6 +28,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         public async Task LogInfoAsync()
         {
             string uniqueMsg = $"LogInfo_{Guid.NewGuid()}";
+
             await FileHealthWriter.Current.WriteTraceAsync(TraceEventType.Information, uniqueMsg);
 
             AssertMessageIsInLog(FileHealthWriter.Current.LogFileName, uniqueMsg);
@@ -40,6 +38,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         public async Task LogErrorAsync()
         {
             string uniqueMsg = $"LogError_{Guid.NewGuid()}";
+
             await FileHealthWriter.Current.WriteTraceAsync(TraceEventType.Error, uniqueMsg);
 
             AssertMessageIsInLog(FileHealthWriter.Current.LogFileName, uniqueMsg);
@@ -49,6 +48,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         public async Task LogErrorWithExAsync()
         {
             string uniqueMsg = $"LogErrorWithEx_{Guid.NewGuid()}";
+
             await FileHealthWriter.Current.WriteTraceAsync(TraceEventType.Error, uniqueMsg, new Exception("SampleException"));
 
             AssertMessageIsInLog(FileHealthWriter.Current.LogFileName, uniqueMsg);
@@ -61,14 +61,18 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
             var t1 = Task.Run(async () =>
             {
                 string uniqueMsg = $"TwoManageThreads_InstanceA_{Guid.NewGuid()}";
+
                 await FileHealthWriter.Current.WriteTraceAsync(TraceEventType.Error, uniqueMsg, new Exception("SampleException"));
+
                 AssertMessageIsInLog(FileHealthWriter.Current.LogFileName, uniqueMsg);
             });
 
             var t2 = Task.Run(async () =>
             {
                 string otherUniqueMsg = $"TwoManageThreads_InstanceB_{Guid.NewGuid()}";
+
                 await FileHealthWriter.Current.WriteTraceAsync(TraceEventType.Information, otherUniqueMsg);
+
                 AssertMessageIsInLog(FileHealthWriter.Current.LogFileName, otherUniqueMsg);
             });
 
@@ -83,7 +87,9 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
                 FileStream fs = new FileStream(logFileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
                 StreamReader sr = new StreamReader(fs);
                 string content = sr.ReadToEnd();
+
                 sr.Close();
+
                 Assert.True(content.Contains(uniqueMsg));
             }
         }

@@ -16,13 +16,15 @@
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Thickness.xaml" />
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleTextBlock.xaml" />
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleButton.xaml" />
+                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleShape.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <converter:MicrosoftTemplatesAuthorConverter x:Key="MicrosoftTemplatesAuthorConverter"/>
         </ResourceDictionary>
     </UserControl.Resources>
-
-    <Border Width="205" Height="180" Background="{StaticResource UIWhite}">
+    <Grid>
+        <Rectangle Style="{StaticResource RectangleDropShadowStyle}" />            
+        <Border Width="205" Height="180" Background="{StaticResource UIWhite}">
         <Grid Margin="{StaticResource MediumMargin}">
 
             <Grid.RowDefinitions>
@@ -99,4 +101,5 @@
             </Grid>
         </Grid>
     </Border>
+    </Grid>
 </UserControl>

@@ -59,10 +59,12 @@ namespace Microsoft.Templates.Core
         {
             var configDir = GetConfigDir(ti);
             var descriptionFile = Directory.EnumerateFiles(configDir, "description.md").FirstOrDefault();
+
             if (!string.IsNullOrEmpty(descriptionFile))
             {
                 return File.ReadAllText(descriptionFile);
             }
+
             return null;
         }
 
@@ -85,16 +87,19 @@ namespace Microsoft.Templates.Core
         public static IEnumerable<TemplateLicense> GetLicenses(this ITemplateInfo ti)
         {
             var licenses = GetValueFromTag(ti, TagPrefix + "licenses");
+
             if (string.IsNullOrWhiteSpace(licenses))
             {
                 return Enumerable.Empty<TemplateLicense>();
             }
-            var result = new List<TemplateLicense>();
 
+            var result = new List<TemplateLicense>();
             var licensesMatches = Regex.Matches(licenses, LicensesPattern);
+
             for (int i = 0; i < licensesMatches.Count; i++)
             {
                 var m = licensesMatches[i];
+
                 if (m.Success)
                 {
                     result.Add(new TemplateLicense
@@ -103,8 +108,8 @@ namespace Microsoft.Templates.Core
                         Url = m.Groups["url"].Value
                     });
                 }
-
             }
+
             return result;
         }
 
@@ -123,6 +128,7 @@ namespace Microsoft.Templates.Core
                     properties.Add(new QueryableProperty(t.Key, t.Value.DefaultValue));
                 }
             }
+
             return properties;
         }
 
@@ -142,7 +148,6 @@ namespace Microsoft.Templates.Core
         public static List<string> GetFrameworkList(this ITemplateInfo ti)
         {
             var frameworks = GetValueFromTag(ti, TagPrefix + "framework");
-
             var result = new List<string>();
 
             if (!string.IsNullOrEmpty(frameworks))
@@ -156,7 +161,6 @@ namespace Microsoft.Templates.Core
         public static List<string> GetDependencyList(this ITemplateInfo ti)
         {
             var dependencies = GetValueFromTag(ti, TagPrefix + "dependencies");
-
             var result = new List<string>();
 
             if (!string.IsNullOrEmpty(dependencies))
@@ -180,14 +184,17 @@ namespace Microsoft.Templates.Core
         public static int GetOrder(this ITemplateInfo ti)
         {
             var rawOrder = GetValueFromTag(ti, TagPrefix + "order");
+
             if (!string.IsNullOrEmpty(rawOrder))
             {
                 int order;
+
                 if (int.TryParse(rawOrder, out order))
                 {
                     return order;
                 }
             }
+
             return int.MaxValue;
         }
 
@@ -208,12 +215,14 @@ namespace Microsoft.Templates.Core
             }
 
             var layoutContent = File.ReadAllText(layoutFile);
+
             return JsonConvert.DeserializeObject<List<LayoutItem>>(layoutContent);
         }
 
         public static string GetDefaultName(this ITemplateInfo ti)
         {
             var result = GetValueFromTag(ti, TagPrefix + "defaultInstance");
+
             if (string.IsNullOrEmpty(result))
             {
                 result = ti.Name;
@@ -225,14 +234,15 @@ namespace Microsoft.Templates.Core
         public static bool GetMultipleInstance(this ITemplateInfo ti)
         {
             var result = GetValueFromTag(ti, TagPrefix + "multipleInstance");
+
             if (!string.IsNullOrEmpty(result))
             {
-                bool boolResult = true;
-                if (Boolean.TryParse(result, out boolResult))
+                if (Boolean.TryParse(result, out bool boolResult))
                 {
                     return boolResult;
                 }
             }
+
             return true;
         }
 
@@ -249,6 +259,7 @@ namespace Microsoft.Templates.Core
             {
                 return null;
             }
+
             return Path.GetFullPath(mountPoint.Info.Place + file.Parent.FullPath);
         }
 
@@ -258,6 +269,7 @@ namespace Microsoft.Templates.Core
             {
                 return tagValue.DefaultValue;
             }
+
             return null;
         }
     }

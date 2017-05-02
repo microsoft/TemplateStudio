@@ -76,6 +76,7 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             ItemForeground = MainViewModel.Current.MainView.FindResource("UIBlack") as SolidColorBrush;
             AuthorForeground = MainViewModel.Current.MainView.FindResource("UIGray") as SolidColorBrush;
+
             dt.Stop();
         }
     }

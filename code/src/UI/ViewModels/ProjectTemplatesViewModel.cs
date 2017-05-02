@@ -71,8 +71,8 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public ProjectTemplatesViewModel()
         {
-            this.SummaryFeatures.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryFeatures)); };
-            this.SummaryPages.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryPages)); };
+            SummaryFeatures.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryFeatures)); };
+            SummaryPages.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryPages)); };
         }
 
         public async Task InitializeAsync()
@@ -144,6 +144,7 @@ namespace Microsoft.Templates.UI.ViewModels
                     SaveNewTemplate((dependencyTemplate.GetDefaultName(), dependencyTemplate), isRemoveEnabled);
                 }
             }
+
             MainViewModel.Current.RebuildLicenses();
         }
 
@@ -158,32 +159,28 @@ namespace Microsoft.Templates.UI.ViewModels
         }
 
         private void SaveNewTemplate((string Name, ITemplateInfo Template) item, bool isRemoveEnabled = true)
-        {            
+        {
             SavedTemplates.Add(item);
+
+            var newItem = new SummaryItemViewModel
+            {
+                Author = item.Template.Author,
+                HasDefaultName = !item.Template.GetItemNameEditable(),
+                Identity = item.Template.Identity,
+                IsRemoveEnabled = isRemoveEnabled,
+                ItemName = item.Name,
+                TemplateName = item.Template.Name,
+            };
+
             if (item.Template.GetTemplateType() == TemplateType.Page)
             {
-                SummaryPages.Add(new SummaryItemViewModel()
-                {
-                    Identity = item.Template.Identity,
-                    ItemName = item.Name,
-                    TemplateName = item.Template.Name,
-                    Author = item.Template.Author,
-                    IsRemoveEnabled = isRemoveEnabled,
-                    HasDefaultName = !item.Template.GetItemNameEditable()
-                });
+                SummaryPages.Add(newItem);
             }
             else if (item.Template.GetTemplateType() == TemplateType.Feature)
             {
-                SummaryFeatures.Add(new SummaryItemViewModel()
-                {
-                    Identity = item.Template.Identity,
-                    ItemName = item.Name,
-                    TemplateName = item.Template.Name,
-                    Author = item.Template.Author,
-                    IsRemoveEnabled = isRemoveEnabled,
-                    HasDefaultName = !item.Template.GetItemNameEditable()
-                });
+                SummaryFeatures.Add(newItem);
             }
+
             UpdateTemplateAvailable?.Invoke(this, EventArgs.Empty);
         }
 
@@ -193,7 +190,9 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 var dependencyName = SavedTemplates.First(st => st.Template.GetDependencyList().Any(d => d == item.Identity));
                 string message = String.Format(StringRes.ValidationError_CanNotRemoveTemplate_SF, item.TemplateName, dependencyName.Template.Name, dependencyName.Template.GetTemplateType());
+
                 MainViewModel.Current.Status = new StatusViewModel(Controls.StatusType.Warning, message, true);
+
                 return;
             }
             if (SummaryPages.Contains(item))
@@ -204,6 +203,7 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 SummaryFeatures.Remove(item);
             }
+
             SavedTemplates.Remove(SavedTemplates.First(st => st.Name == item.ItemName));
             UpdateTemplateAvailable?.Invoke(this, EventArgs.Empty);
 

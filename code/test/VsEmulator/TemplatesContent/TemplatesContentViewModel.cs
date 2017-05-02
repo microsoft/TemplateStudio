@@ -11,18 +11,12 @@
 // ******************************************************************
 
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
-using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
-
 
 namespace Microsoft.Templates.VsEmulator.TemplatesContent
 {
@@ -38,6 +32,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
             _useWizardVersion = wizardVersion;
             _useTemplatesVersion = templateVersion;
             _isWizardVersionReconfigurable = (wizardVersion == "0.0.0.0");
+
             AvailableContent = new ObservableCollection<string>();
         }
 
@@ -101,6 +96,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
         {
             DirectoryInfo di = new DirectoryInfo(GetTemplatesFolder());
             AvailableContent.Clear();
+
             foreach(var sdi in di.EnumerateDirectories())
             {
                 AvailableContent.Add(sdi.Name);
@@ -112,6 +108,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
         private void Clean()
         {
             DirectoryInfo di = new DirectoryInfo(GetTemplatesFolder());
+
             foreach (var sdi in di.EnumerateDirectories())
             {
                 Fs.SafeDeleteDirectory(sdi.FullName);
@@ -124,6 +121,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
         private void SetVersionAndClose()
         {
             Result = (_useWizardVersion, _useTemplatesVersion);
+
             _host.DialogResult = true;
             _host.Close();
         }
@@ -144,6 +142,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
             LocalTemplatesSource _templatesSource = new LocalTemplatesSource(_useTemplatesVersion);
             TemplatesSynchronization _templatesSync = new TemplatesSynchronization(_templatesSource, new Version(_useWizardVersion));
             string currentTemplatesFolder = _templatesSync.CurrentTemplatesFolder;
+
             return currentTemplatesFolder;
         }
     }

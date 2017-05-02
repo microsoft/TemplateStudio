@@ -11,30 +11,13 @@
 // ******************************************************************
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
-using System.Diagnostics;
-using System.Reflection;
 
 namespace Microsoft.Templates.Core.Locations
 {
-    public enum SyncStatus
-    {
-        None = 0,
-        Updating = 1,
-        Updated = 2,
-        Adquiring = 3,
-        Adquired = 4,
-        OverVersion = 5,
-        OverVersionNoContent = 6,
-        UnderVersion = 7
-    }
-
     public class TemplatesSynchronization
     {
         public event Action<object, SyncStatus> SyncStatusChanged;
@@ -42,10 +25,8 @@ namespace Microsoft.Templates.Core.Locations
         private static readonly string FolderName = Configuration.Current.RepositoryFolderName;
 
         private readonly Lazy<string> _workingFolder = new Lazy<string>(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), FolderName));
-
         private readonly TemplatesSource _source;
         private readonly TemplatesContent _content;
-
 
         public string WorkingFolder => _workingFolder.Value;
 
@@ -54,14 +35,12 @@ namespace Microsoft.Templates.Core.Locations
         public Version CurrentContentVersion { get => GetCurrentContentVersion(); }
         public Version CurrentWizardVersion { get; private set; }
 
-
         public TemplatesSynchronization(TemplatesSource source, Version wizardVersion)
         {
             _source = source ?? throw new ArgumentNullException("location");
             _content = new TemplatesContent(WorkingFolder, source.Id, wizardVersion);
             CurrentContentFolder = CodeGen.Instance?.GetCurrentContentSource(WorkingFolder);
         }
-
 
         public async Task Do(bool forced = false)
         {
@@ -70,25 +49,18 @@ namespace Microsoft.Templates.Core.Locations
             if (contentIsUnderVersion || CurrentContentVersion.IsZero())
             {
                 await CheckMandatoryAdquisitionAsync(true);
-
                 await UpdateTemplatesCacheAsync();
-
                 await CheckContentUnderVersion();
             }
             else
             {
                 await CheckMandatoryAdquisitionAsync(forced);
-
                 await UpdateTemplatesCacheAsync();
-
                 await CheckExpirationAdquisitionAsync();
-
                 await CheckContentOverVersion();
             }
 
-
             PurgeContentAsync().FireAndForget();
-
             TelemetryService.Current.SetContentVersionToContext(CurrentContentVersion);
         }
 
@@ -100,9 +72,12 @@ namespace Microsoft.Templates.Core.Locations
         private async Task AdquireContentAsync()
         {
             SyncStatusChanged?.Invoke(this, SyncStatus.Adquiring);
+
             await Task.Run(() => AdquireContent());
+
             SyncStatusChanged?.Invoke(this, SyncStatus.Adquired);
         }
+
         private async Task CheckExpirationAdquisitionAsync()
         {
             if (_content.IsExpired(CurrentContentFolder))
@@ -134,6 +109,7 @@ namespace Microsoft.Templates.Core.Locations
         private async Task UpdateTemplatesCacheAsync()
         {
             SyncStatusChanged?.Invoke(this, SyncStatus.Updating);
+
             await Task.Run(() => UpdateTemplatesCache());
 
             SyncStatusChanged?.Invoke(this, SyncStatus.Updated);
@@ -162,6 +138,7 @@ namespace Microsoft.Templates.Core.Locations
             await Task.Run(() =>
             {
                 bool result = _content.ExistUnderVersion();
+
                 if (result)
                 {
                     SyncStatusChanged?.Invoke(this, SyncStatus.UnderVersion);
@@ -200,7 +177,6 @@ namespace Microsoft.Templates.Core.Locations
                 await AppHealth.Current.Warning.TrackAsync("Unable to purge old content.", ex);
             }
         }
-
 
         private Version GetCurrentContentVersion()
         {

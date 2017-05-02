@@ -30,6 +30,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 return -1;
             }
+
             if (skip == -1)
             {
                 skip = 0;
@@ -58,7 +59,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             var _diffTrivia = FindDiffLeadingTrivia(source, merge);
             var result = source.ToList();
-
             var currentLineIndex = -1;
 
             foreach (var mergeLine in merge)
@@ -111,6 +111,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             if (insertionBuffer.Any() && !BlockExists(insertionBuffer, result, lastLineIndex) && currentLineIndex > -1)
             {
                 var insertIndex = GetInsertLineIndex(currentLineIndex, lastLineIndex, beforeMode);
+
                 if (insertIndex < result.Count)
                 {
                     result.InsertRange(insertIndex, insertionBuffer);

@@ -13,12 +13,10 @@
 using System;
 using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
 
 using Microsoft.TemplateEngine.Abstractions;
 
 using Xunit;
-using Xunit.Sdk;
 
 namespace Microsoft.Templates.Core.Test
 {
@@ -35,8 +33,8 @@ namespace Microsoft.Templates.Core.Test
         public void GetTemplateType_project()
         {
             var target = GetTarget("ProjectTemplate");
-
             var result = target.GetTemplateType();
+
             Assert.Equal(TemplateType.Project, result);
         }
 
