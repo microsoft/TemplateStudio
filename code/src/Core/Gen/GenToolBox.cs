@@ -10,12 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Microsoft.Templates.Core.Gen
 {
     public class GenToolBox
@@ -24,6 +18,7 @@ namespace Microsoft.Templates.Core.Gen
         public GenShell Shell { get; }
         public string WizardVersion => Repo.WizardVersion;
         public string TemplatesVersion => Repo.TemplatesVersion;
+
         public GenToolBox(TemplatesRepository repo, GenShell shell)
         {
             Repo = repo;

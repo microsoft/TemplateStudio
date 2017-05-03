@@ -10,13 +10,12 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 using Microsoft.TemplateEngine.Abstractions;
-using System.Text;
 
 namespace Microsoft.Templates.Core.Composition
 {
@@ -60,6 +59,7 @@ namespace Microsoft.Templates.Core.Composition
         {
             //Basic validation: matches concatenation must be equal than rawQuery
             StringBuilder sb = new StringBuilder();
+
             foreach(Match m in queryMatches)
             {
                 sb.Append(m.Value.Replace(" ", "").Trim());

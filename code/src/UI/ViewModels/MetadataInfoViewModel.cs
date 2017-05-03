@@ -10,15 +10,12 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
 using System.Collections.Generic;
 using System.Windows;
 
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Views;
-
 
 namespace Microsoft.Templates.UI.ViewModels
 {
@@ -102,14 +99,15 @@ namespace Microsoft.Templates.UI.ViewModels
             }
 
             _metadataInfo = metadataInfo;
-            Name = metadataInfo.Name;
-            DisplayName = metadataInfo.DisplayName;
-            Summary = metadataInfo.Summary;
-            Description = metadataInfo.Description;
+
             Author = metadataInfo.Author;
+            Description = metadataInfo.Description;
+            DisplayName = metadataInfo.DisplayName;
             Icon = metadataInfo.Icon;
-            MetadataType = metadataInfo.MetadataType;
             LicenseTerms = metadataInfo.LicenseTerms;
+            MetadataType = metadataInfo.MetadataType;
+            Name = metadataInfo.Name;
+            Summary = metadataInfo.Summary;
         }
     }
 }

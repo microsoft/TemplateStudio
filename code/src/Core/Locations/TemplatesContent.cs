@@ -11,11 +11,8 @@
 // ******************************************************************
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
 
@@ -35,9 +32,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             TemplatesFolder = Path.Combine(workingFolder, TemplatesFolderName, sourceId);
             _defaultContentFolder = Path.Combine(TemplatesFolder, "0.0.0.0");
-
             WizardVersion = wizardVersion;
-
         }
 
         public bool Exists()
@@ -51,6 +46,7 @@ namespace Microsoft.Templates.Core.Locations
             {
                 Version currentVersion = GetVersionFromFolder(currentContentFolder);
                 Version latestVersion = GetVersionFromFolder(LatestContentFolder);
+
                 return currentVersion==null || currentVersion < latestVersion || latestVersion.IsZero();
             }
             else
@@ -98,6 +94,7 @@ namespace Microsoft.Templates.Core.Locations
             var directory = new DirectoryInfo(currentContent);
             var expiration = directory.LastWriteTime.AddMinutes(Configuration.Current.VersionCheckingExpirationMinutes);
             AppHealth.Current.Verbose.TrackAsync($"Current content expiration: {expiration.ToString()}").FireAndForget();
+
             return expiration <= DateTime.Now;
         }
 
@@ -106,9 +103,11 @@ namespace Microsoft.Templates.Core.Locations
             if (Directory.Exists(TemplatesFolder))
             {
                 DirectoryInfo di = new DirectoryInfo(TemplatesFolder);
+
                 foreach (var sdi in di.EnumerateDirectories())
                 {
                     Version.TryParse(sdi.Name, out Version v);
+
                     if (!v.IsZero() && v < GetVersionFromFolder(currentContent))
                     {
                         Fs.SafeDeleteDirectory(sdi.FullName);
@@ -121,16 +120,20 @@ namespace Microsoft.Templates.Core.Locations
         public Version GetVersionFromFolder(string contentFolder)
         {
             string versionPart = Path.GetFileName(contentFolder);
+
             Version.TryParse(versionPart, out Version v);
+
             return v;
         }
 
         private bool ExistsContent(string folder)
         {
             bool result = false;
+
             if (Directory.Exists(folder))
             {
                 DirectoryInfo di = new DirectoryInfo(folder);
+
                 result = di.EnumerateFiles("*", SearchOption.AllDirectories).Any();
             }
 
@@ -138,6 +141,7 @@ namespace Microsoft.Templates.Core.Locations
             {
                 result = CheckDefaultVersionContent();
             }
+
             return result;
         }
 
@@ -145,9 +149,11 @@ namespace Microsoft.Templates.Core.Locations
         {
             Version latestVersion = new Version(0,0,0,0);
             string latestContent = _defaultContentFolder;
+
             if (Directory.Exists(TemplatesFolder))
             {
                 DirectoryInfo di = new DirectoryInfo(TemplatesFolder);
+
                 foreach (DirectoryInfo sdi in di.EnumerateDirectories())
                 {
                     Version.TryParse(sdi.Name, out Version v);
@@ -162,6 +168,7 @@ namespace Microsoft.Templates.Core.Locations
                     }
                 }
             }
+
             return latestContent;
         }
 

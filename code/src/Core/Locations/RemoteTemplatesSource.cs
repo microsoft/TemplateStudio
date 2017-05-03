@@ -11,13 +11,8 @@
 // ******************************************************************
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
 
@@ -48,7 +43,6 @@ namespace Microsoft.Templates.Core.Locations
         private string Download(string tempFolder)
         {
             var sourceUrl = $"{CdnUrl}/{TemplatesPackageFileName}";
-           
             var fileTarget = Path.Combine(tempFolder, TemplatesPackageFileName);
 
             Fs.EnsureFolder(tempFolder);
@@ -63,13 +57,16 @@ namespace Microsoft.Templates.Core.Locations
             try
             {
                 var wc = new WebClient();
+
                 wc.DownloadFile(sourceUrl, file);
                 AppHealth.Current.Verbose.TrackAsync($"Templates content downloaded to {file} from {sourceUrl}.").FireAndForget();
             }
             catch (Exception ex)
             {
                 string msg = "The templates content can't be downloaded.";
+
                 AppHealth.Current.Exception.TrackAsync(ex, msg).FireAndForget();
+
                 throw;
             }
         }
@@ -84,7 +81,9 @@ namespace Microsoft.Templates.Core.Locations
             catch (Exception ex)
             {
                 var msg = "The templates content can't be extracted.";
+
                 AppHealth.Current.Exception.TrackAsync(ex, msg).FireAndForget();
+
                 throw;
             }
         }
@@ -111,14 +110,17 @@ namespace Microsoft.Templates.Core.Locations
         private static Version GetVersionFromFile(string versionFilePath)
         {
             var version = "0.0.0.0";
+
             if (File.Exists(versionFilePath))
             {
                 version = File.ReadAllText(versionFilePath);
             }
+
             if (!Version.TryParse(version, out Version result))
             {
                 result = new Version(0, 0, 0, 0);
             }
+
             return result;
         }
     }

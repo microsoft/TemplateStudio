@@ -11,7 +11,6 @@
 // ******************************************************************
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -24,7 +23,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 {
     public class FileHealthWriter: IHealthWriter
     {
-        private static SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
+        private static SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1);
         private string _workingFolder;
 
         public string LogFileName { get; private set; }
@@ -38,12 +37,14 @@ namespace Microsoft.Templates.Core.Diagnostics
                 {
                     _current = new FileHealthWriter();
                 }
+
                 return _current;
             }
         }
         private FileHealthWriter()
         {        
             _workingFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), Configuration.Current.LogFileFolderPath);
+
             InitializeLogFile();
             PurgeOldLogs(_workingFolder, Configuration.Current.DaysToKeepDiagnosticsLogs);
         }
@@ -52,7 +53,8 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{eventType.ToString()}\t{message}");
-            if(ex != null)
+
+            if (ex != null)
             {
                 sb.AppendLine(FormattedWriterMessages.ExHeader);
                 sb.AppendLine(ex.ToString());
@@ -67,8 +69,10 @@ namespace Microsoft.Templates.Core.Diagnostics
             {
                 throw new ArgumentNullException("ex");
             }
+
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{TraceEventType.Critical.ToString():11}\tException Tracked. {(message ?? "")}");
+
             if (ex != null)
             {
                 sb.AppendLine(FormattedWriterMessages.ExHeader);
@@ -86,7 +90,8 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         private async Task WriteAndFlushAsync(string data)
         {
-            await semaphoreSlim.WaitAsync();
+            await _semaphoreSlim.WaitAsync();
+
             try
             {
                 File.AppendAllText(LogFileName, data);
@@ -97,20 +102,23 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
             finally
             {
-                semaphoreSlim.Release();
+                _semaphoreSlim.Release();
             }
         }
 
         private void InitializeLogFile()
         {
-            semaphoreSlim.Wait();
+            _semaphoreSlim.Wait();
+
             try
             {
                 LogFileName = Path.Combine(_workingFolder, $"WTS_{Configuration.Current.Environment}_{DateTime.Now.ToString("yyyyMMdd")}.log");
+
                 if (!Directory.Exists(_workingFolder))
                 {
                     Directory.CreateDirectory(_workingFolder);
                 }
+
                 if (CheckLogFileInUse(LogFileName))
                 {
                     LogFileName = LogFileName.Replace(".log", $"_{Guid.NewGuid().ToString()}.log");
@@ -124,7 +132,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
             finally
             {
-                semaphoreSlim.Release();
+                _semaphoreSlim.Release();
             }
         }
 
@@ -137,12 +145,14 @@ namespace Microsoft.Templates.Core.Diagnostics
 
             sb.AppendLine($"\r\n>>>>>>>>>>>>>> Log started {DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}");
             sb.AppendLine($">>>>>>>>>>>>>> Assembly File Version: {GetVersion()}");
+
             File.AppendAllText(LogFileName, sb.ToString());
         }
 
         private static string GetVersion()
         {
             string assemblyLocation = Assembly.GetExecutingAssembly().Location;
+
             return FileVersionInfo.GetVersionInfo(assemblyLocation).FileVersion;
         }
 
@@ -160,7 +170,9 @@ namespace Microsoft.Templates.Core.Diagnostics
             finally
             {
                 if (stream != null)
+                {
                     stream.Close();
+                }
             }
 
             return false;
@@ -172,6 +184,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             {
                 DirectoryInfo di = new DirectoryInfo(logFolder);
                 var toBeDeleted = di.GetFiles().Where(f => f.CreationTimeUtc.AddDays(daysToKeep) < DateTime.UtcNow);
+
                 foreach (var f in toBeDeleted)
                 {
                     try

@@ -50,6 +50,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 {
                     string eventMessage = $"[{DateTime.Now.ToString("hh:mm:ss.fff")} - {eventType.ToString()}]::{message}\n";
                     GenContext.ToolBox.Shell.WriteOutput(eventMessage);
+
                     if (ex != null)
                     {
                         string header = $"----------- Addtional Exception Info -----------\n";
@@ -70,6 +71,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 var task = SystemTasks.Task.Run(() => {
                     trackAction();
                 });
+
                 await task;
             }
             catch (AggregateException aggEx)

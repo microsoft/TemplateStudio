@@ -12,13 +12,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Settings;
@@ -31,7 +27,9 @@ namespace Microsoft.Templates.Core
     public class CodeGen
     {
         public const string BaseName = "WindowsTemplateStudio";
+        public static CodeGen Instance { get; private set; }
 
+        public TemplateCreator Creator { get; }
         public EngineEnvironmentSettings Settings { get; }
         public TemplateCache Cache
         {
@@ -40,9 +38,6 @@ namespace Microsoft.Templates.Core
                 return ((SettingsLoader)Settings.SettingsLoader).UserTemplateCache;
             }
         }
-        public TemplateCreator Creator { get; }
-
-        public static CodeGen Instance { get; private set; }
 
         private CodeGen(string locationId, string hostVersion)
         {
@@ -54,6 +49,7 @@ namespace Microsoft.Templates.Core
         public static void Initialize(string locationId, string hostVersion)
         {
             Instance = new CodeGen(locationId, hostVersion);
+
             Instance.Init();
         }
 
@@ -65,6 +61,7 @@ namespace Microsoft.Templates.Core
         public string GetCurrentContentSource(string workingFolder)
         {
             string result = String.Empty;
+
             foreach(var mp in Instance?.Settings.SettingsLoader.MountPoints)
             {
                 if (Directory.Exists(mp.Place) && IsHigherVersion(result, mp.Place))
@@ -72,6 +69,7 @@ namespace Microsoft.Templates.Core
                     result = mp.Place;
                 }
             }
+
             return result;
         }
 
@@ -117,6 +115,5 @@ namespace Microsoft.Templates.Core
 
         //    return $"{v.Major}.{v.Minor}";
         //}
-
     }
 }

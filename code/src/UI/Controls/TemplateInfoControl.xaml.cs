@@ -14,13 +14,12 @@ using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.ViewModels;
-using Microsoft.TemplateEngine.Abstractions;
-using System.Windows.Input;
 using Microsoft.Templates.Core.Mvvm;
 
 namespace Microsoft.Templates.UI.Controls
@@ -29,41 +28,42 @@ namespace Microsoft.Templates.UI.Controls
     {
         public TemplateInfoViewModel TemplateInfo
         {
-            get { return (TemplateInfoViewModel)GetValue(TemplateInfoProperty); }
-            set { SetValue(TemplateInfoProperty, value); }
+            get => (TemplateInfoViewModel)GetValue(TemplateInfoProperty);
+            set => SetValue(TemplateInfoProperty, value);
         }
         public static readonly DependencyProperty TemplateInfoProperty = DependencyProperty.Register("TemplateInfo", typeof(TemplateInfoViewModel), typeof(TemplateInfoControl), new PropertyMetadata(null));
 
         public Visibility NoEditingContentVisibility
         {
-            get { return (Visibility)GetValue(NoEditingContentVisibilityProperty); }
-            set { SetValue(NoEditingContentVisibilityProperty, value); }
+            get => (Visibility)GetValue(NoEditingContentVisibilityProperty);
+            set => SetValue(NoEditingContentVisibilityProperty, value);
         }
         public static readonly DependencyProperty NoEditingContentVisibilityProperty = DependencyProperty.Register("NoEditingContentVisibility", typeof(Visibility), typeof(TemplateInfoControl), new PropertyMetadata(Visibility.Visible));
 
         public Visibility EditingContentVisibility
         {
-            get { return (Visibility)GetValue(EditingContentVisibilityProperty); }
-            set { SetValue(EditingContentVisibilityProperty, value); }
+            get => (Visibility)GetValue(EditingContentVisibilityProperty);
+            set => SetValue(EditingContentVisibilityProperty, value);
         }
         public static readonly DependencyProperty EditingContentVisibilityProperty = DependencyProperty.Register("EditingContentVisibility", typeof(Visibility), typeof(TemplateInfoControl), new PropertyMetadata(Visibility.Collapsed));
 
         public Visibility AddingVisibility
         {
-            get { return (Visibility)GetValue(AddingVisibilityProperty); }
-            set { SetValue(AddingVisibilityProperty, value); }
+            get => (Visibility)GetValue(AddingVisibilityProperty);
+            set => SetValue(AddingVisibilityProperty, value);
         }
         public static readonly DependencyProperty AddingVisibilityProperty = DependencyProperty.Register("AddingVisibility", typeof(Visibility), typeof(TemplateInfoControl), new PropertyMetadata(Visibility.Visible));
 
         public string NewTemplateName
         {
-            get { return (string)GetValue(NewTemplateNameProperty); }
-            set { SetValue(NewTemplateNameProperty, value); }
+            get => (string)GetValue(NewTemplateNameProperty);
+            set => SetValue(NewTemplateNameProperty, value);
         }
         public static readonly DependencyProperty NewTemplateNameProperty = DependencyProperty.Register("NewTemplateName", typeof(string), typeof(TemplateInfoControl), new PropertyMetadata(String.Empty, OnNewTemplateNameChanged));
         private static void OnNewTemplateNameChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as TemplateInfoControl;
+
             if (control.TemplateInfo.CanChooseItemName)
             {
                 control.Validate(e.NewValue as string);
@@ -72,24 +72,24 @@ namespace Microsoft.Templates.UI.Controls
 
         public string ErrorMessage
         {
-            get { return (string)GetValue(ErrorMessageProperty); }
-            set { SetValue(ErrorMessageProperty, value); }
+            get => (string)GetValue(ErrorMessageProperty);
+            set => SetValue(ErrorMessageProperty, value);
         }
         public static readonly DependencyProperty ErrorMessageProperty = DependencyProperty.Register("ErrorMessage", typeof(string), typeof(TemplateInfoControl), new PropertyMetadata(String.Empty));
 
         public bool IsValid
         {
-            get { return (bool)GetValue(IsValidProperty); }
-            set { SetValue(IsValidProperty, value); }
+            get => (bool)GetValue(IsValidProperty);
+            set => SetValue(IsValidProperty, value);
         }
         public static readonly DependencyProperty IsValidProperty = DependencyProperty.Register("IsValid", typeof(bool), typeof(TemplateInfoControl), new PropertyMetadata(true));
 
         public SolidColorBrush TitleForeground
         {
-            get { return (SolidColorBrush)GetValue(TitleForegroundProperty); }
-            set { SetValue(TitleForegroundProperty, value); }
+            get => (SolidColorBrush)GetValue(TitleForegroundProperty);
+            set => SetValue(TitleForegroundProperty, value);
         }
-        public static readonly DependencyProperty TitleForegroundProperty = DependencyProperty.Register("TitleForeground", typeof(SolidColorBrush), typeof(TemplateInfoControl), new PropertyMetadata(null));
+        public static readonly DependencyProperty TitleForegroundProperty = DependencyProperty.Register("TitleForeground", typeof(SolidColorBrush), typeof(TemplateInfoControl), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
 
         private ICommand _saveItemCommand;
         public ICommand SaveItemCommand => _saveItemCommand ?? (_saveItemCommand = new RelayCommand(OnSaveClicked));
@@ -100,8 +100,11 @@ namespace Microsoft.Templates.UI.Controls
         public TemplateInfoControl()
         {
             InitializeComponent();
+
             TitleForeground = FindResource("UIBlack") as SolidColorBrush;
+
             MainViewModel.Current.ProjectTemplates.UpdateTemplateAvailable += (sender, args) => CheckAddingStatus();
+            Loaded += (sender, args) => CheckAddingStatus();
         }
 
         private void OnAddClicked(object sender, RoutedEventArgs e)
@@ -111,6 +114,7 @@ namespace Microsoft.Templates.UI.Controls
             if (TemplateInfo.CanChooseItemName)
             {
                 NewTemplateName = Naming.Infer(names, TemplateInfo.Template.GetDefaultName());
+
                 SwichVisibilities();
 
                 templateName.Focus();

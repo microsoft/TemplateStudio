@@ -97,14 +97,8 @@ namespace wts.TabbedPivotProject.Services
 
         private void OnFrameNavigated(object sender, NavigationEventArgs e)
         {
-            if (NavigationService.CanGoBack)
-            {
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
-            }
-            else
-            {
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
-            }
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = (NavigationService.CanGoBack) ? 
+                AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
         }
 
         private void OnAppViewBackButtonRequested(object sender, BackRequestedEventArgs e)

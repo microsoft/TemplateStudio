@@ -13,11 +13,9 @@
 using System;
 using System.IO;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
-using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
@@ -50,43 +48,42 @@ namespace Microsoft.Templates.VsEmulator.Main
         private string _state;
         public string State
         {
-            get { return _state; }
-            set { SetProperty(ref _state, value); }
+            get => _state;
+            set => SetProperty(ref _state, value);
         }
 
         private string _log;
         public string Log
         {
-            get { return _log; }
-            set { SetProperty(ref _log, value); }
+            get => _log;
+            set => SetProperty(ref _log, value);
         }
 
         private Visibility _isProjectLoaded;
         public Visibility IsProjectLoaded
         {
-            get { return _isProjectLoaded; }
-            set { SetProperty(ref _isProjectLoaded, value); }
+            get => _isProjectLoaded;
+            set => SetProperty(ref _isProjectLoaded, value);
         }
 
         private string _wizardVersion;
         public string WizardVersion
         {
-            get { return _wizardVersion; }
-            set { SetProperty(ref _wizardVersion, value); }
+            get => _wizardVersion;
+            set => SetProperty(ref _wizardVersion, value);
         }
-
 
         private string _templatesVersion;
         public string TemplatesVersion
         {
-            get { return _templatesVersion; }
-            set { SetProperty(ref _templatesVersion, value); }
+            get => _templatesVersion;
+            set => SetProperty(ref _templatesVersion, value);
         }
 
         private string _solutionName;
         public string SolutionName
         {
-            get { return _solutionName; }
+            get => _solutionName;
             set
             {
                 SetProperty(ref _solutionName, value);
@@ -116,9 +113,11 @@ namespace Microsoft.Templates.VsEmulator.Main
             try
             {
                 var newProjectInfo = ShowNewProjectDialog();
+
                 if (!string.IsNullOrEmpty(newProjectInfo.name))
                 {
                     var outputPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
+
                     using (var context = GenContext.CreateNew(newProjectInfo.name, outputPath))
                     {
                         var userSelection = GenController.GetUserSelection();
@@ -154,6 +153,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             };
 
             var dialogRes = dialog.ShowDialog();
+
             if (dialogRes.HasValue && dialogRes.Value)
             {
                 WizardVersion = dialog.ViewModel.Result.WizardVersion;
@@ -193,11 +193,14 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 Owner = _host
             };
+
             var result = dialog.ShowDialog();
+
             if (result.HasValue && result.Value)
             {
                 return (dialog.ViewModel.Name, dialog.ViewModel.SolutionName, dialog.ViewModel.Location);
             }
+
             return (null, null, null);
         }
 
@@ -210,6 +213,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private void AddLog(string message)
         {
             Log += message + Environment.NewLine;
+
             _host.Dispatcher.Invoke(() =>
             {
                 _host.logScroll.ScrollToEnd();
@@ -218,7 +222,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void ConfigureGenContext()
         {
-            if(TemplatesVersion == "0.0.0.0")
+            if (TemplatesVersion == "0.0.0.0")
             {
                 CleanUpContent();
             }
@@ -230,12 +234,15 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void CleanUpContent()
         {
-                DirectoryInfo di = new DirectoryInfo(GetTemplatesFolder());
+            DirectoryInfo di = new DirectoryInfo(GetTemplatesFolder());
+
+            if (di.Exists)
+            {
                 foreach (var sdi in di.EnumerateDirectories())
                 {
                     Fs.SafeDeleteDirectory(sdi.FullName);
                 }
-
+            }
         }
         private string GetTemplatesFolder()
         {
@@ -243,6 +250,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             LocalTemplatesSource _templatesSource = new LocalTemplatesSource(TemplatesVersion);
             TemplatesSynchronization _templatesSync = new TemplatesSynchronization(_templatesSource, new Version(WizardVersion));
             string currentTemplatesFolder = _templatesSync.CurrentTemplatesFolder;
+
             return currentTemplatesFolder;
         }
 
@@ -255,6 +263,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var f = arg as DispatcherFrame;
                 f.Continue = false;
             };
+
             Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Background, method, frame);
             Dispatcher.PushFrame(frame);
         }

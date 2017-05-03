@@ -11,11 +11,7 @@
 // ******************************************************************
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
@@ -41,7 +37,9 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 File.Copy(Path.Combine(Environment.CurrentDirectory, "TestData\\TestProject\\Test.csproj"), Path.Combine(GenContext.Current.OutputPath, "Test.csproj"), true);
 
                 var postAction = new GenerateTestCertificatePostAction("TestUser");
+
                 postAction.Execute();
+
                 var certFilePath = Path.Combine(GenContext.Current.OutputPath, $"{projectName}_TemporaryKey.pfx");
 
                 Assert.True(File.Exists(certFilePath));

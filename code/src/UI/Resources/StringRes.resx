@@ -205,7 +205,7 @@
     <value>Select project type and framework</value>
   </data>
   <data name="ProjectTemplatesTitle" xml:space="preserve">
-    <value>Select page and features</value>
+    <value>Select pages and features</value>
   </data>
   <data name="ResetSelection" xml:space="preserve">
     <value>You have changed your project type or framework selection. If you continue you will lose all pages and features added previously. To conserve pages and features, you can go back to your original selection ({0}, {1}).</value>
@@ -331,10 +331,19 @@
   <data name="InfoModalDependencies" xml:space="preserve">
     <value>Dependencies:</value>
   </data>
-  <data name="InfoModalLicences" xml:space="preserve">
-    <value>Licences:</value>
+  <data name="InfoModalLicenses" xml:space="preserve">
+    <value>Licenses:</value>
   </data>
   <data name="InfoModalVersion" xml:space="preserve">
     <value>Version:</value>
+  </data>
+  <data name="SummaryNoFeatures" xml:space="preserve">
+    <value>None Selected</value>
+  </data>
+  <data name="SummaryNoLicenses" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="SummaryNoPages" xml:space="preserve">
+    <value>None Selected</value>
   </data>
 </root>
