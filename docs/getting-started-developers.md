@@ -20,7 +20,7 @@ First of all, be sure you are running [Visual Studio 2017](https://www.visualstu
 
 1. Clone this repo to your local machine
 1. Open the solution [Big.sln](../code/)
-1. Set the project "Installer.2017" as StartUp Project for the solution. This is the Visual Studio Extension project for Windows Template Studio. 
+1. Set the project "Installer.2017" as StartUp Project for the solution. This is the Visual Studio Extension project for Windows Template Studio.
 1. Configure the "Installer.2017" project to launch the [Visual Studio Experimental instance](https://msdn.microsoft.com/library/bb166560(v=vs.140).aspx) when run.
    1. Open the "Installer.2017" project properties.
    1. Go to "Debug" properties.

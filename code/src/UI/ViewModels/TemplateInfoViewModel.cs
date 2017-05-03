@@ -17,7 +17,6 @@ using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
 using System.Collections.ObjectModel;
-using System.Windows;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
@@ -135,24 +134,26 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies)
         {
-            Name = template.Name;
-            Summary = template.Description;
-            Description = template.GetRichDescription();
             Author = template.Author;
+            CanChooseItemName = template.GetItemNameEditable();
+            Description = template.GetRichDescription();
+            Group = template.GetGroup();
             Icon = template.GetIcon();
-            Version = template.GetVersion();
-            Order = template.GetOrder();
+            LicenseTerms = template.GetLicenses();
             MultipleInstances = template.GetMultipleInstance();
+            Name = template.Name;
+            Order = template.GetOrder();
+            Summary = template.Description;
             TemplateType = template.GetTemplateType();
             Template = template;
+            Version = template.GetVersion();
+            
             if (dependencies != null && dependencies.Any())
             {
                 DependencyItems.AddRange(dependencies.Select(d => new DependencyInfoViewModel(new TemplateInfoViewModel(d, GenComposer.GetAllDependencies(d, MainViewModel.Current.ProjectSetup.SelectedFramework.Name)))));
+
                 Dependencies = string.Join(",", dependencies.Select(d => d.Name));
             }
-            LicenseTerms = template.GetLicenses();
-            Group = template.GetGroup();
-            CanChooseItemName = template.GetItemNameEditable();
         }
     }
 }

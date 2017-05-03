@@ -14,13 +14,12 @@ using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.ViewModels;
-using Microsoft.TemplateEngine.Abstractions;
-using System.Windows.Input;
 using Microsoft.Templates.Core.Mvvm;
 
 namespace Microsoft.Templates.UI.Controls
@@ -64,6 +63,7 @@ namespace Microsoft.Templates.UI.Controls
         private static void OnNewTemplateNameChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as TemplateInfoControl;
+
             if (control.TemplateInfo.CanChooseItemName)
             {
                 control.Validate(e.NewValue as string);
@@ -100,7 +100,9 @@ namespace Microsoft.Templates.UI.Controls
         public TemplateInfoControl()
         {
             InitializeComponent();
+
             TitleForeground = FindResource("UIBlack") as SolidColorBrush;
+
             MainViewModel.Current.ProjectTemplates.UpdateTemplateAvailable += (sender, args) => CheckAddingStatus();
             Loaded += (sender, args) => CheckAddingStatus();
         }
@@ -112,6 +114,7 @@ namespace Microsoft.Templates.UI.Controls
             if (TemplateInfo.CanChooseItemName)
             {
                 NewTemplateName = Naming.Infer(names, TemplateInfo.Template.GetDefaultName());
+
                 SwichVisibilities();
 
                 templateName.Focus();

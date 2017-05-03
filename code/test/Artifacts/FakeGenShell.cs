@@ -11,15 +11,10 @@
 // ******************************************************************
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 
-using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Test.Artifacts.MSBuild;
 using Microsoft.VisualStudio.TemplateWizard;
@@ -40,6 +35,7 @@ namespace Microsoft.Templates.Test.Artifacts
                 {
                     return Path.Combine(Path.GetDirectoryName(GenContext.Current.OutputPath), $"{GenContext.Current.ProjectName}.sln");
                 }
+
                 throw new Exception("Context doesn't exists");
             }
         }
@@ -59,10 +55,12 @@ namespace Microsoft.Templates.Test.Artifacts
             }
 
             var projectFileName = FindProject(GenContext.Current.OutputPath);
+
             if (string.IsNullOrEmpty(projectFileName))
             {
                 throw new Exception($"There is not project file in {GenContext.Current.OutputPath}");
             }
+
             var msbuildProj = MsBuildProject.Load(projectFileName);
 
             if (msbuildProj != null)
@@ -79,10 +77,9 @@ namespace Microsoft.Templates.Test.Artifacts
         public override void AddProjectToSolution(string projectFullPath)
         {
             var msbuildProj = MsBuildProject.Load(projectFullPath);
-
             var solutionFile = MSBuildSolution.Create(SolutionPath);
-            solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid);
 
+            solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid);
         }
 
         public override string GetActiveNamespace()

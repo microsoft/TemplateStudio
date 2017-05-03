@@ -11,11 +11,8 @@
 // ******************************************************************
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
@@ -37,8 +34,10 @@ namespace Microsoft.Templates.Core.Diagnostics
                 {
                     _current = new AppHealth();
                 }
+
                 return _current;
             }
+
             private set
             {
                 _current = value;
@@ -49,6 +48,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         private AppHealth()
         {
             InstanceDefaultWriters();
+
             Verbose = new TraceTracker(TraceEventType.Verbose);
             Info = new TraceTracker(TraceEventType.Information);
             Warning = new TraceTracker(TraceEventType.Warning);
@@ -75,6 +75,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             Dispose(false);
         }
+
         public void Dispose()
         {
             Dispose(true);

@@ -14,22 +14,21 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Template;
-using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Locations;
 
 using Newtonsoft.Json;
-using System.Text.RegularExpressions;
-using System.Diagnostics;
-using System.Reflection;
 
 namespace Microsoft.Templates.Core
 {
     public class TemplatesRepository
     {
+        private const string Separator = "|";
+        private const string LicensesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
         private const string Catalog = "_catalog";
         private static readonly string[] SupportedIconTypes = new string[] { ".jpg", ".jpeg", ".png", ".xaml" };
 
@@ -43,7 +42,6 @@ namespace Microsoft.Templates.Core
             WizardVersion = wizardVersion.ToString();
             Sync = new TemplatesSynchronization(source, wizardVersion);
         }
-
 
         public async Task SynchronizeAsync(bool force = false)
         {
@@ -71,15 +69,13 @@ namespace Microsoft.Templates.Core
         //    return ti.GetDependencyList()
         //                .Select(d => Find(t => t.Identity == d));
         //}
-
-
+        
         public ITemplateInfo Find(Func<ITemplateInfo, bool> predicate)
         {
             return GetAll()
                         .FirstOrDefault(predicate);
         }
-
-
+        
         public IEnumerable<MetadataInfo> GetProjectTypes()
         {
             return GetMetadataInfo("projectTypes");
@@ -93,6 +89,7 @@ namespace Microsoft.Templates.Core
         private IEnumerable<MetadataInfo> GetMetadataInfo(string type)
         {
             var folderName = Path.Combine(Sync.CurrentContentFolder, Catalog);
+
             if (!Directory.Exists(folderName))
             {
                 return Enumerable.Empty<MetadataInfo>();
@@ -109,19 +106,18 @@ namespace Microsoft.Templates.Core
             return metadata.OrderBy(m => m.Order);
         }
 
-        private const string Separator = "|";
-        private const string LicensesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
 
         private void SetLicenseTerms(MetadataInfo metadataInfo)
         {
             if (!string.IsNullOrWhiteSpace(metadataInfo.Licenses))
             {
                 var result = new List<TemplateLicense>();
-
                 var licensesMatches = Regex.Matches(metadataInfo.Licenses, LicensesPattern);
+
                 for (int i = 0; i < licensesMatches.Count; i++)
                 {
                     var m = licensesMatches[i];
+
                     if (m.Success)
                     {
                         result.Add(new TemplateLicense
@@ -132,6 +128,7 @@ namespace Microsoft.Templates.Core
                     }
 
                 }
+
                 metadataInfo.LicenseTerms = result;
             }
         }
