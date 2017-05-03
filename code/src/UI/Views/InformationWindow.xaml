@@ -54,7 +54,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding LicensesVisibility, FallbackValue=Collapsed}">
                     <TextBlock Text="{x:Static res:StringRes.InfoModalLicenses}" Style="{StaticResource TextInformationPropertyTitle}" />
-                    <ItemsControl ItemsSource="{Binding LicenseTerms}" Margin="{StaticResource MediumLeftMargin}" ItemTemplate="{StaticResource LicenseSummaryItemTemplate}"/>
+                    <ItemsControl ItemsSource="{Binding LicenseTerms}" Margin="{StaticResource MediumLeftMargin}" ItemTemplate="{StaticResource LicenseSummaryItemTemplate}" Focusable="False"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="{StaticResource MediumTopMargin}" Visibility="{Binding DependenciesVisibility, FallbackValue=Collapsed}">
                     <TextBlock Text="{x:Static res:StringRes.InfoModalDependencies}" Style="{StaticResource TextInformationPropertyTitle}" />
