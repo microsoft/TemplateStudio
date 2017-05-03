@@ -28,22 +28,22 @@ namespace Microsoft.Templates.UI.Controls
 
         public StatusViewModel Status
         {
-            get { return (StatusViewModel)GetValue(StatusProperty); }
-            set { SetValue(StatusProperty, value); }
+            get => (StatusViewModel)GetValue(StatusProperty);
+            set => SetValue(StatusProperty, value);
         }
         public static readonly DependencyProperty StatusProperty = DependencyProperty.Register("Status", typeof(StatusViewModel), typeof(StatusControl), new PropertyMetadata(new StatusViewModel(StatusType.Empty, String.Empty), OnStatusPropertyChanged));
 
         public string WizardVersion
         {
-            get { return (string)GetValue(WizardVersionProperty); }
-            set { SetValue(WizardVersionProperty, value); }
+            get => (string)GetValue(WizardVersionProperty);
+            set => SetValue(WizardVersionProperty, value);
         }
         public static readonly DependencyProperty WizardVersionProperty = DependencyProperty.Register("WizardVersion", typeof(string), typeof(StatusControl), new PropertyMetadata(String.Empty, OnVersionInfoChanged));        
 
         public string TemplatesVersion
         {
-            get { return (string)GetValue(TemplatesVersionProperty); }
-            set { SetValue(TemplatesVersionProperty, value); }
+            get => (string)GetValue(TemplatesVersionProperty);
+            set => SetValue(TemplatesVersionProperty, value);
         }
         public static readonly DependencyProperty TemplatesVersionProperty = DependencyProperty.Register("TemplatesVersion", typeof(string), typeof(StatusControl), new PropertyMetadata(String.Empty, OnVersionInfoChanged));
 

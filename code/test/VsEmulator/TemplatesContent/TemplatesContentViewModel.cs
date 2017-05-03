@@ -45,36 +45,36 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
         private string _versionInfo;
         public string VersionInfo
         {
-            get { return _versionInfo; }
-            set { SetProperty(ref _versionInfo, value); }
+            get => _versionInfo;
+            set => SetProperty(ref _versionInfo, value);
         }
 
         private string _templatesLocation;
         public string TemplatesLocation
         {
-            get { return _templatesLocation; }
-            set { SetProperty(ref _templatesLocation, value); }
+            get => _templatesLocation;
+            set => SetProperty(ref _templatesLocation, value);
         }
 
         private String _useWizardVersion;
         public String UseWizardVersion
         {
-            get { return _useWizardVersion; }
-            set { SetProperty(ref _useWizardVersion, value); }
+            get => _useWizardVersion;
+            set => SetProperty(ref _useWizardVersion, value);
         }
 
         private String _useTemplatesVersion;
         public String UseTemplatesVersion
         {
-            get { return _useTemplatesVersion; }
-            set { SetProperty(ref _useTemplatesVersion, value); }
+            get => _useTemplatesVersion;
+            set => SetProperty(ref _useTemplatesVersion, value);
         }
 
         private bool _isWizardVersionReconfigurable;
         public bool IsWizardVersionReconfigurable
         {
-            get { return _isWizardVersionReconfigurable; }
-            set { SetProperty(ref _isWizardVersionReconfigurable, value); }
+            get => _isWizardVersionReconfigurable;
+            set => SetProperty(ref _isWizardVersionReconfigurable, value);
         }
 
         public (string WizardVersion, string TemplatesVersion) Result { get; private set; }
@@ -82,8 +82,8 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
         private ObservableCollection<string> _availableContent;
         public ObservableCollection<string> AvailableContent
         {
-            get { return _availableContent; }
-            set { _availableContent = value ; }
+            get => _availableContent;
+            set => _availableContent = value ;
         }
 
         public void Initialize()

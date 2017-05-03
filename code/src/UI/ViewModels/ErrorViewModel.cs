@@ -49,35 +49,35 @@ namespace Microsoft.Templates.UI.ViewModels
         private double _hostHeight;
         public double HostHeight
         {
-            get { return _hostHeight; }
-            set { SetProperty(ref _hostHeight, value); }
+            get => _hostHeight;
+            set => SetProperty(ref _hostHeight, value);
         }
 
         private string _toggleButtonIcon;
         public string ToggleButtonIcon
         {
-            get { return _toggleButtonIcon; }
-            set { SetProperty(ref _toggleButtonIcon, value); }
+            get => _toggleButtonIcon;
+            set => SetProperty(ref _toggleButtonIcon, value);
         }
 
         private string _message;
         public string Message
         {
-            get { return _message; }
-            set { SetProperty(ref _message, value); }
+            get => _message;
+            set => SetProperty(ref _message, value);
         }
 
         private string _messageDetail;
         public string MessageDetail
         {
-            get { return _messageDetail; }
-            set { SetProperty(ref _messageDetail, value); }
+            get => _messageDetail;
+            set => SetProperty(ref _messageDetail, value);
         }
 
         private Visibility _messageDetailVisibility;
         public Visibility MessageDetailVisibility
         {
-            get { return _messageDetailVisibility; }
+            get => _messageDetailVisibility;
             set
             {
                 SetProperty(ref _messageDetailVisibility, value);
