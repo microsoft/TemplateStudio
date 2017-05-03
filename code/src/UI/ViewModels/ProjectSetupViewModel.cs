@@ -29,37 +29,38 @@ namespace Microsoft.Templates.UI.ViewModels
         private string _projectTypesHeader;
         public string ProjectTypesHeader
         {
-            get { return _projectTypesHeader; }
-            set { SetProperty(ref _projectTypesHeader, value); }
+            get => _projectTypesHeader;
+            set => SetProperty(ref _projectTypesHeader, value);
         }
 
         private string _frameworkHeader;
         public string FrameworkHeader
         {
-            get { return _frameworkHeader; }
-            set { SetProperty(ref _frameworkHeader, value); }
+            get => _frameworkHeader;
+            set => SetProperty(ref _frameworkHeader, value);
         }
 
         private MetadataInfoViewModel _selectedProjectType;
         public MetadataInfoViewModel SelectedProjectType
         {
-            get { return _selectedProjectType; }
+            get => _selectedProjectType;
             set
             {
-                var orgframework = _selectedFramework;
+                var orgFramework = _selectedFramework;
                 var orgProjectType = _selectedProjectType;
 
                 SetProperty(ref _selectedProjectType, value);
+
                 if (value != null)
                 {
-                    LoadFrameworks(value, orgframework);
+                    LoadFrameworks(value, orgFramework);
+
                     if (orgProjectType != null && orgProjectType != value)
                     {
                         MainViewModel.Current.AlertProjectSetupChanged();
                     }
                 }
                 
-
                 MainViewModel.Current.RebuildLicenses();
             }
         }
@@ -67,12 +68,13 @@ namespace Microsoft.Templates.UI.ViewModels
         private MetadataInfoViewModel _selectedFramework;
         public MetadataInfoViewModel SelectedFramework
         {
-            get { return _selectedFramework; }
+            get => _selectedFramework;
             set
             {
                 var orgframework = _selectedFramework;
 
                 SetProperty(ref _selectedFramework, value);
+
                 if (value != null && orgframework != null && orgframework != _selectedFramework)
                 {
                     MainViewModel.Current.AlertProjectSetupChanged();
@@ -88,18 +90,22 @@ namespace Microsoft.Templates.UI.ViewModels
         public async Task InitializeAsync()
         {
             MainViewModel.Current.Title = StringRes.ProjectSetupTitle;
+
             if (SelectedProjectType == null)
             {
                 ProjectTypes.Clear();
 
                 var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes();
+
                 if (projectTypes.Count() > 0)
                 {
                     var data = projectTypes.Select(m => new MetadataInfoViewModel(m)).ToList();
+
                     foreach (var projectType in data.Where(p => !string.IsNullOrEmpty(p.Description)))
                     {
                         ProjectTypes.Add(projectType);
                     }
+
                     SelectedProjectType = ProjectTypes.First();
                     MainViewModel.Current.LoadedContentVisibility = Visibility.Visible;
                 }
@@ -117,13 +123,13 @@ namespace Microsoft.Templates.UI.ViewModels
         private void LoadFrameworks(MetadataInfoViewModel projectType, MetadataInfoViewModel orgFramework)
         {
             var projectFrameworks = GenComposer.GetSupportedFx(projectType.Name);
-
             var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks()
                                                                 .Where(m => projectFrameworks.Contains(m.Name))
                                                                 .Select(m => new MetadataInfoViewModel(m))
                                                                 .ToList();
 
             Frameworks.Clear();
+
             foreach (var framework in targetFrameworks)
             {
                 Frameworks.Add(framework);

@@ -1,9 +1,19 @@
-﻿using System;
+﻿// ******************************************************************
+// Copyright (c) Microsoft. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
+// ******************************************************************
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.SortUsings
 {
@@ -27,7 +37,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortUsings
             }
 
             var usingsLinesCount = endUsingIndex - startUsingIndex;
-
             var usings = classContent
                                 .Skip(startUsingIndex)
                                 .Take(usingsLinesCount)
@@ -39,8 +48,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortUsings
             classContent.RemoveRange(startUsingIndex, usingsLinesCount);
 
             var orderedUsings = new List<string>();
-
             var orderedKeys = GetOrderedNs(usings.Select(u => u.Key)).ToList();
+
             foreach (var key in orderedKeys)
             {
                 var usingsGroup = usings

@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="FakeGenShell.cs" />
     <Compile Include="MSBuild\MSBuildProject.cs" />
+    <Compile Include="MSBuild\VsItemTypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MSBuild\MSBuildSolution.cs" />
     <Compile Include="MSBuild\VsItemType.cs" />

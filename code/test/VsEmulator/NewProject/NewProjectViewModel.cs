@@ -11,11 +11,8 @@
 // ******************************************************************
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 
@@ -42,29 +39,29 @@ namespace Microsoft.Templates.VsEmulator.NewProject
         private string _name;
         public string Name
         {
-            get { return _name; }
-            set { SetProperty(ref _name, value); }
+            get => _name;
+            set => SetProperty(ref _name, value);
         }
 
         private string _location;
         public string Location
         {
-            get { return _location; }
-            set { SetProperty(ref _location, value); }
+            get => _location;
+            set => SetProperty(ref _location, value);
         }
 
         private string _solutionName;
         public string SolutionName
         {
-            get { return _solutionName; }
-            set { SetProperty(ref _solutionName, value); }
+            get => _solutionName;
+            set => SetProperty(ref _solutionName, value);
         }
 
         private bool _createDirectory;
         public bool CreateDirectory
         {
-            get { return _createDirectory; }
-            set { SetProperty(ref _createDirectory, value); }
+            get => _createDirectory;
+            set => SetProperty(ref _createDirectory, value);
         }
 
         public void Initialize()
@@ -89,7 +86,6 @@ namespace Microsoft.Templates.VsEmulator.NewProject
             _host.DialogResult = true;
             _host.Close();
         }
-
 
         private static string GetSuggestedSolution(string path)
         {

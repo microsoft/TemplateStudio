@@ -14,11 +14,8 @@ using System;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Diagnostics;
@@ -28,8 +25,8 @@ namespace Microsoft.Templates.Core.Gen
     public class GenContext : IDisposable
     {
         private const string DataSlotKey = "GenContext_Ids";
-        private static Dictionary<string, GenContext> _genContextTable = new Dictionary<string, GenContext>();
 
+        private static Dictionary<string, GenContext> _genContextTable = new Dictionary<string, GenContext>();
         public static GenToolBox ToolBox { get; private set; }
         public static bool IsInitialized { get; private set; }
 
@@ -40,12 +37,14 @@ namespace Microsoft.Templates.Core.Gen
         {
             Bootstrap(source, shell, GetWizardVersionFromAssembly());
         }
+
         public static void Bootstrap(TemplatesSource source, GenShell shell, Version wizardVersion)
         {
             AppHealth.Current.AddWriter(new ShellHealthWriter());
             AppHealth.Current.Info.TrackAsync($"Configuration file loaded: {Configuration.LoadedConfigFile}").FireAndForget();
 
             string hostVersion = $"{wizardVersion.Major}.{wizardVersion.Minor}";
+
             CodeGen.Initialize(source.Id, hostVersion);
             TemplatesRepository repository = new TemplatesRepository(source, wizardVersion);
 
@@ -90,6 +89,7 @@ namespace Microsoft.Templates.Core.Gen
                 {
                     throw new Exception($"The generation '{id}' is currently being processed.");
                 }
+
                 return context;
             }
         }
@@ -101,8 +101,7 @@ namespace Microsoft.Templates.Core.Gen
                 lock (_genContextTable)
                 {
                     var id = GetCurrentGenId();
-
-
+                    
                     if (string.IsNullOrEmpty(id) || !_genContextTable.ContainsKey(id))
                     {
                         throw new InvalidOperationException("There is no context for the current gen execution");
@@ -117,6 +116,7 @@ namespace Microsoft.Templates.Core.Gen
             lock (_genContextTable)
             {
                 var ticket = GetCurrentGenId();
+
                 if (!string.IsNullOrEmpty(ticket))
                 {
                     if (_genContextTable.ContainsKey(ticket))
@@ -124,6 +124,7 @@ namespace Microsoft.Templates.Core.Gen
                         _genContextTable.Remove(ticket);
                     }
                 }
+
                 CallContext.FreeNamedDataSlot(DataSlotKey);
             }
         }
@@ -136,10 +137,12 @@ namespace Microsoft.Templates.Core.Gen
         private static string GetCurrentGenId()
         {
             var id = CallContext.LogicalGetData(DataSlotKey);
+
             if (id != null)
             {
                 return id.ToString();
             }
+
             return null;
         }
 
@@ -147,6 +150,7 @@ namespace Microsoft.Templates.Core.Gen
         {
             string assemblyLocation = Assembly.GetExecutingAssembly().Location;
             var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
+
             Version.TryParse(versionInfo.FileVersion, out Version v);
 
             return v;

@@ -90,19 +90,21 @@ namespace wts.ItemName.ViewModels
 
         private void OnStateChanged(VisualStateChangedEventArgs args)
         {
-            if (args.NewState.Name == PanoramicStateName)
+            switch (args.NewState.Name)
             {
-                DisplayMode = SplitViewDisplayMode.CompactInline;
-            }
-            else if (args.NewState.Name == WideStateName)
-            {
-                DisplayMode = SplitViewDisplayMode.CompactInline;
-                IsPaneOpen = false;
-            }
-            else if (args.NewState.Name == NarrowStateName)
-            {
-                DisplayMode = SplitViewDisplayMode.Overlay;
-                IsPaneOpen = false;
+                case PanoramicStateName:
+                    DisplayMode = SplitViewDisplayMode.CompactInline;
+                    break;
+                case WideStateName:
+                    DisplayMode = SplitViewDisplayMode.CompactInline;
+                    IsPaneOpen = false;
+                    break;
+                case NarrowStateName:
+                    DisplayMode = SplitViewDisplayMode.Overlay;
+                    IsPaneOpen = false;
+                    break;
+                default:
+                    break;
             }
         }
 

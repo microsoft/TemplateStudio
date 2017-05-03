@@ -11,21 +11,14 @@
 // ******************************************************************
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using SystemTasks = System.Threading.Tasks;
 using System.Reflection;
 
 using EnvDTE;
 using EnvDTE80;
-
-using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.UI.Resources;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -37,6 +30,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         public VsOutputPane() 
         {
             _pane = GetOrCreatePane(Guid.Parse(TemplatesPaneGuid), true, false);
+
             if (_pane != null)
             {
                 _pane.Activate();
@@ -46,18 +40,20 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             _pane.OutputString(data);
         }
+
         private static OutputWindowPane GetOrCreatePane(Guid paneGuid, bool visible, bool clearWithSolution)
         {
             OutputWindowPane result = null;
+
             try
             {
-                string title = "Windows Template Studio";
                 if (ServiceProvider.GlobalProvider.GetService(typeof(DTE)) is DTE2 dte)
                 {
                     result = GetUwpPane(dte, paneGuid);
+
                     if (result == null)
                     {
-                        CreateUwpPane(paneGuid, visible, clearWithSolution, title);
+                        CreateUwpPane(paneGuid, visible, clearWithSolution, StringRes.Title);
                         result = GetUwpPane(dte, paneGuid);
                     }
                 }
@@ -66,6 +62,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 Trace.TraceError($"Exception creating Visual Studio Output window pane. {ex.ToString()}");
             }
+
             return result;
         }
 
@@ -95,6 +92,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             OutputWindowPanes panes = dte.ToolWindows.OutputWindow.OutputWindowPanes;
             OutputWindowPane result = null;
+
             foreach (OutputWindowPane p in panes)
             {
                 if (Guid.Parse(p.Guid).ToString() == uwpOutputPaneGuid.ToString())

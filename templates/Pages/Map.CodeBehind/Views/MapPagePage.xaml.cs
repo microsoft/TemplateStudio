@@ -4,6 +4,7 @@ using Windows.Foundation;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
+using Param_ItemNamespace.Helpers;
 using Param_ItemNamespace.Services;
 using System.Threading.Tasks;
 
@@ -73,7 +74,7 @@ namespace Param_ItemNamespace.Views
                 // TODO UWPTemplates: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
                 mapControl.MapServiceToken = "";
 
-                AddMapIcon(Center, "Your location");
+                AddMapIcon(Center, "Map_YourLocation".GetLocalized());
             }
         }
 

@@ -11,11 +11,8 @@
 // ******************************************************************
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core
 {
@@ -30,6 +27,7 @@ namespace Microsoft.Templates.Core
             {
                 result = GetHash(md5Hash, b64data);
             }
+
             return result.ToUpper();
         }
 
@@ -42,6 +40,7 @@ namespace Microsoft.Templates.Core
             {
                 result = GetHash(sha2, b64data);
             }
+
             return result.ToUpper();
         }
 
@@ -65,6 +64,7 @@ namespace Microsoft.Templates.Core
             {
                 return new string[0];
             }
+
             return value.Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
         }
 

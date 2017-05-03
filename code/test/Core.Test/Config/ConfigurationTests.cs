@@ -11,18 +11,9 @@
 // ******************************************************************
 
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
-using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Test.Diagnostics;
-using Microsoft.Templates.Core.Diagnostics;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -37,6 +28,7 @@ namespace Microsoft.Templates.Core.Test.Config
         public void SaveConfigurationSample()
         {
             JsonSerializer serializer = new JsonSerializer();
+
             serializer.Converters.Add(new JavaScriptDateTimeConverter());
             serializer.NullValueHandling = NullValueHandling.Ignore;
             serializer.Converters.Add(new StringEnumConverter());
@@ -44,6 +36,7 @@ namespace Microsoft.Templates.Core.Test.Config
             string filePath = Path.Combine(Environment.CurrentDirectory, "tests.save.config.json");
 
             StreamWriter sw = new StreamWriter(filePath);
+
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
                 serializer.Serialize(writer, new Configuration());
@@ -56,6 +49,7 @@ namespace Microsoft.Templates.Core.Test.Config
         public void NewInstanceDefaultConfiguration()
         {
             var configInstance = new Configuration();
+
             Assert.NotNull(configInstance);
             Assert.Equal(TraceEventType.Verbose, configInstance.DiagnosticsTraceLevel);
             Assert.Equal("https://wtsrepository.blob.core.windows.net/dev/Latest", configInstance.CdnUrl);
@@ -120,6 +114,7 @@ namespace Microsoft.Templates.Core.Test.Config
         {
             //The App.Config must especify the "JsonConfigFile" appsetting.
             var config = Configuration.Current;
+
             Assert.NotNull(config);
         }
     }

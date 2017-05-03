@@ -13,16 +13,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Composition;
-using System.Collections.ObjectModel;
-using Microsoft.Templates.UI.ViewModels;
-using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI
@@ -45,6 +40,7 @@ namespace Microsoft.Templates.UI
             foreach (var item in layout)
             {
                 var template = GenContext.ToolBox.Repo.Find(t => t.GroupIdentity == item.templateGroupIdentity && t.GetFrameworkList().Contains(framework));
+
                 if (template == null)
                 {
                     LogOrAlertException(string.Format(StringRes.ExceptionLayoutNotFound, item.templateGroupIdentity, framework));
@@ -77,6 +73,7 @@ namespace Microsoft.Templates.UI
             foreach (var dependency in dependencies)
             {
                 var dependencyTemplate =  GenContext.ToolBox.Repo.Find(t => t.Identity == dependency && t.GetFrameworkList().Contains(framework));
+
                 if (dependencyTemplate == null)
                 {
                     LogOrAlertException(string.Format(StringRes.ExceptionDependencyNotFound, dependency, framework));
@@ -84,6 +81,7 @@ namespace Microsoft.Templates.UI
                 else
                 {
                     var templateType = dependencyTemplate?.GetTemplateType();
+
                     if (templateType != TemplateType.Page && templateType != TemplateType.Feature)
                     {
                         LogOrAlertException(string.Format(StringRes.ExceptionDependencyType, dependencyTemplate.Identity));
@@ -99,6 +97,7 @@ namespace Microsoft.Templates.UI
                     else
                     {
                         dependencyList.Add(dependencyTemplate);
+
                         GetDependencies(dependencyTemplate, framework, dependencyList);
                     }
                 }
@@ -130,8 +129,8 @@ namespace Microsoft.Templates.UI
         private static void AddProject(UserSelection userSelection, List<GenInfo> genQueue)
         {
             var projectTemplate = GetProjectTemplate(userSelection.ProjectType, userSelection.Framework);
-
             var genProject = CreateGenInfo(GenContext.Current.ProjectName, projectTemplate, genQueue);
+
             genProject.Parameters.Add(GenParams.Username, Environment.UserName);
             genProject.Parameters.Add(GenParams.WizardVersion, GenContext.ToolBox.WizardVersion);
             genProject.Parameters.Add(GenParams.TemplatesVersion, GenContext.ToolBox.TemplatesVersion);
@@ -156,7 +155,6 @@ namespace Microsoft.Templates.UI
         private static void AddCompositionTemplates(List<GenInfo> genQueue, UserSelection userSelection)
         {
             var compositionCatalog = GetCompositionCatalog().ToList();
-
             var context = new QueryablePropertyDictionary();
 
             context.Add(new QueryableProperty("projectType", userSelection.ProjectType));
@@ -205,7 +203,7 @@ namespace Microsoft.Templates.UI
 #if DEBUG
             throw new GenException(message);
 #else
-            AppHealth.Current.Error.TrackAsync(message).FireAndForget();
+            Core.Diagnostics.AppHealth.Current.Error.TrackAsync(message).FireAndForget();
 #endif
         }
 
@@ -216,6 +214,7 @@ namespace Microsoft.Templates.UI
                 Name = name,
                 Template = template
             };
+
             queue.Add(genInfo);
 
             AddDefaultParams(genInfo);
@@ -226,10 +225,12 @@ namespace Microsoft.Templates.UI
         private static void AddDefaultParams(GenInfo genInfo)
         {
             var ns = GenContext.ToolBox.Shell.GetActiveNamespace();
+
             if (string.IsNullOrEmpty(ns))
             {
                 ns = GenContext.Current.ProjectName;
             }
+
             genInfo.Parameters.Add(GenParams.RootNamespace, ns);
 
             //TODO: THIS SHOULD BE THE ITEM IN CONTEXT

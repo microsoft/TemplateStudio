@@ -15,12 +15,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
-
-using Microsoft.Templates.Core.Diagnostics;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -52,6 +48,7 @@ namespace Microsoft.Templates.Core
                 if (_current == null)
                 {
                     string currentConfigFile = GetJsonConfigFilePath();
+
                     if (File.Exists(currentConfigFile))
                     {
                         _current = LoadFromFile(currentConfigFile);
@@ -66,7 +63,8 @@ namespace Microsoft.Templates.Core
 
                         TraceUsingDefault($"Tried to use the configuration file located at {currentConfigFile}, but not found. Using default configuration.");
                     }
-                }            
+                }           
+                
                 return _current;
             }
         }
@@ -75,23 +73,27 @@ namespace Microsoft.Templates.Core
         {
             TraceUsingDefault("Resoving JsonConfigFilePath");
             TraceUsingDefault("1. Check 'JsonConfigFile' appSetting is defined");
+
             string jsonConfigFile = ConfigurationManager.AppSettings["JsonConfigFile"];
         
             if (String.IsNullOrWhiteSpace(jsonConfigFile) || !File.Exists(jsonConfigFile))
             {
                 jsonConfigFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), DefaultJsonConfigFileName);
+
                 TraceUsingDefault($"2. AppSetting config file is not defined. Returning default config file in executing directory: {jsonConfigFile}");
             }
             else
             {
                 TraceUsingDefault($"2. AppSetting config file is defined. Returning configured file: {jsonConfigFile}");
             }
+
             return jsonConfigFile;
         }
 
         public static Configuration LoadFromFile(string jsonFilePath)
         {
             Configuration loadedConfig = null;
+
             if (!String.IsNullOrWhiteSpace(jsonFilePath) && File.Exists(jsonFilePath))
             {
                 loadedConfig = DeserializeConfiguration(jsonFilePath);
@@ -100,6 +102,7 @@ namespace Microsoft.Templates.Core
             {
                 throw new FileNotFoundException($"The file '{jsonFilePath}' does not exists. Can't load the configuration.");
             }
+
             return loadedConfig;
         }
 

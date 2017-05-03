@@ -22,9 +22,9 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public StatusViewModel(StatusType status, string message, bool autoHide = false)
         {
-            Status = status;
-            Message = message;
             AutoHide = autoHide;
+            Message = message;
+            Status = status;
         }
     }
 }

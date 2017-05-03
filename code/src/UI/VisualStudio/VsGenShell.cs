@@ -17,17 +17,16 @@ using System.Linq;
 using EnvDTE;
 
 using Microsoft.Internal.VisualStudio.PlatformUI;
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
 
-using NuGet;
 using NuGet.VisualStudio;
-using Microsoft.Templates.Core;
-using EnvDTE80;
-using Microsoft.Templates.Core.Diagnostics;
+
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -48,6 +47,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 return;
             }
+
             var proj = GetActiveProject();
 
             foreach (var item in itemsFullPath)
@@ -79,6 +79,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                         if (context.PlatformName == platformName)
                         {
                             solConfiguration.Activate();
+
                             return true;
                         }
                     }
@@ -102,6 +103,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 {
                     return selectedItem.Project.Properties.GetSafeValue("DefaultNamespace");
                 }
+
                 if (selectedItem.ProjectItem != null)
                 {
                     return $"{selectedItem.ProjectItem.Properties.GetSafeValue("DefaultNamespace")}";
@@ -109,6 +111,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             var p = GetActiveProject();
+
             if (p != null)
             {
                 return p.Properties.GetSafeValue("DefaultNamespace");
@@ -143,9 +146,13 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             //get the owner of this dialog
             IntPtr hwnd;
+
             UIShell.GetDialogOwnerHwnd(out hwnd);
+
             dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+
             UIShell.EnableModeless(0);
+
             try
             {
                 WindowHelper.ShowModal(dialog, hwnd);
@@ -174,6 +181,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             if (Dte.SelectedItems.Count > 0)
             {
                 var item = Dte.SelectedItems.Item(1);
+
                 if (item.Project != null)
                 {
                     return Path.GetDirectoryName(item.Project.FullName);
@@ -181,14 +189,13 @@ namespace Microsoft.Templates.UI.VisualStudio
                 if (item.ProjectItem != null)
                 {
                     string fullPath = $"{item.ProjectItem.Properties.GetSafeValue("FullPath")}";
+
                     return Path.GetDirectoryName(fullPath);
                 }
             }
 
             return GetActiveProjectPath();
         }
-
-
 
         protected override string GetActiveProjectName()
         {
@@ -200,6 +207,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         protected override string GetActiveProjectPath()
         {
             var p = GetActiveProject();
+
             if (p != null)
             {
                 return Path.GetDirectoryName(p.FileName);
@@ -219,6 +227,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 if (_dte != null)
                 {
                     Array projects = (Array)Dte.ActiveSolutionProjects;
+
                     if (projects?.Length >= 1)
                     {
                         p = (Project)projects.GetValue(0);
@@ -229,6 +238,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 //WE GE AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
             }
+
             return p;
         }
 
@@ -238,6 +248,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             await System.Threading.Tasks.Task.Delay(1000);
 
             var window = Dte.Windows.Item(EnvDTE.Constants.vsWindowKindTaskList);
+
             window.Activate();
         }
 
@@ -265,6 +276,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 var activeProject = GetActiveProject();
 
                 var p = installedPackages.FirstOrDefault();
+
                 if (p != null)
                 {
                     uninstaller.UninstallPackage(activeProject, p.Id, false);

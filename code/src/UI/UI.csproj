@@ -187,11 +187,13 @@
       <DependentUpon>TemplateInfoControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\ColumnCountConverter.cs" />
+    <Compile Include="Converters\EmptyCollectionVisibilityConverter.cs" />
     <Compile Include="Converters\FixedWidthConverter.cs" />
     <Compile Include="Converters\ItemAlignmentConverter.cs" />
     <Compile Include="Converters\MicrosoftTemplatesAuthorConverter.cs" />
     <Compile Include="Converters\StringVisibilityConverter.cs" />
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
+    <Compile Include="Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="ViewModels\DependencyInfoViewModel.cs" />
     <Compile Include="Views\ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>
@@ -277,6 +279,10 @@
     <Page Include="Controls\TemplateInfoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\StyleShape.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ErrorDialog.xaml">
       <SubType>Designer</SubType>
