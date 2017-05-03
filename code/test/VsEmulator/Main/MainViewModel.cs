@@ -48,42 +48,42 @@ namespace Microsoft.Templates.VsEmulator.Main
         private string _state;
         public string State
         {
-            get { return _state; }
-            set { SetProperty(ref _state, value); }
+            get => _state;
+            set => SetProperty(ref _state, value);
         }
 
         private string _log;
         public string Log
         {
-            get { return _log; }
-            set { SetProperty(ref _log, value); }
+            get => _log;
+            set => SetProperty(ref _log, value);
         }
 
         private Visibility _isProjectLoaded;
         public Visibility IsProjectLoaded
         {
-            get { return _isProjectLoaded; }
-            set { SetProperty(ref _isProjectLoaded, value); }
+            get => _isProjectLoaded;
+            set => SetProperty(ref _isProjectLoaded, value);
         }
 
         private string _wizardVersion;
         public string WizardVersion
         {
-            get { return _wizardVersion; }
-            set { SetProperty(ref _wizardVersion, value); }
+            get => _wizardVersion;
+            set => SetProperty(ref _wizardVersion, value);
         }
         
         private string _templatesVersion;
         public string TemplatesVersion
         {
-            get { return _templatesVersion; }
-            set { SetProperty(ref _templatesVersion, value); }
+            get => _templatesVersion;
+            set => SetProperty(ref _templatesVersion, value);
         }
 
         private string _solutionName;
         public string SolutionName
         {
-            get { return _solutionName; }
+            get => _solutionName;
             set
             {
                 SetProperty(ref _solutionName, value);

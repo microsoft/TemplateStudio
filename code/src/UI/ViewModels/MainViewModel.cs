@@ -41,78 +41,78 @@ namespace Microsoft.Templates.UI.ViewModels
         private StatusViewModel _status = StatusControl.EmptyStatus;
         public StatusViewModel Status
         {            
-            get { return _status; }
-            set { SetProperty(ref _status, value); }
+            get => _status;
+            set => SetProperty(ref _status, value);
         }
 
         private string _wizardVersion;
         public string WizardVersion
         {
-            get { return _wizardVersion; }
-            set { SetProperty(ref _wizardVersion, value); }
+            get => _wizardVersion;
+            set => SetProperty(ref _wizardVersion, value);
         }
 
         private string _templatesVersion;
         public string TemplatesVersion
         {
-            get { return _templatesVersion; }
-            set { SetProperty(ref _templatesVersion, value); }
+            get => _templatesVersion;
+            set => SetProperty(ref _templatesVersion, value);
         }
 
         private string _title;
         public string Title
         {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
+            get => _title;
+            set => SetProperty(ref _title, value);
         }
 
         private Visibility _infoShapeVisibility = Visibility.Collapsed;
         public Visibility InfoShapeVisibility
         {
-            get { return _infoShapeVisibility; }
-            set { SetProperty(ref _infoShapeVisibility, value); }
+            get => _infoShapeVisibility;
+            set => SetProperty(ref _infoShapeVisibility, value);
         }
 
         private Visibility _loadingContentVisibility = Visibility.Visible;
         public Visibility LoadingContentVisibility
         {
-            get { return _loadingContentVisibility; }
-            set { SetProperty(ref _loadingContentVisibility, value); }
+            get => _loadingContentVisibility;
+            set => SetProperty(ref _loadingContentVisibility, value);
         }
 
         private Visibility _loadedContentVisibility = Visibility.Collapsed;
         public Visibility LoadedContentVisibility
         {
-            get { return _loadedContentVisibility; }
-            set { SetProperty(ref _loadedContentVisibility, value); }
+            get => _loadedContentVisibility;
+            set => SetProperty(ref _loadedContentVisibility, value);
         }
 
         private Visibility _noContentVisibility = Visibility.Collapsed;
         public Visibility NoContentVisibility
         {
-            get { return _noContentVisibility; }
-            set { SetProperty(ref _noContentVisibility, value); }
+            get => _noContentVisibility;
+            set => SetProperty(ref _noContentVisibility, value);
         }
 
         private Visibility _createButtonVisibility = Visibility.Collapsed;
         public Visibility CreateButtonVisibility
         {
-            get { return _createButtonVisibility; }
-            set { SetProperty(ref _createButtonVisibility, value); }
+            get => _createButtonVisibility;
+            set => SetProperty(ref _createButtonVisibility, value);
         }
 
         private Visibility _nextButtonVisibility = Visibility.Visible;
         public Visibility NextButtonVisibility
         {
-            get { return _nextButtonVisibility; }
-            set { SetProperty(ref _nextButtonVisibility, value); }
+            get => _nextButtonVisibility;
+            set => SetProperty(ref _nextButtonVisibility, value);
         }
 
         private Visibility _wizardInfoVisibility = Visibility.Collapsed;
         public Visibility WizardInfoVisibility
         {
-            get { return _wizardInfoVisibility; }
-            set { SetProperty(ref _wizardInfoVisibility, value); }
+            get => _wizardInfoVisibility;
+            set => SetProperty(ref _wizardInfoVisibility, value);
         }
 
         private RelayCommand _cancelCommand;

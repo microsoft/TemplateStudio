@@ -63,22 +63,22 @@ namespace Microsoft.Templates.UI.Controls
         public static readonly DependencyProperty StretchProperty = DependencyProperty.Register("Stretch", typeof(Stretch), typeof(ImageEx), new PropertyMetadata(Stretch.Uniform));
         public Stretch Stretch
         {
-            get { return (Stretch)GetValue(StretchProperty); }
-            set { SetValue(StretchProperty, value); }
+            get => (Stretch)GetValue(StretchProperty);
+            set => SetValue(StretchProperty, value);
         }
 
         public static readonly DependencyProperty SourcePathProperty = DependencyProperty.Register("SourcePath", typeof(string), typeof(ImageEx), new PropertyMetadata(null));
         public string SourcePath
         {
-            get { return (string)GetValue(SourcePathProperty); }
-            set { SetValue(SourcePathProperty, value); }
+            get => (string)GetValue(SourcePathProperty);
+            set => SetValue(SourcePathProperty, value);
         }
 
         public static readonly DependencyProperty FallbackImageProperty = DependencyProperty.Register("FallbackImage", typeof(string), typeof(ImageEx), new PropertyMetadata(null));
         public string FallbackImage
         {
-            get { return (string)GetValue(FallbackImageProperty); }
-            set { SetValue(FallbackImageProperty, value); }
+            get => (string)GetValue(FallbackImageProperty);
+            set => SetValue(FallbackImageProperty, value);
         }
 
         public BitmapImage CreateIcon(string path)
