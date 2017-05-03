@@ -102,6 +102,7 @@ namespace Microsoft.Templates.UI.Controls
             InitializeComponent();
             TitleForeground = FindResource("UIBlack") as SolidColorBrush;
             MainViewModel.Current.ProjectTemplates.UpdateTemplateAvailable += (sender, args) => CheckAddingStatus();
+            Loaded += (sender, args) => CheckAddingStatus();
         }
 
         private void OnAddClicked(object sender, RoutedEventArgs e)
