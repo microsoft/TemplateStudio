@@ -70,7 +70,7 @@
                                             <Condition Property="IsMouseOver" Value="True"/>
                                         </MultiTrigger.Conditions>
                                         <MultiTrigger.Setters>
-                                            <Setter Property="Foreground" Value="{StaticResource UIBlue}"/>
+                                            <Setter Property="Foreground" Value="{StaticResource UIDarkBlue}"/>
                                             <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{StaticResource UIDarkBlue}"/>
                                         </MultiTrigger.Setters>
                                     </MultiTrigger>
@@ -80,7 +80,7 @@
                                             <Condition Property="IsMouseOver" Value="False"/>
                                         </MultiTrigger.Conditions>
                                         <MultiTrigger.Setters>
-                                            <Setter Property="Foreground" Value="{StaticResource UIDarkBlue}"/>
+                                            <Setter Property="Foreground" Value="{StaticResource UIBlue}"/>
                                             <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{StaticResource UIBlue}"/>
                                         </MultiTrigger.Setters>
                                     </MultiTrigger>
@@ -90,6 +90,7 @@
                                             <Condition Property="IsMouseOver" Value="True"/>
                                         </MultiTrigger.Conditions>
                                         <MultiTrigger.Setters>
+                                            <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkGray}"/>
                                             <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{StaticResource UIMiddleDarkGray}"/>
                                         </MultiTrigger.Setters>
                                     </MultiTrigger>
