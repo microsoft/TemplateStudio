@@ -72,7 +72,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             get => _wizardVersion;
             set => SetProperty(ref _wizardVersion, value);
         }
-        
+
         private string _templatesVersion;
         public string TemplatesVersion
         {
@@ -222,7 +222,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void ConfigureGenContext()
         {
-            if(TemplatesVersion == "0.0.0.0")
+            if (TemplatesVersion == "0.0.0.0")
             {
                 CleanUpContent();
             }
@@ -234,13 +234,15 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void CleanUpContent()
         {
-                DirectoryInfo di = new DirectoryInfo(GetTemplatesFolder());
+            DirectoryInfo di = new DirectoryInfo(GetTemplatesFolder());
 
+            if (di.Exists)
+            {
                 foreach (var sdi in di.EnumerateDirectories())
                 {
                     Fs.SafeDeleteDirectory(sdi.FullName);
                 }
-
+            }
         }
         private string GetTemplatesFolder()
         {
