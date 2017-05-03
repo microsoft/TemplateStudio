@@ -183,7 +183,8 @@
     </Compile>
     <Compile Include="Controls\StatusType.cs" />
     <Compile Include="Controls\SymbolFonts.cs" />
-    <Compile Include="Controls\TemplateInfoControl.xaml.cs">
+    <Compile Include="Controls\TemplateInfoControl\TemplateInfoControl.Members.cs" />
+    <Compile Include="Controls\TemplateInfoControl\TemplateInfoControl.xaml.cs">
       <DependentUpon>TemplateInfoControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\ColumnCountConverter.cs" />
@@ -274,7 +275,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\TemplateInfoControl.xaml">
+    <Page Include="Controls\TemplateInfoControl\TemplateInfoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

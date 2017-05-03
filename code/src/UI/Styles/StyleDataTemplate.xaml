@@ -53,7 +53,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="ProjectTemplatesItemTemplate">
-        <controls:TemplateInfoControl TemplateInfo="{Binding}"/>
+        <controls:TemplateInfoControl TemplateInfo="{Binding}" />
     </DataTemplate>
 
     <DataTemplate x:Key="SummaryExpanderHeaderTemplate">
