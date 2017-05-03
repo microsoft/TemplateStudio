@@ -89,7 +89,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (SolidColorBrush)GetValue(TitleForegroundProperty);
             set => SetValue(TitleForegroundProperty, value);
         }
-        public static readonly DependencyProperty TitleForegroundProperty = DependencyProperty.Register("TitleForeground", typeof(SolidColorBrush), typeof(TemplateInfoControl), new PropertyMetadata(null));
+        public static readonly DependencyProperty TitleForegroundProperty = DependencyProperty.Register("TitleForeground", typeof(SolidColorBrush), typeof(TemplateInfoControl), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
 
         private ICommand _saveItemCommand;
         public ICommand SaveItemCommand => _saveItemCommand ?? (_saveItemCommand = new RelayCommand(OnSaveClicked));

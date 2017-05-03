@@ -8,15 +8,18 @@
     </ResourceDictionary.MergedDictionaries>
 
     <!--Base Text Style-->
-    <Style TargetType="TextBlock" x:Key="UIBaseText">
+    <Style TargetType="TextBlock" x:Key="UIBase">
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="Foreground" Value="{StaticResource UIBlack}"/>
         <Setter Property="FontSize" Value="{StaticResource UI_M_FontSize}" />
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontWeight" Value="Regular"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="UIBaseText" BasedOn="{StaticResource UIBase}">
+        <Setter Property="Foreground" Value="{StaticResource UIBlack}"/>
     </Style>
 
     <!--Global Text Styles-->
@@ -44,7 +47,7 @@
         <Setter Property="Margin" Value="{StaticResource MediumLeftTopMargin}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="TextTemplateItemTitleStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="TextTemplateItemTitleStyle" BasedOn="{StaticResource UIBase}">
         <Setter Property="FontWeight" Value="SemiBold" />
     </Style>
 

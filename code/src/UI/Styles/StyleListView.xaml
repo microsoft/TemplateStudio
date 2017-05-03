@@ -78,7 +78,7 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">
-                                <Border x:Name="ContentBorder" Style="{StaticResource ListViewItemBorderStyle}" HorizontalAlignment="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UniformGrid}}, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}">
+                                <Border x:Name="ContentBorder" Style="{StaticResource ListViewItemBorderStyle}" HorizontalAlignment="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UniformGrid}}, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}" BorderBrush="{StaticResource UIGray}">
                                     <ContentPresenter/>
                                 </Border>
                                 <ControlTemplate.Triggers>
@@ -108,7 +108,6 @@
                                             <Condition Property="IsMouseOver" Value="True"/>
                                         </MultiTrigger.Conditions>
                                         <MultiTrigger.Setters>
-                                            <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkGray}"/>
                                             <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{StaticResource UIMiddleDarkGray}"/>
                                         </MultiTrigger.Setters>
                                     </MultiTrigger>
