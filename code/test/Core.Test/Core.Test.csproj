@@ -121,6 +121,7 @@
     <Compile Include="Diagnostics\TelemetryFixture.cs" />
     <Compile Include="Diagnostics\TelemetryServiceTest.cs" />
     <Compile Include="Diagnostics\TestHealthWriter.cs" />
+    <Compile Include="PostActions\Catalog\HandleRemovalsTest.cs" />
     <Compile Include="PostActions\Catalog\SortUsingsTest.cs" />
     <Compile Include="Templates\ITemplateInfoExtensionsTest.cs" />
     <Compile Include="Locations\TemplatexTests.cs" />

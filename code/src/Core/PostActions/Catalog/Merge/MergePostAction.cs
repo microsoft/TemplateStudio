@@ -11,6 +11,7 @@
 // ******************************************************************
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -41,7 +42,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var source = File.ReadAllLines(originalFilePath).ToList();
             var merge = File.ReadAllLines(_config).ToList();
 
-            var result = source.Merge(merge);
+            IEnumerable<string> result = source.HandleRemovals(merge);
+            result = result.Merge(merge.RemoveRemovals());
 
             File.WriteAllLines(originalFilePath, result);
             File.Delete(_config);
