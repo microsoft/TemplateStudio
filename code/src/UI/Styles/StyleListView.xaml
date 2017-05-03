@@ -13,6 +13,7 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Focusable" Value="False"/>
         <Setter Property="Margin" Value="{StaticResource MediumTopRightMargin}"/>
         <Setter Property="Foreground" Value="{StaticResource UIBlack}"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
@@ -57,6 +58,23 @@
             <Setter.Value>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="Foreground" Value="{StaticResource UIBlack}"/>
+                    <Setter Property="FocusVisualStyle">
+                        <Setter.Value>
+                            <Style>
+                                <Setter Property="Control.Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <Grid Margin="{StaticResource BigRightBottomMargin}">
+                                                <Grid.Background>
+                                                    <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
+                                                </Grid.Background>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Setter.Value>
+                    </Setter>
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">
@@ -107,6 +125,23 @@
             <Setter.Value>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="Foreground" Value="{StaticResource UIBlack}"/>
+                    <Setter Property="FocusVisualStyle">
+                        <Setter.Value>
+                            <Style>
+                                <Setter Property="Control.Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <Grid Margin="{StaticResource BigRightBottomMargin}">
+                                                <Grid.Background>
+                                                    <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
+                                                </Grid.Background>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Setter.Value>
+                    </Setter>
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">

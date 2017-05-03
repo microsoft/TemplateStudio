@@ -33,6 +33,7 @@ namespace Microsoft.Templates.UI.ViewModels
     {
         private bool _canGoBack;
         private bool _canGoForward;
+        private bool _canCreate;
 
         public static MainViewModel Current;
         public MainView MainView;
@@ -122,7 +123,7 @@ namespace Microsoft.Templates.UI.ViewModels
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
         public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));                
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _canGoForward));
-        public RelayCommand CreateCommand => _createCommand ?? (_createCommand = new RelayCommand(OnCreate));        
+        public RelayCommand CreateCommand => _createCommand ?? (_createCommand = new RelayCommand(OnCreate, () => _canCreate));
 
         public ProjectSetupViewModel ProjectSetup { get; private set; } = new ProjectSetupViewModel();
 
@@ -190,6 +191,12 @@ namespace Microsoft.Templates.UI.ViewModels
                                 .ToList();
 
             SyncLicenses(genLicenses);
+        }
+
+        public void EnableProjectCreation()
+        {
+            _canCreate = true;
+            CreateCommand.OnCanExecuteChanged();
         }
 
         private void Sync_SyncStatusChanged(object sender, SyncStatus status)
@@ -284,6 +291,7 @@ namespace Microsoft.Templates.UI.ViewModels
             NavigationService.GoBack();
 
             _canGoBack = false;
+            _canCreate = false;
 
             BackCommand.OnCanExecuteChanged();
 

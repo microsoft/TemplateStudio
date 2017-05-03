@@ -12,46 +12,46 @@
             <local:ColumnCountConverter x:Key="ColumnConverter" />
             <local:ItemAlignmentConverter x:Key="ItemAlignmentConverter" />
             <local:FixedWidthConverter x:Key="FixedWidthConverter" />
-            
+
             <converters:StringVisibilityConverter x:Key="StringVisibilityConverter"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-        <ScrollViewer>
-            <StackPanel>
+    <ScrollViewer>
+        <StackPanel>
             <GroupBox Header="{Binding PagesHeader}" Margin="{StaticResource MediumLeftTopRightMargin}">
-                    <ItemsControl ItemsSource="{Binding PagesGroups}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
+                <ItemsControl ItemsSource="{Binding PagesGroups}" Focusable="False">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
                                 <TextBlock Text="{Binding Title}" Style="{StaticResource TextSubGroupTemplateItemsHeaderStyle}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
-                                    <ListView                                        
+                                <ListView                                        
                                         ItemsSource="{Binding Templates}"
                                         Style="{StaticResource ListViewProjectTemplatesStyle}"
                                         ItemTemplate="{StaticResource ProjectTemplatesItemTemplate}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </GroupBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </GroupBox>
             <GroupBox Header="{Binding FeaturesHeader}" Margin="{StaticResource MediumLeftTopRightMargin}">
-                    <ItemsControl ItemsSource="{Binding FeatureGroups}" Margin="{StaticResource MediumTopMargin}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
+                <ItemsControl ItemsSource="{Binding FeatureGroups}" Margin="{StaticResource MediumTopMargin}" Focusable="False">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
                                 <TextBlock Text="{Binding Title}" Style="{StaticResource TextSubGroupTemplateItemsHeaderStyle}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
-                                    <ListView
+                                <ListView
                                         Margin="{StaticResource MediumMargin}"
                                         ItemsSource="{Binding Templates}"
                                         Style="{StaticResource ListViewProjectTemplatesStyle}"
                                         ItemTemplate="{StaticResource ProjectTemplatesItemTemplate}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </GroupBox>
-            </StackPanel>
-        </ScrollViewer>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </GroupBox>
+        </StackPanel>
+    </ScrollViewer>
 </Page>
