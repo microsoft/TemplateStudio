@@ -11,15 +11,12 @@
 // ******************************************************************
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net.Mime;
 using System.Security;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Locations;
 
@@ -304,6 +301,7 @@ namespace Microsoft.Templates.Core.Test.Locations
                 Directory.Move(aquiredContentFolder, aquiredContentFolder + "_old");
 
                 rts.Adquire(targetFolder);
+
                 Assert.True(Directory.EnumerateDirectories(targetFolder).Count() == 2);
             }
             finally

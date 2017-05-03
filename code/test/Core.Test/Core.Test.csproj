@@ -114,11 +114,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Composition\FakeTemplateInfo.cs" />
     <Compile Include="Config\ConfigurationTests.cs" />
     <Compile Include="Diagnostics\HealthTest.cs" />
     <Compile Include="Diagnostics\FileHealthWriterTest.cs" />
     <Compile Include="Diagnostics\TelemetryFixture.cs" />
     <Compile Include="Diagnostics\TelemetryServiceTest.cs" />
+    <Compile Include="Diagnostics\TestHealthWriter.cs" />
     <Compile Include="PostActions\Catalog\SortUsingsTest.cs" />
     <Compile Include="Templates\ITemplateInfoExtensionsTest.cs" />
     <Compile Include="Locations\TemplatexTests.cs" />

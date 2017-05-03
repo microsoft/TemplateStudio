@@ -54,6 +54,8 @@ namespace Microsoft.Templates.UI.Controls
                     Stretch = Stretch
                 };
 
+                RenderOptions.SetBitmapScalingMode(image, BitmapScalingMode.HighQuality);
+
                 Content = image;
             }
         }

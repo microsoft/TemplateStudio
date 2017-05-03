@@ -13,22 +13,17 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 
-using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions;
-using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.Templates.UI.Views;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.UI
 {
@@ -62,7 +57,9 @@ namespace Microsoft.Templates.UI
                 mainView.SafeClose();
                 ShowError(ex);
             }
+
             GenContext.ToolBox.Shell.CancelWizard();
+
             return null;
         }
 
@@ -85,9 +82,7 @@ namespace Microsoft.Templates.UI
         public static async Task UnsafeGenerateAsync(UserSelection userSelection)
         {
             var genItems = GenComposer.Compose(userSelection).ToList();
-
             var chrono = Stopwatch.StartNew();
-
             var genResults = new Dictionary<string, TemplateCreationResult>();
 
             foreach (var genInfo in genItems)
@@ -121,6 +116,7 @@ namespace Microsoft.Templates.UI
             ExecuteGlobalPostActions(genItems);
 
             chrono.Stop();
+
             TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.Framework);
         }
 
@@ -166,6 +162,7 @@ namespace Microsoft.Templates.UI
             AppHealth.Current.Exception.TrackAsync(ex, userSelection?.ToString()).FireAndForget();
 
             var error = new ErrorDialog(ex);
+
             GenContext.ToolBox.Shell.ShowModal(error);
         }
 
@@ -189,6 +186,7 @@ namespace Microsoft.Templates.UI
                     }
 
                     string resultsKey = $"{genInfo.Template.Identity}_{genInfo.Name}";
+
                     if (genInfo.Template.GetTemplateType() == TemplateType.Project)
                     {
                         AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, 

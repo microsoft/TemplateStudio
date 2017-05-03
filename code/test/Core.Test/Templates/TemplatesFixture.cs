@@ -10,8 +10,9 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core.Test.Locations;
 using System;
+
+using Microsoft.Templates.Core.Test.Locations;
 
 namespace Microsoft.Templates.Core.Test
 {
@@ -22,7 +23,9 @@ namespace Microsoft.Templates.Core.Test
         public TemplatesFixture()
         {
             var source = new UnitTestsTemplatesSource();
+
             CodeGen.Initialize(source.Id, "0.0");
+
             Repository = new TemplatesRepository(source, Version.Parse("0.0.0.0"));
             
             Repository.SynchronizeAsync(true).Wait();

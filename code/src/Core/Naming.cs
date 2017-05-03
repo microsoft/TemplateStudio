@@ -12,11 +12,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core
 {
@@ -59,6 +57,7 @@ namespace Microsoft.Templates.Core
                     ErrorType = ValidationErrorType.Empty
                 };
             }
+
             if (existing.Contains(value))
             {
                 return new ValidationResult
@@ -67,6 +66,7 @@ namespace Microsoft.Templates.Core
                     ErrorType = ValidationErrorType.AlreadyExists
                 };
             }
+
             if (ReservedNames.Contains(value))
             {
                 return new ValidationResult
@@ -106,12 +106,14 @@ namespace Microsoft.Templates.Core
             }
 
             var valueChunks = value.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
             if (valueChunks.Length == 1)
             {
                 return value;
             }
 
             var result = new StringBuilder();
+
             foreach (var chunk in valueChunks)
             {
                 result.Append(string.Concat(char.ToUpper(chunk[0]), chunk.Substring(1), ""));
@@ -119,20 +121,5 @@ namespace Microsoft.Templates.Core
 
             return result.ToString();
         }
-    }
-
-    public class ValidationResult
-    {
-        public bool IsValid { get; set; }
-        public ValidationErrorType ErrorType { get; set; }
-    }
-
-    public enum ValidationErrorType
-    {
-        None,
-        Empty,
-        AlreadyExists,
-        BadFormat,
-        ReservedName
     }
 }

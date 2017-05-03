@@ -12,6 +12,7 @@
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
 

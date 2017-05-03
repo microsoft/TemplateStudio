@@ -10,17 +10,14 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Composition
 {
     public class QueryableProperty
     {
+        public static QueryableProperty Empty => new QueryableProperty(string.Empty, string.Empty);
+
         public string Name { get; }
         public string Value { get; }
 
@@ -30,7 +27,6 @@ namespace Microsoft.Templates.Core.Composition
             Value = value;
         }
 
-        public static QueryableProperty Empty => new QueryableProperty(string.Empty, string.Empty);
 
         public bool Compare(QueryNode query)
         {

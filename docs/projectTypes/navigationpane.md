@@ -17,6 +17,7 @@ Navigate to `ViewModel/ShellViewModel.cs` and change the `PopulateNavItems` meth
 The code below shows the symbols used to create the app shown in the image above.
 
 ```csharp
+
 private void PopulateNavItems()
 {
     _navigationItems.Clear();
@@ -28,6 +29,7 @@ private void PopulateNavItems()
     _navigationItems.Add(ShellNavigationItem.FromType<TabbedView>("Shell_Tabbed".GetLocalized(), Symbol.Document)); // This is still the default
     _navigationItems.Add(ShellNavigationItem.FromType<WebView1View>("Shell_WebView1".GetLocalized(), Symbol.Globe));
 }
+
 ```
 
 The icons are created using the `Windows.UI.Xaml.Controls.Symbol` enumeration. You can view all the symbols available at <https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.symbol>

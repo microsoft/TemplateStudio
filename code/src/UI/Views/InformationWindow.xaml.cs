@@ -69,6 +69,7 @@ namespace Microsoft.Templates.UI.Views
             {
                 throw new System.Exception($"{info.GetType().ToString()} is not expected as valid type for the Information Window.");
             }
+
             ViewModel.InformationVisibility = Visibility.Visible;
         }
 
