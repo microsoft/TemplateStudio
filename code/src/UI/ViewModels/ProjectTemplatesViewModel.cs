@@ -23,12 +23,12 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Views;
+using System.Windows.Media;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
     public class ProjectTemplatesViewModel : Observable
     {
-        public event EventHandler UpdateTemplateAvailable;
         public MetadataInfoViewModel ContextFramework { get; set; }
         public MetadataInfoViewModel ContextProjectType { get; set; }
 
@@ -60,14 +60,87 @@ namespace Microsoft.Templates.UI.ViewModels
         private RelayCommand<SummaryItemViewModel> _removeItemCommand;
         public RelayCommand<SummaryItemViewModel> RemoveItemCommand => _removeItemCommand ?? (_removeItemCommand = new RelayCommand<SummaryItemViewModel>(RemoveItem));
 
-        private RelayCommand<(string Name, ITemplateInfo Template)> _addCommand;
-        public RelayCommand<(string Name, ITemplateInfo Template)> AddCommand => _addCommand ?? (_addCommand = new RelayCommand<(string Name, ITemplateInfo Template)>((item)=> { OnAddItem(item); }));
+        private RelayCommand<TemplateInfoViewModel> _addTemplateItemCommand;
+        public RelayCommand<TemplateInfoViewModel> AddTemplateItemCommand => _addTemplateItemCommand ?? (_addTemplateItemCommand = new RelayCommand<TemplateInfoViewModel>(OnAddTemplateItem));
 
-        private RelayCommand<TemplateInfoViewModel> _showInfoCommand;
-        public RelayCommand<TemplateInfoViewModel> ShowInfoCommand => _showInfoCommand ?? (_showInfoCommand = new RelayCommand<TemplateInfoViewModel>((template) => { OnShowInfo(template); }));
+        private RelayCommand<TemplateInfoViewModel> _saveTemplateItemCommand;
+        public RelayCommand<TemplateInfoViewModel> SaveTemplateItemCommand => _saveTemplateItemCommand ?? (_saveTemplateItemCommand = new RelayCommand<TemplateInfoViewModel>(OnSaveTemplateItem));
 
-        public Func<IEnumerable<string>> GetUsedNamesFunc => () => SavedTemplates.Select(t => t.Name);
-        public Func<IEnumerable<string>> GetUsedTemplatesIdentitiesFunc => () => SavedTemplates.Select(t => t.Template.Identity);
+        private void ValidateNewTemplateName(TemplateInfoViewModel template)
+        {
+            var names = SavedTemplates.Select(t => t.Name);
+            var validationResult = Naming.Validate(names, template.NewTemplateName);
+
+            template.IsValidName = validationResult.IsValid;
+            template.ErrorMessage = String.Empty;
+
+            if (!template.IsValidName)
+            {
+                template.ErrorMessage = StringRes.ResourceManager.GetString($"ValidationError_{validationResult.ErrorType}");
+
+                if (string.IsNullOrWhiteSpace(template.ErrorMessage))
+                {
+                    template.ErrorMessage = "UndefinedError";
+                }
+
+                throw new Exception(template.ErrorMessage);
+            }
+        }
+
+        private void OnAddTemplateItem(TemplateInfoViewModel template)
+        {
+            if (template.CanChooseItemName)
+            {
+                var names = SavedTemplates.Select(t => t.Name);
+                template.NewTemplateName = Naming.Infer(names, template.Template.GetDefaultName());
+                ValidateNewTemplateName(template);
+                CloseTemplatesEdition();
+                template.IsEditionEnabled = true;
+            }
+            else
+            {
+                template.NewTemplateName = template.Template.GetDefaultName();
+                OnAddItem((template.NewTemplateName, template.Template));
+
+                var isAlreadyDefined = IsAlreadyDefined(template.Template.Identity);
+                template.CheckAddingStatus(isAlreadyDefined);
+            }
+        }
+
+        private void OnSaveTemplateItem(TemplateInfoViewModel template)
+        {
+            if (template.IsValidName)
+            {
+                OnAddItem((template.NewTemplateName, template.Template));
+                template.CloseEdition();
+
+                var isAlreadyDefined = IsAlreadyDefined(template.Template.Identity);
+                template.CheckAddingStatus(isAlreadyDefined);
+            }
+        }
+
+        private bool IsAlreadyDefined(string identity) => SavedTemplates.Select(t => t.Template.Identity).Any(name => name == identity);
+
+        private void CloseTemplatesEdition()
+        {
+            PagesGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t => t.CloseEdition()));
+            FeatureGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t => t.CloseEdition()));
+        }
+
+        private void CheckTemplatesAddingStatus()
+        {
+            PagesGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t =>
+            {
+                var isAlreadyDefined = IsAlreadyDefined(t.Template.Identity);
+                t.CheckAddingStatus(isAlreadyDefined);
+            }));
+
+            FeatureGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t =>
+            {
+                var isAlreadyDefined = IsAlreadyDefined(t.Template.Identity);
+                t.CheckAddingStatus(isAlreadyDefined);
+            }));
+        }
 
         public ProjectTemplatesViewModel()
         {
@@ -80,11 +153,11 @@ namespace Microsoft.Templates.UI.ViewModels
             MainViewModel.Current.Title = StringRes.ProjectTemplatesTitle;
             ContextProjectType = MainViewModel.Current.ProjectSetup.SelectedProjectType;
             ContextFramework = MainViewModel.Current.ProjectSetup.SelectedFramework;
-            
+
             if (PagesGroups.Count == 0)
             {
                 var pages = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page && t.GetFrameworkList().Contains(ContextFramework.Name))
-                                                   .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name)));
+                                                   .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), AddTemplateItemCommand, SaveTemplateItemCommand));
 
                 var groups = pages.GroupBy(t => t.Group).Select(gr => new GroupTemplateInfoViewModel(gr.Key as string, gr.ToList())).OrderBy(gr => gr.Title);
 
@@ -95,7 +168,7 @@ namespace Microsoft.Templates.UI.ViewModels
             if (FeatureGroups.Count == 0)
             {
                 var features = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Feature && t.GetFrameworkList().Contains(ContextFramework.Name))
-                                                      .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name)));
+                                                      .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), AddTemplateItemCommand, SaveTemplateItemCommand));
 
                 var groups = features.GroupBy(t => t.Group).Select(gr => new GroupTemplateInfoViewModel(gr.Key as string, gr.ToList())).OrderBy(gr => gr.Title);
 
@@ -109,6 +182,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 MainViewModel.Current.RebuildLicenses();
             }
             MainViewModel.Current.EnableProjectCreation();
+            CloseTemplatesEdition();
             await Task.CompletedTask;
         }
 
@@ -148,16 +222,6 @@ namespace Microsoft.Templates.UI.ViewModels
             MainViewModel.Current.RebuildLicenses();
         }
 
-        private void OnShowInfo(TemplateInfoViewModel template)
-        {
-            MainViewModel.Current.InfoShapeVisibility = Visibility.Visible;
-            var infoView = new InformationWindow(template, MainViewModel.Current.MainView);
-
-            infoView.ShowDialog();
-            MainViewModel.Current.InfoShapeVisibility = Visibility.Collapsed;
-
-        }
-
         private void SaveNewTemplate((string Name, ITemplateInfo Template) item, bool isRemoveEnabled = true)
         {
             SavedTemplates.Add(item);
@@ -180,8 +244,7 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 SummaryFeatures.Add(newItem);
             }
-
-            UpdateTemplateAvailable?.Invoke(this, EventArgs.Empty);
+            CheckTemplatesAddingStatus();
         }
 
         private void RemoveItem(SummaryItemViewModel item)
@@ -205,8 +268,7 @@ namespace Microsoft.Templates.UI.ViewModels
             }
 
             SavedTemplates.Remove(SavedTemplates.First(st => st.Name == item.ItemName));
-            UpdateTemplateAvailable?.Invoke(this, EventArgs.Empty);
-
+            CheckTemplatesAddingStatus();
             MainViewModel.Current.RebuildLicenses();
         }
     }

@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
                     xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
-                    xmlns:converter="clr-namespace:Microsoft.Templates.UI.Converters">
+                    xmlns:converter="clr-namespace:Microsoft.Templates.UI.Converters"
+                    xmlns:local="clr-namespace:Microsoft.Templates.UI">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Colors.xaml" />
@@ -61,7 +62,118 @@
     </DataTemplate>
 
     <DataTemplate x:Key="ProjectTemplatesItemTemplate">
-        <controls:TemplateInfoControl TemplateInfo="{Binding}" />
+        <Grid>
+            <Rectangle Style="{StaticResource RectangleDropShadowStyle}" />
+            <Border Width="205" Height="180" Background="{StaticResource UIWhite}">
+                <Grid Margin="{StaticResource MediumMargin}">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="30" />
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <controls:ImageEx Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Focusable="False" SourcePath="{Binding Icon}" MaxWidth="50"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding Name}" Margin="{StaticResource MediumLeftRightMargin}" Foreground="{Binding TitleForeground, FallbackValue={StaticResource UIBlack}}" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateItemAuthorStyle}" MaxHeight="40" Margin="{StaticResource MediumLeftMargin}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
+                                    <Binding Path="Author" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+
+
+                        <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" Visibility="{Binding NoEditingContentVisibility}" Command="{Binding ShowItemInfoCommand}">
+                            <Button.Content>
+                                <TextBlock Text="&#xE946;" FontSize="18" Style="{StaticResource RoundButtonTextStyle}" />
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource CloseEditionInfoButtonStyle}" Visibility="{Binding EditingContentVisibility}" Command="{Binding CloseEditionCommand}">
+                            <Button.Content>
+                                <Grid>
+                                    <TextBlock Text="&#xECCA;" FontSize="18" Style="{StaticResource RoundButtonTextStyle}" />
+                                    <TextBlock Text="&#xE894;" FontSize="9" Style="{StaticResource RoundButtonTextStyle}" />
+                                </Grid>
+                            </Button.Content>
+                        </Button>
+
+                    </Grid>
+                    <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding Summary}" Visibility="{Binding NoEditingContentVisibility}" Foreground="{StaticResource UIBlack}"/>
+
+                    <Grid Grid.Row="1" VerticalAlignment="Bottom" Margin="{StaticResource SmallBottomMargin}" Visibility="{Binding EditingContentVisibility}">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Style="{StaticResource TextEditTemplateErrorStyle}" Margin="{StaticResource SmallBottomMargin}" Text="{Binding ErrorMessage}" />
+                        <TextBlock Grid.Row="1" Style="{StaticResource TextEditTemplateDescriptionStyle}" Text="{x:Static res:StringRes.EditTemplateDescription}" />
+                    </Grid>
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="30" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Visibility="{Binding EditingContentVisibility}">
+                            <!--x:Name="templateName" used tu set focus on control-->
+                            <TextBox Text="{Binding NewTemplateName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                                     local:FocusExtension.IsFocused="{Binding IsEditionEnabled, Mode=OneWay}">
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Style.Triggers>
+                                            <Trigger Property="Validation.HasError" Value="True">
+                                                <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+
+                                <TextBox.InputBindings>
+                                    <KeyBinding Command="{Binding SaveItemCommand}" CommandParameter="{Binding}" Key="Enter"  />
+                                    <KeyBinding Command="{Binding CloseEditionCommand}" Key="Esc"  />
+                                </TextBox.InputBindings>
+                            </TextBox>
+                        </Grid>
+
+                        <Grid Grid.Column="1" Visibility="{Binding AddingVisibility}">
+                            <Button Style="{StaticResource AddTemplateInfoButtonStyle}" Command="{Binding AddItemCommand}" CommandParameter="{Binding}" Visibility="{Binding NoEditingContentVisibility}">
+                                <Button.Content>
+                                    <Grid>
+                                        <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource RoundButtonTextStyle}" />
+                                        <TextBlock Text="&#xE948;" Margin="1,1,0,0" FontSize="12" Style="{StaticResource RoundButtonTextStyle}" />
+                                    </Grid>
+                                </Button.Content>
+                            </Button>
+                            <Button Style="{StaticResource SaveTemplateInfoButtonStyle}" Command="{Binding SaveItemCommand}" CommandParameter="{Binding}" IsEnabled="{Binding IsValidName}" Visibility="{Binding EditingContentVisibility}">
+                                <Button.Content>
+                                    <Grid>
+                                        <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource RoundButtonTextStyle}" />
+                                        <TextBlock Text="&#xE8FB;" Margin="0,1,0,0" FontSize="12" Style="{StaticResource RoundButtonTextStyle}" />
+                                    </Grid>
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+            </Border>
+        </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="SummaryExpanderHeaderTemplate">
@@ -159,6 +271,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
     <DataTemplate x:Key="LicenseSummaryItemTemplate">
         <Grid>
             <TextBlock>
