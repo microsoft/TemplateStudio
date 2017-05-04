@@ -25,8 +25,8 @@ namespace Microsoft.Templates.UI.Controls
         #region TemplateInfo
         public TemplateInfoViewModel TemplateInfo
         {
-            get { return (TemplateInfoViewModel)GetValue(TemplateInfoProperty); }
-            set { SetValue(TemplateInfoProperty, value); }
+            get => (TemplateInfoViewModel)GetValue(TemplateInfoProperty);
+            set => SetValue(TemplateInfoProperty, value);
         }
         public static readonly DependencyProperty TemplateInfoProperty = DependencyProperty.Register("TemplateInfo", typeof(TemplateInfoViewModel), typeof(TemplateInfoControl), new PropertyMetadata(null));
         #endregion
@@ -34,8 +34,8 @@ namespace Microsoft.Templates.UI.Controls
         #region NoEditingContentVisibility
         public Visibility NoEditingContentVisibility
         {
-            get { return (Visibility)GetValue(NoEditingContentVisibilityProperty); }
-            set { SetValue(NoEditingContentVisibilityProperty, value); }
+            get => (Visibility)GetValue(NoEditingContentVisibilityProperty);
+            set => SetValue(NoEditingContentVisibilityProperty, value);
         }
         public static readonly DependencyProperty NoEditingContentVisibilityProperty = DependencyProperty.Register("NoEditingContentVisibility", typeof(Visibility), typeof(TemplateInfoControl), new PropertyMetadata(Visibility.Visible));
         #endregion
@@ -43,8 +43,8 @@ namespace Microsoft.Templates.UI.Controls
         #region EditingContentVisibility
         public Visibility EditingContentVisibility
         {
-            get { return (Visibility)GetValue(EditingContentVisibilityProperty); }
-            set { SetValue(EditingContentVisibilityProperty, value); }
+            get => (Visibility)GetValue(EditingContentVisibilityProperty);
+            set => SetValue(EditingContentVisibilityProperty, value);
         }
         public static readonly DependencyProperty EditingContentVisibilityProperty = DependencyProperty.Register("EditingContentVisibility", typeof(Visibility), typeof(TemplateInfoControl), new PropertyMetadata(Visibility.Collapsed));
         #endregion
@@ -52,8 +52,8 @@ namespace Microsoft.Templates.UI.Controls
         #region AddingVisibility
         public Visibility AddingVisibility
         {
-            get { return (Visibility)GetValue(AddingVisibilityProperty); }
-            set { SetValue(AddingVisibilityProperty, value); }
+            get => (Visibility)GetValue(AddingVisibilityProperty);
+            set => SetValue(AddingVisibilityProperty, value);
         }
         public static readonly DependencyProperty AddingVisibilityProperty = DependencyProperty.Register("AddingVisibility", typeof(Visibility), typeof(TemplateInfoControl), new PropertyMetadata(Visibility.Visible));
         #endregion
@@ -61,8 +61,8 @@ namespace Microsoft.Templates.UI.Controls
         #region ErrorMessage
         public string ErrorMessage
         {
-            get { return (string)GetValue(ErrorMessageProperty); }
-            set { SetValue(ErrorMessageProperty, value); }
+            get => (string)GetValue(ErrorMessageProperty);
+            set => SetValue(ErrorMessageProperty, value);
         }
         public static readonly DependencyProperty ErrorMessageProperty = DependencyProperty.Register("ErrorMessage", typeof(string), typeof(TemplateInfoControl), new PropertyMetadata(String.Empty));
         #endregion
@@ -70,8 +70,8 @@ namespace Microsoft.Templates.UI.Controls
         #region NewTemplateName
         public string NewTemplateName
         {
-            get { return (string)GetValue(NewTemplateNameProperty); }
-            set { SetValue(NewTemplateNameProperty, value); }
+            get => (string)GetValue(NewTemplateNameProperty);
+            set => SetValue(NewTemplateNameProperty, value);
         }
         public static readonly DependencyProperty NewTemplateNameProperty = DependencyProperty.Register("NewTemplateName", typeof(string), typeof(TemplateInfoControl), new PropertyMetadata(String.Empty, OnNewTemplateNameChanged));
         #endregion
@@ -79,8 +79,8 @@ namespace Microsoft.Templates.UI.Controls
         #region IsValidName
         public bool IsValidName
         {
-            get { return (bool)GetValue(IsValidNameProperty); }
-            set { SetValue(IsValidNameProperty, value); }
+            get => (bool)GetValue(IsValidNameProperty);
+            set => SetValue(IsValidNameProperty, value);
         }
         public static readonly DependencyProperty IsValidNameProperty = DependencyProperty.Register("IsValidName", typeof(bool), typeof(TemplateInfoControl), new PropertyMetadata(true));
         #endregion

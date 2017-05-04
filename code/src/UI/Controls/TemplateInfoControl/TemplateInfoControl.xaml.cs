@@ -18,89 +18,12 @@ using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
-
-using Microsoft.Templates.Core;
-using Microsoft.Templates.UI.Resources;
-using Microsoft.Templates.UI.ViewModels;
-using Microsoft.Templates.Core.Mvvm;
 
 namespace Microsoft.Templates.UI.Controls
 {
     public partial class TemplateInfoControl : UserControl
     {
-        public TemplateInfoViewModel TemplateInfo
-        {
-            get => (TemplateInfoViewModel)GetValue(TemplateInfoProperty);
-            set => SetValue(TemplateInfoProperty, value);
-        }
-        public static readonly DependencyProperty TemplateInfoProperty = DependencyProperty.Register("TemplateInfo", typeof(TemplateInfoViewModel), typeof(TemplateInfoControl), new PropertyMetadata(null));
-
-        public Visibility NoEditingContentVisibility
-        {
-            get => (Visibility)GetValue(NoEditingContentVisibilityProperty);
-            set => SetValue(NoEditingContentVisibilityProperty, value);
-        }
-        public static readonly DependencyProperty NoEditingContentVisibilityProperty = DependencyProperty.Register("NoEditingContentVisibility", typeof(Visibility), typeof(TemplateInfoControl), new PropertyMetadata(Visibility.Visible));
-
-        public Visibility EditingContentVisibility
-        {
-            get => (Visibility)GetValue(EditingContentVisibilityProperty);
-            set => SetValue(EditingContentVisibilityProperty, value);
-        }
-        public static readonly DependencyProperty EditingContentVisibilityProperty = DependencyProperty.Register("EditingContentVisibility", typeof(Visibility), typeof(TemplateInfoControl), new PropertyMetadata(Visibility.Collapsed));
-
-        public Visibility AddingVisibility
-        {
-            get => (Visibility)GetValue(AddingVisibilityProperty);
-            set => SetValue(AddingVisibilityProperty, value);
-        }
-        public static readonly DependencyProperty AddingVisibilityProperty = DependencyProperty.Register("AddingVisibility", typeof(Visibility), typeof(TemplateInfoControl), new PropertyMetadata(Visibility.Visible));
-
-        public string NewTemplateName
-        {
-            get => (string)GetValue(NewTemplateNameProperty);
-            set => SetValue(NewTemplateNameProperty, value);
-        }
-        public static readonly DependencyProperty NewTemplateNameProperty = DependencyProperty.Register("NewTemplateName", typeof(string), typeof(TemplateInfoControl), new PropertyMetadata(String.Empty, OnNewTemplateNameChanged));
-        private static void OnNewTemplateNameChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var control = d as TemplateInfoControl;
-
-            if (control.TemplateInfo.CanChooseItemName)
-            {
-                control.Validate(e.NewValue as string);
-            }
-        }
-
-        public string ErrorMessage
-        {
-            get => (string)GetValue(ErrorMessageProperty);
-            set => SetValue(ErrorMessageProperty, value);
-        }
-        public static readonly DependencyProperty ErrorMessageProperty = DependencyProperty.Register("ErrorMessage", typeof(string), typeof(TemplateInfoControl), new PropertyMetadata(String.Empty));
-
-        public bool IsValid
-        {
-            get => (bool)GetValue(IsValidProperty);
-            set => SetValue(IsValidProperty, value);
-        }
-        public static readonly DependencyProperty IsValidProperty = DependencyProperty.Register("IsValid", typeof(bool), typeof(TemplateInfoControl), new PropertyMetadata(true));
-
-        public SolidColorBrush TitleForeground
-        {
-            get => (SolidColorBrush)GetValue(TitleForegroundProperty);
-            set => SetValue(TitleForegroundProperty, value);
-        }
-        public static readonly DependencyProperty TitleForegroundProperty = DependencyProperty.Register("TitleForeground", typeof(SolidColorBrush), typeof(TemplateInfoControl), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
-
-        private ICommand _saveItemCommand;
-        public ICommand SaveItemCommand => _saveItemCommand ?? (_saveItemCommand = new RelayCommand(OnSaveClicked));
-
-        private ICommand _closeEditionCommand;
-        public ICommand CloseEditionCommand => _closeEditionCommand ?? (_closeEditionCommand = new RelayCommand(SwichVisibilities));
-
         public TemplateInfoControl()
         {
             InitializeComponent();
