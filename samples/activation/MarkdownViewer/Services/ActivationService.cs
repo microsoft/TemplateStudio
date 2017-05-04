@@ -1,18 +1,19 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;  
+using System.Linq;
 using System.Threading.Tasks;
+
+using MarkdownViewer.Activation;
+
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using MarkdownViewer.Helpers;
 
-using wts.SplitViewProject.Activation;
-
-namespace wts.SplitViewProject.Services
+namespace MarkdownViewer.Services
 {
-    //For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
     internal class ActivationService
     {
         private readonly App _app;
@@ -87,7 +88,7 @@ namespace wts.SplitViewProject.Services
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
-
+            yield return Singleton<FileAssociationService>.Instance;
             yield break;
         }
 

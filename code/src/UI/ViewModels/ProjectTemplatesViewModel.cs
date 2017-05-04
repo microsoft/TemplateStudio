@@ -117,6 +117,8 @@ namespace Microsoft.Templates.UI.ViewModels
             SummaryPages.Clear();
             SummaryFeatures.Clear();
             SavedTemplates.Clear();
+            PagesGroups.Clear();
+            FeatureGroups.Clear();
         }
 
         private void AddFromLayout(string projectTypeName, string frameworkName)

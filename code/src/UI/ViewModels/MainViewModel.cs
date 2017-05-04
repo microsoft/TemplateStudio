@@ -32,8 +32,9 @@ namespace Microsoft.Templates.UI.ViewModels
     public class MainViewModel : Observable
     {
         private bool _canGoBack;
-        private bool _canGoForward;
+        private bool _canGoForward;        
         private bool _canCreate;
+        private bool _templatesAvailable;
 
         public static MainViewModel Current;
         public MainView MainView;
@@ -122,7 +123,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
         public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));                
-        public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _canGoForward));
+        public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && _canGoForward));
         public RelayCommand CreateCommand => _createCommand ?? (_createCommand = new RelayCommand(OnCreate, () => _canCreate));
 
         public ProjectSetupViewModel ProjectSetup { get; private set; } = new ProjectSetupViewModel();
@@ -199,6 +200,12 @@ namespace Microsoft.Templates.UI.ViewModels
             CreateCommand.OnCanExecuteChanged();
         }
 
+        public void EnableGoForward()
+        {
+            _canGoForward = true;
+            NextCommand.OnCanExecuteChanged();
+        }
+
         private void Sync_SyncStatusChanged(object sender, SyncStatus status)
         {
 
@@ -209,7 +216,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 TemplatesVersion = GenContext.ToolBox.Repo.TemplatesVersion;
                 Status = StatusControl.EmptyStatus;
 
-                _canGoForward = true;
+                _templatesAvailable = true;
                 NextCommand.OnCanExecuteChanged();
             }
 
@@ -226,7 +233,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 MainView.Dispatcher.Invoke(() =>
                 {
                     Status = new StatusViewModel(StatusType.Error, StringRes.StatusOverVersionNoContent);
-                    _canGoForward = false;
+                    _templatesAvailable = false;
                     NextCommand.OnCanExecuteChanged();
                 });
             }
@@ -236,7 +243,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 MainView.Dispatcher.Invoke(() =>
                 {
                     Status = new StatusViewModel(StatusType.Error, StringRes.StatusLowerVersionContent);
-                    _canGoForward = false;
+                    _templatesAvailable = false;
                     NextCommand.OnCanExecuteChanged();
                 });
             }
