@@ -47,102 +47,74 @@ namespace Microsoft.Templates.UI.Controls
 
         public Style DocumentStyle
         {
-            get { return (Style)GetValue(DocumentStyleProperty); }
-            set { SetValue(DocumentStyleProperty, value); }
+            get => (Style)GetValue(DocumentStyleProperty);
+            set => SetValue(DocumentStyleProperty, value);
         }
-
-        // Using a DependencyProperty as the backing store for DocumentStyle.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty DocumentStyleProperty =
-            DependencyProperty.Register("DocumentStyle", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
+        public static readonly DependencyProperty DocumentStyleProperty = DependencyProperty.Register("DocumentStyle", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style Heading1Style
         {
-            get { return (Style)GetValue(Heading1StyleProperty); }
-            set { SetValue(Heading1StyleProperty, value); }
+            get => (Style)GetValue(Heading1StyleProperty);
+            set => SetValue(Heading1StyleProperty, value);
         }
-
-        // Using a DependencyProperty as the backing store for Heading1Style.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty Heading1StyleProperty =
-            DependencyProperty.Register("Heading1Style", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
+        public static readonly DependencyProperty Heading1StyleProperty = DependencyProperty.Register("Heading1Style", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style Heading2Style
         {
-            get { return (Style)GetValue(Heading2StyleProperty); }
-            set { SetValue(Heading2StyleProperty, value); }
+            get => (Style)GetValue(Heading2StyleProperty);
+            set => SetValue(Heading2StyleProperty, value);
         }
-
-        // Using a DependencyProperty as the backing store for Heading2Style.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty Heading2StyleProperty =
-            DependencyProperty.Register("Heading2Style", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
+        public static readonly DependencyProperty Heading2StyleProperty = DependencyProperty.Register("Heading2Style", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style Heading3Style
         {
-            get { return (Style)GetValue(Heading3StyleProperty); }
-            set { SetValue(Heading3StyleProperty, value); }
+            get => (Style)GetValue(Heading3StyleProperty);
+            set => SetValue(Heading3StyleProperty, value);
         }
-
-        // Using a DependencyProperty as the backing store for Heading3Style.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty Heading3StyleProperty =
-            DependencyProperty.Register("Heading3Style", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
+        public static readonly DependencyProperty Heading3StyleProperty = DependencyProperty.Register("Heading3Style", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style Heading4Style
         {
-            get { return (Style)GetValue(Heading4StyleProperty); }
-            set { SetValue(Heading4StyleProperty, value); }
+            get => (Style)GetValue(Heading4StyleProperty);
+            set => SetValue(Heading4StyleProperty, value);
         }
-
-        // Using a DependencyProperty as the backing store for Heading4Style.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty Heading4StyleProperty =
-            DependencyProperty.Register("Heading4Style", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
+        public static readonly DependencyProperty Heading4StyleProperty = DependencyProperty.Register("Heading4Style", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style CodeStyle
         {
-            get { return (Style)GetValue(CodeStyleProperty); }
-            set { SetValue(CodeStyleProperty, value); }
+            get => (Style)GetValue(CodeStyleProperty);
+            set => SetValue(CodeStyleProperty, value);
         }
-
-        // Using a DependencyProperty as the backing store for CodeStyle.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CodeStyleProperty =
-            DependencyProperty.Register("CodeStyle", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
+        public static readonly DependencyProperty CodeStyleProperty = DependencyProperty.Register("CodeStyle", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style LinkStyle
         {
-            get { return (Style)GetValue(LinkStyleProperty); }
-            set { SetValue(LinkStyleProperty, value); }
+            get => (Style)GetValue(LinkStyleProperty);
+            set => SetValue(LinkStyleProperty, value);
         }
-
-        // Using a DependencyProperty as the backing store for LinkStyle.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty LinkStyleProperty =
-            DependencyProperty.Register("LinkStyle", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
+        public static readonly DependencyProperty LinkStyleProperty = DependencyProperty.Register("LinkStyle", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style ImageStyle
         {
-            get { return (Style)GetValue(ImageStyleProperty); }
-            set { SetValue(ImageStyleProperty, value); }
+            get => (Style)GetValue(ImageStyleProperty);
+            set => SetValue(ImageStyleProperty, value);
         }
-
-        // Using a DependencyProperty as the backing store for ImageStyle.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ImageStyleProperty =
-            DependencyProperty.Register("ImageStyle", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
+        public static readonly DependencyProperty ImageStyleProperty = DependencyProperty.Register("ImageStyle", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style SeparatorStyle
         {
-            get { return (Style)GetValue(SeparatorStyleProperty); }
-            set { SetValue(SeparatorStyleProperty, value); }
+            get => (Style)GetValue(SeparatorStyleProperty);
+            set => SetValue(SeparatorStyleProperty, value);
         }
-
-        // Using a DependencyProperty as the backing store for SeparatorStyle.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty SeparatorStyleProperty =
-            DependencyProperty.Register("SeparatorStyle", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
+        public static readonly DependencyProperty SeparatorStyleProperty = DependencyProperty.Register("SeparatorStyle", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public string AssetPathRoot
         {
-            get { return (string)GetValue(AssetPathRootProperty); }
-            set { SetValue(AssetPathRootProperty, value); }
+            get => (string)GetValue(AssetPathRootProperty);
+            set => SetValue(AssetPathRootProperty, value);
         }
 
-        public static readonly DependencyProperty AssetPathRootProperty =
-            DependencyProperty.Register("AssetPathRootRoot", typeof(string), typeof(Markdown), new PropertyMetadata(null));
+        public static readonly DependencyProperty AssetPathRootProperty = DependencyProperty.Register("AssetPathRootRoot", typeof(string), typeof(Markdown), new PropertyMetadata(null));
 
         public Markdown()
         {

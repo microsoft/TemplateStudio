@@ -47,7 +47,7 @@
                 </Grid.ColumnDefinitions>
 
                 <controls:ImageEx Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Focusable="False" SourcePath="{Binding TemplateInfo.Icon, ElementName=root}" MaxWidth="50"/>
-                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding TemplateInfo.Name, ElementName=root}" Margin="{StaticResource MediumLeftRightMargin}" Foreground="{Binding TitleForeground, ElementName=root}" />
+                    <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding TemplateInfo.Name, ElementName=root}" Margin="{StaticResource MediumLeftRightMargin}" Foreground="{Binding TitleForeground, ElementName=root, FallbackValue={StaticResource UIBlack}}" />
                 <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateItemAuthorStyle}" MaxHeight="40" Margin="{StaticResource MediumLeftMargin}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
@@ -62,6 +62,7 @@
             
             <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding TemplateInfo.Summary, ElementName=root}" Visibility="{Binding NoEditingContentVisibility, ElementName=root}" />
             
+            <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding TemplateInfo.Summary, ElementName=root}" Visibility="{Binding NoEditingContentVisibility, ElementName=root}" Foreground="{StaticResource UIBlack}"/>
             <Grid Grid.Row="1" Visibility="{Binding EditingContentVisibility, ElementName=root}" VerticalAlignment="Bottom" Margin="{StaticResource SmallBottomMargin}" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>

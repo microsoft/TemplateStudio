@@ -29,21 +29,21 @@ namespace Microsoft.Templates.UI.ViewModels
         private string _projectTypesHeader;
         public string ProjectTypesHeader
         {
-            get { return _projectTypesHeader; }
-            set { SetProperty(ref _projectTypesHeader, value); }
+            get => _projectTypesHeader;
+            set => SetProperty(ref _projectTypesHeader, value);
         }
 
         private string _frameworkHeader;
         public string FrameworkHeader
         {
-            get { return _frameworkHeader; }
-            set { SetProperty(ref _frameworkHeader, value); }
+            get => _frameworkHeader;
+            set => SetProperty(ref _frameworkHeader, value);
         }
 
         private MetadataInfoViewModel _selectedProjectType;
         public MetadataInfoViewModel SelectedProjectType
         {
-            get { return _selectedProjectType; }
+            get => _selectedProjectType;
             set
             {
                 var orgFramework = _selectedFramework;
@@ -68,7 +68,7 @@ namespace Microsoft.Templates.UI.ViewModels
         private MetadataInfoViewModel _selectedFramework;
         public MetadataInfoViewModel SelectedFramework
         {
-            get { return _selectedFramework; }
+            get => _selectedFramework;
             set
             {
                 var orgframework = _selectedFramework;
@@ -143,6 +143,7 @@ namespace Microsoft.Templates.UI.ViewModels
             }
 
             FrameworkHeader = String.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
+            MainViewModel.Current.EnableGoForward();
         }
     }
 }

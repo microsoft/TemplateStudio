@@ -68,37 +68,45 @@
         <TextBlock Text="{Binding}" Style="{StaticResource TextSummaryGroupHeader}"/>
     </DataTemplate>
 
+    <Storyboard x:Key="FadeInStoryboard">
+        <ColorAnimation
+            Storyboard.TargetName="ItemGrid"
+            Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
+            To="{StaticResource UILightGrayColor}"
+            Duration="0:0:0.5" />
+        <DoubleAnimation
+            Duration="0:0:0.5" To="1"
+            Storyboard.TargetName="RemoveButton"
+            Storyboard.TargetProperty="Opacity"/>
+    </Storyboard>
+
+    <Storyboard x:Key="FadeOutStoryboard">
+        <ColorAnimation
+            Storyboard.TargetName="ItemGrid"
+            Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
+            To="Transparent"
+            Duration="0:0:0" />
+        <DoubleAnimation
+            Duration="0:0:0" To="0"
+            Storyboard.TargetName="RemoveButton"
+            Storyboard.TargetProperty="Opacity"/>
+    </Storyboard>
+
     <DataTemplate x:Key="ProjectTemplatesSummaryItemTemplate">
         <Grid x:Name="ItemGrid" Background="Transparent" Focusable="False">
             <Grid Margin="2,4">
                 <Grid.Triggers>
                     <EventTrigger RoutedEvent="Control.MouseEnter">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <ColorAnimation
-                                  Storyboard.TargetName="ItemGrid"
-                                  Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
-                                  To="{StaticResource UILightGrayColor}"
-                                  Duration="0:0:0.5" />
-                                <DoubleAnimation Duration="0:0:0.5" To="1"
-                                   Storyboard.TargetName="RemoveButton"
-                                   Storyboard.TargetProperty="Opacity"/>
-                            </Storyboard>
-                        </BeginStoryboard>
+                        <BeginStoryboard Storyboard="{StaticResource FadeInStoryboard}"/>
                     </EventTrigger>
                     <EventTrigger RoutedEvent="Control.MouseLeave">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <ColorAnimation
-                                  Storyboard.TargetName="ItemGrid"
-                                  Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
-                                  To="Transparent"
-                                  Duration="0:0:0" />
-                                <DoubleAnimation Duration="0:0:0" To="0"
-                               Storyboard.TargetName="RemoveButton"
-                               Storyboard.TargetProperty="Opacity"/>
-                            </Storyboard>
-                        </BeginStoryboard>
+                        <BeginStoryboard Storyboard="{StaticResource FadeOutStoryboard}"/>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="Keyboard.GotKeyboardFocus">
+                        <BeginStoryboard Storyboard="{StaticResource FadeInStoryboard}"/>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="Keyboard.LostKeyboardFocus">
+                        <BeginStoryboard Storyboard="{StaticResource FadeOutStoryboard}"/>
                     </EventTrigger>
                 </Grid.Triggers>
                 <Grid.ColumnDefinitions>
@@ -120,7 +128,10 @@
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
-                <Button x:Name="RemoveButton" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Style="{StaticResource RemoveButtonStyle}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.ProjectTemplates.RemoveItemCommand}" CommandParameter="{Binding}" IsEnabled="{Binding IsRemoveEnabled}" Opacity="0" Margin="{StaticResource MediumRightMargin}" Focusable="False">
+                <Button x:Name="RemoveButton" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Style="{StaticResource RemoveButtonStyle}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.ProjectTemplates.RemoveItemCommand}" CommandParameter="{Binding}" IsEnabled="{Binding IsRemoveEnabled}" Opacity="0" Margin="{StaticResource MediumRightMargin}">
+                    <Button.InputBindings>
+                        <KeyBinding Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.ProjectTemplates.RemoveItemCommand}" CommandParameter="{Binding}" Key="Delete"  />
+                    </Button.InputBindings>
                     <Button.Content>
                         <TextBlock Text="&#xEB90;" FontSize="18" Style="{StaticResource RoundButtonTextStyle}"/>
                     </Button.Content>

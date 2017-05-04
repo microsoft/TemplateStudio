@@ -78,7 +78,7 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">
-                                <Border x:Name="ContentBorder" Style="{StaticResource ListViewItemBorderStyle}" HorizontalAlignment="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UniformGrid}}, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}">
+                                <Border x:Name="ContentBorder" Style="{StaticResource ListViewItemBorderStyle}" HorizontalAlignment="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UniformGrid}}, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}" BorderBrush="{StaticResource UIGray}">
                                     <ContentPresenter/>
                                 </Border>
                                 <ControlTemplate.Triggers>
@@ -88,7 +88,7 @@
                                             <Condition Property="IsMouseOver" Value="True"/>
                                         </MultiTrigger.Conditions>
                                         <MultiTrigger.Setters>
-                                            <Setter Property="Foreground" Value="{StaticResource UIBlue}"/>
+                                            <Setter Property="Foreground" Value="{StaticResource UIDarkBlue}"/>
                                             <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{StaticResource UIDarkBlue}"/>
                                         </MultiTrigger.Setters>
                                     </MultiTrigger>
@@ -98,7 +98,7 @@
                                             <Condition Property="IsMouseOver" Value="False"/>
                                         </MultiTrigger.Conditions>
                                         <MultiTrigger.Setters>
-                                            <Setter Property="Foreground" Value="{StaticResource UIDarkBlue}"/>
+                                            <Setter Property="Foreground" Value="{StaticResource UIBlue}"/>
                                             <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{StaticResource UIBlue}"/>
                                         </MultiTrigger.Setters>
                                     </MultiTrigger>
