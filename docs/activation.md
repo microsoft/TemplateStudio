@@ -56,7 +56,12 @@ You can use `InitializeAsync()` and `StartupAsync()` to add code that should be 
 ## Sample: Add activation from File Association
 
 Let's add activation from a file association:
-We created a small sample application, that allows to view markdown (.md) files. You can download the sample application here: [Markdown Viewer](resources/activation/MarkdownViewer.zip)
+We created a sample application, that allows to view markdown (.md) files. You can check the sample here: [Markdown Viewer](/samples/activation)
+The sample application was created using Windows Template Studio with the following configuration: 
+
+* Project Type: Blank
+* Framework: MVVM Basic
+* Pages: MainPage and BlankPage (called MarkdownPage)
 
 ### Set up File Association Activation
 First we have to add a file type association declaration in the application manifest, allowing the App to be shown as a default handler for markdown files.
