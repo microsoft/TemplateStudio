@@ -261,6 +261,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetPageAndFeatureTemplates()
         {
+            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
             var projectTemplates = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project);
 
             foreach (var template in projectTemplates)

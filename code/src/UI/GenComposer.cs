@@ -203,7 +203,7 @@ namespace Microsoft.Templates.UI
 #if DEBUG
             throw new GenException(message);
 #else
-            AppHealth.Current.Error.TrackAsync(message).FireAndForget();
+            Core.Diagnostics.AppHealth.Current.Error.TrackAsync(message).FireAndForget();
 #endif
         }
 

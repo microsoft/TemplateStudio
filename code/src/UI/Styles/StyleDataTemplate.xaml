@@ -57,7 +57,6 @@
                     </TextBlock>
                 </Grid>
             </Border>
-            
         </Grid>
     </DataTemplate>
 
@@ -70,7 +69,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="ProjectTemplatesSummaryItemTemplate">
-        <Grid x:Name="ItemGrid" Background="Transparent">
+        <Grid x:Name="ItemGrid" Background="Transparent" Focusable="False">
             <Grid Margin="2,4">
                 <Grid.Triggers>
                     <EventTrigger RoutedEvent="Control.MouseEnter">
@@ -82,8 +81,8 @@
                                   To="{StaticResource UILightGrayColor}"
                                   Duration="0:0:0.5" />
                                 <DoubleAnimation Duration="0:0:0.5" To="1"
-                               Storyboard.TargetName="RemoveButton"
-                               Storyboard.TargetProperty="Opacity"/>
+                                   Storyboard.TargetName="RemoveButton"
+                                   Storyboard.TargetProperty="Opacity"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger>
@@ -121,7 +120,7 @@
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
-                <Button x:Name="RemoveButton" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Style="{StaticResource RemoveButtonStyle}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.ProjectTemplates.RemoveItemCommand}" CommandParameter="{Binding}" IsEnabled="{Binding IsRemoveEnabled}" Opacity="0" Margin="{StaticResource MediumRightMargin}">
+                <Button x:Name="RemoveButton" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Style="{StaticResource RemoveButtonStyle}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.ProjectTemplates.RemoveItemCommand}" CommandParameter="{Binding}" IsEnabled="{Binding IsRemoveEnabled}" Opacity="0" Margin="{StaticResource MediumRightMargin}" Focusable="False">
                     <Button.Content>
                         <TextBlock Text="&#xEB90;" FontSize="18" Style="{StaticResource RoundButtonTextStyle}"/>
                     </Button.Content>
@@ -130,20 +129,39 @@
         </Grid>
     </DataTemplate>
 
+    <Style x:Key="LicenseHyperlinkStyle" TargetType="Hyperlink">
+        <Setter Property="FocusVisualStyle">
+            <Setter.Value>
+                <Style>
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Grid Margin="-4">
+                                    <Grid.Background>
+                                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
+                                    </Grid.Background>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <DataTemplate x:Key="LicenseSummaryItemTemplate">
         <Grid>
             <TextBlock>
-        <Hyperlink Command="{Binding NavigateCommand}">
-          <TextBlock Text="{Binding Text}" Style="{StaticResource TextSumaryLicenseStyle}"/>
-        </Hyperlink>
-      </TextBlock>
+                <Hyperlink Command="{Binding NavigateCommand}" Focusable="True" Style="{StaticResource LicenseHyperlinkStyle}">
+                    <TextBlock Text="{Binding Text}" Style="{StaticResource TextSumaryLicenseStyle}"/>
+                </Hyperlink>                
+            </TextBlock>
         </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="DependencyInfoModalTemplate">
         <Grid>
             <TextBlock>
-                <Hyperlink Command="{Binding ShowInfoCommand}">
+                <Hyperlink Command="{Binding ShowInfoCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
                   <TextBlock Text="{Binding Name}" Style="{StaticResource TextSumaryLicenseStyle}"/>
                 </Hyperlink>
             </TextBlock>
