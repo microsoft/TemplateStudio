@@ -3,8 +3,8 @@
 ## ActivationService
 The ActivationService is in charge of handling the applications initialization and activation. 
  
-With the method ActivateAsync() it has one common entry point that is called from the app lifecycle events OnLaunched, OnActivated and OnBackgroundActivated. (For more information on application lifecycle and it events see
-[Windows 10 universal Windows platform (UWP) app lifecycle](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/app-lifecycle). 
+With the method ActivateAsync() it has one common entry point that is called from the app lifecycle events OnLaunched, OnActivated and OnBackgroundActivated. 
+For more information on application lifecycle and it events see [Windows 10 universal Windows platform (UWP) app lifecycle](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/app-lifecycle). 
  
 ## ActivationHandlers
 For choosing the concrete type of activation the ActivationService relies on ActivationHandlers, that are registered in the method GetActivationHandlers(). 
@@ -53,7 +53,60 @@ In case of interactive activation (for example Launch or Activation from LiveTil
 You can use InitializeAsync and StartupAsync to add code that should be executed on application initialization and startup.
 
 
-## How to add activation from File Association?
+## Sample: Add activation from File Association
 
-Let's add activation from a file association
+Let's add activation from a file association:
+We created a small sample application, that allows to view markdown (.md) files. You can download the sample application here: [Markdown Viewer](resources/activation/MarkdownViewer.zip)
+
+### Set up File Association Activation
+First we have to add a file type association declaration in the application manifest, allowing the App to be shown as a default handler for markdown files.
+
+![](resources/activation/DeclarationFileAssociation.png) 
+
+Further we have to handle the file activation event by implementing OnFileActivated:
+
+```csharp
+protected override async void OnFileActivated(FileActivatedEventArgs args)
+{
+    await ActivationService.ActivateAsync(args);
+}
+```
+
+### Add a FileAssociationService
+Then we need a service that handles this new type of activation, we'll call it FileAssociationService, it derives from ApplicationHandler<T>. 
+As it manages activation by File​Activated​Event​Args the signature would be
+
+```csharp
+internal class FileAssociationService : ActivationHandler<File​Activated​Event​Args>
+{
+
+}
+```
+
+Next, we'll implement HandleInternalAsync(), to evaluate the event args, and take action.
+
+```csharp
+protected override async Task HandleInternalAsync(File​Activated​Event​Args args)
+{
+    var file = args.Files.FirstOrDefault();
+
+    NavigationService.Navigate(typeof(MarkdownPage), file);
+
+    await Task.CompletedTask;
+}
+```
+### Add the FileAssociationService to ActivationService 
+Last but not least, we'll have to add our new FileAssociationService to the ActivationHandlers registered in the ActivationService
+
+```csharp
+private IEnumerable<ActivationHandler> GetActivationHandlers()
+{
+    yield return Singleton<FileAssociationService>.Instance;
+    yield break;
+}
+```
+
+
+
+
 
