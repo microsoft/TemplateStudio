@@ -56,12 +56,15 @@ You can use `InitializeAsync()` and `StartupAsync()` to add code that should be 
 ## Sample: Add activation from File Association
 
 Let's add activation from a file association:
-We created a sample application, that allows to view markdown (.md) files. You can check the sample here: [Markdown Viewer](/samples/activation)
+We created a sample application, that allows to view markdown (.md) files. You can check the sample here: [Markdown Viewer](/samples/activation).
+
 The sample application was created using Windows Template Studio with the following configuration: 
 
 * Project Type: Blank
 * Framework: MVVM Basic
-* Pages: MainPage and BlankPage (called MarkdownPage)
+* Pages: MainPage and MarkdownPage
+
+For viewing the markdown a MarkdownTextBlock from the [UWP Community Toolkit](https://github.com/Microsoft/UWPCommunityToolkit) was added. 
 
 ### Set up File Association Activation
 First we have to add a file type association declaration in the application manifest, allowing the App to be shown as a default handler for markdown files.
@@ -79,7 +82,7 @@ protected override async void OnFileActivated(FileActivatedEventArgs args)
 
 ### Add a FileAssociationService
 Then we need a service that handles this new type of activation. We'll call it FileAssociationService, it derives from `ApplicationHandler<T>`. 
-As it manages activation by File​Activated​Event​Args the signature would be
+As it manages activation by File​Activated​Event​Args the signature would be: 
 
 ```csharp
 internal class FileAssociationService : ActivationHandler<File​Activated​Event​Args>
