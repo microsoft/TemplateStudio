@@ -143,6 +143,7 @@ namespace Microsoft.Templates.UI.ViewModels
             }
 
             FrameworkHeader = String.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
+            MainViewModel.Current.EnableGoForward();
         }
     }
 }
