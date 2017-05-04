@@ -108,7 +108,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 AddFromLayout(ContextProjectType.Name, ContextFramework.Name);
                 MainViewModel.Current.RebuildLicenses();
             }
-
+            MainViewModel.Current.EnableProjectCreation();
             await Task.CompletedTask;
         }
 

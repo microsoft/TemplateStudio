@@ -5,6 +5,7 @@ using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls.Maps;
+using Param_ItemNamespace.Helpers;
 using Param_ItemNamespace.Services;
 
 namespace Param_ItemNamespace.ViewModels
@@ -48,7 +49,7 @@ namespace Param_ItemNamespace.ViewModels
                 // TODO UWPTemplates: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
                 map.MapServiceToken = "";
 
-                AddMapIcon(map, Center, "Your location");
+                AddMapIcon(map, Center, "Map_YourLocation".GetLocalized());
             }
         }
 
