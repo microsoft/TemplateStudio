@@ -61,7 +61,7 @@ We created a small sample application, that allows to view markdown (.md) files.
 ### Set up File Association Activation
 First we have to add a file type association declaration in the application manifest, allowing the App to be shown as a default handler for markdown files.
 
-![](resources/activation/DeclarationFileAssociation.png) 
+![](resources/activation/DeclarationFileAssociation.PNG) 
 
 Further we have to handle the file activation event by implementing OnFileActivated:
 
