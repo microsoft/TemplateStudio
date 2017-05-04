@@ -12,6 +12,7 @@ using wts.BlankProject.Activation;
 
 namespace wts.BlankProject.Services
 {
+    //For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
     internal class ActivationService
     {
         private readonly App _app;
