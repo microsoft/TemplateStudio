@@ -71,7 +71,7 @@ namespace Microsoft.Templates.UI.ViewModels
             var names = SavedTemplates.Select(t => t.Name);
             var validationResult = Naming.Validate(names, template.NewTemplateName);
 
-            template.IsValidName = validationResult.IsValid;
+           template.IsValidName = validationResult.IsValid;
             template.ErrorMessage = String.Empty;
 
             if (!template.IsValidName)
@@ -157,7 +157,7 @@ namespace Microsoft.Templates.UI.ViewModels
             if (PagesGroups.Count == 0)
             {
                 var pages = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page && t.GetFrameworkList().Contains(ContextFramework.Name))
-                                                   .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), AddTemplateItemCommand, SaveTemplateItemCommand));
+                                                   .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), AddTemplateItemCommand, SaveTemplateItemCommand, ValidateNewTemplateName));
 
                 var groups = pages.GroupBy(t => t.Group).Select(gr => new GroupTemplateInfoViewModel(gr.Key as string, gr.ToList())).OrderBy(gr => gr.Title);
 
@@ -168,7 +168,7 @@ namespace Microsoft.Templates.UI.ViewModels
             if (FeatureGroups.Count == 0)
             {
                 var features = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Feature && t.GetFrameworkList().Contains(ContextFramework.Name))
-                                                      .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), AddTemplateItemCommand, SaveTemplateItemCommand));
+                                                      .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), AddTemplateItemCommand, SaveTemplateItemCommand, ValidateNewTemplateName));
 
                 var groups = features.GroupBy(t => t.Group).Select(gr => new GroupTemplateInfoViewModel(gr.Key as string, gr.ToList())).OrderBy(gr => gr.Title);
 
