@@ -176,9 +176,12 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             get => _newTemplateName;
             set
-            {                
+            {
                 SetProperty(ref _newTemplateName, value);
-                ValidateTemplateName?.Invoke(this);
+                if (CanChooseItemName)
+                {
+                    ValidateTemplateName?.Invoke(this);
+                }
             }
         }
 
@@ -241,10 +244,10 @@ namespace Microsoft.Templates.UI.ViewModels
             if (IsEditionEnabled)
             {
                 IsEditionEnabled = false;
-            }            
-        }        
+            }
+        }
 
-        public void CheckAddingStatus(bool isAlreadyDefined)
+        public void UpdateTemplateAvailability(bool isAlreadyDefined)
         {
             if (MultipleInstances == false && isAlreadyDefined)
             {
@@ -265,6 +268,6 @@ namespace Microsoft.Templates.UI.ViewModels
 
             infoView.ShowDialog();
             MainViewModel.Current.InfoShapeVisibility = Visibility.Collapsed;
-        }        
+        }
     }
 }
