@@ -158,7 +158,10 @@
     <Compile Include="Locations\LocalTemplatesSource.cs" />
     <Compile Include="Composition\CompositionQuery.cs" />
     <Compile Include="Locations\SyncStatus.cs" />
+    <Compile Include="PostActions\Catalog\PrioritizedReplacements\PriorityReplacePostAction.cs" />
+    <Compile Include="PostActions\Catalog\PrioritizedReplacements\IEnumerableExtensions.cs" />
     <Compile Include="PostActions\Catalog\ReplaceFragments\IEnumerableExtensions.cs" />
+    <Compile Include="PostActions\Catalog\PrioritizedReplacements\ProcessReplacementsPostAction.cs" />
     <Compile Include="PostActions\Catalog\ReplaceFragments\ReplaceFragmentsPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\SortUsingsPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\IEnumerableExtensions.cs" />

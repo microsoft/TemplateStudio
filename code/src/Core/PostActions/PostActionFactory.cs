@@ -18,6 +18,7 @@ using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.Core.PostActions.Catalog.PrioritizedReplacements;
 using Microsoft.Templates.Core.PostActions.Catalog.ReplaceFragments;
 using Microsoft.Templates.Core.PostActions.Catalog.SortUsings;
 
@@ -43,6 +44,7 @@ namespace Microsoft.Templates.Core.PostActions
 
             postActions.Add(new SetDefaultSolutionConfigurationPostAction());
             postActions.Add(new ReplaceFragmentsPostAction());
+            postActions.Add(new ProcessReplacementsPostAction());
             postActions.Add(new SortUsingsPostAction());
 
             return postActions;
