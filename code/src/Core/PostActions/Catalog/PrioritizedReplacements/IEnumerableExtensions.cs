@@ -80,6 +80,5 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.PrioritizedReplacements
 
             return result;
         }
-
     }
 }

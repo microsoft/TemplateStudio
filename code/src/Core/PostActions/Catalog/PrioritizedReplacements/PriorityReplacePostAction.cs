@@ -14,6 +14,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.Templates.Core.Diagnostics;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.PrioritizedReplacements
 {
@@ -35,15 +36,18 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.PrioritizedReplacements
 
             if (string.IsNullOrEmpty(originalFilePath))
             {
-                throw new FileNotFoundException($"There is no merge target for file '{_config}'");
+                AppHealth.Current.Info.TrackAsync($"No target exists so skipping '{_config}'").FireAndForget();
+            }
+            else
+            {
+                var source = File.ReadAllLines(originalFilePath).ToList();
+                var replacements = File.ReadAllLines(_config).ToList();
+
+                var result = source.MakePriorityReplacements(replacements);
+
+                File.WriteAllLines(originalFilePath, result);
             }
 
-            var source = File.ReadAllLines(originalFilePath).ToList();
-            var replacements = File.ReadAllLines(_config).ToList();
-            
-            var result = source.MakePriorityReplacements(replacements);
-
-            File.WriteAllLines(originalFilePath, result);
             File.Delete(_config);
 
             //REFRESH PROJECT TO UN-DIRTY IT
