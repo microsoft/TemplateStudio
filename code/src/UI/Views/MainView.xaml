@@ -270,6 +270,7 @@
                     </Grid.ColumnDefinitions>
                     <Button
                         Grid.Column="0"
+                        IsCancel="True"
                         Command="{Binding CancelCommand}"
                         Content="{x:Static res:StringRes.ButtonCancel}"
                         Style="{StaticResource ButtonNavigationStyle}" />
