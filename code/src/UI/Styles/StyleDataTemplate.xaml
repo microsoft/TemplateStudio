@@ -117,6 +117,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="Transparent"/>
                 <Grid Grid.RowSpan="2" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}, ConverterParameter=reverse}">
                     <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}"/>
                 </Grid>
