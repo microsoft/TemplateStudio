@@ -3,6 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
+      xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
       xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
       mc:Ignorable="d">
     <Page.Resources>
@@ -11,6 +13,51 @@
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:ColumnCountConverter x:Key="ColumnConverter" />
+            <converters:FixedWidthConverter x:Key="FixedWidthConverter" />
+            <converters:MicrosoftTemplatesAuthorConverter x:Key="MicrosoftTemplatesAuthorConverter" />
+
+            <DataTemplate x:Key="ProjectSetupItemTemplate">
+                <Grid MinWidth="350" MaxWidth="{Binding RelativeSource={RelativeSource Self}, Path=HorizontalAlignment, Converter={StaticResource FixedWidthConverter}, ConverterParameter=350}" HorizontalAlignment="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UniformGrid}}, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}">
+                    <Rectangle Style="{StaticResource RectangleDropShadowStyle}" />
+                    <Border Height="90" Background="{StaticResource UIWhite}">
+                        <Grid Margin="{StaticResource MediumMargin}">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--Row 0-->
+                            <controls:ImageEx Grid.Row="0" Grid.RowSpan="3" Focusable="False" SourcePath="{Binding Icon}" VerticalAlignment="Top"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding DisplayName}" Margin="{StaticResource MediumLeftMargin}" />
+                            <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource BlackBaseTemplateInfoButtonStyle}" Command="{Binding ShowInfoCommand}">
+                                <Button.Content>
+                                    <TextBlock Text="&#xE946;" FontSize="18" Style="{StaticResource RoundButtonTextStyle}" />
+                                </Button.Content>
+                            </Button>
+
+                            <!--Row 1-->
+                            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding Summary}" Margin="{StaticResource MediumLeftMargin}"/>
+
+                            <!--Row 2-->
+                            <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateItemAuthorStyle}" MaxHeight="20" Margin="{StaticResource MediumLeftMargin}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
+                                        <Binding Path="Author" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+            
         </ResourceDictionary>
     </Page.Resources>
 

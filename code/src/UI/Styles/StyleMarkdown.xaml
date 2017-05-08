@@ -3,10 +3,8 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Colors.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_FontSizes.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Thickness.xaml" />
-        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleTextBlock.xaml" />
-        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleButton.xaml" />
-        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleShape.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="FlowDocument" x:Key="DocumentStyle">
