@@ -259,6 +259,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 IsRemoveEnabled = isRemoveEnabled,
                 ItemName = item.Name,
                 TemplateName = item.Template.Name,
+                RemoveTemplateCommand = RemoveTemplateCommand
             };
 
             if (item.Template.GetTemplateType() == TemplateType.Page)
