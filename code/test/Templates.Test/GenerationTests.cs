@@ -282,7 +282,7 @@ namespace Microsoft.Templates.Test
 
         private static (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath)
         {
-            var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
+            var outputFile = Path.Combine(outputPath, $"_buildOutput_{solutionName}.txt");
 
             //Build
             var solutionFile = Path.GetFullPath(outputPath + @"\" + solutionName + ".sln");

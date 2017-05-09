@@ -149,9 +149,6 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MarkdownViewer_TemporaryKey.pfx" />
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
