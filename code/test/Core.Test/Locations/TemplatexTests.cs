@@ -280,7 +280,8 @@ namespace Microsoft.Templates.Core.Test.Locations
         [Fact]
         public void TestRemoteSource()
         {
-            string targetFolder = @"C:\Temp\TestRts";
+            string drive = Path.GetPathRoot(Environment.CurrentDirectory);
+            string targetFolder = Path.Combine(drive, @"Temp\TestRts");
             try
             {
                 RemoteTemplatesSource rts = new RemoteTemplatesSource();
