@@ -29,8 +29,8 @@ namespace Microsoft.Templates.UI.Converters
 
         public Markdown Markdown
         {
-            get { return (Markdown)GetValue(MarkdownProperty); }
-            set { SetValue(MarkdownProperty, value); }
+            get => (Markdown)GetValue(MarkdownProperty);
+            set => SetValue(MarkdownProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for Markdown.  This enables animation, styling, binding, etc...

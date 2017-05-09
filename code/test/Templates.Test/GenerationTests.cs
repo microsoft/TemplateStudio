@@ -261,6 +261,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetPageAndFeatureTemplates()
         {
+            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
             var projectTemplates = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project);
 
             foreach (var template in projectTemplates)
@@ -281,7 +282,7 @@ namespace Microsoft.Templates.Test
 
         private static (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath)
         {
-            var outputFile = Path.Combine(outputPath, "_buildOutput.txt");
+            var outputFile = Path.Combine(outputPath, $"_buildOutput_{solutionName}.txt");
 
             //Build
             var solutionFile = Path.GetFullPath(outputPath + @"\" + solutionName + ".sln");

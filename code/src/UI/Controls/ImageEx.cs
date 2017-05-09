@@ -12,11 +12,15 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+
+using Shapes = System.Windows.Shapes;
 
 namespace Microsoft.Templates.UI.Controls
 {
@@ -35,50 +39,79 @@ namespace Microsoft.Templates.UI.Controls
 
             if (File.Exists(SourcePath) && sourceExtension?.Equals(XamlExtension, StringComparison.OrdinalIgnoreCase) == true)
             {
-                using (var sr = new StreamReader(SourcePath))
-                {
-                    Content = XamlReader.Load(sr.BaseStream) as UIElement;
-                }
+                Content = CreateFromXaml();
             }
             else
             {
-                var bitmap = CreateIcon(SourcePath);
-                if (bitmap == null)
+                Content = CreateFromBitmap();
+            }
+        }
+
+        private UIElement CreateFromBitmap()
+        {
+            var bitmap = CreateIcon(SourcePath);
+            if (bitmap == null)
+            {
+                return null;
+            }
+
+            var image = new Image
+            {
+                Source = bitmap,
+                Stretch = Stretch
+            };
+
+            RenderOptions.SetBitmapScalingMode(image, BitmapScalingMode.HighQuality);
+
+            return image;
+        }
+
+        private UIElement CreateFromXaml()
+        {
+            using (var sr = new StreamReader(SourcePath))
+            {
+                var element = XamlReader.Load(sr.BaseStream) as UIElement;
+
+                var paths = element
+                                .ChildrenOfType<Shapes.Path>()
+                                .ToList();
+
+                if (paths.Count > 0)
                 {
-                    return;
+                    paths.ForEach(p => BindingOperations.SetBinding(p, Shapes.Path.FillProperty, CreateBinding(this, nameof(Foreground))));
+                }
+                else
+                {
+                    var shapes = element
+                                    .ChildrenOfType<Shapes.Shape>(true)
+                                    .ToList();
+
+                    shapes.ForEach(s => BindingOperations.SetBinding(s, Shapes.Shape.StrokeProperty, CreateBinding(this, nameof(Foreground))));
                 }
 
-                var image = new Image
-                {
-                    Source = bitmap,
-                    Stretch = Stretch
-                };
-
-                RenderOptions.SetBitmapScalingMode(image, BitmapScalingMode.HighQuality);
-
-                Content = image;
+                return element;
             }
         }
 
         public static readonly DependencyProperty StretchProperty = DependencyProperty.Register("Stretch", typeof(Stretch), typeof(ImageEx), new PropertyMetadata(Stretch.Uniform));
         public Stretch Stretch
         {
-            get { return (Stretch)GetValue(StretchProperty); }
-            set { SetValue(StretchProperty, value); }
+            get => (Stretch)GetValue(StretchProperty);
+            set => SetValue(StretchProperty, value);
         }
 
         public static readonly DependencyProperty SourcePathProperty = DependencyProperty.Register("SourcePath", typeof(string), typeof(ImageEx), new PropertyMetadata(null));
         public string SourcePath
         {
-            get { return (string)GetValue(SourcePathProperty); }
-            set { SetValue(SourcePathProperty, value); }
+            get => (string)GetValue(SourcePathProperty);
+            set => SetValue(SourcePathProperty, value);
         }
 
         public static readonly DependencyProperty FallbackImageProperty = DependencyProperty.Register("FallbackImage", typeof(string), typeof(ImageEx), new PropertyMetadata(null));
         public string FallbackImage
         {
-            get { return (string)GetValue(FallbackImageProperty); }
-            set { SetValue(FallbackImageProperty, value); }
+            get => (string)GetValue(FallbackImageProperty);
+            set => SetValue(FallbackImageProperty, value);
         }
 
         public BitmapImage CreateIcon(string path)
@@ -124,6 +157,15 @@ namespace Microsoft.Templates.UI.Controls
             }
 
             return CreateBitMap(new Uri(FallbackImage));
+        }
+
+        protected static Binding CreateBinding(object source, string path)
+        {
+            return new Binding
+            {
+                Path = new PropertyPath(path),
+                Source = source
+            };
         }
     }
 }

@@ -304,11 +304,11 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Licences:.
+        ///   Looks up a localized string similar to Licenses:.
         /// </summary>
-        public static string InfoModalLicences {
+        public static string InfoModalLicenses {
             get {
-                return ResourceManager.GetString("InfoModalLicences", resourceCulture);
+                return ResourceManager.GetString("InfoModalLicenses", resourceCulture);
             }
         }
         

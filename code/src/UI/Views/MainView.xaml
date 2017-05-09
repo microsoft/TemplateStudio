@@ -73,7 +73,7 @@
                 <TextBlock Style="{StaticResource TextMainLoadingStyle}" Text="{x:Static res:StringRes.NoContentText}" />
             </Grid>
 
-            <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden" />
+            <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False"/>
             <Grid Grid.Column="1">
                 <ScrollViewer Padding="0,40,0,65" Visibility="{Binding LoadedContentVisibility}">
                     <StackPanel Margin="{StaticResource MediumLeftMargin}">
@@ -115,11 +115,12 @@
                             IsExpanded="True">
                             <Grid>
                                 <ItemsControl
+                                    Focusable="False"
                                     Margin="{StaticResource ExtraBigLeftMargin}"
                                     ItemTemplate="{StaticResource LicenseSummaryItemTemplate}"
                                     ItemsSource="{Binding SummaryLicenses}" />
                                 <TextBlock
-                                    Margin="{StaticResource ExtraBigLeftMargin}"
+                                    Margin="27,0,0,0"
                                     Text="{x:Static res:StringRes.SummaryNoLicenses}"
                                     Visibility="{Binding SummaryLicenses, Converter={StaticResource EmptyCollectionConverter}}" />
                                 </Grid>
@@ -131,11 +132,12 @@
                             IsExpanded="True">
                             <Grid>
                                 <ItemsControl
+                                    Focusable="False"
                                     Margin="{StaticResource ExtraBigLeftMargin}"
                                     ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}"
                                     ItemsSource="{Binding ProjectTemplates.SummaryPages}" />
                                 <TextBlock
-                                    Margin="{StaticResource ExtraBigLeftMargin}"
+                                    Margin="27,0,0,0"
                                     Text="{x:Static res:StringRes.SummaryNoPages}"
                                     Visibility="{Binding ProjectTemplates.SummaryPages, Converter={StaticResource EmptyCollectionConverter}}" />
                             </Grid>
@@ -147,11 +149,12 @@
                             IsExpanded="True">
                             <Grid>
                                 <ItemsControl
+                                    Focusable="False"
                                     Margin="{StaticResource ExtraBigLeftMargin}"
                                     ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}"
                                     ItemsSource="{Binding ProjectTemplates.SummaryFeatures}" />
                                 <TextBlock
-                                    Margin="{StaticResource ExtraBigLeftMargin}"
+                                    Margin="27,0,0,0"
                                     Text="{x:Static res:StringRes.SummaryNoFeatures}"
                                     Visibility="{Binding ProjectTemplates.SummaryFeatures, Converter={StaticResource EmptyCollectionConverter}}" />
                             </Grid>

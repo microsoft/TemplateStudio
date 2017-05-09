@@ -108,7 +108,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 AddFromLayout(ContextProjectType.Name, ContextFramework.Name);
                 MainViewModel.Current.RebuildLicenses();
             }
-
+            MainViewModel.Current.EnableProjectCreation();
             await Task.CompletedTask;
         }
 
@@ -117,6 +117,8 @@ namespace Microsoft.Templates.UI.ViewModels
             SummaryPages.Clear();
             SummaryFeatures.Clear();
             SavedTemplates.Clear();
+            PagesGroups.Clear();
+            FeatureGroups.Clear();
         }
 
         private void AddFromLayout(string projectTypeName, string frameworkName)

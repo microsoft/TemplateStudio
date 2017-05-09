@@ -8,96 +8,60 @@
     xmlns:vm="using:wts.ItemName.ViewModels"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="NavigationMenuItemDataTemplate" x:DataType="vm:ShellNavigationItem">
-            <Button
-                Margin="0"
-                Padding="0,9"
-                HorizontalAlignment="Stretch"
-                HorizontalContentAlignment="Stretch"
-                Background="Transparent"
-                BorderThickness="0"
-                AutomationProperties.AccessibilityView="Control"
-                AutomationProperties.LandmarkType="Navigation"
-                AutomationProperties.Name="{x:Bind Label}"
-                Command="{Binding ElementName=ShellContent, Path=DataContext.ItemSelectedCommand}"
-                CommandParameter="{Binding}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="48" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Rectangle
+            <Grid Width="240"
+                  Height="48">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Rectangle
                         Width="6"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Stretch"
                         Fill="{ThemeResource SystemControlForegroundAccentBrush}"
                         Visibility="{x:Bind SelectedVis, Mode=OneWay}" />
-                    <FontIcon
+                <FontIcon
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         FontSize="16"
-                        Foreground="{x:Bind SelectedForeground, Mode=OneWay}"
+                        Foreground="{ThemeResource SystemControlFocusVisualPrimaryBrush}"
                         Glyph="{x:Bind SymbolAsChar}" />
-                    <TextBlock
+                <TextBlock
                         Grid.Column="1"
                         Margin="0,0,24,0"
                         VerticalAlignment="Center"
-                        Foreground="{x:Bind SelectedForeground, Mode=OneWay}"
+                        Foreground="{ThemeResource SystemControlFocusVisualPrimaryBrush}"
                         Text="{x:Bind Label}"
                         TextTrimming="CharacterEllipsis" />
-                </Grid>
-            </Button>
+            </Grid>
         </DataTemplate>
     </Page.Resources>
 
-    <Grid x:Name="ShellContent" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <!--  Top-level navigation menu + app content  -->
-        <SplitView
+    <controls:HamburgerMenu
             x:Name="NavigationMenu"
-            Grid.RowSpan="2"
             DisplayMode="{x:Bind ViewModel.DisplayMode, Mode=OneWay}"
             PaneBackground="{ThemeResource SystemControlBackgroundAltHighBrush}"
-            IsPaneOpen="{x:Bind ViewModel.IsPaneOpen, Mode=TwoWay}">
-            <SplitView.Pane>
-                <Grid Margin="0,48,0,0">
-                    <ScrollViewer VerticalAlignment="Stretch" TabNavigation="Local">
-                        <Grid VerticalAlignment="Stretch">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <ItemsControl
-                                VerticalAlignment="Top"
-                                IsTabStop="False"
-                                ItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
-                                ItemsSource="{x:Bind ViewModel.PrimaryItems}" />
-                            <ItemsControl
-                                Grid.Row="1"
-                                VerticalAlignment="Bottom"
-                                IsTabStop="False"
-                                ItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
-                                ItemsSource="{x:Bind ViewModel.SecondaryItems}" />
-                        </Grid>
-                    </ScrollViewer>
-                </Grid>
-            </SplitView.Pane>
-
-            <Grid Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
-                <Frame x:Name="shellFrame"/>
-            </Grid>
-        </SplitView>
-        <!--  Mavigation menu button  -->
-        <Button Width="48" Height="48" BorderThickness="0" Background="Transparent" Command="{x:Bind ViewModel.OpenPaneCommand}">
-            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" FontSize="16"/>
-        </Button>
-
-        <!--  Adaptive triggers  -->
+            IsPaneOpen="{x:Bind ViewModel.IsPaneOpen, Mode=TwoWay}"
+            ItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
+            ItemsSource="{x:Bind ViewModel.PrimaryItems}"
+            OptionsItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
+            OptionsItemsSource="{x:Bind ViewModel.SecondaryItems}"
+            >
+        <i:Interaction.Behaviors>
+            <ic:EventTriggerBehavior EventName="ItemClick">
+                <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemSelectedCommand}" />
+            </ic:EventTriggerBehavior>
+            <ic:EventTriggerBehavior EventName="OptionsItemClick">
+                <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemSelectedCommand}" />
+            </ic:EventTriggerBehavior>
+        </i:Interaction.Behaviors>
+        <Grid Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+            <Frame x:Name="shellFrame"/>
+        </Grid>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WindowStates">
                 <i:Interaction.Behaviors>
@@ -122,5 +86,5 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-    </Grid>
+    </controls:HamburgerMenu>
 </Page>
