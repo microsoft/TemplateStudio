@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Threading;
 
 using Microsoft.Templates.Core.Mvvm;
+using System.Windows.Input;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
@@ -27,6 +28,7 @@ namespace Microsoft.Templates.UI.ViewModels
         public string Author { get; set; }
         public bool IsRemoveEnabled { get; set; }
         public bool HasDefaultName { get; set; }
+        public ICommand RemoveTemplateCommand { get; set; }
 
         public string DisplayText
         {
@@ -43,7 +45,7 @@ namespace Microsoft.Templates.UI.ViewModels
             }
         }
 
-        private FontWeight _itemFontWeight = FontWeights.Normal;        
+        private FontWeight _itemFontWeight = FontWeights.Normal;
 
         private Brush _itemForeground = MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
         public Brush ItemForeground

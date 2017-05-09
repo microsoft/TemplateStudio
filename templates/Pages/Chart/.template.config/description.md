@@ -1,0 +1,1 @@
+A page displaying a simple chart, powered by Telerik UI controls for UWP.
