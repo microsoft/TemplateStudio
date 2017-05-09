@@ -15,54 +15,17 @@ using System.Linq;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Mvvm;
 using System.Collections.ObjectModel;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
-    public class TemplateInfoViewModel : Observable
+    public class TemplateInfoViewModel : CommonInfoViewModel
     {
-        private string _name;
-        public string Name
-        {
-            get => _name;
-            set => SetProperty(ref _name, value);
-        }
-
         private string _templateName;
         public string TemplateName
         {
             get => _templateName;
             set => SetProperty(ref _templateName, value);
-        }
-
-
-        private string _author;
-        public string Author
-        {
-            get => _author;
-            set => SetProperty(ref _author, value);
-        }
-
-        private string _summary;
-        public string Summary
-        {
-            get => _summary;
-            set => SetProperty(ref _summary, value);
-        }
-
-        private string _description;
-        public string Description
-        {
-            get => _description;
-            set => SetProperty(ref _description, value);
-        }
-
-        private string _icon;
-        public string Icon
-        {
-            get => _icon;
-            set => SetProperty(ref _icon, value);
         }
 
         private string _version;
@@ -86,13 +49,6 @@ namespace Microsoft.Templates.UI.ViewModels
             set => SetProperty(ref _multipleInstances, value);
         }
 
-        private IEnumerable<TemplateLicense> _licenseTerms;
-        public IEnumerable<TemplateLicense> LicenseTerms
-        {
-            get => _licenseTerms;
-            set => SetProperty(ref _licenseTerms, value);
-        }        
-
         private string _group;
         public string Group
         {
@@ -114,7 +70,7 @@ namespace Microsoft.Templates.UI.ViewModels
             set => SetProperty(ref _dependencies, value);
         }
 
-        public ObservableCollection<DependencyInfoViewModel> DependencyItems { get; } = new ObservableCollection<DependencyInfoViewModel>();        
+        public ObservableCollection<DependencyInfoViewModel> DependencyItems { get; } = new ObservableCollection<DependencyInfoViewModel>();
 
         private TemplateType _templateType;
         public TemplateType TemplateType
@@ -157,4 +113,3 @@ namespace Microsoft.Templates.UI.ViewModels
         }
     }
 }
- 
