@@ -5,7 +5,7 @@ Windows Template Studio is a Visual Studio 2017 Extension that accelerates the c
 **Example scenario:**
 I need an app that uses MVVM Light, uses master detail, can suspend and resume, settings, maps on one of the pages and will need Azure hub notifications.   It will need a background service that does a query every 5 minutes.
 
-![Configure Additional Extension Gallery](docs/resources/getting-started/WPT%20-%20Project%20Type%20and%20Framework.png)
+![Windows Template Studio screenshot](docs/resources/getting-started/WPT%20-%20Project%20Type%20and%20Framework.png)
 
 
 
