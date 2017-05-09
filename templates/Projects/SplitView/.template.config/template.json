@@ -13,6 +13,7 @@
     "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
     "wts.ProjectType":"SplitView",
     "wts.version": "1.0.0",
+    "wts.licences": "[Microsoft.Toolkit.Uwp.UI.Controls](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)",
     "wts.order": "1"
   },
   "sourceName": "wts.SplitViewProject",
