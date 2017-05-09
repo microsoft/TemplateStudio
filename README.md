@@ -1,9 +1,10 @@
 # Windows Template Studio
 
-Windows Template Studio goal is to help developers with their File->New experience in Visual Studio. It will generate a strong, generic foundation with the pages you need, but also integrate game changing features from the start. Once the template is generated for the developer, it can provide base sample data and will be able to compile then run without issue. Sprinkled throughout the generated code we have links Docs, Stack Overflow and blogs to provide useful insights.
+Windows Template Studio is a Visual Studio 2017 Extension that accelerates the creation of new Univeral Windows Platform (UWP) apps using a wizard-based experience. The resulting UWP project is well-formed, readable code that incorporates the latest Windows 10 features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links Docs, Stack Overflow and blogs to provide useful insights.
 
 **Example scenario:**
 I need an app that uses MVVM Light, uses master detail, can suspend and resume, settings, maps on one of the pages and will need Azure hub notifications.   It will need a background service that does a query every 5 minutes.
+
 
 ## Table of Contents
 
@@ -12,6 +13,7 @@ I need an app that uses MVVM Light, uses master detail, can suspend and resume, 
 * [Concepts of Windows Template Studio](docs/readme.md)
 * [Getting started with the generator codebase](docs/getting-started-developers.md)
 * [Authoring Templates](docs/templates.md)
+
 
 ## Build Status
 
