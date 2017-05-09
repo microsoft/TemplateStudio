@@ -190,6 +190,7 @@
     <Compile Include="Converters\MicrosoftTemplatesAuthorConverter.cs" />
     <Compile Include="Converters\StringVisibilityConverter.cs" />
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
+    <Compile Include="ViewModels\CommonInfoViewModel.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="Extensions\FocusExtension.cs" />
     <Compile Include="ViewModels\DependencyInfoViewModel.cs" />
