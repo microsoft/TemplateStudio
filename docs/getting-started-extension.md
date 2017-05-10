@@ -1,6 +1,10 @@
 # Installing / Using the extension
 
 ## Installing the Visual Studio Extension
+### Prerequisites
+Windows Template Studio installs into your existing Windows 10 app development environment. If you're missing any of the below, you can get everything from the [Windows Dev Center Download page](https://developer.microsoft.com/en-us/windows/downloads).
+* Visual Studio 2017 or higher (any edition)
+* Windows 10 Creators Update SDK (version 10.0.15063.0 or later)
 
 ### Visual Studio Extension Feed URLs for Windows Template Studio
 
@@ -18,11 +22,11 @@ The Pre-release build version allows you to get updates with stable features not
 
 This feed will have stable extension versions so it is not thought to have breaking changes (and can be installed side by side with the official one), anyway, installing this extension is at your own risk.
 
-Open Visual Studio 2017 and go to **Tools -> Extensions & Updates**, then click on **Change your Extensions and Updates settings** and create an Additional Extension Gallery.
+Open Visual Studio 2017 and go to **Tools -> Extensions & Updates**, then click on **Change your Extensions and Updates settings** *(bottom left of the 'Extensions and Updates' window)* and create an Additional Extension Gallery.
 
 ![Configure Additional Extension Gallery](resources/vsix/configurefeed.PNG)
 
-Then, go again to **Tools -> Extensions & Updates** and using the recently added online gallery, install the Windows Template Studio extension.
+Then, go again to **Tools -> Extensions & Updates** and using the recently added online gallery *(added under the 'Online' node)*, download and install the Windows Template Studio extension. Note that you will likely need to restart Visual Studio for the install to complete.
 
 ![Install UWP Community Templates extension](resources/vsix/onlinefeed.PNG)
 
