@@ -183,6 +183,7 @@
     </Compile>
     <Compile Include="Controls\StatusType.cs" />
     <Compile Include="Controls\SymbolFonts.cs" />
+    <Compile Include="Controls\TogglePane\TogglePane.Members.cs" />
     <Compile Include="Converters\ColumnCountConverter.cs" />
     <Compile Include="Converters\EmptyCollectionVisibilityConverter.cs" />
     <Compile Include="Converters\FixedWidthConverter.cs" />
@@ -190,6 +191,8 @@
     <Compile Include="Converters\MicrosoftTemplatesAuthorConverter.cs" />
     <Compile Include="Converters\StringVisibilityConverter.cs" />
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
+    <Compile Include="Controls\TogglePane\TogglePane.cs" />
+    <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="ViewModels\CommonInfoViewModel.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="Extensions\FocusExtension.cs" />
@@ -275,11 +278,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\TogglePane\TogglePane.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\StyleHyperlink.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\StyleShape.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

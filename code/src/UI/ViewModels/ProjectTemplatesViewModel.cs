@@ -57,6 +57,9 @@ namespace Microsoft.Templates.UI.ViewModels
         private RelayCommand<SummaryItemViewModel> _removeTemplateCommand;
         public RelayCommand<SummaryItemViewModel> RemoveTemplateCommand => _removeTemplateCommand ?? (_removeTemplateCommand = new RelayCommand<SummaryItemViewModel>(OnRemoveTemplate));
 
+        private RelayCommand<SummaryItemViewModel> _summaryItemOpenCommand;
+        public RelayCommand<SummaryItemViewModel> SummaryItemOpenCommand => _summaryItemOpenCommand ?? (_summaryItemOpenCommand = new RelayCommand<SummaryItemViewModel>(OnSummaryItemOpen));
+
         private RelayCommand<TemplateInfoViewModel> _addTemplateCommand;
         public RelayCommand<TemplateInfoViewModel> AddTemplateCommand => _addTemplateCommand ?? (_addTemplateCommand = new RelayCommand<TemplateInfoViewModel>(OnAddTemplateItem));
 
@@ -167,6 +170,22 @@ namespace Microsoft.Templates.UI.ViewModels
             }
         }
 
+        private void OnSummaryItemOpen(SummaryItemViewModel item)
+        {
+            if (item.IsOpen)
+            {
+                item.IsOpen = false;
+            }
+            else
+            {
+                foreach (var page in SummaryPages) { page.TryClose(); }
+
+                foreach (var feature in SummaryFeatures) { feature.TryClose(); }
+
+                item.IsOpen = true;
+            }            
+        }
+
         private void OnRemoveTemplate(SummaryItemViewModel item)
         {
             if (SavedTemplates.Any(st => st.Template.GetDependencyList().Any(d => d == item.Identity)))
@@ -259,7 +278,8 @@ namespace Microsoft.Templates.UI.ViewModels
                 IsRemoveEnabled = isRemoveEnabled,
                 ItemName = item.Name,
                 TemplateName = item.Template.Name,
-                RemoveTemplateCommand = RemoveTemplateCommand
+                RemoveTemplateCommand = RemoveTemplateCommand,
+                OpenCommand = SummaryItemOpenCommand
             };
 
             if (item.Template.GetTemplateType() == TemplateType.Page)

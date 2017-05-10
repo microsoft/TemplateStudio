@@ -167,10 +167,10 @@
         </Setter>
     </Style>
 
-    <Style TargetType="Button" x:Key="RemoveButtonStyle">
+    <Style TargetType="Button" x:Key="SettingsButtonStyle">
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Foreground" Value="{StaticResource UIRed}"/>
+        <Setter Property="Foreground" Value="{StaticResource UIDarkGray}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -195,7 +195,7 @@
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Trigger.Setters>
-                                <Setter Property="Foreground" Value="{StaticResource UIDarkRed}"/>
+                                <Setter Property="Foreground" Value="{StaticResource UIBlue}"/>
                             </Trigger.Setters>
                         </Trigger>
                     </ControlTemplate.Triggers>

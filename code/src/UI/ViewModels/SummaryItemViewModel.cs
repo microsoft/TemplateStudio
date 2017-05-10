@@ -28,7 +28,30 @@ namespace Microsoft.Templates.UI.ViewModels
         public string Author { get; set; }
         public bool IsRemoveEnabled { get; set; }
         public bool HasDefaultName { get; set; }
+        public ICommand OpenCommand { get; set; }
         public ICommand RemoveTemplateCommand { get; set; }
+
+        public static string SettingsButton = Char.ConvertFromUtf32(0xE713);
+        public static string CloseButton = Char.ConvertFromUtf32(0xE013);
+
+        private bool _isOpen;
+        public bool IsOpen
+        {
+            get => _isOpen;
+            set
+            {
+                SetProperty(ref _isOpen, value);
+                OpenIcon = value ? CloseButton : SettingsButton;
+            }
+        }
+
+        private string _openIcon = SettingsButton;
+        public string OpenIcon
+        {
+            get => _openIcon;
+            private set => SetProperty(ref _openIcon, value);
+        }
+
 
         public string DisplayText
         {
@@ -80,6 +103,14 @@ namespace Microsoft.Templates.UI.ViewModels
             AuthorForeground = MainViewModel.Current.MainView.FindResource("UIGray") as SolidColorBrush;
 
             dt.Stop();
+        }
+
+        internal void TryClose()
+        {
+            if (_isOpen)
+            {
+                IsOpen = false;
+            }
         }
     }
 }
