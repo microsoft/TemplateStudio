@@ -1,26 +1,26 @@
 {
   "author": "Microsoft",
   "classifications": ["Universal"],
-  "name": "Blank",
-  "groupIdentity": "wts.Proj.Blank",
-  "identity": "wts.Proj.Blank",
-  "shortName": "blank",
+  "name": "Default",
+  "groupIdentity": "wts.Proj.Default",
+  "identity": "wts.Proj.Default",
+  "shortName": "default",
   "description": "",
   "tags": {
     "language": "C#",
     "type": "project",
     "wts.type": "project",
     "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
-    "wts.ProjectType":"Blank",
+    "wts.ProjectType":"Blank|SplitView|TabbedPivot",
     "wts.version": "1.0.0",
     "wts.order": "1"
   },
-  "sourceName": "wts.BlankProject",
+  "sourceName": "wts.DefaultProject",
   "preferNameDirectory": true,
   "guids": [ "7cf740f7-735f-48ea-8b7b-3ffa4902371c", "be236938-efed-4037-b3f2-70788b43ca20" ],
   "PrimaryOutputs":
   [
-    { "path": "wts.BlankProject.csproj" }
+    { "path": "wts.DefaultProject.csproj" }
   ],
   "symbols":
   {

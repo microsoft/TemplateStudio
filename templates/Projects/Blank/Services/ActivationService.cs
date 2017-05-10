@@ -8,9 +8,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-using wts.BlankProject.Activation;
+using wts.DefaultProject.Activation;
 
-namespace wts.BlankProject.Services
+namespace wts.DefaultProject.Services
 {
     //For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
     internal class ActivationService

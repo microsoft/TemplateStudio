@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
 using Windows.ApplicationModel.Resources;
 
-namespace wts.BlankProject.Helpers
+namespace wts.DefaultProject.Helpers
 {
     internal static class ResourceExtensions
     {

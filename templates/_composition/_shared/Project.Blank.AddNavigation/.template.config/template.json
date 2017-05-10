@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.framework": "CodeBehind",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind|MVVMBasic & identity == wts.Proj.Blank"
+    "wts.compositionFilter": "$framework == CodeBehind|MVVMBasic & $projectType == Blank & wts.type == project"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

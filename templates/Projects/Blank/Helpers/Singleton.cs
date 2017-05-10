@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 
-namespace wts.BlankProject.Helpers
+namespace wts.DefaultProject.Helpers
 {
     internal static class Singleton<T> where T : new()
     {

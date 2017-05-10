@@ -2,9 +2,9 @@
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 
-using wts.BlankProject.Services;
+using wts.DefaultProject.Services;
 
-namespace wts.BlankProject
+namespace wts.DefaultProject
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.

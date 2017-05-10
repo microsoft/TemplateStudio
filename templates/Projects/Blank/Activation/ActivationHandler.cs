@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace wts.BlankProject.Activation
+namespace wts.DefaultProject.Activation
 {
     //For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
     internal abstract class ActivationHandler

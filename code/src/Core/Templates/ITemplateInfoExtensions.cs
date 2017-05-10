@@ -198,9 +198,18 @@ namespace Microsoft.Templates.Core
             return int.MaxValue;
         }
 
-        public static string GetProjectType(this ITemplateInfo ti)
+        public static List<string> GetProjectTypeList(this ITemplateInfo ti)
         {
-            return GetValueFromTag(ti, TagPrefix + "ProjectType");
+            var projectTypes = GetValueFromTag(ti, TagPrefix + "ProjectType");
+
+            var result = new List<string>();
+
+            if (!string.IsNullOrEmpty(projectTypes))
+            {
+                result.AddRange(projectTypes.Split(Separator.ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
+            }
+
+            return result;
         }
 
         public static IEnumerable<LayoutItem> GetLayout(this ITemplateInfo ti)

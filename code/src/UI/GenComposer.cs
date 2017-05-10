@@ -27,7 +27,7 @@ namespace Microsoft.Templates.UI
         public static IEnumerable<string> GetSupportedFx(string projectType)
         {
             return GenContext.ToolBox.Repo.GetAll()
-                .Where(t => t.GetProjectType() == projectType)
+                .Where(t => t.GetProjectTypeList().Contains(projectType))
                 .SelectMany(t => t.GetFrameworkList())
                 .Distinct();
         }
@@ -140,7 +140,7 @@ namespace Microsoft.Templates.UI
         {
             return GenContext.ToolBox.Repo
                                     .Find(t => t.GetTemplateType() == TemplateType.Project
-                                            && t.GetProjectType() == projectType
+                                            && t.GetProjectTypeList().Any(p => p == projectType)
                                             && t.GetFrameworkList().Any(f => f == framework));
         }
 

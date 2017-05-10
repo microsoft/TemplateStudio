@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.framework": "CodeBehind",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind & identity == wts.Proj.TabbedPivot"
+    "wts.compositionFilter": "$framework == CodeBehind & $projectType == TabbedPivot & wts.type == project"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
