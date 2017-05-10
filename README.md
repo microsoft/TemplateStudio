@@ -5,14 +5,8 @@ Windows Template Studio is a Visual Studio 2017 Extension that accelerates the c
 **Example scenario:**
 I need an app that uses MVVM Light, uses master detail, can suspend and resume, settings, maps on one of the pages and will need Azure hub notifications.   It will need a background service that does a query every 5 minutes.
 
+![Windows Template Studio screenshot](docs/resources/getting-started/WPT%20-%20Project%20Type%20and%20Framework.png)
 
-## Table of Contents
-
-* [Installing / Using the extension](docs/getting-started-extension.md)
-* [Using and extending your file->new](docs/getting-started-endusers.md)
-* [Concepts of Windows Template Studio](docs/readme.md)
-* [Getting started with the generator codebase](docs/getting-started-developers.md)
-* [Authoring Templates](docs/templates.md)
 
 
 ## Build Status
@@ -32,6 +26,15 @@ Windows Template Studio approaches UWP app creation using the following four att
 * **Windows 10 features**: Lastly, you specify which UWP capabilities you want to use in your app, and we'll build out the framework for the features into your app, tagging 'TODO' items. Currently supported features cover application lifecycle (*settings storage, suspend and resume*), background tasks, and user interaction (*app notifications, Live tiles, and Azure Noficiation Hub*).
 
 Once you select the attributes you want your new UWP app to have, you can quickly [extend the generated code](docs/getting-started-endusers.md).
+
+
+## Documentation
+
+* [Installing / Using the extension](docs/getting-started-extension.md)
+* [Using and extending your generated project](docs/getting-started-endusers.md)
+* [Concepts of Windows Template Studio](docs/readme.md)
+* [Getting started with the generator codebase](docs/getting-started-developers.md)
+* [Authoring Templates](docs/templates.md)
 
 
 ## Feedback, Requests and Roadmp
