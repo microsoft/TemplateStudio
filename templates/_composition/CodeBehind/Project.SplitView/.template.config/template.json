@@ -8,7 +8,6 @@
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
-    "wts.framework": "CodeBehind",
     "wts.version": "1.0.0",
     "wts.compositionFilter": "$framework == CodeBehind & $projectType == SplitView & wts.type == project"
   },
