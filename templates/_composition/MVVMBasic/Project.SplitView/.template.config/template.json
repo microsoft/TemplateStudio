@@ -9,7 +9,8 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic & identity == wts.Proj.SplitView"
+    "wts.compositionFilter": "$framework == MVVMBasic & $projectType == SplitView & wts.type == project",
+    "wts.licences": "[Microsoft.Toolkit.Uwp.UI.Controls](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
