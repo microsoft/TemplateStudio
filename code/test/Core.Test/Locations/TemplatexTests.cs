@@ -21,6 +21,7 @@ using System.Security.Cryptography.X509Certificates;
 using Microsoft.Templates.Core.Locations;
 
 using Xunit;
+using System.Reflection;
 
 namespace Microsoft.Templates.Core.Test.Locations
 {
@@ -280,7 +281,8 @@ namespace Microsoft.Templates.Core.Test.Locations
         [Fact]
         public void TestRemoteSource()
         {
-            string targetFolder = @"C:\Temp\TestRts";
+            string drive = Path.GetPathRoot(Assembly.GetExecutingAssembly().Location);
+            string targetFolder = Path.Combine(drive, @"Temp\TestRts");
             try
             {
                 RemoteTemplatesSource rts = new RemoteTemplatesSource();
