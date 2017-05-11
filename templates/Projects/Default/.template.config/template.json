@@ -11,7 +11,7 @@
     "type": "project",
     "wts.type": "project",
     "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
-    "wts.ProjectType":"Blank|SplitView|TabbedPivot",
+    "wts.projecttype":"Blank|SplitView|TabbedPivot",
     "wts.version": "1.0.0",
     "wts.order": "1"
   },

@@ -43,17 +43,6 @@ namespace Microsoft.Templates.Test
             GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
         }
 
-        [Fact]
-        public void TEst()
-        {
-            var projectTemplates = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project);
-            foreach (var template in projectTemplates)
-            {
-                var frameworks = GenComposer.GetSupportedFx(template.Name);
-            }
-            
-        }
-
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
         public async void GenerateEmptyProject(string projectType, string framework)

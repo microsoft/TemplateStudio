@@ -200,7 +200,7 @@ namespace Microsoft.Templates.Core
 
         public static List<string> GetProjectTypeList(this ITemplateInfo ti)
         {
-            var projectTypes = GetValueFromTag(ti, TagPrefix + "ProjectType");
+            var projectTypes = GetValueFromTag(ti, TagPrefix + "projecttype");
 
             var result = new List<string>();
 
