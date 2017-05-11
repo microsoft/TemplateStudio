@@ -37,7 +37,7 @@ Once you select the attributes you want your new UWP app to have, you can quickl
 * [Authoring Templates](docs/templates.md)
 
 
-## Feedback, Requests and Roadmp
+## Feedback, Requests and Roadmap
 
 Please use [GitHub issues](https://github.com/Microsoft/WindowsTemplateStudio/issues) for feedback, questions or comments.  
 
