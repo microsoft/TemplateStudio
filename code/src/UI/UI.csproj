@@ -193,6 +193,7 @@
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
     <Compile Include="Controls\TogglePane\TogglePane.cs" />
     <Compile Include="Extensions\AnimationExtensions.cs" />
+    <Compile Include="TemplateSelectors\SummaryItemTemplateSelector.cs" />
     <Compile Include="ViewModels\CommonInfoViewModel.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="Extensions\FocusExtension.cs" />
@@ -268,7 +269,13 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\IconDelete.png" />
+    <Resource Include="Assets\IconDown.png" />
+    <Resource Include="Assets\IconHome.png" />
+    <Resource Include="Assets\IconRename.png" />
+    <Resource Include="Assets\IconUp.png" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\LogoDisplay.xaml">
       <SubType>Designer</SubType>
@@ -286,9 +293,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\StyleImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\StyleShape.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\StyleTogglePane.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>

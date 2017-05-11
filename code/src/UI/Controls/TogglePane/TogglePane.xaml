@@ -6,47 +6,45 @@
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Storyboard x:Key="FadeInStoryboard">
-        <ColorAnimation Storyboard.TargetName="mainGrid" Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)" To="{StaticResource UILightGrayColor}" Duration="0:0:0.5" />
-        <DoubleAnimation Duration="0:0:0.5" To="1" Storyboard.TargetName="openCloseButton" Storyboard.TargetProperty="Opacity"/>
-    </Storyboard>
-
-    <Storyboard x:Key="FadeOutStoryboard">
-        <ColorAnimation Storyboard.TargetName="mainGrid" Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)" To="Transparent" Duration="0:0:0" />
-        <DoubleAnimation Duration="0:0:0" To="0" Storyboard.TargetName="openCloseButton" Storyboard.TargetProperty="Opacity"/>
-    </Storyboard>
-
     <Style TargetType="{x:Type controls:TogglePane}">
+        <Setter Property="Focusable" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:TogglePane}">
-                    <ControlTemplate.Triggers>
-                        <EventTrigger RoutedEvent="Control.MouseEnter">
-                            <BeginStoryboard Storyboard="{StaticResource FadeInStoryboard}"/>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="Control.MouseLeave">
-                            <BeginStoryboard Storyboard="{StaticResource FadeOutStoryboard}"/>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="Keyboard.GotKeyboardFocus">
-                            <BeginStoryboard Storyboard="{StaticResource FadeInStoryboard}"/>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="Keyboard.LostKeyboardFocus">
-                            <BeginStoryboard Storyboard="{StaticResource FadeOutStoryboard}"/>
-                        </EventTrigger>
-                    </ControlTemplate.Triggers>
-                    <Grid x:Name="mainGrid" Background="Transparent">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <ContentPresenter x:Name="mainViewContentTemplate" ContentTemplate="{TemplateBinding MainViewTemplate}" Content="{TemplateBinding TogglePaneContent}"/>
-                        <Grid Grid.Column="1" Background="LightCyan">
+                    <Grid>
+                        <Grid x:Name="shadowGrid" Background="{StaticResource UILightGray}" Opacity="0" Focusable="False"/>
+                        <ContentPresenter
+                            x:Name="mainViewContentTemplate"
+                            Margin="0,0,30,0"
+                            Focusable="False"
+                            Content="{TemplateBinding TogglePaneContent}"
+                            ContentTemplate="{TemplateBinding MainViewTemplate}"
+                            ContentTemplateSelector="{TemplateBinding MainViewTemplateSelector}" />
+                        <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <ContentPresenter x:Name="openCloseButton" ContentTemplate="{TemplateBinding ButtonTemplate}" Content="{TemplateBinding TogglePaneContent}" Opacity="0"/>
-                            <ContentPresenter Grid.Column="1" ContentTemplate="{TemplateBinding SecondaryViewTemplate}" Content="{TemplateBinding TogglePaneContent}" />
+                            <Grid Grid.Column="0" x:Name="fakeGrid" Background="Transparent" Focusable="False"/>
+                            <Grid Grid.Column="1" x:Name="secondaryShadowGrid" Background="{StaticResource UIGray}" Opacity="0" Focusable="False"/>
+                            <Grid Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <ContentPresenter
+                                    Focusable="False"
+                                    Content="{TemplateBinding TogglePaneContent}"
+                                    ContentTemplate="{TemplateBinding ButtonTemplate}"                                    
+                                    Visibility="{TemplateBinding ButtonVisibility}">
+                                </ContentPresenter>
+                                <ContentPresenter
+                                    Grid.Column="1"
+                                    Focusable="False"
+                                    Content="{TemplateBinding TogglePaneContent}"
+                                    ContentTemplate="{TemplateBinding SecondaryViewTemplate}"
+                                    ContentTemplateSelector="{TemplateBinding SecondaryViewTemplateSelector}" />
+                            </Grid>
                         </Grid>
                     </Grid>
                 </ControlTemplate>

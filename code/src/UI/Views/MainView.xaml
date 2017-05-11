@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
+    xmlns:templateSelectors="clr-namespace:Microsoft.Templates.UI.TemplateSelectors"
     Title="{x:Static res:StringRes.Title}"
     Width="1294"
     Height="727"
@@ -35,42 +36,83 @@
             </DataTemplate>
 
             <DataTemplate x:Key="ProjectTemplatesSummaryItemTemplate">
-                <controls:TogglePane TogglePaneContent="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsOpen="{Binding IsOpen}">
+                <controls:TogglePane TogglePaneContent="{Binding}" IsOpen="{Binding IsOpen}" MouseLeaveAction="{Binding MouseLeaveAction}" Style="{StaticResource TogglePaneStyle}">
                     <controls:TogglePane.ButtonTemplate>
                         <DataTemplate>
-                            <Button Style="{StaticResource SettingsButtonStyle}" Command="{Binding OpenCommand}" CommandParameter="{Binding}">
+                            <Button Style="{StaticResource SettingsButtonStyle}" Command="{Binding OpenCommand}" CommandParameter="{Binding}" Focusable="True">
                                 <Button.Content>
-                                    <TextBlock Text="{Binding OpenIcon}" FontSize="18" Style="{StaticResource RoundButtonTextStyle}"/>
+                                    <TextBlock Text="{Binding OpenIcon}" FontSize="18" Style="{StaticResource RoundButtonTextStyle}" Focusable="False"/>
                                 </Button.Content>
                             </Button>
                         </DataTemplate>
                     </controls:TogglePane.ButtonTemplate>
-                    <controls:TogglePane.MainViewTemplate>
+                    <controls:TogglePane.MainViewTemplateSelector>
+                        <templateSelectors:SummaryItemTemplateSelector>
+                            <templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
+                                <DataTemplate>
+                                    <Grid Height="40" Focusable="False">
+                                        <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" Focusable="False"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
+                            <templateSelectors:SummaryItemTemplateSelector.CommunityTemplate>
+                                <DataTemplate>
+                                    <Grid Height="60" Focusable="False">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" Focusable="False"/>
+                                        <TextBlock Grid.Row="1" Style="{StaticResource TextSummaryAuthorStyle}" Foreground="{Binding AuthorForeground}" Focusable="False">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
+                                                    <Binding Path="Author" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </templateSelectors:SummaryItemTemplateSelector.CommunityTemplate>
+                        </templateSelectors:SummaryItemTemplateSelector>
+                    </controls:TogglePane.MainViewTemplateSelector>
+                    <controls:TogglePane.SecondaryViewTemplate>
                         <DataTemplate>
-                            <Grid Focusable="False" Background="Transparent">
-                                <!--Authored by Microsoft Templates-->
-                                <Grid Height="40" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}, ConverterParameter=reverse}">
-                                    <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}"/>
-                                </Grid>
-                                
-                                <!--Authored by Community Templates-->
-                                <Grid Height="60" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}"/>
-                                    <TextBlock Grid.Row="1" Style="{StaticResource TextSummaryAuthorStyle}" Foreground="{Binding AuthorForeground}">
-                                        <TextBlock.Text>
-                                            <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
-                                                <Binding Path="Author" />
-                                            </MultiBinding>
-                                        </TextBlock.Text>
-                                    </TextBlock>
-                                </Grid>
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Focusable="False">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="0" Style="{StaticResource ButtonImageStyle}">
+                                    <Button.Content>
+                                        <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconHome.png"/>
+                                    </Button.Content>
+                                </Button>
+                                <Button Grid.Column="1" Style="{StaticResource ButtonImageStyle}">
+                                    <Button.Content>
+                                        <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconRename.png"/>
+                                    </Button.Content>
+                                </Button>
+                                <Button Grid.Column="2" Style="{StaticResource ButtonImageStyle}">
+                                    <Button.Content>
+                                        <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconDelete.png"/>
+                                    </Button.Content>
+                                </Button>
+                                <Button Grid.Column="3" Style="{StaticResource ButtonImageStyle}">
+                                    <Button.Content>
+                                        <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconUp.png"/>
+                                    </Button.Content>
+                                </Button>
+                                <Button Grid.Column="4" Style="{StaticResource ButtonImageStyle}">
+                                    <Button.Content>
+                                        <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconDown.png"/>
+                                    </Button.Content>
+                                </Button>
                             </Grid>
                         </DataTemplate>
-                    </controls:TogglePane.MainViewTemplate>
+                    </controls:TogglePane.SecondaryViewTemplate>
                 </controls:TogglePane>
             </DataTemplate>
 

@@ -1,9 +1,6 @@
-﻿using Microsoft.Templates.Core.Mvvm;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System;
-using Microsoft.Templates.UI.Extensions;
 
 namespace Microsoft.Templates.UI.Controls
 {
@@ -27,6 +24,15 @@ namespace Microsoft.Templates.UI.Controls
         public static readonly DependencyProperty MainViewTemplateProperty = DependencyProperty.Register("MainViewTemplate", typeof(DataTemplate), typeof(TogglePane), new PropertyMetadata(null));
         #endregion
 
+        #region MainViewTemplateSelector
+        public DataTemplateSelector MainViewTemplateSelector
+        {
+            get { return (DataTemplateSelector)GetValue(MainViewTemplateSelectorProperty); }
+            set { SetValue(MainViewTemplateSelectorProperty, value); }
+        }
+        public static readonly DependencyProperty MainViewTemplateSelectorProperty = DependencyProperty.Register("MainViewTemplateSelector", typeof(DataTemplateSelector), typeof(TogglePane), new PropertyMetadata(null));
+        #endregion
+
         #region SecondaryViewTemplate
         public DataTemplate SecondaryViewTemplate
         {
@@ -34,7 +40,16 @@ namespace Microsoft.Templates.UI.Controls
             set { SetValue(SecondaryViewTemplateProperty, value); }
         }
         public static readonly DependencyProperty SecondaryViewTemplateProperty = DependencyProperty.Register("SecondaryViewTemplate", typeof(DataTemplate), typeof(TogglePane), new PropertyMetadata(null));
-        #endregion                
+        #endregion
+
+        #region SecondaryViewTemplateSelector
+        public DataTemplateSelector SecondaryViewTemplateSelector
+        {
+            get { return (DataTemplateSelector)GetValue(SecondaryViewTemplateSelectorProperty); }
+            set { SetValue(SecondaryViewTemplateSelectorProperty, value); }
+        }
+        public static readonly DependencyProperty SecondaryViewTemplateSelectorProperty = DependencyProperty.Register("SecondaryViewTemplateSelector", typeof(DataTemplateSelector), typeof(TogglePane), new PropertyMetadata(null));
+        #endregion
 
         #region ButtonTemplate
         public DataTemplate ButtonTemplate
@@ -43,6 +58,15 @@ namespace Microsoft.Templates.UI.Controls
             set { SetValue(ButtonTemplateProperty, value); }
         }
         public static readonly DependencyProperty ButtonTemplateProperty = DependencyProperty.Register("ButtonTemplate", typeof(DataTemplate), typeof(TogglePane), new PropertyMetadata(null));
+        #endregion
+
+        #region ButtonVisibility
+        public Visibility ButtonVisibility
+        {
+            get { return (Visibility)GetValue(ButtonVisibilityProperty); }
+            set { SetValue(ButtonVisibilityProperty, value); }
+        }
+        public static readonly DependencyProperty ButtonVisibilityProperty = DependencyProperty.Register("ButtonVisibility", typeof(Visibility), typeof(TogglePane), new PropertyMetadata(Visibility.Collapsed));
         #endregion
 
         #region CloseButtonTemplate
@@ -73,14 +97,24 @@ namespace Microsoft.Templates.UI.Controls
         }
         #endregion
 
-        #region AutoHide
-        public bool AutoHide
+        #region MouseEnterAction
+        public Action MouseEnterAction
         {
-            get { return (bool)GetValue(AutoHideProperty); }
-            set { SetValue(AutoHideProperty, value); }
+            get { return (Action)GetValue(MouseEnterActionProperty); }
+            set { SetValue(MouseEnterActionProperty, value); }
         }
 
-        public static readonly DependencyProperty AutoHideProperty = DependencyProperty.Register("AutoHide", typeof(bool), typeof(TogglePane), new PropertyMetadata(false));
-        #endregion                
+        public static readonly DependencyProperty MouseEnterActionProperty = DependencyProperty.Register("MouseEnterAction", typeof(Action), typeof(TogglePane), new PropertyMetadata(null));
+        #endregion
+
+        #region MouseLeaveAction
+        public Action MouseLeaveAction
+        {
+            get { return (Action)GetValue(MouseLeaveActionProperty); }
+            set { SetValue(MouseLeaveActionProperty, value); }
+        }
+
+        public static readonly DependencyProperty MouseLeaveActionProperty = DependencyProperty.Register("MouseLeaveAction", typeof(Action), typeof(TogglePane), new PropertyMetadata(null));
+        #endregion
     }
 }

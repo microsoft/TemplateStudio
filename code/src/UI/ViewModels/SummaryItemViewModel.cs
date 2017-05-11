@@ -22,6 +22,9 @@ namespace Microsoft.Templates.UI.ViewModels
 {
     public class SummaryItemViewModel : Observable
     {
+        public static string SettingsButton = Char.ConvertFromUtf32(0xE713);
+        public static string CloseButton = Char.ConvertFromUtf32(0xE013);
+
         public string Identity { get; set; }
         public string ItemName { get; set; }
         public string TemplateName { get; set; }
@@ -30,9 +33,7 @@ namespace Microsoft.Templates.UI.ViewModels
         public bool HasDefaultName { get; set; }
         public ICommand OpenCommand { get; set; }
         public ICommand RemoveTemplateCommand { get; set; }
-
-        public static string SettingsButton = Char.ConvertFromUtf32(0xE713);
-        public static string CloseButton = Char.ConvertFromUtf32(0xE013);
+        public Action MouseLeaveAction => TryClose;
 
         private bool _isOpen;
         public bool IsOpen
@@ -53,22 +54,7 @@ namespace Microsoft.Templates.UI.ViewModels
         }
 
 
-        public string DisplayText
-        {
-            get
-            {
-                if (HasDefaultName)
-                {
-                    return ItemName;
-                }
-                else
-                {
-                    return $"{ItemName} [{TemplateName}]";
-                }
-            }
-        }
-
-        private FontWeight _itemFontWeight = FontWeights.Normal;
+        public string DisplayText => HasDefaultName ? ItemName : $"{ItemName} [{TemplateName}]";
 
         private Brush _itemForeground = MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
         public Brush ItemForeground
@@ -82,7 +68,7 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             get => _authorForeground;
             set => SetProperty(ref _authorForeground, value);
-        }
+        }        
 
         private DispatcherTimer dt;
         public SummaryItemViewModel()

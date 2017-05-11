@@ -7,6 +7,46 @@ namespace Microsoft.Templates.UI.Extensions
 {
     public static class AnimationExtensions
     {
+        public static Storyboard FadeIn(this UIElement element, double duration = 250, EasingFunctionBase easingFunction = null)
+        {
+            if (element == null)
+            {
+                throw new ArgumentNullException("element");
+            }
+            if (element.Opacity < 1.0)
+            {
+                return AnimateDoubleProperty(element, "Opacity", element.Opacity, 1.0, duration, easingFunction);
+            }
+            return null;
+        }
+
+        public static async Task FadeInAsync(this UIElement element, double duration = 250, EasingFunctionBase easingFunction = null)
+        {
+            if (element.Opacity < 1.0)
+            {
+                await AnimateDoublePropertyAsync(element, "Opacity", element.Opacity, 1.0, duration, easingFunction);
+            }
+        }
+
+        public static Storyboard FadeOut(this UIElement element, double duration = 250, EasingFunctionBase easingFunction = null)
+        {
+            if (element == null)
+            {
+                throw new ArgumentNullException("element");
+            }
+            if (element.Opacity > 0.0)
+            {
+                return AnimateDoubleProperty(element, "Opacity", element.Opacity, 0.0, duration, easingFunction);
+            }
+            return null;
+        }
+        public static async Task FadeOutAsync(this UIElement element, double duration = 250, EasingFunctionBase easingFunction = null)
+        {
+            if (element.Opacity > 0.0)
+            {
+                await AnimateDoublePropertyAsync(element, "Opacity", element.Opacity, 0.0, duration, easingFunction);
+            }
+        }
 
         public static Storyboard AnimateWidth(this FrameworkElement element, double width, double duration = 250, EasingFunctionBase easingFunction = null)
         {

@@ -168,8 +168,8 @@
     </Style>
 
     <Style TargetType="Button" x:Key="SettingsButtonStyle">
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="Foreground" Value="{StaticResource UIDarkGray}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
@@ -208,6 +208,7 @@
                     <Setter Property="Control.Template">
                         <Setter.Value>
                             <ControlTemplate>
+                                <Grid Background="{StaticResource UIBlue}" Opacity="0.2" />
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
@@ -240,6 +241,62 @@
         <Setter Property="HorizontalContentAlignment" Value="Right"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="FocusVisualStyle" Value="{StaticResource AddButtonFocusStyle}"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="ButtonImageStyle">
+        <Setter Property="Focusable" Value="True"/>
+        <Setter Property="FocusVisualStyle">
+            <Setter.Value>
+                <Style>
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Grid>
+                                    <Grid.Background>
+                                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
+                                    </Grid.Background>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" SnapsToDevicePixels="true">
+                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Trigger.Setters>
+                                <Setter TargetName="contentPresenter" Property="Opacity" Value="0.2"/>
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource UILightGray}"/>
+                            </Trigger.Setters>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Trigger.Setters>
+                                <Setter TargetName="border" Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.4"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger.Setters>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.Setters>
+                                <Setter TargetName="border" Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger.Setters>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>
