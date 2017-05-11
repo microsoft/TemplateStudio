@@ -27,7 +27,7 @@ using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
-    public class MainViewModel : Observable
+    public class MainViewModel : Observable, IContextProvider
     {
         private readonly MainView _host;
 
@@ -37,6 +37,9 @@ namespace Microsoft.Templates.VsEmulator.Main
             _wizardVersion = "0.0.0.0";
             _templatesVersion = "0.0.0.0";
         }
+
+        public string ProjectName { get; private set; }
+        public string OutputPath { get; private set; }
 
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
@@ -118,20 +121,22 @@ namespace Microsoft.Templates.VsEmulator.Main
                 {
                     var outputPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
 
-                    using (var context = GenContext.CreateNew(newProjectInfo.name, outputPath))
+                    ProjectName = newProjectInfo.name;
+                    OutputPath = outputPath;
+
+                    GenContext.Current = this;
+
+                    var userSelection = GenController.GetUserSelection();
+                    if (userSelection != null)
                     {
-                        var userSelection = GenController.GetUserSelection();
-                        if (userSelection != null)
-                        {
-                            SolutionName = null;
+                        SolutionName = null;
 
-                            await GenController.GenerateAsync(userSelection);
+                        await GenController.GenerateAsync(userSelection);
 
-                            GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
+                        GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
 
-                            SolutionName = newProjectInfo.name;
-                            SolutionPath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
-                        }
+                        SolutionName = newProjectInfo.name;
+                        SolutionPath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
                     }
                 }
             }
