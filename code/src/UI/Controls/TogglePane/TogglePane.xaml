@@ -60,7 +60,7 @@
                                     x:Name="buttonContentPresenter"
                                     Focusable="False"
                                     Content="{TemplateBinding TogglePaneContent}"
-                                    ContentTemplate="{TemplateBinding ButtonTemplate}"                                    
+                                    ContentTemplate="{TemplateBinding ButtonTemplate}"
                                     Opacity="0">
                                 </ContentPresenter>
                                 <ContentPresenter

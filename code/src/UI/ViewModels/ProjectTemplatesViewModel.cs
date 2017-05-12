@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
@@ -56,6 +57,12 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private RelayCommand<SummaryItemViewModel> _removeTemplateCommand;
         public RelayCommand<SummaryItemViewModel> RemoveTemplateCommand => _removeTemplateCommand ?? (_removeTemplateCommand = new RelayCommand<SummaryItemViewModel>(OnRemoveTemplate));
+        
+        private RelayCommand<TemplateInfoViewModel> _addTemplateCommand;
+        public RelayCommand<TemplateInfoViewModel> AddTemplateCommand => _addTemplateCommand ?? (_addTemplateCommand = new RelayCommand<TemplateInfoViewModel>(OnAddTemplateItem));
+
+        private RelayCommand<TemplateInfoViewModel> _saveTemplateCommand;
+        public RelayCommand<TemplateInfoViewModel> SaveTemplateCommand => _saveTemplateCommand ?? (_saveTemplateCommand = new RelayCommand<TemplateInfoViewModel>(OnSaveTemplateItem));
 
         private RelayCommand<SummaryItemViewModel> _summaryItemOpenCommand;
         public RelayCommand<SummaryItemViewModel> SummaryItemOpenCommand => _summaryItemOpenCommand ?? (_summaryItemOpenCommand = new RelayCommand<SummaryItemViewModel>(OnSummaryItemOpen));
@@ -63,16 +70,34 @@ namespace Microsoft.Templates.UI.ViewModels
         private RelayCommand<SummaryItemViewModel> _summaryItemSetHomeCommand;
         public RelayCommand<SummaryItemViewModel> SummaryItemSetHomeCommand => _summaryItemSetHomeCommand ?? (_summaryItemSetHomeCommand = new RelayCommand<SummaryItemViewModel>(OnSummaryItemSetHome));
 
-        private RelayCommand<TemplateInfoViewModel> _addTemplateCommand;
-        public RelayCommand<TemplateInfoViewModel> AddTemplateCommand => _addTemplateCommand ?? (_addTemplateCommand = new RelayCommand<TemplateInfoViewModel>(OnAddTemplateItem));
-
-        private RelayCommand<TemplateInfoViewModel> _saveTemplateCommand;
-        public RelayCommand<TemplateInfoViewModel> SaveTemplateCommand => _saveTemplateCommand ?? (_saveTemplateCommand = new RelayCommand<TemplateInfoViewModel>(OnSaveTemplateItem));
+        private ICommand _editSummaryItemCommand;
+        public ICommand EditSummaryItemCommand => _editSummaryItemCommand ?? (_editSummaryItemCommand = new RelayCommand<SummaryItemViewModel>(OnEditSummary));
 
         public ProjectTemplatesViewModel()
         {
             SummaryFeatures.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryFeatures)); };
             SummaryPages.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryPages)); };
+        }
+
+        private void ValidateCurrentTemplateName(SummaryItemViewModel item)
+        {
+            var names = SavedTemplates.Select(t => t.Name);
+            var validationResult = Naming.Validate(names, item.ItemName);
+
+            item.IsValidName = validationResult.IsValid;
+            item.ErrorMessage = String.Empty;
+
+            if (!item.IsValidName)
+            {
+                item.ErrorMessage = StringRes.ResourceManager.GetString($"ValidationError_{validationResult.ErrorType}");
+
+                if (string.IsNullOrWhiteSpace(item.ErrorMessage))
+                {
+                    item.ErrorMessage = "UndefinedError";
+                }
+
+                throw new Exception(item.ErrorMessage);
+            }
         }
 
         private void ValidateNewTemplateName(TemplateInfoViewModel template)
@@ -197,17 +222,26 @@ namespace Microsoft.Templates.UI.ViewModels
 
                 item.IsOpen = true;
             }
-        }
+        }        
+
+        private void OnEditSummary(SummaryItemViewModel item)
+        {
+            CloseSummaryItemsEdition();
+            item.IsEditionEnabled = true;
+        }        
 
         private void OnSummaryItemSetHome(SummaryItemViewModel item)
         {
             if (!item.IsHome)
             {
                 foreach (var page in SummaryPages) { page.TryReleaseHome(); }
-                foreach (var page in SavedPages) { page.IsHome = false; }
+                foreach (var page in SavedTemplates) { page.IsHome = false; }
 
                 item.IsHome = true;
-                SavedPages.First(sp => sp.Name == item.ItemName).IsHome = true;
+                SavedTemplates.First(st => st.Name == item.ItemName).IsHome = true;
+                var ordered = new ObservableCollection<SummaryItemViewModel>(SummaryPages.OrderByDescending(p => p.IsHome));
+                SummaryPages.Clear();
+                SummaryPages.AddRange(ordered);
             }
         }
 
@@ -246,6 +280,12 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             PagesGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t => t.CloseEdition()));
             FeatureGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t => t.CloseEdition()));
+        }
+
+        private void CloseSummaryItemsEdition()
+        {
+            SummaryPages.ToList().ForEach(p => p.CloseEdition());
+            SummaryFeatures.ToList().ForEach(f => f.CloseEdition());
         }
 
         private void UpdateTemplatesAvailability()
@@ -306,18 +346,7 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             SavedTemplates.Add(item);
 
-            var newItem = new SummaryItemViewModel
-            {
-                Author = item.Template.Author,
-                HasDefaultName = !item.Template.GetItemNameEditable(),
-                Identity = item.Template.Identity,
-                IsRemoveEnabled = isRemoveEnabled,
-                ItemName = item.Name,
-                TemplateName = item.Template.Name,
-                RemoveCommand = RemoveTemplateCommand,
-                OpenCommand = SummaryItemOpenCommand,
-                SetHomeCommand = SummaryItemSetHomeCommand
-            };
+            var newItem = new SummaryItemViewModel(item, isRemoveEnabled,RemoveTemplateCommand, SummaryItemOpenCommand, SummaryItemSetHomeCommand, EditSummaryItemCommand, ValidateCurrentTemplateName);
 
             if (item.Template.GetTemplateType() == TemplateType.Page)
             {

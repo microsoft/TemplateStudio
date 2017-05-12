@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
     xmlns:templateSelectors="clr-namespace:Microsoft.Templates.UI.TemplateSelectors"
+    xmlns:local="clr-namespace:Microsoft.Templates.UI"
     Title="{x:Static res:StringRes.Title}"
     Width="1294"
     Height="727"
@@ -51,7 +52,25 @@
                             <templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
                                 <DataTemplate>
                                     <Grid Height="40" Focusable="False">
-                                        <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False"/>
+
+                                        <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
+
+                                        <TextBox Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" local:FocusExtension.IsFocused="{Binding IsEditionEnabled, Mode=OneWay}" Visibility="{Binding EditingContentVisibility}">
+                                            <TextBox.Style>
+                                                <Style TargetType="TextBox">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="Validation.HasError" Value="True">
+                                                            <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBox.Style>
+
+                                            <TextBox.InputBindings>
+                                                <KeyBinding Command="{Binding SaveItemCommand}" CommandParameter="{Binding}" Key="Enter"  />
+                                                <KeyBinding Command="{Binding CloseEditionCommand}" Key="Esc"  />
+                                            </TextBox.InputBindings>
+                                        </TextBox>
                                     </Grid>
                                 </DataTemplate>
                             </templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
@@ -75,44 +94,80 @@
                             </templateSelectors:SummaryItemTemplateSelector.CommunityTemplate>
                         </templateSelectors:SummaryItemTemplateSelector>
                     </controls:TogglePane.MainViewTemplateSelector>
-                    <controls:TogglePane.SecondaryViewTemplate>
-                        <DataTemplate>
-                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Focusable="False">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Button Grid.Column="0" Style="{StaticResource ButtonImageStyle}" Command="{Binding SetHomeCommand}" CommandParameter="{Binding}">
-                                    <Button.Content>
-                                        <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconHome.png"/>
-                                    </Button.Content>
-                                </Button>
-                                <Button Grid.Column="1" Style="{StaticResource ButtonImageStyle}">
-                                    <Button.Content>
-                                        <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconRename.png"/>
-                                    </Button.Content>
-                                </Button>
-                                <Button Grid.Column="2" Style="{StaticResource ButtonImageStyle}" Command="{Binding RemoveCommand}" CommandParameter="{Binding}">
-                                    <Button.Content>
-                                        <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconDelete.png"/>
-                                    </Button.Content>
-                                </Button>
-                                <Button Grid.Column="3" Style="{StaticResource ButtonImageStyle}">
-                                    <Button.Content>
-                                        <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconUp.png"/>
-                                    </Button.Content>
-                                </Button>
-                                <Button Grid.Column="4" Style="{StaticResource ButtonImageStyle}">
-                                    <Button.Content>
-                                        <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconDown.png"/>
-                                    </Button.Content>
-                                </Button>
-                            </Grid>
-                        </DataTemplate>
-                    </controls:TogglePane.SecondaryViewTemplate>
+                    <controls:TogglePane.SecondaryViewTemplateSelector>
+                        <templateSelectors:SummaryItemOptionsTemplateSelector>
+                            <templateSelectors:SummaryItemOptionsTemplateSelector.PageOptionsTemplate>
+                                <DataTemplate>
+                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Focusable="False">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Button Grid.Column="0" Style="{StaticResource ButtonImageStyle}" Command="{Binding SetHomeCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanSetHome}">
+                                            <Button.Content>
+                                                <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconHome.png"/>
+                                            </Button.Content>
+                                        </Button>
+                                        <Button Grid.Column="1" Style="{StaticResource ButtonImageStyle}" Command="{Binding EditCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanChooseItemName}">
+                                            <Button.Content>
+                                                <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconRename.png"/>
+                                            </Button.Content>
+                                        </Button>
+                                        <Button Grid.Column="2" Style="{StaticResource ButtonImageStyle}" Command="{Binding RemoveCommand}" CommandParameter="{Binding}">
+                                            <Button.Content>
+                                                <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconDelete.png"/>
+                                            </Button.Content>
+                                        </Button>
+                                        <Button Grid.Column="3" Style="{StaticResource ButtonImageStyle}">
+                                            <Button.Content>
+                                                <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconUp.png"/>
+                                            </Button.Content>
+                                        </Button>
+                                        <Button Grid.Column="4" Style="{StaticResource ButtonImageStyle}">
+                                            <Button.Content>
+                                                <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconDown.png"/>
+                                            </Button.Content>
+                                        </Button>
+                                    </Grid>
+                                </DataTemplate>
+                            </templateSelectors:SummaryItemOptionsTemplateSelector.PageOptionsTemplate>
+                            <templateSelectors:SummaryItemOptionsTemplateSelector.FeatureOptionsTemplate>
+                                <DataTemplate>
+                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Focusable="False">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Button Grid.Column="0" Style="{StaticResource ButtonImageStyle}" Command="{Binding EditCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanChooseItemName}">
+                                            <Button.Content>
+                                                <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconRename.png"/>
+                                            </Button.Content>
+                                        </Button>
+                                        <Button Grid.Column="1" Style="{StaticResource ButtonImageStyle}" Command="{Binding RemoveCommand}" CommandParameter="{Binding}">
+                                            <Button.Content>
+                                                <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconDelete.png"/>
+                                            </Button.Content>
+                                        </Button>
+                                        <Button Grid.Column="2" Style="{StaticResource ButtonImageStyle}">
+                                            <Button.Content>
+                                                <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconUp.png"/>
+                                            </Button.Content>
+                                        </Button>
+                                        <Button Grid.Column="3" Style="{StaticResource ButtonImageStyle}">
+                                            <Button.Content>
+                                                <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconDown.png"/>
+                                            </Button.Content>
+                                        </Button>
+                                    </Grid>
+                                </DataTemplate>
+                            </templateSelectors:SummaryItemOptionsTemplateSelector.FeatureOptionsTemplate>
+                        </templateSelectors:SummaryItemOptionsTemplateSelector>
+                    </controls:TogglePane.SecondaryViewTemplateSelector>
                 </controls:TogglePane>
             </DataTemplate>
 
