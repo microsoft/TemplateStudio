@@ -133,6 +133,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It&apos;s not possible to create a project without Home Page.
+        /// </summary>
+        public static string ErrorNoHomePage {
+            get {
+                return ResourceManager.GetString("ErrorNoHomePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error updating templates. See output for more details..
         /// </summary>
         public static string ErrorSync {

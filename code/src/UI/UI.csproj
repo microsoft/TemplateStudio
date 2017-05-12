@@ -193,11 +193,12 @@
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
     <Compile Include="Controls\TogglePane\TogglePane.cs" />
     <Compile Include="Extensions\AnimationExtensions.cs" />
+    <Compile Include="TemplateSelection.cs" />
     <Compile Include="TemplateSelectors\SummaryItemTemplateSelector.cs" />
-    <Compile Include="ViewModels\CommonInfoViewModel.cs" />
+    <Compile Include="ViewModels\Entities\CommonInfoViewModel.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="Extensions\FocusExtension.cs" />
-    <Compile Include="ViewModels\DependencyInfoViewModel.cs" />
+    <Compile Include="ViewModels\Entities\DependencyInfoViewModel.cs" />
     <Compile Include="Views\ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>
     </Compile>
@@ -214,17 +215,17 @@
     </Compile>
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="ViewModels\ErrorViewModel.cs" />
-    <Compile Include="ViewModels\GroupTemplateInfoViewModel.cs" />
+    <Compile Include="ViewModels\Entities\GroupTemplateInfoViewModel.cs" />
     <Compile Include="ViewModels\InformationViewModel.cs" />
-    <Compile Include="ViewModels\LicenseViewModel.cs" />
+    <Compile Include="ViewModels\Entities\LicenseViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\MetadataInfoViewModel.cs" />
+    <Compile Include="ViewModels\Entities\MetadataInfoViewModel.cs" />
     <Compile Include="ViewModels\ProjectSetupViewModel.cs" />
     <Compile Include="ViewModels\ProjectTemplatesViewModel.cs" />
-    <Compile Include="ViewModels\StatusViewModel.cs" />
-    <Compile Include="ViewModels\SummaryItemViewModel.cs" />
-    <Compile Include="ViewModels\SummaryLicenseViewModel.cs" />
-    <Compile Include="ViewModels\TemplateInfoViewModel.cs" />
+    <Compile Include="ViewModels\Entities\StatusViewModel.cs" />
+    <Compile Include="ViewModels\Entities\SummaryItemViewModel.cs" />
+    <Compile Include="ViewModels\Entities\SummaryLicenseViewModel.cs" />
+    <Compile Include="ViewModels\Entities\TemplateInfoViewModel.cs" />
     <Compile Include="Views\InformationWindow.xaml.cs">
       <DependentUpon>InformationWindow.xaml</DependentUpon>
     </Compile>

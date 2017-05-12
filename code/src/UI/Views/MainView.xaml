@@ -51,7 +51,7 @@
                             <templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
                                 <DataTemplate>
                                     <Grid Height="40" Focusable="False">
-                                        <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" Focusable="False"/>
+                                        <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False"/>
                                     </Grid>
                                 </DataTemplate>
                             </templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
@@ -62,7 +62,7 @@
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
-                                        <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" Focusable="False"/>
+                                        <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False"/>
                                         <TextBlock Grid.Row="1" Style="{StaticResource TextSummaryAuthorStyle}" Foreground="{Binding AuthorForeground}" Focusable="False">
                                             <TextBlock.Text>
                                                 <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
@@ -85,7 +85,7 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Button Grid.Column="0" Style="{StaticResource ButtonImageStyle}">
+                                <Button Grid.Column="0" Style="{StaticResource ButtonImageStyle}" Command="{Binding SetHomeCommand}" CommandParameter="{Binding}">
                                     <Button.Content>
                                         <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconHome.png"/>
                                     </Button.Content>
@@ -95,7 +95,7 @@
                                         <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconRename.png"/>
                                     </Button.Content>
                                 </Button>
-                                <Button Grid.Column="2" Style="{StaticResource ButtonImageStyle}">
+                                <Button Grid.Column="2" Style="{StaticResource ButtonImageStyle}" Command="{Binding RemoveCommand}" CommandParameter="{Binding}">
                                     <Button.Content>
                                         <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconDelete.png"/>
                                     </Button.Content>

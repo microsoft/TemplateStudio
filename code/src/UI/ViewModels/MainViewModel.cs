@@ -33,7 +33,7 @@ namespace Microsoft.Templates.UI.ViewModels
     {
         private bool _canGoBack;
         private bool _canGoForward;        
-        private bool _canCreate;
+        private bool _templatesReady;        
         private bool _templatesAvailable;
 
         public static MainViewModel Current;
@@ -124,7 +124,24 @@ namespace Microsoft.Templates.UI.ViewModels
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
         public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));                
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && _canGoForward));
-        public RelayCommand CreateCommand => _createCommand ?? (_createCommand = new RelayCommand(OnCreate, () => _canCreate));
+        public RelayCommand CreateCommand => _createCommand ?? (_createCommand = new RelayCommand(OnCreate, CanCreate));
+
+        private bool CanCreate()
+        {
+            if (_templatesReady)
+            {
+                if (ProjectTemplates.SummaryPages.Any(s => s.IsHome))
+                {
+                    Status = StatusControl.EmptyStatus;
+                    return true;
+                }
+                else
+                {
+                    Status = new StatusViewModel(StatusType.Error, StringRes.ErrorNoHomePage);                    
+                }
+            }
+            return false;
+        }
 
         public ProjectSetupViewModel ProjectSetup { get; private set; } = new ProjectSetupViewModel();
 
@@ -194,9 +211,9 @@ namespace Microsoft.Templates.UI.ViewModels
             SyncLicenses(genLicenses);
         }
 
-        public void EnableProjectCreation()
+        public void SetTemplatesReadyForProjectCreation()
         {
-            _canCreate = true;
+            _templatesReady = true;
             CreateCommand.OnCanExecuteChanged();
         }
 
@@ -298,7 +315,7 @@ namespace Microsoft.Templates.UI.ViewModels
             NavigationService.GoBack();
 
             _canGoBack = false;
-            _canCreate = false;
+            _templatesReady = false;
 
             BackCommand.OnCanExecuteChanged();
 

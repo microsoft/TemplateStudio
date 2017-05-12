@@ -144,11 +144,11 @@ namespace Microsoft.Templates.UI
                                             && t.GetFrameworkList().Any(f => f == framework));
         }
 
-        private static void AddTemplates(IEnumerable<(string name, ITemplateInfo template)> userSelection, List<GenInfo> genQueue)
+        private static void AddTemplates(IEnumerable<TemplateSelection> userSelection, List<GenInfo> genQueue)
         {
             foreach (var selectionItem in userSelection)
             {
-                CreateGenInfo(selectionItem.name, selectionItem.template, genQueue);
+                CreateGenInfo(selectionItem.Name, selectionItem.Template, genQueue);
             }
         }
 

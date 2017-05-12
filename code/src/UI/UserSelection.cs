@@ -23,8 +23,8 @@ namespace Microsoft.Templates.UI
     {
         public string ProjectType { get; set; }
         public string Framework { get; set; }
-        public List<(string name, ITemplateInfo template)> Pages { get; } = new List<(string name, ITemplateInfo template)>();
-        public List<(string name, ITemplateInfo template)> Features { get; } = new List<(string name, ITemplateInfo template)>();
+        public List<TemplateSelection> Pages { get; } = new List<TemplateSelection>();
+        public List<TemplateSelection> Features { get; } = new List<TemplateSelection>();
 
         public override string ToString()
         {
@@ -44,13 +44,13 @@ namespace Microsoft.Templates.UI
 
             if (Pages.Any())
             {
-                sb.AppendFormat("Pages: '{0}'", string.Join(", ", Pages.Select(p => $"{p.name} - {p.template.Name}").ToArray()));
+                sb.AppendFormat("Pages: '{0}'", string.Join(", ", Pages.Select(p => $"{p.Name} - {p.Template.Name}").ToArray()));
                 sb.AppendLine();
             }
 
             if (Features.Any())
             {
-                sb.AppendFormat("Features: '{0}'", string.Join(", ", Features.Select(p => $"{p.name} - {p.template.Name}").ToArray()));
+                sb.AppendFormat("Features: '{0}'", string.Join(", ", Features.Select(p => $"{p.Name} - {p.Template.Name}").ToArray()));
                 sb.AppendLine();
             }
 

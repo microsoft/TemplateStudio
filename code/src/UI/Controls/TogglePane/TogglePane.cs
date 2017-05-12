@@ -28,11 +28,8 @@ namespace Microsoft.Templates.UI.Controls
             _secondaryShadowGrid = GetTemplateChild("secondaryShadowGrid") as Grid;
             _fakeGrid = GetTemplateChild("fakeGrid") as Grid;
             SizeChanged += (sender, e) => Initialize();
-            MouseEnter += (sender, e) => OnMouseEnter();
-            GotFocus += (sender, e) => OnMouseEnter();
-
-            MouseLeave += (sender, e) => OnMouseLeave();
-            LostFocus += (sender, e) => OnLostFocus();
+            MouseEnter += (sender, e) => MouseEnterAction?.Invoke();
+            MouseLeave += (sender, e) => MouseLeaveAction?.Invoke();
             _isInitialized = true;
         }
 
@@ -41,35 +38,6 @@ namespace Microsoft.Templates.UI.Controls
             if (_isInitialized)
             {
                 _fakeGrid.Width = this.ActualWidth - 30;
-            }
-        }
-
-        private void OnMouseEnter()
-        {
-            if (_isInitialized)
-            {
-                _shadowGrid.FadeIn();
-                ButtonVisibility = Visibility.Visible;
-                MouseEnterAction?.Invoke();
-            }
-        }
-
-        private void OnMouseLeave()
-        {
-            if (_isInitialized)
-            {
-                _shadowGrid.FadeOut();
-                ButtonVisibility = Visibility.Collapsed;
-                MouseLeaveAction?.Invoke();
-            }
-        }
-
-        private void OnLostFocus()
-        {
-            if (_isInitialized)
-            {
-                _shadowGrid.FadeOut();
-                ButtonVisibility = Visibility.Collapsed;
             }
         }
 

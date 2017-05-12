@@ -49,16 +49,19 @@ namespace Microsoft.Templates.UI.ViewModels
         public ObservableCollection<SummaryItemViewModel> SummaryPages { get; } = new ObservableCollection<SummaryItemViewModel>();
         public ObservableCollection<SummaryItemViewModel> SummaryFeatures { get; } = new ObservableCollection<SummaryItemViewModel>();
 
-        public List<(string Name, ITemplateInfo Template)> SavedTemplates { get; } = new List<(string Name, ITemplateInfo Template)>();
+        public List<TemplateSelection> SavedTemplates { get; } = new List<TemplateSelection>();
 
-        public IEnumerable<(string Name, ITemplateInfo Template)> SavedFeatures { get => SavedTemplates.Where(st => st.Template.GetTemplateType() == TemplateType.Feature); }
-        public IEnumerable<(string Name, ITemplateInfo Template)> SavedPages { get => SavedTemplates.Where(st => st.Template.GetTemplateType() == TemplateType.Page); }
+        public IEnumerable<TemplateSelection> SavedFeatures { get => SavedTemplates.Where(st => st.Template.GetTemplateType() == TemplateType.Feature); }
+        public IEnumerable<TemplateSelection> SavedPages { get => SavedTemplates.Where(st => st.Template.GetTemplateType() == TemplateType.Page); }
 
         private RelayCommand<SummaryItemViewModel> _removeTemplateCommand;
         public RelayCommand<SummaryItemViewModel> RemoveTemplateCommand => _removeTemplateCommand ?? (_removeTemplateCommand = new RelayCommand<SummaryItemViewModel>(OnRemoveTemplate));
 
         private RelayCommand<SummaryItemViewModel> _summaryItemOpenCommand;
         public RelayCommand<SummaryItemViewModel> SummaryItemOpenCommand => _summaryItemOpenCommand ?? (_summaryItemOpenCommand = new RelayCommand<SummaryItemViewModel>(OnSummaryItemOpen));
+
+        private RelayCommand<SummaryItemViewModel> _summaryItemSetHomeCommand;
+        public RelayCommand<SummaryItemViewModel> SummaryItemSetHomeCommand => _summaryItemSetHomeCommand ?? (_summaryItemSetHomeCommand = new RelayCommand<SummaryItemViewModel>(OnSummaryItemSetHome));
 
         private RelayCommand<TemplateInfoViewModel> _addTemplateCommand;
         public RelayCommand<TemplateInfoViewModel> AddTemplateCommand => _addTemplateCommand ?? (_addTemplateCommand = new RelayCommand<TemplateInfoViewModel>(OnAddTemplateItem));
@@ -126,7 +129,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 SetupTemplatesFromLayout(ContextProjectType.Name, ContextFramework.Name);
                 MainViewModel.Current.RebuildLicenses();
             }
-            MainViewModel.Current.EnableProjectCreation();
+            MainViewModel.Current.SetTemplatesReadyForProjectCreation();
             CloseTemplatesEdition();
             await Task.CompletedTask;
         }
@@ -152,7 +155,12 @@ namespace Microsoft.Templates.UI.ViewModels
             else
             {
                 template.NewTemplateName = template.Template.GetDefaultName();
-                SetupTemplateAndDependencies((template.NewTemplateName, template.Template));
+                var templateSelection = new TemplateSelection()
+                {
+                    Name = template.NewTemplateName,
+                    Template = template.Template
+                };
+                SetupTemplateAndDependencies(templateSelection);
                 var isAlreadyDefined = IsTemplateAlreadyDefined(template.Template.Identity);
                 template.UpdateTemplateAvailability(isAlreadyDefined);
             }
@@ -162,7 +170,12 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             if (template.IsValidName)
             {
-                SetupTemplateAndDependencies((template.NewTemplateName, template.Template));
+                var templateSelection = new TemplateSelection()
+                {
+                    Name = template.NewTemplateName,
+                    Template = template.Template
+                };
+                SetupTemplateAndDependencies(templateSelection);
                 template.CloseEdition();
 
                 var isAlreadyDefined = IsTemplateAlreadyDefined(template.Template.Identity);
@@ -183,7 +196,19 @@ namespace Microsoft.Templates.UI.ViewModels
                 foreach (var feature in SummaryFeatures) { feature.TryClose(); }
 
                 item.IsOpen = true;
-            }            
+            }
+        }
+
+        private void OnSummaryItemSetHome(SummaryItemViewModel item)
+        {
+            if (!item.IsHome)
+            {
+                foreach (var page in SummaryPages) { page.TryReleaseHome(); }
+                foreach (var page in SavedPages) { page.IsHome = false; }
+
+                item.IsHome = true;
+                SavedPages.First(sp => sp.Name == item.ItemName).IsHome = true;
+            }
         }
 
         private void OnRemoveTemplate(SummaryItemViewModel item)
@@ -207,6 +232,7 @@ namespace Microsoft.Templates.UI.ViewModels
             }
 
             SavedTemplates.Remove(SavedTemplates.First(st => st.Name == item.ItemName));
+            MainViewModel.Current.CreateCommand.OnCanExecuteChanged();
             UpdateTemplatesAvailability();
             MainViewModel.Current.RebuildLicenses();
         }
@@ -245,12 +271,17 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 if (item.Template != null)
                 {
-                    SetupTemplateAndDependencies((item.Layout.name, item.Template), !item.Layout.@readonly);
+                    var templateSelection = new TemplateSelection()
+                    {
+                        Name = item.Layout.name,
+                        Template = item.Template
+                    };
+                    SetupTemplateAndDependencies(templateSelection, !item.Layout.@readonly);
                 }
             }
         }
 
-        private void SetupTemplateAndDependencies((string Name, ITemplateInfo Template) item, bool isRemoveEnabled = true)
+        private void SetupTemplateAndDependencies(TemplateSelection item, bool isRemoveEnabled = true)
         {
             SaveNewTemplate(item, isRemoveEnabled);
             var dependencies = GenComposer.GetAllDependencies(item.Template, ContextFramework.Name);
@@ -259,14 +290,19 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 if (!SavedTemplates.Any(s => s.Template.Identity == dependencyTemplate.Identity))
                 {
-                    SaveNewTemplate((dependencyTemplate.GetDefaultName(), dependencyTemplate), isRemoveEnabled);
+                    var templateSelection = new TemplateSelection()
+                    {
+                        Name = dependencyTemplate.GetDefaultName(),
+                        Template = dependencyTemplate
+                    };
+                    SaveNewTemplate(templateSelection, isRemoveEnabled);
                 }
             }
 
             MainViewModel.Current.RebuildLicenses();
         }
 
-        private void SaveNewTemplate((string Name, ITemplateInfo Template) item, bool isRemoveEnabled = true)
+        private void SaveNewTemplate(TemplateSelection item, bool isRemoveEnabled = true)
         {
             SavedTemplates.Add(item);
 
@@ -278,12 +314,17 @@ namespace Microsoft.Templates.UI.ViewModels
                 IsRemoveEnabled = isRemoveEnabled,
                 ItemName = item.Name,
                 TemplateName = item.Template.Name,
-                RemoveTemplateCommand = RemoveTemplateCommand,
-                OpenCommand = SummaryItemOpenCommand
+                RemoveCommand = RemoveTemplateCommand,
+                OpenCommand = SummaryItemOpenCommand,
+                SetHomeCommand = SummaryItemSetHomeCommand
             };
 
             if (item.Template.GetTemplateType() == TemplateType.Page)
             {
+                if (SummaryPages.Count == 0)
+                {
+                    newItem.IsHome = true;
+                }
                 SummaryPages.Add(newItem);
             }
             else if (item.Template.GetTemplateType() == TemplateType.Feature)

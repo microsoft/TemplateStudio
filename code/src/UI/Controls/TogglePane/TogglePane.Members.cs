@@ -58,16 +58,7 @@ namespace Microsoft.Templates.UI.Controls
             set { SetValue(ButtonTemplateProperty, value); }
         }
         public static readonly DependencyProperty ButtonTemplateProperty = DependencyProperty.Register("ButtonTemplate", typeof(DataTemplate), typeof(TogglePane), new PropertyMetadata(null));
-        #endregion
-
-        #region ButtonVisibility
-        public Visibility ButtonVisibility
-        {
-            get { return (Visibility)GetValue(ButtonVisibilityProperty); }
-            set { SetValue(ButtonVisibilityProperty, value); }
-        }
-        public static readonly DependencyProperty ButtonVisibilityProperty = DependencyProperty.Register("ButtonVisibility", typeof(Visibility), typeof(TogglePane), new PropertyMetadata(Visibility.Collapsed));
-        #endregion
+        #endregion        
 
         #region CloseButtonTemplate
         public DataTemplate CloseButtonTemplate

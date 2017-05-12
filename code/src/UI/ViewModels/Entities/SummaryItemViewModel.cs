@@ -32,7 +32,8 @@ namespace Microsoft.Templates.UI.ViewModels
         public bool IsRemoveEnabled { get; set; }
         public bool HasDefaultName { get; set; }
         public ICommand OpenCommand { get; set; }
-        public ICommand RemoveTemplateCommand { get; set; }
+        public ICommand RemoveCommand { get; set; }
+        public ICommand SetHomeCommand { get; set; }
         public Action MouseLeaveAction => TryClose;
 
         private bool _isOpen;
@@ -52,6 +53,26 @@ namespace Microsoft.Templates.UI.ViewModels
             get => _openIcon;
             private set => SetProperty(ref _openIcon, value);
         }
+
+        private bool _isHome;
+        public bool IsHome
+        {
+            get => _isHome;
+            set
+            {
+                SetProperty(ref _isHome, value);
+                ItemFontWeight = value ? FontWeights.Bold : FontWeights.Normal;
+            }
+        }
+
+        private FontWeight _itemFontWeight = FontWeights.Normal;
+
+        public FontWeight ItemFontWeight
+        {
+            get => _itemFontWeight;
+            set => SetProperty(ref _itemFontWeight, value);
+        }
+
 
 
         public string DisplayText => HasDefaultName ? ItemName : $"{ItemName} [{TemplateName}]";
@@ -96,6 +117,14 @@ namespace Microsoft.Templates.UI.ViewModels
             if (_isOpen)
             {
                 IsOpen = false;
+            }
+        }
+
+        internal void TryReleaseHome()
+        {
+            if (_isHome)
+            {
+                IsHome = false;
             }
         }
     }

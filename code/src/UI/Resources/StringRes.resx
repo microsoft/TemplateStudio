@@ -346,4 +346,7 @@
   <data name="SummaryNoPages" xml:space="preserve">
     <value>None Selected</value>
   </data>
+  <data name="ErrorNoHomePage" xml:space="preserve">
+    <value>It's not possible to create a project without Home Page</value>
+  </data>
 </root>
