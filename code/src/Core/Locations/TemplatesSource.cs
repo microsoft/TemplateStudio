@@ -18,6 +18,6 @@ namespace Microsoft.Templates.Core.Locations
 
         public abstract string Id { get; }
 
-        public abstract void Adquire(string targetFolder);
+        public abstract void Acquire(string targetFolder);
     }
 }

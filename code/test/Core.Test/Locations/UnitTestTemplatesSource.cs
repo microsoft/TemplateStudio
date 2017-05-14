@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
         public override string Id { get => "UnitTest"; }
 
-        public override void Adquire(string targetFolder)
+        public override void Acquire(string targetFolder)
         {
             var targetVersionFolder = Path.Combine(targetFolder, LocalVersion);
 

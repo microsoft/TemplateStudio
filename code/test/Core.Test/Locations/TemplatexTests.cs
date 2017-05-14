@@ -286,7 +286,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             try
             {
                 RemoteTemplatesSource rts = new RemoteTemplatesSource();
-                rts.Adquire(targetFolder);
+                rts.Acquire(targetFolder);
 
                 string aquiredContentFolder = Directory.EnumerateDirectories(targetFolder).FirstOrDefault();
 
@@ -296,13 +296,13 @@ namespace Microsoft.Templates.Core.Test.Locations
                 Assert.True(Directory.EnumerateDirectories(targetFolder).Count() == 1);
 
                 //Ensure even downloaded, if there is coincident content, it is not duplicated.
-                rts.Adquire(targetFolder);
+                rts.Acquire(targetFolder);
                 Assert.True(Directory.EnumerateDirectories(targetFolder).Count() == 1);
 
                 //Change the previous adquired content and ensure it is adquired again
                 Directory.Move(aquiredContentFolder, aquiredContentFolder + "_old");
 
-                rts.Adquire(targetFolder);
+                rts.Acquire(targetFolder);
 
                 Assert.True(Directory.EnumerateDirectories(targetFolder).Count() == 2);
             }
