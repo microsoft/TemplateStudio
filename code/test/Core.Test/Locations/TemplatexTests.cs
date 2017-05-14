@@ -281,8 +281,16 @@ namespace Microsoft.Templates.Core.Test.Locations
         [Fact]
         public void TestRemoteSource()
         {
-            string drive = Path.GetPathRoot(Assembly.GetExecutingAssembly().Location);
+            // Bug #333 
+            // Location will give access to temp location.
+            // code base won't if they are on diff drives
+            //
+            // If someone has a temp dir that is different than their extention
+            // move will fail, you need to copy / delete
+            //string drive = Path.GetPathRoot(Assembly.GetExecutingAssembly().Location);
+            string drive = Path.GetPathRoot(new Uri(typeof(TemplatexTests).Assembly.CodeBase).LocalPath);
             string targetFolder = Path.Combine(drive, @"Temp\TestRts");
+
             try
             {
                 RemoteTemplatesSource rts = new RemoteTemplatesSource();
