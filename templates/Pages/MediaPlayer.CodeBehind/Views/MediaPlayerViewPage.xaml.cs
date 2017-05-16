@@ -11,11 +11,10 @@ namespace Param_ItemNamespace.Views
 {
     public sealed partial class MediaPlayerViewPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
-        // TODO [ML]: Replace with links to our build videos
         // TODO UWPTemplates: Set your video default and image here
-        private const string defaultSource = "https://sec.ch9.ms/sessions/build/2016/B842_LG.mp4";
+        private const string defaultSource = "https://sec.ch9.ms/ch9/db15/43c9fbed-535e-4013-8a4a-a74cc00adb15/C9L12WinTemplateStudio_high.mp4";
         // The poster image is displayed until the video is started
-        private const string defaultPoster = "https://sec.ch9.ms/sessions/build/2016/B842.jpg";
+        private const string defaultPoster = "https://sec.ch9.ms/ch9/db15/43c9fbed-535e-4013-8a4a-a74cc00adb15/C9L12WinTemplateStudio_960.jpg";
         
         // The DisplayRequest is used to stop the screen dimming while watching for extended periods
         private DisplayRequest _displayRequest = new DisplayRequest();
