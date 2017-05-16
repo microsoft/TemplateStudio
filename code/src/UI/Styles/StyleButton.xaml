@@ -272,7 +272,6 @@
                         <Trigger Property="IsEnabled" Value="False">
                             <Trigger.Setters>
                                 <Setter TargetName="contentPresenter" Property="Opacity" Value="0.2"/>
-                                <Setter TargetName="border" Property="Background" Value="{StaticResource UILightGray}"/>
                             </Trigger.Setters>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">

@@ -41,6 +41,26 @@ namespace Microsoft.Templates.UI.ViewModels
             set
             {
                 SetProperty(ref _itemName, value);
+                OnPropertyChanged("DisplayText");
+                ItemForeground = MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
+                AuthorForeground = MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
+                dt.Start();
+            }
+        }
+        private string _newItemName;
+        public string NewItemName
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(_newItemName))
+                {
+                    _newItemName = ItemName;
+                }
+                return _newItemName;
+            }
+            set
+            {
+                SetProperty(ref _newItemName, value);
                 if (CanChooseItemName)
                 {
                     ValidateTemplateName?.Invoke(this);
@@ -102,7 +122,7 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 return !IsHome;
             }
-        }
+        }        
         #endregion
 
         #region UIProperties
@@ -185,6 +205,20 @@ namespace Microsoft.Templates.UI.ViewModels
             private set => SetProperty(ref _openIcon, value);
         }
 
+        private bool _canMoveUp;
+        public bool CanMoveUp
+        {
+            get => _canMoveUp;
+            set => SetProperty(ref _canMoveUp, value);
+        }
+
+        private bool _canMoveDown;
+        public bool CanMoveDown
+        {
+            get => _canMoveDown;
+            set => SetProperty(ref _canMoveDown, value);
+        }
+
         public string DisplayText => CanChooseItemName ? ItemName : $"{ItemName} [{TemplateName}]";
 
         public ICommand OpenCommand { get; set; }
@@ -193,36 +227,43 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public ICommand SetHomeCommand { get; set; }
         
-        public ICommand EditCommand { get; set; }
+        public ICommand RenameCommand { get; set; }
+
+        public ICommand ConfirmRenameCommand { get; set; }
+
+        public ICommand MoveUpCommand { get; set; }
+
+        public ICommand MoveDownCommand { get; set; }
 
         public Action MouseLeaveAction => TryClose;
 
-        public Action<SummaryItemViewModel> ValidateTemplateName;
-        #endregion                               
+        public Action<SummaryItemViewModel> ValidateTemplateName;        
 
-        private DispatcherTimer dt;
-        public SummaryItemViewModel(TemplateSelection item, bool isRemoveEnabled, ICommand removeTemplateCommand, ICommand summaryItemOpenCommand, ICommand summaryItemSetHomeCommand, ICommand editSummaryItemCommand, Action<SummaryItemViewModel> validateCurrentTemplateName)
+        public ICommand _cancelRenameCommand;
+        public ICommand CancelRenameCommand => _cancelRenameCommand ?? (_cancelRenameCommand = new RelayCommand(CancelRenameAction));
+
+        public Action CancelRenameAction => OnCancelRename;
+        #endregion
+
+        private DispatcherTimer dt = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(2) };
+        public SummaryItemViewModel(TemplateSelection item, bool isRemoveEnabled, ICommand removeTemplateCommand, ICommand summaryItemOpenCommand, ICommand summaryItemSetHomeCommand, ICommand renameItemCommand, ICommand confirmRenameCommand, ICommand moveUpCommand, ICommand moveDownCommand, Action<SummaryItemViewModel> validateCurrentTemplateName)
         {
+            dt.Tick += OnTimerTick;    
             ItemName = item.Name;
             Author = item.Template.Author;
             TemplateType = item.Template.GetTemplateType();
-            CanChooseItemName = !item.Template.GetItemNameEditable();
+            CanChooseItemName = item.Template.GetItemNameEditable();
             Identity = item.Template.Identity;
             TemplateName = item.Template.Name;
             IsRemoveEnabled = isRemoveEnabled;            
             RemoveCommand = removeTemplateCommand;
             OpenCommand = summaryItemOpenCommand;
             SetHomeCommand = summaryItemSetHomeCommand;
-            EditCommand = editSummaryItemCommand;
-            ValidateTemplateName = validateCurrentTemplateName;            
-            dt = new DispatcherTimer()
-            {
-                Interval = TimeSpan.FromSeconds(2)
-            };
-
-            dt.Tick += OnTimerTick;
-
-            dt.Start();
+            RenameCommand = renameItemCommand;
+            ConfirmRenameCommand = confirmRenameCommand;
+            MoveUpCommand = moveUpCommand;
+            MoveDownCommand = moveDownCommand;
+            ValidateTemplateName = validateCurrentTemplateName;        
         }
 
         private void OnTimerTick(object sender, EventArgs e)
@@ -238,7 +279,7 @@ namespace Microsoft.Templates.UI.ViewModels
             if (_isOpen)
             {
                 IsOpen = false;
-            }
+            }            
         }
 
         public void CloseEdition()
@@ -249,12 +290,19 @@ namespace Microsoft.Templates.UI.ViewModels
             }
         }
 
-        internal void TryReleaseHome()
+        public void TryReleaseHome()
         {
             if (_isHome)
             {
                 IsHome = false;
             }
-        }        
+        }
+
+        public void OnCancelRename()
+        {
+            IsEditionEnabled = false;
+            _newItemName = string.Empty;
+            OnPropertyChanged("NewItemName");
+        }
     }
 }

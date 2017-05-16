@@ -23,6 +23,24 @@ namespace Microsoft.Templates.UI
 
         public static readonly DependencyProperty IsFocusedProperty = DependencyProperty.RegisterAttached("IsFocused", typeof(bool), typeof(FocusExtension), new PropertyMetadata(OnIsFocusedPropertyChanged));
 
+
+
+        public static Action GetLostFocusAction(DependencyObject obj) => (Action)obj.GetValue(LostFocusActionProperty);
+        public static void SetLostFocusAction(DependencyObject obj, Action value) => obj.SetValue(LostFocusActionProperty, value);
+
+        public static readonly DependencyProperty LostFocusActionProperty = DependencyProperty.RegisterAttached("LostFocusAction", typeof(Action), typeof(FocusExtension), new PropertyMetadata(OnLostFocusActionPropertyChanged));
+
+        private static void OnLostFocusActionPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var textBox = d as TextBox;
+            Action action = e.NewValue as Action;
+
+            if (textBox != null && action != null)
+            {
+                textBox.LostFocus += (sender, args) => action?.Invoke();
+            }
+        }
+
         private static void OnIsFocusedPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var textBox = d as TextBox;

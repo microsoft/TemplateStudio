@@ -55,7 +55,9 @@
 
                                         <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
 
-                                        <TextBox Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" local:FocusExtension.IsFocused="{Binding IsEditionEnabled, Mode=OneWay}" Visibility="{Binding EditingContentVisibility}">
+                                        <TextBox Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                                                 local:FocusExtension.IsFocused="{Binding IsEditionEnabled, Mode=OneWay}" Visibility="{Binding EditingContentVisibility}"
+                                                 local:FocusExtension.LostFocusAction="{Binding CancelRenameAction}">
                                             <TextBox.Style>
                                                 <Style TargetType="TextBox">
                                                     <Style.Triggers>
@@ -67,8 +69,8 @@
                                             </TextBox.Style>
 
                                             <TextBox.InputBindings>
-                                                <KeyBinding Command="{Binding SaveItemCommand}" CommandParameter="{Binding}" Key="Enter"  />
-                                                <KeyBinding Command="{Binding CloseEditionCommand}" Key="Esc"  />
+                                                <KeyBinding Command="{Binding ConfirmRenameCommand}" CommandParameter="{Binding}" Key="Enter" />
+                                                <KeyBinding Command="{Binding CancelRenameCommand}" Key="Esc"  />
                                             </TextBox.InputBindings>
                                         </TextBox>
                                     </Grid>
@@ -81,14 +83,32 @@
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
-                                        <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False"/>
-                                        <TextBlock Grid.Row="1" Style="{StaticResource TextSummaryAuthorStyle}" Foreground="{Binding AuthorForeground}" Focusable="False">
+                                        <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
+                                        <TextBlock Grid.Row="1" Style="{StaticResource TextSummaryAuthorStyle}" Foreground="{Binding AuthorForeground}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}">
                                             <TextBlock.Text>
                                                 <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
                                                     <Binding Path="Author" />
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
+                                        <TextBox Grid.Row="0" Grid.RowSpan="2" Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                                                 local:FocusExtension.IsFocused="{Binding IsEditionEnabled, Mode=OneWay}" Visibility="{Binding EditingContentVisibility}"
+                                                 local:FocusExtension.LostFocusAction="{Binding CancelRenameAction}">
+                                            <TextBox.Style>
+                                                <Style TargetType="TextBox">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="Validation.HasError" Value="True">
+                                                            <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBox.Style>
+
+                                            <TextBox.InputBindings>
+                                                <KeyBinding Command="{Binding ConfirmRenameCommand}" CommandParameter="{Binding}" Key="Enter" />
+                                                <KeyBinding Command="{Binding CancelRenameCommand}" Key="Esc"  />
+                                            </TextBox.InputBindings>
+                                        </TextBox>
                                     </Grid>
                                 </DataTemplate>
                             </templateSelectors:SummaryItemTemplateSelector.CommunityTemplate>
@@ -111,22 +131,22 @@
                                                 <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconHome.png"/>
                                             </Button.Content>
                                         </Button>
-                                        <Button Grid.Column="1" Style="{StaticResource ButtonImageStyle}" Command="{Binding EditCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanChooseItemName}">
+                                        <Button Grid.Column="1" Style="{StaticResource ButtonImageStyle}" Command="{Binding RenameCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanChooseItemName}">
                                             <Button.Content>
                                                 <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconRename.png"/>
                                             </Button.Content>
                                         </Button>
-                                        <Button Grid.Column="2" Style="{StaticResource ButtonImageStyle}" Command="{Binding RemoveCommand}" CommandParameter="{Binding}">
+                                        <Button Grid.Column="2" Style="{StaticResource ButtonImageStyle}" Command="{Binding RemoveCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanSetHome}">
                                             <Button.Content>
                                                 <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconDelete.png"/>
                                             </Button.Content>
                                         </Button>
-                                        <Button Grid.Column="3" Style="{StaticResource ButtonImageStyle}">
+                                        <Button Grid.Column="3" Style="{StaticResource ButtonImageStyle}" Command="{Binding MoveUpCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanMoveUp}">
                                             <Button.Content>
                                                 <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconUp.png"/>
                                             </Button.Content>
                                         </Button>
-                                        <Button Grid.Column="4" Style="{StaticResource ButtonImageStyle}">
+                                        <Button Grid.Column="4" Style="{StaticResource ButtonImageStyle}" Command="{Binding MoveDownCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanMoveDown}">
                                             <Button.Content>
                                                 <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconDown.png"/>
                                             </Button.Content>
@@ -143,7 +163,7 @@
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
-                                        <Button Grid.Column="0" Style="{StaticResource ButtonImageStyle}" Command="{Binding EditCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanChooseItemName}">
+                                        <Button Grid.Column="0" Style="{StaticResource ButtonImageStyle}" Command="{Binding RenameCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanChooseItemName}">
                                             <Button.Content>
                                                 <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconRename.png"/>
                                             </Button.Content>
@@ -151,16 +171,6 @@
                                         <Button Grid.Column="1" Style="{StaticResource ButtonImageStyle}" Command="{Binding RemoveCommand}" CommandParameter="{Binding}">
                                             <Button.Content>
                                                 <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconDelete.png"/>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Grid.Column="2" Style="{StaticResource ButtonImageStyle}">
-                                            <Button.Content>
-                                                <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconUp.png"/>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Grid.Column="3" Style="{StaticResource ButtonImageStyle}">
-                                            <Button.Content>
-                                                <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconDown.png"/>
                                             </Button.Content>
                                         </Button>
                                     </Grid>
