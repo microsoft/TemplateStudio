@@ -65,5 +65,7 @@ namespace Microsoft.Templates.Core.Test.Composition
         public string HostConfigPlace => throw new NotImplementedException();
 
         public string ThirdPartyNotices => throw new NotImplementedException();
+
+        public IReadOnlyDictionary<string, IBaselineInfo> BaselineInfo => throw new NotImplementedException();
     }
 }
