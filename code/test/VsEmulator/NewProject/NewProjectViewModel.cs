@@ -39,29 +39,29 @@ namespace Microsoft.Templates.VsEmulator.NewProject
         private string _name;
         public string Name
         {
-            get { return _name; }
-            set { SetProperty(ref _name, value); }
+            get => _name;
+            set => SetProperty(ref _name, value);
         }
 
         private string _location;
         public string Location
         {
-            get { return _location; }
-            set { SetProperty(ref _location, value); }
+            get => _location;
+            set => SetProperty(ref _location, value);
         }
 
         private string _solutionName;
         public string SolutionName
         {
-            get { return _solutionName; }
-            set { SetProperty(ref _solutionName, value); }
+            get => _solutionName;
+            set => SetProperty(ref _solutionName, value);
         }
 
         private bool _createDirectory;
         public bool CreateDirectory
         {
-            get { return _createDirectory; }
-            set { SetProperty(ref _createDirectory, value); }
+            get => _createDirectory;
+            set => SetProperty(ref _createDirectory, value);
         }
 
         public void Initialize()

@@ -27,7 +27,7 @@ using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
-    public class MainViewModel : Observable
+    public class MainViewModel : Observable, IContextProvider
     {
         private readonly MainView _host;
 
@@ -37,6 +37,9 @@ namespace Microsoft.Templates.VsEmulator.Main
             _wizardVersion = "0.0.0.0";
             _templatesVersion = "0.0.0.0";
         }
+
+        public string ProjectName { get; private set; }
+        public string OutputPath { get; private set; }
 
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
@@ -48,42 +51,42 @@ namespace Microsoft.Templates.VsEmulator.Main
         private string _state;
         public string State
         {
-            get { return _state; }
-            set { SetProperty(ref _state, value); }
+            get => _state;
+            set => SetProperty(ref _state, value);
         }
 
         private string _log;
         public string Log
         {
-            get { return _log; }
-            set { SetProperty(ref _log, value); }
+            get => _log;
+            set => SetProperty(ref _log, value);
         }
 
         private Visibility _isProjectLoaded;
         public Visibility IsProjectLoaded
         {
-            get { return _isProjectLoaded; }
-            set { SetProperty(ref _isProjectLoaded, value); }
+            get => _isProjectLoaded;
+            set => SetProperty(ref _isProjectLoaded, value);
         }
 
         private string _wizardVersion;
         public string WizardVersion
         {
-            get { return _wizardVersion; }
-            set { SetProperty(ref _wizardVersion, value); }
+            get => _wizardVersion;
+            set => SetProperty(ref _wizardVersion, value);
         }
-        
+
         private string _templatesVersion;
         public string TemplatesVersion
         {
-            get { return _templatesVersion; }
-            set { SetProperty(ref _templatesVersion, value); }
+            get => _templatesVersion;
+            set => SetProperty(ref _templatesVersion, value);
         }
 
         private string _solutionName;
         public string SolutionName
         {
-            get { return _solutionName; }
+            get => _solutionName;
             set
             {
                 SetProperty(ref _solutionName, value);
@@ -118,20 +121,22 @@ namespace Microsoft.Templates.VsEmulator.Main
                 {
                     var outputPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
 
-                    using (var context = GenContext.CreateNew(newProjectInfo.name, outputPath))
+                    ProjectName = newProjectInfo.name;
+                    OutputPath = outputPath;
+
+                    GenContext.Current = this;
+
+                    var userSelection = GenController.GetUserSelection();
+                    if (userSelection != null)
                     {
-                        var userSelection = GenController.GetUserSelection();
-                        if (userSelection != null)
-                        {
-                            SolutionName = null;
+                        SolutionName = null;
 
-                            await GenController.GenerateAsync(userSelection);
+                        await GenController.GenerateAsync(userSelection);
 
-                            GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
+                        GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
 
-                            SolutionName = newProjectInfo.name;
-                            SolutionPath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
-                        }
+                        SolutionName = newProjectInfo.name;
+                        SolutionPath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
                     }
                 }
             }
@@ -222,7 +227,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void ConfigureGenContext()
         {
-            if(TemplatesVersion == "0.0.0.0")
+            if (TemplatesVersion == "0.0.0.0")
             {
                 CleanUpContent();
             }
@@ -234,13 +239,15 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void CleanUpContent()
         {
-                DirectoryInfo di = new DirectoryInfo(GetTemplatesFolder());
+            DirectoryInfo di = new DirectoryInfo(GetTemplatesFolder());
 
+            if (di.Exists)
+            {
                 foreach (var sdi in di.EnumerateDirectories())
                 {
                     Fs.SafeDeleteDirectory(sdi.FullName);
                 }
-
+            }
         }
         private string GetTemplatesFolder()
         {

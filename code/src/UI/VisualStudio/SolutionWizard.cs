@@ -21,13 +21,18 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.Templates.UI.Resources;
+using System.IO;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
-    public class SolutionWizard : IWizard, IDisposable
+    public class SolutionWizard : IWizard, IContextProvider
     {
         private UserSelection _userSelection;
-        private GenContext _context;
+        private Dictionary<string, string> _replacementsDictionary;
+
+        public string ProjectName => _replacementsDictionary["$safeprojectname$"];
+
+        public string OutputPath => new DirectoryInfo(_replacementsDictionary["$destinationdirectory$"]).FullName;
 
         public SolutionWizard()
         {
@@ -45,11 +50,6 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
         }
 
-        public void Dispose()
-        {
-            _context?.Dispose();
-        }
-
         public void ProjectFinishedGenerating(Project project)
         {
         }
@@ -60,9 +60,9 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public async void RunFinished()
         {
-            AppHealth.Current.Verbose.TrackAsync("Creating Windows Template Studio project...").FireAndForget();
+            AppHealth.Current.Info.TrackAsync("Creating Windows Template Studio project...").FireAndForget();
             await GenController.GenerateAsync(_userSelection);
-            AppHealth.Current.Verbose.TrackAsync("Generation finished").FireAndForget();
+            AppHealth.Current.Info.TrackAsync("Generation finished").FireAndForget();
 
             PostGenerationActions();
         }
@@ -80,7 +80,10 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             if (runKind == WizardRunKind.AsNewProject || runKind == WizardRunKind.AsMultiProject)
             {
-                _context = GenContext.CreateNew(replacementsDictionary);
+                _replacementsDictionary = replacementsDictionary;
+
+                GenContext.Current = this;
+
                 _userSelection = GenController.GetUserSelection();
             }
         }

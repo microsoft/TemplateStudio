@@ -2,6 +2,7 @@
 
 namespace wts.TabbedPivotProject.Activation
 {
+    //For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
     internal abstract class ActivationHandler
     {
         public abstract bool CanHandle(object args);

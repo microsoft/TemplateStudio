@@ -13,11 +13,15 @@
     </ResourceDictionary.MergedDictionaries>
 
     <converter:MicrosoftTemplatesAuthorConverter x:Key="MicrosoftTemplatesAuthorConverter"/>
+    <converter:ItemAlignmentConverter x:Key="ItemAlignmentConverter" />
+    <converter:FixedWidthConverter x:Key="FixedWidthConverter" />
 
     <DataTemplate x:Key="ProjectSetupItemTemplate">
-        <Grid>
+        <Grid MinWidth="350"
+              MaxWidth="{Binding RelativeSource={RelativeSource Self}, Path=HorizontalAlignment, Converter={StaticResource FixedWidthConverter}, ConverterParameter=350}"
+              HorizontalAlignment="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UniformGrid}}, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}">
             <Rectangle Style="{StaticResource RectangleDropShadowStyle}" />
-            <Border Width="436" Height="90" Background="{StaticResource UIWhite}">
+            <Border Height="90" Background="{StaticResource UIWhite}">
                 <Grid Margin="{StaticResource MediumMargin}">
 
                     <Grid.RowDefinitions>
@@ -53,7 +57,6 @@
                     </TextBlock>
                 </Grid>
             </Border>
-            
         </Grid>
     </DataTemplate>
 
@@ -65,37 +68,45 @@
         <TextBlock Text="{Binding}" Style="{StaticResource TextSummaryGroupHeader}"/>
     </DataTemplate>
 
+    <Storyboard x:Key="FadeInStoryboard">
+        <ColorAnimation
+            Storyboard.TargetName="ItemGrid"
+            Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
+            To="{StaticResource UILightGrayColor}"
+            Duration="0:0:0.5" />
+        <DoubleAnimation
+            Duration="0:0:0.5" To="1"
+            Storyboard.TargetName="RemoveButton"
+            Storyboard.TargetProperty="Opacity"/>
+    </Storyboard>
+
+    <Storyboard x:Key="FadeOutStoryboard">
+        <ColorAnimation
+            Storyboard.TargetName="ItemGrid"
+            Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
+            To="Transparent"
+            Duration="0:0:0" />
+        <DoubleAnimation
+            Duration="0:0:0" To="0"
+            Storyboard.TargetName="RemoveButton"
+            Storyboard.TargetProperty="Opacity"/>
+    </Storyboard>
+
     <DataTemplate x:Key="ProjectTemplatesSummaryItemTemplate">
-        <Grid x:Name="ItemGrid" Background="Transparent">
+        <Grid x:Name="ItemGrid" Background="Transparent" Focusable="False">
             <Grid Margin="2,4">
                 <Grid.Triggers>
                     <EventTrigger RoutedEvent="Control.MouseEnter">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <ColorAnimation
-                                  Storyboard.TargetName="ItemGrid"
-                                  Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
-                                  To="{StaticResource UILightGrayColor}"
-                                  Duration="0:0:0.5" />
-                                <DoubleAnimation Duration="0:0:0.5" To="1"
-                               Storyboard.TargetName="RemoveButton"
-                               Storyboard.TargetProperty="Opacity"/>
-                            </Storyboard>
-                        </BeginStoryboard>
+                        <BeginStoryboard Storyboard="{StaticResource FadeInStoryboard}"/>
                     </EventTrigger>
                     <EventTrigger RoutedEvent="Control.MouseLeave">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <ColorAnimation
-                                  Storyboard.TargetName="ItemGrid"
-                                  Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
-                                  To="Transparent"
-                                  Duration="0:0:0" />
-                                <DoubleAnimation Duration="0:0:0" To="0"
-                               Storyboard.TargetName="RemoveButton"
-                               Storyboard.TargetProperty="Opacity"/>
-                            </Storyboard>
-                        </BeginStoryboard>
+                        <BeginStoryboard Storyboard="{StaticResource FadeOutStoryboard}"/>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="Keyboard.GotKeyboardFocus">
+                        <BeginStoryboard Storyboard="{StaticResource FadeInStoryboard}"/>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="Keyboard.LostKeyboardFocus">
+                        <BeginStoryboard Storyboard="{StaticResource FadeOutStoryboard}"/>
                     </EventTrigger>
                 </Grid.Triggers>
                 <Grid.ColumnDefinitions>
@@ -106,6 +117,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="Transparent"/>
                 <Grid Grid.RowSpan="2" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}, ConverterParameter=reverse}">
                     <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}"/>
                 </Grid>
@@ -118,6 +130,9 @@
                     </TextBlock.Text>
                 </TextBlock>
                 <Button x:Name="RemoveButton" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Style="{StaticResource RemoveButtonStyle}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.ProjectTemplates.RemoveItemCommand}" CommandParameter="{Binding}" IsEnabled="{Binding IsRemoveEnabled}" Opacity="0" Margin="{StaticResource MediumRightMargin}">
+                    <Button.InputBindings>
+                        <KeyBinding Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.ProjectTemplates.RemoveItemCommand}" CommandParameter="{Binding}" Key="Delete"  />
+                    </Button.InputBindings>
                     <Button.Content>
                         <TextBlock Text="&#xEB90;" FontSize="18" Style="{StaticResource RoundButtonTextStyle}"/>
                     </Button.Content>
@@ -126,20 +141,39 @@
         </Grid>
     </DataTemplate>
 
+    <Style x:Key="LicenseHyperlinkStyle" TargetType="Hyperlink">
+        <Setter Property="FocusVisualStyle">
+            <Setter.Value>
+                <Style>
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Grid Margin="-4">
+                                    <Grid.Background>
+                                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
+                                    </Grid.Background>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <DataTemplate x:Key="LicenseSummaryItemTemplate">
         <Grid>
             <TextBlock>
-        <Hyperlink Command="{Binding NavigateCommand}">
-          <TextBlock Text="{Binding Text}" Style="{StaticResource TextSumaryLicenseStyle}"/>
-        </Hyperlink>
-      </TextBlock>
+                <Hyperlink Command="{Binding NavigateCommand}" Focusable="True" Style="{StaticResource LicenseHyperlinkStyle}">
+                    <TextBlock Text="{Binding Text}" Style="{StaticResource TextSumaryLicenseStyle}"/>
+                </Hyperlink>                
+            </TextBlock>
         </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="DependencyInfoModalTemplate">
         <Grid>
             <TextBlock>
-                <Hyperlink Command="{Binding ShowInfoCommand}">
+                <Hyperlink Command="{Binding ShowInfoCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
                   <TextBlock Text="{Binding Name}" Style="{StaticResource TextSumaryLicenseStyle}"/>
                 </Hyperlink>
             </TextBlock>

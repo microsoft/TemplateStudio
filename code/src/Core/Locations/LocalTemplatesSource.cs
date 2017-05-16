@@ -31,7 +31,7 @@ namespace Microsoft.Templates.Core.Locations
             LocalVersion = version;
         }
 
-        public override void Adquire(string targetFolder)
+        public override void Acquire(string targetFolder)
         {
             var targetVersionFolder = Path.Combine(targetFolder, LocalVersion);
             Copy(Origin, targetVersionFolder);

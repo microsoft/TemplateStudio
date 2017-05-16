@@ -133,7 +133,7 @@
     <value>Next</value>
   </data>
   <data name="ButtonOk" xml:space="preserve">
-    <value>Ok</value>
+    <value>OK</value>
   </data>
   <data name="ErrorSync" xml:space="preserve">
     <value>Error updating templates. See output for more details.</value>
@@ -331,8 +331,8 @@
   <data name="InfoModalDependencies" xml:space="preserve">
     <value>Dependencies:</value>
   </data>
-  <data name="InfoModalLicences" xml:space="preserve">
-    <value>Licences:</value>
+  <data name="InfoModalLicenses" xml:space="preserve">
+    <value>Licenses:</value>
   </data>
   <data name="InfoModalVersion" xml:space="preserve">
     <value>Version:</value>
