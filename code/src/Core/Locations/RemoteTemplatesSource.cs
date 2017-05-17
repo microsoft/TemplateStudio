@@ -26,7 +26,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public override string Id { get => Configuration.Current.Environment; }
 
-        public override void Adquire(string targetFolder)
+        public override void Acquire(string targetFolder)
         {
             var tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 

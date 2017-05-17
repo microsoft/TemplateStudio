@@ -4,7 +4,7 @@
 
 [0.5 - April 30th, 2017](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3A0.5)
 
-**Goals:** Code behind, improved wizard experience, stabilty
+**Goals:** Code behind, improved wizard experience, stability
 
 ## 1.0 Release
 
