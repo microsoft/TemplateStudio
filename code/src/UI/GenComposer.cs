@@ -123,8 +123,10 @@ namespace Microsoft.Templates.UI
 
             AddCompositionTemplates(genQueue, userSelection);
 
+            AddHomeName(genQueue, userSelection);
+
             return genQueue;
-        }
+        }        
 
         private static void AddProject(UserSelection userSelection, List<GenInfo> genQueue)
         {
@@ -148,7 +150,7 @@ namespace Microsoft.Templates.UI
         {
             foreach (var selectionItem in userSelection)
             {
-                CreateGenInfo(selectionItem.Name, selectionItem.Template, genQueue);
+                CreateGenInfo(selectionItem.Name, selectionItem.Template, genQueue);                
             }
         }
 
@@ -177,6 +179,20 @@ namespace Microsoft.Templates.UI
             genQueue.AddRange(compositionQueue);
         }
 
+        private static void AddHomeName(List<GenInfo> genQueue, UserSelection userSelection)
+        {
+            var homeName = userSelection.Pages.First(p => p.IsHome).Name;
+            AddGlobalParameters(GenParams.HomePageName, homeName, genQueue, userSelection);
+        }
+
+        private static void AddGlobalParameters(string globalParameter, string paramValue, List<GenInfo> genQueue, UserSelection userSelection)
+        {
+            foreach (var genItem in genQueue)
+            {
+                genItem.Parameters.Add(globalParameter, paramValue);
+            }
+        }
+
         private static IEnumerable<(CompositionQuery query, ITemplateInfo template)> GetCompositionCatalog()
         {
             return GenContext.ToolBox.Repo
@@ -191,7 +207,7 @@ namespace Microsoft.Templates.UI
             {
                 foreach (var export in targetTemplate.GetExports())
                 {
-                    mainGenInfo.Parameters.Add(export.name, export.value);
+                    mainGenInfo.Parameters.Add(export.name, export.value);                    
                 }
 
                 CreateGenInfo(mainGenInfo.Name, targetTemplate, queue);
