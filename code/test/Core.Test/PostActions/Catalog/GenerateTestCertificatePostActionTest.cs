@@ -22,8 +22,11 @@ using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 {
-    public class GenerateTestCertificatePostActionTest
+    public class GenerateTestCertificatePostActionTest : IContextProvider
     {
+        public string ProjectName { get; set; }
+        public string OutputPath { get; set; }
+
         [Fact]
         public void Execute_Ok()
         {
@@ -31,21 +34,24 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             var projectName = "test";
 
-            using (var context = GenContext.CreateNew(projectName, @".\TestData\tmp"))
-            {
-                Directory.CreateDirectory(GenContext.Current.OutputPath);
-                File.Copy(Path.Combine(Environment.CurrentDirectory, "TestData\\TestProject\\Test.csproj"), Path.Combine(GenContext.Current.OutputPath, "Test.csproj"), true);
+            ProjectName = projectName;
+            OutputPath = @".\TestData\tmp";
 
-                var postAction = new GenerateTestCertificatePostAction("TestUser");
+            GenContext.Current = this;
 
-                postAction.Execute();
 
-                var certFilePath = Path.Combine(GenContext.Current.OutputPath, $"{projectName}_TemporaryKey.pfx");
+            Directory.CreateDirectory(GenContext.Current.OutputPath);
+            File.Copy(Path.Combine(Environment.CurrentDirectory, "TestData\\TestProject\\Test.csproj"), Path.Combine(GenContext.Current.OutputPath, "Test.csproj"), true);
 
-                Assert.True(File.Exists(certFilePath));
+            var postAction = new GenerateTestCertificatePostAction("TestUser");
 
-                File.Delete(certFilePath);
-            }
+            postAction.Execute();
+
+            var certFilePath = Path.Combine(GenContext.Current.OutputPath, $"{projectName}_TemporaryKey.pfx");
+
+            Assert.True(File.Exists(certFilePath));
+
+            File.Delete(certFilePath);
         }
     }
 }

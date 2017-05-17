@@ -98,7 +98,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                _source.Adquire(_content.TemplatesFolder);
+                _source.Acquire(_content.TemplatesFolder);
             }
             catch (Exception ex)
             {

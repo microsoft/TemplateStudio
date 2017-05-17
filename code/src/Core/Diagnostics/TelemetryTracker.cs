@@ -67,7 +67,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.Wizard, properties).ConfigureAwait(false);
         }
 
-        public async Task TrackProjectGenAsync(ITemplateInfo template, string appFx, TemplateCreationResult result, int? pagesCount = null, int? featuresCount = null, double? timeSpent = null)
+        public async Task TrackProjectGenAsync(ITemplateInfo template, string appProjectType, string appFx, TemplateCreationResult result, int? pagesCount = null, int? featuresCount = null, double? timeSpent = null)
         {
             if (template == null)
                 throw new ArgumentNullException("template");
@@ -82,10 +82,10 @@ namespace Microsoft.Templates.Core.Diagnostics
 
             GenStatusEnum telemetryStatus = result.Status == CreationResultStatus.Success ? GenStatusEnum.Completed : GenStatusEnum.Error;
 
-            await TrackProjectAsync(telemetryStatus, template.Name, template.GetProjectType(), appFx, pagesCount, featuresCount, timeSpent, result.Status, result.Message);
+            await TrackProjectAsync(telemetryStatus, template.Name, appProjectType, appFx, pagesCount, featuresCount, timeSpent, result.Status, result.Message);
         }
 
-        public async Task TrackItemGenAsync(ITemplateInfo template, string appFx, TemplateCreationResult result)
+        public async Task TrackItemGenAsync(ITemplateInfo template, string appProjectType, string appFx, TemplateCreationResult result)
         {
             if (template == null)
                 throw new ArgumentNullException("template");
@@ -98,10 +98,10 @@ namespace Microsoft.Templates.Core.Diagnostics
                 switch (template.GetTemplateType())
                 {
                     case TemplateType.Page:
-                        await TrackItemGenAsync(TelemetryEvents.PageGen, template, appFx, result);
+                        await TrackItemGenAsync(TelemetryEvents.PageGen, template, appProjectType, appFx, result);
                         break;
                     case TemplateType.Feature:
-                        await TrackItemGenAsync(TelemetryEvents.FeatureGen, template, appFx, result);
+                        await TrackItemGenAsync(TelemetryEvents.FeatureGen, template, appProjectType, appFx, result);
                         break;
                     case TemplateType.Unspecified:
                         break;
@@ -142,11 +142,11 @@ namespace Microsoft.Templates.Core.Diagnostics
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.ProjectGen, properties, metrics).ConfigureAwait(false);
         }
 
-        private async Task TrackItemGenAsync(string eventToTrack, ITemplateInfo template, string appFx, TemplateCreationResult result)
+        private async Task TrackItemGenAsync(string eventToTrack, ITemplateInfo template, string appProjectType, string appFx, TemplateCreationResult result)
         {
             GenStatusEnum telemetryStatus = result.Status == CreationResultStatus.Success ? GenStatusEnum.Completed : GenStatusEnum.Error;
 
-            await TrackItemGenAsync(eventToTrack, telemetryStatus, template.GetProjectType(), appFx, template.Name, result.Status, result.Message);
+            await TrackItemGenAsync(eventToTrack, telemetryStatus, appProjectType, appFx, template.Name, result.Status, result.Message);
         }
 
         private async Task TrackItemGenAsync(string eventToTrack,  GenStatusEnum status, string appType, string pageFx, string templateName, CreationResultStatus genStatus= CreationResultStatus.Success, string message="")

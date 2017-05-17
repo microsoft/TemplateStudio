@@ -27,7 +27,7 @@ namespace Param_RootNamespace.Services
 
                             new AdaptiveText()
                             {
-                                Text = @"Make sure the left button on the toast has the text ""Ok"" on it, and the right button has the text ""Cancel"" on it."
+                                Text = @"Make sure the left button on the toast has the text ""OK"" on it, and the right button has the text ""Cancel"" on it."
                             }
                         }
                     }
@@ -39,7 +39,7 @@ namespace Param_RootNamespace.Services
                     {
                         // TODO UWPTemplates: Check this documentation to know more about Toast Buttons
                         // Documentation: https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastbutton
-                        new ToastButton("Ok", "ToastButtonActivationArguments")
+                        new ToastButton("OK", "ToastButtonActivationArguments")
                         {
                             ActivationType = ToastActivationType.Foreground
                         },

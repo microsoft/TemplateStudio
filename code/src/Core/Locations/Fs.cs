@@ -81,7 +81,8 @@ namespace Microsoft.Templates.Core.Locations
             {
                 if (Directory.Exists(sourceDir))
                 {
-                    Directory.Move(sourceDir, targetDir);
+                    CopyRecursive(sourceDir, targetDir);
+                    SafeDeleteDirectory(sourceDir);
                 }
             }
             catch (Exception ex)

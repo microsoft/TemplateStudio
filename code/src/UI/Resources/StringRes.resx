@@ -133,7 +133,7 @@
     <value>Next</value>
   </data>
   <data name="ButtonOk" xml:space="preserve">
-    <value>Ok</value>
+    <value>OK</value>
   </data>
   <data name="ErrorSync" xml:space="preserve">
     <value>Error updating templates. See output for more details.</value>

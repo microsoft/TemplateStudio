@@ -29,7 +29,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
-    public class GenerationTests : IClassFixture<GenerationTestsFixture>
+    public class GenerationTests : IClassFixture<GenerationTestsFixture>, IContextProvider
     {
         private const string Platform = "x86";
         private const string Configuration = "Debug";
@@ -37,47 +37,52 @@ namespace Microsoft.Templates.Test
         private GenerationTestsFixture _fixture;
         private List<string> _usedNames = new List<string>();
 
+        public string ProjectName { get; set; }
+        public string OutputPath { get; set; }
+
         public GenerationTests(GenerationTestsFixture fixture)
         {
             _fixture = fixture;
             GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
+            GenContext.Current = this;
         }
+
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
-        public async void GenerateEmptyProject(string name, string framework, string projId)
+        public async void GenerateEmptyProject(string projectType, string framework)
         {
-            var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
-            var projectName = $"{name}{framework}";
+            var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework)).FirstOrDefault();
+            var projectName = $"{projectType}{framework}";
 
-            using (var context = GenContext.CreateNew(projectName, Path.Combine(_fixture.TestProjectsPath, projectName, projectName)))
+            ProjectName = projectName;
+            OutputPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+
+            var userSelection = new UserSelection
             {
-                var userSelection = new UserSelection
-                {
-                    Framework = framework,
-                    ProjectType = projectTemplate.GetProjectType(),
-                };
+                Framework = framework,
+                ProjectType = projectType,
+            };
 
-                AddLayoutItems(userSelection, projectTemplate);
+            AddLayoutItems(userSelection, projectTemplate);
 
-                await GenController.UnsafeGenerateAsync(userSelection);
+            await GenController.UnsafeGenerateAsync(userSelection);
 
-                //Build solution
-                var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
-                var result = BuildSolution(projectName, outputPath);
+            //Build solution
+            var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+            var result = BuildSolution(projectName, outputPath);
 
-                //Assert
-                Assert.True(result.exitCode.Equals(0), $"Solution {projectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
+            //Assert
+            Assert.True(result.exitCode.Equals(0), $"Solution {projectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
-                //Clean
-                Directory.Delete(outputPath, true);
-            }
+            //Clean
+            Directory.Delete(outputPath, true);
         }
 
-        
-        [Theory , MemberData("GetPageAndFeatureTemplates"), Trait("Type", "OneByOneItemGeneration")]
-        public async void GenerateProjectWithIsolatedItems(string itemName, string name, string framework, string projId, string itemId)
+
+        [Theory, MemberData("GetPageAndFeatureTemplates"), Trait("Type", "OneByOneItemGeneration")]
+        public async void GenerateProjectWithIsolatedItems(string itemName, string projectType, string framework, string itemId)
         {
-            var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
+            var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework)).FirstOrDefault();
             var itemTemplate = GenerationTestsFixture.Templates.FirstOrDefault(t => t.Identity == itemId);
             var finalName = itemTemplate.GetDefaultName();
 
@@ -85,99 +90,99 @@ namespace Microsoft.Templates.Test
             {
                 finalName = Naming.Infer(_usedNames, itemTemplate.GetDefaultName());
             }
-           
-            var projectName = $"{name}{framework}{finalName}";
 
-            using (var context = GenContext.CreateNew(projectName, Path.Combine(_fixture.TestProjectsPath, projectName, projectName)))
+            var projectName = $"{projectType}{framework}{finalName}";
+
+            ProjectName = projectName;
+            OutputPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+
+            var userSelection = new UserSelection
             {
-                var userSelection = new UserSelection
-                {
-                    Framework = framework,
-                    ProjectType = projectTemplate.GetProjectType(),
-                };
+                Framework = framework,
+                ProjectType = projectType,
+            };
 
-                AddLayoutItems(userSelection, projectTemplate);
-                AddItem(userSelection, finalName, itemTemplate);
+            AddLayoutItems(userSelection, projectTemplate);
+            AddItem(userSelection, finalName, itemTemplate);
 
-                await GenController.UnsafeGenerateAsync(userSelection);
+            await GenController.UnsafeGenerateAsync(userSelection);
 
-                //Build solution
-                var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
-                var result = BuildSolution(projectName, outputPath);
+            //Build solution
+            var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+            var result = BuildSolution(projectName, outputPath);
 
-                //Assert
-                Assert.True(result.exitCode.Equals(0), $"Solution {projectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
+            //Assert
+            Assert.True(result.exitCode.Equals(0), $"Solution {projectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
-                //Clean
-                Directory.Delete(outputPath, true);
-            }
+            //Clean
+            Directory.Delete(outputPath, true);
         }
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
-        public async void GenerateAllPagesAndFeatures(string name, string framework, string projId)
+        public async void GenerateAllPagesAndFeatures(string projectType, string framework)
         {
-            var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
+            var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework)).FirstOrDefault();
 
-            var projectName = $"{name}{framework}All";
+            var projectName = $"{projectType}{framework}All";
 
-            using (var context = GenContext.CreateNew(projectName, Path.Combine(_fixture.TestProjectsPath, projectName, projectName)))
+            ProjectName = projectName;
+            OutputPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+
+            var userSelection = new UserSelection
             {
-                var userSelection = new UserSelection
-                {
-                    Framework = framework,
-                    ProjectType = targetProjectTemplate.GetProjectType(),
-                };
+                Framework = framework,
+                ProjectType = projectType,
+            };
 
-                AddLayoutItems(userSelection, targetProjectTemplate);
-                AddItems(userSelection, GetTemplates(framework, TemplateType.Page), GetDefaultName);
-                AddItems(userSelection, GetTemplates(framework, TemplateType.Feature), GetDefaultName);
+            AddLayoutItems(userSelection, targetProjectTemplate);
+            AddItems(userSelection, GetTemplates(framework, TemplateType.Page), GetDefaultName);
+            AddItems(userSelection, GetTemplates(framework, TemplateType.Feature), GetDefaultName);
 
-                await GenController.UnsafeGenerateAsync(userSelection);
+            await GenController.UnsafeGenerateAsync(userSelection);
 
-                //Build solution
-                var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
-                var result = BuildSolution(projectName, outputPath);
+            //Build solution
+            var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+            var result = BuildSolution(projectName, outputPath);
 
-                //Assert
-                Assert.True(result.exitCode.Equals(0), $"Solution {targetProjectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
+            //Assert
+            Assert.True(result.exitCode.Equals(0), $"Solution {targetProjectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
-                //Clean
-                Directory.Delete(outputPath, true);
-            }
+            //Clean
+            Directory.Delete(outputPath, true);
         }
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
-        public async void GenerateAllPagesAndFeaturesRandomNames(string name, string framework, string projId)
+        public async void GenerateAllPagesAndFeaturesRandomNames(string projectType, string framework)
         {
-            var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.Identity == projId).FirstOrDefault();
-            var projectName = $"{name}{framework}AllRandom";
+            var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework)).FirstOrDefault();
+            var projectName = $"{projectType}{framework}AllRandom";
 
-            using (var context = GenContext.CreateNew(projectName, Path.Combine(_fixture.TestProjectsPath, projectName, projectName)))
+            ProjectName = projectName;
+            OutputPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+
+            var userSelection = new UserSelection
             {
-                var userSelection = new UserSelection
-                {
-                    Framework = framework,
-                    ProjectType = targetProjectTemplate.GetProjectType(),
-                };
+                Framework = framework,
+                ProjectType = projectType,
+            };
 
-                AddLayoutItems(userSelection, targetProjectTemplate);
-                AddItems(userSelection, GetTemplates(framework, TemplateType.Page), GetRandomName);
-                AddItems(userSelection, GetTemplates(framework, TemplateType.Feature), GetRandomName);
+            AddLayoutItems(userSelection, targetProjectTemplate);
+            AddItems(userSelection, GetTemplates(framework, TemplateType.Page), GetRandomName);
+            AddItems(userSelection, GetTemplates(framework, TemplateType.Feature), GetRandomName);
 
-                await GenController.UnsafeGenerateAsync(userSelection);
+            await GenController.UnsafeGenerateAsync(userSelection);
 
-                //Build solution
-                var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
-                var result = BuildSolution(projectName, outputPath);
+            //Build solution
+            var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+            var result = BuildSolution(projectName, outputPath);
 
-                //Assert
-                Assert.True(result.exitCode.Equals(0), $"Solution {targetProjectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
+            //Assert
+            Assert.True(result.exitCode.Equals(0), $"Solution {targetProjectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
-                //Clean
-                Directory.Delete(outputPath, true);
-            }
+            //Clean
+            Directory.Delete(outputPath, true);
         }
-        
+
         private IEnumerable<ITemplateInfo> GetTemplates(string framework, TemplateType templateType)
         {
             return GenerationTestsFixture.Templates
@@ -207,7 +212,7 @@ namespace Microsoft.Templates.Test
                     {
                         itemName = Naming.Infer(_usedNames, itemName);
                     }
-                    
+
                     AddItem(userSelection, itemName, template);
                 }
             }
@@ -246,15 +251,18 @@ namespace Microsoft.Templates.Test
         public static IEnumerable<object[]> GetProjectTemplates()
         {
             GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
-
             var projectTemplates = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project);
 
-            foreach (var template in projectTemplates)
+            foreach (var projectTemplate in projectTemplates)
             {
-                var frameworks = GenComposer.GetSupportedFx(template.Name);
-                foreach (var framework in frameworks)
+                var projectTypeList = projectTemplate.GetProjectTypeList();
+                foreach (var projectType in projectTypeList)
                 {
-                    yield return new object[] { template.Name, framework, template.Identity };
+                    var frameworks = GenComposer.GetSupportedFx(projectType);
+                    foreach (var framework in frameworks)
+                    {
+                        yield return new object[] { projectType, framework };
+                    }
                 }
             }
         }
@@ -262,19 +270,24 @@ namespace Microsoft.Templates.Test
         public static IEnumerable<object[]> GetPageAndFeatureTemplates()
         {
             GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
+
             var projectTemplates = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project);
 
-            foreach (var template in projectTemplates)
+            foreach (var projectTemplate in projectTemplates)
             {
-                var frameworks = GenComposer.GetSupportedFx(template.Name);
-
-                foreach (var framework in frameworks)
+                var projectTypeList = projectTemplate.GetProjectTypeList();
+                foreach (var projectType in projectTypeList)
                 {
-                    var itemTemplates = GenerationTestsFixture.Templates.Where(t => t.GetFrameworkList().Contains(framework) && t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature);
+                    var frameworks = GenComposer.GetSupportedFx(projectType);
 
-                    foreach (var itemTemplate in itemTemplates)
+                    foreach (var framework in frameworks)
                     {
-                        yield return new object[] { itemTemplate.Name, template.Name, framework, template.Identity,  itemTemplate.Identity };
+                        var itemTemplates = GenerationTestsFixture.Templates.Where(t => t.GetFrameworkList().Contains(framework) && t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature);
+
+                        foreach (var itemTemplate in itemTemplates)
+                        {
+                            yield return new object[] { itemTemplate.Name, projectType, framework, itemTemplate.Identity };
+                        }
                     }
                 }
             }
@@ -311,7 +324,7 @@ namespace Microsoft.Templates.Test
 
         private string GetRandomName(ITemplateInfo template)
         {
-            return Path.GetRandomFileName().Replace(".","");
+            return Path.GetRandomFileName().Replace(".", "");
         }
 
         internal static string GetPath(string fileName)
