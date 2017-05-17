@@ -18,6 +18,7 @@ using System.Windows.Threading;
 using Microsoft.Templates.Core.Mvvm;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
+using Microsoft.TemplateEngine.Abstractions;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
@@ -246,15 +247,15 @@ namespace Microsoft.Templates.UI.ViewModels
         #endregion
 
         private DispatcherTimer dt = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(2) };
-        public SummaryItemViewModel(TemplateSelection item, bool isRemoveEnabled, ICommand removeTemplateCommand, ICommand summaryItemOpenCommand, ICommand summaryItemSetHomeCommand, ICommand renameItemCommand, ICommand confirmRenameCommand, ICommand moveUpCommand, ICommand moveDownCommand, Action<SummaryItemViewModel> validateCurrentTemplateName)
+        public SummaryItemViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled, ICommand removeTemplateCommand, ICommand summaryItemOpenCommand, ICommand summaryItemSetHomeCommand, ICommand renameItemCommand, ICommand confirmRenameCommand, ICommand moveUpCommand, ICommand moveDownCommand, Action<SummaryItemViewModel> validateCurrentTemplateName)
         {
             dt.Tick += OnTimerTick;    
-            ItemName = item.Name;
-            Author = item.Template.Author;
-            TemplateType = item.Template.GetTemplateType();
-            CanChooseItemName = item.Template.GetItemNameEditable();
-            Identity = item.Template.Identity;
-            TemplateName = item.Template.Name;
+            ItemName = item.name;
+            Author = item.template.Author;
+            TemplateType = item.template.GetTemplateType();
+            CanChooseItemName = item.template.GetItemNameEditable();
+            Identity = item.template.Identity;
+            TemplateName = item.template.Name;
             IsRemoveEnabled = isRemoveEnabled;            
             RemoveCommand = removeTemplateCommand;
             OpenCommand = summaryItemOpenCommand;

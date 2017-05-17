@@ -25,7 +25,6 @@
     "wts.homePageName": {
       "type":"parameter",
       "replaces":"Param_HomeName"
-
     }
   }
 }

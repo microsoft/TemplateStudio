@@ -352,7 +352,8 @@ namespace Microsoft.Templates.UI.ViewModels
             var userSelection = new UserSelection()
             {
                 ProjectType = ProjectSetup.SelectedProjectType?.Name,
-                Framework = ProjectSetup.SelectedFramework?.Name
+                Framework = ProjectSetup.SelectedFramework?.Name,
+                HomeName = ProjectTemplates.HomeName
             };
 
             userSelection.Pages.AddRange(ProjectTemplates.SavedPages);

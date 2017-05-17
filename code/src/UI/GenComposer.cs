@@ -118,12 +118,10 @@ namespace Microsoft.Templates.UI
             }
 
             AddProject(userSelection, genQueue);
-            AddTemplates(userSelection.Pages, genQueue);
-            AddTemplates(userSelection.Features, genQueue);
+            AddTemplates(userSelection.Pages, genQueue, userSelection);
+            AddTemplates(userSelection.Features, genQueue, userSelection);
 
-            AddCompositionTemplates(genQueue, userSelection);
-
-            AddHomeName(genQueue, userSelection);
+            AddCompositionTemplates(genQueue, userSelection);            
 
             return genQueue;
         }        
@@ -146,11 +144,12 @@ namespace Microsoft.Templates.UI
                                             && t.GetFrameworkList().Any(f => f == framework));
         }
 
-        private static void AddTemplates(IEnumerable<TemplateSelection> userSelection, List<GenInfo> genQueue)
+        private static void AddTemplates(IEnumerable<(string name, ITemplateInfo template)> templates, List<GenInfo> genQueue, UserSelection userSelection)
         {
-            foreach (var selectionItem in userSelection)
+            foreach (var selectionItem in templates)
             {
-                CreateGenInfo(selectionItem.Name, selectionItem.Template, genQueue);                
+                var genInfo = CreateGenInfo(selectionItem.name, selectionItem.template, genQueue);
+                genInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
             }
         }
 
@@ -169,28 +168,14 @@ namespace Microsoft.Templates.UI
                 foreach (var compositionItem in compositionCatalog)
                 {
                     if (compositionItem.query.Match(genItem.Template, context))
-                    {
-                        AddTemplate(genItem, compositionQueue, compositionItem.template);
+                    {                        
+                        AddTemplate(genItem, compositionQueue, compositionItem.template, userSelection);
                     }
 
                 }
             }
 
             genQueue.AddRange(compositionQueue);
-        }
-
-        private static void AddHomeName(List<GenInfo> genQueue, UserSelection userSelection)
-        {
-            var homeName = userSelection.Pages.First(p => p.IsHome).Name;
-            AddGlobalParameters(GenParams.HomePageName, homeName, genQueue, userSelection);
-        }
-
-        private static void AddGlobalParameters(string globalParameter, string paramValue, List<GenInfo> genQueue, UserSelection userSelection)
-        {
-            foreach (var genItem in genQueue)
-            {
-                genItem.Parameters.Add(globalParameter, paramValue);
-            }
         }
 
         private static IEnumerable<(CompositionQuery query, ITemplateInfo template)> GetCompositionCatalog()
@@ -201,7 +186,7 @@ namespace Microsoft.Templates.UI
                                         .ToList();
         }
 
-        private static void AddTemplate(GenInfo mainGenInfo, List<GenInfo> queue, ITemplateInfo targetTemplate)
+        private static void AddTemplate(GenInfo mainGenInfo, List<GenInfo> queue, ITemplateInfo targetTemplate, UserSelection userSelection)
         {
             if (targetTemplate != null)
             {
@@ -210,7 +195,8 @@ namespace Microsoft.Templates.UI
                     mainGenInfo.Parameters.Add(export.name, export.value);                    
                 }
 
-                CreateGenInfo(mainGenInfo.Name, targetTemplate, queue);
+                var genInfo = CreateGenInfo(mainGenInfo.Name, targetTemplate, queue);
+                genInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
             }
         }
 

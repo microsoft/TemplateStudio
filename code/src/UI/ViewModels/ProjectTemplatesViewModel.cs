@@ -44,16 +44,18 @@ namespace Microsoft.Templates.UI.ViewModels
             set => SetProperty(ref _featuresHeader, value);
         }
 
+        public string HomeName { get; set; }
+
         public ObservableCollection<GroupTemplateInfoViewModel> PagesGroups { get; } = new ObservableCollection<GroupTemplateInfoViewModel>();
         public ObservableCollection<GroupTemplateInfoViewModel> FeatureGroups { get; } = new ObservableCollection<GroupTemplateInfoViewModel>();
 
         public ObservableCollection<SummaryItemViewModel> SummaryPages { get; } = new ObservableCollection<SummaryItemViewModel>();
         public ObservableCollection<SummaryItemViewModel> SummaryFeatures { get; } = new ObservableCollection<SummaryItemViewModel>();
 
-        public List<TemplateSelection> SavedTemplates { get; } = new List<TemplateSelection>();
+        public List<(string name, ITemplateInfo template)> SavedTemplates { get; } = new List<(string name, ITemplateInfo template)>();
 
-        public IEnumerable<TemplateSelection> SavedFeatures { get => SavedTemplates.Where(st => st.Template.GetTemplateType() == TemplateType.Feature); }
-        public IEnumerable<TemplateSelection> SavedPages { get => SavedTemplates.Where(st => st.Template.GetTemplateType() == TemplateType.Page); }
+        public IEnumerable<(string name, ITemplateInfo template)> SavedFeatures { get => SavedTemplates.Where(st => st.template.GetTemplateType() == TemplateType.Feature); }
+        public IEnumerable<(string name, ITemplateInfo template)> SavedPages { get => SavedTemplates.Where(st => st.template.GetTemplateType() == TemplateType.Page); }
 
         private RelayCommand<SummaryItemViewModel> _removeTemplateCommand;
         public RelayCommand<SummaryItemViewModel> RemoveTemplateCommand => _removeTemplateCommand ?? (_removeTemplateCommand = new RelayCommand<SummaryItemViewModel>(OnRemoveTemplate));
@@ -90,7 +92,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void ValidateCurrentTemplateName(SummaryItemViewModel item)
         {
-            var names = SavedTemplates.Select(t => t.Name);
+            var names = SavedTemplates.Select(t => t.name);
             var validationResult = Naming.Validate(names, item.NewItemName);
 
             item.IsValidName = validationResult.IsValid;
@@ -111,7 +113,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void ValidateNewTemplateName(TemplateInfoViewModel template)
         {
-            var names = SavedTemplates.Select(t => t.Name);
+            var names = SavedTemplates.Select(t => t.name);
             var validationResult = Naming.Validate(names, template.NewTemplateName);
 
             template.IsValidName = validationResult.IsValid;
@@ -181,7 +183,7 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             if (template.CanChooseItemName)
             {
-                var names = SavedTemplates.Select(t => t.Name);
+                var names = SavedTemplates.Select(t => t.name);
                 template.NewTemplateName = Naming.Infer(names, template.Template.GetDefaultName());
                 CloseTemplatesEdition();
                 template.IsEditionEnabled = true;
@@ -189,12 +191,7 @@ namespace Microsoft.Templates.UI.ViewModels
             else
             {
                 template.NewTemplateName = template.Template.GetDefaultName();
-                var templateSelection = new TemplateSelection()
-                {
-                    Name = template.NewTemplateName,
-                    Template = template.Template
-                };
-                SetupTemplateAndDependencies(templateSelection);
+                SetupTemplateAndDependencies((template.NewTemplateName, template.Template));
                 var isAlreadyDefined = IsTemplateAlreadyDefined(template.Template.Identity);
                 template.UpdateTemplateAvailability(isAlreadyDefined);
             }
@@ -204,12 +201,7 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             if (template.IsValidName)
             {
-                var templateSelection = new TemplateSelection()
-                {
-                    Name = template.NewTemplateName,
-                    Template = template.Template
-                };
-                SetupTemplateAndDependencies(templateSelection);
+                SetupTemplateAndDependencies((template.NewTemplateName, template.Template));
                 template.CloseEdition();
 
                 var isAlreadyDefined = IsTemplateAlreadyDefined(template.Template.Identity);
@@ -242,13 +234,13 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnConfirmRenameSummaryItem(SummaryItemViewModel item)
         {
-            var names = SavedTemplates.Select(t => t.Name);
+            var names = SavedTemplates.Select(t => t.name);
             var validationResult = Naming.Validate(names, item.NewItemName);
 
             if (validationResult.IsValid)
             {
-                var savedTemplate = SavedTemplates.First(st => st.Name == item.ItemName);
-                savedTemplate.Name = item.NewItemName;
+                var savedTemplate = SavedTemplates.First(st => st.name == item.ItemName);
+                savedTemplate.name = item.NewItemName;
                 item.ItemName = item.NewItemName;
                 item.IsEditionEnabled = false;
             }
@@ -263,7 +255,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 SummaryPages.RemoveAt(oldIndex);
                 SummaryPages.Insert(newIndex, item);
 
-                var savedTemplate = SavedTemplates.First(t => t.Name == item.ItemName);
+                var savedTemplate = SavedTemplates.First(t => t.name == item.ItemName);
                 int oldIndexST = SavedTemplates.IndexOf(savedTemplate);
                 int newIndexST = oldIndexST + 1;
                 SavedTemplates.RemoveAt(oldIndexST);
@@ -281,7 +273,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 SummaryPages.RemoveAt(oldIndex);
                 SummaryPages.Insert(newIndex, item);
 
-                var savedTemplate = SavedTemplates.First(t => t.Name == item.ItemName);
+                var savedTemplate = SavedTemplates.First(t => t.name == item.ItemName);
                 int oldIndexST = SavedTemplates.IndexOf(savedTemplate);
                 int newIndexST = oldIndexST - 1;
                 SavedTemplates.RemoveAt(oldIndexST);
@@ -306,12 +298,11 @@ namespace Microsoft.Templates.UI.ViewModels
             if (!item.IsHome)
             {
                 foreach (var page in SummaryPages) { page.TryReleaseHome(); }
-                foreach (var page in SavedTemplates) { page.IsHome = false; }
 
                 item.IsHome = true;
 
-                var savedTemplate = SavedTemplates.First(st => st.Name == item.ItemName);
-                savedTemplate.IsHome = true;
+                var savedTemplate = SavedTemplates.First(st => st.name == item.ItemName);
+                HomeName = item.ItemName;
 
                 int oldIndex = SummaryPages.IndexOf(item);
                 if (oldIndex > 0)
@@ -329,10 +320,10 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnRemoveTemplate(SummaryItemViewModel item)
         {
-            if (SavedTemplates.Any(st => st.Template.GetDependencyList().Any(d => d == item.Identity)))
+            if (SavedTemplates.Any(st => st.template.GetDependencyList().Any(d => d == item.Identity)))
             {
-                var dependencyName = SavedTemplates.First(st => st.Template.GetDependencyList().Any(d => d == item.Identity));
-                string message = String.Format(StringRes.ValidationError_CanNotRemoveTemplate_SF, item.TemplateName, dependencyName.Template.Name, dependencyName.Template.GetTemplateType());
+                var dependencyName = SavedTemplates.First(st => st.template.GetDependencyList().Any(d => d == item.Identity));
+                string message = String.Format(StringRes.ValidationError_CanNotRemoveTemplate_SF, item.TemplateName, dependencyName.template.Name, dependencyName.template.GetTemplateType());
 
                 MainViewModel.Current.Status = new StatusViewModel(Controls.StatusType.Warning, message, true);
 
@@ -347,7 +338,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 SummaryFeatures.Remove(item);
             }
 
-            SavedTemplates.Remove(SavedTemplates.First(st => st.Name == item.ItemName));
+            SavedTemplates.Remove(SavedTemplates.First(st => st.name == item.ItemName));
             MainViewModel.Current.CreateCommand.OnCanExecuteChanged();
             UpdateTemplatesAvailability();
             MainViewModel.Current.RebuildLicenses();
@@ -355,7 +346,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private bool IsTemplateAlreadyDefined(string identity)
         {
-            return SavedTemplates.Select(t => t.Template.Identity).Any(name => name == identity);
+            return SavedTemplates.Select(t => t.template.Identity).Any(name => name == identity);
         }
 
         private void CloseTemplatesEdition()
@@ -393,52 +384,46 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 if (item.Template != null)
                 {
-                    var templateSelection = new TemplateSelection()
-                    {
-                        Name = item.Layout.name,
-                        Template = item.Template
-                    };
-                    SetupTemplateAndDependencies(templateSelection, !item.Layout.@readonly);
+                    SetupTemplateAndDependencies((item.Layout.name, item.Template), !item.Layout.@readonly);
                 }
             }
         }
 
-        private void SetupTemplateAndDependencies(TemplateSelection item, bool isRemoveEnabled = true)
+        private void SetupTemplateAndDependencies((string name, ITemplateInfo template) item, bool isRemoveEnabled = true)
         {
             SaveNewTemplate(item, isRemoveEnabled);
-            var dependencies = GenComposer.GetAllDependencies(item.Template, ContextFramework.Name);
+            var dependencies = GenComposer.GetAllDependencies(item.template, ContextFramework.Name);
 
             foreach (var dependencyTemplate in dependencies)
             {
-                if (!SavedTemplates.Any(s => s.Template.Identity == dependencyTemplate.Identity))
-                {
-                    var templateSelection = new TemplateSelection()
-                    {
-                        Name = dependencyTemplate.GetDefaultName(),
-                        Template = dependencyTemplate
-                    };
-                    SaveNewTemplate(templateSelection, isRemoveEnabled);
+                if (!SavedTemplates.Any(s => s.template.Identity == dependencyTemplate.Identity))
+                {                    
+                    SaveNewTemplate((dependencyTemplate.GetDefaultName(), dependencyTemplate), isRemoveEnabled);
                 }
             }
 
             MainViewModel.Current.RebuildLicenses();
         }
 
-        private void SaveNewTemplate(TemplateSelection item, bool isRemoveEnabled = true)
+        private void SaveNewTemplate((string name, ITemplateInfo template) item, bool isRemoveEnabled = true)
         {
+            if (SavedPages.Count() == 0)
+            {
+                HomeName = item.name;
+            }
             SavedTemplates.Add(item);
 
             var newItem = new SummaryItemViewModel(item, isRemoveEnabled, RemoveTemplateCommand, SummaryItemOpenCommand, SummaryItemSetHomeCommand, RenameSummaryItemCommand, ConfirmRenameSummaryItemCommand, MoveUpSummaryItemCommand, MoveDownSummaryItemCommand, ValidateCurrentTemplateName);
 
-            if (item.Template.GetTemplateType() == TemplateType.Page)
-            {
+            if (item.template.GetTemplateType() == TemplateType.Page)
+            {                
                 if (SummaryPages.Count == 0)
                 {
                     newItem.IsHome = true;
                 }
                 SummaryPages.Add(newItem);
             }
-            else if (item.Template.GetTemplateType() == TemplateType.Feature)
+            else if (item.template.GetTemplateType() == TemplateType.Feature)
             {
                 SummaryFeatures.Add(newItem);
             }
