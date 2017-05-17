@@ -11,7 +11,7 @@
     <Icon>Resources\windowsTemplateStudio_Logo_200x200.png</Icon>
     <Tags>Windows Template Studio UWP XAML MVVM</Tags>
   </Metadata>
-  <Installation>
+  <Installation AllUsers="true">
     <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0,16.0)" />
   </Installation>
   <Dependencies>
