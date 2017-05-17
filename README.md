@@ -29,10 +29,8 @@ Once you select the attributes you want your new UWP app to have, you can quickl
 
 ## Known Issues
 
-The following are known issues and may affect your use of Windows Template Studio. These will be addressed in the next update.
+The following are known issues and may affect your use of Windows Template Studio. These will be addressed in the next few days.
 
-* Not compatible with Visual Studio Preview v15.3 [Fixed #328](https://github.com/Microsoft/WindowsTemplateStudio/issues/328)
-* Will not work if your TEMP folder is on a different drive to PROGRAMDATA [Fixed #333](https://github.com/Microsoft/WindowsTemplateStudio/issues/333)
 * You must be online the first time you use the wizard to generate an app or no templates will be loaded. [#311](https://github.com/Microsoft/WindowsTemplateStudio/issues/311)
 * Only compatible with Windows 10. You cannot use this if running VS 2107 on an older Operating System. [#357](https://github.com/Microsoft/WindowsTemplateStudio/issues/357)
 
