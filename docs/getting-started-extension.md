@@ -14,7 +14,9 @@ Windows Template Studio installs into your existing Windows 10 app development e
 
 ## Public Release instructions
 
-** Coming Soon **
+1.	Install the Visual Studio Extension for Windows Template Studio by downloading the VSIX from the [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio). 
+1.	Once installed, open Visual Studio 2017 and select File→ New Project→ C# → Windows Universal and you should see the new template that was just added. 
+
 
 ## Nightly / Pre-release instructions
 
