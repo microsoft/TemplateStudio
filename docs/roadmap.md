@@ -5,8 +5,8 @@
 [1.01 - ASAP](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3A%221.01+-+Critical+Bug+Fixes%22)
 
 * 1.0.17137.1
-    * Not compatible with Visual Studio Preview v15.3 [#328](https://github.com/Microsoft/WindowsTemplateStudio/issues/328)
-    * Will not work if your TEMP folder is on a different drive to PROGRAMDATA [#333](https://github.com/Microsoft/WindowsTemplateStudio/issues/333)
+    * [#328](https://github.com/Microsoft/WindowsTemplateStudio/issues/328): Not compatible with Visual Studio Preview v15.3
+    * [#333](https://github.com/Microsoft/WindowsTemplateStudio/issues/333): Will not work if your TEMP folder is on a different drive to PROGRAMDATA
 
 ## 1.1 Release
 
