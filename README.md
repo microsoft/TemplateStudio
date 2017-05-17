@@ -1,6 +1,6 @@
 # Windows Template Studio
 
-Windows Template Studio is a Visual Studio 2017 Extension that accelerates the creation of new Univeral Windows Platform (UWP) apps using a wizard-based experience. The resulting UWP project is well-formed, readable code that incorporates the latest Windows 10 features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links Docs, Stack Overflow and blogs to provide useful insights.
+Windows Template Studio is a Visual Studio 2017 Extension that accelerates the creation of new Universal Windows Platform (UWP) apps using a wizard-based experience. The resulting UWP project is well-formed, readable code that incorporates the latest Windows 10 features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links Docs, Stack Overflow and blogs to provide useful insights.
 
 **Example scenario:**
 I need an app that uses MVVM Light, uses master detail, can suspend and resume, settings, maps on one of the pages and will need Azure hub notifications.   It will need a background service that does a query every 5 minutes.
@@ -23,10 +23,18 @@ Windows Template Studio approaches UWP app creation using the following four att
 * **Project type**: First, how do you want your app's UI navigation to behave? We currently support three project types: *basic*, *[navigation pane](docs/projectTypes/navigationpane.md)*, and *pivot and tabs*
 * **App framework**: Next, what coding pattern do you want to use in your project, we currently support three common patterns: *code behind*, *basic MVVM*, and *[MVVM Light](http://www.mvvmlight.net/)*
 * **App pages**: To accelerate app creation, we provide a number of app page templates that you can use to add common UI pages into your new app. We currently include page templates from the *blank page* to the common layouts (*e.g., master/detail, tabbed, web view*) to pages that implement common patters (*e.g., [app settings](docs/pages/settings.md), map control*). Using the wizard, add as many of the pages as you need, providing a name for each one, and we'll generate them for you.
-* **Windows 10 features**: Lastly, you specify which UWP capabilities you want to use in your app, and we'll build out the framework for the features into your app, tagging 'TODO' items. Currently supported features cover application lifecycle (*settings storage, suspend and resume*), background tasks, and user interaction (*app notifications, Live tiles, and Azure Noficiation Hub*).
+* **Windows 10 features**: Lastly, you specify which UWP capabilities you want to use in your app, and we'll build out the framework for the features into your app, tagging 'TODO' items. Currently supported features cover application lifecycle (*settings storage, suspend and resume*), background tasks, and user interaction (*app notifications, Live tiles, and Azure Notification Hub*).
 
 Once you select the attributes you want your new UWP app to have, you can quickly [extend the generated code](docs/getting-started-endusers.md).
 
+## Known Issues
+
+The following are known issues and may affect your use of Windows Template Studio. These will be addressed in the next update.
+
+* Not compatible with Visual Studio Preview v15.3
+* Will not work if your TEMP folder is on a different drive to PROGRAMDATA
+* You must be online the first time you use the wizard to generate an app or no templates will be loaded.
+* Only compatible with Windows 10. You cannot use this if running VS 2107 on an older Operating System.
 
 ## Documentation
 
