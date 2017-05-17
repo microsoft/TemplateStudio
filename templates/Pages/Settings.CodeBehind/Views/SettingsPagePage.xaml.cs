@@ -16,6 +16,20 @@ namespace Param_ItemNamespace.Views
             set { Set(ref _isLightThemeEnabled, value); }
         }
 
+        private bool _isDarkThemeEnabled;
+        public bool IsDarkThemeEnabled
+        {
+            get { return _isDarkThemeEnabled; }
+            set { Set(ref _isDarkThemeEnabled, value); }
+        }
+
+        private bool _isDefaultThemeEnabled;
+        public bool IsDefaultThemeEnabled
+        {
+            get { return _isDefaultThemeEnabled; }
+            set { Set(ref _isDefaultThemeEnabled, value); }
+        }
+
         private string _appDescription;
         public string AppDescription
         {
@@ -31,6 +45,8 @@ namespace Param_ItemNamespace.Views
         private void Initialize()
         {
             IsLightThemeEnabled = ThemeSelectorService.IsLightThemeEnabled;
+            IsDarkThemeEnabled = ThemeSelectorService.IsDarkThemeEnabled;
+            IsDefaultThemeEnabled = ThemeSelectorService.IsDefaultThemeEnabled;
             AppDescription = GetAppDescription();
         }
 
@@ -43,16 +59,13 @@ namespace Param_ItemNamespace.Views
             return $"{package.DisplayName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
         }
 
-        private async void ThemeToggle_Toggled(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void Theme_Checked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            //Only switch theme if value has changed (not on initialization)
-            var toggleSwitch = sender as ToggleSwitch;
-            if (toggleSwitch != null)
+            var radioButton = sender as RadioButton;
+            if (radioButton != null)
             {
-                if (toggleSwitch.IsOn != ThemeSelectorService.IsLightThemeEnabled)
-                {
-                    await ThemeSelectorService.SwitchThemeAsync();
-                }
+                string themeName = radioButton.Tag.ToString();
+                await ThemeSelectorService.SetThemeAsync(themeName);
             }
         }
     }

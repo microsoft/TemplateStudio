@@ -7,11 +7,14 @@
   <data name="SettingsPage_Theme.Text" xml:space="preserve">
     <value>Theme</value>
   </data>
-  <data name="SettingsPage_ThemeToggle.OnContent" xml:space="preserve">  
+  <data name="SettingsPage_Theme_Light.Content" xml:space="preserve">  
     <value>Light</value>
   </data>
-  <data name="SettingsPage_ThemeToggle.OffContent" xml:space="preserve">    
+  <data name="SettingsPage_Theme_Dark.Content" xml:space="preserve">    
     <value>Dark</value>
+  </data>
+  <data name="SettingsPage_Theme_Default.Content" xml:space="preserve">    
+    <value>Windows default</value>
   </data>
   <data name="SettingsPage_About.Text" xml:space="preserve">    
     <value>About this application</value>
