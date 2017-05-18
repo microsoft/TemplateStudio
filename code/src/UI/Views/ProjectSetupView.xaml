@@ -66,6 +66,7 @@
             <StackPanel>
                 <GroupBox Header="{Binding ProjectSetup.ProjectTypesHeader}" Margin="{StaticResource MediumLeftTopRightMargin}">
                     <ListView
+                        KeyboardNavigation.TabNavigation="Local"
                         SelectionMode="Single"
                         ItemsSource="{Binding ProjectSetup.ProjectTypes}"
                         Style="{StaticResource ListViewProjectSetupStyle}"
@@ -80,6 +81,7 @@
                 </GroupBox>
                 <GroupBox Header="{Binding ProjectSetup.FrameworkHeader}" Margin="{StaticResource MediumLeftTopRightMargin}">
                     <ListView
+                        KeyboardNavigation.TabNavigation="Local"
                         SelectionMode="Single"
                         ItemsSource="{Binding ProjectSetup.Frameworks}"
                         Style="{StaticResource ListViewProjectSetupStyle}"

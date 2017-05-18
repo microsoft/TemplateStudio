@@ -144,10 +144,7 @@
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock Text="{Binding Title}" Style="{StaticResource TextSubGroupTemplateItemsHeaderStyle}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
-                                <ListView                                        
-                                        ItemsSource="{Binding Templates}"
-                                        Style="{StaticResource ListViewProjectTemplatesStyle}"
-                                        ItemTemplate="{StaticResource ProjectTemplatesItemTemplate}" />
+                                <ListView KeyboardNavigation.TabNavigation="Local" ItemsSource="{Binding Templates}" Style="{StaticResource ListViewProjectTemplatesStyle}" ItemTemplate="{StaticResource ProjectTemplatesItemTemplate}" />
                             </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
@@ -159,11 +156,7 @@
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock Text="{Binding Title}" Style="{StaticResource TextSubGroupTemplateItemsHeaderStyle}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
-                                <ListView
-                                        Margin="{StaticResource MediumMargin}"
-                                        ItemsSource="{Binding Templates}"
-                                        Style="{StaticResource ListViewProjectTemplatesStyle}"
-                                        ItemTemplate="{StaticResource ProjectTemplatesItemTemplate}" />
+                                <ListView KeyboardNavigation.TabNavigation="Local" Margin="{StaticResource MediumMargin}" ItemsSource="{Binding Templates}" Style="{StaticResource ListViewProjectTemplatesStyle}" ItemTemplate="{StaticResource ProjectTemplatesItemTemplate}" />
                             </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
