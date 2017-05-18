@@ -45,7 +45,7 @@ Windows Template Studio approaches UWP app creation using the following four att
 
 | Background Work    | Feature Description |
 |-------------------:|:------------|
-| Background Task        | Creates an [in-process background task](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/create-and-register-an-inproc-background-task), allowing your app to run code when it is not in the foreground. The in-process moedl enhances the lifecycle of your app with inproved notifications, whether your app is in the foreground or background. |
+| Background Task        | Creates an [in-process background task](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/create-and-register-an-inproc-background-task), allowing your app to run code when it is not in the foreground. The in-process model enhances the lifecycle of your app with improved notifications, whether your app is in the foreground or background. |
 
 | User Interactions  | Feature Description |
 |-------------------:|:------------|
