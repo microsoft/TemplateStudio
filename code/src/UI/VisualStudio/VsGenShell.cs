@@ -307,6 +307,21 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
+        public override string GetVsCultureInfo()
+        {
+            return System.Globalization.CultureInfo.GetCultureInfo(Dte.LocaleID).Name;
+        }
+
+        public override string GetVsVersion()
+        {
+            return Dte.Version;
+        }
+
+        public override string GetVsEdition()
+        {
+            return Dte.Edition;
+        }
+
         private void Collapse(UIHierarchyItem item)
         {
             foreach (UIHierarchyItem subitem in item.UIHierarchyItems)
@@ -316,5 +331,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             item.UIHierarchyItems.Expanded = false;
         }
+
+
     }
 }

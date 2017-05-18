@@ -32,6 +32,12 @@ namespace Microsoft.Templates.Core.Gen
         public abstract void WriteOutput(string data);
         public abstract void CloseSolution();
 
+        public abstract string GetVsCultureInfo();
+
+        public abstract string GetVsVersion();
+
+        public abstract string GetVsEdition();
+
         public virtual void RestorePackages()
         {
         }
@@ -39,6 +45,8 @@ namespace Microsoft.Templates.Core.Gen
         public virtual void CollapseSolutionItems()
         {
         }
+
+        
 
         public virtual void RefreshProject()
         {
