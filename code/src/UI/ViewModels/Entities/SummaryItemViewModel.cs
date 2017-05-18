@@ -45,7 +45,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 OnPropertyChanged("DisplayText");
                 ItemForeground = MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
                 AuthorForeground = MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
-                dt.Start();
+                colorTimer.Start();
             }
         }
         private string _newItemName;
@@ -220,8 +220,8 @@ namespace Microsoft.Templates.UI.ViewModels
             set => SetProperty(ref _canMoveDown, value);
         }
 
-        public string DisplayText => CanChooseItemName ? ItemName : $"{ItemName} [{TemplateName}]";
-
+        public string DisplayText => CanChooseItemName ? ItemName : $"{ItemName} [{TemplateName}]";        
+        
         public ICommand OpenCommand { get; set; }
 
         public ICommand RemoveCommand { get; set; }
@@ -234,9 +234,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public ICommand MoveUpCommand { get; set; }
 
-        public ICommand MoveDownCommand { get; set; }
-
-        public Action MouseLeaveAction => TryClose;
+        public ICommand MoveDownCommand { get; set; }        
 
         public Action<SummaryItemViewModel> ValidateTemplateName;        
 
@@ -246,19 +244,19 @@ namespace Microsoft.Templates.UI.ViewModels
         public Action CancelRenameAction => OnCancelRename;
         #endregion
 
-        private DispatcherTimer dt = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(2) };
-        public SummaryItemViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled, ICommand removeTemplateCommand, ICommand summaryItemOpenCommand, ICommand summaryItemSetHomeCommand, ICommand renameItemCommand, ICommand confirmRenameCommand, ICommand moveUpCommand, ICommand moveDownCommand, Action<SummaryItemViewModel> validateCurrentTemplateName)
+        private DispatcherTimer colorTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(2) };        
+        public SummaryItemViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled, ICommand openCommand, ICommand removeTemplateCommand, ICommand summaryItemSetHomeCommand, ICommand renameItemCommand, ICommand confirmRenameCommand, ICommand moveUpCommand, ICommand moveDownCommand, Action<SummaryItemViewModel> validateCurrentTemplateName)
         {
-            dt.Tick += OnTimerTick;    
+            colorTimer.Tick += OnColorTimerTick;
             ItemName = item.name;
             Author = item.template.Author;
             TemplateType = item.template.GetTemplateType();
             CanChooseItemName = item.template.GetItemNameEditable();
             Identity = item.template.Identity;
             TemplateName = item.template.Name;
-            IsRemoveEnabled = isRemoveEnabled;            
+            IsRemoveEnabled = isRemoveEnabled;
+            OpenCommand = openCommand;
             RemoveCommand = removeTemplateCommand;
-            OpenCommand = summaryItemOpenCommand;
             SetHomeCommand = summaryItemSetHomeCommand;
             RenameCommand = renameItemCommand;
             ConfirmRenameCommand = confirmRenameCommand;
@@ -267,19 +265,19 @@ namespace Microsoft.Templates.UI.ViewModels
             ValidateTemplateName = validateCurrentTemplateName;        
         }
 
-        private void OnTimerTick(object sender, EventArgs e)
+        private void OnColorTimerTick(object sender, EventArgs e)
         {
             ItemForeground = MainViewModel.Current.MainView.FindResource("UIBlack") as SolidColorBrush;
             AuthorForeground = MainViewModel.Current.MainView.FindResource("UIGray") as SolidColorBrush;
 
-            dt.Stop();
+            colorTimer.Stop();
         }
-
-        internal void TryClose()
+        
+        internal void TryClose(bool force = false)
         {
-            if (_isOpen)
+            if (IsOpen)
             {
-                IsOpen = false;
+                 IsOpen = false;
             }            
         }
 
@@ -300,6 +298,6 @@ namespace Microsoft.Templates.UI.ViewModels
                 OnPropertyChanged("NewItemName");
                 MainViewModel.Current.CleanStatus(true);
             }            
-        }
+        }        
     }
 }

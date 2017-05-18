@@ -55,7 +55,7 @@ namespace Microsoft.Templates.UI.ViewModels
         public List<(string name, ITemplateInfo template)> SavedTemplates { get; } = new List<(string name, ITemplateInfo template)>();
 
         public IEnumerable<(string name, ITemplateInfo template)> SavedFeatures { get => SavedTemplates.Where(st => st.template.GetTemplateType() == TemplateType.Feature); }
-        public IEnumerable<(string name, ITemplateInfo template)> SavedPages { get => SavedTemplates.Where(st => st.template.GetTemplateType() == TemplateType.Page); }
+        public IEnumerable<(string name, ITemplateInfo template)> SavedPages { get => SavedTemplates.Where(st => st.template.GetTemplateType() == TemplateType.Page); }        
 
         private RelayCommand<SummaryItemViewModel> _removeTemplateCommand;
         public RelayCommand<SummaryItemViewModel> RemoveTemplateCommand => _removeTemplateCommand ?? (_removeTemplateCommand = new RelayCommand<SummaryItemViewModel>(OnRemoveTemplate));
@@ -66,8 +66,8 @@ namespace Microsoft.Templates.UI.ViewModels
         private RelayCommand<TemplateInfoViewModel> _saveTemplateCommand;
         public RelayCommand<TemplateInfoViewModel> SaveTemplateCommand => _saveTemplateCommand ?? (_saveTemplateCommand = new RelayCommand<TemplateInfoViewModel>(OnSaveTemplateItem));
 
-        private RelayCommand<SummaryItemViewModel> _summaryItemOpenCommand;
-        public RelayCommand<SummaryItemViewModel> SummaryItemOpenCommand => _summaryItemOpenCommand ?? (_summaryItemOpenCommand = new RelayCommand<SummaryItemViewModel>(OnSummaryItemOpen));
+        private ICommand _openSummaryItemCommand;
+        public ICommand OpenSummaryItemCommand => _openSummaryItemCommand ?? (_openSummaryItemCommand = new RelayCommand<SummaryItemViewModel>(OnOpenSummaryItem));
 
         private RelayCommand<SummaryItemViewModel> _summaryItemSetHomeCommand;
         public RelayCommand<SummaryItemViewModel> SummaryItemSetHomeCommand => _summaryItemSetHomeCommand ?? (_summaryItemSetHomeCommand = new RelayCommand<SummaryItemViewModel>(OnSummaryItemSetHome));
@@ -211,22 +211,6 @@ namespace Microsoft.Templates.UI.ViewModels
             }
         }
 
-        private void OnSummaryItemOpen(SummaryItemViewModel item)
-        {
-            if (item.IsOpen)
-            {
-                item.IsOpen = false;
-            }
-            else
-            {
-                foreach (var page in SummaryPages) { page.TryClose(); }
-
-                foreach (var feature in SummaryFeatures) { feature.TryClose(); }
-
-                item.IsOpen = true;
-            }
-        }
-
         private void OnRenameSummaryItem(SummaryItemViewModel item)
         {
             CloseSummaryItemsEdition();
@@ -279,7 +263,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 int oldIndexST = SavedTemplates.IndexOf(savedTemplate);
                 int newIndexST = oldIndexST - 1;
                 SavedTemplates.RemoveAt(oldIndexST);
-                SavedTemplates.Insert(newIndexST, savedTemplate);
+                SavedTemplates.Insert(newIndexST, savedTemplate);                
             }
             UpdateCanMoveUpAndDownPages();
         }
@@ -293,6 +277,28 @@ namespace Microsoft.Templates.UI.ViewModels
                 page.CanMoveDown = index > 0 && index < SummaryPages.Count - 1;
                 index++;
             }
+        }
+
+        private void OnOpenSummaryItem(SummaryItemViewModel item)
+        {
+            if (!item.IsOpen)
+            {
+                SummaryPages.ToList().ForEach(p => TryClose(p, item));
+                SummaryFeatures.ToList().ForEach(f => TryClose(f, item));
+                item.IsOpen = true;
+            }
+            else
+            {
+                item.TryClose();
+            }
+        }
+
+        private void TryClose(SummaryItemViewModel target, SummaryItemViewModel origin)
+        {
+            if (target.IsOpen && target.ItemName != origin.ItemName)
+            {
+                target.TryClose();
+            }            
         }
 
         private void OnSummaryItemSetHome(SummaryItemViewModel item)
@@ -415,7 +421,7 @@ namespace Microsoft.Templates.UI.ViewModels
             }
             SavedTemplates.Add(item);
 
-            var newItem = new SummaryItemViewModel(item, isRemoveEnabled, RemoveTemplateCommand, SummaryItemOpenCommand, SummaryItemSetHomeCommand, RenameSummaryItemCommand, ConfirmRenameSummaryItemCommand, MoveUpSummaryItemCommand, MoveDownSummaryItemCommand, ValidateCurrentTemplateName);
+            var newItem = new SummaryItemViewModel(item, isRemoveEnabled, OpenSummaryItemCommand, RemoveTemplateCommand, SummaryItemSetHomeCommand, RenameSummaryItemCommand, ConfirmRenameSummaryItemCommand, MoveUpSummaryItemCommand, MoveDownSummaryItemCommand, ValidateCurrentTemplateName);
 
             if (item.template.GetTemplateType() == TemplateType.Page)
             {                

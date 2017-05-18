@@ -19,6 +19,7 @@ using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Controls;
 using System.Windows.Controls;
 using System;
+using System.Linq;
 
 namespace Microsoft.Templates.UI.Views
 {
@@ -69,6 +70,15 @@ namespace Microsoft.Templates.UI.Views
                 {
                     summaryItem.OnCancelRename();
                 }
+            }
+        }
+
+        private void OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var element = e.Source as FrameworkElement;
+            if (element == null || element.Tag == null || element.Tag.ToString() != "AllowClick")
+            {
+                ViewModel?.ProjectTemplates?.SummaryPages?.ToList()?.ForEach(p => p.TryClose());
             }
         }
     }

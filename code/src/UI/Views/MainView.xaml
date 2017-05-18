@@ -9,6 +9,7 @@
     xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
     xmlns:templateSelectors="clr-namespace:Microsoft.Templates.UI.TemplateSelectors"
     PreviewLostKeyboardFocus="OnPreviewLostKeyboardFocus"
+    PreviewMouseDown="OnPreviewMouseDown"
     xmlns:local="clr-namespace:Microsoft.Templates.UI"
     Title="{x:Static res:StringRes.Title}"
     Width="1294"
@@ -38,7 +39,7 @@
             </DataTemplate>
 
             <DataTemplate x:Key="ProjectTemplatesSummaryItemTemplate">
-                <controls:TogglePane TogglePaneContent="{Binding}" IsOpen="{Binding IsOpen}" MouseLeaveAction="{Binding MouseLeaveAction}" Style="{StaticResource TogglePaneStyle}">
+                <controls:TogglePane TogglePaneContent="{Binding}" IsOpen="{Binding IsOpen}" Style="{StaticResource TogglePaneStyle}">
                     <controls:TogglePane.ButtonTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SettingsButtonStyle}" Command="{Binding OpenCommand}" CommandParameter="{Binding}" Focusable="True">
@@ -270,7 +271,8 @@
                                     Focusable="False"
                                     Margin="{StaticResource ExtraBigLeftMargin}"
                                     ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}"
-                                    ItemsSource="{Binding ProjectTemplates.SummaryPages}" />
+                                    ItemsSource="{Binding ProjectTemplates.SummaryPages}"
+                                    Tag="AllowClick" />
                                 <TextBlock
                                     Margin="27,0,0,0"
                                     Text="{x:Static res:StringRes.SummaryNoPages}"
@@ -287,7 +289,8 @@
                                     Focusable="False"
                                     Margin="{StaticResource ExtraBigLeftMargin}"
                                     ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}"
-                                    ItemsSource="{Binding ProjectTemplates.SummaryFeatures}" />
+                                    ItemsSource="{Binding ProjectTemplates.SummaryFeatures}"
+                                    Tag="AllowClick" />
                                 <TextBlock
                                     Margin="27,0,0,0"
                                     Text="{x:Static res:StringRes.SummaryNoFeatures}"

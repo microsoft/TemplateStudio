@@ -7,12 +7,12 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Storyboard x:Key="FadeIn">
-        <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="shadowGrid" Storyboard.TargetProperty="Opacity"/>
+        <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="mouseOvershadowGrid" Storyboard.TargetProperty="Opacity"/>
         <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="buttonContentPresenter" Storyboard.TargetProperty="Opacity"/>
     </Storyboard>
-    
+
     <Storyboard x:Key="FadeOut">
-        <DoubleAnimation Duration="0:0:0" To="0" Storyboard.TargetName="shadowGrid" Storyboard.TargetProperty="Opacity"/>
+        <DoubleAnimation Duration="0:0:0" To="0" Storyboard.TargetName="mouseOvershadowGrid" Storyboard.TargetProperty="Opacity"/>
         <DoubleAnimation Duration="0:0:0" To="0" Storyboard.TargetName="buttonContentPresenter" Storyboard.TargetProperty="Opacity"/>
     </Storyboard>
 
@@ -36,7 +36,7 @@
                                 <BeginStoryboard Storyboard="{StaticResource FadeOut}"/>
                             </EventTrigger>
                         </Grid.Triggers>
-                        <Grid x:Name="shadowGrid" Background="{StaticResource UILightGray}" Opacity="0" Focusable="False"/>
+                        <Grid x:Name="mouseOvershadowGrid" Background="{StaticResource UILightGray}" Opacity="0" Focusable="False"/>
                         <ContentPresenter
                             x:Name="mainViewContentTemplate"
                             Margin="0,0,30,0"
@@ -44,32 +44,25 @@
                             Content="{TemplateBinding TogglePaneContent}"
                             ContentTemplate="{TemplateBinding MainViewTemplate}"
                             ContentTemplateSelector="{TemplateBinding MainViewTemplateSelector}" />
-                        <Grid>
+
+                        <Grid Grid.Column="1" x:Name="togglePaneShadowGrid" Background="{StaticResource UIGray}" Opacity="0" Focusable="False" HorizontalAlignment="Right"/>
+                        <Grid Grid.Column="1" x:Name="menuGrid" HorizontalAlignment="Right">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="30"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0" x:Name="fakeGrid" Background="Transparent" Focusable="False"/>
-                            <Grid Grid.Column="1" x:Name="secondaryShadowGrid" Background="{StaticResource UIGray}" Opacity="0" Focusable="False"/>
-                            <Grid Grid.Column="1">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="30"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <ContentPresenter
+                            <ContentPresenter
                                     x:Name="buttonContentPresenter"
                                     Focusable="False"
                                     Content="{TemplateBinding TogglePaneContent}"
-                                    ContentTemplate="{TemplateBinding ButtonTemplate}"
-                                    Opacity="0">
-                                </ContentPresenter>
-                                <ContentPresenter
+                                    ContentTemplate="{TemplateBinding ButtonTemplate}" Opacity="0">
+                            </ContentPresenter>
+                            <ContentPresenter
                                     Grid.Column="1"
                                     Focusable="False"
                                     Content="{TemplateBinding TogglePaneContent}"
                                     ContentTemplate="{TemplateBinding SecondaryViewTemplate}"
                                     ContentTemplateSelector="{TemplateBinding SecondaryViewTemplateSelector}" />
-                            </Grid>
                         </Grid>
                     </Grid>
                 </ControlTemplate>

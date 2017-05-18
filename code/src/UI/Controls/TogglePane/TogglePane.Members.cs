@@ -76,36 +76,16 @@ namespace Microsoft.Templates.UI.Controls
             set { SetValue(IsOpenProperty, value); }
         }
 
-        public static readonly DependencyProperty IsOpenProperty = DependencyProperty.Register("IsOpen", typeof(bool), typeof(TogglePane), new PropertyMetadata(false, OnIsOpenPropertyChanged));
+        public static readonly DependencyProperty IsOpenProperty = DependencyProperty.Register("IsOpen", typeof(bool), typeof(TogglePane), new PropertyMetadata(true, OnIsOpenPropertyChanged));
 
         private static void OnIsOpenPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as TogglePane;
             if (control != null)
             {
-                control.UpdateOpenStatus();
+                control.UpdateOpenStatus((bool)e.NewValue, (bool)e.OldValue);
             }
         }
-        #endregion
-
-        #region MouseEnterAction
-        public Action MouseEnterAction
-        {
-            get { return (Action)GetValue(MouseEnterActionProperty); }
-            set { SetValue(MouseEnterActionProperty, value); }
-        }
-
-        public static readonly DependencyProperty MouseEnterActionProperty = DependencyProperty.Register("MouseEnterAction", typeof(Action), typeof(TogglePane), new PropertyMetadata(null));
-        #endregion
-
-        #region MouseLeaveAction
-        public Action MouseLeaveAction
-        {
-            get { return (Action)GetValue(MouseLeaveActionProperty); }
-            set { SetValue(MouseLeaveActionProperty, value); }
-        }
-
-        public static readonly DependencyProperty MouseLeaveActionProperty = DependencyProperty.Register("MouseLeaveAction", typeof(Action), typeof(TogglePane), new PropertyMetadata(null));
-        #endregion
+        #endregion        
     }
 }
