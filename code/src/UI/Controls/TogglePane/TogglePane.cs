@@ -37,15 +37,15 @@ namespace Microsoft.Templates.UI.Controls
                 }
                 else if (IsOpen)
                 {
-                    _menuGrid.AnimateWidth(215,2000);
-                    _togglePaneShadowGrid.AnimateWidth(215,2000);
-                    _togglePaneShadowGrid.FadeIn(2000);
+                    _menuGrid.AnimateWidth(215);
+                    _togglePaneShadowGrid.AnimateWidth(215);
+                    _togglePaneShadowGrid.FadeIn();
                 }
                 else
                 {
-                    _menuGrid.AnimateWidth(30, 2000);
-                    _togglePaneShadowGrid.AnimateWidth(30, 2000);
-                    _togglePaneShadowGrid.FadeOut(2000);
+                    _menuGrid.AnimateWidth(30);
+                    _togglePaneShadowGrid.AnimateWidth(30);
+                    _togglePaneShadowGrid.FadeOut();
                 }
             }
         }
