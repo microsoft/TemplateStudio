@@ -160,10 +160,6 @@ namespace Microsoft.Templates.UI.ViewModels
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);
             }
-            finally
-            {
-                //Current.LoadingContentVisibility = Visibility.Collapsed;                
-            }
         }
 
         public void AlertProjectSetupChanged()
