@@ -344,6 +344,7 @@ There are different merge directives to drive the code merging. Currently:
 
 * MacroBeforeMode `//^^`: Insert before the next match, instead of after the last match
 * MacroStartGroup `//{[{` and MarcoEndGroup `}]}`: The content between `{[{` and `}]}` is considered as a block and inserted together.
+* MacroStartDelete `//{--{` and MacroEndDelete = `//}--}`: The content between the directives will be removed if it exists within the merge target. If the content does not exist (or has already been deleted as part of merging another file) this will be silently ignored. Note that the merge must be exact, including white space and line breaks. *This directive can be used with C# files only.*
 
 ## Table of Contents
 
