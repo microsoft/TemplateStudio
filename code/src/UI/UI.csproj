@@ -183,6 +183,7 @@
     </Compile>
     <Compile Include="Controls\StatusType.cs" />
     <Compile Include="Controls\SymbolFonts.cs" />
+    <Compile Include="Controls\TextBoxEx.cs" />
     <Compile Include="Controls\TogglePane\TogglePane.Members.cs" />
     <Compile Include="Converters\ColumnCountConverter.cs" />
     <Compile Include="Converters\EmptyCollectionVisibilityConverter.cs" />
@@ -197,7 +198,6 @@
     <Compile Include="TemplateSelectors\SummaryItemTemplateSelector.cs" />
     <Compile Include="ViewModels\Entities\CommonInfoViewModel.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
-    <Compile Include="Extensions\FocusExtension.cs" />
     <Compile Include="ViewModels\Entities\DependencyInfoViewModel.cs" />
     <Compile Include="Views\ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>

@@ -283,14 +283,6 @@ namespace Microsoft.Templates.UI.ViewModels
             }            
         }
 
-        public void CloseEdition()
-        {
-            if (IsEditionEnabled)
-            {
-                IsEditionEnabled = false;
-            }
-        }
-
         public void TryReleaseHome()
         {
             if (_isHome)
@@ -301,9 +293,13 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public void OnCancelRename()
         {
-            IsEditionEnabled = false;
-            _newItemName = string.Empty;
-            OnPropertyChanged("NewItemName");
+            if (IsEditionEnabled)
+            {
+                IsEditionEnabled = false;
+                _newItemName = string.Empty;
+                OnPropertyChanged("NewItemName");
+                MainViewModel.Current.CleanStatus(true);
+            }            
         }
     }
 }

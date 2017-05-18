@@ -32,8 +32,9 @@ namespace Microsoft.Templates.UI.ViewModels
     public class MainViewModel : Observable
     {
         private bool _canGoBack;
-        private bool _canGoForward;        
-        private bool _templatesReady;        
+        private bool _canGoForward;
+        private bool _templatesReady;
+        private bool _hasValidationErrors;
         private bool _templatesAvailable;
 
         public static MainViewModel Current;
@@ -41,7 +42,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private StatusViewModel _status = StatusControl.EmptyStatus;
         public StatusViewModel Status
-        {            
+        {
             get => _status;
             set => SetProperty(ref _status, value);
         }
@@ -122,25 +123,27 @@ namespace Microsoft.Templates.UI.ViewModels
         private RelayCommand _createCommand;
 
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
-        public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));                
+        public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && _canGoForward));
         public RelayCommand CreateCommand => _createCommand ?? (_createCommand = new RelayCommand(OnCreate, CanCreate));
 
         private bool CanCreate()
         {
-            if (_templatesReady)
+            if (!_templatesReady)
             {
-                if (ProjectTemplates.SummaryPages.Any(s => s.IsHome))
-                {
-                    Status = StatusControl.EmptyStatus;
-                    return true;
-                }
-                else
-                {
-                    Status = new StatusViewModel(StatusType.Error, StringRes.ErrorNoHomePage);                    
-                }
+                return false;
             }
-            return false;
+            if (_hasValidationErrors)
+            {
+                return false;
+            }
+            if (String.IsNullOrEmpty(ProjectTemplates.HomeName))
+            {
+                Status = new StatusViewModel(StatusType.Error, StringRes.ErrorNoHomePage);
+                return false;
+            }
+            CleanStatus();
+            return true;
         }
 
         public ProjectSetupViewModel ProjectSetup { get; private set; } = new ProjectSetupViewModel();
@@ -156,7 +159,7 @@ namespace Microsoft.Templates.UI.ViewModels
         }
 
         public async Task InitializeAsync()
-        {            
+        {
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += Sync_SyncStatusChanged;
 
             SummaryLicenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryLicenses)); };
@@ -177,7 +180,7 @@ namespace Microsoft.Templates.UI.ViewModels
             }
             finally
             {
-                Current.LoadingContentVisibility = Visibility.Collapsed;                
+                Current.LoadingContentVisibility = Visibility.Collapsed;
             }
         }
 
@@ -186,11 +189,11 @@ namespace Microsoft.Templates.UI.ViewModels
             if (CheckProjectSetupChanged())
             {
                 Status = new StatusViewModel(StatusType.Warning, string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName));
-            }    
+            }
             else
             {
-                Status = StatusControl.EmptyStatus;
-            }   
+                CleanStatus();
+            }
         }
 
         public void UnsuscribeEventHandlers()
@@ -231,7 +234,7 @@ namespace Microsoft.Templates.UI.ViewModels
             if (status == SyncStatus.Updated)
             {
                 TemplatesVersion = GenContext.ToolBox.Repo.TemplatesVersion;
-                Status = StatusControl.EmptyStatus;
+                CleanStatus();
 
                 _templatesAvailable = true;
                 NextCommand.OnCanExecuteChanged();
@@ -289,17 +292,17 @@ namespace Microsoft.Templates.UI.ViewModels
             MainView.Result = null;
 
             MainView.Close();
-        }        
+        }
 
         private void OnNext()
         {
-           if (CheckProjectSetupChanged())
+            if (CheckProjectSetupChanged())
             {
                 ProjectTemplates.ResetSelection();
 
-                Status = StatusControl.EmptyStatus;
+                CleanStatus();
             }
-            
+
             NavigationService.Navigate(new ProjectTemplatesView());
 
             _canGoBack = true;
@@ -327,7 +330,7 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             if (ProjectTemplates.SavedTemplates != null && ProjectTemplates.SavedTemplates.Count != 0)
             {
-                if (ProjectTemplates.ContextFramework.Name != ProjectSetup.SelectedFramework.Name || 
+                if (ProjectTemplates.ContextFramework.Name != ProjectSetup.SelectedFramework.Name ||
                     ProjectTemplates.ContextProjectType.Name != ProjectSetup.SelectedProjectType.Name)
                 {
                     return true;
@@ -385,7 +388,24 @@ namespace Microsoft.Templates.UI.ViewModels
                 {
                     SummaryLicenses.Add(new SummaryLicenseViewModel(license));
                 }
-            }            
+            }
+        }
+
+        public void SetValidationErrors(string errorMessage, StatusType statusType = StatusType.Error)
+        {
+            Status = new StatusViewModel(statusType, errorMessage);
+            _hasValidationErrors = true;
+            CreateCommand.OnCanExecuteChanged();
+        }
+
+        public void CleanStatus(bool cleanValidationError = false)
+        {
+            Status = StatusControl.EmptyStatus;
+            if (cleanValidationError)
+            {
+                _hasValidationErrors = false;
+                CreateCommand.OnCanExecuteChanged();
+            }
         }
     }
 }

@@ -106,9 +106,10 @@ namespace Microsoft.Templates.UI.ViewModels
                 {
                     item.ErrorMessage = "UndefinedError";
                 }
-
+                MainViewModel.Current.SetValidationErrors(item.ErrorMessage);
                 throw new Exception(item.ErrorMessage);
             }
+            MainViewModel.Current.CleanStatus(true);
         }
 
         private void ValidateNewTemplateName(TemplateInfoViewModel template)
@@ -127,9 +128,10 @@ namespace Microsoft.Templates.UI.ViewModels
                 {
                     template.ErrorMessage = "UndefinedError";
                 }
-
+                MainViewModel.Current.SetValidationErrors(template.ErrorMessage);
                 throw new Exception(template.ErrorMessage);
             }
+            MainViewModel.Current.CleanStatus(true);
         }
 
         public async Task InitializeAsync()
@@ -177,7 +179,7 @@ namespace Microsoft.Templates.UI.ViewModels
             SavedTemplates.Clear();
             PagesGroups.Clear();
             FeatureGroups.Clear();
-        }
+        }        
 
         private void OnAddTemplateItem(TemplateInfoViewModel template)
         {
@@ -349,16 +351,16 @@ namespace Microsoft.Templates.UI.ViewModels
             return SavedTemplates.Select(t => t.template.Identity).Any(name => name == identity);
         }
 
-        private void CloseTemplatesEdition()
+        public void CloseTemplatesEdition()
         {
             PagesGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t => t.CloseEdition()));
             FeatureGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t => t.CloseEdition()));
-        }
+        }        
 
-        private void CloseSummaryItemsEdition()
+        public void CloseSummaryItemsEdition()
         {
-            SummaryPages.ToList().ForEach(p => p.CloseEdition());
-            SummaryFeatures.ToList().ForEach(f => f.CloseEdition());
+            SummaryPages.ToList().ForEach(p => p.OnCancelRename());
+            SummaryFeatures.ToList().ForEach(f => f.OnCancelRename());
         }
 
         private void UpdateTemplatesAvailability()

@@ -14,6 +14,11 @@ using System.Windows;
 
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels;
+using System.Windows.Input;
+using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Controls;
+using System.Windows.Controls;
+using System;
 
 namespace Microsoft.Templates.UI.Views
 {
@@ -43,7 +48,28 @@ namespace Microsoft.Templates.UI.Views
                 ViewModel.UnsuscribeEventHandlers();
             };
 
-            InitializeComponent();            
+            InitializeComponent();
+        }
+
+        private void OnPreviewLostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            var control = e.OldFocus as TextBoxEx;
+            var button = e.NewFocus as Button;
+            string name = (button != null && button.Tag != null) ? button.Tag.ToString() : String.Empty;
+
+            if (control != null && String.IsNullOrEmpty(name))
+            {
+                var templateInfo = control.Tag as TemplateInfoViewModel;
+                if (templateInfo != null)
+                {
+                    templateInfo.CloseEdition();
+                }
+                var summaryItem = control.Tag as SummaryItemViewModel;
+                if (summaryItem != null)
+                {
+                    summaryItem.OnCancelRename();
+                }
+            }
         }
     }
 }

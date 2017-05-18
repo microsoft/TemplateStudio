@@ -202,6 +202,7 @@ namespace Microsoft.Templates.UI.ViewModels
             if (IsEditionEnabled)
             {
                 IsEditionEnabled = false;
+                MainViewModel.Current.CleanStatus(true);
             }
         }
 

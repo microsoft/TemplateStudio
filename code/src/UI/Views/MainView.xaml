@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
     xmlns:templateSelectors="clr-namespace:Microsoft.Templates.UI.TemplateSelectors"
+    PreviewLostKeyboardFocus="OnPreviewLostKeyboardFocus"
     xmlns:local="clr-namespace:Microsoft.Templates.UI"
     Title="{x:Static res:StringRes.Title}"
     Width="1294"
@@ -52,27 +53,13 @@
                             <templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
                                 <DataTemplate>
                                     <Grid Height="30" Focusable="False">
-
                                         <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
-
-                                        <TextBox Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
-                                                 local:FocusExtension.IsFocused="{Binding IsEditionEnabled, Mode=OneWay}" Visibility="{Binding EditingContentVisibility}"
-                                                 local:FocusExtension.LostFocusAction="{Binding CancelRenameAction}">
-                                            <TextBox.Style>
-                                                <Style TargetType="TextBox">
-                                                    <Style.Triggers>
-                                                        <Trigger Property="Validation.HasError" Value="True">
-                                                            <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </TextBox.Style>
-
-                                            <TextBox.InputBindings>
+                                        <controls:TextBoxEx Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}">
+                                            <controls:TextBoxEx.InputBindings>
                                                 <KeyBinding Command="{Binding ConfirmRenameCommand}" CommandParameter="{Binding}" Key="Enter" />
                                                 <KeyBinding Command="{Binding CancelRenameCommand}" Key="Esc"  />
-                                            </TextBox.InputBindings>
-                                        </TextBox>
+                                            </controls:TextBoxEx.InputBindings>
+                                        </controls:TextBoxEx>
                                     </Grid>
                                 </DataTemplate>
                             </templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
@@ -91,24 +78,12 @@
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
-                                        <TextBox Grid.Row="0" Grid.RowSpan="2" Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
-                                                 local:FocusExtension.IsFocused="{Binding IsEditionEnabled, Mode=OneWay}" Visibility="{Binding EditingContentVisibility}"
-                                                 local:FocusExtension.LostFocusAction="{Binding CancelRenameAction}">
-                                            <TextBox.Style>
-                                                <Style TargetType="TextBox">
-                                                    <Style.Triggers>
-                                                        <Trigger Property="Validation.HasError" Value="True">
-                                                            <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </TextBox.Style>
-
-                                            <TextBox.InputBindings>
+                                        <controls:TextBoxEx Grid.Row="0" Grid.RowSpan="2" Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}">
+                                            <controls:TextBoxEx.InputBindings>
                                                 <KeyBinding Command="{Binding ConfirmRenameCommand}" CommandParameter="{Binding}" Key="Enter" />
                                                 <KeyBinding Command="{Binding CancelRenameCommand}" Key="Esc"  />
-                                            </TextBox.InputBindings>
-                                        </TextBox>
+                                            </controls:TextBoxEx.InputBindings>
+                                        </controls:TextBoxEx>
                                     </Grid>
                                 </DataTemplate>
                             </templateSelectors:SummaryItemTemplateSelector.CommunityTemplate>

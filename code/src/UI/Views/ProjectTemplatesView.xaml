@@ -74,8 +74,6 @@
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-
-                                <TextBlock Style="{StaticResource TextEditTemplateErrorStyle}" Margin="{StaticResource SmallBottomMargin}" Text="{Binding ErrorMessage}" />
                                 <TextBlock Grid.Row="1" Style="{StaticResource TextEditTemplateDescriptionStyle}" Text="{x:Static res:StringRes.EditTemplateDescription}" />
                             </Grid>
 
@@ -86,10 +84,12 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Grid Visibility="{Binding EditingContentVisibility}">
-                                    <!--x:Name="templateName" used tu set focus on control-->
-                                    <TextBox Text="{Binding NewTemplateName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
-                                     local:FocusExtension.IsFocused="{Binding IsEditionEnabled, Mode=OneWay}">
-                                        <TextBox.Style>
+                                    <controls:TextBoxEx
+                                        Text="{Binding NewTemplateName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"
+                                        MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"                                        
+                                        ForceSetFocus="{Binding IsEditionEnabled}"
+                                        Tag="{Binding}">
+                                        <controls:TextBoxEx.Style>
                                             <Style TargetType="TextBox">
                                                 <Style.Triggers>
                                                     <Trigger Property="Validation.HasError" Value="True">
@@ -97,13 +97,13 @@
                                                     </Trigger>
                                                 </Style.Triggers>
                                             </Style>
-                                        </TextBox.Style>
+                                        </controls:TextBoxEx.Style>
 
-                                        <TextBox.InputBindings>
+                                        <controls:TextBoxEx.InputBindings>
                                             <KeyBinding Command="{Binding SaveItemCommand}" CommandParameter="{Binding}" Key="Enter"  />
                                             <KeyBinding Command="{Binding CloseEditionCommand}" Key="Esc"  />
-                                        </TextBox.InputBindings>
-                                    </TextBox>
+                                        </controls:TextBoxEx.InputBindings>
+                                    </controls:TextBoxEx>
                                 </Grid>
 
                                 <Grid Grid.Column="1" Visibility="{Binding AddingVisibility}">
@@ -115,7 +115,7 @@
                                             </Grid>
                                         </Button.Content>
                                     </Button>
-                                    <Button Style="{StaticResource SaveTemplateInfoButtonStyle}" Command="{Binding SaveItemCommand}" CommandParameter="{Binding}" IsEnabled="{Binding IsValidName}" Visibility="{Binding EditingContentVisibility}">
+                                    <Button Style="{StaticResource SaveTemplateInfoButtonStyle}" Command="{Binding SaveItemCommand}" CommandParameter="{Binding}" IsEnabled="{Binding IsValidName}" Visibility="{Binding EditingContentVisibility}" Tag="Save">
                                         <Button.Content>
                                             <Grid>
                                                 <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource RoundButtonTextStyle}" />
