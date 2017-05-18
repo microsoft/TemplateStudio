@@ -5,9 +5,13 @@
             var result = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
 
             //{[{
-            if (!Services.ThemeSelectorService.IsLightThemeEnabled)
+            if (Services.ThemeSelectorService.IsLightThemeEnabled)
             {
-                result = Application.Current.Resources["SystemControlForegroundAltHighBrush"] as SolidColorBrush;
+                result = new SolidColorBrush(Windows.UI.Colors.Black);
+            }
+            else if (Services.ThemeSelectorService.IsDarkThemeEnabled)
+            {
+                result = new SolidColorBrush(Windows.UI.Colors.White);
             }
             //}]}
             return result;

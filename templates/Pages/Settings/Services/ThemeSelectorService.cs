@@ -13,6 +13,9 @@ namespace Param_RootNamespace.Services
         public static event EventHandler<ElementTheme> OnThemeChanged = delegate { };
 
         public static bool IsLightThemeEnabled => Theme == ElementTheme.Light;
+        public static bool IsDarkThemeEnabled => Theme == ElementTheme.Dark;
+        public static bool IsDefaultThemeEnabled => Theme == ElementTheme.Default;
+
         public static ElementTheme Theme { get; set; }
 
         public static async Task InitializeAsync()
@@ -20,16 +23,11 @@ namespace Param_RootNamespace.Services
             Theme = await LoadThemeFromSettingsAsync();
         }
 
-        public static async Task SwitchThemeAsync()
+        public static async Task SetThemeAsync(string themeName)
         {
-            if (Theme == ElementTheme.Dark)
-            {
-                await SetThemeAsync(ElementTheme.Light);
-            }
-            else
-            {
-                await SetThemeAsync(ElementTheme.Dark);
-            }
+            ElementTheme theme;
+            Enum.TryParse<ElementTheme>(themeName, out theme);
+            await SetThemeAsync(theme);
         }
 
         public static async Task SetThemeAsync(ElementTheme theme)
@@ -51,13 +49,9 @@ namespace Param_RootNamespace.Services
 
         private static async Task<ElementTheme> LoadThemeFromSettingsAsync()
         {
-            ElementTheme cacheTheme = ElementTheme.Light;
+            ElementTheme cacheTheme = ElementTheme.Default;
             string themeName = await ApplicationData.Current.LocalSettings.ReadAsync<string>(SettingsKey);
-            if (String.IsNullOrEmpty(themeName))
-            {
-                cacheTheme = Application.Current.RequestedTheme == ApplicationTheme.Dark ? ElementTheme.Dark : ElementTheme.Light;
-            }
-            else
+            if (!String.IsNullOrEmpty(themeName))
             {
                 Enum.TryParse<ElementTheme>(themeName, out cacheTheme);
             }
