@@ -61,6 +61,7 @@ namespace Microsoft.Templates.Test
             {
                 Framework = framework,
                 ProjectType = projectType,
+                HomeName = "Main"
             };
 
             AddLayoutItems(userSelection, projectTemplate);
@@ -132,6 +133,7 @@ namespace Microsoft.Templates.Test
             {
                 Framework = framework,
                 ProjectType = projectType,
+                HomeName = "Main"
             };
 
             AddLayoutItems(userSelection, targetProjectTemplate);
@@ -164,6 +166,7 @@ namespace Microsoft.Templates.Test
             {
                 Framework = framework,
                 ProjectType = projectType,
+                HomeName = "Main"
             };
 
             AddLayoutItems(userSelection, targetProjectTemplate);

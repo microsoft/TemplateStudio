@@ -55,22 +55,22 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Abstractions.1.0.0-beta2-20170405-182\lib\net45\Microsoft.TemplateEngine.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Abstractions.1.0.0-beta2-20170515-223\lib\net45\Microsoft.TemplateEngine.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.1.0.0-beta2-20170405-182\lib\net45\Microsoft.TemplateEngine.Core.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.1.0.0-beta2-20170515-223\lib\net45\Microsoft.TemplateEngine.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Core.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.Contracts.1.0.0-beta2-20170405-182\lib\net45\Microsoft.TemplateEngine.Core.Contracts.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.Contracts.1.0.0-beta2-20170515-223\lib\net45\Microsoft.TemplateEngine.Core.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Edge, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Edge.1.0.0-beta2-20170405-182\lib\net45\Microsoft.TemplateEngine.Edge.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Edge.1.0.0-beta2-20170515-223\lib\net45\Microsoft.TemplateEngine.Edge.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.1.0.0-beta2-20170405-182\lib\net45\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.1.0.0-beta2-20170515-223\lib\net45\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Utils, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Utils.1.0.0-beta2-20170405-182\lib\net45\Microsoft.TemplateEngine.Utils.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Utils.1.0.0-beta2-20170515-223\lib\net45\Microsoft.TemplateEngine.Utils.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Imaging, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -183,6 +183,8 @@
     </Compile>
     <Compile Include="Controls\StatusType.cs" />
     <Compile Include="Controls\SymbolFonts.cs" />
+    <Compile Include="Controls\TextBoxEx.cs" />
+    <Compile Include="Controls\TogglePane\TogglePane.Members.cs" />
     <Compile Include="Converters\ColumnCountConverter.cs" />
     <Compile Include="Converters\EmptyCollectionVisibilityConverter.cs" />
     <Compile Include="Converters\FixedWidthConverter.cs" />
@@ -190,10 +192,13 @@
     <Compile Include="Converters\MicrosoftTemplatesAuthorConverter.cs" />
     <Compile Include="Converters\StringVisibilityConverter.cs" />
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
-    <Compile Include="ViewModels\CommonInfoViewModel.cs" />
+    <Compile Include="Controls\TogglePane\TogglePane.cs" />
+    <Compile Include="Extensions\AnimationExtensions.cs" />
+    <Compile Include="TemplateSelectors\SummaryItemOptionsTemplateSelector.cs" />
+    <Compile Include="TemplateSelectors\SummaryItemTemplateSelector.cs" />
+    <Compile Include="ViewModels\Entities\CommonInfoViewModel.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
-    <Compile Include="Extensions\FocusExtension.cs" />
-    <Compile Include="ViewModels\DependencyInfoViewModel.cs" />
+    <Compile Include="ViewModels\Entities\DependencyInfoViewModel.cs" />
     <Compile Include="Views\ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>
     </Compile>
@@ -210,17 +215,17 @@
     </Compile>
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="ViewModels\ErrorViewModel.cs" />
-    <Compile Include="ViewModels\GroupTemplateInfoViewModel.cs" />
+    <Compile Include="ViewModels\Entities\GroupTemplateInfoViewModel.cs" />
     <Compile Include="ViewModels\InformationViewModel.cs" />
-    <Compile Include="ViewModels\LicenseViewModel.cs" />
+    <Compile Include="ViewModels\Entities\LicenseViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\MetadataInfoViewModel.cs" />
+    <Compile Include="ViewModels\Entities\MetadataInfoViewModel.cs" />
     <Compile Include="ViewModels\ProjectSetupViewModel.cs" />
     <Compile Include="ViewModels\ProjectTemplatesViewModel.cs" />
-    <Compile Include="ViewModels\StatusViewModel.cs" />
-    <Compile Include="ViewModels\SummaryItemViewModel.cs" />
-    <Compile Include="ViewModels\SummaryLicenseViewModel.cs" />
-    <Compile Include="ViewModels\TemplateInfoViewModel.cs" />
+    <Compile Include="ViewModels\Entities\StatusViewModel.cs" />
+    <Compile Include="ViewModels\Entities\SummaryItemViewModel.cs" />
+    <Compile Include="ViewModels\Entities\SummaryLicenseViewModel.cs" />
+    <Compile Include="ViewModels\Entities\TemplateInfoViewModel.cs" />
     <Compile Include="Views\InformationWindow.xaml.cs">
       <DependentUpon>InformationWindow.xaml</DependentUpon>
     </Compile>
@@ -265,7 +270,13 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\IconDelete.png" />
+    <Resource Include="Assets\IconDown.png" />
+    <Resource Include="Assets\IconHome.png" />
+    <Resource Include="Assets\IconRename.png" />
+    <Resource Include="Assets\IconUp.png" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\LogoDisplay.xaml">
       <SubType>Designer</SubType>
@@ -275,11 +286,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\TogglePane\TogglePane.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\StyleHyperlink.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\StyleImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\StyleShape.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\StyleTogglePane.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -10,11 +10,13 @@
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleExpander.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleGroupBox.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleHyperlink.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleImage.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleListView.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StylePanel.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleShape.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleTextBlock.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleTextBox.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleTogglePane.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
 </ResourceDictionary>

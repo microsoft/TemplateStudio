@@ -106,7 +106,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ok.
+        ///   Looks up a localized string similar to OK.
         /// </summary>
         public static string ButtonOk {
             get {
@@ -129,6 +129,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ErrorDialogTitle {
             get {
                 return ResourceManager.GetString("ErrorDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It&apos;s not possible to create a project without Home Page.
+        /// </summary>
+        public static string ErrorNoHomePage {
+            get {
+                return ResourceManager.GetString("ErrorNoHomePage", resourceCulture);
             }
         }
         
@@ -552,6 +561,51 @@ namespace Microsoft.Templates.UI.Resources {
         public static string SummaryNoPages {
             get {
                 return ResourceManager.GetString("SummaryNoPages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string SummaryOptionDelete {
+            get {
+                return ResourceManager.GetString("SummaryOptionDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move down.
+        /// </summary>
+        public static string SummaryOptionMoveDown {
+            get {
+                return ResourceManager.GetString("SummaryOptionMoveDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move up.
+        /// </summary>
+        public static string SummaryOptionMoveUp {
+            get {
+                return ResourceManager.GetString("SummaryOptionMoveUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename.
+        /// </summary>
+        public static string SummaryOptionRename {
+            get {
+                return ResourceManager.GetString("SummaryOptionRename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set as home.
+        /// </summary>
+        public static string SummaryOptionSetAsHome {
+            get {
+                return ResourceManager.GetString("SummaryOptionSetAsHome", resourceCulture);
             }
         }
         

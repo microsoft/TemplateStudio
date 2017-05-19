@@ -133,7 +133,7 @@
     <value>Next</value>
   </data>
   <data name="ButtonOk" xml:space="preserve">
-    <value>Ok</value>
+    <value>OK</value>
   </data>
   <data name="ErrorSync" xml:space="preserve">
     <value>Error updating templates. See output for more details.</value>
@@ -345,5 +345,23 @@
   </data>
   <data name="SummaryNoPages" xml:space="preserve">
     <value>None Selected</value>
+  </data>
+  <data name="ErrorNoHomePage" xml:space="preserve">
+    <value>It's not possible to create a project without Home Page</value>
+  </data>
+  <data name="SummaryOptionDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="SummaryOptionMoveDown" xml:space="preserve">
+    <value>Move down</value>
+  </data>
+  <data name="SummaryOptionMoveUp" xml:space="preserve">
+    <value>Move up</value>
+  </data>
+  <data name="SummaryOptionRename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="SummaryOptionSetAsHome" xml:space="preserve">
+    <value>Set as home</value>
   </data>
 </root>
