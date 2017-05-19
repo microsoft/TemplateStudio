@@ -11,7 +11,7 @@ namespace Param_RootNamespace.Services
             var content = new ToastContent()
             {
                 // TODO UWPTemplates: Check this documentation to know more about the Launch property
-                // Documentation: https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastcontent                
+                // Documentation: https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastcontent
                 Launch = "ToastContentActivationParams",
 
                 Visual = new ToastVisual()
@@ -22,12 +22,12 @@ namespace Param_RootNamespace.Services
                         {
                             new AdaptiveText()
                             {
-                                Text = "Action - text"
+                                Text = "Sample Toast Notification"
                             },
 
                             new AdaptiveText()
                             {
-                                Text = @"Make sure the left button on the toast has the text ""OK"" on it, and the right button has the text ""Cancel"" on it."
+                                 Text = @"Click OK to see how activation from a toast notification can be handled in the ToastNotificationService."
                             }
                         }
                     }

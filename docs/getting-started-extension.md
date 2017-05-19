@@ -8,7 +8,7 @@ Windows Template Studio installs into your existing Windows 10 app development e
 
 ### Visual Studio Extension Feed URLs for Windows Template Studio
 
-* **Public Release (Coming soon):** The official extension from the [Visual Studio Gallery](https://visualstudiogallery.msdn.microsoft.com/)
+* **Public Release:** The official extension from the [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)
 * **Nightly:** <https://www.myget.org/F/windows-template-studio-nightly/vsix/>
 * **Pre-release (stable):** <https://www.myget.org/F/windows-template-studio-prerelease/vsix/>
 
