@@ -26,7 +26,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
 
 using NuGet.VisualStudio;
-
+using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -49,13 +49,19 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             var proj = GetActiveProject();
-
-            foreach (var item in itemsFullPath)
+            if (proj != null && proj.ProjectItems != null)
             {
-                proj.ProjectItems.AddFromFile(item);
-            }
+                foreach (var item in itemsFullPath)
+                {
+                    proj.ProjectItems.AddFromFile(item);
+                }
 
-            proj.Save();
+                proj.Save();
+            }
+            else
+            {
+                AppHealth.Current.Error.TrackAsync(StringRes.UnableAddItemsToProject).FireAndForget();
+            }
         }
 
         public override void RefreshProject()
@@ -90,7 +96,15 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void AddProjectToSolution(string projectFullPath)
         {
-            Dte.Solution.AddFromFile(projectFullPath);
+            try
+            {
+                Dte.Solution.AddFromFile(projectFullPath);
+            }
+            catch (Exception)
+            {
+                //WE GET AN EXCEPTION WHEN THERE ISN'T A SOLUTION LOADED
+                AppHealth.Current.Info.TrackAsync(StringRes.UnableAddProjectToSolution).FireAndForget();
+            }
         }
 
         public override string GetActiveNamespace()
@@ -236,7 +250,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception)
             {
-                //WE GE AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+                //WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
             }
 
             return p;

@@ -352,4 +352,10 @@
   <data name="StatusPreparing" xml:space="preserve">
     <value>Preparing templates for first use...</value>
   </data>
+  <data name="UnableAddItemsToProject" xml:space="preserve">
+    <value>Unable add project items. Ensure you have the required SDK.</value>
+  </data>
+  <data name="UnableAddProjectToSolution" xml:space="preserve">
+    <value>Unable to add the project to the solution because is not ready. Ensure you have the expected SDK installed.</value>
+  </data>
 </root>
