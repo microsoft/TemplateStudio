@@ -281,12 +281,20 @@ namespace Microsoft.Templates.Core.Test.Locations
         [Fact]
         public void TestRemoteSource()
         {
-            string drive = Path.GetPathRoot(Assembly.GetExecutingAssembly().Location);
+            // Bug #333 
+            // Location will give access to temp location.
+            // code base won't if they are on diff drives
+            //
+            // If someone has a temp dir that is different than their extention
+            // move will fail, you need to copy / delete
+            //string drive = Path.GetPathRoot(Assembly.GetExecutingAssembly().Location);
+            string drive = Path.GetPathRoot(new Uri(typeof(TemplatexTests).Assembly.CodeBase).LocalPath);
             string targetFolder = Path.Combine(drive, @"Temp\TestRts");
+
             try
             {
                 RemoteTemplatesSource rts = new RemoteTemplatesSource();
-                rts.Adquire(targetFolder);
+                rts.Acquire(targetFolder);
 
                 string aquiredContentFolder = Directory.EnumerateDirectories(targetFolder).FirstOrDefault();
 
@@ -296,13 +304,13 @@ namespace Microsoft.Templates.Core.Test.Locations
                 Assert.True(Directory.EnumerateDirectories(targetFolder).Count() == 1);
 
                 //Ensure even downloaded, if there is coincident content, it is not duplicated.
-                rts.Adquire(targetFolder);
+                rts.Acquire(targetFolder);
                 Assert.True(Directory.EnumerateDirectories(targetFolder).Count() == 1);
 
                 //Change the previous adquired content and ensure it is adquired again
                 Directory.Move(aquiredContentFolder, aquiredContentFolder + "_old");
 
-                rts.Adquire(targetFolder);
+                rts.Acquire(targetFolder);
 
                 Assert.True(Directory.EnumerateDirectories(targetFolder).Count() == 2);
             }

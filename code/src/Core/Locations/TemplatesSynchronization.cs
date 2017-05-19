@@ -15,6 +15,7 @@ using System.IO;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
+using System.Reflection;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -78,6 +79,15 @@ namespace Microsoft.Templates.Core.Locations
             SyncStatusChanged?.Invoke(this, SyncStatus.Adquired);
         }
 
+        private async Task ExtractInstalledContentAsync()
+        {
+            SyncStatusChanged?.Invoke(this, SyncStatus.Preparing);
+
+            await Task.Run(() => ExtractInstalledContent());
+
+            SyncStatusChanged?.Invoke(this, SyncStatus.Prepared);
+        }
+
         private async Task CheckExpirationAdquisitionAsync()
         {
             if (_content.IsExpired(CurrentContentFolder))
@@ -88,7 +98,11 @@ namespace Microsoft.Templates.Core.Locations
 
         private async Task CheckMandatoryAdquisitionAsync(bool forceUpdate)
         {
-            if (forceUpdate || !_content.Exists())
+            if (!_content.Exists())
+            {
+                await ExtractInstalledContentAsync();
+            }
+            else if (forceUpdate)
             {
                 await AdquireContentAsync();
             }
@@ -98,7 +112,20 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                _source.Adquire(_content.TemplatesFolder);
+                _source.Acquire(_content.TemplatesFolder);
+            }
+            catch (Exception ex)
+            {
+                throw new RepositorySynchronizationException(SyncStatus.Adquiring, ex);
+            }
+        }
+
+        private void ExtractInstalledContent()
+        {
+            try
+            {
+                string installedTemplatesPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", "Templates.mstx");
+                _source.ExtractFromMstx(installedTemplatesPath, _content.TemplatesFolder);
             }
             catch (Exception ex)
             {

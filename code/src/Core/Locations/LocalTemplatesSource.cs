@@ -10,30 +10,40 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
 using System.IO;
 
 namespace Microsoft.Templates.Core.Locations
 {
     public class LocalTemplatesSource : TemplatesSource
     {
-        public string LocalVersion { get; private set; }
+        public string LocalTemplatesVersion { get; private set; }
+        public string LocalWizardVersion { get; private set; }
 
         public override string Id { get => "Local"; }
 
         public string Origin { get => $@"..\..\..\..\..\{SourceFolderName}"; }
 
-        public LocalTemplatesSource() : this("0.0.0.0")
+        public LocalTemplatesSource() : this("0.0.0.0", "0.0.0.0")
         {
         }
 
-        public LocalTemplatesSource(string version)
+        public LocalTemplatesSource(string wizardVersion, string templatesVersion)
         {
-            LocalVersion = version;
+            LocalTemplatesVersion = templatesVersion;
+            LocalWizardVersion = wizardVersion;
         }
 
-        public override void Adquire(string targetFolder)
+        public override void Acquire(string targetFolder)
         {
-            var targetVersionFolder = Path.Combine(targetFolder, LocalVersion);
+            var targetVersionFolder = Path.Combine(targetFolder, LocalTemplatesVersion);
+            Copy(Origin, targetVersionFolder);
+        }
+
+        public override void ExtractFromMstx(string mstxFilePath, string targetFolder)
+        {
+            //Running locally "Extract" a version compatible with the wizard
+            var targetVersionFolder = Path.Combine(targetFolder, LocalWizardVersion);
             Copy(Origin, targetVersionFolder);
         }
 

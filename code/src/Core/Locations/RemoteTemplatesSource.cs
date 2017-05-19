@@ -26,15 +26,24 @@ namespace Microsoft.Templates.Core.Locations
 
         public override string Id { get => Configuration.Current.Environment; }
 
-        public override void Adquire(string targetFolder)
+        public override void Acquire(string targetFolder)
         {
             var tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 
             string downloadedFile = Download(tempFolder);
 
-            if (File.Exists(downloadedFile))
+            ExtractFromMstx(downloadedFile, targetFolder);
+
+            Fs.SafeDeleteDirectory(tempFolder);
+        }
+
+        public override void ExtractFromMstx(string mstxFilePath, string targetFolder)
+        {
+            var tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+
+            if (File.Exists(mstxFilePath))
             {
-                ExtractContent(downloadedFile, tempFolder);
+                ExtractContent(mstxFilePath, tempFolder);
 
                 MoveContent(tempFolder, targetFolder);
             }
@@ -63,11 +72,9 @@ namespace Microsoft.Templates.Core.Locations
             }
             catch (Exception ex)
             {
-                string msg = "The templates content can't be downloaded.";
-
-                AppHealth.Current.Exception.TrackAsync(ex, msg).FireAndForget();
-
-                throw;
+                string msg = $"Templates content can't be downloaded right now, we will try it later.";
+                AppHealth.Current.Info.TrackAsync(msg).FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"Error downloading from {sourceUrl}. Internet connection is required to download template updates.", ex).FireAndForget();
             }
         }
 

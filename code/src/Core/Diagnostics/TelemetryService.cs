@@ -160,10 +160,28 @@ namespace Microsoft.Templates.Core.Diagnostics
                     _client.Context.Properties[TelemetryProperties.WizardContentVersion] = wizardContentVersion.ToString();
                 }
             }
-
         }
 
-        private async Task SafeExecuteAsync(Action action)
+        public void SetVisualStudioInfoToContext(string version, string edition, string culture)
+        {
+            if (_client != null && _client.Context != null && _client.Context.Properties != null)
+            {
+                if (!string.IsNullOrEmpty(version))
+                {
+                    _client.Context.Properties[TelemetryProperties.VisualStudioVersion] = version;
+                }
+                if (!string.IsNullOrEmpty(edition))
+                {
+                    _client.Context.Properties[TelemetryProperties.VisualStudioEdition] = edition;
+                }
+                if (!string.IsNullOrEmpty(culture))
+                {
+                    _client.Context.Properties[TelemetryProperties.VisualStudioCulture] = culture;
+                }
+            }
+        }
+
+            private async Task SafeExecuteAsync(Action action)
         {
             try
             {

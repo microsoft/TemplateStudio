@@ -28,11 +28,6 @@ namespace Microsoft.Templates.UI.Views
             ViewModel = MainViewModel.Current;
             DataContext = ViewModel;
 
-            Loaded += async (sender, e) =>
-            {
-                await ViewModel.ProjectSetup.InitializeAsync();
-            };
-
             InitializeComponent();
         }
     }
