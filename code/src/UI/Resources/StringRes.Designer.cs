@@ -700,6 +700,24 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable add project items. Ensure you have the required SDK..
+        /// </summary>
+        public static string UnableAddItemsToProject {
+            get {
+                return ResourceManager.GetString("UnableAddItemsToProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to add the project to the solution because is not ready. Ensure you have the expected SDK installed..
+        /// </summary>
+        public static string UnableAddProjectToSolution {
+            get {
+                return ResourceManager.GetString("UnableAddProjectToSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name already exists.
         /// </summary>
         public static string ValidationError_AlreadyExists {
