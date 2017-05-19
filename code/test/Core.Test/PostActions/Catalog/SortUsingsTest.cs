@@ -121,5 +121,53 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             Assert.False(result);
         }
+
+        [Fact]
+        public void Sort_AndRemoveDuplicates()
+        {
+            // "System"*3 & "XUnit"*2
+            var factData = new List<string>
+            {
+                "using System;",
+                "using System;",
+                "using XUnit;",
+                "using System.Text;",
+                "using Microsoft.Templates;",
+                "",
+                "using System.Collections.Generic;",
+                "using System;",
+                "using Microsoft.Templates.Core;",
+                "using System.Threading.Tasks;",
+                "using XUnit;",
+                "using System.Linq;",
+                "",
+                "namespace Microsoft.Templates",
+                "{",
+                "}"
+            };
+
+            var expected = new List<string>
+            {
+                "using System;",
+                "using System.Collections.Generic;",
+                "using System.Linq;",
+                "using System.Text;",
+                "using System.Threading.Tasks;",
+                "",
+                "using Microsoft.Templates;",
+                "using Microsoft.Templates.Core;",
+                "",
+                "using XUnit;",
+                "",
+                "namespace Microsoft.Templates",
+                "{",
+                "}"
+            };
+
+            var result = factData.SortUsings();
+
+            Assert.True(result);
+            Assert.Equal(expected, factData);
+        }
     }
 }
