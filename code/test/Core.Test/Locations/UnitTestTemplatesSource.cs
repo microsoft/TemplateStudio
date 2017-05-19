@@ -10,6 +10,7 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
 using System.IO;
 
 using Microsoft.Templates.Core.Locations;
@@ -28,7 +29,11 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             Copy($@"..\..\TestData\{SourceFolderName}", targetVersionFolder);
         }
-
+        public override void ExtractFromMstx(string mstxFilePath, string targetFolder)
+        {
+            //Running locally we load the local templates folder (same as adquire)
+            Acquire(targetFolder);
+        }
         protected static void Copy(string sourceFolder, string targetFolder)
         {
             Fs.SafeDeleteDirectory(targetFolder);

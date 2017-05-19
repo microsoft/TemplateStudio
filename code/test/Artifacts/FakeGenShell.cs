@@ -151,6 +151,21 @@ namespace Microsoft.Templates.Test.Artifacts
         public override void CloseSolution()
         {
         }
+
+        public override string GetVsCultureInfo()
+        {
+            return string.Empty;
+        }
+
+        public override string GetVsVersion()
+        {
+            return string.Empty;
+        }
+
+        public override string GetVsEdition()
+        {
+            return string.Empty;
+        }
     }
 }
 

@@ -26,6 +26,7 @@ using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Views;
+using System.Windows.Controls;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
@@ -40,6 +41,7 @@ namespace Microsoft.Templates.UI.ViewModels
         public MainView MainView;
 
         private StatusViewModel _status = StatusControl.EmptyStatus;
+
         public StatusViewModel Status
         {            
             get => _status;
@@ -153,14 +155,10 @@ namespace Microsoft.Templates.UI.ViewModels
             }
             catch (Exception ex)
             {
-                Status = new StatusViewModel(StatusType.Information, StringRes.ErrorSync);
+                Status = new StatusViewModel(StatusType.Information, StringRes.ErrorSync, true);
 
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);
-            }
-            finally
-            {
-                Current.LoadingContentVisibility = Visibility.Collapsed;                
             }
         }
 
@@ -206,7 +204,7 @@ namespace Microsoft.Templates.UI.ViewModels
             NextCommand.OnCanExecuteChanged();
         }
 
-        private void Sync_SyncStatusChanged(object sender, SyncStatus status)
+        private async void Sync_SyncStatusChanged(object sender, SyncStatus status)
         {
 
             Status = new StatusViewModel(StatusType.Information, GetStatusText(status), true);
@@ -217,7 +215,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 Status = StatusControl.EmptyStatus;
 
                 _templatesAvailable = true;
-                NextCommand.OnCanExecuteChanged();
+                await ProjectSetup.InitializeAsync();
             }
 
             if (status == SyncStatus.OverVersion)
@@ -261,6 +259,10 @@ namespace Microsoft.Templates.UI.ViewModels
                     return StringRes.StatusAdquiring;
                 case SyncStatus.Adquired:
                     return StringRes.StatusAdquired;
+                case SyncStatus.Preparing:
+                    return StringRes.StatusPreparing;
+                case SyncStatus.Prepared:
+                    return StringRes.StatusPrepared;
                 default:
                     return string.Empty;
             }
