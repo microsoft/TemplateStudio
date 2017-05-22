@@ -79,6 +79,7 @@ namespace Microsoft.Templates.UI.Views
             if (element == null || element.Tag == null || element.Tag.ToString() != "AllowClick")
             {
                 ViewModel?.ProjectTemplates?.SummaryPages?.ToList()?.ForEach(p => p.TryClose());
+                ViewModel?.ProjectTemplates?.SummaryFeatures?.ToList()?.ForEach(f => f.TryClose());
             }
         }
     }
