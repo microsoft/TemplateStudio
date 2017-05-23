@@ -430,7 +430,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Templates downloaded.
+        ///   Looks up a localized string similar to Done.
         /// </summary>
         public static string StatusAdquired {
             get {
@@ -439,7 +439,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Downloading templates....
+        ///   Looks up a localized string similar to Checking for template updates....
         /// </summary>
         public static string StatusAdquiring {
             get {
@@ -489,6 +489,24 @@ namespace Microsoft.Templates.UI.Resources {
         public static string StatusOverVersionTitle {
             get {
                 return ResourceManager.GetString("StatusOverVersionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Templates ready.
+        /// </summary>
+        public static string StatusPrepared {
+            get {
+                return ResourceManager.GetString("StatusPrepared", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preparing templates for first use....
+        /// </summary>
+        public static string StatusPreparing {
+            get {
+                return ResourceManager.GetString("StatusPreparing", resourceCulture);
             }
         }
         
@@ -732,6 +750,24 @@ namespace Microsoft.Templates.UI.Resources {
         public static string UIMessageBoxTitlePattern {
             get {
                 return ResourceManager.GetString("UIMessageBoxTitlePattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable add project items. Ensure you have the required SDK..
+        /// </summary>
+        public static string UnableAddItemsToProject {
+            get {
+                return ResourceManager.GetString("UnableAddItemsToProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to add the project to the solution because is not ready. Ensure you have the expected SDK installed..
+        /// </summary>
+        public static string UnableAddProjectToSolution {
+            get {
+                return ResourceManager.GetString("UnableAddProjectToSolution", resourceCulture);
             }
         }
         

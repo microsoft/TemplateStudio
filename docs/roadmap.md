@@ -16,7 +16,7 @@
 
 ## Future Release [Backlog]
 
-[Features without assigned releases](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3Abacklog)
+[Features without assigned releases](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3ABacklog)
 
 ## Old releases
 

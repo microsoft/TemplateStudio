@@ -43,7 +43,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 #else
                 GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell());
 #endif
-            }
+                }
         }
 
         public void BeforeOpeningFile(ProjectItem projectItem)

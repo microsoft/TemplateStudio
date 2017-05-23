@@ -136,7 +136,7 @@
     <value>OK</value>
   </data>
   <data name="ErrorSync" xml:space="preserve">
-    <value>Error updating templates. See output for more details.</value>
+    <value>Error syncing templates. See output for more details.</value>
   </data>
   <data name="ExceptionDependencyCircularReference" xml:space="preserve">
     <value>Circular dependency detected on template {0} with {1}.</value>
@@ -217,10 +217,10 @@
     <value>Restoring packages...</value>
   </data>
   <data name="StatusAdquired" xml:space="preserve">
-    <value>Templates downloaded</value>
+    <value>Done</value>
   </data>
   <data name="StatusAdquiring" xml:space="preserve">
-    <value>Downloading templates...</value>
+    <value>Checking for template updates...</value>
   </data>
   <data name="StatusLowerVersionContent" xml:space="preserve">
     <value>There is no templates content available for the current wizard version. Please ensure you have connectivity and restart the wizard again.</value>
@@ -345,6 +345,18 @@
   </data>
   <data name="SummaryNoPages" xml:space="preserve">
     <value>None Selected</value>
+  </data>
+  <data name="StatusPrepared" xml:space="preserve">
+    <value>Templates ready</value>
+  </data>
+  <data name="StatusPreparing" xml:space="preserve">
+    <value>Preparing templates for first use...</value>
+  </data>
+  <data name="UnableAddItemsToProject" xml:space="preserve">
+    <value>Unable add project items. Ensure you have the required SDK.</value>
+  </data>
+  <data name="UnableAddProjectToSolution" xml:space="preserve">
+    <value>Unable to add the project to the solution because is not ready. Ensure you have the expected SDK installed.</value>
   </data>
   <data name="ErrorNoHomePage" xml:space="preserve">
     <value>It's not possible to create a project without Home Page</value>
