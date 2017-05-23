@@ -1,0 +1,44 @@
+<Page
+    x:Class="Param_ItemNamespace.Views.ChartViewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:tc="using:Telerik.UI.Xaml.Controls.Chart"
+    mc:Ignorable="d">
+    <Grid
+        x:Name="ContentArea"
+        Margin="12,0,12,0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="TitleRow" Height="48"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            x:Name="TitlePage"
+            x:Uid="ChartView_Title"
+            FontSize="28" FontWeight="SemiLight" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" VerticalAlignment="Center"
+            Margin="0,0,12,7"/>
+
+        <Grid
+            Grid.Row="1" 
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+            <!-- For more on customizing the chart see http://www.telerik.com/universal-windows-platform-ui/chart -->
+            <tc:RadPieChart PaletteName="DefaultDark" DataContext="{x:Bind ViewModel}" >
+                <tc:PieSeries ItemsSource="{Binding Source}" RadiusFactor="0.6">
+                    <tc:PieSeries.ValueBinding>
+                        <tc:PropertyNameDataPointBinding PropertyName="Value"/>
+                    </tc:PieSeries.ValueBinding>
+                    <tc:PieSeries.LabelDefinitions >
+                        <tc:ChartSeriesLabelDefinition>
+                            <tc:ChartSeriesLabelDefinition.Binding>
+                                <tc:PropertyNameDataPointBinding PropertyName="Label" />
+                            </tc:ChartSeriesLabelDefinition.Binding>
+                        </tc:ChartSeriesLabelDefinition>
+                    </tc:PieSeries.LabelDefinitions>
+                </tc:PieSeries>
+            </tc:RadPieChart>
+        </Grid>
+    </Grid>
+</Page>

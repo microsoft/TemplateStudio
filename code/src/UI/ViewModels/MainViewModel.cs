@@ -33,8 +33,9 @@ namespace Microsoft.Templates.UI.ViewModels
     public class MainViewModel : Observable
     {
         private bool _canGoBack;
-        private bool _canGoForward;        
-        private bool _canCreate;
+        private bool _canGoForward;
+        private bool _templatesReady;
+        private bool _hasValidationErrors;
         private bool _templatesAvailable;
 
         public static MainViewModel Current;
@@ -43,7 +44,7 @@ namespace Microsoft.Templates.UI.ViewModels
         private StatusViewModel _status = StatusControl.EmptyStatus;
 
         public StatusViewModel Status
-        {            
+        {
             get => _status;
             set => SetProperty(ref _status, value);
         }
@@ -124,9 +125,28 @@ namespace Microsoft.Templates.UI.ViewModels
         private RelayCommand _createCommand;
 
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
-        public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));                
+        public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && _canGoForward));
-        public RelayCommand CreateCommand => _createCommand ?? (_createCommand = new RelayCommand(OnCreate, () => _canCreate));
+        public RelayCommand CreateCommand => _createCommand ?? (_createCommand = new RelayCommand(OnCreate, CanCreate));
+
+        private bool CanCreate()
+        {
+            if (!_templatesReady)
+            {
+                return false;
+            }
+            if (_hasValidationErrors)
+            {
+                return false;
+            }
+            if (String.IsNullOrEmpty(ProjectTemplates.HomeName))
+            {
+                Status = new StatusViewModel(StatusType.Error, StringRes.ErrorNoHomePage);
+                return false;
+            }
+            CleanStatus();
+            return true;
+        }
 
         public ProjectSetupViewModel ProjectSetup { get; private set; } = new ProjectSetupViewModel();
 
@@ -141,7 +161,7 @@ namespace Microsoft.Templates.UI.ViewModels
         }
 
         public async Task InitializeAsync()
-        {            
+        {
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += Sync_SyncStatusChanged;
 
             SummaryLicenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryLicenses)); };
@@ -160,6 +180,10 @@ namespace Microsoft.Templates.UI.ViewModels
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);
             }
+            finally
+            {
+                Current.LoadingContentVisibility = Visibility.Collapsed;
+            }
         }
 
         public void AlertProjectSetupChanged()
@@ -167,11 +191,11 @@ namespace Microsoft.Templates.UI.ViewModels
             if (CheckProjectSetupChanged())
             {
                 Status = new StatusViewModel(StatusType.Warning, string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName));
-            }    
+            }
             else
             {
-                Status = StatusControl.EmptyStatus;
-            }   
+                CleanStatus();
+            }
         }
 
         public void UnsuscribeEventHandlers()
@@ -192,9 +216,9 @@ namespace Microsoft.Templates.UI.ViewModels
             SyncLicenses(genLicenses);
         }
 
-        public void EnableProjectCreation()
+        public void SetTemplatesReadyForProjectCreation()
         {
-            _canCreate = true;
+            _templatesReady = true;
             CreateCommand.OnCanExecuteChanged();
         }
 
@@ -212,7 +236,7 @@ namespace Microsoft.Templates.UI.ViewModels
             if (status == SyncStatus.Updated)
             {
                 TemplatesVersion = GenContext.ToolBox.Repo.TemplatesVersion;
-                Status = StatusControl.EmptyStatus;
+                CleanStatus();
 
                 _templatesAvailable = true;
                 await ProjectSetup.InitializeAsync();
@@ -274,17 +298,17 @@ namespace Microsoft.Templates.UI.ViewModels
             MainView.Result = null;
 
             MainView.Close();
-        }        
+        }
 
         private void OnNext()
         {
-           if (CheckProjectSetupChanged())
+            if (CheckProjectSetupChanged())
             {
                 ProjectTemplates.ResetSelection();
 
-                Status = StatusControl.EmptyStatus;
+                CleanStatus();
             }
-            
+
             NavigationService.Navigate(new ProjectTemplatesView());
 
             _canGoBack = true;
@@ -300,7 +324,7 @@ namespace Microsoft.Templates.UI.ViewModels
             NavigationService.GoBack();
 
             _canGoBack = false;
-            _canCreate = false;
+            _templatesReady = false;
 
             BackCommand.OnCanExecuteChanged();
 
@@ -310,15 +334,14 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private bool CheckProjectSetupChanged()
         {
-            if (ProjectTemplates.SavedTemplates != null && ProjectTemplates.SavedTemplates.Count != 0)
+            if (ProjectTemplates.HasTemplatesAdded)
             {
-                if (ProjectTemplates.ContextFramework.Name != ProjectSetup.SelectedFramework.Name || 
+                if (ProjectTemplates.ContextFramework.Name != ProjectSetup.SelectedFramework.Name ||
                     ProjectTemplates.ContextProjectType.Name != ProjectSetup.SelectedProjectType.Name)
                 {
                     return true;
                 }
             }
-
             return false;
         }
 
@@ -337,11 +360,12 @@ namespace Microsoft.Templates.UI.ViewModels
             var userSelection = new UserSelection()
             {
                 ProjectType = ProjectSetup.SelectedProjectType?.Name,
-                Framework = ProjectSetup.SelectedFramework?.Name
+                Framework = ProjectSetup.SelectedFramework?.Name,
+                HomeName = ProjectTemplates.HomeName
             };
 
-            userSelection.Pages.AddRange(ProjectTemplates.SavedPages);
-            userSelection.Features.AddRange(ProjectTemplates.SavedFeatures);
+            userSelection.Pages.AddRange(ProjectTemplates.SavedPages.Select(sp => sp.UserSelection));
+            userSelection.Features.AddRange(ProjectTemplates.SavedFeatures.Select(sf => sf.UserSelection));
 
             return userSelection;
         }
@@ -369,7 +393,24 @@ namespace Microsoft.Templates.UI.ViewModels
                 {
                     SummaryLicenses.Add(new SummaryLicenseViewModel(license));
                 }
-            }            
+            }
+        }
+
+        public void SetValidationErrors(string errorMessage, StatusType statusType = StatusType.Error)
+        {
+            Status = new StatusViewModel(statusType, errorMessage);
+            _hasValidationErrors = true;
+            CreateCommand.OnCanExecuteChanged();
+        }
+
+        public void CleanStatus(bool cleanValidationError = false)
+        {
+            Status = StatusControl.EmptyStatus;
+            if (cleanValidationError)
+            {
+                _hasValidationErrors = false;
+                CreateCommand.OnCanExecuteChanged();
+            }
         }
     }
 }

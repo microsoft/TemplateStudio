@@ -9,7 +9,7 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMLight & identity == wts.Proj.Blank"
+    "wts.compositionFilter": "$framework == MVVMLight & $projectType == Blank & wts.type == project"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
@@ -21,6 +21,10 @@
     "wts.itemNamespace": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
+    },
+    "wts.homePageName": {
+      "type":"parameter",
+      "replaces":"Param_HomeName"
     }
   }
 }
