@@ -149,16 +149,16 @@ namespace wts.ItemName.ViewModels
             if (e != null)
             {
                 var vm = NavigationService.GetNameOfRegisteredPage(e.SourcePageType);
-                var item = PrimaryItems?.FirstOrDefault(i => i.ViewModelName == vm);
-                if (item == null)
+                var navigationItem = PrimaryItems?.FirstOrDefault(i => i.ViewModelName == vm);
+                if (navigationItem == null)
                 {
-                    item = SecondaryItems?.FirstOrDefault(i => i.ViewModelName == vm);
+                    navigationItem = SecondaryItems?.FirstOrDefault(i => i.ViewModelName == vm);
                 }
 
-                if (item != null)
+                if (navigationItem != null)
                 {
-                    ChangeSelected(_lastSelectedItem, item);
-                    _lastSelectedItem = item;
+                    ChangeSelected(_lastSelectedItem, navigationItem);
+                    _lastSelectedItem = navigationItem;
                 }
             }
         }

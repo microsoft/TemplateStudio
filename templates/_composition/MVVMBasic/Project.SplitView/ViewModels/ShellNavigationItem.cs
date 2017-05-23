@@ -47,9 +47,9 @@ namespace wts.ItemName.ViewModels
 
         private SolidColorBrush GetStandardTextColorBrush()
         {
-            var result = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
+            var brush = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
 
-            return result;
+            return brush;
         }
 
         private ShellNavigationItem(string name, Symbol symbol, Type pageType)

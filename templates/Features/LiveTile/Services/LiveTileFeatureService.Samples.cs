@@ -19,7 +19,7 @@ namespace Param_RootNamespace.Services
             string body = "Check out these awesome photos I took while in New Zealand!";
 
             // Construct the tile content
-            TileContent content = new TileContent()
+            var content = new TileContent()
             {
                 Visual = new TileVisual()
                 {
@@ -84,7 +84,7 @@ namespace Param_RootNamespace.Services
         {
             // TODO UWPTemplates: Call this method to Pin a Secondary Tile from a page.
             // You also must implement the navigation to this specific page in the OnLaunched event handler on App.xaml.cs
-            SecondaryTile tile = new SecondaryTile(DateTime.Now.Ticks.ToString());
+            var tile = new SecondaryTile(DateTime.Now.Ticks.ToString());
             tile.Arguments = pageName;
             tile.DisplayName = pageName;
             tile.VisualElements.Square44x44Logo = new Uri("ms-appx:///Assets/Square44x44Logo.scale-200.png");
