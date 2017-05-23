@@ -66,12 +66,23 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void RefreshProject()
         {
-            var proj = GetActiveProject();
+            try
+            {
+                var proj = GetActiveProject();
 
-            var path = proj.FullName;
+                if (proj != null)
+                {
+                    var path = proj.FullName;
 
-            Dte.Solution.Remove(proj);
-            Dte.Solution.AddFromFile(path);
+                    Dte.Solution.Remove(proj);
+                    Dte.Solution.AddFromFile(path);
+                }
+            }
+            catch(Exception)
+            {
+                //WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+                AppHealth.Current.Info.TrackAsync(StringRes.UnableToRefreshProject).FireAndForget();
+            }
         }
 
         public override bool SetActiveConfigurationAndPlatform(string configurationName, string platformName)
