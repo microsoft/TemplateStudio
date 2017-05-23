@@ -16,7 +16,7 @@
             x:Name="TitlePage"
             x:Uid="TabbedPivotPage_Pivot"
             Text="Navigation Item 1"
-            FontSize="28" FontWeight="SemiLight" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" VerticalAlignment="Center"
+            Style="{StaticResource PageTitleStyle}"
             Margin="12,0,12,7"/>
 
         <Pivot Grid.Row="1">

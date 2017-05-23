@@ -24,7 +24,7 @@
                 <FontIcon
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        FontSize="16"
+                        FontSize="{StaticResource MediumFontSize}"
                         Foreground="{x:Bind SelectedForeground, Mode=OneWay}"
                         Glyph="{x:Bind SymbolAsChar}" />
                 <TextBlock
