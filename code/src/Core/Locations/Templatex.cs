@@ -134,7 +134,7 @@ namespace Microsoft.Templates.Core.Locations
         }
         public static X509Certificate2 LoadCert(string filePath, SecureString password)
         {
-            X509Certificate2 cert = new X509Certificate2();
+            var cert = new X509Certificate2();
             cert.Import(filePath, password, X509KeyStorageFlags.DefaultKeySet);
             return cert;
         }
@@ -160,7 +160,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             X509Certificate2 certFound = null;
 
-            using (X509Store store = new X509Store(StoreName.My, location))
+            using (var store = new X509Store(StoreName.My, location))
             {
                 store.Open(OpenFlags.ReadOnly);
 
@@ -191,13 +191,13 @@ namespace Microsoft.Templates.Core.Locations
         private static void ExtractPart(PackagePart packagePart, string targetDirectory)
         {
             string stringPart = packagePart.Uri.ToString().TrimStart('/');
-            Uri partUri = new Uri(stringPart, UriKind.Relative);
+            var partUri = new Uri(stringPart, UriKind.Relative);
             string dir = targetDirectory.EndsWith(Path.DirectorySeparatorChar.ToString()) ? targetDirectory : targetDirectory + Path.DirectorySeparatorChar;
-            Uri uriFullPartPath = new Uri(new Uri(dir, UriKind.Absolute), partUri);
+            var uriFullPartPath = new Uri(new Uri(dir, UriKind.Absolute), partUri);
 
             Directory.CreateDirectory(Path.GetDirectoryName(uriFullPartPath.LocalPath));
 
-            using (FileStream fileStream = new FileStream(uriFullPartPath.LocalPath, FileMode.Create))
+            using (var fileStream = new FileStream(uriFullPartPath.LocalPath, FileMode.Create))
             {
                 CopyStream(packagePart.GetStream(), fileStream);
             }
@@ -208,7 +208,7 @@ namespace Microsoft.Templates.Core.Locations
             if (package == null)
                 throw new ArgumentNullException("ValidateSignatures(package)");
 
-            PackageDigitalSignatureManager dsm = new PackageDigitalSignatureManager(package);
+            var dsm = new PackageDigitalSignatureManager(package);
             bool result = dsm.IsSigned;
 
             if (result)
@@ -258,7 +258,7 @@ namespace Microsoft.Templates.Core.Locations
 
         private static Dictionary<string, X509Certificate> GetPackageCertificates(PackageDigitalSignatureManager dsm)
         {
-            Dictionary<string, X509Certificate> certs = new Dictionary<string, X509Certificate>();
+            var certs = new Dictionary<string, X509Certificate>();
 
             foreach (var signature in dsm.Signatures)
             {
@@ -297,13 +297,13 @@ namespace Microsoft.Templates.Core.Locations
             if (cert == null)
                 throw new ArgumentNullException("SignAllParts(cert)");
 
-            PackageDigitalSignatureManager dsm = new PackageDigitalSignatureManager(package)
+            var dsm = new PackageDigitalSignatureManager(package)
             {
                 CertificateOption = CertificateEmbeddingOption.InSignaturePart,
                 HashAlgorithm = SignedXml.XmlDsigSHA512Url
             };
 
-            List<Uri> toSign = new List<Uri>();
+            var toSign = new List<Uri>();
 
             foreach (PackagePart packagePart in package.GetParts())
             {
@@ -328,7 +328,7 @@ namespace Microsoft.Templates.Core.Locations
 
         private static void CopyStream(Stream source, Stream target)
         {
-            byte[] buf = new byte[bufSize];
+            var buf = new byte[bufSize];
             int bytesRead = 0;
 
             while ((bytesRead = source.Read(buf, 0, bufSize)) > 0)
@@ -349,7 +349,7 @@ namespace Microsoft.Templates.Core.Locations
 
         private static void AddContentToPackagePart(FileInfo file, PackagePart packagePart)
         {
-            using (FileStream fileStream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read))
+            using (var fileStream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read))
             {
                 CopyStream(fileStream, packagePart.GetStream());
             }
@@ -357,8 +357,8 @@ namespace Microsoft.Templates.Core.Locations
 
         private static Uri GetPartUriFile(Uri rootUri, FileInfo file)
         {
-            Uri uriFile = rootUri.MakeRelativeUri(new Uri(file.FullName, UriKind.Absolute));
-            Uri partUriFile = PackUriHelper.CreatePartUri(uriFile);
+            var uriFile = rootUri.MakeRelativeUri(new Uri(file.FullName, UriKind.Absolute));
+            var partUriFile = PackUriHelper.CreatePartUri(uriFile);
 
             return partUriFile;
         }
@@ -384,7 +384,7 @@ namespace Microsoft.Templates.Core.Locations
                 }
             }
 
-            Uri rootUri = new Uri(uriString, UriKind.Absolute);
+            var rootUri = new Uri(uriString, UriKind.Absolute);
 
             return rootUri;
         }
@@ -397,7 +397,7 @@ namespace Microsoft.Templates.Core.Locations
             {
                 if (Directory.Exists(Path.GetFullPath(source)))
                 {
-                    DirectoryInfo di = new DirectoryInfo(source);
+                    var di = new DirectoryInfo(source);
                     files = di.GetFiles("*", SearchOption.AllDirectories);
                 }
             }

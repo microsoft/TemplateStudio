@@ -89,7 +89,7 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             get
             {
-                List<string> names = new List<string>();
+                var names = new List<string>();
                 names.AddRange(SavedPages.Select(sp => sp.ItemName));
                 names.AddRange(SavedFeatures.Select(sf => sf.ItemName));
                 return names;
@@ -100,10 +100,10 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             get
             {
-                List<string> names = new List<string>();
-                names.AddRange(SavedPages.Select(sp => sp.Identity));
-                names.AddRange(SavedFeatures.Select(sf => sf.Identity));
-                return names;
+                var identities = new List<string>();
+                identities.AddRange(SavedPages.Select(sp => sp.Identity));
+                identities.AddRange(SavedFeatures.Select(sf => sf.Identity));
+                return identities;
             }
         }
 

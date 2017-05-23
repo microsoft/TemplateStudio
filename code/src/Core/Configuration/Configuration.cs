@@ -114,7 +114,7 @@ namespace Microsoft.Templates.Core
         {
             try
             {
-                JsonSerializer serializer = new JsonSerializer();
+                var serializer = new JsonSerializer();
                 serializer.Converters.Add(new JavaScriptDateTimeConverter());
                 serializer.NullValueHandling = NullValueHandling.Ignore;
                 serializer.Converters.Add(new StringEnumConverter());

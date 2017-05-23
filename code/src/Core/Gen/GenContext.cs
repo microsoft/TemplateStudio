@@ -60,7 +60,7 @@ namespace Microsoft.Templates.Core.Gen
             string hostVersion = $"{wizardVersion.Major}.{wizardVersion.Minor}";
 
             CodeGen.Initialize(source.Id, hostVersion);
-            TemplatesRepository repository = new TemplatesRepository(source, wizardVersion);
+            var repository = new TemplatesRepository(source, wizardVersion);
 
             ToolBox = new GenToolBox(repository, shell);
 
