@@ -27,7 +27,7 @@
                 <FontIcon
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        FontSize="16"
+                        FontSize="{StaticResource MediumFontSize}"
                         Foreground="{ThemeResource SystemControlFocusVisualPrimaryBrush}"
                         Glyph="{x:Bind SymbolAsChar}" />
                 <TextBlock

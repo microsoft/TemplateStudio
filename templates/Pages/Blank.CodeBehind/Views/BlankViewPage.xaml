@@ -18,7 +18,7 @@
             x:Name="TitlePage"
             x:Uid="BlankView_Title"
             Text="Navigation Item 2"
-            FontSize="28" FontWeight="SemiLight" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" VerticalAlignment="Center"
+            Style="{StaticResource PageTitleStyle}"
             Margin="0,0,12,7"/>
 
         <Grid 

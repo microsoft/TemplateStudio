@@ -17,13 +17,12 @@
 
                 <TextBlock 
                     Text="{x:Bind Title}" 
-                    FontSize="16" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
+                    Style="{StaticResource ListTitleStyle}" />
 
                 <TextBlock
                     Grid.Row="1"
-                    Opacity="0.6"
                     Text="{x:Bind Description}"
-                    FontSize="16" FontWeight="Normal" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
+                    Style="{StaticResource ListSubTitleStyle}" />
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -46,7 +45,7 @@
             x:Name="TitlePage"
             x:Uid="MasterDetailPage_Title"
             Grid.ColumnSpan="2"
-            FontSize="28" FontWeight="SemiLight" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" VerticalAlignment="Center"
+            Style="{StaticResource PageTitleStyle}"
             Margin="0,0,12,7" Visibility="Collapsed"/>
 
         <Grid
@@ -61,7 +60,7 @@
             <TextBlock
                 x:Name="Title"
                 x:Uid="MasterDetailPage_Title"
-                FontSize="28" FontWeight="SemiLight" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" VerticalAlignment="Center"
+                Style="{StaticResource PageTitleStyle}"
                 Margin="0,0,12,7"/>
 
             <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your master content.-->
