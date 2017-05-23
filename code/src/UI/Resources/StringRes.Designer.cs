@@ -142,7 +142,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error updating templates. See output for more details..
+        ///   Looks up a localized string similar to Error syncing templates. See output for more details..
         /// </summary>
         public static string ErrorSync {
             get {
@@ -768,6 +768,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string UnableAddProjectToSolution {
             get {
                 return ResourceManager.GetString("UnableAddProjectToSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to refresh the project. Try to refresh it manually..
+        /// </summary>
+        public static string UnableToRefreshProject {
+            get {
+                return ResourceManager.GetString("UnableToRefreshProject", resourceCulture);
             }
         }
         
