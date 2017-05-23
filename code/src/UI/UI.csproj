@@ -223,7 +223,7 @@
     <Compile Include="ViewModels\ProjectSetupViewModel.cs" />
     <Compile Include="ViewModels\ProjectTemplatesViewModel.cs" />
     <Compile Include="ViewModels\Entities\StatusViewModel.cs" />
-    <Compile Include="ViewModels\Entities\SummaryItemViewModel.cs" />
+    <Compile Include="ViewModels\Entities\SavedTemplateViewModel.cs" />
     <Compile Include="ViewModels\Entities\SummaryLicenseViewModel.cs" />
     <Compile Include="ViewModels\Entities\TemplateInfoViewModel.cs" />
     <Compile Include="Views\InformationWindow.xaml.cs">

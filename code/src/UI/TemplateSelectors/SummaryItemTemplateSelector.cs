@@ -16,7 +16,7 @@ namespace Microsoft.Templates.UI.TemplateSelectors
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            var summaryItem = item as SummaryItemViewModel;
+            var summaryItem = item as SavedTemplateViewModel;
             if (summaryItem != null)
             {
                 if (summaryItem.Author.ToLower() == "microsoft")

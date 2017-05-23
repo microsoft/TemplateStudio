@@ -65,7 +65,7 @@ namespace Microsoft.Templates.UI.Views
                 {
                     templateInfo.CloseEdition();
                 }
-                var summaryItem = control.Tag as SummaryItemViewModel;
+                var summaryItem = control.Tag as SavedTemplateViewModel;
                 if (summaryItem != null)
                 {
                     summaryItem.OnCancelRename();
@@ -78,8 +78,8 @@ namespace Microsoft.Templates.UI.Views
             var element = e.Source as FrameworkElement;
             if (element == null || element.Tag == null || element.Tag.ToString() != "AllowClick")
             {
-                ViewModel?.ProjectTemplates?.SummaryPages?.ToList()?.ForEach(p => p.TryClose());
-                ViewModel?.ProjectTemplates?.SummaryFeatures?.ToList()?.ForEach(f => f.TryClose());
+                ViewModel?.ProjectTemplates?.SavedPages?.ToList()?.ForEach(p => p.TryClose());
+                ViewModel?.ProjectTemplates?.SavedFeatures?.ToList()?.ForEach(f => f.TryClose());
             }
         }
     }

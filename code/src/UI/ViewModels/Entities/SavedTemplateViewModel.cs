@@ -19,15 +19,20 @@ using Microsoft.Templates.Core.Mvvm;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
 using Microsoft.TemplateEngine.Abstractions;
+using System.Collections.Generic;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
-    public class SummaryItemViewModel : Observable
+    public class SavedTemplateViewModel : Observable
     {
         public static string SettingsButton = Char.ConvertFromUtf32(0xE713);
         public static string CloseButton = Char.ConvertFromUtf32(0xE013);
 
         #region TemplatesProperties
+
+        private ITemplateInfo _template;
+        public (string name, ITemplateInfo template) UserSelection => (ItemName, _template);
+
         private string _identity;
         public string Identity
         {
@@ -83,6 +88,13 @@ namespace Microsoft.Templates.UI.ViewModels
             set => SetProperty(ref _templateName, value);
         }
 
+        private List<string> _dependencyList;
+        public List<string> DependencyList
+        {
+            get => _dependencyList;
+            set => SetProperty(ref _dependencyList, value);
+        }
+
         private string _author;
         public string Author
         {
@@ -123,10 +135,12 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 return !IsHome;
             }
-        }        
+        }
         #endregion
 
-        #region UIProperties
+        #region UISummaryProperties
+        private DispatcherTimer colorTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(2) };
+
         private bool _isEditionEnabled;
         public bool IsEditionEnabled
         {
@@ -236,17 +250,17 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public ICommand MoveDownCommand { get; set; }        
 
-        public Action<SummaryItemViewModel> ValidateTemplateName;        
+        public Action<SavedTemplateViewModel> ValidateTemplateName;        
 
         public ICommand _cancelRenameCommand;
         public ICommand CancelRenameCommand => _cancelRenameCommand ?? (_cancelRenameCommand = new RelayCommand(CancelRenameAction));
 
-        public Action CancelRenameAction => OnCancelRename;
+        public Action CancelRenameAction => OnCancelRename;        
         #endregion
 
-        private DispatcherTimer colorTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(2) };        
-        public SummaryItemViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled, ICommand openCommand, ICommand removeTemplateCommand, ICommand summaryItemSetHomeCommand, ICommand renameItemCommand, ICommand confirmRenameCommand, ICommand moveUpCommand, ICommand moveDownCommand, Action<SummaryItemViewModel> validateCurrentTemplateName)
+        public SavedTemplateViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled, ICommand openCommand, ICommand removeTemplateCommand, ICommand summaryItemSetHomeCommand, ICommand renameItemCommand, ICommand confirmRenameCommand, ICommand moveUpCommand, ICommand moveDownCommand, Action<SavedTemplateViewModel> validateCurrentTemplateName)
         {
+            _template = item.template;
             colorTimer.Tick += OnColorTimerTick;
             ItemName = item.name;
             Author = item.template.Author;
@@ -254,6 +268,7 @@ namespace Microsoft.Templates.UI.ViewModels
             CanChooseItemName = item.template.GetItemNameEditable();
             Identity = item.template.Identity;
             TemplateName = item.template.Name;
+            DependencyList = item.template.GetDependencyList();
             IsRemoveEnabled = isRemoveEnabled;
             OpenCommand = openCommand;
             RemoveCommand = removeTemplateCommand;

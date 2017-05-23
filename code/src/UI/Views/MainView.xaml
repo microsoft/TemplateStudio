@@ -273,12 +273,12 @@
                                     Focusable="False"
                                     Margin="{StaticResource ExtraBigLeftMargin}"
                                     ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}"
-                                    ItemsSource="{Binding ProjectTemplates.SummaryPages}"
+                                    ItemsSource="{Binding ProjectTemplates.SavedPages}"
                                     Tag="AllowClick" />
                                 <TextBlock
                                     Margin="27,0,0,0"
                                     Text="{x:Static res:StringRes.SummaryNoPages}"
-                                    Visibility="{Binding ProjectTemplates.SummaryPages, Converter={StaticResource EmptyCollectionConverter}}" />
+                                    Visibility="{Binding ProjectTemplates.SavedPages, Converter={StaticResource EmptyCollectionConverter}}" />
                             </Grid>
                         </Expander>
                         <Expander
@@ -292,12 +292,12 @@
                                     Focusable="False"
                                     Margin="{StaticResource ExtraBigLeftMargin}"
                                     ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}"
-                                    ItemsSource="{Binding ProjectTemplates.SummaryFeatures}"
+                                    ItemsSource="{Binding ProjectTemplates.SavedFeatures}"
                                     Tag="AllowClick" />
                                 <TextBlock
                                     Margin="27,0,0,0"
                                     Text="{x:Static res:StringRes.SummaryNoFeatures}"
-                                    Visibility="{Binding ProjectTemplates.SummaryFeatures, Converter={StaticResource EmptyCollectionConverter}}" />
+                                    Visibility="{Binding ProjectTemplates.SavedFeatures, Converter={StaticResource EmptyCollectionConverter}}" />
                             </Grid>
                         </Expander>
                     </StackPanel>

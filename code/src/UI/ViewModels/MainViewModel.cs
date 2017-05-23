@@ -328,7 +328,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private bool CheckProjectSetupChanged()
         {
-            if (ProjectTemplates.SavedTemplates != null && ProjectTemplates.SavedTemplates.Count != 0)
+            if (ProjectTemplates.HasTemplatesAdded)
             {
                 if (ProjectTemplates.ContextFramework.Name != ProjectSetup.SelectedFramework.Name ||
                     ProjectTemplates.ContextProjectType.Name != ProjectSetup.SelectedProjectType.Name)
@@ -336,7 +336,6 @@ namespace Microsoft.Templates.UI.ViewModels
                     return true;
                 }
             }
-
             return false;
         }
 
@@ -359,8 +358,8 @@ namespace Microsoft.Templates.UI.ViewModels
                 HomeName = ProjectTemplates.HomeName
             };
 
-            userSelection.Pages.AddRange(ProjectTemplates.SavedPages);
-            userSelection.Features.AddRange(ProjectTemplates.SavedFeatures);
+            userSelection.Pages.AddRange(ProjectTemplates.SavedPages.Select(sp => sp.UserSelection));
+            userSelection.Features.AddRange(ProjectTemplates.SavedFeatures.Select(sf => sf.UserSelection));
 
             return userSelection;
         }
