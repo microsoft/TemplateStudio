@@ -137,7 +137,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             catch(Exception ex)
             {
                 //Not running in VS so we assume we are in the emulator => we allow telemetry
-                Trace.TraceWarning($"Unable to load the assembly 'Microsoft.VisualStudio.Telemetry'. Visual Studio OptIn/OptOut setting will not be considered. Details:\r\n{ex.ToString()}");
+                Trace.TraceWarning($"Unable to load the assembly 'Microsoft.VisualStudio.Telemetry'. Visual Studio Telemetry OptIn/OptOut setting will not be considered. Details:\r\n{ex.ToString()}");
                 return false;
             }
         }
