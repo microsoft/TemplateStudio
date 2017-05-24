@@ -101,7 +101,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                     InstrumentationKey = _currentConfig.RemoteTelemetryKey
                 };
 
-                if (RemoteKeyAvailable())
+                if (VsTelemetryIsOptedIn() && RemoteKeyAvailable())
                 {
                     SetSessionData();
 
@@ -125,6 +125,46 @@ namespace Microsoft.Templates.Core.Diagnostics
 
                 Trace.TraceError($"Exception instantiating TelemetryClient:\n\r{ex.ToString()}");
             }
+        }
+
+        private bool VsTelemetryIsOptedIn()
+        {
+            try
+            {
+                Assembly.Load(new AssemblyName("Microsoft.VisualStudio.Telemetry"));
+                return SafeVsTelemetryIsOptedIn();
+            }
+            catch(Exception ex)
+            {
+                //Not running in VS so we assume we are in the emulator => we allow telemetry
+                Trace.TraceWarning($"Unable to load the assembly 'Microsoft.VisualStudio.Telemetry'. Visual Studio OptIn/OptOut setting will not be considered. Details:\r\n{ex.ToString()}");
+                return false;
+            }
+        }
+        private bool SafeVsTelemetryIsOptedIn()
+        {
+            try
+            {
+                if (Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession != null)
+                {
+                    var isOptedIn = Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession.IsOptedIn;
+                    Trace.TraceInformation($"Vs Telemetry IsOptedIn: {isOptedIn}");
+                    return isOptedIn;
+                }
+                else
+                {
+                    //Not running in VS so we assume we are in the emulator => we allow telemetry
+                    Trace.TraceInformation($"Checking VsTelemetry IsOptedIn value Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession is Null.");
+                    return true;
+                }
+            }
+            catch(Exception ex)
+            {
+                //Not running in VS so we assume we are in the emulator => we allow telemetry
+                Trace.TraceInformation($"Exception checking VsTelemetry IsOptedIn:\r\n" + ex.ToString());
+                return true;
+            }
+
         }
 
         private void SetSessionData()
