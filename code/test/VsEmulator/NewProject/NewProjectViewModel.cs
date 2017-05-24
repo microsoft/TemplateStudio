@@ -93,7 +93,7 @@ namespace Microsoft.Templates.VsEmulator.NewProject
                                             .Select(d => new DirectoryInfo(d).Name)
                                             .ToList();
 
-            return Naming.Infer(existing, DefaultName);
+            return Naming.Infer(existing, DefaultName, InferMode.ExcludeExisting);
         }
 
         private void ShowFileDialog()

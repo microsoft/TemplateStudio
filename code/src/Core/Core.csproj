@@ -152,6 +152,7 @@
     <Compile Include="Gen\GenContext.cs" />
     <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Gen\IContextProvider.cs" />
+    <Compile Include="Templates\InferMode.cs" />
     <Compile Include="Locations\Fs.cs" />
     <Compile Include="Locations\InvalidSignatureException.cs" />
     <Compile Include="Locations\LocalTemplatesSource.cs" />
@@ -170,7 +171,7 @@
     <Compile Include="MetadataInfo.cs" />
     <Compile Include="Mvvm\ObservableBase.cs" />
     <Compile Include="Mvvm\RelayCommand.cs" />
-    <Compile Include="Naming.cs" />
+    <Compile Include="Templates\Naming.cs" />
     <Compile Include="Templates\LayoutItem.cs" />
     <Compile Include="PostActions\Catalog\AddItemToProjectPostAction.cs" />
     <Compile Include="PostActions\Catalog\AddProjectToSolutionPostAction.cs" />
@@ -219,6 +220,8 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Naming\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

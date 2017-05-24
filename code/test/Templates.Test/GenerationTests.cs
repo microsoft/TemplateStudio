@@ -89,7 +89,7 @@ namespace Microsoft.Templates.Test
 
             if (itemTemplate.GetItemNameEditable())
             {
-                finalName = Naming.Infer(_usedNames, itemTemplate.GetDefaultName());
+                finalName = Naming.ResolveTemplateName(_usedNames, itemTemplate);
             }
 
             var projectName = $"{projectType}{framework}{finalName}";
@@ -151,7 +151,7 @@ namespace Microsoft.Templates.Test
             Assert.True(result.exitCode.Equals(0), $"Solution {targetProjectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
             //Clean
-            //Directory.Delete(outputPath, true);
+            Directory.Delete(outputPath, true);
         }
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
@@ -214,7 +214,7 @@ namespace Microsoft.Templates.Test
 
                     if (template.GetItemNameEditable())
                     {
-                        itemName = Naming.Infer(_usedNames, itemName);
+                        itemName = Naming.Infer(_usedNames, itemName, InferMode.ExcludeExistingReservedNamesAndDefaultNames);
                     }
 
                     AddItem(userSelection, itemName, template);

@@ -123,11 +123,12 @@
     <Compile Include="Diagnostics\TelemetryFixture.cs" />
     <Compile Include="Diagnostics\TelemetryServiceTest.cs" />
     <Compile Include="Diagnostics\TestHealthWriter.cs" />
+    <Compile Include="Naming\NamingFixture.cs" />
     <Compile Include="PostActions\Catalog\SortUsingsTest.cs" />
     <Compile Include="Templates\ITemplateInfoExtensionsTest.cs" />
     <Compile Include="Locations\TemplatexTests.cs" />
     <Compile Include="Locations\UnitTestTemplatesSource.cs" />
-    <Compile Include="NamingTest.cs" />
+    <Compile Include="Naming\NamingTest.cs" />
     <Compile Include="Composition\CompositionQueryTest.cs" />
     <None Include="Locations\MsSigned\Templates.mstx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -150,6 +151,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Templates\TemplatesFixture.cs" />
+    <Content Include="TestData\Templates\Naming.TitleCaseTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\Naming.CleanupTemplate\.template.config\template.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Core\Core.csproj">
@@ -168,6 +171,8 @@
     <Content Include="packages.config" />
     <Content Include="TestData\Templates\FeatureTemplate\.template.config\template.json" />
     <Content Include="TestData\Templates\PageTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\Naming.ReservedNameTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\Naming.DefaultNameTemplate\.template.config\template.json" />
     <None Include="TestData\Templates\ProjectTemplate\.template.config\description.md" />
     <Content Include="TestData\Templates\ProjectTemplate\.template.config\icon.png" />
     <Content Include="TestData\Templates\ProjectTemplate\.template.config\template.json" />
@@ -182,9 +187,6 @@
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Config\Ok.config.valid.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
