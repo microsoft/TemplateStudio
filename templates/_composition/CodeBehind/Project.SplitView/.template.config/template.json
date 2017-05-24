@@ -8,9 +8,9 @@
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
-    "wts.framework": "CodeBehind",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind & identity == wts.Proj.SplitView"
+    "wts.compositionFilter": "$framework == CodeBehind & $projectType == SplitView & wts.type == project",
+    "wts.licences": "[Microsoft.Toolkit.Uwp.UI.Controls](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
@@ -33,6 +33,10 @@
     "wts.itemNamespace": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
+    },
+    "wts.homePageName": {
+      "type":"parameter",
+      "replaces":"Param_HomeName"
     }
   }
 }

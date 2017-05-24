@@ -139,7 +139,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
 
         private string GetTemplatesFolder()
         {
-            LocalTemplatesSource _templatesSource = new LocalTemplatesSource(_useTemplatesVersion);
+            LocalTemplatesSource _templatesSource = new LocalTemplatesSource(_useWizardVersion, _useTemplatesVersion);
             TemplatesSynchronization _templatesSync = new TemplatesSynchronization(_templatesSource, new Version(_useWizardVersion));
             string currentTemplatesFolder = _templatesSync.CurrentTemplatesFolder;
 

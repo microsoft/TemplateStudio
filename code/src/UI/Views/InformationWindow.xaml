@@ -17,7 +17,28 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            
             <converters:StringVisibilityConverter x:Key="StringVisibilityConverter"/>
+
+            <DataTemplate x:Key="LicenseInfoModalItemTemplate">
+                <Grid>
+                    <TextBlock>
+                        <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
+                            <TextBlock Text="{Binding Text}" Style="{StaticResource TextSumaryLicenseStyle}" />
+                        </Hyperlink>
+                    </TextBlock>
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="DependencyInfoModalTemplate">
+                <Grid>
+                    <TextBlock>
+                        <Hyperlink Command="{Binding ShowInfoCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
+                          <TextBlock Text="{Binding Name}" Style="{StaticResource TextSumaryLicenseStyle}" />
+                        </Hyperlink>
+                    </TextBlock>
+                </Grid>
+            </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
 
@@ -65,7 +86,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalLicenses}" Style="{StaticResource TextInformationPropertyTitle}" />
-                    <ItemsControl Grid.Column="1" ItemsSource="{Binding LicenseTerms}" Margin="{StaticResource MediumLeftMargin}" ItemTemplate="{StaticResource LicenseSummaryItemTemplate}" Focusable="False"/>
+                    <ItemsControl Grid.Column="1" ItemsSource="{Binding LicenseTerms}" Margin="{StaticResource MediumLeftMargin}" ItemTemplate="{StaticResource LicenseInfoModalItemTemplate}" Focusable="False"/>
                 </Grid>
                 <Grid Margin="{StaticResource MediumTopMargin}" Visibility="{Binding DependenciesVisibility, FallbackValue=Collapsed}">
                     <Grid.ColumnDefinitions>

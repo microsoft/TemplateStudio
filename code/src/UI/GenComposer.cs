@@ -27,7 +27,7 @@ namespace Microsoft.Templates.UI
         public static IEnumerable<string> GetSupportedFx(string projectType)
         {
             return GenContext.ToolBox.Repo.GetAll()
-                .Where(t => t.GetProjectType() == projectType)
+                .Where(t => t.GetProjectTypeList().Contains(projectType))
                 .SelectMany(t => t.GetFrameworkList())
                 .Distinct();
         }
@@ -118,13 +118,13 @@ namespace Microsoft.Templates.UI
             }
 
             AddProject(userSelection, genQueue);
-            AddTemplates(userSelection.Pages, genQueue);
-            AddTemplates(userSelection.Features, genQueue);
+            AddTemplates(userSelection.Pages, genQueue, userSelection);
+            AddTemplates(userSelection.Features, genQueue, userSelection);
 
-            AddCompositionTemplates(genQueue, userSelection);
+            AddCompositionTemplates(genQueue, userSelection);            
 
             return genQueue;
-        }
+        }        
 
         private static void AddProject(UserSelection userSelection, List<GenInfo> genQueue)
         {
@@ -140,15 +140,16 @@ namespace Microsoft.Templates.UI
         {
             return GenContext.ToolBox.Repo
                                     .Find(t => t.GetTemplateType() == TemplateType.Project
-                                            && t.GetProjectType() == projectType
+                                            && t.GetProjectTypeList().Any(p => p == projectType)
                                             && t.GetFrameworkList().Any(f => f == framework));
         }
 
-        private static void AddTemplates(IEnumerable<(string name, ITemplateInfo template)> userSelection, List<GenInfo> genQueue)
+        private static void AddTemplates(IEnumerable<(string name, ITemplateInfo template)> templates, List<GenInfo> genQueue, UserSelection userSelection)
         {
-            foreach (var selectionItem in userSelection)
+            foreach (var selectionItem in templates)
             {
-                CreateGenInfo(selectionItem.name, selectionItem.template, genQueue);
+                var genInfo = CreateGenInfo(selectionItem.name, selectionItem.template, genQueue);
+                genInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
             }
         }
 
@@ -167,8 +168,8 @@ namespace Microsoft.Templates.UI
                 foreach (var compositionItem in compositionCatalog)
                 {
                     if (compositionItem.query.Match(genItem.Template, context))
-                    {
-                        AddTemplate(genItem, compositionQueue, compositionItem.template);
+                    {                        
+                        AddTemplate(genItem, compositionQueue, compositionItem.template, userSelection);
                     }
 
                 }
@@ -185,16 +186,17 @@ namespace Microsoft.Templates.UI
                                         .ToList();
         }
 
-        private static void AddTemplate(GenInfo mainGenInfo, List<GenInfo> queue, ITemplateInfo targetTemplate)
+        private static void AddTemplate(GenInfo mainGenInfo, List<GenInfo> queue, ITemplateInfo targetTemplate, UserSelection userSelection)
         {
             if (targetTemplate != null)
             {
                 foreach (var export in targetTemplate.GetExports())
                 {
-                    mainGenInfo.Parameters.Add(export.name, export.value);
+                    mainGenInfo.Parameters.Add(export.name, export.value);                    
                 }
 
-                CreateGenInfo(mainGenInfo.Name, targetTemplate, queue);
+                var genInfo = CreateGenInfo(mainGenInfo.Name, targetTemplate, queue);
+                genInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
             }
         }
 

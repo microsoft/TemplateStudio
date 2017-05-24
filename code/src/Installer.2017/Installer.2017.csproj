@@ -74,6 +74,10 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Templates.mstx">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <VSIXSubPath>InstalledTemplates</VSIXSubPath>
+    </Content>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
