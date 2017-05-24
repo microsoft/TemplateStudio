@@ -111,7 +111,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void ValidateCurrentTemplateName(SavedTemplateViewModel item)
         {
-            var validationResult = Naming.Validate(Names, item.NewItemName);
+            var validationResult = Naming.Validate(Names, item.NewItemName, !item.CanChooseItemName);
 
             item.IsValidName = validationResult.IsValid;
             item.ErrorMessage = String.Empty;
@@ -132,7 +132,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void ValidateNewTemplateName(TemplateInfoViewModel template)
         {
-            var validationResult = Naming.Validate(Names, template.NewTemplateName);
+            var validationResult = Naming.Validate(Names, template.NewTemplateName, !template.CanChooseItemName);
 
             template.IsValidName = validationResult.IsValid;
             template.ErrorMessage = String.Empty;
@@ -199,15 +199,15 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnAddTemplateItem(TemplateInfoViewModel template)
         {
+            template.NewTemplateName = Naming.ResolveTemplateName(Names, template.Template);
+
             if (template.CanChooseItemName)
             {
-                template.NewTemplateName = Naming.Infer(Names, template.Template.GetDefaultName());
                 CloseTemplatesEdition();
                 template.IsEditionEnabled = true;
             }
             else
             {
-                template.NewTemplateName = template.Template.GetDefaultName();
                 SetupTemplateAndDependencies((template.NewTemplateName, template.Template));
                 var isAlreadyDefined = IsTemplateAlreadyDefined(template.Template.Identity);
                 template.UpdateTemplateAvailability(isAlreadyDefined);
@@ -235,7 +235,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnConfirmRenameSummaryItem(SavedTemplateViewModel item)
         {
-            var validationResult = Naming.Validate(Names, item.NewItemName);
+            var validationResult = Naming.Validate(Names, item.NewItemName, !item.CanChooseItemName);
 
             if (validationResult.IsValid)
             {

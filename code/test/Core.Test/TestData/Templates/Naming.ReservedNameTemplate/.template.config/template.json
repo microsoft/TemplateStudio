@@ -1,0 +1,15 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "Page",
+  "groupIdentity": "Microsoft.UWPTemplates.Test.Naming.ReservedName",
+  "identity": "Microsoft.UWPTemplates.Test.Naming.ReservedName.CSharp",
+  "shortName": "naming-reservedname",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "page"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}
