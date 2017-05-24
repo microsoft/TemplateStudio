@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MediaPlayer",
+  "name": "Media Player",
   "groupIdentity": "wts.Page.MediaPlayer",
   "identity": "wts.Page.MediaPlayer.CodeBehind",
   "shortName": "Media Player Page",
