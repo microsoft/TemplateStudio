@@ -15,7 +15,7 @@
     "wts.framework": "CodeBehind",
     "wts.version": "1.0.0",
     "wts.order": "1",
-    "wts.licences": "[Telerik.UI-For-UWP](https://github.com/telerik/UI-For-UWP/blob/master/LICENSE.md)"
+    "wts.licenses": "[Telerik.UI-For-UWP](https://github.com/telerik/UI-For-UWP/blob/master/LICENSE.md)"
   },
   "sourceName": "ChartView",
   "preferNameDirectory": true,
