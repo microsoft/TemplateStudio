@@ -141,6 +141,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 return false;
             }
         }
+        
         private bool SafeVsTelemetryIsOptedIn()
         {
             try
@@ -164,7 +165,6 @@ namespace Microsoft.Templates.Core.Diagnostics
                 Trace.TraceInformation($"Exception checking VsTelemetry IsOptedIn:\r\n" + ex.ToString());
                 return true;
             }
-
         }
 
         private void SetSessionData()
