@@ -15,7 +15,7 @@ namespace Microsoft.Templates.Core.Diagnostics
     public class TelemetryProperties
     {
         public static string WizardFileVersion { get; internal set; } = TelemetryTracker.PropertiesPrefix + "WizardFileVersion";
-        public static string WizardContentVersion { get; internal set; } = TelemetryTracker.PropertiesPrefix + "WizardContentVersion";
+        public static string WizardContentVersion { get; internal set; } = TelemetryTracker.PropertiesPrefix + "TemplatesVersion";
         public static string RoleInstanceName { get; internal set; } = TelemetryTracker.PropertiesPrefix + "WizardClient";
         public static string Status { get; private set; } = TelemetryTracker.PropertiesPrefix + "Status";
         public static string ProjectType { get; private set; } = TelemetryTracker.PropertiesPrefix + "ProjectType";
@@ -27,5 +27,8 @@ namespace Microsoft.Templates.Core.Diagnostics
         public static string WizardStatus { get; private set; } = TelemetryTracker.PropertiesPrefix + "WizardStatus";
         public static string LastStep { get; private set; } = TelemetryTracker.PropertiesPrefix + "LastStep";
         public static string EventName { get; internal set; } = TelemetryTracker.PropertiesPrefix + "EventName";
+        public static string VisualStudioVersion { get; internal set; } = TelemetryTracker.PropertiesPrefix + "VsVersion";
+        public static string VisualStudioEdition { get; internal set; } = TelemetryTracker.PropertiesPrefix + "VsEdition";
+        public static string VisualStudioCulture { get; internal set; } = TelemetryTracker.PropertiesPrefix + "VsCulture";
     }
 }

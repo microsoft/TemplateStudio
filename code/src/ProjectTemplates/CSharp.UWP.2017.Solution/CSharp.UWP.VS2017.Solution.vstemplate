@@ -13,6 +13,7 @@
     <CreateNewFolder>true</CreateNewFolder>
     <DefaultName>App</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
+    <AppIdFilter>blend</AppIdFilter>
   </TemplateData>
   <TemplateContent>
     <CustomParameters>

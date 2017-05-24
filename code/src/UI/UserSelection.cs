@@ -23,6 +23,7 @@ namespace Microsoft.Templates.UI
     {
         public string ProjectType { get; set; }
         public string Framework { get; set; }
+        public string HomeName { get; set; }
         public List<(string name, ITemplateInfo template)> Pages { get; } = new List<(string name, ITemplateInfo template)>();
         public List<(string name, ITemplateInfo template)> Features { get; } = new List<(string name, ITemplateInfo template)>();
 

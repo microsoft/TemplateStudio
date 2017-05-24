@@ -26,7 +26,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
 
 using NuGet.VisualStudio;
-
+using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -49,23 +49,40 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             var proj = GetActiveProject();
-
-            foreach (var item in itemsFullPath)
+            if (proj != null && proj.ProjectItems != null)
             {
-                proj.ProjectItems.AddFromFile(item);
-            }
+                foreach (var item in itemsFullPath)
+                {
+                    proj.ProjectItems.AddFromFile(item);
+                }
 
-            proj.Save();
+                proj.Save();
+            }
+            else
+            {
+                AppHealth.Current.Error.TrackAsync(StringRes.UnableAddItemsToProject).FireAndForget();
+            }
         }
 
         public override void RefreshProject()
         {
-            var proj = GetActiveProject();
+            try
+            {
+                var proj = GetActiveProject();
 
-            var path = proj.FullName;
+                if (proj != null)
+                {
+                    var path = proj.FullName;
 
-            Dte.Solution.Remove(proj);
-            Dte.Solution.AddFromFile(path);
+                    Dte.Solution.Remove(proj);
+                    Dte.Solution.AddFromFile(path);
+                }
+            }
+            catch(Exception)
+            {
+                //WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+                AppHealth.Current.Info.TrackAsync(StringRes.UnableToRefreshProject).FireAndForget();
+            }
         }
 
         public override bool SetActiveConfigurationAndPlatform(string configurationName, string platformName)
@@ -90,7 +107,15 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void AddProjectToSolution(string projectFullPath)
         {
-            Dte.Solution.AddFromFile(projectFullPath);
+            try
+            {
+                Dte.Solution.AddFromFile(projectFullPath);
+            }
+            catch (Exception)
+            {
+                //WE GET AN EXCEPTION WHEN THERE ISN'T A SOLUTION LOADED
+                AppHealth.Current.Info.TrackAsync(StringRes.UnableAddProjectToSolution).FireAndForget();
+            }
         }
 
         public override string GetActiveNamespace()
@@ -236,7 +261,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception)
             {
-                //WE GE AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+                //WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
             }
 
             return p;
@@ -307,6 +332,21 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
+        public override string GetVsCultureInfo()
+        {
+            return System.Globalization.CultureInfo.GetCultureInfo(Dte.LocaleID).Name;
+        }
+
+        public override string GetVsVersion()
+        {
+            return Dte.Version;
+        }
+
+        public override string GetVsEdition()
+        {
+            return Dte.Edition;
+        }
+
         private void Collapse(UIHierarchyItem item)
         {
             foreach (UIHierarchyItem subitem in item.UIHierarchyItems)
@@ -316,5 +356,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             item.UIHierarchyItems.Expanded = false;
         }
+
+
     }
 }

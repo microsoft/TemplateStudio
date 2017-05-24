@@ -3,12 +3,12 @@
 ## Installing the Visual Studio Extension
 ### Prerequisites
 Windows Template Studio installs into your existing Windows 10 app development environment. If you're missing any of the below, you can get everything from the [Windows Dev Center Download page](https://developer.microsoft.com/en-us/windows/downloads).
-* Visual Studio 2017 or higher (any edition)
+* Visual Studio 2017 Update 1 or higher (any edition)
 * Windows 10 Creators Update SDK (version 10.0.15063.0 or later)
 
 ### Visual Studio Extension Feed URLs for Windows Template Studio
 
-* **Public Release (Coming soon):** The official extension from the [Visual Studio Gallery](https://visualstudiogallery.msdn.microsoft.com/)
+* **Public Release:** The official extension from the [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)
 * **Nightly:** <https://www.myget.org/F/windows-template-studio-nightly/vsix/>
 * **Pre-release (stable):** <https://www.myget.org/F/windows-template-studio-prerelease/vsix/>
 
