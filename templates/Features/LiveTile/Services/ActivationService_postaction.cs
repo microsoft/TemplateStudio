@@ -18,6 +18,9 @@ namespace Param_ItemNamespace.Services
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
             yield return Singleton<LiveTileFeatureService>.Instance;
+//{--{
+
+            yield break;//}--}
         }
     }
 }
