@@ -152,8 +152,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Templates\TemplatesFixture.cs" />
-    <Content Include="TestData\Templates\Naming.TitleCaseTemplate\.template.config\template.json" />
-    <Content Include="TestData\Templates\Naming.CleanupTemplate\.template.config\template.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Core\Core.csproj">
@@ -172,7 +170,6 @@
     <Content Include="packages.config" />
     <Content Include="TestData\Templates\FeatureTemplate\.template.config\template.json" />
     <Content Include="TestData\Templates\PageTemplate\.template.config\template.json" />
-    <Content Include="TestData\Templates\Naming.ReservedNameTemplate\.template.config\template.json" />
     <Content Include="TestData\Templates\Naming.DefaultNameTemplate\.template.config\template.json" />
     <None Include="TestData\Templates\ProjectTemplate\.template.config\description.md" />
     <Content Include="TestData\Templates\ProjectTemplate\.template.config\icon.png" />

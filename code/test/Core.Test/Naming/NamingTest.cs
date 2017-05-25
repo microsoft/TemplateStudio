@@ -18,6 +18,7 @@ using Microsoft.Templates.Test.Artifacts;
 using System;
 using System.Linq;
 using Xunit;
+using System.Collections.Generic;
 
 namespace Microsoft.Templates.Core.Test
 {
@@ -35,52 +36,56 @@ namespace Microsoft.Templates.Core.Test
         public void Infer_Existing()
         {
             var existing = new string[] { "App" };
-            var result = Naming.Infer(existing, "App", InferMode.ExcludeExisting);
+            var validators = new List<Validator>()
+            {
+                new ExistingNamesValidator(existing)
+            };
+            var result = Naming.Infer("App", validators);
 
             Assert.Equal("App1", result);
         }
 
-        [Fact]
-        public void ResolveTemplateName_Existing()
-        {
-            var existing = new string[] { "PageTemplate" };
-            var result = Naming.ResolveTemplateName(existing, GetTarget("PageTemplate"));
-
-            Assert.Equal("PageTemplate1", result);
-        }
 
         [Fact]
-        public void ResolveTemplateName_Reserved()
+        public void Infer_Reserved()
         {
             var existing = new string[] { };
-            var result = Naming.ResolveTemplateName(existing, GetTarget("Page"));
+            var validators = new List<Validator>()
+            {
+                new ReservedNamesValidator()
+            };
+            var result = Naming.Infer("Page", validators);
 
             Assert.Equal("Page1", result);
         }
 
         [Fact]
-        public void ResolveTemplateName_Default()
+        public void Infer_Default()
         {
             var existing = new string[] { };
-            var result = Naming.ResolveTemplateName(existing, GetTarget("LiveTile"));
+            var validators = new List<Validator>()
+            {
+                new DefaultNamesValidator()
+            };
+            var result = Naming.Infer("LiveTile", validators);
 
-            Assert.Equal("LiveTile", result);
+            Assert.Equal("LiveTile1", result);
         }
 
         [Fact]
-        public void ResolveTemplateName_Clean()
+        public void Infer_Clean()
         {
             var existing = new string[] { };
-            var result = Naming.ResolveTemplateName(existing, GetTarget("Blank$Page"));
+            var result = Naming.Infer("Blank$Page", new List<Validator>());
 
             Assert.Equal("BlankPage", result);
         }
 
         [Fact]
-        public void ResolveTemplateName_TitleCase()
+        public void Infer_TitleCase()
         {
             var existing = new string[] { };
-            var result = Naming.ResolveTemplateName(existing, GetTarget("blank page"));
+            var result = Naming.Infer("blank page", new List<Validator>());
 
             Assert.Equal("BlankPage", result);
         }
@@ -88,8 +93,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void Validate()
         {
-            var existing = new string[] { };
-            var result = Naming.Validate(existing, "Blank1", true);
+            var result = Naming.Validate("Blank1", new List<Validator>());
 
             Assert.True(result.IsValid);
         }
@@ -97,8 +101,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void Validate_Empty()
         {
-            var existing = new string[] { };
-            var result = Naming.Validate(existing, "", true);
+            var result = Naming.Validate("", new List<Validator>());
 
             Assert.False(result.IsValid);
             Assert.Equal(ValidationErrorType.Empty, result.ErrorType);
@@ -108,7 +111,11 @@ namespace Microsoft.Templates.Core.Test
         public void Validate_Existing()
         {
             var existing = new string[] { "Blank" };
-            var result = Naming.Validate(existing, "Blank", true);
+            var validators = new List<Validator>()
+            {
+                new ExistingNamesValidator(existing)
+            };
+            var result = Naming.Validate("Blank", validators);
 
             Assert.False(result.IsValid);
             Assert.Equal(ValidationErrorType.AlreadyExists, result.ErrorType);
@@ -117,8 +124,11 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void Validate_Default()
         {
-            var existing = new string[] { "Blank" };
-            var result = Naming.Validate(existing, "LiveTile", false);
+            var validators = new List<Validator>()
+            {
+                new DefaultNamesValidator()
+            };
+            var result = Naming.Validate("LiveTile", validators);
 
             Assert.False(result.IsValid);
             Assert.Equal(ValidationErrorType.ReservedName, result.ErrorType);
@@ -127,8 +137,11 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void Validate_Reserved()
         {
-            var existing = new string[] { "Blank" };
-            var result = Naming.Validate(existing, "Page", false);
+            var validators = new List<Validator>()
+            {
+                new ReservedNamesValidator()
+            };
+            var result = Naming.Validate("Page", validators);
 
             Assert.False(result.IsValid);
             Assert.Equal(ValidationErrorType.ReservedName, result.ErrorType);
@@ -138,7 +151,7 @@ namespace Microsoft.Templates.Core.Test
         public void Validate_BadFormat_InvalidChars()
         {
             var existing = new string[] { };
-            var result = Naming.Validate(existing, "Blank;", true);
+            var result = Naming.Validate("Blank;", new List<Validator>());
 
             Assert.False(result.IsValid);
             Assert.Equal(ValidationErrorType.BadFormat, result.ErrorType);
@@ -146,9 +159,8 @@ namespace Microsoft.Templates.Core.Test
 
         [Fact]
         public void Validate_BadFormat_StartWithNumber()
-        {
-            var existing = new string[] { };
-            var result = Naming.Validate(existing, "1Blank", true);
+        {            
+            var result = Naming.Validate("1Blank", new List<Validator>());
 
             Assert.False(result.IsValid);
             Assert.Equal(ValidationErrorType.BadFormat, result.ErrorType);

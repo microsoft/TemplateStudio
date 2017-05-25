@@ -111,7 +111,16 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void ValidateCurrentTemplateName(SavedTemplateViewModel item)
         {
-            var validationResult = Naming.Validate(Names, item.NewItemName, !item.CanChooseItemName);
+            var validators = new List<Validator>()
+            {
+                new ExistingNamesValidator(Names),
+                new ReservedNamesValidator()
+            };
+            if (item.CanChooseItemName)
+            {
+                validators.Add(new DefaultNamesValidator());
+            }
+            var validationResult = Naming.Validate(item.NewItemName, validators);
 
             item.IsValidName = validationResult.IsValid;
             item.ErrorMessage = String.Empty;
@@ -132,7 +141,16 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void ValidateNewTemplateName(TemplateInfoViewModel template)
         {
-            var validationResult = Naming.Validate(Names, template.NewTemplateName, !template.CanChooseItemName);
+            var validators = new List<Validator>()
+            {
+                new ExistingNamesValidator(Names),
+                new ReservedNamesValidator()
+            };
+            if (template.CanChooseItemName)
+            {
+                validators.Add(new DefaultNamesValidator());
+            }
+            var validationResult = Naming.Validate(template.NewTemplateName, validators);
 
             template.IsValidName = validationResult.IsValid;
             template.ErrorMessage = String.Empty;
@@ -199,15 +217,27 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnAddTemplateItem(TemplateInfoViewModel template)
         {
-            template.NewTemplateName = Naming.ResolveTemplateName(Names, template.Template);
 
             if (template.CanChooseItemName)
             {
+                var validators = new List<Validator>()
+                {
+                    new ReservedNamesValidator(),
+                    new ExistingNamesValidator(Names),
+                    new DefaultNamesValidator()
+                };
+                template.NewTemplateName = Naming.Infer(template.Template.GetDefaultName(), validators);
                 CloseTemplatesEdition();
                 template.IsEditionEnabled = true;
             }
             else
             {
+                var validators = new List<Validator>()
+                {
+                    new ReservedNamesValidator(),
+                    new ExistingNamesValidator(Names)
+                };
+                template.NewTemplateName = Naming.Infer(template.Template.GetDefaultName(), validators);
                 SetupTemplateAndDependencies((template.NewTemplateName, template.Template));
                 var isAlreadyDefined = IsTemplateAlreadyDefined(template.Template.Identity);
                 template.UpdateTemplateAvailability(isAlreadyDefined);
@@ -235,7 +265,16 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnConfirmRenameSummaryItem(SavedTemplateViewModel item)
         {
-            var validationResult = Naming.Validate(Names, item.NewItemName, !item.CanChooseItemName);
+            var validators = new List<Validator>()
+            {
+                new ExistingNamesValidator(Names),
+                new ReservedNamesValidator()
+            };
+            if (item.CanChooseItemName)
+            {
+                validators.Add(new DefaultNamesValidator());
+            }
+            var validationResult = Naming.Validate(item.NewItemName, validators);
 
             if (validationResult.IsValid)
             {
