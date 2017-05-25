@@ -25,5 +25,10 @@ namespace Microsoft.Templates.Core
         {
             return (v is null);
         }
+
+        public static bool IsNullOrZero(this Version v)
+        {
+            return (v is null) || (v.Major + v.Minor + v.Build + v.Revision) == 0;
+        }
     }
 }

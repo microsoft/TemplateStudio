@@ -31,7 +31,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
         public override void ExtractFromMstx(string mstxFilePath, string targetFolder)
         {
-            //Running locally we load the local templates folder (same as adquire)
+            //Actually we do not extract from an Mstx, we want to copy local test templates to work with latest local content
             Acquire(targetFolder);
         }
         protected static void Copy(string sourceFolder, string targetFolder)
