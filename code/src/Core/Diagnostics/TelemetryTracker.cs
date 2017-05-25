@@ -109,6 +109,17 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
 
+        public async Task TrackEditSummaryItem(EditItemActionEnum trackedAction)
+        {
+            var properties = new Dictionary<string, string>()
+            {
+                { TelemetryProperties.SummaryItemEditAction, trackedAction.ToString()},
+                { TelemetryProperties.EventName, TelemetryEvents.EditSummaryItem}
+            };
+
+            await TelemetryService.Current.TrackEventAsync(TelemetryEvents.EditSummaryItem, properties).ConfigureAwait(false);
+        }
+
         private async Task TrackProjectAsync(GenStatusEnum status, string templateName, string appType, string appFx, int? pagesCount = null, int? featuresCount = null, double? timeSpent = null, CreationResultStatus genStatus = CreationResultStatus.Success, string message = "")
         {
             var properties = new Dictionary<string, string>()
