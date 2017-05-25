@@ -86,12 +86,16 @@ namespace Microsoft.Templates.Test
             var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework)).FirstOrDefault();
             var itemTemplate = GenerationTestsFixture.Templates.FirstOrDefault(t => t.Identity == itemId);
             var finalName = itemTemplate.GetDefaultName();
-
+            var validators = new List<Validator>()
+            {
+                new ReservedNamesValidator(),
+            };
             if (itemTemplate.GetItemNameEditable())
             {
-                finalName = Naming.ResolveTemplateName(_usedNames, itemTemplate);
+                validators.Add(new DefaultNamesValidator());
             }
 
+            finalName = Naming.Infer(finalName, validators);
             var projectName = $"{projectType}{framework}{finalName}";
 
             ProjectName = projectName;
@@ -212,11 +216,16 @@ namespace Microsoft.Templates.Test
                 {
                     var itemName = getName(template);
 
+                    var validators = new List<Validator>()
+                    {
+                        new ExistingNamesValidator(_usedNames),
+                        new ReservedNamesValidator(),
+                    };
                     if (template.GetItemNameEditable())
                     {
-                        itemName = Naming.Infer(_usedNames, itemName, InferMode.ExcludeExistingReservedNamesAndDefaultNames);
+                        validators.Add(new DefaultNamesValidator());  
                     }
-
+                    itemName = Naming.Infer(itemName, validators);
                     AddItem(userSelection, itemName, template);
                 }
             }
