@@ -91,7 +91,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                     _userSelection = GenController.GetUserSelection();
                 }
             }
-            catch (Exception)
+            catch (WizardBackoutException)
             {
                 if (Directory.Exists(solutionDirectory))
                 {
