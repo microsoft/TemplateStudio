@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             bool contentIsUnderVersion = _content.ExistUnderVersion();
 
-            if (contentIsUnderVersion || CurrentContentVersion.IsZero())
+            if (forced || contentIsUnderVersion || CurrentContentVersion.IsNullOrZero())
             {
                 await CheckMandatoryAdquisitionAsync(true);
                 await UpdateTemplatesCacheAsync();
