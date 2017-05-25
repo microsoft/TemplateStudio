@@ -58,7 +58,7 @@ namespace Microsoft.Templates.Core.Composition
         private static bool Validate(MatchCollection queryMatches, string rawQuery)
         {
             //Basic validation: matches concatenation must be equal than rawQuery
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             foreach(Match m in queryMatches)
             {

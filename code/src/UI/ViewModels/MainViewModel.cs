@@ -334,16 +334,16 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private bool CheckProjectSetupChanged()
         {
-            if (ProjectTemplates.HasTemplatesAdded)
-            {
-                if (ProjectTemplates.ContextFramework.Name != ProjectSetup.SelectedFramework.Name ||
-                    ProjectTemplates.ContextProjectType.Name != ProjectSetup.SelectedProjectType.Name)
-                {
-                    return true;
-                }
+            if (ProjectTemplates.HasTemplatesAdded && (FrameworkChanged || ProjectTypeChanged))
+            { 
+                return true;
             }
             return false;
         }
+
+        private bool FrameworkChanged => ProjectTemplates.ContextFramework.Name != ProjectSetup.SelectedFramework.Name;
+
+        private bool ProjectTypeChanged => ProjectTemplates.ContextProjectType.Name != ProjectSetup.SelectedProjectType.Name;
 
         private void OnCreate()
         {

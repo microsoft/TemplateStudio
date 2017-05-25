@@ -38,9 +38,9 @@ namespace wts.ItemName.Views
 
         private SolidColorBrush GetStandardTextColorBrush()
         {
-            var result = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
+            var brush = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
 
-            return result;
+            return brush;
         }
 
         private SolidColorBrush _selectedForeground = null;

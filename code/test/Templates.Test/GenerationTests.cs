@@ -89,7 +89,7 @@ namespace Microsoft.Templates.Test
 
             if (itemTemplate.GetItemNameEditable())
             {
-                finalName = Naming.Infer(_usedNames, itemTemplate.GetDefaultName());
+                finalName = Naming.ResolveTemplateName(_usedNames, itemTemplate);
             }
 
             var projectName = $"{projectType}{framework}{finalName}";
@@ -214,7 +214,7 @@ namespace Microsoft.Templates.Test
 
                     if (template.GetItemNameEditable())
                     {
-                        itemName = Naming.Infer(_usedNames, itemName);
+                        itemName = Naming.Infer(_usedNames, itemName, InferMode.ExcludeExistingReservedNamesAndDefaultNames);
                     }
 
                     AddItem(userSelection, itemName, template);

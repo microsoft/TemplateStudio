@@ -379,7 +379,7 @@ namespace Microsoft.Templates.UI.Controls
                 return new Run("!" + url) { Foreground = Brushes.Red };
             }
 
-            Image image = new Image { Source = imgSource, Tag = linkText };
+            var image = new Image { Source = imgSource, Tag = linkText };
             if (ImageStyle == null)
             {
                 image.Margin = new Thickness(0);
@@ -392,7 +392,7 @@ namespace Microsoft.Templates.UI.Controls
             // Bind size so document is updated when image is downloaded
             if (imgSource.IsDownloading)
             {
-                Binding binding = new Binding(nameof(BitmapImage.Width));
+                var binding = new Binding(nameof(BitmapImage.Width));
                 binding.Source = imgSource;
                 binding.Mode = BindingMode.OneWay;
 
@@ -603,7 +603,7 @@ namespace Microsoft.Templates.UI.Controls
                 throw new ArgumentNullException("match");
             }
 
-            Line line = new Line();
+            var line = new Line();
             if (SeparatorStyle == null)
             {
                 line.X2 = 1;

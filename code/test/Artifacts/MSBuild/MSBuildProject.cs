@@ -90,15 +90,15 @@ namespace Microsoft.Templates.Test.Artifacts.MSBuild
 
         private static XElement GetProjectReferenceXElement(string includePath, string projectGuid, string projectName)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append($"<ProjectReference Include=\"{includePath}\"");
             sb.AppendLine(">");
             sb.AppendLine($"<Project>{projectGuid}</Project>");
             sb.AppendLine($"<Name>{projectName}</Name>");
             sb.AppendLine("</ProjectReference>");
 
-            StringReader sr = new StringReader(sb.ToString());
-            XElement itemElement = XElement.Load(sr);
+            var sr = new StringReader(sb.ToString());
+            var itemElement = XElement.Load(sr);
             return itemElement;
         }
 

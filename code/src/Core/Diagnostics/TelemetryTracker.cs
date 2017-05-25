@@ -34,7 +34,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task TrackWizardCompletedAsync(WizardTypeEnum wizardType)
         {
-            Dictionary<string, string> properties = new Dictionary<string, string>()
+            var properties = new Dictionary<string, string>()
             {
                 { TelemetryProperties.WizardStatus, WizardStatusEnum.Completed.ToString() },
                 { TelemetryProperties.WizardType, wizardType.ToString() },
@@ -46,7 +46,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task TrackWizardCompletedAsync()
         {
-            Dictionary<string, string> properties = new Dictionary<string, string>()
+            var properties = new Dictionary<string, string>()
             {
                 { TelemetryProperties.WizardStatus, WizardStatusEnum.Completed.ToString() },
                 { TelemetryProperties.WizardType, WizardTypeEnum.NewProject.ToString() },
@@ -57,7 +57,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         }
         public async Task TrackWizardCancelledAsync(WizardTypeEnum wizardType)
         {
-            Dictionary<string, string> properties = new Dictionary<string, string>()
+            var properties = new Dictionary<string, string>()
             {
                 { TelemetryProperties.WizardStatus, WizardStatusEnum.Cancelled.ToString() },
                 { TelemetryProperties.WizardType, wizardType.ToString() },
@@ -111,7 +111,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         private async Task TrackProjectAsync(GenStatusEnum status, string templateName, string appType, string appFx, int? pagesCount = null, int? featuresCount = null, double? timeSpent = null, CreationResultStatus genStatus = CreationResultStatus.Success, string message = "")
         {
-            Dictionary<string, string> properties = new Dictionary<string, string>()
+            var properties = new Dictionary<string, string>()
             {
                 { TelemetryProperties.Status, status.ToString() },
                 { TelemetryProperties.ProjectType, appType },
@@ -122,7 +122,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 { TelemetryProperties.EventName, TelemetryEvents.ProjectGen}
             };
 
-            Dictionary<string, double> metrics = new Dictionary<string, double>();
+            var metrics = new Dictionary<string, double>();
 
             if (pagesCount.HasValue)
             {
@@ -151,7 +151,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         private async Task TrackItemGenAsync(string eventToTrack,  GenStatusEnum status, string appType, string pageFx, string templateName, CreationResultStatus genStatus= CreationResultStatus.Success, string message="")
         {
-            Dictionary<string, string> properties = new Dictionary<string, string>()
+            var properties = new Dictionary<string, string>()
             {
                 { TelemetryProperties.Status, status.ToString() },
                 { TelemetryProperties.Framework, pageFx },
