@@ -12,6 +12,7 @@
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
@@ -241,6 +242,8 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 item.ItemName = item.NewItemName;
                 item.IsEditionEnabled = false;
+
+                AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.Rename).FireAndForget();
             }
         }
 
@@ -252,6 +255,8 @@ namespace Microsoft.Templates.UI.ViewModels
                 int newIndex = oldIndex + 1;
                 SavedPages.RemoveAt(oldIndex);
                 SavedPages.Insert(newIndex, item);
+
+                AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.MoveDown).FireAndForget();
             }
             UpdateCanMoveUpAndDownPages();
         }
@@ -264,6 +269,8 @@ namespace Microsoft.Templates.UI.ViewModels
                 int newIndex = oldIndex - 1;
                 SavedPages.RemoveAt(oldIndex);
                 SavedPages.Insert(newIndex, item);
+
+                AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.MoveUp).FireAndForget();
             }
             UpdateCanMoveUpAndDownPages();
         }
@@ -316,7 +323,10 @@ namespace Microsoft.Templates.UI.ViewModels
                     SavedPages.RemoveAt(oldIndex);
                     SavedPages.Insert(0, item);
                 }
+
                 UpdateCanMoveUpAndDownPages();
+
+                AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.SetHome).FireAndForget();
             }
         }               
 
@@ -344,6 +354,8 @@ namespace Microsoft.Templates.UI.ViewModels
             MainViewModel.Current.CreateCommand.OnCanExecuteChanged();
             UpdateTemplatesAvailability();
             MainViewModel.Current.RebuildLicenses();
+
+            AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.Remove).FireAndForget();
         }
 
         private bool IsTemplateAlreadyDefined(string identity) => Identities.Any(i => i == identity);
