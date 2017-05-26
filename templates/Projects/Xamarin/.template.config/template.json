@@ -1,0 +1,54 @@
+{
+  "author": "Javito",
+  "classifications": ["Xamarin"],
+  "name": "Xamarin",
+  "groupIdentity": "wts.Proj.Xamarin",
+  "identity": "wts.Proj.Xamarin",
+  "shortName": "xamarin",
+  "description": "this is england!!",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "wts.type": "project",
+    "wts.framework": "MVVMBasic/X",
+    "wts.projecttype":"MasterDetail",
+    "wts.version": "1.0.0",
+    "wts.order": "1"
+  },
+  "sourceName": "wts.XamarinProject",
+  "preferNameDirectory": true,
+  "guids": [ "0A58D77B-0C65-4316-A20E-97A5C36C9B03", "D0AE26A9-0E81-4522-826E-7B9B27067968", "3BCEC159-C868-4C76-A81E-D26635D34684", "5D118806-ADAB-4F95-A8AD-EE20A929C204" ],
+  "PrimaryOutputs":
+  [
+    { "path": "wts.XamarinProject\\wts.XamarinProject.csproj" },
+    { "path": "wts.XamarinProject.Android\\wts.XamarinProject.Android.csproj" },
+    { "path": "wts.XamarinProject.iOS\\wts.XamarinProject.iOS.csproj" },
+    { "path": "wts.XamarinProject.UWP\\wts.XamarinProject.UWP.csproj" }
+  ],
+  "symbols":
+  {
+    "wts.userName":
+    {
+      "type": "parameter",
+      "replaces": "Param_UserName"
+    },
+    "wts.wizardVersion":
+    {
+      "type": "parameter",
+      "replaces": "Param_Wizard.Version"
+    },
+    "wts.templatesVersion":
+    {
+      "type": "parameter",
+      "replaces": "Param_Templates.Version"
+    }
+  },
+  "copyrightYear": {
+      "type": "generated",
+      "generator": "now",
+      "replaces": "1976",
+      "parameters": {
+        "format": "yyyy"
+    }
+  }
+}

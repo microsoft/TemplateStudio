@@ -22,5 +22,13 @@
         "author": "Microsoft",
         "order": "3",
         "licenses": ""
+    },
+     {
+        "name": "MasterDetail",
+        "displayName": "Master Detail",
+        "summary": "blba bla bla",
+        "author": "Javito",
+        "order": "4",
+        "licenses": ""
     }
 ]
