@@ -38,6 +38,11 @@
                         </Hyperlink>
                     </TextBlock>
                     <TextBlock>
+                        <Hyperlink Command="{Binding LoadProjectCommand}">
+                            <TextBlock Text="Load project..."/>
+                        </Hyperlink>
+                    </TextBlock>
+                    <TextBlock>
                         <Hyperlink Command="{Binding ConfigureVersionsCommand}">
                             <TextBlock Text="Configure versions..."/>
                         </Hyperlink>

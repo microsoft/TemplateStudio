@@ -24,6 +24,8 @@ using Microsoft.Templates.VsEmulator.NewProject;
 using Microsoft.Templates.VsEmulator.TemplatesContent;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.Templates.UI;
+using Microsoft.Templates.VsEmulator.LoadProject;
+using System.Linq;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
@@ -41,7 +43,9 @@ namespace Microsoft.Templates.VsEmulator.Main
         public string ProjectName { get; private set; }
         public string OutputPath { get; private set; }
 
+
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
+        public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
         public RelayCommand OpenInVsCodeCommand => new RelayCommand(OpenInVsCode);
         public RelayCommand OpenInExplorerCommand => new RelayCommand(OpenInExplorer);
@@ -150,6 +154,25 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
+        private void LoadProject()
+        {
+            var loadProjectInfo = ShowLoadProjectDialog();
+
+            if (!string.IsNullOrEmpty(loadProjectInfo))
+            {
+                SolutionPath = loadProjectInfo;
+                SolutionName = Path.GetFileNameWithoutExtension(SolutionPath);
+
+                var projFile = Directory.EnumerateFiles(Path.GetDirectoryName(SolutionPath), "*.csproj", SearchOption.AllDirectories).FirstOrDefault();
+
+                GenContext.Current = this;
+
+                ProjectName = Path.GetFileNameWithoutExtension(projFile);
+                OutputPath = Path.GetDirectoryName(projFile);
+                //ProjectItems.Clear();
+            }
+        }
+
         private void ConfigureVersions()
         {
             var dialog = new TemplatesContentView(WizardVersion, TemplatesVersion)
@@ -207,6 +230,23 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
 
             return (null, null, null);
+        }
+
+        private string ShowLoadProjectDialog()
+        {
+            var dialog = new LoadProjectView(SolutionPath)
+            {
+                Owner = _host
+            };
+
+            var result = dialog.ShowDialog();
+
+            if (result.HasValue && result.Value)
+            {
+                return dialog.ViewModel.SolutionPath;
+            }
+
+            return string.Empty;
         }
 
         private void SetState(string message)

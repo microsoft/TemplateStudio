@@ -109,6 +109,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="LoadProject\LoadProjectView.xaml.cs">
+      <DependentUpon>LoadProjectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadProject\LoadProjectViewModel.cs" />
     <Compile Include="Main\MainViewModel.cs" />
     <Compile Include="Naming\DirectoryExistsValidator.cs" />
     <Compile Include="TemplatesContent\TemplatesContentView.xaml.cs">
@@ -119,6 +123,10 @@
       <DependentUpon>NewProjectView.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewProject\NewProjectViewModel.cs" />
+    <Page Include="LoadProject\LoadProjectView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Main\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
