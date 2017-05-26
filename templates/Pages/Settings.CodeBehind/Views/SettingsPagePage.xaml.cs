@@ -9,25 +9,11 @@ namespace Param_ItemNamespace.Views
         // TODO UWPTemplates: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
         // TODO UWPTemplates: Setup your privacy web in your Resource File, currently set to https://YourPrivacyUrlGoesHere
 
-        private bool _isLightThemeEnabled;
-        public bool IsLightThemeEnabled
+        private int _selectedTheme;
+        public int SelectedTheme
         {
-            get { return _isLightThemeEnabled; }
-            set { Set(ref _isLightThemeEnabled, value); }
-        }
-
-        private bool _isDarkThemeEnabled;
-        public bool IsDarkThemeEnabled
-        {
-            get { return _isDarkThemeEnabled; }
-            set { Set(ref _isDarkThemeEnabled, value); }
-        }
-
-        private bool _isDefaultThemeEnabled;
-        public bool IsDefaultThemeEnabled
-        {
-            get { return _isDefaultThemeEnabled; }
-            set { Set(ref _isDefaultThemeEnabled, value); }
+            get { return _selectedTheme; }
+            set { Set(ref _selectedTheme, value); }
         }
 
         private string _appDescription;
@@ -40,13 +26,11 @@ namespace Param_ItemNamespace.Views
         public SettingsPagePage()
         {
             InitializeComponent();
+            SelectedTheme = ThemeSelectorService.GetTheme();
         }
 
         private void Initialize()
         {
-            IsLightThemeEnabled = ThemeSelectorService.IsLightThemeEnabled;
-            IsDarkThemeEnabled = ThemeSelectorService.IsDarkThemeEnabled;
-            IsDefaultThemeEnabled = ThemeSelectorService.IsDefaultThemeEnabled;
             AppDescription = GetAppDescription();
         }
 
@@ -59,13 +43,12 @@ namespace Param_ItemNamespace.Views
             return $"{package.DisplayName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
         }
 
-        private async void Theme_Checked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void Theme_Changed(object sender, SelectionChangedEventArgs e)
         {
-            var radioButton = sender as RadioButton;
-            if (radioButton != null)
+            var comboBox = sender as ComboBox;
+            if (comboBox != null)
             {
-                string themeName = radioButton.Tag.ToString();
-                await ThemeSelectorService.SetThemeAsync(themeName);
+                await ThemeSelectorService.SetThemeAsync(comboBox.SelectedIndex);
             }
         }
     }

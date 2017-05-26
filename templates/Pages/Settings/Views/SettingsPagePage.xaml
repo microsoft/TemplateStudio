@@ -27,24 +27,17 @@
                     x:Uid="SettingsPage_Theme"
                     Style="{ThemeResource TitleTextBlockStyle}"
                     Margin="0,0,0,4"/>
-                <RadioButton
-                    x:Uid="SettingsPage_Theme_Light"
-                    IsChecked="{x:Bind ViewModel.IsLightThemeEnabled, Mode=OneWay}"
-                    GroupName="AppTheme"
-                    Command="{x:Bind ViewModel.SelectThemeCommand}"
-                    CommandParameter="Light"/>
-                <RadioButton
-                    x:Uid="SettingsPage_Theme_Dark"
-                    IsChecked="{x:Bind ViewModel.IsDarkThemeEnabled, Mode=OneWay}"
-                    GroupName="AppTheme" 
-                    Command="{x:Bind ViewModel.SelectThemeCommand}"
-                    CommandParameter="Dark"/>
-                <RadioButton
-                    x:Uid="SettingsPage_Theme_Default"
-                    IsChecked="{x:Bind ViewModel.IsDefaultThemeEnabled, Mode=OneWay}"
-                    GroupName="AppTheme"
-                    Command="{x:Bind ViewModel.SelectThemeCommand}"
-                    CommandParameter="Default"/>
+                <ComboBox MinWidth="200" 
+                          SelectedIndex="{x:Bind ViewModel.SelectedTheme, Mode=TwoWay}">
+                    <i:Interaction.Behaviors>
+                        <ic:EventTriggerBehavior EventName="SelectionChanged">
+                            <ic:InvokeCommandAction Command="{x:Bind ViewModel.SelectionChangeCommand}"/>
+                        </ic:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                    <ComboBoxItem x:Uid="SettingsPage_Theme_Light" />
+                    <ComboBoxItem x:Uid="SettingsPage_Theme_Dark" />
+                    <ComboBoxItem x:Uid="SettingsPage_Theme_Default" />
+                </ComboBox>
             </StackPanel>
 
             <StackPanel Grid.Row="2" Margin="0,16,0,0">

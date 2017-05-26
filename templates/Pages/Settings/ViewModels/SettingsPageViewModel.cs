@@ -8,25 +8,11 @@ namespace Param_ItemNamespace.ViewModels
     public class SettingsPageViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         // TODO UWPTemplates: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
-        private bool _isLightThemeEnabled;
-        public bool IsLightThemeEnabled
+        private int _selectedTheme;
+        public int SelectedTheme
         {
-            get { return _isLightThemeEnabled; }
-            set { Set(ref _isLightThemeEnabled, value); }
-        }
-
-        private bool _isDarkThemeEnabled;
-        public bool IsDarkThemeEnabled
-        {
-            get { return _isDarkThemeEnabled; }
-            set { Set(ref _isDarkThemeEnabled, value); }
-        }
-
-        private bool _isDefaultThemeEnabled;
-        public bool IsDefaultThemeEnabled
-        {
-            get { return _isDefaultThemeEnabled; }
-            set { Set(ref _isDefaultThemeEnabled, value); }
+            get { return _selectedTheme; }
+            set { Set(ref _selectedTheme, value); }
         }
 
         private string _appDescription;
@@ -36,18 +22,16 @@ namespace Param_ItemNamespace.ViewModels
             set { Set(ref _appDescription, value); }
         }
 
-        public ICommand SelectThemeCommand { get; private set; }
+        public ICommand SelectionChangeCommand { get; private set; }
 
         public SettingsPageViewModel()
         {
-            SelectThemeCommand = new RelayCommand<string>(async (string themeName) => { await ThemeSelectorService.SetThemeAsync(themeName); });
+            SelectionChangeCommand = new RelayCommand(async () => { await ThemeSelectorService.SetThemeAsync(SelectedTheme); });
         }
 
         public void Initialize()
         {
-            IsLightThemeEnabled = ThemeSelectorService.IsLightThemeEnabled;
-            IsDarkThemeEnabled = ThemeSelectorService.IsDarkThemeEnabled;
-            IsDefaultThemeEnabled = ThemeSelectorService.IsDefaultThemeEnabled;
+            SelectedTheme = ThemeSelectorService.GetTheme();
             AppDescription = GetAppDescription();
         }
 

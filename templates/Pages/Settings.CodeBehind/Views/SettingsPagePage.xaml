@@ -25,24 +25,13 @@
                     x:Uid="SettingsPage_Theme"
                     Style="{ThemeResource TitleTextBlockStyle}"
                     Margin="0,0,0,4"/>
-                <RadioButton
-                    x:Uid="SettingsPage_Theme_Light"
-                    IsChecked="{x:Bind IsLightThemeEnabled, Mode=OneWay}"
-                    GroupName="AppTheme"
-                    Checked="Theme_Checked"
-                    Tag="Light"/>
-                <RadioButton
-                    x:Uid="SettingsPage_Theme_Dark"
-                    IsChecked="{x:Bind IsDarkThemeEnabled, Mode=OneWay}"
-                    GroupName="AppTheme"
-                    Checked="Theme_Checked"
-                    Tag="Dark"/>
-                <RadioButton
-                    x:Uid="SettingsPage_Theme_Default"
-                    IsChecked="{x:Bind IsDefaultThemeEnabled, Mode=OneWay}"
-                    GroupName="AppTheme"
-                    Checked="Theme_Checked"
-                    Tag="Default"/>
+                <ComboBox MinWidth="200" 
+                          SelectedIndex="{x:Bind SelectedTheme, Mode=TwoWay}" 
+                          SelectionChanged="Theme_Changed">
+                    <ComboBoxItem x:Uid="SettingsPage_Theme_Light" />
+                    <ComboBoxItem x:Uid="SettingsPage_Theme_Dark" />
+                    <ComboBoxItem x:Uid="SettingsPage_Theme_Default" />
+              </ComboBox>
             </StackPanel>
 
             <StackPanel Grid.Row="2" Margin="0,16,0,0">

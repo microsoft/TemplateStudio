@@ -14,7 +14,6 @@ namespace Param_RootNamespace.Services
 
         public static bool IsLightThemeEnabled => Theme == ElementTheme.Light;
         public static bool IsDarkThemeEnabled => Theme == ElementTheme.Dark;
-        public static bool IsDefaultThemeEnabled => Theme == ElementTheme.Default;
 
         public static ElementTheme Theme { get; set; }
 
@@ -23,11 +22,38 @@ namespace Param_RootNamespace.Services
             Theme = await LoadThemeFromSettingsAsync();
         }
 
-        public static async Task SetThemeAsync(string themeName)
+        public static async Task SetThemeAsync(int themeId)
         {
             ElementTheme theme;
-            Enum.TryParse<ElementTheme>(themeName, out theme);
+            switch (themeId)
+            {
+                case 0:
+                    theme = ElementTheme.Light;
+                    break;
+                case 1:
+                    theme = ElementTheme.Dark;
+                    break;
+                case 2:
+                default:
+                    theme = ElementTheme.Default;
+                    break;
+            }
+
             await SetThemeAsync(theme);
+        }
+
+        public static int GetTheme()
+        {
+            switch (Theme)
+            {
+                case ElementTheme.Light:
+                    return 0;
+                case ElementTheme.Dark:
+                    return 1;
+                case ElementTheme.Default:
+                default:
+                    return 2;
+            }
         }
 
         public static async Task SetThemeAsync(ElementTheme theme)
