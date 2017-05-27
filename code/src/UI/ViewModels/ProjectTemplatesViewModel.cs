@@ -282,6 +282,11 @@ namespace Microsoft.Templates.UI.ViewModels
                 item.ItemName = item.NewItemName;
                 item.IsEditionEnabled = false;
 
+                if (item.IsHome)
+                {
+                    HomeName = item.ItemName;
+                }
+
                 AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.Rename).FireAndForget();
             }
         }
