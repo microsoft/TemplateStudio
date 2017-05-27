@@ -11,33 +11,34 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="NavigationMenuItemDataTemplate" x:DataType="vm:ShellNavigationItem">
-            <Grid Width="240"
-                  Height="48"
+            <Grid Width="320"
+                  Height="40"
                   Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Rectangle
-                        Width="4"
+                        Width="6"
                         Height="24"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         Fill="{ThemeResource SystemControlForegroundAccentBrush}"
                         Visibility="{x:Bind SelectedVis, Mode=OneWay}" />
                 <FontIcon
-                        HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        FontSize="{StaticResource MediumFontSize}"
+                        Margin="16,12"
+                        FontSize="16"
                         Foreground="{x:Bind SelectedForeground, Mode=OneWay}"
                         Glyph="{x:Bind SymbolAsChar}" />
                 <TextBlock
                         Grid.Column="1"
-                        Margin="0,0,24,0"
+                        Margin="0,9,0,11"
                         VerticalAlignment="Center"
                         Foreground="{x:Bind SelectedForeground, Mode=OneWay}"
                         Text="{x:Bind Label}"
-                        TextTrimming="CharacterEllipsis" />
+                        Style="{StaticResource BodyTextBlockStyle}"
+                        TextTrimming="None" />
             </Grid>
         </DataTemplate>
     </Page.Resources>
