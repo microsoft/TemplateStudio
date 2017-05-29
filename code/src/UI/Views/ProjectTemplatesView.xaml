@@ -51,17 +51,9 @@
                                 </TextBlock>
 
 
-                                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" Visibility="{Binding NoEditingContentVisibility}" Command="{Binding ShowItemInfoCommand}">
+                                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" Command="{Binding ShowItemInfoCommand}">
                                     <Button.Content>
                                         <TextBlock Text="&#xE946;" FontSize="18" Style="{StaticResource RoundButtonTextStyle}" />
-                                    </Button.Content>
-                                </Button>
-                                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource CloseEditionInfoButtonStyle}" Visibility="{Binding EditingContentVisibility}" Command="{Binding CloseEditionCommand}">
-                                    <Button.Content>
-                                        <Grid>
-                                            <TextBlock Text="&#xECCA;" FontSize="18" Style="{StaticResource RoundButtonTextStyle}" />
-                                            <TextBlock Text="&#xE894;" FontSize="9" Style="{StaticResource RoundButtonTextStyle}" />
-                                        </Grid>
                                     </Button.Content>
                                 </Button>
 

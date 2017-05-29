@@ -16,8 +16,7 @@
         <TextBlock
             x:Name="TitlePage"
             Text="{x:Bind MasterMenuItem.Title, Mode=OneWay}"
-            Style="{StaticResource PageTitleStyle}"
-            Margin="0,0,12,7"/>
+            Style="{StaticResource PageTitleStyle}" />
 
         <ScrollViewer
             Grid.Row="1"
@@ -37,7 +36,7 @@
                 <TextBlock
                     Text="{x:Bind MasterMenuItem.Description, Mode=OneWay}"
                     Style="{StaticResource BodyTextStyle}"
-                    VerticalAlignment="Bottom" Margin="12,12,12,12"/>
+                    VerticalAlignment="Bottom" Margin="{StaticResource MediumLeftTopRightBottomMargin}"/>
             </Grid>
         </ScrollViewer>
     </Grid>
