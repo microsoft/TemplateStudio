@@ -11,7 +11,7 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="MasterListViewItemTemplate" x:DataType="model:SampleModel">
-            <Grid Margin="12,12,12,12">
+            <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -48,7 +48,7 @@
             x:Uid="MasterDetailPage_Title"
             Grid.ColumnSpan="2"
             Style="{StaticResource PageTitleStyle}"
-            Margin="0,0,12,7" Visibility="Collapsed"/>
+            Visibility="Collapsed"/>
 
         <Grid
             x:Name="MasterArea"
@@ -62,8 +62,7 @@
             <TextBlock
                 x:Name="Title"
                 x:Uid="MasterDetailPage_Title"
-                Style="{StaticResource PageTitleStyle}"
-                Margin="0,0,12,7"/>
+                Style="{StaticResource PageTitleStyle}" />
 
             <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your master content.-->
             <ListView
