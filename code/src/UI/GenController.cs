@@ -63,6 +63,40 @@ namespace Microsoft.Templates.UI
             return null;
         }
 
+        public static UserSelection GetUserSelectionNewItem()
+        {
+            var newItem = new NewItemView();
+
+            try
+            {
+                CleanStatusBar();
+
+                GenContext.ToolBox.Shell.ShowModal(newItem);
+                if (newItem.Result != null)
+                {
+                    //TODO: Review when right-click-actions available to track Project or Page completed.
+                    //AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewItem).FireAndForget();
+
+                    return newItem.Result;
+                }
+                else
+                {
+                    //TODO: Review when right-click-actions available to track Project or Page cancelled.
+                    //AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewItem).FireAndForget();
+                }
+
+            }
+            catch (Exception ex) when (!(ex is WizardBackoutException))
+            {
+                newItem.SafeClose();
+                ShowError(ex);
+            }
+
+            GenContext.ToolBox.Shell.CancelWizard();
+
+            return null;
+        }
+
         public static async Task GenerateAsync(UserSelection userSelection)
         {
             try
@@ -78,10 +112,66 @@ namespace Microsoft.Templates.UI
                 GenContext.ToolBox.Shell.CancelWizard(false);
             }
         }
+        public static async Task GenerateNewItemAsync(UserSelection userSelection)
+        {
+            try
+            {
+                await UnsafeGenerateNewItemAsync(userSelection);
+            }
+            catch (Exception ex)
+            {
+                GenContext.ToolBox.Shell.CloseSolution();
+
+                ShowError(ex, userSelection);
+
+                GenContext.ToolBox.Shell.CancelWizard(false);
+            }
+        }
 
         public static async Task UnsafeGenerateAsync(UserSelection userSelection)
         {
             var genItems = GenComposer.Compose(userSelection).ToList();
+            var chrono = Stopwatch.StartNew();
+            var genResults = new Dictionary<string, TemplateCreationResult>();
+
+            foreach (var genInfo in genItems)
+            {
+                if (genInfo.Template == null)
+                {
+                    continue;
+                }
+
+                var statusText = GetStatusText(genInfo);
+
+                if (!string.IsNullOrEmpty(statusText))
+                {
+                    GenContext.ToolBox.Shell.ShowStatusBarMessage(statusText);
+                }
+
+                AppHealth.Current.Info.TrackAsync($"Generating the template {genInfo.Template.Name} to {GenContext.Current.OutputPath}.").FireAndForget();
+
+                var result = await CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, GenContext.Current.OutputPath, genInfo.Parameters, false, false, null);
+
+                genResults.Add($"{genInfo.Template.Identity}_{genInfo.Name}", result);
+
+                if (result.Status != CreationResultStatus.Success)
+                {
+                    throw new GenException(genInfo.Name, genInfo.Template.Name, result.Message);
+                }
+
+                ExecutePostActions(genInfo, result);
+            }
+
+            ExecuteGlobalPostActions(genItems);
+
+            chrono.Stop();
+
+            TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework);
+        }
+
+        public static async Task UnsafeGenerateNewItemAsync(UserSelection userSelection)
+        {
+            var genItems = GenComposer.ComposeNewItem(userSelection).ToList();
             var chrono = Stopwatch.StartNew();
             var genResults = new Dictionary<string, TemplateCreationResult>();
 

@@ -199,6 +199,7 @@
     <Compile Include="ViewModels\Entities\CommonInfoViewModel.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="ViewModels\Entities\DependencyInfoViewModel.cs" />
+    <Compile Include="ViewModels\NewItemViewModel.cs" />
     <Compile Include="Views\ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>
     </Compile>
@@ -228,6 +229,9 @@
     <Compile Include="ViewModels\Entities\TemplateInfoViewModel.cs" />
     <Compile Include="Views\InformationWindow.xaml.cs">
       <DependentUpon>InformationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewItemView.xaml.cs">
+      <DependentUpon>NewItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -367,6 +371,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\InformationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

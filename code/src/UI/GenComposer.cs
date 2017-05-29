@@ -124,7 +124,24 @@ namespace Microsoft.Templates.UI
             AddCompositionTemplates(genQueue, userSelection);            
 
             return genQueue;
-        }        
+        }
+
+        public static IEnumerable<GenInfo> ComposeNewItem(UserSelection userSelection)
+        {
+            var genQueue = new List<GenInfo>();
+
+            if (string.IsNullOrEmpty(userSelection.ProjectType) || string.IsNullOrEmpty(userSelection.Framework))
+            {
+                return genQueue;
+            }
+
+            AddTemplates(userSelection.Pages, genQueue, userSelection);
+            AddTemplates(userSelection.Features, genQueue, userSelection);
+
+            AddCompositionTemplates(genQueue, userSelection);
+
+            return genQueue;
+        }
 
         private static void AddProject(UserSelection userSelection, List<GenInfo> genQueue)
         {
@@ -134,6 +151,8 @@ namespace Microsoft.Templates.UI
             genProject.Parameters.Add(GenParams.Username, Environment.UserName);
             genProject.Parameters.Add(GenParams.WizardVersion, GenContext.ToolBox.WizardVersion);
             genProject.Parameters.Add(GenParams.TemplatesVersion, GenContext.ToolBox.TemplatesVersion);
+            genProject.Parameters.Add(GenParams.ProjectType, userSelection.ProjectType);
+            genProject.Parameters.Add(GenParams.Framework, userSelection.Framework);
         }
 
         private static ITemplateInfo GetProjectTemplate(string projectType, string framework)

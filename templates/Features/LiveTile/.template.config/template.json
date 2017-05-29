@@ -18,7 +18,8 @@
     "wts.group": "UserInteraction",
     "wts.dependencies":"wts.Feat.SettingsStorage",
     "wts.defaultInstance": "LiveTile",
-    "wts.multipleInstance": "false"    
+    "wts.multipleInstance": "false",
+    "wts.rightClickEnabled":"true"    
   },
   "sourceName": "LiveTileFeature",
   "preferNameDirectory": true,

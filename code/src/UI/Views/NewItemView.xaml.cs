@@ -10,17 +10,31 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-namespace Microsoft.Templates.Core.Gen
+using Microsoft.Templates.UI.ViewModels;
+using System.Windows;
+
+namespace Microsoft.Templates.UI.Views
 {
-    public class GenParams
+    /// <summary>
+    /// Interaction logic for NewItemView.xaml
+    /// </summary>
+    public partial class NewItemView : Window
     {
-        public const string Username = "wts.userName";
-        public const string RootNamespace = "wts.rootNamespace";
-        public const string ItemNamespace = "wts.itemNamespace";
-        public const string WizardVersion = "wts.wizardVersion";
-        public const string TemplatesVersion = "wts.templatesVersion";      
-        public const string HomePageName = "wts.homePageName";
-        public const string ProjectType = "wts.generationProjectType";
-        public const string Framework = "wts.generationFramework";
+        public NewItemViewModel ViewModel { get; }
+
+        public UserSelection Result { get; set; }
+
+        public NewItemView()
+        {
+            ViewModel = new NewItemViewModel(this);
+            DataContext = ViewModel;
+            Loaded += NewItemViewModel_Loaded;
+            InitializeComponent();
+        }
+        private async void NewItemViewModel_Loaded(object sender, RoutedEventArgs e)
+        {
+            await ViewModel.InitializeAsync();
+
+        }
     }
 }

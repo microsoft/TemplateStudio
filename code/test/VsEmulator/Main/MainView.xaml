@@ -71,6 +71,7 @@
                     <Button Command="{Binding OpenInVsCommand}" Content="{StaticResource VsImage}" Style="{StaticResource IconButton}" />
                     <Button Command="{Binding OpenInVsCodeCommand}" Content="{StaticResource VsCodeImage}" Style="{StaticResource IconButton}" />
                     <Button Command="{Binding OpenInExplorerCommand}" Content="{StaticResource FolderImage}" Style="{StaticResource IconButton}"  />
+                    <Button Command="{Binding AddNewFeatureCommand}" Content="+" Style="{StaticResource IconButton}"  />
                 </StackPanel>
                 <Grid Grid.Row="1" Style="{StaticResource HorizontalSeparator}" />
                 <TextBlock Grid.Row="2" Text="{Binding SolutionName}" Style="{StaticResource Header2}" />

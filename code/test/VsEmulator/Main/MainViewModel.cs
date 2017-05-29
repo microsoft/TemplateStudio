@@ -50,7 +50,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         public RelayCommand OpenInVsCodeCommand => new RelayCommand(OpenInVsCode);
         public RelayCommand OpenInExplorerCommand => new RelayCommand(OpenInExplorer);
         public RelayCommand ConfigureVersionsCommand => new RelayCommand(ConfigureVersions);
-
+        public RelayCommand AddNewFeatureCommand => new RelayCommand(AddNewFeature);
 
         private string _state;
         public string State
@@ -152,6 +152,32 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
             }
+        }
+
+        private async void AddNewFeature()
+        {
+            ConfigureGenContext();
+
+            try
+            {
+                var userSelection = GenController.GetUserSelectionNewItem();
+
+                if (userSelection != null)
+                {
+                    await GenController.GenerateNewItemAsync(userSelection);
+
+                    GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
+                }
+            }
+            catch (WizardBackoutException)
+            {
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
+            }
+            catch (WizardCancelledException)
+            {
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
+            }
+
         }
 
         private void LoadProject()
