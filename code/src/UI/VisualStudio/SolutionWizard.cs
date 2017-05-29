@@ -34,6 +34,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string OutputPath => new DirectoryInfo(_replacementsDictionary["$destinationdirectory$"]).FullName;
 
+        public List<string> ProjectItems { get; } = new List<string>();
+
         public SolutionWizard()
         {
             if (!GenContext.IsInitialized)

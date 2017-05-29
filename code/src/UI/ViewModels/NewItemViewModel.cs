@@ -90,15 +90,15 @@ namespace Microsoft.Templates.UI.ViewModels
                 SetProperty(ref _templateSelected, value);
                 if (value != null)
                 {
+                    var validators = new List<Validator>()
+                    {
+                        new ReservedNamesValidator()   
+                    };
                     if (_templateSelected.GetItemNameEditable())
                     {
-                        var validators = new List<Validator>()
-                        {
-                            new ReservedNamesValidator(),
-                            new DefaultNamesValidator()
-                        };
-                        ItemName = Naming.Infer(_templateSelected.GetDefaultName(), validators);
+                        validators.Add(new DefaultNamesValidator());
                     }
+                    ItemName = Naming.Infer(_templateSelected.GetDefaultName(), validators);
                 }
             }
         }

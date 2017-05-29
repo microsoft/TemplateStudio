@@ -166,9 +166,15 @@
     <Compile Include="Naming\ExistingNamesValidator.cs" />
     <Compile Include="Naming\ReservedNameValidator.cs" />
     <Compile Include="Naming\Validator.cs" />
+    <Compile Include="PostActions\Catalog\AddContextItemsToProjectPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\SortUsingsPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\IEnumerableExtensions.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\UsingComparer.cs" />
+    <Compile Include="Strings\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Templates\ITemplateInfoExtensions.cs" />
     <Compile Include="Locations\RemoteTemplatesSource.cs" />
     <Compile Include="Locations\TemplatesSynchronization.cs" />
@@ -181,7 +187,7 @@
     <Compile Include="Mvvm\RelayCommand.cs" />
     <Compile Include="Naming\Naming.cs" />
     <Compile Include="Templates\LayoutItem.cs" />
-    <Compile Include="PostActions\Catalog\AddItemToProjectPostAction.cs" />
+    <Compile Include="PostActions\Catalog\AddItemToContextPostAction.cs" />
     <Compile Include="PostActions\Catalog\AddProjectToSolutionPostAction.cs" />
     <Compile Include="PostActions\Catalog\GenerateTestCertificatePostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\IEnumerableExtensions.cs" />
@@ -229,5 +235,11 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Strings\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

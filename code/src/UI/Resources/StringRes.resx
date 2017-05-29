@@ -160,10 +160,10 @@
     <value>Invalid layout item {0}. Layout items must be of type Page or Feature.</value>
   </data>
   <data name="GeneratingFeatureMessage" xml:space="preserve">
-    <value>Adding '{0}' feature to project...</value>
+    <value>Creating '{0}' feature ...</value>
   </data>
   <data name="GeneratingPageMessage" xml:space="preserve">
-    <value>Adding '{0}' page to project...</value>
+    <value>Creating '{0}' page ...</value>
   </data>
   <data name="GeneratingProjectMessage" xml:space="preserve">
     <value>Creating project '{0}'...</value>

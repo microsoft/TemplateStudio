@@ -223,7 +223,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adding &apos;{0}&apos; feature to project....
+        ///   Looks up a localized string similar to Creating &apos;{0}&apos; feature ....
         /// </summary>
         public static string GeneratingFeatureMessage {
             get {
@@ -232,7 +232,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adding &apos;{0}&apos; page to project....
+        ///   Looks up a localized string similar to Creating &apos;{0}&apos; page ....
         /// </summary>
         public static string GeneratingPageMessage {
             get {

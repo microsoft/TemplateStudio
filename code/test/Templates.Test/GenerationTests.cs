@@ -40,6 +40,8 @@ namespace Microsoft.Templates.Test
         public string ProjectName { get; set; }
         public string OutputPath { get; set; }
 
+        public List<string> ProjectItems { get; } = new List<string>();
+
         public GenerationTests(GenerationTestsFixture fixture)
         {
             _fixture = fixture;

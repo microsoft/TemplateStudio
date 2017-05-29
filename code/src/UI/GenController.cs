@@ -24,6 +24,7 @@ using Microsoft.Templates.Core.PostActions;
 using Microsoft.Templates.UI.Views;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.VisualStudio.TemplateWizard;
+using System.IO;
 
 namespace Microsoft.Templates.UI
 {
@@ -112,11 +113,29 @@ namespace Microsoft.Templates.UI
                 GenContext.ToolBox.Shell.CancelWizard(false);
             }
         }
-        public static async Task GenerateNewItemAsync(UserSelection userSelection)
+        public static async Task<string> GenerateNewItemAsync(UserSelection userSelection)
         {
             try
             {
-                await UnsafeGenerateNewItemAsync(userSelection);
+                return await UnsafeGenerateNewItemAsync(userSelection);
+            }
+            catch (Exception ex)
+            {
+                GenContext.ToolBox.Shell.CloseSolution();
+
+                ShowError(ex, userSelection);
+
+                GenContext.ToolBox.Shell.CancelWizard(false);
+
+                return string.Empty;
+            }
+        }
+
+        public static async Task SyncNewItemAsync(UserSelection userSelection, string tempGenerationPath)
+        {
+            try
+            {
+                await UnsafeSyncNewItemAsync(tempGenerationPath);
             }
             catch (Exception ex)
             {
@@ -162,18 +181,19 @@ namespace Microsoft.Templates.UI
                 ExecutePostActions(genInfo, result);
             }
 
-            ExecuteGlobalPostActions(genItems);
+            ExecuteGlobalPostActions();
 
             chrono.Stop();
 
             TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework);
         }
 
-        public static async Task UnsafeGenerateNewItemAsync(UserSelection userSelection)
+        public static async Task<string> UnsafeGenerateNewItemAsync(UserSelection userSelection)
         {
             var genItems = GenComposer.ComposeNewItem(userSelection).ToList();
             var chrono = Stopwatch.StartNew();
             var genResults = new Dictionary<string, TemplateCreationResult>();
+            var tempGenerationPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
 
             foreach (var genInfo in genItems)
             {
@@ -189,9 +209,10 @@ namespace Microsoft.Templates.UI
                     GenContext.ToolBox.Shell.ShowStatusBarMessage(statusText);
                 }
 
-                AppHealth.Current.Info.TrackAsync($"Generating the template {genInfo.Template.Name} to {GenContext.Current.OutputPath}.").FireAndForget();
+                
+                AppHealth.Current.Info.TrackAsync($"Generating the template {genInfo.Template.Name} to {tempGenerationPath}.").FireAndForget();
 
-                var result = await CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, GenContext.Current.OutputPath, genInfo.Parameters, false, false, null);
+                var result = await CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, tempGenerationPath, genInfo.Parameters, false, false, null);
 
                 genResults.Add($"{genInfo.Template.Identity}_{genInfo.Name}", result);
 
@@ -203,16 +224,29 @@ namespace Microsoft.Templates.UI
                 ExecutePostActions(genInfo, result);
             }
 
-            ExecuteGlobalPostActions(genItems);
-
             chrono.Stop();
 
             TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework);
+
+            return tempGenerationPath;
         }
 
-        private static void ExecuteGlobalPostActions(List<GenInfo> genItems)
+        public static async Task UnsafeSyncNewItemAsync(string tempGenerationPath)
         {
-            var postActions = PostActionFactory.FindGlobal(genItems);
+            foreach (var file in Directory.EnumerateFiles(tempGenerationPath, "*", SearchOption.AllDirectories))
+            {
+                var destFileName = file.Replace(tempGenerationPath, GenContext.Current.OutputPath);
+                File.Copy(file, destFileName, true);
+            }
+
+            ExecuteGlobalPostActions();
+
+            
+        }
+
+        private static void ExecuteGlobalPostActions()
+        {
+            var postActions = PostActionFactory.FindGlobal();
 
             foreach (var postAction in postActions)
             {

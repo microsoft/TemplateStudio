@@ -19,6 +19,7 @@ using Microsoft.Templates.Core.Test.Locations;
 using Microsoft.Templates.Test.Artifacts;
 
 using Xunit;
+using System.Collections.Generic;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 {
@@ -26,6 +27,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     {
         public string ProjectName { get; set; }
         public string OutputPath { get; set; }
+
+        public List<string> ProjectItems => throw new NotImplementedException();
 
         [Fact]
         public void Execute_Ok()

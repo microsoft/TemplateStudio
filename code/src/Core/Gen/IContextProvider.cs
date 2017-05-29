@@ -10,5 +10,6 @@ namespace Microsoft.Templates.Core.Gen
     {
         string ProjectName { get; }
         string OutputPath { get; }
+        List<string> ProjectItems { get; }
     }
 }

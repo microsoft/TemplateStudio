@@ -26,6 +26,7 @@ using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.Templates.UI;
 using Microsoft.Templates.VsEmulator.LoadProject;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
@@ -42,6 +43,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string ProjectName { get; private set; }
         public string OutputPath { get; private set; }
+
+        public List<string> ProjectItems { get; } = new List<string>();
 
 
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
@@ -127,7 +130,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                     ProjectName = newProjectInfo.name;
                     OutputPath = outputPath;
-
+                    ProjectItems.Clear();
                     GenContext.Current = this;
 
                     var userSelection = GenController.GetUserSelection();
@@ -164,8 +167,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 if (userSelection != null)
                 {
-                    await GenController.GenerateNewItemAsync(userSelection);
-
+                    var tempGenerationPath =  await GenController.GenerateNewItemAsync(userSelection);
+                    await GenController.SyncNewItemAsync(userSelection, tempGenerationPath);
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
             }
@@ -195,7 +198,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 ProjectName = Path.GetFileNameWithoutExtension(projFile);
                 OutputPath = Path.GetDirectoryName(projFile);
-                //ProjectItems.Clear();
+                ProjectItems.Clear();
             }
         }
 
