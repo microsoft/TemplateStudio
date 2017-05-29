@@ -1,5 +1,6 @@
 using wts.ItemName.ViewModels;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace wts.ItemName.Views
 {
@@ -9,6 +10,7 @@ namespace wts.ItemName.Views
 
         public PivotPage()
         {
+            NavigationCacheMode = NavigationCacheMode.Required;
             InitializeComponent();
         }
     }
