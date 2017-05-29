@@ -1,0 +1,1 @@
+A page displaying video. Comes with the standard playback controls enabled.
