@@ -19,6 +19,15 @@
   "sourceName": "BlankView",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": ".\\ViewModels\\BlankViewViewModel.cs"
+    },
+    {
+      "path": ".\\Views\\BlankViewView.xaml"
+    },
+    {
+      "path": ".\\Views\\BlankViewView.xaml.cs"
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {

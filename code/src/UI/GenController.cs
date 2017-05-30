@@ -101,7 +101,22 @@ namespace Microsoft.Templates.UI
 
                 AppHealth.Current.Info.TrackAsync($"Generating the template {genInfo.Template.Name} to {GenContext.Current.OutputPath}.").FireAndForget();
 
-                var result = await CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, GenContext.Current.OutputPath, genInfo.Parameters, false, false, null);
+                // mvegaca: This is a temporaly code in POC to generate xamarin template before get a final solution
+
+                var templateType = genInfo.Template.Tags["wts.type"].DefaultValue;
+                var templateFramework = genInfo.Template.Tags["wts.framework"].DefaultValue;
+
+                TemplateCreationResult result;
+
+                if (templateType == "page" && templateFramework == "MVVMBasic/X")
+                {
+                    var newOutputPath = $"{GenContext.Current.OutputPath}\\{genInfo.Parameters[GenParams.ItemNamespace]}";
+                    result = await CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, newOutputPath, genInfo.Parameters, false, false, null);
+                }
+                else
+                {
+                    result = await CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, GenContext.Current.OutputPath, genInfo.Parameters, false, false, null);
+                }                
 
                 genResults.Add($"{genInfo.Template.Identity}_{genInfo.Name}", result);
 

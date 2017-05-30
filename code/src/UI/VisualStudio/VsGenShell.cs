@@ -48,7 +48,9 @@ namespace Microsoft.Templates.UI.VisualStudio
                 return;
             }
 
-            var proj = GetActiveProject();
+            // mvegaca: This is a temporaly code in POC to generate xamarin template before get a final solution
+            var proj = GetShortProject();
+            //var proj = GetActiveProject();
             if (proj != null && proj.ProjectItems != null)
             {
                 foreach (var item in itemsFullPath)
@@ -62,6 +64,39 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 AppHealth.Current.Error.TrackAsync(StringRes.UnableAddItemsToProject).FireAndForget();
             }
+        }
+
+        // mvegaca: This is a temporaly code in POC to generate xamarin template before get a final solution
+        private Project GetShortProject()
+        {
+            Project p = null;
+
+            try
+            {
+                if (_dte != null)
+                {
+                    Project shortProject = null;
+                    if (Dte.Solution.Projects?.Count >= 1)
+                    {
+                        foreach (var project in Dte.Solution.Projects)
+                        {
+                            p = (Project)project;
+
+                            if (shortProject == null || p.Name.Length < shortProject.Name.Length)
+                            {
+                                shortProject = p;
+                            }
+                        }
+                        return shortProject;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                //WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+            }
+
+            return p;
         }
 
         public override void RefreshProject()

@@ -10,6 +10,7 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,13 +27,19 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         }
 
         public override void Execute()
-        {
+        {            
             var itemsToAdd = _config
                                 .Where(o => !string.IsNullOrWhiteSpace(o.Path))
-                                .Select(o => Path.GetFullPath(Path.Combine(GenContext.Current.OutputPath, o.Path)))
+                                .Select(GetPath)
                                 .ToList();
+            //.Select(o => Path.GetFullPath(Path.Combine(GenContext.Current.OutputPath, o.Path)))                                
 
             GenContext.ToolBox.Shell.AddItems(itemsToAdd.ToArray());
+        }
+        // mvegaca: This is a temporaly code in POC to generate xamarin template before get a final solution
+        private string GetPath(ICreationPath path)
+        {
+            return Path.GetFullPath(Path.Combine($"{GenContext.Current.OutputPath}\\{GenContext.Current.ProjectName}", path.Path));            
         }
     }
 }
