@@ -10,6 +10,7 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using Microsoft.Templates.Core.Gen;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -36,8 +37,21 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             if (string.IsNullOrEmpty(originalFilePath))
             {
-                throw new FileNotFoundException($"There is no merge target for file '{_config}'");
-            }
+                switch (GenContext.Current.GenerationMode)
+                {
+                    case GenerationMode.NewProject:
+                        throw new FileNotFoundException($"There is no merge target for file '{_config}'");
+                    case GenerationMode.NewItem:
+                        originalFilePath = GetFileFromProject();
+                        if (string.IsNullOrEmpty(originalFilePath))
+                        {
+                            //TODO: Handle this
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }   
 
             var source = File.ReadAllLines(originalFilePath).ToList();
             var merge = File.ReadAllLines(_config).ToList();
@@ -71,5 +85,34 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 return (File.Exists(path) ? path : String.Empty);
             }
         }
+
+        private string GetFileFromProject()
+        {
+            var file = string.Empty;
+            if (Path.GetFileName(_config).StartsWith(Extension))
+            {
+                var extension = Path.GetExtension(_config);
+                var directory = GenContext.Current.ProjectPath;
+
+                file = Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !f.Contains(Suffix));
+            }
+            else
+            {
+                file = Regex.Replace(_config, PostactionRegex, ".").Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
+
+
+            }
+            if (File.Exists(file))
+            {
+                var destFile = file.Replace(GenContext.Current.ProjectPath, GenContext.Current.OutputPath);
+                File.Copy(file, destFile);
+                return destFile;
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
     }
 }

@@ -143,7 +143,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private static (string ProjectType, string Framework) ReadProjectConfiguration()
         {
-            var path = Path.Combine(GenContext.Current.OutputPath, "Package.appxmanifest");
+            var path = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
             var manifest = XElement.Load(path);
 
             var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == "Metadata");

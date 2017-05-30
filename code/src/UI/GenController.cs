@@ -113,11 +113,12 @@ namespace Microsoft.Templates.UI
                 GenContext.ToolBox.Shell.CancelWizard(false);
             }
         }
-        public static async Task<string> GenerateNewItemAsync(UserSelection userSelection)
+
+        public static async Task GenerateNewItemAsync(UserSelection userSelection)
         {
             try
             {
-                return await UnsafeGenerateNewItemAsync(userSelection);
+               await UnsafeGenerateNewItemAsync(userSelection);
             }
             catch (Exception ex)
             {
@@ -126,16 +127,14 @@ namespace Microsoft.Templates.UI
                 ShowError(ex, userSelection);
 
                 GenContext.ToolBox.Shell.CancelWizard(false);
-
-                return string.Empty;
             }
         }
 
-        public static async Task SyncNewItemAsync(UserSelection userSelection, string tempGenerationPath)
+        public static void SyncNewItem(UserSelection userSelection)
         {
             try
             {
-                await UnsafeSyncNewItemAsync(tempGenerationPath);
+                UnsafeSyncNewItem();
             }
             catch (Exception ex)
             {
@@ -188,12 +187,11 @@ namespace Microsoft.Templates.UI
             TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework);
         }
 
-        public static async Task<string> UnsafeGenerateNewItemAsync(UserSelection userSelection)
+        public static async Task UnsafeGenerateNewItemAsync(UserSelection userSelection)
         {
             var genItems = GenComposer.ComposeNewItem(userSelection).ToList();
             var chrono = Stopwatch.StartNew();
             var genResults = new Dictionary<string, TemplateCreationResult>();
-            var tempGenerationPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
 
             foreach (var genInfo in genItems)
             {
@@ -208,11 +206,10 @@ namespace Microsoft.Templates.UI
                 {
                     GenContext.ToolBox.Shell.ShowStatusBarMessage(statusText);
                 }
-
                 
-                AppHealth.Current.Info.TrackAsync($"Generating the template {genInfo.Template.Name} to {tempGenerationPath}.").FireAndForget();
+                AppHealth.Current.Info.TrackAsync($"Generating the template {genInfo.Template.Name} to {GenContext.Current.OutputPath}.").FireAndForget();
 
-                var result = await CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, tempGenerationPath, genInfo.Parameters, false, false, null);
+                var result = await CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, GenContext.Current.OutputPath, genInfo.Parameters, false, false, null);
 
                 genResults.Add($"{genInfo.Template.Identity}_{genInfo.Name}", result);
 
@@ -227,21 +224,17 @@ namespace Microsoft.Templates.UI
             chrono.Stop();
 
             TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework);
-
-            return tempGenerationPath;
         }
 
-        public static async Task UnsafeSyncNewItemAsync(string tempGenerationPath)
+        public static void UnsafeSyncNewItem()
         {
-            foreach (var file in Directory.EnumerateFiles(tempGenerationPath, "*", SearchOption.AllDirectories))
+            foreach (var file in Directory.EnumerateFiles(GenContext.Current.OutputPath, "*", SearchOption.AllDirectories))
             {
-                var destFileName = file.Replace(tempGenerationPath, GenContext.Current.OutputPath);
+                var destFileName = file.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
                 File.Copy(file, destFileName, true);
             }
 
             ExecuteGlobalPostActions();
-
-            
         }
 
         private static void ExecuteGlobalPostActions()

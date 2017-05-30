@@ -10,29 +10,17 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.Templates.Core.Gen;
-
-namespace Microsoft.Templates.Core.PostActions.Catalog
+namespace Microsoft.Templates.Core.Gen
 {
-    public class AddItemToContextPostAction : PostAction<IReadOnlyList<ICreationPath>>
+    public enum GenerationMode
     {
-        public AddItemToContextPostAction(IReadOnlyList<ICreationPath> config) : base(config)
-        {
-        }
-
-        public override void Execute()
-        {
-            var itemsToAdd = _config
-                                .Where(o => !string.IsNullOrWhiteSpace(o.Path))
-                                .Select(o => Path.GetFullPath(Path.Combine(GenContext.Current.ProjectPath, o.Path)))
-                                .ToList();
-
-            GenContext.Current.ProjectItems.AddRange(itemsToAdd);
-        }
+        NewProject,
+        NewItem
     }
 }

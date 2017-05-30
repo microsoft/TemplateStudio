@@ -40,7 +40,11 @@ namespace Microsoft.Templates.Test
         public string ProjectName { get; set; }
         public string OutputPath { get; set; }
 
+        public string ProjectPath { get; set; }
+
         public List<string> ProjectItems { get; } = new List<string>();
+
+        public GenerationMode GenerationMode => GenerationMode.NewProject;
 
         public GenerationTests(GenerationTestsFixture fixture)
         {
@@ -57,7 +61,8 @@ namespace Microsoft.Templates.Test
             var projectName = $"{projectType}{framework}";
 
             ProjectName = projectName;
-            OutputPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            OutputPath = ProjectPath;
 
             var userSelection = new UserSelection
             {
@@ -101,7 +106,8 @@ namespace Microsoft.Templates.Test
             var projectName = $"{projectType}{framework}{finalName}";
 
             ProjectName = projectName;
-            OutputPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            OutputPath = ProjectPath;
 
             var userSelection = new UserSelection
             {
@@ -134,7 +140,8 @@ namespace Microsoft.Templates.Test
             var projectName = $"{projectType}{framework}All";
 
             ProjectName = projectName;
-            OutputPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            OutputPath = ProjectPath;
 
             var userSelection = new UserSelection
             {
@@ -167,7 +174,8 @@ namespace Microsoft.Templates.Test
             var projectName = $"{projectType}{framework}AllRandom";
 
             ProjectName = projectName;
-            OutputPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            OutputPath = ProjectPath;
 
             var userSelection = new UserSelection
             {

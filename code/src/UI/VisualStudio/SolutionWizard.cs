@@ -32,9 +32,13 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string ProjectName => _replacementsDictionary["$safeprojectname$"];
 
-        public string OutputPath => new DirectoryInfo(_replacementsDictionary["$destinationdirectory$"]).FullName;
+        public string ProjectPath => new DirectoryInfo(_replacementsDictionary["$destinationdirectory$"]).FullName;
+
+        public string OutputPath => ProjectPath;
 
         public List<string> ProjectItems { get; } = new List<string>();
+
+        public GenerationMode GenerationMode => GenerationMode.NewProject;
 
         public SolutionWizard()
         {

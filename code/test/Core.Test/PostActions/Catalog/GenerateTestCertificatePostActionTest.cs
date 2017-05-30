@@ -27,8 +27,10 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     {
         public string ProjectName { get; set; }
         public string OutputPath { get; set; }
-
+        public string ProjectPath { get; set; }
         public List<string> ProjectItems => throw new NotImplementedException();
+
+        public GenerationMode GenerationMode => throw new NotImplementedException();
 
         [Fact]
         public void Execute_Ok()
@@ -38,19 +40,19 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var projectName = "test";
 
             ProjectName = projectName;
-            OutputPath = @".\TestData\tmp";
+            ProjectPath = @".\TestData\tmp";
 
             GenContext.Current = this;
 
 
-            Directory.CreateDirectory(GenContext.Current.OutputPath);
-            File.Copy(Path.Combine(Environment.CurrentDirectory, "TestData\\TestProject\\Test.csproj"), Path.Combine(GenContext.Current.OutputPath, "Test.csproj"), true);
+            Directory.CreateDirectory(GenContext.Current.ProjectPath);
+            File.Copy(Path.Combine(Environment.CurrentDirectory, "TestData\\TestProject\\Test.csproj"), Path.Combine(GenContext.Current.ProjectPath, "Test.csproj"), true);
 
             var postAction = new GenerateTestCertificatePostAction("TestUser");
 
             postAction.Execute();
 
-            var certFilePath = Path.Combine(GenContext.Current.OutputPath, $"{projectName}_TemporaryKey.pfx");
+            var certFilePath = Path.Combine(GenContext.Current.ProjectPath, $"{projectName}_TemporaryKey.pfx");
 
             Assert.True(File.Exists(certFilePath));
 

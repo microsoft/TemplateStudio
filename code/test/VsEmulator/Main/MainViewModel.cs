@@ -43,6 +43,9 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string ProjectName { get; private set; }
         public string OutputPath { get; private set; }
+        public string ProjectPath { get; private set; }
+
+        public GenerationMode GenerationMode { get; private set; }
 
         public List<string> ProjectItems { get; } = new List<string>();
 
@@ -126,10 +129,13 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 if (!string.IsNullOrEmpty(newProjectInfo.name))
                 {
-                    var outputPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
+                    var projectPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
 
                     ProjectName = newProjectInfo.name;
-                    OutputPath = outputPath;
+                    ProjectPath = projectPath;
+                    OutputPath = projectPath;
+                    GenerationMode = GenerationMode.NewProject;
+
                     ProjectItems.Clear();
                     GenContext.Current = this;
 
@@ -160,6 +166,8 @@ namespace Microsoft.Templates.VsEmulator.Main
         private async void AddNewFeature()
         {
             ConfigureGenContext();
+            OutputPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            GenerationMode = GenerationMode.NewItem;
 
             try
             {
@@ -167,8 +175,9 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 if (userSelection != null)
                 {
-                    var tempGenerationPath =  await GenController.GenerateNewItemAsync(userSelection);
-                    await GenController.SyncNewItemAsync(userSelection, tempGenerationPath);
+                    await GenController.GenerateNewItemAsync(userSelection);
+
+                    GenController.SyncNewItem(userSelection);
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
             }
@@ -197,7 +206,8 @@ namespace Microsoft.Templates.VsEmulator.Main
                 GenContext.Current = this;
 
                 ProjectName = Path.GetFileNameWithoutExtension(projFile);
-                OutputPath = Path.GetDirectoryName(projFile);
+                ProjectPath = Path.GetDirectoryName(projFile);
+                OutputPath = ProjectPath;
                 ProjectItems.Clear();
             }
         }

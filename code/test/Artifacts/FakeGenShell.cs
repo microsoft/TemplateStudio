@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Test.Artifacts
             {
                 if (GenContext.Current != null)
                 {
-                    return Path.Combine(Path.GetDirectoryName(GenContext.Current.OutputPath), $"{GenContext.Current.ProjectName}.sln");
+                    return Path.Combine(Path.GetDirectoryName(GenContext.Current.ProjectPath), $"{GenContext.Current.ProjectName}.sln");
                 }
 
                 throw new Exception("Context doesn't exists");
@@ -54,11 +54,11 @@ namespace Microsoft.Templates.Test.Artifacts
                 return;
             }
 
-            var projectFileName = FindProject(GenContext.Current.OutputPath);
+            var projectFileName = FindProject(GenContext.Current.ProjectPath);
 
             if (string.IsNullOrEmpty(projectFileName))
             {
-                throw new Exception($"There is not project file in {GenContext.Current.OutputPath}");
+                throw new Exception($"There is not project file in {GenContext.Current.ProjectPath}");
             }
 
             var msbuildProj = MsBuildProject.Load(projectFileName);
