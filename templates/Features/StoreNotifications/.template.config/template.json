@@ -1,0 +1,40 @@
+{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Store Notification",
+  "groupIdentity": "wts.Feat.StoreNotifications",
+  "identity": "wts.Feat.StoreNotifications",
+  "shortName": "Store Notifications",
+  "description": "bla bla bla...",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.version": "1.0.0",
+    "wts.order": "1",
+    "wts.group": "UserInteraction",
+    "wts.licenses": "[Microsoft.Services.Store.SDK](https://www.microsoft.com/legal/intellectualproperty/copyright/default.aspx)",
+    "wts.defaultInstance": "StoreNotifications",
+    "wts.multipleInstance": "false"
+  },
+  "sourceName": "StoreNotificationsFeature",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Services\\StoreNotificationsFeatureService.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    }
+  }
+}
