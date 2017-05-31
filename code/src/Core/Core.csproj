@@ -73,6 +73,10 @@
     <Reference Include="Microsoft.TemplateEngine.Utils, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.TemplateEngine.Utils.1.0.0-beta2-20170515-223\lib\net45\Microsoft.TemplateEngine.Utils.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.Telemetry, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.VisualStudio.Telemetry.15.3.789-masterCC863119\lib\net45\Microsoft.VisualStudio.Telemetry.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -125,6 +129,7 @@
     <Compile Include="Composition\QueryNode.cs" />
     <Compile Include="Composition\QueryOperator.cs" />
     <Compile Include="Configuration\Configuration.cs" />
+    <Compile Include="Diagnostics\EditItemActionEnum.cs" />
     <Compile Include="Diagnostics\FormattedWriterMessages.cs" />
     <Compile Include="Diagnostics\GenStatusEnum.cs" />
     <Compile Include="Diagnostics\HealthWriters.cs" />
@@ -157,6 +162,10 @@
     <Compile Include="Locations\LocalTemplatesSource.cs" />
     <Compile Include="Composition\CompositionQuery.cs" />
     <Compile Include="Locations\SyncStatus.cs" />
+    <Compile Include="Naming\DefaultNameValidator.cs" />
+    <Compile Include="Naming\ExistingNamesValidator.cs" />
+    <Compile Include="Naming\ReservedNameValidator.cs" />
+    <Compile Include="Naming\Validator.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\SortUsingsPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\IEnumerableExtensions.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\UsingComparer.cs" />
@@ -170,7 +179,7 @@
     <Compile Include="MetadataInfo.cs" />
     <Compile Include="Mvvm\ObservableBase.cs" />
     <Compile Include="Mvvm\RelayCommand.cs" />
-    <Compile Include="Naming.cs" />
+    <Compile Include="Naming\Naming.cs" />
     <Compile Include="Templates\LayoutItem.cs" />
     <Compile Include="PostActions\Catalog\AddItemToProjectPostAction.cs" />
     <Compile Include="PostActions\Catalog\AddProjectToSolutionPostAction.cs" />

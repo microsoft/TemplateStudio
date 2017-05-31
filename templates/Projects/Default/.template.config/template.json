@@ -38,14 +38,14 @@
     {
       "type": "parameter",
       "replaces": "Param_Templates.Version"
-    }
-  },
-  "copyrightYear": {
-      "type": "generated",
-      "generator": "now",
-      "replaces": "1976",
-      "parameters": {
-        "format": "yyyy"
+    },
+    "copyrightYear": {
+        "type": "generated",
+        "generator": "now",
+        "replaces": "1976",
+        "parameters": {
+          "format": "yyyy"
+      }
     }
   }
 }

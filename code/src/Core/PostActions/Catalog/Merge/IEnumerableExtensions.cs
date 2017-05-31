@@ -23,6 +23,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         private const string MacroBeforeMode = "^^";
         private const string MacroStartGroup = "{[{";
         private const string MarcoEndGroup = "}]}";
+        private const string MacroStartDelete = "//{--{";
+        private const string MacroEndDelete = "//}--}";
 
         public static int SafeIndexOf(this IEnumerable<string> source, string item, int skip)
         {
@@ -104,6 +106,53 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             TryAddBufferContent(insertionBuffer, result, lastLineIndex);
 
             return result;
+        }
+
+        /// <summary>
+        /// Removes anything from the target file that should be deleted.
+        /// </summary>
+        public static List<string> HandleRemovals(this IEnumerable<string> source, IEnumerable<string> merge)
+        {
+            var mergeString = string.Join(Environment.NewLine, merge);
+            var sourceString = string.Join(Environment.NewLine, source);
+
+            var startIndex = mergeString.IndexOf(MacroStartDelete);
+            var endIndex = mergeString.IndexOf(MacroEndDelete);
+
+            if (startIndex > 0 && endIndex > startIndex)
+            {
+                var toRemove = mergeString.Substring(startIndex + MacroStartDelete.Length,
+                    endIndex - startIndex - MacroStartDelete.Length);
+
+                sourceString = sourceString.Replace(toRemove, string.Empty);
+            }
+
+            return sourceString.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
+        }
+
+        /// <summary>
+        /// Remove any comments from the merged file that indicate something should be removed.
+        /// </summary>
+        public static List<string> RemoveRemovals(this IEnumerable<string> merge)
+        {
+            var mergeString = string.Join(Environment.NewLine, merge);
+
+            var startIndex = mergeString.IndexOf(MacroStartDelete);
+            var endIndex = mergeString.IndexOf(MacroEndDelete);
+
+            if (startIndex > 0 && endIndex > startIndex)
+            {
+                var lengthOfDeletion = endIndex - startIndex + MacroStartDelete.Length;
+
+                if (mergeString.Substring(startIndex + lengthOfDeletion).StartsWith(Environment.NewLine))
+                {
+                    lengthOfDeletion += Environment.NewLine.Length;
+                }
+
+                mergeString = mergeString.Remove(startIndex, lengthOfDeletion);
+            }
+
+            return mergeString.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
         }
 
         private static void TryAddBufferContent(List<string> insertionBuffer, List<string> result, int lastLineIndex, int currentLineIndex = 0, bool beforeMode = false)

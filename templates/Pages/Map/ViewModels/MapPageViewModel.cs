@@ -87,7 +87,7 @@ namespace Param_ItemNamespace.ViewModels
 
         private void AddMapIcon(MapControl map, Geopoint position, string title)
         {
-            MapIcon mapIcon = new MapIcon()
+            var mapIcon = new MapIcon()
             {
                 Location = position,
                 NormalizedAnchorPoint = new Point(0.5, 1.0),

@@ -13,21 +13,23 @@
     <Page.Resources>
         <DataTemplate x:Key="NavigationMenuItemDataTemplate" x:DataType="vm:ShellNavigationItem">
             <Grid Width="240"
-                  Height="48">
+                  Height="48"
+                  Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Rectangle
-                        Width="6"
+                        Width="4"
+                        Height="24"
                         HorizontalAlignment="Left"
-                        VerticalAlignment="Stretch"
+                        VerticalAlignment="Center"
                         Fill="{ThemeResource SystemControlForegroundAccentBrush}"
                         Visibility="{x:Bind SelectedVis, Mode=OneWay}" />
                 <FontIcon
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        FontSize="16"
+                        FontSize="{StaticResource MediumFontSize}"
                         Foreground="{ThemeResource SystemControlFocusVisualPrimaryBrush}"
                         Glyph="{x:Bind SymbolAsChar}" />
                 <TextBlock

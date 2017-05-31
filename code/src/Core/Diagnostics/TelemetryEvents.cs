@@ -18,6 +18,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         public static string PageGen { get; private set; } = TelemetryTracker.PropertiesPrefix + "PageGen";
         public static string FeatureGen { get; private set; } = TelemetryTracker.PropertiesPrefix + "FeatureGen";
         public static string Wizard { get; private set; } = TelemetryTracker.PropertiesPrefix + "Wizard";
-        public static string SessionStart { get; private set; } = TelemetryTracker.PropertiesPrefix + "SessionStart"; 
+        public static string SessionStart { get; private set; } = TelemetryTracker.PropertiesPrefix + "SessionStart";
+        public static string EditSummaryItem { get; internal set; } = TelemetryTracker.PropertiesPrefix + "EditSummaryItem";
     }
 }

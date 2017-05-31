@@ -20,16 +20,14 @@ namespace Microsoft.Templates.Core
 {
     public class Naming
     {
-        private static readonly string[] ReservedNames = new string[] { "Page", "BackgroundTask", "Pivot", "HubNotifications", "LiveTile", "SettingsStorage", "SuspendAndResume","ToastNotifications" };
-
         private const string ValidationPattern = @"^([a-zA-Z])([\w\-])*$";
         private const string InferInvalidPattern = @"[^a-zA-Z\d_\-]";
 
-        public static string Infer(IEnumerable<string> existing, string suggestedName)
+        public static string Infer(string suggestedName, IEnumerable<Validator> validators)
         {
             suggestedName = Regex.Replace(ToTitleCase(suggestedName), InferInvalidPattern, string.Empty);
 
-            if (!Exist(existing, suggestedName))
+            if (validators.All(v => v.Validate(suggestedName).IsValid))
             {
                 return suggestedName;
             }
@@ -38,7 +36,7 @@ namespace Microsoft.Templates.Core
             {
                 var newName = $"{suggestedName}{i}";
 
-                if (!Exist(existing, newName))
+                if (validators.All(v => v.Validate(newName).IsValid))
                 {
                     return newName;
                 }
@@ -47,7 +45,9 @@ namespace Microsoft.Templates.Core
             throw new Exception("Unable to infer a name. Too much iterations");
         }
 
-        public static ValidationResult Validate(IEnumerable<string> existing, string value)
+
+
+        public static ValidationResult Validate(string value, IEnumerable<Validator> validators)
         {
             if (string.IsNullOrEmpty(value))
             {
@@ -55,24 +55,6 @@ namespace Microsoft.Templates.Core
                 {
                     IsValid = false,
                     ErrorType = ValidationErrorType.Empty
-                };
-            }
-
-            if (existing.Contains(value))
-            {
-                return new ValidationResult
-                {
-                    IsValid = false,
-                    ErrorType = ValidationErrorType.AlreadyExists
-                };
-            }
-
-            if (ReservedNames.Contains(value))
-            {
-                return new ValidationResult
-                {
-                    IsValid = false,
-                    ErrorType = ValidationErrorType.ReservedName
                 };
             }
 
@@ -86,16 +68,20 @@ namespace Microsoft.Templates.Core
                 };
             }
 
+            foreach (var validator in validators)
+            {
+                var validationResult = validator.Validate(value);
+                if (validationResult.IsValid == false)
+                {
+                    return validationResult;
+                }
+            }
+
             return new ValidationResult
             {
                 IsValid = true,
                 ErrorType = ValidationErrorType.None
             };
-        }
-
-        private static bool Exist(IEnumerable<string> existing, string suggestedName)
-        {
-            return ReservedNames.Contains(suggestedName) || existing.Contains(suggestedName);
         }
 
         private static string ToTitleCase(string value)
@@ -122,4 +108,6 @@ namespace Microsoft.Templates.Core
             return result.ToString();
         }
     }
+
+
 }

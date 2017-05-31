@@ -376,4 +376,7 @@
   <data name="SummaryOptionSetAsHome" xml:space="preserve">
     <value>Set as home</value>
   </data>
+  <data name="UnableToRefreshProject" xml:space="preserve">
+    <value>Unable to refresh the project. Try to refresh it manually.</value>
+  </data>
 </root>

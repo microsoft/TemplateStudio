@@ -11,7 +11,7 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="MasterListViewItemTemplate" x:DataType="model:SampleModel">
-            <Grid Margin="12,12,12,12">
+            <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -19,13 +19,12 @@
 
                 <TextBlock 
                     Text="{x:Bind Title}" 
-                    FontSize="16" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
+                    Style="{StaticResource ListTitleStyle}" />
 
                 <TextBlock
                     Grid.Row="1"
-                    Opacity="0.6"
                     Text="{x:Bind Description}"
-                    FontSize="16" FontWeight="Normal" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
+                    Style="{StaticResource ListSubTitleStyle}" />
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -48,8 +47,8 @@
             x:Name="TitlePage"
             x:Uid="MasterDetailPage_Title"
             Grid.ColumnSpan="2"
-            FontSize="28" FontWeight="SemiLight" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" VerticalAlignment="Center"
-            Margin="0,0,12,7" Visibility="Collapsed"/>
+            Style="{StaticResource PageTitleStyle}"
+            Visibility="Collapsed"/>
 
         <Grid
             x:Name="MasterArea"
@@ -63,8 +62,7 @@
             <TextBlock
                 x:Name="Title"
                 x:Uid="MasterDetailPage_Title"
-                FontSize="28" FontWeight="SemiLight" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" VerticalAlignment="Center"
-                Margin="0,0,12,7"/>
+                Style="{StaticResource PageTitleStyle}" />
 
             <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your master content.-->
             <ListView
