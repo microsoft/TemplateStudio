@@ -1,3 +1,3 @@
-Azure Notification Hubs provide an easy-to-use, multi-platform, scaled-out push engine. With a single cross-platform API call, you can easily send targeted and personalized push notifications to any mobile platform from any cloud or on-premises backend.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-To find out more about Live Tiles, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/azure/notification-hubs/notification-hubs-push-notification-overview).
+To find out more about Store Notifications, head to [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/monetize/configure-your-app-to-receive-dev-center-notifications).
