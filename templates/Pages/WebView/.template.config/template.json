@@ -13,7 +13,7 @@
     "type": "item",
     "wts.type": "page",
     "wts.framework": "MVVMBasic|MVVMLight",
-    "wts.version": "1.0.0",
+    "wts.version": "2.0.0",
     "wts.order": "1"
   },
   "sourceName": "WebViewPage",

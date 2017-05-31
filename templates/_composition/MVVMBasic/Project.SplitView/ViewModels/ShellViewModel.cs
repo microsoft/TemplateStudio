@@ -67,7 +67,7 @@ namespace wts.ItemName.ViewModels
             {
                 if (_itemSelected == null)
                 {
-                    _itemSelected = new RelayCommand<ShellNavigationItem>(ItemSelected);
+                    _itemSelected = new RelayCommand<ItemClickEventArgs>(ItemSelected);
                 }
 
                 return _itemSelected;
@@ -124,27 +124,27 @@ namespace wts.ItemName.ViewModels
             // Edit String/en-US/Resources.resw: Add a menu item title for each page
         }
 
-        private void ItemSelected(ShellNavigationItem e)
+        private void ItemSelected(ItemClickEventArgs args)
         {
             if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
             {
                 IsPaneOpen = false;
             }
-            Navigate(e);
+            Navigate(args.ClickedItem);
         }
 
         private void NavigationService_Navigated(object sender, NavigationEventArgs e)
         {
-            var item = PrimaryItems?.FirstOrDefault(i => i.PageType == e?.SourcePageType);
-            if (item == null)
+            var navigationItem = PrimaryItems?.FirstOrDefault(i => i.PageType == e?.SourcePageType);
+            if (navigationItem == null)
             {
-                item = SecondaryItems?.FirstOrDefault(i => i.PageType == e?.SourcePageType);
+                navigationItem = SecondaryItems?.FirstOrDefault(i => i.PageType == e?.SourcePageType);
             }
 
-            if (item != null)
+            if (navigationItem != null)
             {
-                ChangeSelected(_lastSelectedItem, item);
-                _lastSelectedItem = item;
+                ChangeSelected(_lastSelectedItem, navigationItem);
+                _lastSelectedItem = navigationItem;
             }
         }
 

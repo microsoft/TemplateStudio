@@ -102,7 +102,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             if (Directory.Exists(TemplatesFolder))
             {
-                DirectoryInfo di = new DirectoryInfo(TemplatesFolder);
+                var di = new DirectoryInfo(TemplatesFolder);
 
                 foreach (var sdi in di.EnumerateDirectories())
                 {
@@ -132,7 +132,7 @@ namespace Microsoft.Templates.Core.Locations
 
             if (Directory.Exists(folder))
             {
-                DirectoryInfo di = new DirectoryInfo(folder);
+                var di = new DirectoryInfo(folder);
 
                 result = di.EnumerateFiles("*", SearchOption.AllDirectories).Any();
             }
@@ -147,12 +147,12 @@ namespace Microsoft.Templates.Core.Locations
 
         private string GetLatestContentFolder(bool ensureWizardAligmnent)
         {
-            Version latestVersion = new Version(0,0,0,0);
+            var latestVersion = new Version(0,0,0,0);
             string latestContent = _defaultContentFolder;
 
             if (Directory.Exists(TemplatesFolder))
             {
-                DirectoryInfo di = new DirectoryInfo(TemplatesFolder);
+                var di = new DirectoryInfo(TemplatesFolder);
 
                 foreach (DirectoryInfo sdi in di.EnumerateDirectories())
                 {

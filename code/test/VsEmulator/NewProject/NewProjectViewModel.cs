@@ -18,6 +18,7 @@ using System.Windows.Forms;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
+using System.Collections.Generic;
 
 namespace Microsoft.Templates.VsEmulator.NewProject
 {
@@ -89,11 +90,13 @@ namespace Microsoft.Templates.VsEmulator.NewProject
 
         private static string GetSuggestedSolution(string path)
         {
-            var existing = Directory.EnumerateDirectories(path)
-                                            .Select(d => new DirectoryInfo(d).Name)
-                                            .ToList();
+            
+            var validator = new List<Validator>()
+            {
+                new DirectoryExistsValidator(path)
+            };
 
-            return Naming.Infer(existing, DefaultName);
+            return Naming.Infer(DefaultName, validator);
         }
 
         private void ShowFileDialog()

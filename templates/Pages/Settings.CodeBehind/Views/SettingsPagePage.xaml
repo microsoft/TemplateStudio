@@ -7,7 +7,7 @@
     mc:Ignorable="d">
 
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid Margin="12,0">
+        <Grid Margin="{StaticResource MediumLeftRightMargin}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="48"/>
                 <RowDefinition Height="Auto"/>
@@ -17,13 +17,12 @@
                 Grid.Row="0"
                 x:Uid="SettingsPage_Title"
                 x:Name="TitlePage"
-                FontSize="28" FontWeight="SemiLight" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" VerticalAlignment="Center"
-                Margin="0,0,12,7"/>   
+                Style="{StaticResource PageTitleStyle}" />
 
             <StackPanel Grid.Row="1" Margin="0,16,0,0">
                 <TextBlock
                     x:Uid="SettingsPage_Theme"
-                    Style="{ThemeResource TitleTextBlockStyle}"/>
+                    Style="{StaticResource BodyTextStyle}"/>
                 <ToggleSwitch
                     x:Uid="SettingsPage_ThemeToggle"
                     IsOn="{x:Bind IsLightThemeEnabled, Mode=OneWay}"
@@ -35,14 +34,14 @@
             <StackPanel Grid.Row="2" Margin="0,16,0,0">
                 <TextBlock
                     x:Uid="SettingsPage_About"
-                    Style="{ThemeResource TitleTextBlockStyle}"/>
+                    Style="{StaticResource BodyTextStyle}"/>
                 <TextBlock
                     Text="{x:Bind AppDescription, Mode=OneWay}"
-                    Style="{ThemeResource SubtitleTextBlockStyle}"
+                    Style="{StaticResource BodyTextStyle}"
                     Margin="0,4,0,0"/>
                 <TextBlock
                     x:Uid="SettingsPage_AboutDescription"
-                    Style="{ThemeResource BodyTextBlockStyle}"/>
+                    Style="{StaticResource BodyTextStyle}"/>
                 <HyperlinkButton
                     x:Uid="SettingsPage_PrivacyTermsLink"
                     Margin="0,8,0,0"/>

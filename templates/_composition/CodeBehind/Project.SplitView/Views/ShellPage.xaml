@@ -5,94 +5,56 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="using:wts.ItemName.Views"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="NavigationMenuItemDataTemplate" x:DataType="local:ShellNavigationItem">
-            <Button
-                Margin="0"
-                Padding="0,9"
-                HorizontalAlignment="Stretch"
-                HorizontalContentAlignment="Stretch"
-                AutomationProperties.AccessibilityView="Control"
-                AutomationProperties.LandmarkType="Navigation"
-                AutomationProperties.Name="{x:Bind Label}"
-                Background="Transparent"
-                BorderThickness="0"
-                Click="NavigationButton_Click">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="48" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Rectangle
-                        Width="6"
+            <Grid Width="240"
+                  Height="48"
+                  Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Rectangle
+                        Width="4"
+                        Height="24"
                         HorizontalAlignment="Left"
-                        VerticalAlignment="Stretch"
+                        VerticalAlignment="Center"
                         Fill="{ThemeResource SystemControlForegroundAccentBrush}"
                         Visibility="{x:Bind SelectedVis, Mode=OneWay}" />
-                    <FontIcon
+                <FontIcon
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        FontSize="16"
+                        FontSize="{StaticResource MediumFontSize}"
                         Foreground="{x:Bind SelectedForeground, Mode=OneWay}"
                         Glyph="{x:Bind SymbolAsChar}" />
-                    <TextBlock
+                <TextBlock
                         Grid.Column="1"
                         Margin="0,0,24,0"
                         VerticalAlignment="Center"
                         Foreground="{x:Bind SelectedForeground, Mode=OneWay}"
                         Text="{x:Bind Label}"
                         TextTrimming="CharacterEllipsis" />
-                </Grid>
-            </Button>
+            </Grid>
         </DataTemplate>
     </Page.Resources>
 
-    <Grid x:Name="ShellContent" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <!--  Top-level navigation menu + app content  -->
-        <SplitView
+    <controls:HamburgerMenu
             x:Name="NavigationMenu"
-            Grid.RowSpan="2"
             DisplayMode="{x:Bind DisplayMode, Mode=OneWay}"
             PaneBackground="{ThemeResource SystemControlBackgroundAltHighBrush}"
-            IsPaneOpen="{x:Bind IsPaneOpen, Mode=TwoWay}">
-            <SplitView.Pane>
-                <Grid Margin="0,48,0,0">
-                    <ScrollViewer VerticalAlignment="Stretch" TabNavigation="Local">
-                        <Grid VerticalAlignment="Stretch">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <ItemsControl
-                                VerticalAlignment="Top"
-                                IsTabStop="False"
-                                ItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
-                                ItemsSource="{x:Bind PrimaryItems, Mode=OneWay}" />
-                            <ItemsControl
-                                Grid.Row="1"
-                                VerticalAlignment="Bottom"
-                                IsTabStop="False"
-                                ItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
-                                ItemsSource="{x:Bind SecondaryItems, Mode=OneWay}" />
-                        </Grid>
-                    </ScrollViewer>
-                </Grid>
-            </SplitView.Pane>
-
-            <Grid Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
-                <Frame x:Name="shellFrame"/>
-            </Grid>
-        </SplitView>
-        <!--  Mavigation menu button  -->
-        <Button Width="48" Height="48" BorderThickness="0" Background="Transparent" Click="OpenPane_Click">
-            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" FontSize="16"/>
-        </Button>
-
+            IsPaneOpen="{x:Bind IsPaneOpen, Mode=TwoWay}"
+            ItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
+            ItemsSource="{x:Bind PrimaryItems}"
+            OptionsItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
+            OptionsItemsSource="{x:Bind SecondaryItems}"
+            ItemClick="ItemClicked"
+            OptionsItemClick="ItemClicked"
+            >
+        <Grid Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+            <Frame x:Name="shellFrame"/>
+        </Grid>
         <!--  Adaptive triggers  -->
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WindowStates" CurrentStateChanged="WindowStates_CurrentStateChanged">
@@ -113,5 +75,5 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-    </Grid>
+    </controls:HamburgerMenu>
 </Page>

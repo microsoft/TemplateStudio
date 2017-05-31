@@ -54,6 +54,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortUsings
             {
                 var usingsGroup = usings
                                     .FirstOrDefault(u => u.Key.Equals(key))
+                                    .Distinct()
                                     .ToList();
 
                 usingsGroup.Sort(new UsingComparer());

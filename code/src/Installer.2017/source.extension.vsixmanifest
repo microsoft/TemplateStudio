@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
     <Identity Id="WindowsTemplateStudio2017.Local.cc89ead5-631c-412c-a571-2616fb8d60cb" Version="0.1" Language="en-US" Publisher="Microsoft Corporation" />
@@ -11,16 +11,14 @@
     <Icon>Resources\windowsTemplateStudio_Logo_200x200.png</Icon>
     <Tags>Windows Template Studio UWP XAML MVVM</Tags>
   </Metadata>
-  <Installation>
-    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0,16.0)" />
+  <Installation AllUsers="true">
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0,15.3)" />
   </Installation>
   <Dependencies>
     <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.6.2,)" d:InstallSource="Download" Location="https://www.microsoft.com/download/details.aspx?id=53345" />
   </Dependencies>
   <Prerequisites>
     <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" DisplayName="Visual Studio core editor" />
-    <Prerequisite Id="Microsoft.VisualStudio.Component.Windows10SDK.15063.UWP" Version="[15.0,16.0)" DisplayName="Windows 10 SDK (10.0.15063.0) for UWP: C#, VB, JS" />
-    <Prerequisite Id="Microsoft.VisualStudio.Component.Windows10SDK.14393" Version="[15.0,16.0)" DisplayName="Windows 10 SDK (10.0.14393.0)" />
     <Prerequisite Id="Microsoft.VisualStudio.Component.UWP.Support" Version="[15.0,16.0)" DisplayName="Universal Windows Platform tools" />
   </Prerequisites>
   <Assets>

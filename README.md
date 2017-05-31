@@ -27,6 +27,12 @@ Windows Template Studio approaches UWP app creation using the following four att
 
 Once you select the attributes you want your new UWP app to have, you can quickly [extend the generated code](docs/getting-started-endusers.md).
 
+## Known Issues
+
+The following are known issues and may affect your use of Windows Template Studio. These will be addressed in the next few days.
+
+* You must be online the first time you use the wizard to generate an app or no templates will be loaded. [#311](https://github.com/Microsoft/WindowsTemplateStudio/issues/311)
+* Only compatible with Windows 10. You cannot use this if running VS 2107 on an older Operating System. [#357](https://github.com/Microsoft/WindowsTemplateStudio/issues/357)
 
 ## Documentation
 

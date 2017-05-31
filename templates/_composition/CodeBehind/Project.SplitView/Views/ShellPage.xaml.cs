@@ -71,16 +71,16 @@ namespace wts.ItemName.Views
 
         private void NavigationService_Navigated(object sender, NavigationEventArgs e)
         {
-            var item = PrimaryItems?.FirstOrDefault(i => i.PageType == e?.SourcePageType);
-            if (item == null)
+            var navigationItem = PrimaryItems?.FirstOrDefault(i => i.PageType == e?.SourcePageType);
+            if (navigationItem == null)
             {
-                item = SecondaryItems?.FirstOrDefault(i => i.PageType == e?.SourcePageType);
+                navigationItem = SecondaryItems?.FirstOrDefault(i => i.PageType == e?.SourcePageType);
             }
 
-            if (item != null)
+            if (navigationItem != null)
             {
-                ChangeSelected(_lastSelectedItem, item);
-                _lastSelectedItem = item;
+                ChangeSelected(_lastSelectedItem, navigationItem);
+                _lastSelectedItem = navigationItem;
             }
         }
 
@@ -105,14 +105,13 @@ namespace wts.ItemName.Views
             }
         }
 
-        private void NavigationButton_Click(object sender, RoutedEventArgs e)
+        private void ItemClicked(object sender, ItemClickEventArgs e)
         {
-            var navigationButton = sender as Button;
             if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
             {
                 IsPaneOpen = false;
             }
-            Navigate(navigationButton.DataContext);
+            Navigate(e.ClickedItem);
         }
 
         private void OpenPane_Click(object sender, RoutedEventArgs e)

@@ -43,7 +43,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 #else
                 GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell());
 #endif
-            }
+                }
         }
 
         public void BeforeOpeningFile(ProjectItem projectItem)
@@ -78,13 +78,27 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
-            if (runKind == WizardRunKind.AsNewProject || runKind == WizardRunKind.AsMultiProject)
+            var solutionDirectory = replacementsDictionary["$solutiondirectory$"];
+
+            try
             {
-                _replacementsDictionary = replacementsDictionary;
+                if (runKind == WizardRunKind.AsNewProject || runKind == WizardRunKind.AsMultiProject)
+                {
+                    _replacementsDictionary = replacementsDictionary;
 
-                GenContext.Current = this;
+                    GenContext.Current = this;
 
-                _userSelection = GenController.GetUserSelection();
+                    _userSelection = GenController.GetUserSelection();
+                }
+            }
+            catch (WizardBackoutException)
+            {
+                if (Directory.Exists(solutionDirectory))
+                {
+                    Directory.Delete(solutionDirectory, true);
+                }
+
+                throw;
             }
         }
 

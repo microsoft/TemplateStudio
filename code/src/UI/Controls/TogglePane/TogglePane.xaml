@@ -1,0 +1,73 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Storyboard x:Key="FadeIn">
+        <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="mouseOvershadowGrid" Storyboard.TargetProperty="Opacity"/>
+        <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="buttonContentPresenter" Storyboard.TargetProperty="Opacity"/>
+    </Storyboard>
+
+    <Storyboard x:Key="FadeOut">
+        <DoubleAnimation Duration="0:0:0" To="0" Storyboard.TargetName="mouseOvershadowGrid" Storyboard.TargetProperty="Opacity"/>
+        <DoubleAnimation Duration="0:0:0" To="0" Storyboard.TargetName="buttonContentPresenter" Storyboard.TargetProperty="Opacity"/>
+    </Storyboard>
+
+    <Style TargetType="{x:Type controls:TogglePane}">
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:TogglePane}">
+                    <Grid>
+                        <Grid.Triggers>
+                            <EventTrigger RoutedEvent="Control.MouseEnter">
+                                <BeginStoryboard Storyboard="{StaticResource FadeIn}"/>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="Control.GotFocus">
+                                <BeginStoryboard Storyboard="{StaticResource FadeIn}"/>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="Control.MouseLeave">
+                                <BeginStoryboard Storyboard="{StaticResource FadeOut}"/>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="Control.LostFocus">
+                                <BeginStoryboard Storyboard="{StaticResource FadeOut}"/>
+                            </EventTrigger>
+                        </Grid.Triggers>
+                        <Grid x:Name="mouseOvershadowGrid" Background="{StaticResource UILightGray}" Opacity="0" Focusable="False"/>
+                        <ContentPresenter
+                            x:Name="mainViewContentTemplate"
+                            Margin="0,0,30,0"
+                            Focusable="False"
+                            Content="{TemplateBinding TogglePaneContent}"
+                            ContentTemplate="{TemplateBinding MainViewTemplate}"
+                            ContentTemplateSelector="{TemplateBinding MainViewTemplateSelector}" />
+
+                        <Grid Grid.Column="1" x:Name="togglePaneShadowGrid" Background="{StaticResource UIGray}" Opacity="0" Focusable="False" HorizontalAlignment="Right"/>
+                        <Grid Grid.Column="1" x:Name="menuGrid" HorizontalAlignment="Right">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter
+                                    x:Name="buttonContentPresenter"
+                                    Focusable="False"
+                                    Content="{TemplateBinding TogglePaneContent}"
+                                    ContentTemplate="{TemplateBinding ButtonTemplate}" Opacity="0">
+                            </ContentPresenter>
+                            <ContentPresenter
+                                    Grid.Column="1"
+                                    Focusable="False"
+                                    Content="{TemplateBinding TogglePaneContent}"
+                                    ContentTemplate="{TemplateBinding SecondaryViewTemplate}"
+                                    ContentTemplateSelector="{TemplateBinding SecondaryViewTemplateSelector}" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

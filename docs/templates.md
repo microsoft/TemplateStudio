@@ -38,7 +38,7 @@ Basically, a template is just code (some source files and folders structure) wit
 The [Templates Repository](../templates) has the following structure:
 
 * [_catalog](../templates/_catalog): this folder contains the catalog of available Frameworks and Project Types, including the required information and metadata (descriptions, icons, images, etc.) to be displayed in the Wizard. You can consider all the content within the *_catalog* folder as metadata for frameworks and project types.
-* [_composition](../templates/composition): this folder contains the partial code templates that will be generated when certain constraints are met, including framework specific templates.
+* [_composition](../templates/_composition): this folder contains the partial code templates that will be generated when certain constraints are met, including framework specific templates.
 * [Projects](../templates/Projects): Project templates which define the actual folder structure, source files and auxiliary files to create a base project.
 * [Pages](../templates/Pages): Page templates which define the source files needed to create a page of a certain type.
 * [Features](../templates/Features): Feature templates with the sources required to add different features and / or capabilities to the target app.
@@ -344,6 +344,7 @@ There are different merge directives to drive the code merging. Currently:
 
 * MacroBeforeMode `//^^`: Insert before the next match, instead of after the last match
 * MacroStartGroup `//{[{` and MarcoEndGroup `}]}`: The content between `{[{` and `}]}` is considered as a block and inserted together.
+* MacroStartDelete `//{--{` and MacroEndDelete = `//}--}`: The content between the directives will be removed if it exists within the merge target. If the content does not exist (or has already been deleted as part of merging another file) this will be silently ignored. Note that the merge must be exact, including white space and line breaks. *This directive can be used with C# files only.*
 
 ## Table of Contents
 
