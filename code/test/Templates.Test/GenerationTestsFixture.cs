@@ -23,8 +23,8 @@ namespace Microsoft.Templates.Test
 {
     public sealed class GenerationTestsFixture : IDisposable
     {
-        internal string TestRunPath = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\U\\{DateTime.Now.ToString("hhmm")}\\";
-        internal string TestProjectsPath => Path.GetFullPath(Path.Combine(TestRunPath, "P"));
+        internal string TestRunPath = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\{DateTime.Now.ToString("dd_hhmm")}\\";
+        internal string TestProjectsPath => Path.GetFullPath(Path.Combine(TestRunPath, "Proj"));
         
         private static readonly Lazy<TemplatesRepository> _repos = new Lazy<TemplatesRepository>(() => CreateNewRepos(), true);
         public static IEnumerable<ITemplateInfo> Templates => _repos.Value.GetAll();

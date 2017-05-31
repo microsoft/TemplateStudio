@@ -52,7 +52,7 @@ namespace Microsoft.Templates.Test
         public async void GenerateEmptyProject(string projectType, string framework)
         {
             var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework)).FirstOrDefault();
-            var projectName = $"{projectType.Substring(0, 1)}{framework.Substring(0, 1)}";
+            var projectName = $"{projectType}{framework}";
 
             ProjectName = projectName;
             OutputPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
@@ -96,7 +96,7 @@ namespace Microsoft.Templates.Test
             }
 
             finalName = Naming.Infer(finalName, validators);
-            var projectName = $"{projectType.Substring(0, 1)}{framework.Substring(0, 1)}{finalName.Substring(0, 1)}";
+            var projectName = $"{projectType}{framework}{finalName}";
 
             ProjectName = projectName;
             OutputPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
@@ -129,7 +129,7 @@ namespace Microsoft.Templates.Test
         {
             var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework)).FirstOrDefault();
 
-            var projectName = $"{projectType.Substring(0, 1)}{framework.Substring(0, 1)}A";
+            var projectName = $"{projectType}{framework}All";
 
             ProjectName = projectName;
             OutputPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
@@ -162,7 +162,7 @@ namespace Microsoft.Templates.Test
         public async void GenerateAllPagesAndFeaturesRandomNames(string projectType, string framework)
         {
             var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework)).FirstOrDefault();
-            var projectName = $"{projectType.Substring(0,1)}{framework.Substring(0, 1)}AR";
+            var projectName = $"{projectType}{framework}AllRandom";
 
             ProjectName = projectName;
             OutputPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
