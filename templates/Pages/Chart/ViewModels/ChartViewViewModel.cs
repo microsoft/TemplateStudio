@@ -14,10 +14,10 @@ namespace Param_ItemNamespace.ViewModels
             get
             {
                 var collection = new ObservableCollection<CustomPoint>();
-                collection.Add(new CustomPoint { Label = "Fred", Value = 6 });
-                collection.Add(new CustomPoint { Label = "Hannah", Value = 18 });
-                collection.Add(new CustomPoint { Label = "Steve", Value = 3 });
-                collection.Add(new CustomPoint { Label = "Becky", Value = 9 });
+                collection.Add(new CustomPoint { Category = "Fred", Value = 6 });
+                collection.Add(new CustomPoint { Category = "Hannah", Value = 18 });
+                collection.Add(new CustomPoint { Category = "Steve", Value = 3 });
+                collection.Add(new CustomPoint { Category = "Becky", Value = 9 });
                 return collection;
             }
         }
@@ -26,6 +26,6 @@ namespace Param_ItemNamespace.ViewModels
     public class CustomPoint
     {
         public double Value { get; set; }
-        public string Label { get; set; }
+        public string Category { get; set; }
     }
 }

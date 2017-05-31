@@ -20,24 +20,23 @@
             x:Uid="ChartView_Title"
             Style="{StaticResource PageTitleStyle}" />
 
-        <Grid
-            Grid.Row="1" 
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!-- For more on customizing the chart see http://www.telerik.com/universal-windows-platform-ui/chart -->
-            <tc:RadPieChart PaletteName="DefaultDark" DataContext="{x:Bind }" >
-                <tc:PieSeries ItemsSource="{Binding Source}" RadiusFactor="0.6">
-                    <tc:PieSeries.ValueBinding>
-                        <tc:PropertyNameDataPointBinding PropertyName="Value"/>
-                    </tc:PieSeries.ValueBinding>
-                    <tc:PieSeries.LabelDefinitions >
-                        <tc:ChartSeriesLabelDefinition>
-                            <tc:ChartSeriesLabelDefinition.Binding>
-                                <tc:PropertyNameDataPointBinding PropertyName="Label" />
-                            </tc:ChartSeriesLabelDefinition.Binding>
-                        </tc:ChartSeriesLabelDefinition>
-                    </tc:PieSeries.LabelDefinitions>
-                </tc:PieSeries>
-            </tc:RadPieChart>
+        <Grid Grid.Row="1" Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+            <tc:RadCartesianChart>
+                <tc:RadCartesianChart.HorizontalAxis>
+                    <tc:CategoricalAxis />
+                </tc:RadCartesianChart.HorizontalAxis>
+                <tc:RadCartesianChart.VerticalAxis>
+                    <tc:LinearAxis />
+                </tc:RadCartesianChart.VerticalAxis>
+                <tc:BarSeries ItemsSource="{x:Bind Source}" ShowLabels="True">
+                    <tc:BarSeries.CategoryBinding>
+                        <tc:PropertyNameDataPointBinding PropertyName="Category" />
+                    </tc:BarSeries.CategoryBinding>
+                    <tc:BarSeries.ValueBinding>
+                        <tc:PropertyNameDataPointBinding PropertyName="Value" />
+                    </tc:BarSeries.ValueBinding>
+                </tc:BarSeries>
+            </tc:RadCartesianChart>
         </Grid>
     </Grid>
 </Page>
