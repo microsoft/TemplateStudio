@@ -55,7 +55,11 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 foreach (var item in itemsFullPath)
                 {
-                    proj.ProjectItems.AddFromFile(item);
+                    ProjectItem newItem = proj.ProjectItems.AddFromFile(item);
+                    if (item.EndsWith(".xaml"))
+                    {
+                        newItem.Properties.Item("ItemType").Value = "EmbeddedResource";
+                    }
                 }
 
                 proj.Save();
