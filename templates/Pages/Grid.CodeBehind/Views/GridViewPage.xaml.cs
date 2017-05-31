@@ -6,6 +6,9 @@ namespace Param_ItemNamespace.Views
 {
     public sealed partial class GridViewPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
+        // TODO UWPTemplates: Change the grid as appropriate to your app.
+        // For help see http://docs.telerik.com/windows-universal/controls/raddatagrid/gettingstarted
+        // You may also want to extend the grid to work with the RadDataForm http://docs.telerik.com/windows-universal/controls/raddataform/dataform-gettingstarted
         public GridViewPage()
         {
             InitializeComponent();
@@ -16,7 +19,7 @@ namespace Param_ItemNamespace.Views
             get
             {
                 // TODO UWPTemplates: Get your actual data to display in the grid
-                // THe following random data is for demonstration purposes only
+                // The following random data is for demonstration purposes only
                 var collection = new ObservableCollection<Student>();
                 var rand = new Random();
                 var surnames = new[] { "Thomas", "Andrews", "Lacey", "Patel", "Smith", "Jones", "Gates", "Campbell", "Williams", "Kadavy", "Franklin", "Gu", "Simpson", "Cooper" };

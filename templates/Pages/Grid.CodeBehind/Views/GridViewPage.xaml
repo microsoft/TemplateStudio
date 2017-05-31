@@ -24,7 +24,6 @@
         <Grid
             Grid.Row="1" 
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!-- For more on customizing the grid see http://www.telerik.com/universal-windows-platform-ui/grid -->
             <tg:RadDataGrid ColumnDataOperationsMode="Flyout" x:Name="grid" ItemsSource="{x:Bind Source}" />
         </Grid>
     </Grid>
