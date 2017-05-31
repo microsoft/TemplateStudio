@@ -77,8 +77,22 @@ namespace Microsoft.Templates.UI.Views
             var element = e.Source as FrameworkElement;
             if (element == null || element.Tag == null || element.Tag.ToString() != "AllowClick")
             {
-                ViewModel?.ProjectTemplates?.SavedPages?.ToList()?.ForEach(p => p.TryClose());
-                ViewModel?.ProjectTemplates?.SavedFeatures?.ToList()?.ForEach(f => f.TryClose());
+                ViewModel?.ProjectTemplates?.SavedPages?.ToList()?.ForEach(p =>
+                {
+                    if (p.IsEditionEnabled)
+                    {
+                        p.ConfirmRenameCommand.Execute(p);
+                        p.TryClose();
+                    }                    
+                });
+                ViewModel?.ProjectTemplates?.SavedFeatures?.ToList()?.ForEach(f =>
+                {
+                    if (f.IsEditionEnabled)
+                    {
+                        f.ConfirmRenameCommand.Execute(f);
+                        f.TryClose();
+                    }
+                });
             }
         }
     }

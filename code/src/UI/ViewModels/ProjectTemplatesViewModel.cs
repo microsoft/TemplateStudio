@@ -12,6 +12,7 @@
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
@@ -89,7 +90,7 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             get
             {
-                List<string> names = new List<string>();
+                var names = new List<string>();
                 names.AddRange(SavedPages.Select(sp => sp.ItemName));
                 names.AddRange(SavedFeatures.Select(sf => sf.ItemName));
                 return names;
@@ -100,10 +101,10 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             get
             {
-                List<string> names = new List<string>();
-                names.AddRange(SavedPages.Select(sp => sp.Identity));
-                names.AddRange(SavedFeatures.Select(sf => sf.Identity));
-                return names;
+                var identities = new List<string>();
+                identities.AddRange(SavedPages.Select(sp => sp.Identity));
+                identities.AddRange(SavedFeatures.Select(sf => sf.Identity));
+                return identities;
             }
         }
 
@@ -111,7 +112,16 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void ValidateCurrentTemplateName(SavedTemplateViewModel item)
         {
-            var validationResult = Naming.Validate(Names, item.NewItemName);
+            var validators = new List<Validator>()
+            {
+                new ExistingNamesValidator(Names),
+                new ReservedNamesValidator()
+            };
+            if (item.CanChooseItemName)
+            {
+                validators.Add(new DefaultNamesValidator());
+            }
+            var validationResult = Naming.Validate(item.NewItemName, validators);
 
             item.IsValidName = validationResult.IsValid;
             item.ErrorMessage = String.Empty;
@@ -132,7 +142,16 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void ValidateNewTemplateName(TemplateInfoViewModel template)
         {
-            var validationResult = Naming.Validate(Names, template.NewTemplateName);
+            var validators = new List<Validator>()
+            {
+                new ExistingNamesValidator(Names),
+                new ReservedNamesValidator()
+            };
+            if (template.CanChooseItemName)
+            {
+                validators.Add(new DefaultNamesValidator());
+            }
+            var validationResult = Naming.Validate(template.NewTemplateName, validators);
 
             template.IsValidName = validationResult.IsValid;
             template.ErrorMessage = String.Empty;
@@ -199,15 +218,27 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnAddTemplateItem(TemplateInfoViewModel template)
         {
+
             if (template.CanChooseItemName)
             {
-                template.NewTemplateName = Naming.Infer(Names, template.Template.GetDefaultName());
+                var validators = new List<Validator>()
+                {
+                    new ReservedNamesValidator(),
+                    new ExistingNamesValidator(Names),
+                    new DefaultNamesValidator()
+                };
+                template.NewTemplateName = Naming.Infer(template.Template.GetDefaultName(), validators);
                 CloseTemplatesEdition();
                 template.IsEditionEnabled = true;
             }
             else
             {
-                template.NewTemplateName = template.Template.GetDefaultName();
+                var validators = new List<Validator>()
+                {
+                    new ReservedNamesValidator(),
+                    new ExistingNamesValidator(Names)
+                };
+                template.NewTemplateName = Naming.Infer(template.Template.GetDefaultName(), validators);
                 SetupTemplateAndDependencies((template.NewTemplateName, template.Template));
                 var isAlreadyDefined = IsTemplateAlreadyDefined(template.Template.Identity);
                 template.UpdateTemplateAvailability(isAlreadyDefined);
@@ -235,12 +266,28 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnConfirmRenameSummaryItem(SavedTemplateViewModel item)
         {
-            var validationResult = Naming.Validate(Names, item.NewItemName);
+            var validators = new List<Validator>()
+            {
+                new ExistingNamesValidator(Names),
+                new ReservedNamesValidator()
+            };
+            if (item.CanChooseItemName)
+            {
+                validators.Add(new DefaultNamesValidator());
+            }
+            var validationResult = Naming.Validate(item.NewItemName, validators);
 
             if (validationResult.IsValid)
             {
                 item.ItemName = item.NewItemName;
                 item.IsEditionEnabled = false;
+
+                if (item.IsHome)
+                {
+                    HomeName = item.ItemName;
+                }
+
+                AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.Rename).FireAndForget();
             }
         }
 
@@ -252,6 +299,8 @@ namespace Microsoft.Templates.UI.ViewModels
                 int newIndex = oldIndex + 1;
                 SavedPages.RemoveAt(oldIndex);
                 SavedPages.Insert(newIndex, item);
+
+                AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.MoveDown).FireAndForget();
             }
             UpdateCanMoveUpAndDownPages();
         }
@@ -264,6 +313,8 @@ namespace Microsoft.Templates.UI.ViewModels
                 int newIndex = oldIndex - 1;
                 SavedPages.RemoveAt(oldIndex);
                 SavedPages.Insert(newIndex, item);
+
+                AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.MoveUp).FireAndForget();
             }
             UpdateCanMoveUpAndDownPages();
         }
@@ -316,7 +367,10 @@ namespace Microsoft.Templates.UI.ViewModels
                     SavedPages.RemoveAt(oldIndex);
                     SavedPages.Insert(0, item);
                 }
+
                 UpdateCanMoveUpAndDownPages();
+
+                AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.SetHome).FireAndForget();
             }
         }               
 
@@ -344,6 +398,8 @@ namespace Microsoft.Templates.UI.ViewModels
             MainViewModel.Current.CreateCommand.OnCanExecuteChanged();
             UpdateTemplatesAvailability();
             MainViewModel.Current.RebuildLicenses();
+
+            AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.Remove).FireAndForget();
         }
 
         private bool IsTemplateAlreadyDefined(string identity) => Identities.Any(i => i == identity);

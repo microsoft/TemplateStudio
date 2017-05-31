@@ -48,14 +48,14 @@ namespace Microsoft.Templates.Core
         {
             byte[] data = md5Hash.ComputeHash(inputData);
 
-            StringBuilder sBuilder = new StringBuilder();
+            var sb = new StringBuilder();
 
             for (int i = 0; i < data.Length; i++)
             {
-                sBuilder.Append(data[i].ToString("x2"));
+                sb.Append(data[i].ToString("x2"));
             }
 
-            return sBuilder.ToString();
+            return sb.ToString();
         }
 
         public static string[] GetMultiValue(this string value)
