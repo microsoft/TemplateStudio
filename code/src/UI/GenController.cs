@@ -98,11 +98,11 @@ namespace Microsoft.Templates.UI
             return null;
         }
 
-        public static async Task GenerateAsync(UserSelection userSelection)
+        public static async Task GenerateProjectAsync(UserSelection userSelection)
         {
             try
             {
-                await UnsafeGenerateAsync(userSelection);
+                await UnsafeGenerateProjectAsync(userSelection);
             }
             catch (Exception ex)
             {
@@ -146,10 +146,11 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        public static async Task UnsafeGenerateAsync(UserSelection userSelection)
+        public static async Task UnsafeGenerateProjectAsync(UserSelection userSelection)
         {
             var genItems = GenComposer.Compose(userSelection).ToList();
             var chrono = Stopwatch.StartNew();
+
             var genResults = new Dictionary<string, TemplateCreationResult>();
 
             foreach (var genInfo in genItems)
@@ -177,10 +178,12 @@ namespace Microsoft.Templates.UI
                     throw new GenException(genInfo.Name, genInfo.Template.Name, result.Message);
                 }
 
-                ExecutePostActions(genInfo, result);
+                ExecutePostActions(genInfo, result, GenContext.Current.GenerationMode);
             }
 
             ExecuteGlobalPostActions();
+
+            ExecuteFinishGenerationPostActions(GenContext.Current.GenerationMode);
 
             chrono.Stop();
 
@@ -191,6 +194,7 @@ namespace Microsoft.Templates.UI
         {
             var genItems = GenComposer.ComposeNewItem(userSelection).ToList();
             var chrono = Stopwatch.StartNew();
+
             var genResults = new Dictionary<string, TemplateCreationResult>();
 
             foreach (var genInfo in genItems)
@@ -206,7 +210,7 @@ namespace Microsoft.Templates.UI
                 {
                     GenContext.ToolBox.Shell.ShowStatusBarMessage(statusText);
                 }
-                
+
                 AppHealth.Current.Info.TrackAsync($"Generating the template {genInfo.Template.Name} to {GenContext.Current.OutputPath}.").FireAndForget();
 
                 var result = await CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, GenContext.Current.OutputPath, genInfo.Parameters, false, false, null);
@@ -218,11 +222,14 @@ namespace Microsoft.Templates.UI
                     throw new GenException(genInfo.Name, genInfo.Template.Name, result.Message);
                 }
 
-                ExecutePostActions(genInfo, result);
+                ExecutePostActions(genInfo, result, GenContext.Current.GenerationMode);
             }
+
+            ExecuteGlobalPostActions();
 
             chrono.Stop();
 
+            // TODO: Review New Item telemetry
             TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework);
         }
 
@@ -234,7 +241,10 @@ namespace Microsoft.Templates.UI
                 File.Copy(file, destFileName, true);
             }
 
-            ExecuteGlobalPostActions();
+            ExecuteFinishGenerationPostActions(GenContext.Current.GenerationMode);
+
+            Directory.Delete(GenContext.Current.OutputPath, true);
+
         }
 
         private static void ExecuteGlobalPostActions()
@@ -247,10 +257,20 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        private static void ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult)
+        private static void ExecuteFinishGenerationPostActions(GenerationMode generationMode)
+        {
+            var postActions = PostActionFactory.FindFinishGenerationPostActions(generationMode);
+
+            foreach (var postAction in postActions)
+            {
+                postAction.Execute();
+            }
+        }
+
+        private static void ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult, GenerationMode generationMode)
         {
             //Get post actions from template
-            var postActions = PostActionFactory.Find(genInfo, generationResult);
+            var postActions = PostActionFactory.Find(genInfo, generationResult, generationMode);
 
             foreach (var postAction in postActions)
             {

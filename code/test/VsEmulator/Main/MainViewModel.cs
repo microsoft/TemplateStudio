@@ -144,7 +144,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     {
                         SolutionName = null;
 
-                        await GenController.GenerateAsync(userSelection);
+                        await GenController.GenerateProjectAsync(userSelection);
 
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
 
@@ -166,7 +166,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private async void AddNewFeature()
         {
             ConfigureGenContext();
-            OutputPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            OutputPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             GenerationMode = GenerationMode.NewItem;
 
             try

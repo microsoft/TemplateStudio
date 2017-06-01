@@ -12,14 +12,14 @@
 
 using Microsoft.Templates.Core.Gen;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
-    public class MergePostAction : PostAction<string>
+
+    public class GetMergeFilesFromProjectPostAction : PostAction<string>
     {
         private const string Suffix = "postaction";
 
@@ -27,33 +27,38 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         public const string GlobalExtension = "$*_g" + Suffix + ".";
         public const string PostactionRegex = @"(\$\S*)?(_" + Suffix + "|_g" + Suffix + @")\.";
 
-        public MergePostAction(string config) : base(config)
+        public GetMergeFilesFromProjectPostAction(string config) : base(config)
         {
         }
 
         public override void Execute()
         {
-            string originalFilePath = GetFilePath();
+            var filePath = String.Empty;
+            var isGlobalMergePostAction = _config.Contains(GlobalExtension);
 
-            if (string.IsNullOrEmpty(originalFilePath))
+            if (isGlobalMergePostAction)
             {
-                throw new FileNotFoundException($"There is no merge target for file '{_config}'");   
-            }   
-
-            var source = File.ReadAllLines(originalFilePath).ToList();
-            var merge = File.ReadAllLines(_config).ToList();
-
-            IEnumerable<string> result = source.HandleRemovals(merge);
-            result = result.Merge(merge.RemoveRemovals());
-
-            File.WriteAllLines(originalFilePath, result);
-            File.Delete(_config);
-
-            //REFRESH PROJECT TO UN-DIRTY IT
-            if (Path.GetExtension(_config).Equals(".csproj", StringComparison.OrdinalIgnoreCase))
-            {
-                Gen.GenContext.ToolBox.Shell.RefreshProject();
+                filePath = GetFileFromProject();
+                if (string.IsNullOrEmpty(filePath))
+                {
+                    filePath = GetFilePath();
+                }
             }
+            else
+            {
+                filePath = GetFilePath();
+
+                if (string.IsNullOrEmpty(filePath))
+                {
+                    filePath = GetFileFromProject();
+                }
+            }
+
+            if (string.IsNullOrEmpty(filePath))
+            {
+                //TODO: Handle this
+            }
+
         }
 
         private string GetFilePath()
@@ -70,6 +75,33 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 var path = Regex.Replace(_config, PostactionRegex, ".");
 
                 return (File.Exists(path) ? path : String.Empty);
+            }
+        }
+
+        private string GetFileFromProject()
+        {
+            var file = string.Empty;
+            if (Path.GetFileName(_config).StartsWith(Extension))
+            {
+                var extension = Path.GetExtension(_config);
+                var directory = GenContext.Current.ProjectPath;
+
+                file = Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !f.Contains(Suffix));
+            }
+            else
+            {
+                file = Regex.Replace(_config, PostactionRegex, ".").Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
+            }
+
+            if (File.Exists(file))
+            {
+                var destFile = file.Replace(GenContext.Current.ProjectPath, GenContext.Current.OutputPath);
+                File.Copy(file, destFile);
+                return destFile;
+            }
+            else
+            {
+                return string.Empty;
             }
         }
     }

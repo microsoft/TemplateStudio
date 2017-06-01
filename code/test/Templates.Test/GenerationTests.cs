@@ -73,7 +73,7 @@ namespace Microsoft.Templates.Test
 
             AddLayoutItems(userSelection, projectTemplate);
 
-            await GenController.UnsafeGenerateAsync(userSelection);
+            await GenController.UnsafeGenerateProjectAsync(userSelection);
 
             //Build solution
             var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
@@ -119,7 +119,7 @@ namespace Microsoft.Templates.Test
             AddLayoutItems(userSelection, projectTemplate);
             AddItem(userSelection, finalName, itemTemplate);
 
-            await GenController.UnsafeGenerateAsync(userSelection);
+            await GenController.UnsafeGenerateProjectAsync(userSelection);
 
             //Build solution
             var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
@@ -154,7 +154,7 @@ namespace Microsoft.Templates.Test
             AddItems(userSelection, GetTemplates(framework, TemplateType.Page), GetDefaultName);
             AddItems(userSelection, GetTemplates(framework, TemplateType.Feature), GetDefaultName);
 
-            await GenController.UnsafeGenerateAsync(userSelection);
+            await GenController.UnsafeGenerateProjectAsync(userSelection);
 
             //Build solution
             var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
@@ -188,7 +188,7 @@ namespace Microsoft.Templates.Test
             AddItems(userSelection, GetTemplates(framework, TemplateType.Page), GetRandomName);
             AddItems(userSelection, GetTemplates(framework, TemplateType.Feature), GetRandomName);
 
-            await GenController.UnsafeGenerateAsync(userSelection);
+            await GenController.UnsafeGenerateProjectAsync(userSelection);
 
             //Build solution
             var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
