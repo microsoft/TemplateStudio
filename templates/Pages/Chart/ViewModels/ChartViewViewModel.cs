@@ -10,7 +10,7 @@ namespace Param_ItemNamespace.ViewModels
         {
         }
 
-        public ObservableCollection<DataPoint> Source
+        public ObservableCollection<SampleDataService.DataPoint> Source
         {
             get
             {

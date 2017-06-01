@@ -13,7 +13,7 @@ namespace Param_ItemNamespace.Views
             InitializeComponent();
         }
 
-        public ObservableCollection<DataPoint> Source
+        public ObservableCollection<SampleDataService.DataPoint> Source
         {
             get
             {

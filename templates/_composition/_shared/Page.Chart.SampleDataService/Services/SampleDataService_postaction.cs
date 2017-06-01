@@ -1,12 +1,13 @@
-﻿
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 namespace Param_ItemNamespace.Services
 {
-    internal static class SampleDataService
+    public static class SampleDataService
     {
+//^^
+//{[{
         // TODO UWPTemplates: Remove this once your chart page is displaying real data
-        internal static ObservableCollection<DataPoint> GetChartSampleData()
+        public static ObservableCollection<DataPoint> GetChartSampleData()
         {
             // The following is sales data
             var data = new ObservableCollection<DataPoint>
@@ -27,11 +28,13 @@ namespace Param_ItemNamespace.Services
 
             return data;
         }
-    }
 
-    public class DataPoint
-    {
-        public double Value { get; set; }
-        public string Category { get; set; }
+        public class DataPoint
+        {
+            public double Value { get; set; }
+            public string Category { get; set; }
+        }
+        //}]}
+
     }
 }
