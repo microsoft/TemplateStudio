@@ -13,6 +13,11 @@
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Models\\Order.cs"
+    }
+  ],
   "symbols": {
     "wts.rootNamespace": {
       "type": "parameter",

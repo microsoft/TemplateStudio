@@ -1,4 +1,5 @@
-﻿
+﻿using Param_ItemNamespace.Models;
+
 namespace Param_ItemNamespace.Services
 {
     // This class holds sample data used by some generated pages to show how they can be used.

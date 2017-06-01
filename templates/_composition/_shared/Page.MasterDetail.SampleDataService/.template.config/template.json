@@ -3,19 +3,19 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.Chart.AddSampleData",
+  "name": "Page.MasterDetail.AddSampleData",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CodeBehind & identity == wts.Page.Chart|wts.Page.Chart.CodeBehind"
+    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CodeBehind  & identity == wts.Page.MasterDetail|wts.Page.MasterDetail.CodeBehind"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Models\\DataPoint.cs"
+      "path": ".\\Models\\SampleModel.cs"
     }
   ],
   "symbols": {

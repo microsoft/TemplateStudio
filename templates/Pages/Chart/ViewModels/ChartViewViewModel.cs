@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using Param_ItemNamespace.Models;
 using Param_ItemNamespace.Services;
 
 namespace Param_ItemNamespace.ViewModels
@@ -10,7 +11,7 @@ namespace Param_ItemNamespace.ViewModels
         {
         }
 
-        public ObservableCollection<SampleDataService.DataPoint> Source
+        public ObservableCollection<DataPoint> Source
         {
             get
             {

@@ -1,11 +1,12 @@
 using System.Collections.ObjectModel;
+using Param_ItemNamespace.Models;
 using Param_ItemNamespace.Services;
 
 namespace Param_ItemNamespace.ViewModels
 {
     public class GridViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        public ObservableCollection<SampleDataService.Order> Source
+        public ObservableCollection<Order> Source
         {
             get
             {

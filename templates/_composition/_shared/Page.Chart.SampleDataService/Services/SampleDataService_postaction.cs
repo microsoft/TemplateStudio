@@ -28,13 +28,7 @@ namespace Param_ItemNamespace.Services
 
             return data;
         }
-
-        public class DataPoint
-        {
-            public double Value { get; set; }
-            public string Category { get; set; }
-        }
-        //}]}
+//}]}
 
     }
 }

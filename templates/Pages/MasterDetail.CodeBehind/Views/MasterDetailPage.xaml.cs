@@ -23,18 +23,17 @@ namespace Param_ItemNamespace.Views
             InitializeComponent();
         }
 
-        private async Task LoadDataAsync() 
+        private async Task LoadDataAsync()
         {
-            SampleItems.Clear(); 
+            SampleItems.Clear();
 
-            var service = new SampleModelService(); 
-            var data = await service.GetDataAsync(); 
+            var data = await SampleDataService.GetSampleMasterDetailDataAsync();
 
-            foreach (var item in data) 
+            foreach (var item in data)
             {
-                SampleItems.Add(item); 
+                SampleItems.Add(item);
             }
-            Selected = SampleItems.First(); 
+            Selected = SampleItems.First();
         }
 
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)

@@ -1,5 +1,6 @@
 using Windows.UI.Xaml.Controls;
 using System.Collections.ObjectModel;
+using Param_ItemNamespace.Models;
 using Param_ItemNamespace.Services;
 
 namespace Param_ItemNamespace.Views
@@ -13,7 +14,7 @@ namespace Param_ItemNamespace.Views
             InitializeComponent();
         }
 
-        public ObservableCollection<SampleDataService.DataPoint> Source
+        public ObservableCollection<DataPoint> Source
         {
             get
             {
