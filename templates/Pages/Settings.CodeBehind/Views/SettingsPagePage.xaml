@@ -7,7 +7,7 @@
     mc:Ignorable="d">
 
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid Margin="12,0">
+        <Grid Margin="{StaticResource MediumLeftRightMargin}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="48"/>
                 <RowDefinition Height="Auto"/>
@@ -17,8 +17,7 @@
                 Grid.Row="0"
                 x:Uid="SettingsPage_Title"
                 x:Name="TitlePage"
-                Style="{StaticResource PageTitleStyle}"
-                Margin="0,0,12,7"/>   
+                Style="{StaticResource PageTitleStyle}" />
 
             <StackPanel Grid.Row="1" Margin="0,16,0,0">
                 <TextBlock
