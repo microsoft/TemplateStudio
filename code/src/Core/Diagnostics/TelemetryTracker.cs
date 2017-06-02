@@ -46,7 +46,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task TrackWizardCompletedAsync()
         {
-            var properties = new Dictionary<string, string>()
+            Dictionary<string, string> properties = new Dictionary<string, string>()
             {
                 { TelemetryProperties.WizardStatus, WizardStatusEnum.Completed.ToString() },
                 { TelemetryProperties.WizardType, WizardTypeEnum.NewProject.ToString() },

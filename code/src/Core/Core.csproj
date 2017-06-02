@@ -122,6 +122,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\GlobalSuppressions.cs">
+      <Link>GlobalSuppressions.cs</Link>
+    </Compile>
     <Compile Include="CodeGen.cs" />
     <Compile Include="Composition\InvalidCompositionQueryException.cs" />
     <Compile Include="Composition\QueryableProperty.cs" />
@@ -201,6 +204,9 @@
     <Compile Include="ValidationResult.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\StyleCop.json">
+      <Link>StyleCop.json</Link>
+    </None>
     <None Include="..\..\TestKey.snk">
       <Link>TestKey.snk</Link>
     </None>
@@ -228,6 +234,9 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
