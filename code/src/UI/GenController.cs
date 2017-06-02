@@ -40,14 +40,14 @@ namespace Microsoft.Templates.UI
                 GenContext.ToolBox.Shell.ShowModal(mainView);
                 if (mainView.Result != null)
                 {
-                    //TODO: Review when right-click-actions available to track Project or Page completed.
+                    // TODO: Review when right-click-actions available to track Project or Page completed.
                     AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject).FireAndForget();
 
                     return mainView.Result;
                 }
                 else
                 {
-                    //TODO: Review when right-click-actions available to track Project or Page cancelled.
+                    // TODO: Review when right-click-actions available to track Project or Page cancelled.
                     AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewProject).FireAndForget();
                 }
 
@@ -132,7 +132,7 @@ namespace Microsoft.Templates.UI
 
         private static void ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult)
         {
-            //Get post actions from template
+            // Get post actions from template
             var postActions = PostActionFactory.Find(genInfo, generationResult);
 
             foreach (var postAction in postActions)

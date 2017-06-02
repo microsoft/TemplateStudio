@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             _traceEventType = eventType;
         }
 
-        public async Task TrackAsync(string message, Exception ex=null)
+        public async Task TrackAsync(string message, Exception ex = null)
         {
             if (IsTraceEnabled())
             {

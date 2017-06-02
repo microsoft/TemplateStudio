@@ -95,7 +95,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                     }
                 }
             }
-            //free native resources if any.
+            // free native resources if any.
         }
     }
 }

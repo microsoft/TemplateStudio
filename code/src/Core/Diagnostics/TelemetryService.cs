@@ -71,7 +71,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
         {
-            //Trace events will not be forwarded to the remote service
+            // Trace events will not be forwarded to the remote service
             await Task.Run(() => { });
         }
 
@@ -136,7 +136,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
             catch (Exception ex)
             {
-                //Not running in VS so we assume we are in the emulator => we allow telemetry
+                // Not running in VS so we assume we are in the emulator => we allow telemetry
                 Trace.TraceWarning($"Unable to load the assembly 'Microsoft.VisualStudio.Telemetry'. Visual Studio Telemetry OptIn/OptOut setting will not be considered. Details:\r\n{ex.ToString()}");
                 return true;
             }
@@ -154,14 +154,14 @@ namespace Microsoft.Templates.Core.Diagnostics
                 }
                 else
                 {
-                    //Not running in VS so we assume we are in the emulator => we allow telemetry
+                    // Not running in VS so we assume we are in the emulator => we allow telemetry
                     Trace.TraceInformation($"Checking VsTelemetry IsOptedIn value Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession is Null.");
                     return true;
                 }
             }
             catch (Exception ex)
             {
-                //Not running in VS so we assume we are in the emulator => we allow telemetry
+                // Not running in VS so we assume we are in the emulator => we allow telemetry
                 Trace.TraceInformation($"Exception checking VsTelemetry IsOptedIn:\r\n" + ex.ToString());
                 return true;
             }
@@ -313,7 +313,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 // free managed resources 
                 Flush();
             }
-            //free native resources if any.
+            // free native resources if any.
         }
     }
 }

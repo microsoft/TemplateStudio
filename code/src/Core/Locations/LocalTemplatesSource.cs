@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public override void ExtractFromMstx(string mstxFilePath, string targetFolder)
         {
-            //Actually we do not extract from an Mstx, we want to copy local templates to work with latest local content
+            // Actually we do not extract from an Mstx, we want to copy local templates to work with latest local content
             var targetVersionFolder = Path.Combine(targetFolder, LocalWizardVersion);
             Copy(Origin, targetVersionFolder);
         }

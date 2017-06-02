@@ -53,10 +53,10 @@ namespace Microsoft.Templates.Core
             Instance.Init();
         }
 
-        //public static void Initialize(string locationId)
-        //{
-        //    Initialize(locationId, GetHostVersion());
-        //}
+        ////public static void Initialize(string locationId)
+        ////{
+        ////    Initialize(locationId, GetHostVersion());
+        ////}
 
         public string GetCurrentContentSource(string workingFolder)
         {
@@ -107,13 +107,13 @@ namespace Microsoft.Templates.Core
             return new DefaultTemplateEngineHost($"{BaseName}_{locationId}", hostVersion, CultureInfo.CurrentCulture.Name, new Dictionary<string, string>());
         }
 
-        //private static string GetHostVersion()
-        //{
-        //    string assemblyLocation = Assembly.GetExecutingAssembly().Location;
-        //    var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
-        //    Version.TryParse(versionInfo.FileVersion, out Version v);
+        ////private static string GetHostVersion()
+        ////{
+        ////    string assemblyLocation = Assembly.GetExecutingAssembly().Location;
+        ////    var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
+        ////    Version.TryParse(versionInfo.FileVersion, out Version v);
 
-        //    return $"{v.Major}.{v.Minor}";
-        //}
+        ////    return $"{v.Major}.{v.Minor}";
+        ////}
     }
 }

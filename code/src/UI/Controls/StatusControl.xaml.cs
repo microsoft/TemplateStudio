@@ -96,16 +96,16 @@ namespace Microsoft.Templates.UI.Controls
                     txtStatus.Text = status.Message;
                     txtIcon.Text = ConvertToChar(SymbolFonts.ErrorBadge); 
                     txtIcon.Foreground = FindResource("UIDarkYellow") as SolidColorBrush;
-                    //Color yellow = (Color)FindResource("UIYellowColor");
-                    //Background = new LinearGradientBrush(yellow, Colors.Transparent, 0);                    
+                    // Color yellow = (Color)FindResource("UIYellowColor");
+                    // Background = new LinearGradientBrush(yellow, Colors.Transparent, 0);                    
                     Background = FindResource("UIYellow") as SolidColorBrush;
                     break;
                 case StatusType.Error:
                     txtStatus.Text = status.Message;
                     txtIcon.Text = ConvertToChar(SymbolFonts.StatusErrorFull);
                     txtIcon.Foreground = FindResource("UIDarkRed") as SolidColorBrush;
-                    //Color red = (Color)FindResource("UIRedColor");                    
-                    //var brush = new LinearGradientBrush(red, Colors.Transparent, 0);
+                    // Color red = (Color)FindResource("UIRedColor");                    
+                    // var brush = new LinearGradientBrush(red, Colors.Transparent, 0);
                     var brush = FindResource("UIRed") as SolidColorBrush;
                     brush.Opacity = 0.4;
                     Background = brush;

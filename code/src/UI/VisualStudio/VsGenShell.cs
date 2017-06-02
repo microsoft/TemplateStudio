@@ -80,7 +80,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception)
             {
-                //WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
                 AppHealth.Current.Info.TrackAsync(StringRes.UnableToRefreshProject).FireAndForget();
             }
         }
@@ -113,7 +113,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception)
             {
-                //WE GET AN EXCEPTION WHEN THERE ISN'T A SOLUTION LOADED
+                // WE GET AN EXCEPTION WHEN THERE ISN'T A SOLUTION LOADED
                 AppHealth.Current.Info.TrackAsync(StringRes.UnableAddProjectToSolution).FireAndForget();
             }
         }
@@ -169,7 +169,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void ShowModal(System.Windows.Window dialog)
         {
-            //get the owner of this dialog
+            // get the owner of this dialog
             UIShell.GetDialogOwnerHwnd(out IntPtr hwnd);
 
             dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
@@ -259,7 +259,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception)
             {
-                //WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
             }
 
             return p;
@@ -267,7 +267,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private async System.Threading.Tasks.Task ShowTaskListAsync()
         {
-            //JAVIERS: DELAY THIS EXECUTION TO OPEN THE WINDOW AFTER EVERYTHING IS LOADED
+            // JAVIERS: DELAY THIS EXECUTION TO OPEN THE WINDOW AFTER EVERYTHING IS LOADED
             await System.Threading.Tasks.Task.Delay(1000);
 
             var window = Dte.Windows.Item(EnvDTE.Constants.vsWindowKindTaskList);

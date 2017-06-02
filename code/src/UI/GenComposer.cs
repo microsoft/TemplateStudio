@@ -237,7 +237,7 @@ namespace Microsoft.Templates.UI
 
             genInfo.Parameters.Add(GenParams.RootNamespace, ns);
 
-            //TODO: THIS SHOULD BE THE ITEM IN CONTEXT
+            // TODO: THIS SHOULD BE THE ITEM IN CONTEXT
             genInfo.Parameters.Add(GenParams.ItemNamespace, ns);
         }
     }

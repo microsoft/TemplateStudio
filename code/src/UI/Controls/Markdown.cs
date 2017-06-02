@@ -158,18 +158,18 @@ namespace Microsoft.Templates.UI.Controls
                     s2 => DoLists(s2,
                     sn => FormParagraphs(sn))));
 
-            //text = DoCodeBlocks(text);
-            //text = DoBlockQuotes(text);
+            // text = DoCodeBlocks(text);
+            // text = DoBlockQuotes(text);
 
             //// We already ran HashHTMLBlocks() before, in Markdown(), but that
             //// was to escape raw HTML in the original Markdown source. This time,
             //// we're escaping the markup we've just created, so that we don't wrap
             //// <p> tags around block-level tags.
-            //text = HashHTMLBlocks(text);
+            // text = HashHTMLBlocks(text);
 
-            //text = FormParagraphs(text);
+            // text = FormParagraphs(text);
 
-            //return text;
+            // return text;
         }
 
         /// <summary>
@@ -188,22 +188,22 @@ namespace Microsoft.Templates.UI.Controls
                 s2 => DoItalicsAndBold(s2,
                 s3 => DoText(s3)))));
 
-            //text = EscapeSpecialCharsWithinTagAttributes(text);
-            //text = EscapeBackslashes(text);
+            // text = EscapeSpecialCharsWithinTagAttributes(text);
+            // text = EscapeBackslashes(text);
 
             //// Images must come first, because ![foo][f] looks like an anchor.
-            //text = DoImages(text);
-            //text = DoAnchors(text);
+            // text = DoImages(text);
+            // text = DoAnchors(text);
 
             //// Must come after DoAnchors(), because you can use < and >
             //// delimiters in inline links like [this](<url>).
-            //text = DoAutoLinks(text);
+            // text = DoAutoLinks(text);
 
-            //text = EncodeAmpsAndAngles(text);
-            //text = DoItalicsAndBold(text);
-            //text = DoHardBreaks(text);
+            // text = EncodeAmpsAndAngles(text);
+            // text = DoItalicsAndBold(text);
+            // text = DoHardBreaks(text);
 
-            //return text;
+            // return text;
         }
 
         private static Regex _newlinesLeadingTrailing = new Regex(@"^\n+|\n+\z", RegexOptions.Compiled);
@@ -509,7 +509,7 @@ namespace Microsoft.Templates.UI.Controls
             string header = match.Groups[1].Value;
             int level = match.Groups[2].Value.StartsWith("=") ? 1 : 2;
 
-            //TODO: Style the paragraph based on the header level
+            // TODO: Style the paragraph based on the header level
             return CreateHeader(level, RunSpanGamut(header.Trim()));
         }
 
@@ -698,9 +698,9 @@ namespace Microsoft.Templates.UI.Controls
             // We do this because when we're not inside a list, we want to treat
             // something like this:
 
-            //    I recommend upgrading to version
-            //    8. Oops, now this line is treated
-            //    as a sub-list.
+            // I recommend upgrading to version
+            // 8. Oops, now this line is treated
+            // as a sub-list.
 
             // As a single paragraph, despite the fact that the second line starts
             // with a digit-period-space sequence.
@@ -777,27 +777,27 @@ namespace Microsoft.Templates.UI.Controls
                 throw new ArgumentNullException("text");
             }
 
-            //    * You can use multiple backticks as the delimiters if you want to
-            //        include literal backticks in the code span. So, this input:
-            //
-            //        Just type ``foo `bar` baz`` at the prompt.
-            //
-            //        Will translate to:
-            //
-            //          <p>Just type <code>foo `bar` baz</code> at the prompt.</p>
-            //
-            //        There's no arbitrary limit to the number of backticks you
-            //        can use as delimters. If you need three consecutive backticks
-            //        in your code, use four for delimiters, etc.
-            //
-            //    * You can use spaces to get literal backticks at the edges:
-            //
-            //          ... type `` `bar` `` ...
-            //
-            //        Turns to:
-            //
-            //          ... type <code>`bar`</code> ...         
-            //
+            ////    * You can use multiple backticks as the delimiters if you want to
+            ////        include literal backticks in the code span. So, this input:
+            ////
+            ////        Just type ``foo `bar` baz`` at the prompt.
+            ////
+            ////        Will translate to:
+            ////
+            ////          <p>Just type <code>foo `bar` baz</code> at the prompt.</p>
+            ////
+            ////        There's no arbitrary limit to the number of backticks you
+            ////        can use as delimters. If you need three consecutive backticks
+            ////        in your code, use four for delimiters, etc.
+            ////
+            ////    * You can use spaces to get literal backticks at the edges:
+            ////
+            ////          ... type `` `bar` `` ...
+            ////
+            ////        Turns to:
+            ////
+            ////          ... type <code>`bar`</code> ...         
+            ////
 
             return Evaluate(text, _codeSpan, CodeSpanEvaluator, defaultHandler);
         }

@@ -160,7 +160,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             await TrackItemGenAsync(eventToTrack, telemetryStatus, appProjectType, appFx, template.Name, result.Status, result.Message);
         }
 
-        private async Task TrackItemGenAsync(string eventToTrack,  GenStatusEnum status, string appType, string pageFx, string templateName, CreationResultStatus genStatus= CreationResultStatus.Success, string message="")
+        private async Task TrackItemGenAsync(string eventToTrack,  GenStatusEnum status, string appType, string pageFx, string templateName, CreationResultStatus genStatus = CreationResultStatus.Success, string message = "")
         {
             var properties = new Dictionary<string, string>()
             {
@@ -193,7 +193,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 // free managed resources 
                 TelemetryService.Current.Dispose();
             }
-            //free native resources if any.
+            // free native resources if any.
         }
     }
 }

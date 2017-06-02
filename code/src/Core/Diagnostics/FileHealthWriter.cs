@@ -49,7 +49,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             PurgeOldLogs(_workingFolder, Configuration.Current.DaysToKeepDiagnosticsLogs);
         }
 
-        public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex=null)
+        public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
         {
             var sb = new StringBuilder();
             sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{eventType.ToString()}\t{message}");

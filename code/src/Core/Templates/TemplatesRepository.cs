@@ -64,11 +64,11 @@ namespace Microsoft.Templates.Core
                         .Where(predicate);
         }
 
-        //public IEnumerable<ITemplateInfo> GetDependencies(ITemplateInfo ti)
-        //{
-        //    return ti.GetDependencyList()
-        //                .Select(d => Find(t => t.Identity == d));
-        //}
+        ////public IEnumerable<ITemplateInfo> GetDependencies(ITemplateInfo ti)
+        ////{
+        ////    return ti.GetDependencyList()
+        ////                .Select(d => Find(t => t.Identity == d));
+        ////}
         
         public ITemplateInfo Find(Func<ITemplateInfo, bool> predicate)
         {
@@ -155,9 +155,9 @@ namespace Microsoft.Templates.Core
             }
         }
 
-        //public ITemplateInfo GetLayoutTemplate(LayoutItem item, string framework)
-        //{
-        //    return Find(t => t.GroupIdentity == item.templateGroupIdentity && t.GetFrameworkList().Any(f => f.Equals(framework, StringComparison.OrdinalIgnoreCase)));
-        //}
+        ////public ITemplateInfo GetLayoutTemplate(LayoutItem item, string framework)
+        ////{
+        ////    return Find(t => t.GroupIdentity == item.templateGroupIdentity && t.GetFrameworkList().Any(f => f.Equals(framework, StringComparison.OrdinalIgnoreCase)));
+        ////}
     }
 }
