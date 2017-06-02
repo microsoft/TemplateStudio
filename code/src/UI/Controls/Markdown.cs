@@ -392,9 +392,11 @@ namespace Microsoft.Templates.UI.Controls
             // Bind size so document is updated when image is downloaded
             if (imgSource.IsDownloading)
             {
-                var binding = new Binding(nameof(BitmapImage.Width));
-                binding.Source = imgSource;
-                binding.Mode = BindingMode.OneWay;
+                var binding = new Binding(nameof(BitmapImage.Width))
+                {
+                    Source = imgSource,
+                    Mode = BindingMode.OneWay
+                };
 
                 BindingExpressionBase bindingExpression = BindingOperations.SetBinding(image, Image.WidthProperty, binding);
                 EventHandler downloadCompletedHandler = null;

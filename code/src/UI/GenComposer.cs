@@ -156,10 +156,12 @@ namespace Microsoft.Templates.UI
         private static void AddCompositionTemplates(List<GenInfo> genQueue, UserSelection userSelection)
         {
             var compositionCatalog = GetCompositionCatalog().ToList();
-            var context = new QueryablePropertyDictionary();
+            var context = new QueryablePropertyDictionary
+            {
+                new QueryableProperty("projectType", userSelection.ProjectType),
+                new QueryableProperty("framework", userSelection.Framework)
+            };
 
-            context.Add(new QueryableProperty("projectType", userSelection.ProjectType));
-            context.Add(new QueryableProperty("framework", userSelection.Framework));
 
             var compositionQueue = new List<GenInfo>();
 

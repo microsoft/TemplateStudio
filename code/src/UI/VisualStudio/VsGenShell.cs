@@ -170,9 +170,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         public override void ShowModal(System.Windows.Window dialog)
         {
             //get the owner of this dialog
-            IntPtr hwnd;
-
-            UIShell.GetDialogOwnerHwnd(out hwnd);
+            UIShell.GetDialogOwnerHwnd(out IntPtr hwnd);
 
             dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
 

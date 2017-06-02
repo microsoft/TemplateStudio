@@ -187,9 +187,7 @@ namespace Microsoft.Templates.Core
 
             if (!string.IsNullOrEmpty(rawOrder))
             {
-                int order;
-
-                if (int.TryParse(rawOrder, out order))
+                if (int.TryParse(rawOrder, out int order))
                 {
                     return order;
                 }
