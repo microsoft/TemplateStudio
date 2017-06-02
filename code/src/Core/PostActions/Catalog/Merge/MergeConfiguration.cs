@@ -16,11 +16,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.Templates.Core.Gen
+namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
-    public enum GenerationMode
+    public class MergeConfiguration
     {
-        NewProject,
-        NewItem
+        public string FilePath { get; private set; }
+
+        public bool FailOnError { get; private set; }
+
+        public MergeConfiguration(string fileName, bool failOnError)
+        {
+            FilePath = fileName;
+            FailOnError = failOnError;
+        }
     }
 }

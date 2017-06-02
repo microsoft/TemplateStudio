@@ -151,13 +151,13 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Extensions\VersionExtensions.cs" />
-    <Compile Include="Gen\GenerationMode.cs" />
     <Compile Include="Gen\GenInfo.cs" />
     <Compile Include="Gen\GenParams.cs" />
     <Compile Include="Gen\GenShell.cs" />
     <Compile Include="Gen\GenContext.cs" />
     <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Gen\IContextProvider.cs" />
+    <Compile Include="Gen\GenerationWarning.cs" />
     <Compile Include="Locations\Fs.cs" />
     <Compile Include="Locations\InvalidSignatureException.cs" />
     <Compile Include="Locations\LocalTemplatesSource.cs" />
@@ -169,6 +169,7 @@
     <Compile Include="Naming\Validator.cs" />
     <Compile Include="PostActions\Catalog\AddContextItemsToProjectPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\GetMergeFilesFromProjectPostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\MergeConfiguration.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\SortUsingsPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\IEnumerableExtensions.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\UsingComparer.cs" />

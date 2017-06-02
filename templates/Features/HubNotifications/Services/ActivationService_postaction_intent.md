@@ -1,0 +1,1 @@
+This postaction will register the HubNotificationsFeatureService Instance as an Activation Handler in the ActivationService.

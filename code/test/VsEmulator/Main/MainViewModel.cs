@@ -45,10 +45,9 @@ namespace Microsoft.Templates.VsEmulator.Main
         public string OutputPath { get; private set; }
         public string ProjectPath { get; private set; }
 
-        public GenerationMode GenerationMode { get; private set; }
-
         public List<string> ProjectItems { get; } = new List<string>();
 
+        public List<GenerationWarning> GenerationWarnings { get; } = new List<GenerationWarning>();
 
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
@@ -134,9 +133,9 @@ namespace Microsoft.Templates.VsEmulator.Main
                     ProjectName = newProjectInfo.name;
                     ProjectPath = projectPath;
                     OutputPath = projectPath;
-                    GenerationMode = GenerationMode.NewProject;
 
                     ProjectItems.Clear();
+                    GenerationWarnings.Clear();
                     GenContext.Current = this;
 
                     var userSelection = GenController.GetUserSelection();
@@ -167,7 +166,6 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             ConfigureGenContext();
             OutputPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            GenerationMode = GenerationMode.NewItem;
 
             try
             {
@@ -176,6 +174,8 @@ namespace Microsoft.Templates.VsEmulator.Main
                 if (userSelection != null)
                 {
                     await GenController.GenerateNewItemAsync(userSelection);
+
+
 
                     GenController.SyncNewItem(userSelection);
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
@@ -209,6 +209,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 ProjectPath = Path.GetDirectoryName(projFile);
                 OutputPath = ProjectPath;
                 ProjectItems.Clear();
+                GenerationWarnings.Clear();
             }
         }
 

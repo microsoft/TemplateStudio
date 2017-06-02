@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         public string ProjectPath { get; set; }
         public List<string> ProjectItems => throw new NotImplementedException();
 
-        public GenerationMode GenerationMode => throw new NotImplementedException();
+        public List<GenerationWarning> GenerationWarnings => throw new NotImplementedException();
 
         [Fact]
         public void Execute_Ok()

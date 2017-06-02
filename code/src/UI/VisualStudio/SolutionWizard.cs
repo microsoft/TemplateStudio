@@ -38,7 +38,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public List<string> ProjectItems { get; } = new List<string>();
 
-        public GenerationMode GenerationMode => GenerationMode.NewProject;
+        public List<GenerationWarning> GenerationWarnings { get; } = new List<GenerationWarning>();
+
 
         public SolutionWizard()
         {

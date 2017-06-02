@@ -25,6 +25,8 @@ using Microsoft.Templates.UI.Views;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.VisualStudio.TemplateWizard;
 using System.IO;
+using System.Text.RegularExpressions;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 
 namespace Microsoft.Templates.UI
 {
@@ -178,12 +180,10 @@ namespace Microsoft.Templates.UI
                     throw new GenException(genInfo.Name, genInfo.Template.Name, result.Message);
                 }
 
-                ExecutePostActions(genInfo, result, GenContext.Current.GenerationMode);
+                ExecuteNewProjectPostActions(genInfo, result);
             }
 
-            ExecuteGlobalPostActions();
-
-            ExecuteFinishGenerationPostActions(GenContext.Current.GenerationMode);
+            ExecuteGlobalNewProjectPostActions();
 
             chrono.Stop();
 
@@ -222,10 +222,10 @@ namespace Microsoft.Templates.UI
                     throw new GenException(genInfo.Name, genInfo.Template.Name, result.Message);
                 }
 
-                ExecutePostActions(genInfo, result, GenContext.Current.GenerationMode);
+                ExecuteNewItemPostActions(genInfo, result);
             }
 
-            ExecuteGlobalPostActions();
+            ExecuteGlobalNewItemPostActions();
 
             chrono.Stop();
 
@@ -235,21 +235,26 @@ namespace Microsoft.Templates.UI
 
         public static void UnsafeSyncNewItem()
         {
-            foreach (var file in Directory.EnumerateFiles(GenContext.Current.OutputPath, "*", SearchOption.AllDirectories))
+            var files = Directory
+                .EnumerateFiles(GenContext.Current.OutputPath, "*", SearchOption.AllDirectories)
+                .Where(f => !Regex.IsMatch(f, MergePostAction.PostactionRegex))
+                .ToList();
+
+            foreach (var file in files)
             {
                 var destFileName = file.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
                 File.Copy(file, destFileName, true);
             }
 
-            ExecuteFinishGenerationPostActions(GenContext.Current.GenerationMode);
+            ExecuteFinishItemGenerationPostActions();
 
             Directory.Delete(GenContext.Current.OutputPath, true);
 
         }
 
-        private static void ExecuteGlobalPostActions()
+        private static void ExecuteGlobalNewProjectPostActions()
         {
-            var postActions = PostActionFactory.FindGlobal();
+            var postActions = PostActionFactory.FindGlobalNewProjectPostActions();
 
             foreach (var postAction in postActions)
             {
@@ -257,9 +262,9 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        private static void ExecuteFinishGenerationPostActions(GenerationMode generationMode)
+        private static void ExecuteGlobalNewItemPostActions()
         {
-            var postActions = PostActionFactory.FindFinishGenerationPostActions(generationMode);
+            var postActions = PostActionFactory.FindGlobalNewItemPostActions();
 
             foreach (var postAction in postActions)
             {
@@ -267,10 +272,32 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        private static void ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult, GenerationMode generationMode)
+
+        private static void ExecuteFinishItemGenerationPostActions()
+        {
+            var postActions = PostActionFactory.FindFinishItemGenerationPostActions();
+
+            foreach (var postAction in postActions)
+            {
+                postAction.Execute();
+            }
+        }
+
+        private static void ExecuteNewProjectPostActions(GenInfo genInfo, TemplateCreationResult generationResult)
         {
             //Get post actions from template
-            var postActions = PostActionFactory.Find(genInfo, generationResult, generationMode);
+            var postActions = PostActionFactory.FindNewProjectPostActions(genInfo, generationResult);
+
+            foreach (var postAction in postActions)
+            {
+                postAction.Execute();
+            }
+        }
+
+        private static void ExecuteNewItemPostActions(GenInfo genInfo, TemplateCreationResult generationResult)
+        {
+            //Get post actions from template
+            var postActions = PostActionFactory.FindNewItemPostActions(genInfo, generationResult);
 
             foreach (var postAction in postActions)
             {

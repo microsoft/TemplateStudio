@@ -11,7 +11,8 @@ namespace Microsoft.Templates.Core.Gen
         string ProjectName { get; }
         string OutputPath { get; }
         string ProjectPath { get; }
-        GenerationMode GenerationMode { get; }
         List<string> ProjectItems { get; }
+        List<GenerationWarning> GenerationWarnings { get; }
+        
     }
 }
