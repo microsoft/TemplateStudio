@@ -184,7 +184,9 @@ namespace Microsoft.Templates.UI
         {
             return GenContext.ToolBox.Repo
                                         .Get(t => t.GetTemplateType() == TemplateType.Composition)
+#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
                                         .Select(t => (CompositionQuery.Parse(t.GetCompositionFilter()), t))
+#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
                                         .ToList();
         }
 

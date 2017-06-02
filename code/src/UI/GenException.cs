@@ -22,7 +22,7 @@ namespace Microsoft.Templates.UI
         {
         }
         
-        public GenException(string name, string template, string reason) : base (string.Format(StringRes.ExceptionGenerating, template, name, reason))
+        public GenException(string name, string template, string reason) : base(string.Format(StringRes.ExceptionGenerating, template, name, reason))
         {
         }
     }

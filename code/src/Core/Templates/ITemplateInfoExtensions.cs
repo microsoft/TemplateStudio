@@ -141,7 +141,9 @@ namespace Microsoft.Templates.Core
 
             return ti.Tags
                         .Where(t => t.Key.Contains(TagPrefix + "export."))
+#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
                         .Select(t => (t.Key.Replace(TagPrefix + "export.", string.Empty), t.Value.DefaultValue))
+#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
                         .ToList();
         }
 

@@ -31,7 +31,9 @@ namespace Microsoft.Templates.UI.ViewModels
         #region TemplatesProperties
 
         private ITemplateInfo _template;
+#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
         public (string name, ITemplateInfo template) UserSelection => (ItemName, _template);
+#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
 
         private string _identity;
         public string Identity
