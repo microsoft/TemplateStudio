@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
-    public class FileHealthWriter: IHealthWriter
+    public class FileHealthWriter : IHealthWriter
     {
         private static SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1);
         private string _workingFolder;
