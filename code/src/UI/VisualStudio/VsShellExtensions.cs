@@ -180,7 +180,6 @@ namespace Microsoft.Templates.UI.VisualStudio
         ////    project.ProjectItems.AddFromTemplate(templatePath, itemName);
         ////}
 
-
         ////public static void SetAsStartup(this Project project)
         ////{
         ////    $"Set {project.Name} as the startup project".VsShowStatusBarMessage();

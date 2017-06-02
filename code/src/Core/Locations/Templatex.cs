@@ -94,7 +94,6 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-
         public static void Extract(string signedFilePack, string targetDirectory)
         {
             string currentDir = Environment.CurrentDirectory;

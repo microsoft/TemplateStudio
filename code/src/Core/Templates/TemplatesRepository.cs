@@ -106,7 +106,6 @@ namespace Microsoft.Templates.Core
             return metadata.OrderBy(m => m.Order);
         }
 
-
         private void SetLicenseTerms(MetadataInfo metadataInfo)
         {
             if (!string.IsNullOrWhiteSpace(metadataInfo.Licenses))

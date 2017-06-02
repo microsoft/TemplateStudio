@@ -144,7 +144,6 @@ namespace Microsoft.Templates.UI.ViewModels
                 LicensesVisibility = Visibility.Collapsed;
             }
 
-
         }
 
         public void UnsuscribeEventHandlers()

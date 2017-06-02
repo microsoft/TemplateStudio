@@ -106,8 +106,6 @@ namespace Microsoft.Templates.UI
             return dependencyList;
         }
 
-
-
         public static IEnumerable<GenInfo> Compose(UserSelection userSelection)
         {
             var genQueue = new List<GenInfo>();
@@ -161,7 +159,6 @@ namespace Microsoft.Templates.UI
                 new QueryableProperty("projectType", userSelection.ProjectType),
                 new QueryableProperty("framework", userSelection.Framework)
             };
-
 
             var compositionQueue = new List<GenInfo>();
 

@@ -355,6 +355,5 @@ namespace Microsoft.Templates.UI.VisualStudio
             item.UIHierarchyItems.Expanded = false;
         }
 
-
     }
 }

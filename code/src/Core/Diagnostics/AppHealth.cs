@@ -44,7 +44,6 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
 
-
         private AppHealth()
         {
             InstanceDefaultWriters();

@@ -73,7 +73,6 @@ namespace Microsoft.Templates.Core.Composition
             return Parse(string.Join("&", rawQuery.ToArray()));
         }
 
-
         public bool Match(ITemplateInfo source, QueryablePropertyDictionary context)
         {
             var itemQuery = Items

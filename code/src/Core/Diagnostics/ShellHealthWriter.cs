@@ -62,8 +62,6 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
 
-
-
         private async SystemTasks.Task SafeTrackAsync(Action trackAction)
         {
             try

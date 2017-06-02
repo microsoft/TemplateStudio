@@ -20,8 +20,6 @@ namespace Microsoft.Templates.UI.Controls
         ////}
         ////public static readonly DependencyProperty IsEditionEnabledProperty = DependencyProperty.Register("IsEditionEnabled", typeof(bool), typeof(TextBoxEx), new PropertyMetadata(false));
 
-
-
         public bool ForceSetFocus
         {
             get { return (bool)GetValue(IsFocusedProperty); }

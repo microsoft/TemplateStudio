@@ -116,7 +116,6 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-
         public Version GetVersionFromFolder(string contentFolder)
         {
             string versionPart = Path.GetFileName(contentFolder);

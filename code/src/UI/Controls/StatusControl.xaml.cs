@@ -112,7 +112,6 @@ namespace Microsoft.Templates.UI.Controls
                     break;
                 default:
 
-
                     txtStatus.Text = " ";
                     txtIcon.Text = " ";
 
