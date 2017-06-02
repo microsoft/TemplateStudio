@@ -60,7 +60,7 @@ namespace Microsoft.Templates.UI.ViewModels
                         MainViewModel.Current.AlertProjectSetupChanged();
                     }
                 }
-                
+
                 MainViewModel.Current.RebuildLicenses();
             }
         }

@@ -38,7 +38,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (string)GetValue(WizardVersionProperty);
             set => SetValue(WizardVersionProperty, value);
         }
-        public static readonly DependencyProperty WizardVersionProperty = DependencyProperty.Register("WizardVersion", typeof(string), typeof(StatusControl), new PropertyMetadata(String.Empty, OnVersionInfoChanged));        
+        public static readonly DependencyProperty WizardVersionProperty = DependencyProperty.Register("WizardVersion", typeof(string), typeof(StatusControl), new PropertyMetadata(String.Empty, OnVersionInfoChanged));
 
         public string TemplatesVersion
         {
@@ -94,24 +94,24 @@ namespace Microsoft.Templates.UI.Controls
                     break;
                 case StatusType.Warning:
                     txtStatus.Text = status.Message;
-                    txtIcon.Text = ConvertToChar(SymbolFonts.ErrorBadge); 
+                    txtIcon.Text = ConvertToChar(SymbolFonts.ErrorBadge);
                     txtIcon.Foreground = FindResource("UIDarkYellow") as SolidColorBrush;
                     // Color yellow = (Color)FindResource("UIYellowColor");
-                    // Background = new LinearGradientBrush(yellow, Colors.Transparent, 0);                    
+                    // Background = new LinearGradientBrush(yellow, Colors.Transparent, 0);
                     Background = FindResource("UIYellow") as SolidColorBrush;
                     break;
                 case StatusType.Error:
                     txtStatus.Text = status.Message;
                     txtIcon.Text = ConvertToChar(SymbolFonts.StatusErrorFull);
                     txtIcon.Foreground = FindResource("UIDarkRed") as SolidColorBrush;
-                    // Color red = (Color)FindResource("UIRedColor");                    
+                    // Color red = (Color)FindResource("UIRedColor");
                     // var brush = new LinearGradientBrush(red, Colors.Transparent, 0);
                     var brush = FindResource("UIRed") as SolidColorBrush;
                     brush.Opacity = 0.4;
                     Background = brush;
                     break;
                 default:
-                    
+
 
                     txtStatus.Text = " ";
                     txtIcon.Text = " ";

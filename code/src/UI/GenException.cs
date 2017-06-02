@@ -21,7 +21,7 @@ namespace Microsoft.Templates.UI
         public GenException(string message) : base(message)
         {
         }
-        
+
         public GenException(string name, string template, string reason) : base(string.Format(StringRes.ExceptionGenerating, template, name, reason))
         {
         }

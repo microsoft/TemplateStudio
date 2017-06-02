@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
             var filePath = Path.Combine(GenContext.Current.OutputPath, GenContext.Current.ProjectName) + "_TemporaryKey.pfx";
             File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
-            
+
             GenContext.ToolBox.Shell.AddItems(filePath);
         }
 
@@ -107,7 +107,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private void AddExtendedKeyUsage(CX509CertificateRequestCertificate cert)
         {
-            // Add extended key usage 
+            // Add extended key usage
             var eku = new CX509ExtensionEnhancedKeyUsage();
             var oid = new CObjectId();
 

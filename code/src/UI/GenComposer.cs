@@ -48,7 +48,7 @@ namespace Microsoft.Templates.UI
                 else
                 {
                     var templateType = template.GetTemplateType();
-                    
+
                     if (templateType != TemplateType.Page && templateType != TemplateType.Feature)
                     {
                         LogOrAlertException(string.Format(StringRes.ExceptionLayoutType, template.Identity));
@@ -62,7 +62,7 @@ namespace Microsoft.Templates.UI
         }
 
         public static IEnumerable<ITemplateInfo> GetAllDependencies(ITemplateInfo template, string framework)
-        {            
+        {
            return GetDependencies(template, framework, new List<ITemplateInfo>());
         }
 
@@ -106,7 +106,7 @@ namespace Microsoft.Templates.UI
             return dependencyList;
         }
 
-        
+
 
         public static IEnumerable<GenInfo> Compose(UserSelection userSelection)
         {
@@ -121,10 +121,10 @@ namespace Microsoft.Templates.UI
             AddTemplates(userSelection.Pages, genQueue, userSelection);
             AddTemplates(userSelection.Features, genQueue, userSelection);
 
-            AddCompositionTemplates(genQueue, userSelection);            
+            AddCompositionTemplates(genQueue, userSelection);
 
             return genQueue;
-        }        
+        }
 
         private static void AddProject(UserSelection userSelection, List<GenInfo> genQueue)
         {
@@ -170,7 +170,7 @@ namespace Microsoft.Templates.UI
                 foreach (var compositionItem in compositionCatalog)
                 {
                     if (compositionItem.query.Match(genItem.Template, context))
-                    {                        
+                    {
                         AddTemplate(genItem, compositionQueue, compositionItem.template, userSelection);
                     }
 
@@ -196,7 +196,7 @@ namespace Microsoft.Templates.UI
             {
                 foreach (var export in targetTemplate.GetExports())
                 {
-                    mainGenInfo.Parameters.Add(export.name, export.value);                    
+                    mainGenInfo.Parameters.Add(export.name, export.value);
                 }
 
                 var genInfo = CreateGenInfo(mainGenInfo.Name, targetTemplate, queue);

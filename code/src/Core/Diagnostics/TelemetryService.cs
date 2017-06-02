@@ -141,7 +141,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 return true;
             }
         }
-        
+
         private bool SafeVsTelemetryIsOptedIn()
         {
             try
@@ -284,7 +284,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
 
-            return assembly.GetName().Version.ToString(); 
+            return assembly.GetName().Version.ToString();
         }
 
         private static string GetFileVersion()
@@ -310,10 +310,10 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             if (disposing)
             {
-                // free managed resources 
+                // free managed resources
                 Flush();
             }
-            // free native resources if any.
+            // free native resources if any
         }
     }
 }

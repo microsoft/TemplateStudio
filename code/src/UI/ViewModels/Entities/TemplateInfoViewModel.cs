@@ -167,7 +167,7 @@ namespace Microsoft.Templates.UI.ViewModels
         public ICommand ShowItemInfoCommand => _showItemInfoCommand ?? (_showItemInfoCommand = new RelayCommand(ShowItemInfo));
 
         private Action<TemplateInfoViewModel> ValidateTemplateName;
-        #endregion        
+        #endregion
 
         public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies, RelayCommand<TemplateInfoViewModel> addItemCommand, RelayCommand<TemplateInfoViewModel> saveItemCommand, Action<TemplateInfoViewModel> validateTemplateName)
         {

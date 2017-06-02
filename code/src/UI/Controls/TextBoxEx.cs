@@ -18,7 +18,7 @@ namespace Microsoft.Templates.UI.Controls
         ////    get { return (bool)GetValue(IsEditionEnabledProperty); }
         ////    set { SetValue(IsEditionEnabledProperty, value); }
         ////}
-        ////public static readonly DependencyProperty IsEditionEnabledProperty = DependencyProperty.Register("IsEditionEnabled", typeof(bool), typeof(TextBoxEx), new PropertyMetadata(false));        
+        ////public static readonly DependencyProperty IsEditionEnabledProperty = DependencyProperty.Register("IsEditionEnabled", typeof(bool), typeof(TextBoxEx), new PropertyMetadata(false));
 
 
 
@@ -26,7 +26,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             get { return (bool)GetValue(IsFocusedProperty); }
             set { SetValue(IsFocusedProperty, value); }
-        }        
+        }
 
         public static readonly DependencyProperty ForceSetFocusProperty = DependencyProperty.Register("ForceSetFocus", typeof(bool), typeof(TextBoxEx), new PropertyMetadata(false, OnForceSetFocusPropertyChanged));
 
@@ -58,7 +58,7 @@ namespace Microsoft.Templates.UI.Controls
         }
 
         private void GotFocusHandler(object sender, RoutedEventArgs e)
-        {            
+        {
             Select(0, Text.Length);
         }
 

@@ -46,7 +46,7 @@ namespace Microsoft.Templates.Core.Locations
             PackAndSign(source, signedPack, signingCert, mimeMediaType);
 
             return signedPack;
-        } 
+        }
         public static void PackAndSign(string source, string signedFilePack, string certThumbprint, string mimeMediaType)
         {
             X509Certificate cert = LoadCert(certThumbprint);
@@ -73,7 +73,7 @@ namespace Microsoft.Templates.Core.Locations
 
             Uri rootUri = GetRootUri(source);
 
-            EnsureDirectory(Path.GetDirectoryName(signedPack)); 
+            EnsureDirectory(Path.GetDirectoryName(signedPack));
 
             using (Package package = Package.Open(signedPack, FileMode.Create))
             {
@@ -229,7 +229,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             Dictionary<string, X509Certificate> certs = GetPackageCertificates(dsm);
             bool certificatesOk = certs.Count > 0;
-            
+
             foreach (X509Certificate cert in certs.Values)
             {
                 if (CertificateChainVaidationRequired())

@@ -189,7 +189,7 @@ namespace Microsoft.Templates.UI
 
                     if (genInfo.Template.GetTemplateType() == TemplateType.Project)
                     {
-                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, 
+                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template,
                             appProjectType, appFx, genResults[resultsKey], pagesAdded, featuresAdded, timeSpent).FireAndForget();
                     }
                     else

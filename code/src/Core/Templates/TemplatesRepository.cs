@@ -69,13 +69,13 @@ namespace Microsoft.Templates.Core
         ////    return ti.GetDependencyList()
         ////                .Select(d => Find(t => t.Identity == d));
         ////}
-        
+
         public ITemplateInfo Find(Func<ITemplateInfo, bool> predicate)
         {
             return GetAll()
                         .FirstOrDefault(predicate);
         }
-        
+
         public IEnumerable<MetadataInfo> GetProjectTypes()
         {
             return GetMetadataInfo("projectTypes");

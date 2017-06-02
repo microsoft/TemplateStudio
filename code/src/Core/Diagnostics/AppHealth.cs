@@ -86,7 +86,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             if (disposing)
             {
-                // free managed resources 
+                // free managed resources
                 foreach (IHealthWriter writer in HealthWriters.Available)
                 {
                     if (writer is IDisposable disposableWriter)

@@ -26,8 +26,8 @@ namespace Microsoft.Templates.UI.Controls
         private const int _nestDepth = 6;
 
         /// <summary>
-        /// Tabs are automatically converted to spaces as part of the transform  
-        /// this constant determines how "wide" those tabs become in spaces  
+        /// Tabs are automatically converted to spaces as part of the transform
+        /// this constant determines how "wide" those tabs become in spaces
         /// </summary>
         private const int _tabWidth = 4;
 
@@ -37,10 +37,9 @@ namespace Microsoft.Templates.UI.Controls
         private int _listLevel;
 
         /// <summary>
-        /// when true, bold and italic require non-word characters on either side  
+        /// when true, bold and italic require non-word characters on either side
         /// WARNING: this is a significant deviation from the markdown spec
         /// </summary>
-        /// 
         public bool StrictBoldItalic { get; set; }
 
         public ICommand HyperlinkCommand { get; set; }
@@ -211,7 +210,7 @@ namespace Microsoft.Templates.UI.Controls
         private static Regex _leadingWhitespace = new Regex(@"^[ ]*", RegexOptions.Compiled);
 
         /// <summary>
-        /// splits on two or more newlines, to form "paragraphs";    
+        /// splits on two or more newlines, to form "paragraphs";
         /// </summary>
         private IEnumerable<Block> FormParagraphs(string text)
         {
@@ -232,7 +231,7 @@ namespace Microsoft.Templates.UI.Controls
         private static string _nestedBracketsPattern;
 
         /// <summary>
-        /// Reusable pattern to match balanced [brackets]. See Friedl's 
+        /// Reusable pattern to match balanced [brackets]. See Friedl's
         /// "Mastering Regular Expressions", 2nd Ed., pp. 328-331.
         /// </summary>
         private static string GetNestedBracketsPattern()
@@ -256,7 +255,7 @@ namespace Microsoft.Templates.UI.Controls
         private static string _nestedParensPattern;
 
         /// <summary>
-        /// Reusable pattern to match balanced (parens). See Friedl's 
+        /// Reusable pattern to match balanced (parens). See Friedl's
         /// "Mastering Regular Expressions", 2nd Ed., pp. 328-331.
         /// </summary>
         private static string GetNestedParensPattern()
@@ -280,7 +279,7 @@ namespace Microsoft.Templates.UI.Controls
         private static string _nestedParensPatternWithWhiteSpace;
 
         /// <summary>
-        /// Reusable pattern to match balanced (parens), including whitespace. See Friedl's 
+        /// Reusable pattern to match balanced (parens), including whitespace. See Friedl's
         /// "Mastering Regular Expressions", 2nd Ed., pp. 328-331.
         /// </summary>
         private static string GetNestedParensPatternWithWhiteSpace()
@@ -343,7 +342,7 @@ namespace Microsoft.Templates.UI.Controls
         /// Turn Markdown images into images
         /// </summary>
         /// <remarks>
-        /// ![image alt](url) 
+        /// ![image alt](url)
         /// </remarks>
         private IEnumerable<Inline> DoImages(string text, Func<string, IEnumerable<Inline>> defaultHandler)
         {
@@ -419,7 +418,7 @@ namespace Microsoft.Templates.UI.Controls
         /// Turn Markdown link shortcuts into hyperlinks
         /// </summary>
         /// <remarks>
-        /// [link text](url "title") 
+        /// [link text](url "title")
         /// </remarks>
         private IEnumerable<Inline> DoAnchors(string text, Func<string, IEnumerable<Inline>> defaultHandler)
         {
@@ -476,17 +475,17 @@ namespace Microsoft.Templates.UI.Controls
         /// Turn Markdown headers into HTML header tags
         /// </summary>
         /// <remarks>
-        /// Header 1  
-        /// ========  
-        /// 
-        /// Header 2  
-        /// --------  
-        /// 
-        /// # Header 1  
-        /// ## Header 2  
-        /// ## Header 2 with closing hashes ##  
-        /// ...  
-        /// ###### Header 6  
+        /// Header 1
+        /// ========
+        ///
+        /// Header 2
+        /// --------
+        ///
+        /// # Header 1
+        /// ## Header 2
+        /// ## Header 2 with closing hashes ##
+        /// ...
+        /// ###### Header 6
         /// </remarks>
         private IEnumerable<Block> DoHeaders(string text, Func<string, IEnumerable<Block>> defaultHandler)
         {
@@ -583,8 +582,8 @@ namespace Microsoft.Templates.UI.Controls
         /// Turn Markdown horizontal rules into HTML hr tags
         /// </summary>
         /// <remarks>
-        /// ***  
-        /// * * *  
+        /// ***
+        /// * * *
         /// ---
         /// - - -
         /// </remarks>
@@ -796,7 +795,7 @@ namespace Microsoft.Templates.UI.Controls
             ////
             ////        Turns to:
             ////
-            ////          ... type <code>`bar`</code> ...         
+            ////          ... type <code>`bar`</code> ...
             ////
 
             return Evaluate(text, _codeSpan, CodeSpanEvaluator, defaultHandler);
@@ -890,9 +889,9 @@ namespace Microsoft.Templates.UI.Controls
         }
 
         /// <summary>
-        /// convert all tabs to _tabWidth spaces; 
-        /// standardizes line endings from DOS (CR LF) or Mac (CR) to UNIX (LF); 
-        /// makes sure text ends with a couple of newlines; 
+        /// convert all tabs to _tabWidth spaces;
+        /// standardizes line endings from DOS (CR LF) or Mac (CR) to UNIX (LF);
+        /// makes sure text ends with a couple of newlines;
         /// removes any blank lines (only spaces) in the text
         /// </summary>
         private string Normalize(string text)

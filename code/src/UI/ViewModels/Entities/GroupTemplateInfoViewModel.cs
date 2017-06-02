@@ -40,7 +40,7 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             Name = name;
             Title = GetTitle(name);
-            Templates.AddRange(templates);            
+            Templates.AddRange(templates);
         }
 
         private string GetTitle(string name) => StringRes.ResourceManager.GetString($"TemplateGroup_{name}");

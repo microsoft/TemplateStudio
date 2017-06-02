@@ -83,7 +83,7 @@ namespace Microsoft.Templates.UI.Views
                     {
                         p.ConfirmRenameCommand.Execute(p);
                         p.TryClose();
-                    }                    
+                    }
                 });
                 ViewModel?.ProjectTemplates?.SavedFeatures?.ToList()?.ForEach(f =>
                 {

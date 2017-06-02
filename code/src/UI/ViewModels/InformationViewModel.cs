@@ -70,7 +70,7 @@ namespace Microsoft.Templates.UI.ViewModels
             get => _informationMD;
             set => SetProperty(ref _informationMD, value);
         }
-        
+
         public ObservableCollection<SummaryLicenseViewModel> LicenseTerms { get; } = new ObservableCollection<SummaryLicenseViewModel>();
 
         private Visibility _licensesVisibility = Visibility.Collapsed;
@@ -89,9 +89,9 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private ICommand _okCommand;
         public ICommand OkCommand => _okCommand ?? (_okCommand = new RelayCommand(OnOk));
-        
+
         public InformationViewModel(InformationWindow infoWindow)
-        {            
+        {
             _infoWindow = infoWindow;
             Current = this;
         }
@@ -113,7 +113,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
             DependenciesVisibility = DependencyItems.Any() ? Visibility.Visible : Visibility.Collapsed;
             InformationType = GetInformationType(template.TemplateType.ToString());
-            
+
             if (template.LicenseTerms != null && template.LicenseTerms.Any())
             {
                 LicenseTerms.AddRange(template.LicenseTerms.Select(l => new SummaryLicenseViewModel(l)));
@@ -124,8 +124,8 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 LicensesVisibility = Visibility.Collapsed;
             }
-            
-        }        
+
+        }
 
         public void Initialize(MetadataInfoViewModel metadataInfo)
         {
@@ -133,7 +133,6 @@ namespace Microsoft.Templates.UI.ViewModels
             Name = metadataInfo.DisplayName;
             InformationMD = metadataInfo.Description;
             InformationType = GetInformationType(metadataInfo.MetadataType);
-            
             if (metadataInfo.LicenseTerms != null && metadataInfo.LicenseTerms.Any())
             {
                 LicenseTerms.AddRange(metadataInfo.LicenseTerms.Select(l => new SummaryLicenseViewModel(l)));
@@ -145,7 +144,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 LicensesVisibility = Visibility.Collapsed;
             }
 
-            
+
         }
 
         public void UnsuscribeEventHandlers()

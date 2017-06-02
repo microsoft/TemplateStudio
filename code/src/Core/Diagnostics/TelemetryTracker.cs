@@ -21,14 +21,14 @@ namespace Microsoft.Templates.Core.Diagnostics
 {
     public class TelemetryTracker : IDisposable
     {
-        public const string PropertiesPrefix = "Wts";  
-        
+        public const string PropertiesPrefix = "Wts";
+
         public TelemetryTracker()
         {
         }
 
         public TelemetryTracker(Configuration config)
-        { 
+        {
             TelemetryService.SetConfiguration(config);
         }
 
@@ -190,7 +190,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             if (disposing)
             {
-                // free managed resources 
+                // free managed resources
                 TelemetryService.Current.Dispose();
             }
             // free native resources if any.

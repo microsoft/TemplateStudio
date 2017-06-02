@@ -19,7 +19,7 @@ using Microsoft.Templates.Core.Gen;
 namespace Microsoft.Templates.Core.Diagnostics
 {
     public class ShellHealthWriter : IHealthWriter
-    {       
+    {
         public async SystemTasks.Task WriteExceptionAsync(Exception ex, string message = null)
         {
             if (GenContext.ToolBox.Shell != null)
@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
 
-       
+
 
         private async SystemTasks.Task SafeTrackAsync(Action trackAction)
         {

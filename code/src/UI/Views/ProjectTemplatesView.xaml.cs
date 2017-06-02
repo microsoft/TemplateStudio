@@ -33,7 +33,7 @@ namespace Microsoft.Templates.UI.Views
                 await ViewModel.InitializeAsync();
             };
 
-            InitializeComponent();            
-        }        
+            InitializeComponent();
+        }
     }
 }

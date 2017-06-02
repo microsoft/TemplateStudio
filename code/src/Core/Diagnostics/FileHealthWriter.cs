@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
         private FileHealthWriter()
-        {        
+        {
             _workingFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), Configuration.Current.LogFileFolderPath);
 
             InitializeLogFile();

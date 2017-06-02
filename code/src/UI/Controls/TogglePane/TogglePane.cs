@@ -5,7 +5,7 @@ using System.Windows.Controls;
 namespace Microsoft.Templates.UI.Controls
 {
     public sealed partial class TogglePane : Control
-    {    
+    {
         private Grid _togglePaneShadowGrid;
         private Grid _menuGrid;
         private bool _isInitialized = false;
@@ -26,7 +26,7 @@ namespace Microsoft.Templates.UI.Controls
         }
 
         private void UpdateOpenStatus(bool newValue = false, bool oldValue = false)
-        {            
+        {
             if (_isInitialized)
             {
                 if (IsOpen && newValue == false && oldValue == false)

@@ -335,7 +335,7 @@ namespace Microsoft.Templates.UI.ViewModels
         private bool CheckProjectSetupChanged()
         {
             if (ProjectTemplates.HasTemplatesAdded && (FrameworkChanged || ProjectTypeChanged))
-            { 
+            {
                 return true;
             }
             return false;

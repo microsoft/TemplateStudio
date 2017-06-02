@@ -51,7 +51,7 @@ namespace Microsoft.Templates.UI.ViewModels
         public ObservableCollection<GroupTemplateInfoViewModel> FeatureGroups { get; } = new ObservableCollection<GroupTemplateInfoViewModel>();
 
         public ObservableCollection<SavedTemplateViewModel> SavedPages { get; } = new ObservableCollection<SavedTemplateViewModel>();
-        public ObservableCollection<SavedTemplateViewModel> SavedFeatures { get; } = new ObservableCollection<SavedTemplateViewModel>();        
+        public ObservableCollection<SavedTemplateViewModel> SavedFeatures { get; } = new ObservableCollection<SavedTemplateViewModel>();
 
         private RelayCommand<SavedTemplateViewModel> _removeTemplateCommand;
         public RelayCommand<SavedTemplateViewModel> RemoveTemplateCommand => _removeTemplateCommand ?? (_removeTemplateCommand = new RelayCommand<SavedTemplateViewModel>(OnRemoveTemplate));
@@ -372,7 +372,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
                 AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.SetHome).FireAndForget();
             }
-        }               
+        }
 
         private void OnRemoveTemplate(SavedTemplateViewModel item)
         {
@@ -394,7 +394,7 @@ namespace Microsoft.Templates.UI.ViewModels
             else if (SavedFeatures.Contains(item))
             {
                 SavedFeatures.Remove(item);
-            }            
+            }
             MainViewModel.Current.CreateCommand.OnCanExecuteChanged();
             UpdateTemplatesAvailability();
             MainViewModel.Current.RebuildLicenses();
