@@ -32,7 +32,7 @@ namespace Microsoft.Templates.UI.Controls
                 if (IsOpen && newValue == false && oldValue == false)
                 {
                     _menuGrid.AnimateWidth(215, 0);
-                    _togglePaneShadowGrid.AnimateWidth(215,0);
+                    _togglePaneShadowGrid.AnimateWidth(215, 0);
                     _togglePaneShadowGrid.FadeIn(0);
                 }
                 else if (IsOpen)

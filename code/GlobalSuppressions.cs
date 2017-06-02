@@ -6,7 +6,6 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1001:CommasMustBeSpacedCorrectly", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]
 [assembly: SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1003:SymbolsMustBeSpacedCorrectly", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]
 [assembly: SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1005:Single line comments must begin with single space", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]
 [assembly: SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1008:Opening parenthesis must be spaced correctly", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]

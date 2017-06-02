@@ -248,8 +248,8 @@ namespace Microsoft.Templates.UI.Controls
                        \[
                            ", _nestDepth) + RepeatString(
                     @" \]
-                    )*"
-                    , _nestDepth);
+                    )*",
+                    _nestDepth);
             return _nestedBracketsPattern;
         }
 
@@ -272,8 +272,8 @@ namespace Microsoft.Templates.UI.Controls
                        \(
                            ", _nestDepth) + RepeatString(
                     @" \)
-                    )*"
-                    , _nestDepth);
+                    )*",
+                    _nestDepth);
             return _nestedParensPattern;
         }
 
@@ -296,8 +296,8 @@ namespace Microsoft.Templates.UI.Controls
                        \(
                            ", _nestDepth) + RepeatString(
                     @" \)
-                    )*"
-                    , _nestDepth);
+                    )*",
+                    _nestDepth);
             return _nestedParensPatternWithWhiteSpace;
         }
 

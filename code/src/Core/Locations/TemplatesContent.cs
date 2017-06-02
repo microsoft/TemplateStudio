@@ -147,7 +147,7 @@ namespace Microsoft.Templates.Core.Locations
 
         private string GetLatestContentFolder(bool ensureWizardAligmnent)
         {
-            var latestVersion = new Version(0,0,0,0);
+            var latestVersion = new Version(0, 0, 0, 0);
             string latestContent = _defaultContentFolder;
 
             if (Directory.Exists(TemplatesFolder))
