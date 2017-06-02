@@ -230,7 +230,6 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private async void Sync_SyncStatusChanged(object sender, SyncStatus status)
         {
-
             Status = new StatusViewModel(StatusType.Information, GetStatusText(status), true);
 
             if (status == SyncStatus.Updated)

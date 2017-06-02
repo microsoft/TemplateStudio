@@ -218,7 +218,6 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnAddTemplateItem(TemplateInfoViewModel template)
         {
-
             if (template.CanChooseItemName)
             {
                 var validators = new List<Validator>()

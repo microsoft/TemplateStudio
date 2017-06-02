@@ -20,7 +20,6 @@ namespace Microsoft.Templates.Core.Diagnostics
     {
         public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
         {
-
             string formattedMessage = FormattedWriterMessages.LogEntryStart + $"\t{eventType.ToString()}\t{message}";
             if (ex != null)
             {

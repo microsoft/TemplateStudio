@@ -18,10 +18,8 @@ using EnvDTE;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
-
     public static class VsShellExtensions
     {
-
         public static string GetSafeValue(this Properties props, string propertyName)
         {
             if (props != null)

@@ -67,7 +67,6 @@ namespace Microsoft.Templates.Core.Locations
 
         private void SafeSetContentVersionInTelemetry()
         {
-
         }
 
         private async Task AdquireContentAsync()

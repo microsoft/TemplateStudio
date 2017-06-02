@@ -25,7 +25,6 @@ namespace Microsoft.Templates.UI.ViewModels
 {
     public class ProjectSetupViewModel : Observable
     {
-
         private string _projectTypesHeader;
         public string ProjectTypesHeader
         {

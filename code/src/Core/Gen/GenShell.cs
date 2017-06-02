@@ -48,7 +48,6 @@ namespace Microsoft.Templates.Core.Gen
 
         public virtual void RefreshProject()
         {
-
         }
     }
 }
