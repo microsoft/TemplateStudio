@@ -113,7 +113,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             var properties = new Dictionary<string, string>()
             {
-                { TelemetryProperties.SummaryItemEditAction, trackedAction.ToString()},
+                { TelemetryProperties.SummaryItemEditAction, trackedAction.ToString() },
                 { TelemetryProperties.EventName, TelemetryEvents.EditSummaryItem}
             };
 
