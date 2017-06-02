@@ -28,7 +28,7 @@ namespace Microsoft.Templates.UI.Views
             Init(template, mainWindow);
         }        
 
-        public InformationWindow(MetadataInfoViewModel  metadataInfo, Window mainWindow)
+        public InformationWindow(MetadataInfoViewModel metadataInfo, Window mainWindow)
         {
             Init(metadataInfo, mainWindow);
         }

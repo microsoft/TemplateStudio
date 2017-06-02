@@ -169,7 +169,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         private void SetSessionData()
         {
-            string userToTrack =  Guid.NewGuid().ToString();
+            string userToTrack = Guid.NewGuid().ToString();
             string machineToTrack = Guid.NewGuid().ToString();
 
             _client.Context.User.Id = userToTrack;

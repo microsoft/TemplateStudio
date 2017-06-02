@@ -72,7 +72,7 @@ namespace Microsoft.Templates.UI
 
             foreach (var dependency in dependencies)
             {
-                var dependencyTemplate =  GenContext.ToolBox.Repo.Find(t => t.Identity == dependency && t.GetFrameworkList().Contains(framework));
+                var dependencyTemplate = GenContext.ToolBox.Repo.Find(t => t.Identity == dependency && t.GetFrameworkList().Contains(framework));
 
                 if (dependencyTemplate == null)
                 {
