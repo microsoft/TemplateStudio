@@ -50,7 +50,6 @@ namespace Microsoft.Templates.UI
                     // TODO: Review when right-click-actions available to track Project or Page cancelled.
                     AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewProject).FireAndForget();
                 }
-
             }
             catch (Exception ex) when (!(ex is WizardBackoutException))
             {

@@ -124,7 +124,6 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 LicensesVisibility = Visibility.Collapsed;
             }
-
         }
 
         public void Initialize(MetadataInfoViewModel metadataInfo)
@@ -143,7 +142,6 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 LicensesVisibility = Visibility.Collapsed;
             }
-
         }
 
         public void UnsuscribeEventHandlers()

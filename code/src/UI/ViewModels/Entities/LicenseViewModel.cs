@@ -36,6 +36,5 @@ namespace Microsoft.Templates.UI.ViewModels
             get => _templateName;
             set => SetProperty(ref _templateName, value);
         }
-
     }
 }

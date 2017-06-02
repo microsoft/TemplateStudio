@@ -125,7 +125,6 @@ namespace Microsoft.Templates.Core
                             Url = m.Groups["url"].Value
                         });
                     }
-
                 }
 
                 metadataInfo.LicenseTerms = result;

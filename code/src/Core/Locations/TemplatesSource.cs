@@ -21,6 +21,5 @@ namespace Microsoft.Templates.Core.Locations
         public abstract void Acquire(string targetFolder);
 
         public abstract void ExtractFromMstx(string mstxFilePath, string targetFolder);
-
     }
 }

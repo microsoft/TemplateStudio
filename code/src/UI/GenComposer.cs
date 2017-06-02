@@ -170,7 +170,6 @@ namespace Microsoft.Templates.UI
                     {
                         AddTemplate(genItem, compositionQueue, compositionItem.template, userSelection);
                     }
-
                 }
             }
 

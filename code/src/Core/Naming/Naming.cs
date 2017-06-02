@@ -106,5 +106,4 @@ namespace Microsoft.Templates.Core
             return result.ToString();
         }
     }
-
 }
