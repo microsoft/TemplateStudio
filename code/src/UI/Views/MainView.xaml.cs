@@ -55,9 +55,9 @@ namespace Microsoft.Templates.UI.Views
         {
             var control = e.OldFocus as TextBoxEx;
             var button = e.NewFocus as Button;
-            string name = (button != null && button.Tag != null) ? button.Tag.ToString() : String.Empty;
+            string name = (button != null && button.Tag != null) ? button.Tag.ToString() : string.Empty;
 
-            if (control != null && String.IsNullOrEmpty(name))
+            if (control != null && string.IsNullOrEmpty(name))
             {
                 var templateInfo = control.Tag as TemplateInfoViewModel;
                 if (templateInfo != null)

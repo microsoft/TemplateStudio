@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Extension
             {
                 try
                 {
-                    return String.Format(res, args);
+                    return string.Format(res, args);
                 }
                 catch
                 {

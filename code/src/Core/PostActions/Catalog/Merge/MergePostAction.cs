@@ -68,7 +68,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 var path = Regex.Replace(_config, PostactionRegex, ".");
 
-                return (File.Exists(path) ? path : String.Empty);
+                return (File.Exists(path) ? path : string.Empty);
             }
         }
     }

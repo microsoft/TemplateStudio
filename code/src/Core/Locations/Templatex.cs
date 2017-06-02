@@ -60,10 +60,10 @@ namespace Microsoft.Templates.Core.Locations
         }
         public static void PackAndSign(string source, string signedPack, X509Certificate signingCert, string mimeMediaType)
         {
-            if (String.IsNullOrWhiteSpace(source))
+            if (string.IsNullOrWhiteSpace(source))
                 throw new ArgumentException("source");
 
-            if (String.IsNullOrWhiteSpace(signedPack))
+            if (string.IsNullOrWhiteSpace(signedPack))
                 throw new ArgumentException("signedPack");
 
             if (signingCert == null)
@@ -252,7 +252,7 @@ namespace Microsoft.Templates.Core.Locations
 
         private static bool CertificateChainVaidationRequired()
         {
-            return !Configuration.Current.AllowedPublicKeysPins.Where(pk => !String.IsNullOrWhiteSpace(pk)).Any();
+            return !Configuration.Current.AllowedPublicKeysPins.Where(pk => !string.IsNullOrWhiteSpace(pk)).Any();
         }
 
         private static Dictionary<string, X509Certificate> GetPackageCertificates(PackageDigitalSignatureManager dsm)
@@ -337,7 +337,7 @@ namespace Microsoft.Templates.Core.Locations
         }
         private static void EnsureDirectory(string dir)
         {
-            if (!String.IsNullOrEmpty(dir) && dir.ToLower() != Environment.CurrentDirectory.ToLower())
+            if (!string.IsNullOrEmpty(dir) && dir.ToLower() != Environment.CurrentDirectory.ToLower())
             {
                 if (!Directory.Exists(dir))
                 {

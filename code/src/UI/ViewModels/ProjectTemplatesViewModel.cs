@@ -124,7 +124,7 @@ namespace Microsoft.Templates.UI.ViewModels
             var validationResult = Naming.Validate(item.NewItemName, validators);
 
             item.IsValidName = validationResult.IsValid;
-            item.ErrorMessage = String.Empty;
+            item.ErrorMessage = string.Empty;
 
             if (!item.IsValidName)
             {
@@ -154,7 +154,7 @@ namespace Microsoft.Templates.UI.ViewModels
             var validationResult = Naming.Validate(template.NewTemplateName, validators);
 
             template.IsValidName = validationResult.IsValid;
-            template.ErrorMessage = String.Empty;
+            template.ErrorMessage = string.Empty;
 
             if (!template.IsValidName)
             {
@@ -184,7 +184,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 var groups = pages.GroupBy(t => t.Group).Select(gr => new GroupTemplateInfoViewModel(gr.Key as string, gr.ToList())).OrderBy(gr => gr.Title);
 
                 PagesGroups.AddRange(groups);
-                PagesHeader = String.Format(StringRes.GroupPagesHeader_SF, pages.Count());
+                PagesHeader = string.Format(StringRes.GroupPagesHeader_SF, pages.Count());
             }
 
             if (FeatureGroups.Count == 0)
@@ -195,7 +195,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 var groups = features.GroupBy(t => t.Group).Select(gr => new GroupTemplateInfoViewModel(gr.Key as string, gr.ToList())).OrderBy(gr => gr.Title);
 
                 FeatureGroups.AddRange(groups);
-                FeaturesHeader = String.Format(StringRes.GroupFeaturesHeader_SF, features.Count());
+                FeaturesHeader = string.Format(StringRes.GroupFeaturesHeader_SF, features.Count());
             }
 
             if (SavedPages.Count == 0 && SavedFeatures.Count == 0)
@@ -382,7 +382,7 @@ namespace Microsoft.Templates.UI.ViewModels
             }
             if (dependencyItem != null)
             {
-                string message = String.Format(StringRes.ValidationError_CanNotRemoveTemplate_SF, item.TemplateName, dependencyItem.TemplateName, dependencyItem.TemplateType);
+                string message = string.Format(StringRes.ValidationError_CanNotRemoveTemplate_SF, item.TemplateName, dependencyItem.TemplateName, dependencyItem.TemplateType);
                 MainViewModel.Current.Status = new StatusViewModel(Controls.StatusType.Warning, message, true);
                 return;
             }

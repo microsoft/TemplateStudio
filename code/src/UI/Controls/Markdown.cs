@@ -748,7 +748,7 @@ namespace Microsoft.Templates.UI.Controls
             string item = match.Groups[4].Value;
             string leadingLine = match.Groups[1].Value;
 
-            if (!String.IsNullOrEmpty(leadingLine) || Regex.IsMatch(item, @"\n{2,}"))
+            if (!string.IsNullOrEmpty(leadingLine) || Regex.IsMatch(item, @"\n{2,}"))
                 // we could correct any bad indentation here..
                 return Create<ListItem, Block>(RunBlockGamut(item));
             else

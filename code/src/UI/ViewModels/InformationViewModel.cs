@@ -168,7 +168,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 case "Feature":
                     return StringRes.TemplateTypeFeature;
                 default:
-                    return String.Empty;
+                    return string.Empty;
             }
         }
     }

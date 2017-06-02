@@ -25,8 +25,8 @@ namespace Microsoft.Templates.UI.ViewModels
 {
     public class SavedTemplateViewModel : Observable
     {
-        public static string SettingsButton = Char.ConvertFromUtf32(0xE713);
-        public static string CloseButton = Char.ConvertFromUtf32(0xE013);
+        public static string SettingsButton = char.ConvertFromUtf32(0xE713);
+        public static string CloseButton = char.ConvertFromUtf32(0xE013);
 
         #region TemplatesProperties
 
@@ -60,7 +60,7 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             get
             {
-                if (String.IsNullOrEmpty(_newItemName))
+                if (string.IsNullOrEmpty(_newItemName))
                 {
                     _newItemName = ItemName;
                 }

@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Core
         public TemplatesSynchronization Sync { get; private set; }
         public string WizardVersion { get; private set; }
         public string CurrentContentFolder { get => Sync?.CurrentContentFolder; }
-        public string TemplatesVersion { get => Sync.CurrentContentVersion?.ToString() ?? String.Empty; }
+        public string TemplatesVersion { get => Sync.CurrentContentVersion?.ToString() ?? string.Empty; }
 
         public TemplatesRepository(TemplatesSource source, Version wizardVersion)
         {

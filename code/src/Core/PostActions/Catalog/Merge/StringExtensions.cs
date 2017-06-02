@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
     {
         public static int GetLeadingTrivia(this string statement)
         {
-            return statement.TakeWhile(Char.IsWhiteSpace).Count();
+            return statement.TakeWhile(char.IsWhiteSpace).Count();
         }
 
         public static string WithLeadingTrivia(this string statement, int triviaCount)

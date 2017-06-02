@@ -35,7 +35,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             else
             {
-                return String.Empty;
+                return string.Empty;
             }
         }
 

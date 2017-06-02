@@ -139,7 +139,7 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 return false;
             }
-            if (String.IsNullOrEmpty(ProjectTemplates.HomeName))
+            if (string.IsNullOrEmpty(ProjectTemplates.HomeName))
             {
                 Status = new StatusViewModel(StatusType.Error, StringRes.ErrorNoHomePage);
                 return false;

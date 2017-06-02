@@ -246,7 +246,7 @@ namespace Microsoft.Templates.Core
 
             if (!string.IsNullOrEmpty(result))
             {
-                if (Boolean.TryParse(result, out bool boolResult))
+                if (bool.TryParse(result, out bool boolResult))
                 {
                     return boolResult;
                 }

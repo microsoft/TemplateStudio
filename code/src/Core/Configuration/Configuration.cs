@@ -76,7 +76,7 @@ namespace Microsoft.Templates.Core
 
             string jsonConfigFile = ConfigurationManager.AppSettings["JsonConfigFile"];
 
-            if (String.IsNullOrWhiteSpace(jsonConfigFile) || !File.Exists(jsonConfigFile))
+            if (string.IsNullOrWhiteSpace(jsonConfigFile) || !File.Exists(jsonConfigFile))
             {
                 jsonConfigFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), DefaultJsonConfigFileName);
 
@@ -94,7 +94,7 @@ namespace Microsoft.Templates.Core
         {
             Configuration loadedConfig = null;
 
-            if (!String.IsNullOrWhiteSpace(jsonFilePath) && File.Exists(jsonFilePath))
+            if (!string.IsNullOrWhiteSpace(jsonFilePath) && File.Exists(jsonFilePath))
             {
                 loadedConfig = DeserializeConfiguration(jsonFilePath);
             }
