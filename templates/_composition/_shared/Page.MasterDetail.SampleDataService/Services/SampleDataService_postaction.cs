@@ -11,7 +11,7 @@ namespace Param_ItemNamespace.Services
 //^^
 //{[{
         // TODO UWPTemplates: Remove this once your MasterDetail pages are displaying real data
-        public static async Task<IEnumerable<SampleModel>> GetSampleMasterDetailDataAsync()
+        public static async Task<IEnumerable<SampleModel>> GetSampleModelDataAsync()
         {
             await Task.CompletedTask;
             var data = new List<SampleModel>();
