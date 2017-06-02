@@ -121,7 +121,7 @@ namespace Microsoft.Templates.Core
                 var jsonData = File.ReadAllText(path, Encoding.UTF8);
                 return JsonConvert.DeserializeObject<Configuration>(jsonData);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TraceUsingDefault($"Error deserializing configuration from file '{path}'. Exception:\n\r{ex.ToString()}");
                 throw new ConfigurationErrorsException($"Error deserializing configuration data from file '{path}'.", ex);   

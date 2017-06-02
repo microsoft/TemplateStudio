@@ -78,7 +78,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                     Dte.Solution.AddFromFile(path);
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 //WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
                 AppHealth.Current.Info.TrackAsync(StringRes.UnableToRefreshProject).FireAndForget();

@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             get
             {
-                if(_current == null)
+                if (_current == null)
                 {
                     _current = new AppHealth();
                 }
@@ -87,7 +87,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             if (disposing)
             {
                 // free managed resources 
-                foreach(IHealthWriter writer in HealthWriters.Available)
+                foreach (IHealthWriter writer in HealthWriters.Available)
                 {
                     if (writer is IDisposable disposableWriter)
                     {

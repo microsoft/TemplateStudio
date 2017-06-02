@@ -26,7 +26,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             if (props != null)
             {
-                if(props.Cast<Property>().Where(p => p.Name == propertyName).Any())
+                if (props.Cast<Property>().Where(p => p.Name == propertyName).Any())
                 {
                     return props.Item(propertyName).Value.ToString();
                 }

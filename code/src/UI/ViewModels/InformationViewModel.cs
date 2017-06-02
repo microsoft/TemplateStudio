@@ -134,7 +134,7 @@ namespace Microsoft.Templates.UI.ViewModels
             InformationMD = metadataInfo.Description;
             InformationType = GetInformationType(metadataInfo.MetadataType);
             
-            if(metadataInfo.LicenseTerms != null && metadataInfo.LicenseTerms.Any())
+            if (metadataInfo.LicenseTerms != null && metadataInfo.LicenseTerms.Any())
             {
                 LicenseTerms.AddRange(metadataInfo.LicenseTerms.Select(l => new SummaryLicenseViewModel(l)));
 

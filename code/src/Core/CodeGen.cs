@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Core
         {
             string result = String.Empty;
 
-            foreach(var mp in Instance?.Settings.SettingsLoader.MountPoints)
+            foreach (var mp in Instance?.Settings.SettingsLoader.MountPoints)
             {
                 if (Directory.Exists(mp.Place) && IsHigherVersion(result, mp.Place))
                 {
@@ -78,7 +78,7 @@ namespace Microsoft.Templates.Core
             Version.TryParse(currentPlace, out Version current);
             Version.TryParse(Path.GetFileName(newPlace), out Version newp);
 
-            if(newp == null)
+            if (newp == null)
             {
                 return false;
             }

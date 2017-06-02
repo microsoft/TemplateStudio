@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             get
             {
-                if(_current == null)
+                if (_current == null)
                 {
                     _current = new TelemetryService(Configuration.Current);
                 }
@@ -134,7 +134,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 Assembly.Load(new AssemblyName("Microsoft.VisualStudio.Telemetry"));
                 return SafeVsTelemetryIsOptedIn();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //Not running in VS so we assume we are in the emulator => we allow telemetry
                 Trace.TraceWarning($"Unable to load the assembly 'Microsoft.VisualStudio.Telemetry'. Visual Studio Telemetry OptIn/OptOut setting will not be considered. Details:\r\n{ex.ToString()}");
@@ -159,7 +159,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                     return true;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //Not running in VS so we assume we are in the emulator => we allow telemetry
                 Trace.TraceInformation($"Exception checking VsTelemetry IsOptedIn:\r\n" + ex.ToString());

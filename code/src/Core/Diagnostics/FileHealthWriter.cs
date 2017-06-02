@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             get
             {
-                if(_current == null)
+                if (_current == null)
                 {
                     _current = new FileHealthWriter();
                 }

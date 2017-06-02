@@ -61,7 +61,7 @@ namespace Microsoft.Templates.UI.Views
             {
                 ViewModel.Initialize(metadataInfo);
             }
-            else if(info is TemplateInfoViewModel templateInfo)
+            else if (info is TemplateInfoViewModel templateInfo)
             {
                 ViewModel.Initialize(templateInfo);
             }
