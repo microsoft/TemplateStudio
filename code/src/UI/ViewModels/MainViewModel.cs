@@ -123,6 +123,7 @@ namespace Microsoft.Templates.UI.ViewModels
         private RelayCommand _goBackCommand;
         private RelayCommand _nextCommand;
         private RelayCommand _createCommand;
+        private DateTime _nextClickTimestamp;
 
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
         public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));
@@ -317,6 +318,8 @@ namespace Microsoft.Templates.UI.ViewModels
 
             CreateButtonVisibility = Visibility.Visible;
             NextButtonVisibility = Visibility.Collapsed;
+
+            _nextClickTimestamp = DateTime.UtcNow;
         }
 
         private void OnGoBack()
@@ -347,6 +350,13 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnCreate()
         {
+            // Ignore the user clicking create very quickly after clicking next.
+            // Assume such quick clicking is in error and ignore it rather than create an app with no pages or features.
+            if (DateTime.UtcNow - _nextClickTimestamp < TimeSpan.FromSeconds(2))
+            {
+                return;
+            }
+
             var userSelection = CreateUserSelection();
 
             MainView.DialogResult = true;
