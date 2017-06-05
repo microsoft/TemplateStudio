@@ -21,12 +21,13 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions;
-using Microsoft.Templates.UI.Views;
+using Microsoft.Templates.UI.Views.Common;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.VisualStudio.TemplateWizard;
 using System.IO;
 using System.Text.RegularExpressions;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+
 
 namespace Microsoft.Templates.UI
 {
@@ -34,7 +35,7 @@ namespace Microsoft.Templates.UI
     {
         public static UserSelection GetUserSelection()
         {
-            var mainView = new MainView();
+            var mainView = new Views.NewProject.MainView();
 
             try
             {
@@ -68,7 +69,7 @@ namespace Microsoft.Templates.UI
 
         public static UserSelection GetUserSelectionNewItem()
         {
-            var newItem = new NewItemView();
+            var newItem = new Views.NewItem.NewItemView();
 
             try
             {
@@ -222,7 +223,7 @@ namespace Microsoft.Templates.UI
   
             var result = CompareOutputAndProject();
             
-            var syncNewItemView = new SyncNewItemView();
+            var syncNewItemView = new Views.NewItem.SyncNewItemView();
 
             try
             {

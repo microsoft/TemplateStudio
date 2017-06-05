@@ -197,12 +197,12 @@
     <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="TemplateSelectors\SummaryItemOptionsTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\SummaryItemTemplateSelector.cs" />
-    <Compile Include="ViewModels\Entities\CommonInfoViewModel.cs" />
+    <Compile Include="ViewModels\NewProject\CommonInfoViewModel.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
-    <Compile Include="ViewModels\Entities\DependencyInfoViewModel.cs" />
-    <Compile Include="ViewModels\NewItemViewModel.cs" />
-    <Compile Include="ViewModels\SyncNewItemViewModel.cs" />
-    <Compile Include="Views\ErrorDialog.xaml.cs">
+    <Compile Include="ViewModels\NewProject\DependencyInfoViewModel.cs" />
+    <Compile Include="ViewModels\NewItem\NewItemViewModel.cs" />
+    <Compile Include="ViewModels\NewItem\SyncNewItemViewModel.cs" />
+    <Compile Include="Views\Common\ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ObservableCollectionExtensions.cs" />
@@ -217,34 +217,36 @@
       <DependentUpon>StringRes.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\NavigationService.cs" />
-    <Compile Include="ViewModels\ErrorViewModel.cs" />
-    <Compile Include="ViewModels\Entities\GroupTemplateInfoViewModel.cs" />
-    <Compile Include="ViewModels\InformationViewModel.cs" />
-    <Compile Include="ViewModels\Entities\LicenseViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\Entities\MetadataInfoViewModel.cs" />
-    <Compile Include="ViewModels\ProjectSetupViewModel.cs" />
-    <Compile Include="ViewModels\ProjectTemplatesViewModel.cs" />
-    <Compile Include="ViewModels\Entities\StatusViewModel.cs" />
-    <Compile Include="ViewModels\Entities\SavedTemplateViewModel.cs" />
-    <Compile Include="ViewModels\Entities\SummaryLicenseViewModel.cs" />
-    <Compile Include="ViewModels\Entities\TemplateInfoViewModel.cs" />
-    <Compile Include="Views\InformationWindow.xaml.cs">
-      <DependentUpon>InformationWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SyncNewItemView.xaml.cs">
-      <DependentUpon>SyncNewItemView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\NewItemView.xaml.cs">
-      <DependentUpon>NewItemView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainView.xaml.cs">
+    <Compile Include="ViewModels\Common\ErrorViewModel.cs" />
+    <Compile Include="ViewModels\NewProject\GroupTemplateInfoViewModel.cs" />
+    <Compile Include="ViewModels\NewProject\InformationViewModel.cs" />
+    <Compile Include="ViewModels\NewProject\MainViewModel.cs" />
+    <Compile Include="ViewModels\NewProject\MetadataInfoViewModel.cs" />
+    <Compile Include="ViewModels\NewProject\ProjectSetupViewModel.cs" />
+    <Compile Include="ViewModels\NewProject\ProjectTemplatesViewModel.cs" />
+    <Compile Include="ViewModels\Common\StatusViewModel.cs" />
+    <Compile Include="ViewModels\NewProject\SavedTemplateViewModel.cs" />
+    <Compile Include="ViewModels\NewProject\SummaryLicenseViewModel.cs" />
+    <Compile Include="ViewModels\NewProject\TemplateInfoViewModel.cs" />
+    <Compile Include="Views\NewItem\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProjectSetupView.xaml.cs">
+    <Compile Include="Views\NewProject\InformationWindow.xaml.cs">
+      <DependentUpon>InformationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewItem\SyncNewItemView.xaml.cs">
+      <DependentUpon>SyncNewItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewItem\NewItemView.xaml.cs">
+      <DependentUpon>NewItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewProject\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewProject\ProjectSetupView.xaml.cs">
       <DependentUpon>ProjectSetupView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProjectTemplatesView.xaml.cs">
+    <Compile Include="Views\NewProject\ProjectTemplatesView.xaml.cs">
       <DependentUpon>ProjectTemplatesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="VisualStudio\SolutionWizard.cs" />
@@ -319,7 +321,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ErrorDialog.xaml">
+    <Page Include="Views\Common\ErrorDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -375,27 +377,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\InformationWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SyncNewItemView.xaml">
+    <Page Include="Views\NewItem\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\NewItemView.xaml">
+    <Page Include="Views\NewProject\InformationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainView.xaml">
+    <Page Include="Views\NewItem\SyncNewItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewItem\NewItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ProjectSetupView.xaml">
+    <Page Include="Views\NewProject\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ProjectTemplatesView.xaml">
+    <Page Include="Views\NewProject\ProjectSetupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewProject\ProjectTemplatesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
