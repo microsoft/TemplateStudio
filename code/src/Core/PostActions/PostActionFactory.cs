@@ -110,6 +110,7 @@ namespace Microsoft.Templates.Core.PostActions
         {
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
+                .Where(f => Path.GetExtension(f) != ".md")
                 .ToList()
                 .ForEach(f => postActions.Add(new MergePostAction(new MergeConfiguration(f, failOnError))));
         }
@@ -120,6 +121,7 @@ namespace Microsoft.Templates.Core.PostActions
         {
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
+                .Where(f => Path.GetExtension(f) != ".md")
                 .ToList()
                 .ForEach(f => postActions.Add(new MergePostAction(new MergeConfiguration(f, failOnError))));
         }

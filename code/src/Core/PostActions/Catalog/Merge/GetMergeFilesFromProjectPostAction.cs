@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         public const string Extension = "_" + Suffix + ".";
         public const string GlobalExtension = "$*_g" + Suffix + ".";
-        public const string PostactionRegex = @"(\$\S*)?(_" + Suffix + "|_g" + Suffix + @")\.";
+        public const string PostactionRegex = @"(\$\S*)?(_" + Suffix + "|_g" + Suffix + @")\.(?!md$)";
 
         public GetMergeFilesFromProjectPostAction(string config) : base(config)
         {
@@ -97,6 +97,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 var destFile = file.Replace(GenContext.Current.ProjectPath, GenContext.Current.OutputPath);
                 File.Copy(file, destFile);
+                GenContext.Current.MergeFilesFromProject.Add(file);
                 return destFile;
             }
             else

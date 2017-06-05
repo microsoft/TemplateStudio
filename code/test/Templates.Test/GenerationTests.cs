@@ -46,6 +46,7 @@ namespace Microsoft.Templates.Test
 
         public List<GenerationWarning> GenerationWarnings { get; } = new List<GenerationWarning>();
 
+        public List<string> MergeFilesFromProject { get; } = new List<string>();
 
         public GenerationTests(GenerationTestsFixture fixture)
         {

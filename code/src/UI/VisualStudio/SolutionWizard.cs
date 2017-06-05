@@ -40,6 +40,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public List<GenerationWarning> GenerationWarnings { get; } = new List<GenerationWarning>();
 
+        public List<string> MergeFilesFromProject { get; } = new List<string>();
 
         public SolutionWizard()
         {

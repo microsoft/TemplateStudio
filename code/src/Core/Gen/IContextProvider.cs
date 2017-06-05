@@ -13,6 +13,7 @@ namespace Microsoft.Templates.Core.Gen
         string ProjectPath { get; }
         List<string> ProjectItems { get; }
         List<GenerationWarning> GenerationWarnings { get; }
-        
+        List<string> MergeFilesFromProject { get; }
+
     }
 }

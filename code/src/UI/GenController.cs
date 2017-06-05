@@ -190,6 +190,70 @@ namespace Microsoft.Templates.UI
             TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework);
         }
 
+        public static bool GetUserSyncDescision()
+        {
+  
+            var conflicts = CheckForConflictingFiles();
+
+            
+            var syncNewItemView = new SyncNewItemView();
+
+            try
+            {
+                CleanStatusBar();
+
+                GenContext.ToolBox.Shell.ShowModal(syncNewItemView);
+
+                if (syncNewItemView.Result)
+                {
+                    //TODO: Review when right-click-actions available to track Project or Page completed.
+                    //AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject).FireAndForget();  
+                }
+                else
+                {
+                    //TODO: Review when right-click-actions available to track Project or Page cancelled.
+                    //AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewProject).FireAndForget();
+                }
+                return syncNewItemView.Result;
+
+            }
+            catch (Exception ex) when (!(ex is WizardBackoutException))
+            {
+                syncNewItemView.SafeClose();
+                ShowError(ex);
+            }
+
+            GenContext.ToolBox.Shell.CancelWizard();
+
+            return false;
+        }
+
+        public static bool CheckForConflictingFiles()
+        {
+            var conflictingFiles = new List<string>();
+            var files = Directory
+                .EnumerateFiles(GenContext.Current.OutputPath, "*", SearchOption.AllDirectories)
+                .Where(f => !Regex.IsMatch(f, MergePostAction.PostactionRegex))
+                .ToList();
+
+            foreach (var file in files)
+            {
+                var destFilePath = file.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
+                if (!GenContext.Current.MergeFilesFromProject.Contains(destFilePath))
+                {
+                    if (File.Exists(destFilePath))
+                    {
+                        bool filesAreEqual = File.ReadAllBytes(file).SequenceEqual(File.ReadAllBytes(destFilePath));
+                        if (!filesAreEqual)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
         public static async Task UnsafeGenerateNewItemAsync(UserSelection userSelection)
         {
             var genItems = GenComposer.ComposeNewItem(userSelection).ToList();

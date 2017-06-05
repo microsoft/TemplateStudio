@@ -49,6 +49,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public List<GenerationWarning> GenerationWarnings { get; } = new List<GenerationWarning>();
 
+        public List<string> MergeFilesFromProject { get; } = new List<string>();
+
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
@@ -113,6 +115,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string SolutionPath { get; set; }
 
+       
+
         public void Initialize()
         {
             SolutionName = null;
@@ -136,6 +140,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                     ProjectItems.Clear();
                     GenerationWarnings.Clear();
+                    MergeFilesFromProject.Clear();
                     GenContext.Current = this;
 
                     var userSelection = GenController.GetUserSelection();
@@ -166,7 +171,9 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             ConfigureGenContext();
             OutputPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-
+            ProjectItems.Clear();
+            GenerationWarnings.Clear();
+            MergeFilesFromProject.Clear();
             try
             {
                 var userSelection = GenController.GetUserSelectionNewItem();
@@ -175,10 +182,15 @@ namespace Microsoft.Templates.VsEmulator.Main
                 {
                     await GenController.GenerateNewItemAsync(userSelection);
 
+                    
 
+                    var syncItems = GenController.GetUserSyncDescision();
 
-                    GenController.SyncNewItem(userSelection);
-                    GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
+                    if (syncItems)
+                    {
+                        GenController.SyncNewItem(userSelection);
+                        GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
+                    }
                 }
             }
             catch (WizardBackoutException)
