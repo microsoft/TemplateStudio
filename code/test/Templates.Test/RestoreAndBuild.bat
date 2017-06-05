@@ -16,10 +16,16 @@ ELSE (
 	IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Enterprise" (
 		call "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Enterprise\Common7\Tools\VsMSBuildCmd.bat"
 	)
-	msbuild "%~1" /t:Restore;Rebuild /p:Configuration=%3;Platform=%2;AppxPackageSigningEnabled=false
+	
+	ECHO ON
+	
+	msbuild "%~1" /t:Restore;Rebuild /p:RestorePackagesPath="C:\Packs" /p:Configuration=%3;Platform=%2;AppxPackageSigningEnabled=false
 	IF %ERRORLEVEL% NEQ 0 ( 
 		GOTO ERROR 
 	)
+	ECHO OFF
+
+	
 
 GOTO END
 

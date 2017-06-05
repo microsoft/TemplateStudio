@@ -150,11 +150,6 @@
         <Setter Property="VerticalAlignment" Value="Top"/>
     </Style>
 
-    <Style TargetType="Button" x:Key="CloseEditionInfoButtonStyle" BasedOn="{StaticResource BlackBaseTemplateInfoButtonStyle}">
-        <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="VerticalAlignment" Value="Top"/>
-    </Style>
-
     <Style TargetType="Button" x:Key="MoreInfoButtonStyle" BasedOn="{StaticResource BlackBaseTemplateInfoButtonStyle}">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Content">
