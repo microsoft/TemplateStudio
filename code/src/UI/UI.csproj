@@ -170,6 +170,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompareResult.cs" />
     <Compile Include="Controls\ImageEx.cs" />
     <Compile Include="Controls\LogoDisplay.xaml.cs">
       <DependentUpon>LogoDisplay.xaml</DependentUpon>

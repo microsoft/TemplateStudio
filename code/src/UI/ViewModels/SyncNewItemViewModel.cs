@@ -47,49 +47,18 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public async Task InitializeAsync()
         {
-            CheckForChangedFiles();
+            var result = GenController.CompareOutputAndProject();
+
+            NewFiles.AddRange(result.NewFiles);
+            ModifiedFiles.AddRange(result.ModifiedFiles);
+            ConflictingFiles.AddRange(result.ConflictingFiles);
             GenerationWarnings.AddRange(GenContext.Current.GenerationWarnings.Select(w => w.Description + w.ExtendedInfo));
             await Task.CompletedTask;
         }
 
-        public void CheckForChangedFiles()
-        {
-            var files = Directory
-                .EnumerateFiles(GenContext.Current.OutputPath, "*", SearchOption.AllDirectories)
-                .Where(f => !Regex.IsMatch(f, MergePostAction.PostactionRegex) && !Regex.IsMatch(f, MergePostAction.FailedPostactionRegex))
-                .ToList();
+        
 
-            foreach (var file in files)
-            {
-                var destFilePath = file.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
-                if (!File.Exists(destFilePath))
-                {
-                    NewFiles.Add(file.Replace(GenContext.Current.OutputPath, String.Empty));
-                }
-                else
-                {
-                    if (GenContext.Current.MergeFilesFromProject.Contains(destFilePath))
-                    {
-                        if (!FilesAreEqual(file, destFilePath))
-                        {
-                            ModifiedFiles.Add(file.Replace(GenContext.Current.ProjectPath, String.Empty));
-                        }
-                    }
-                    else
-                    {
-                        if (!FilesAreEqual(file, destFilePath))
-                        {
-                            ConflictingFiles.Add(destFilePath.Replace(GenContext.Current.ProjectPath, String.Empty));
-                        }
-                    }
-                }
-            }
-        }
-
-        private static bool FilesAreEqual(string file, string destFilePath)
-        {
-            return File.ReadAllBytes(file).SequenceEqual(File.ReadAllBytes(destFilePath));
-        }
+       
 
         private void SaveAndClose()
         {

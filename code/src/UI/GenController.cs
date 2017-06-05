@@ -132,22 +132,6 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        public static void SyncNewItem(UserSelection userSelection)
-        {
-            try
-            {
-                UnsafeSyncNewItem();
-            }
-            catch (Exception ex)
-            {
-                GenContext.ToolBox.Shell.CloseSolution();
-
-                ShowError(ex, userSelection);
-
-                GenContext.ToolBox.Shell.CancelWizard(false);
-            }
-        }
-
         public static async Task UnsafeGenerateProjectAsync(UserSelection userSelection)
         {
             var genItems = GenComposer.Compose(userSelection).ToList();
@@ -188,70 +172,6 @@ namespace Microsoft.Templates.UI
             chrono.Stop();
 
             TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework);
-        }
-
-        public static bool GetUserSyncDescision()
-        {
-  
-            var conflicts = CheckForConflictingFiles();
-
-            
-            var syncNewItemView = new SyncNewItemView();
-
-            try
-            {
-                CleanStatusBar();
-
-                GenContext.ToolBox.Shell.ShowModal(syncNewItemView);
-
-                if (syncNewItemView.Result)
-                {
-                    //TODO: Review when right-click-actions available to track Project or Page completed.
-                    //AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject).FireAndForget();  
-                }
-                else
-                {
-                    //TODO: Review when right-click-actions available to track Project or Page cancelled.
-                    //AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewProject).FireAndForget();
-                }
-                return syncNewItemView.Result;
-
-            }
-            catch (Exception ex) when (!(ex is WizardBackoutException))
-            {
-                syncNewItemView.SafeClose();
-                ShowError(ex);
-            }
-
-            GenContext.ToolBox.Shell.CancelWizard();
-
-            return false;
-        }
-
-        public static bool CheckForConflictingFiles()
-        {
-            var conflictingFiles = new List<string>();
-            var files = Directory
-                .EnumerateFiles(GenContext.Current.OutputPath, "*", SearchOption.AllDirectories)
-                .Where(f => !Regex.IsMatch(f, MergePostAction.PostactionRegex))
-                .ToList();
-
-            foreach (var file in files)
-            {
-                var destFilePath = file.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
-                if (!GenContext.Current.MergeFilesFromProject.Contains(destFilePath))
-                {
-                    if (File.Exists(destFilePath))
-                    {
-                        bool filesAreEqual = File.ReadAllBytes(file).SequenceEqual(File.ReadAllBytes(destFilePath));
-                        if (!filesAreEqual)
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
         }
 
         public static async Task UnsafeGenerateNewItemAsync(UserSelection userSelection)
@@ -297,6 +217,96 @@ namespace Microsoft.Templates.UI
             TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework);
         }
 
+        public static bool GetUserSyncDescision()
+        {
+  
+            var result = CompareOutputAndProject();
+            
+            var syncNewItemView = new SyncNewItemView();
+
+            try
+            {
+                CleanStatusBar();
+
+                GenContext.ToolBox.Shell.ShowModal(syncNewItemView);
+
+                if (syncNewItemView.Result)
+                {
+                    //TODO: Review when right-click-actions available to track Project or Page completed.
+                    //AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject).FireAndForget();  
+                }
+                else
+                {
+                    //TODO: Review when right-click-actions available to track Project or Page cancelled.
+                    //AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewProject).FireAndForget();
+                }
+                return syncNewItemView.Result;
+
+            }
+            catch (Exception ex) when (!(ex is WizardBackoutException))
+            {
+                syncNewItemView.SafeClose();
+                ShowError(ex);
+            }
+
+            GenContext.ToolBox.Shell.CancelWizard();
+
+            return false;
+        }
+
+        public static CompareResult CompareOutputAndProject()
+        {
+            var result = new CompareResult();
+            var files = Directory
+                .EnumerateFiles(GenContext.Current.OutputPath, "*", SearchOption.AllDirectories)
+                .Where(f => !Regex.IsMatch(f, MergePostAction.PostactionRegex) && !Regex.IsMatch(f, MergePostAction.FailedPostactionRegex))
+                .ToList();
+
+            foreach (var file in files)
+            {
+                var destFilePath = file.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
+                if (!File.Exists(destFilePath))
+                {
+                    result.NewFiles.Add(file.Replace(GenContext.Current.OutputPath, String.Empty));
+                }
+                else
+                {
+                    if (GenContext.Current.MergeFilesFromProject.Contains(destFilePath))
+                    {
+                        if (!FilesAreEqual(file, destFilePath))
+                        {
+                            result.ModifiedFiles.Add(file.Replace(GenContext.Current.ProjectPath, String.Empty));
+                        }
+                    }
+                    else
+                    {
+                        if (!FilesAreEqual(file, destFilePath))
+                        {
+                            result.ConflictingFiles.Add(destFilePath.Replace(GenContext.Current.ProjectPath, String.Empty));
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public static void SyncNewItem(UserSelection userSelection)
+        {
+            try
+            {
+                UnsafeSyncNewItem();
+            }
+            catch (Exception ex)
+            {
+                GenContext.ToolBox.Shell.CloseSolution();
+
+                ShowError(ex, userSelection);
+
+                GenContext.ToolBox.Shell.CancelWizard(false);
+            }
+        }
+
         public static void UnsafeSyncNewItem()
         {
             var files = Directory
@@ -314,6 +324,11 @@ namespace Microsoft.Templates.UI
 
             Directory.Delete(GenContext.Current.OutputPath, true);
 
+        }
+       
+        private static bool FilesAreEqual(string file, string destFilePath)
+        {
+            return File.ReadAllBytes(file).SequenceEqual(File.ReadAllBytes(destFilePath));
         }
 
         private static void ExecuteGlobalNewProjectPostActions()
@@ -335,7 +350,6 @@ namespace Microsoft.Templates.UI
                 postAction.Execute();
             }
         }
-
 
         private static void ExecuteFinishItemGenerationPostActions()
         {

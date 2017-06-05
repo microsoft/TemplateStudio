@@ -106,8 +106,6 @@ namespace Microsoft.Templates.UI
             return dependencyList;
         }
 
-        
-
         public static IEnumerable<GenInfo> Compose(UserSelection userSelection)
         {
             var genQueue = new List<GenInfo>();
