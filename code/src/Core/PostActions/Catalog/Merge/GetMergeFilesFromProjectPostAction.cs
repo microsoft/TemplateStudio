@@ -21,88 +21,58 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
     public class GetMergeFilesFromProjectPostAction : PostAction<string>
     {
-        private const string Suffix = "postaction";
-
-        public const string Extension = "_" + Suffix + ".";
-        public const string GlobalExtension = "$*_g" + Suffix + ".";
-        public const string PostactionRegex = @"(\$\S*)?(_" + Suffix + "|_g" + Suffix + @")\.(?!md$)";
-
         public GetMergeFilesFromProjectPostAction(string config) : base(config)
         {
         }
 
         public override void Execute()
         {
-            var filePath = String.Empty;
-            var isGlobalMergePostAction = _config.Contains(GlobalExtension);
-
-            if (isGlobalMergePostAction)
+            if (Regex.IsMatch(_config, MergePostAction.GlobalExtension))
             {
-                filePath = GetFileFromProject();
-                if (string.IsNullOrEmpty(filePath))
-                {
-                    filePath = GetFilePath();
-                }
+                 GetFileFromProject();
             }
             else
             {
-                filePath = GetFilePath();
-
-                if (string.IsNullOrEmpty(filePath))
+                if (!CheckLocalMergeFileAvailable())
                 {
-                    filePath = GetFileFromProject();
+                    GetFileFromProject();
                 }
             }
-
-            if (string.IsNullOrEmpty(filePath))
-            {
-                //TODO: Handle this
-            }
-
         }
 
-        private string GetFilePath()
+        private bool CheckLocalMergeFileAvailable()
         {
-            if (Path.GetFileName(_config).StartsWith(Extension))
+            var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(_config));
+            return string.IsNullOrEmpty(filePath) ? false : true;
+            
+        }
+
+        private void GetFileFromProject()
+        {
+            var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(_config.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath)));
+
+            if (File.Exists(filePath))
+            {
+                var destFile = filePath.Replace(GenContext.Current.ProjectPath, GenContext.Current.OutputPath);
+                File.Copy(filePath, destFile, true);
+                GenContext.Current.MergeFilesFromProject.Add(filePath);
+            }
+        }
+
+        private string GetMergeFileFromDirectory(string directory)
+        {
+            if (Path.GetFileName(_config).StartsWith(MergePostAction.Extension))
             {
                 var extension = Path.GetExtension(_config);
-                var directory = Path.GetDirectoryName(_config);
-
-                return Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !f.Contains(Suffix));
+                
+                return Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !Regex.IsMatch(f, MergePostAction.PostactionRegex));
             }
             else
             {
-                var path = Regex.Replace(_config, PostactionRegex, ".");
+                var filePath = Path.Combine(directory, Path.GetFileName(_config));
+                var path = Regex.Replace(filePath, MergePostAction.PostactionRegex, ".");
 
                 return (File.Exists(path) ? path : String.Empty);
-            }
-        }
-
-        private string GetFileFromProject()
-        {
-            var file = string.Empty;
-            if (Path.GetFileName(_config).StartsWith(Extension))
-            {
-                var extension = Path.GetExtension(_config);
-                var directory = GenContext.Current.ProjectPath;
-
-                file = Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !f.Contains(Suffix));
-            }
-            else
-            {
-                file = Regex.Replace(_config, PostactionRegex, ".").Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
-            }
-
-            if (File.Exists(file))
-            {
-                var destFile = file.Replace(GenContext.Current.ProjectPath, GenContext.Current.OutputPath);
-                File.Copy(file, destFile);
-                GenContext.Current.MergeFilesFromProject.Add(file);
-                return destFile;
-            }
-            else
-            {
-                return string.Empty;
             }
         }
     }

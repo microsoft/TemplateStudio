@@ -124,7 +124,7 @@ namespace Microsoft.Templates.UI
             }
             catch (Exception ex)
             {
-                GenContext.ToolBox.Shell.CloseSolution();
+                
 
                 ShowError(ex, userSelection);
 
@@ -275,7 +275,7 @@ namespace Microsoft.Templates.UI
                     {
                         if (!FilesAreEqual(file, destFilePath))
                         {
-                            result.ModifiedFiles.Add(file.Replace(GenContext.Current.ProjectPath, String.Empty));
+                            result.ModifiedFiles.Add(destFilePath.Replace(GenContext.Current.ProjectPath, String.Empty));
                         }
                     }
                     else
@@ -317,6 +317,11 @@ namespace Microsoft.Templates.UI
             foreach (var file in files)
             {
                 var destFileName = file.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
+                var destDirectory = Path.GetDirectoryName(destFileName);
+                if (!Directory.Exists(destDirectory))
+                {
+                    Directory.CreateDirectory(destDirectory);
+                }
                 File.Copy(file, destFileName, true);
             }
 
