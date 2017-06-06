@@ -11,8 +11,7 @@
 // ******************************************************************
 
 using System.Windows;
-
-using Microsoft.Templates.UI.ViewModels.NewProject;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.Views.NewProject
 {
@@ -23,12 +22,17 @@ namespace Microsoft.Templates.UI.Views.NewProject
     {
         public InformationViewModel ViewModel { get; private set; }
 
-        public InformationWindow(TemplateInfoViewModel template, Window mainWindow)
+        public InformationWindow(ViewModels.NewProject.TemplateInfoViewModel template, Window mainWindow)
         {
             Init(template, mainWindow);
-        }        
+        }
 
-        public InformationWindow(MetadataInfoViewModel  metadataInfo, Window mainWindow)
+        public InformationWindow(ViewModels.NewItem.TemplateInfoViewModel template, Window mainWindow)
+        {
+            Init(template, mainWindow);
+        }
+
+        public InformationWindow(ViewModels.NewProject.MetadataInfoViewModel  metadataInfo, Window mainWindow)
         {
             Init(metadataInfo, mainWindow);
         }
@@ -57,13 +61,17 @@ namespace Microsoft.Templates.UI.Views.NewProject
 
         private void IntilizeViewModel(object info)
         {
-            if (info is MetadataInfoViewModel metadataInfo)
+            if (info is ViewModels.NewProject.MetadataInfoViewModel metadataInfo)
             {
                 ViewModel.Initialize(metadataInfo);
             }
-            else if(info is TemplateInfoViewModel templateInfo)
+            else if(info is ViewModels.NewProject.TemplateInfoViewModel newProjectTemplateInfo)
             {
-                ViewModel.Initialize(templateInfo);
+                ViewModel.Initialize(newProjectTemplateInfo);
+            }
+            else if (info is ViewModels.NewItem.TemplateInfoViewModel newItemTemplateInfo)
+            {
+                ViewModel.Initialize(newItemTemplateInfo);
             }
             else
             {

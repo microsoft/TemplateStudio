@@ -1,18 +1,13 @@
 ﻿using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.ViewModels.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using Microsoft.Templates.UI;
 using System.Windows;
-using Microsoft.Templates.UI.Resources;
-using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -43,18 +38,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        public ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>> TemplateGroups { get; } = new ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>>();
+        private InformationViewModel _information;
+        public InformationViewModel Information
+        {
+            get => _information;
+            set => SetProperty(ref _information, value);
+        }
 
-        //private TemplateInfoViewModel _templateSelected;
-        //public TemplateInfoViewModel TemplateSelected
-        //{
-        //    get { return _templateSelected; }
-        //    set
-        //    {
-        //        SetProperty(ref _templateSelected, value);
-        //        UpdateItemName();
-        //    }
-        //}
+        public ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>> TemplateGroups { get; } = new ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>>();
 
         public NewItemSetupViewModel()
         {
@@ -68,7 +59,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                                                   && t.GetFrameworkList().Contains(MainViewModel.Current.ConfigFramework)
                                                   && t.GetTemplateType() == MainViewModel.Current.ConfigTemplateType
                                                   && t.GetRightClickEnabled())
-                                                  .Select(t => new TemplateInfoViewModel(t));
+                                                  .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, MainViewModel.Current.ConfigFramework)));
 
 
             var groups = templates.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList(), OnSelectedItemChanged)).OrderBy(gr => gr.Title);
@@ -98,19 +89,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     var template = gr.SelectedItem as TemplateInfoViewModel;
                     if (template != null)
                     {
-                        var validators = new List<Validator>() { new ReservedNamesValidator() };
-                        if (template.IsItemNameEditable)
-                        {
-                            validators.Add(new DefaultNamesValidator());
-                            EditionVisibility = Visibility.Visible;
-                        }
-                        else
-                        {
-                            EditionVisibility = Visibility.Collapsed;
-                        }
-                        _itemName = Naming.Infer(template.DefaultName, validators);
-                        OnPropertyChanged("ItemName");
-                        MainViewModel.Current.CleanStatus(true);
+                        UpdateItemName(template);
+                        Information = new InformationViewModel(template);
                     }
                 }
                 else
@@ -119,6 +99,23 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 }
 
             }
+        }
+
+        private void UpdateItemName(TemplateInfoViewModel template)
+        {
+            var validators = new List<Validator>() { new ReservedNamesValidator() };
+            if (template.IsItemNameEditable)
+            {
+                validators.Add(new DefaultNamesValidator());
+                EditionVisibility = Visibility.Visible;
+            }
+            else
+            {
+                EditionVisibility = Visibility.Collapsed;
+            }
+            _itemName = Naming.Infer(template.DefaultName, validators);
+            OnPropertyChanged("ItemName");
+            MainViewModel.Current.CleanStatus(true);
         }
 
         private void UpdateHeader(int templatesCount)

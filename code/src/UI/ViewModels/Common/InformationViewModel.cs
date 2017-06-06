@@ -20,14 +20,14 @@ using System.Windows.Input;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
-using Microsoft.Templates.UI.Views.NewProject;
+using Microsoft.Templates.UI.ViewModels.NewItem;
 
-namespace Microsoft.Templates.UI.ViewModels.NewProject
+namespace Microsoft.Templates.UI.ViewModels.Common
 {
     public class InformationViewModel : Observable
     {
         public static InformationViewModel Current;
-        private InformationWindow _infoWindow;
+        private Views.NewProject.InformationWindow _infoWindow;
 
         private Visibility _informationVisibility = Visibility.Collapsed;
         public Visibility InformationVisibility
@@ -78,7 +78,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             get => _licensesVisibility;
             set => SetProperty(ref _licensesVisibility, value);
-        }
+        }        
 
         private Visibility _dependenciesVisibility = Visibility.Collapsed;
         public Visibility DependenciesVisibility
@@ -88,22 +88,66 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private ICommand _okCommand;
-        public ICommand OkCommand => _okCommand ?? (_okCommand = new RelayCommand(OnOk));
-        
-        public InformationViewModel(InformationWindow infoWindow)
-        {            
-            _infoWindow = infoWindow;
-            Current = this;
-        }
+        public ICommand OkCommand => _okCommand ?? (_okCommand = new RelayCommand(OnOk));               
 
-        private IEnumerable<DependencyInfoViewModel> _dependencyItems;
+        private IEnumerable<DependencyInfoViewModel> _dependencyItems;        
         public IEnumerable<DependencyInfoViewModel> DependencyItems
         {
             get => _dependencyItems;
             set => SetProperty(ref _dependencyItems, value);
         }
 
-        public void Initialize(TemplateInfoViewModel template)
+        public InformationViewModel(Views.NewProject.InformationWindow infoWindow)
+        {
+            _infoWindow = infoWindow;
+            Current = this;
+        }
+
+        public InformationViewModel(NewItem.TemplateInfoViewModel template)
+        {
+            Author = template.Author;
+            DependencyItems = template.DependencyItems;
+            InformationMD = template.Description;
+            Name = template.Name;
+            Version = template.Version;
+
+            DependenciesVisibility = DependencyItems.Any() ? Visibility.Visible : Visibility.Collapsed;
+            InformationType = GetInformationType(template.TemplateType.ToString());
+
+            if (template.LicenseTerms != null && template.LicenseTerms.Any())
+            {
+                LicenseTerms.AddRange(template.LicenseTerms.Select(l => new SummaryLicenseViewModel(l)));
+                LicensesVisibility = Visibility.Visible;
+            }
+            else
+            {
+                LicensesVisibility = Visibility.Collapsed;
+            }
+        }
+
+        internal void Initialize(TemplateInfoViewModel template)
+        {
+            Author = template.Author;
+            DependencyItems = template.DependencyItems;
+            InformationMD = template.Description;
+            Name = template.Name;
+            Version = template.Version;
+
+            DependenciesVisibility = DependencyItems.Any() ? Visibility.Visible : Visibility.Collapsed;
+            InformationType = GetInformationType(template.TemplateType.ToString());
+
+            if (template.LicenseTerms != null && template.LicenseTerms.Any())
+            {
+                LicenseTerms.AddRange(template.LicenseTerms.Select(l => new SummaryLicenseViewModel(l)));
+                LicensesVisibility = Visibility.Visible;
+            }
+            else
+            {
+                LicensesVisibility = Visibility.Collapsed;
+            }
+        }
+
+        public void Initialize(NewProject.TemplateInfoViewModel template)
         {
             Author = template.Author;
             DependencyItems = template.DependencyItems;
@@ -117,7 +161,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (template.LicenseTerms != null && template.LicenseTerms.Any())
             {
                 LicenseTerms.AddRange(template.LicenseTerms.Select(l => new SummaryLicenseViewModel(l)));
-
                 LicensesVisibility = Visibility.Visible;
             }
             else
@@ -125,9 +168,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 LicensesVisibility = Visibility.Collapsed;
             }
             
-        }        
+        }
 
-        public void Initialize(MetadataInfoViewModel metadataInfo)
+        public void Initialize(NewProject.MetadataInfoViewModel metadataInfo)
         {
             Author = metadataInfo.Author;
             Name = metadataInfo.DisplayName;

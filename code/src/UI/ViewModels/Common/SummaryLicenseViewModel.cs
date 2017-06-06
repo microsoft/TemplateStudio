@@ -17,7 +17,7 @@ using System.Windows.Input;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
 
-namespace Microsoft.Templates.UI.ViewModels.NewProject
+namespace Microsoft.Templates.UI.ViewModels.Common
 {
     public class SummaryLicenseViewModel : Observable
     {

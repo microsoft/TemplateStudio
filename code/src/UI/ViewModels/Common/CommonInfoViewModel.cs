@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
 
-namespace Microsoft.Templates.UI.ViewModels.NewProject
+namespace Microsoft.Templates.UI.ViewModels.Common
 {
     public abstract class CommonInfoViewModel : Observable
     {
@@ -51,6 +51,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             get => _author;
             set => SetProperty(ref _author, value);
+        }
+
+        private string _version;
+        public string Version
+        {
+            get => _version;
+            set => SetProperty(ref _version, value);
         }
 
         private IEnumerable<TemplateLicense> _licenseTerms;

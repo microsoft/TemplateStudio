@@ -76,12 +76,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             set => SetProperty(ref _title, value);
         }
 
-        //private Visibility _infoShapeVisibility = Visibility.Collapsed;
-        //public Visibility InfoShapeVisibility
-        //{
-        //    get => _infoShapeVisibility;
-        //    set => SetProperty(ref _infoShapeVisibility, value);
-        //}
+        private Visibility _infoShapeVisibility = Visibility.Collapsed;
+        public Visibility InfoShapeVisibility
+        {
+            get => _infoShapeVisibility;
+            set => SetProperty(ref _infoShapeVisibility, value);
+        }
 
         private Visibility _loadingContentVisibility = Visibility.Visible;
         public Visibility LoadingContentVisibility

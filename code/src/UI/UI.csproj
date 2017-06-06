@@ -200,9 +200,9 @@
     <Compile Include="ViewModels\NewItem\MainViewModel.cs" />
     <Compile Include="ViewModels\NewItem\NewItemSetupViewModel.cs" />
     <Compile Include="ViewModels\NewItem\TemplateInfoViewModel.cs" />
-    <Compile Include="ViewModels\NewProject\CommonInfoViewModel.cs" />
+    <Compile Include="ViewModels\Common\CommonInfoViewModel.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
-    <Compile Include="ViewModels\NewProject\DependencyInfoViewModel.cs" />
+    <Compile Include="ViewModels\Common\DependencyInfoViewModel.cs" />
     <Compile Include="ViewModels\NewItem\NewItemViewModel.cs" />
     <Compile Include="ViewModels\NewItem\SyncNewItemViewModel.cs" />
     <Compile Include="Views\Common\ErrorDialog.xaml.cs">
@@ -222,14 +222,14 @@
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="ViewModels\Common\ErrorViewModel.cs" />
     <Compile Include="ViewModels\Common\ItemsGroupViewModel.cs" />
-    <Compile Include="ViewModels\NewProject\InformationViewModel.cs" />
+    <Compile Include="ViewModels\Common\InformationViewModel.cs" />
     <Compile Include="ViewModels\NewProject\MainViewModel.cs" />
     <Compile Include="ViewModels\NewProject\MetadataInfoViewModel.cs" />
     <Compile Include="ViewModels\NewProject\ProjectSetupViewModel.cs" />
     <Compile Include="ViewModels\NewProject\ProjectTemplatesViewModel.cs" />
     <Compile Include="ViewModels\Common\StatusViewModel.cs" />
     <Compile Include="ViewModels\NewProject\SavedTemplateViewModel.cs" />
-    <Compile Include="ViewModels\NewProject\SummaryLicenseViewModel.cs" />
+    <Compile Include="ViewModels\Common\SummaryLicenseViewModel.cs" />
     <Compile Include="ViewModels\NewProject\TemplateInfoViewModel.cs" />
     <Compile Include="Views\NewItem\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>

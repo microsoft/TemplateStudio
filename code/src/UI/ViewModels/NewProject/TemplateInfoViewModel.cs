@@ -23,6 +23,7 @@ using System.Windows.Media;
 using Microsoft.Templates.UI.Views.NewProject;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.ViewModels.NewProject;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -34,14 +35,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             get => _templateName;
             set => SetProperty(ref _templateName, value);
-        }
-
-        private string _version;
-        public string Version
-        {
-            get => _version;
-            set => SetProperty(ref _version, value);
-        }
+        }        
 
         private int _order;
         public int Order
