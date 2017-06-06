@@ -119,7 +119,7 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             await GenContext.ToolBox.Repo.SynchronizeAsync();
 
-            var projectConfig = ReadProjectConfiguration();
+            var projectConfig = GenController.ReadProjectConfiguration();
 
             ProjectTypes.AddRange(GenContext.ToolBox.Repo.GetProjectTypes().Select(f => f.Name));
             if (!string.IsNullOrEmpty(projectConfig.ProjectType))
@@ -141,17 +141,7 @@ namespace Microsoft.Templates.UI.ViewModels
             await Task.CompletedTask;
         }
 
-        private static (string ProjectType, string Framework) ReadProjectConfiguration()
-        {
-            var path = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
-            var manifest = XElement.Load(path);
-
-            var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == "Metadata");
-            var projectType = metadata?.Descendants().FirstOrDefault(m => m.Attribute("Name").Value == "projectType")?.Attribute("Value")?.Value;
-            var framework = metadata?.Descendants().FirstOrDefault(m => m.Attribute("Name").Value == "framework")?.Attribute("Value")?.Value;
-
-            return (projectType, framework);
-        }
+        
 
         private void LoadTemplates()
         {
