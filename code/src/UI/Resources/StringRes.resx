@@ -379,4 +379,13 @@
   <data name="UnableToRefreshProject" xml:space="preserve">
     <value>Unable to refresh the project. Try to refresh it manually.</value>
   </data>
+  <data name="NewItemTitle_SF" xml:space="preserve">
+    <value>Add new {0}</value>
+  </data>
+  <data name="GroupFeatureHeader_SF" xml:space="preserve">
+    <value>Features ({0}) - Pick one</value>
+  </data>
+  <data name="GroupPageHeader_SF" xml:space="preserve">
+    <value>Pages ({0}) - Pick one</value>
+  </data>
 </root>

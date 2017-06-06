@@ -67,9 +67,10 @@ namespace Microsoft.Templates.UI
             return null;
         }
 
-        public static UserSelection GetUserSelectionNewItem()
+        public static UserSelection GetUserSelectionNewItem(TemplateType templateType)
         {
-            var newItem = new Views.NewItem.NewItemView();
+            //var newItem = new Views.NewItem.NewItemView();
+            var newItem = new Views.NewItem.MainView(templateType);
 
             try
             {

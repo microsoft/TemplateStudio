@@ -16,9 +16,9 @@ using System.Collections.ObjectModel;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
 
-namespace Microsoft.Templates.UI.ViewModels.NewProject
+namespace Microsoft.Templates.UI.ViewModels.Common
 {
-    public class GroupTemplateInfoViewModel : Observable
+    public class ItemsGroupViewModel<T> : Observable where T : class
     {
         private string _name;
         public string Name
@@ -34,13 +34,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             set => SetProperty(ref _title, value);
         }
 
-        public ObservableCollection<TemplateInfoViewModel> Templates { get; } = new ObservableCollection<TemplateInfoViewModel>();
+        public ObservableCollection<T> Templates { get; } = new ObservableCollection<T>();
 
-        public GroupTemplateInfoViewModel(string name, IEnumerable<TemplateInfoViewModel> templates)
+        public ItemsGroupViewModel(string name, IEnumerable<T> templates)
         {
             Name = name;
             Title = GetTitle(name);
-            Templates.AddRange(templates);            
+            Templates.AddRange<T>(templates);            
         }
 
         private string GetTitle(string name) => StringRes.ResourceManager.GetString($"TemplateGroup_{name}");

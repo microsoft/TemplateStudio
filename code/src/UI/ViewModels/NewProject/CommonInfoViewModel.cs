@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
 
-namespace Microsoft.Templates.UI.ViewModels
+namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public abstract class CommonInfoViewModel : Observable
     {

@@ -6,8 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
     xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
-    xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"    
-    xmlns:local="clr-namespace:Microsoft.Templates.UI"
+    xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"        
     mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary>

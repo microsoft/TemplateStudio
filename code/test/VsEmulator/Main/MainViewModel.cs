@@ -27,6 +27,7 @@ using Microsoft.Templates.UI;
 using Microsoft.Templates.VsEmulator.LoadProject;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
@@ -176,7 +177,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             MergeFilesFromProject.Clear();
             try
             {
-                var userSelection = GenController.GetUserSelectionNewItem();
+                var userSelection = GenController.GetUserSelectionNewItem(TemplateType.Feature);
 
                 if (userSelection != null)
                 {

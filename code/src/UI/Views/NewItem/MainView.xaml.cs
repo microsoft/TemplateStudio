@@ -13,13 +13,14 @@
 using System.Windows;
 
 using Microsoft.Templates.UI.Services;
-using Microsoft.Templates.UI.ViewModels.NewProject;
+using Microsoft.Templates.UI.ViewModels.NewItem;
 using System.Windows.Input;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Controls;
 using System.Windows.Controls;
 using System;
 using System.Linq;
+using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.UI.Views.NewItem
 {
@@ -28,27 +29,27 @@ namespace Microsoft.Templates.UI.Views.NewItem
     /// </summary>
     public partial class MainView : Window
     {
-        //public MainViewModel ViewModel { get; }
-        //public UserSelection Result { get; set; }
+        public MainViewModel ViewModel { get; }
+        public UserSelection Result { get; set; }
 
-        public MainView()
+        public MainView(TemplateType templateType)
         {
-            //ViewModel = new MainViewModel(this);
+            ViewModel = new MainViewModel(this);
 
-            //DataContext = ViewModel;
+            DataContext = ViewModel;
 
             Loaded += async (sender, e) =>
             {
-                //NavigationService.Initialize(stepFrame, new ProjectSetupView());
-                //await ViewModel.InitializeAsync();
+                NavigationService.Initialize(stepFrame, new NewItemSetupView());
+                await ViewModel.InitializeAsync(templateType);
             };
 
             Unloaded += (sender, e) =>
             {
-                //ViewModel.UnsuscribeEventHandlers();
+                ViewModel.UnsuscribeEventHandlers();
             };
 
             InitializeComponent();
-        }        
+        }
     }
 }

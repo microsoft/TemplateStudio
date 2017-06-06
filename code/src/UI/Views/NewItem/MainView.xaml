@@ -69,6 +69,12 @@
                 <TextBlock Style="{StaticResource TextMainLoadingStyle}" Text="{x:Static res:StringRes.NoContentText}"  Visibility="{Binding NoContentVisibility}"/>
             </Grid>
             <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False"/>
+            <controls:StatusControl
+                    Margin="{StaticResource MediumLeftMargin}"
+                    VerticalAlignment="Bottom"
+                    Status="{Binding Status}"
+                    TemplatesVersion="{Binding TemplatesVersion}"
+                    WizardVersion="{Binding WizardVersion}" />
             <Grid Grid.Column="1">
             </Grid>
         </Grid>
@@ -78,13 +84,6 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="317" />
                 </Grid.ColumnDefinitions>
-                <!--<controls:StatusControl
-                    Grid.Column="0"
-                    Margin="{StaticResource MediumLeftMargin}"
-                    VerticalAlignment="Center"
-                    Status="{Binding Status}"
-                    TemplatesVersion="{Binding TemplatesVersion}"
-                    WizardVersion="{Binding WizardVersion}" />-->
                 <Grid
                     Grid.Column="1"
                     Margin="0,0,17,0"

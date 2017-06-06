@@ -250,6 +250,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Features ({0}) - Pick one.
+        /// </summary>
+        public static string GroupFeatureHeader_SF {
+            get {
+                return ResourceManager.GetString("GroupFeatureHeader_SF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Features ({0}) - Add multiple.
         /// </summary>
         public static string GroupFeaturesHeader_SF {
@@ -264,6 +273,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string GroupFrameworkHeader_SF {
             get {
                 return ResourceManager.GetString("GroupFrameworkHeader_SF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pages ({0}) - Pick one.
+        /// </summary>
+        public static string GroupPageHeader_SF {
+            get {
+                return ResourceManager.GetString("GroupPageHeader_SF", resourceCulture);
             }
         }
         
@@ -363,6 +381,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string MoreDetail {
             get {
                 return ResourceManager.GetString("MoreDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new {0}.
+        /// </summary>
+        public static string NewItemTitle_SF {
+            get {
+                return ResourceManager.GetString("NewItemTitle_SF", resourceCulture);
             }
         }
         
