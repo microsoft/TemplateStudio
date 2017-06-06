@@ -25,11 +25,22 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             set => SetProperty(ref _header, value);
         }
 
+        private Visibility _editionVisibility = Visibility.Collapsed;
+        public Visibility EditionVisibility
+        {
+            get => _editionVisibility;
+            set => SetProperty(ref _editionVisibility, value);
+        }
+
         private string _itemName;
         public string ItemName
         {
             get => _itemName;
-            set => SetProperty(ref _itemName, value);
+            set
+            {
+                SetProperty(ref _itemName, value);
+                UpdateItemName(_itemName);
+            }
         }
 
         public ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>> TemplateGroups { get; } = new ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>>();
@@ -87,8 +98,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     var template = gr.SelectedItem as TemplateInfoViewModel;
                     if (template != null)
                     {
-                        UpdateItemName(template);
-                    }                    
+                        var validators = new List<Validator>() { new ReservedNamesValidator() };
+                        if (template.IsItemNameEditable)
+                        {
+                            validators.Add(new DefaultNamesValidator());
+                            EditionVisibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            EditionVisibility = Visibility.Collapsed;
+                        }
+                        _itemName = Naming.Infer(template.DefaultName, validators);
+                        OnPropertyChanged("ItemName");
+                        MainViewModel.Current.CleanStatus(true);
+                    }
                 }
                 else
                 {
@@ -110,14 +133,27 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        private void UpdateItemName(TemplateInfoViewModel item)
+        private void UpdateItemName(string name)
         {
-            var validators = new List<Validator>() { new ReservedNamesValidator() };
-            if (item.IsItemNameEditable)
+            var validators = new List<Validator>()
             {
-                validators.Add(new DefaultNamesValidator());
+                new DefaultNamesValidator(),
+                new ReservedNamesValidator()
+            };
+
+            var validationResult = Naming.Validate(name, validators);
+            if (!validationResult.IsValid)
+            {
+                var errorMessage = StringRes.ResourceManager.GetString($"ValidationError_{validationResult.ErrorType}");
+
+                if (string.IsNullOrWhiteSpace(errorMessage))
+                {
+                    errorMessage = "UndefinedError";
+                }
+                MainViewModel.Current.SetValidationErrors(errorMessage);
+                throw new Exception(errorMessage);
             }
-            ItemName = Naming.Infer(item.DefaultName, validators);
+            MainViewModel.Current.CleanStatus(true);
         }
     }
 }

@@ -31,11 +31,11 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Style="{StaticResource TextWizardStatusStyle}">
-            <Run x:Name="txtIcon" FontFamily="Segoe MDL2 Assets" FontSize="18" BaselineAlignment="Center" Text=" " />
+            <TextBlock Style="{StaticResource TextWizardStatusStyle}" Margin="{StaticResource MediumLeftMargin}">
+                <Run x:Name="txtIcon" FontFamily="Segoe MDL2 Assets" FontSize="18" BaselineAlignment="Center" Text=" " />
             </TextBlock>
             <TextBlock Margin="{StaticResource MediumLeftMargin}" Style="{StaticResource TextWizardStatusStyle}" Grid.Column="1">
-            <Run x:Name="txtStatus" />
+                <Run x:Name="txtStatus" />
             </TextBlock>
         </Grid>
     </Grid>

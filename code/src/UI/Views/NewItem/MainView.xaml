@@ -70,7 +70,6 @@
             </Grid>
             <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False"/>
             <controls:StatusControl
-                    Margin="{StaticResource MediumLeftMargin}"
                     VerticalAlignment="Bottom"
                     Status="{Binding Status}"
                     TemplatesVersion="{Binding TemplatesVersion}"
@@ -85,14 +84,15 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Style="{StaticResource TextBottomBarStyle}" Text="{x:Static res:StringRes.NewItemName}" Margin="{StaticResource MediumLeftTopBottomMargin}"/>
-
+                <TextBlock Style="{StaticResource TextBottomBarStyle}" Text="{x:Static res:StringRes.NewItemName}" Margin="{StaticResource MediumLeftTopBottomMargin}" Visibility="{Binding NewItemSetup.EditionVisibility}"/>
                 <TextBox
                     Grid.Column="1"
-                    Text="{Binding NewItemSetup.ItemName, Mode=TwoWay}"
+                    Text="{Binding NewItemSetup.ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"                    
                     Margin="{StaticResource MediumMargin}"
                     Width="360"
-                    MaxLength="30" HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                    MaxLength="30" HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                    Visibility="{Binding NewItemSetup.EditionVisibility}">
+                </TextBox>
                 <Grid
                     Grid.Column="2"
                     Margin="0,0,17,0"

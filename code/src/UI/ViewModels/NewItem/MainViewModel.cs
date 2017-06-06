@@ -35,7 +35,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class MainViewModel : Observable
     {
-        //private bool _canGoBack;
+        private bool _canGoBack;
         private bool _canGoForward;
         private bool _hasValidationErrors;
         private bool _templatesAvailable;
@@ -125,13 +125,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         //}
 
         private RelayCommand _cancelCommand;
-        //private RelayCommand _goBackCommand;
+        private RelayCommand _goBackCommand;
         private RelayCommand _nextCommand;
         private RelayCommand _finishCommand;
 
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
-        //public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));
-        public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && _canGoForward));
+        public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));
+        public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && !_hasValidationErrors && _canGoForward));
         public RelayCommand FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand(OnFinish, CanFinish));
 
         private bool CanFinish()
@@ -300,7 +300,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             await GenController.GenerateNewItemAsync(MainView.Result);
             NavigationService.Navigate(new NewItemChangesSummaryView());
             
-            //_canGoBack = true;
+            _canGoBack = true;
             //BackCommand.OnCanExecuteChanged();
 
             FinishButtonVisibility = Visibility.Visible;
@@ -330,18 +330,18 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        //private void OnGoBack()
-        //{
-        //    NavigationService.GoBack();
+        private void OnGoBack()
+        {
+            //Si ha cambiado de elemento o de nombre
+            //Llamo a CleanUpTempGeneration de GenController
 
-        //    _canGoBack = false;
-        //    _templatesReady = false;
+            NavigationService.GoBack();
+            _canGoBack = false;
+            BackCommand.OnCanExecuteChanged();
 
-        //    BackCommand.OnCanExecuteChanged();
-
-        //    CreateButtonVisibility = Visibility.Collapsed;
-        //    NextButtonVisibility = Visibility.Visible;
-        //}
+            FinishButtonVisibility = Visibility.Collapsed;
+            NextButtonVisibility = Visibility.Visible;
+        }
 
         //private bool CheckProjectSetupChanged()
         //{
@@ -403,20 +403,21 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         //    }
         //}
 
-        //public void SetValidationErrors(string errorMessage, StatusType statusType = StatusType.Error)
-        //{
-        //    Status = new StatusViewModel(statusType, errorMessage);
-        //    _hasValidationErrors = true;
-        //    CreateCommand.OnCanExecuteChanged();
-        //}
+        public void SetValidationErrors(string errorMessage, StatusType statusType = StatusType.Error)
+        {
+            Status = new StatusViewModel(statusType, errorMessage);
+            _hasValidationErrors = true;
+            FinishCommand.OnCanExecuteChanged();
+        }
 
         public void CleanStatus(bool cleanValidationError = false)
         {
             Status = StatusControl.EmptyStatus;
             if (cleanValidationError)
             {
-                //_hasValidationErrors = false;
-                //CreateCommand.OnCanExecuteChanged();
+                _hasValidationErrors = false;
+                NextCommand.OnCanExecuteChanged();
+                FinishCommand.OnCanExecuteChanged();
             }
         }
     }
