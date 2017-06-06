@@ -109,6 +109,11 @@
                         Content="{x:Static res:StringRes.ButtonCancel}"
                         Style="{StaticResource ButtonNavigationStyle}" />
                     <Button
+                        Grid.Column="1"
+                        Command="{Binding BackCommand}"
+                        Content="{x:Static res:StringRes.ButtonBack}"
+                        Style="{StaticResource ButtonNavigationStyle}" />
+                    <Button
                         Grid.Column="2"
                         Command="{Binding NextCommand}"
                         Content="{x:Static res:StringRes.ButtonNext}"
@@ -120,13 +125,6 @@
                         Content="{x:Static res:StringRes.ButtonFinish}"
                         Style="{StaticResource ButtonFinishStyle}"
                         Visibility="{Binding FinishButtonVisibility}" />
-                    <!--
-                    <Button
-                        Grid.Column="1"
-                        Command="{Binding BackCommand}"
-                        Content="{x:Static res:StringRes.ButtonBack}"
-                        Style="{StaticResource ButtonNavigationStyle}" />
-                    -->
                 </Grid>
             </Grid>
         </Grid>

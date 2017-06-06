@@ -15,6 +15,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public bool IsItemNameEditable { get; set; }
         public string DefaultName { get; set; }
         public string Group { get; set; }
+        public string Identity { get; set; }
 
         private string _icon;
         public string Icon
@@ -55,6 +56,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             Name = template.Name;
             Author = template.Author;
             Summary = template.Description;
+            Identity = template.Identity;
         }
     }
 }

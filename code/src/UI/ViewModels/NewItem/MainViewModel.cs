@@ -45,6 +45,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public TemplateType ConfigTemplateType;
         public string ConfigFramework;
         public string ConfigProjectType;
+        public string LastSelectedTemplateIdentity;
 
         private StatusViewModel _status = StatusControl.EmptyStatus;
 
@@ -159,7 +160,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public async Task InitializeAsync(TemplateType templateType)
         {
             ConfigTemplateType = templateType;
-            GetProjectFramework();
+
+            var projectConfiguration = GenController.ReadProjectConfiguration();
+            ConfigProjectType = projectConfiguration.ProjectType;
+            ConfigFramework = projectConfiguration.Framework;            
 
 
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += Sync_SyncStatusChanged;
@@ -187,17 +191,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 LoadedContentVisibility = Visibility.Visible;
             }
         }
-
-        private void GetProjectFramework()
-        {
-            var path = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
-            var manifest = XElement.Load(path);
-
-            var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == "Metadata");
-            ConfigProjectType = metadata?.Descendants().FirstOrDefault(m => m.Attribute("Name").Value == "projectType")?.Attribute("Value")?.Value;
-            ConfigFramework = metadata?.Descendants().FirstOrDefault(m => m.Attribute("Name").Value == "framework")?.Attribute("Value")?.Value;
-        }
-
+        
         public void UnsuscribeEventHandlers()
         {
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged -= Sync_SyncStatusChanged;
@@ -301,7 +295,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             NavigationService.Navigate(new NewItemChangesSummaryView());
             
             _canGoBack = true;
-            //BackCommand.OnCanExecuteChanged();
+            BackCommand.OnCanExecuteChanged();
 
             FinishButtonVisibility = Visibility.Visible;
             NextButtonVisibility = Visibility.Collapsed;
@@ -327,55 +321,32 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 {
                     MainView.Result.Features.Add((NewItemSetup.ItemName, template.Template));
                 }
+                if (String.IsNullOrEmpty(LastSelectedTemplateIdentity))
+                {
+                    LastSelectedTemplateIdentity = template.Identity;
+                }
+                else if (LastSelectedTemplateIdentity != template.Identity)
+                {
+                    GenController.CleanupTempGeneration();
+                }
             }
         }
 
         private void OnGoBack()
         {
-            //Si ha cambiado de elemento o de nombre
-            //Llamo a CleanUpTempGeneration de GenController
-
             NavigationService.GoBack();
             _canGoBack = false;
             BackCommand.OnCanExecuteChanged();
 
             FinishButtonVisibility = Visibility.Collapsed;
             NextButtonVisibility = Visibility.Visible;
-        }
-
-        //private bool CheckProjectSetupChanged()
-        //{
-        //    if (ProjectTemplates.HasTemplatesAdded && (FrameworkChanged || ProjectTypeChanged))
-        //    { 
-        //        return true;
-        //    }
-        //    return false;
-        //}
-
-        //private bool FrameworkChanged => ProjectTemplates.ContextFramework.Name != ProjectSetup.SelectedFramework.Name;
-
-        //private bool ProjectTypeChanged => ProjectTemplates.ContextProjectType.Name != ProjectSetup.SelectedProjectType.Name;
+        }        
 
         private void OnFinish()
         {
             MainView.DialogResult = true;            
             MainView.Close();
-        }
-
-        //private UserSelection CreateUserSelection()
-        //{
-        //    var userSelection = new UserSelection()
-        //    {
-        //        ProjectType = ProjectSetup.SelectedProjectType?.Name,
-        //        Framework = ProjectSetup.SelectedFramework?.Name,
-        //        HomeName = ProjectTemplates.HomeName
-        //    };
-
-        //    userSelection.Pages.AddRange(ProjectTemplates.SavedPages.Select(sp => sp.UserSelection));
-        //    userSelection.Features.AddRange(ProjectTemplates.SavedFeatures.Select(sf => sf.UserSelection));
-
-        //    return userSelection;
-        //}
+        }        
 
         //private void SyncLicenses(IEnumerable<TemplateLicense> licenses)
         //{
