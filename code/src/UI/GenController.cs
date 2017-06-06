@@ -27,12 +27,31 @@ using Microsoft.VisualStudio.TemplateWizard;
 using System.IO;
 using System.Text.RegularExpressions;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using System.Xml.Linq;
 
 
 namespace Microsoft.Templates.UI
 {
     public class GenController
     {
+        public static (string ProjectType, string Framework) ReadProjectConfiguration()
+        {
+            //TODO: Review this
+            var path = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
+            if (File.Exists(path))
+            {
+                var manifest = XElement.Load(path);
+
+                var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == "Metadata");
+                var projectType = metadata?.Descendants().FirstOrDefault(m => m.Attribute("Name").Value == "projectType")?.Attribute("Value")?.Value;
+                var framework = metadata?.Descendants().FirstOrDefault(m => m.Attribute("Name").Value == "framework")?.Attribute("Value")?.Value;
+
+                return (projectType, framework);
+            }
+            
+            return (string.Empty, string.Empty);
+        }
+
         public static UserSelection GetUserSelection()
         {
             var mainView = new Views.NewProject.MainView();
@@ -126,7 +145,7 @@ namespace Microsoft.Templates.UI
             }
             catch (Exception ex)
             {
-                GenContext.ToolBox.Shell.CloseSolution();
+                
 
                 ShowError(ex, userSelection);
 
@@ -277,7 +296,7 @@ namespace Microsoft.Templates.UI
                     {
                         if (!FilesAreEqual(file, destFilePath))
                         {
-                            result.ModifiedFiles.Add(file.Replace(GenContext.Current.ProjectPath, String.Empty));
+                            result.ModifiedFiles.Add(destFilePath.Replace(GenContext.Current.ProjectPath, String.Empty));
                         }
                     }
                     else
@@ -319,6 +338,11 @@ namespace Microsoft.Templates.UI
             foreach (var file in files)
             {
                 var destFileName = file.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
+                var destDirectory = Path.GetDirectoryName(destFileName);
+                if (!Directory.Exists(destDirectory))
+                {
+                    Directory.CreateDirectory(destDirectory);
+                }
                 File.Copy(file, destFileName, true);
             }
 

@@ -26,7 +26,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         public const string Extension = "_" + Suffix + ".";
         public const string GlobalExtension = "$*_g" + Suffix + ".";
+        public const string PostActionIntentExtension = ".md";
+
         public const string PostactionRegex = @"(\$\S*)?(_" + Suffix + "|_g" + Suffix + @")\.";
+        
         public const string FailedPostactionRegex = @"(\$\S*)?(_" + NewSuffix + "|_g" + NewSuffix + @")\.";
 
         public MergePostAction(MergeConfiguration config) : base(config)
@@ -77,7 +80,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetPostActionIntent()
         {
-            var intentFile = _config.FilePath.Replace(Path.GetExtension(_config.FilePath), ".md");
+            var intentFile = _config.FilePath.Replace(Path.GetExtension(_config.FilePath), PostActionIntentExtension);
             if (File.Exists(intentFile))
             {
                 return File.ReadAllText(intentFile);
