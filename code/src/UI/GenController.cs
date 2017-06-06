@@ -317,10 +317,10 @@ namespace Microsoft.Templates.UI
             try
             {
                 UnsafeSyncNewItem();
+                CleanupTempGeneration();
             }
             catch (Exception ex)
             {
-                GenContext.ToolBox.Shell.CloseSolution();
 
                 ShowError(ex, userSelection);
 
@@ -348,10 +348,32 @@ namespace Microsoft.Templates.UI
 
             ExecuteFinishItemGenerationPostActions();
 
-            Directory.Delete(GenContext.Current.OutputPath, true);
-
         }
-       
+
+        public static void CleanupTempGeneration()
+        {
+            GenContext.Current.GenerationWarnings.Clear();
+            GenContext.Current.MergeFilesFromProject.Clear();
+            GenContext.Current.ProjectItems.Clear();
+            var directory = GenContext.Current.OutputPath;
+            try
+            {             
+                if (directory.Contains(Path.GetTempPath()))
+                {
+                    if (Directory.Exists(directory))
+                    {
+                        Directory.Delete(directory, true);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var msg = $"The folder {directory} can't be delete. Error: {ex.Message}";
+                AppHealth.Current.Warning.TrackAsync(msg, ex).FireAndForget();
+            }
+        }
+
+
         private static bool FilesAreEqual(string file, string destFilePath)
         {
             return File.ReadAllBytes(file).SequenceEqual(File.ReadAllBytes(destFilePath));
