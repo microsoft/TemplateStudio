@@ -98,13 +98,14 @@ namespace Microsoft.Templates.Core.Locations
 
         private async Task CheckMandatoryAdquisitionAsync(bool forceUpdate)
         {
+            if (forceUpdate)
+            {
+                await AdquireContentAsync();
+            }
+
             if (!_content.Exists())
             {
                 await ExtractInstalledContentAsync();
-            }
-            else if (forceUpdate)
-            {
-                await AdquireContentAsync();
             }
         }
 
@@ -125,7 +126,8 @@ namespace Microsoft.Templates.Core.Locations
             try
             {
                 string installedTemplatesPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", "Templates.mstx");
-                _source.ExtractFromMstx(installedTemplatesPath, _content.TemplatesFolder);
+                _source.Acquire(installedTemplatesPath, _content.TemplatesFolder);
+
             }
             catch (Exception ex)
             {

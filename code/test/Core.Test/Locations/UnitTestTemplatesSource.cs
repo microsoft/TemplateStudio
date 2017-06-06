@@ -14,6 +14,8 @@ using System;
 using System.IO;
 
 using Microsoft.Templates.Core.Locations;
+using System.Security;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Microsoft.Templates.Core.Test.Locations
 {
@@ -23,21 +25,37 @@ namespace Microsoft.Templates.Core.Test.Locations
 
         public override string Id { get => "UnitTest"; }
 
-        public override void Acquire(string targetFolder)
+        protected override string ObtainMstx()
         {
-            var targetVersionFolder = Path.Combine(targetFolder, LocalVersion);
+            var certPass = GetTestCertPassword();
+            X509Certificate2 cert = Templatex.LoadCert(@"C:\code\WindowsTemplateStudio\code\TestCert.pfx", certPass);
 
-            Copy($@"..\..\TestData\{SourceFolderName}", targetVersionFolder);
+            var tempFolder = Path.Combine(GetTempFolder(), SourceFolderName);
+
+            var sourcePath = $@"..\..\TestData\{SourceFolderName}";
+
+            Copy(sourcePath, tempFolder);
+
+            File.WriteAllText(Path.Combine(tempFolder, "version.txt"), LocalVersion);
+
+            return Templatex.PackAndSign(tempFolder, cert);
         }
-        public override void ExtractFromMstx(string mstxFilePath, string targetFolder)
-        {
-            //Actually we do not extract from an Mstx, we want to copy local test templates to work with latest local content
-            Acquire(targetFolder);
-        }
+
         protected static void Copy(string sourceFolder, string targetFolder)
         {
             Fs.SafeDeleteDirectory(targetFolder);
             Fs.CopyRecursive(sourceFolder, targetFolder);
+        }
+
+        private static SecureString GetTestCertPassword()
+        {
+            var ss = new SecureString();
+            foreach (var c in "pass@word1")
+            {
+                ss.AppendChar(c);
+            }
+
+            return ss;
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Microsoft.Templates.Core.Test
 
             GenContext.Bootstrap(source, new FakeGenShell());
 
-            CodeGen.Initialize(source.Id, "0.0");
+            CodeGen.Initialize(source.Id, "0.0.1");
 
             GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
         }

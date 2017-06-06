@@ -13,6 +13,9 @@
 using System;
 
 using Microsoft.Templates.Core.Test.Locations;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Test.Artifacts;
+using Xunit;
 
 namespace Microsoft.Templates.Core.Test
 {
@@ -24,11 +27,20 @@ namespace Microsoft.Templates.Core.Test
         {
             var source = new UnitTestsTemplatesSource();
 
-            CodeGen.Initialize(source.Id, "0.0");
+            //CodeGen.Initialize(source.Id, "0.0");
 
-            Repository = new TemplatesRepository(source, Version.Parse("0.0.0.0"));
-            
-            Repository.SynchronizeAsync(true).Wait();
+            //Repository = new TemplatesRepository(source, Version.Parse("0.0.0.0"));
+
+            GenContext.Bootstrap(source, new FakeGenShell());
+
+            GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
+
+            Repository = GenContext.ToolBox.Repo;
         }
+    }
+
+    [CollectionDefinition("Unit Test Templates")]
+    public class TemplatesCollection : ICollectionFixture<TemplatesFixture>
+    {
     }
 }
