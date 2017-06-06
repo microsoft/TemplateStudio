@@ -7,10 +7,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
     Title="{x:Static res:StringRes.Title}"
-    Width="1294"
-    Height="727"
-    MinWidth="800"
-    MinHeight="600"
+    Width="815"
+    Height="680"
+    MinWidth="620"
+    MinHeight="620"
     ResizeMode="CanResize"
     ShowInTaskbar="False"
     WindowStartupLocation="CenterScreen"
@@ -81,11 +81,20 @@
         <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="317" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Grid
+                <TextBlock Style="{StaticResource TextBottomBarStyle}" Text="{x:Static res:StringRes.NewItemName}" Margin="{StaticResource MediumLeftTopBottomMargin}"/>
+
+                <TextBox
                     Grid.Column="1"
+                    Text="{Binding NewItemSetup.ItemName, Mode=TwoWay}"
+                    Margin="{StaticResource MediumMargin}"
+                    Width="360"
+                    MaxLength="30" HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                <Grid
+                    Grid.Column="2"
                     Margin="0,0,17,0"
                     HorizontalAlignment="Right">
                     <Grid.ColumnDefinitions>
@@ -93,16 +102,11 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <!--<Button
+                    <Button
                         Grid.Column="0"
                         IsCancel="True"
                         Command="{Binding CancelCommand}"
                         Content="{x:Static res:StringRes.ButtonCancel}"
-                        Style="{StaticResource ButtonNavigationStyle}" />
-                    <Button
-                        Grid.Column="1"
-                        Command="{Binding BackCommand}"
-                        Content="{x:Static res:StringRes.ButtonBack}"
                         Style="{StaticResource ButtonNavigationStyle}" />
                     <Button
                         Grid.Column="2"
@@ -112,10 +116,17 @@
                         Visibility="{Binding NextButtonVisibility}" />
                     <Button
                         Grid.Column="2"
-                        Command="{Binding CreateCommand}"
-                        Content="{x:Static res:StringRes.ButtonCreate}"
+                        Command="{Binding FinishCommand}"
+                        Content="{x:Static res:StringRes.ButtonFinish}"
                         Style="{StaticResource ButtonFinishStyle}"
-                        Visibility="{Binding CreateButtonVisibility}" />-->
+                        Visibility="{Binding FinishButtonVisibility}" />
+                    <!--
+                    <Button
+                        Grid.Column="1"
+                        Command="{Binding BackCommand}"
+                        Content="{x:Static res:StringRes.ButtonBack}"
+                        Style="{StaticResource ButtonNavigationStyle}" />
+                    -->
                 </Grid>
             </Grid>
         </Grid>

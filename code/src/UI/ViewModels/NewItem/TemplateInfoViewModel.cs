@@ -11,6 +11,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class TemplateInfoViewModel : Observable
     {
+        public ITemplateInfo Template { get; set; }
         public bool IsItemNameEditable { get; set; }
         public string DefaultName { get; set; }
         public string Group { get; set; }
@@ -46,6 +47,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public TemplateInfoViewModel(ITemplateInfo template)
         {
+            Template = template;
             IsItemNameEditable = template.GetItemNameEditable();
             DefaultName = template.GetDefaultName();
             Group = template.GetGroup();

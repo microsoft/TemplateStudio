@@ -97,6 +97,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Finish.
+        /// </summary>
+        public static string ButtonFinish {
+            get {
+                return ResourceManager.GetString("ButtonFinish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
         public static string ButtonNext {
@@ -381,6 +390,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string MoreDetail {
             get {
                 return ResourceManager.GetString("MoreDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        public static string NewItemName {
+            get {
+                return ResourceManager.GetString("NewItemName", resourceCulture);
             }
         }
         

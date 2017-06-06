@@ -388,4 +388,10 @@
   <data name="GroupPageHeader_SF" xml:space="preserve">
     <value>Pages ({0}) - Pick one</value>
   </data>
+  <data name="NewItemName" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="ButtonFinish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
 </root>

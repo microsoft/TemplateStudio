@@ -234,6 +234,9 @@
     <Compile Include="Views\NewItem\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NewItem\NewItemChangesSummaryView.xaml.cs">
+      <DependentUpon>NewItemChangesSummaryView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NewItem\NewItemSetupView.xaml.cs">
       <DependentUpon>NewItemSetupView.xaml</DependentUpon>
     </Compile>
@@ -386,6 +389,10 @@
     <Page Include="Views\NewItem\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewItem\NewItemChangesSummaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NewItem\NewItemSetupView.xaml">
       <SubType>Designer</SubType>

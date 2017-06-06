@@ -15,11 +15,13 @@ using System.Collections.ObjectModel;
 
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
+using System;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
     public class ItemsGroupViewModel<T> : Observable where T : class
     {
+        private Action<ItemsGroupViewModel<T>> _onItemChanged;
         private string _name;
         public string Name
         {
@@ -36,13 +38,34 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public ObservableCollection<T> Templates { get; } = new ObservableCollection<T>();
 
-        public ItemsGroupViewModel(string name, IEnumerable<T> templates)
+        private T _selectedItem;
+        public T SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                SetProperty(ref _selectedItem, value);
+                _onItemChanged?.Invoke(this);
+            }
+        }
+
+        public ItemsGroupViewModel(string name, IEnumerable<T> templates, Action<ItemsGroupViewModel<T>> onItemChanged = null)
         {
             Name = name;
             Title = GetTitle(name);
-            Templates.AddRange<T>(templates);            
+            Templates.AddRange<T>(templates);
+            _onItemChanged = onItemChanged;
         }
 
         private string GetTitle(string name) => StringRes.ResourceManager.GetString($"TemplateGroup_{name}");
+
+        internal void CleanSelected()
+        {
+            if (_selectedItem != default(T))
+            {
+                _selectedItem = null;
+                OnPropertyChanged("SelectedItem");
+            }
+        }
     }
 }

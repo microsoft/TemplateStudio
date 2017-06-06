@@ -41,7 +41,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <controls:ImageEx Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Focusable="False" SourcePath="{Binding Icon}" MaxWidth="50"/>
-                                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding Name}" Margin="{StaticResource MediumLeftRightMargin}" Foreground="{Binding TitleForeground, FallbackValue={StaticResource UIBlack}}" />
+                                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding Name}" Margin="{StaticResource MediumLeftRightMargin}" />
                                 <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource TextTemplateItemAuthorStyle}" MaxHeight="40" Margin="{StaticResource MediumLeftMargin}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}">
                                     <TextBlock.Text>
                                         <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
@@ -68,7 +68,13 @@
                             <DataTemplate>
                                 <StackPanel>
                                     <TextBlock Text="{Binding Title}" Style="{StaticResource TextSubGroupTemplateItemsHeaderStyle}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
-                                    <ListView SelectionMode="Single" KeyboardNavigation.TabNavigation="Local" ItemsSource="{Binding Templates}" Style="{StaticResource ListViewProjectTemplatesStyle}" ItemTemplate="{StaticResource NewItemSetupItemTemplate}" />
+                                    <ListView
+                                        SelectionMode="Single"
+                                        KeyboardNavigation.TabNavigation="Local"
+                                        ItemsSource="{Binding Templates}"
+                                        SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                                        Style="{StaticResource ListViewProjectSetupStyle}"
+                                        ItemTemplate="{StaticResource NewItemSetupItemTemplate}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

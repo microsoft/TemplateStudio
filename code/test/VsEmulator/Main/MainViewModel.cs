@@ -116,7 +116,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string SolutionPath { get; set; }
 
-       
+
 
         public void Initialize()
         {
@@ -181,17 +181,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 if (userSelection != null)
                 {
-                    await GenController.GenerateNewItemAsync(userSelection);
-
-                    
-
-                    var syncItems = GenController.GetUserSyncDescision();
-
-                    if (syncItems)
-                    {
-                        GenController.SyncNewItem(userSelection);
-                        GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
-                    }
+                    GenController.SyncNewItem(userSelection);
+                    GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
             }
             catch (WizardBackoutException)

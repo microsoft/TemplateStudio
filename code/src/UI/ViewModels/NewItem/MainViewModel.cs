@@ -36,10 +36,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
     public class MainViewModel : Observable
     {
         //private bool _canGoBack;
-        //private bool _canGoForward;
-        //private bool _templatesReady;
-        //private bool _hasValidationErrors;
-        //private bool _templatesAvailable;
+        private bool _canGoForward;
+        private bool _hasValidationErrors;
+        private bool _templatesAvailable;
 
         public static MainViewModel Current;
         public MainView MainView;
@@ -104,19 +103,19 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             set => SetProperty(ref _noContentVisibility, value);
         }
 
-        //private Visibility _createButtonVisibility = Visibility.Collapsed;
-        //public Visibility CreateButtonVisibility
-        //{
-        //    get => _createButtonVisibility;
-        //    set => SetProperty(ref _createButtonVisibility, value);
-        //}
+        private Visibility _finishButtonVisibility = Visibility.Collapsed;
+        public Visibility FinishButtonVisibility
+        {
+            get => _finishButtonVisibility;
+            set => SetProperty(ref _finishButtonVisibility, value);
+        }
 
-        //private Visibility _nextButtonVisibility = Visibility.Visible;
-        //public Visibility NextButtonVisibility
-        //{
-        //    get => _nextButtonVisibility;
-        //    set => SetProperty(ref _nextButtonVisibility, value);
-        //}
+        private Visibility _nextButtonVisibility = Visibility.Visible;
+        public Visibility NextButtonVisibility
+        {
+            get => _nextButtonVisibility;
+            set => SetProperty(ref _nextButtonVisibility, value);
+        }
 
         //private Visibility _wizardInfoVisibility = Visibility.Collapsed;
         //public Visibility WizardInfoVisibility
@@ -125,34 +124,25 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         //    set => SetProperty(ref _wizardInfoVisibility, value);
         //}
 
-        //private RelayCommand _cancelCommand;
+        private RelayCommand _cancelCommand;
         //private RelayCommand _goBackCommand;
-        //private RelayCommand _nextCommand;
-        //private RelayCommand _createCommand;
+        private RelayCommand _nextCommand;
+        private RelayCommand _finishCommand;
 
-        //public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
+        public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
         //public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));
-        //public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && _canGoForward));
-        //public RelayCommand CreateCommand => _createCommand ?? (_createCommand = new RelayCommand(OnCreate, CanCreate));
+        public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && _canGoForward));
+        public RelayCommand FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand(OnFinish, CanFinish));
 
-        //private bool CanCreate()
-        //{
-        //if (!_templatesReady)
-        //{
-        //    return false;
-        //}
-        //if (_hasValidationErrors)
-        //{
-        //    return false;
-        //}
-        //if (String.IsNullOrEmpty(ProjectTemplates.HomeName))
-        //{
-        //    Status = new StatusViewModel(StatusType.Error, StringRes.ErrorNoHomePage);
-        //    return false;
-        //}
-        //CleanStatus();
-        //    return true;
-        //}
+        private bool CanFinish()
+        {
+            if (_hasValidationErrors)
+            {
+                return false;
+            }
+            CleanStatus();
+            return true;
+        }
 
         public NewItemSetupViewModel NewItemSetup { get; private set; } = new NewItemSetupViewModel();
 
@@ -164,7 +154,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             MainView = mainView;
             Current = this;
-        }        
+        }
 
         public async Task InitializeAsync(TemplateType templateType)
         {
@@ -226,17 +216,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         //    SyncLicenses(genLicenses);
         //}
 
-        //public void SetTemplatesReadyForProjectCreation()
-        //{
-        //    _templatesReady = true;
-        //    CreateCommand.OnCanExecuteChanged();
-        //}
-
-        //public void EnableGoForward()
-        //{
-        //    _canGoForward = true;
-        //    NextCommand.OnCanExecuteChanged();
-        //}
+        public void EnableGoForward()
+        {
+            _canGoForward = true;
+            NextCommand.OnCanExecuteChanged();
+        }
 
         private async void Sync_SyncStatusChanged(object sender, SyncStatus status)
         {
@@ -248,7 +232,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 TemplatesVersion = GenContext.ToolBox.Repo.TemplatesVersion;
                 CleanStatus();
 
-                //_templatesAvailable = true;
+                _templatesAvailable = true;
                 NewItemSetup.Initialize();
             }
 
@@ -310,23 +294,40 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             MainView.Close();
         }
 
-        private void OnNext()
+        private async void OnNext()
         {
-            //if (CheckProjectSetupChanged())
-            //{
-            //    ProjectTemplates.ResetSelection();
-
-            //    CleanStatus();
-            //}
-
-            //NavigationService.Navigate(new ProjectTemplatesView());
-
+            UpdateUserSelection();
+            await GenController.GenerateNewItemAsync(MainView.Result);
+            NavigationService.Navigate(new NewItemChangesSummaryView());
+            
             //_canGoBack = true;
-
             //BackCommand.OnCanExecuteChanged();
 
-            //CreateButtonVisibility = Visibility.Visible;
-            //NextButtonVisibility = Visibility.Collapsed;
+            FinishButtonVisibility = Visibility.Visible;
+            NextButtonVisibility = Visibility.Collapsed;
+        }
+
+        private void UpdateUserSelection()
+        {
+            MainView.Result = new UserSelection()
+            {
+                Framework = ConfigFramework,
+                ProjectType = ConfigProjectType,
+                HomeName = String.Empty
+            };
+            var activeGroup = NewItemSetup.TemplateGroups.FirstOrDefault(gr => gr.SelectedItem != null);
+            if (activeGroup != null)
+            {
+                var template = activeGroup.SelectedItem as TemplateInfoViewModel;
+                if (ConfigTemplateType == TemplateType.Page)
+                {
+                    MainView.Result.Pages.Add((NewItemSetup.ItemName, template.Template));
+                }
+                if (ConfigTemplateType == TemplateType.Feature)
+                {
+                    MainView.Result.Features.Add((NewItemSetup.ItemName, template.Template));
+                }
+            }
         }
 
         //private void OnGoBack()
@@ -355,15 +356,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         //private bool ProjectTypeChanged => ProjectTemplates.ContextProjectType.Name != ProjectSetup.SelectedProjectType.Name;
 
-        //private void OnCreate()
-        //{
-        //    var userSelection = CreateUserSelection();
-
-        //    MainView.DialogResult = true;
-        //    MainView.Result = userSelection;
-
-        //    MainView.Close();
-        //}
+        private void OnFinish()
+        {
+            MainView.DialogResult = true;            
+            MainView.Close();
+        }
 
         //private UserSelection CreateUserSelection()
         //{
