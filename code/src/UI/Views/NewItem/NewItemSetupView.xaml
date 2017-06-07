@@ -56,10 +56,35 @@
                     </Border>
                 </Grid>
             </DataTemplate>
+
+            <DataTemplate x:Key="LicenseInfoModalItemTemplate">
+                <Grid>
+                    <TextBlock>
+                        <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
+                            <TextBlock Text="{Binding Text}" Style="{StaticResource TextSumaryLicenseStyle}" />
+                        </Hyperlink>
+                    </TextBlock>
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="DependencyInfoModalTemplate">
+                <Grid>
+                    <TextBlock>
+                        <Hyperlink Command="{Binding ShowInfoCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
+                          <TextBlock Text="{Binding Name}" Style="{StaticResource TextSumaryLicenseStyle}" />
+                        </Hyperlink>
+                    </TextBlock>
+                </Grid>
+            </DataTemplate>
+            
         </ResourceDictionary>
     </Page.Resources>
 
     <Grid Visibility="{Binding LoadedContentVisibility}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
         <ScrollViewer>
             <StackPanel>
                 <GroupBox Header="{Binding NewItemSetup.Header}" Margin="{StaticResource MediumLeftTopRightMargin}">
@@ -81,6 +106,49 @@
                     </ItemsControl>
                 </GroupBox>
             </StackPanel>
+        </ScrollViewer>
+        <ScrollViewer Grid.Column="1">
+            <Grid Margin="{StaticResource BigLeftMargin}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel>
+                    <Grid Margin="{StaticResource MediumTopMargin}" Visibility="{Binding NewItemSetup.Information.Version, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalVersion}" Style="{StaticResource TextInformationPropertyTitle}" />
+                        <TextBlock Grid.Column="1" Margin="{StaticResource MediumLeftMargin}" Text="{Binding NewItemSetup.Information.Version}" Style="{StaticResource TextInformationPropertyValue}"/>
+                    </Grid>
+                    <Grid Margin="{StaticResource MediumTopMargin}" Visibility="{Binding NewItemSetup.Information.Author, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalAuthor}" Style="{StaticResource TextInformationPropertyTitle}" />
+                        <TextBlock Grid.Column="1" Text="{Binding NewItemSetup.Information.Author}" Margin="{StaticResource MediumLeftMargin}" Style="{StaticResource TextInformationPropertyValue}" />
+                    </Grid>
+                    <Grid Margin="{StaticResource MediumTopMargin}" Visibility="{Binding NewItemSetup.Information.LicensesVisibility, FallbackValue=Collapsed}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalLicenses}" Style="{StaticResource TextInformationPropertyTitle}" />
+                        <ItemsControl Grid.Column="1" ItemsSource="{Binding NewItemSetup.Information.LicenseTerms}" Margin="{StaticResource MediumLeftMargin}" ItemTemplate="{StaticResource LicenseInfoModalItemTemplate}" Focusable="False"/>
+                    </Grid>
+                    <Grid Margin="{StaticResource MediumTopMargin}" Visibility="{Binding NewItemSetup.Information.DependenciesVisibility, FallbackValue=Collapsed}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalDependencies}" Style="{StaticResource TextInformationPropertyTitle}" />
+                        <ItemsControl Grid.Column="1" ItemsSource="{Binding NewItemSetup.Information.DependencyItems}" Margin="{StaticResource MediumLeftMargin}" ItemTemplate="{StaticResource DependencyInfoModalTemplate}" Focusable="False"/>
+                    </Grid>
+                </StackPanel>
+                <controls:MarkdownBlock Grid.Row="1" Margin="{StaticResource BigTopRightBottomMargin}" Text="{Binding NewItemSetup.Information.InformationMD}" />
+            </Grid>
         </ScrollViewer>
     </Grid>
 </Page>

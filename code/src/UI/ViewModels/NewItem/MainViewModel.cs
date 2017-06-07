@@ -30,6 +30,7 @@ using System.Windows.Controls;
 using Microsoft.Templates.UI.ViewModels.Common;
 using System.IO;
 using System.Xml.Linq;
+using Microsoft.TemplateEngine.Abstractions;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -163,7 +164,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
             var projectConfiguration = GenController.ReadProjectConfiguration();
             ConfigProjectType = projectConfiguration.ProjectType;
-            ConfigFramework = projectConfiguration.Framework;            
+            ConfigFramework = projectConfiguration.Framework;
 
 
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += Sync_SyncStatusChanged;
@@ -191,7 +192,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 LoadedContentVisibility = Visibility.Visible;
             }
         }
-        
+
         public void UnsuscribeEventHandlers()
         {
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged -= Sync_SyncStatusChanged;
@@ -293,7 +294,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             UpdateUserSelection();
             await GenController.GenerateNewItemAsync(MainView.Result);
             NavigationService.Navigate(new NewItemChangesSummaryView());
-            
+
             _canGoBack = true;
             BackCommand.OnCanExecuteChanged();
 
@@ -313,14 +314,18 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             if (activeGroup != null)
             {
                 var template = activeGroup.SelectedItem as TemplateInfoViewModel;
-                if (ConfigTemplateType == TemplateType.Page)
+                var dependencies = GenComposer.GetAllDependencies(template.Template, ConfigFramework);
+
+                MainView.Result.Pages.Clear();
+                MainView.Result.Features.Clear();
+
+                AddTemplate(NewItemSetup.ItemName, template.Template, ConfigTemplateType);
+
+                foreach (var dependencyTemplate in dependencies)
                 {
-                    MainView.Result.Pages.Add((NewItemSetup.ItemName, template.Template));
+                    AddTemplate(dependencyTemplate.GetDefaultName(), dependencyTemplate, dependencyTemplate.GetTemplateType());
                 }
-                if (ConfigTemplateType == TemplateType.Feature)
-                {
-                    MainView.Result.Features.Add((NewItemSetup.ItemName, template.Template));
-                }
+
                 if (String.IsNullOrEmpty(LastSelectedTemplateIdentity))
                 {
                     LastSelectedTemplateIdentity = template.Identity;
@@ -328,7 +333,19 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 else if (LastSelectedTemplateIdentity != template.Identity)
                 {
                     GenController.CleanupTempGeneration();
+                    LastSelectedTemplateIdentity = template.Identity;
                 }
+            }
+        }
+        private void AddTemplate(string name, ITemplateInfo template, TemplateType templateType)
+        {
+            if (templateType == TemplateType.Page)
+            {
+                MainView.Result.Pages.Add((name, template));
+            }
+            else if (templateType == TemplateType.Feature)
+            {
+                MainView.Result.Features.Add((name, template));
             }
         }
 
@@ -340,13 +357,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
             FinishButtonVisibility = Visibility.Collapsed;
             NextButtonVisibility = Visibility.Visible;
-        }        
+        }
 
         private void OnFinish()
         {
-            MainView.DialogResult = true;            
+            MainView.DialogResult = true;
             MainView.Close();
-        }        
+        }
 
         //private void SyncLicenses(IEnumerable<TemplateLicense> licenses)
         //{
