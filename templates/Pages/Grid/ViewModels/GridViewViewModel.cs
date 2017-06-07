@@ -1,42 +1,18 @@
-using System;
 using System.Collections.ObjectModel;
+using Param_ItemNamespace.Models;
+using Param_ItemNamespace.Services;
 
 namespace Param_ItemNamespace.ViewModels
 {
     public class GridViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        public ObservableCollection<Student> Source
+        public ObservableCollection<Order> Source
         {
             get
             {
-                // TODO UWPTemplates: Get your actual data to display in the grid
-                // The following random data is for demonstration purposes only
-                var collection = new ObservableCollection<Student>();
-                var rand = new Random();
-                var surnames = new[] { "Thomas", "Andrews", "Lacey", "Patel", "Smith", "Jones", "Gates", "Campbell", "Williams", "Kadavy", "Franklin", "Gu", "Simpson", "Cooper" };
-                var subjects = new[] { "English", "Maths", "Comp. Sci." };
-
-                for (int i = 0; i < 10; i++)
-                {
-                    collection.Add(new Student
-                    {
-                        Name = $"{(char)rand.Next(65, 91)}. {surnames[rand.Next(0, surnames.Length)]}",
-                        Age = rand.Next(10, 22),
-                        Subject = subjects[rand.Next(0, subjects.Length)],
-                        TestScrore = rand.Next(0, 100)
-                    });
-                }
-
-                return collection;
+                // TODO UWPTemplates: Replace this with your actual data
+                return SampleDataService.GetGridSampleData();
             }
-        }
-
-        public class Student
-        {
-            public string Name { get; set; }
-            public double Age { get; set; }
-            public string Subject { get; set; }
-            public int TestScrore { get; set; }
         }
     }
 }
