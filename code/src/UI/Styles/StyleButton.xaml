@@ -155,8 +155,8 @@
         <Setter Property="Content">
             <Setter.Value>
                 <Grid>
-                    <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource RoundButtonTextStyle}"/>
-                    <TextBlock Text="{Binding ToggleButtonIcon}" FontSize="12" Style="{StaticResource RoundButtonTextStyle}" />
+                    <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource IconButtonTextStyle}"/>
+                    <TextBlock Text="{Binding ToggleButtonIcon}" FontSize="12" Style="{StaticResource IconButtonTextStyle}" />
                 </Grid>
             </Setter.Value>
         </Setter>
@@ -289,6 +289,41 @@
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="TopBarMenuStyle">
+        <Setter Property="Foreground" Value="{StaticResource UIWhite}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Width" Value="50" />
+    </Style>
+
+    <Style TargetType="Button" x:Key="ButtonRefreshTemplatesStyle">
+        <Setter Property="Margin" Value="{StaticResource MediumLeftRightMargin}" />
+        <Setter Property="Height" Value="35" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Foreground" Value="{StaticResource UIBlack}" />
+        <Setter Property="BorderBrush" Value="{StaticResource UIBlack}" />
+        <Setter Property="Background" Value="{StaticResource UIMiddleLightGray}" />
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="FocusVisualStyle">
+            <Setter.Value>
+                <Style>
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Grid>
+                                    <Grid.Background>
+                                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
+                                    </Grid.Background>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
             </Setter.Value>
         </Setter>
     </Style>

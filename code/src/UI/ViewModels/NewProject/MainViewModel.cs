@@ -28,6 +28,7 @@ using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Views.NewProject;
 using System.Windows.Controls;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.Extensions;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -38,9 +39,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private bool _templatesReady;
         private bool _hasValidationErrors;
         private bool _templatesAvailable;
+        private OverlayBox _overlayBox;
 
         public static MainViewModel Current;
-        public MainView MainView;
+        public MainView MainView;        
 
         private StatusViewModel _status = StatusControl.EmptyStatus;
 
@@ -69,6 +71,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             get => _title;
             set => SetProperty(ref _title, value);
+        }
+
+        private bool _newUpdateAvailable;
+        public bool NewUpdateAvailable
+        {
+            get => _newUpdateAvailable;
+            set => SetProperty(ref _newUpdateAvailable, value);
         }
 
         private Visibility _infoShapeVisibility = Visibility.Collapsed;
@@ -124,11 +133,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private RelayCommand _goBackCommand;
         private RelayCommand _nextCommand;
         private RelayCommand _createCommand;
+        private RelayCommand _showOverlayMenuCommand;
 
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
         public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && _canGoForward));
         public RelayCommand CreateCommand => _createCommand ?? (_createCommand = new RelayCommand(OnCreate, CanCreate));
+        public RelayCommand ShowOverlayMenuCommand => _showOverlayMenuCommand ?? (_showOverlayMenuCommand = new RelayCommand(OnShowOverlayMenu));
 
         private bool CanCreate()
         {
@@ -149,6 +160,18 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             return true;
         }
 
+        private void OnShowOverlayMenu()
+        {
+            if (_overlayBox.Opacity == 0)
+            {
+                _overlayBox.FadeIn();
+            }
+            else
+            {
+                _overlayBox.FadeOut();
+            }
+        }
+
         public ProjectSetupViewModel ProjectSetup { get; private set; } = new ProjectSetupViewModel();
 
         public ProjectTemplatesViewModel ProjectTemplates { get; private set; } = new ProjectTemplatesViewModel();
@@ -161,8 +184,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             Current = this;
         }
 
-        public async Task InitializeAsync()
+        public async Task InitializeAsync(OverlayBox overlayBox)
         {
+            _overlayBox = overlayBox;
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += Sync_SyncStatusChanged;
 
             SummaryLicenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryLicenses)); };

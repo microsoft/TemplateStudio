@@ -158,6 +158,23 @@
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
     
+    <!--OverlayBox-->
+    <Style TargetType="TextBlock" x:Key="TextOverlayBoxTitleStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="TextOverlayBoxDescriptionStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="FontSize" Value="{StaticResource UI_XS_FontSize}" />
+    </Style>
+    
+    <Style TargetType="TextBlock" x:Key="TextOverlayBoxNotificationStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
+        <Setter Property="Foreground" Value="{StaticResource UIDarkYellow}" />
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
+
     <!--Error-->
     <Style TargetType="TextBlock" x:Key="TextErrorTitleStyle" BasedOn="{StaticResource UIBaseText}">
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
@@ -165,7 +182,7 @@
     </Style>
 
     <!--Buttons-->
-    <Style TargetType="TextBlock" x:Key="RoundButtonTextStyle">
+    <Style TargetType="TextBlock" x:Key="IconButtonTextStyle">
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="TextAlignment" Value="Center" />

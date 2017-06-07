@@ -31,6 +31,7 @@ using Microsoft.Templates.UI.ViewModels.Common;
 using System.IO;
 using System.Xml.Linq;
 using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.UI.Extensions;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -40,6 +41,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private bool _canGoForward;
         private bool _hasValidationErrors;
         private bool _templatesAvailable;
+        private OverlayBox _overlayBox;
 
         public static MainViewModel Current;
         public MainView MainView;
@@ -75,6 +77,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             get => _title;
             set => SetProperty(ref _title, value);
+        }
+
+        private bool _newUpdateAvailable;
+        public bool NewUpdateAvailable
+        {
+            get => _newUpdateAvailable;
+            set => SetProperty(ref _newUpdateAvailable, value);
         }
 
         private Visibility _infoShapeVisibility = Visibility.Collapsed;
@@ -130,11 +139,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private RelayCommand _goBackCommand;
         private RelayCommand _nextCommand;
         private RelayCommand _finishCommand;
+        private RelayCommand _showOverlayMenuCommand;
 
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
         public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && !_hasValidationErrors && _canGoForward));
         public RelayCommand FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand(OnFinish, CanFinish));
+        public RelayCommand ShowOverlayMenuCommand => _showOverlayMenuCommand ?? (_showOverlayMenuCommand = new RelayCommand(OnShowOverlayMenu));
 
         private bool CanFinish()
         {
@@ -158,8 +169,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             Current = this;
         }
 
-        public async Task InitializeAsync(TemplateType templateType)
+        public async Task InitializeAsync(TemplateType templateType, OverlayBox overlayBox)
         {
+            _overlayBox = overlayBox;
             ConfigTemplateType = templateType;
 
             var projectConfiguration = GenController.ReadProjectConfiguration();
@@ -363,6 +375,18 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             MainView.DialogResult = true;
             MainView.Close();
+        }
+
+        private void OnShowOverlayMenu()
+        {
+            if (_overlayBox.Opacity == 0)
+            {
+                _overlayBox.FadeIn();
+            }
+            else
+            {
+                _overlayBox.FadeOut();
+            }
         }
 
         //private void SyncLicenses(IEnumerable<TemplateLicense> licenses)

@@ -26,6 +26,7 @@
         <ResourceDictionary>
 
             <converters:StringVisibilityConverter x:Key="StringVisibilityConverter"/>
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -42,6 +43,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <controls:LogoDisplay
                 Grid.Column="0"
@@ -54,6 +56,17 @@
                 VerticalAlignment="Center"
                 Style="{StaticResource TextTitleStyle}"
                 Text="{Binding Title}" />
+            <Grid Grid.Column="2" Background="{StaticResource UIDarkYellow}" Visibility="{Binding NewUpdateAvailable, Converter={StaticResource BoolToVisibilityConverter}}" />
+            <Grid Grid.Column="2" Visibility="{Binding NewUpdateAvailable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
+                <Grid.Background>
+                    <SolidColorBrush Color="{StaticResource UIWhiteColor}" Opacity="0.2"/>
+                </Grid.Background>
+            </Grid>
+            <Button Grid.Column="2" Style="{StaticResource TopBarMenuStyle}" Command="{Binding ShowOverlayMenuCommand}">
+                <Button.Content>
+                    <TextBlock Text="&#xE10C;" Style="{StaticResource IconButtonTextStyle}" Foreground="{StaticResource UIWhite}" FontSize="28" FontWeight="Bold" Margin="{StaticResource MediumMargin}"/>
+                </Button.Content>
+            </Button>
         </Grid>
         <Grid Grid.Row="1">
             <Grid Visibility="{Binding LoadingContentVisibility}">
@@ -65,9 +78,16 @@
             <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False"/>
             <controls:StatusControl
                     VerticalAlignment="Bottom"
-                    Status="{Binding Status}"
-                    TemplatesVersion="{Binding TemplatesVersion}"
-                    WizardVersion="{Binding WizardVersion}" />
+                    Status="{Binding Status}" />
+            <controls:OverlayBox
+                x:Name="overlayBox"
+                Opacity="0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="0,0,12,0"
+                NewUpdateAvailable="{Binding NewUpdateAvailable}"
+                WizardVersion="{Binding WizardVersion}"
+                TemplatesVersion="{Binding TemplatesVersion}" />
         </Grid>
         <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
             <Grid>

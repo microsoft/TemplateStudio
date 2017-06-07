@@ -124,6 +124,24 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh templates.
+        /// </summary>
+        public static string ButtonRefreshTemplates {
+            get {
+                return ResourceManager.GetString("ButtonRefreshTemplates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check for new templates.
+        /// </summary>
+        public static string CheckForUpdates {
+            get {
+                return ResourceManager.GetString("CheckForUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter a name.
         /// </summary>
         public static string EditTemplateDescription {
@@ -412,6 +430,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is new content available..
+        /// </summary>
+        public static string NewUpdateAvailable {
+            get {
+                return ResourceManager.GetString("NewUpdateAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No content available.
         /// </summary>
         public static string NoContentText {
@@ -426,6 +453,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string NoData {
             get {
                 return ResourceManager.GetString("NoData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Privacy termns.
+        /// </summary>
+        public static string PrivacyTermns {
+            get {
+                return ResourceManager.GetString("PrivacyTermns", resourceCulture);
             }
         }
         
@@ -880,11 +916,29 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Visit project web site.
+        /// </summary>
+        public static string VisitProjectWebSite {
+            get {
+                return ResourceManager.GetString("VisitProjectWebSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wizard version:.
         /// </summary>
         public static string WizardVersion {
             get {
                 return ResourceManager.GetString("WizardVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt..
+        /// </summary>
+        public static string WTSDescription {
+            get {
+                return ResourceManager.GetString("WTSDescription", resourceCulture);
             }
         }
     }

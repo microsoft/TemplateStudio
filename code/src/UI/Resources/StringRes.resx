@@ -394,4 +394,22 @@
   <data name="ButtonFinish" xml:space="preserve">
     <value>Finish</value>
   </data>
+  <data name="WTSDescription" xml:space="preserve">
+    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</value>
+  </data>
+  <data name="ButtonRefreshTemplates" xml:space="preserve">
+    <value>Refresh templates</value>
+  </data>
+  <data name="NewUpdateAvailable" xml:space="preserve">
+    <value>There is new content available.</value>
+  </data>
+  <data name="CheckForUpdates" xml:space="preserve">
+    <value>Check for new templates</value>
+  </data>
+  <data name="PrivacyTermns" xml:space="preserve">
+    <value>Privacy termns</value>
+  </data>
+  <data name="VisitProjectWebSite" xml:space="preserve">
+    <value>Visit project web site</value>
+  </data>
 </root>

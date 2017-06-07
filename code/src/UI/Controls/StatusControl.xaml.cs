@@ -33,32 +33,11 @@ namespace Microsoft.Templates.UI.Controls
         }
         public static readonly DependencyProperty StatusProperty = DependencyProperty.Register("Status", typeof(StatusViewModel), typeof(StatusControl), new PropertyMetadata(new StatusViewModel(StatusType.Empty, String.Empty), OnStatusPropertyChanged));
 
-        public string WizardVersion
-        {
-            get => (string)GetValue(WizardVersionProperty);
-            set => SetValue(WizardVersionProperty, value);
-        }
-        public static readonly DependencyProperty WizardVersionProperty = DependencyProperty.Register("WizardVersion", typeof(string), typeof(StatusControl), new PropertyMetadata(String.Empty, OnVersionInfoChanged));        
-
-        public string TemplatesVersion
-        {
-            get => (string)GetValue(TemplatesVersionProperty);
-            set => SetValue(TemplatesVersionProperty, value);
-        }
-        public static readonly DependencyProperty TemplatesVersionProperty = DependencyProperty.Register("TemplatesVersion", typeof(string), typeof(StatusControl), new PropertyMetadata(String.Empty, OnVersionInfoChanged));
-
         private static void OnStatusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as StatusControl;
 
             control.UpdateStatus(e.NewValue as StatusViewModel);
-        }
-
-        private static void OnVersionInfoChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var control = d as StatusControl;
-
-            control.UpdateVersionInfo();
         }
 
         public StatusControl()
@@ -82,8 +61,6 @@ namespace Microsoft.Templates.UI.Controls
 
         private void UpdateStatus(StatusViewModel status)
         {
-            versionInfoPane.Visibility = Visibility.Collapsed;
-
             switch (status.Status)
             {
                 case StatusType.Information:
@@ -104,7 +81,7 @@ namespace Microsoft.Templates.UI.Controls
                     txtStatus.Text = status.Message;
                     txtIcon.Text = ConvertToChar(SymbolFonts.StatusErrorFull);
                     txtIcon.Foreground = FindResource("UIDarkRed") as SolidColorBrush;
-                    //Color red = (Color)FindResource("UIRedColor");                    
+                    //Color red = (Color)FindResource("UIRedColor");
                     //var brush = new LinearGradientBrush(red, Colors.Transparent, 0);
                     var brush = FindResource("UIRed") as SolidColorBrush;
                     brush.Opacity = 0.4;
@@ -119,7 +96,6 @@ namespace Microsoft.Templates.UI.Controls
                     Background = new SolidColorBrush(Colors.Transparent);
                     break;
             }
-            UpdateVersionInfo();
             if (status.AutoHide == true)
             {
                 _hideTimer.Start();
@@ -134,9 +110,5 @@ namespace Microsoft.Templates.UI.Controls
         {
             return Char.ConvertFromUtf32((int)font);
         }
-
-        private void UpdateVersionInfo() => versionInfoPane.Visibility = HasVersionInfo() && (Status.Status == StatusType.Empty) ? Visibility.Visible : Visibility.Collapsed;
-
-        private bool HasVersionInfo() => !String.IsNullOrEmpty(WizardVersion) && !String.IsNullOrEmpty(TemplatesVersion);
     }
 }
