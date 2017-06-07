@@ -275,6 +275,41 @@ namespace Microsoft.Templates.UI
             return false;
         }
 
+        public static CompareResult ShowLastActionResult()
+        {
+            //var newItem = new Views.NewItem.NewItemView();
+            var undoLastAction = new Views.NewItem.UndoLastActionView();
+
+            try
+            {
+                CleanStatusBar();
+
+                GenContext.ToolBox.Shell.ShowModal(undoLastAction);
+                if (undoLastAction.Result != null)
+                {
+                    //TODO: Review when right-click-actions available to track Project or Page completed.
+                    //AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewItem).FireAndForget();
+
+                    return undoLastAction.Result;
+                }
+                else
+                {
+                    //TODO: Review when right-click-actions available to track Project or Page cancelled.
+                    //AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewItem).FireAndForget();
+                }
+
+            }
+            catch (Exception ex) when (!(ex is WizardBackoutException))
+            {
+                undoLastAction.SafeClose();
+                ShowError(ex);
+            }
+
+            GenContext.ToolBox.Shell.CancelWizard();
+
+            return null;
+        }
+
         public static CompareResult CompareOutputAndProject()
         {
             var result = new CompareResult();
@@ -377,6 +412,59 @@ namespace Microsoft.Templates.UI
                     Directory.CreateDirectory(destDirectory);
                 }
                 File.Copy(originalFile, backupFile, true);
+            }
+        }
+
+        public static CompareResult GetLastActionInfo()
+        {
+            var projectGuid = GenContext.ToolBox.Shell.GetActiveProjectGuid();
+
+            if (string.IsNullOrEmpty(projectGuid))
+            {
+                //TODO: Handle this 
+                return null;
+            }
+
+            var backupFolder = Path.Combine(
+               Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
+               Configuration.Current.BackupFolderName,
+               projectGuid);
+
+            var fileName = Path.Combine(backupFolder, "backup.json");
+
+            if (!Directory.Exists(backupFolder))
+            {
+                //TODO: Handle this
+            }
+
+            return JsonConvert.DeserializeObject<CompareResult>(File.ReadAllText(fileName));
+
+        }
+
+        public static void UndoLastAction(CompareResult result)
+        {
+            var projectGuid = GenContext.ToolBox.Shell.GetActiveProjectGuid();
+
+            var backupFolder = Path.Combine(
+               Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
+               Configuration.Current.BackupFolderName,
+               projectGuid);
+
+            var modifiedFiles = result.ConflictingFiles.Concat(result.ModifiedFiles);
+
+            foreach (var file in modifiedFiles)
+            {
+                var originalFile = Path.Combine(GenContext.Current.ProjectPath, file);
+                var backupFile = Path.Combine(backupFolder, file);
+               
+                File.Copy(backupFile, originalFile, true);
+            }
+
+            foreach (var file in result.NewFiles)
+            {
+                var projectFile = Path.Combine(GenContext.Current.ProjectPath, file);
+                File.Delete(projectFile);
+                //TODO:Remove file from project
             }
         }
 
