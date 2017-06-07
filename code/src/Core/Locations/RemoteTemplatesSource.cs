@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Core.Locations
         private readonly string CdnUrl = Configuration.Current.CdnUrl;
         private const string TemplatesPackageFileName = "Templates.mstx";
 
-        protected override string ObtainMstx()
+        protected override string AcquireMstx()
         {
             var tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 

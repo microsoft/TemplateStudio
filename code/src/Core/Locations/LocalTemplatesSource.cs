@@ -22,9 +22,8 @@ namespace Microsoft.Templates.Core.Locations
         public string LocalTemplatesVersion { get; private set; }
         public string LocalWizardVersion { get; private set; }
 
-        public override string Id { get => "Local"; }
-
-        public string Origin { get => $@"..\..\..\..\..\{SourceFolderName}"; }
+        protected override bool VerifyPackageSignatures => false;
+        public string Origin => $@"..\..\..\..\..\{SourceFolderName}"; 
 
         public LocalTemplatesSource() : this("0.0.0.0", "0.0.0.0")
         {
@@ -36,11 +35,8 @@ namespace Microsoft.Templates.Core.Locations
             LocalWizardVersion = wizardVersion;
         }
 
-        protected override string ObtainMstx()
+        protected override string AcquireMstx()
         {
-            var certPass = GetTestCertPassword();
-            X509Certificate2 cert = Templatex.LoadCert(@"C:\code\WindowsTemplateStudio\code\TestCert.pfx", certPass);
-
             //Compress Content adding version return templatex path.
             var tempFolder = Path.Combine(GetTempFolder(), SourceFolderName);
             
@@ -48,25 +44,13 @@ namespace Microsoft.Templates.Core.Locations
 
             File.WriteAllText(Path.Combine(tempFolder, "version.txt"), LocalTemplatesVersion);
 
-            return Templatex.PackAndSign(tempFolder, cert);
+            return Templatex.Pack(tempFolder);
         }
 
         protected static void Copy(string sourceFolder, string targetFolder)
         {
             Fs.SafeDeleteDirectory(targetFolder);
             Fs.CopyRecursive(sourceFolder, targetFolder);
-        }
-
-
-        private static SecureString GetTestCertPassword()
-        {
-            var ss = new SecureString();
-            foreach (var c in "pass@word1")
-            {
-                ss.AppendChar(c);
-            }
-
-            return ss;
         }
     }
 }

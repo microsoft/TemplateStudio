@@ -25,17 +25,17 @@ namespace Microsoft.Templates.Core.Locations
         private const string VersionFileName = "version.txt";
 
         private List<string> _tempFoldersUsed = new List<string>();
-
+        protected virtual bool VerifyPackageSignatures { get => true; }
         public virtual string Id { get => Configuration.Current.Environment; }
-
+        
         public void Acquire(string targetFolder)
         {
-            string mstxFilePath = ObtainMstx();
+            string mstxFilePath = AcquireMstx();
 
-            Acquire(mstxFilePath, targetFolder);
+            Extract(mstxFilePath, targetFolder);
         }
 
-        public void Acquire(string mstxFilePath, string targetFolder)
+        public void Extract(string mstxFilePath, string targetFolder)
         {
             string extractedContent = ExtractMstx(mstxFilePath);
 
@@ -44,14 +44,14 @@ namespace Microsoft.Templates.Core.Locations
             CleanUpTemps();
         }
 
-        protected abstract string ObtainMstx();
+        protected abstract string AcquireMstx();
 
         public string ExtractMstx(string mstxFilePath)
         {
-            var tempFolder = GetTempFolder();
-
             if (File.Exists(mstxFilePath))
             {
+                var tempFolder = GetTempFolder();
+
                 ExtractContent(mstxFilePath, tempFolder);
                 return Path.Combine(tempFolder, SourceFolderName);
             }
@@ -61,19 +61,17 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private void ExtractContent(string file, string tempFolder)
+        protected void ExtractContent(string file, string tempFolder)
         {
             try
             {
-                Templatex.Extract(file, tempFolder);
+                Templatex.Extract(file, tempFolder, VerifyPackageSignatures);
                 AppHealth.Current.Verbose.TrackAsync($"Templates content extracted to {tempFolder}.").FireAndForget();
             }
             catch (Exception ex)
             {
                 var msg = "The templates content can't be extracted.";
-
                 AppHealth.Current.Exception.TrackAsync(ex, msg).FireAndForget();
-
                 throw;
             }
         }
@@ -83,15 +81,27 @@ namespace Microsoft.Templates.Core.Locations
             string verFile = Path.Combine(sourcePath, VersionFileName);
             Version ver = GetVersionFromFile(verFile);
 
-            Fs.EnsureFolder(finalTargetFolder);
-
-            var finalDestination = Path.Combine(finalTargetFolder, ver.ToString());
+            string finalDestination = PrepareFinalDestination(finalTargetFolder, ver);
 
             if (!Directory.Exists(finalDestination))
             {
                 Fs.SafeDeleteFile(verFile);
                 Fs.SafeMoveDirectory(sourcePath, finalDestination);
             }
+        }
+
+        private static string PrepareFinalDestination(string finalTargetFolder, Version ver)
+        {
+            Fs.EnsureFolder(finalTargetFolder);
+
+            var finalDestination = Path.Combine(finalTargetFolder, ver.ToString());
+
+            if (ver.IsNullOrZero() && Directory.Exists(finalDestination)) 
+            {
+                Fs.SafeDeleteDirectory(finalDestination);
+            }
+
+            return finalDestination;
         }
 
         private static Version GetVersionFromFile(string versionFilePath)
@@ -120,9 +130,15 @@ namespace Microsoft.Templates.Core.Locations
 
         private void CleanUpTemps()
         {
-            foreach(string tempFolder in _tempFoldersUsed)
+            List<string> removedFolders = new List<string>();
+            foreach (string tempFolder in _tempFoldersUsed)
             {
                 Fs.SafeDeleteDirectory(tempFolder);
+                removedFolders.Add(tempFolder);
+            }
+            foreach(string folder in removedFolders)
+            {
+                _tempFoldersUsed.Remove(folder);
             }
         }
     }

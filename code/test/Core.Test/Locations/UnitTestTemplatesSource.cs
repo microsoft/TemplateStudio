@@ -23,13 +23,11 @@ namespace Microsoft.Templates.Core.Test.Locations
     {
         private string LocalVersion = "0.0.0.0";
 
-        public override string Id { get => "UnitTest"; }
+        public override string Id => "UnitTest"; 
+        protected override bool VerifyPackageSignatures => false;
 
-        protected override string ObtainMstx()
+        protected override string AcquireMstx()
         {
-            var certPass = GetTestCertPassword();
-            X509Certificate2 cert = Templatex.LoadCert(@"C:\code\WindowsTemplateStudio\code\TestCert.pfx", certPass);
-
             var tempFolder = Path.Combine(GetTempFolder(), SourceFolderName);
 
             var sourcePath = $@"..\..\TestData\{SourceFolderName}";
@@ -38,24 +36,13 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             File.WriteAllText(Path.Combine(tempFolder, "version.txt"), LocalVersion);
 
-            return Templatex.PackAndSign(tempFolder, cert);
+            return Templatex.Pack(tempFolder);
         }
 
         protected static void Copy(string sourceFolder, string targetFolder)
         {
             Fs.SafeDeleteDirectory(targetFolder);
             Fs.CopyRecursive(sourceFolder, targetFolder);
-        }
-
-        private static SecureString GetTestCertPassword()
-        {
-            var ss = new SecureString();
-            foreach (var c in "pass@word1")
-            {
-                ss.AppendChar(c);
-            }
-
-            return ss;
         }
     }
 }
