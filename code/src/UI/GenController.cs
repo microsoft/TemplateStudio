@@ -28,7 +28,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using System.Xml.Linq;
-
+using Newtonsoft.Json;
 
 namespace Microsoft.Templates.UI
 {
@@ -288,7 +288,7 @@ namespace Microsoft.Templates.UI
                 var destFilePath = file.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
                 if (!File.Exists(destFilePath))
                 {
-                    result.NewFiles.Add(file.Replace(GenContext.Current.OutputPath, String.Empty));
+                    result.NewFiles.Add(file.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, String.Empty));
                 }
                 else
                 {
@@ -296,14 +296,14 @@ namespace Microsoft.Templates.UI
                     {
                         if (!FilesAreEqual(file, destFilePath))
                         {
-                            result.ModifiedFiles.Add(destFilePath.Replace(GenContext.Current.ProjectPath, String.Empty));
+                            result.ModifiedFiles.Add(destFilePath.Replace(GenContext.Current.ProjectPath + Path.DirectorySeparatorChar, String.Empty));
                         }
                     }
                     else
                     {
                         if (!FilesAreEqual(file, destFilePath))
                         {
-                            result.ConflictingFiles.Add(destFilePath.Replace(GenContext.Current.ProjectPath, String.Empty));
+                            result.ConflictingFiles.Add(destFilePath.Replace(GenContext.Current.ProjectPath + Path.DirectorySeparatorChar, String.Empty));
                         }
                     }
                 }
@@ -317,37 +317,91 @@ namespace Microsoft.Templates.UI
             try
             {
                 UnsafeSyncNewItem();
-                CleanupTempGeneration();
             }
             catch (Exception ex)
             {
-
                 ShowError(ex, userSelection);
-
                 GenContext.ToolBox.Shell.CancelWizard(false);
             }
         }
 
         public static void UnsafeSyncNewItem()
         {
-            var files = Directory
-                .EnumerateFiles(GenContext.Current.OutputPath, "*", SearchOption.AllDirectories)
-                .Where(f => !Regex.IsMatch(f, MergePostAction.PostactionRegex))
-                .ToList();
+            var result = CompareOutputAndProject();
+            BackupProjectFiles(result);
+            CopyFilesToProject(result);
 
-            foreach (var file in files)
+            ExecuteFinishItemGenerationPostActions();
+            CleanupTempGeneration();
+
+        }
+
+        private static void BackupProjectFiles(CompareResult result)
+        {
+            var projectGuid = GenContext.ToolBox.Shell.GetActiveProjectGuid();
+
+            if (string.IsNullOrEmpty(projectGuid))
             {
-                var destFileName = file.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
+                //TODO: Handle this 
+                return;
+            }
+
+            var backupFolder = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
+                Configuration.Current.BackupFolderName,
+                projectGuid);
+
+            var fileName = Path.Combine(backupFolder, "backup.json");
+
+            if (!Directory.Exists(backupFolder))
+            {
+                Directory.CreateDirectory(backupFolder);
+            }
+            else
+            {
+                Directory.Delete(backupFolder, true);
+                Directory.CreateDirectory(backupFolder);
+            }
+
+            File.WriteAllText(fileName, JsonConvert.SerializeObject(result));
+
+            var modifiedFiles = result.ConflictingFiles.Concat(result.ModifiedFiles);
+
+            foreach (var file in modifiedFiles)
+            {
+                var originalFile = Path.Combine(GenContext.Current.ProjectPath, file);
+                var backupFile = Path.Combine(backupFolder, file);
+                var destDirectory = Path.GetDirectoryName(backupFile);
+                if (!Directory.Exists(destDirectory))
+                {
+                    Directory.CreateDirectory(destDirectory);
+                }
+                File.Copy(originalFile, backupFile, true);
+            }
+        }
+
+        private static void CopyFilesToProject(CompareResult result)
+        {
+            var modifiedFiles = result.ConflictingFiles.Concat(result.ModifiedFiles);
+
+            foreach (var file in modifiedFiles)
+            {
+                var sourceFile = Path.Combine(GenContext.Current.OutputPath, file);
+                var destFileName = Path.Combine(GenContext.Current.ProjectPath, file);
+                File.Copy(sourceFile, destFileName, true);
+            }
+
+            foreach (var file in result.NewFiles)
+            {
+                var sourceFile = Path.Combine(GenContext.Current.OutputPath, file);
+                var destFileName = Path.Combine(GenContext.Current.ProjectPath, file);
                 var destDirectory = Path.GetDirectoryName(destFileName);
                 if (!Directory.Exists(destDirectory))
                 {
                     Directory.CreateDirectory(destDirectory);
                 }
-                File.Copy(file, destFileName, true);
+                File.Copy(sourceFile, destFileName, true);
             }
-
-            ExecuteFinishItemGenerationPostActions();
-
         }
 
         public static void CleanupTempGeneration()
