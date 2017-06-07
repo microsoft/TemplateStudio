@@ -96,6 +96,19 @@ namespace Microsoft.Templates.Test.Artifacts
             _changeStatus?.Invoke(message);
         }
 
+        public override string GetActiveProjectGuid()
+        {
+            var projectFileName = FindProject(GenContext.Current.ProjectPath);
+
+            if (string.IsNullOrEmpty(projectFileName))
+            {
+                throw new Exception($"There is not project file in {GenContext.Current.ProjectPath}");
+            }
+
+            var msbuildProj = MsBuildProject.Load(projectFileName);
+            return msbuildProj.Guid;
+        }
+
         protected override string GetActiveProjectName()
         {
             return GenContext.Current.ProjectName;
@@ -105,6 +118,8 @@ namespace Microsoft.Templates.Test.Artifacts
         {
             return string.Empty;
         }
+
+        
 
         protected override string GetSelectedItemPath()
         {

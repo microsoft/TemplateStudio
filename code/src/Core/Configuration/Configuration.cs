@@ -31,6 +31,7 @@ namespace Microsoft.Templates.Core
         public string RemoteTelemetryKey { get; set; } = "<SET_YOUR_OWN_KEY>"; 
         public string LogFileFolderPath { get; set; } = @"WindowsTemplateStudio\Logs";
         public string RepositoryFolderName { get; set; } = @"WindowsTemplateStudio";
+        public string BackupFolderName { get; set; } = @"WindowsTemplateStudio\Backups";
         public TraceEventType DiagnosticsTraceLevel { get; set; } = TraceEventType.Verbose;
         public int DaysToKeepDiagnosticsLogs { get; set; } = 5;
         public int VersionCheckingExpirationMinutes { get; set; } = 0;

@@ -60,6 +60,18 @@ namespace Microsoft.Templates.VsEmulator.Main
         public RelayCommand ConfigureVersionsCommand => new RelayCommand(ConfigureVersions);
         public RelayCommand AddNewFeatureCommand => new RelayCommand(AddNewFeature);
 
+        public RelayCommand AddNewPageCommand => new RelayCommand(AddNewPage);
+        public RelayCommand UndoLastActionCommand => new RelayCommand(UndoLastAction);
+
+        private void UndoLastAction()
+        {
+            ConfigureGenContext();
+            //TODO: Call this from Views
+            var result = GenController.ShowLastActionResult();
+            GenController.UndoLastAction(result);
+            
+        }
+
         private string _state;
         public string State
         {
@@ -194,6 +206,33 @@ namespace Microsoft.Templates.VsEmulator.Main
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
             }
 
+        }
+
+        private void AddNewPage()
+        {
+            ConfigureGenContext();
+            OutputPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            ProjectItems.Clear();
+            GenerationWarnings.Clear();
+            MergeFilesFromProject.Clear();
+            try
+            {
+                var userSelection = GenController.GetUserSelectionNewItem(TemplateType.Page);
+
+                if (userSelection != null)
+                {
+                    GenController.SyncNewItem(userSelection);
+                    GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
+                }
+            }
+            catch (WizardBackoutException)
+            {
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
+            }
+            catch (WizardCancelledException)
+            {
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
+            }
         }
 
         private void LoadProject()

@@ -202,6 +202,7 @@
     <Compile Include="TemplateSelectors\SummaryItemTemplateSelector.cs" />
     <Compile Include="ViewModels\NewItem\MainViewModel.cs" />
     <Compile Include="ViewModels\NewItem\NewItemSetupViewModel.cs" />
+    <Compile Include="ViewModels\NewItem\UndoLastActionViewModel.cs" />
     <Compile Include="ViewModels\NewItem\TemplateInfoViewModel.cs" />
     <Compile Include="ViewModels\Common\CommonInfoViewModel.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
@@ -242,6 +243,9 @@
     </Compile>
     <Compile Include="Views\NewItem\NewItemSetupView.xaml.cs">
       <DependentUpon>NewItemSetupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewItem\UndoLastActionView.xaml.cs">
+      <DependentUpon>UndoLastActionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewProject\InformationWindow.xaml.cs">
       <DependentUpon>InformationWindow.xaml</DependentUpon>
@@ -404,6 +408,10 @@
     <Page Include="Views\NewItem\NewItemSetupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewItem\UndoLastActionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\NewProject\InformationWindow.xaml">
       <SubType>Designer</SubType>

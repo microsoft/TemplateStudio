@@ -27,6 +27,7 @@ using Microsoft.VisualStudio.TemplateWizard;
 
 using NuGet.VisualStudio;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.VisualStudio;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -37,6 +38,9 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private Lazy<IVsUIShell> _uiShell = new Lazy<IVsUIShell>(() => ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell)) as IVsUIShell, true);
         private IVsUIShell UIShell => _uiShell.Value;
+
+        private Lazy<IVsSolution> _vssolution = new Lazy<IVsSolution>(() => ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution, true);
+        private IVsSolution VSSolution => _vssolution.Value;
 
         private Lazy<VsOutputPane> _outputPane = new Lazy<VsOutputPane>(() => new VsOutputPane());
         private VsOutputPane OutputPane => _outputPane.Value;
@@ -199,6 +203,27 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 throw new WizardCancelledException();
             }
+        }
+
+        public override string GetActiveProjectGuid()
+        {
+            var p = GetActiveProject();
+
+            if (p != null)
+            {
+                VSSolution.GetProjectOfUniqueName(p.FullName, out IVsHierarchy hierarchy);
+                if (hierarchy != null)
+                {
+                    hierarchy.GetGuidProperty(VSConstants.VSITEMID_ROOT, (int)__VSHPROPID.VSHPROPID_ProjectIDGuid, out Guid projectGuid);
+
+                    if (projectGuid != null)
+                    {
+                        return projectGuid.ToString();
+                    }
+                }
+            }
+
+            return String.Empty;
         }
 
         protected override string GetSelectedItemPath()
