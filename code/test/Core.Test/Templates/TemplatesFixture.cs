@@ -27,10 +27,6 @@ namespace Microsoft.Templates.Core.Test
         {
             var source = new UnitTestsTemplatesSource();
 
-            //CodeGen.Initialize(source.Id, "0.0");
-
-            //Repository = new TemplatesRepository(source, Version.Parse("0.0.0.0"));
-
             GenContext.Bootstrap(source, new FakeGenShell());
 
             GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
