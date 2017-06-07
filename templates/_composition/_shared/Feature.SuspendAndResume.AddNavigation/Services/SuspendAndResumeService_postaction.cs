@@ -7,7 +7,7 @@ namespace Param_ItemNamespace.Services
         private async Task RestoreStateAsync()
         {
             //^^
-            if (typeof(Page).IsAssignableFrom(saveState?.Target))
+            if (saveState?.Target != null && typeof(Page).IsAssignableFrom(saveState.Target))
             {
                 NavigationService.Navigate(saveState.Target, saveState.SuspensionState);
             }

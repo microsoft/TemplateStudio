@@ -6,8 +6,11 @@ namespace Param_ItemNamespace.Services
         private async Task RestoreStateAsync()
         {
             //^^
-            var navigationService = ServiceLocator.Current.GetInstance<NavigationServiceEx>();
-            navigationService.Navigate(saveState.Target.FullName, saveState.SuspensionState);
+            if (saveState?.Target != null)
+            {
+                var navigationService = ServiceLocator.Current.GetInstance<NavigationServiceEx>();
+                navigationService.Navigate(saveState.Target.FullName, saveState.SuspensionState);
+            }
         }
     }
 }
