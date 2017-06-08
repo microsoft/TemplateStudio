@@ -40,8 +40,7 @@ namespace Param_ItemNamespace.ViewModels
             _currentState = currentState;
             SampleItems.Clear();
 
-            var service = new SampleModelService();
-            var data = await service.GetDataAsync();
+            var data = await SampleDataService.GetSampleModelDataAsync();
 
             foreach (var item in data)
             {

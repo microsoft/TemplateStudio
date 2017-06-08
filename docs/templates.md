@@ -109,7 +109,8 @@ The replacements are done based on the configuration established in the `templat
     "wts.type": "page",
     "wts.framework": "MVVMBasic|MVVMLight",       //Frameworks where this template can be used.
     "wts.version": "1.0.0",
-    "wts.order": "1"
+    "wts.order": "1",
+    "wts.isHidden": "false"                       //If set to 'true' then not shown in the wizard. Used for dependencies that can't be selected on their own.
   },
   "sourceName": "BlankView",                      //The generation engine will replace any occurrence of "BlankView" by the parameter provided in the source file name.
   "preferNameDirectory": true,
