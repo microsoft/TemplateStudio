@@ -34,6 +34,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public string ConfigFramework;
         public string ConfigProjectType;
         public string LastSelectedTemplateIdentity;
+
         public NewItemSetupViewModel NewItemSetup { get; private set; } = new NewItemSetupViewModel();        
 
         public MainViewModel(MainView mainView) : base(mainView)
@@ -45,7 +46,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public async Task InitializeAsync(TemplateType templateType, OverlayBox overlayBox)
         {
             ConfigTemplateType = templateType;
-            var projectConfiguration = GenController.ReadProjectConfiguration();
+            var projectConfiguration = NewItemGenController.Instance.ReadProjectConfiguration();
             ConfigProjectType = projectConfiguration.ProjectType;
             ConfigFramework = projectConfiguration.Framework;
             Title = String.Format(StringRes.NewItemTitle_SF, ConfigTemplateType.ToString().ToLower());
@@ -62,7 +63,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             base.OnNext();
             MainView.Result = CreateUserSelection();
-            await GenController.GenerateNewItemAsync(MainView.Result);
+            await NewItemGenController.Instance.GenerateNewItemAsync(MainView.Result);
             NavigationService.Navigate(new NewItemChangesSummaryView());
         }        
         protected override void OnTemplatesAvailable() => NewItemSetup.Initialize();
@@ -96,7 +97,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 }
                 else if (LastSelectedTemplateIdentity != template.Identity)
                 {
-                    GenController.CleanupTempGeneration();
+                    NewItemGenController.Instance.CleanupTempGeneration();
                     LastSelectedTemplateIdentity = template.Identity;
                 }
             }

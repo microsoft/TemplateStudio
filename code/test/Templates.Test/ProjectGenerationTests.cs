@@ -50,6 +50,7 @@ namespace Microsoft.Templates.Test
             _fixture = fixture;
             GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
             GenContext.Current = this;
+
         }
 
 
@@ -65,7 +66,7 @@ namespace Microsoft.Templates.Test
 
             var userSelection = GenerationFixture.SetupProject(projectType, framework);
 
-            await GenController.UnsafeGenerateProjectAsync(userSelection);
+            await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
             //Build solution
             var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
@@ -106,7 +107,7 @@ namespace Microsoft.Templates.Test
 
             GenerationFixture.AddItem(userSelection, itemTemplate, GenerationFixture.GetDefaultName);
 
-            await GenController.UnsafeGenerateProjectAsync(userSelection);
+            await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
             //Build solution
             var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
@@ -134,7 +135,7 @@ namespace Microsoft.Templates.Test
 
             GenerationFixture.AddItems(userSelection, GenerationFixture.GetTemplates(framework), GenerationFixture.GetDefaultName);
 
-            await GenController.UnsafeGenerateProjectAsync(userSelection);
+            await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
             //Build solution
             var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
@@ -161,7 +162,7 @@ namespace Microsoft.Templates.Test
 
             GenerationFixture.AddItems(userSelection, GenerationFixture.GetTemplates(framework), GenerationFixture.GetRandomName);
 
-            await GenController.UnsafeGenerateProjectAsync(userSelection);
+            await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
             //Build solution
             var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);

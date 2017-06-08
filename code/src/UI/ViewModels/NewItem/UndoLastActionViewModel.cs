@@ -46,11 +46,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public async Task InitializeAsync()
         {
-            _result = GenController.GetLastActionInfo();
+            //_result = NewItemGenController.Instance.GetLastActionInfo();
 
-            NewFiles.AddRange(_result.NewFiles);
-            ModifiedFiles.AddRange(_result.ModifiedFiles);
-            ModifiedFiles.AddRange(_result.ConflictingFiles);
+            //NewFiles.AddRange(_result.NewFiles);
+            //ModifiedFiles.AddRange(_result.ModifiedFiles);
+            //ModifiedFiles.AddRange(_result.ConflictingFiles);
             await Task.CompletedTask;
         }
 

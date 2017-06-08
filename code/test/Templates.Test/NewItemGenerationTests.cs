@@ -48,6 +48,7 @@ namespace Microsoft.Templates.Test
             _fixture = fixture;
             GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
             GenContext.Current = this;
+
         }
 
 
@@ -61,7 +62,7 @@ namespace Microsoft.Templates.Test
             OutputPath = ProjectPath;
 
             var userSelection = GenerationFixture.SetupProject(projectType, framework);
-            await GenController.UnsafeGenerateProjectAsync(userSelection);
+            await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
             //Add new item
             var rightClickTemplates = GenerationFixture.Templates.Where
@@ -80,8 +81,8 @@ namespace Microsoft.Templates.Test
                     HomeName = ""
                 };
                 GenerationFixture.AddItem(newUserSelection, item, GenerationFixture.GetDefaultName);
-                await GenController.UnsafeGenerateNewItemAsync(newUserSelection);
-                GenController.UnsafeSyncNewItem();
+                await NewItemGenController.Instance.UnsafeGenerateNewItemAsync(newUserSelection);
+                NewItemGenController.Instance.UnsafeSyncNewItem();
             }
 
             //Build solution

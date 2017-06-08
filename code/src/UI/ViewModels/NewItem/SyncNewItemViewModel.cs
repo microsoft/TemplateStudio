@@ -47,12 +47,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public async Task InitializeAsync()
         {
-            var result = GenController.CompareOutputAndProject();
+            var result = NewItemGenController.Instance.CompareOutputAndProject();
 
             NewFiles.AddRange(result.NewFiles);
             ModifiedFiles.AddRange(result.ModifiedFiles);
             ConflictingFiles.AddRange(result.ConflictingFiles);
             GenerationWarnings.AddRange(GenContext.Current.GenerationWarnings.Select(w => w.Description + w.ExtendedInfo));
+
             await Task.CompletedTask;
         }
 

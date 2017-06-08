@@ -67,8 +67,8 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             ConfigureGenContext();
             //TODO: Call this from Views
-            var result = GenController.ShowLastActionResult();
-            GenController.UndoLastAction(result);
+            //var result = NewItemGenController.Instance.ShowLastActionResult();
+            //NewItemGenController.Instance.UndoLastAction(result);
             
         }
 
@@ -156,12 +156,13 @@ namespace Microsoft.Templates.VsEmulator.Main
                     MergeFilesFromProject.Clear();
                     GenContext.Current = this;
 
-                    var userSelection = GenController.GetUserSelection();
+
+                    var userSelection = NewProjectGenController.Instance.GetUserSelection();
                     if (userSelection != null)
                     {
                         SolutionName = null;
 
-                        await GenController.GenerateProjectAsync(userSelection);
+                        await NewProjectGenController.Instance.GenerateProjectAsync(userSelection);
 
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
 
@@ -189,11 +190,12 @@ namespace Microsoft.Templates.VsEmulator.Main
             MergeFilesFromProject.Clear();
             try
             {
-                var userSelection = GenController.GetUserSelectionNewItem(TemplateType.Feature);
+
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewItem(TemplateType.Feature);
 
                 if (userSelection != null)
                 {
-                    GenController.SyncNewItem(userSelection);
+                    NewItemGenController.Instance.SyncNewItem(userSelection);
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
             }
@@ -217,11 +219,11 @@ namespace Microsoft.Templates.VsEmulator.Main
             MergeFilesFromProject.Clear();
             try
             {
-                var userSelection = GenController.GetUserSelectionNewItem(TemplateType.Page);
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewItem(TemplateType.Page);
 
                 if (userSelection != null)
                 {
-                    GenController.SyncNewItem(userSelection);
+                    NewItemGenController.Instance.SyncNewItem(userSelection);
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
             }

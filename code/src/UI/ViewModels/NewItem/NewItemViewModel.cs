@@ -119,7 +119,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             await GenContext.ToolBox.Repo.SynchronizeAsync();
 
-            var projectConfig = GenController.ReadProjectConfiguration();
+            var projectConfig = NewItemGenController.Instance.ReadProjectConfiguration();
 
             ProjectTypes.AddRange(GenContext.ToolBox.Repo.GetProjectTypes().Select(f => f.Name));
             if (!string.IsNullOrEmpty(projectConfig.ProjectType))

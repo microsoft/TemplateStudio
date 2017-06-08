@@ -198,6 +198,8 @@
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
     <Compile Include="Controls\TogglePane\TogglePane.cs" />
     <Compile Include="Extensions\AnimationExtensions.cs" />
+    <Compile Include="NewProjectGenController.cs" />
+    <Compile Include="NewItemGenController.cs" />
     <Compile Include="TemplateSelectors\SummaryItemOptionsTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\SummaryItemTemplateSelector.cs" />
     <Compile Include="ViewModels\Common\BaseMainViewModel.cs" />
