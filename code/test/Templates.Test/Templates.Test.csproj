@@ -95,8 +95,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GenerationTests.cs" />
-    <Compile Include="GenerationTestsFixture.cs" />
+    <Compile Include="GenerationCollection.cs" />
+    <Compile Include="NewItemGenerationTests.cs" />
+    <Compile Include="ProjectGenerationTests.cs" />
+    <Compile Include="GenerationFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
