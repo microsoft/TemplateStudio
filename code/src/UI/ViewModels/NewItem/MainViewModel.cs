@@ -42,14 +42,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             Current = this;
         }
 
-        public async Task InitializeAsync(TemplateType templateType, OverlayBox overlayBox)
+        public async Task InitializeAsync(TemplateType templateType)
         {
             ConfigTemplateType = templateType;
             var projectConfiguration = GenController.ReadProjectConfiguration();
             ConfigProjectType = projectConfiguration.ProjectType;
             ConfigFramework = projectConfiguration.Framework;
             Title = String.Format(StringRes.NewItemTitle_SF, ConfigTemplateType.ToString().ToLower());
-            await BaseInitializeAsync(overlayBox);
+            await BaseInitializeAsync();
         }        
         
         protected override void OnCancel()

@@ -22,6 +22,7 @@ using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
@@ -33,13 +34,19 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         protected bool _canGoForward;
         protected bool _hasValidationErrors;
         protected bool _templatesAvailable;
-        protected OverlayBox _overlayBox;
 
         protected StatusViewModel _status = StatusControl.EmptyStatus;
         public StatusViewModel Status
         {
             get => _status;
             set => SetProperty(ref _status, value);
+        }
+
+        protected bool _isOverlayBoxVisible;
+        public bool IsOverlayBoxVisible
+        {
+            get => _isOverlayBoxVisible;
+            private set => SetProperty(ref _isOverlayBoxVisible, value);
         }
 
         protected string _wizardVersion;
@@ -84,11 +91,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             set => SetProperty(ref _infoShapeVisibility, value);
         }
 
-        protected Visibility _noContentVisibility = Visibility.Collapsed;
-        public Visibility NoContentVisibility
+        protected bool _hasContent;
+        public bool HasContent
         {
-            get => _noContentVisibility;
-            set => SetProperty(ref _noContentVisibility, value);
+            get => _hasContent;
+            set => SetProperty(ref _hasContent, value);
         }        
 
         protected bool _showFinishButton;
@@ -108,7 +115,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
         public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && !_hasValidationErrors && _canGoForward));
-        public RelayCommand ShowOverlayMenuCommand => _showOverlayMenuCommand ?? (_showOverlayMenuCommand = new RelayCommand(OnShowOverlayMenu));        
+        public RelayCommand ShowOverlayMenuCommand => _showOverlayMenuCommand ?? (_showOverlayMenuCommand = new RelayCommand(() => IsOverlayBoxVisible = !IsOverlayBoxVisible));
         public RelayCommand FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand(OnFinish, CanFinish));
         #endregion        
 
@@ -184,9 +191,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             _mainView.DialogResult = true;
             _mainView.Close();
         }        
-        protected async Task BaseInitializeAsync(OverlayBox overlayBox)
+        protected async Task BaseInitializeAsync()
         {
-            _overlayBox = overlayBox;
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += SyncSyncStatusChanged;
             try
             {
@@ -267,19 +273,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                     _templatesAvailable = false;
                     NextCommand.OnCanExecuteChanged();
                 });
-            }
-        }        
-        private async void OnShowOverlayMenu()
-        {
-            if (_overlayBox.Opacity == 0)
-            {
-                Panel.SetZIndex(_overlayBox, 2);
-                await _overlayBox.FadeInAsync();                
-            }
-            else
-            {
-                Panel.SetZIndex(_overlayBox, 0);
-                await _overlayBox.FadeOutAsync();                
             }
         }
     }

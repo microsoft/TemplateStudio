@@ -41,9 +41,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             Current = this;
         }
 
-        public async Task InitializeAsync(OverlayBox overlayBox)
+        public async Task InitializeAsync()
         {
-            await BaseInitializeAsync(overlayBox);
+            await BaseInitializeAsync();
             SummaryLicenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryLicenses)); };
         }
         public void AlertProjectSetupChanged()

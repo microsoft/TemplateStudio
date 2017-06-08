@@ -70,13 +70,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 var group = TemplateGroups.First();
                 group.SelectedItem = group.Templates.First();
-                MainViewModel.Current.NoContentVisibility = Visibility.Collapsed;
+                MainViewModel.Current.HasContent = true;
                 MainViewModel.Current.EnableGoForward();
                 MainViewModel.Current.SetTemplatesReadyForProjectCreation();
             }
             else
             {
-                MainViewModel.Current.NoContentVisibility = Visibility.Visible;
+                MainViewModel.Current.HasContent = false;
             }
             UpdateHeader(templates.Count());
         }

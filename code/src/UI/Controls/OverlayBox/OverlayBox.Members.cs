@@ -1,4 +1,5 @@
 ﻿using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,6 +14,13 @@ namespace Microsoft.Templates.UI.Controls
 {
     public sealed partial class OverlayBox
     {
+        public bool Visible
+        {
+            get => (bool)GetValue(VisibleProperty);
+            set => SetValue(VisibleProperty, value);
+        }
+        public static readonly DependencyProperty VisibleProperty = DependencyProperty.Register("Visible", typeof(bool), typeof(OverlayBox), new PropertyMetadata(true, OnVisiblePropertyChanged));       
+
         public string WizardVersion
         {
             get => (string)GetValue(WizardVersionProperty);
@@ -47,5 +55,11 @@ namespace Microsoft.Templates.UI.Controls
                 Process.Start(url);
             }
         }
+
+        private static void OnVisiblePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as OverlayBox;
+            control.UpdateVisible((bool)e.NewValue);
+        }        
     }
 }

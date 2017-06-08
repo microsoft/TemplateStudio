@@ -40,7 +40,7 @@ namespace Microsoft.Templates.UI.Views.NewItem
 
             Loaded += async (sender, e) =>
             {
-                await ViewModel.InitializeAsync(templateType, overlayBox);
+                await ViewModel.InitializeAsync(templateType);
                 NavigationService.Initialize(stepFrame, new NewItemSetupView());                
             };
 
