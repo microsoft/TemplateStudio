@@ -449,5 +449,8 @@
   <ItemGroup>
     <Folder Include="Naming\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\DefaultIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
