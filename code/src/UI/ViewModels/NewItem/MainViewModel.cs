@@ -57,15 +57,33 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             MainView.DialogResult = false;
             MainView.Result = null;
             MainView.Close();
-        }        
+        }
+        protected override void OnGoBack()
+        {
+            base.OnGoBack();
+            NewItemSetup.Initialize(false);
+        }
         protected override async void OnNext()
         {
             base.OnNext();
+            NewItemSetup.EditionVisibility = System.Windows.Visibility.Collapsed;
             MainView.Result = CreateUserSelection();
             await GenController.GenerateNewItemAsync(MainView.Result);
             NavigationService.Navigate(new NewItemChangesSummaryView());
-        }        
-        protected override void OnTemplatesAvailable() => NewItemSetup.Initialize();
+            Title = StringRes.ChangesSummaryTitle;
+        }
+
+        public TemplateInfoViewModel GetActiveTemplate()
+        {
+            var activeGroup = NewItemSetup.TemplateGroups.FirstOrDefault(gr => gr.SelectedItem != null);
+            if (activeGroup != null)
+            {
+                return activeGroup.SelectedItem as TemplateInfoViewModel;
+            }
+            return null;
+        }
+
+        protected override void OnTemplatesAvailable() => NewItemSetup.Initialize(true);
         protected override UserSelection CreateUserSelection()
         {
             var userSelection = new UserSelection()
@@ -74,10 +92,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 ProjectType = ConfigProjectType,
                 HomeName = String.Empty
             };
-            var activeGroup = NewItemSetup.TemplateGroups.FirstOrDefault(gr => gr.SelectedItem != null);
-            if (activeGroup != null)
+            var template = GetActiveTemplate();
+            if (template != null)
             {
-                var template = activeGroup.SelectedItem as TemplateInfoViewModel;
                 var dependencies = GenComposer.GetAllDependencies(template.Template, ConfigFramework);
 
                 userSelection.Pages.Clear();

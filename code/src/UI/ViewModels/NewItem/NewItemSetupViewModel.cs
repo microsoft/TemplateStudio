@@ -52,9 +52,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         }
 
-        public void Initialize()
+        public void Initialize(bool forceUpdate)
         {
-            var templates = GenContext.ToolBox.Repo.Get(t =>
+            if (TemplateGroups.Count == 0 || forceUpdate)
+            {
+                var templates = GenContext.ToolBox.Repo.Get(t =>
                                                   (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
                                                   && t.GetFrameworkList().Contains(MainViewModel.Current.ConfigFramework)
                                                   && t.GetTemplateType() == MainViewModel.Current.ConfigTemplateType
@@ -62,23 +64,32 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                                                   .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, MainViewModel.Current.ConfigFramework)));
 
 
-            var groups = templates.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList(), OnSelectedItemChanged)).OrderBy(gr => gr.Title);
+                var groups = templates.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList(), OnSelectedItemChanged)).OrderBy(gr => gr.Title);
 
-            TemplateGroups.Clear();
-            TemplateGroups.AddRange(groups);
+                TemplateGroups.Clear();
+                TemplateGroups.AddRange(groups);
+                UpdateHeader(templates.Count());
+            }
             if (TemplateGroups.Any())
             {
-                var group = TemplateGroups.First();
-                group.SelectedItem = group.Templates.First();
                 MainViewModel.Current.HasContent = true;
                 MainViewModel.Current.EnableGoForward();
                 MainViewModel.Current.SetTemplatesReadyForProjectCreation();
+                var activeTemplate = MainViewModel.Current.GetActiveTemplate();
+                if (activeTemplate == null)
+                {
+                    var group = TemplateGroups.First();
+                    group.SelectedItem = group.Templates.First();
+                }
+                else
+                {
+                    UpdateItemName(activeTemplate);
+                }
             }
             else
             {
                 MainViewModel.Current.HasContent = false;
-            }
-            UpdateHeader(templates.Count());
+            }            
         }
 
         private void OnSelectedItemChanged(ItemsGroupViewModel<TemplateInfoViewModel> group)
@@ -102,7 +113,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        private void UpdateItemName(TemplateInfoViewModel template)
+        public void UpdateItemName(TemplateInfoViewModel template)
         {
             var validators = new List<Validator>() { new ReservedNamesValidator() };
             if (template.IsItemNameEditable)
