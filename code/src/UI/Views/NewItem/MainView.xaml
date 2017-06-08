@@ -77,17 +77,8 @@
             </Grid>
             <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False"/>
             <controls:StatusControl
-                    VerticalAlignment="Bottom"
-                    Status="{Binding Status}" />
-            <controls:OverlayBox
-                x:Name="overlayBox"
-                Opacity="0"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                Margin="0,0,12,0"
-                NewUpdateAvailable="{Binding NewUpdateAvailable}"
-                WizardVersion="{Binding WizardVersion}"
-                TemplatesVersion="{Binding TemplatesVersion}" />
+                VerticalAlignment="Bottom"
+                Status="{Binding Status}" />
         </Grid>
         <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
             <Grid>
@@ -140,6 +131,17 @@
                 </Grid>
             </Grid>
         </Grid>
+        <controls:OverlayBox
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2"
+            x:Name="overlayBox"
+            Opacity="0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Margin="0,42,10,0"
+            NewUpdateAvailable="{Binding NewUpdateAvailable}"
+            WizardVersion="{Binding WizardVersion}"
+            TemplatesVersion="{Binding TemplatesVersion}" />
         <Grid
             Grid.Row="0"
             Grid.RowSpan="3"
