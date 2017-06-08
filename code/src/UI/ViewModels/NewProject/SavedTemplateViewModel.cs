@@ -126,7 +126,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 SetProperty(ref _isHome, value);
                 ItemFontWeight = value ? FontWeights.Bold : FontWeights.Normal;
                 OnPropertyChanged("CanSetHome");
-                MainViewModel.Current.CreateCommand.OnCanExecuteChanged();
+                MainViewModel.Current.FinishCommand.OnCanExecuteChanged();
             }
         }
 

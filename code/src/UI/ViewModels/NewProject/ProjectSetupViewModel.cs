@@ -106,10 +106,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                         ProjectTypes.Add(projectType);
                     }
 
-                    SelectedProjectType = ProjectTypes.First();
-                    MainViewModel.Current.LoadedContentVisibility = Visibility.Visible;
-                    MainViewModel.Current.LoadingContentVisibility = Visibility.Collapsed;
-                    MainViewModel.Current.NextCommand.OnCanExecuteChanged();
+                    SelectedProjectType = ProjectTypes.First();                    
                 }
                 else
                 {

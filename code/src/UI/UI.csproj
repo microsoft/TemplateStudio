@@ -200,6 +200,7 @@
     <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="TemplateSelectors\SummaryItemOptionsTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\SummaryItemTemplateSelector.cs" />
+    <Compile Include="ViewModels\Common\BaseMainViewModel.cs" />
     <Compile Include="ViewModels\NewItem\MainViewModel.cs" />
     <Compile Include="ViewModels\NewItem\NewItemSetupViewModel.cs" />
     <Compile Include="ViewModels\NewItem\UndoLastActionViewModel.cs" />
