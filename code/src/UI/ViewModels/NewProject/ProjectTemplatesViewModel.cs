@@ -395,7 +395,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 SavedFeatures.Remove(item);
             }            
-            MainViewModel.Current.CreateCommand.OnCanExecuteChanged();
+            MainViewModel.Current.FinishCommand.OnCanExecuteChanged();
             UpdateTemplatesAvailability();
             MainViewModel.Current.RebuildLicenses();
 

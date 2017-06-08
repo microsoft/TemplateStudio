@@ -358,9 +358,6 @@
   <data name="UnableAddProjectToSolution" xml:space="preserve">
     <value>Unable to add the project to the solution because is not ready. Ensure you have the expected SDK installed.</value>
   </data>
-  <data name="ErrorNoHomePage" xml:space="preserve">
-    <value>It's not possible to create a project without Home Page</value>
-  </data>
   <data name="SummaryOptionDelete" xml:space="preserve">
     <value>Delete</value>
   </data>

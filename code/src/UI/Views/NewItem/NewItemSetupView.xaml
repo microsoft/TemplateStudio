@@ -18,7 +18,8 @@
             <converters:ColumnCountConverter x:Key="ColumnConverter" />
             <converters:StringVisibilityConverter x:Key="StringVisibilityConverter"/>
             <converters:MicrosoftTemplatesAuthorConverter x:Key="MicrosoftTemplatesAuthorConverter"/>
-            
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+
             <DataTemplate x:Key="NewItemSetupItemTemplate">
                 <Grid>
                     <Rectangle Style="{StaticResource RectangleDropShadowStyle}" />
@@ -80,7 +81,7 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Visibility="{Binding LoadedContentVisibility}">
+    <Grid Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="300" />

@@ -15,6 +15,7 @@
             <converters:ColumnCountConverter x:Key="ColumnConverter" />
             <converters:FixedWidthConverter x:Key="FixedWidthConverter" />
             <converters:MicrosoftTemplatesAuthorConverter x:Key="MicrosoftTemplatesAuthorConverter" />
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
 
             <DataTemplate x:Key="ProjectSetupItemTemplate">
                 <Grid MinWidth="350" MaxWidth="{Binding RelativeSource={RelativeSource Self}, Path=HorizontalAlignment, Converter={StaticResource FixedWidthConverter}, ConverterParameter=350}" HorizontalAlignment="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UniformGrid}}, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}">
@@ -61,7 +62,7 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Visibility="{Binding LoadedContentVisibility}">
+    <Grid Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
         <ScrollViewer>
             <StackPanel>
                 <GroupBox Header="{Binding ProjectSetup.ProjectTypesHeader}" Margin="{StaticResource MediumLeftTopRightMargin}">

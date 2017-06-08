@@ -72,6 +72,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 group.SelectedItem = group.Templates.First();
                 MainViewModel.Current.NoContentVisibility = Visibility.Collapsed;
                 MainViewModel.Current.EnableGoForward();
+                MainViewModel.Current.SetTemplatesReadyForProjectCreation();
             }
             else
             {

@@ -22,10 +22,6 @@
                             Margin="0,0,5,1"
                             VerticalAlignment="Top"
                             HorizontalAlignment="Right"/>
-                            <!--
-                            Stroke="Black"
-                            StrokeThickness="1"
-                            -->                        
                         <Border Grid.Row="1" BorderThickness="1,0,1,1" BorderBrush="{StaticResource UIBlack}" Background="{StaticResource UIWhite}" Margin="0,8,0,0">
                             <Border.Effect>
                                 <DropShadowEffect Color="{StaticResource UIBlackColor}" Opacity="0.4"/>
@@ -48,11 +44,11 @@
                                     <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static res:StringRes.TemplatesVersion}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" Margin="{StaticResource MediumRightMargin}"/>
                                     <TextBlock Grid.Row="1" Grid.Column="1" Text="{TemplateBinding TemplatesVersion}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" />
                                 </Grid>
-                                <StackPanel Margin="{StaticResource SmallTopMargin}" Visibility="{TemplateBinding NewUpdateAvailable, Converter={StaticResource BoolToVisibilityConverter}}" >
+                                <StackPanel Margin="{StaticResource SmallTopMargin}" Visibility="{TemplateBinding NewUpdateAvailable, Converter={StaticResource BoolToVisibilityConverter}}">
                                     <TextBlock Grid.Row="0" Text="{x:Static res:StringRes.NewUpdateAvailable}" Style="{StaticResource TextOverlayBoxNotificationStyle}" />
                                     <Button Grid.Row="1" Style="{StaticResource ButtonRefreshTemplatesStyle}" Content="{x:Static res:StringRes.ButtonRefreshTemplates}" Margin="{StaticResource SmallTopMargin}" />
                                 </StackPanel>
-                                <Button Grid.Row="1" Style="{StaticResource ButtonRefreshTemplatesStyle}" Content="{x:Static res:StringRes.CheckForUpdates}" Margin="{StaticResource SmallTopMargin}" Visibility="{TemplateBinding NewUpdateAvailable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
+                                <Button Grid.Row="1" Style="{StaticResource ButtonRefreshTemplatesStyle}" Content="{x:Static res:StringRes.CheckForUpdates}" Margin="{StaticResource SmallTopMargin}" Visibility="{TemplateBinding NewUpdateAvailable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}"/>
                                 <TextBlock Margin="{StaticResource SmallTopMargin}">
                                     <Hyperlink Command="{TemplateBinding OpenUrlCommand}" CommandParameter="https://github.com/Microsoft/WindowsTemplateStudio" Style="{StaticResource LicenseHyperlinkStyle}">
                                         <TextBlock Text="{x:Static res:StringRes.VisitProjectWebSite}" Style="{StaticResource TextSumaryLicenseStyle}" />
@@ -65,9 +61,6 @@
                                 </TextBlock>
                             </StackPanel>
                         </Border>
-                        <!--<Grid Grid.RowSpan="2" Height="5" Width="14" Background="White" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,7,9,0"/>
-                        <Grid Grid.RowSpan="2" Height="5" Width="16" Background="White" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,8,0"/>
-                        <Grid Grid.RowSpan="2" Height="5" Width="18" Background="White" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,9,7,0"/>-->
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
