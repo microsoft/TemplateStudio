@@ -22,35 +22,11 @@ namespace Microsoft.Templates.Core.Locations
     {
         private readonly string CdnUrl = Configuration.Current.CdnUrl;
         private const string TemplatesPackageFileName = "Templates.mstx";
-        private const string VersionFileName = "version.txt";
 
-        public override string Id { get => Configuration.Current.Environment; }
-
-        public override void Acquire(string targetFolder)
+        protected override string AcquireMstx()
         {
             var tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 
-            string downloadedFile = Download(tempFolder);
-
-            ExtractFromMstx(downloadedFile, targetFolder);
-
-            Fs.SafeDeleteDirectory(tempFolder);
-        }
-
-        public override void ExtractFromMstx(string mstxFilePath, string targetFolder)
-        {
-            var tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-
-            if (File.Exists(mstxFilePath))
-            {
-                ExtractContent(mstxFilePath, tempFolder);
-
-                MoveContent(tempFolder, targetFolder);
-            }
-        }
-
-        private string Download(string tempFolder)
-        {
             var sourceUrl = $"{CdnUrl}/{TemplatesPackageFileName}";
             var fileTarget = Path.Combine(tempFolder, TemplatesPackageFileName);
 
@@ -78,57 +54,5 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private void ExtractContent(string file, string tempFolder)
-        {
-            try
-            {
-                Templatex.Extract(file, tempFolder);
-                AppHealth.Current.Verbose.TrackAsync($"Templates content extracted to {tempFolder}.").FireAndForget();
-            }
-            catch (Exception ex)
-            {
-                var msg = "The templates content can't be extracted.";
-
-                AppHealth.Current.Exception.TrackAsync(ex, msg).FireAndForget();
-
-                throw;
-            }
-        }
-
-        private void MoveContent(string tempFolder, string targetFolder)
-        {
-            string sourcePath = Path.Combine(tempFolder, SourceFolderName);
-            string verFile = Path.Combine(sourcePath, VersionFileName);
-            Version ver = GetVersionFromFile(verFile);
-
-            Fs.EnsureFolder(targetFolder);
-
-            var finalDestination = Path.Combine(targetFolder, ver.ToString());
-
-            if (!Directory.Exists(finalDestination))
-            {
-                Fs.SafeDeleteFile(verFile);
-                Fs.SafeMoveDirectory(sourcePath, finalDestination);
-            }
-
-            Fs.SafeDeleteDirectory(tempFolder);
-        }
-
-        private static Version GetVersionFromFile(string versionFilePath)
-        {
-            var version = "0.0.0.0";
-
-            if (File.Exists(versionFilePath))
-            {
-                version = File.ReadAllText(versionFilePath);
-            }
-
-            if (!Version.TryParse(version, out Version result))
-            {
-                result = new Version(0, 0, 0, 0);
-            }
-
-            return result;
-        }
     }
 }
