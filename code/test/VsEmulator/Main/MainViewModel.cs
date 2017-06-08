@@ -146,20 +146,19 @@ namespace Microsoft.Templates.VsEmulator.Main
                 if (!string.IsNullOrEmpty(newProjectInfo.name))
                 {
                     var projectPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
-
-                    ProjectName = newProjectInfo.name;
-                    ProjectPath = projectPath;
-                    OutputPath = projectPath;
-
-                    ProjectItems.Clear();
-                    GenerationWarnings.Clear();
-                    MergeFilesFromProject.Clear();
+                    
                     GenContext.Current = this;
-
 
                     var userSelection = NewProjectGenController.Instance.GetUserSelection();
                     if (userSelection != null)
                     {
+                        ProjectName = newProjectInfo.name;
+                        ProjectPath = projectPath;
+                        OutputPath = projectPath;
+
+                        ProjectItems.Clear();
+                        GenerationWarnings.Clear();
+                        MergeFilesFromProject.Clear();
                         SolutionName = null;
 
                         await NewProjectGenController.Instance.GenerateProjectAsync(userSelection);
@@ -173,10 +172,12 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
             catch (WizardBackoutException)
             {
+
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)
             {
+                
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
             }
         }
@@ -188,6 +189,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             ProjectItems.Clear();
             GenerationWarnings.Clear();
             MergeFilesFromProject.Clear();
+
             try
             {
 
