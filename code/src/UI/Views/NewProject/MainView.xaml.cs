@@ -39,7 +39,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
             Loaded += async (sender, e) =>
             {
                 NavigationService.Initialize(stepFrame, new ProjectSetupView());
-                await ViewModel.InitializeAsync(overlayBox);
+                await ViewModel.InitializeAsync();
             };
 
             Unloaded += (sender, e) =>

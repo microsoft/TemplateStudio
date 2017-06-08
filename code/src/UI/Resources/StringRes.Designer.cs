@@ -133,6 +133,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Changes summary.
+        /// </summary>
+        public static string ChangesSummaryTitle {
+            get {
+                return ResourceManager.GetString("ChangesSummaryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check for new templates.
         /// </summary>
         public static string CheckForUpdates {

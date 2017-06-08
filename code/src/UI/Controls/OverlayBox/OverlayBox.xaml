@@ -46,16 +46,16 @@
                                 </Grid>
                                 <StackPanel Margin="{StaticResource SmallTopMargin}" Visibility="{TemplateBinding NewUpdateAvailable, Converter={StaticResource BoolToVisibilityConverter}}">
                                     <TextBlock Grid.Row="0" Text="{x:Static res:StringRes.NewUpdateAvailable}" Style="{StaticResource TextOverlayBoxNotificationStyle}" />
-                                    <Button Grid.Row="1" Style="{StaticResource ButtonRefreshTemplatesStyle}" Content="{x:Static res:StringRes.ButtonRefreshTemplates}" Margin="{StaticResource SmallTopMargin}" />
+                                    <Button Grid.Row="1" Style="{StaticResource ButtonRefreshTemplatesStyle}" Content="{x:Static res:StringRes.ButtonRefreshTemplates}" Margin="{StaticResource SmallTopMargin}" Focusable="{TemplateBinding Visible}"/>
                                 </StackPanel>
-                                <Button Grid.Row="1" Style="{StaticResource ButtonRefreshTemplatesStyle}" Content="{x:Static res:StringRes.CheckForUpdates}" Margin="{StaticResource SmallTopMargin}" Visibility="{TemplateBinding NewUpdateAvailable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}"/>
+                                <Button Grid.Row="1" Style="{StaticResource ButtonRefreshTemplatesStyle}" Content="{x:Static res:StringRes.CheckForUpdates}" Margin="{StaticResource SmallTopMargin}" Visibility="{TemplateBinding NewUpdateAvailable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" Focusable="{TemplateBinding Visible}"/>
                                 <TextBlock Margin="{StaticResource SmallTopMargin}">
-                                    <Hyperlink Command="{TemplateBinding OpenUrlCommand}" CommandParameter="https://github.com/Microsoft/WindowsTemplateStudio" Style="{StaticResource LicenseHyperlinkStyle}">
+                                    <Hyperlink Command="{TemplateBinding OpenUrlCommand}" CommandParameter="https://github.com/Microsoft/WindowsTemplateStudio" Style="{StaticResource LicenseHyperlinkStyle}" Focusable="{TemplateBinding Visible}">
                                         <TextBlock Text="{x:Static res:StringRes.VisitProjectWebSite}" Style="{StaticResource TextSumaryLicenseStyle}" />
                                     </Hyperlink>
                                 </TextBlock>
                                 <TextBlock Margin="{StaticResource SmallTopMargin}">
-                                    <Hyperlink Command="{TemplateBinding OpenUrlCommand}" CommandParameter="https://github.com/Microsoft/WindowsTemplateStudio/blob/master/LICENSE.md" Style="{StaticResource LicenseHyperlinkStyle}">
+                                    <Hyperlink Command="{TemplateBinding OpenUrlCommand}" CommandParameter="https://github.com/Microsoft/WindowsTemplateStudio/blob/master/LICENSE.md" Style="{StaticResource LicenseHyperlinkStyle}" Focusable="{TemplateBinding Visible}">
                                         <TextBlock Text="{x:Static res:StringRes.PrivacyTermns}" Style="{StaticResource TextSumaryLicenseStyle}" />
                                     </Hyperlink>
                                 </TextBlock>

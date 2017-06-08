@@ -74,9 +74,11 @@
                     <TextBlock Style="{StaticResource TextMainLoadingStyle}" Text="{x:Static res:StringRes.LoadingTemplatesText}" />
                 </Grid>
                 <Grid Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
-                    <TextBlock Style="{StaticResource TextMainLoadingStyle}" Text="{x:Static res:StringRes.NoContentText}"  Visibility="{Binding NoContentVisibility}"/>
+                    <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}}"/>
                 </Grid>
-                <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False"/>
+                <Grid Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
+                    <TextBlock Style="{StaticResource TextMainLoadingStyle}" Text="{x:Static res:StringRes.NoContentText}"  Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}"/>
+                </Grid>
                 <controls:StatusControl
                     VerticalAlignment="Bottom"
                     Status="{Binding Status}" />
@@ -90,17 +92,17 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Style="{StaticResource TextBottomBarStyle}" Text="{x:Static res:StringRes.NewItemName}" Margin="{StaticResource MediumLeftTopBottomMargin}" Visibility="{Binding NewItemSetup.EditionVisibility}"/>
                     <TextBox
-                    Grid.Column="1"
-                    Text="{Binding NewItemSetup.ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"                    
-                    Margin="{StaticResource MediumMargin}"
-                    Width="360"
-                    MaxLength="30" HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
-                    Visibility="{Binding NewItemSetup.EditionVisibility}">
+                        Grid.Column="1"
+                        Text="{Binding NewItemSetup.ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"                    
+                        Margin="{StaticResource MediumMargin}"
+                        Width="360"
+                        MaxLength="30" HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                        Visibility="{Binding NewItemSetup.EditionVisibility}">
                     </TextBox>
                     <Grid
-                    Grid.Column="2"
-                    Margin="0,0,17,0"
-                    HorizontalAlignment="Right">
+                        Grid.Column="2"
+                        Margin="0,0,17,0"
+                        HorizontalAlignment="Right">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
@@ -134,14 +136,14 @@
             </Grid>
         </Grid>
         <controls:OverlayBox
-            x:Name="overlayBox"                       
             Opacity="0"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
             Margin="0,42,10,0"
             NewUpdateAvailable="{Binding NewUpdateAvailable}"
             WizardVersion="{Binding WizardVersion}"
-            TemplatesVersion="{Binding TemplatesVersion}" />
+            TemplatesVersion="{Binding TemplatesVersion}"
+            Visible="{Binding IsOverlayBoxVisible}" />
         <Grid
             Grid.Row="0"
             Grid.RowSpan="3"
