@@ -34,7 +34,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public string ConfigFramework;
         public string ConfigProjectType;
         public string LastSelectedTemplateIdentity;
-        public NewItemSetupViewModel NewItemSetup { get; private set; } = new NewItemSetupViewModel();        
+        public NewItemSetupViewModel NewItemSetup { get; private set; } = new NewItemSetupViewModel();
+        public ChangesSummaryViewModel ChangesSummary { get; private set; } = new ChangesSummaryViewModel();
 
         public MainViewModel(MainView mainView) : base(mainView)
         {
@@ -69,7 +70,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             NewItemSetup.EditionVisibility = System.Windows.Visibility.Collapsed;
             MainView.Result = CreateUserSelection();
             await GenController.GenerateNewItemAsync(MainView.Result);
-            NavigationService.Navigate(new NewItemChangesSummaryView());
+            NavigationService.Navigate(new ChangesSummaryView());
             Title = StringRes.ChangesSummaryTitle;
         }
 
