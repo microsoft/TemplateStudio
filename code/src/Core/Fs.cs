@@ -15,7 +15,7 @@ using System.IO;
 
 using Microsoft.Templates.Core.Diagnostics;
 
-namespace Microsoft.Templates.Core.Locations
+namespace Microsoft.Templates.Core
 {
     public static class Fs
     {
@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public static void SafeCopyFile(string sourceFile, string destFolder)
+        public static void SafeCopyFile(string sourceFile, string destFolder, bool overwrite)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     Directory.CreateDirectory(destFolder);
                 }
-                File.Copy(sourceFile, Path.Combine(destFolder, Path.GetFileName(sourceFile)));
+                File.Copy(sourceFile, Path.Combine(destFolder, Path.GetFileName(sourceFile)), overwrite);
             }
             catch (Exception ex)
             {

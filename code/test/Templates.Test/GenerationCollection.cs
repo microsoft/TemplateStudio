@@ -10,23 +10,13 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Test.Locations;
-using Microsoft.Templates.Test.Artifacts;
+using Xunit;
 
-namespace Microsoft.Templates.Core.Test
+namespace Microsoft.Templates.Test
 {
-    public class NamingFixture
+    [CollectionDefinition("Generation collection")]
+    public class DatabaseCollection : ICollectionFixture<GenerationFixture>
     {
-        public NamingFixture()
-        {
-            var source = new UnitTestsTemplatesSource();
-
-            GenContext.Bootstrap(source, new FakeGenShell());
-
-            CodeGen.Initialize(source.Id, "0.0");
-
-            GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
-        }
+        
     }
 }

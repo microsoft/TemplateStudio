@@ -158,7 +158,7 @@
     <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Gen\IContextProvider.cs" />
     <Compile Include="Gen\GenerationWarning.cs" />
-    <Compile Include="Locations\Fs.cs" />
+    <Compile Include="Fs.cs" />
     <Compile Include="Locations\InvalidSignatureException.cs" />
     <Compile Include="Locations\LocalTemplatesSource.cs" />
     <Compile Include="Composition\CompositionQuery.cs" />
@@ -173,6 +173,8 @@
     <Compile Include="PostActions\Catalog\SortUsings\SortUsingsPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\IEnumerableExtensions.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\UsingComparer.cs" />
+    <Compile Include="PostActions\NewItemPostActionFactory.cs" />
+    <Compile Include="PostActions\NewProjectPostActionFactory.cs" />
     <Compile Include="Strings\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

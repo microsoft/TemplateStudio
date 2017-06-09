@@ -61,16 +61,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         public RelayCommand AddNewFeatureCommand => new RelayCommand(AddNewFeature);
 
         public RelayCommand AddNewPageCommand => new RelayCommand(AddNewPage);
-        public RelayCommand UndoLastActionCommand => new RelayCommand(UndoLastAction);
-
-        private void UndoLastAction()
-        {
-            ConfigureGenContext();
-            //TODO: Call this from Views
-            var result = GenController.ShowLastActionResult();
-            GenController.UndoLastAction(result);
-            
-        }
+       
 
         private string _state;
         public string State
@@ -146,22 +137,22 @@ namespace Microsoft.Templates.VsEmulator.Main
                 if (!string.IsNullOrEmpty(newProjectInfo.name))
                 {
                     var projectPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
-
-                    ProjectName = newProjectInfo.name;
-                    ProjectPath = projectPath;
-                    OutputPath = projectPath;
-
-                    ProjectItems.Clear();
-                    GenerationWarnings.Clear();
-                    MergeFilesFromProject.Clear();
+                    
                     GenContext.Current = this;
 
-                    var userSelection = GenController.GetUserSelection();
+                    var userSelection = NewProjectGenController.Instance.GetUserSelection();
                     if (userSelection != null)
                     {
+                        ProjectName = newProjectInfo.name;
+                        ProjectPath = projectPath;
+                        OutputPath = projectPath;
+
+                        ProjectItems.Clear();
+                        GenerationWarnings.Clear();
+                        MergeFilesFromProject.Clear();
                         SolutionName = null;
 
-                        await GenController.GenerateProjectAsync(userSelection);
+                        await NewProjectGenController.Instance.GenerateProjectAsync(userSelection);
 
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
 
@@ -172,10 +163,12 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
             catch (WizardBackoutException)
             {
+
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)
             {
+                
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
             }
         }
@@ -187,13 +180,15 @@ namespace Microsoft.Templates.VsEmulator.Main
             ProjectItems.Clear();
             GenerationWarnings.Clear();
             MergeFilesFromProject.Clear();
+
             try
             {
-                var userSelection = GenController.GetUserSelectionNewItem(TemplateType.Feature);
+
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewItem(TemplateType.Feature);
 
                 if (userSelection != null)
                 {
-                    GenController.SyncNewItem(userSelection);
+                    NewItemGenController.Instance.SyncNewItem(userSelection);
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
             }
@@ -217,11 +212,11 @@ namespace Microsoft.Templates.VsEmulator.Main
             MergeFilesFromProject.Clear();
             try
             {
-                var userSelection = GenController.GetUserSelectionNewItem(TemplateType.Page);
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewItem(TemplateType.Page);
 
                 if (userSelection != null)
                 {
-                    GenController.SyncNewItem(userSelection);
+                    NewItemGenController.Instance.SyncNewItem(userSelection);
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
             }
@@ -350,36 +345,9 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void ConfigureGenContext()
         {
-            if (TemplatesVersion == "0.0.0.0")
-            {
-                CleanUpContent();
-            }
-
             GenContext.Bootstrap(new LocalTemplatesSource(WizardVersion, TemplatesVersion)
                 , new FakeGenShell(msg => SetState(msg), l => AddLog(l), _host)
                 , new Version(WizardVersion));
-        }
-
-        private void CleanUpContent()
-        {
-            DirectoryInfo di = new DirectoryInfo(GetTemplatesFolder());
-
-            if (di.Exists)
-            {
-                foreach (var sdi in di.EnumerateDirectories())
-                {
-                    Fs.SafeDeleteDirectory(sdi.FullName);
-                }
-            }
-        }
-        private string GetTemplatesFolder()
-        {
-            //TODO: Think in having a way to get the target TemplatesFolder to avoid instantiating all this staff
-            var _templatesSource = new LocalTemplatesSource(WizardVersion, TemplatesVersion);
-            var _templatesSync = new TemplatesSynchronization(_templatesSource, new Version(WizardVersion));
-            string currentTemplatesFolder = _templatesSync.CurrentTemplatesFolder;
-
-            return currentTemplatesFolder;
         }
 
         public void DoEvents()

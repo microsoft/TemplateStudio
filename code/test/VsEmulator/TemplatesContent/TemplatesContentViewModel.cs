@@ -14,7 +14,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
-
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
 

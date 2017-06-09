@@ -24,61 +24,19 @@ using System.Text.RegularExpressions;
 
 namespace Microsoft.Templates.Core.PostActions
 {
-    public static class PostActionFactory
+    public abstract class PostActionFactory
     {
-        public static IEnumerable<PostAction> FindNewProjectPostActions(GenInfo genInfo, TemplateCreationResult genResult)
+
+        public abstract IEnumerable<PostAction> FindPostActions(GenInfo genInfo, TemplateCreationResult genResult);
+
+        public abstract IEnumerable<PostAction> FindGlobalPostActions();
+
+        public virtual IEnumerable<PostAction> FindFinishGenerationPostActions()
         {
-            var postActions = new List<PostAction>();
-
-            AddPredefinedActions(genInfo, genResult, postActions);
-            AddMergeActions(postActions, $"*{MergePostAction.Extension}*", true);
-
-            return postActions;
+            return new List<PostAction>();
         }
 
-        public static IEnumerable<PostAction> FindNewItemPostActions(GenInfo genInfo, TemplateCreationResult genResult)
-        {
-            var postActions = new List<PostAction>();
-
-            AddPredefinedActions(genInfo, genResult, postActions);           
-            AddGetMergeFilesFromProjectPostAction(postActions);
-            AddMergeActions(postActions, $"*{MergePostAction.Extension}*", false);
-
-            return postActions;
-        }
-
-        public static IEnumerable<PostAction> FindGlobalNewProjectPostActions()
-        {
-            var postActions = new List<PostAction>();
-
-            AddGlobalMergeActions(postActions, $"*{MergePostAction.GlobalExtension}*", true);
-            postActions.Add(new SortUsingsPostAction());
-            postActions.Add(new AddContextItemsToProjectPostAction());
-            postActions.Add(new SetDefaultSolutionConfigurationPostAction());
-
-            return postActions;
-        }
-
-        public static IEnumerable<PostAction> FindGlobalNewItemPostActions()
-        {
-            var postActions = new List<PostAction>();
-
-            AddGlobalMergeActions(postActions, $"*{MergePostAction.GlobalExtension}*", false);
-            postActions.Add(new SortUsingsPostAction());
-
-            return postActions;
-        }
-
-        public static IEnumerable<PostAction> FindFinishItemGenerationPostActions()
-        {
-            var postActions = new List<PostAction>();
-
-            postActions.Add(new AddContextItemsToProjectPostAction());
-
-            return postActions;
-        }
-
-        private static void AddGetMergeFilesFromProjectPostAction(List<PostAction> postActions)
+        internal void AddGetMergeFilesFromProjectPostAction(List<PostAction> postActions)
         {
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, "*.*", SearchOption.AllDirectories)
@@ -87,7 +45,7 @@ namespace Microsoft.Templates.Core.PostActions
                 .ForEach(f => postActions.Add(new GetMergeFilesFromProjectPostAction(f)));
         }
 
-        private static void AddPredefinedActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
+        internal void AddPredefinedActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
         {
             switch (genInfo.Template.GetTemplateType())
             {
@@ -105,7 +63,7 @@ namespace Microsoft.Templates.Core.PostActions
             }
         }
 
-        private static void AddMergeActions(List<PostAction> postActions, string searchPattern, bool failOnError)
+        internal void AddMergeActions(List<PostAction> postActions, string searchPattern, bool failOnError)
         {
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
@@ -116,7 +74,7 @@ namespace Microsoft.Templates.Core.PostActions
 
 
 
-        private static void AddGlobalMergeActions(List<PostAction> postActions, string searchPattern, bool failOnError)
+        internal void AddGlobalMergeActions(List<PostAction> postActions, string searchPattern, bool failOnError)
         {
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)

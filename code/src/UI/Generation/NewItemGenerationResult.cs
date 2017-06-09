@@ -18,13 +18,13 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.UI
 {
-    public class CompareResult
+    public class NewItemGenerationResult
     {
-        public List<string> NewFiles { get; } = new List<string>();
+        public List<NewItemGenerationFileInfo> NewFiles { get; } = new List<NewItemGenerationFileInfo>();
 
-        public List<string> ModifiedFiles { get; } = new List<string>();
+        public List<NewItemGenerationFileInfo> ModifiedFiles { get; } = new List<NewItemGenerationFileInfo>();
 
-        public List<string> ConflictingFiles { get; } = new List<string>();
+        public List<NewItemGenerationFileInfo> ConflictingFiles { get; } = new List<NewItemGenerationFileInfo>();
 
     }
 }

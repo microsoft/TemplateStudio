@@ -69,7 +69,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         public async void RunFinished()
         {
             AppHealth.Current.Info.TrackAsync("Creating Windows Template Studio project...").FireAndForget();
-            await GenController.GenerateProjectAsync(_userSelection);
+            await NewProjectGenController.Instance.GenerateProjectAsync(_userSelection);
             AppHealth.Current.Info.TrackAsync("Generation finished").FireAndForget();
 
             PostGenerationActions();
@@ -96,7 +96,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     GenContext.Current = this;
 
-                    _userSelection = GenController.GetUserSelection();
+                    _userSelection = NewProjectGenController.Instance.GetUserSelection();
                 }
             }
             catch (WizardBackoutException)
