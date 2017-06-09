@@ -34,7 +34,7 @@ namespace Microsoft.Templates.Core.PostActions
 
             AddPredefinedActions(genInfo, genResult, postActions);           
             AddGetMergeFilesFromProjectPostAction(postActions);
-            AddMergeActions(postActions, $"*{MergePostAction.Extension}*", false);
+            AddMergeActions(postActions, $"*{MergePostAction.Extension}*", false, true);
 
             return postActions;
         }
@@ -44,7 +44,7 @@ namespace Microsoft.Templates.Core.PostActions
         {
             var postActions = new List<PostAction>();
 
-            AddGlobalMergeActions(postActions, $"*{MergePostAction.GlobalExtension}*", false);
+            AddGlobalMergeActions(postActions, $"*{MergePostAction.GlobalExtension}*", false, true);
             postActions.Add(new SortUsingsPostAction());
 
             return postActions;

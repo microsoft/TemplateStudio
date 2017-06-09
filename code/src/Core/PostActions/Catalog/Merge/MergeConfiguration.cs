@@ -24,10 +24,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         public bool FailOnError { get; private set; }
 
-        public MergeConfiguration(string fileName, bool failOnError)
+        public bool GenerateMergeSnippets { get; set; }
+
+        public MergeConfiguration(string fileName, bool failOnError, bool generateMergeSnippets)
         {
             FilePath = fileName;
             FailOnError = failOnError;
+            GenerateMergeSnippets = generateMergeSnippets;
         }
     }
 }

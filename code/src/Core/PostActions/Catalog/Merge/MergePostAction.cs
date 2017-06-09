@@ -24,6 +24,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         private const string Suffix = "postaction";
         private const string NewSuffix = "failedpostaction";
 
+        public const string MergeSnippetsFolder = "MergeSnippets";
         public const string Extension = "_" + Suffix + ".";
         public const string GlobalExtension = "$*_g" + Suffix + ".";
         public const string PostActionIntentExtension = ".md";
@@ -59,9 +60,23 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var merge = File.ReadAllLines(_config.FilePath).ToList();
 
             IEnumerable<string> result = source.HandleRemovals(merge);
-            result = result.Merge(merge.RemoveRemovals());
+            
+            result = result.Merge(merge.RemoveRemovals(), _config.GenerateMergeSnippets, out Dictionary <int, IEnumerable <string>> mergeSnippets);
 
             File.WriteAllLines(originalFilePath, result);
+
+            if (_config.GenerateMergeSnippets)
+            {
+                var fileName = Path.GetFileName(originalFilePath);
+                var folder = Path.Combine(GenContext.Current.OutputPath, MergeSnippetsFolder);
+                Fs.EnsureFolder(folder);
+                foreach (var mergeSnippet in mergeSnippets)
+                {
+                    var mergeSnippetName = $"{fileName} - Line {mergeSnippet.Key}.txt";
+                    File.AppendAllLines(Path.Combine(folder, mergeSnippetName), mergeSnippet.Value);
+                }
+            }
+
             File.Delete(_config.FilePath);
 
             //REFRESH PROJECT TO UN-DIRTY IT

@@ -13,8 +13,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
@@ -51,10 +49,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             return -1;
         }
 
-        public static IEnumerable<string> Merge(this IEnumerable<string> source, IEnumerable<string> merge)
+        public static IEnumerable<string> Merge(this IEnumerable<string> source, IEnumerable<string> merge, bool generateMergeSnippets, out Dictionary<int, IEnumerable<string>> mergeSnippets)
         {
             int lastLineIndex = -1;
             var insertionBuffer = new List<string>();
+            mergeSnippets = new Dictionary<int, IEnumerable<string>>();
 
             bool beforeMode = false;
             bool isInBlock = false;
@@ -72,8 +71,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
                 if (currentLineIndex > -1)
                 {
-                    TryAddBufferContent(insertionBuffer, result, lastLineIndex, currentLineIndex, beforeMode);
-
+                    TryAddBufferContent(insertionBuffer, result, lastLineIndex, generateMergeSnippets, mergeSnippets, currentLineIndex, beforeMode);
+                   
                     if (beforeMode)
                     {
                         beforeMode = false;
@@ -103,8 +102,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 }
             }
 
-            TryAddBufferContent(insertionBuffer, result, lastLineIndex);
-
+            TryAddBufferContent(insertionBuffer, result, lastLineIndex, generateMergeSnippets, mergeSnippets);
+           
             return result;
         }
 
@@ -155,7 +154,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             return mergeString.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
         }
 
-        private static void TryAddBufferContent(List<string> insertionBuffer, List<string> result, int lastLineIndex, int currentLineIndex = 0, bool beforeMode = false)
+        private static void TryAddBufferContent(List<string> insertionBuffer, List<string> result, int lastLineIndex, bool generateMergeSnippets, IDictionary<int, IEnumerable<string>> mergeSnippets, int currentLineIndex = 0, bool beforeMode = false)
         {
             if (insertionBuffer.Any() && !BlockExists(insertionBuffer, result, lastLineIndex) && currentLineIndex > -1)
             {
@@ -164,10 +163,17 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 if (insertIndex < result.Count)
                 {
                     result.InsertRange(insertIndex, insertionBuffer);
+                    if (generateMergeSnippets)
+                    {
+                        var inserted = new List<string>();
+                        inserted.AddRange(insertionBuffer);
+                        mergeSnippets.Add(insertIndex, inserted);
+                    }
                 }
             }
         }
 
+    
         private static bool BlockExists(IEnumerable<string> blockBuffer, IEnumerable<string> target, int skip)
         {
             return blockBuffer

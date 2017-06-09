@@ -130,7 +130,9 @@ namespace Microsoft.Templates.UI
             var result = new NewItemGenerationResult();
             var files = Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, "*", SearchOption.AllDirectories)
-                .Where(f => !Regex.IsMatch(f, MergePostAction.PostactionRegex) && !Regex.IsMatch(f, MergePostAction.FailedPostactionRegex))
+                .Where(f => !Regex.IsMatch(f, MergePostAction.PostactionRegex) 
+                        && !Regex.IsMatch(f, MergePostAction.FailedPostactionRegex)
+                        && Directory.GetParent(f).Name != MergePostAction.MergeSnippetsFolder)
                 .ToList();
 
             foreach (var file in files)

@@ -63,24 +63,24 @@ namespace Microsoft.Templates.Core.PostActions
             }
         }
 
-        internal void AddMergeActions(List<PostAction> postActions, string searchPattern, bool failOnError)
+        internal void AddMergeActions(List<PostAction> postActions, string searchPattern, bool failOnError, bool generateMergeSnippets)
         {
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
                 .Where(f => Path.GetExtension(f) != MergePostAction.PostActionIntentExtension)
                 .ToList()
-                .ForEach(f => postActions.Add(new MergePostAction(new MergeConfiguration(f, failOnError))));
+                .ForEach(f => postActions.Add(new MergePostAction(new MergeConfiguration(f, failOnError, generateMergeSnippets))));
         }
 
 
 
-        internal void AddGlobalMergeActions(List<PostAction> postActions, string searchPattern, bool failOnError)
+        internal void AddGlobalMergeActions(List<PostAction> postActions, string searchPattern, bool failOnError, bool generateMergeSnippets)
         {
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
                 .Where(f => Path.GetExtension(f) != MergePostAction.PostActionIntentExtension)
                 .ToList()
-                .ForEach(f => postActions.Add(new MergePostAction(new MergeConfiguration(f, failOnError))));
+                .ForEach(f => postActions.Add(new MergePostAction(new MergeConfiguration(f, failOnError, generateMergeSnippets))));
         }
     }
 }
