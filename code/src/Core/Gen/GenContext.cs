@@ -29,6 +29,9 @@ namespace Microsoft.Templates.Core.Gen
         public static GenToolBox ToolBox { get; private set; }
         public static bool IsInitialized { get; private set; }
 
+        // Defaulting this to C# to keep all preVB code & tests happy
+        public static string Language { get; set; } = "C#";
+
         public static IContextProvider Current
         {
             get

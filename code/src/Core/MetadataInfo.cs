@@ -30,5 +30,6 @@ namespace Microsoft.Templates.Core
         public string MetadataType { get; set; }
         public string Licenses { get; set; }
         public IEnumerable<TemplateLicense> LicenseTerms { get; set; }
+        public IEnumerable<string> Languages { get; set; }
     }
 }

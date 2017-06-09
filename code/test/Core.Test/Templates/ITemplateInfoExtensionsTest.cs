@@ -15,7 +15,7 @@ using System.IO;
 using System.Linq;
 
 using Microsoft.TemplateEngine.Abstractions;
-
+using Microsoft.Templates.Core.Gen;
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test

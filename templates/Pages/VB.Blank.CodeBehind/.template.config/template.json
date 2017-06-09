@@ -1,0 +1,47 @@
+{
+  "author": "Microsoft Community Contribution",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Blank",
+  "groupIdentity": "wts.Page.VB.Blank",
+  "identity": "wts.Page.VB.Blank.CodeBehind",
+  "shortName": "Blank Page",
+  "description": "This is the most basic page. A blank canvas to mold into whatever you wish.",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "page",
+    "wts.framework": "CodeBehind",
+    "wts.version": "1.0.0",
+    "wts.order": "1"
+  },
+  "sourceName": "BlankView",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Views\\BlankViewPage.xaml"
+    },
+    {
+      "path": ".\\Views\\BlankViewPage.xaml.vb"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Set"
+    }
+  }
+}

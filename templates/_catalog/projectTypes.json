@@ -5,7 +5,8 @@
         "summary": "This basic project is a blank canvas upon which to build your app.",
         "author": "Microsoft",
         "order": "2",
-        "licenses": ""
+        "licenses": "",
+        "languages": [ "C#", "VisualBasic" ]
     },
     {
         "name": "SplitView",
@@ -13,7 +14,8 @@
         "summary": "A navigation pane (or 'hamburger menu') is included for navigation between pages.",
         "author": "Microsoft",
         "order": "1",
-        "licenses": ""
+        "licenses": "",
+        "languages": [ "C#" ]
     },
     {
         "name": "TabbedPivot",
@@ -21,6 +23,7 @@
         "summary": "Tabs across the top allow for quickly navigating between pages.",
         "author": "Microsoft",
         "order": "3",
-        "licenses": ""
+        "licenses": "",
+        "languages": [ "C#" ]
     }
 ]

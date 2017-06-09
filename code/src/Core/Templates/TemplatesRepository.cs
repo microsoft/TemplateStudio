@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Template;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 
 using Newtonsoft.Json;
@@ -50,7 +51,7 @@ namespace Microsoft.Templates.Core
 
         public IEnumerable<ITemplateInfo> GetAll()
         {
-            var queryResult = CodeGen.Instance.Cache.List(false, WellKnownSearchFilters.LanguageFilter("C#"));
+            var queryResult = CodeGen.Instance.Cache.List(false, WellKnownSearchFilters.LanguageFilter(GenContext.Language));
 
             return queryResult
                         .Where(r => r.IsMatch)
@@ -97,6 +98,8 @@ namespace Microsoft.Templates.Core
 
             var metadataFile = Path.Combine(folderName, $"{type}.json");
             var metadata = JsonConvert.DeserializeObject<List<MetadataInfo>>(File.ReadAllText(metadataFile));
+
+            metadata.RemoveAll(m => !m.Languages.Contains(GenContext.Language));
 
             metadata.ForEach(m => SetMetadataDescription(m, folderName, type));
             metadata.ForEach(m => SetMetadataIcon(m, folderName, type));
