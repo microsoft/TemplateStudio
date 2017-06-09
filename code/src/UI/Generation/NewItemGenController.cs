@@ -64,7 +64,6 @@ namespace Microsoft.Templates.UI
             return (string.Empty, string.Empty);
         }
 
-
         public UserSelection GetUserSelectionNewItem(TemplateType templateType)
         {
             var newItem = new Views.NewItem.MainView(templateType);
@@ -99,7 +98,6 @@ namespace Microsoft.Templates.UI
             return null;
         }
 
-
         public async Task GenerateNewItemAsync(UserSelection userSelection)
         {
             try
@@ -125,6 +123,129 @@ namespace Microsoft.Templates.UI
 
             // TODO: Review New Item telemetry
             TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework);
+        }
+
+        public NewItemGenerationResult CompareOutputAndProject()
+        {
+            var result = new NewItemGenerationResult();
+            var files = Directory
+                .EnumerateFiles(GenContext.Current.OutputPath, "*", SearchOption.AllDirectories)
+                .Where(f => !Regex.IsMatch(f, MergePostAction.PostactionRegex) && !Regex.IsMatch(f, MergePostAction.FailedPostactionRegex))
+                .ToList();
+
+            foreach (var file in files)
+            {
+                var destFilePath = file.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
+                var fileName = file.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, String.Empty);
+                var fileInfo = new NewItemGenerationFileInfo(fileName, file, destFilePath);
+
+                if (!File.Exists(destFilePath))
+                {
+                    result.NewFiles.Add(fileInfo);
+                        
+                }
+                else
+                {
+                    if (GenContext.Current.MergeFilesFromProject.Contains(destFilePath))
+                    {
+                        if (!FilesAreEqual(file, destFilePath))
+                        {
+                            result.ModifiedFiles.Add(fileInfo);
+                        }
+                    }
+                    else
+                    {
+                        if (!FilesAreEqual(file, destFilePath))
+                        {
+                            result.ConflictingFiles.Add(fileInfo);
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        public void SyncNewItem(UserSelection userSelection)
+        {
+            try
+            {
+                UnsafeSyncNewItem();
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex, userSelection);
+                GenContext.ToolBox.Shell.CancelWizard(false);
+            }
+        }
+
+        public void UnsafeSyncNewItem()
+        {
+            var result = CompareOutputAndProject();
+
+            //BackupProjectFiles(result);
+            CopyFilesToProject(result);
+
+            ExecuteFinishGenerationPostActions();
+            CleanupTempGeneration();
+        }
+
+        private void BackupProjectFiles(NewItemGenerationResult result)
+        {
+            var projectGuid = GenContext.ToolBox.Shell.GetActiveProjectGuid();
+
+            if (string.IsNullOrEmpty(projectGuid))
+            {
+                //TODO: Handle this 
+                return;
+            }
+
+            var backupFolder = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
+                Configuration.Current.BackupFolderName,
+                projectGuid);
+
+            var fileName = Path.Combine(backupFolder, "backup.json");
+
+            if (Directory.Exists(backupFolder))
+            {
+                //TODO: Change this to cleanup folder
+                Fs.SafeDeleteDirectory(backupFolder);
+            }
+
+            Fs.EnsureFolder(backupFolder);
+
+            File.WriteAllText(fileName, JsonConvert.SerializeObject(result));
+
+            var modifiedFiles = result.ConflictingFiles.Concat(result.ModifiedFiles);
+
+            foreach (var file in modifiedFiles)
+            {
+                var originalFile = file.ProjectFilePath;
+                var backupFile = Path.Combine(backupFolder, file.Name);
+                var destDirectory = Path.GetDirectoryName(backupFile);
+               
+                Fs.SafeCopyFile(originalFile, destDirectory, true);
+            }
+        }
+
+        public void CleanupTempGeneration()
+        {
+            GenContext.Current.GenerationWarnings.Clear();
+            GenContext.Current.MergeFilesFromProject.Clear();
+            GenContext.Current.ProjectItems.Clear();
+            var directory = GenContext.Current.OutputPath;
+            try
+            {
+                if (directory.Contains(Path.GetTempPath()))
+                {
+                    Fs.SafeDeleteDirectory(directory);
+                }
+            }
+            catch (Exception ex)
+            {
+                var msg = $"The folder {directory} can't be delete. Error: {ex.Message}";
+                AppHealth.Current.Warning.TrackAsync(msg, ex).FireAndForget();
+            }
         }
 
         //public CompareResult ShowLastActionResult()
@@ -161,135 +282,6 @@ namespace Microsoft.Templates.UI
 
         //    return null;
         //}
-
-        public CompareResult CompareOutputAndProject()
-        {
-            var result = new CompareResult();
-            var files = Directory
-                .EnumerateFiles(GenContext.Current.OutputPath, "*", SearchOption.AllDirectories)
-                .Where(f => !Regex.IsMatch(f, MergePostAction.PostactionRegex) && !Regex.IsMatch(f, MergePostAction.FailedPostactionRegex))
-                .ToList();
-
-            foreach (var file in files)
-            {
-                var destFilePath = file.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
-                if (!File.Exists(destFilePath))
-                {
-                    result.NewFiles.Add(file.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, String.Empty));
-                }
-                else
-                {
-                    if (GenContext.Current.MergeFilesFromProject.Contains(destFilePath))
-                    {
-                        if (!FilesAreEqual(file, destFilePath))
-                        {
-                            result.ModifiedFiles.Add(destFilePath.Replace(GenContext.Current.ProjectPath + Path.DirectorySeparatorChar, String.Empty));
-                        }
-                    }
-                    else
-                    {
-                        if (!FilesAreEqual(file, destFilePath))
-                        {
-                            result.ConflictingFiles.Add(destFilePath.Replace(GenContext.Current.ProjectPath + Path.DirectorySeparatorChar, String.Empty));
-                        }
-                    }
-                }
-            }
-
-            return result;
-        }
-
-        public void SyncNewItem(UserSelection userSelection)
-        {
-            try
-            {
-                UnsafeSyncNewItem();
-            }
-            catch (Exception ex)
-            {
-                ShowError(ex, userSelection);
-                GenContext.ToolBox.Shell.CancelWizard(false);
-            }
-        }
-
-        public void UnsafeSyncNewItem()
-        {
-            var result = CompareOutputAndProject();
-
-            //BackupProjectFiles(result);
-            CopyFilesToProject(result);
-
-            ExecuteFinishGenerationPostActions();
-            CleanupTempGeneration();
-
-        }
-
-        private void BackupProjectFiles(CompareResult result)
-        {
-            var projectGuid = GenContext.ToolBox.Shell.GetActiveProjectGuid();
-
-            if (string.IsNullOrEmpty(projectGuid))
-            {
-                //TODO: Handle this 
-                return;
-            }
-
-            var backupFolder = Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
-                Configuration.Current.BackupFolderName,
-                projectGuid);
-
-            var fileName = Path.Combine(backupFolder, "backup.json");
-
-            if (!Directory.Exists(backupFolder))
-            {
-                Directory.CreateDirectory(backupFolder);
-            }
-            else
-            {
-                Directory.Delete(backupFolder, true);
-                Directory.CreateDirectory(backupFolder);
-            }
-
-            File.WriteAllText(fileName, JsonConvert.SerializeObject(result));
-
-            var modifiedFiles = result.ConflictingFiles.Concat(result.ModifiedFiles);
-
-            foreach (var file in modifiedFiles)
-            {
-                var originalFile = Path.Combine(GenContext.Current.ProjectPath, file);
-                var backupFile = Path.Combine(backupFolder, file);
-                var destDirectory = Path.GetDirectoryName(backupFile);
-                if (!Directory.Exists(destDirectory))
-                {
-                    Directory.CreateDirectory(destDirectory);
-                }
-                File.Copy(originalFile, backupFile, true);
-            }
-        }
-
-        public void CleanupTempGeneration()
-        {
-            GenContext.Current.GenerationWarnings.Clear();
-            GenContext.Current.MergeFilesFromProject.Clear();
-            GenContext.Current.ProjectItems.Clear();
-            var directory = GenContext.Current.OutputPath;
-            try
-            {
-                if (directory.Contains(Path.GetTempPath()))
-                {
-                    if (Directory.Exists(directory))
-                    {
-                        Directory.Delete(directory, true);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                var msg = $"The folder {directory} can't be delete. Error: {ex.Message}";
-                AppHealth.Current.Warning.TrackAsync(msg, ex).FireAndForget();
-            }
-        }
 
         //public CompareResult GetLastActionInfo()
         //{
@@ -344,27 +336,24 @@ namespace Microsoft.Templates.UI
         //    }
         //}
 
-        private void CopyFilesToProject(CompareResult result)
+        private void CopyFilesToProject(NewItemGenerationResult result)
         {
             var modifiedFiles = result.ConflictingFiles.Concat(result.ModifiedFiles);
 
             foreach (var file in modifiedFiles)
             {
-                var sourceFile = Path.Combine(GenContext.Current.OutputPath, file);
-                var destFileName = Path.Combine(GenContext.Current.ProjectPath, file);
-                File.Copy(sourceFile, destFileName, true);
+                var sourceFile = file.NewItemGenerationFilePath;
+                var destFileName = file.ProjectFilePath;
+                var destDirectory = Path.GetDirectoryName(destFileName);
+                Fs.SafeCopyFile(sourceFile, destDirectory, true);
             }
 
             foreach (var file in result.NewFiles)
             {
-                var sourceFile = Path.Combine(GenContext.Current.OutputPath, file);
-                var destFileName = Path.Combine(GenContext.Current.ProjectPath, file);
+                var sourceFile = file.NewItemGenerationFilePath;
+                var destFileName = file.ProjectFilePath;
                 var destDirectory = Path.GetDirectoryName(destFileName);
-                if (!Directory.Exists(destDirectory))
-                {
-                    Directory.CreateDirectory(destDirectory);
-                }
-                File.Copy(sourceFile, destFileName, true);
+                Fs.SafeCopyFile(sourceFile, destDirectory, true);
             }
         }
 

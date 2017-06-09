@@ -61,16 +61,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         public RelayCommand AddNewFeatureCommand => new RelayCommand(AddNewFeature);
 
         public RelayCommand AddNewPageCommand => new RelayCommand(AddNewPage);
-        public RelayCommand UndoLastActionCommand => new RelayCommand(UndoLastAction);
-
-        private void UndoLastAction()
-        {
-            ConfigureGenContext();
-            //TODO: Call this from Views
-            //var result = NewItemGenController.Instance.ShowLastActionResult();
-            //NewItemGenController.Instance.UndoLastAction(result);
-            
-        }
+       
 
         private string _state;
         public string State
