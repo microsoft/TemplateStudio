@@ -4,7 +4,7 @@ using Windows.ApplicationModel;
 
 namespace Param_RootNamespace
 {
-    sealed partial class App : Application
+    sealed partial class App
     {
         public App()
         {

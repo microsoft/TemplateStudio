@@ -9,7 +9,7 @@ namespace wts.DefaultProject
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    sealed partial class App
     {
         private Lazy<ActivationService> _activationService;
         private ActivationService ActivationService { get { return _activationService.Value; } }
