@@ -14,9 +14,6 @@
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\Models\\SampleModel.cs"
-    }
   ],
   "symbols": {
     "wts.rootNamespace": {
