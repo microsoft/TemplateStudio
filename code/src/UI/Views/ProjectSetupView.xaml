@@ -34,7 +34,7 @@
                             </Grid.ColumnDefinitions>
 
                             <!--Row 0-->
-                            <controls:ImageEx Grid.Row="0" Grid.RowSpan="3" Focusable="False" SourcePath="{Binding Icon}" VerticalAlignment="Top"/>
+                            <controls:ImageEx Grid.Row="0" Grid.RowSpan="3" Focusable="False" SourcePath="{Binding Icon}" VerticalAlignment="Top" FallbackImage="/Microsoft.Templates.UI;component/Assets/DefaultIcon.png" />
                             <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding DisplayName}" Margin="{StaticResource MediumLeftMargin}" />
                             <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource BlackBaseTemplateInfoButtonStyle}" Command="{Binding ShowInfoCommand}">
                                 <Button.Content>

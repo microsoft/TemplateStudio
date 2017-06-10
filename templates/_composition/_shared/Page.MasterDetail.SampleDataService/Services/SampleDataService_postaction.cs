@@ -1,13 +1,17 @@
-using Param_ItemNamespace.Models;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Param_ItemNamespace.Models;
 using Windows.UI.Xaml.Controls;
 
 namespace Param_ItemNamespace.Services
 {
-    public class SampleModelService
+    public static class SampleDataService
     {
-        public async Task<IEnumerable<SampleModel>> GetDataAsync()
+//^^
+//{[{
+        // TODO UWPTemplates: Remove this once your MasterDetail pages are displaying real data
+        public static async Task<IEnumerable<SampleModel>> GetSampleModelDataAsync()
         {
             await Task.CompletedTask;
             var data = new List<SampleModel>();
@@ -27,5 +31,7 @@ namespace Param_ItemNamespace.Services
             });
             return data;
         }
+//}]}
+
     }
 }

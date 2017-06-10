@@ -254,3 +254,4 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+templates/_composition/_shared/Page.Chart.SampleDataService/Services/SampleDataService_postaction.cs
