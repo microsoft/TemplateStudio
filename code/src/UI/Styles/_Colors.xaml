@@ -3,7 +3,8 @@
 
     <Color x:Key="UIBlueColor">#3399ff</Color>
     <Color x:Key="UIDarkBlueColor">#017af3</Color>
-    
+
+    <Color x:Key="UILightGreenColor">#ebf1dd</Color>
     <Color x:Key="UIWhiteColor">#ffffff</Color>
 
     <Color x:Key="UIBlackColor">#000000</Color>
@@ -21,6 +22,7 @@
 
     <SolidColorBrush x:Key="UIBlue" Color="{StaticResource UIBlueColor}"/>
     <SolidColorBrush x:Key="UIDarkBlue" Color="{StaticResource UIDarkBlueColor}"/>
+    <SolidColorBrush x:Key="UILightGreen" Color="{StaticResource UILightGreenColor}"/>
     
     <SolidColorBrush x:Key="UIWhite" Color="{StaticResource UIWhiteColor}"/>
 
