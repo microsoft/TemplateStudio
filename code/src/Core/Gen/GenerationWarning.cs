@@ -19,15 +19,18 @@ namespace Microsoft.Templates.Core.Gen
 {
     public class GenerationWarning
     {
-        public string Subject { get; private set; }
+        public string FileName { get; private set; }
+
+        public string FilePath { get; set; }
 
         public string Description { get; private set; }
 
         public string ExtendedInfo { get; private set; }
 
-        public GenerationWarning(string subject, string description, string extendedInfo)
+        public GenerationWarning(string fileName, string filePath, string description, string extendedInfo)
         {
-            Subject = subject;
+            FileName = fileName;
+            FilePath = filePath;
             Description = description;
             ExtendedInfo = extendedInfo;
         }

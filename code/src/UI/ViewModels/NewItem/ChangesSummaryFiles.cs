@@ -11,7 +11,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public override FileType FileType => FileType.WarningFile;
 
-        public WarningNewItemFileViewModel(GenerationWarning warning) : base(warning.Subject)
+        public WarningNewItemFileViewModel(GenerationWarning warning) : base(warning.FileName)
         {
             this.Description = warning.Description;
             this.ExtendedInfo = warning.ExtendedInfo;
