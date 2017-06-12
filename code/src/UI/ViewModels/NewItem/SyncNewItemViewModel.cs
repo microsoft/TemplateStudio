@@ -35,7 +35,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             _newItemView = newItemView;
         }
 
+        //Merge not succedded
         public ObservableCollection<string> GenerationWarnings { get; } = new ObservableCollection<string>();
+
         public ObservableCollection<string> NewFiles { get; } = new ObservableCollection<string>();
         public ObservableCollection<string> ConflictingFiles { get; } = new ObservableCollection<string>();
         public ObservableCollection<string> ModifiedFiles { get; } = new ObservableCollection<string>();

@@ -133,11 +133,47 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Conflicting files.
+        /// </summary>
+        public static string ChangesSummaryConflictingFilesTitle {
+            get {
+                return ResourceManager.GetString("ChangesSummaryConflictingFilesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modified files.
+        /// </summary>
+        public static string ChangesSummaryModifiedFilesTitle {
+            get {
+                return ResourceManager.GetString("ChangesSummaryModifiedFilesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New files.
+        /// </summary>
+        public static string ChangesSummaryNewFilesTitle {
+            get {
+                return ResourceManager.GetString("ChangesSummaryNewFilesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Changes summary.
         /// </summary>
         public static string ChangesSummaryTitle {
             get {
                 return ResourceManager.GetString("ChangesSummaryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warnings.
+        /// </summary>
+        public static string ChangesSummaryWarningsTitle {
+            get {
+                return ResourceManager.GetString("ChangesSummaryWarningsTitle", resourceCulture);
             }
         }
         

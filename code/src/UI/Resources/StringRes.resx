@@ -412,4 +412,16 @@
   <data name="ChangesSummaryTitle" xml:space="preserve">
     <value>Changes summary</value>
   </data>
+  <data name="ChangesSummaryWarningsTitle" xml:space="preserve">
+    <value>Warnings</value>
+  </data>
+  <data name="ChangesSummaryConflictingFilesTitle" xml:space="preserve">
+    <value>Conflicting files</value>
+  </data>
+  <data name="ChangesSummaryModifiedFilesTitle" xml:space="preserve">
+    <value>Modified files</value>
+  </data>
+  <data name="ChangesSummaryNewFilesTitle" xml:space="preserve">
+    <value>New files</value>
+  </data>
 </root>

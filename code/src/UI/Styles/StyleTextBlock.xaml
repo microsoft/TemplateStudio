@@ -188,5 +188,15 @@
         <Setter Property="TextAlignment" Value="Center" />
         <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
     </Style>
+    
+    <!--Changes summary-->
+    <Style TargetType="TextBlock" x:Key="NewItemFileNameStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Margin" Value="{StaticResource ExtraBigLeftMargin}"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="NewItemFileLineStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="FontFamily" Value="Consolas"/>
+    </Style>
 
 </ResourceDictionary>

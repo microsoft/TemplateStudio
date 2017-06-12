@@ -3,15 +3,17 @@ using System.Windows.Controls;
 
 namespace Microsoft.Templates.UI.Views.NewItem
 {
-    public partial class NewItemSetupView : Page
+    public partial class ChangesSummaryView : Page
     {
         public MainViewModel ViewModel { get; }
 
-        public NewItemSetupView()
+        public ChangesSummaryView()
         {
             ViewModel = MainViewModel.Current;
             DataContext = ViewModel;
-            InitializeComponent();           
+            InitializeComponent();
+
+            Loaded += (sender, args) => { ViewModel.ChangesSummary.Initialize(); };
         }
     }
 }

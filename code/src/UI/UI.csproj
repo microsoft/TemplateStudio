@@ -201,16 +201,20 @@
     <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="Generation\NewProjectGenController.cs" />
     <Compile Include="Generation\NewItemGenController.cs" />
+    <Compile Include="TemplateSelectors\NewItemFileTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\SummaryItemOptionsTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\SummaryItemTemplateSelector.cs" />
     <Compile Include="ViewModels\Common\BaseMainViewModel.cs" />
+    <Compile Include="ViewModels\NewItem\BaseNewItemFileViewModel.cs" />
+    <Compile Include="ViewModels\NewItem\ChangesSummaryViewModel.cs" />
+    <Compile Include="ViewModels\NewItem\ChangesSummaryFiles.cs" />
+    <Compile Include="ViewModels\NewItem\CodeLineViewModel.cs" />
     <Compile Include="ViewModels\NewItem\MainViewModel.cs" />
     <Compile Include="ViewModels\NewItem\NewItemSetupViewModel.cs" />
     <Compile Include="ViewModels\NewItem\TemplateInfoViewModel.cs" />
     <Compile Include="ViewModels\Common\CommonInfoViewModel.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="ViewModels\Common\DependencyInfoViewModel.cs" />
-    <Compile Include="ViewModels\NewItem\NewItemViewModel.cs" />
     <Compile Include="ViewModels\NewItem\SyncNewItemViewModel.cs" />
     <Compile Include="Views\Common\ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>
@@ -241,8 +245,8 @@
     <Compile Include="Views\NewItem\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewItem\NewItemChangesSummaryView.xaml.cs">
-      <DependentUpon>NewItemChangesSummaryView.xaml</DependentUpon>
+    <Compile Include="Views\NewItem\ChangesSummaryView.xaml.cs">
+      <DependentUpon>ChangesSummaryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewItem\NewItemSetupView.xaml.cs">
       <DependentUpon>NewItemSetupView.xaml</DependentUpon>
@@ -252,9 +256,6 @@
     </Compile>
     <Compile Include="Views\NewItem\SyncNewItemView.xaml.cs">
       <DependentUpon>SyncNewItemView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\NewItem\NewItemView.xaml.cs">
-      <DependentUpon>NewItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewProject\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -401,7 +402,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\NewItem\NewItemChangesSummaryView.xaml">
+    <Page Include="Views\NewItem\ChangesSummaryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -416,10 +417,6 @@
     <Page Include="Views\NewItem\SyncNewItemView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\NewItem\NewItemView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NewProject\MainView.xaml">
       <SubType>Designer</SubType>

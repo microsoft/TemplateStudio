@@ -361,7 +361,7 @@ namespace Microsoft.Templates.UI
 
         private static bool FilesAreEqual(string file, string destFilePath)
         {
-            return File.ReadAllBytes(file).SequenceEqual(File.ReadAllBytes(destFilePath));
+            return File.ReadAllLines(file).SequenceEqual(File.ReadAllLines(destFilePath));
         }
 
 

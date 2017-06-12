@@ -16,12 +16,21 @@ using System.Collections.ObjectModel;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using System;
+using System.Linq;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
     public class ItemsGroupViewModel<T> : Observable where T : class
     {
         private Action<ItemsGroupViewModel<T>> _onItemChanged;
+
+        private bool _hasItems;
+        public bool HasItems
+        {
+            get => _hasItems;
+            set => SetProperty(ref _hasItems, value);
+        }
+
         private string _name;
         public string Name
         {
@@ -54,6 +63,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Name = name;
             Title = GetTitle(name);
             Templates.AddRange<T>(templates);
+            HasItems = templates != null && templates.Any();
             _onItemChanged = onItemChanged;
         }
 

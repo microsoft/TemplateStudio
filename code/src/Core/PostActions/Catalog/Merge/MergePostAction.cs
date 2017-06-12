@@ -50,7 +50,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 else
                 {
                     AddGenerationWarning();
-                    File.Copy(_config.FilePath, _config.FilePath.Replace(Suffix, NewSuffix));
+                    File.Copy(_config.FilePath, _config.FilePath.Replace(Suffix, NewSuffix), true);
                     File.Delete(_config.FilePath);
                     return;
                 }
@@ -88,9 +88,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private void AddGenerationWarning()
         {
-            var description = $"Could not find merge target for file '{_config.FilePath.Replace(GenContext.Current.OutputPath, String.Empty)}'. Please integrate the content from the postaction file manually.";
+            var fileName = _config.FilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, String.Empty);
+            var description = $"Could not find merge target for file '{fileName}'. Please integrate the content from the postaction file manually.";
             var intent = GetPostActionIntent();
-            GenContext.Current.GenerationWarnings.Add(new GenerationWarning(_config.FilePath, description, intent));
+            GenContext.Current.GenerationWarnings.Add(new GenerationWarning(fileName, _config.FilePath, description, intent));
         }
 
         private string GetPostActionIntent()
