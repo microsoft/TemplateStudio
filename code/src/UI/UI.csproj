@@ -201,6 +201,7 @@
     <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="Generation\NewProjectGenController.cs" />
     <Compile Include="Generation\NewItemGenController.cs" />
+    <Compile Include="TemplateSelectors\CodeLineTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\NewItemFileTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\SummaryItemOptionsTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\SummaryItemTemplateSelector.cs" />
