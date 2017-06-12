@@ -33,14 +33,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var newFilePath = Path.Combine(GenContext.Current.OutputPath, Subject);
             if (File.Exists(newFilePath))
             {
-                var lines = File.ReadAllLines(newFilePath).Select(line => new CodeLineViewModel(line));
-                NewFileLines.AddRange(lines);
+                uint lineNumber = 0;
+                foreach (var line in File.ReadAllLines(newFilePath))
+                {
+                    NewFileLines.Add(new CodeLineViewModel(++lineNumber, line));
+                }
             }
             var currentFilePath = Path.Combine(GenContext.Current.ProjectPath, Subject);
             if (File.Exists(currentFilePath))
             {
-                var lines = File.ReadAllLines(currentFilePath).Select(line => new CodeLineViewModel(line));
-                CurrentFileLines.AddRange(lines);
+                uint lineNumber = 0;
+                foreach (var line in File.ReadAllLines(currentFilePath))
+                {
+                    CurrentFileLines.Add(new CodeLineViewModel(++lineNumber, line));
+                }
             }
             if (File.Exists(newFilePath) && File.Exists(currentFilePath))
             {
@@ -52,20 +58,22 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             var result = new ObservableCollection<CodeLineViewModel>();
             int index = 0;
+            uint lineNumber = 0;
             foreach (var newFileLine in NewFileLines)
             {
                 var currentLine = CurrentFileLines[index];
                 if (currentLine.Line == newFileLine.Line)
                 {
                     //Default
-                    result.Add(new CodeLineViewModel(newFileLine));
+                    result.Add(new CodeLineViewModel(lineNumber, newFileLine));
                     index++;
                 }
                 else
                 {
                     //New
-                    result.Add(new CodeLineViewModel(newFileLine, LineStatus.New));
+                    result.Add(new CodeLineViewModel(lineNumber, newFileLine, LineStatus.New));
                 }
+                lineNumber++;
             }
             return result;
         }

@@ -29,30 +29,37 @@
             <DataTemplate x:Key="DefaultLineTemplate">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="1" Text="{Binding Line}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                    <TextBlock Grid.Column="0" Text="{Binding NumberString}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                    <TextBlock Grid.Column="1" Text="   " FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                    <TextBlock Grid.Column="2" Text="{Binding Line}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="NewLineTemplate">
                 <Grid Background="{StaticResource UILightGreen}">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="+" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
-                    <TextBlock Grid.Column="1" Text="{Binding Line}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                    <TextBlock Grid.Column="0" Text="{Binding NumberString}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                    <TextBlock Grid.Column="1" Text=" + " FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                    <TextBlock Grid.Column="2" Text="{Binding Line}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="DeletedLineTemplate">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="-" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
-                    <TextBlock Grid.Column="1" Text="{Binding Line}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                    <TextBlock Grid.Column="0" Text="{Binding NumberString}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                    <TextBlock Grid.Column="1" Text=" - " FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                    <TextBlock Grid.Column="2" Text="{Binding Line}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
                 </Grid>
             </DataTemplate>
 
