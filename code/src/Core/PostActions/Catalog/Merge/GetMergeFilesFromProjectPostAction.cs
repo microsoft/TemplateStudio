@@ -55,7 +55,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 var destFile = filePath.Replace(GenContext.Current.ProjectPath, GenContext.Current.OutputPath);
                 File.Copy(filePath, destFile, true);
-                GenContext.Current.MergeFilesFromProject.Add(filePath);
+                
+                GenContext.Current.MergeFilesFromProject.Add(new MergeFileInfo() { FilePath = filePath });
             }
         }
 

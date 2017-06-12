@@ -18,6 +18,7 @@ using System.Linq;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Test.Artifacts;
 using Microsoft.Templates.UI;
 
@@ -43,14 +44,13 @@ namespace Microsoft.Templates.Test
 
         public List<GenerationWarning> GenerationWarnings { get; } = new List<GenerationWarning>();
 
-        public List<string> MergeFilesFromProject { get; } = new List<string>();
+        public List<MergeFileInfo> MergeFilesFromProject { get; } = new List<MergeFileInfo>();
 
         public ProjectGenerationTests(GenerationFixture fixture)
         {
             _fixture = fixture;
             GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
             GenContext.Current = this;
-
         }
 
 

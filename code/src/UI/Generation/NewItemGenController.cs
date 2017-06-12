@@ -32,6 +32,8 @@ namespace Microsoft.Templates.UI
 {
     public class NewItemGenController : GenController
     {
+        private const string MergeSnippetsFolder = "MergeSnippets";
+
         private static Lazy<NewItemGenController> _instance = new Lazy<NewItemGenController>(Initialize);
         public static NewItemGenController Instance => _instance.Value;
 
@@ -131,8 +133,7 @@ namespace Microsoft.Templates.UI
             var files = Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, "*", SearchOption.AllDirectories)
                 .Where(f => !Regex.IsMatch(f, MergePostAction.PostactionRegex) 
-                        && !Regex.IsMatch(f, MergePostAction.FailedPostactionRegex)
-                        && Directory.GetParent(f).Name != MergePostAction.MergeSnippetsFolder)
+                        && !Regex.IsMatch(f, MergePostAction.FailedPostactionRegex))
                 .ToList();
 
             foreach (var file in files)
@@ -148,10 +149,12 @@ namespace Microsoft.Templates.UI
                 }
                 else
                 {
-                    if (GenContext.Current.MergeFilesFromProject.Contains(destFilePath))
+                    if (GenContext.Current.MergeFilesFromProject.Select(m => m.FilePath).Contains(destFilePath))
                     {
+                        var mergeFile = GenContext.Current.MergeFilesFromProject.FirstOrDefault(m => m.FilePath == destFilePath);
                         if (!FilesAreEqual(file, destFilePath))
                         {
+                            fileInfo.MergeSnippets = mergeFile.MergeSnippets;
                             result.ModifiedFiles.Add(fileInfo);
                         }
                     }
@@ -186,9 +189,25 @@ namespace Microsoft.Templates.UI
 
             //BackupProjectFiles(result);
             CopyFilesToProject(result);
-
+            PrintMergeSnippets(result);
             ExecuteFinishGenerationPostActions();
             CleanupTempGeneration();
+        }
+
+        private void PrintMergeSnippets(NewItemGenerationResult result)
+        {
+            foreach (var modifiedFile in result.ModifiedFiles)
+            {
+                foreach (var mergeSnippet in modifiedFile.MergeSnippets)
+                {
+                    var folder = Path.Combine(GenContext.Current.OutputPath, MergeSnippetsFolder);
+                    Fs.EnsureFolder(folder);
+
+                    var mergeSnippetName = $"{Path.GetFileName(modifiedFile.ProjectFilePath)} -Line {mergeSnippet.Key}.txt";
+                    File.AppendAllLines(Path.Combine(folder, mergeSnippetName), mergeSnippet.Value);
+
+                }
+            }
         }
 
         private void BackupProjectFiles(NewItemGenerationResult result)

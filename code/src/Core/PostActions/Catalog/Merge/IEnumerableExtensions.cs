@@ -13,6 +13,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
@@ -49,7 +50,18 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             return -1;
         }
 
-        public static IEnumerable<string> Merge(this IEnumerable<string> source, IEnumerable<string> merge, bool generateMergeSnippets, out Dictionary<int, IEnumerable<string>> mergeSnippets)
+        public static IEnumerable<string> Merge(this IEnumerable<string> source, IEnumerable<string> merge)
+        {
+            return Merge(source, merge, false, out Dictionary<int, IEnumerable<string>> mergeSnippets);
+        }
+
+        public static IEnumerable<string> Merge(this IEnumerable<string> source, IEnumerable<string> merge, out Dictionary<int, IEnumerable<string>> mergeSnippets)
+        {
+            return Merge(source, merge, true, out mergeSnippets);
+        }
+
+
+        private static IEnumerable<string> Merge(this IEnumerable<string> source, IEnumerable<string> merge, bool generateMergeSnippets, out Dictionary<int, IEnumerable<string>> mergeSnippets)
         {
             int lastLineIndex = -1;
             var insertionBuffer = new List<string>();
@@ -154,7 +166,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             return mergeString.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
         }
 
-        private static void TryAddBufferContent(List<string> insertionBuffer, List<string> result, int lastLineIndex, bool generateMergeSnippets, IDictionary<int, IEnumerable<string>> mergeSnippets, int currentLineIndex = 0, bool beforeMode = false)
+        private static void TryAddBufferContent(List<string> insertionBuffer, List<string> result, int lastLineIndex, bool generateMergeSnippets, Dictionary<int, IEnumerable<string>> mergeSnippets, int currentLineIndex = 0, bool beforeMode = false)
         {
             if (insertionBuffer.Any() && !BlockExists(insertionBuffer, result, lastLineIndex) && currentLineIndex > -1)
             {

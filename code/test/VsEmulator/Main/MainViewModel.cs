@@ -28,6 +28,7 @@ using Microsoft.Templates.VsEmulator.LoadProject;
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
@@ -50,7 +51,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public List<GenerationWarning> GenerationWarnings { get; } = new List<GenerationWarning>();
 
-        public List<string> MergeFilesFromProject { get; } = new List<string>();
+        public List<MergeFileInfo> MergeFilesFromProject { get; } = new List<MergeFileInfo>();
 
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);

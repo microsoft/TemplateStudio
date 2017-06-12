@@ -10,6 +10,7 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Xunit;

@@ -20,6 +20,7 @@ using Microsoft.Templates.Test.Artifacts;
 
 using Xunit;
 using System.Collections.Generic;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 {
@@ -32,7 +33,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public List<GenerationWarning> GenerationWarnings => throw new NotImplementedException();
 
-        public List<string> MergeFilesFromProject => throw new NotImplementedException();
+        public List<MergeFileInfo> MergeFilesFromProject => throw new NotImplementedException();
 
         [Fact]
         public void Execute_Ok()

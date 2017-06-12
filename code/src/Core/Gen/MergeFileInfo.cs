@@ -11,6 +11,7 @@
 // ******************************************************************
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,14 +19,11 @@ using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 
 namespace Microsoft.Templates.Core.Gen
 {
-    public interface IContextProvider
+    public class MergeFileInfo
     {
-        string ProjectName { get; }
-        string OutputPath { get; }
-        string ProjectPath { get; }
-        List<string> ProjectItems { get; }
-        List<GenerationWarning> GenerationWarnings { get; }
-        List<MergeFileInfo> MergeFilesFromProject { get; }
+        public string FileName  => Path.GetFileName(FilePath);
+        public string FilePath { get; set; }
 
+        public Dictionary<int, IEnumerable<string>> MergeSnippets { get; } = new Dictionary<int, IEnumerable<string>>();
     }
 }

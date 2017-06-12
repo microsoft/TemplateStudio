@@ -14,6 +14,8 @@ namespace Microsoft.Templates.UI
 
         public string ProjectFilePath { get; set; }
 
+        public Dictionary<int, IEnumerable<string>> MergeSnippets { get; set; } 
+
         public NewItemGenerationFileInfo(string name, string newItemGenerationFilePath, string projectFilePath)
         {
             Name = name;

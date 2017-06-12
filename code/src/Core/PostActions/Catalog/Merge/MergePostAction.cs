@@ -24,7 +24,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         private const string Suffix = "postaction";
         private const string NewSuffix = "failedpostaction";
 
-        public const string MergeSnippetsFolder = "MergeSnippets";
         public const string Extension = "_" + Suffix + ".";
         public const string GlobalExtension = "$*_g" + Suffix + ".";
         public const string PostActionIntentExtension = ".md";
@@ -60,21 +59,40 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var merge = File.ReadAllLines(_config.FilePath).ToList();
 
             IEnumerable<string> result = source.HandleRemovals(merge);
+            var mergeSnippets = new Dictionary<int, IEnumerable<string>>();
+
+            if (!_config.GenerateMergeSnippets)
+            {
+                result = result.Merge(merge.RemoveRemovals());
+            }
+            else
+            {
+                result = result.Merge(merge.RemoveRemovals(), out mergeSnippets);
+            }
             
-            result = result.Merge(merge.RemoveRemovals(), _config.GenerateMergeSnippets, out Dictionary <int, IEnumerable <string>> mergeSnippets);
 
             File.WriteAllLines(originalFilePath, result);
 
             if (_config.GenerateMergeSnippets)
             {
                 var fileName = Path.GetFileName(originalFilePath);
-                var folder = Path.Combine(GenContext.Current.OutputPath, MergeSnippetsFolder);
-                Fs.EnsureFolder(folder);
-                foreach (var mergeSnippet in mergeSnippets)
+
+                if (GenContext.Current.MergeFilesFromProject.Select(f => f.FileName).Contains(fileName))
                 {
-                    var mergeSnippetName = $"{fileName} - Line {mergeSnippet.Key}.txt";
-                    File.AppendAllLines(Path.Combine(folder, mergeSnippetName), mergeSnippet.Value);
-                }
+                    var mergeFile = GenContext.Current.MergeFilesFromProject.FirstOrDefault(f => f.FileName == fileName);
+                    
+                    foreach (var mergeSnippet in mergeSnippets)
+                    {
+                        if (mergeFile.MergeSnippets.ContainsKey(mergeSnippet.Key))
+                        {
+                            mergeFile.MergeSnippets[mergeSnippet.Key]= mergeSnippet.Value.Concat(mergeFile.MergeSnippets[mergeSnippet.Key]);
+                        }
+                        else
+                        {
+                            mergeFile.MergeSnippets[mergeSnippet.Key] = mergeSnippet.Value;
+                        }
+                    }   
+                } 
             }
 
             File.Delete(_config.FilePath);
