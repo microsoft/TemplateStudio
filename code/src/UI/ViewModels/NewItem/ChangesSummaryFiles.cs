@@ -22,7 +22,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
     {
         public override FileType FileType => FileType.ConflictingFile;
 
-        public ConfictingNewItemFileViewModel(string subject) : base(subject)
+        public ConfictingNewItemFileViewModel(NewItemGenerationFileInfo generationInfo) : base(generationInfo)
         {
         }
     }
@@ -30,15 +30,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
     public class AddedNewItemFileViewModel : BaseNewItemFileViewModel
     {
         public override FileType FileType => FileType.AddedFile;
-        public AddedNewItemFileViewModel(string subject) : base(subject)
+        public AddedNewItemFileViewModel(NewItemGenerationFileInfo generationInfo) : base(generationInfo)
         {
         }
     }
 
     public class ModifiedNewItemFileViewModel : BaseNewItemFileViewModel
     {
-        public override FileType FileType => FileType.ModifiedFile;
-        public ModifiedNewItemFileViewModel(string subject) : base(subject)
+        public override FileType FileType => FileType.ModifiedFile;        
+
+        public ModifiedNewItemFileViewModel(NewItemGenerationFileInfo generationInfo) : base(generationInfo)
         {
         }
     }

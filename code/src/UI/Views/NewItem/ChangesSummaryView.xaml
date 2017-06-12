@@ -19,10 +19,14 @@
             <DataTemplate x:Key="ChangesSummaryExpanderHeaderTemplate">
                 <TextBlock Text="{Binding}" Style="{StaticResource TextSummaryGroupHeader}"/>
             </DataTemplate>
-
             <DataTemplate x:Key="ListItemTemplate">
                 <Grid Margin="{StaticResource SmallMargin}">
-                    <TextBlock Text="{Binding Subject}" Style="{StaticResource NewItemFileNameStyle}"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{Binding Icon}" />
+                    <TextBlock Grid.Column="1" Text="{Binding Subject}" Style="{StaticResource NewItemFileNameStyle}" Margin="{StaticResource MediumLeftMargin}" />
                 </Grid>
             </DataTemplate>
 
@@ -81,15 +85,15 @@
                         ItemsSource="{Binding MergedFileLines}" Margin="{StaticResource MediumMargin}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
                 </ScrollViewer>
             </DataTemplate>
-            
+
             <templateSelector:NewItemFileTemplateSelector
-                x:Key="NewItemFileTemplateSelector"
+                x:Key="DetailTemplateSelector"
                 AddedFileTemplate="{StaticResource DefaultDetailTemplate}"
                 ModifiedFileTemplate="{StaticResource ModifiedDetailTemplate}"
                 ConflictingFileTemplate="{StaticResource DefaultDetailTemplate}"
                 WarningFileTemplate="{StaticResource DefaultDetailTemplate}" />
 
-            
+
         </ResourceDictionary>
     </Page.Resources>
 
@@ -111,8 +115,8 @@
                             Visibility="{Binding HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
                             <ListView
                                 Focusable="False"
-                                Style="{StaticResource ListViewChangesSummaryFiles}"                        
-                                ItemTemplate="{StaticResource ListItemTemplate}"
+                                Style="{StaticResource ListViewChangesSummaryFiles}"
+                                ItemTemplate="{StaticResource ListItemTemplate}"                                
                                 ItemsSource="{Binding Templates}"
                                 SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
                         </Expander>
@@ -123,7 +127,7 @@
         <ContentPresenter
             Grid.Column="1"
             Content="{Binding ChangesSummary.SelectedFile}"
-            ContentTemplateSelector="{StaticResource NewItemFileTemplateSelector}"/>
+            ContentTemplateSelector="{StaticResource DetailTemplateSelector}"/>
         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,21,21">
             <Button Content="+" Command="{Binding ChangesSummary.UpdateFontSizeCommand}" CommandParameter="Plus" Style="{StaticResource ButtonUpdateFontSizeStyle}" />
             <Button Content="-" Command="{Binding ChangesSummary.UpdateFontSizeCommand}" CommandParameter="Minus" Style="{StaticResource ButtonUpdateFontSizeStyle}" />

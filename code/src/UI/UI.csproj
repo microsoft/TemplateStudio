@@ -445,5 +445,15 @@
   <ItemGroup>
     <Resource Include="Assets\DefaultIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\FileExtensions\CSharp.png" />
+    <Resource Include="Assets\FileExtensions\Xaml.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\FileExtensions\DefaultFile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\FileExtensions\Resw.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

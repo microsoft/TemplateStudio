@@ -13,19 +13,34 @@ using System.Windows.Input;
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public enum FileType { AddedFile, ModifiedFile, ConflictingFile, WarningFile }
+    public enum FileExtension { Default, CSharp, Resw, Xaml }
     public abstract class BaseNewItemFileViewModel : Observable
     {
         public string Subject { get; private set; }
+        public string Icon { get; private set; }
+        public FileExtension FileExtension { get; private set; }
         public ObservableCollection<CodeLineViewModel> NewFileLines { get; private set; } = new ObservableCollection<CodeLineViewModel>();
         public ObservableCollection<CodeLineViewModel> CurrentFileLines { get; private set; } = new ObservableCollection<CodeLineViewModel>();
         public ObservableCollection<CodeLineViewModel> MergedFileLines { get; private set; } = new ObservableCollection<CodeLineViewModel>();
-        public ICommand UpdateFontSizeCommand { get; }
+        public ICommand UpdateFontSizeCommand { get; }        
         public abstract FileType FileType { get; }
+        private Dictionary<int, IEnumerable<string>> _mergeSnippets { get; }
 
-        public BaseNewItemFileViewModel(string subject)
+        public BaseNewItemFileViewModel(string name)
         {
-            Subject = subject;
+            Subject = name;
+            FileExtension = GetFileExtenion(name);
+            Icon = GetIcon(FileExtension);
             LoadFile();
+        }             
+
+        public BaseNewItemFileViewModel(NewItemGenerationFileInfo generationInfo)
+        {
+            Subject = generationInfo.Name;
+            _mergeSnippets = generationInfo.MergeSnippets;
+            FileExtension = GetFileExtenion(generationInfo.Name);
+            Icon = GetIcon(FileExtension);
+            LoadFile();            
         }
 
         private void LoadFile()
@@ -48,7 +63,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     CurrentFileLines.Add(new CodeLineViewModel(++lineNumber, line));
                 }
             }
-            if (File.Exists(newFilePath) && File.Exists(currentFilePath))
+            if (_mergeSnippets != null)
             {
                 MergedFileLines = MergeLines();
             }
@@ -57,6 +72,27 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private ObservableCollection<CodeLineViewModel> MergeLines()
         {
             var result = new ObservableCollection<CodeLineViewModel>();
+
+            //result.AddRange(NewFileLines);
+
+            //foreach (var mergeSnippet in _mergeSnippets)
+            //{
+            //    int from = mergeSnippet.Key;
+            //    int to = mergeSnippet.Key + mergeSnippet.Value.Count();
+            //    int index = 0;
+            //    for (int i = from; i < to; i++)
+            //    {
+            //        var currentLine = result[i];
+            //        var currentSnippet = mergeSnippet.Value.ElementAt(index);
+            //        if (currentLine.Line == currentSnippet)
+            //        {
+            //            currentLine.Status = LineStatus.New;
+            //        }
+            //        index++;
+            //    }
+            //}
+            //return result;
+
             int index = 0;
             uint lineNumber = 0;
             foreach (var newFileLine in NewFileLines)
@@ -100,6 +136,45 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 {
                     line.FontSize = points;
                 }
+            }
+        }
+
+        private FileExtension GetFileExtenion(string name)
+        {
+            FileExtension result = FileExtension.Default;
+            if (name.Contains("."))
+            {
+                var strings = name.Split('.');
+                if (strings?.Last() == "cs")
+                {
+                    result = FileExtension.CSharp;
+                }
+                else if (strings?.Last() == "xaml")
+                {
+                    result = FileExtension.Xaml;
+                }
+                else if (strings?.Last() == "resw")
+                {
+                    result = FileExtension.Resw;
+                }
+            }
+            return result;
+        }
+
+        private string GetIcon(FileExtension fileExtension)
+        {
+            switch (FileExtension)
+            {
+                case FileExtension.Default:
+                    return "/Microsoft.Templates.UI;component/Assets/FileExtensions/DefaultFile.png";
+                case FileExtension.CSharp:
+                    return "/Microsoft.Templates.UI;component/Assets/FileExtensions/CSharp.png";
+                case FileExtension.Resw:
+                    return "/Microsoft.Templates.UI;component/Assets/FileExtensions/Resw.png";
+                case FileExtension.Xaml:
+                    return "/Microsoft.Templates.UI;component/Assets/FileExtensions/Xaml.png";
+                default:
+                    return "/Microsoft.Templates.UI;component/Assets/FileExtensions/DefaultFile.png";
             }
         }
     }

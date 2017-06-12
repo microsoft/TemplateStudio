@@ -16,7 +16,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public LineStatus Status
         {
             get => _status;
-            private set => SetProperty(ref _status, value);
+            set => SetProperty(ref _status, value);
         }
 
         private uint _number;
