@@ -96,37 +96,38 @@
                                 <DataTemplate>
                                     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Focusable="False" KeyboardNavigation.TabNavigation="Local">
                                         <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1" />
                                             <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="38" />
+                                            <ColumnDefinition Width="38" />
+                                            <ColumnDefinition Width="38" />
                                         </Grid.ColumnDefinitions>
-                                        <Button Grid.Column="0" Style="{StaticResource ButtonImageStyle}" Command="{Binding SetHomeCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanSetHome}" ToolTip="{x:Static res:StringRes.SummaryOptionSetAsHome}" Focusable="{Binding IsOpen}">
+                                        <Grid Grid.Column="0" Width="1" Background="{StaticResource UIBlack}" Margin="0,5" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+                                        <Button Grid.Column="2" Style="{StaticResource ButtonImageStyle}" Command="{Binding SetHomeCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanSetHome}" ToolTip="{x:Static res:StringRes.SummaryOptionSetAsHome}" Focusable="{Binding IsOpen}">
                                             <Button.Content>
-                                                <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconHome.png"/>
+                                                <TextBlock Text="&#xE80F;" Style="{StaticResource RoundButtonTextStyle}" FontSize="18"/>
                                             </Button.Content>
                                         </Button>
-                                        <Button Grid.Column="1" Style="{StaticResource ButtonImageStyle}" Command="{Binding RenameCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanChooseItemName}" ToolTip="{x:Static res:StringRes.SummaryOptionRename}" Focusable="{Binding IsOpen}">
+                                        <Button Grid.Column="3" Style="{StaticResource ButtonImageStyle}" Command="{Binding RenameCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanChooseItemName}" ToolTip="{x:Static res:StringRes.SummaryOptionRename}" Focusable="{Binding IsOpen}">
                                             <Button.Content>
-                                                <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconRename.png"/>
+                                                <TextBlock Text="&#xE70F;" Style="{StaticResource RoundButtonTextStyle}" FontSize="17"/>
                                             </Button.Content>
                                         </Button>
-                                        <Button Grid.Column="2" Style="{StaticResource ButtonImageStyle}" Command="{Binding RemoveCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanSetHome}" ToolTip="{x:Static res:StringRes.SummaryOptionDelete}" Focusable="{Binding IsOpen}">
+                                        <Button Grid.Column="4" Style="{StaticResource ButtonImageStyle}" Command="{Binding RemoveCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanSetHome}" ToolTip="{x:Static res:StringRes.SummaryOptionDelete}" Focusable="{Binding IsOpen}">
                                             <Button.Content>
-                                                <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconDelete.png"/>
+                                                <TextBlock Text="&#xE894;" Style="{StaticResource RoundButtonTextStyle}" FontSize="14"/>
                                             </Button.Content>
                                         </Button>
-                                        <Button Grid.Column="3" Style="{StaticResource ButtonImageStyle}" Command="{Binding MoveUpCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanMoveUp}" ToolTip="{x:Static res:StringRes.SummaryOptionMoveUp}" Focusable="{Binding IsOpen}">
+                                        <!--<Button Grid.Column="4" Style="{StaticResource ButtonImageStyle}" Command="{Binding MoveUpCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanMoveUp}" ToolTip="{x:Static res:StringRes.SummaryOptionMoveUp}" Focusable="{Binding IsOpen}">
                                             <Button.Content>
-                                                <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconUp.png"/>
+                                                <TextBlock Text="&#xE74A;" Style="{StaticResource RoundButtonTextStyle}" FontSize="15"/>
                                             </Button.Content>
                                         </Button>
-                                        <Button Grid.Column="4" Style="{StaticResource ButtonImageStyle}" Command="{Binding MoveDownCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanMoveDown}" ToolTip="{x:Static res:StringRes.SummaryOptionMoveDown}" Focusable="{Binding IsOpen}">
+                                        <Button Grid.Column="5" Style="{StaticResource ButtonImageStyle}" Command="{Binding MoveDownCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanMoveDown}" ToolTip="{x:Static res:StringRes.SummaryOptionMoveDown}" Focusable="{Binding IsOpen}">
                                             <Button.Content>
-                                                <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconDown.png"/>
+                                                <TextBlock Text="&#xE74B;" Style="{StaticResource RoundButtonTextStyle}" FontSize="15"/>
                                             </Button.Content>
-                                        </Button>
+                                        </Button>-->
                                     </Grid>
                                 </DataTemplate>
                             </templateSelectors:SummaryItemOptionsTemplateSelector.PageOptionsTemplate>
@@ -142,12 +143,12 @@
                                         </Grid.ColumnDefinitions>
                                         <Button Grid.Column="3" Style="{StaticResource ButtonImageStyle}" Command="{Binding RenameCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanChooseItemName}" ToolTip="{x:Static res:StringRes.SummaryOptionRename}" Focusable="{Binding IsOpen}">
                                             <Button.Content>
-                                                <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconRename.png"/>
+                                                <TextBlock Text="&#xE8AC;" Style="{StaticResource RoundButtonTextStyle}"/>
                                             </Button.Content>
                                         </Button>
                                         <Button Grid.Column="4" Style="{StaticResource ButtonImageStyle}" Command="{Binding RemoveCommand}" CommandParameter="{Binding}" ToolTip="{x:Static res:StringRes.SummaryOptionDelete}" Focusable="{Binding IsOpen}">
                                             <Button.Content>
-                                                <Image Style="{StaticResource TogglePaneImage}" Source="../Assets/IconDelete.png"/>
+                                                <TextBlock Text="&#xE894;" Style="{StaticResource RoundButtonTextStyle}"/>
                                             </Button.Content>
                                         </Button>
                                     </Grid>

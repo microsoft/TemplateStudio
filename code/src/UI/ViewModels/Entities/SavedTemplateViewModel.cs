@@ -26,7 +26,7 @@ namespace Microsoft.Templates.UI.ViewModels
     public class SavedTemplateViewModel : Observable
     {
         public static string SettingsButton = Char.ConvertFromUtf32(0xE713);
-        public static string CloseButton = Char.ConvertFromUtf32(0xE013);
+        public static string CloseButton = Char.ConvertFromUtf32(0xE761);
 
         #region TemplatesProperties
 
