@@ -10,7 +10,7 @@
     "language": "C#",
     "type": "project",
     "wts.type": "project",
-    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
     "wts.projecttype":"Blank|SplitView|TabbedPivot",
     "wts.version": "1.0.0",
     "wts.order": "1"
@@ -38,14 +38,13 @@
     {
       "type": "parameter",
       "replaces": "Param_Templates.Version"
-    },
-    "copyrightYear": {
-        "type": "generated",
-        "generator": "now",
-        "replaces": "1976",
-        "parameters": {
-          "format": "yyyy"
-      }
+  },
+  "copyrightYear": {
+      "type": "generated",
+      "generator": "now",
+      "replaces": "1976",
+      "parameters": {
+        "format": "yyyy"
     }
   }
-}
+}}
