@@ -427,4 +427,10 @@
   <data name="WarningDetailTitle" xml:space="preserve">
     <value>Merge not succedded</value>
   </data>
+  <data name="ButtonGenerate" xml:space="preserve">
+    <value>Generate</value>
+  </data>
+  <data name="ButtonGenerateAndMerge" xml:space="preserve">
+    <value>Generate &amp; Merge</value>
+  </data>
 </root>

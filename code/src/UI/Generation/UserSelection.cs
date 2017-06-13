@@ -19,11 +19,14 @@ using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.UI
 {
+    public enum ItemGenerationType { Generate, GenerateAndMerge };
+
     public class UserSelection
     {
         public string ProjectType { get; set; }
         public string Framework { get; set; }
         public string HomeName { get; set; }
+        public ItemGenerationType ItemGenerationType { get; set; }
         public List<(string name, ITemplateInfo template)> Pages { get; } = new List<(string name, ITemplateInfo template)>();
         public List<(string name, ITemplateInfo template)> Features { get; } = new List<(string name, ITemplateInfo template)>();
 

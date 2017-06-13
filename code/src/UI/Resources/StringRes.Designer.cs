@@ -106,6 +106,24 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate.
+        /// </summary>
+        public static string ButtonGenerate {
+            get {
+                return ResourceManager.GetString("ButtonGenerate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate &amp; Merge.
+        /// </summary>
+        public static string ButtonGenerateAndMerge {
+            get {
+                return ResourceManager.GetString("ButtonGenerateAndMerge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
         public static string ButtonNext {
