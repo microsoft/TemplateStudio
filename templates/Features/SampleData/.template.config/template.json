@@ -23,6 +23,9 @@
   "PrimaryOutputs": [
     {
       "path": ".\\Services\\SampleDataService.cs"
+    },
+    {
+      "path": ".\\Models\\Order.cs"
     }
   ],
   "symbols": {

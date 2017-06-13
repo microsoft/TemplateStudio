@@ -15,7 +15,7 @@
 
         <TextBlock
             x:Name="TitlePage"
-            Text="{x:Bind MasterMenuItem.Title, Mode=OneWay}"
+            Text="{x:Bind MasterMenuItem.OrderId, Mode=OneWay}"
             Style="{StaticResource PageTitleStyle}" />
 
         <ScrollViewer
@@ -27,17 +27,19 @@
             <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your detail content.-->
             <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
 
-                <!--Replate FontIcon and TextBlock with your detail content.-->
-                <FontIcon 
-                    FontSize="90" 
-                    Glyph="{x:Bind MasterMenuItem.SymbolAsChar, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"/>
-                <TextBlock
-                    Text="{x:Bind MasterMenuItem.Description, Mode=OneWay}"
-                    Style="{StaticResource BodyTextStyle}"
-                    VerticalAlignment="Bottom"
-                    Margin="{StaticResource MediumLeftTopRightBottomMargin}" />
+                <!--Replate this StackPanel with your detail content.-->
+                <StackPanel Orientation="Vertical" Margin="{StaticResource MediumLeftTopRightBottomMargin}">
+                    <TextBlock Text="Order Date" Style="{StaticResource CaptionTextBlockStyle}" />
+                    <TextBlock Text="{x:Bind MasterMenuItem.OrderDate, Mode=OneWay}" Style="{StaticResource BodyTextStyle}" />
+                    <TextBlock Text="Company" Style="{StaticResource CaptionTextBlockStyle}" />
+                    <TextBlock Text="{x:Bind MasterMenuItem.Company, Mode=OneWay}" Style="{StaticResource BodyTextStyle}" />
+                    <TextBlock Text="Ship to" Style="{StaticResource CaptionTextBlockStyle}" />
+                    <TextBlock Text="{x:Bind MasterMenuItem.ShipTo, Mode=OneWay}" Style="{StaticResource BodyTextStyle}" />
+                    <TextBlock Text="Order Total" Style="{StaticResource CaptionTextBlockStyle}" />
+                    <TextBlock Text="{x:Bind MasterMenuItem.OrderTotal, Mode=OneWay}" Style="{StaticResource BodyTextStyle}" />
+                    <TextBlock Text="Status" Style="{StaticResource CaptionTextBlockStyle}" />
+                    <TextBlock Text="{x:Bind MasterMenuItem.Status, Mode=OneWay}" Style="{StaticResource BodyTextStyle}" />
+                </StackPanel>
             </Grid>
         </ScrollViewer>
     </Grid>
