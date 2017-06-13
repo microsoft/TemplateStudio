@@ -139,7 +139,7 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 return false;
             }
-            if (String.IsNullOrEmpty(ProjectTemplates.HomeName))
+            if (string.IsNullOrEmpty(ProjectTemplates.HomeName))
             {
                 Status = new StatusViewModel(StatusType.Error, StringRes.ErrorNoHomePage);
                 return false;
@@ -228,9 +228,9 @@ namespace Microsoft.Templates.UI.ViewModels
             NextCommand.OnCanExecuteChanged();
         }
 
-        private async void Sync_SyncStatusChanged(object sender, SyncStatus status)
+        private async void Sync_SyncStatusChanged(object sender, SyncStatusEventArgs args)
         {
-
+            SyncStatus status = args.Status;
             Status = new StatusViewModel(StatusType.Information, GetStatusText(status), true);
 
             if (status == SyncStatus.Updated)
@@ -269,6 +269,11 @@ namespace Microsoft.Templates.UI.ViewModels
                     NextCommand.OnCanExecuteChanged();
                 });
             }
+        }
+
+        private string GetStatusText(object status)
+        {
+            throw new NotImplementedException();
         }
 
         private string GetStatusText(SyncStatus status)
@@ -335,7 +340,7 @@ namespace Microsoft.Templates.UI.ViewModels
         private bool CheckProjectSetupChanged()
         {
             if (ProjectTemplates.HasTemplatesAdded && (FrameworkChanged || ProjectTypeChanged))
-            { 
+            {
                 return true;
             }
             return false;

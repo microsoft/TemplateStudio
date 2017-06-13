@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
         }
 
-        public async Task TrackAsync(Exception ex, string message=null)
+        public async Task TrackAsync(Exception ex, string message = null)
         {
             try
             {

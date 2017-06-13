@@ -10,12 +10,21 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Microsoft.Templates.Core.Composition
 {
+    [Serializable]
     public class QueryablePropertyDictionary : Dictionary<string, QueryableProperty>
     {
+        protected QueryablePropertyDictionary(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
+        public QueryablePropertyDictionary()
+        {
+        }
         public void Add(QueryableProperty property)
         {
             Add(property.Name, property);

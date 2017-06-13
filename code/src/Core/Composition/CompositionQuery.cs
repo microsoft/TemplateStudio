@@ -57,10 +57,10 @@ namespace Microsoft.Templates.Core.Composition
 
         private static bool Validate(MatchCollection queryMatches, string rawQuery)
         {
-            //Basic validation: matches concatenation must be equal than rawQuery
+            // Basic validation: matches concatenation must be equal than rawQuery
             var sb = new StringBuilder();
 
-            foreach(Match m in queryMatches)
+            foreach (Match m in queryMatches)
             {
                 sb.Append(m.Value.Replace(" ", "").Trim());
             }
@@ -72,7 +72,6 @@ namespace Microsoft.Templates.Core.Composition
         {
             return Parse(string.Join("&", rawQuery.ToArray()));
         }
-
 
         public bool Match(ITemplateInfo source, QueryablePropertyDictionary context)
         {

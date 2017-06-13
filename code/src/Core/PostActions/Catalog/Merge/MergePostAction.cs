@@ -48,7 +48,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             File.WriteAllLines(originalFilePath, result);
             File.Delete(_config);
 
-            //REFRESH PROJECT TO UN-DIRTY IT
+            // REFRESH PROJECT TO UN-DIRTY IT
             if (Path.GetExtension(_config).Equals(".csproj", StringComparison.OrdinalIgnoreCase))
             {
                 Gen.GenContext.ToolBox.Shell.RefreshProject();
@@ -68,7 +68,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 var path = Regex.Replace(_config, PostactionRegex, ".");
 
-                return (File.Exists(path) ? path : String.Empty);
+                return (File.Exists(path) ? path : string.Empty);
             }
         }
     }

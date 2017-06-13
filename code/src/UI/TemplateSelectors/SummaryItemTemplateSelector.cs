@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 
 namespace Microsoft.Templates.UI.TemplateSelectors
-{    
+{
     public class SummaryItemTemplateSelector : DataTemplateSelector
     {
         public DataTemplate MicrosoftTemplate { get; set; }

@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
             var filePath = Path.Combine(GenContext.Current.OutputPath, GenContext.Current.ProjectName) + "_TemporaryKey.pfx";
             File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
-            
+
             GenContext.ToolBox.Shell.AddItems(filePath);
         }
 
@@ -69,7 +69,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             AddExtendedKeyUsage(cert);
             AddBasicConstraints(cert);
 
-            //Specify the hashing algorithm
+            // Specify the hashing algorithm
             var hashobj = new CObjectId();
 
             hashobj.InitializeFromAlgorithmName(ObjectIdGroupId.XCN_CRYPT_HASH_ALG_OID_GROUP_ID,
@@ -96,7 +96,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private void AddBasicConstraints(CX509CertificateRequestCertificate cert)
         {
-            //Add basic constraints
+            // Add basic constraints
             var bc = new CX509ExtensionBasicConstraints();
 
             bc.InitializeEncode(false, 0);
@@ -107,7 +107,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private void AddExtendedKeyUsage(CX509CertificateRequestCertificate cert)
         {
-            //Add extended key usage 
+            // Add extended key usage
             var eku = new CX509ExtensionEnhancedKeyUsage();
             var oid = new CObjectId();
 
@@ -121,7 +121,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private void AddKeyUsage(CX509CertificateRequestCertificate cert)
         {
-            //Add key usage
+            // Add key usage
             var ku = new CX509ExtensionKeyUsage();
             ku.InitializeEncode(CERTENROLLLib.X509KeyUsageFlags.XCN_CERT_DIGITAL_SIGNATURE_KEY_USAGE);
 

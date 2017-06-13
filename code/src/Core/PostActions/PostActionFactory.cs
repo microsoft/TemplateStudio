@@ -51,7 +51,7 @@ namespace Microsoft.Templates.Core.PostActions
             switch (genInfo.Template.GetTemplateType())
             {
                 case TemplateType.Project:
-                    postActions.Add(new AddProjectToSolutionPostAction( genResult.ResultInfo.PrimaryOutputs));
+                    postActions.Add(new AddProjectToSolutionPostAction(genResult.ResultInfo.PrimaryOutputs));
                     postActions.Add(new GenerateTestCertificatePostAction(genInfo.GetUserName()));
                     break;
                 case TemplateType.Page:
