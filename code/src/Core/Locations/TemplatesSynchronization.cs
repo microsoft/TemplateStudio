@@ -126,7 +126,6 @@ namespace Microsoft.Templates.Core.Locations
             {
                 string installedTemplatesPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", "Templates.mstx");
                 _source.Extract(installedTemplatesPath, _content.TemplatesFolder);
-
             }
             catch (Exception ex)
             {

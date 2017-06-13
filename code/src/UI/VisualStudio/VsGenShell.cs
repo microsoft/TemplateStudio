@@ -320,7 +320,6 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-     
         public override void CollapseSolutionItems()
         {
             try
@@ -371,7 +370,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 try
                 {
-                    //Based on https://technet.microsoft.com/en-us/library/cc766017(v=ws.10).aspx 
+                    // Based on https://technet.microsoft.com/en-us/library/cc766017(v=ws.10).aspx
                     using (var client = new System.Net.WebClient())
                     {
                         var ncsi = client.DownloadString("http://www.msftncsi.com/ncsi.txt");

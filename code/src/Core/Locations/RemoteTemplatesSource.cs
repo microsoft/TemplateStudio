@@ -53,6 +53,5 @@ namespace Microsoft.Templates.Core.Locations
                 AppHealth.Current.Error.TrackAsync($"Error downloading from {sourceUrl}. Internet connection is required to download template updates.", ex).FireAndForget();
             }
         }
-
     }
 }

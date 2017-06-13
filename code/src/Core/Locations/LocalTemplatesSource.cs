@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Core.Locations
         public string LocalWizardVersion { get; private set; }
 
         protected override bool VerifyPackageSignatures => false;
-        public string Origin => $@"..\..\..\..\..\{SourceFolderName}"; 
+        public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
 
         public LocalTemplatesSource() : this("0.0.0.0", "0.0.0.0")
         {
@@ -37,9 +37,9 @@ namespace Microsoft.Templates.Core.Locations
 
         protected override string AcquireMstx()
         {
-            //Compress Content adding version return templatex path.
+            // Compress Content adding version return templatex path.
             var tempFolder = Path.Combine(GetTempFolder(), SourceFolderName);
-            
+
             Copy(Origin, tempFolder);
 
             File.WriteAllText(Path.Combine(tempFolder, "version.txt"), LocalTemplatesVersion);

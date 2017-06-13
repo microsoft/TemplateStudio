@@ -49,7 +49,7 @@ namespace Microsoft.Templates.Core.Locations
             Sign(outFile, signingCert);
 
             return outFile;
-        } 
+        }
 
         public static void PackAndSign(string source, string outFile, string certThumbprint, string mimeMediaType)
         {
@@ -85,7 +85,7 @@ namespace Microsoft.Templates.Core.Locations
             if (string.IsNullOrWhiteSpace(source))
                 throw new ArgumentException("source");
 
-            if (String.IsNullOrWhiteSpace(outFile))
+            if (string.IsNullOrWhiteSpace(outFile))
                 throw new ArgumentException("outFile");
 
             FileInfo[] files = GetSourceFiles(source);
@@ -111,7 +111,7 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public static void Extract(string signedFilePack, string targetDirectory, bool verifySignatures=true)
+        public static void Extract(string signedFilePack, string targetDirectory, bool verifySignatures = true)
         {
             string currentDir = Environment.CurrentDirectory;
             string inFilePack = Path.IsPathRooted(signedFilePack) ? signedFilePack : Path.Combine(currentDir, signedFilePack);
@@ -132,7 +132,7 @@ namespace Microsoft.Templates.Core.Locations
                     ExtractContent(outDir, package);
                 }
 
-                if (!isSignatureValid && verifySignatures) 
+                if (!isSignatureValid && verifySignatures)
                 {
                     string msg = $"Invalid digital signatures in '{signedFilePack}'. The content has been tampered or the certificate is not present, not valid or not allowed.  Unable to continue.";
                     throw new InvalidSignatureException(msg);
