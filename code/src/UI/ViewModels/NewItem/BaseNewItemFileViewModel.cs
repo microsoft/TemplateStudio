@@ -22,7 +22,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public ObservableCollection<CodeLineViewModel> NewFileLines { get; private set; } = new ObservableCollection<CodeLineViewModel>();
         public ObservableCollection<CodeLineViewModel> CurrentFileLines { get; private set; } = new ObservableCollection<CodeLineViewModel>();
         public ObservableCollection<CodeLineViewModel> MergedFileLines { get; private set; } = new ObservableCollection<CodeLineViewModel>();
-        public ICommand UpdateFontSizeCommand { get; }        
+        public ICommand UpdateFontSizeCommand { get; }
         public abstract FileType FileType { get; }
         private Dictionary<int, IEnumerable<string>> _mergeSnippets { get; }
 
@@ -32,7 +32,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             FileExtension = GetFileExtenion(name);
             Icon = GetIcon(FileExtension);
             LoadFile();
-        }             
+        }
 
         public BaseNewItemFileViewModel(NewItemGenerationFileInfo generationInfo)
         {
@@ -40,7 +40,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             _mergeSnippets = generationInfo.MergeSnippets;
             FileExtension = GetFileExtenion(generationInfo.Name);
             Icon = GetIcon(FileExtension);
-            LoadFile();            
+            LoadFile();
         }
 
         private void LoadFile()
@@ -63,56 +63,64 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     CurrentFileLines.Add(new CodeLineViewModel(++lineNumber, line));
                 }
             }
-            if (_mergeSnippets != null)
-            {
-                MergedFileLines = MergeLines();
-            }
+            MergedFileLines = MergeLines();
         }
 
         private ObservableCollection<CodeLineViewModel> MergeLines()
         {
             var result = new ObservableCollection<CodeLineViewModel>();
+            int positionCurrentLine = 1;
+            int positionNewLine = 1;
 
-            //result.AddRange(NewFileLines);
+            int currentCount = CurrentFileLines.Count();
+            int newCount = NewFileLines.Count();
 
-            //foreach (var mergeSnippet in _mergeSnippets)
-            //{
-            //    int from = mergeSnippet.Key;
-            //    int to = mergeSnippet.Key + mergeSnippet.Value.Count();
-            //    int index = 0;
-            //    for (int i = from; i < to; i++)
-            //    {
-            //        var currentLine = result[i];
-            //        var currentSnippet = mergeSnippet.Value.ElementAt(index);
-            //        if (currentLine.Line == currentSnippet)
-            //        {
-            //            currentLine.Status = LineStatus.New;
-            //        }
-            //        index++;
-            //    }
-            //}
-            //return result;
+            uint lineNumber = 1;
 
-            int index = 0;
-            uint lineNumber = 0;
-            foreach (var newFileLine in NewFileLines)
+            while (positionCurrentLine <= currentCount || positionNewLine <= newCount)
             {
-                var currentLine = CurrentFileLines[index];
-                if (currentLine.Line == newFileLine.Line)
+                CodeLineViewModel currentLine = CurrentFileLines.FirstOrDefault(l => l.Number == positionCurrentLine);
+                CodeLineViewModel newLine = NewFileLines.FirstOrDefault(l => l.Number == positionNewLine);
+
+                if (currentLine == null)
                 {
-                    //Default
-                    result.Add(new CodeLineViewModel(lineNumber, newFileLine));
-                    index++;
+                    //Finish to cover current file. Pendding lines in new file are new.
+                    result.Add(new CodeLineViewModel(++lineNumber, newLine, LineStatus.New));
+                    positionNewLine++;
+                }
+                else if (newLine == null)
+                {
+                    //Finish to cover new file. Pendding lines in current file are removed.
+                    result.Add(new CodeLineViewModel(++lineNumber, currentLine, LineStatus.Deleted));
+                    positionCurrentLine++;
+                }
+                else if (currentLine.Line == newLine.Line)
+                {
+                    //Current line matches with new line.
+                    result.Add(new CodeLineViewModel(++lineNumber, currentLine));
+                    positionNewLine++;
+                    positionCurrentLine++;
                 }
                 else
                 {
-                    //New
-                    result.Add(new CodeLineViewModel(lineNumber, newFileLine, LineStatus.New));
+                    var nextMatchLine = NewFileLines.FirstOrDefault(l => l.Number > positionNewLine && l.Line == currentLine.Line);
+                    if (nextMatchLine == null)
+                    {
+                        //Current line not found in new file lines. This line has been deleted.
+                        result.Add(new CodeLineViewModel(++lineNumber, currentLine, LineStatus.Deleted));
+                        positionCurrentLine++;
+                    }
+                    else
+                    {
+                        //New line found before current line.
+                        result.Add(new CodeLineViewModel(++lineNumber, newLine, LineStatus.New));
+                        positionNewLine++;
+                    }
                 }
-                lineNumber++;
             }
-            return result;
-        }
+            return result;            
+        }        
+
 
         public void UpdateFontSize(double points)
         {

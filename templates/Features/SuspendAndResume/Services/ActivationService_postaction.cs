@@ -9,7 +9,6 @@ namespace Param_ItemNamespace.Services
         {
             yield return Singleton<SuspendAndResumeService>.Instance;
 //{--{
-
             yield break;//}--}
         }
     }

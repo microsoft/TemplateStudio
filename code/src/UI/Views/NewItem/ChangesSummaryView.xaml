@@ -56,6 +56,9 @@
             </DataTemplate>
             <DataTemplate x:Key="DeletedLineTemplate">
                 <Grid>
+                    <Grid.Background>
+                        <SolidColorBrush Color="{StaticResource UIRedColor}" Opacity="0.3"/>
+                    </Grid.Background>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
@@ -80,10 +83,23 @@
                 </ScrollViewer>
             </DataTemplate>
             <DataTemplate x:Key="ModifiedDetailTemplate">
-                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
-                    <ItemsControl
-                        ItemsSource="{Binding MergedFileLines}" Margin="{StaticResource MediumMargin}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
-                </ScrollViewer>
+                <TabControl>
+                    <TabItem Header="Merge">
+                        <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                            <ItemsControl ItemsSource="{Binding MergedFileLines}" Margin="{StaticResource MediumMargin}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
+                        </ScrollViewer>
+                    </TabItem>
+                    <TabItem Header="Current">
+                        <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                            <ItemsControl ItemsSource="{Binding CurrentFileLines}" Margin="{StaticResource MediumMargin}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
+                        </ScrollViewer>
+                    </TabItem>
+                    <TabItem Header="New">
+                        <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                            <ItemsControl ItemsSource="{Binding NewFileLines}" Margin="{StaticResource MediumMargin}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
+                        </ScrollViewer>
+                    </TabItem>
+                </TabControl>
             </DataTemplate>
 
             <templateSelector:NewItemFileTemplateSelector
