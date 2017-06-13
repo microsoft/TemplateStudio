@@ -1,5 +1,6 @@
 ﻿using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Comparison;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,9 +20,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public string Subject { get; private set; }
         public string Icon { get; private set; }
         public FileExtension FileExtension { get; private set; }
+
         public ObservableCollection<CodeLineViewModel> NewFileLines { get; private set; } = new ObservableCollection<CodeLineViewModel>();
         public ObservableCollection<CodeLineViewModel> CurrentFileLines { get; private set; } = new ObservableCollection<CodeLineViewModel>();
         public ObservableCollection<CodeLineViewModel> MergedFileLines { get; private set; } = new ObservableCollection<CodeLineViewModel>();
+
         public ICommand UpdateFontSizeCommand { get; }
         public abstract FileType FileType { get; }
         private Dictionary<int, IEnumerable<string>> _mergeSnippets { get; }
@@ -46,80 +49,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private void LoadFile()
         {
             var newFilePath = Path.Combine(GenContext.Current.OutputPath, Subject);
-            if (File.Exists(newFilePath))
-            {
-                uint lineNumber = 0;
-                foreach (var line in File.ReadAllLines(newFilePath))
-                {
-                    NewFileLines.Add(new CodeLineViewModel(++lineNumber, line));
-                }
-            }
+            var newFileCodeLines = ComparisonService.FromPath(newFilePath);
+            NewFileLines.AddRange(newFileCodeLines.Select(cl => new CodeLineViewModel(cl)));
+
             var currentFilePath = Path.Combine(GenContext.Current.ProjectPath, Subject);
-            if (File.Exists(currentFilePath))
-            {
-                uint lineNumber = 0;
-                foreach (var line in File.ReadAllLines(currentFilePath))
-                {
-                    CurrentFileLines.Add(new CodeLineViewModel(++lineNumber, line));
-                }
-            }
-            MergedFileLines = MergeLines();
+            var currentFileCodeLines = ComparisonService.FromPath(currentFilePath);
+            CurrentFileLines.AddRange(currentFileCodeLines.Select(cl => new CodeLineViewModel(cl)));
+
+            var comparsion = ComparisonService.CompareFiles(currentFileCodeLines, newFileCodeLines);
+            MergedFileLines.AddRange(comparsion.Select(cl => new CodeLineViewModel(cl)));
         }
-
-        private ObservableCollection<CodeLineViewModel> MergeLines()
-        {
-            var result = new ObservableCollection<CodeLineViewModel>();
-            int positionCurrentLine = 1;
-            int positionNewLine = 1;
-
-            int currentCount = CurrentFileLines.Count();
-            int newCount = NewFileLines.Count();
-
-            uint lineNumber = 1;
-
-            while (positionCurrentLine <= currentCount || positionNewLine <= newCount)
-            {
-                CodeLineViewModel currentLine = CurrentFileLines.FirstOrDefault(l => l.Number == positionCurrentLine);
-                CodeLineViewModel newLine = NewFileLines.FirstOrDefault(l => l.Number == positionNewLine);
-
-                if (currentLine == null)
-                {
-                    //Finish to cover current file. Pendding lines in new file are new.
-                    result.Add(new CodeLineViewModel(++lineNumber, newLine, LineStatus.New));
-                    positionNewLine++;
-                }
-                else if (newLine == null)
-                {
-                    //Finish to cover new file. Pendding lines in current file are removed.
-                    result.Add(new CodeLineViewModel(++lineNumber, currentLine, LineStatus.Deleted));
-                    positionCurrentLine++;
-                }
-                else if (currentLine.Line == newLine.Line)
-                {
-                    //Current line matches with new line.
-                    result.Add(new CodeLineViewModel(++lineNumber, currentLine));
-                    positionNewLine++;
-                    positionCurrentLine++;
-                }
-                else
-                {
-                    var nextMatchLine = NewFileLines.FirstOrDefault(l => l.Number > positionNewLine && l.Line == currentLine.Line);
-                    if (nextMatchLine == null)
-                    {
-                        //Current line not found in new file lines. This line has been deleted.
-                        result.Add(new CodeLineViewModel(++lineNumber, currentLine, LineStatus.Deleted));
-                        positionCurrentLine++;
-                    }
-                    else
-                    {
-                        //New line found before current line.
-                        result.Add(new CodeLineViewModel(++lineNumber, newLine, LineStatus.New));
-                        positionNewLine++;
-                    }
-                }
-            }
-            return result;            
-        }        
 
 
         public void UpdateFontSize(double points)

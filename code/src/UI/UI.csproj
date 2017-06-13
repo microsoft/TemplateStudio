@@ -170,6 +170,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comparison\ComparisonService.cs" />
     <Compile Include="Generation\NewItemGenerationFileInfo.cs" />
     <Compile Include="Generation\NewItemGenerationResult.cs" />
     <Compile Include="Controls\ImageEx.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="ViewModels\NewItem\BaseNewItemFileViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles.cs" />
+    <Compile Include="Comparison\CodeLine.cs" />
     <Compile Include="ViewModels\NewItem\CodeLineViewModel.cs" />
     <Compile Include="ViewModels\NewItem\MainViewModel.cs" />
     <Compile Include="ViewModels\NewItem\NewItemSetupViewModel.cs" />
