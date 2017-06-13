@@ -412,16 +412,19 @@
   <data name="ChangesSummaryTitle" xml:space="preserve">
     <value>Changes summary</value>
   </data>
-  <data name="ChangesSummaryWarningsTitle" xml:space="preserve">
-    <value>Warnings</value>
+  <data name="ChangesSummaryCategoryMergeConflicts" xml:space="preserve">
+    <value>Merge conflicts</value>
   </data>
-  <data name="ChangesSummaryConflictingFilesTitle" xml:space="preserve">
-    <value>Conflicting files</value>
+  <data name="ChangesSummaryCategoryOverwrittenFiles" xml:space="preserve">
+    <value>Overwritten files</value>
   </data>
-  <data name="ChangesSummaryModifiedFilesTitle" xml:space="preserve">
+  <data name="ChangesSummaryCategotyModifiedFiles" xml:space="preserve">
     <value>Modified files</value>
   </data>
-  <data name="ChangesSummaryNewFilesTitle" xml:space="preserve">
+  <data name="ChangesSummaryCategoryNewFiles" xml:space="preserve">
     <value>New files</value>
+  </data>
+  <data name="WarningDetailTitle" xml:space="preserve">
+    <value>Merge not succedded</value>
   </data>
 </root>

@@ -133,29 +133,38 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Conflicting files.
+        ///   Looks up a localized string similar to Merge conflicts.
         /// </summary>
-        public static string ChangesSummaryConflictingFilesTitle {
+        public static string ChangesSummaryCategoryMergeConflicts {
             get {
-                return ResourceManager.GetString("ChangesSummaryConflictingFilesTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Modified files.
-        /// </summary>
-        public static string ChangesSummaryModifiedFilesTitle {
-            get {
-                return ResourceManager.GetString("ChangesSummaryModifiedFilesTitle", resourceCulture);
+                return ResourceManager.GetString("ChangesSummaryCategoryMergeConflicts", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to New files.
         /// </summary>
-        public static string ChangesSummaryNewFilesTitle {
+        public static string ChangesSummaryCategoryNewFiles {
             get {
-                return ResourceManager.GetString("ChangesSummaryNewFilesTitle", resourceCulture);
+                return ResourceManager.GetString("ChangesSummaryCategoryNewFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overwritten files.
+        /// </summary>
+        public static string ChangesSummaryCategoryOverwrittenFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryCategoryOverwrittenFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modified files.
+        /// </summary>
+        public static string ChangesSummaryCategotyModifiedFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryCategotyModifiedFiles", resourceCulture);
             }
         }
         
@@ -165,15 +174,6 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ChangesSummaryTitle {
             get {
                 return ResourceManager.GetString("ChangesSummaryTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Warnings.
-        /// </summary>
-        public static string ChangesSummaryWarningsTitle {
-            get {
-                return ResourceManager.GetString("ChangesSummaryWarningsTitle", resourceCulture);
             }
         }
         
@@ -957,6 +957,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string VisitProjectWebSite {
             get {
                 return ResourceManager.GetString("VisitProjectWebSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merge not succedded.
+        /// </summary>
+        public static string WarningDetailTitle {
+            get {
+                return ResourceManager.GetString("WarningDetailTitle", resourceCulture);
             }
         }
         
