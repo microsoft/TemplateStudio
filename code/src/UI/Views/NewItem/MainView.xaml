@@ -7,11 +7,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
     xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
-    Title="{x:Static res:StringRes.Title}"
-    Width="815"
-    Height="680"
-    MinWidth="620"
-    MinHeight="620"
+    Title="{x:Static res:StringRes.Title}"    
+    Width="1294"
+    Height="727"
+    MinWidth="800"
+    MinHeight="600"
     ResizeMode="CanResize"
     ShowInTaskbar="False"
     WindowStartupLocation="CenterScreen"
@@ -47,16 +47,16 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <controls:LogoDisplay
-                Grid.Column="0"
-                Width="40"
-                Margin="{StaticResource MediumLeftMargin}"
-                HorizontalAlignment="Left" />
+                    Grid.Column="0"
+                    Width="40"
+                    Margin="{StaticResource MediumLeftMargin}"
+                    HorizontalAlignment="Left" />
                 <TextBlock
-                Grid.Column="1"
-                Margin="{StaticResource MediumLeftMargin}"
-                VerticalAlignment="Center"
-                Style="{StaticResource TextTitleStyle}"
-                Text="{Binding Title}" />
+                    Grid.Column="1"
+                    Margin="{StaticResource MediumLeftMargin}"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource TextTitleStyle}"
+                    Text="{Binding Title}" />
                 <Grid Grid.Column="2" Background="{StaticResource UIDarkYellow}" Visibility="{Binding NewUpdateAvailable, Converter={StaticResource BoolToVisibilityConverter}}" />
                 <Grid Grid.Column="2" Visibility="{Binding NewUpdateAvailable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
                     <Grid.Background>
@@ -107,30 +107,41 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <Button
-                        Grid.Column="0"
-                        IsCancel="True"
-                        Command="{Binding CancelCommand}"
-                        Content="{x:Static res:StringRes.ButtonCancel}"
-                        Style="{StaticResource ButtonNavigationStyle}" />
+                            Grid.Column="0"
+                            IsCancel="True"
+                            Command="{Binding CancelCommand}"
+                            Content="{x:Static res:StringRes.ButtonCancel}"
+                            Style="{StaticResource ButtonNavigationStyle}" />
                         <Button
-                        Grid.Column="1"
-                        Command="{Binding BackCommand}"
-                        Content="{x:Static res:StringRes.ButtonBack}"
-                        Style="{StaticResource ButtonNavigationStyle}" />
+                            Grid.Column="1"
+                            Command="{Binding BackCommand}"
+                            Content="{x:Static res:StringRes.ButtonBack}"
+                            Style="{StaticResource ButtonNavigationStyle}" />
                         <Button
-                        Grid.Column="2"
-                        Command="{Binding NextCommand}"
-                        Content="{x:Static res:StringRes.ButtonNext}"
-                        Style="{StaticResource ButtonNavigationStyle}"
-                        Visibility="{Binding ShowFinishButton, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
+                            Grid.Column="2"
+                            Command="{Binding NextCommand}"
+                            Content="{x:Static res:StringRes.ButtonNext}"
+                            Style="{StaticResource ButtonNavigationStyle}"
+                            Visibility="{Binding ShowFinishButton, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
                         <Button
-                        Grid.Column="2"
-                        Command="{Binding FinishCommand}"
-                        Content="{x:Static res:StringRes.ButtonFinish}"
-                        Style="{StaticResource ButtonFinishStyle}"
-                        Visibility="{Binding ShowFinishButton, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            Grid.Column="2"
+                            Command="{Binding FinishCommand}"
+                            Content="{x:Static res:StringRes.ButtonGenerate}"
+                            CommandParameter="Generate"
+                            Style="{StaticResource ButtonFinishStyle}"
+                            Width="100"
+                            Visibility="{Binding ShowFinishButton, Converter={StaticResource BoolToVisibilityConverter}}" />
+                        <Button
+                            Grid.Column="3"
+                            Command="{Binding FinishCommand}"
+                            CommandParameter="GenerateAndMerge"
+                            Content="{x:Static res:StringRes.ButtonGenerateAndMerge}"
+                            Style="{StaticResource ButtonFinishStyle}"
+                            Width="151"
+                            Visibility="{Binding ShowFinishButton, Converter={StaticResource BoolToVisibilityConverter}}" />
                     </Grid>
                 </Grid>
             </Grid>

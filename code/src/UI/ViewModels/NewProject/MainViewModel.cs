@@ -86,10 +86,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
             NavigationService.Navigate(new ProjectTemplatesView());            
         }
-        protected override void OnFinish()
+        protected override void OnFinish(string parameter)
         {
             MainView.Result = CreateUserSelection();
-            base.OnFinish();
+            base.OnFinish(parameter);
         }
         protected override async void OnTemplatesAvailable() => await ProjectSetup.InitializeAsync();
         protected override UserSelection CreateUserSelection()

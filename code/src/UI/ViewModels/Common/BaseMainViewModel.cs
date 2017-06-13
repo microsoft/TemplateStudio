@@ -110,13 +110,13 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         protected RelayCommand _cancelCommand;
         protected RelayCommand _goBackCommand;
         protected RelayCommand _nextCommand;
-        protected RelayCommand _finishCommand;
+        protected RelayCommand<string> _finishCommand;
 
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
         public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && !_hasValidationErrors && _canGoForward));
         public RelayCommand ShowOverlayMenuCommand => _showOverlayMenuCommand ?? (_showOverlayMenuCommand = new RelayCommand(() => IsOverlayBoxVisible = !IsOverlayBoxVisible));
-        public RelayCommand FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand(OnFinish, CanFinish));
+        public RelayCommand<string> FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand<string>(OnFinish, CanFinish));
         #endregion        
 
         public BaseMainViewModel(Window mainView)
@@ -177,7 +177,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
             ShowFinishButton = false;
         }
-        protected virtual bool CanFinish()
+        protected virtual bool CanFinish(string parameter)
         {
             if (_hasValidationErrors || !_templatesReady)
             {
@@ -186,11 +186,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             CleanStatus();
             return true;
         }
-        protected virtual void OnFinish()
+        protected virtual void OnFinish(string parameter)
         {
             _mainView.DialogResult = true;
             _mainView.Close();
-        }        
+        }
         protected async Task BaseInitializeAsync()
         {
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += SyncSyncStatusChanged;

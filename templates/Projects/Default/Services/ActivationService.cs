@@ -87,7 +87,6 @@ namespace wts.DefaultProject.Services
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
-
             yield break;
         }
 

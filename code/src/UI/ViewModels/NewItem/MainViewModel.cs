@@ -51,8 +51,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             ConfigFramework = projectConfiguration.Framework;
             Title = String.Format(StringRes.NewItemTitle_SF, ConfigTemplateType.ToString().ToLower());
             await BaseInitializeAsync();
-        }        
-        
+        }
+
         protected override void OnCancel()
         {
             MainView.DialogResult = false;
@@ -72,6 +72,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             await NewItemGenController.Instance.GenerateNewItemAsync(MainView.Result);
             NavigationService.Navigate(new ChangesSummaryView());
             Title = StringRes.ChangesSummaryTitle;
+        }
+        protected override void OnFinish(string parameter)
+        {
+            ItemGenerationType itemGenerationType;
+            if (Enum.TryParse(parameter, out itemGenerationType))
+            {
+                MainView.Result.ItemGenerationType = itemGenerationType;
+                base.OnFinish(parameter);
+            }
         }
 
         public TemplateInfoViewModel GetActiveTemplate()

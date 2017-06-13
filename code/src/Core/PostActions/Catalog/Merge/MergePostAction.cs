@@ -77,7 +77,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var fileName = _config.FilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, String.Empty);
             var description = $"Could not find merge target for file '{fileName}'. Please integrate the content from the postaction file manually.";
             var intent = GetPostActionIntent();
-            GenContext.Current.GenerationWarnings.Add(new GenerationWarning(fileName, _config.FilePath, description, intent));
+            var failedFileName = fileName.Replace(Suffix, NewSuffix);
+            GenContext.Current.GenerationWarnings.Add(new GenerationWarning(failedFileName, _config.FilePath, description, intent));
         }
 
         private string GetPostActionIntent()
