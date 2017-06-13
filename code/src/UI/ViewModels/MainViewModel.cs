@@ -228,8 +228,9 @@ namespace Microsoft.Templates.UI.ViewModels
             NextCommand.OnCanExecuteChanged();
         }
 
-        private async void Sync_SyncStatusChanged(object sender, SyncStatus status)
+        private async void Sync_SyncStatusChanged(object sender, SyncStatusEventArgs args)
         {
+            SyncStatus status = args.Status;
             Status = new StatusViewModel(StatusType.Information, GetStatusText(status), true);
 
             if (status == SyncStatus.Updated)
@@ -268,6 +269,11 @@ namespace Microsoft.Templates.UI.ViewModels
                     NextCommand.OnCanExecuteChanged();
                 });
             }
+        }
+
+        private string GetStatusText(object status)
+        {
+            throw new NotImplementedException();
         }
 
         private string GetStatusText(SyncStatus status)
