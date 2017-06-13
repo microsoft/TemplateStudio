@@ -26,24 +26,63 @@
                 </Grid>
             </DataTemplate>
 
-            <DataTemplate x:Key="DefaultDetailTemplate">
-                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
-                    <ItemsControl ItemsSource="{Binding NewFileLines}" Margin="{StaticResource MediumMargin}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Line}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
+            <DataTemplate x:Key="DefaultLineTemplate">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="1" Text="{Binding Line}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="NewLineTemplate">
+                <Grid Background="{StaticResource UILightGreen}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="+" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                    <TextBlock Grid.Column="1" Text="{Binding Line}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="DeletedLineTemplate">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="-" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                    <TextBlock Grid.Column="1" Text="{Binding Line}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                </Grid>
             </DataTemplate>
 
+            <templateSelector:CodeLineTemplateSelector
+                x:Key="CodeLineTemplateSelector"
+                DefaultLineTemplate="{StaticResource DefaultLineTemplate }"
+                NewLineTemplate="{StaticResource NewLineTemplate }"
+                DeletedLineTemplate="{StaticResource DeletedLineTemplate }" />
+
+            <DataTemplate x:Key="DefaultDetailTemplate">
+                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                    <ItemsControl
+                        ItemsSource="{Binding NewFileLines}" Margin="{StaticResource MediumMargin}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
+                </ScrollViewer>
+            </DataTemplate>
+            <DataTemplate x:Key="ModifiedDetailTemplate">
+                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                    <ItemsControl
+                        ItemsSource="{Binding MergedFileLines}" Margin="{StaticResource MediumMargin}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
+                </ScrollViewer>
+            </DataTemplate>
+            
             <templateSelector:NewItemFileTemplateSelector
                 x:Key="NewItemFileTemplateSelector"
                 AddedFileTemplate="{StaticResource DefaultDetailTemplate}"
-                ModifiedFileTemplate="{StaticResource DefaultDetailTemplate}"
+                ModifiedFileTemplate="{StaticResource ModifiedDetailTemplate}"
                 ConflictingFileTemplate="{StaticResource DefaultDetailTemplate}"
-                WarningFileTemplate="{StaticResource DefaultDetailTemplate}"/>
+                WarningFileTemplate="{StaticResource DefaultDetailTemplate}" />
+
+            
         </ResourceDictionary>
     </Page.Resources>
 
