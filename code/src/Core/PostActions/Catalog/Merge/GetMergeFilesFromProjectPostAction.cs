@@ -15,6 +15,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
@@ -43,19 +44,19 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         private bool CheckLocalMergeFileAvailable()
         {
             var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(_config));
-            return string.IsNullOrEmpty(filePath) ? false : true;
-            
+            return File.Exists(filePath) ? true : false;
         }
 
         private void GetFileFromProject()
         {
             var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(_config.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath)));
+            var relFilePath = filePath.Replace(GenContext.Current.ProjectPath + Path.DirectorySeparatorChar, String.Empty);
+            GenContext.Current.MergeFilesFromProject.Add(relFilePath, new List<MergeInfo>());
 
             if (File.Exists(filePath))
             {
                 var destFile = filePath.Replace(GenContext.Current.ProjectPath, GenContext.Current.OutputPath);
                 File.Copy(filePath, destFile, true);
-                GenContext.Current.MergeFilesFromProject.Add(filePath);
             }
         }
 
@@ -72,7 +73,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 var filePath = Path.Combine(directory, Path.GetFileName(_config));
                 var path = Regex.Replace(filePath, MergePostAction.PostactionRegex, ".");
 
-                return (File.Exists(path) ? path : String.Empty);
+                return  path;
             }
         }
     }

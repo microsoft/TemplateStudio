@@ -18,6 +18,7 @@ using System.Linq;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Test.Artifacts;
 using Microsoft.Templates.UI;
 using Xunit;
@@ -41,7 +42,7 @@ namespace Microsoft.Templates.Test
 
         public List<GenerationWarning> GenerationWarnings { get; } = new List<GenerationWarning>();
 
-        public List<string> MergeFilesFromProject { get; } = new List<string>();
+        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
 
         public NewItemGenerationTests(GenerationFixture fixture)
         {

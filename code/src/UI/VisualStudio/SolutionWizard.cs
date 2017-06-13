@@ -22,6 +22,7 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.Templates.UI.Resources;
 using System.IO;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -40,7 +41,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public List<GenerationWarning> GenerationWarnings { get; } = new List<GenerationWarning>();
 
-        public List<string> MergeFilesFromProject { get; } = new List<string>();
+        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
 
         public SolutionWizard()
         {

@@ -34,6 +34,7 @@ namespace Microsoft.Templates.Core.PostActions
 
             AddPredefinedActions(genInfo, genResult, postActions);           
             AddGetMergeFilesFromProjectPostAction(postActions);
+            AddGenerateMergeInfoPostAction(postActions);
             AddMergeActions(postActions, $"*{MergePostAction.Extension}*", false);
 
             return postActions;

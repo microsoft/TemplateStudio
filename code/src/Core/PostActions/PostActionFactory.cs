@@ -45,6 +45,15 @@ namespace Microsoft.Templates.Core.PostActions
                 .ForEach(f => postActions.Add(new GetMergeFilesFromProjectPostAction(f)));
         }
 
+        internal void AddGenerateMergeInfoPostAction(List<PostAction> postActions)
+        {
+            Directory
+                .EnumerateFiles(GenContext.Current.OutputPath, "*.*", SearchOption.AllDirectories)
+                .Where(f => Regex.IsMatch(f, MergePostAction.PostactionRegex) && Path.GetExtension(f) != MergePostAction.PostActionIntentExtension)
+                .ToList()
+                .ForEach(f => postActions.Add(new GenerateMergeInfoPostAction(f)));
+        }
+
         internal void AddPredefinedActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
         {
             switch (genInfo.Template.GetTemplateType())

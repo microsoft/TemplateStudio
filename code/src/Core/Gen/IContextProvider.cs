@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 
 namespace Microsoft.Templates.Core.Gen
 {
@@ -13,7 +14,8 @@ namespace Microsoft.Templates.Core.Gen
         string ProjectPath { get; }
         List<string> ProjectItems { get; }
         List<GenerationWarning> GenerationWarnings { get; }
-        List<string> MergeFilesFromProject { get; }
+
+        Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; }
 
     }
 }
