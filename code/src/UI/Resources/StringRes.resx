@@ -433,4 +433,16 @@
   <data name="ButtonGenerateAndMerge" xml:space="preserve">
     <value>Generate &amp; Merge</value>
   </data>
+  <data name="ConflictingDetailDescription_SF" xml:space="preserve">
+    <value>The file {0} already exist. By countinuing this file will be replaced.</value>
+  </data>
+  <data name="ConflictingDetailTitle" xml:space="preserve">
+    <value>Destination file exist</value>
+  </data>
+  <data name="ConflictingDetailExistingFile" xml:space="preserve">
+    <value>Existing file</value>
+  </data>
+  <data name="ConflictingDetailNewFile" xml:space="preserve">
+    <value>New file</value>
+  </data>
 </root>

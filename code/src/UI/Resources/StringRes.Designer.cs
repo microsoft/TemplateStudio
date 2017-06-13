@@ -205,6 +205,42 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The file {0} already exist. By countinuing this file will be replaced..
+        /// </summary>
+        public static string ConflictingDetailDescription_SF {
+            get {
+                return ResourceManager.GetString("ConflictingDetailDescription_SF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Existing file.
+        /// </summary>
+        public static string ConflictingDetailExistingFile {
+            get {
+                return ResourceManager.GetString("ConflictingDetailExistingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New file.
+        /// </summary>
+        public static string ConflictingDetailNewFile {
+            get {
+                return ResourceManager.GetString("ConflictingDetailNewFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Destination file exist.
+        /// </summary>
+        public static string ConflictingDetailTitle {
+            get {
+                return ResourceManager.GetString("ConflictingDetailTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter a name.
         /// </summary>
         public static string EditTemplateDescription {

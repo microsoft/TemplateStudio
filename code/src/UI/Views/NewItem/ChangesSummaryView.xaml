@@ -72,13 +72,17 @@
                 </Grid>
             </DataTemplate>
 
+            <DataTemplate x:Key="NewFileTabItemHeaderTemplate">
+                <TextBlock Text="{Binding}"/>
+            </DataTemplate>
+
             <templateSelector:CodeLineTemplateSelector
                 x:Key="CodeLineTemplateSelector"
                 DefaultLineTemplate="{StaticResource DefaultLineTemplate }"
                 NewLineTemplate="{StaticResource NewLineTemplate }"
                 DeletedLineTemplate="{StaticResource DeletedLineTemplate }" />
 
-            <DataTemplate x:Key="DefaultDetailTemplate">
+            <DataTemplate x:Key="NewtDetailTemplate">
                 <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
                     <ItemsControl
                         ItemsSource="{Binding NewFileLines}" Margin="{StaticResource MediumMargin}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
@@ -100,6 +104,29 @@
                     </Grid>
                 </ScrollViewer>
             </DataTemplate>
+            <DataTemplate x:Key="ConflictingDetailTemplate">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Margin="{StaticResource MediumMargin}">
+                            <TextBlock Text="{x:Static res:StringRes.ConflictingDetailTitle}" Style="{StaticResource NewItemFileDescriptionTitleStyle}"/>
+                            <TextBlock Text="{Binding ConflictingDetailDescription}" Margin="{StaticResource MediumTopMargin}" Style="{StaticResource NewItemFileDescriptionTextStyle}" />
+                        </StackPanel>
+                        <TabControl Grid.Row="1">
+                            <TabItem Header="{x:Static res:StringRes.ConflictingDetailNewFile}" HeaderTemplate="{StaticResource NewFileTabItemHeaderTemplate}">
+                                <ItemsControl Margin="{StaticResource MediumMargin}" ItemsSource="{Binding NewFileLines}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
+                            </TabItem>
+                            <TabItem Header="{x:Static res:StringRes.ConflictingDetailExistingFile}" HeaderTemplate="{StaticResource NewFileTabItemHeaderTemplate}">
+                                <ItemsControl Margin="{StaticResource MediumMargin}" ItemsSource="{Binding CurrentFileLines}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
+                            </TabItem>
+                        </TabControl>
+                    </Grid>
+                </ScrollViewer>
+            </DataTemplate>
+            
             <DataTemplate x:Key="ModifiedDetailTemplate">
                 <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
                     <ItemsControl ItemsSource="{Binding MergedFileLines}" Margin="{StaticResource MediumMargin}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
@@ -108,9 +135,9 @@
 
             <templateSelector:NewItemFileTemplateSelector
                 x:Key="DetailTemplateSelector"
-                AddedFileTemplate="{StaticResource DefaultDetailTemplate}"
+                AddedFileTemplate="{StaticResource NewtDetailTemplate}"
                 ModifiedFileTemplate="{StaticResource ModifiedDetailTemplate}"
-                ConflictingFileTemplate="{StaticResource DefaultDetailTemplate}"
+                ConflictingFileTemplate="{StaticResource ConflictingDetailTemplate}"
                 WarningFileTemplate="{StaticResource WarningDetailTemplate}" />
 
 
