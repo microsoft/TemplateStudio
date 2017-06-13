@@ -56,6 +56,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\GlobalSuppressions.cs">
+      <Link>GlobalSuppressions.cs</Link>
+    </Compile>
     <Compile Include="FakeGenShell.cs" />
     <Compile Include="MSBuild\MSBuildProject.cs" />
     <Compile Include="MSBuild\VsItemTypeExtensions.cs" />

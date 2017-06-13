@@ -220,8 +220,6 @@ namespace Microsoft.Templates.Core.Locations
                         AppHealth.Current.Info.TrackAsync($"The certificate found does not have private key.").FireAndForget();
                     }
                 }
-
-                store.Close();
             }
 
             return certFound;
