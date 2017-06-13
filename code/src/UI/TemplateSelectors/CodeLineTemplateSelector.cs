@@ -1,4 +1,5 @@
-﻿using Microsoft.Templates.UI.ViewModels.NewItem;
+﻿using Microsoft.Templates.UI.Comparison;
+using Microsoft.Templates.UI.ViewModels.NewItem;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -22,7 +23,7 @@ namespace Microsoft.Templates.UI.TemplateSelectors
                     case LineStatus.New:
                         return NewLineTemplate;
                     case LineStatus.Deleted:
-                        return DeletedLineTemplate;                        
+                        return DeletedLineTemplate;
                 }
             }
             return base.SelectTemplate(item, container);

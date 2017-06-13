@@ -198,5 +198,11 @@
     <Style TargetType="TextBlock" x:Key="NewItemFileLineStyle" BasedOn="{StaticResource UIBaseText}">
         <Setter Property="FontFamily" Value="Consolas"/>
     </Style>
+    <Style TargetType="TextBlock" x:Key="NewItemFileDescriptionTitleStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="FontSize" Value="{StaticResource UI_L_FontSize}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="NewItemFileDescriptionTextStyle" BasedOn="{StaticResource UIBaseText}">
+    </Style>
 
 </ResourceDictionary>

@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
       xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
       xmlns:templateSelector="clr-namespace:Microsoft.Templates.UI.TemplateSelectors"
       mc:Ignorable="d" 
@@ -14,45 +15,60 @@
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <converters:StringVisibilityConverter x:Key="StringVisibilityConverter" />
 
             <DataTemplate x:Key="ChangesSummaryExpanderHeaderTemplate">
                 <TextBlock Text="{Binding}" Style="{StaticResource TextSummaryGroupHeader}"/>
             </DataTemplate>
-
             <DataTemplate x:Key="ListItemTemplate">
                 <Grid Margin="{StaticResource SmallMargin}">
-                    <TextBlock Text="{Binding Subject}" Style="{StaticResource NewItemFileNameStyle}"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{Binding Icon}" />
+                    <TextBlock Grid.Column="1" Text="{Binding Subject}" Style="{StaticResource NewItemFileNameStyle}" Margin="{StaticResource MediumLeftMargin}" />
                 </Grid>
             </DataTemplate>
 
             <DataTemplate x:Key="DefaultLineTemplate">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="1" Text="{Binding Line}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                    <TextBlock Grid.Column="0" Text="{Binding NumberString}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                    <TextBlock Grid.Column="1" Text="   " FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                    <TextBlock Grid.Column="2" Text="{Binding Text}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="NewLineTemplate">
                 <Grid Background="{StaticResource UILightGreen}">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="+" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
-                    <TextBlock Grid.Column="1" Text="{Binding Line}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                    <TextBlock Grid.Column="0" Text="{Binding NumberString}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                    <TextBlock Grid.Column="1" Text=" + " FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                    <TextBlock Grid.Column="2" Text="{Binding Text}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="DeletedLineTemplate">
                 <Grid>
+                    <Grid.Background>
+                        <SolidColorBrush Color="{StaticResource UIRedColor}" Opacity="0.3"/>
+                    </Grid.Background>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="-" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
-                    <TextBlock Grid.Column="1" Text="{Binding Line}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                    <TextBlock Grid.Column="0" Text="{Binding NumberString}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                    <TextBlock Grid.Column="1" Text=" - " FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
+                    <TextBlock Grid.Column="2" Text="{Binding Text}" FontSize="{Binding FontSize}" Style="{StaticResource NewItemFileLineStyle}"/>
                 </Grid>
             </DataTemplate>
 
@@ -68,21 +84,36 @@
                         ItemsSource="{Binding NewFileLines}" Margin="{StaticResource MediumMargin}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
                 </ScrollViewer>
             </DataTemplate>
-            <DataTemplate x:Key="ModifiedDetailTemplate">
+            <DataTemplate x:Key="WarningDetailTemplate">
                 <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
-                    <ItemsControl
-                        ItemsSource="{Binding MergedFileLines}" Margin="{StaticResource MediumMargin}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Margin="{StaticResource MediumMargin}">
+                            <TextBlock Text="{x:Static res:StringRes.WarningDetailTitle}" Style="{StaticResource NewItemFileDescriptionTitleStyle}"/>
+                            <TextBlock Text="{Binding Description}" Margin="{StaticResource MediumTopMargin}" Style="{StaticResource NewItemFileDescriptionTextStyle}" Visibility="{Binding Description, Converter={StaticResource StringVisibilityConverter}}" />
+                            <TextBlock Text="{Binding ExtendedInfo}" Margin="{StaticResource MediumTopMargin}" Style="{StaticResource NewItemFileDescriptionTextStyle}" Visibility="{Binding ExtendedInfo, Converter={StaticResource StringVisibilityConverter}}" />
+                        </StackPanel>
+                        <ItemsControl Grid.Row="1" ItemsSource="{Binding NewFileLines}" Margin="{StaticResource MediumMargin}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
+                    </Grid>
                 </ScrollViewer>
             </DataTemplate>
-            
+            <DataTemplate x:Key="ModifiedDetailTemplate">
+                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                    <ItemsControl ItemsSource="{Binding MergedFileLines}" Margin="{StaticResource MediumMargin}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
+                </ScrollViewer>
+            </DataTemplate>
+
             <templateSelector:NewItemFileTemplateSelector
-                x:Key="NewItemFileTemplateSelector"
+                x:Key="DetailTemplateSelector"
                 AddedFileTemplate="{StaticResource DefaultDetailTemplate}"
                 ModifiedFileTemplate="{StaticResource ModifiedDetailTemplate}"
                 ConflictingFileTemplate="{StaticResource DefaultDetailTemplate}"
-                WarningFileTemplate="{StaticResource DefaultDetailTemplate}" />
+                WarningFileTemplate="{StaticResource WarningDetailTemplate}" />
 
-            
+
         </ResourceDictionary>
     </Page.Resources>
 
@@ -104,8 +135,8 @@
                             Visibility="{Binding HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
                             <ListView
                                 Focusable="False"
-                                Style="{StaticResource ListViewChangesSummaryFiles}"                        
-                                ItemTemplate="{StaticResource ListItemTemplate}"
+                                Style="{StaticResource ListViewChangesSummaryFiles}"
+                                ItemTemplate="{StaticResource ListItemTemplate}"                                
                                 ItemsSource="{Binding Templates}"
                                 SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
                         </Expander>
@@ -116,7 +147,7 @@
         <ContentPresenter
             Grid.Column="1"
             Content="{Binding ChangesSummary.SelectedFile}"
-            ContentTemplateSelector="{StaticResource NewItemFileTemplateSelector}"/>
+            ContentTemplateSelector="{StaticResource DetailTemplateSelector}"/>
         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,21,21">
             <Button Content="+" Command="{Binding ChangesSummary.UpdateFontSizeCommand}" CommandParameter="Plus" Style="{StaticResource ButtonUpdateFontSizeStyle}" />
             <Button Content="-" Command="{Binding ChangesSummary.UpdateFontSizeCommand}" CommandParameter="Minus" Style="{StaticResource ButtonUpdateFontSizeStyle}" />
