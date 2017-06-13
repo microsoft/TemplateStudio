@@ -89,8 +89,8 @@
                                             <Condition Property="IsMouseOver" Value="True"/>
                                         </MultiTrigger.Conditions>
                                         <MultiTrigger.Setters>
-                                            <Setter Property="Foreground" Value="{StaticResource UIDarkBlue}"/>
-                                            <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{StaticResource UIDarkBlue}"/>
+                                            <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkBlue}"/>
+                                            <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{StaticResource UIMiddleDarkBlue}"/>
                                         </MultiTrigger.Setters>
                                     </MultiTrigger>
                                     <MultiTrigger>

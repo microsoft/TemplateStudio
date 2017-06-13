@@ -25,10 +25,12 @@
                 <Grid Margin="{StaticResource SmallMargin}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Source="{Binding Icon}" />
-                    <TextBlock Grid.Column="1" Text="{Binding Subject}" Style="{StaticResource NewItemFileNameStyle}" Margin="{StaticResource MediumLeftMargin}" />
+                    <TextBlock Grid.Column="0" Text="&#xE91F;" Style="{StaticResource IconButtonTextStyle}" Foreground="{Binding CircleColor, FallbackValue=Red}" FontSize="9"/>
+                    <Image Grid.Column="1" Source="{Binding Icon}" Margin="{StaticResource SmallLeftMargin}"/>
+                    <TextBlock Grid.Column="2" Text="{Binding Subject}" Style="{StaticResource NewItemFileNameStyle}" Margin="{StaticResource MediumLeftMargin}" />
                 </Grid>
             </DataTemplate>
 

@@ -133,7 +133,7 @@
         </Setter>-->
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{StaticResource UIDarkBlue}" />
+                <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkBlue}" />
             </Trigger>
         </Style.Triggers>
     </Style>

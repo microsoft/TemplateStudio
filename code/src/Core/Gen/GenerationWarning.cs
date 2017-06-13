@@ -20,6 +20,7 @@ namespace Microsoft.Templates.Core.Gen
     public class GenerationWarning
     {
         public string FileName { get; private set; }
+        public string FailedFileName { get; private set; }
 
         public string FilePath { get; set; }
 
@@ -27,7 +28,7 @@ namespace Microsoft.Templates.Core.Gen
 
         public string ExtendedInfo { get; private set; }
 
-        public GenerationWarning(string fileName, string filePath, string description, string extendedInfo)
+        public GenerationWarning(string fileName, string failedFileName, string filePath, string description, string extendedInfo)
         {
             FileName = fileName;
             FilePath = filePath;

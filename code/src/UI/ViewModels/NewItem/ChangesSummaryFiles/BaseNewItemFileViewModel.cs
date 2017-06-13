@@ -1,10 +1,24 @@
-﻿using Microsoft.Templates.Core.Gen;
+﻿// ******************************************************************
+// Copyright (c) Microsoft. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
+// ******************************************************************
+
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Comparison;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
+using System.Windows.Media;
+using System;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -12,8 +26,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
     public enum FileExtension { Default, CSharp, Resw, Xaml }
     public abstract class BaseNewItemFileViewModel : Observable
     {
-        public string Subject { get; private set; }
+        public string Subject { get; protected set; }
         public string Icon { get; private set; }
+        public SolidColorBrush CircleColor { get; private set; }
         public FileExtension FileExtension { get; private set; }
 
         public ObservableCollection<CodeLineViewModel> NewFileLines { get; private set; } = new ObservableCollection<CodeLineViewModel>();
@@ -28,7 +43,25 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             Subject = name;
             FileExtension = GetFileExtenion(name);
             Icon = GetIcon(FileExtension);
+            CircleColor = GetCircleColor();
             LoadFile();
+        }
+
+        private SolidColorBrush GetCircleColor()
+        {
+            switch (FileType)
+            {
+                case FileType.AddedFile:
+                    return MainViewModel.Current.MainView.FindResource("UIGreen") as SolidColorBrush;
+                case FileType.ModifiedFile:
+                    return MainViewModel.Current.MainView.FindResource("UIDarkBlue") as SolidColorBrush;
+                case FileType.ConflictingFile:
+                    return MainViewModel.Current.MainView.FindResource("UIDarkRed") as SolidColorBrush;
+                case FileType.WarningFile:
+                    return MainViewModel.Current.MainView.FindResource("UIDarkYellow") as SolidColorBrush;
+                default:
+                    return new SolidColorBrush(Colors.Transparent);
+            }
         }
 
         public BaseNewItemFileViewModel(NewItemGenerationFileInfo generationInfo)
@@ -36,6 +69,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             Subject = generationInfo.Name;
             FileExtension = GetFileExtenion(generationInfo.Name);
             Icon = GetIcon(FileExtension);
+            CircleColor = GetCircleColor();
             LoadFile();
         }
 

@@ -88,7 +88,7 @@
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Trigger.Setters>
-                    <Setter Property="Foreground" Value="{StaticResource UIDarkBlue}"/>
+                    <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkBlue}"/>
                 </Trigger.Setters>
             </Trigger>
         </Style.Triggers>
