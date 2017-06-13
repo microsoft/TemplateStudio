@@ -5,7 +5,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class CodeLineViewModel : Observable
     {
-        public static double DefaultFontSize = 10;
+        public static double DefaultFontSize = 12;
 
         private LineStatus _status;
         public LineStatus Status
@@ -35,7 +35,24 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             set => SetProperty(ref _fontSize, value);
         }
 
-        public string NumberString => Number.ToString("000");
+        public string NumberString
+        {
+            get
+            {
+                if (Number < 10)
+                {
+                    return $"  {Number}";
+                }
+                else if (Number < 100)
+                {
+                    return $" {Number}";
+                }
+                else
+                {
+                    return Number.ToString();
+                }                
+            }            
+        }
 
         public CodeLineViewModel(CodeLine codeLine)
         {

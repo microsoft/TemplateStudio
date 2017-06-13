@@ -85,7 +85,7 @@
                 </ScrollViewer>
             </DataTemplate>
             <DataTemplate x:Key="WarningDetailTemplate">
-                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                <ScrollViewer>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
