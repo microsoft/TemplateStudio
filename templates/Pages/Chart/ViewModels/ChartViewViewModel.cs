@@ -1,5 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
+using Param_ItemNamespace.Models;
+using Param_ItemNamespace.Services;
 
 namespace Param_ItemNamespace.ViewModels
 {
@@ -9,23 +11,13 @@ namespace Param_ItemNamespace.ViewModels
         {
         }
 
-        public ObservableCollection<CustomPoint> Source
+        public ObservableCollection<DataPoint> Source
         {
             get
             {
-                var collection = new ObservableCollection<CustomPoint>();
-                collection.Add(new CustomPoint { Category = "Fred", Value = 6 });
-                collection.Add(new CustomPoint { Category = "Hannah", Value = 18 });
-                collection.Add(new CustomPoint { Category = "Steve", Value = 3 });
-                collection.Add(new CustomPoint { Category = "Becky", Value = 9 });
-                return collection;
+                // TODO UWPTemplates: Replace this with your actual data
+                return SampleDataService.GetChartSampleData();
             }
         }
-    }
-
-    public class CustomPoint
-    {
-        public double Value { get; set; }
-        public string Category { get; set; }
     }
 }

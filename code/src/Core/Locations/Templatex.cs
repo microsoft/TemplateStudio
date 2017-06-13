@@ -33,21 +33,25 @@ namespace Microsoft.Templates.Core.Locations
 
         public static string PackAndSign(string source, string certThumbprint, string mimeMediaType = MediaTypeNames.Text.Plain)
         {
-            string signedPack = source + DefaultExtension;
+            string outFile = source + DefaultExtension;
 
-            PackAndSign(source, signedPack, certThumbprint, mimeMediaType);
+            PackAndSign(source, outFile, certThumbprint, mimeMediaType);
 
-            return signedPack;
+            return outFile;
         }
+
         public static string PackAndSign(string source, X509Certificate signingCert, string mimeMediaType = MediaTypeNames.Text.Plain)
         {
-            string signedPack = source + DefaultExtension;
+            string outFile = source + DefaultExtension;
 
-            PackAndSign(source, signedPack, signingCert, mimeMediaType);
+            Pack(source, outFile, mimeMediaType);
 
-            return signedPack;
-        }
-        public static void PackAndSign(string source, string signedFilePack, string certThumbprint, string mimeMediaType)
+            Sign(outFile, signingCert);
+
+            return outFile;
+        } 
+
+        public static void PackAndSign(string source, string outFile, string certThumbprint, string mimeMediaType)
         {
             X509Certificate cert = LoadCert(certThumbprint);
 
@@ -56,26 +60,41 @@ namespace Microsoft.Templates.Core.Locations
                 throw new SignCertNotFoundException($"The certificate with thumbprint {certThumbprint} can't be found in CurrentUser/My or LocalMachine/My.");
             }
 
-            PackAndSign(source, signedFilePack, cert, mimeMediaType);
+            Pack(source, outFile, mimeMediaType);
+
+            Sign(outFile, cert);
         }
-        public static void PackAndSign(string source, string signedPack, X509Certificate signingCert, string mimeMediaType)
+
+        public static void PackAndSign(string source, string outFile, X509Certificate cert, string mimeMediaType)
+        {
+            Pack(source, outFile, mimeMediaType);
+
+            Sign(outFile, cert);
+        }
+
+        public static string Pack(string source, string mimeMediaType = MediaTypeNames.Text.Plain)
+        {
+            string outFile = source + DefaultExtension;
+
+            Pack(source, outFile, mimeMediaType);
+
+            return outFile;
+        }
+        public static void Pack(string source, string outFile, string mimeMediaType)
         {
             if (string.IsNullOrWhiteSpace(source))
                 throw new ArgumentException("source");
 
-            if (string.IsNullOrWhiteSpace(signedPack))
-                throw new ArgumentException("signedPack");
-
-            if (signingCert == null)
-                throw new ArgumentException("signingCert");
+            if (String.IsNullOrWhiteSpace(outFile))
+                throw new ArgumentException("outFile");
 
             FileInfo[] files = GetSourceFiles(source);
 
             Uri rootUri = GetRootUri(source);
 
-            EnsureDirectory(Path.GetDirectoryName(signedPack));
+            EnsureDirectory(Path.GetDirectoryName(outFile));
 
-            using (Package package = Package.Open(signedPack, FileMode.Create))
+            using (Package package = Package.Open(outFile, FileMode.Create))
             {
                 foreach (var file in files)
                 {
@@ -89,12 +108,10 @@ namespace Microsoft.Templates.Core.Locations
                 }
 
                 package.Flush();
-
-                SignAllParts(package, signingCert);
             }
         }
 
-        public static void Extract(string signedFilePack, string targetDirectory)
+        public static void Extract(string signedFilePack, string targetDirectory, bool verifySignatures=true)
         {
             string currentDir = Environment.CurrentDirectory;
             string inFilePack = Path.IsPathRooted(signedFilePack) ? signedFilePack : Path.Combine(currentDir, signedFilePack);
@@ -104,23 +121,45 @@ namespace Microsoft.Templates.Core.Locations
 
             using (Package package = Package.Open(inFilePack, FileMode.Open, FileAccess.Read))
             {
-                if (ValidateSignatures(package))
+                bool isSignatureValid = false;
+                if (verifySignatures)
                 {
-                    PackagePart packagePartDocument = null;
-
-                    foreach (PackageRelationship relationship in package.GetRelationshipsByType(TemplatesContentRelationshipType))
-                    {
-                        // Open the Document part, write the contents to a file.
-                        packagePartDocument = package.GetPart(relationship.TargetUri);
-                        ExtractPart(packagePartDocument, outDir);
-                    }
+                    isSignatureValid = ValidateSignatures(package);
                 }
-                else
+
+                if (isSignatureValid || !verifySignatures)
+                {
+                    ExtractContent(outDir, package);
+                }
+
+                if (!isSignatureValid && verifySignatures) 
                 {
                     string msg = $"Invalid digital signatures in '{signedFilePack}'. The content has been tampered or the certificate is not present, not valid or not allowed.  Unable to continue.";
-
                     throw new InvalidSignatureException(msg);
                 }
+            }
+        }
+
+        private static void Sign(string file, X509Certificate signingCert)
+        {
+            if (signingCert == null)
+                throw new ArgumentException("signingCert");
+
+            using (Package package = Package.Open(file, FileMode.Open))
+            {
+                SignAllParts(package, signingCert);
+            }
+        }
+
+        private static void ExtractContent(string outDir, Package package)
+        {
+            PackagePart packagePartDocument = null;
+
+            foreach (PackageRelationship relationship in package.GetRelationshipsByType(TemplatesContentRelationshipType))
+            {
+                // Open the Document part, write the contents to a file.
+                packagePartDocument = package.GetPart(relationship.TargetUri);
+                ExtractPart(packagePartDocument, outDir);
             }
         }
 

@@ -13,6 +13,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
 
 using EnvDTE;
 
@@ -24,9 +25,9 @@ using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
+using Microsoft.Templates.UI.Resources;
 
 using NuGet.VisualStudio;
-using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -289,21 +290,28 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             try
             {
-                var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
-
-                var installer = componentModel.GetService<IVsPackageInstaller>();
-                var uninstaller = componentModel.GetService<IVsPackageUninstaller>();
-                var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
-
-                var installedPackages = installerServices.GetInstalledPackages().ToList();
-                var activeProject = GetActiveProject();
-
-                var p = installedPackages.FirstOrDefault();
-
-                if (p != null)
+                if (IsInternetAvailable())
                 {
-                    uninstaller.UninstallPackage(activeProject, p.Id, false);
-                    installer.InstallPackage("All", activeProject, p.Id, p.VersionString, true);
+                    var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
+
+                    var installer = componentModel.GetService<IVsPackageInstaller>();
+                    var uninstaller = componentModel.GetService<IVsPackageUninstaller>();
+                    var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
+
+                    var installedPackages = installerServices.GetInstalledPackages().ToList();
+                    var activeProject = GetActiveProject();
+
+                    var p = installedPackages.FirstOrDefault();
+
+                    if (p != null)
+                    {
+                        uninstaller.UninstallPackage(activeProject, p.Id, false);
+                        installer.InstallPackage("All", activeProject, p.Id, p.VersionString, true);
+                    }
+                }
+                else
+                {
+                    AppHealth.Current.Warning.TrackAsync("Unable to automatically perform Restore NuGet Packages for the solution. Please, try to manually restore the NuGet packages.").FireAndForget();
                 }
             }
             catch (Exception ex)
@@ -312,6 +320,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
+     
         public override void CollapseSolutionItems()
         {
             try
@@ -353,6 +362,28 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             item.UIHierarchyItems.Expanded = false;
+        }
+
+        private static bool IsInternetAvailable()
+        {
+            bool internet = NetworkInterface.GetIsNetworkAvailable();
+            if (internet)
+            {
+                try
+                {
+                    //Based on https://technet.microsoft.com/en-us/library/cc766017(v=ws.10).aspx 
+                    using (var client = new System.Net.WebClient())
+                    {
+                        var ncsi = client.DownloadString("http://www.msftncsi.com/ncsi.txt");
+                        internet = (ncsi == "Microsoft NCSI");
+                    }
+                }
+                catch
+                {
+                    internet = false;
+                }
+            }
+            return internet;
         }
     }
 }

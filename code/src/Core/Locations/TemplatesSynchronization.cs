@@ -97,13 +97,14 @@ namespace Microsoft.Templates.Core.Locations
 
         private async Task CheckMandatoryAdquisitionAsync(bool forceUpdate)
         {
+            if (forceUpdate)
+            {
+                await AdquireContentAsync();
+            }
+
             if (!_content.Exists())
             {
                 await ExtractInstalledContentAsync();
-            }
-            else if (forceUpdate)
-            {
-                await AdquireContentAsync();
             }
         }
 
@@ -124,7 +125,8 @@ namespace Microsoft.Templates.Core.Locations
             try
             {
                 string installedTemplatesPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", "Templates.mstx");
-                _source.ExtractFromMstx(installedTemplatesPath, _content.TemplatesFolder);
+                _source.Extract(installedTemplatesPath, _content.TemplatesFolder);
+
             }
             catch (Exception ex)
             {
@@ -176,7 +178,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                if (_content.ExitsNewerVersion(CurrentContentFolder) || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
+                if (_content.RequiresUpdate(CurrentContentFolder) || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
                 {
                     CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
                     CodeGen.Instance.Cache.Scan(_content.LatestContentFolder);

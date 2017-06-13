@@ -40,7 +40,7 @@ namespace Microsoft.Templates.Core.Locations
             return ExistsContent(LatestContentFolder);
         }
 
-        public bool ExitsNewerVersion(string currentContentFolder)
+        public bool RequiresUpdate(string currentContentFolder)
         {
             if (ExistsContent(LatestContentFolder))
             {

@@ -22,12 +22,13 @@ using System.Collections.Generic;
 
 namespace Microsoft.Templates.Core.Test
 {
-    public class NamingTest : IClassFixture<NamingFixture>
+    [Collection("Unit Test Templates")]
+    public class NamingTest
     {
 
-        private readonly NamingFixture _fixture;
+        private TemplatesFixture _fixture;
 
-        public NamingTest(NamingFixture fixture)
+        public NamingTest(TemplatesFixture fixture)
         {
             _fixture = fixture;
         }
