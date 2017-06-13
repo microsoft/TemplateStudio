@@ -68,5 +68,14 @@ namespace Microsoft.Templates.Core.Strings {
                 return ResourceManager.GetString("StatusAddingItems", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opening generated files ....
+        /// </summary>
+        internal static string StatusOpeningItems {
+            get {
+                return ResourceManager.GetString("StatusOpeningItems", resourceCulture);
+            }
+        }
     }
 }

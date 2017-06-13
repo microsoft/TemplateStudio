@@ -55,6 +55,8 @@ namespace Microsoft.Templates.Core.PostActions
             var postActions = new List<PostAction>();
 
             postActions.Add(new AddContextItemsToProjectPostAction());
+            postActions.Add(new OpenGeneratedFilesPostAction());
+
 
             return postActions;
         }

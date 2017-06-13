@@ -181,6 +181,10 @@ namespace Microsoft.Templates.Test.Artifacts
         {
             return string.Empty;
         }
+
+        public override void OpenItems(params string[] itemsFullPath)
+        {
+        }
     }
 }
 

@@ -40,6 +40,8 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract string GetActiveProjectGuid();
 
+        public abstract void OpenItems(params string[] itemsFullPath);
+
         public virtual void RestorePackages()
         {
         }

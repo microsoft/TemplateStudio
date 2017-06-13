@@ -120,4 +120,7 @@
   <data name="StatusAddingItems" xml:space="preserve">
     <value>Adding items to project ...</value>
   </data>
+  <data name="StatusOpeningItems" xml:space="preserve">
+    <value>Opening generated files ...</value>
+  </data>
 </root>

@@ -382,6 +382,29 @@ namespace Microsoft.Templates.UI.VisualStudio
             item.UIHierarchyItems.Expanded = false;
         }
 
+        public override void OpenItems(params string[] itemsFullPath)
+        {
+            if (itemsFullPath == null || itemsFullPath.Length == 0)
+            {
+                return;
+            }
 
+            foreach (var item in itemsFullPath)
+            {
+                switch (Path.GetExtension(item).ToLowerInvariant())
+                {
+                    case ".xaml":
+                        Dte.ItemOperations.OpenFile(item, EnvDTE.Constants.vsViewKindDesigner);
+                        break;
+                    
+                    default:
+                        if (!item.EndsWith(".xaml.cs"))
+                        {
+                            Dte.ItemOperations.OpenFile(item, EnvDTE.Constants.vsViewKindPrimary);
+                        }
+                        break;
+                }
+            }
+        }
     }
 }
