@@ -141,24 +141,17 @@ namespace Microsoft.Templates.UI
 
                 if (!File.Exists(destFilePath))
                 {
-                    result.NewFiles.Add(fileInfo);
-                        
+                    result.NewFiles.Add(fileInfo);     
                 }
                 else
                 {
-                    if (GenContext.Current.MergeFilesFromProject.Contains(destFilePath))
+                    if (GenContext.Current.MergeFilesFromProject.ContainsKey(fileName))
                     {
-                        if (!FilesAreEqual(file, destFilePath))
-                        {
-                            result.ModifiedFiles.Add(fileInfo);
-                        }
+                        result.ModifiedFiles.Add(fileInfo);                       
                     }
                     else
                     {
-                        if (!FilesAreEqual(file, destFilePath))
-                        {
-                            result.ConflictingFiles.Add(fileInfo);
-                        }
+                        result.ConflictingFiles.Add(fileInfo);
                     }
                 }
             }
@@ -187,6 +180,55 @@ namespace Microsoft.Templates.UI
 
             ExecuteFinishGenerationPostActions();
             CleanupTempGeneration();
+        }
+
+        public void OutputNewItem(UserSelection userSelection)
+        {
+            try
+            {
+                UnsafeOutputNewItem();
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex, userSelection);
+                GenContext.ToolBox.Shell.CancelWizard(false);
+            }
+        }
+
+        public void UnsafeOutputNewItem()
+        {
+            var result = CompareOutputAndProject();
+            GenerateOutputSummary(result);
+        }
+
+        private void GenerateOutputSummary(NewItemGenerationResult result)
+        {
+            var fileName = Path.Combine(GenContext.Current.OutputPath, "Generation changes.md");
+            foreach (var mergeFile in GenContext.Current.MergeFilesFromProject)
+            {
+                File.AppendAllLines(fileName, new string[]{ $"## Changes in File '{mergeFile.Key}:'",""});
+                foreach (var mergeInfo in mergeFile.Value)
+                {
+                    File.AppendAllLines(fileName, new string[] { mergeInfo.Intent, "" });
+                    File.AppendAllLines(fileName, new string[] { $"```{mergeInfo.Format}", mergeInfo.PostActionCode, "```", "" });
+                }
+            }
+            if (result.NewFiles.Any())
+            {
+                File.AppendAllLines(fileName, new string[] { $"## New files:",  "" });
+                foreach (var newFile in result.NewFiles)
+                {
+                    File.AppendAllLines(fileName, new string[] { $"* [{newFile.Name}]({newFile.NewItemGenerationFilePath})" });
+                }
+            }
+            if (result.ConflictingFiles.Any())
+            {
+                File.AppendAllLines(fileName, new string[] { $"## Conflicting files:", "" });
+                foreach (var newFile in result.ConflictingFiles)
+                {
+                    File.AppendAllLines(fileName, new string[] { $"* [ {newFile.Name}]({newFile.NewItemGenerationFilePath})" });
+                }
+            }
         }
 
         private void BackupProjectFiles(NewItemGenerationResult result)
@@ -355,11 +397,6 @@ namespace Microsoft.Templates.UI
                 var destDirectory = Path.GetDirectoryName(destFileName);
                 Fs.SafeCopyFile(sourceFile, destDirectory, true);
             }
-        }
-
-        private static bool FilesAreEqual(string file, string destFilePath)
-        {
-            return File.ReadAllLines(file).SequenceEqual(File.ReadAllLines(destFilePath));
         }
 
 
