@@ -27,16 +27,19 @@
     "wts.userName":
     {
       "type": "parameter",
+      "dataType": "string",
       "replaces": "Param_UserName"
     },
     "wts.wizardVersion":
     {
       "type": "parameter",
+      "dataType": "string",
       "replaces": "Param_Wizard.Version"
     },
     "wts.templatesVersion":
     {
       "type": "parameter",
+      "dataType": "string",
       "replaces": "Param_Templates.Version"
     },
     "copyrightYear": {
