@@ -32,6 +32,7 @@ namespace Microsoft.Templates.Core.Gen
         {
             FileName = fileName;
             FilePath = filePath;
+            FailedFileName = failedFileName;
             Description = description;
             ExtendedInfo = extendedInfo;
         }

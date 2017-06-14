@@ -86,15 +86,7 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        internal void ExecuteFinishGenerationPostActions()
-        {
-            var postActions = _postactionFactory.FindFinishGenerationPostActions();
-
-            foreach (var postAction in postActions)
-            {
-                postAction.Execute();
-            }
-        }
+        
 
         internal string GetStatusText(GenInfo genInfo)
         {

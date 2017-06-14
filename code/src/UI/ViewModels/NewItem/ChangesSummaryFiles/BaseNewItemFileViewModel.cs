@@ -41,7 +41,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public BaseNewItemFileViewModel(string name)
         {
             Subject = name;
-            FileExtension = GetFileExtenion(name);
+            FileExtension = GetFileExtension(name);
             Icon = GetIcon(FileExtension);
             CircleColor = GetCircleColor();
             LoadFile();
@@ -67,7 +67,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public BaseNewItemFileViewModel(NewItemGenerationFileInfo generationInfo)
         {
             Subject = generationInfo.Name;
-            FileExtension = GetFileExtenion(generationInfo.Name);
+            FileExtension = GetFileExtension(generationInfo.Name);
             Icon = GetIcon(FileExtension);
             CircleColor = GetCircleColor();
             LoadFile();
@@ -113,26 +113,19 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        private FileExtension GetFileExtenion(string name)
+        private FileExtension GetFileExtension(string name)
         {
-            FileExtension result = FileExtension.Default;
-            if (name.Contains("."))
+            switch (Path.GetExtension(name).ToLowerInvariant())
             {
-                var strings = name.Split('.');
-                if (strings?.Last() == "cs")
-                {
-                    result = FileExtension.CSharp;
-                }
-                else if (strings?.Last() == "xaml")
-                {
-                    result = FileExtension.Xaml;
-                }
-                else if (strings?.Last() == "resw")
-                {
-                    result = FileExtension.Resw;
-                }
+                case "cs":
+                    return FileExtension.CSharp;
+                case "xaml":
+                    return FileExtension.Xaml;
+                case "resw":
+                    return FileExtension.Resw;
+                default:
+                    return FileExtension.Default;       
             }
-            return result;
         }
 
         private string GetIcon(FileExtension fileExtension)

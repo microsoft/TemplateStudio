@@ -73,6 +73,7 @@
                     <Button Command="{Binding OpenInExplorerCommand}" Content="{StaticResource FolderImage}" Style="{StaticResource IconButton}"  />
                     <Button Command="{Binding AddNewFeatureCommand}" Content="+" Style="{StaticResource IconButton}"  />
                     <Button Command="{Binding AddNewPageCommand}" Content="+" Style="{StaticResource IconButton}"  />
+                    <Button Command="{Binding OpenTempInExplorerCommand}" Content="Temp" Style="{StaticResource IconButton}" Visibility="{Binding TempFolderAvailable}"  />
                 </StackPanel>
                 <Grid Grid.Row="1" Style="{StaticResource HorizontalSeparator}" />
                 <TextBlock Grid.Row="2" Text="{Binding SolutionName}" Style="{StaticResource Header2}" />

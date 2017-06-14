@@ -35,6 +35,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject => throw new NotImplementedException();
 
+        public List<string> FilesToOpen => throw new NotImplementedException();
+
         [Fact]
         public void Execute_Ok()
         {

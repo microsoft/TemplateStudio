@@ -36,6 +36,8 @@ namespace Microsoft.Templates.VsEmulator.Main
     {
         private readonly MainView _host;
 
+        private const string TempGenerationFolder = "WTSTempGeneration";
+
         public MainViewModel(MainView host)
         {
             _host = host;
@@ -53,11 +55,15 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
 
+        public List<string> FilesToOpen { get; } = new List<string>();
+
+
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
         public RelayCommand OpenInVsCodeCommand => new RelayCommand(OpenInVsCode);
         public RelayCommand OpenInExplorerCommand => new RelayCommand(OpenInExplorer);
+        public RelayCommand OpenTempInExplorerCommand => new RelayCommand(OpenTempInExplorer);
         public RelayCommand ConfigureVersionsCommand => new RelayCommand(ConfigureVersions);
         public RelayCommand AddNewFeatureCommand => new RelayCommand(AddNewFeature);
 
@@ -83,6 +89,13 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             get => _isProjectLoaded;
             set => SetProperty(ref _isProjectLoaded, value);
+        }
+
+        private Visibility _tempFolderAvailable;
+        public Visibility TempFolderAvailable
+        {
+            get => _tempFolderAvailable;
+            set => SetProperty(ref _tempFolderAvailable, value);
         }
 
         private string _wizardVersion;
@@ -114,6 +127,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 else
                 {
                     IsProjectLoaded = Visibility.Visible;
+                    TempFolderAvailable = Visibility.Hidden;
                 }
             }
         }
@@ -174,22 +188,29 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
-        private async void AddNewFeature()
+        private void AddNewFeature()
         {
             ConfigureGenContext();
-            OutputPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            OutputPath = Path.Combine(Path.GetTempPath(), TempGenerationFolder, Path.GetRandomFileName());
             ProjectItems.Clear();
             GenerationWarnings.Clear();
             MergeFilesFromProject.Clear();
 
             try
             {
-
                 var userSelection = NewItemGenController.Instance.GetUserSelectionNewItem(TemplateType.Feature);
 
                 if (userSelection != null)
                 {
-                    NewItemGenController.Instance.SyncNewItem(userSelection);
+                    if (userSelection.ItemGenerationType == ItemGenerationType.GenerateAndMerge)
+                    {
+                        NewItemGenController.Instance.SyncNewItem(userSelection);
+                    }
+                    else
+                    {
+                        NewItemGenController.Instance.OutputNewItem(userSelection);
+                    }
+                    TempFolderAvailable = Visibility.Visible;
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
             }
@@ -207,7 +228,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private void AddNewPage()
         {
             ConfigureGenContext();
-            OutputPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            OutputPath = Path.Combine(Path.GetTempPath(), TempGenerationFolder, Path.GetRandomFileName());
             ProjectItems.Clear();
             GenerationWarnings.Clear();
             MergeFilesFromProject.Clear();
@@ -217,7 +238,15 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 if (userSelection != null)
                 {
-                    NewItemGenController.Instance.SyncNewItem(userSelection);
+                    if (userSelection.ItemGenerationType == ItemGenerationType.GenerateAndMerge)
+                    {
+                        NewItemGenController.Instance.SyncNewItem(userSelection);
+                    }
+                    else
+                    {
+                        NewItemGenController.Instance.OutputNewItem(userSelection);
+                    }
+                    TempFolderAvailable = Visibility.Visible;
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
             }
@@ -291,6 +320,14 @@ namespace Microsoft.Templates.VsEmulator.Main
             if (!string.IsNullOrEmpty(SolutionPath))
             {
                 System.Diagnostics.Process.Start(System.IO.Path.GetDirectoryName(SolutionPath));
+            }
+        }
+
+        private void OpenTempInExplorer()
+        {
+            if (!string.IsNullOrEmpty(GenContext.Current.OutputPath))
+            {
+                System.Diagnostics.Process.Start(GenContext.Current.OutputPath);
             }
         }
 

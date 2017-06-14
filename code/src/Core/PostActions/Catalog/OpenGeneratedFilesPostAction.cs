@@ -24,7 +24,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         public override void Execute()
         {
             GenContext.ToolBox.Shell.ShowStatusBarMessage(Strings.Resources.StatusOpeningItems);
-            GenContext.ToolBox.Shell.OpenItems(GenContext.Current.ProjectItems.ToArray());
+            GenContext.ToolBox.Shell.OpenItems(GenContext.Current.FilesToOpen.ToArray());
         }
     }
 }

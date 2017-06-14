@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -162,7 +163,7 @@ namespace Microsoft.Templates.UI
         {
             try
             {
-                UnsafeSyncNewItem();
+                UnsafeSyncNewItem(userSelection);
             }
             catch (Exception ex)
             {
@@ -171,22 +172,22 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        public void UnsafeSyncNewItem()
+        public void UnsafeSyncNewItem(UserSelection userSelection)
         {
             var result = CompareOutputAndProject();
 
             //BackupProjectFiles(result);
             CopyFilesToProject(result);
-
+            GenerateSyncSummary(result);
             ExecuteFinishGenerationPostActions();
-            CleanupTempGeneration();
+            //CleanupTempGeneration();
         }
 
         public void OutputNewItem(UserSelection userSelection)
         {
             try
             {
-                UnsafeOutputNewItem();
+                UnsafeOutputNewItem(userSelection);
             }
             catch (Exception ex)
             {
@@ -195,18 +196,73 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        public void UnsafeOutputNewItem()
+        public void UnsafeOutputNewItem(UserSelection userSelection)
         {
             var result = CompareOutputAndProject();
             GenerateOutputSummary(result);
+            ExecuteFinishGenerationPostActions();
         }
 
         private void GenerateOutputSummary(NewItemGenerationResult result)
         {
-            var fileName = Path.Combine(GenContext.Current.OutputPath, "Generation changes.md");
+            var fileName = Path.Combine(GenContext.Current.OutputPath, "Steps to include new item generation.md");
+            File.WriteAllLines(fileName, new string[] { "# Steps to include new item generation", "You have to follow theese steps to include the new item into you project" });
+            
+
+            if (result.NewFiles.Any())
+            {
+                File.AppendAllLines(fileName, new string[] { $"## New files:", "Copy and add those files to your project:" });
+                foreach (var newFile in result.NewFiles)
+                {
+                    File.AppendAllLines(fileName, GetLinkToLocalFile(newFile));
+                }
+            }
+            File.AppendAllLines(fileName, new string[] { "## Modified files: " });
+            File.AppendAllLines(fileName, new string[] { $"Apply theese changes in the following files: ", "" });
+
             foreach (var mergeFile in GenContext.Current.MergeFilesFromProject)
             {
-                File.AppendAllLines(fileName, new string[]{ $"## Changes in File '{mergeFile.Key}:'",""});
+                File.AppendAllLines(fileName, new string[] { $"### Changes in File '{mergeFile.Key}':", "" });
+                foreach (var mergeInfo in mergeFile.Value)
+                {
+                    File.AppendAllLines(fileName, new string[] { mergeInfo.Intent, "" });
+                    File.AppendAllLines(fileName, new string[] { $"```{mergeInfo.Format}", mergeInfo.PostActionCode, "```", "" });
+                }
+            }
+            
+            if (result.ConflictingFiles.Any())
+            {
+                File.AppendAllLines(fileName, new string[] { $"## Conflicting files:", "" });
+                foreach (var conflictFile in result.ConflictingFiles)
+                {
+                    File.AppendAllLines(fileName, GetLinkToLocalFile(conflictFile));
+                }
+            }
+
+            GenContext.Current.FilesToOpen.Add(fileName);
+        }
+
+        private void GenerateSyncSummary(NewItemGenerationResult result)
+        {
+            var fileName = Path.Combine(GenContext.Current.OutputPath, "GenerationSummary.md");
+            File.WriteAllLines(fileName, new string[] { "# Generation summary", "The following changes have been incorporated in your project" });
+            File.AppendAllLines(fileName, new string[] { "## Modified files: " });
+            foreach (var mergeFile in GenContext.Current.MergeFilesFromProject)
+            {
+                var modifiedFile = result.ModifiedFiles.FirstOrDefault(m => m.Name == mergeFile.Key);
+
+                File.AppendAllLines(fileName, new string[] { $"### Changes in File '{mergeFile.Key}':", "" });
+
+                if (modifiedFile != null)
+                {
+                    File.AppendAllLines(fileName, new string[] { $"See the final result: [{modifiedFile.Name}]({Uri.EscapeUriString(modifiedFile.ProjectFilePath)})", "" });
+                    File.AppendAllLines(fileName, new string[] { $"The following changes were applied:" });
+                }
+                else
+                {
+                    File.AppendAllLines(fileName, new string[] { $"The changes could not be applied, please apply the following changes manually:", "" });
+                    //Postaction failed, show info
+                }
                 foreach (var mergeInfo in mergeFile.Value)
                 {
                     File.AppendAllLines(fileName, new string[] { mergeInfo.Intent, "" });
@@ -215,19 +271,41 @@ namespace Microsoft.Templates.UI
             }
             if (result.NewFiles.Any())
             {
-                File.AppendAllLines(fileName, new string[] { $"## New files:",  "" });
+                File.AppendAllLines(fileName, new string[] { $"## New files:", "" });
                 foreach (var newFile in result.NewFiles)
                 {
-                    File.AppendAllLines(fileName, new string[] { $"* [{newFile.Name}]({newFile.NewItemGenerationFilePath})" });
+                    File.AppendAllLines(fileName, GetLinkToProjectFile(newFile));
                 }
             }
             if (result.ConflictingFiles.Any())
             {
                 File.AppendAllLines(fileName, new string[] { $"## Conflicting files:", "" });
-                foreach (var newFile in result.ConflictingFiles)
+                foreach (var conflictFile in result.ConflictingFiles)
                 {
-                    File.AppendAllLines(fileName, new string[] { $"* [ {newFile.Name}]({newFile.NewItemGenerationFilePath})" });
+                    File.AppendAllLines(fileName, GetLinkToProjectFile(conflictFile));
                 }
+            }
+
+            GenContext.Current.FilesToOpen.Add(fileName);
+        }
+
+        private static string[] GetLinkToLocalFile(NewItemGenerationFileInfo fileInfo)
+        {
+            return new string[] { $"* [{fileInfo.Name}]({fileInfo.Name})" };
+        }
+
+        private static string[] GetLinkToProjectFile(NewItemGenerationFileInfo fileInfo)
+        {
+            return new string[] { $"* [{fileInfo.Name}]({Uri.EscapeUriString(fileInfo.ProjectFilePath)})" }; 
+        }
+
+        private void ExecuteFinishGenerationPostActions()
+        {
+            var postActions = _postactionFactory.FindFinishGenerationPostActions();
+
+            foreach (var postAction in postActions)
+            {
+                postAction.Execute();
             }
         }
 
