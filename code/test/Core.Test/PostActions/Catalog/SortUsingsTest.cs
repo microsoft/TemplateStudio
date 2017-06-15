@@ -12,7 +12,7 @@
 
 using System.Collections.Generic;
 
-using Microsoft.Templates.Core.PostActions.Catalog.SortUsings;
+using Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces;
 
 using Xunit;
 
@@ -38,7 +38,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "namespace Microsoft.Templates",
                 "{",
                 "}"
-                };
+            };
 
             var expected = new List<string>
             {
@@ -73,7 +73,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "namespace Microsoft.Templates",
                 "{",
                 "}"
-                };
+            };
 
             var expected = new List<string>
             {
@@ -102,7 +102,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "using Microsoft.Templates.Core;",
                 "using System.Threading.Tasks;",
                 "using System.Linq;"
-             };
+            };
 
             var expected = new List<string>
             {
@@ -115,7 +115,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "using Microsoft.Templates.Core;",
                 "using System.Threading.Tasks;",
                 "using System.Linq;"
-             };
+            };
 
             var result = factData.SortUsings();
 

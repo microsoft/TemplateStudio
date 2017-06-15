@@ -1,7 +1,7 @@
-Ôªø// ******************************************************************
+// ******************************************************************
 // Copyright (c) Microsoft. All rights reserved.
 // This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED ‚ÄúAS IS‚Äù, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// THE CODE IS PROVIDED ìAS ISî, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 // INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 // IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
@@ -11,14 +11,16 @@
 // ******************************************************************
 
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
-namespace Microsoft.Templates.Core.PostActions.Catalog.SortUsings
+namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
 {
-    public class UsingComparer : IComparer<string>
+    public abstract class NamespaceComparer : IComparer<string>
     {
-        public const string UsingKeyword = @"using";
-        private const string UsingPattern = UsingKeyword + @"\s(?<Ns>.*?);";
+        public abstract string UsingKeyword { get; }
+
+        protected abstract string UsingPattern { get; }
+
+        protected abstract bool StripTrailingCharacter { get; }
 
         public int Compare(string x, string y)
         {
@@ -28,13 +30,18 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortUsings
             return xNs.CompareTo(yNs);
         }
 
-        public static string ExtractNs(string rawValue)
+        public string ExtractNs(string rawValue)
         {
-            var m = Regex.Match(rawValue, UsingPattern);
-
-            if (m.Success)
+            if (rawValue.StartsWith(UsingKeyword))
             {
-                return m.Groups["Ns"].Value;
+                var ns = rawValue.Substring(UsingKeyword.Length + 1);
+
+                if (StripTrailingCharacter)
+                {
+                    ns = ns.Substring(0, ns.Length -1);
+                }
+
+                return ns;
             }
 
             return string.Empty;

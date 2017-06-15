@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Microsoft.Templates.Core.PostActions.Catalog.SortUsings
+namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
 {
     public static class ListStringExtensions
     {
@@ -23,13 +23,23 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortUsings
 
         public static bool SortUsings(this List<string> classContent)
         {
+            return classContent.SortNamespaceReferences(new UsingComparer());
+        }
+
+        public static bool SortImports(this List<string> classContent)
+        {
+            return classContent.SortNamespaceReferences(new ImportsComparer());
+        }
+
+        public static bool SortNamespaceReferences(this List<string> classContent, NamespaceComparer comparer)
+        {
             if (classContent == null || !classContent.Any())
             {
                 return false;
             }
 
-            var startUsingIndex = classContent.IndexOf(l => l.TrimStart().StartsWith(UsingComparer.UsingKeyword));
-            var endUsingIndex = classContent.LastIndexOfWhile(startUsingIndex, l => l.TrimStart().StartsWith(UsingComparer.UsingKeyword) || string.IsNullOrWhiteSpace(l));
+            var startUsingIndex = classContent.IndexOf(l => l.TrimStart().StartsWith(comparer.UsingKeyword));
+            var endUsingIndex = classContent.LastIndexOfWhile(startUsingIndex, l => l.TrimStart().StartsWith(comparer.UsingKeyword) || string.IsNullOrWhiteSpace(l));
 
             if (startUsingIndex == -1 || endUsingIndex == -1)
             {
@@ -41,7 +51,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortUsings
                                 .Skip(startUsingIndex)
                                 .Take(usingsLinesCount)
                                 .Where(u => !string.IsNullOrWhiteSpace(u))
-                                .Select(u => (UsingComparer.ExtractNs(u), u))
+                                .Select(u => (comparer.ExtractNs(u), u))
                                 .GroupBy(s => ExtractRootNs(s.Item1), s => s.Item2)
                                 .ToList();
 
@@ -57,7 +67,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortUsings
                                     .Distinct()
                                     .ToList();
 
-                usingsGroup.Sort(new UsingComparer());
+                usingsGroup.Sort(comparer);
 
                 orderedUsings.AddRange(usingsGroup);
                 orderedUsings.Add(string.Empty);
