@@ -12,7 +12,6 @@
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
-
     public class AddedNewItemFileViewModel : BaseNewItemFileViewModel
     {
         public override FileType FileType => FileType.AddedFile;

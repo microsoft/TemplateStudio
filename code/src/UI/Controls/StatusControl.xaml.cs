@@ -22,7 +22,7 @@ namespace Microsoft.Templates.UI.Controls
 {
     public partial class StatusControl : UserControl
     {
-        public static StatusViewModel EmptyStatus = new StatusViewModel(StatusType.Empty, String.Empty);
+        public static StatusViewModel EmptyStatus = new StatusViewModel(StatusType.Empty, string.Empty);
 
         private DispatcherTimer _hideTimer;
 
@@ -31,7 +31,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (StatusViewModel)GetValue(StatusProperty);
             set => SetValue(StatusProperty, value);
         }
-        public static readonly DependencyProperty StatusProperty = DependencyProperty.Register("Status", typeof(StatusViewModel), typeof(StatusControl), new PropertyMetadata(new StatusViewModel(StatusType.Empty, String.Empty), OnStatusPropertyChanged));
+        public static readonly DependencyProperty StatusProperty = DependencyProperty.Register("Status", typeof(StatusViewModel), typeof(StatusControl), new PropertyMetadata(new StatusViewModel(StatusType.Empty, string.Empty), OnStatusPropertyChanged));
 
         private static void OnStatusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -71,24 +71,23 @@ namespace Microsoft.Templates.UI.Controls
                     break;
                 case StatusType.Warning:
                     txtStatus.Text = status.Message;
-                    txtIcon.Text = ConvertToChar(SymbolFonts.ErrorBadge); 
+                    txtIcon.Text = ConvertToChar(SymbolFonts.ErrorBadge);
                     txtIcon.Foreground = FindResource("UIDarkYellow") as SolidColorBrush;
-                    //Color yellow = (Color)FindResource("UIYellowColor");
-                    //Background = new LinearGradientBrush(yellow, Colors.Transparent, 0);                    
+                    // Color yellow = (Color)FindResource("UIYellowColor");
+                    // Background = new LinearGradientBrush(yellow, Colors.Transparent, 0);
                     Background = FindResource("UIYellow") as SolidColorBrush;
                     break;
                 case StatusType.Error:
                     txtStatus.Text = status.Message;
                     txtIcon.Text = ConvertToChar(SymbolFonts.StatusErrorFull);
                     txtIcon.Foreground = FindResource("UIDarkRed") as SolidColorBrush;
-                    //Color red = (Color)FindResource("UIRedColor");
-                    //var brush = new LinearGradientBrush(red, Colors.Transparent, 0);
+                    // Color red = (Color)FindResource("UIRedColor");
+                    // var brush = new LinearGradientBrush(red, Colors.Transparent, 0);
                     var brush = FindResource("UIRed") as SolidColorBrush;
                     brush.Opacity = 0.4;
                     Background = brush;
                     break;
                 default:
-                    
 
                     txtStatus.Text = " ";
                     txtIcon.Text = " ";
@@ -108,7 +107,7 @@ namespace Microsoft.Templates.UI.Controls
 
         private string ConvertToChar(SymbolFonts font)
         {
-            return Char.ConvertFromUtf32((int)font);
+            return char.ConvertFromUtf32((int)font);
         }
     }
 }

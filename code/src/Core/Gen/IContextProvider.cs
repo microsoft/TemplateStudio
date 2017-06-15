@@ -21,7 +21,5 @@ namespace Microsoft.Templates.Core.Gen
         List<GenerationWarning> GenerationWarnings { get; }
 
         Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; }
-        
-
     }
 }

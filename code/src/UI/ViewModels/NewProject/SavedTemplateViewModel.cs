@@ -26,13 +26,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class SavedTemplateViewModel : Observable
     {
-        public static string SettingsButton = Char.ConvertFromUtf32(0xE713);
-        public static string CloseButton = Char.ConvertFromUtf32(0xE013);
+        public static string SettingsButton = char.ConvertFromUtf32(0xE713);
+        public static string CloseButton = char.ConvertFromUtf32(0xE013);
 
         #region TemplatesProperties
 
         private ITemplateInfo _template;
+#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
         public (string name, ITemplateInfo template) UserSelection => (ItemName, _template);
+#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
 
         private string _identity;
         public string Identity
@@ -59,7 +61,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             get
             {
-                if (String.IsNullOrEmpty(_newItemName))
+                if (string.IsNullOrEmpty(_newItemName))
                 {
                     _newItemName = ItemName;
                 }
@@ -115,7 +117,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             get => _isRemoveEnabled;
             set => SetProperty(ref _isRemoveEnabled, value);
-        }       
+        }
 
         private bool _isHome;
         public bool IsHome
@@ -235,28 +237,28 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             set => SetProperty(ref _canMoveDown, value);
         }
 
-        public string DisplayText => CanChooseItemName ? ItemName : $"{ItemName} [{TemplateName}]";        
-        
+        public string DisplayText => CanChooseItemName ? ItemName : $"{ItemName} [{TemplateName}]";
+
         public ICommand OpenCommand { get; set; }
 
         public ICommand RemoveCommand { get; set; }
 
         public ICommand SetHomeCommand { get; set; }
-        
+
         public ICommand RenameCommand { get; set; }
 
         public ICommand ConfirmRenameCommand { get; set; }
 
         public ICommand MoveUpCommand { get; set; }
 
-        public ICommand MoveDownCommand { get; set; }        
+        public ICommand MoveDownCommand { get; set; }
 
-        public Action<SavedTemplateViewModel> ValidateTemplateName;        
+        public Action<SavedTemplateViewModel> ValidateTemplateName;
 
         public ICommand _cancelRenameCommand;
         public ICommand CancelRenameCommand => _cancelRenameCommand ?? (_cancelRenameCommand = new RelayCommand(CancelRenameAction));
 
-        public Action CancelRenameAction => OnCancelRename;        
+        public Action CancelRenameAction => OnCancelRename;
         #endregion
 
         public SavedTemplateViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled, ICommand openCommand, ICommand removeTemplateCommand, ICommand summaryItemSetHomeCommand, ICommand renameItemCommand, ICommand confirmRenameCommand, ICommand moveUpCommand, ICommand moveDownCommand, Action<SavedTemplateViewModel> validateCurrentTemplateName)
@@ -278,7 +280,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             ConfirmRenameCommand = confirmRenameCommand;
             MoveUpCommand = moveUpCommand;
             MoveDownCommand = moveDownCommand;
-            ValidateTemplateName = validateCurrentTemplateName;        
+            ValidateTemplateName = validateCurrentTemplateName;
         }
 
         private void OnColorTimerTick(object sender, EventArgs e)
@@ -288,13 +290,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
             colorTimer.Stop();
         }
-        
+
         internal void TryClose(bool force = false)
         {
             if (IsOpen)
             {
                  IsOpen = false;
-            }            
+            }
         }
 
         public void TryReleaseHome()
@@ -313,7 +315,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 _newItemName = string.Empty;
                 OnPropertyChanged("NewItemName");
                 MainViewModel.Current.CleanStatus(true);
-            }            
-        }        
+            }
+        }
     }
 }

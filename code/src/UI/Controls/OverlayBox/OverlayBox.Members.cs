@@ -19,21 +19,21 @@ namespace Microsoft.Templates.UI.Controls
             get => (bool)GetValue(VisibleProperty);
             set => SetValue(VisibleProperty, value);
         }
-        public static readonly DependencyProperty VisibleProperty = DependencyProperty.Register("Visible", typeof(bool), typeof(OverlayBox), new PropertyMetadata(true, OnVisiblePropertyChanged));       
+        public static readonly DependencyProperty VisibleProperty = DependencyProperty.Register("Visible", typeof(bool), typeof(OverlayBox), new PropertyMetadata(true, OnVisiblePropertyChanged));
 
         public string WizardVersion
         {
             get => (string)GetValue(WizardVersionProperty);
             set => SetValue(WizardVersionProperty, value);
         }
-        public static readonly DependencyProperty WizardVersionProperty = DependencyProperty.Register("WizardVersion", typeof(string), typeof(OverlayBox), new PropertyMetadata(String.Empty));
+        public static readonly DependencyProperty WizardVersionProperty = DependencyProperty.Register("WizardVersion", typeof(string), typeof(OverlayBox), new PropertyMetadata(string.Empty));
 
         public string TemplatesVersion
         {
             get => (string)GetValue(TemplatesVersionProperty);
             set => SetValue(TemplatesVersionProperty, value);
         }
-        public static readonly DependencyProperty TemplatesVersionProperty = DependencyProperty.Register("TemplatesVersion", typeof(string), typeof(OverlayBox), new PropertyMetadata(String.Empty));
+        public static readonly DependencyProperty TemplatesVersionProperty = DependencyProperty.Register("TemplatesVersion", typeof(string), typeof(OverlayBox), new PropertyMetadata(string.Empty));
 
         public bool NewUpdateAvailable
         {
@@ -60,6 +60,6 @@ namespace Microsoft.Templates.UI.Controls
         {
             var control = d as OverlayBox;
             control.UpdateVisible((bool)e.NewValue);
-        }        
+        }
     }
 }

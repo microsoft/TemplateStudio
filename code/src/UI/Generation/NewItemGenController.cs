@@ -46,9 +46,8 @@ namespace Microsoft.Templates.UI
             _postactionFactory = postactionFactory;
         }
 
-        public (string ProjectType, string Framework) ReadProjectConfiguration()
+        public(string ProjectType, string Framework) ReadProjectConfiguration()
         {
-            //TODO: Review this
             var path = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
             if (File.Exists(path))
             {
@@ -60,7 +59,6 @@ namespace Microsoft.Templates.UI
 
                 return (projectType, framework);
             }
-            
             return (string.Empty, string.Empty);
         }
 
@@ -75,17 +73,16 @@ namespace Microsoft.Templates.UI
                 GenContext.ToolBox.Shell.ShowModal(newItem);
                 if (newItem.Result != null)
                 {
-                    //TODO: Review when right-click-actions available to track Project or Page completed.
-                    //AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewItem).FireAndForget();
+                    // TODO: Review when right-click-actions available to track Project or Page completed.
+                    // AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewItem).FireAndForget();
 
                     return newItem.Result;
                 }
                 else
                 {
-                    //TODO: Review when right-click-actions available to track Project or Page cancelled.
-                    //AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewItem).FireAndForget();
+                    // TODO: Review when right-click-actions available to track Project or Page cancelled.
+                    // AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewItem).FireAndForget();
                 }
-
             }
             catch (Exception ex) when (!(ex is WizardBackoutException))
             {
@@ -128,10 +125,10 @@ namespace Microsoft.Templates.UI
         public NewItemGenerationResult CompareOutputAndProject()
         {
             var result = new NewItemGenerationResult();
-            result.NewFiles.AddRange(GenContext.Current.NewFiles.Select(n => 
+            result.NewFiles.AddRange(GenContext.Current.NewFiles.Select(n =>
                 new NewItemGenerationFileInfo(
-                        n, 
-                        Path.Combine(GenContext.Current.OutputPath, n), 
+                        n,
+                        Path.Combine(GenContext.Current.OutputPath, n),
                         Path.Combine(GenContext.Current.ProjectPath, n))));
 
             result.ConflictingFiles.AddRange(GenContext.Current.ConflictFiles.Select(n =>
@@ -166,7 +163,7 @@ namespace Microsoft.Templates.UI
         {
             if (userSelection.ItemGenerationType == ItemGenerationType.GenerateAndMerge)
             {
-                //BackupProjectFiles
+                // BackupProjectFiles
                 ExecuteSyncGenerationPostActions();
             }
             else
@@ -204,7 +201,6 @@ namespace Microsoft.Templates.UI
 
             if (string.IsNullOrEmpty(projectGuid))
             {
-                //TODO: Handle this 
                 return;
             }
 
@@ -217,7 +213,6 @@ namespace Microsoft.Templates.UI
 
             if (Directory.Exists(backupFolder))
             {
-                //TODO: Change this to cleanup folder
                 Fs.SafeDeleteDirectory(backupFolder);
             }
 
@@ -257,7 +252,6 @@ namespace Microsoft.Templates.UI
             }
         }
 
-
         private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appProjectType, string appFx)
         {
             try
@@ -276,7 +270,7 @@ namespace Microsoft.Templates.UI
 
                     if (genInfo.Template.GetTemplateType() == TemplateType.Project)
                     {
-                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, 
+                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template,
                             appProjectType, appFx, genResults[resultsKey], pagesAdded, featuresAdded, timeSpent).FireAndForget();
                     }
                     else

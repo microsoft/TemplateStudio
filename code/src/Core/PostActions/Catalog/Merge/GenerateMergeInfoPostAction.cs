@@ -20,7 +20,6 @@ using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
-
     public class GenerateMergeInfoPostAction : PostAction<string>
     {
         private const string Suffix = "postaction";
@@ -42,14 +41,14 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var intent = GetPostActionIntent();
             var sourceFile = GetFilePath();
             var mergeType = GetMergeType();
-            var relFilePath = sourceFile.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, String.Empty);
+            var relFilePath = sourceFile.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
 
             if (GenContext.Current.MergeFilesFromProject.ContainsKey(relFilePath))
             {
                 var mergeFile = GenContext.Current.MergeFilesFromProject[relFilePath];
-                
-                mergeFile.Add(new MergeInfo() { Intent = intent, Format= mergeType, PostActionCode = postAction });
-            }    
+
+                mergeFile.Add(new MergeInfo() { Intent = intent, Format = mergeType, PostActionCode = postAction });
+            }
         }
 
         private string GetMergeType()

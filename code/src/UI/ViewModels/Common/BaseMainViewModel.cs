@@ -96,7 +96,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             get => _hasContent;
             set => SetProperty(ref _hasContent, value);
-        }        
+        }
 
         protected bool _showFinishButton;
         public bool ShowFinishButton
@@ -117,7 +117,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && !_hasValidationErrors && _canGoForward));
         public RelayCommand ShowOverlayMenuCommand => _showOverlayMenuCommand ?? (_showOverlayMenuCommand = new RelayCommand(() => IsOverlayBoxVisible = !IsOverlayBoxVisible));
         public RelayCommand<string> FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand<string>(OnFinish, CanFinish));
-        #endregion        
+        #endregion
 
         public BaseMainViewModel(Window mainView)
         {
@@ -156,7 +156,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 NextCommand.OnCanExecuteChanged();
                 FinishCommand.OnCanExecuteChanged();
             }
-        }        
+        }
 
         public void EnableGoForward()
         {
@@ -233,12 +233,12 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 default:
                     return string.Empty;
             }
-        }        
-        private void SyncSyncStatusChanged(object sender, SyncStatus status)
+        }
+        private void SyncSyncStatusChanged(object sender, SyncStatusEventArgs status)
         {
-            Status = new StatusViewModel(StatusType.Information, GetStatusText(status), true);
+            Status = new StatusViewModel(StatusType.Information, GetStatusText(status.Status), true);
 
-            if (status == SyncStatus.Updated)
+            if (status.Status == SyncStatus.Updated)
             {
                 TemplatesVersion = GenContext.ToolBox.Repo.TemplatesVersion;
                 CleanStatus();
@@ -247,7 +247,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 OnTemplatesAvailable();
                 NextCommand.OnCanExecuteChanged();
             }
-            if (status == SyncStatus.OverVersion)
+            if (status.Status == SyncStatus.OverVersion)
             {
                 _mainView.Dispatcher.Invoke(() =>
                 {
@@ -255,7 +255,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 });
             }
 
-            if (status == SyncStatus.OverVersionNoContent)
+            if (status.Status == SyncStatus.OverVersionNoContent)
             {
                 _mainView.Dispatcher.Invoke(() =>
                 {
@@ -265,7 +265,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 });
             }
 
-            if (status == SyncStatus.UnderVersion)
+            if (status.Status == SyncStatus.UnderVersion)
             {
                 _mainView.Dispatcher.Invoke(() =>
                 {

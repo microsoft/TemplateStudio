@@ -83,7 +83,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private static void PostGenerationActions()
         {
-
             GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.RestoringMessage);
             GenContext.ToolBox.Shell.RestorePackages();
 

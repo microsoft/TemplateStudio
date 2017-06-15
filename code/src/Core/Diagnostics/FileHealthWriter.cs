@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
-    public class FileHealthWriter: IHealthWriter
+    public class FileHealthWriter : IHealthWriter
     {
         private static SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1);
         private string _workingFolder;
@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             get
             {
-                if(_current == null)
+                if (_current == null)
                 {
                     _current = new FileHealthWriter();
                 }
@@ -42,14 +42,14 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
         private FileHealthWriter()
-        {        
+        {
             _workingFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), Configuration.Current.LogFileFolderPath);
 
             InitializeLogFile();
             PurgeOldLogs(_workingFolder, Configuration.Current.DaysToKeepDiagnosticsLogs);
         }
 
-        public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex=null)
+        public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
         {
             var sb = new StringBuilder();
             sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{eventType.ToString()}\t{message}");

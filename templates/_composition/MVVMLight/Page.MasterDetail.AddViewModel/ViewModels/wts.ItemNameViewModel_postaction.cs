@@ -16,7 +16,7 @@ namespace Param_ItemNamespace.ViewModels
 
         private void OnItemClick(ItemClickEventArgs args)
         {
-            SampleModel item = args?.ClickedItem as SampleModel;
+            Order item = args?.ClickedItem as Order;
             if (item != null)
             {
                 if (_currentState.Name == NarrowStateName)

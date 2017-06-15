@@ -35,9 +35,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             sb.AppendLine("# Steps to include new item generation");
             sb.AppendLine("You have to follow theese steps to include the new item into you project");
 
-            
-
-
             if (GenContext.Current.NewFiles.Any())
             {
                 sb.AppendLine($"## New files:");
@@ -90,10 +87,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private static string GetLinkToLocalFile(string fileName)
         {
-            return  $"* [{fileName}]({fileName})";
+            return $"* [{fileName}]({fileName})";
         }
     }
-
-    
-
 }

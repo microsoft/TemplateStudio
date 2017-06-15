@@ -41,7 +41,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 var destDirectory = Path.GetDirectoryName(destFileName);
                 Fs.SafeCopyFile(sourceFile, destDirectory, true);
 
-                //Add to projectItems to add to project later
+                // Add to projectItems to add to project later
                 GenContext.Current.ProjectItems.Add(destFileName);
                 GenContext.Current.FilesToOpen.Add(destFileName);
             }

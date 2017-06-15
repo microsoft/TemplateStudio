@@ -27,5 +27,5 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             ExtendedInfo = warning.ExtendedInfo;
             Subject = warning.FileName;
         }
-    }  
+    }
 }

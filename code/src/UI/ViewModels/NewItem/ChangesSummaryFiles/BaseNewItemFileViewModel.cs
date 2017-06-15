@@ -22,8 +22,14 @@ using System;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
-    public enum FileType { AddedFile, ModifiedFile, ConflictingFile, WarningFile }
-    public enum FileExtension { Default, CSharp, Resw, Xaml }
+    public enum FileType
+    {
+        AddedFile, ModifiedFile, ConflictingFile, WarningFile
+    }
+    public enum FileExtension
+    {
+        Default, CSharp, Resw, Xaml
+    }
     public abstract class BaseNewItemFileViewModel : Observable
     {
         public string Subject { get; protected set; }
@@ -36,7 +42,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public ObservableCollection<CodeLineViewModel> MergedFileLines { get; private set; } = new ObservableCollection<CodeLineViewModel>();
 
         public ICommand UpdateFontSizeCommand { get; }
-        public abstract FileType FileType { get; }        
+        public abstract FileType FileType { get; }
 
         public BaseNewItemFileViewModel(string name)
         {
@@ -87,7 +93,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             MergedFileLines.AddRange(comparsion.Select(cl => new CodeLineViewModel(cl)));
         }
 
-
         public void UpdateFontSize(double points)
         {
             if (NewFileLines != null && NewFileLines.Any())
@@ -124,7 +129,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 case "resw":
                     return FileExtension.Resw;
                 default:
-                    return FileExtension.Default;       
+                    return FileExtension.Default;
             }
         }
 

@@ -27,7 +27,7 @@ namespace Microsoft.Templates.UI
     public abstract class GenController
     {
         internal PostActionFactory _postactionFactory;
-        
+
         internal async Task<Dictionary<string, TemplateCreationResult>> GenerateItemsAsync(IEnumerable<GenInfo> genItems)
         {
             var genResults = new Dictionary<string, TemplateCreationResult>();
@@ -67,7 +67,7 @@ namespace Microsoft.Templates.UI
 
         internal void ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult)
         {
-            //Get post actions from template
+            // Get post actions from template
             var postActions = _postactionFactory.FindPostActions(genInfo, generationResult);
 
             foreach (var postAction in postActions)
@@ -85,8 +85,6 @@ namespace Microsoft.Templates.UI
                 postAction.Execute();
             }
         }
-
-        
 
         internal string GetStatusText(GenInfo genInfo)
         {
@@ -117,7 +115,5 @@ namespace Microsoft.Templates.UI
         {
             GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Empty);
         }
-
-        
     }
 }

@@ -1,7 +1,11 @@
 ﻿namespace Microsoft.Templates.UI.Comparison
 {
-    public enum LineStatus { Default = 0, New = 1, Deleted = 2 };
-
+    public enum LineStatus
+    {
+        Default = 0,
+        New = 1,
+        Deleted = 2
+    }
     public class CodeLine
     {
         public LineStatus Status { get; set; }

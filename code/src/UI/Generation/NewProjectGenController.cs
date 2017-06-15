@@ -51,22 +51,21 @@ namespace Microsoft.Templates.UI
                 GenContext.ToolBox.Shell.ShowModal(mainView);
                 if (mainView.Result != null)
                 {
-                    //TODO: Review when right-click-actions available to track Project or Page completed.
+                    // TODO: Review when right-click-actions available to track Project or Page completed.
                     AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject).FireAndForget();
 
                     return mainView.Result;
                 }
                 else
                 {
-                    //TODO: Review when right-click-actions available to track Project or Page cancelled.
+                    // TODO: Review when right-click-actions available to track Project or Page cancelled.
                     AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewProject).FireAndForget();
                 }
-
             }
             catch (Exception ex) when (!(ex is WizardBackoutException))
             {
                 mainView.SafeClose();
-                base.ShowError(ex);
+                ShowError(ex);
             }
 
             GenContext.ToolBox.Shell.CancelWizard();
@@ -89,7 +88,6 @@ namespace Microsoft.Templates.UI
                 GenContext.ToolBox.Shell.CancelWizard(false);
             }
         }
-
 
         public async Task UnsafeGenerateProjectAsync(UserSelection userSelection)
         {
@@ -121,7 +119,7 @@ namespace Microsoft.Templates.UI
 
                     if (genInfo.Template.GetTemplateType() == TemplateType.Project)
                     {
-                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, 
+                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template,
                             appProjectType, appFx, genResults[resultsKey], pagesAdded, featuresAdded, timeSpent).FireAndForget();
                     }
                     else

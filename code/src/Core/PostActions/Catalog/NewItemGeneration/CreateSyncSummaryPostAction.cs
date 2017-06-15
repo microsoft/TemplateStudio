@@ -52,10 +52,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 }
                 else
                 {
-                    //TODO: Postaction failed, show info
+                    // TODO: Postaction failed, show info
                     sb.AppendLine($"The changes could not be applied, please apply the following changes manually:");
                     sb.AppendLine();
-                    
                 }
                 foreach (var mergeInfo in mergeFile.Value)
                 {
@@ -101,7 +100,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             GenContext.Current.ConflictFiles.Clear();
             GenContext.Current.GenerationWarnings.Clear();
             GenContext.Current.MergeFilesFromProject.Clear();
-            
         }
 
         private static string GetLinkToProjectFile(string fileName, string filePath)
@@ -109,7 +107,4 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             return $"* [{fileName}]({Uri.EscapeUriString(filePath)})";
         }
     }
-
-    
-
 }

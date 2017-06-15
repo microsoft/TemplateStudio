@@ -27,8 +27,8 @@ namespace Microsoft.Templates.Core
     {
         public string Environment { get; set; } = "Local";
         public string CdnUrl { get; set; } = "https://wtsrepository.blob.core.windows.net/dev/Latest";
-        //Set your Application Insights telemetry instrumentation key here (configure it in a WindowsTemplateStudio.config.json located in the working folder).
-        public string RemoteTelemetryKey { get; set; } = "<SET_YOUR_OWN_KEY>"; 
+        // Set your Application Insights telemetry instrumentation key here (configure it in a WindowsTemplateStudio.config.json located in the working folder).
+        public string RemoteTelemetryKey { get; set; } = "<SET_YOUR_OWN_KEY>";
         public string LogFileFolderPath { get; set; } = @"WindowsTemplateStudio\Logs";
         public string RepositoryFolderName { get; set; } = @"WindowsTemplateStudio";
         public string BackupFolderName { get; set; } = @"WindowsTemplateStudio\Backups";
@@ -64,8 +64,8 @@ namespace Microsoft.Templates.Core
 
                         TraceUsingDefault($"Tried to use the configuration file located at {currentConfigFile}, but not found. Using default configuration.");
                     }
-                }           
-                
+                }
+
                 return _current;
             }
         }
@@ -76,8 +76,8 @@ namespace Microsoft.Templates.Core
             TraceUsingDefault("1. Check 'JsonConfigFile' appSetting is defined");
 
             string jsonConfigFile = ConfigurationManager.AppSettings["JsonConfigFile"];
-        
-            if (String.IsNullOrWhiteSpace(jsonConfigFile) || !File.Exists(jsonConfigFile))
+
+            if (string.IsNullOrWhiteSpace(jsonConfigFile) || !File.Exists(jsonConfigFile))
             {
                 jsonConfigFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), DefaultJsonConfigFileName);
 
@@ -95,7 +95,7 @@ namespace Microsoft.Templates.Core
         {
             Configuration loadedConfig = null;
 
-            if (!String.IsNullOrWhiteSpace(jsonFilePath) && File.Exists(jsonFilePath))
+            if (!string.IsNullOrWhiteSpace(jsonFilePath) && File.Exists(jsonFilePath))
             {
                 loadedConfig = DeserializeConfiguration(jsonFilePath);
             }
@@ -122,10 +122,10 @@ namespace Microsoft.Templates.Core
                 var jsonData = File.ReadAllText(path, Encoding.UTF8);
                 return JsonConvert.DeserializeObject<Configuration>(jsonData);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TraceUsingDefault($"Error deserializing configuration from file '{path}'. Exception:\n\r{ex.ToString()}");
-                throw new ConfigurationErrorsException($"Error deserializing configuration data from file '{path}'.", ex);   
+                throw new ConfigurationErrorsException($"Error deserializing configuration data from file '{path}'.", ex);
             }
         }
 

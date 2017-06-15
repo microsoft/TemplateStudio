@@ -62,8 +62,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 else
                 {
                     return Number.ToString();
-                }                
-            }            
+                }
+            }
         }
 
         public CodeLineViewModel(CodeLine codeLine)

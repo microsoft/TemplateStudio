@@ -68,7 +68,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
             SelectedFile = group.SelectedItem;
         }
-        
+
         private void UpdateFontSize(string mode)
         {
             double points = (mode == "Plus") ? 1 : -1;

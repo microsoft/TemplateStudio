@@ -26,7 +26,6 @@ namespace Microsoft.Templates.Core.PostActions
 {
     public abstract class PostActionFactory
     {
-
         public abstract IEnumerable<PostAction> FindPostActions(GenInfo genInfo, TemplateCreationResult genResult);
 
         public abstract IEnumerable<PostAction> FindGlobalPostActions();
@@ -77,8 +76,6 @@ namespace Microsoft.Templates.Core.PostActions
             }
         }
 
-
-
         internal void AddMergeActions(List<PostAction> postActions, string searchPattern, bool failOnError)
         {
             Directory
@@ -87,8 +84,6 @@ namespace Microsoft.Templates.Core.PostActions
                 .ToList()
                 .ForEach(f => postActions.Add(new MergePostAction(new MergeConfiguration(f, failOnError))));
         }
-
-
 
         internal void AddGlobalMergeActions(List<PostAction> postActions, string searchPattern, bool failOnError)
         {

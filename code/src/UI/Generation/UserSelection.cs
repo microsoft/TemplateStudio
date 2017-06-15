@@ -19,7 +19,11 @@ using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.UI
 {
-    public enum ItemGenerationType { Generate, GenerateAndMerge };
+    public enum ItemGenerationType
+    {
+        Generate,
+        GenerateAndMerge
+    }
 
     public class UserSelection
     {

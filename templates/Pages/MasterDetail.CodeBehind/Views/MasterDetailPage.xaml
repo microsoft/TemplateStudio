@@ -8,7 +8,7 @@
     xmlns:views="using:Param_ItemNamespace.Views"
     mc:Ignorable="d">
     <Page.Resources>
-        <DataTemplate x:Key="MasterListViewItemTemplate" x:DataType="model:SampleModel">
+        <DataTemplate x:Key="MasterListViewItemTemplate" x:DataType="model:Order">
             <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -16,12 +16,12 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock 
-                    Text="{x:Bind Title}" 
+                    Text="{x:Bind OrderId}" 
                     Style="{StaticResource ListTitleStyle}" />
 
                 <TextBlock
                     Grid.Row="1"
-                    Text="{x:Bind Description}"
+                    Text="{x:Bind Company}"
                     Style="{StaticResource ListSubTitleStyle}" />
             </Grid>
         </DataTemplate>

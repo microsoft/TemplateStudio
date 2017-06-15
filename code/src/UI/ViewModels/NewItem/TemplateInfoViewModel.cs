@@ -28,9 +28,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public string Identity { get; set; }
         public TemplateType TemplateType { get; set; }
 
-
         public ObservableCollection<DependencyInfoViewModel> DependencyItems { get; } = new ObservableCollection<DependencyInfoViewModel>();
-
 
         public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies)
         {

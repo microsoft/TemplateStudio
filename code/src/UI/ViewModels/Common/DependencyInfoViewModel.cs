@@ -34,7 +34,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public DependencyInfoViewModel(NewProject.TemplateInfoViewModel item)
         {
             _newProjectTemplateItem = item;
-            Name = item.Name;            
+            Name = item.Name;
         }
 
         public DependencyInfoViewModel(NewItem.TemplateInfoViewModel item)
@@ -50,7 +50,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 var infoView = new Views.NewProject.InformationWindow(_newProjectTemplateItem, NewProject.MainViewModel.Current.MainView);
                 infoView.ShowDialog();
             }
-            else if(_newItemTemplateItem != null)
+            else if (_newItemTemplateItem != null)
             {
                 NewItem.MainViewModel.Current.InfoShapeVisibility = System.Windows.Visibility.Visible;
                 var infoView = new Views.NewProject.InformationWindow(_newItemTemplateItem, NewItem.MainViewModel.Current.MainView);

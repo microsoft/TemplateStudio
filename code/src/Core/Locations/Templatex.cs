@@ -39,6 +39,7 @@ namespace Microsoft.Templates.Core.Locations
 
             return outFile;
         }
+
         public static string PackAndSign(string source, X509Certificate signingCert, string mimeMediaType = MediaTypeNames.Text.Plain)
         {
             string outFile = source + DefaultExtension;
@@ -48,7 +49,8 @@ namespace Microsoft.Templates.Core.Locations
             Sign(outFile, signingCert);
 
             return outFile;
-        } 
+        }
+
         public static void PackAndSign(string source, string outFile, string certThumbprint, string mimeMediaType)
         {
             X509Certificate cert = LoadCert(certThumbprint);
@@ -80,10 +82,10 @@ namespace Microsoft.Templates.Core.Locations
         }
         public static void Pack(string source, string outFile, string mimeMediaType)
         {
-            if (String.IsNullOrWhiteSpace(source))
+            if (string.IsNullOrWhiteSpace(source))
                 throw new ArgumentException("source");
 
-            if (String.IsNullOrWhiteSpace(outFile))
+            if (string.IsNullOrWhiteSpace(outFile))
                 throw new ArgumentException("outFile");
 
             FileInfo[] files = GetSourceFiles(source);
@@ -107,10 +109,9 @@ namespace Microsoft.Templates.Core.Locations
 
                 package.Flush();
             }
-
         }
 
-        public static void Extract(string signedFilePack, string targetDirectory, bool verifySignatures=true)
+        public static void Extract(string signedFilePack, string targetDirectory, bool verifySignatures = true)
         {
             string currentDir = Environment.CurrentDirectory;
             string inFilePack = Path.IsPathRooted(signedFilePack) ? signedFilePack : Path.Combine(currentDir, signedFilePack);
@@ -131,7 +132,7 @@ namespace Microsoft.Templates.Core.Locations
                     ExtractContent(outDir, package);
                 }
 
-                if (!isSignatureValid && verifySignatures) 
+                if (!isSignatureValid && verifySignatures)
                 {
                     string msg = $"Invalid digital signatures in '{signedFilePack}'. The content has been tampered or the certificate is not present, not valid or not allowed.  Unable to continue.";
                     throw new InvalidSignatureException(msg);
@@ -219,8 +220,6 @@ namespace Microsoft.Templates.Core.Locations
                         AppHealth.Current.Info.TrackAsync($"The certificate found does not have private key.").FireAndForget();
                     }
                 }
-
-                store.Close();
             }
 
             return certFound;
@@ -266,7 +265,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             Dictionary<string, X509Certificate> certs = GetPackageCertificates(dsm);
             bool certificatesOk = certs.Count > 0;
-            
+
             foreach (X509Certificate cert in certs.Values)
             {
                 if (CertificateChainVaidationRequired())
@@ -290,7 +289,7 @@ namespace Microsoft.Templates.Core.Locations
 
         private static bool CertificateChainVaidationRequired()
         {
-            return !Configuration.Current.AllowedPublicKeysPins.Where(pk => !String.IsNullOrWhiteSpace(pk)).Any();
+            return !Configuration.Current.AllowedPublicKeysPins.Where(pk => !string.IsNullOrWhiteSpace(pk)).Any();
         }
 
         private static Dictionary<string, X509Certificate> GetPackageCertificates(PackageDigitalSignatureManager dsm)
@@ -375,7 +374,7 @@ namespace Microsoft.Templates.Core.Locations
         }
         private static void EnsureDirectory(string dir)
         {
-            if (!String.IsNullOrEmpty(dir) && dir.ToLower() != Environment.CurrentDirectory.ToLower())
+            if (!string.IsNullOrEmpty(dir) && dir.ToLower() != Environment.CurrentDirectory.ToLower())
             {
                 if (!Directory.Exists(dir))
                 {

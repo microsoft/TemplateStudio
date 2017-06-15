@@ -62,7 +62,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public NewItemSetupViewModel()
         {
-
         }
 
         public void Initialize(bool forceUpdate)
@@ -75,7 +74,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                                                   && t.GetTemplateType() == MainViewModel.Current.ConfigTemplateType
                                                   && t.GetRightClickEnabled())
                                                   .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, MainViewModel.Current.ConfigFramework)));
-
 
                 var groups = templates.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList(), OnSelectedItemChanged)).OrderBy(gr => gr.Title);
 
@@ -102,7 +100,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             else
             {
                 MainViewModel.Current.HasContent = false;
-            }            
+            }
         }
 
         private void OnSelectedItemChanged(ItemsGroupViewModel<TemplateInfoViewModel> group)
@@ -122,7 +120,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 {
                     gr.CleanSelected();
                 }
-
             }
         }
 
@@ -147,11 +144,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             if (MainViewModel.Current.ConfigTemplateType == TemplateType.Page)
             {
-                Header = String.Format(StringRes.GroupPageHeader_SF, templatesCount);
+                Header = string.Format(StringRes.GroupPageHeader_SF, templatesCount);
             }
             else if (MainViewModel.Current.ConfigTemplateType == TemplateType.Feature)
             {
-                Header = String.Format(StringRes.GroupFeatureHeader_SF, templatesCount);
+                Header = string.Format(StringRes.GroupFeatureHeader_SF, templatesCount);
             }
         }
 

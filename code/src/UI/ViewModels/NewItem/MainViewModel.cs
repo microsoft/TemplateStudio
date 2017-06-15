@@ -28,7 +28,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public static MainViewModel Current;
         public MainView MainView;
 
-        //Configuration
+        // Configuration
         public TemplateType ConfigTemplateType;
         public string ConfigFramework;
         public string ConfigProjectType;
@@ -48,7 +48,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var projectConfiguration = NewItemGenController.Instance.ReadProjectConfiguration();
             ConfigProjectType = projectConfiguration.ProjectType;
             ConfigFramework = projectConfiguration.Framework;
-            Title = String.Format(StringRes.NewItemTitle_SF, ConfigTemplateType.ToString().ToLower());
+            Title = string.Format(StringRes.NewItemTitle_SF, ConfigTemplateType.ToString().ToLower());
             await BaseInitializeAsync();
         }
 
@@ -99,7 +99,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 Framework = ConfigFramework,
                 ProjectType = ConfigProjectType,
-                HomeName = String.Empty
+                HomeName = string.Empty
             };
             var template = GetActiveTemplate();
             if (template != null)
@@ -116,7 +116,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     AddTemplate(userSelection, dependencyTemplate.GetDefaultName(), dependencyTemplate, dependencyTemplate.GetTemplateType());
                 }
 
-                if (String.IsNullOrEmpty(LastSelectedTemplateIdentity))
+                if (string.IsNullOrEmpty(LastSelectedTemplateIdentity))
                 {
                     LastSelectedTemplateIdentity = template.Identity;
                 }

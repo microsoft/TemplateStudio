@@ -35,7 +35,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             get => _templateName;
             set => SetProperty(ref _templateName, value);
-        }        
+        }
 
         private int _order;
         public int Order
@@ -162,7 +162,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public ICommand ShowItemInfoCommand => _showItemInfoCommand ?? (_showItemInfoCommand = new RelayCommand(ShowItemInfo));
 
         private Action<TemplateInfoViewModel> ValidateTemplateName;
-        #endregion        
+        #endregion
 
         public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies, RelayCommand<TemplateInfoViewModel> addItemCommand, RelayCommand<TemplateInfoViewModel> saveItemCommand, Action<TemplateInfoViewModel> validateTemplateName)
         {

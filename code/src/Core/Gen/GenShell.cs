@@ -18,7 +18,7 @@ namespace Microsoft.Templates.Core.Gen
     {
         protected abstract string GetActiveProjectName();
         protected abstract string GetActiveProjectPath();
-        protected abstract string GetSelectedItemPath();        
+        protected abstract string GetSelectedItemPath();
 
         public abstract bool SetActiveConfigurationAndPlatform(string configurationName, string platformName);
         public abstract void ShowStatusBarMessage(string message);
@@ -50,11 +50,8 @@ namespace Microsoft.Templates.Core.Gen
         {
         }
 
-        
-
         public virtual void RefreshProject()
         {
-
         }
     }
 }

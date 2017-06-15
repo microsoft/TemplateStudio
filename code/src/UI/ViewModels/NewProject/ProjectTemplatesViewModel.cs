@@ -51,7 +51,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>> FeatureGroups { get; } = new ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>>();
 
         public ObservableCollection<SavedTemplateViewModel> SavedPages { get; } = new ObservableCollection<SavedTemplateViewModel>();
-        public ObservableCollection<SavedTemplateViewModel> SavedFeatures { get; } = new ObservableCollection<SavedTemplateViewModel>();        
+        public ObservableCollection<SavedTemplateViewModel> SavedFeatures { get; } = new ObservableCollection<SavedTemplateViewModel>();
 
         private RelayCommand<SavedTemplateViewModel> _removeTemplateCommand;
         public RelayCommand<SavedTemplateViewModel> RemoveTemplateCommand => _removeTemplateCommand ?? (_removeTemplateCommand = new RelayCommand<SavedTemplateViewModel>(OnRemoveTemplate));
@@ -124,7 +124,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             var validationResult = Naming.Validate(item.NewItemName, validators);
 
             item.IsValidName = validationResult.IsValid;
-            item.ErrorMessage = String.Empty;
+            item.ErrorMessage = string.Empty;
 
             if (!item.IsValidName)
             {
@@ -154,7 +154,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             var validationResult = Naming.Validate(template.NewTemplateName, validators);
 
             template.IsValidName = validationResult.IsValid;
-            template.ErrorMessage = String.Empty;
+            template.ErrorMessage = string.Empty;
 
             if (!template.IsValidName)
             {
@@ -184,7 +184,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 var groups = pages.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList())).OrderBy(gr => gr.Title);
 
                 PagesGroups.AddRange(groups);
-                PagesHeader = String.Format(StringRes.GroupPagesHeader_SF, pages.Count());
+                PagesHeader = string.Format(StringRes.GroupPagesHeader_SF, pages.Count());
             }
 
             if (FeatureGroups.Count == 0)
@@ -195,7 +195,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 var groups = features.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList())).OrderBy(gr => gr.Title);
 
                 FeatureGroups.AddRange(groups);
-                FeaturesHeader = String.Format(StringRes.GroupFeaturesHeader_SF, features.Count());
+                FeaturesHeader = string.Format(StringRes.GroupFeaturesHeader_SF, features.Count());
             }
 
             if (SavedPages.Count == 0 && SavedFeatures.Count == 0)
@@ -218,7 +218,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void OnAddTemplateItem(TemplateInfoViewModel template)
         {
-
             if (template.CanChooseItemName)
             {
                 var validators = new List<Validator>()
@@ -372,7 +371,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
                 AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.SetHome).FireAndForget();
             }
-        }               
+        }
 
         private void OnRemoveTemplate(SavedTemplateViewModel item)
         {
@@ -383,7 +382,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
             if (dependencyItem != null)
             {
-                string message = String.Format(StringRes.ValidationError_CanNotRemoveTemplate_SF, item.TemplateName, dependencyItem.TemplateName, dependencyItem.TemplateType);
+                string message = string.Format(StringRes.ValidationError_CanNotRemoveTemplate_SF, item.TemplateName, dependencyItem.TemplateName, dependencyItem.TemplateType);
                 MainViewModel.Current.Status = new StatusViewModel(Controls.StatusType.Warning, message, true);
                 return;
             }
@@ -394,7 +393,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             else if (SavedFeatures.Contains(item))
             {
                 SavedFeatures.Remove(item);
-            }            
+            }
             MainViewModel.Current.FinishCommand.OnCanExecuteChanged();
             UpdateTemplatesAvailability();
             MainViewModel.Current.RebuildLicenses();

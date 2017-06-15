@@ -23,7 +23,7 @@ namespace Microsoft.Templates.UI.Views.NewItem
         {
             ViewModel = MainViewModel.Current;
             DataContext = ViewModel;
-            InitializeComponent();           
+            InitializeComponent();
         }
     }
 }

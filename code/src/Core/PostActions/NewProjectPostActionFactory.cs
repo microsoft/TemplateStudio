@@ -36,7 +36,6 @@ namespace Microsoft.Templates.Core.PostActions
             return postActions;
         }
 
-
         public override IEnumerable<PostAction> FindGlobalPostActions()
         {
             var postActions = new List<PostAction>();
@@ -48,9 +47,5 @@ namespace Microsoft.Templates.Core.PostActions
 
             return postActions;
         }
-
-
-
-        
     }
 }

@@ -37,10 +37,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             foreach (var file in files)
             {
                 var destFilePath = file.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
-                var fileName = file.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, String.Empty);
-                
+                var fileName = file.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
+
                 var projectFileName = Path.GetFullPath(Path.Combine(GenContext.Current.ProjectPath, fileName));
-                
+
                 if (File.Exists(projectFileName))
                 {
                     if (GenContext.Current.MergeFilesFromProject.ContainsKey(fileName))
@@ -53,8 +53,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                     else
                     {
                         if (!FilesAreEqual(file, destFilePath))
-                        { 
-                            //TODO: Compare files and only add if different
+                        {
                             GenContext.Current.ConflictFiles.Add(fileName);
                         }
                     }

@@ -68,14 +68,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                                 .ToList();
 
             SyncLicenses(genLicenses);
-        }        
+        }
 
         protected override void OnCancel()
         {
             MainView.DialogResult = false;
             MainView.Result = null;
             MainView.Close();
-        }        
+        }
         protected override void OnNext()
         {
             base.OnNext();
@@ -84,7 +84,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 ProjectTemplates.ResetSelection();
                 CleanStatus();
             }
-            NavigationService.Navigate(new ProjectTemplatesView());            
+            NavigationService.Navigate(new ProjectTemplatesView());
         }
         protected override void OnFinish(string parameter)
         {

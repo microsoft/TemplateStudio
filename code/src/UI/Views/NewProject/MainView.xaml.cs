@@ -54,9 +54,9 @@ namespace Microsoft.Templates.UI.Views.NewProject
         {
             var control = e.OldFocus as TextBoxEx;
             var button = e.NewFocus as Button;
-            string name = (button != null && button.Tag != null) ? button.Tag.ToString() : String.Empty;
+            string name = (button != null && button.Tag != null) ? button.Tag.ToString() : string.Empty;
 
-            if (control != null && String.IsNullOrEmpty(name))
+            if (control != null && string.IsNullOrEmpty(name))
             {
                 var templateInfo = control.Tag as TemplateInfoViewModel;
                 if (templateInfo != null)
@@ -82,7 +82,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
                     {
                         p.ConfirmRenameCommand.Execute(p);
                         p.TryClose();
-                    }                    
+                    }
                 });
                 ViewModel?.ProjectTemplates?.SavedFeatures?.ToList()?.ForEach(f =>
                 {

@@ -26,21 +26,17 @@ namespace Microsoft.Templates.Core.PostActions
 {
     public class NewItemPostActionFactory : PostActionFactory
     {
-        
-
         public override IEnumerable<PostAction> FindPostActions(GenInfo genInfo, TemplateCreationResult genResult)
         {
             var postActions = new List<PostAction>();
 
-            //AddPredefinedActions(genInfo, genResult, postActions);           
             AddGetMergeFilesFromProjectPostAction(postActions);
             AddGenerateMergeInfoPostAction(postActions);
             AddMergeActions(postActions, $"*{MergePostAction.Extension}*", false);
-            
+
             return postActions;
         }
 
-      
         public override IEnumerable<PostAction> FindGlobalPostActions()
         {
             var postActions = new List<PostAction>();
@@ -48,7 +44,7 @@ namespace Microsoft.Templates.Core.PostActions
             AddGlobalMergeActions(postActions, $"*{MergePostAction.GlobalExtension}*", false);
             postActions.Add(new SortUsingsPostAction());
             postActions.Add(new CompareTempGenerationWithProjectPostAction());
-            
+
             return postActions;
         }
 

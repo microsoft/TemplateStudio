@@ -32,7 +32,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
             Init(template, mainWindow);
         }
 
-        public InformationWindow(ViewModels.NewProject.MetadataInfoViewModel  metadataInfo, Window mainWindow)
+        public InformationWindow(ViewModels.NewProject.MetadataInfoViewModel metadataInfo, Window mainWindow)
         {
             Init(metadataInfo, mainWindow);
         }
@@ -65,7 +65,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
             {
                 ViewModel.Initialize(metadataInfo);
             }
-            else if(info is ViewModels.NewProject.TemplateInfoViewModel newProjectTemplateInfo)
+            else if (info is ViewModels.NewProject.TemplateInfoViewModel newProjectTemplateInfo)
             {
                 ViewModel.Initialize(newProjectTemplateInfo);
             }
@@ -82,7 +82,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
         }
 
         private void SetWindowSize(Window mainWindow)
-        {            
+        {
             if (mainWindow.Width < 1200)
             {
                 Width = mainWindow.Width * 0.8;

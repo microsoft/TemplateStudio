@@ -29,17 +29,17 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         public string ProjectName { get; set; }
         public string OutputPath { get; set; }
         public string ProjectPath { get; set; }
-        public List<string> ProjectItems => throw new NotImplementedException();
+        public List<string> ProjectItems { get; } = new List<string>();
 
-        public List<GenerationWarning> GenerationWarnings => throw new NotImplementedException();
+        public List<GenerationWarning> GenerationWarnings { get; } = new List<GenerationWarning>();
 
-        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject => throw new NotImplementedException();
+        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
 
-        public List<string> FilesToOpen => throw new NotImplementedException();
+        public List<string> FilesToOpen { get; } = new List<string>();
 
-        public List<string> NewFiles => throw new NotImplementedException();
+        public List<string> NewFiles { get; } = new List<string>();
 
-        public List<string> ConflictFiles => throw new NotImplementedException();
+        public List<string> ConflictFiles { get; } = new List<string>();
 
         [Fact]
         public void Execute_Ok()

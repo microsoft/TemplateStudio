@@ -29,7 +29,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         public const string PostActionIntentExtension = ".md";
 
         public const string PostactionRegex = @"(\$\S*)?(_" + Suffix + "|_g" + Suffix + @")\.";
-        
         public const string FailedPostactionRegex = @"(\$\S*)?(_" + NewSuffix + "|_g" + NewSuffix + @")\.";
 
         public MergePostAction(MergeConfiguration config) : base(config)
@@ -43,7 +42,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             if (string.IsNullOrEmpty(originalFilePath))
             {
                 if (_config.FailOnError)
-                { 
+                {
                     throw new FileNotFoundException($"There is no merge target for file '{_config.FilePath}'");
                 }
                 else
@@ -53,7 +52,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                     File.Delete(_config.FilePath);
                     return;
                 }
-            }   
+            }
 
             var source = File.ReadAllLines(originalFilePath).ToList();
             var merge = File.ReadAllLines(_config.FilePath).ToList();
@@ -65,7 +64,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             File.Delete(_config.FilePath);
 
-            //REFRESH PROJECT TO UN-DIRTY IT
+            // REFRESH PROJECT TO UN-DIRTY IT
             if (Path.GetExtension(_config.FilePath).Equals(".csproj", StringComparison.OrdinalIgnoreCase))
             {
                 Gen.GenContext.ToolBox.Shell.RefreshProject();
@@ -74,7 +73,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private void AddGenerationWarning()
         {
-            var fileName = _config.FilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, String.Empty);
+            var fileName = _config.FilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
             var description = $"Could not find merge target for file '{fileName}'. Please integrate the content from the postaction file manually.";
             var intent = GetPostActionIntent();
             var failedFileName = fileName.Replace(Suffix, NewSuffix);
@@ -104,7 +103,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 var path = Regex.Replace(_config.FilePath, PostactionRegex, ".");
 
-                return (File.Exists(path) ? path : String.Empty);
+                return (File.Exists(path) ? path : string.Empty);
             }
         }
     }

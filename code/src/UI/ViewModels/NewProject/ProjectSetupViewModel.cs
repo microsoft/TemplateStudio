@@ -25,7 +25,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class ProjectSetupViewModel : Observable
     {
-
         private string _projectTypesHeader;
         public string ProjectTypesHeader
         {
@@ -60,7 +59,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                         MainViewModel.Current.AlertProjectSetupChanged();
                     }
                 }
-                
+
                 MainViewModel.Current.RebuildLicenses();
             }
         }
@@ -114,7 +113,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     MainViewModel.Current.HasContent = false;
                 }
 
-                ProjectTypesHeader = String.Format(StringRes.GroupProjectTypeHeader_SF, ProjectTypes.Count);
+                ProjectTypesHeader = string.Format(StringRes.GroupProjectTypeHeader_SF, ProjectTypes.Count);
 
                 await Task.CompletedTask;
             }
@@ -142,7 +141,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 SelectedFramework = Frameworks.FirstOrDefault();
             }
 
-            FrameworkHeader = String.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
+            FrameworkHeader = string.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
             MainViewModel.Current.EnableGoForward();
         }
     }

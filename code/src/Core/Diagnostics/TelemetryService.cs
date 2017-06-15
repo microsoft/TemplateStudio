@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             get
             {
-                if(_current == null)
+                if (_current == null)
                 {
                     _current = new TelemetryService(Configuration.Current);
                 }
@@ -71,7 +71,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
         {
-            //Trace events will not be forwarded to the remote service
+            // Trace events will not be forwarded to the remote service
             await Task.Run(() => { });
         }
 
@@ -134,14 +134,14 @@ namespace Microsoft.Templates.Core.Diagnostics
                 Assembly.Load(new AssemblyName("Microsoft.VisualStudio.Telemetry"));
                 return SafeVsTelemetryIsOptedIn();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                //Not running in VS so we assume we are in the emulator => we allow telemetry
+                // Not running in VS so we assume we are in the emulator => we allow telemetry
                 Trace.TraceWarning($"Unable to load the assembly 'Microsoft.VisualStudio.Telemetry'. Visual Studio Telemetry OptIn/OptOut setting will not be considered. Details:\r\n{ex.ToString()}");
                 return true;
             }
         }
-        
+
         private bool SafeVsTelemetryIsOptedIn()
         {
             try
@@ -154,14 +154,14 @@ namespace Microsoft.Templates.Core.Diagnostics
                 }
                 else
                 {
-                    //Not running in VS so we assume we are in the emulator => we allow telemetry
+                    // Not running in VS so we assume we are in the emulator => we allow telemetry
                     Trace.TraceInformation($"Checking VsTelemetry IsOptedIn value Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession is Null.");
                     return true;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                //Not running in VS so we assume we are in the emulator => we allow telemetry
+                // Not running in VS so we assume we are in the emulator => we allow telemetry
                 Trace.TraceInformation($"Exception checking VsTelemetry IsOptedIn:\r\n" + ex.ToString());
                 return true;
             }
@@ -169,7 +169,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         private void SetSessionData()
         {
-            string userToTrack =  Guid.NewGuid().ToString();
+            string userToTrack = Guid.NewGuid().ToString();
             string machineToTrack = Guid.NewGuid().ToString();
 
             _client.Context.User.Id = userToTrack;
@@ -246,7 +246,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task FlushAsync()
         {
-            await SafeExecuteAsync( async () => {
+            await SafeExecuteAsync(async () => {
                 if (_client != null)
                 {
                     _client.Flush();
@@ -284,7 +284,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
 
-            return assembly.GetName().Version.ToString(); 
+            return assembly.GetName().Version.ToString();
         }
 
         private static string GetFileVersion()
@@ -310,10 +310,10 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             if (disposing)
             {
-                // free managed resources 
+                // free managed resources
                 Flush();
             }
-            //free native resources if any.
+            // free native resources if any
         }
     }
 }

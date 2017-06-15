@@ -27,7 +27,6 @@ namespace Microsoft.Templates.Core.Composition
             Value = value;
         }
 
-
         public bool Compare(QueryNode query)
         {
             if (string.IsNullOrEmpty(Value) || string.IsNullOrEmpty(query.Value))

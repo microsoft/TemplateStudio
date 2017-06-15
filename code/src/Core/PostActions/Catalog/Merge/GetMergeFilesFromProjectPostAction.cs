@@ -19,7 +19,6 @@ using System.Collections.Generic;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
-
     public class GetMergeFilesFromProjectPostAction : PostAction<string>
     {
         public GetMergeFilesFromProjectPostAction(string config) : base(config)
@@ -50,7 +49,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         private void GetFileFromProject()
         {
             var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(_config.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath)));
-            var relFilePath = filePath.Replace(GenContext.Current.ProjectPath + Path.DirectorySeparatorChar, String.Empty);
+            var relFilePath = filePath.Replace(GenContext.Current.ProjectPath + Path.DirectorySeparatorChar, string.Empty);
             GenContext.Current.MergeFilesFromProject.Add(relFilePath, new List<MergeInfo>());
 
             if (File.Exists(filePath))
@@ -65,7 +64,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             if (Path.GetFileName(_config).StartsWith(MergePostAction.Extension))
             {
                 var extension = Path.GetExtension(_config);
-                
+
                 return Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !Regex.IsMatch(f, MergePostAction.PostactionRegex));
             }
             else
@@ -73,7 +72,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 var filePath = Path.Combine(directory, Path.GetFileName(_config));
                 var path = Regex.Replace(filePath, MergePostAction.PostactionRegex, ".");
 
-                return  path;
+                return path;
             }
         }
     }
