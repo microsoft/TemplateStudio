@@ -21,4 +21,9 @@ namespace Microsoft.Templates.Core.Diagnostics
         public static string SessionStart { get; private set; } = TelemetryTracker.PropertiesPrefix + "SessionStart";
         public static string EditSummaryItem { get; internal set; } = TelemetryTracker.PropertiesPrefix + "EditSummaryItem";
     }
+
+    public class VsTelemetryEvents
+    {
+        public static string UwpProjectGen = "vs/windowstemplatestudio/uwp/project-generated";
+    }
 }

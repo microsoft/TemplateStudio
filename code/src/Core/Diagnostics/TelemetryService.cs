@@ -144,31 +144,48 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         private bool SafeVsTelemetryIsOptedIn()
         {
+            bool result = false;
+            string vsEdition = string.Empty;
+            string vsVersion = string.Empty;
+            string vsCulture = string.Empty;
+            string vsManifestId = string.Empty;
             try
             {
                 if (Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession != null)
                 {
                     var isOptedIn = Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession.IsOptedIn;
                     Trace.TraceInformation($"Vs Telemetry IsOptedIn: {isOptedIn}");
+                    vsEdition = Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.SkuName");
+                    vsVersion = Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.ExeVersion");
+                    vsCulture = Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.Locale.ProductLocaleName");
+                    vsManifestId = Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.ManifestId");
+
                     return isOptedIn;
                 }
                 else
                 {
                     // Not running in VS so we assume we are in the emulator => we allow telemetry
                     Trace.TraceInformation($"Checking VsTelemetry IsOptedIn value Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession is Null.");
-                    return true;
+                    result = true;
                 }
             }
             catch (Exception ex)
             {
                 // Not running in VS so we assume we are in the emulator => we allow telemetry
                 Trace.TraceInformation($"Exception checking VsTelemetry IsOptedIn:\r\n" + ex.ToString());
-                return true;
+                result = true;
             }
+
+            _client.Context.Properties.Add(TelemetryProperties.VisualStudioEdition, vsEdition);
+            _client.Context.Properties.Add(TelemetryProperties.VisualStudioVersion, vsVersion);
+            _client.Context.Properties.Add(TelemetryProperties.VisualStudioCulture, vsCulture);
+            _client.Context.Properties.Add(TelemetryProperties.VisualStudioManifestId, vsManifestId);
+            return result;
         }
 
         private void SetSessionData()
         {
+            // No PII tracked
             string userToTrack = Guid.NewGuid().ToString();
             string machineToTrack = Guid.NewGuid().ToString();
 
@@ -187,6 +204,12 @@ namespace Microsoft.Templates.Core.Diagnostics
             _client.Context.Properties.Add(TelemetryProperties.WizardFileVersion, GetFileVersion());
         }
 
+        private string GetVsProjectId()
+        {
+             var session = Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession;
+            return string.Empty;
+        }
+
         public void SetContentVersionToContext(Version wizardContentVersion)
         {
             if (wizardContentVersion != null && _client != null && _client.Context != null && _client.Context.Properties != null)
@@ -202,26 +225,35 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
 
-        public void SetVisualStudioInfoToContext(string version, string edition, string culture)
+        public void SafeTrackProjectVsTelemetry(Dictionary<string, string> properties, Dictionary<string, double> metrics, bool success = true)
         {
-            if (_client != null && _client.Context != null && _client.Context.Properties != null)
+            try
             {
-                if (!string.IsNullOrEmpty(version))
+                VisualStudio.Telemetry.TelemetryResult result = success ? VisualStudio.Telemetry.TelemetryResult.Success : VisualStudio.Telemetry.TelemetryResult.Failure;
+
+                VisualStudio.Telemetry.UserTaskEvent e = new VisualStudio.Telemetry.UserTaskEvent(VsTelemetryEvents.UwpProjectGen, result, "Project generated");
+
+                foreach (var key in properties.Keys)
                 {
-                    _client.Context.Properties[TelemetryProperties.VisualStudioVersion] = version;
+                    string renamedKey = key.Replace(TelemetryTracker.PropertiesPrefix, TelemetryTracker.PropertiesPrefix + ".");
+                    e.Properties[renamedKey] = properties[key];
                 }
-                if (!string.IsNullOrEmpty(edition))
+
+                foreach (var key in metrics.Keys)
                 {
-                    _client.Context.Properties[TelemetryProperties.VisualStudioEdition] = edition;
+                    string renamedKey = key.Replace(TelemetryTracker.PropertiesPrefix, TelemetryTracker.PropertiesPrefix + ".");
+                    e.Properties[renamedKey] = metrics[key];
                 }
-                if (!string.IsNullOrEmpty(culture))
-                {
-                    _client.Context.Properties[TelemetryProperties.VisualStudioCulture] = culture;
-                }
+
+                VisualStudio.Telemetry.TelemetryService.DefaultSession.PostEvent(e);
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceInformation($"Exception tracking Project Creation in VsTelemetry:\r\n" + ex.ToString());
             }
         }
 
-            private async Task SafeExecuteAsync(Action action)
+        private async Task SafeExecuteAsync(Action action)
         {
             try
             {
