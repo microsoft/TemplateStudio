@@ -232,9 +232,11 @@ namespace Microsoft.Templates.Core.Locations
             string dir = targetDirectory.EndsWith(Path.DirectorySeparatorChar.ToString()) ? targetDirectory : targetDirectory + Path.DirectorySeparatorChar;
             var uriFullPartPath = new Uri(new Uri(dir, UriKind.Absolute), partUri);
 
-            Directory.CreateDirectory(Path.GetDirectoryName(uriFullPartPath.LocalPath));
+            // When packing, directories are automatically converted when turned into a URI
+            // Decode to preserve any spaces in directory names (such as `My Project` in a VB app)
+            Directory.CreateDirectory(System.Net.WebUtility.UrlDecode(Path.GetDirectoryName(uriFullPartPath.LocalPath)));
 
-            using (var fileStream = new FileStream(uriFullPartPath.LocalPath, FileMode.Create))
+            using (var fileStream = new FileStream(System.Net.WebUtility.UrlDecode(uriFullPartPath.LocalPath), FileMode.Create))
             {
                 CopyStream(packagePart.GetStream(), fileStream);
             }
@@ -375,7 +377,7 @@ namespace Microsoft.Templates.Core.Locations
         }
         private static void EnsureDirectory(string dir)
         {
-            if (!String.IsNullOrEmpty(dir) && dir.ToLower() != Environment.CurrentDirectory.ToLower())
+            if (!string.IsNullOrEmpty(dir) && dir.ToLower() != Environment.CurrentDirectory.ToLower())
             {
                 if (!Directory.Exists(dir))
                 {
