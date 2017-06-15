@@ -61,6 +61,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public List<string> ConflictFiles { get; } = new List<string>();
 
+        public List<string> UnchangedFiles { get; } = new List<string>();
+
 
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
@@ -166,9 +168,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                         ProjectPath = projectPath;
                         OutputPath = projectPath;
 
-                        ProjectItems.Clear();
-                        GenerationWarnings.Clear();
-                        MergeFilesFromProject.Clear();
+                        ClearContext();
                         SolutionName = null;
 
                         await NewProjectGenController.Instance.GenerateProjectAsync(userSelection);
@@ -196,9 +196,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             ConfigureGenContext();
             OutputPath = Path.Combine(Path.GetTempPath(), TempGenerationFolder, Path.GetRandomFileName());
-            ProjectItems.Clear();
-            GenerationWarnings.Clear();
-            MergeFilesFromProject.Clear();
+            ClearContext();
 
             try
             {
@@ -222,13 +220,22 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         }
 
+        private void ClearContext()
+        {
+            ProjectItems.Clear();
+            NewFiles.Clear();
+            ConflictFiles.Clear();
+            GenerationWarnings.Clear();
+            MergeFilesFromProject.Clear();
+            FilesToOpen.Clear();
+            UnchangedFiles.Clear();
+    }
+
         private void AddNewPage()
         {
             ConfigureGenContext();
             OutputPath = Path.Combine(Path.GetTempPath(), TempGenerationFolder, Path.GetRandomFileName());
-            ProjectItems.Clear();
-            GenerationWarnings.Clear();
-            MergeFilesFromProject.Clear();
+            ClearContext();
             try
             {
                 var userSelection = NewItemGenController.Instance.GetUserSelectionNewItem(TemplateType.Page);
@@ -267,8 +274,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 ProjectName = Path.GetFileNameWithoutExtension(projFile);
                 ProjectPath = Path.GetDirectoryName(projFile);
                 OutputPath = ProjectPath;
-                ProjectItems.Clear();
-                GenerationWarnings.Clear();
+                ClearContext();
             }
         }
 

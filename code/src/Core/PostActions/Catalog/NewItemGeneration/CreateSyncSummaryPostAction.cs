@@ -100,6 +100,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             GenContext.Current.ConflictFiles.Clear();
             GenContext.Current.GenerationWarnings.Clear();
             GenContext.Current.MergeFilesFromProject.Clear();
+            GenContext.Current.UnchangedFiles.Clear();
         }
 
         private static string GetLinkToProjectFile(string fileName, string filePath)

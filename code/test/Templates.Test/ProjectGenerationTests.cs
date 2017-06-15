@@ -52,6 +52,8 @@ namespace Microsoft.Templates.Test
 
         public List<string> ConflictFiles { get; } = new List<string>();
 
+        public List<string> UnchangedFiles { get; } = new List<string>();
+
         public ProjectGenerationTests(GenerationFixture fixture)
         {
             _fixture = fixture;

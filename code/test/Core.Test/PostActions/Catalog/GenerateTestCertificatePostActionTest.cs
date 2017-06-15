@@ -41,6 +41,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public List<string> ConflictFiles { get; } = new List<string>();
 
+        public List<string> UnchangedFiles { get; } = new List<string>();
+
         [Fact]
         public void Execute_Ok()
         {

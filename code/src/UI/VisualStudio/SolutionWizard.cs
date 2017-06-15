@@ -48,6 +48,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public List<string> ConflictFiles { get; } = new List<string>();
 
+        public List<string> UnchangedFiles { get; } = new List<string>();
+
         public SolutionWizard()
         {
             if (!GenContext.IsInitialized)

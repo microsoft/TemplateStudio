@@ -143,6 +143,12 @@ namespace Microsoft.Templates.UI
                       Path.Combine(GenContext.Current.OutputPath, n.Key),
                       Path.Combine(GenContext.Current.ProjectPath, n.Key))));
 
+            result.UnchangedFiles.AddRange(GenContext.Current.UnchangedFiles.Select(n =>
+             new NewItemGenerationFileInfo(
+                     n,
+                     Path.Combine(GenContext.Current.OutputPath, n),
+                     Path.Combine(GenContext.Current.ProjectPath, n))));
+
             return result;
         }
 

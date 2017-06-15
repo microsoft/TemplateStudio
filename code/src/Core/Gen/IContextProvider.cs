@@ -18,6 +18,8 @@ namespace Microsoft.Templates.Core.Gen
         List<string> FilesToOpen { get; }
         List<string> ConflictFiles { get; }
 
+        List<string> UnchangedFiles { get; }
+
         List<GenerationWarning> GenerationWarnings { get; }
 
         Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; }
