@@ -32,11 +32,11 @@ namespace Microsoft.Templates.Core.PostActions
         {
             var postActions = new List<PostAction>();
 
-            AddPredefinedActions(genInfo, genResult, postActions);           
+            //AddPredefinedActions(genInfo, genResult, postActions);           
             AddGetMergeFilesFromProjectPostAction(postActions);
             AddGenerateMergeInfoPostAction(postActions);
             AddMergeActions(postActions, $"*{MergePostAction.Extension}*", false);
-
+            
             return postActions;
         }
 
@@ -47,17 +47,29 @@ namespace Microsoft.Templates.Core.PostActions
 
             AddGlobalMergeActions(postActions, $"*{MergePostAction.GlobalExtension}*", false);
             postActions.Add(new SortUsingsPostAction());
+            postActions.Add(new CompareTempGenerationWithProjectPostAction());
+            
+            return postActions;
+        }
+
+        public override IEnumerable<PostAction> FindSyncGenerationPostActions()
+        {
+            var postActions = new List<PostAction>();
+
+            postActions.Add(new CopyFilesToProjectPostAction());
+            postActions.Add(new AddContextItemsToProjectPostAction());
+            postActions.Add(new CreateSyncSummaryPostAction());
+            postActions.Add(new OpenFilesPostAction());
 
             return postActions;
         }
 
-        public override IEnumerable<PostAction> FindFinishGenerationPostActions()
+        public override IEnumerable<PostAction> FindOutputGenerationPostActions()
         {
             var postActions = new List<PostAction>();
 
-            postActions.Add(new AddContextItemsToProjectPostAction());
-            postActions.Add(new OpenGeneratedFilesPostAction());
-
+            postActions.Add(new CreateSyncStepsInstructionsPostAction());
+            postActions.Add(new OpenFilesPostAction());
 
             return postActions;
         }

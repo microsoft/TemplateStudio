@@ -42,7 +42,11 @@ namespace Microsoft.Templates.UI.VisualStudio
         public List<GenerationWarning> GenerationWarnings { get; } = new List<GenerationWarning>();
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
-        public List<string> FilesToOpen { get; } = new List<string>(); 
+        public List<string> FilesToOpen { get; } = new List<string>();
+
+        public List<string> NewFiles { get; } = new List<string>();
+
+        public List<string> ConflictFiles { get; } = new List<string>();
 
         public SolutionWizard()
         {

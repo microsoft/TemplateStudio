@@ -31,7 +31,12 @@ namespace Microsoft.Templates.Core.PostActions
 
         public abstract IEnumerable<PostAction> FindGlobalPostActions();
 
-        public virtual IEnumerable<PostAction> FindFinishGenerationPostActions()
+        public virtual IEnumerable<PostAction> FindSyncGenerationPostActions()
+        {
+            return new List<PostAction>();
+        }
+
+        public virtual IEnumerable<PostAction> FindOutputGenerationPostActions()
         {
             return new List<PostAction>();
         }
@@ -71,6 +76,8 @@ namespace Microsoft.Templates.Core.PostActions
                     break;
             }
         }
+
+
 
         internal void AddMergeActions(List<PostAction> postActions, string searchPattern, bool failOnError)
         {

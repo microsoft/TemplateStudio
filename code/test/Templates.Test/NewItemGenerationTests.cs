@@ -28,8 +28,6 @@ namespace Microsoft.Templates.Test
     [Collection("Generation collection")]
     public class NewItemGenerationTests : IContextProvider
     {
-
-
         private GenerationFixture _fixture;
         private List<string> _usedNames = new List<string>();
 
@@ -43,6 +41,12 @@ namespace Microsoft.Templates.Test
         public List<GenerationWarning> GenerationWarnings { get; } = new List<GenerationWarning>();
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
+
+        public List<string> NewFiles { get; } = new List<string>();
+
+        public List<string> FilesToOpen { get; } = new List<string>();
+
+        public List<string> ConflictFiles { get; } = new List<string>();
 
         public NewItemGenerationTests(GenerationFixture fixture)
         {
@@ -59,7 +63,7 @@ namespace Microsoft.Templates.Test
             var projectName = $"{projectType}{framework}";
 
             ProjectName = projectName;
-            ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            ProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName, projectName);
             OutputPath = ProjectPath;
 
             var userSelection = GenerationFixture.SetupProject(projectType, framework);
@@ -77,17 +81,19 @@ namespace Microsoft.Templates.Test
 
                 var newUserSelection = new UserSelection()
                 {
-                    ProjectType = projectType, 
+                    ProjectType = projectType,
                     Framework = framework,
-                    HomeName = ""
+                    HomeName = "",
+                    ItemGenerationType = ItemGenerationType.GenerateAndMerge
+
                 };
                 GenerationFixture.AddItem(newUserSelection, item, GenerationFixture.GetDefaultName);
                 await NewItemGenController.Instance.UnsafeGenerateNewItemAsync(newUserSelection);
-                NewItemGenController.Instance.UnsafeSyncNewItem();
+                NewItemGenController.Instance.UnsafeFinishGeneration(newUserSelection);
             }
 
             //Build solution
-            var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+            var outputPath = Path.Combine(_fixture.TestNewItemPath, projectName);
             var result = GenerationFixture.BuildSolution(projectName, outputPath);
 
             //Assert
@@ -97,6 +103,7 @@ namespace Microsoft.Templates.Test
             Directory.Delete(outputPath, true);
         }
 
+      
         public static IEnumerable<object[]> GetProjectTemplates()
         {
             return GenerationFixture.GetProjectTemplates();

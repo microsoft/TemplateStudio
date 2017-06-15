@@ -36,7 +36,6 @@ namespace Microsoft.Templates.UI
         private static Lazy<NewItemGenController> _instance = new Lazy<NewItemGenController>(Initialize);
         public static NewItemGenController Instance => _instance.Value;
 
-
         private static NewItemGenController Initialize()
         {
             return new NewItemGenController(new NewItemPostActionFactory());
@@ -129,41 +128,32 @@ namespace Microsoft.Templates.UI
         public NewItemGenerationResult CompareOutputAndProject()
         {
             var result = new NewItemGenerationResult();
-            var files = Directory
-                .EnumerateFiles(GenContext.Current.OutputPath, "*", SearchOption.AllDirectories)
-                .Where(f => !Regex.IsMatch(f, MergePostAction.PostactionRegex) && !Regex.IsMatch(f, MergePostAction.FailedPostactionRegex))
-                .ToList();
+            result.NewFiles.AddRange(GenContext.Current.NewFiles.Select(n => 
+                new NewItemGenerationFileInfo(
+                        n, 
+                        Path.Combine(GenContext.Current.OutputPath, n), 
+                        Path.Combine(GenContext.Current.ProjectPath, n))));
 
-            foreach (var file in files)
-            {
-                var destFilePath = file.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
-                var fileName = file.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, String.Empty);
-                var fileInfo = new NewItemGenerationFileInfo(fileName, file, destFilePath);
+            result.ConflictingFiles.AddRange(GenContext.Current.ConflictFiles.Select(n =>
+                new NewItemGenerationFileInfo(
+                        n,
+                        Path.Combine(GenContext.Current.OutputPath, n),
+                        Path.Combine(GenContext.Current.ProjectPath, n))));
 
-                if (!File.Exists(destFilePath))
-                {
-                    result.NewFiles.Add(fileInfo);     
-                }
-                else
-                {
-                    if (GenContext.Current.MergeFilesFromProject.ContainsKey(fileName))
-                    {
-                        result.ModifiedFiles.Add(fileInfo);                       
-                    }
-                    else
-                    {
-                        result.ConflictingFiles.Add(fileInfo);
-                    }
-                }
-            }
+            result.ModifiedFiles.AddRange(GenContext.Current.MergeFilesFromProject.Select(n =>
+              new NewItemGenerationFileInfo(
+                      n.Key,
+                      Path.Combine(GenContext.Current.OutputPath, n.Key),
+                      Path.Combine(GenContext.Current.ProjectPath, n.Key))));
+
             return result;
         }
 
-        public void SyncNewItem(UserSelection userSelection)
+        public void FinishGeneration(UserSelection userSelection)
         {
             try
             {
-                UnsafeSyncNewItem(userSelection);
+                UnsafeFinishGeneration(userSelection);
             }
             catch (Exception ex)
             {
@@ -172,140 +162,39 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        public void UnsafeSyncNewItem(UserSelection userSelection)
+        public void UnsafeFinishGeneration(UserSelection userSelection)
         {
-            var result = CompareOutputAndProject();
-
-            //BackupProjectFiles(result);
-            CopyFilesToProject(result);
-            GenerateSyncSummary(result);
-            ExecuteFinishGenerationPostActions();
-            //CleanupTempGeneration();
+            if (userSelection.ItemGenerationType == ItemGenerationType.GenerateAndMerge)
+            {
+                //BackupProjectFiles
+                ExecuteSyncGenerationPostActions();
+            }
+            else
+            {
+                ExecuteOutputGenerationPostActions();
+            }
         }
 
-        public void OutputNewItem(UserSelection userSelection)
+        public void CleanupTempGeneration()
         {
+            GenContext.Current.GenerationWarnings.Clear();
+            GenContext.Current.MergeFilesFromProject.Clear();
+            GenContext.Current.ProjectItems.Clear();
+            GenContext.Current.NewFiles.Clear();
+            GenContext.Current.ConflictFiles.Clear();
+            GenContext.Current.FilesToOpen.Clear();
+            var directory = GenContext.Current.OutputPath;
             try
             {
-                UnsafeOutputNewItem(userSelection);
+                if (directory.Contains(Path.GetTempPath()))
+                {
+                    Fs.SafeDeleteDirectory(directory);
+                }
             }
             catch (Exception ex)
             {
-                ShowError(ex, userSelection);
-                GenContext.ToolBox.Shell.CancelWizard(false);
-            }
-        }
-
-        public void UnsafeOutputNewItem(UserSelection userSelection)
-        {
-            var result = CompareOutputAndProject();
-            GenerateOutputSummary(result);
-            ExecuteFinishGenerationPostActions();
-        }
-
-        private void GenerateOutputSummary(NewItemGenerationResult result)
-        {
-            var fileName = Path.Combine(GenContext.Current.OutputPath, "Steps to include new item generation.md");
-            File.WriteAllLines(fileName, new string[] { "# Steps to include new item generation", "You have to follow theese steps to include the new item into you project" });
-            
-
-            if (result.NewFiles.Any())
-            {
-                File.AppendAllLines(fileName, new string[] { $"## New files:", "Copy and add those files to your project:" });
-                foreach (var newFile in result.NewFiles)
-                {
-                    File.AppendAllLines(fileName, GetLinkToLocalFile(newFile));
-                }
-            }
-            File.AppendAllLines(fileName, new string[] { "## Modified files: " });
-            File.AppendAllLines(fileName, new string[] { $"Apply theese changes in the following files: ", "" });
-
-            foreach (var mergeFile in GenContext.Current.MergeFilesFromProject)
-            {
-                File.AppendAllLines(fileName, new string[] { $"### Changes in File '{mergeFile.Key}':", "" });
-                foreach (var mergeInfo in mergeFile.Value)
-                {
-                    File.AppendAllLines(fileName, new string[] { mergeInfo.Intent, "" });
-                    File.AppendAllLines(fileName, new string[] { $"```{mergeInfo.Format}", mergeInfo.PostActionCode, "```", "" });
-                }
-            }
-            
-            if (result.ConflictingFiles.Any())
-            {
-                File.AppendAllLines(fileName, new string[] { $"## Conflicting files:", "" });
-                foreach (var conflictFile in result.ConflictingFiles)
-                {
-                    File.AppendAllLines(fileName, GetLinkToLocalFile(conflictFile));
-                }
-            }
-
-            GenContext.Current.FilesToOpen.Add(fileName);
-        }
-
-        private void GenerateSyncSummary(NewItemGenerationResult result)
-        {
-            var fileName = Path.Combine(GenContext.Current.OutputPath, "GenerationSummary.md");
-            File.WriteAllLines(fileName, new string[] { "# Generation summary", "The following changes have been incorporated in your project" });
-            File.AppendAllLines(fileName, new string[] { "## Modified files: " });
-            foreach (var mergeFile in GenContext.Current.MergeFilesFromProject)
-            {
-                var modifiedFile = result.ModifiedFiles.FirstOrDefault(m => m.Name == mergeFile.Key);
-
-                File.AppendAllLines(fileName, new string[] { $"### Changes in File '{mergeFile.Key}':", "" });
-
-                if (modifiedFile != null)
-                {
-                    File.AppendAllLines(fileName, new string[] { $"See the final result: [{modifiedFile.Name}]({Uri.EscapeUriString(modifiedFile.ProjectFilePath)})", "" });
-                    File.AppendAllLines(fileName, new string[] { $"The following changes were applied:" });
-                }
-                else
-                {
-                    File.AppendAllLines(fileName, new string[] { $"The changes could not be applied, please apply the following changes manually:", "" });
-                    //Postaction failed, show info
-                }
-                foreach (var mergeInfo in mergeFile.Value)
-                {
-                    File.AppendAllLines(fileName, new string[] { mergeInfo.Intent, "" });
-                    File.AppendAllLines(fileName, new string[] { $"```{mergeInfo.Format}", mergeInfo.PostActionCode, "```", "" });
-                }
-            }
-            if (result.NewFiles.Any())
-            {
-                File.AppendAllLines(fileName, new string[] { $"## New files:", "" });
-                foreach (var newFile in result.NewFiles)
-                {
-                    File.AppendAllLines(fileName, GetLinkToProjectFile(newFile));
-                }
-            }
-            if (result.ConflictingFiles.Any())
-            {
-                File.AppendAllLines(fileName, new string[] { $"## Conflicting files:", "" });
-                foreach (var conflictFile in result.ConflictingFiles)
-                {
-                    File.AppendAllLines(fileName, GetLinkToProjectFile(conflictFile));
-                }
-            }
-
-            GenContext.Current.FilesToOpen.Add(fileName);
-        }
-
-        private static string[] GetLinkToLocalFile(NewItemGenerationFileInfo fileInfo)
-        {
-            return new string[] { $"* [{fileInfo.Name}]({fileInfo.Name})" };
-        }
-
-        private static string[] GetLinkToProjectFile(NewItemGenerationFileInfo fileInfo)
-        {
-            return new string[] { $"* [{fileInfo.Name}]({Uri.EscapeUriString(fileInfo.ProjectFilePath)})" }; 
-        }
-
-        private void ExecuteFinishGenerationPostActions()
-        {
-            var postActions = _postactionFactory.FindFinishGenerationPostActions();
-
-            foreach (var postAction in postActions)
-            {
-                postAction.Execute();
+                var msg = $"The folder {directory} can't be delete. Error: {ex.Message}";
+                AppHealth.Current.Warning.TrackAsync(msg, ex).FireAndForget();
             }
         }
 
@@ -343,137 +232,28 @@ namespace Microsoft.Templates.UI
                 var originalFile = file.ProjectFilePath;
                 var backupFile = Path.Combine(backupFolder, file.Name);
                 var destDirectory = Path.GetDirectoryName(backupFile);
-               
+
                 Fs.SafeCopyFile(originalFile, destDirectory, true);
             }
         }
 
-        public void CleanupTempGeneration()
+        private void ExecuteSyncGenerationPostActions()
         {
-            GenContext.Current.GenerationWarnings.Clear();
-            GenContext.Current.MergeFilesFromProject.Clear();
-            GenContext.Current.ProjectItems.Clear();
-            var directory = GenContext.Current.OutputPath;
-            try
+            var postActions = _postactionFactory.FindSyncGenerationPostActions();
+
+            foreach (var postAction in postActions)
             {
-                if (directory.Contains(Path.GetTempPath()))
-                {
-                    Fs.SafeDeleteDirectory(directory);
-                }
-            }
-            catch (Exception ex)
-            {
-                var msg = $"The folder {directory} can't be delete. Error: {ex.Message}";
-                AppHealth.Current.Warning.TrackAsync(msg, ex).FireAndForget();
+                postAction.Execute();
             }
         }
 
-        //public CompareResult ShowLastActionResult()
-        //{
-        //    //var newItem = new Views.NewItem.NewItemView();
-        //    var undoLastAction = new Views.NewItem.UndoLastActionView();
-
-        //    try
-        //    {
-        //        CleanStatusBar();
-
-        //        GenContext.ToolBox.Shell.ShowModal(undoLastAction);
-        //        if (undoLastAction.Result != null)
-        //        {
-        //            //TODO: Review when right-click-actions available to track Project or Page completed.
-        //            //AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewItem).FireAndForget();
-
-        //            return undoLastAction.Result;
-        //        }
-        //        else
-        //        {
-        //            //TODO: Review when right-click-actions available to track Project or Page cancelled.
-        //            //AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewItem).FireAndForget();
-        //        }
-
-        //    }
-        //    catch (Exception ex) when (!(ex is WizardBackoutException))
-        //    {
-        //        undoLastAction.SafeClose();
-        //        ShowError(ex);
-        //    }
-
-        //    GenContext.ToolBox.Shell.CancelWizard();
-
-        //    return null;
-        //}
-
-        //public CompareResult GetLastActionInfo()
-        //{
-        //    var projectGuid = GenContext.ToolBox.Shell.GetActiveProjectGuid();
-
-        //    if (string.IsNullOrEmpty(projectGuid))
-        //    {
-        //        //TODO: Handle this 
-        //        return null;
-        //    }
-
-        //    var backupFolder = Path.Combine(
-        //       Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
-        //       Configuration.Current.BackupFolderName,
-        //       projectGuid);
-
-        //    var fileName = Path.Combine(backupFolder, "backup.json");
-
-        //    if (!Directory.Exists(backupFolder))
-        //    {
-        //        //TODO: Handle this
-        //    }
-
-        //    return JsonConvert.DeserializeObject<CompareResult>(File.ReadAllText(fileName));
-
-        //}
-
-        //public void UndoLastAction(CompareResult result)
-        //{
-        //    var projectGuid = GenContext.ToolBox.Shell.GetActiveProjectGuid();
-
-        //    var backupFolder = Path.Combine(
-        //       Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
-        //       Configuration.Current.BackupFolderName,
-        //       projectGuid);
-
-        //    var modifiedFiles = result.ConflictingFiles.Concat(result.ModifiedFiles);
-
-        //    foreach (var file in modifiedFiles)
-        //    {
-        //        var originalFile = Path.Combine(GenContext.Current.ProjectPath, file);
-        //        var backupFile = Path.Combine(backupFolder, file);
-
-        //        File.Copy(backupFile, originalFile, true);
-        //    }
-
-        //    foreach (var file in result.NewFiles)
-        //    {
-        //        var projectFile = Path.Combine(GenContext.Current.ProjectPath, file);
-        //        File.Delete(projectFile);
-        //        //TODO:Remove file from project
-        //    }
-        //}
-
-        private void CopyFilesToProject(NewItemGenerationResult result)
+        private void ExecuteOutputGenerationPostActions()
         {
-            var modifiedFiles = result.ConflictingFiles.Concat(result.ModifiedFiles);
+            var postActions = _postactionFactory.FindOutputGenerationPostActions();
 
-            foreach (var file in modifiedFiles)
+            foreach (var postAction in postActions)
             {
-                var sourceFile = file.NewItemGenerationFilePath;
-                var destFileName = file.ProjectFilePath;
-                var destDirectory = Path.GetDirectoryName(destFileName);
-                Fs.SafeCopyFile(sourceFile, destDirectory, true);
-            }
-
-            foreach (var file in result.NewFiles)
-            {
-                var sourceFile = file.NewItemGenerationFilePath;
-                var destFileName = file.ProjectFilePath;
-                var destDirectory = Path.GetDirectoryName(destFileName);
-                Fs.SafeCopyFile(sourceFile, destDirectory, true);
+                postAction.Execute();
             }
         }
 

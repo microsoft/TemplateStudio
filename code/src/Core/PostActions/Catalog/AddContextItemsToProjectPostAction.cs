@@ -25,6 +25,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
             GenContext.ToolBox.Shell.ShowStatusBarMessage(Strings.Resources.StatusAddingItems);
             GenContext.ToolBox.Shell.AddItems(GenContext.Current.ProjectItems.ToArray());
+            GenContext.Current.ProjectItems.Clear();
         }
     }
 }

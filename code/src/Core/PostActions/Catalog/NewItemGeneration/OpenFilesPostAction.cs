@@ -19,12 +19,13 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
-    public class OpenGeneratedFilesPostAction : PostAction
+    public class OpenFilesPostAction : PostAction
     {
         public override void Execute()
         {
             GenContext.ToolBox.Shell.ShowStatusBarMessage(Strings.Resources.StatusOpeningItems);
             GenContext.ToolBox.Shell.OpenItems(GenContext.Current.FilesToOpen.ToArray());
+            GenContext.Current.FilesToOpen.Clear();
         }
     }
 }

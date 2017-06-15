@@ -37,6 +37,10 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public List<string> FilesToOpen => throw new NotImplementedException();
 
+        public List<string> NewFiles => throw new NotImplementedException();
+
+        public List<string> ConflictFiles => throw new NotImplementedException();
+
         [Fact]
         public void Execute_Ok()
         {

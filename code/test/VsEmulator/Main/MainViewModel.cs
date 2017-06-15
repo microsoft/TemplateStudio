@@ -57,6 +57,10 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public List<string> FilesToOpen { get; } = new List<string>();
 
+        public List<string> NewFiles { get; } = new List<string>();
+
+        public List<string> ConflictFiles { get; } = new List<string>();
+
 
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
@@ -134,7 +138,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string SolutionPath { get; set; }
 
-
+        
 
         public void Initialize()
         {
@@ -202,14 +206,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 if (userSelection != null)
                 {
-                    if (userSelection.ItemGenerationType == ItemGenerationType.GenerateAndMerge)
-                    {
-                        NewItemGenController.Instance.SyncNewItem(userSelection);
-                    }
-                    else
-                    {
-                        NewItemGenController.Instance.OutputNewItem(userSelection);
-                    }
+                    NewItemGenController.Instance.FinishGeneration(userSelection);
                     TempFolderAvailable = Visibility.Visible;
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
@@ -238,14 +235,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 if (userSelection != null)
                 {
-                    if (userSelection.ItemGenerationType == ItemGenerationType.GenerateAndMerge)
-                    {
-                        NewItemGenController.Instance.SyncNewItem(userSelection);
-                    }
-                    else
-                    {
-                        NewItemGenController.Instance.OutputNewItem(userSelection);
-                    }
+
+                    NewItemGenController.Instance.FinishGeneration(userSelection);
                     TempFolderAvailable = Visibility.Visible;
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
