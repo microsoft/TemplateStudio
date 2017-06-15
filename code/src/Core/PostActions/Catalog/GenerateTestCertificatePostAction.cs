@@ -18,6 +18,7 @@ using CERTENROLLLib;
 
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
@@ -39,7 +40,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Warning.TrackAsync("Error generating certificate.", ex).FireAndForget();
+                AppHealth.Current.Warning.TrackAsync(StringRes.GenerateTestCertificatePostActionExecute, ex).FireAndForget();
             }
         }
 

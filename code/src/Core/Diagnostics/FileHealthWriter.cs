@@ -10,6 +10,7 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using Microsoft.Templates.Core.Resources;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -71,7 +72,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
 
             var sb = new StringBuilder();
-            sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{TraceEventType.Critical.ToString():11}\tException Tracked. {(message ?? "")}");
+            sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{TraceEventType.Critical.ToString():11}\t{StringRes.ExceptionTrackedString}. {(message ?? "")}");
 
             if (ex != null)
             {
@@ -143,8 +144,8 @@ namespace Microsoft.Templates.Core.Diagnostics
 
             var sb = new StringBuilder();
 
-            sb.AppendLine($"\r\n>>>>>>>>>>>>>> Log started {DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}");
-            sb.AppendLine($">>>>>>>>>>>>>> Assembly File Version: {GetVersion()}");
+            sb.AppendLine($"\r\n>>>>>>>>>>>>>> {StringRes.LogStartedString} {DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}");
+            sb.AppendLine($">>>>>>>>>>>>>> {StringRes.AssemblyFileVersionString}: {GetVersion()}");
 
             File.AppendAllText(LogFileName, sb.ToString());
         }

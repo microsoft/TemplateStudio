@@ -14,6 +14,7 @@ using System;
 using System.IO;
 
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -54,8 +55,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             catch (Exception ex)
             {
-                var msg = $"The folder {sourceFile} can't be copied to {destFolder}. Error: {ex.Message}";
-                AppHealth.Current.Warning.TrackAsync(msg, ex).FireAndForget();
+                AppHealth.Current.Warning.TrackAsync(string.Format(StringRes.FsSafeCopyFileMessage, sourceFile, destFolder, ex.Message), ex).FireAndForget();
             }
         }
 
@@ -70,8 +70,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             catch (Exception ex)
             {
-                var msg = $"The file {filePath} can't be delete. Error: {ex.Message}";
-                AppHealth.Current.Warning.TrackAsync(msg, ex).FireAndForget();
+                AppHealth.Current.Warning.TrackAsync(string.Format(StringRes.FsSafeDeleteFileMessage, filePath, ex.Message), ex).FireAndForget();
             }
         }
 
@@ -87,8 +86,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             catch (Exception ex)
             {
-                var msg = $"The folder {sourceDir} can't be moved to {targetDir}. Error: {ex.Message}";
-                AppHealth.Current.Warning.TrackAsync(msg, ex).FireAndForget();
+                AppHealth.Current.Warning.TrackAsync(string.Format(StringRes.FsSafeMoveDirectoryMessage, sourceDir, targetDir, ex.Message), ex).FireAndForget();
             }
         }
 
@@ -103,8 +101,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             catch (Exception ex)
             {
-                var msg = $"The folder {dir} can't be delete. Error: {ex.Message}";
-                AppHealth.Current.Warning.TrackAsync(msg, ex).FireAndForget();
+                AppHealth.Current.Warning.TrackAsync(string.Format(StringRes.FsSafeDeleteDirectoryMessage, dir, ex.Message), ex).FireAndForget();
             }
         }
     }

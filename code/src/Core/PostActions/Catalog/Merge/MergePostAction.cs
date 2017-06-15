@@ -10,6 +10,7 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using Microsoft.Templates.Core.Resources;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -36,7 +37,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             if (string.IsNullOrEmpty(originalFilePath))
             {
-                throw new FileNotFoundException($"There is no merge target for file '{_config}'");
+                throw new FileNotFoundException(string.Format(StringRes.MergePostActionExecuteMessage, _config));
             }
 
             var source = File.ReadAllLines(originalFilePath).ToList();

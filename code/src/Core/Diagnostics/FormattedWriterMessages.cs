@@ -10,6 +10,7 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using Microsoft.Templates.Core.Resources;
 using System;
 using System.Diagnostics;
 
@@ -17,7 +18,10 @@ namespace Microsoft.Templates.Core.Diagnostics
 {
     public class FormattedWriterMessages
     {
-        public const string ExHeader = "===================== Exception Info =====================";
+        private static string exHeader = $"===================== {StringRes.ExceptionInfoString} =====================";
+        public static string ExHeader {
+            get { return exHeader; }
+        }
         public const string ExFooter = "----------------------------------------------------------";
         public static string LogEntryStart
         {

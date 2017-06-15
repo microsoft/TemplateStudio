@@ -10,6 +10,7 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using Microsoft.Templates.Core.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +43,7 @@ namespace Microsoft.Templates.Core
                 }
             }
 
-            throw new Exception("Unable to infer a name. Too much iterations");
+            throw new Exception(StringRes.NamingInferMessage);
         }
 
         public static ValidationResult Validate(string value, IEnumerable<Validator> validators)

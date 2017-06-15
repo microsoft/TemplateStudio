@@ -19,6 +19,7 @@ using System.Runtime.Remoting.Messaging;
 
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Gen
 {
@@ -35,7 +36,7 @@ namespace Microsoft.Templates.Core.Gen
             {
                 if (_currentContext == null)
                 {
-                    throw new InvalidOperationException("There is no context for the current gen execution, call Current_set first");
+                    throw new InvalidOperationException(StringRes.GenContextCurrentInvalidOperationMessage);
                 }
                 return _currentContext;
             }
@@ -55,7 +56,7 @@ namespace Microsoft.Templates.Core.Gen
             TelemetryService.Current.SetVisualStudioInfoToContext(shell.GetVsVersion(), shell.GetVsEdition(), shell.GetVsCultureInfo());
 
             AppHealth.Current.AddWriter(new ShellHealthWriter());
-            AppHealth.Current.Info.TrackAsync($"Configuration file loaded: {Configuration.LoadedConfigFile}").FireAndForget();
+            AppHealth.Current.Info.TrackAsync($"{StringRes.ConfigurationFileLoadedString}: {Configuration.LoadedConfigFile}").FireAndForget();
 
             string hostVersion = $"{wizardVersion.Major}.{wizardVersion.Minor}";
 

@@ -15,6 +15,7 @@ using System.IO;
 using System.Linq;
 
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -93,7 +94,7 @@ namespace Microsoft.Templates.Core.Locations
 
             var directory = new DirectoryInfo(currentContent);
             var expiration = directory.LastWriteTime.AddMinutes(Configuration.Current.VersionCheckingExpirationMinutes);
-            AppHealth.Current.Verbose.TrackAsync($"Current content expiration: {expiration.ToString()}").FireAndForget();
+            AppHealth.Current.Verbose.TrackAsync($"{StringRes.CurrentContentExpirationString}: {expiration.ToString()}").FireAndForget();
 
             return expiration <= DateTime.Now;
         }

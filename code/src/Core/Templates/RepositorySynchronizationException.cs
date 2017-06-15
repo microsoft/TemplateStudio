@@ -14,6 +14,7 @@ using System;
 using System.Runtime.Serialization;
 
 using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core
 {
@@ -32,7 +33,7 @@ namespace Microsoft.Templates.Core
         {
         }
 
-        public RepositorySynchronizationException(SyncStatus status, Exception innerException = null) : base($"Error syncing templates. Status: '{status}'", innerException)
+        public RepositorySynchronizationException(SyncStatus status, Exception innerException = null) : base($"{StringRes.RepositorySynchronizationExceptionMessage} '{status}'", innerException)
         {
         }
     }
