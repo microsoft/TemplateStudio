@@ -529,6 +529,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reorder (Ctrl + arrows).
+        /// </summary>
+        public static string SummaryDragAndDrop {
+            get {
+                return ResourceManager.GetString("SummaryDragAndDrop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Features.
         /// </summary>
         public static string SummaryFeaturesTitle {
@@ -583,6 +592,24 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Options menu.
+        /// </summary>
+        public static string SummaryOpenMenu {
+            get {
+                return ResourceManager.GetString("SummaryOpenMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string SummaryOpenMenuClose {
+            get {
+                return ResourceManager.GetString("SummaryOpenMenuClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string SummaryOptionDelete {
@@ -592,38 +619,11 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Move down.
-        /// </summary>
-        public static string SummaryOptionMoveDown {
-            get {
-                return ResourceManager.GetString("SummaryOptionMoveDown", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Move up.
-        /// </summary>
-        public static string SummaryOptionMoveUp {
-            get {
-                return ResourceManager.GetString("SummaryOptionMoveUp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Rename.
         /// </summary>
         public static string SummaryOptionRename {
             get {
                 return ResourceManager.GetString("SummaryOptionRename", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Set as home.
-        /// </summary>
-        public static string SummaryOptionSetAsHome {
-            get {
-                return ResourceManager.GetString("SummaryOptionSetAsHome", resourceCulture);
             }
         }
         

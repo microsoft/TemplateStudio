@@ -390,6 +390,14 @@ namespace Microsoft.Templates.UI.ViewModels
             }));
         }
 
+        private void UpdateSummaryTemplates()
+        {
+            foreach (var page in SavedPages)
+            {
+                page.UpdateAllowDragAndDrop(SavedPages.Count);
+            }
+        }
+
         private void SetupTemplatesFromLayout(string projectTypeName, string frameworkName)
         {
             var layout = GenComposer.GetLayoutTemplates(projectTypeName, frameworkName);
@@ -437,6 +445,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 SavedFeatures.Add(newItem);
             }
             UpdateTemplatesAvailability();
+            UpdateSummaryTemplates();
         }
     }
 }

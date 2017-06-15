@@ -187,6 +187,13 @@ namespace Microsoft.Templates.UI.ViewModels
             set => SetProperty(ref _itemFontWeight, value);
         }
 
+        private bool _allowDragAndDrop;
+        public bool AllowDragAndDrop
+        {
+            get => _allowDragAndDrop;
+            set => SetProperty(ref _allowDragAndDrop, value);
+        }
+
         private bool _isOpen;
         public bool IsOpen
         {
@@ -243,6 +250,7 @@ namespace Microsoft.Templates.UI.ViewModels
             RenameCommand = renameItemCommand;
             ConfirmRenameCommand = confirmRenameCommand;
             ValidateTemplateName = validateCurrentTemplateName;
+            AllowDragAndDrop = false;
         }
 
         private void OnColorTimerTick(object sender, EventArgs e)
@@ -259,6 +267,11 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                  IsOpen = false;
             }
+        }
+
+        public void UpdateAllowDragAndDrop(int pagesCount)
+        {
+            AllowDragAndDrop = TemplateType == TemplateType.Page && pagesCount > 1;
         }
 
         public void TryReleaseHome()

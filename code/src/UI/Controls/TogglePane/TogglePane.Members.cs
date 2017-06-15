@@ -42,15 +42,6 @@ namespace Microsoft.Templates.UI.Controls
         public static readonly DependencyProperty SecondaryViewTemplateProperty = DependencyProperty.Register("SecondaryViewTemplate", typeof(DataTemplate), typeof(TogglePane), new PropertyMetadata(null));
         #endregion
 
-        #region StartButtonTemplate
-        public DataTemplate StartButtonTemplate
-        {
-            get { return (DataTemplate)GetValue(StartButtonTemplateProperty); }
-            set { SetValue(StartButtonTemplateProperty, value); }
-        }
-        public static readonly DependencyProperty StartButtonTemplateProperty = DependencyProperty.Register("StartButtonTemplate", typeof(DataTemplate), typeof(TogglePane), new PropertyMetadata(null));
-        #endregion
-
         #region OpenButtonTemplate
         public DataTemplate OpenButtonTemplate
         {
@@ -86,6 +77,16 @@ namespace Microsoft.Templates.UI.Controls
                 control.UpdateOpenStatus((bool)e.NewValue, (bool)e.OldValue);
             }
         }
+        #endregion
+
+        #region AllowDragAndDrop
+        public bool AllowDragAndDrop
+        {
+            get { return (bool)GetValue(AllowDragAndDropProperty); }
+            set { SetValue(AllowDragAndDropProperty, value); }
+        }
+
+        public static readonly DependencyProperty AllowDragAndDropProperty = DependencyProperty.Register("AllowDragAndDrop", typeof(bool), typeof(TogglePane), new PropertyMetadata(false));
         #endregion
     }
 }
