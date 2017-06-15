@@ -18,11 +18,11 @@ namespace Microsoft.Templates.Core.Test
 {
     public class NamingFixture
     {
-        public NamingFixture()
+        public void InitializeFixture(string language)
         {
             var source = new UnitTestsTemplatesSource();
 
-            GenContext.Bootstrap(source, new FakeGenShell());
+            GenContext.Bootstrap(source, new FakeGenShell(), language);
 
             CodeGen.Initialize(source.Id, "0.0");
 

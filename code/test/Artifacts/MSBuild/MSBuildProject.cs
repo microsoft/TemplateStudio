@@ -135,6 +135,17 @@ namespace Microsoft.Templates.Test.Artifacts.MSBuild
                     return VsItemType.Compiled;
                 }
             }
+            else if (ext == ".vb")
+            {
+                if (fileName.ToLower().Contains(".xaml.vb"))
+                {
+                    return VsItemType.CompiledWithDependant;
+                }
+                else
+                {
+                    return VsItemType.Compiled;
+                }
+            }
             else if (ext == ".xaml")
             {
                 return VsItemType.XamlPage;

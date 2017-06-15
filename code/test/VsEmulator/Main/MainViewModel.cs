@@ -30,10 +30,12 @@ namespace Microsoft.Templates.VsEmulator.Main
     public class MainViewModel : Observable, IContextProvider
     {
         private readonly MainView _host;
+        private readonly string _language;
 
-        public MainViewModel(MainView host)
+        public MainViewModel(MainView host, string language)
         {
             _host = host;
+            _language = language;
             _wizardVersion = "0.0.0.0";
             _templatesVersion = "0.0.0.0";
         }
@@ -234,7 +236,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             GenContext.Bootstrap(new LocalTemplatesSource(WizardVersion, TemplatesVersion)
                 , new FakeGenShell(msg => SetState(msg), l => AddLog(l), _host)
-                , new Version(WizardVersion));
+                , new Version(WizardVersion)
+                , _language);
         }
 
         private void CleanUpContent()

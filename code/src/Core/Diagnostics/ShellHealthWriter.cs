@@ -44,7 +44,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async SystemTasks.Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
         {
-            if (GenContext.ToolBox.Shell != null)
+            if (GenContext.ToolBox?.Shell != null)
             {
                 await SafeTrackAsync(() =>
                 {

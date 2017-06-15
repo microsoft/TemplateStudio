@@ -27,10 +27,7 @@ namespace Microsoft.Templates.Core.Gen
         private static IContextProvider _currentContext;
 
         public static GenToolBox ToolBox { get; private set; }
-        public static bool IsInitialized { get; private set; }
-
-        // Defaulting this to C# to keep all preVB code & tests happy
-        public static string Language { get; set; } = "C#";
+        public static string InitializedLanguage { get; private set; }
 
         public static IContextProvider Current
         {
@@ -48,12 +45,12 @@ namespace Microsoft.Templates.Core.Gen
             }
         }
 
-        public static void Bootstrap(TemplatesSource source, GenShell shell)
+        public static void Bootstrap(TemplatesSource source, GenShell shell, string language)
         {
-            Bootstrap(source, shell, GetWizardVersionFromAssembly());
+            Bootstrap(source, shell, GetWizardVersionFromAssembly(), language);
         }
 
-        public static void Bootstrap(TemplatesSource source, GenShell shell, Version wizardVersion)
+        public static void Bootstrap(TemplatesSource source, GenShell shell, Version wizardVersion, string language)
         {
             TelemetryService.Current.SetVisualStudioInfoToContext(shell.GetVsVersion(), shell.GetVsEdition(), shell.GetVsCultureInfo());
 
@@ -63,11 +60,11 @@ namespace Microsoft.Templates.Core.Gen
             string hostVersion = $"{wizardVersion.Major}.{wizardVersion.Minor}";
 
             CodeGen.Initialize(source.Id, hostVersion);
-            var repository = new TemplatesRepository(source, wizardVersion);
+            var repository = new TemplatesRepository(source, wizardVersion, language);
 
             ToolBox = new GenToolBox(repository, shell);
 
-            IsInitialized = true;
+            InitializedLanguage = language;
         }
 
         private static Version GetWizardVersionFromAssembly()

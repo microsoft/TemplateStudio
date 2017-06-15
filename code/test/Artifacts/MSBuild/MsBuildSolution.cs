@@ -39,10 +39,13 @@ namespace Microsoft.Templates.Test.Artifacts.MSBuild
 		{0}.Release|x86.Deploy.0 = Release|x86
 ";
 
-        private const string ProjectTemplate = @"Project(""{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"") = ""{name}"", ""{name}\{name}.csproj"", ""{id}""
+
+        private const string ProjectTemplateCS = @"Project(""{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"") = ""{name}"", ""{name}\{name}.csproj"", ""{id}""
 EndProject
 ";
-
+        private const string ProjectTemplateVB = @"Project(""{7CF740F7-735F-48EA-8B7B-3FFA4902371C}"") = ""{name}"", ""{name}\{name}.vbproj"", ""{id}""
+EndProject
+";
         private readonly string _path;
 
         private MSBuildSolution(string path)
@@ -58,14 +61,15 @@ EndProject
             return new MSBuildSolution(path);
         }
 
-        public void AddProjectToSolution(string projectName, string projectGuid)
+        public void AddProjectToSolution(string projectName, string projectGuid, bool isCSharp)
         {
             var slnContent = File.ReadAllText(_path);
 
             if (slnContent.IndexOf(projectName) == -1)
             {
                 var globalIndex = slnContent.IndexOf("Global");
-                var projectContent = ProjectTemplate
+                var projectTemplate = isCSharp ? ProjectTemplateCS : ProjectTemplateVB;
+                var projectContent = projectTemplate
                                             .Replace("{name}", projectName)
                                             .Replace("{id}", projectGuid);
 

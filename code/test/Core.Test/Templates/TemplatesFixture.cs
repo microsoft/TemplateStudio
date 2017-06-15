@@ -18,16 +18,16 @@ namespace Microsoft.Templates.Core.Test
 {
     public class TemplatesFixture
     {
-        public TemplatesRepository Repository { get; }
+        public TemplatesRepository Repository { get; private set; }
 
-        public TemplatesFixture()
+        public void InitializeFixture(string language)
         {
             var source = new UnitTestsTemplatesSource();
 
             CodeGen.Initialize(source.Id, "0.0");
 
-            Repository = new TemplatesRepository(source, Version.Parse("0.0.0.0"));
-            
+            Repository = new TemplatesRepository(source, Version.Parse("0.0.0.0"), language);
+
             Repository.SynchronizeAsync(true).Wait();
         }
     }

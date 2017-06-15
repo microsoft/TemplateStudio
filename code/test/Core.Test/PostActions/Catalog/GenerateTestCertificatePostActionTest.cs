@@ -11,6 +11,8 @@
 // ******************************************************************
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 
 using Microsoft.Templates.Core.Gen;
@@ -27,10 +29,10 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         public string ProjectName { get; set; }
         public string OutputPath { get; set; }
 
-        [Fact]
-        public void Execute_Ok()
+        [Theory, MemberData("GetAllLanguages"), Trait("Type", "ProjectGeneration")]
+        public void Execute_Ok(string language)
         {
-            GenContext.Bootstrap(new UnitTestsTemplatesSource(), new FakeGenShell());
+            GenContext.Bootstrap(new UnitTestsTemplatesSource(), new FakeGenShell(), language);
 
             var projectName = "test";
 
@@ -38,7 +40,6 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             OutputPath = @".\TestData\tmp";
 
             GenContext.Current = this;
-
 
             Directory.CreateDirectory(GenContext.Current.OutputPath);
             File.Copy(Path.Combine(Environment.CurrentDirectory, "TestData\\TestProject\\Test.csproj"), Path.Combine(GenContext.Current.OutputPath, "Test.csproj"), true);
@@ -52,6 +53,12 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Assert.True(File.Exists(certFilePath));
 
             File.Delete(certFilePath);
+        }
+
+        public static IEnumerable<object[]> GetAllLanguages()
+        {
+            yield return new object[] { "C#" };
+            yield return new object[] { "VisualBasic" };
         }
     }
 }

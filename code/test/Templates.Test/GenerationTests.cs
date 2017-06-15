@@ -12,10 +12,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text.RegularExpressions;
 
 using Microsoft.TemplateEngine.Abstractions;
@@ -43,15 +45,17 @@ namespace Microsoft.Templates.Test
         public GenerationTests(GenerationTestsFixture fixture)
         {
             _fixture = fixture;
-            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
-            GenContext.Current = this;
         }
 
-
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
-        public async void GenerateEmptyProject(string projectType, string framework)
+        public async void GenerateEmptyProject(string projectType, string framework, string language)
         {
-            var projectTemplate = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework)).FirstOrDefault();
+            SetupFixtureAndContext(language);
+
+            var projectTemplate = _fixture.Templates
+                .FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project
+                                  && t.GetProjectTypeList().Contains(projectType)
+                                  && t.GetFrameworkList().Contains(framework));
             var projectName = $"{projectType}{framework}";
 
             ProjectName = projectName;
@@ -79,12 +83,13 @@ namespace Microsoft.Templates.Test
             Directory.Delete(outputPath, true);
         }
 
-
         [Theory, MemberData("GetPageAndFeatureTemplates"), Trait("Type", "OneByOneItemGeneration")]
-        public async void GenerateProjectWithIsolatedItems(string itemName, string projectType, string framework, string itemId)
+        public async void GenerateProjectWithIsolatedItems(string itemName, string projectType, string framework, string itemId, string language)
         {
-            var projectTemplate = GenerationTestsFixture.Templates.FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
-            var itemTemplate = GenerationTestsFixture.Templates.FirstOrDefault(t => t.Identity == itemId);
+            SetupFixtureAndContext(language);
+
+            var projectTemplate = _fixture.Templates.FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
+            var itemTemplate = _fixture.Templates.FirstOrDefault(t => t.Identity == itemId);
             var finalName = itemTemplate.GetDefaultName();
             var validators = new List<Validator>()
             {
@@ -125,9 +130,11 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
-        public async void GenerateAllPagesAndFeatures(string projectType, string framework)
+        public async void GenerateAllPagesAndFeatures(string projectType, string framework, string language)
         {
-            var targetProjectTemplate = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework)).FirstOrDefault();
+            SetupFixtureAndContext(language);
+
+            var targetProjectTemplate = _fixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework)).FirstOrDefault();
 
             var projectName = $"{projectType}{framework}All";
 
@@ -159,9 +166,11 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
-        public async void GenerateAllPagesAndFeaturesRandomNames(string projectType, string framework)
+        public async void GenerateAllPagesAndFeaturesRandomNames(string projectType, string framework, string language)
         {
-            var targetProjectTemplate = GenerationTestsFixture.Templates.FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework) && !t.GetIsHidden());
+            SetupFixtureAndContext(language);
+
+            var targetProjectTemplate = _fixture.Templates.FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework) && !t.GetIsHidden());
             var projectName = $"{projectType}{framework}AllRandom";
 
             ProjectName = projectName;
@@ -191,11 +200,19 @@ namespace Microsoft.Templates.Test
             Directory.Delete(outputPath, true);
         }
 
+        public void SetupFixtureAndContext(string language)
+        {
+            _fixture.Initialize(language);
+
+            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(), language);
+            GenContext.Current = this;
+        }
+
         private IEnumerable<ITemplateInfo> GetTemplates(string framework, TemplateType templateType)
         {
-            return GenerationTestsFixture.Templates
-                                              .Where(t => t.GetFrameworkList().Contains(framework) &&
-                                              t.GetTemplateType() == templateType);
+            return _fixture.Templates
+                           .Where(t => t.GetFrameworkList().Contains(framework)
+                                    && t.GetTemplateType() == templateType);
         }
 
         private void AddLayoutItems(UserSelection userSelection, ITemplateInfo projectTemplate)
@@ -263,18 +280,25 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetProjectTemplates()
         {
-            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
-            var projectTemplates = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project);
-
-            foreach (var projectTemplate in projectTemplates)
+            foreach (var lang in new[] { "C#", "VisualBasic" })
             {
-                var projectTypeList = projectTemplate.GetProjectTypeList();
-                foreach (var projectType in projectTypeList)
+                var tempFixture = new GenerationTestsFixture();
+                tempFixture.Initialize(lang);
+
+                GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(), lang);
+                var projectTemplates =
+                    tempFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project);
+
+                foreach (var projectTemplate in projectTemplates)
                 {
-                    var frameworks = GenComposer.GetSupportedFx(projectType);
-                    foreach (var framework in frameworks)
+                    var projectTypeList = projectTemplate.GetProjectTypeList();
+                    foreach (var projectType in projectTypeList)
                     {
-                        yield return new object[] { projectType, framework };
+                        var frameworks = GenComposer.GetSupportedFx(projectType);
+                        foreach (var framework in frameworks)
+                        {
+                            yield return new object[] { projectType, framework, lang };
+                        }
                     }
                 }
             }
@@ -282,24 +306,36 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetPageAndFeatureTemplates()
         {
-            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
-
-            var projectTemplates = GenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project);
-
-            foreach (var projectTemplate in projectTemplates)
+            foreach (var lang in new[] { "C#", "VisualBasic" })
             {
-                var projectTypeList = projectTemplate.GetProjectTypeList();
-                foreach (var projectType in projectTypeList)
+                var tempFixture = new GenerationTestsFixture();
+                tempFixture.Initialize(lang);
+
+                GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(), lang);
+
+                var projectTemplates =
+                    tempFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project);
+
+                foreach (var projectTemplate in projectTemplates)
                 {
-                    var frameworks = GenComposer.GetSupportedFx(projectType);
-
-                    foreach (var framework in frameworks)
+                    var projectTypeList = projectTemplate.GetProjectTypeList();
+                    foreach (var projectType in projectTypeList)
                     {
-                        var itemTemplates = GenerationTestsFixture.Templates.Where(t => t.GetFrameworkList().Contains(framework) && t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature && !t.GetIsHidden());
+                        var frameworks = GenComposer.GetSupportedFx(projectType);
 
-                        foreach (var itemTemplate in itemTemplates)
+                        foreach (var framework in frameworks)
                         {
-                            yield return new object[] { itemTemplate.Name, projectType, framework, itemTemplate.Identity };
+                            var itemTemplates =
+                                tempFixture.Templates.Where(
+                                    t => t.GetFrameworkList().Contains(framework) &&
+                                         t.GetTemplateType() == TemplateType.Page ||
+                                         t.GetTemplateType() == TemplateType.Feature && !t.GetIsHidden());
+
+                            foreach (var itemTemplate in itemTemplates)
+                            {
+                                yield return new object[]
+                                    { itemTemplate.Name, projectType, framework, itemTemplate.Identity, lang };
+                            }
                         }
                     }
                 }

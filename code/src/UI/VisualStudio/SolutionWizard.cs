@@ -25,7 +25,7 @@ using System.IO;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
-    public class SolutionWizard : IWizard, IContextProvider
+    public abstract class SolutionWizard : IWizard, IContextProvider
     {
         private UserSelection _userSelection;
         private Dictionary<string, string> _replacementsDictionary;
@@ -34,14 +34,14 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string OutputPath => new DirectoryInfo(_replacementsDictionary["$destinationdirectory$"]).FullName;
 
-        public SolutionWizard()
+        protected void Initialize(string language)
         {
-            if (!GenContext.IsInitialized)
+            if (GenContext.InitializedLanguage != language)
             {
 #if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell());
+                GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell(), language);
 #else
-                GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell());
+                GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell(), language);
 #endif
                 }
         }
@@ -69,7 +69,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private static void PostGenerationActions()
         {
-
             GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.RestoringMessage);
             GenContext.ToolBox.Shell.RestorePackages();
 

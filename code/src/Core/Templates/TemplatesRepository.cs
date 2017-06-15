@@ -28,6 +28,7 @@ namespace Microsoft.Templates.Core
 {
     public class TemplatesRepository
     {
+        private readonly string _language;
         private const string Separator = "|";
         private const string LicensesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
         private const string Catalog = "_catalog";
@@ -38,8 +39,9 @@ namespace Microsoft.Templates.Core
         public string CurrentContentFolder { get => Sync?.CurrentContentFolder; }
         public string TemplatesVersion { get => Sync.CurrentContentVersion?.ToString() ?? String.Empty; }
 
-        public TemplatesRepository(TemplatesSource source, Version wizardVersion)
+        public TemplatesRepository(TemplatesSource source, Version wizardVersion, string language)
         {
+            _language = language;
             WizardVersion = wizardVersion.ToString();
             Sync = new TemplatesSynchronization(source, wizardVersion);
         }
@@ -51,7 +53,7 @@ namespace Microsoft.Templates.Core
 
         public IEnumerable<ITemplateInfo> GetAll()
         {
-            var queryResult = CodeGen.Instance.Cache.List(false, WellKnownSearchFilters.LanguageFilter(GenContext.Language));
+            var queryResult = CodeGen.Instance.Cache.List(false, WellKnownSearchFilters.LanguageFilter(_language));
 
             return queryResult
                         .Where(r => r.IsMatch)
@@ -99,7 +101,7 @@ namespace Microsoft.Templates.Core
             var metadataFile = Path.Combine(folderName, $"{type}.json");
             var metadata = JsonConvert.DeserializeObject<List<MetadataInfo>>(File.ReadAllText(metadataFile));
 
-            metadata.RemoveAll(m => !m.Languages.Contains(GenContext.Language));
+            metadata.RemoveAll(m => !m.Languages.Contains(_language));
 
             metadata.ForEach(m => SetMetadataDescription(m, folderName, type));
             metadata.ForEach(m => SetMetadataIcon(m, folderName, type));

@@ -79,7 +79,7 @@ namespace Microsoft.Templates.Test.Artifacts
             var msbuildProj = MsBuildProject.Load(projectFullPath);
             var solutionFile = MSBuildSolution.Create(SolutionPath);
 
-            solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid);
+            solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid, projectFullPath.EndsWith(".csproj"));
         }
 
         public override string GetActiveNamespace()

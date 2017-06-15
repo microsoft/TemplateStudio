@@ -9,7 +9,6 @@
 // TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
-using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -17,7 +16,7 @@ namespace Microsoft.Templates.UI.VisualStudio
     {
         public SolutionWizardCS()
         {
-            GenContext.Language = "C#";
+            Initialize("C#");
         }
     }
 }

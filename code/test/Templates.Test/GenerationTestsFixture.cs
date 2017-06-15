@@ -23,19 +23,22 @@ namespace Microsoft.Templates.Test
 {
     public sealed class GenerationTestsFixture : IDisposable
     {
-        internal string TestRunPath = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\{DateTime.Now.ToString("dd_hhmm")}\\";
+        internal string TestRunPath = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\{DateTime.Now.ToString("dd_HHmm")}\\";
         internal string TestProjectsPath => Path.GetFullPath(Path.Combine(TestRunPath, "Proj"));
-        
-        private static readonly Lazy<TemplatesRepository> _repos = new Lazy<TemplatesRepository>(() => CreateNewRepos(), true);
-        public static IEnumerable<ITemplateInfo> Templates => _repos.Value.GetAll();
 
-        private static TemplatesRepository CreateNewRepos()
+        private Lazy<TemplatesRepository> _repos; // = new Lazy<TemplatesRepository>(() => CreateNewRepos(), true);
+
+        private string _language;
+
+        public IEnumerable<ITemplateInfo> Templates => _repos.Value.GetAll();
+
+        private TemplatesRepository CreateNewRepos()
         {
             var source = new LocalTemplatesSource();
 
             CodeGen.Initialize(source.Id, "0.0");
 
-            var repos = new TemplatesRepository(source, Version.Parse("0.0.0.0"));
+            var repos = new TemplatesRepository(source, Version.Parse("0.0.0.0"), _language);
 
             repos.SynchronizeAsync(true).Wait();
 
@@ -50,11 +53,17 @@ namespace Microsoft.Templates.Test
         {
             if (Directory.Exists(TestRunPath))
             {
-                if (!Directory.Exists(TestProjectsPath) || Directory.EnumerateDirectories(TestProjectsPath).Count() == 0)
+                if (!Directory.Exists(TestProjectsPath) || Directory.EnumerateDirectories(TestProjectsPath).Any())
                 {
                     Directory.Delete(TestRunPath, true);
                 }
             }
+        }
+
+        public void Initialize(string language)
+        {
+            _language = language;
+            _repos = new Lazy<TemplatesRepository>(CreateNewRepos, true);
         }
     }
 }

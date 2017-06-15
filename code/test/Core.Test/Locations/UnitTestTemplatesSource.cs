@@ -21,7 +21,7 @@ namespace Microsoft.Templates.Core.Test.Locations
     {
         private string LocalVersion = "0.0.0.0";
 
-        public override string Id { get => "UnitTest"; }
+        public override string Id => "UnitTest";
 
         public override void Acquire(string targetFolder)
         {
@@ -29,11 +29,13 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             Copy($@"..\..\TestData\{SourceFolderName}", targetVersionFolder);
         }
+
         public override void ExtractFromMstx(string mstxFilePath, string targetFolder)
         {
             //Actually we do not extract from an Mstx, we want to copy local test templates to work with latest local content
             Acquire(targetFolder);
         }
+
         protected static void Copy(string sourceFolder, string targetFolder)
         {
             Fs.SafeDeleteDirectory(targetFolder);

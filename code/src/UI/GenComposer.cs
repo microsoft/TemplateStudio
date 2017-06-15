@@ -168,10 +168,9 @@ namespace Microsoft.Templates.UI
                 foreach (var compositionItem in compositionCatalog)
                 {
                     if (compositionItem.query.Match(genItem.Template, context))
-                    {                        
+                    {
                         AddTemplate(genItem, compositionQueue, compositionItem.template, userSelection);
                     }
-
                 }
             }
 
