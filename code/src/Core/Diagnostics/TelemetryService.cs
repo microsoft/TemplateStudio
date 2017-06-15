@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.Extensibility;
+using VsTelem = Microsoft.VisualStudio.Telemetry;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
@@ -151,21 +152,21 @@ namespace Microsoft.Templates.Core.Diagnostics
             string vsManifestId = string.Empty;
             try
             {
-                if (Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession != null)
+                if (VsTelem.TelemetryService.DefaultSession != null)
                 {
-                    var isOptedIn = Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession.IsOptedIn;
+                    var isOptedIn = VsTelem.TelemetryService.DefaultSession.IsOptedIn;
                     Trace.TraceInformation($"Vs Telemetry IsOptedIn: {isOptedIn}");
-                    vsEdition = Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.SkuName");
-                    vsVersion = Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.ExeVersion");
-                    vsCulture = Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.Locale.ProductLocaleName");
-                    vsManifestId = Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.ManifestId");
+                    vsEdition = VsTelem.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.SkuName");
+                    vsVersion = VsTelem.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.ExeVersion");
+                    vsCulture = VsTelem.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.Locale.ProductLocaleName");
+                    vsManifestId = VsTelem.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.ManifestId");
 
                     return isOptedIn;
                 }
                 else
                 {
                     // Not running in VS so we assume we are in the emulator => we allow telemetry
-                    Trace.TraceInformation($"Checking VsTelemetry IsOptedIn value Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession is Null.");
+                    Trace.TraceInformation($"Checking VsTelemetry IsOptedIn value VsTelem.TelemetryService.DefaultSession is Null.");
                     result = true;
                 }
             }
@@ -206,7 +207,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         private string GetVsProjectId()
         {
-             var session = Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession;
+             var session = VsTelem.TelemetryService.DefaultSession;
             return string.Empty;
         }
 
@@ -229,23 +230,26 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             try
             {
-                VisualStudio.Telemetry.TelemetryResult result = success ? VisualStudio.Telemetry.TelemetryResult.Success : VisualStudio.Telemetry.TelemetryResult.Failure;
+                VsTelem.TelemetryResult result = success ? VsTelem.TelemetryResult.Success : VsTelem.TelemetryResult.Failure;
 
-                VisualStudio.Telemetry.UserTaskEvent e = new VisualStudio.Telemetry.UserTaskEvent(VsTelemetryEvents.UwpProjectGen, result, "Project generated");
+                VsTelem.UserTaskEvent e = new VsTelem.UserTaskEvent(VsTelemetryEvents.ProjectGen, result, "Project generated");
 
                 foreach (var key in properties.Keys)
                 {
-                    string renamedKey = key.Replace(TelemetryTracker.PropertiesPrefix, TelemetryTracker.PropertiesPrefix + ".");
-                    e.Properties[renamedKey] = properties[key];
+                    string renamedKey = key.Replace(TelemetryEvents.Prefix, VsTelemetryEvents.Prefix);
+                    if (!string.IsNullOrEmpty(properties[key]))
+                    {
+                        e.Properties[renamedKey] = properties[key];
+                    }
                 }
 
                 foreach (var key in metrics.Keys)
                 {
-                    string renamedKey = key.Replace(TelemetryTracker.PropertiesPrefix, TelemetryTracker.PropertiesPrefix + ".");
-                    e.Properties[renamedKey] = metrics[key];
+                    string renamedKey = key.Replace(TelemetryEvents.Prefix, TelemetryEvents.Prefix.ToUpper() + ".");
+                    e.Properties[renamedKey] = new VsTelem.TelemetryMetricProperty(metrics[key]);
                 }
 
-                VisualStudio.Telemetry.TelemetryService.DefaultSession.PostEvent(e);
+                VsTelem.TelemetryService.DefaultSession.PostEvent(e);
             }
             catch (Exception ex)
             {

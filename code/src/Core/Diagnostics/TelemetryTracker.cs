@@ -21,8 +21,6 @@ namespace Microsoft.Templates.Core.Diagnostics
 {
     public class TelemetryTracker : IDisposable
     {
-        public const string PropertiesPrefix = "Wts";
-
         public TelemetryTracker()
         {
         }
