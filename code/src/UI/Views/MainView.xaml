@@ -39,21 +39,40 @@
             </DataTemplate>
 
             <DataTemplate x:Key="ProjectTemplatesSummaryItemTemplate">
-                <controls:TogglePane TogglePaneContent="{Binding}" IsOpen="{Binding IsOpen}" Style="{StaticResource TogglePaneStyle}">
-                    <controls:TogglePane.ButtonTemplate>
+                <controls:TogglePane TogglePaneContent="{Binding}" IsOpen="{Binding IsOpen}" Style="{StaticResource TogglePaneStyle}" Width="263">
+                    <controls:TogglePane.StartButtonTemplate>
                         <DataTemplate>
-                            <Button Style="{StaticResource SettingsButtonStyle}" Command="{Binding OpenCommand}" CommandParameter="{Binding}" Focusable="True">
+                            <!--ToolTip="{x:Static res:StringRes.SummaryOptionRename}"-->
+                            <Button Margin="{StaticResource SmallLeftMargin}" Style="{StaticResource SettingsButtonStyle}" Focusable="True">
                                 <Button.Content>
-                                    <TextBlock Text="{Binding OpenIcon}" FontSize="18" Style="{StaticResource RoundButtonTextStyle}" Focusable="False"/>
+                                    <TextBlock Text="&#xE700;" FontSize="12" Style="{StaticResource RoundButtonTextStyle}"/>
                                 </Button.Content>
                             </Button>
                         </DataTemplate>
-                    </controls:TogglePane.ButtonTemplate>
+                    </controls:TogglePane.StartButtonTemplate>
+                    <controls:TogglePane.OpenButtonTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource SettingsButtonStyle}" Command="{Binding OpenCommand}" CommandParameter="{Binding}" Focusable="True">
+                                <Button.Content>
+                                    <TextBlock Text="&#xE713;" FontSize="18" Style="{StaticResource RoundButtonTextStyle}"/>
+                                </Button.Content>
+                            </Button>
+                        </DataTemplate>
+                    </controls:TogglePane.OpenButtonTemplate>
+                    <controls:TogglePane.CloseButtonTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource SettingsButtonStyle}" Command="{Binding OpenCommand}" CommandParameter="{Binding}" Focusable="True" Background="{StaticResource UIBlue}" Foreground="{StaticResource UIWhite}" Margin="1,1,0,1">
+                                <Button.Content>
+                                    <TextBlock Text="&#xE761;" FontSize="18" Style="{StaticResource RoundButtonTextStyle}"/>
+                                </Button.Content>
+                            </Button>
+                        </DataTemplate>
+                    </controls:TogglePane.CloseButtonTemplate>
                     <controls:TogglePane.MainViewTemplateSelector>
                         <templateSelectors:SummaryItemTemplateSelector>
                             <templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
                                 <DataTemplate>
-                                    <Grid Height="30" Focusable="False">
+                                    <Grid Height="30" Focusable="False" Margin="{StaticResource SmallLeftMargin}">
                                         <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
                                         <controls:TextBoxEx Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}">
                                             <controls:TextBoxEx.InputBindings>
@@ -66,7 +85,7 @@
                             </templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
                             <templateSelectors:SummaryItemTemplateSelector.CommunityTemplate>
                                 <DataTemplate>
-                                    <Grid Height="50">
+                                    <Grid Height="50" Margin="{StaticResource SmallLeftMargin}">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="*" />
@@ -90,72 +109,26 @@
                             </templateSelectors:SummaryItemTemplateSelector.CommunityTemplate>
                         </templateSelectors:SummaryItemTemplateSelector>
                     </controls:TogglePane.MainViewTemplateSelector>
-                    <controls:TogglePane.SecondaryViewTemplateSelector>
-                        <templateSelectors:SummaryItemOptionsTemplateSelector>
-                            <templateSelectors:SummaryItemOptionsTemplateSelector.PageOptionsTemplate>
-                                <DataTemplate>
-                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Focusable="False" KeyboardNavigation.TabNavigation="Local">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="1" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="38" />
-                                            <ColumnDefinition Width="38" />
-                                            <ColumnDefinition Width="38" />
-                                        </Grid.ColumnDefinitions>
-                                        <Grid Grid.Column="0" Width="1" Background="{StaticResource UIBlack}" Margin="0,5" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
-                                        <Button Grid.Column="2" Style="{StaticResource ButtonImageStyle}" Command="{Binding SetHomeCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanSetHome}" ToolTip="{x:Static res:StringRes.SummaryOptionSetAsHome}" Focusable="{Binding IsOpen}">
-                                            <Button.Content>
-                                                <TextBlock Text="&#xE80F;" Style="{StaticResource RoundButtonTextStyle}" FontSize="18"/>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Grid.Column="3" Style="{StaticResource ButtonImageStyle}" Command="{Binding RenameCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanChooseItemName}" ToolTip="{x:Static res:StringRes.SummaryOptionRename}" Focusable="{Binding IsOpen}">
-                                            <Button.Content>
-                                                <TextBlock Text="&#xE70F;" Style="{StaticResource RoundButtonTextStyle}" FontSize="17"/>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Grid.Column="4" Style="{StaticResource ButtonImageStyle}" Command="{Binding RemoveCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanSetHome}" ToolTip="{x:Static res:StringRes.SummaryOptionDelete}" Focusable="{Binding IsOpen}">
-                                            <Button.Content>
-                                                <TextBlock Text="&#xE894;" Style="{StaticResource RoundButtonTextStyle}" FontSize="14"/>
-                                            </Button.Content>
-                                        </Button>
-                                        <!--<Button Grid.Column="4" Style="{StaticResource ButtonImageStyle}" Command="{Binding MoveUpCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanMoveUp}" ToolTip="{x:Static res:StringRes.SummaryOptionMoveUp}" Focusable="{Binding IsOpen}">
-                                            <Button.Content>
-                                                <TextBlock Text="&#xE74A;" Style="{StaticResource RoundButtonTextStyle}" FontSize="15"/>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Grid.Column="5" Style="{StaticResource ButtonImageStyle}" Command="{Binding MoveDownCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanMoveDown}" ToolTip="{x:Static res:StringRes.SummaryOptionMoveDown}" Focusable="{Binding IsOpen}">
-                                            <Button.Content>
-                                                <TextBlock Text="&#xE74B;" Style="{StaticResource RoundButtonTextStyle}" FontSize="15"/>
-                                            </Button.Content>
-                                        </Button>-->
-                                    </Grid>
-                                </DataTemplate>
-                            </templateSelectors:SummaryItemOptionsTemplateSelector.PageOptionsTemplate>
-                            <templateSelectors:SummaryItemOptionsTemplateSelector.FeatureOptionsTemplate>
-                                <DataTemplate>
-                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Focusable="False">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Button Grid.Column="3" Style="{StaticResource ButtonImageStyle}" Command="{Binding RenameCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanChooseItemName}" ToolTip="{x:Static res:StringRes.SummaryOptionRename}" Focusable="{Binding IsOpen}">
-                                            <Button.Content>
-                                                <TextBlock Text="&#xE8AC;" Style="{StaticResource RoundButtonTextStyle}"/>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Grid.Column="4" Style="{StaticResource ButtonImageStyle}" Command="{Binding RemoveCommand}" CommandParameter="{Binding}" ToolTip="{x:Static res:StringRes.SummaryOptionDelete}" Focusable="{Binding IsOpen}">
-                                            <Button.Content>
-                                                <TextBlock Text="&#xE894;" Style="{StaticResource RoundButtonTextStyle}"/>
-                                            </Button.Content>
-                                        </Button>
-                                    </Grid>
-                                </DataTemplate>
-                            </templateSelectors:SummaryItemOptionsTemplateSelector.FeatureOptionsTemplate>
-                        </templateSelectors:SummaryItemOptionsTemplateSelector>
-                    </controls:TogglePane.SecondaryViewTemplateSelector>
+                    <controls:TogglePane.SecondaryViewTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Focusable="False" KeyboardNavigation.TabNavigation="Local">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="38" />
+                                    <ColumnDefinition Width="38" />
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="0" Style="{StaticResource ButtonImageStyle}" Command="{Binding RenameCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanChooseItemName}" ToolTip="{x:Static res:StringRes.SummaryOptionRename}" Focusable="{Binding IsOpen}">
+                                    <Button.Content>
+                                        <TextBlock Text="&#xE70F;" Style="{StaticResource RoundButtonTextStyle}" FontSize="17"/>
+                                    </Button.Content>
+                                </Button>
+                                <Button Grid.Column="1" Style="{StaticResource ButtonImageStyle}" Command="{Binding RemoveCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanSetHome}" ToolTip="{x:Static res:StringRes.SummaryOptionDelete}" Focusable="{Binding IsOpen}">
+                                    <Button.Content>
+                                        <TextBlock Text="&#xE74D;" Style="{StaticResource RoundButtonTextStyle}" FontSize="14"/>
+                                    </Button.Content>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </controls:TogglePane.SecondaryViewTemplate>
                 </controls:TogglePane>
             </DataTemplate>
 
@@ -214,7 +187,7 @@
             <Grid Grid.Column="1">
                 <ScrollViewer Padding="0,40,0,65" Visibility="{Binding LoadedContentVisibility}">
                     <StackPanel Margin="{StaticResource MediumLeftMargin}">
-
+                        
                         <StackPanel Margin="7,0,0,0" Orientation="Horizontal">
                             <TextBlock Style="{StaticResource TextSummaryIconPoint}" />
                             <StackPanel Margin="{StaticResource MediumLeftMargin}" DataContext="{Binding ProjectSetup.SelectedProjectType}">
@@ -268,13 +241,12 @@
                             HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}"
                             IsExpanded="True">
                             <Grid>
-                                <ItemsControl
-                                    KeyboardNavigation.TabNavigation="Local"
-                                    Focusable="False"
-                                    Margin="{StaticResource ExtraBigLeftMargin}"
+                                <ListView
+                                    x:Name="summaryPagesListView"
                                     ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}"
                                     ItemsSource="{Binding ProjectTemplates.SavedPages}"
-                                    Tag="AllowClick" />
+                                    SelectionMode="Single"
+                                    Style="{StaticResource SummaryListViewStyle}" Tag="AllowClick" />
                                 <TextBlock
                                     Margin="27,0,0,0"
                                     Text="{x:Static res:StringRes.SummaryNoPages}"

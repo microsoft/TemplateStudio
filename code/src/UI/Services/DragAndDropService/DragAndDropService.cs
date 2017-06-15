@@ -1,5 +1,5 @@
 ﻿using Microsoft.Templates.UI.Extensions;
-using System;
+
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -163,7 +163,7 @@ namespace Microsoft.Templates.UI.Services
                             if (ProcessDrop != null)
                             {
                                 // Let the wizard process the drop.
-                                ProcessDropEventArgs<T> args = new ProcessDropEventArgs<T>(itemsSource, data, oldIndex, newIndex, e.AllowedEffects);
+                                DragAndDropEventArgs<T> args = new DragAndDropEventArgs<T>(itemsSource, data, oldIndex, newIndex, e.AllowedEffects);
                                 ProcessDrop(this, args);
                                 e.Effects = args.Effects;
                             }
@@ -202,6 +202,21 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
+        private int GetIndexUnderDragCursor()
+        {
+            int index = -1;
+            for (int i = 0; i < this._listView.Items.Count; ++i)
+            {
+                var listViewItem = _listView.GetListViewItem(i);
+                if (IsMouseOver(listViewItem))
+                {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        }
+
         private ListViewItem GetListViewItem(T dataItem)
         {
             if (_listView.ItemContainerGenerator.Status != GeneratorStatus.ContainersGenerated)
@@ -238,7 +253,7 @@ namespace Microsoft.Templates.UI.Services
             return descendantBounds.Contains(mousePosition);
         }
 
-        void PerformDragOperation()
+        private void PerformDragOperation()
         {
             var selectedItem = _listView.SelectedItem as T;
             var allowedEffects = DragDropEffects.Move | DragDropEffects.Move | DragDropEffects.Link;
@@ -249,7 +264,7 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        void UpdateDragAdornerLocation()
+        private void UpdateDragAdornerLocation()
         {
             if (_dragAdornerLayer != null)
             {

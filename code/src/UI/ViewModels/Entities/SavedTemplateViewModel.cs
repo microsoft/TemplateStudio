@@ -25,9 +25,6 @@ namespace Microsoft.Templates.UI.ViewModels
 {
     public class SavedTemplateViewModel : Observable
     {
-        public static string SettingsButton = Char.ConvertFromUtf32(0xE713);
-        public static string CloseButton = Char.ConvertFromUtf32(0xE761);
-
         #region TemplatesProperties
 
         private ITemplateInfo _template;
@@ -192,11 +189,7 @@ namespace Microsoft.Templates.UI.ViewModels
         public bool IsOpen
         {
             get => _isOpen;
-            set
-            {
-                SetProperty(ref _isOpen, value);
-                OpenIcon = value ? CloseButton : SettingsButton;
-            }
+            set => SetProperty(ref _isOpen, value);
         }
 
         private Brush _itemForeground = MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
@@ -211,44 +204,17 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             get => _authorForeground;
             set => SetProperty(ref _authorForeground, value);
-        }
-
-        private string _openIcon = SettingsButton;
-        public string OpenIcon
-        {
-            get => _openIcon;
-            private set => SetProperty(ref _openIcon, value);
-        }
-
-        private bool _canMoveUp;
-        public bool CanMoveUp
-        {
-            get => _canMoveUp;
-            set => SetProperty(ref _canMoveUp, value);
-        }
-
-        private bool _canMoveDown;
-        public bool CanMoveDown
-        {
-            get => _canMoveDown;
-            set => SetProperty(ref _canMoveDown, value);
-        }
+        }        
 
         public string DisplayText => CanChooseItemName ? ItemName : $"{ItemName} [{TemplateName}]";        
         
         public ICommand OpenCommand { get; set; }
 
-        public ICommand RemoveCommand { get; set; }
-
-        public ICommand SetHomeCommand { get; set; }
+        public ICommand RemoveCommand { get; set; }        
         
         public ICommand RenameCommand { get; set; }
 
-        public ICommand ConfirmRenameCommand { get; set; }
-
-        public ICommand MoveUpCommand { get; set; }
-
-        public ICommand MoveDownCommand { get; set; }        
+        public ICommand ConfirmRenameCommand { get; set; }        
 
         public Action<SavedTemplateViewModel> ValidateTemplateName;        
 
@@ -258,7 +224,7 @@ namespace Microsoft.Templates.UI.ViewModels
         public Action CancelRenameAction => OnCancelRename;        
         #endregion
 
-        public SavedTemplateViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled, ICommand openCommand, ICommand removeTemplateCommand, ICommand summaryItemSetHomeCommand, ICommand renameItemCommand, ICommand confirmRenameCommand, ICommand moveUpCommand, ICommand moveDownCommand, Action<SavedTemplateViewModel> validateCurrentTemplateName)
+        public SavedTemplateViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled, ICommand openCommand, ICommand removeTemplateCommand, ICommand renameItemCommand, ICommand confirmRenameCommand, Action<SavedTemplateViewModel> validateCurrentTemplateName)
         {
             _template = item.template;
             colorTimer.Tick += OnColorTimerTick;
@@ -272,11 +238,8 @@ namespace Microsoft.Templates.UI.ViewModels
             IsRemoveEnabled = isRemoveEnabled;
             OpenCommand = openCommand;
             RemoveCommand = removeTemplateCommand;
-            SetHomeCommand = summaryItemSetHomeCommand;
             RenameCommand = renameItemCommand;
-            ConfirmRenameCommand = confirmRenameCommand;
-            MoveUpCommand = moveUpCommand;
-            MoveDownCommand = moveDownCommand;
+            ConfirmRenameCommand = confirmRenameCommand;            
             ValidateTemplateName = validateCurrentTemplateName;        
         }
 

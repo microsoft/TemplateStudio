@@ -16,7 +16,7 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
-
+using Microsoft.Templates.UI.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -64,18 +64,10 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private ICommand _openSummaryItemCommand;
         public ICommand OpenSummaryItemCommand => _openSummaryItemCommand ?? (_openSummaryItemCommand = new RelayCommand<SavedTemplateViewModel>(OnOpenSummaryItem));
-
-        private RelayCommand<SavedTemplateViewModel> _summaryItemSetHomeCommand;
-        public RelayCommand<SavedTemplateViewModel> SummaryItemSetHomeCommand => _summaryItemSetHomeCommand ?? (_summaryItemSetHomeCommand = new RelayCommand<SavedTemplateViewModel>(OnSummaryItemSetHome));
+        
 
         private ICommand _renameSummaryItemCommand;
         public ICommand RenameSummaryItemCommand => _renameSummaryItemCommand ?? (_renameSummaryItemCommand = new RelayCommand<SavedTemplateViewModel>(OnRenameSummaryItem));
-
-        private ICommand _moveUpSummaryItemCommand;
-        public ICommand MoveUpSummaryItemCommand => _moveUpSummaryItemCommand ?? (_moveUpSummaryItemCommand = new RelayCommand<SavedTemplateViewModel>(OnMoveUpSummaryItem));
-
-        private ICommand _moveDownSummaryItemCommand;
-        public ICommand MoveDownSummaryItemCommand => _moveDownSummaryItemCommand ?? (_moveDownSummaryItemCommand = new RelayCommand<SavedTemplateViewModel>(OnMoveDownSummaryItem));
 
         private ICommand _confirmRenameSummaryItemCommand;
         public ICommand ConfirmRenameSummaryItemCommand => _confirmRenameSummaryItemCommand ?? (_confirmRenameSummaryItemCommand = new RelayCommand<SavedTemplateViewModel>(OnConfirmRenameSummaryItem));
@@ -291,45 +283,6 @@ namespace Microsoft.Templates.UI.ViewModels
             }
         }
 
-        private void OnMoveDownSummaryItem(SavedTemplateViewModel item)
-        {
-            var oldIndex = SavedPages.IndexOf(item);
-            if (oldIndex < SavedPages.Count - 1)
-            {
-                int newIndex = oldIndex + 1;
-                SavedPages.RemoveAt(oldIndex);
-                SavedPages.Insert(newIndex, item);
-
-                AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.MoveDown).FireAndForget();
-            }
-            UpdateCanMoveUpAndDownPages();
-        }
-
-        private void OnMoveUpSummaryItem(SavedTemplateViewModel item)
-        {
-            int oldIndex = SavedPages.IndexOf(item);
-            if (oldIndex > 0)
-            {
-                int newIndex = oldIndex - 1;
-                SavedPages.RemoveAt(oldIndex);
-                SavedPages.Insert(newIndex, item);
-
-                AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.MoveUp).FireAndForget();
-            }
-            UpdateCanMoveUpAndDownPages();
-        }
-
-        private void UpdateCanMoveUpAndDownPages()
-        {
-            int index = 0;
-            foreach (var page in SavedPages)
-            {
-                page.CanMoveUp = index > 1;
-                page.CanMoveDown = index > 0 && index < SavedPages.Count - 1;
-                index++;
-            }
-        }
-
         private void OnOpenSummaryItem(SavedTemplateViewModel item)
         {
             if (!item.IsOpen)
@@ -352,24 +305,13 @@ namespace Microsoft.Templates.UI.ViewModels
             }
         }
 
-        private void OnSummaryItemSetHome(SavedTemplateViewModel item)
+        public void SetHomePage(SavedTemplateViewModel item)
         {
             if (!item.IsHome)
             {
                 foreach (var page in SavedPages) { page.TryReleaseHome(); }
-
                 item.IsHome = true;
                 HomeName = item.ItemName;
-
-                int oldIndex = SavedPages.IndexOf(item);
-                if (oldIndex > 0)
-                {
-                    SavedPages.RemoveAt(oldIndex);
-                    SavedPages.Insert(0, item);
-                }
-
-                UpdateCanMoveUpAndDownPages();
-
                 AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.SetHome).FireAndForget();
             }
         }               
@@ -414,6 +356,25 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             SavedPages.ToList().ForEach(p => p.OnCancelRename());
             SavedFeatures.ToList().ForEach(f => f.OnCancelRename());
+        }
+
+        public void DroTemplate(object sender, DragAndDropEventArgs<SavedTemplateViewModel> e)
+        {
+            if (SavedPages.Count > 1)
+            {
+                if (e.NewIndex == 0)
+                {
+                    SetHomePage(e.ItemData);
+                }                
+                if (e.OldIndex > -1)
+                {
+                    SavedPages.Move(e.OldIndex, e.NewIndex);
+                }
+                if (e.OldIndex == 0)
+                {
+                    SetHomePage(SavedPages.First());
+                }
+            }            
         }
 
         private void UpdateTemplatesAvailability()
@@ -462,7 +423,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void SaveNewTemplate((string name, ITemplateInfo template) item, bool isRemoveEnabled = true)
         {
-            var newItem = new SavedTemplateViewModel(item, isRemoveEnabled, OpenSummaryItemCommand, RemoveTemplateCommand, SummaryItemSetHomeCommand, RenameSummaryItemCommand, ConfirmRenameSummaryItemCommand, MoveUpSummaryItemCommand, MoveDownSummaryItemCommand, ValidateCurrentTemplateName);
+            var newItem = new SavedTemplateViewModel(item, isRemoveEnabled, OpenSummaryItemCommand, RemoveTemplateCommand, RenameSummaryItemCommand, ConfirmRenameSummaryItemCommand, ValidateCurrentTemplateName);
 
             if (item.template.GetTemplateType() == TemplateType.Page)
             {
@@ -478,7 +439,6 @@ namespace Microsoft.Templates.UI.ViewModels
                 SavedFeatures.Add(newItem);
             }
             UpdateTemplatesAvailability();
-            UpdateCanMoveUpAndDownPages();
         }
     }
 }

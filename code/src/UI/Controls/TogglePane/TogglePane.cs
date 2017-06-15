@@ -7,7 +7,7 @@ namespace Microsoft.Templates.UI.Controls
 {
     public sealed partial class TogglePane : Control
     {    
-        private Grid _togglePaneShadowGrid;
+        private Border _togglePaneShadowGrid;
         private Grid _menuGrid;
         private bool _isInitialized = false;
 
@@ -19,24 +19,12 @@ namespace Microsoft.Templates.UI.Controls
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            _togglePaneShadowGrid = GetTemplateChild("togglePaneShadowGrid") as Grid;
+            _togglePaneShadowGrid = GetTemplateChild("togglePaneShadowGrid") as Border;
             _menuGrid = GetTemplateChild("menuGrid") as Grid;
 
             _isInitialized = true;
             UpdateOpenStatus();
-            MouseEnter += OnMouseEnter;
-            MouseLeave += OnMouseLeave;
-        }
-
-        private void OnMouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            Mouse.OverrideCursor = Cursors.Arrow;
-        }
-
-        private void OnMouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            Mouse.OverrideCursor = Cursors.Hand;            
-        }
+        }        
 
         private void UpdateOpenStatus(bool newValue = false, bool oldValue = false)
         {            
@@ -44,14 +32,14 @@ namespace Microsoft.Templates.UI.Controls
             {
                 if (IsOpen && newValue == false && oldValue == false)
                 {
-                    _menuGrid.AnimateWidth(153, 0);
-                    _togglePaneShadowGrid.AnimateWidth(153,0);
+                    _menuGrid.AnimateWidth(114, 0);
+                    _togglePaneShadowGrid.AnimateWidth(114, 0);
                     _togglePaneShadowGrid.FadeIn(0);
                 }
                 else if (IsOpen)
                 {
-                    _menuGrid.AnimateWidth(153);
-                    _togglePaneShadowGrid.AnimateWidth(153);
+                    _menuGrid.AnimateWidth(114);
+                    _togglePaneShadowGrid.AnimateWidth(114);
                     _togglePaneShadowGrid.FadeIn();
                 }
                 else

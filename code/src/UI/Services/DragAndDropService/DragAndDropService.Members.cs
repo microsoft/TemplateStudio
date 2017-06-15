@@ -24,7 +24,7 @@ namespace Microsoft.Templates.UI.Services
         private Point _mouseDownPosition;
         private DragAdornerLayer _dragAdornerLayer;
 
-        public event EventHandler<ProcessDropEventArgs<T>> ProcessDrop;
+        public event EventHandler<DragAndDropEventArgs<T>> ProcessDrop;
         
         private bool CanStartDragOperation
         {
@@ -67,21 +67,6 @@ namespace Microsoft.Templates.UI.Services
                 Point ptInListView = MouseUtilities.GetMousePosition(this._listView);
                 return !rect.Contains(ptInListView);
             }
-        }
-        
-        private int GetIndexUnderDragCursor()
-        {
-            int index = -1;
-            for (int i = 0; i < this._listView.Items.Count; ++i)
-            {
-                var listViewItem = _listView.GetListViewItem(i);
-                if (IsMouseOver(listViewItem))
-                {
-                    index = i;
-                    break;
-                }
-            }
-            return index;
         }
 
         private bool IsMouseOverScrollbar

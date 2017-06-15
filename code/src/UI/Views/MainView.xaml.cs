@@ -40,7 +40,7 @@ namespace Microsoft.Templates.UI.Views
             Loaded += async (sender, e) =>
             {
                 NavigationService.Initialize(stepFrame, new ProjectSetupView());
-                await ViewModel.InitializeAsync();
+                await ViewModel.InitializeAsync(summaryPagesListView);
             };
 
             Unloaded += (sender, e) =>

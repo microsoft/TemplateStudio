@@ -40,25 +40,27 @@ namespace Microsoft.Templates.UI.Controls
             set { SetValue(SecondaryViewTemplateProperty, value); }
         }
         public static readonly DependencyProperty SecondaryViewTemplateProperty = DependencyProperty.Register("SecondaryViewTemplate", typeof(DataTemplate), typeof(TogglePane), new PropertyMetadata(null));
-        #endregion
-
-        #region SecondaryViewTemplateSelector
-        public DataTemplateSelector SecondaryViewTemplateSelector
-        {
-            get { return (DataTemplateSelector)GetValue(SecondaryViewTemplateSelectorProperty); }
-            set { SetValue(SecondaryViewTemplateSelectorProperty, value); }
-        }
-        public static readonly DependencyProperty SecondaryViewTemplateSelectorProperty = DependencyProperty.Register("SecondaryViewTemplateSelector", typeof(DataTemplateSelector), typeof(TogglePane), new PropertyMetadata(null));
-        #endregion
-
-        #region ButtonTemplate
-        public DataTemplate ButtonTemplate
-        {
-            get { return (DataTemplate)GetValue(ButtonTemplateProperty); }
-            set { SetValue(ButtonTemplateProperty, value); }
-        }
-        public static readonly DependencyProperty ButtonTemplateProperty = DependencyProperty.Register("ButtonTemplate", typeof(DataTemplate), typeof(TogglePane), new PropertyMetadata(null));
         #endregion        
+
+
+
+        #region StartButtonTemplate
+        public DataTemplate StartButtonTemplate
+        {
+            get { return (DataTemplate)GetValue(StartButtonTemplateProperty); }
+            set { SetValue(StartButtonTemplateProperty, value); }
+        }
+        public static readonly DependencyProperty StartButtonTemplateProperty = DependencyProperty.Register("StartButtonTemplate", typeof(DataTemplate), typeof(TogglePane), new PropertyMetadata(null));
+        #endregion
+
+        #region OpenButtonTemplate
+        public DataTemplate OpenButtonTemplate
+        {
+            get { return (DataTemplate)GetValue(OpenButtonTemplateProperty); }
+            set { SetValue(OpenButtonTemplateProperty, value); }
+        }
+        public static readonly DependencyProperty OpenButtonTemplateProperty = DependencyProperty.Register("OpenButtonTemplate", typeof(DataTemplate), typeof(TogglePane), new PropertyMetadata(null));
+        #endregion
 
         #region CloseButtonTemplate
         public DataTemplate CloseButtonTemplate

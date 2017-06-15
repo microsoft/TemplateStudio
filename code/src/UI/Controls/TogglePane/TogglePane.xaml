@@ -1,19 +1,25 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls">
+                    xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
+                    xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+
+    <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+
     <Storyboard x:Key="FadeIn">
         <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="mouseOvershadowGrid" Storyboard.TargetProperty="Opacity"/>
-        <!--<DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="buttonContentPresenter" Storyboard.TargetProperty="Opacity"/>-->
+        <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="startButtonContentPresenter" Storyboard.TargetProperty="Opacity"/>
+        <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetName="openButtonContentPresenter" Storyboard.TargetProperty="Opacity"/>        
     </Storyboard>
 
     <Storyboard x:Key="FadeOut">
         <DoubleAnimation Duration="0:0:0" To="0" Storyboard.TargetName="mouseOvershadowGrid" Storyboard.TargetProperty="Opacity"/>
-        <!--<DoubleAnimation Duration="0:0:0" To="0" Storyboard.TargetName="buttonContentPresenter" Storyboard.TargetProperty="Opacity"/>-->
+        <DoubleAnimation Duration="0:0:0" To="0" Storyboard.TargetName="startButtonContentPresenter" Storyboard.TargetProperty="Opacity"/>
+        <DoubleAnimation Duration="0:0:0" To="0" Storyboard.TargetName="openButtonContentPresenter" Storyboard.TargetProperty="Opacity"/>
     </Storyboard>
 
     <Style TargetType="{x:Type controls:TogglePane}">
@@ -21,7 +27,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:TogglePane}">
-                    <Grid>
+                    <Grid Width="{TemplateBinding Width}">
                         <Grid.Triggers>
                             <EventTrigger RoutedEvent="Control.MouseEnter">
                                 <BeginStoryboard Storyboard="{StaticResource FadeIn}"/>
@@ -37,32 +43,49 @@
                             </EventTrigger>
                         </Grid.Triggers>
                         <Grid x:Name="mouseOvershadowGrid" Background="{StaticResource UILightGray}" Opacity="0" Focusable="False"/>
-                        <ContentPresenter
-                            x:Name="mainViewContentTemplate"
-                            Margin="0,0,38,0"
-                            Focusable="False"
-                            Content="{TemplateBinding TogglePaneContent}"
-                            ContentTemplate="{TemplateBinding MainViewTemplate}"
-                            ContentTemplateSelector="{TemplateBinding MainViewTemplateSelector}" />
-
-                        <Grid Grid.Column="1" x:Name="togglePaneShadowGrid" Background="{StaticResource UIGray}" Opacity="0" Focusable="False" HorizontalAlignment="Right"/>
-                        <Grid Grid.Column="1" x:Name="menuGrid" HorizontalAlignment="Right">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter
+                                x:Name="startButtonContentPresenter"
+                                Opacity="0"
+                                Focusable="False"
+                                Content="{TemplateBinding TogglePaneContent}"
+                                ContentTemplate="{TemplateBinding StartButtonTemplate}"/>
+                            <ContentPresenter
+                                Grid.Column="1"
+                                x:Name="mainViewContentTemplate"
+                                Margin="0,0,38,0"
+                                Focusable="False"
+                                Content="{TemplateBinding TogglePaneContent}"
+                                ContentTemplate="{TemplateBinding MainViewTemplate}"
+                                ContentTemplateSelector="{TemplateBinding MainViewTemplateSelector}" />
+                        </Grid>
+                        <Border x:Name="togglePaneShadowGrid" Background="{StaticResource UIWhite}" Opacity="0" Focusable="False" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="{StaticResource UIBlack}"/>
+                        <Grid x:Name="menuGrid" HorizontalAlignment="Right">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="38"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <ContentPresenter
-                                    x:Name="buttonContentPresenter"
+                                    x:Name="openButtonContentPresenter"
                                     Focusable="False"
+                                    Opacity="0"
+                                    Visibility="{TemplateBinding IsOpen, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}"
                                     Content="{TemplateBinding TogglePaneContent}"
-                                    ContentTemplate="{TemplateBinding ButtonTemplate}">
-                            </ContentPresenter>
+                                    ContentTemplate="{TemplateBinding OpenButtonTemplate}" />
+                            <ContentPresenter
+                                    Visibility="{TemplateBinding IsOpen, Converter={StaticResource BoolToVisibilityConverter}}"
+                                    Focusable="False"                                    
+                                    Content="{TemplateBinding TogglePaneContent}"
+                                    ContentTemplate="{TemplateBinding CloseButtonTemplate}" />
                             <ContentPresenter
                                     Grid.Column="1"
                                     Focusable="False"
                                     Content="{TemplateBinding TogglePaneContent}"
-                                    ContentTemplate="{TemplateBinding SecondaryViewTemplate}"
-                                    ContentTemplateSelector="{TemplateBinding SecondaryViewTemplateSelector}" />
+                                    ContentTemplate="{TemplateBinding SecondaryViewTemplate}" />
                         </Grid>
                     </Grid>
                 </ControlTemplate>

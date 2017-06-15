@@ -166,6 +166,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
             SummaryLicenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryLicenses)); };
             var service = new DragAndDropService<SavedTemplateViewModel>(summaryPagesListView);
+            service.ProcessDrop += ProjectTemplates.DroTemplate;
 
             try
             {
@@ -185,7 +186,7 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 Current.LoadingContentVisibility = Visibility.Collapsed;
             }
-        }
+        }        
 
         public void AlertProjectSetupChanged()
         {
