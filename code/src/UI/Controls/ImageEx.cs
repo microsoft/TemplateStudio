@@ -129,7 +129,7 @@ namespace Microsoft.Templates.UI.Controls
             }
             catch (IOException)
             {
-                //SYNC AT SAME TIME IS LOADING THE ICON OR ICON IS LOCKED
+                // SYNC AT SAME TIME IS LOADING THE ICON OR ICON IS LOCKED
                 return FallbackImage;
             }
         }

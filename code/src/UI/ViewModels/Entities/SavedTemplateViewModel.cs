@@ -28,7 +28,9 @@ namespace Microsoft.Templates.UI.ViewModels
         #region TemplatesProperties
 
         private ITemplateInfo _template;
+#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
         public (string name, ITemplateInfo template) UserSelection => (ItemName, _template);
+#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
 
         private string _identity;
         public string Identity
@@ -55,7 +57,7 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             get
             {
-                if (String.IsNullOrEmpty(_newItemName))
+                if (string.IsNullOrEmpty(_newItemName))
                 {
                     _newItemName = ItemName;
                 }
@@ -111,7 +113,7 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             get => _isRemoveEnabled;
             set => SetProperty(ref _isRemoveEnabled, value);
-        }       
+        }
 
         private bool _isHome;
         public bool IsHome
@@ -204,24 +206,24 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             get => _authorForeground;
             set => SetProperty(ref _authorForeground, value);
-        }        
+        }
 
-        public string DisplayText => CanChooseItemName ? ItemName : $"{ItemName} [{TemplateName}]";        
-        
+        public string DisplayText => CanChooseItemName ? ItemName : $"{ItemName} [{TemplateName}]";
+
         public ICommand OpenCommand { get; set; }
 
-        public ICommand RemoveCommand { get; set; }        
-        
+        public ICommand RemoveCommand { get; set; }
+
         public ICommand RenameCommand { get; set; }
 
-        public ICommand ConfirmRenameCommand { get; set; }        
+        public ICommand ConfirmRenameCommand { get; set; }
 
-        public Action<SavedTemplateViewModel> ValidateTemplateName;        
+        public Action<SavedTemplateViewModel> ValidateTemplateName;
 
         public ICommand _cancelRenameCommand;
         public ICommand CancelRenameCommand => _cancelRenameCommand ?? (_cancelRenameCommand = new RelayCommand(CancelRenameAction));
 
-        public Action CancelRenameAction => OnCancelRename;        
+        public Action CancelRenameAction => OnCancelRename;
         #endregion
 
         public SavedTemplateViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled, ICommand openCommand, ICommand removeTemplateCommand, ICommand renameItemCommand, ICommand confirmRenameCommand, Action<SavedTemplateViewModel> validateCurrentTemplateName)
@@ -239,8 +241,8 @@ namespace Microsoft.Templates.UI.ViewModels
             OpenCommand = openCommand;
             RemoveCommand = removeTemplateCommand;
             RenameCommand = renameItemCommand;
-            ConfirmRenameCommand = confirmRenameCommand;            
-            ValidateTemplateName = validateCurrentTemplateName;        
+            ConfirmRenameCommand = confirmRenameCommand;
+            ValidateTemplateName = validateCurrentTemplateName;
         }
 
         private void OnColorTimerTick(object sender, EventArgs e)
@@ -250,13 +252,13 @@ namespace Microsoft.Templates.UI.ViewModels
 
             colorTimer.Stop();
         }
-        
+
         internal void TryClose(bool force = false)
         {
             if (IsOpen)
             {
                  IsOpen = false;
-            }            
+            }
         }
 
         public void TryReleaseHome()
@@ -275,7 +277,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 _newItemName = string.Empty;
                 OnPropertyChanged("NewItemName");
                 MainViewModel.Current.CleanStatus(true);
-            }            
-        }        
+            }
+        }
     }
 }

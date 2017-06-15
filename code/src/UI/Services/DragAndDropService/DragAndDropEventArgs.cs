@@ -19,6 +19,6 @@ namespace Microsoft.Templates.UI.Services
             OldIndex = oldIndex;
             NewIndex = newIndex;
             Effects = effects;
-        }               
+        }
     }
 }

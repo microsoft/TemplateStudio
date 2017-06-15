@@ -10,7 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-
 using System;
 using System.IO;
 using System.Net;
@@ -27,7 +26,7 @@ namespace Microsoft.Templates.Core.Locations
         private List<string> _tempFoldersUsed = new List<string>();
         protected virtual bool VerifyPackageSignatures { get => true; }
         public virtual string Id { get => Configuration.Current.Environment; }
-        
+
         public void Acquire(string targetFolder)
         {
             string mstxFilePath = AcquireMstx();
@@ -57,7 +56,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             else
             {
-                return String.Empty;
+                return string.Empty;
             }
         }
 
@@ -96,7 +95,7 @@ namespace Microsoft.Templates.Core.Locations
 
             var finalDestination = Path.Combine(finalTargetFolder, ver.ToString());
 
-            if (ver.IsNullOrZero() && Directory.Exists(finalDestination)) 
+            if (ver.IsNullOrZero() && Directory.Exists(finalDestination))
             {
                 Fs.SafeDeleteDirectory(finalDestination);
             }
@@ -136,7 +135,7 @@ namespace Microsoft.Templates.Core.Locations
                 Fs.SafeDeleteDirectory(tempFolder);
                 removedFolders.Add(tempFolder);
             }
-            foreach(string folder in removedFolders)
+            foreach (string folder in removedFolders)
             {
                 _tempFoldersUsed.Remove(folder);
             }

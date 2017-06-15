@@ -6,14 +6,14 @@ using System.Windows.Input;
 namespace Microsoft.Templates.UI.Controls
 {
     public sealed partial class TogglePane : Control
-    {    
+    {
         private Border _togglePaneShadowGrid;
         private Grid _menuGrid;
         private bool _isInitialized = false;
 
         static TogglePane()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(TogglePane), new FrameworkPropertyMetadata(typeof(TogglePane)));                        
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(TogglePane), new FrameworkPropertyMetadata(typeof(TogglePane)));
         }
 
         public override void OnApplyTemplate()
@@ -24,10 +24,10 @@ namespace Microsoft.Templates.UI.Controls
 
             _isInitialized = true;
             UpdateOpenStatus();
-        }        
+        }
 
         private void UpdateOpenStatus(bool newValue = false, bool oldValue = false)
-        {            
+        {
             if (_isInitialized)
             {
                 if (IsOpen && newValue == false && oldValue == false)

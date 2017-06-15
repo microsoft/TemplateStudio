@@ -18,7 +18,7 @@ namespace Microsoft.Templates.Core.Gen
         public const string RootNamespace = "wts.rootNamespace";
         public const string ItemNamespace = "wts.itemNamespace";
         public const string WizardVersion = "wts.wizardVersion";
-        public const string TemplatesVersion = "wts.templatesVersion";      
+        public const string TemplatesVersion = "wts.templatesVersion";
         public const string HomePageName = "wts.homePageName";
     }
 }

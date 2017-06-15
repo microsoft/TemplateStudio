@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Core.Gen
             {
                 return Parameters[GenParams.Username];
             }
-            return String.Empty;
+            return string.Empty;
         }
 
         public override string ToString()

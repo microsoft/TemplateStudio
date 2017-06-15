@@ -10,19 +10,19 @@ namespace Microsoft.Templates.UI.Services
         [StructLayout(LayoutKind.Sequential)]
         private struct Win32Point
         {
-            public Int32 X;
-            public Int32 Y;
-        };
+            public int X;
+            public int Y;
+        }
 
         [DllImport("user32.dll")]
         private static extern bool GetCursorPos(ref Win32Point pt);
 
         [DllImport("user32.dll")]
         private static extern bool ScreenToClient(IntPtr hwnd, ref Win32Point pt);
-        
+
         public static Point GetMousePosition(Visual relativeTo)
         {
-            Win32Point mouse = new Win32Point();
+            var mouse = default(Win32Point);
             GetCursorPos(ref mouse);
             return relativeTo.PointFromScreen(new Point((double)mouse.X, (double)mouse.Y));
         }

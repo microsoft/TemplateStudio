@@ -33,15 +33,15 @@ namespace Microsoft.Templates.UI.ViewModels
         public DependencyInfoViewModel(TemplateInfoViewModel item)
         {
             _item = item;
-            Name = item.Name;            
+            Name = item.Name;
         }
 
         private void OnItemClick()
         {
-            //InformationViewModel.Current.Initialize(_item);            
+            // InformationViewModel.Current.Initialize(_item);
             var infoView = new InformationWindow(_item, MainViewModel.Current.MainView);
 
-            infoView.ShowDialog();            
+            infoView.ShowDialog();
         }
     }
 }

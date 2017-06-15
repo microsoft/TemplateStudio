@@ -188,7 +188,6 @@ namespace Microsoft.Templates.UI.Services
         private void FinishDragOperation(ListViewItem draggedItem, AdornerLayer adornerLayer)
         {
             ListViewItemDragState.SetIsBeingDragged(draggedItem, false);
-            _isDragInProgress = false;
 
             if (ItemUnderDragCursor != null)
             {
@@ -241,7 +240,6 @@ namespace Microsoft.Templates.UI.Services
 
         private void InitializeDragOperation(ListViewItem itemToDrag)
         {
-            _isDragInProgress = true;
             this._canInitiateDrag = false;
             ListViewItemDragState.SetIsBeingDragged(itemToDrag, true);
         }

@@ -14,7 +14,6 @@ namespace Microsoft.Templates.UI.Services
     public partial class DragAndDropService<T>
     {
         private bool _canInitiateDrag;
-        private bool _isDragInProgress;
         private bool _showDragAdornerLayer;
         private int _indexToSelect;
         private double _dragAdornerLayerOpacity;
@@ -25,7 +24,7 @@ namespace Microsoft.Templates.UI.Services
         private DragAdornerLayer _dragAdornerLayer;
 
         public event EventHandler<DragAndDropEventArgs<T>> ProcessDrop;
-        
+
         private bool CanStartDragOperation
         {
             get
@@ -36,7 +35,7 @@ namespace Microsoft.Templates.UI.Services
                     || !HasCursorLeftDragThreshold)
                 {
                     return false;
-                }                
+                }
                 return true;
             }
         }
@@ -53,7 +52,7 @@ namespace Microsoft.Templates.UI.Services
                 var listViewItem = _listView.GetListViewItem(_indexToSelect);
                 var bounds = VisualTreeHelper.GetDescendantBounds(listViewItem);
                 var ptInItem = this._listView.TranslatePoint(_mouseDownPosition, listViewItem);
-                
+
                 double topOffset = Math.Abs(ptInItem.Y);
                 double btmOffset = Math.Abs(bounds.Height - ptInItem.Y);
                 double vertOffset = Math.Min(topOffset, btmOffset);
@@ -87,7 +86,7 @@ namespace Microsoft.Templates.UI.Services
                     {
                         return true;
                     }
-                    
+
                     if (dependencyObject is Visual || dependencyObject is Visual3D)
                     {
                         dependencyObject = VisualTreeHelper.GetParent(dependencyObject);
@@ -103,7 +102,7 @@ namespace Microsoft.Templates.UI.Services
 
         private T ItemUnderDragCursor
         {
-            get { return this._itemUnderDragCursor; }
+            get => _itemUnderDragCursor;
             set
             {
                 if (this._itemUnderDragCursor == value)
@@ -131,7 +130,7 @@ namespace Microsoft.Templates.UI.Services
                 }
             }
         }
-        
+
         bool ShowDragAdornerLayerResolved => _showDragAdornerLayer && _dragAdornerLayerOpacity > 0.0;
     }
 }

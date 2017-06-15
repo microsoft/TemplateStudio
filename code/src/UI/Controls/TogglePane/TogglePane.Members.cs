@@ -40,9 +40,7 @@ namespace Microsoft.Templates.UI.Controls
             set { SetValue(SecondaryViewTemplateProperty, value); }
         }
         public static readonly DependencyProperty SecondaryViewTemplateProperty = DependencyProperty.Register("SecondaryViewTemplate", typeof(DataTemplate), typeof(TogglePane), new PropertyMetadata(null));
-        #endregion        
-
-
+        #endregion
 
         #region StartButtonTemplate
         public DataTemplate StartButtonTemplate
@@ -69,7 +67,7 @@ namespace Microsoft.Templates.UI.Controls
             set { SetValue(CloseButtonTemplateProperty, value); }
         }
         public static readonly DependencyProperty CloseButtonTemplateProperty = DependencyProperty.Register("CloseButtonTemplate", typeof(DataTemplate), typeof(TogglePane), new PropertyMetadata(null));
-        #endregion        
+        #endregion
 
         #region IsOpen
         public bool IsOpen
@@ -88,6 +86,6 @@ namespace Microsoft.Templates.UI.Controls
                 control.UpdateOpenStatus((bool)e.NewValue, (bool)e.OldValue);
             }
         }
-        #endregion        
+        #endregion
     }
 }

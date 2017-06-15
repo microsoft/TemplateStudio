@@ -26,9 +26,9 @@ namespace Microsoft.Templates.UI.Views
         public InformationWindow(TemplateInfoViewModel template, Window mainWindow)
         {
             Init(template, mainWindow);
-        }        
+        }
 
-        public InformationWindow(MetadataInfoViewModel  metadataInfo, Window mainWindow)
+        public InformationWindow(MetadataInfoViewModel metadataInfo, Window mainWindow)
         {
             Init(metadataInfo, mainWindow);
         }
@@ -61,7 +61,7 @@ namespace Microsoft.Templates.UI.Views
             {
                 ViewModel.Initialize(metadataInfo);
             }
-            else if(info is TemplateInfoViewModel templateInfo)
+            else if (info is TemplateInfoViewModel templateInfo)
             {
                 ViewModel.Initialize(templateInfo);
             }
@@ -74,7 +74,7 @@ namespace Microsoft.Templates.UI.Views
         }
 
         private void SetWindowSize(Window mainWindow)
-        {            
+        {
             if (mainWindow.Width < 1200)
             {
                 Width = mainWindow.Width * 0.8;

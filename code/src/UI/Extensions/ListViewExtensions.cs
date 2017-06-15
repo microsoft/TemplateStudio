@@ -8,13 +8,13 @@ using System.Windows.Controls.Primitives;
 
 namespace Microsoft.Templates.UI.Extensions
 {
-    static public class ListViewExtensions
+    public static class ListViewExtensions
     {
-        static public ListViewItem GetCurrentListViewItem(this ListView listView)
+        public static ListViewItem GetCurrentListViewItem(this ListView listView)
         {
             return listView.GetListViewItem(listView.SelectedIndex);
         }
-        static public ListViewItem GetListViewItem(this ListView listView, int index)
+        public static ListViewItem GetListViewItem(this ListView listView, int index)
         {
             if (listView.ItemContainerGenerator.Status != GeneratorStatus.ContainersGenerated)
             {

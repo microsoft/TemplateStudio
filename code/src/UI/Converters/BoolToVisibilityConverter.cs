@@ -21,12 +21,12 @@ namespace Microsoft.Templates.UI.Converters
 
             if (parameter == null)
             {
-                //Normal mode
+                // Normal mode
                 return boolValue ? Visibility.Visible : Visibility.Collapsed;
             }
             else
             {
-                //Reverse mode
+                // Reverse mode
                 return boolValue ? Visibility.Collapsed : Visibility.Visible;
             }
         }

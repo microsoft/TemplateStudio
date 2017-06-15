@@ -51,7 +51,7 @@ namespace Microsoft.Templates.UI.ViewModels
         public ObservableCollection<GroupTemplateInfoViewModel> FeatureGroups { get; } = new ObservableCollection<GroupTemplateInfoViewModel>();
 
         public ObservableCollection<SavedTemplateViewModel> SavedPages { get; } = new ObservableCollection<SavedTemplateViewModel>();
-        public ObservableCollection<SavedTemplateViewModel> SavedFeatures { get; } = new ObservableCollection<SavedTemplateViewModel>();        
+        public ObservableCollection<SavedTemplateViewModel> SavedFeatures { get; } = new ObservableCollection<SavedTemplateViewModel>();
 
         private RelayCommand<SavedTemplateViewModel> _removeTemplateCommand;
         public RelayCommand<SavedTemplateViewModel> RemoveTemplateCommand => _removeTemplateCommand ?? (_removeTemplateCommand = new RelayCommand<SavedTemplateViewModel>(OnRemoveTemplate));
@@ -64,7 +64,6 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private ICommand _openSummaryItemCommand;
         public ICommand OpenSummaryItemCommand => _openSummaryItemCommand ?? (_openSummaryItemCommand = new RelayCommand<SavedTemplateViewModel>(OnOpenSummaryItem));
-        
 
         private ICommand _renameSummaryItemCommand;
         public ICommand RenameSummaryItemCommand => _renameSummaryItemCommand ?? (_renameSummaryItemCommand = new RelayCommand<SavedTemplateViewModel>(OnRenameSummaryItem));
@@ -116,7 +115,7 @@ namespace Microsoft.Templates.UI.ViewModels
             var validationResult = Naming.Validate(item.NewItemName, validators);
 
             item.IsValidName = validationResult.IsValid;
-            item.ErrorMessage = String.Empty;
+            item.ErrorMessage = string.Empty;
 
             if (!item.IsValidName)
             {
@@ -146,7 +145,7 @@ namespace Microsoft.Templates.UI.ViewModels
             var validationResult = Naming.Validate(template.NewTemplateName, validators);
 
             template.IsValidName = validationResult.IsValid;
-            template.ErrorMessage = String.Empty;
+            template.ErrorMessage = string.Empty;
 
             if (!template.IsValidName)
             {
@@ -176,7 +175,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 var groups = pages.GroupBy(t => t.Group).Select(gr => new GroupTemplateInfoViewModel(gr.Key as string, gr.ToList())).OrderBy(gr => gr.Title);
 
                 PagesGroups.AddRange(groups);
-                PagesHeader = String.Format(StringRes.GroupPagesHeader_SF, pages.Count());
+                PagesHeader = string.Format(StringRes.GroupPagesHeader_SF, pages.Count());
             }
 
             if (FeatureGroups.Count == 0)
@@ -187,7 +186,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 var groups = features.GroupBy(t => t.Group).Select(gr => new GroupTemplateInfoViewModel(gr.Key as string, gr.ToList())).OrderBy(gr => gr.Title);
 
                 FeatureGroups.AddRange(groups);
-                FeaturesHeader = String.Format(StringRes.GroupFeaturesHeader_SF, features.Count());
+                FeaturesHeader = string.Format(StringRes.GroupFeaturesHeader_SF, features.Count());
             }
 
             if (SavedPages.Count == 0 && SavedFeatures.Count == 0)
@@ -210,7 +209,6 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnAddTemplateItem(TemplateInfoViewModel template)
         {
-
             if (template.CanChooseItemName)
             {
                 var validators = new List<Validator>()
@@ -314,7 +312,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 HomeName = item.ItemName;
                 AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.SetHome).FireAndForget();
             }
-        }               
+        }
 
         private void OnRemoveTemplate(SavedTemplateViewModel item)
         {
@@ -325,7 +323,7 @@ namespace Microsoft.Templates.UI.ViewModels
             }
             if (dependencyItem != null)
             {
-                string message = String.Format(StringRes.ValidationError_CanNotRemoveTemplate_SF, item.TemplateName, dependencyItem.TemplateName, dependencyItem.TemplateType);
+                string message = string.Format(StringRes.ValidationError_CanNotRemoveTemplate_SF, item.TemplateName, dependencyItem.TemplateName, dependencyItem.TemplateType);
                 MainViewModel.Current.Status = new StatusViewModel(Controls.StatusType.Warning, message, true);
                 return;
             }
@@ -336,7 +334,7 @@ namespace Microsoft.Templates.UI.ViewModels
             else if (SavedFeatures.Contains(item))
             {
                 SavedFeatures.Remove(item);
-            }            
+            }
             MainViewModel.Current.CreateCommand.OnCanExecuteChanged();
             UpdateTemplatesAvailability();
             MainViewModel.Current.RebuildLicenses();
@@ -365,7 +363,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 if (e.NewIndex == 0)
                 {
                     SetHomePage(e.ItemData);
-                }                
+                }
                 if (e.OldIndex > -1)
                 {
                     SavedPages.Move(e.OldIndex, e.NewIndex);
@@ -374,7 +372,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 {
                     SetHomePage(SavedPages.First());
                 }
-            }            
+            }
         }
 
         private void UpdateTemplatesAvailability()
