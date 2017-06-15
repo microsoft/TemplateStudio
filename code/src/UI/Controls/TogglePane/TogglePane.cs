@@ -35,7 +35,7 @@ namespace Microsoft.Templates.UI.Controls
 
         private void OnMouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            Mouse.OverrideCursor = Cursors.Cross;            
+            Mouse.OverrideCursor = Cursors.Hand;            
         }
 
         private void UpdateOpenStatus(bool newValue = false, bool oldValue = false)

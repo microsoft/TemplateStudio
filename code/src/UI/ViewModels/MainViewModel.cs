@@ -160,11 +160,12 @@ namespace Microsoft.Templates.UI.ViewModels
             Current = this;
         }
 
-        public async Task InitializeAsync()
+        public async Task InitializeAsync(ListView summaryPagesListView)
         {
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += Sync_SyncStatusChanged;
 
             SummaryLicenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryLicenses)); };
+            var service = new DragAndDropService<SavedTemplateViewModel>(summaryPagesListView);
 
             try
             {
