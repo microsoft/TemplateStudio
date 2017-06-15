@@ -27,17 +27,15 @@ namespace Microsoft.Templates.Core.Test.Locations
 
         protected override bool VerifyPackageSignatures => false;
 
-        public override void Acquire(string targetFolder)
+        protected override string AcquireMstx()
         {
-            var targetVersionFolder = Path.Combine(targetFolder, LocalVersion);
+            var tempFolder = Path.Combine(GetTempFolder(), SourceFolderName);
 
-            Copy($@"..\..\TestData\{SourceFolderName}", targetVersionFolder);
-        }
+            Copy($@"..\..\TestData\{SourceFolderName}", tempFolder);
 
-        public override void Extract(string mstxFilePath, string targetFolder)
-        {
-            //Actually we do not extract from an Mstx, we want to copy local test templates to work with latest local content
-            Acquire(targetFolder);
+            File.WriteAllText(Path.Combine(tempFolder, "version.txt"), LocalVersion);
+
+            return Templatex.Pack(tempFolder);
         }
 
         protected static void Copy(string sourceFolder, string targetFolder)
