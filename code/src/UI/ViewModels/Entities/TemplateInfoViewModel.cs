@@ -56,6 +56,13 @@ namespace Microsoft.Templates.UI.ViewModels
             set => SetProperty(ref _multipleInstances, value);
         }
 
+        private int _genGroup;
+        public int GenGroup
+        {
+            get => _genGroup;
+            set => SetProperty(ref _genGroup, value);
+        }
+
         private string _group;
         public string Group
         {
@@ -178,6 +185,7 @@ namespace Microsoft.Templates.UI.ViewModels
             Icon = template.GetIcon();
             LicenseTerms = template.GetLicenses();
             MultipleInstances = template.GetMultipleInstance();
+            GenGroup = template.GetGenGroup();
             Name = template.Name;
             Order = template.GetOrder();
             Summary = template.Description;

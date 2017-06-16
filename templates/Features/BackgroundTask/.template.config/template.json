@@ -14,7 +14,8 @@
     "wts.version": "1.0.0",
     "wts.order": "1",
     "wts.group": "BackgroundWork",
-    "wts.multipleInstance": "true"
+    "wts.multipleInstance": "true",
+    "wts.genGroup": "0"
   },
   "sourceName": "BackgroundTaskFeature",
   "preferNameDirectory": true,

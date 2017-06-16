@@ -13,7 +13,8 @@
     "wts.type": "page",
     "wts.framework": "CodeBehind",
     "wts.version": "1.0.0",
-    "wts.order": "1"
+    "wts.order": "1",
+    "wts.genGroup": "0"
   },
   "sourceName": "MapPage",
   "preferNameDirectory": true,
