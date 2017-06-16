@@ -75,19 +75,21 @@
                             </templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
                             <templateSelectors:SummaryItemTemplateSelector.CommunityTemplate>
                                 <DataTemplate>
-                                    <Grid Height="35" Margin="{StaticResource MediumLeftMargin}">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="*" />
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
-                                        <TextBlock Grid.Row="1" Style="{StaticResource TextSummaryAuthorStyle}" Foreground="{Binding AuthorForeground}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}" Text="{Binding Author}"/>
-                                        <controls:TextBoxEx Grid.Row="0" Grid.RowSpan="2" Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}">
-                                            <controls:TextBoxEx.InputBindings>
-                                                <KeyBinding Command="{Binding ConfirmRenameCommand}" CommandParameter="{Binding}" Key="Enter" />
-                                                <KeyBinding Command="{Binding CancelRenameCommand}" Key="Esc"  />
-                                            </controls:TextBoxEx.InputBindings>
-                                        </controls:TextBoxEx>
+                                    <Grid Height="40" Margin="{StaticResource MediumLeftMargin}">
+                                        <Grid VerticalAlignment="Center">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
+                                            <TextBlock Grid.Row="1" Style="{StaticResource TextSummaryAuthorStyle}" Foreground="{Binding AuthorForeground}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}" Text="{Binding Author}" Margin="0,-2,0,0"/>
+                                            <controls:TextBoxEx Grid.Row="0" Grid.RowSpan="2" Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}">
+                                                <controls:TextBoxEx.InputBindings>
+                                                    <KeyBinding Command="{Binding ConfirmRenameCommand}" CommandParameter="{Binding}" Key="Enter" />
+                                                    <KeyBinding Command="{Binding CancelRenameCommand}" Key="Esc"  />
+                                                </controls:TextBoxEx.InputBindings>
+                                            </controls:TextBoxEx>
+                                        </Grid>
                                     </Grid>
                                 </DataTemplate>
                             </templateSelectors:SummaryItemTemplateSelector.CommunityTemplate>
@@ -171,7 +173,7 @@
             <Grid Grid.Column="1">
                 <ScrollViewer Padding="0,40,0,65" Visibility="{Binding LoadedContentVisibility}">
                     <StackPanel Margin="{StaticResource MediumLeftRightMargin}">
-                        
+
                         <StackPanel Margin="7,0,0,0" Orientation="Horizontal">
                             <TextBlock Style="{StaticResource TextSummaryIconPoint}" />
                             <StackPanel Margin="{StaticResource MediumLeftMargin}" DataContext="{Binding ProjectSetup.SelectedProjectType}">

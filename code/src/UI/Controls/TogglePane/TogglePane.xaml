@@ -65,8 +65,8 @@
                                 ContentTemplate="{TemplateBinding MainViewTemplate}"
                                 ContentTemplateSelector="{TemplateBinding MainViewTemplateSelector}" />
                         </Grid>
-                        <Border x:Name="togglePaneShadowGrid" Background="{StaticResource UIWhite}" Opacity="0" Focusable="False" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="{StaticResource UIBlack}"/>
-                        <Grid x:Name="menuGrid" HorizontalAlignment="Right">
+                        <Border x:Name="togglePaneShadowGrid" Background="{StaticResource UIWhite}" Opacity="0" Focusable="False" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="{StaticResource UIBlack}" MaxHeight="30"/>
+                        <Grid x:Name="menuGrid" HorizontalAlignment="Right" MaxHeight="30">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="30"/>
                                 <ColumnDefinition Width="*"/>
