@@ -104,12 +104,12 @@
                                 </Grid.ColumnDefinitions>
                                 <Button Grid.Column="0" Style="{StaticResource ButtonImageStyle}" Command="{Binding RenameCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanChooseItemName}" ToolTip="{x:Static res:StringRes.SummaryOptionRename}" Focusable="{Binding IsOpen}">
                                     <Button.Content>
-                                        <TextBlock Text="&#xE70F;" Style="{StaticResource RoundButtonTextStyle}" FontSize="17"/>
+                                        <TextBlock Text="&#xE70F;" Style="{StaticResource RoundButtonTextStyle}" FontSize="16"/>
                                     </Button.Content>
                                 </Button>
                                 <Button Grid.Column="1" Style="{StaticResource ButtonImageStyle}" Command="{Binding RemoveCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanSetHome}" ToolTip="{x:Static res:StringRes.SummaryOptionDelete}" Focusable="{Binding IsOpen}">
                                     <Button.Content>
-                                        <TextBlock Text="&#xE74D;" Style="{StaticResource RoundButtonTextStyle}" FontSize="14"/>
+                                        <TextBlock Text="&#xE74D;" Style="{StaticResource RoundButtonTextStyle}" FontSize="15"/>
                                     </Button.Content>
                                 </Button>
                             </Grid>
