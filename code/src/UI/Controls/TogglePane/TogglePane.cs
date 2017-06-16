@@ -1,12 +1,13 @@
 ﻿using Microsoft.Templates.UI.Extensions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Microsoft.Templates.UI.Controls
 {
     public sealed partial class TogglePane : Control
     {
-        private Grid _togglePaneShadowGrid;
+        private Border _togglePaneShadowGrid;
         private Grid _menuGrid;
         private bool _isInitialized = false;
 
@@ -18,7 +19,7 @@ namespace Microsoft.Templates.UI.Controls
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            _togglePaneShadowGrid = GetTemplateChild("togglePaneShadowGrid") as Grid;
+            _togglePaneShadowGrid = GetTemplateChild("togglePaneShadowGrid") as Border;
             _menuGrid = GetTemplateChild("menuGrid") as Grid;
 
             _isInitialized = true;
@@ -31,14 +32,14 @@ namespace Microsoft.Templates.UI.Controls
             {
                 if (IsOpen && newValue == false && oldValue == false)
                 {
-                    _menuGrid.AnimateWidth(215, 0);
-                    _togglePaneShadowGrid.AnimateWidth(215, 0);
+                    _menuGrid.AnimateWidth(90, 0);
+                    _togglePaneShadowGrid.AnimateWidth(90, 0);
                     _togglePaneShadowGrid.FadeIn(0);
                 }
                 else if (IsOpen)
                 {
-                    _menuGrid.AnimateWidth(215);
-                    _togglePaneShadowGrid.AnimateWidth(215);
+                    _menuGrid.AnimateWidth(90);
+                    _togglePaneShadowGrid.AnimateWidth(90);
                     _togglePaneShadowGrid.FadeIn();
                 }
                 else
