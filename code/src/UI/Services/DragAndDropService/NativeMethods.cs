@@ -10,19 +10,24 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System.Windows;
-using System.Windows.Media;
+using System;
+using System.Runtime.InteropServices;
 
 namespace Microsoft.Templates.UI.Services
 {
-    public class MouseUtilities
+    internal class NativeMethods
     {
-        public static Point GetMousePosition(Visual relativeTo)
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct Win32Point
         {
-            var mouse = default(NativeMethods.Win32Point);
-            NativeMethods.GetCursorPos(ref mouse);
-
-            return relativeTo.PointFromScreen(new Point(mouse.X, mouse.Y));
+            public int X;
+            public int Y;
         }
+
+        [DllImport("user32.dll")]
+        internal static extern bool GetCursorPos(ref Win32Point pt);
+
+        [DllImport("user32.dll")]
+        internal static extern bool ScreenToClient(IntPtr hwnd, ref Win32Point pt);
     }
 }

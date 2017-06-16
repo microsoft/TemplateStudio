@@ -16,6 +16,7 @@ using System.Reflection;
 
 using EnvDTE;
 using EnvDTE80;
+
 using Microsoft.Templates.UI.Resources;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Shell;
