@@ -1,5 +1,4 @@
-﻿
-// This file is used by Code Analysis to maintain SuppressMessage
+﻿// This file is used by Code Analysis to maintain SuppressMessage
 // attributes that are applied to this project.
 // Project-level suppressions either have no target or are given
 // a specific target and scoped to a namespace, type, member, etc.
@@ -45,7 +44,6 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1513:ClosingBraceMustBeFollowedByBlankLine", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]
 [assembly: SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1515:SingleLineCommentMustBePrecededByBlankLine", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]
 [assembly: SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1516:ElementsMustBeSeparatedByBlankLine", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]
-[assembly: SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1517:CodeMustNotContainBlankLinesAtStartOfFile", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]
 [assembly: SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1519:BracesMustNotBeOmittedFromMultiLineChildStatement", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]
 
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1611:ElementParametersMustBeDocumented", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]
