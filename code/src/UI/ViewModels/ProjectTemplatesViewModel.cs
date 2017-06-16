@@ -308,7 +308,11 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             if (!item.IsHome)
             {
-                foreach (var spg in SavedPages) { spg.ToList().ForEach(sp => sp.TryReleaseHome()); }
+                foreach (var spg in SavedPages)
+                {
+                    spg.ToList().ForEach(sp => sp.TryReleaseHome());
+                }
+
                 item.IsHome = true;
                 HomeName = item.ItemName;
                 AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.SetHome).FireAndForget();
