@@ -225,7 +225,8 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             try
             {
-                var task = Task.Run(() => {
+                var task = Task.Run(() =>
+                {
                     action();
                 });
 
@@ -246,7 +247,8 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task FlushAsync()
         {
-            await SafeExecuteAsync(async () => {
+            await SafeExecuteAsync(async () =>
+            {
                 if (_client != null)
                 {
                     _client.Flush();

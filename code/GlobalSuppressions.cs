@@ -39,7 +39,6 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1404:CodeAnalysisSuppressionMustHaveJustification", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]
 [assembly: SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1407:ArithmeticExpressionsMustDeclarePrecedence", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]
 
-[assembly: SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1500:BracesForMultiLineStatementsMustNotShareLine", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]
 [assembly: SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1501:StatementMustNotBeOnSingleLine", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]
 [assembly: SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1503:BracesMustNotBeOmitted", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]
 [assembly: SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1512:SingleLineCommentsMustNotBeFollowedByBlankLine", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]
