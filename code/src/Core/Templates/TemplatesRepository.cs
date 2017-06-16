@@ -37,7 +37,7 @@ namespace Microsoft.Templates.Core
         public TemplatesSynchronization Sync { get; private set; }
         public string WizardVersion { get; private set; }
         public string CurrentContentFolder { get => Sync?.CurrentContentFolder; }
-        public string TemplatesVersion { get => Sync.CurrentContentVersion?.ToString() ?? String.Empty; }
+        public string TemplatesVersion { get => Sync.CurrentContentVersion?.ToString() ?? string.Empty; }
 
         public TemplatesRepository(TemplatesSource source, Version wizardVersion, string language)
         {
@@ -67,18 +67,18 @@ namespace Microsoft.Templates.Core
                         .Where(predicate);
         }
 
-        //public IEnumerable<ITemplateInfo> GetDependencies(ITemplateInfo ti)
-        //{
-        //    return ti.GetDependencyList()
-        //                .Select(d => Find(t => t.Identity == d));
-        //}
-        
+        ////public IEnumerable<ITemplateInfo> GetDependencies(ITemplateInfo ti)
+        ////{
+        ////    return ti.GetDependencyList()
+        ////                .Select(d => Find(t => t.Identity == d));
+        ////}
+
         public ITemplateInfo Find(Func<ITemplateInfo, bool> predicate)
         {
             return GetAll()
                         .FirstOrDefault(predicate);
         }
-        
+
         public IEnumerable<MetadataInfo> GetProjectTypes()
         {
             return GetMetadataInfo("projectTypes");
@@ -111,7 +111,6 @@ namespace Microsoft.Templates.Core
             return metadata.OrderBy(m => m.Order);
         }
 
-
         private void SetLicenseTerms(MetadataInfo metadataInfo)
         {
             if (!string.IsNullOrWhiteSpace(metadataInfo.Licenses))
@@ -131,7 +130,6 @@ namespace Microsoft.Templates.Core
                             Url = m.Groups["url"].Value
                         });
                     }
-
                 }
 
                 metadataInfo.LicenseTerms = result;
@@ -160,9 +158,9 @@ namespace Microsoft.Templates.Core
             }
         }
 
-        //public ITemplateInfo GetLayoutTemplate(LayoutItem item, string framework)
-        //{
-        //    return Find(t => t.GroupIdentity == item.templateGroupIdentity && t.GetFrameworkList().Any(f => f.Equals(framework, StringComparison.OrdinalIgnoreCase)));
-        //}
+        ////public ITemplateInfo GetLayoutTemplate(LayoutItem item, string framework)
+        ////{
+        ////    return Find(t => t.GroupIdentity == item.templateGroupIdentity && t.GetFrameworkList().Any(f => f.Equals(framework, StringComparison.OrdinalIgnoreCase)));
+        ////}
     }
 }

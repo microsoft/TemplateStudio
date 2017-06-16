@@ -166,6 +166,10 @@
     <Compile Include="Naming\ExistingNamesValidator.cs" />
     <Compile Include="Naming\ReservedNameValidator.cs" />
     <Compile Include="Naming\Validator.cs" />
+    <Compile Include="PostActions\Catalog\SortNamespaces\ImportsComparer.cs" />
+    <Compile Include="PostActions\Catalog\SortNamespaces\NamespaceComparer.cs" />
+    <Compile Include="PostActions\Catalog\SortNamespaces\SortImportsPostAction.cs" />
+    <Compile Include="PostActions\Catalog\SortNamespaces\SortNamespacesPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortNamespaces\SortUsingsPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortNamespaces\IEnumerableExtensions.cs" />
     <Compile Include="PostActions\Catalog\SortNamespaces\UsingComparer.cs" />
