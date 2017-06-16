@@ -189,9 +189,6 @@
   <data name="LoadingTemplatesText" xml:space="preserve">
     <value>Loading available templates...</value>
   </data>
-  <data name="MadeBy" xml:space="preserve">
-    <value>Made by {0}</value>
-  </data>
   <data name="MoreDetail" xml:space="preserve">
     <value>More detail</value>
   </data>

@@ -75,19 +75,13 @@
                             </templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
                             <templateSelectors:SummaryItemTemplateSelector.CommunityTemplate>
                                 <DataTemplate>
-                                    <Grid Height="50" Margin="{StaticResource MediumLeftMargin}">
+                                    <Grid Height="35" Margin="{StaticResource MediumLeftMargin}">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
                                         <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
-                                        <TextBlock Grid.Row="1" Style="{StaticResource TextSummaryAuthorStyle}" Foreground="{Binding AuthorForeground}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}">
-                                            <TextBlock.Text>
-                                                <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
-                                                    <Binding Path="Author" />
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
+                                        <TextBlock Grid.Row="1" Style="{StaticResource TextSummaryAuthorStyle}" Foreground="{Binding AuthorForeground}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}" Text="{Binding Author}"/>
                                         <controls:TextBoxEx Grid.Row="0" Grid.RowSpan="2" Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}">
                                             <controls:TextBoxEx.InputBindings>
                                                 <KeyBinding Command="{Binding ConfirmRenameCommand}" CommandParameter="{Binding}" Key="Enter" />
@@ -183,13 +177,7 @@
                             <StackPanel Margin="{StaticResource MediumLeftMargin}" DataContext="{Binding ProjectSetup.SelectedProjectType}">
                                 <TextBlock Style="{StaticResource TextSummaryGroupHeader}" Text="{x:Static res:StringRes.SummaryProjectTypeTitle}" />
                                 <TextBlock Style="{StaticResource TextSummaryItemStyle}" Text="{Binding DisplayName}" />
-                                <TextBlock Style="{StaticResource TextSummaryAuthorStyle}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}">
-                                    <TextBlock.Text>
-                                        <MultiBinding StringFormat="Made by {0}">
-                                            <Binding Path="Author" />
-                                        </MultiBinding>
-                                    </TextBlock.Text>
-                                </TextBlock>
+                                <TextBlock Style="{StaticResource TextSummaryAuthorStyle}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}" Text="{Binding Author}"/>
                             </StackPanel>
                         </StackPanel>
                         <Grid Margin="{StaticResource MediumTopMargin}">
@@ -198,12 +186,7 @@
                                 <StackPanel Margin="{StaticResource MediumLeftMargin}" DataContext="{Binding ProjectSetup.SelectedFramework}">
                                     <TextBlock Style="{StaticResource TextSummaryGroupHeader}" Text="{x:Static res:StringRes.SummaryFrameworkTitle}" />
                                     <TextBlock Style="{StaticResource TextSummaryItemStyle}" Text="{Binding DisplayName}" />
-                                    <TextBlock Style="{StaticResource TextSummaryAuthorStyle}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}">
-                                        <TextBlock.Text>
-                                            <MultiBinding StringFormat="Made by {0}">
-                                                <Binding Path="Author" />
-                                            </MultiBinding>
-                                        </TextBlock.Text>
+                                    <TextBlock Style="{StaticResource TextSummaryAuthorStyle}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}" Text="{Binding Author}">
                                     </TextBlock>
                                 </StackPanel>
                             </StackPanel>
