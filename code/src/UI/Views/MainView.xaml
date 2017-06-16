@@ -216,12 +216,7 @@
                             HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}"
                             IsExpanded="True">
                             <Grid>
-                                <ListView
-                                    x:Name="summaryPagesListView"
-                                    ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}"
-                                    ItemsSource="{Binding ProjectTemplates.SavedPages}"
-                                    SelectionMode="Single"
-                                    Style="{StaticResource SummaryListViewStyle}" Tag="AllowClick" />
+                                <StackPanel x:Name="summaryPageGroups"/>
                                 <TextBlock
                                     Margin="27,0,0,0"
                                     Text="{x:Static res:StringRes.SummaryNoPages}"

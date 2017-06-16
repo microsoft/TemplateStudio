@@ -101,6 +101,13 @@ namespace Microsoft.Templates.UI.ViewModels
             set => SetProperty(ref _author, value);
         }
 
+        private int _genGroup;
+        public int GenGroup
+        {
+            get => _genGroup;
+            set => SetProperty(ref _genGroup, value);
+        }
+
         private TemplateType _templateType;
         public TemplateType TemplateType
         {
@@ -239,6 +246,7 @@ namespace Microsoft.Templates.UI.ViewModels
             colorTimer.Tick += OnColorTimerTick;
             ItemName = item.name;
             Author = item.template.Author;
+            GenGroup = item.template.GetGenGroup();
             TemplateType = item.template.GetTemplateType();
             CanChooseItemName = item.template.GetItemNameEditable();
             Identity = item.template.Identity;
@@ -271,7 +279,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public void UpdateAllowDragAndDrop(int pagesCount)
         {
-            AllowDragAndDrop = TemplateType == TemplateType.Page && pagesCount > 1;
+            AllowDragAndDrop = GenGroup == 0 && TemplateType == TemplateType.Page && pagesCount > 1;
         }
 
         public void TryReleaseHome()

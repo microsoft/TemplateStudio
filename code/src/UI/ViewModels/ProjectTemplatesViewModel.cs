@@ -50,7 +50,7 @@ namespace Microsoft.Templates.UI.ViewModels
         public ObservableCollection<GroupTemplateInfoViewModel> PagesGroups { get; } = new ObservableCollection<GroupTemplateInfoViewModel>();
         public ObservableCollection<GroupTemplateInfoViewModel> FeatureGroups { get; } = new ObservableCollection<GroupTemplateInfoViewModel>();
 
-        public ObservableCollection<SavedTemplateViewModel> SavedPages { get; } = new ObservableCollection<SavedTemplateViewModel>();
+        public ObservableCollection<ObservableCollection<SavedTemplateViewModel>> SavedPages { get; } = new ObservableCollection<ObservableCollection<SavedTemplateViewModel>>();
         public ObservableCollection<SavedTemplateViewModel> SavedFeatures { get; } = new ObservableCollection<SavedTemplateViewModel>();
 
         private RelayCommand<SavedTemplateViewModel> _removeTemplateCommand;
@@ -82,7 +82,7 @@ namespace Microsoft.Templates.UI.ViewModels
             get
             {
                 var names = new List<string>();
-                names.AddRange(SavedPages.Select(sp => sp.ItemName));
+                SavedPages.ToList().ForEach(spg => names.AddRange(spg.Select(sp => sp.ItemName)));
                 names.AddRange(SavedFeatures.Select(sf => sf.ItemName));
                 return names;
             }
@@ -93,7 +93,7 @@ namespace Microsoft.Templates.UI.ViewModels
             get
             {
                 var identities = new List<string>();
-                identities.AddRange(SavedPages.Select(sp => sp.Identity));
+                SavedPages.ToList().ForEach(spg => identities.AddRange(spg.Select(sp => sp.Identity)));
                 identities.AddRange(SavedFeatures.Select(sf => sf.Identity));
                 return identities;
             }
@@ -285,7 +285,7 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             if (!item.IsOpen)
             {
-                SavedPages.ToList().ForEach(p => TryClose(p, item));
+                SavedPages.ToList().ForEach(pg => pg.ToList().ForEach(p => TryClose(p, item)));
                 SavedFeatures.ToList().ForEach(f => TryClose(f, item));
                 item.IsOpen = true;
             }
@@ -307,7 +307,7 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             if (!item.IsHome)
             {
-                foreach (var page in SavedPages) { page.TryReleaseHome(); }
+                foreach (var spg in SavedPages) { spg.ToList().ForEach(sp => sp.TryReleaseHome()); }
                 item.IsHome = true;
                 HomeName = item.ItemName;
                 AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.SetHome).FireAndForget();
@@ -316,7 +316,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnRemoveTemplate(SavedTemplateViewModel item)
         {
-            var dependencyItem = SavedPages.FirstOrDefault(st => st.DependencyList.Any(d => d == item.Identity));
+            var dependencyItem = SavedPages[item.GenGroup].FirstOrDefault(st => st.DependencyList.Any(d => d == item.Identity));
             if (dependencyItem == null)
             {
                 dependencyItem = SavedFeatures.FirstOrDefault(st => st.DependencyList.Any(d => d == item.Identity));
@@ -327,9 +327,9 @@ namespace Microsoft.Templates.UI.ViewModels
                 MainViewModel.Current.Status = new StatusViewModel(Controls.StatusType.Warning, message, true);
                 return;
             }
-            if (SavedPages.Contains(item))
+            if (SavedPages[item.GenGroup].Contains(item))
             {
-                SavedPages.Remove(item);
+                SavedPages[item.GenGroup].Remove(item);
             }
             else if (SavedFeatures.Contains(item))
             {
@@ -352,25 +352,26 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public void CloseSummaryItemsEdition()
         {
-            SavedPages.ToList().ForEach(p => p.OnCancelRename());
+            SavedPages.ToList().ForEach(spg => spg.ToList().ForEach(p => p.OnCancelRename()));
             SavedFeatures.ToList().ForEach(f => f.OnCancelRename());
         }
 
-        public void DroTemplate(object sender, DragAndDropEventArgs<SavedTemplateViewModel> e)
+        public void DropTemplate(object sender, DragAndDropEventArgs<SavedTemplateViewModel> e)
         {
-            if (SavedPages.Count > 1)
+            if (SavedPages.Count > 0 && SavedPages.Count >= e.ItemData.GenGroup + 1)
             {
-                if (e.NewIndex == 0)
+                var items = SavedPages[e.ItemData.GenGroup];
+                if (items.Count > 1)
                 {
-                    SetHomePage(e.ItemData);
-                }
-                if (e.OldIndex > -1)
-                {
-                    SavedPages.Move(e.OldIndex, e.NewIndex);
-                }
-                if (e.OldIndex == 0)
-                {
-                    SetHomePage(SavedPages.First());
+                    if (e.NewIndex == 0)
+                    {
+                        SetHomePage(e.ItemData);
+                    }
+                    if (e.OldIndex > -1)
+                    {
+                        SavedPages[e.ItemData.GenGroup].Move(e.OldIndex, e.NewIndex);
+                    }
+                    SetHomePage(items.First());
                 }
             }
         }
@@ -392,9 +393,9 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void UpdateSummaryTemplates()
         {
-            foreach (var page in SavedPages)
+            foreach (var spg in SavedPages)
             {
-                page.UpdateAllowDragAndDrop(SavedPages.Count);
+                spg.ToList().ForEach(sp => sp.UpdateAllowDragAndDrop(SavedPages.Count));
             }
         }
 
@@ -438,7 +439,13 @@ namespace Microsoft.Templates.UI.ViewModels
                     HomeName = item.name;
                     newItem.IsHome = true;
                 }
-                SavedPages.Add(newItem);
+                while (SavedPages.Count < newItem.GenGroup + 1)
+                {
+                    var items = new ObservableCollection<SavedTemplateViewModel>();
+                    SavedPages.Add(items);
+                    MainViewModel.Current.DefineDragAndDrop(items, SavedPages.Count == 1);
+                }
+                SavedPages[newItem.GenGroup].Add(newItem);
             }
             else if (item.template.GetTemplateType() == TemplateType.Feature)
             {
