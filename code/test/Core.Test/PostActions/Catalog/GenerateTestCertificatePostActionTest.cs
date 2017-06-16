@@ -39,6 +39,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public List<string> NewFiles { get; } = new List<string>();
 
+        public List<string> ModifiedFiles { get; } = new List<string>();
+
         public List<string> ConflictFiles { get; } = new List<string>();
 
         public List<string> UnchangedFiles { get; } = new List<string>();

@@ -35,6 +35,19 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             sb.AppendLine("# Generation summary");
             sb.AppendLine("The following changes have been incorporated in your project");
 
+            if (GenContext.Current.NewFiles.Any())
+            {
+                sb.AppendLine($"## New files:");
+                sb.AppendLine();
+
+                foreach (var newFile in GenContext.Current.NewFiles)
+                {
+                    var newFilePath = Path.Combine(GenContext.Current.ProjectPath, newFile);
+
+                    sb.AppendLine(GetLinkToProjectFile(newFile, newFilePath));
+                }
+            }
+
             sb.AppendLine("## Modified files: ");
 
             foreach (var mergeFile in GenContext.Current.MergeFilesFromProject)
@@ -68,18 +81,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                     sb.AppendLine();
                 }
             }
-            if (GenContext.Current.NewFiles.Any())
-            {
-                sb.AppendLine($"## New files:");
-                sb.AppendLine();
 
-                foreach (var newFile in GenContext.Current.NewFiles)
-                {
-                    var newFilePath = Path.Combine(GenContext.Current.ProjectPath, newFile);
-
-                    sb.AppendLine(GetLinkToProjectFile(newFile, newFilePath));
-                }
-            }
             if (GenContext.Current.ConflictFiles.Any())
             {
                 sb.AppendLine($"## Conflicting files:");
@@ -98,9 +100,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             GenContext.Current.NewFiles.Clear();
             GenContext.Current.ConflictFiles.Clear();
+            GenContext.Current.UnchangedFiles.Clear();
+            GenContext.Current.ModifiedFiles.Clear();
             GenContext.Current.GenerationWarnings.Clear();
             GenContext.Current.MergeFilesFromProject.Clear();
-            GenContext.Current.UnchangedFiles.Clear();
         }
 
         private static string GetLinkToProjectFile(string fileName, string filePath)

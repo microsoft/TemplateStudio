@@ -137,11 +137,11 @@ namespace Microsoft.Templates.UI
                         Path.Combine(GenContext.Current.OutputPath, n),
                         Path.Combine(GenContext.Current.ProjectPath, n))));
 
-            result.ModifiedFiles.AddRange(GenContext.Current.MergeFilesFromProject.Select(n =>
+            result.ModifiedFiles.AddRange(GenContext.Current.ModifiedFiles.Select(n =>
               new NewItemGenerationFileInfo(
-                      n.Key,
-                      Path.Combine(GenContext.Current.OutputPath, n.Key),
-                      Path.Combine(GenContext.Current.ProjectPath, n.Key))));
+                      n,
+                      Path.Combine(GenContext.Current.OutputPath, n),
+                      Path.Combine(GenContext.Current.ProjectPath, n))));
 
             result.UnchangedFiles.AddRange(GenContext.Current.UnchangedFiles.Select(n =>
              new NewItemGenerationFileInfo(
@@ -180,12 +180,13 @@ namespace Microsoft.Templates.UI
 
         public void CleanupTempGeneration()
         {
-            GenContext.Current.GenerationWarnings.Clear();
-            GenContext.Current.MergeFilesFromProject.Clear();
-            GenContext.Current.ProjectItems.Clear();
             GenContext.Current.NewFiles.Clear();
             GenContext.Current.ConflictFiles.Clear();
-            GenContext.Current.FilesToOpen.Clear();
+            GenContext.Current.UnchangedFiles.Clear();
+            GenContext.Current.ModifiedFiles.Clear();
+            GenContext.Current.GenerationWarnings.Clear();
+            GenContext.Current.MergeFilesFromProject.Clear();
+
             var directory = GenContext.Current.OutputPath;
             try
             {

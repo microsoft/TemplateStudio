@@ -48,6 +48,8 @@ namespace Microsoft.Templates.Test
 
         public List<string> NewFiles { get; } = new List<string>();
 
+        public List<string> ModifiedFiles { get; } = new List<string>();
+
         public List<string> FilesToOpen { get; } = new List<string>();
 
         public List<string> ConflictFiles { get; } = new List<string>();

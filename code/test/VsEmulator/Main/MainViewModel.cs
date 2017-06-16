@@ -59,6 +59,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public List<string> NewFiles { get; } = new List<string>();
 
+        public List<string> ModifiedFiles { get; } = new List<string>();
+
         public List<string> ConflictFiles { get; } = new List<string>();
 
         public List<string> UnchangedFiles { get; } = new List<string>();
@@ -224,12 +226,13 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             ProjectItems.Clear();
             NewFiles.Clear();
+            ModifiedFiles.Clear();
             ConflictFiles.Clear();
-            GenerationWarnings.Clear();
-            MergeFilesFromProject.Clear();
-            FilesToOpen.Clear();
             UnchangedFiles.Clear();
-    }
+            MergeFilesFromProject.Clear();
+            GenerationWarnings.Clear();
+            FilesToOpen.Clear();
+        }
 
         private void AddNewPage()
         {

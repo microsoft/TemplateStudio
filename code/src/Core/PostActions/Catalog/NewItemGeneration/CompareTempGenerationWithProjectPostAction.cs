@@ -50,6 +50,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                             GenContext.Current.MergeFilesFromProject.Remove(fileName);
                             GenContext.Current.UnchangedFiles.Add(fileName);
                         }
+                        else
+                        {
+                            GenContext.Current.ModifiedFiles.Add(fileName);
+                        }
                     }
                     else
                     {

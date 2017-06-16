@@ -27,16 +27,20 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         public override void Execute()
         {
-            if (Regex.IsMatch(_config, MergePostAction.GlobalExtension))
+            var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(_config.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath)));
+            var relFilePath = filePath.Replace(GenContext.Current.ProjectPath + Path.DirectorySeparatorChar, string.Empty);
+
+            if (File.Exists(filePath) && !GenContext.Current.MergeFilesFromProject.ContainsKey(relFilePath))
             {
-                 GetFileFromProject();
+                GenContext.Current.MergeFilesFromProject.Add(relFilePath, new List<MergeInfo>());
+
+                var destFile = filePath.Replace(GenContext.Current.ProjectPath, GenContext.Current.OutputPath);
+                File.Copy(filePath, destFile, true);
             }
-            else
+            else if (!CheckLocalMergeFileAvailable())
             {
-                if (!CheckLocalMergeFileAvailable())
-                {
-                    GetFileFromProject();
-                }
+                // Check if file is available locally, if not, add as missing merge file from project
+                GenContext.Current.MergeFilesFromProject.Add(relFilePath, new List<MergeInfo>());
             }
         }
 
@@ -44,19 +48,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
             var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(_config));
             return File.Exists(filePath) ? true : false;
-        }
-
-        private void GetFileFromProject()
-        {
-            var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(_config.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath)));
-            var relFilePath = filePath.Replace(GenContext.Current.ProjectPath + Path.DirectorySeparatorChar, string.Empty);
-            GenContext.Current.MergeFilesFromProject.Add(relFilePath, new List<MergeInfo>());
-
-            if (File.Exists(filePath))
-            {
-                var destFile = filePath.Replace(GenContext.Current.ProjectPath, GenContext.Current.OutputPath);
-                File.Copy(filePath, destFile, true);
-            }
         }
 
         private string GetMergeFileFromDirectory(string directory)

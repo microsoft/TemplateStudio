@@ -44,6 +44,8 @@ namespace Microsoft.Templates.Test
 
         public List<string> NewFiles { get; } = new List<string>();
 
+        public List<string> ModifiedFiles { get; } = new List<string>();
+
         public List<string> FilesToOpen { get; } = new List<string>();
 
         public List<string> ConflictFiles { get; } = new List<string>();
@@ -75,6 +77,7 @@ namespace Microsoft.Templates.Test
             var rightClickTemplates = GenerationFixture.Templates.Where
                                             (t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
                                                 && t.GetFrameworkList().Contains(framework)
+                                                && (!t.GetIsHidden())
                                                 && t.GetRightClickEnabled());
 
             foreach (var item in rightClickTemplates)
@@ -87,8 +90,8 @@ namespace Microsoft.Templates.Test
                     Framework = framework,
                     HomeName = "",
                     ItemGenerationType = ItemGenerationType.GenerateAndMerge
-
                 };
+
                 GenerationFixture.AddItem(newUserSelection, item, GenerationFixture.GetDefaultName);
                 await NewItemGenController.Instance.UnsafeGenerateNewItemAsync(newUserSelection);
                 NewItemGenController.Instance.UnsafeFinishGeneration(newUserSelection);

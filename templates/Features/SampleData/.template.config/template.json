@@ -15,7 +15,8 @@
     "wts.order": "1",
     "wts.defaultInstance": "SampleDataService",
     "wts.multipleInstance": "false",
-    "wts.isHidden": "true"
+    "wts.isHidden": "true",
+    "wts.rightClickEnabled":"true" 
   },
   "sourceName": "SampleDataServiceFeature",
   "preferNameDirectory": true,
