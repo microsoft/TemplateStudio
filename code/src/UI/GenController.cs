@@ -98,7 +98,7 @@ namespace Microsoft.Templates.UI
                     GenContext.ToolBox.Shell.ShowStatusBarMessage(statusText);
                 }
 
-                AppHealth.Current.Info.TrackAsync($"Generating the template {genInfo.Template.Name} to {GenContext.Current.OutputPath}.").FireAndForget();
+                AppHealth.Current.Info.TrackAsync(string.Format(StringRes.GenControllerUnsafeGenerateAsyncMessage, genInfo.Template.Name, GenContext.Current.OutputPath)).FireAndForget();
 
                 var result = await CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, GenContext.Current.OutputPath, genInfo.Parameters, false, false, null);
 
