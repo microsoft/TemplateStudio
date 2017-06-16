@@ -145,7 +145,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 SetProperty(ref _newTemplateName, value);
                 if (CanChooseItemName)
                 {
-                    ValidateTemplateName?.Invoke(this);
+                    _validateTemplateName?.Invoke(this);
                 }
             }
         }
@@ -173,7 +173,7 @@ namespace Microsoft.Templates.UI.ViewModels
         private ICommand _showItemInfoCommand;
         public ICommand ShowItemInfoCommand => _showItemInfoCommand ?? (_showItemInfoCommand = new RelayCommand(ShowItemInfo));
 
-        private Action<TemplateInfoViewModel> ValidateTemplateName;
+        private Action<TemplateInfoViewModel> _validateTemplateName;
         #endregion
 
         public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies, RelayCommand<TemplateInfoViewModel> addItemCommand, RelayCommand<TemplateInfoViewModel> saveItemCommand, Action<TemplateInfoViewModel> validateTemplateName)
@@ -195,7 +195,7 @@ namespace Microsoft.Templates.UI.ViewModels
 
             AddItemCommand = addItemCommand;
             SaveItemCommand = saveItemCommand;
-            ValidateTemplateName = validateTemplateName;
+            _validateTemplateName = validateTemplateName;
 
             if (dependencies != null && dependencies.Any())
             {
