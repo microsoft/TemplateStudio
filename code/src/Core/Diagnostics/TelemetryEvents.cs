@@ -21,12 +21,12 @@ namespace Microsoft.Templates.Core.Diagnostics
         public static string FeatureGen { get; private set; } = Prefix + "FeatureGen";
         public static string Wizard { get; private set; } = Prefix + "Wizard";
         public static string SessionStart { get; private set; } = Prefix + "SessionStart";
-        public static string EditSummaryItem { get; internal set; } = Prefix + "EditSummaryItem";
+        public static string EditSummaryItem { get; private set; } = Prefix + "EditSummaryItem";
     }
 
     public class VsTelemetryEvents
     {
         public const string Prefix = "Wts.";
-        public static string ProjectGen { get; internal set; } = "vs/windowstemplatestudio/project-generated";
+        public static string ProjectGen { get; private set; } = "vs/windowstemplatestudio/project-generated";
     }
 }
