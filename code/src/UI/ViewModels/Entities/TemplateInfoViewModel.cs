@@ -10,16 +10,16 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Input;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
-using System.Collections.ObjectModel;
-using System.Windows;
-using System.Windows.Input;
-using System;
-using System.Windows.Media;
 using Microsoft.Templates.UI.Views;
 using Microsoft.Templates.Core.Mvvm;
 

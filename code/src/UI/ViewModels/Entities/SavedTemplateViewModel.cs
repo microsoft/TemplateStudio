@@ -11,15 +11,15 @@
 // ******************************************************************
 
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Input;
 using System.Windows.Threading;
 
 using Microsoft.Templates.Core.Mvvm;
-using System.Windows.Input;
 using Microsoft.Templates.Core;
 using Microsoft.TemplateEngine.Abstractions;
-using System.Collections.Generic;
 
 namespace Microsoft.Templates.UI.ViewModels
 {

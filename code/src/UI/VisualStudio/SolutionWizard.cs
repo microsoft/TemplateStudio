@@ -10,8 +10,8 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
 using System.Collections.Generic;
+using System.IO;
 
 using EnvDTE;
 
@@ -21,7 +21,6 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.Templates.UI.Resources;
-using System.IO;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
