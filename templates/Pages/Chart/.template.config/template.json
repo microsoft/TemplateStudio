@@ -17,7 +17,7 @@
     "wts.order": "1",
     "wts.licenses": "[Telerik.UI-For-UWP](https://github.com/telerik/UI-For-UWP/blob/master/LICENSE.md)",
     "wts.dependencies": "wts.Feat.SampleDataService",
-    "wts.rightClickEnabled":"false" 
+    "wts.rightClickEnabled":"true" 
   },
   "sourceName": "ChartView",
   "preferNameDirectory": true,
