@@ -119,6 +119,8 @@ namespace Microsoft.Templates.UI.ViewModels
             set => SetProperty(ref _wizardInfoVisibility, value);
         }
 
+        private string _language;
+
         private RelayCommand _cancelCommand;
         private RelayCommand _goBackCommand;
         private RelayCommand _nextCommand;
@@ -154,8 +156,9 @@ namespace Microsoft.Templates.UI.ViewModels
 
         public ObservableCollection<SummaryLicenseViewModel> SummaryLicenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
 
-        public MainViewModel(MainView mainView)
+        public MainViewModel(MainView mainView, string language)
         {
+            _language = language;
             MainView = mainView;
             Current = this;
         }
@@ -362,11 +365,12 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private UserSelection CreateUserSelection()
         {
-            var userSelection = new UserSelection()
+            var userSelection = new UserSelection
             {
                 ProjectType = ProjectSetup.SelectedProjectType?.Name,
                 Framework = ProjectSetup.SelectedFramework?.Name,
-                HomeName = ProjectTemplates.HomeName
+                HomeName = ProjectTemplates.HomeName,
+                Language = _language,
             };
 
             userSelection.Pages.AddRange(ProjectTemplates.SavedPages.Select(sp => sp.UserSelection));

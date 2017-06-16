@@ -128,10 +128,12 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                     GenContext.Current = this;
 
-                    var userSelection = GenController.GetUserSelection();
+                    var userSelection = GenController.GetUserSelection(_language);
                     if (userSelection != null)
                     {
                         SolutionName = null;
+
+                        userSelection.Language = _language;
 
                         await GenController.GenerateAsync(userSelection);
 

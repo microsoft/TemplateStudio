@@ -27,6 +27,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         public static string WizardStatus { get; private set; } = TelemetryTracker.PropertiesPrefix + "WizardStatus";
         public static string LastStep { get; private set; } = TelemetryTracker.PropertiesPrefix + "LastStep";
         public static string EventName { get; internal set; } = TelemetryTracker.PropertiesPrefix + "EventName";
+        public static string Language { get; internal set; } = TelemetryTracker.PropertiesPrefix + "Language";
         public static string VisualStudioVersion { get; internal set; } = TelemetryTracker.PropertiesPrefix + "VsVersion";
         public static string VisualStudioEdition { get; internal set; } = TelemetryTracker.PropertiesPrefix + "VsEdition";
         public static string VisualStudioCulture { get; internal set; } = TelemetryTracker.PropertiesPrefix + "VsCulture";

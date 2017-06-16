@@ -29,6 +29,7 @@ namespace Microsoft.Templates.UI.VisualStudio
     {
         private UserSelection _userSelection;
         private Dictionary<string, string> _replacementsDictionary;
+        private string _language;
 
         public string ProjectName => _replacementsDictionary["$safeprojectname$"];
 
@@ -36,6 +37,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         protected void Initialize(string language)
         {
+            _language = language;
+
             if (GenContext.InitializedLanguage != language)
             {
 #if DEBUG
@@ -87,7 +90,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     GenContext.Current = this;
 
-                    _userSelection = GenController.GetUserSelection();
+                    _userSelection = GenController.GetUserSelection(_language);
                 }
             }
             catch (WizardBackoutException)

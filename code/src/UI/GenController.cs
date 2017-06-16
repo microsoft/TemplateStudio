@@ -29,9 +29,9 @@ namespace Microsoft.Templates.UI
 {
     public class GenController
     {
-        public static UserSelection GetUserSelection()
+        public static UserSelection GetUserSelection(string language)
         {
-            var mainView = new MainView();
+            var mainView = new MainView(language);
 
             try
             {
@@ -116,7 +116,7 @@ namespace Microsoft.Templates.UI
 
             chrono.Stop();
 
-            TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework);
+            TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework, userSelection.Language);
         }
 
         private static void ExecuteGlobalPostActions(List<GenInfo> genItems)
@@ -170,7 +170,7 @@ namespace Microsoft.Templates.UI
             GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Empty);
         }
 
-        private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appProjectType, string appFx)
+        private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appProjectType, string appFx, string language)
         {
             try
             {
@@ -189,7 +189,7 @@ namespace Microsoft.Templates.UI
                     if (genInfo.Template.GetTemplateType() == TemplateType.Project)
                     {
                         AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template,
-                            appProjectType, appFx, genResults[resultsKey], pagesAdded, featuresAdded, timeSpent).FireAndForget();
+                            appProjectType, appFx, genResults[resultsKey], language, pagesAdded, featuresAdded, timeSpent).FireAndForget();
                     }
                     else
                     {
