@@ -59,7 +59,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             bool beforeMode = false;
             bool isInBlock = false;
 
-            var _diffTrivia = FindDiffLeadingTrivia(source, merge);
+            var diffTrivia = FindDiffLeadingTrivia(source, merge);
             var result = source.ToList();
             var currentLineIndex = -1;
 
@@ -67,7 +67,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 if (!isInBlock)
                 {
-                    currentLineIndex = result.SafeIndexOf(mergeLine.WithLeadingTrivia(_diffTrivia), lastLineIndex);
+                    currentLineIndex = result.SafeIndexOf(mergeLine.WithLeadingTrivia(diffTrivia), lastLineIndex);
                 }
 
                 if (currentLineIndex > -1)
@@ -98,7 +98,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                     }
                     else
                     {
-                        insertionBuffer.Add(mergeLine.WithLeadingTrivia(_diffTrivia));
+                        insertionBuffer.Add(mergeLine.WithLeadingTrivia(diffTrivia));
                     }
                 }
             }
