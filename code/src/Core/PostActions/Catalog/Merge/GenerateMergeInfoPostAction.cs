@@ -37,7 +37,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         public override void Execute()
         {
             var fileName = _config;
-            var postAction = File.ReadAllText(_config);
+            var postAction = File.ReadAllText(_config).GetUserFriendlyPostAction();
             var intent = GetPostActionIntent();
             var sourceFile = GetFilePath();
             var mergeType = GetMergeType();

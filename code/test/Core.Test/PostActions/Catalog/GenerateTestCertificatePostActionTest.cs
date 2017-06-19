@@ -24,8 +24,16 @@ using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 {
+    [Collection("Unit Test Templates")]
     public class GenerateTestCertificatePostActionTest : IContextProvider
     {
+        private TemplatesFixture _fixture;
+
+        public GenerateTestCertificatePostActionTest(TemplatesFixture fixture)
+        {
+            _fixture = fixture;
+        }
+
         public string ProjectName { get; set; }
         public string OutputPath { get; set; }
         public string ProjectPath { get; set; }
@@ -48,8 +56,6 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         [Fact]
         public void Execute_Ok()
         {
-            GenContext.Bootstrap(new UnitTestsTemplatesSource(), new FakeGenShell());
-
             var projectName = "test";
 
             ProjectName = projectName;

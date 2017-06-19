@@ -48,7 +48,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 else
                 {
                     AddFileNotFoundGenerationWarning(originalFilePath);
-                    File.Copy(_config.FilePath, _config.FilePath.Replace(Suffix, NewSuffix), true);
                     File.Delete(_config.FilePath);
                     return;
                 }
@@ -63,7 +62,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             if (errorLine != string.Empty)
             {
                 AddLineNotFoundGenerationWarning(originalFilePath, errorLine);
-                File.Copy(_config.FilePath, _config.FilePath.Replace(Suffix, NewSuffix), true);
             }
             else
             {
@@ -85,8 +83,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             var description = $"Could not find merge target for file '{postactionFileName}'. Please merge the content from the postaction file manually.";
             var intent = GetPostActionIntent();
-            var failedFileName = postactionFileName.Replace(Suffix, NewSuffix);
+            var failedFileName = GetFailedPostActionFileName();
             GenContext.Current.GenerationWarnings.Add(new GenerationWarning(sourceFileName, failedFileName, _config.FilePath, description, intent));
+            File.Copy(_config.FilePath, failedFileName, true);
         }
 
         private void AddLineNotFoundGenerationWarning(string originalFilePath, string errorLine)
@@ -96,8 +95,24 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var postactionFileName = _config.FilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
             var description = $"Could not find the expected line '{errorLine.Trim()}' in file '{sourceFileName}'. Please merge the content from the postaction file manually.";
             var intent = GetPostActionIntent();
-            var failedFileName = postactionFileName.Replace(Suffix, NewSuffix);
+            var failedFileName = GetFailedPostActionFileName();
             GenContext.Current.GenerationWarnings.Add(new GenerationWarning(sourceFileName, failedFileName, _config.FilePath, description, intent));
+            File.Copy(_config.FilePath, failedFileName, true);
+        }
+
+        private string GetFailedPostActionFileName()
+        {
+            var newFileName = Path.GetFileNameWithoutExtension(_config.FilePath).Replace(Suffix, NewSuffix);
+            var folder = Path.GetDirectoryName(_config.FilePath);
+            var extension = Path.GetExtension(_config.FilePath);
+
+            var validator = new List<Validator>()
+            {
+                new FileExistsValidator(Path.GetDirectoryName(_config.FilePath))
+            };
+
+            newFileName = Naming.Infer(newFileName, validator);
+            return Path.Combine(folder, newFileName + extension);
         }
 
         private string GetPostActionIntent()

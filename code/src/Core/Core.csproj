@@ -184,6 +184,7 @@
     <Compile Include="Locations\SyncStatus.cs" />
     <Compile Include="Naming\DefaultNameValidator.cs" />
     <Compile Include="Naming\ExistingNamesValidator.cs" />
+    <Compile Include="Naming\FileExistsValidator.cs" />
     <Compile Include="Naming\ReservedNameValidator.cs" />
     <Compile Include="Naming\Validator.cs" />
     <Compile Include="PostActions\Catalog\AddContextItemsToProjectPostAction.cs" />
