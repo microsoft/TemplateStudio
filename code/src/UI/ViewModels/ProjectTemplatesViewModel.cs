@@ -400,7 +400,7 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             foreach (var spg in SavedPages)
             {
-                spg.ToList().ForEach(sp => sp.UpdateAllowDragAndDrop(SavedPages.Count));
+                spg.ToList().ForEach(sp => sp.UpdateAllowDragAndDrop(SavedPages[0].Count));
             }
         }
 
