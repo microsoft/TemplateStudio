@@ -200,6 +200,7 @@
       <DependentUpon>MarkdownBlock.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\DragAndDropService\ListViewItemDragState.cs" />
+    <Compile Include="Services\DragAndDropService\NativeMethods.cs" />
     <Compile Include="Services\DragAndDropService\MouseUtilities.cs" />
     <Compile Include="Controls\StatusControl.xaml.cs">
       <DependentUpon>StatusControl.xaml</DependentUpon>

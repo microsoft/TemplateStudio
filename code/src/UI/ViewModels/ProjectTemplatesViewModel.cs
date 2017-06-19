@@ -10,6 +10,13 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
+
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -17,12 +24,6 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
@@ -307,7 +308,11 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             if (!item.IsHome)
             {
-                foreach (var spg in SavedPages) { spg.ToList().ForEach(sp => sp.TryReleaseHome()); }
+                foreach (var spg in SavedPages)
+                {
+                    spg.ToList().ForEach(sp => sp.TryReleaseHome());
+                }
+
                 item.IsHome = true;
                 HomeName = item.ItemName;
                 AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.SetHome).FireAndForget();

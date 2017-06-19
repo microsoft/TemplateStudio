@@ -66,7 +66,8 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             try
             {
-                var task = SystemTasks.Task.Run(() => {
+                var task = SystemTasks.Task.Run(() =>
+                {
                     trackAction();
                 });
 

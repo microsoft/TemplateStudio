@@ -11,10 +11,10 @@
 // ******************************************************************
 
 using System;
-using System.IO;
-using System.Net;
-using Microsoft.Templates.Core.Diagnostics;
 using System.Collections.Generic;
+using System.IO;
+
+using Microsoft.Templates.Core.Diagnostics;
 
 namespace Microsoft.Templates.Core.Locations
 {

@@ -10,16 +10,14 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels;
-using System.Windows.Input;
-using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Controls;
-using System.Windows.Controls;
-using System;
-using System.Linq;
 
 namespace Microsoft.Templates.UI.Views
 {
