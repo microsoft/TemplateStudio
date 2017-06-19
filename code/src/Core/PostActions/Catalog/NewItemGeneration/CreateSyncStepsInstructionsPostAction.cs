@@ -64,11 +64,14 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                     sb.AppendLine();
                 }
 
-                var modifiedFilePath = Path.Combine(GenContext.Current.OutputPath, mergeFile.Key);
-
-                if (File.Exists(modifiedFilePath))
+                if (!GenContext.Current.GenerationWarnings.Any(w => w.FileName == mergeFile.Key))
                 {
                     sb.AppendLine($"Preview the changes in: [{mergeFile.Key}]({mergeFile.Key})");
+                }
+                else
+                {
+                    var warning = GenContext.Current.GenerationWarnings.FirstOrDefault(w => w.FileName == mergeFile.Key);
+                    sb.AppendLine(warning.Description);
                 }
             }
 

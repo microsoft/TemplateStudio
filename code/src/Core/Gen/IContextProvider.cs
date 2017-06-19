@@ -13,11 +13,13 @@ namespace Microsoft.Templates.Core.Gen
         string OutputPath { get; }
         string ProjectPath { get; }
         List<string> ProjectItems { get; }
+
         List<string> NewFiles { get; }
         List<string> ModifiedFiles { get; }
         List<string> ConflictFiles { get; }
         List<string> UnchangedFiles { get; }
         List<string> FilesToOpen { get; }
+
         List<GenerationWarning> GenerationWarnings { get; }
         Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; }
     }

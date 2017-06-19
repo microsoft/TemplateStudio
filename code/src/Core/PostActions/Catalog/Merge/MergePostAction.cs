@@ -39,15 +39,15 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
             string originalFilePath = GetFilePath();
 
-            if (string.IsNullOrEmpty(originalFilePath))
+            if (!File.Exists(originalFilePath))
             {
-                if (_config.FailOnError)
+                if (_config.FailOnError )
                 {
                     throw new FileNotFoundException($"There is no merge target for file '{_config.FilePath}'");
                 }
                 else
                 {
-                    AddGenerationWarning();
+                    AddFileNotFoundGenerationWarning(originalFilePath);
                     File.Copy(_config.FilePath, _config.FilePath.Replace(Suffix, NewSuffix), true);
                     File.Delete(_config.FilePath);
                     return;
@@ -58,26 +58,46 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var merge = File.ReadAllLines(_config.FilePath).ToList();
 
             IEnumerable<string> result = source.HandleRemovals(merge);
-            result = result.Merge(merge.RemoveRemovals());
+            result = result.Merge(merge.RemoveRemovals(), out string errorLine);
 
-            File.WriteAllLines(originalFilePath, result);
+            if (errorLine != string.Empty)
+            {
+                AddLineNotFoundGenerationWarning(originalFilePath, errorLine);
+                File.Copy(_config.FilePath, _config.FilePath.Replace(Suffix, NewSuffix), true);
+            }
+            else
+            {
+                File.WriteAllLines(originalFilePath, result);
+                // REFRESH PROJECT TO UN-DIRTY IT
+                if (Path.GetExtension(_config.FilePath).Equals(".csproj", StringComparison.OrdinalIgnoreCase))
+                {
+                    Gen.GenContext.ToolBox.Shell.RefreshProject();
+                }
+            }
 
             File.Delete(_config.FilePath);
-
-            // REFRESH PROJECT TO UN-DIRTY IT
-            if (Path.GetExtension(_config.FilePath).Equals(".csproj", StringComparison.OrdinalIgnoreCase))
-            {
-                Gen.GenContext.ToolBox.Shell.RefreshProject();
-            }
         }
 
-        private void AddGenerationWarning()
+        private void AddFileNotFoundGenerationWarning(string originalFilePath)
         {
-            var fileName = _config.FilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
-            var description = $"Could not find merge target for file '{fileName}'. Please integrate the content from the postaction file manually.";
+            var sourceFileName = originalFilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
+            var postactionFileName = _config.FilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
+
+            var description = $"Could not find merge target for file '{postactionFileName}'. Please merge the content from the postaction file manually.";
             var intent = GetPostActionIntent();
-            var failedFileName = fileName.Replace(Suffix, NewSuffix);
-            GenContext.Current.GenerationWarnings.Add(new GenerationWarning(fileName, failedFileName, _config.FilePath, description, intent));
+            var failedFileName = postactionFileName.Replace(Suffix, NewSuffix);
+            GenContext.Current.GenerationWarnings.Add(new GenerationWarning(sourceFileName, failedFileName, _config.FilePath, description, intent));
+        }
+
+        private void AddLineNotFoundGenerationWarning(string originalFilePath, string errorLine)
+        {
+            var sourceFileName = originalFilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
+
+            var postactionFileName = _config.FilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
+            var description = $"Could not find the expected line '{errorLine.Trim()}' in file '{sourceFileName}'. Please merge the content from the postaction file manually.";
+            var intent = GetPostActionIntent();
+            var failedFileName = postactionFileName.Replace(Suffix, NewSuffix);
+            GenContext.Current.GenerationWarnings.Add(new GenerationWarning(sourceFileName, failedFileName, _config.FilePath, description, intent));
         }
 
         private string GetPostActionIntent()
@@ -103,7 +123,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 var path = Regex.Replace(_config.FilePath, PostactionRegex, ".");
 
-                return (File.Exists(path) ? path : string.Empty);
+                return path;
             }
         }
     }
