@@ -10,19 +10,19 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core;
-using Microsoft.Templates.UI.Controls;
-using Microsoft.Templates.UI.Resources;
-using Microsoft.Templates.UI.Services;
-using Microsoft.Templates.UI.ViewModels.Common;
-using Microsoft.Templates.UI.Views.NewProject;
-
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+
+using Microsoft.Templates.Core;
+using Microsoft.Templates.UI.Controls;
+using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.Views.NewProject;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {

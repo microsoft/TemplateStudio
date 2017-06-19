@@ -10,15 +10,15 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.UI.Comparison;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media;
-using System;
+
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Comparison;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {

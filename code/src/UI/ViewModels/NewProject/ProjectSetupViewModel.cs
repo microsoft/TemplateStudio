@@ -13,7 +13,6 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;

@@ -20,8 +20,6 @@ using System.Windows.Threading;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Core;
 using Microsoft.TemplateEngine.Abstractions;
-using System.Collections.Generic;
-using Microsoft.Templates.UI.ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {

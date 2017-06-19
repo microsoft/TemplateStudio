@@ -10,12 +10,13 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.Templates.Core;
-using Microsoft.Templates.UI.ViewModels.Common;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+
+using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.Core;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
