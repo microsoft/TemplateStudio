@@ -47,8 +47,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                     {
                         if (FilesAreEqual(file, destFilePath))
                         {
-                            GenContext.Current.MergeFilesFromProject.Remove(fileName);
-                            GenContext.Current.UnchangedFiles.Add(fileName);
+                            var warning = GenContext.Current.GenerationWarnings.FirstOrDefault(g => g.FileName == fileName);
+                            if (warning == null)
+                            {
+                                GenContext.Current.MergeFilesFromProject.Remove(fileName);
+                                GenContext.Current.UnchangedFiles.Add(fileName);
+                            }
                         }
                         else
                         {

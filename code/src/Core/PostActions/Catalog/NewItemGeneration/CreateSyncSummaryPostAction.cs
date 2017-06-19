@@ -57,18 +57,20 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 sb.AppendLine($"### Changes in File '{mergeFile.Key}':");
                 sb.AppendLine();
 
-                if (File.Exists(modifiedFilePath))
+                if (!GenContext.Current.GenerationWarnings.Any(w => w.FileName == mergeFile.Key))
                 {
                     sb.AppendLine($"See the final result: [{mergeFile.Key}]({Uri.EscapeUriString(modifiedFilePath)})");
                     sb.AppendLine();
                     sb.AppendLine($"The following changes were applied:");
+                    sb.AppendLine();
                 }
                 else
                 {
-                    // TODO: Postaction failed, show info
-                    sb.AppendLine($"The changes could not be applied, please apply the following changes manually:");
+                    var warning = GenContext.Current.GenerationWarnings.FirstOrDefault(w => w.FileName == mergeFile.Key);
+                    sb.AppendLine(warning.Description);
                     sb.AppendLine();
                 }
+
                 foreach (var mergeInfo in mergeFile.Value)
                 {
                     sb.AppendLine(mergeInfo.Intent);
