@@ -32,7 +32,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public TemplateType ConfigTemplateType;
         public string ConfigFramework;
         public string ConfigProjectType;
-        public string LastSelectedTemplateIdentity;
         public NewItemSetupViewModel NewItemSetup { get; private set; } = new NewItemSetupViewModel();
         public ChangesSummaryViewModel ChangesSummary { get; private set; } = new ChangesSummaryViewModel();
 
@@ -68,6 +67,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             base.OnNext();
             NewItemSetup.EditionVisibility = System.Windows.Visibility.Collapsed;
             MainView.Result = CreateUserSelection();
+            NewItemGenController.Instance.CleanupTempGeneration();
             await NewItemGenController.Instance.GenerateNewItemAsync(MainView.Result);
             NavigationService.Navigate(new ChangesSummaryView());
             Title = StringRes.ChangesSummaryTitle;
@@ -114,17 +114,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 foreach (var dependencyTemplate in dependencies)
                 {
                     AddTemplate(userSelection, dependencyTemplate.GetDefaultName(), dependencyTemplate, dependencyTemplate.GetTemplateType());
-                }
-
-                if (string.IsNullOrEmpty(LastSelectedTemplateIdentity))
-                {
-                    LastSelectedTemplateIdentity = template.Identity;
-                }
-                else if (LastSelectedTemplateIdentity != template.Identity)
-                {
-                    NewItemGenController.Instance.CleanupTempGeneration();
-                    LastSelectedTemplateIdentity = template.Identity;
-                }
+                }                
             }
             return userSelection;
         }
