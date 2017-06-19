@@ -10,30 +10,26 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
-using System.Runtime.Serialization;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
-using Microsoft.Templates.Core.Locations;
-
-namespace Microsoft.Templates.Core
+namespace Microsoft.Templates.UI.Extensions
 {
-    [Serializable]
-    public class RepositorySynchronizationException : Exception
+    public static class ListViewExtensions
     {
-        public RepositorySynchronizationException()
+        public static ListViewItem GetCurrentListViewItem(this ListView listView)
         {
+            return listView.GetListViewItem(listView.SelectedIndex);
         }
 
-        public RepositorySynchronizationException(string message, Exception innerException = null) : base(message, innerException)
+        public static ListViewItem GetListViewItem(this ListView listView, int index)
         {
-        }
+            if (listView.ItemContainerGenerator.Status != GeneratorStatus.ContainersGenerated)
+            {
+                return null;
+            }
 
-        protected RepositorySynchronizationException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
-
-        public RepositorySynchronizationException(SyncStatus status, Exception innerException = null) : base($"Error syncing templates. Status: '{status}'", innerException)
-        {
+            return listView.ItemContainerGenerator.ContainerFromIndex(index) as ListViewItem;
         }
     }
 }

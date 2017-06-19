@@ -16,6 +16,7 @@
     "wts.defaultInstance": "SampleDataService",
     "wts.multipleInstance": "false",
     "wts.isHidden": "true",
+    "wts.genGroup": "0",
     "wts.rightClickEnabled":"true" 
   },
   "sourceName": "SampleDataServiceFeature",

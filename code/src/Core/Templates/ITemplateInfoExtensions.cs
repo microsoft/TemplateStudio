@@ -270,6 +270,21 @@ namespace Microsoft.Templates.Core
             return true;
         }
 
+        public static int GetGenGroup(this ITemplateInfo ti)
+        {
+            var result = GetValueFromTag(ti, TagPrefix + "genGroup");
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                if (int.TryParse(result, out int intResult))
+                {
+                    return intResult;
+                }
+            }
+
+            return 0;
+        }
+
         public static bool GetRightClickEnabled(this ITemplateInfo ti)
         {
             var result = GetValueFromTag(ti, TagPrefix + "rightClickEnabled");

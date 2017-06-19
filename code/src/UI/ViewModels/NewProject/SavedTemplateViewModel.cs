@@ -11,12 +11,13 @@
 // ******************************************************************
 
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Input;
 using System.Windows.Threading;
 
 using Microsoft.Templates.Core.Mvvm;
-using System.Windows.Input;
 using Microsoft.Templates.Core;
 using Microsoft.TemplateEngine.Abstractions;
 using System.Collections.Generic;
@@ -26,9 +27,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class SavedTemplateViewModel : Observable
     {
-        public static string SettingsButton = char.ConvertFromUtf32(0xE713);
-        public static string CloseButton = char.ConvertFromUtf32(0xE013);
-
         #region TemplatesProperties
 
         private ITemplateInfo _template;
@@ -103,6 +101,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             get => _author;
             set => SetProperty(ref _author, value);
+        }
+
+        private int _genGroup;
+        public int GenGroup
+        {
+            get => _genGroup;
+            set => SetProperty(ref _genGroup, value);
         }
 
         private TemplateType _templateType;
@@ -191,15 +196,18 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             set => SetProperty(ref _itemFontWeight, value);
         }
 
+        private bool _allowDragAndDrop;
+        public bool AllowDragAndDrop
+        {
+            get => _allowDragAndDrop;
+            set => SetProperty(ref _allowDragAndDrop, value);
+        }
+
         private bool _isOpen;
         public bool IsOpen
         {
             get => _isOpen;
-            set
-            {
-                SetProperty(ref _isOpen, value);
-                OpenIcon = value ? CloseButton : SettingsButton;
-            }
+            set => SetProperty(ref _isOpen, value);
         }
 
         private Brush _itemForeground = MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
@@ -216,42 +224,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             set => SetProperty(ref _authorForeground, value);
         }
 
-        private string _openIcon = SettingsButton;
-        public string OpenIcon
-        {
-            get => _openIcon;
-            private set => SetProperty(ref _openIcon, value);
-        }
-
-        private bool _canMoveUp;
-        public bool CanMoveUp
-        {
-            get => _canMoveUp;
-            set => SetProperty(ref _canMoveUp, value);
-        }
-
-        private bool _canMoveDown;
-        public bool CanMoveDown
-        {
-            get => _canMoveDown;
-            set => SetProperty(ref _canMoveDown, value);
-        }
-
         public string DisplayText => CanChooseItemName ? ItemName : $"{ItemName} [{TemplateName}]";
 
         public ICommand OpenCommand { get; set; }
 
         public ICommand RemoveCommand { get; set; }
 
-        public ICommand SetHomeCommand { get; set; }
-
         public ICommand RenameCommand { get; set; }
 
         public ICommand ConfirmRenameCommand { get; set; }
-
-        public ICommand MoveUpCommand { get; set; }
-
-        public ICommand MoveDownCommand { get; set; }
 
         public Action<SavedTemplateViewModel> ValidateTemplateName;
 
@@ -261,12 +242,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public Action CancelRenameAction => OnCancelRename;
         #endregion
 
-        public SavedTemplateViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled, ICommand openCommand, ICommand removeTemplateCommand, ICommand summaryItemSetHomeCommand, ICommand renameItemCommand, ICommand confirmRenameCommand, ICommand moveUpCommand, ICommand moveDownCommand, Action<SavedTemplateViewModel> validateCurrentTemplateName)
+        public SavedTemplateViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled, ICommand openCommand, ICommand removeTemplateCommand, ICommand renameItemCommand, ICommand confirmRenameCommand, Action<SavedTemplateViewModel> validateCurrentTemplateName)
         {
             _template = item.template;
             colorTimer.Tick += OnColorTimerTick;
             ItemName = item.name;
             Author = item.template.Author;
+            GenGroup = item.template.GetGenGroup();
             TemplateType = item.template.GetTemplateType();
             CanChooseItemName = item.template.GetItemNameEditable();
             Identity = item.template.Identity;
@@ -275,12 +257,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             IsRemoveEnabled = isRemoveEnabled;
             OpenCommand = openCommand;
             RemoveCommand = removeTemplateCommand;
-            SetHomeCommand = summaryItemSetHomeCommand;
             RenameCommand = renameItemCommand;
             ConfirmRenameCommand = confirmRenameCommand;
-            MoveUpCommand = moveUpCommand;
-            MoveDownCommand = moveDownCommand;
             ValidateTemplateName = validateCurrentTemplateName;
+            AllowDragAndDrop = false;
         }
 
         private void OnColorTimerTick(object sender, EventArgs e)
@@ -297,6 +277,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                  IsOpen = false;
             }
+        }
+
+        public void UpdateAllowDragAndDrop(int pagesCount)
+        {
+            AllowDragAndDrop = GenGroup == 0 && TemplateType == TemplateType.Page && pagesCount > 1;
         }
 
         public void TryReleaseHome()

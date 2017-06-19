@@ -11,29 +11,20 @@
 // ******************************************************************
 
 using System;
-using System.Runtime.Serialization;
+using System.Runtime.InteropServices;
+using System.Windows;
+using System.Windows.Media;
 
-using Microsoft.Templates.Core.Locations;
-
-namespace Microsoft.Templates.Core
+namespace Microsoft.Templates.UI.Services
 {
-    [Serializable]
-    public class RepositorySynchronizationException : Exception
+    public class MouseUtilities
     {
-        public RepositorySynchronizationException()
+        public static Point GetMousePosition(Visual relativeTo)
         {
-        }
+            var mouse = default(NativeMethods.Win32Point);
+            NativeMethods.GetCursorPos(ref mouse);
 
-        public RepositorySynchronizationException(string message, Exception innerException = null) : base(message, innerException)
-        {
-        }
-
-        protected RepositorySynchronizationException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
-
-        public RepositorySynchronizationException(SyncStatus status, Exception innerException = null) : base($"Error syncing templates. Status: '{status}'", innerException)
-        {
+            return relativeTo.PointFromScreen(new Point(mouse.X, mouse.Y));
         }
     }
 }

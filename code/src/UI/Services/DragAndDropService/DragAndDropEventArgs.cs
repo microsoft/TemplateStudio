@@ -11,29 +11,26 @@
 // ******************************************************************
 
 using System;
-using System.Runtime.Serialization;
+using System.Collections.ObjectModel;
+using System.Windows;
 
-using Microsoft.Templates.Core.Locations;
-
-namespace Microsoft.Templates.Core
+namespace Microsoft.Templates.UI.Services
 {
-    [Serializable]
-    public class RepositorySynchronizationException : Exception
+    public class DragAndDropEventArgs<T> : EventArgs where T : class
     {
-        public RepositorySynchronizationException()
-        {
-        }
+        public ObservableCollection<T> Items { get; }
+        public T ItemData { get; }
+        public int OldIndex { get; }
+        public int NewIndex { get; }
+        public DragDropEffects Effects { get; }
 
-        public RepositorySynchronizationException(string message, Exception innerException = null) : base(message, innerException)
+        public DragAndDropEventArgs(ObservableCollection<T> items, T dataItem, int oldIndex, int newIndex, DragDropEffects effects = DragDropEffects.None)
         {
-        }
-
-        protected RepositorySynchronizationException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
-
-        public RepositorySynchronizationException(SyncStatus status, Exception innerException = null) : base($"Error syncing templates. Status: '{status}'", innerException)
-        {
+            Items = items;
+            ItemData = dataItem;
+            OldIndex = oldIndex;
+            NewIndex = newIndex;
+            Effects = effects;
         }
     }
 }

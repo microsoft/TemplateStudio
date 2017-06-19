@@ -21,6 +21,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -41,8 +43,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             Current = this;
         }
 
-        public async Task InitializeAsync()
+        private StackPanel _summaryPageGroups;
+        public async Task InitializeAsync(StackPanel summaryPageGroups)
         {
+            _summaryPageGroups = summaryPageGroups;
             await BaseInitializeAsync();
             SummaryLicenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryLicenses)); };
         }
@@ -101,7 +105,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 HomeName = ProjectTemplates.HomeName
             };
 
-            userSelection.Pages.AddRange(ProjectTemplates.SavedPages.Select(sp => sp.UserSelection));
+
+            ProjectTemplates.SavedPages.ToList().ForEach(spg => userSelection.Pages.AddRange(spg.Select(sp => sp.UserSelection)));
             userSelection.Features.AddRange(ProjectTemplates.SavedFeatures.Select(sf => sf.UserSelection));
 
             return userSelection;
@@ -142,5 +147,22 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
         private bool FrameworkChanged => ProjectTemplates.ContextFramework.Name != ProjectSetup.SelectedFramework.Name;
         private bool ProjectTypeChanged => ProjectTemplates.ContextProjectType.Name != ProjectSetup.SelectedProjectType.Name;
+
+        public void DefineDragAndDrop(ObservableCollection<SavedTemplateViewModel> items, bool allowDragAndDrop)
+        {
+            var listView = new ListView()
+            {
+                ItemsSource = items,
+                Style = MainView.FindResource("SummaryListViewStyle") as Style,
+                Tag = "AllowClick",
+                ItemTemplate = MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate
+            };
+            if (allowDragAndDrop)
+            {
+                var service = new DragAndDropService<SavedTemplateViewModel>(listView);
+                service.ProcessDrop += ProjectTemplates.DropTemplate;
+            }
+            _summaryPageGroups.Children.Add(listView);
+        }
     }
 }

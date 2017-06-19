@@ -11,29 +11,23 @@
 // ******************************************************************
 
 using System;
-using System.Runtime.Serialization;
+using System.Runtime.InteropServices;
 
-using Microsoft.Templates.Core.Locations;
-
-namespace Microsoft.Templates.Core
+namespace Microsoft.Templates.UI.Services
 {
-    [Serializable]
-    public class RepositorySynchronizationException : Exception
+    internal class NativeMethods
     {
-        public RepositorySynchronizationException()
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct Win32Point
         {
+            public int X;
+            public int Y;
         }
 
-        public RepositorySynchronizationException(string message, Exception innerException = null) : base(message, innerException)
-        {
-        }
+        [DllImport("user32.dll")]
+        internal static extern bool GetCursorPos(ref Win32Point pt);
 
-        protected RepositorySynchronizationException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
-
-        public RepositorySynchronizationException(SyncStatus status, Exception innerException = null) : base($"Error syncing templates. Status: '{status}'", innerException)
-        {
-        }
+        [DllImport("user32.dll")]
+        internal static extern bool ScreenToClient(IntPtr hwnd, ref Win32Point pt);
     }
 }

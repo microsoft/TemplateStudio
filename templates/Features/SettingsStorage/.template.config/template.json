@@ -17,6 +17,7 @@
     "wts.licenses": "[Newtonsoft.Json](https://raw.githubusercontent.com/JamesNK/Newtonsoft.Json/master/LICENSE.md)",
     "wts.defaultInstance": "SettingsStorage",
     "wts.multipleInstance": "false",
+    "wts.genGroup": "0",
     "wts.rightClickEnabled":"true"
   },
   "sourceName": "SettingsStorageFeature",

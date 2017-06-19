@@ -39,21 +39,30 @@
             </DataTemplate>
 
             <DataTemplate x:Key="ProjectTemplatesSummaryItemTemplate">
-                <controls:TogglePane TogglePaneContent="{Binding}" IsOpen="{Binding IsOpen}" Style="{StaticResource TogglePaneStyle}">
-                    <controls:TogglePane.ButtonTemplate>
+                <controls:TogglePane TogglePaneContent="{Binding}" IsOpen="{Binding IsOpen}" AllowDragAndDrop="{Binding AllowDragAndDrop}" Style="{StaticResource TogglePaneStyle}" Width="263">
+                    <controls:TogglePane.OpenButtonTemplate>
                         <DataTemplate>
-                            <Button Style="{StaticResource SettingsButtonStyle}" Command="{Binding OpenCommand}" CommandParameter="{Binding}" Focusable="True">
+                            <Button Style="{StaticResource SettingsButtonStyle}" Command="{Binding OpenCommand}" CommandParameter="{Binding}" Focusable="True" ToolTip="{x:Static res:StringRes.SummaryOpenMenu}">
                                 <Button.Content>
-                                    <TextBlock Text="{Binding OpenIcon}" FontSize="18" Style="{StaticResource IconButtonTextStyle}" Focusable="False"/>
+                                    <TextBlock Text="&#xE713;" FontSize="18" Style="{StaticResource IconButtonTextStyle}"/>
                                 </Button.Content>
                             </Button>
                         </DataTemplate>
-                    </controls:TogglePane.ButtonTemplate>
+                    </controls:TogglePane.OpenButtonTemplate>
+                    <controls:TogglePane.CloseButtonTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource SettingsButtonStyle}" Command="{Binding OpenCommand}" CommandParameter="{Binding}" Focusable="True" Background="{StaticResource UIBlue}" Foreground="{StaticResource UIWhite}" Margin="1,1,0,1" ToolTip="{x:Static res:StringRes.SummaryOpenMenuClose}">
+                                <Button.Content>
+                                    <TextBlock Text="&#xE761;" FontSize="18" Style="{StaticResource IconButtonTextStyle}"/>
+                                </Button.Content>
+                            </Button>
+                        </DataTemplate>
+                    </controls:TogglePane.CloseButtonTemplate>
                     <controls:TogglePane.MainViewTemplateSelector>
                         <templateSelectors:SummaryItemTemplateSelector>
                             <templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
                                 <DataTemplate>
-                                    <Grid Height="30" Focusable="False">
+                                    <Grid Height="30" Focusable="False" Margin="{StaticResource MediumLeftMargin}">
                                         <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
                                         <controls:TextBoxEx Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}">
                                             <controls:TextBoxEx.InputBindings>
@@ -66,95 +75,46 @@
                             </templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
                             <templateSelectors:SummaryItemTemplateSelector.CommunityTemplate>
                                 <DataTemplate>
-                                    <Grid Height="50">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="*" />
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
-                                        <TextBlock Grid.Row="1" Style="{StaticResource TextSummaryAuthorStyle}" Foreground="{Binding AuthorForeground}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}">
-                                            <TextBlock.Text>
-                                                <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
-                                                    <Binding Path="Author" />
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
-                                        <controls:TextBoxEx Grid.Row="0" Grid.RowSpan="2" Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}">
-                                            <controls:TextBoxEx.InputBindings>
-                                                <KeyBinding Command="{Binding ConfirmRenameCommand}" CommandParameter="{Binding}" Key="Enter" />
-                                                <KeyBinding Command="{Binding CancelRenameCommand}" Key="Esc"  />
-                                            </controls:TextBoxEx.InputBindings>
-                                        </controls:TextBoxEx>
+                                    <Grid Height="40" Margin="{StaticResource MediumLeftMargin}">
+                                        <Grid VerticalAlignment="Center">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
+                                            <TextBlock Grid.Row="1" Style="{StaticResource TextSummaryAuthorStyle}" Foreground="{Binding AuthorForeground}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}" Text="{Binding Author}" Margin="0,-2,0,0"/>
+                                            <controls:TextBoxEx Grid.Row="0" Grid.RowSpan="2" Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}">
+                                                <controls:TextBoxEx.InputBindings>
+                                                    <KeyBinding Command="{Binding ConfirmRenameCommand}" CommandParameter="{Binding}" Key="Enter" />
+                                                    <KeyBinding Command="{Binding CancelRenameCommand}" Key="Esc"  />
+                                                </controls:TextBoxEx.InputBindings>
+                                            </controls:TextBoxEx>
+                                        </Grid>
                                     </Grid>
                                 </DataTemplate>
                             </templateSelectors:SummaryItemTemplateSelector.CommunityTemplate>
                         </templateSelectors:SummaryItemTemplateSelector>
                     </controls:TogglePane.MainViewTemplateSelector>
-                    <controls:TogglePane.SecondaryViewTemplateSelector>
-                        <templateSelectors:SummaryItemOptionsTemplateSelector>
-                            <templateSelectors:SummaryItemOptionsTemplateSelector.PageOptionsTemplate>
-                                <DataTemplate>
-                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Focusable="False" KeyboardNavigation.TabNavigation="Local">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Button Grid.Column="0" Style="{StaticResource ButtonImageStyle}" Command="{Binding SetHomeCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanSetHome}" ToolTip="{x:Static res:StringRes.SummaryOptionSetAsHome}" Focusable="{Binding IsOpen}">
-                                            <Button.Content>
-                                                <Image Style="{StaticResource TogglePaneImage}" Source="../../Assets/IconHome.png"/>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Grid.Column="1" Style="{StaticResource ButtonImageStyle}" Command="{Binding RenameCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanChooseItemName}" ToolTip="{x:Static res:StringRes.SummaryOptionRename}" Focusable="{Binding IsOpen}">
-                                            <Button.Content>
-                                                <Image Style="{StaticResource TogglePaneImage}" Source="../../Assets/IconRename.png"/>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Grid.Column="2" Style="{StaticResource ButtonImageStyle}" Command="{Binding RemoveCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanSetHome}" ToolTip="{x:Static res:StringRes.SummaryOptionDelete}" Focusable="{Binding IsOpen}">
-                                            <Button.Content>
-                                                <Image Style="{StaticResource TogglePaneImage}" Source="../../Assets/IconDelete.png"/>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Grid.Column="3" Style="{StaticResource ButtonImageStyle}" Command="{Binding MoveUpCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanMoveUp}" ToolTip="{x:Static res:StringRes.SummaryOptionMoveUp}" Focusable="{Binding IsOpen}">
-                                            <Button.Content>
-                                                <Image Style="{StaticResource TogglePaneImage}" Source="../../Assets/IconUp.png"/>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Grid.Column="4" Style="{StaticResource ButtonImageStyle}" Command="{Binding MoveDownCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanMoveDown}" ToolTip="{x:Static res:StringRes.SummaryOptionMoveDown}" Focusable="{Binding IsOpen}">
-                                            <Button.Content>
-                                                <Image Style="{StaticResource TogglePaneImage}" Source="../../Assets/IconDown.png"/>
-                                            </Button.Content>
-                                        </Button>
-                                    </Grid>
-                                </DataTemplate>
-                            </templateSelectors:SummaryItemOptionsTemplateSelector.PageOptionsTemplate>
-                            <templateSelectors:SummaryItemOptionsTemplateSelector.FeatureOptionsTemplate>
-                                <DataTemplate>
-                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Focusable="False">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Button Grid.Column="3" Style="{StaticResource ButtonImageStyle}" Command="{Binding RenameCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanChooseItemName}" ToolTip="{x:Static res:StringRes.SummaryOptionRename}" Focusable="{Binding IsOpen}">
-                                            <Button.Content>
-                                                <Image Style="{StaticResource TogglePaneImage}" Source="../../Assets/IconRename.png"/>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Grid.Column="4" Style="{StaticResource ButtonImageStyle}" Command="{Binding RemoveCommand}" CommandParameter="{Binding}" ToolTip="{x:Static res:StringRes.SummaryOptionDelete}" Focusable="{Binding IsOpen}">
-                                            <Button.Content>
-                                                <Image Style="{StaticResource TogglePaneImage}" Source="../../Assets/IconDelete.png"/>
-                                            </Button.Content>
-                                        </Button>
-                                    </Grid>
-                                </DataTemplate>
-                            </templateSelectors:SummaryItemOptionsTemplateSelector.FeatureOptionsTemplate>
-                        </templateSelectors:SummaryItemOptionsTemplateSelector>
-                    </controls:TogglePane.SecondaryViewTemplateSelector>
+                    <controls:TogglePane.SecondaryViewTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Focusable="False" KeyboardNavigation.TabNavigation="Local">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="0" Style="{StaticResource ButtonImageStyle}" Command="{Binding RenameCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanChooseItemName}" ToolTip="{x:Static res:StringRes.SummaryOptionRename}" Focusable="{Binding IsOpen}">
+                                    <Button.Content>
+                                        <TextBlock Text="&#xE70F;" Style="{StaticResource IconButtonTextStyle}" FontSize="16"/>
+                                    </Button.Content>
+                                </Button>
+                                <Button Grid.Column="1" Style="{StaticResource ButtonImageStyle}" Command="{Binding RemoveCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanSetHome}" ToolTip="{x:Static res:StringRes.SummaryOptionDelete}" Focusable="{Binding IsOpen}">
+                                    <Button.Content>
+                                        <TextBlock Text="&#xE74D;" Style="{StaticResource IconButtonTextStyle}" FontSize="15"/>
+                                    </Button.Content>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </controls:TogglePane.SecondaryViewTemplate>
                 </controls:TogglePane>
             </DataTemplate>
 
@@ -184,23 +144,22 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <controls:LogoDisplay
-                Grid.Column="0"
-                Width="40"
-                Margin="{StaticResource MediumLeftMargin}"
-                HorizontalAlignment="Left" />
+                    Grid.Column="0"
+                    Width="40"
+                    Margin="{StaticResource MediumLeftMargin}"
+                    HorizontalAlignment="Left" />
                 <TextBlock
-                Grid.Column="1"
-                Margin="{StaticResource MediumLeftMargin}"
-                VerticalAlignment="Center"
-                Style="{StaticResource TextTitleStyle}"
-                Text="{Binding Title}" />
+                    Grid.Column="1"
+                    Margin="{StaticResource MediumLeftMargin}"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource TextTitleStyle}"
+                    Text="{Binding Title}" />
                 <Grid Grid.Column="2" Background="{StaticResource UIDarkYellow}" Visibility="{Binding NewUpdateAvailable, Converter={StaticResource BoolToVisibilityConverter}}"/>
                 <Grid Grid.Column="2" Visibility="{Binding NewUpdateAvailable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
                     <Grid.Background>
                         <SolidColorBrush Color="{StaticResource UIWhiteColor}" Opacity="0.2"/>
                     </Grid.Background>
                 </Grid>
-                
                 <Button Grid.Column="2" Style="{StaticResource TopBarMenuStyle}" Command="{Binding ShowOverlayMenuCommand}">
                     <Button.Content>
                         <TextBlock Text="&#xE10C;" Style="{StaticResource IconButtonTextStyle}" Foreground="{StaticResource UIWhite}" FontSize="28" FontWeight="Bold" Margin="{StaticResource MediumMargin}"/>
@@ -234,13 +193,7 @@
                                 <StackPanel Margin="{StaticResource MediumLeftMargin}" DataContext="{Binding ProjectSetup.SelectedProjectType}">
                                     <TextBlock Style="{StaticResource TextSummaryGroupHeader}" Text="{x:Static res:StringRes.SummaryProjectTypeTitle}" />
                                     <TextBlock Style="{StaticResource TextSummaryItemStyle}" Text="{Binding DisplayName}" />
-                                    <TextBlock Style="{StaticResource TextSummaryAuthorStyle}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}">
-                                        <TextBlock.Text>
-                                            <MultiBinding StringFormat="Made by {0}">
-                                                <Binding Path="Author" />
-                                            </MultiBinding>
-                                        </TextBlock.Text>
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource TextSummaryAuthorStyle}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}" Text="{Binding Author}"/>
                                 </StackPanel>
                             </StackPanel>
                             <Grid Margin="{StaticResource MediumTopMargin}">
@@ -249,83 +202,39 @@
                                     <StackPanel Margin="{StaticResource MediumLeftMargin}" DataContext="{Binding ProjectSetup.SelectedFramework}">
                                         <TextBlock Style="{StaticResource TextSummaryGroupHeader}" Text="{x:Static res:StringRes.SummaryFrameworkTitle}" />
                                         <TextBlock Style="{StaticResource TextSummaryItemStyle}" Text="{Binding DisplayName}" />
-                                        <TextBlock Style="{StaticResource TextSummaryAuthorStyle}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}">
-                                            <TextBlock.Text>
-                                                <MultiBinding StringFormat="Made by {0}">
-                                                    <Binding Path="Author" />
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
+                                        <TextBlock Style="{StaticResource TextSummaryAuthorStyle}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}" Text="{Binding Author}"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>
-                            <Expander
-                            Margin="{StaticResource MediumTopMargin}"
-                            Header="{x:Static res:StringRes.SummaryLicenseTitle}"
-                            HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}"
-                            IsExpanded="True">
+                            <Expander Margin="{StaticResource MediumTopMargin}" Header="{x:Static res:StringRes.SummaryLicenseTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
                                 <Grid>
-                                    <ItemsControl
-                                    Focusable="False"
-                                    Margin="{StaticResource ExtraBigLeftMargin}"
-                                    ItemTemplate="{StaticResource LicenseSummaryItemTemplate}"
-                                    ItemsSource="{Binding SummaryLicenses}" />
-                                    <TextBlock
-                                    Margin="27,0,0,0"
-                                    Text="{x:Static res:StringRes.SummaryNoLicenses}"
-                                    Visibility="{Binding SummaryLicenses, Converter={StaticResource EmptyCollectionConverter}}" />
+                                    <ItemsControl Focusable="False" Margin="{StaticResource ExtraBigLeftMargin}" ItemTemplate="{StaticResource LicenseSummaryItemTemplate}" ItemsSource="{Binding SummaryLicenses}" />
+                                    <TextBlock Margin="27,0,0,0" Text="{x:Static res:StringRes.SummaryNoLicenses}" Visibility="{Binding SummaryLicenses, Converter={StaticResource EmptyCollectionConverter}}" />
                                 </Grid>
                             </Expander>
-                            <Expander
-                            Margin="{StaticResource MediumTopMargin}"
-                            Header="{x:Static res:StringRes.SummaryPagesTitle}"
-                            HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}"
-                            IsExpanded="True">
+                            <Expander Margin="{StaticResource MediumTopMargin}" Header="{x:Static res:StringRes.SummaryPagesTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
                                 <Grid>
-                                    <ItemsControl
-                                    KeyboardNavigation.TabNavigation="Local"
-                                    Focusable="False"
-                                    Margin="{StaticResource ExtraBigLeftMargin}"
-                                    ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}"
-                                    ItemsSource="{Binding ProjectTemplates.SavedPages}"
-                                    Tag="AllowClick" />
-                                    <TextBlock
-                                    Margin="27,0,0,0"
-                                    Text="{x:Static res:StringRes.SummaryNoPages}"
-                                    Visibility="{Binding ProjectTemplates.SavedPages, Converter={StaticResource EmptyCollectionConverter}}" />
+                                    <StackPanel x:Name="summaryPageGroups"/>
+                                    <TextBlock Margin="27,0,0,0" Text="{x:Static res:StringRes.SummaryNoPages}" Visibility="{Binding ProjectTemplates.SavedPages, Converter={StaticResource EmptyCollectionConverter}}" />
                                 </Grid>
                             </Expander>
-                            <Expander
-                            Margin="{StaticResource MediumTopMargin}"
-                            Header="{x:Static res:StringRes.SummaryFeaturesTitle}"
-                            HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}"
-                            IsExpanded="True">
+                            <Expander Margin="{StaticResource MediumTopMargin}" Header="{x:Static res:StringRes.SummaryFeaturesTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
                                 <Grid>
-                                    <ItemsControl
-                                    KeyboardNavigation.TabNavigation="Local"
-                                    Focusable="False"
-                                    Margin="{StaticResource ExtraBigLeftMargin}"
-                                    ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}"
-                                    ItemsSource="{Binding ProjectTemplates.SavedFeatures}"
-                                    Tag="AllowClick" />
-                                    <TextBlock
-                                    Margin="27,0,0,0"
-                                    Text="{x:Static res:StringRes.SummaryNoFeatures}"
-                                    Visibility="{Binding ProjectTemplates.SavedFeatures, Converter={StaticResource EmptyCollectionConverter}}" />
+                                    <ItemsControl KeyboardNavigation.TabNavigation="Local" Focusable="False" ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}" ItemsSource="{Binding ProjectTemplates.SavedFeatures}" Tag="AllowClick" />
+                                    <TextBlock Margin="27,0,0,0" Text="{x:Static res:StringRes.SummaryNoFeatures}" Visibility="{Binding ProjectTemplates.SavedFeatures, Converter={StaticResource EmptyCollectionConverter}}" />
                                 </Grid>
                             </Expander>
+                            <!--<Expander Margin="{StaticResource MediumTopMargin}" Header="{x:Static res:StringRes.SummaryFeaturesTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
+                                <Grid>
+                                    <ItemsControl KeyboardNavigation.TabNavigation="Local" Focusable="False" Margin="{StaticResource ExtraBigLeftMargin}" ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}" ItemsSource="{Binding ProjectTemplates.SavedFeatures}" Tag="AllowClick" />
+                                    <TextBlock Margin="27,0,0,0" Text="{x:Static res:StringRes.SummaryNoFeatures}" Visibility="{Binding ProjectTemplates.SavedFeatures, Converter={StaticResource EmptyCollectionConverter}}" />
+                                </Grid>
+                            </Expander>-->
                         </StackPanel>
                     </ScrollViewer>
                     <Grid Margin="0,0,17,0">
-                        <TextBlock
-                        Margin="16,10,0,0"
-                        Style="{StaticResource TextSummaryTitle}"
-                        Text="{x:Static res:StringRes.SummaryTitle}" />
-                        <TextBlock
-                        Margin="{StaticResource MediumMargin}"
-                        VerticalAlignment="Bottom"
-                        Style="{StaticResource TextSummaryTermsStyle}"
-                        Text="{x:Static res:StringRes.SummaryTerms}" />
+                        <TextBlock Margin="16,10,0,0" Style="{StaticResource TextSummaryTitle}" Text="{x:Static res:StringRes.SummaryTitle}" />
+                        <TextBlock Margin="{StaticResource MediumMargin}" VerticalAlignment="Bottom" Style="{StaticResource TextSummaryTermsStyle}" Text="{x:Static res:StringRes.SummaryTerms}" />
                     </Grid>
                 </Grid>
             </Grid>
@@ -350,28 +259,28 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <Button
-                        Grid.Column="0"
-                        IsCancel="True"
-                        Command="{Binding CancelCommand}"
-                        Content="{x:Static res:StringRes.ButtonCancel}"
-                        Style="{StaticResource ButtonNavigationStyle}" />
+                            Grid.Column="0"
+                            IsCancel="True"
+                            Command="{Binding CancelCommand}"
+                            Content="{x:Static res:StringRes.ButtonCancel}"
+                            Style="{StaticResource ButtonNavigationStyle}" />
                         <Button
-                        Grid.Column="1"
-                        Command="{Binding BackCommand}"
-                        Content="{x:Static res:StringRes.ButtonBack}"
-                        Style="{StaticResource ButtonNavigationStyle}" />
+                            Grid.Column="1"
+                            Command="{Binding BackCommand}"
+                            Content="{x:Static res:StringRes.ButtonBack}"
+                            Style="{StaticResource ButtonNavigationStyle}" />
                         <Button
-                        Grid.Column="2"
-                        Command="{Binding NextCommand}"
-                        Content="{x:Static res:StringRes.ButtonNext}"
-                        Style="{StaticResource ButtonNavigationStyle}"
-                        Visibility="{Binding ShowFinishButton, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
+                            Grid.Column="2"
+                            Command="{Binding NextCommand}"
+                            Content="{x:Static res:StringRes.ButtonNext}"
+                            Style="{StaticResource ButtonNavigationStyle}"
+                            Visibility="{Binding ShowFinishButton, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
                         <Button
-                        Grid.Column="2"
-                        Command="{Binding FinishCommand}"
-                        Content="{x:Static res:StringRes.ButtonCreate}"
-                        Style="{StaticResource ButtonFinishStyle}"
-                        Visibility="{Binding ShowFinishButton, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            Grid.Column="2"
+                            Command="{Binding FinishCommand}"
+                            Content="{x:Static res:StringRes.ButtonCreate}"
+                            Style="{StaticResource ButtonFinishStyle}"
+                            Visibility="{Binding ShowFinishButton, Converter={StaticResource BoolToVisibilityConverter}}" />
                     </Grid>
                 </Grid>
             </Grid>

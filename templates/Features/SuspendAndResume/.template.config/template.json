@@ -17,6 +17,7 @@
     "wts.multipleInstance": "false",
     "wts.defaultInstance": "SuspendAndResume",
     "wts.dependencies":"wts.Feat.SettingsStorage",
+    "wts.genGroup": "0",
     "wts.rightClickEnabled":"true"
   },
   "sourceName": "SuspendAndResumeFeature",
