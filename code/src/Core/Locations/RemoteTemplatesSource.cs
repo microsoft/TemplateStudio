@@ -20,14 +20,14 @@ namespace Microsoft.Templates.Core.Locations
 {
     public class RemoteTemplatesSource : TemplatesSource
     {
-        private readonly string CdnUrl = Configuration.Current.CdnUrl;
+        private readonly string _cdnUrl = Configuration.Current.CdnUrl;
         private const string TemplatesPackageFileName = "Templates.mstx";
 
         protected override string AcquireMstx()
         {
             var tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 
-            var sourceUrl = $"{CdnUrl}/{TemplatesPackageFileName}";
+            var sourceUrl = $"{_cdnUrl}/{TemplatesPackageFileName}";
             var fileTarget = Path.Combine(tempFolder, TemplatesPackageFileName);
 
             Fs.EnsureFolder(tempFolder);

@@ -10,23 +10,27 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core.PostActions.Catalog.Merge;
-using System.Collections.Generic;
+using System;
+using System.Collections.ObjectModel;
+using System.Windows;
 
-namespace Microsoft.Templates.Core.Gen
+namespace Microsoft.Templates.UI.Services
 {
-    public interface IContextProvider
+    public class DragAndDropEventArgs<T> : EventArgs where T : class
     {
-        string ProjectName { get; }
-        string OutputPath { get; }
-        string ProjectPath { get; }
-        List<string> ProjectItems { get; }
-        List<string> NewFiles { get; }
-        List<string> ModifiedFiles { get; }
-        List<string> ConflictFiles { get; }
-        List<string> UnchangedFiles { get; }
-        List<string> FilesToOpen { get; }
-        List<GenerationWarning> GenerationWarnings { get; }
-        Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; }
+        public ObservableCollection<T> Items { get; }
+        public T ItemData { get; }
+        public int OldIndex { get; }
+        public int NewIndex { get; }
+        public DragDropEffects Effects { get; }
+
+        public DragAndDropEventArgs(ObservableCollection<T> items, T dataItem, int oldIndex, int newIndex, DragDropEffects effects = DragDropEffects.None)
+        {
+            Items = items;
+            ItemData = dataItem;
+            OldIndex = oldIndex;
+            NewIndex = newIndex;
+            Effects = effects;
+        }
     }
 }

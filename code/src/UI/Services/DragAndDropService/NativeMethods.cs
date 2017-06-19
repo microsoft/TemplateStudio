@@ -10,23 +10,24 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core.PostActions.Catalog.Merge;
-using System.Collections.Generic;
+using System;
+using System.Runtime.InteropServices;
 
-namespace Microsoft.Templates.Core.Gen
+namespace Microsoft.Templates.UI.Services
 {
-    public interface IContextProvider
+    internal class NativeMethods
     {
-        string ProjectName { get; }
-        string OutputPath { get; }
-        string ProjectPath { get; }
-        List<string> ProjectItems { get; }
-        List<string> NewFiles { get; }
-        List<string> ModifiedFiles { get; }
-        List<string> ConflictFiles { get; }
-        List<string> UnchangedFiles { get; }
-        List<string> FilesToOpen { get; }
-        List<GenerationWarning> GenerationWarnings { get; }
-        Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; }
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct Win32Point
+        {
+            public int X;
+            public int Y;
+        }
+
+        [DllImport("user32.dll")]
+        internal static extern bool GetCursorPos(ref Win32Point pt);
+
+        [DllImport("user32.dll")]
+        internal static extern bool ScreenToClient(IntPtr hwnd, ref Win32Point pt);
     }
 }

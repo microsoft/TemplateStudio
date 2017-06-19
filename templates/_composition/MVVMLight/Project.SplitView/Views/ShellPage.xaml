@@ -12,35 +12,191 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="NavigationMenuItemDataTemplate" x:DataType="vm:ShellNavigationItem">
-            <Grid Width="240"
-                  Height="48"
-                  Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+            <Grid Width="320" Height="40">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Rectangle
-                        Width="4"
+                        Width="6"
                         Height="24"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         Fill="{ThemeResource SystemControlForegroundAccentBrush}"
                         Visibility="{x:Bind SelectedVis, Mode=OneWay}" />
                 <FontIcon
-                        HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        FontSize="{StaticResource MediumFontSize}"
-                        Foreground="{ThemeResource SystemControlFocusVisualPrimaryBrush}"
+                        Margin="16,12"
+                        FontSize="16"
+                        Foreground="{x:Bind SelectedForeground, Mode=OneWay}"
                         Glyph="{x:Bind SymbolAsChar}" />
                 <TextBlock
                         Grid.Column="1"
-                        Margin="0,0,24,0"
+                        Margin="0,9,0,11"
                         VerticalAlignment="Center"
-                        Foreground="{ThemeResource SystemControlFocusVisualPrimaryBrush}"
+                        Foreground="{x:Bind SelectedForeground, Mode=OneWay}"
                         Text="{x:Bind Label}"
-                        TextTrimming="CharacterEllipsis" />
+                        Style="{StaticResource BodyTextBlockStyle}"
+                        TextTrimming="None" />
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <Storyboard>
+                                <PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter" />
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="PointerOver">
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetName="BorderBackground"
+                                    Storyboard.TargetProperty="Opacity"
+                                    To="1"
+                                    Duration="0" />
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderBackground" Storyboard.TargetProperty="Fill">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListLowBrush}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter" />
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetName="BorderBackground"
+                                    Storyboard.TargetProperty="Opacity"
+                                    To="1"
+                                    Duration="0" />
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderBackground" Storyboard.TargetProperty="Fill">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListMediumBrush}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <PointerDownThemeAnimation TargetName="ContentPresenter" />
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="DisabledStates">
+                        <VisualState x:Name="Enabled" />
+                        <VisualState x:Name="Disabled">
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetName="ContentBorder"
+                                    Storyboard.TargetProperty="Opacity"
+                                    To="{ThemeResource ListViewItemDisabledThemeOpacity}"
+                                    Duration="0" />
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
             </Grid>
         </DataTemplate>
+        <Style x:Key="FallCreatorsUpdateHamburgerMenuStyle" TargetType="controls:HamburgerMenu">
+            <Setter Property="HamburgerMenuTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <FontIcon
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="16"
+                            Glyph="&#xE700;" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="IsTabStop" Value="False" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="controls:HamburgerMenu">
+                        <Grid>
+                            <SplitView
+                                x:Name="MainSplitView"
+                                CompactPaneLength="{TemplateBinding CompactPaneLength}"
+                                DisplayMode="{TemplateBinding DisplayMode}"
+                                IsPaneOpen="{Binding IsPaneOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                IsTabStop="False"
+                                OpenPaneLength="{TemplateBinding OpenPaneLength}"
+                                PaneBackground="{TemplateBinding PaneBackground}"
+                                PanePlacement="{TemplateBinding PanePlacement}">
+                                <SplitView.Pane>
+                                    <Grid x:Name="PaneGrid" FlowDirection="LeftToRight">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid
+                                            Grid.Row="0"
+                                            Height="{TemplateBinding HamburgerHeight}"
+                                            Margin="0,0,0,8" />
+
+                                        <ListView
+                                            x:Name="ButtonsListView"
+                                            Grid.Row="1"
+                                            Width="{TemplateBinding OpenPaneLength}"
+                                            IsItemClickEnabled="True"
+                                            ItemTemplate="{TemplateBinding ItemTemplate}"
+                                            ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                            ItemsSource="{TemplateBinding ItemsSource}"
+                                            ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                            SelectedIndex="{Binding SelectedIndex, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                            SelectedItem="{Binding SelectedItem, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                            SelectionMode="None"
+                                            TabIndex="1">
+                                            <ListView.ItemContainerStyle>
+                                                <Style TargetType="ListViewItem">
+                                                    <Setter Property="Padding" Value="0" />
+                                                </Style>
+                                            </ListView.ItemContainerStyle>
+                                        </ListView>
+                                        <ListView
+                                            x:Name="OptionsListView"
+                                            Grid.Row="2"
+                                            Width="{TemplateBinding OpenPaneLength}"
+                                            IsItemClickEnabled="True"
+                                            Margin="0,20,0,8"
+                                            VerticalAlignment="Bottom"
+                                            ItemTemplate="{TemplateBinding OptionsItemTemplate}"
+                                            ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                            ItemsSource="{TemplateBinding OptionsItemsSource}"
+                                            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                            SelectedIndex="{Binding SelectedOptionsIndex, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                            SelectedItem="{Binding SelectedOptionsItem, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                            SelectionMode="None"
+                                            TabIndex="2">
+                                            <ListView.ItemContainerStyle>
+                                                <Style TargetType="ListViewItem">
+                                                    <Setter Property="Padding" Value="0" />
+                                                </Style>
+                                            </ListView.ItemContainerStyle>
+                                        </ListView>
+                                    </Grid>
+                                </SplitView.Pane>
+                                <ContentPresenter
+                                    x:Name="ContentPart"
+                                    Content="{TemplateBinding Content}" />
+                            </SplitView>
+                            <Button
+                                x:Name="HamburgerButton"
+                                Width="{TemplateBinding HamburgerWidth}"
+                                Height="{TemplateBinding HamburgerHeight}"
+                                Margin="0,8"
+                                Padding="0"
+                                VerticalAlignment="Top"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                TabIndex="0"
+                                Visibility="{TemplateBinding HamburgerVisibility}">
+                                <ContentControl
+                                    ContentTemplate="{TemplateBinding HamburgerMenuTemplate}"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    IsTabStop="False" />
+                            </Button>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
     <controls:HamburgerMenu
@@ -52,6 +208,7 @@
             ItemsSource="{x:Bind ViewModel.PrimaryItems}"
             OptionsItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
             OptionsItemsSource="{x:Bind ViewModel.SecondaryItems}"
+            Style="{StaticResource FallCreatorsUpdateHamburgerMenuStyle}"
             >
         <i:Interaction.Behaviors>
             <ic:EventTriggerBehavior EventName="ItemClick">

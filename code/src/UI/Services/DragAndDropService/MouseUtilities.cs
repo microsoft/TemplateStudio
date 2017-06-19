@@ -10,23 +10,21 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core.PostActions.Catalog.Merge;
-using System.Collections.Generic;
+using System;
+using System.Runtime.InteropServices;
+using System.Windows;
+using System.Windows.Media;
 
-namespace Microsoft.Templates.Core.Gen
+namespace Microsoft.Templates.UI.Services
 {
-    public interface IContextProvider
+    public class MouseUtilities
     {
-        string ProjectName { get; }
-        string OutputPath { get; }
-        string ProjectPath { get; }
-        List<string> ProjectItems { get; }
-        List<string> NewFiles { get; }
-        List<string> ModifiedFiles { get; }
-        List<string> ConflictFiles { get; }
-        List<string> UnchangedFiles { get; }
-        List<string> FilesToOpen { get; }
-        List<GenerationWarning> GenerationWarnings { get; }
-        Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; }
+        public static Point GetMousePosition(Visual relativeTo)
+        {
+            var mouse = default(NativeMethods.Win32Point);
+            NativeMethods.GetCursorPos(ref mouse);
+
+            return relativeTo.PointFromScreen(new Point(mouse.X, mouse.Y));
+        }
     }
 }

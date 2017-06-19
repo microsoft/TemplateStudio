@@ -42,13 +42,7 @@
 
                                 <controls:ImageEx Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Focusable="False" SourcePath="{Binding Icon}" MaxWidth="50"/>
                                 <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding Name}" Margin="{StaticResource MediumLeftRightMargin}" />
-                                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource TextTemplateItemAuthorStyle}" MaxHeight="40" Margin="{StaticResource MediumLeftMargin}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}">
-                                    <TextBlock.Text>
-                                        <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
-                                            <Binding Path="Author" />
-                                        </MultiBinding>
-                                    </TextBlock.Text>
-                                </TextBlock>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource TextTemplateItemAuthorStyle}" MaxHeight="40" Margin="{StaticResource MediumLeftMargin}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}" Text="{Binding Author}"/>
                             </Grid>
 
                             <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding Summary}" Foreground="{StaticResource UIBlack}"/>

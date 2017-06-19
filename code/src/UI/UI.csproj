@@ -183,6 +183,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Extensions\ListViewExtensions.cs" />
+    <Compile Include="Services\DragAndDropService\DragAndDropService.Members.cs" />
+    <Compile Include="Services\DragAndDropService\DragAdornerLayer.cs" />
+    <Compile Include="Services\DragAndDropService\DragAndDropService.cs" />
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
@@ -197,6 +202,9 @@
     <Compile Include="Controls\MarkdownBlock.xaml.cs">
       <DependentUpon>MarkdownBlock.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\DragAndDropService\ListViewItemDragState.cs" />
+    <Compile Include="Services\DragAndDropService\NativeMethods.cs" />
+    <Compile Include="Services\DragAndDropService\MouseUtilities.cs" />
     <Compile Include="Controls\OverlayBox\OverlayBox.Members.cs" />
     <Compile Include="Controls\OverlayBox\OverlayBox.cs" />
     <Compile Include="Controls\StatusControl.xaml.cs">
@@ -206,7 +214,6 @@
     <Compile Include="Controls\SymbolFonts.cs" />
     <Compile Include="Controls\TextBoxEx.cs" />
     <Compile Include="Controls\TogglePane\TogglePane.Members.cs" />
-    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\ColumnCountConverter.cs" />
     <Compile Include="Converters\EmptyCollectionVisibilityConverter.cs" />
     <Compile Include="Converters\FixedWidthConverter.cs" />
@@ -221,6 +228,7 @@
     <Compile Include="TemplateSelectors\CodeLineTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\NewItemFileTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\SummaryItemOptionsTemplateSelector.cs" />
+    <Compile Include="Services\DragAndDropService\DragAndDropEventArgs.cs" />
     <Compile Include="TemplateSelectors\SummaryItemTemplateSelector.cs" />
     <Compile Include="ViewModels\Common\BaseMainViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\BaseNewItemFileViewModel.cs" />
@@ -291,6 +299,9 @@
     <Compile Include="Generation\UserSelection.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AdditionalFiles Include="..\..\StyleCop.json">
+      <Link>StyleCop.json</Link>
+    </AdditionalFiles>
     <None Include="..\..\TestKey.snk">
       <Link>TestKey.snk</Link>
     </None>

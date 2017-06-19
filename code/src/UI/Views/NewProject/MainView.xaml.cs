@@ -39,7 +39,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
             Loaded += async (sender, e) =>
             {
                 NavigationService.Initialize(stepFrame, new ProjectSetupView());
-                await ViewModel.InitializeAsync();
+                await ViewModel.InitializeAsync(summaryPageGroups);
             };
 
             Unloaded += (sender, e) =>
@@ -76,14 +76,15 @@ namespace Microsoft.Templates.UI.Views.NewProject
             var element = e.Source as FrameworkElement;
             if (element == null || element.Tag == null || element.Tag.ToString() != "AllowClick")
             {
-                ViewModel?.ProjectTemplates?.SavedPages?.ToList()?.ForEach(p =>
+                ViewModel.ProjectTemplates.SavedPages.ToList().ForEach(spg => spg.ToList().ForEach(p =>
                 {
                     if (p.IsEditionEnabled)
                     {
                         p.ConfirmRenameCommand.Execute(p);
                         p.TryClose();
                     }
-                });
+                }));
+
                 ViewModel?.ProjectTemplates?.SavedFeatures?.ToList()?.ForEach(f =>
                 {
                     if (f.IsEditionEnabled)

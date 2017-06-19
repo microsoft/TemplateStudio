@@ -238,9 +238,9 @@
     <Compile Include="ValidationResult.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\StyleCop.json">
+    <AdditionalFiles Include="..\..\StyleCop.json">
       <Link>StyleCop.json</Link>
-    </None>
+    </AdditionalFiles>
     <None Include="..\..\TestKey.snk">
       <Link>TestKey.snk</Link>
     </None>
