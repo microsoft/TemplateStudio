@@ -28,6 +28,7 @@ using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.Templates.UI.Resources;
 
 using NuGet.VisualStudio;
+using Microsoft.VisualStudio;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -338,19 +339,33 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public override string GetVsCultureInfo()
+        public override Guid GetVsProjectId()
         {
-            return System.Globalization.CultureInfo.GetCultureInfo(Dte.LocaleID).Name;
-        }
+            var project = GetActiveProject();
+            Guid projectGuid = Guid.Empty;
+            try
+            {
+                if (project != null)
+                {
+                    var solution = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution;
+                    IVsHierarchy hierarchy;
 
-        public override string GetVsVersion()
-        {
-            return Dte.Version;
-        }
+                    solution.GetProjectOfUniqueName(project.FullName, out hierarchy);
 
-        public override string GetVsEdition()
-        {
-            return Dte.Edition;
+                    if (hierarchy != null)
+                    {
+                        hierarchy.GetGuidProperty(
+                                    VSConstants.VSITEMID_ROOT,
+                                    (int)__VSHPROPID.VSHPROPID_ProjectIDGuid,
+                                    out projectGuid);
+                    }
+                }
+            }
+            catch
+            {
+                projectGuid = Guid.Empty;
+            }
+            return projectGuid;
         }
 
         private void Collapse(UIHierarchyItem item)

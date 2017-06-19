@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.Extensibility;
+using VsTelem = Microsoft.VisualStudio.Telemetry;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
@@ -144,31 +145,48 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         private bool SafeVsTelemetryIsOptedIn()
         {
+            bool result = false;
+            string vsEdition = string.Empty;
+            string vsVersion = string.Empty;
+            string vsCulture = string.Empty;
+            string vsManifestId = string.Empty;
             try
             {
-                if (Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession != null)
+                if (VsTelem.TelemetryService.DefaultSession != null)
                 {
-                    var isOptedIn = Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession.IsOptedIn;
+                    var isOptedIn = VsTelem.TelemetryService.DefaultSession.IsOptedIn;
                     Trace.TraceInformation($"Vs Telemetry IsOptedIn: {isOptedIn}");
+                    vsEdition = VsTelem.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.SkuName");
+                    vsVersion = VsTelem.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.ExeVersion");
+                    vsCulture = VsTelem.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.Locale.ProductLocaleName");
+                    vsManifestId = VsTelem.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.ManifestId");
+
                     return isOptedIn;
                 }
                 else
                 {
                     // Not running in VS so we assume we are in the emulator => we allow telemetry
-                    Trace.TraceInformation($"Checking VsTelemetry IsOptedIn value Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession is Null.");
-                    return true;
+                    Trace.TraceInformation($"Checking VsTelemetry IsOptedIn value VsTelem.TelemetryService.DefaultSession is Null.");
+                    result = true;
                 }
             }
             catch (Exception ex)
             {
                 // Not running in VS so we assume we are in the emulator => we allow telemetry
                 Trace.TraceInformation($"Exception checking VsTelemetry IsOptedIn:\r\n" + ex.ToString());
-                return true;
+                result = true;
             }
+
+            _client.Context.Properties.Add(TelemetryProperties.VisualStudioEdition, vsEdition);
+            _client.Context.Properties.Add(TelemetryProperties.VisualStudioVersion, vsVersion);
+            _client.Context.Properties.Add(TelemetryProperties.VisualStudioCulture, vsCulture);
+            _client.Context.Properties.Add(TelemetryProperties.VisualStudioManifestId, vsManifestId);
+            return result;
         }
 
         private void SetSessionData()
         {
+            // No PII tracked
             string userToTrack = Guid.NewGuid().ToString();
             string machineToTrack = Guid.NewGuid().ToString();
 
@@ -187,6 +205,12 @@ namespace Microsoft.Templates.Core.Diagnostics
             _client.Context.Properties.Add(TelemetryProperties.WizardFileVersion, GetFileVersion());
         }
 
+        private string GetVsProjectId()
+        {
+             var session = VsTelem.TelemetryService.DefaultSession;
+            return string.Empty;
+        }
+
         public void SetContentVersionToContext(Version wizardContentVersion)
         {
             if (wizardContentVersion != null && _client != null && _client.Context != null && _client.Context.Properties != null)
@@ -202,26 +226,38 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
 
-        public void SetVisualStudioInfoToContext(string version, string edition, string culture)
+        public void SafeTrackProjectVsTelemetry(Dictionary<string, string> properties, Dictionary<string, double> metrics, bool success = true)
         {
-            if (_client != null && _client.Context != null && _client.Context.Properties != null)
+            try
             {
-                if (!string.IsNullOrEmpty(version))
+                VsTelem.TelemetryResult result = success ? VsTelem.TelemetryResult.Success : VsTelem.TelemetryResult.Failure;
+
+                VsTelem.UserTaskEvent e = new VsTelem.UserTaskEvent(VsTelemetryEvents.ProjectGen, result, "Project generated");
+
+                foreach (var key in properties.Keys)
                 {
-                    _client.Context.Properties[TelemetryProperties.VisualStudioVersion] = version;
+                    string renamedKey = key.Replace(TelemetryEvents.Prefix, VsTelemetryEvents.Prefix);
+                    if (!string.IsNullOrEmpty(properties[key]))
+                    {
+                        e.Properties[renamedKey] = properties[key];
+                    }
                 }
-                if (!string.IsNullOrEmpty(edition))
+
+                foreach (var key in metrics.Keys)
                 {
-                    _client.Context.Properties[TelemetryProperties.VisualStudioEdition] = edition;
+                    string renamedKey = key.Replace(TelemetryEvents.Prefix, TelemetryEvents.Prefix.ToUpper() + ".");
+                    e.Properties[renamedKey] = new VsTelem.TelemetryMetricProperty(metrics[key]);
                 }
-                if (!string.IsNullOrEmpty(culture))
-                {
-                    _client.Context.Properties[TelemetryProperties.VisualStudioCulture] = culture;
-                }
+
+                VsTelem.TelemetryService.DefaultSession.PostEvent(e);
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceInformation($"Exception tracking Project Creation in VsTelemetry:\r\n" + ex.ToString());
             }
         }
 
-            private async Task SafeExecuteAsync(Action action)
+        private async Task SafeExecuteAsync(Action action)
         {
             try
             {
