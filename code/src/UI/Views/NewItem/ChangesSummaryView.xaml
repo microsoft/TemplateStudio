@@ -90,6 +90,12 @@
                         ItemsSource="{Binding NewFileLines}" Margin="{StaticResource MediumMargin}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
                 </ScrollViewer>
             </DataTemplate>
+            <DataTemplate x:Key="UnchangedtDetailTemplate">
+                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                    <ItemsControl
+                        ItemsSource="{Binding NewFileLines}" Margin="{StaticResource MediumMargin}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
+                </ScrollViewer>
+            </DataTemplate>
             <DataTemplate x:Key="WarningDetailTemplate">
                 <ScrollViewer>
                     <Grid>
@@ -140,7 +146,8 @@
                 AddedFileTemplate="{StaticResource NewtDetailTemplate}"
                 ModifiedFileTemplate="{StaticResource ModifiedDetailTemplate}"
                 ConflictingFileTemplate="{StaticResource ConflictingDetailTemplate}"
-                WarningFileTemplate="{StaticResource WarningDetailTemplate}" />
+                WarningFileTemplate="{StaticResource WarningDetailTemplate}"
+                UnchangedFileTemplate="{StaticResource UnchangedtDetailTemplate}"/>
 
 
         </ResourceDictionary>

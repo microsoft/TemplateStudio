@@ -24,7 +24,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public enum FileType
     {
-        AddedFile, ModifiedFile, ConflictingFile, WarningFile
+        AddedFile, ModifiedFile, ConflictingFile, WarningFile, Unchanged
     }
     public enum FileExtension
     {
@@ -65,6 +65,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     return MainViewModel.Current.MainView.FindResource("UIDarkRed") as SolidColorBrush;
                 case FileType.WarningFile:
                     return MainViewModel.Current.MainView.FindResource("UIDarkYellow") as SolidColorBrush;
+                case FileType.Unchanged:
+                    return MainViewModel.Current.MainView.FindResource("UIDarkBlue") as SolidColorBrush;
                 default:
                     return new SolidColorBrush(Colors.Transparent);
             }

@@ -178,6 +178,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to UnchangedFiles.
+        /// </summary>
+        public static string ChangesSummaryCategoryUnchangedFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryCategoryUnchangedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Modified files.
         /// </summary>
         public static string ChangesSummaryCategotyModifiedFiles {

@@ -442,4 +442,7 @@
   <data name="ConflictingDetailNewFile" xml:space="preserve">
     <value>New file</value>
   </data>
+  <data name="ChangesSummaryCategoryUnchangedFiles" xml:space="preserve">
+    <value>UnchangedFiles</value>
+  </data>
 </root>

@@ -231,6 +231,7 @@
     <Compile Include="Services\DragAndDropService\DragAndDropEventArgs.cs" />
     <Compile Include="TemplateSelectors\SummaryItemTemplateSelector.cs" />
     <Compile Include="ViewModels\Common\BaseMainViewModel.cs" />
+    <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\UnchangedFileViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\BaseNewItemFileViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\AddedNewItemFileViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\ConfictingNewItemFileViewModel.cs" />

@@ -10,6 +10,7 @@ namespace Microsoft.Templates.UI.TemplateSelectors
         public DataTemplate ModifiedFileTemplate { get; set; }
         public DataTemplate ConflictingFileTemplate { get; set; }
         public DataTemplate WarningFileTemplate { get; set; }
+        public DataTemplate UnchangedFileTemplate { get; set; }
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
@@ -26,6 +27,8 @@ namespace Microsoft.Templates.UI.TemplateSelectors
                         return ConflictingFileTemplate;
                     case FileType.WarningFile:
                         return WarningFileTemplate;
+                    case FileType.Unchanged:
+                        return UnchangedFileTemplate;
                 }
             }
             return base.SelectTemplate(item, container);
