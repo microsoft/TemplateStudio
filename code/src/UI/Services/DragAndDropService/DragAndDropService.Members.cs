@@ -10,7 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.UI.Extensions;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,6 +17,8 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
+
+using Microsoft.Templates.UI.Extensions;
 
 namespace Microsoft.Templates.UI.Services
 {
@@ -46,6 +47,7 @@ namespace Microsoft.Templates.UI.Services
                 {
                     return false;
                 }
+
                 return true;
             }
         }
@@ -54,7 +56,7 @@ namespace Microsoft.Templates.UI.Services
         {
             get
             {
-                if (this._indexToSelect < 0)
+                if (_indexToSelect < 0)
                 {
                     return false;
                 }
@@ -73,7 +75,9 @@ namespace Microsoft.Templates.UI.Services
 
                 Rect rect = new Rect(this._mouseDownPosition, szThreshold);
                 rect.Offset(szThreshold.Width / -2, szThreshold.Height / -2);
-                Point ptInListView = MouseUtilities.GetMousePosition(this._listView);
+
+                Point ptInListView = MouseUtilities.GetMousePosition(_listView);
+
                 return !rect.Contains(ptInListView);
             }
         }
@@ -82,14 +86,16 @@ namespace Microsoft.Templates.UI.Services
         {
             get
             {
-                var mousePosition = MouseUtilities.GetMousePosition(this._listView);
-                var result = VisualTreeHelper.HitTest(this._listView, mousePosition);
+                var mousePosition = MouseUtilities.GetMousePosition(_listView);
+                var result = VisualTreeHelper.HitTest(_listView, mousePosition);
+
                 if (result == null)
                 {
                     return false;
                 }
 
                 var dependencyObject = result.VisualHit;
+
                 while (dependencyObject != null)
                 {
                     if (dependencyObject is ScrollBar)
@@ -106,6 +112,7 @@ namespace Microsoft.Templates.UI.Services
                         dependencyObject = LogicalTreeHelper.GetParent(dependencyObject);
                     }
                 }
+
                 return false;
             }
         }
@@ -115,7 +122,7 @@ namespace Microsoft.Templates.UI.Services
             get => _itemUnderDragCursor;
             set
             {
-                if (this._itemUnderDragCursor == value)
+                if (_itemUnderDragCursor == value)
                 {
                     return;
                 }
@@ -126,12 +133,13 @@ namespace Microsoft.Templates.UI.Services
                 {
                     if (step == 1)
                     {
-                        this._itemUnderDragCursor = value;
+                        _itemUnderDragCursor = value;
                     }
 
-                    if (this._itemUnderDragCursor != null)
+                    if (_itemUnderDragCursor != null)
                     {
                         var listViewItem = GetListViewItem(_itemUnderDragCursor);
+
                         if (listViewItem != null)
                         {
                             ListViewItemDragState.SetIsUnderDragCursor(listViewItem, step == 1);

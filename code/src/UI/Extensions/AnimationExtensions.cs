@@ -25,10 +25,12 @@ namespace Microsoft.Templates.UI.Extensions
             {
                 throw new ArgumentNullException("element");
             }
+
             if (element.Opacity < 1.0)
             {
                 return AnimateDoubleProperty(element, "Opacity", element.Opacity, 1.0, duration, easingFunction);
             }
+
             return null;
         }
 

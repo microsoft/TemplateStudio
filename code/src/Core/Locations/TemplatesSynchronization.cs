@@ -12,10 +12,10 @@
 
 using System;
 using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
-using System.Reflection;
 
 namespace Microsoft.Templates.Core.Locations
 {

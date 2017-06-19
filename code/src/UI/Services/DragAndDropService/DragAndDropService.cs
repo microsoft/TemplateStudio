@@ -10,8 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.UI.Extensions;
-
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,6 +17,8 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+
+using Microsoft.Templates.UI.Extensions;
 
 namespace Microsoft.Templates.UI.Services
 {
@@ -40,6 +40,7 @@ namespace Microsoft.Templates.UI.Services
             {
                 _listView.AllowDrop = true;
             }
+
             _listView.PreviewMouseLeftButtonDown += OnPreviewMouseLeftButtonDown;
             _listView.PreviewMouseMove += OnPreviewMouseMove;
             _listView.DragOver += OnDragOver;
@@ -84,6 +85,7 @@ namespace Microsoft.Templates.UI.Services
                 if (_listView.SelectedItem != null)
                 {
                     var itemToDrag = _listView.GetCurrentListViewItem();
+
                     if (itemToDrag != null)
                     {
                         var adornerLayer = ShowDragAdornerLayerResolved ? InitializeAdornerLayer(itemToDrag) : null;
@@ -136,10 +138,11 @@ namespace Microsoft.Templates.UI.Services
 
         private void OnDrop(object sender, DragEventArgs e)
         {
-            if (this.ItemUnderDragCursor != null)
+            if (ItemUnderDragCursor != null)
             {
-                this.ItemUnderDragCursor = null;
+                ItemUnderDragCursor = null;
             }
+
             e.Effects = DragDropEffects.None;
 
             if (e.Data.GetDataPresent(typeof(T)))

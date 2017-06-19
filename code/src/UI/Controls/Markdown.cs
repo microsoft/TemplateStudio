@@ -761,8 +761,10 @@ namespace Microsoft.Templates.UI.Controls
             string leadingLine = match.Groups[1].Value;
 
             if (!string.IsNullOrEmpty(leadingLine) || Regex.IsMatch(item, @"\n{2,}"))
+            {
                 // we could correct any bad indentation here..
                 return Create<ListItem, Block>(RunBlockGamut(item));
+            }
             else
             {
                 // recursion for sub-lists

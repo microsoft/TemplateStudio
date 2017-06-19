@@ -10,26 +10,24 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
+using System;
+using System.Runtime.InteropServices;
 
-namespace Microsoft.Templates.UI.Extensions
+namespace Microsoft.Templates.UI.Services
 {
-    public static class ListViewExtensions
+    internal class NativeMethods
     {
-        public static ListViewItem GetCurrentListViewItem(this ListView listView)
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct Win32Point
         {
-            return listView.GetListViewItem(listView.SelectedIndex);
+            public int X;
+            public int Y;
         }
 
-        public static ListViewItem GetListViewItem(this ListView listView, int index)
-        {
-            if (listView.ItemContainerGenerator.Status != GeneratorStatus.ContainersGenerated)
-            {
-                return null;
-            }
+        [DllImport("user32.dll")]
+        internal static extern bool GetCursorPos(ref Win32Point pt);
 
-            return listView.ItemContainerGenerator.ContainerFromIndex(index) as ListViewItem;
-        }
+        [DllImport("user32.dll")]
+        internal static extern bool ScreenToClient(IntPtr hwnd, ref Win32Point pt);
     }
 }
