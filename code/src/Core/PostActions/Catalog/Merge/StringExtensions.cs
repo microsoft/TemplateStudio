@@ -33,5 +33,15 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 return string.Concat(new string(' ', triviaCount), statement);
             }
         }
+
+        public static string GetUserFriendlyPostAction(this string postactionCode)
+        {
+            var output = postactionCode
+                            .Replace("{[{", "Merge - Action: Include the following block")
+                            .Replace("}]}", "Merge Action Ended")
+                            .Replace("{--{", "Merge - Action: Remove the following block")
+                            .Replace("}--}", "Merge Action Ended");
+            return output;
+        }
     }
 }
