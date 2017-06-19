@@ -58,6 +58,11 @@ namespace wts.ItemName.Views
             NavigationService.Frame = shellFrame;
             NavigationService.Frame.Navigated += NavigationService_Navigated;
             PopulateNavItems();
+
+            if (Window.Current.Bounds.Width < 640)
+            {
+                GoToState(NarrowStateName);
+            }
         }
 
         private void PopulateNavItems()
@@ -119,9 +124,11 @@ namespace wts.ItemName.Views
             IsPaneOpen = !_isPaneOpen;
         }
 
-        private void WindowStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
+        private void WindowStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e) => GoToState(e.NewState.Name);
+        
+        private void GoToState(string stateName)
         {
-            switch (e.NewState.Name)
+            switch (stateName)
             {
                 case PanoramicStateName:
                     DisplayMode = SplitViewDisplayMode.CompactInline;
@@ -136,7 +143,7 @@ namespace wts.ItemName.Views
                     break;
                 default:
                     break;
-            }            
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

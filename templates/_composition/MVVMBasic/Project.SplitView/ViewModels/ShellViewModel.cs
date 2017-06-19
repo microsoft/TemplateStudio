@@ -81,16 +81,16 @@ namespace wts.ItemName.ViewModels
             {
                 if (_stateChangedCommand == null)
                 {
-                    _stateChangedCommand = new RelayCommand<Windows.UI.Xaml.VisualStateChangedEventArgs>(OnStateChanged);
+                    _stateChangedCommand = new RelayCommand<Windows.UI.Xaml.VisualStateChangedEventArgs>(args => GoToState(args.NewState.Name));
                 }
 
                 return _stateChangedCommand;
             }
         }
 
-        private void OnStateChanged(VisualStateChangedEventArgs args)
+        private void GoToState(string stateName)
         {
-            switch (args.NewState.Name)
+            switch (stateName)
             {
                 case PanoramicStateName:
                     DisplayMode = SplitViewDisplayMode.CompactInline;
@@ -113,6 +113,11 @@ namespace wts.ItemName.ViewModels
             NavigationService.Frame = frame;
             NavigationService.Frame.Navigated += NavigationService_Navigated;
             PopulateNavItems();
+
+            if (Window.Current.Bounds.Width < 640)
+            {
+                GoToState(NarrowStateName);
+            }
         }
 
         private void PopulateNavItems()
