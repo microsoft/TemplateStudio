@@ -53,6 +53,13 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             set => SetProperty(ref _author, value);
         }
 
+        private int _order;
+        public int Order
+        {
+            get => _order;
+            set => SetProperty(ref _order, value);
+        }
+
         private string _version;
         public string Version
         {

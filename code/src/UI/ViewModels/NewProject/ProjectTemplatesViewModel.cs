@@ -174,7 +174,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 var pages = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page && t.GetFrameworkList().Contains(ContextFramework.Name))
                                                    .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), AddTemplateCommand, SaveTemplateCommand, ValidateNewTemplateName));
 
-                var groups = pages.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList())).OrderBy(gr => gr.Title);
+                var groups = pages.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order))).OrderBy(gr => gr.Title);
 
                 PagesGroups.AddRange(groups);
                 PagesHeader = string.Format(StringRes.GroupPagesHeader_SF, pages.Count());
@@ -185,7 +185,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 var features = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Feature && t.GetFrameworkList().Contains(ContextFramework.Name) && !t.GetIsHidden())
                                                       .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), AddTemplateCommand, SaveTemplateCommand, ValidateNewTemplateName));
 
-                var groups = features.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList())).OrderBy(gr => gr.Title);
+                var groups = features.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order))).OrderBy(gr => gr.Title);
 
                 FeatureGroups.AddRange(groups);
                 FeaturesHeader = string.Format(StringRes.GroupFeaturesHeader_SF, features.Count());

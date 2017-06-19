@@ -36,13 +36,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             set => SetProperty(ref _templateName, value);
         }
 
-        private int _order;
-        public int Order
-        {
-            get => _order;
-            set => SetProperty(ref _order, value);
-        }
-
         private bool _multipleInstances;
         public bool MultipleInstances
         {

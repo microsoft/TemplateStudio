@@ -62,6 +62,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             Description = metadataInfo.Description;
             DisplayName = metadataInfo.DisplayName;
             Icon = metadataInfo.Icon;
+            Order = metadataInfo.Order;
             LicenseTerms = metadataInfo.LicenseTerms;
             MetadataType = metadataInfo.MetadataType;
             Name = metadataInfo.Name;

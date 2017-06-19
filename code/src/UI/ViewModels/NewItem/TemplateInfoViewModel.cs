@@ -40,6 +40,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             Icon = template.GetIcon();
             Name = template.Name;
             Author = template.Author;
+            Order = template.GetOrder();
             Summary = template.Description;
             Identity = template.Identity;
             Version = template.GetVersion();
