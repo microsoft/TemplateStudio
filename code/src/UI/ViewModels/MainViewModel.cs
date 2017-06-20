@@ -328,6 +328,7 @@ namespace Microsoft.Templates.UI.ViewModels
             if (CheckProjectSetupChanged())
             {
                 ProjectTemplates.ResetSelection();
+                _summaryPageGroups.Children.Clear();
 
                 CleanStatus();
             }
