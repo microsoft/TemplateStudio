@@ -12,24 +12,16 @@
 
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 
-namespace Microsoft.Templates.VsEmulator
+namespace Microsoft.Templates.Core
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
+    public class MetadataLocalizedInfo
     {
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            System.Globalization.CultureInfo.CurrentUICulture = new System.Globalization.CultureInfo("es-ES");
-            System.Globalization.CultureInfo.CurrentCulture = new System.Globalization.CultureInfo("es-ES");
-            base.OnStartup(e);
-        }
+        public string Name { get; set; }
+        public string DisplayName { get; set; }
+        public string Summary { get; set; }
     }
 }

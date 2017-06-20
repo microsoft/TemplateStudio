@@ -1,0 +1,6 @@
+{
+    "author": "Microsoft",
+    "name": "Tarea en Segundo Plano",
+    "description": "Este es un ejemplo de descripcion localizada",
+    "identity": "wts.Feat.BackgroundTask"
+}

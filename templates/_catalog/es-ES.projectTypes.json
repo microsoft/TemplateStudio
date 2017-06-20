@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Blank",
+        "displayName": "Proyecto vacío",
+        "summary": "Este proyecto básico es un canvas en blanco sobre cual podrá construir su aplicación."
+    },
+    {
+        "name": "SplitView",
+        "displayName": "Panel de navegación",
+        "summary": "Es un panel de navegación (o 'menú de hamburger') para navegar entre páginas."
+    },
+    {
+        "name": "TabbedPivot",
+        "displayName": "Pivot y pestañas",
+        "summary": "Las pestañas en la parte superior permiten navegar rápidamente entre las páginas."
+    }
+]

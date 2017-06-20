@@ -210,6 +210,11 @@
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
     <Compile Include="Controls\TogglePane\TogglePane.cs" />
     <Compile Include="Extensions\AnimationExtensions.cs" />
+    <Compile Include="Resources\StringRes.es-ES.Designer.cs">
+      <DependentUpon>StringRes.es-ES.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="TemplateSelectors\SummaryItemOptionsTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\SummaryItemTemplateSelector.cs" />
     <Compile Include="ViewModels\Entities\CommonInfoViewModel.cs" />
@@ -400,6 +405,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\StringRes.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.es-ES.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.Designer.cs</LastGenOutput>

@@ -1,0 +1,1 @@
+Esta es la página más básica. Un canvas en blanco para moldear en lo que desee. La página en blanco le deja prácticamente todo a usted.

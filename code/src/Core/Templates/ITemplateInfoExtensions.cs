@@ -21,6 +21,7 @@ using Microsoft.TemplateEngine.Abstractions.Mount;
 using Microsoft.Templates.Core.Composition;
 
 using Newtonsoft.Json;
+using System.Globalization;
 
 namespace Microsoft.Templates.Core
 {
@@ -55,11 +56,42 @@ namespace Microsoft.Templates.Core
             return Directory.EnumerateFiles(configDir, "icon.*").FirstOrDefault();
         }
 
+        /*public static string GetLocalizedName(this ITemplateInfo ti)
+        {
+            var configDir = GetConfigDir(ti);
+            var metadataFileLocalized = Path.Combine(configDir, $"template.{CultureInfo.CurrentUICulture.IetfLanguageTag}.json");
+            if (File.Exists(metadataFileLocalized))
+            {
+                var metadataLocalized = JsonConvert.DeserializeObject<MetadataLocalizedInfo>(File.ReadAllText(metadataFileLocalized));
+                if (metadataLocalized != null)
+                {
+                    return metadataLocalized.DisplayName;
+                }
+            }
+            return ti.Name;
+        }
+
+        public static string GetLocalizedSummary(this ITemplateInfo ti)
+        {
+            var configDir = GetConfigDir(ti);
+            var metadataFileLocalized = Path.Combine(configDir, $"template.{CultureInfo.CurrentUICulture.IetfLanguageTag}.json");
+            if (File.Exists(metadataFileLocalized))
+            {
+                var metadataLocalized = JsonConvert.DeserializeObject<MetadataLocalizedInfo>(File.ReadAllText(metadataFileLocalized));
+                if (metadataLocalized != null)
+                {
+                    return metadataLocalized.Summary;
+                }
+            }
+            return ti.Description;
+        }*/
+
         public static string GetRichDescription(this ITemplateInfo ti)
         {
             var configDir = GetConfigDir(ti);
-            var descriptionFile = Directory.EnumerateFiles(configDir, "description.md").FirstOrDefault();
-
+            var descriptionFile = Directory.EnumerateFiles(configDir, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.description.md").FirstOrDefault();
+            if (string.IsNullOrWhiteSpace(descriptionFile) || !File.Exists(descriptionFile))
+                descriptionFile = Directory.EnumerateFiles(configDir, "description.md").FirstOrDefault();
             if (!string.IsNullOrEmpty(descriptionFile))
             {
                 return File.ReadAllText(descriptionFile);

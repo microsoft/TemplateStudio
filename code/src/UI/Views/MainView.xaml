@@ -221,7 +221,7 @@
                                 <TextBlock Style="{StaticResource TextSummaryItemStyle}" Text="{Binding DisplayName}" />
                                 <TextBlock Style="{StaticResource TextSummaryAuthorStyle}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}">
                                     <TextBlock.Text>
-                                        <MultiBinding StringFormat="Made by {0}">
+                                        <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
                                             <Binding Path="Author" />
                                         </MultiBinding>
                                     </TextBlock.Text>
@@ -236,7 +236,7 @@
                                     <TextBlock Style="{StaticResource TextSummaryItemStyle}" Text="{Binding DisplayName}" />
                                     <TextBlock Style="{StaticResource TextSummaryAuthorStyle}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}">
                                         <TextBlock.Text>
-                                            <MultiBinding StringFormat="Made by {0}">
+                                            <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
                                                 <Binding Path="Author" />
                                             </MultiBinding>
                                         </TextBlock.Text>

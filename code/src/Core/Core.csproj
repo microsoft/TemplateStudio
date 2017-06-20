@@ -181,6 +181,7 @@
     <Compile Include="Locations\LocalTemplatesSource.cs" />
     <Compile Include="Composition\CompositionQuery.cs" />
     <Compile Include="Locations\SyncStatus.cs" />
+    <Compile Include="MetadataLocalizedInfo.cs" />
     <Compile Include="Naming\DefaultNameValidator.cs" />
     <Compile Include="Naming\ExistingNamesValidator.cs" />
     <Compile Include="Naming\ReservedNameValidator.cs" />

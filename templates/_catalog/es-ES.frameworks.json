@@ -1,0 +1,17 @@
+[
+    {
+        "name": "MVVMBasic",
+        "displayName": "MVVM Basico",
+        "summary": "Se trata de una versión genérica de un patrón MVVM. El patrón Model-View-ViewModel se puede utilizar en todas las plataformas XAML."
+    },
+    {
+        "name": "MVVMLight",
+        "displayName": "MVVM Ligero",
+        "summary": "MVVM Light es un framework popular de terceros basado en el modelo Model-View-ViewModel."
+    },
+    {
+        "name": "CodeBehind",
+        "displayName": "Código Behind",
+        "summary": "Este es el modelo tradicional para una aplicación en la que la lógica se maneja en el code-behind. Para una aplicación rápida, esta es una gran opción."
+    }
+]

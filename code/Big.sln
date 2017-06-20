@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{481CC407-92E7-42A9-AD6E-AA157E5D40C3}"
 EndProject
@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		StyleCop.json = StyleCop.json
 		TestCert.pfx = TestCert.pfx
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.UWP.VS2017.es-ES.Solution", "src\ProjectTemplates\CSharp.UWP.2017.es-ES.Solution\CSharp.UWP.VS2017.es-ES.Solution.csproj", "{493A5D82-7B17-4306-A227-7A2D4422FA89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +93,12 @@ Global
 		{DCFD282D-D91C-49B5-8DBF-D943BAFEF5AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCFD282D-D91C-49B5-8DBF-D943BAFEF5AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCFD282D-D91C-49B5-8DBF-D943BAFEF5AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{493A5D82-7B17-4306-A227-7A2D4422FA89}.Analyze|Any CPU.ActiveCfg = Analyze|Any CPU
+		{493A5D82-7B17-4306-A227-7A2D4422FA89}.Analyze|Any CPU.Build.0 = Analyze|Any CPU
+		{493A5D82-7B17-4306-A227-7A2D4422FA89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{493A5D82-7B17-4306-A227-7A2D4422FA89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{493A5D82-7B17-4306-A227-7A2D4422FA89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{493A5D82-7B17-4306-A227-7A2D4422FA89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,5 +109,6 @@ Global
 		{1EE12A16-FE11-43AD-B509-668CE5D0DB16} = {481CC407-92E7-42A9-AD6E-AA157E5D40C3}
 		{FB3C81AD-823E-409C-BF6D-27534B84A8AF} = {481CC407-92E7-42A9-AD6E-AA157E5D40C3}
 		{D5E1C23A-7547-412A-82F1-F00C34622C1E} = {428D8EC8-DF58-4921-B464-967086C924A4}
+		{493A5D82-7B17-4306-A227-7A2D4422FA89} = {428D8EC8-DF58-4921-B464-967086C924A4}
 	EndGlobalSection
 EndGlobal
