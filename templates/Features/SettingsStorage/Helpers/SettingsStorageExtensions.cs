@@ -3,13 +3,14 @@ using System.IO;
 using System.Threading.Tasks;
 
 using Windows.Storage;
+using Windows.Storage.Streams;
 
 namespace Param_ItemNamespace.Helpers
 {
     public static class SettingsStorageExtensions
     {
-        // Use this extension methods to store and retrieve in local and roaming app data 
-        // For more info regarding storing and retrieving app data, 
+        // Use this extension methods to store and retrieve in local and roaming app data
+        // For more info regarding storing and retrieving app data,
         // Documentation: https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data
 
         private const string fileExtension = ".json";
@@ -104,7 +105,7 @@ namespace Param_ItemNamespace.Helpers
                     }
                 }
             }
-  
+
             return null;
         }
 
