@@ -58,11 +58,23 @@ namespace Microsoft.Templates.Core.Locations
                 await CheckMandatoryAdquisitionAsync(forced);
                 await UpdateTemplatesCacheAsync();
                 await CheckExpirationAdquisitionAsync();
+                await CheckNewVersionAvailableAsync();
                 await CheckContentOverVersion();
             }
 
             PurgeContentAsync().FireAndForget();
             TelemetryService.Current.SetContentVersionToContext(CurrentContentVersion);
+        }
+
+        public async Task RefreshAsync()
+        {
+            await UpdateTemplatesCacheAsync();
+        }
+
+        public async Task CheckForUpdatesAsync()
+        {
+            await AdquireContentAsync();
+            await CheckNewVersionAvailableAsync();
         }
 
         private void SafeSetContentVersionInTelemetry()
@@ -172,6 +184,18 @@ namespace Microsoft.Templates.Core.Locations
                 }
             });
         }
+
+        private async Task CheckNewVersionAvailableAsync()
+        {
+            await Task.Run(() =>
+            {
+                if (_content.IsNewVersionAvailable(CurrentContentFolder))
+                {
+                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.NewVersionAvailable });
+                }
+            });
+        }
+
 
         private void UpdateTemplatesCache()
         {

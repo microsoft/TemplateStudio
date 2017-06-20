@@ -1,16 +1,77 @@
-﻿using Microsoft.Templates.UI.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Extensions;
 
 namespace Microsoft.Templates.UI.Controls
 {
-    public sealed partial class OverlayBox : Control
+    public sealed class OverlayBox : Control
     {
+        public bool Visible
+        {
+            get => (bool)GetValue(VisibleProperty);
+            set => SetValue(VisibleProperty, value);
+        }
+        public static readonly DependencyProperty VisibleProperty = DependencyProperty.Register("Visible", typeof(bool), typeof(OverlayBox), new PropertyMetadata(true, OnVisiblePropertyChanged));
+
+        public string WizardVersion
+        {
+            get => (string)GetValue(WizardVersionProperty);
+            set => SetValue(WizardVersionProperty, value);
+        }
+        public static readonly DependencyProperty WizardVersionProperty = DependencyProperty.Register("WizardVersion", typeof(string), typeof(OverlayBox), new PropertyMetadata(string.Empty));
+
+        public string TemplatesVersion
+        {
+            get => (string)GetValue(TemplatesVersionProperty);
+            set => SetValue(TemplatesVersionProperty, value);
+        }
+        public static readonly DependencyProperty TemplatesVersionProperty = DependencyProperty.Register("TemplatesVersion", typeof(string), typeof(OverlayBox), new PropertyMetadata(string.Empty));
+
+        public bool NewVersionAvailable
+        {
+            get => (bool)GetValue(NewVersionAvailableProperty);
+            set => SetValue(NewVersionAvailableProperty, value);
+        }
+        public static readonly DependencyProperty NewVersionAvailableProperty = DependencyProperty.Register("NewVersionAvailable", typeof(bool), typeof(OverlayBox), new PropertyMetadata(true));
+
+        public ICommand OpenUrlCommand
+        {
+            get => (ICommand)GetValue(OpenUrlCommandProperty);
+        }
+        public static readonly DependencyProperty OpenUrlCommandProperty = DependencyProperty.Register("OpenUrlCommand", typeof(ICommand), typeof(OverlayBox), new PropertyMetadata(new RelayCommand<string>(OpenUrl)));
+
+        public ICommand CheckForUpdatesCommand
+        {
+            get => (ICommand)GetValue(CheckForUpdatesCommandProperty);
+            set => SetValue(CheckForUpdatesCommandProperty, value);
+        }
+        public static readonly DependencyProperty CheckForUpdatesCommandProperty = DependencyProperty.Register("CheckForUpdatesCommand", typeof(ICommand), typeof(OverlayBox), new PropertyMetadata(null));
+
+        public ICommand RefreshCommand
+        {
+            get => (ICommand)GetValue(RefreshCommandProperty);
+            set => SetValue(RefreshCommandProperty, value);
+        }
+        public static readonly DependencyProperty RefreshCommandProperty = DependencyProperty.Register("RefreshCommand", typeof(ICommand), typeof(OverlayBox), new PropertyMetadata(null));
+
+        private static void OpenUrl(string url)
+        {
+            if (!string.IsNullOrWhiteSpace(url) && Uri.IsWellFormedUriString(url, UriKind.Absolute))
+            {
+                Process.Start(url);
+            }
+        }
+
+        private static void OnVisiblePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as OverlayBox;
+            control.UpdateVisible((bool)e.NewValue);
+        }
+
         static OverlayBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(OverlayBox), new FrameworkPropertyMetadata(typeof(OverlayBox)));

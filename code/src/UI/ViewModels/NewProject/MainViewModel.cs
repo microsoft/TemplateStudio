@@ -10,6 +10,7 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -44,8 +45,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private StackPanel _summaryPageGroups;
-        public async Task InitializeAsync(StackPanel summaryPageGroups)
+        public async Task InitializeAsync(Frame stepFrame, StackPanel summaryPageGroups)
         {
+            NavigationService.Initialize(stepFrame, new ProjectSetupView());
             _summaryPageGroups = summaryPageGroups;
             await BaseInitializeAsync();
             SummaryLicenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryLicenses)); };
@@ -96,6 +98,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             base.OnFinish(parameter);
         }
         protected override async void OnTemplatesAvailable() => await ProjectSetup.InitializeAsync();
+        protected override async void OnNewTemplatesAvailable() => await MainView.ResetAsync();
+
         protected override UserSelection CreateUserSelection()
         {
             var userSelection = new UserSelection()

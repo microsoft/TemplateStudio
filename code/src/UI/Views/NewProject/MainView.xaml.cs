@@ -16,6 +16,7 @@ using Microsoft.Templates.UI.ViewModels.NewProject;
 
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -27,7 +28,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
     /// </summary>
     public partial class MainView : Window
     {
-        public MainViewModel ViewModel { get; }
+        public MainViewModel ViewModel { get; private set; }
         public UserSelection Result { get; set; }
 
         public MainView()
@@ -38,8 +39,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
 
             Loaded += async (sender, e) =>
             {
-                NavigationService.Initialize(stepFrame, new ProjectSetupView());
-                await ViewModel.InitializeAsync(summaryPageGroups);
+                await ViewModel.InitializeAsync(stepFrame, summaryPageGroups);
             };
 
             Unloaded += (sender, e) =>
@@ -94,6 +94,13 @@ namespace Microsoft.Templates.UI.Views.NewProject
                     }
                 });
             }
+        }
+
+        public async Task ResetAsync()
+        {
+            Result = null;
+            ViewModel = new MainViewModel(this);
+            await ViewModel.InitializeAsync(stepFrame, summaryPageGroups);
         }
     }
 }

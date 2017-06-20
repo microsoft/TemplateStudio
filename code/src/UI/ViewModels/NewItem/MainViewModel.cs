@@ -93,6 +93,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
 
         protected override void OnTemplatesAvailable() => NewItemSetup.Initialize(true);
+        protected override void OnNewTemplatesAvailable()
+        {
+            throw new NotImplementedException();
+        }
         protected override UserSelection CreateUserSelection()
         {
             var userSelection = new UserSelection()

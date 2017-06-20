@@ -160,8 +160,7 @@
     
     <!--OverlayBox-->
     <Style TargetType="TextBlock" x:Key="TextOverlayBoxTitleStyle" BasedOn="{StaticResource UIBaseText}">
-        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
-        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="{StaticResource UIWhite}"/>
     </Style>
 
     <Style TargetType="TextBlock" x:Key="TextOverlayBoxDescriptionStyle" BasedOn="{StaticResource UIBaseText}">

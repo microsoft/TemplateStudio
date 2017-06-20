@@ -48,6 +48,16 @@ namespace Microsoft.Templates.Core
             await Sync.Do(force);
         }
 
+        public async Task CheckForUpdatesAsync()
+        {
+            await Sync.CheckForUpdatesAsync();
+        }
+
+        public async Task RefreshAsync()
+        {
+            await Sync.RefreshAsync();
+        }
+
         public IEnumerable<ITemplateInfo> GetAll()
         {
             var queryResult = CodeGen.Instance.Cache.List(false, WellKnownSearchFilters.LanguageFilter("C#"));

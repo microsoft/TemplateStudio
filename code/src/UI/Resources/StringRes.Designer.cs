@@ -277,6 +277,24 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error checking for updates. See output for more details..
+        /// </summary>
+        public static string ErrorSyncCheckNewVersion {
+            get {
+                return ResourceManager.GetString("ErrorSyncCheckNewVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error refreshing templates. See output for more details..
+        /// </summary>
+        public static string ErrorSyncRefresh {
+            get {
+                return ResourceManager.GetString("ErrorSyncRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View problem details.
         /// </summary>
         public static string ErrorViewProblemDetails {
@@ -522,9 +540,9 @@ namespace Microsoft.Templates.UI.Resources {
         /// <summary>
         ///   Looks up a localized string similar to There is new content available..
         /// </summary>
-        public static string NewUpdateAvailable {
+        public static string NewVersionAvailable {
             get {
-                return ResourceManager.GetString("NewUpdateAvailable", resourceCulture);
+                return ResourceManager.GetString("NewVersionAvailable", resourceCulture);
             }
         }
         
@@ -633,6 +651,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string StatusLowerVersionTitle {
             get {
                 return ResourceManager.GetString("StatusLowerVersionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is new templates content available....
+        /// </summary>
+        public static string StatusNewVersionAvailable {
+            get {
+                return ResourceManager.GetString("StatusNewVersionAvailable", resourceCulture);
             }
         }
         

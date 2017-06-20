@@ -54,6 +54,22 @@ namespace Microsoft.Templates.Core.Locations
                 return false;
             }
         }
+
+        public bool IsNewVersionAvailable(string currentContentFolder)
+        {
+            if (ExistsContent(LatestContentFolder))
+            {
+                Version currentVersion = GetVersionFromFolder(currentContentFolder);
+                Version latestVersion = GetVersionFromFolder(LatestContentFolder);
+
+                return currentVersion < latestVersion;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public bool ExistOverVersion()
         {
             string targetFolder = GetLatestContentFolder(false);

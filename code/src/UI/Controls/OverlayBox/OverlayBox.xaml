@@ -17,49 +17,57 @@
                 <ControlTemplate TargetType="{x:Type controls:OverlayBox}">
                     <Grid Width="300" Height="270">
                         <Polygon
-                            Fill="White"                            
+                            Fill="{StaticResource UIMiddleDarkGray}"                            
                             Points="0,8 20,8 10,0"
                             Margin="0,0,5,1"
                             VerticalAlignment="Top"
                             HorizontalAlignment="Right"/>
-                        <Border Grid.Row="1" BorderThickness="1,0,1,1" BorderBrush="{StaticResource UIBlack}" Background="{StaticResource UIWhite}" Margin="0,8,0,0">
+                        <Border Grid.Row="1" BorderThickness="1,0,1,1" BorderBrush="{StaticResource UIMiddleDarkGray}" Background="{StaticResource UIWhite}" Margin="0,8,0,0">
                             <Border.Effect>
                                 <DropShadowEffect Color="{StaticResource UIBlackColor}" Opacity="0.4"/>
                             </Border.Effect>
-                            <StackPanel Grid.Row="1" Margin="{StaticResource MediumMargin}">
-                                <TextBlock Text="{x:Static res:StringRes.Title}" Style="{StaticResource TextOverlayBoxTitleStyle}"/>
-                                <TextBlock Text="{x:Static res:StringRes.WTSDescription}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" Margin="{StaticResource SmallTopMargin}"/>
-                                <Grid Margin="{StaticResource SmallTopMargin}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static res:StringRes.WizardVersion}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" Margin="{StaticResource MediumRightMargin}"/>
-                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{TemplateBinding WizardVersion}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" />
-
-                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static res:StringRes.TemplatesVersion}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" Margin="{StaticResource MediumRightMargin}"/>
-                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{TemplateBinding TemplatesVersion}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" />
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Background="#666666" Grid.Row="0">
+                                    <TextBlock Text="{x:Static res:StringRes.Title}" Style="{StaticResource TextOverlayBoxTitleStyle}" Margin="{StaticResource MediumMargin}"/>
                                 </Grid>
-                                <StackPanel Margin="{StaticResource SmallTopMargin}" Visibility="{TemplateBinding NewUpdateAvailable, Converter={StaticResource BoolToVisibilityConverter}}">
-                                    <TextBlock Grid.Row="0" Text="{x:Static res:StringRes.NewUpdateAvailable}" Style="{StaticResource TextOverlayBoxNotificationStyle}" />
-                                    <Button Grid.Row="1" Style="{StaticResource ButtonRefreshTemplatesStyle}" Content="{x:Static res:StringRes.ButtonRefreshTemplates}" Margin="{StaticResource SmallTopMargin}" Focusable="{TemplateBinding Visible}"/>
-                                </StackPanel>
-                                <Button Grid.Row="1" Style="{StaticResource ButtonRefreshTemplatesStyle}" Content="{x:Static res:StringRes.CheckForUpdates}" Margin="{StaticResource SmallTopMargin}" Visibility="{TemplateBinding NewUpdateAvailable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" Focusable="{TemplateBinding Visible}"/>
-                                <TextBlock Margin="{StaticResource SmallTopMargin}">
+                                <StackPanel Grid.Row="1" Margin="{StaticResource MediumMargin}">
+                                    <TextBlock Text="{x:Static res:StringRes.WTSDescription}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" Margin="{StaticResource SmallTopMargin}"/>
+                                    <Grid Margin="{StaticResource SmallTopMargin}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static res:StringRes.WizardVersion}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" Margin="{StaticResource MediumRightMargin}"/>
+                                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{TemplateBinding WizardVersion}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" />
+
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static res:StringRes.TemplatesVersion}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" Margin="{StaticResource MediumRightMargin}"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{TemplateBinding TemplatesVersion}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" />
+                                    </Grid>
+                                    <StackPanel Margin="{StaticResource SmallTopMargin}" Visibility="{TemplateBinding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}}">
+                                        <TextBlock Grid.Row="0" Text="{x:Static res:StringRes.NewVersionAvailable}" Style="{StaticResource TextOverlayBoxNotificationStyle}" />
+                                        <Button Grid.Row="1" Style="{StaticResource ButtonRefreshTemplatesStyle}" Content="{x:Static res:StringRes.ButtonRefreshTemplates}" Margin="{StaticResource SmallTopMargin}" Focusable="{TemplateBinding Visible}" Command="{TemplateBinding RefreshCommand}"/>
+                                    </StackPanel>
+                                    <Button Grid.Row="1" Style="{StaticResource ButtonRefreshTemplatesStyle}" Content="{x:Static res:StringRes.CheckForUpdates}" Margin="{StaticResource SmallTopMargin}" Visibility="{TemplateBinding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" Focusable="{TemplateBinding Visible}" Command="{TemplateBinding CheckForUpdatesCommand}"/>
+                                    <TextBlock Margin="{StaticResource SmallTopMargin}">
                                     <Hyperlink Command="{TemplateBinding OpenUrlCommand}" CommandParameter="https://github.com/Microsoft/WindowsTemplateStudio" Style="{StaticResource LicenseHyperlinkStyle}" Focusable="{TemplateBinding Visible}">
                                         <TextBlock Text="{x:Static res:StringRes.VisitProjectWebSite}" Style="{StaticResource TextSumaryLicenseStyle}" />
                                     </Hyperlink>
                                 </TextBlock>
-                                <TextBlock Margin="{StaticResource SmallTopMargin}">
+                                    <TextBlock Margin="{StaticResource SmallTopMargin}">
                                     <Hyperlink Command="{TemplateBinding OpenUrlCommand}" CommandParameter="https://github.com/Microsoft/WindowsTemplateStudio/blob/master/LICENSE.md" Style="{StaticResource LicenseHyperlinkStyle}" Focusable="{TemplateBinding Visible}">
                                         <TextBlock Text="{x:Static res:StringRes.PrivacyTermns}" Style="{StaticResource TextSumaryLicenseStyle}" />
                                     </Hyperlink>
                                 </TextBlock>
-                            </StackPanel>
+                                </StackPanel>
+                            </Grid>
                         </Border>
                     </Grid>
                 </ControlTemplate>

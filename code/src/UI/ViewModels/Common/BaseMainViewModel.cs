@@ -70,11 +70,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             set => SetProperty(ref _title, value);
         }
 
-        protected bool _newUpdateAvailable;
-        public bool NewUpdateAvailable
+        protected bool _newVersionAvailable;
+        public bool NewVersionAvailable
         {
-            get => _newUpdateAvailable;
-            set => SetProperty(ref _newUpdateAvailable, value);
+            get => _newVersionAvailable;
+            set => SetProperty(ref _newVersionAvailable, value);
         }
 
         protected bool _isLoading = true;
@@ -112,11 +112,16 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         protected RelayCommand _nextCommand;
         protected RelayCommand<string> _finishCommand;
 
+        protected RelayCommand _checkUpdatesCommand;
+        protected RelayCommand _refreshTemplatesCommand;
+
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
         public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && !_hasValidationErrors && _canGoForward));
         public RelayCommand ShowOverlayMenuCommand => _showOverlayMenuCommand ?? (_showOverlayMenuCommand = new RelayCommand(() => IsOverlayBoxVisible = !IsOverlayBoxVisible));
         public RelayCommand<string> FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand<string>(OnFinish, CanFinish));
+        public RelayCommand CheckUpdatesCommand => _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand(OnCheckUpdates));
+        public RelayCommand RefreshTemplatesCommand => _refreshTemplatesCommand ?? (_refreshTemplatesCommand = new RelayCommand(OnRefreshTemplates));
         #endregion
 
         public BaseMainViewModel(Window mainView)
@@ -132,6 +137,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             ShowFinishButton = true;
         }
         protected abstract void OnTemplatesAvailable();
+        protected abstract void OnNewTemplatesAvailable();
         protected abstract UserSelection CreateUserSelection();
 
         public void SetValidationErrors(string errorMessage, StatusType statusType = StatusType.Error)
@@ -191,6 +197,49 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             _mainView.DialogResult = true;
             _mainView.Close();
         }
+
+        private async void OnRefreshTemplates()
+        {
+            try
+            {
+
+                await GenContext.ToolBox.Repo.RefreshAsync();
+                TemplatesVersion = GenContext.ToolBox.TemplatesVersion;
+                OnNewTemplatesAvailable();
+                NewVersionAvailable = false;
+            }
+            catch (Exception ex)
+            {
+                Status = new StatusViewModel(StatusType.Information, StringRes.ErrorSyncRefresh, true);
+
+                await AppHealth.Current.Error.TrackAsync(ex.ToString());
+                await AppHealth.Current.Exception.TrackAsync(ex);
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
+
+        private async void OnCheckUpdates()
+        {
+            try
+            {
+                await GenContext.ToolBox.Repo.CheckForUpdatesAsync();
+            }
+            catch (Exception ex)
+            {
+                Status = new StatusViewModel(StatusType.Information, StringRes.ErrorSyncRefresh, true);
+
+                await AppHealth.Current.Error.TrackAsync(ex.ToString());
+                await AppHealth.Current.Exception.TrackAsync(ex);
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
+
         protected async Task BaseInitializeAsync()
         {
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += SyncSyncStatusChanged;
@@ -230,6 +279,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                     return StringRes.StatusPreparing;
                 case SyncStatus.Prepared:
                     return StringRes.StatusPrepared;
+                case SyncStatus.NewVersionAvailable:
+                    return StringRes.StatusNewVersionAvailable;
                 default:
                     return string.Empty;
             }
@@ -273,6 +324,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                     _templatesAvailable = false;
                     NextCommand.OnCanExecuteChanged();
                 });
+            }
+
+            if (status.Status == SyncStatus.NewVersionAvailable)
+            {
+                NewVersionAvailable = true;
             }
         }
     }

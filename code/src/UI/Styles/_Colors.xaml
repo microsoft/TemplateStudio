@@ -15,7 +15,7 @@
     <Color x:Key="UILightGrayColor">#f0f0f0</Color>
     <Color x:Key="UIMiddleLightGrayColor">#dddddd</Color>
     <Color x:Key="UIGrayColor">#c6c6c6</Color>
-    <Color x:Key="UIMiddleDarkGrayColor">#999999</Color>
+    <Color x:Key="UIMiddleDarkGrayColor">#666666</Color>
 
     <Color x:Key="UIRedColor">#FF0000</Color>
     <Color x:Key="UIDarkRedColor">#990000</Color>

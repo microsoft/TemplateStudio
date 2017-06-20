@@ -57,8 +57,8 @@
                     VerticalAlignment="Center"
                     Style="{StaticResource TextTitleStyle}"
                     Text="{Binding Title}" />
-                <Grid Grid.Column="2" Background="{StaticResource UIDarkYellow}" Visibility="{Binding NewUpdateAvailable, Converter={StaticResource BoolToVisibilityConverter}}" />
-                <Grid Grid.Column="2" Visibility="{Binding NewUpdateAvailable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
+                <Grid Grid.Column="2" Background="{StaticResource UIDarkYellow}" Visibility="{Binding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}}" />
+                <Grid Grid.Column="2" Visibility="{Binding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
                     <Grid.Background>
                         <SolidColorBrush Color="{StaticResource UIWhiteColor}" Opacity="0.2"/>
                     </Grid.Background>
@@ -151,7 +151,7 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
             Margin="0,42,10,0"
-            NewUpdateAvailable="{Binding NewUpdateAvailable}"
+            NewVersionAvailable="{Binding NewVersionAvailable}"
             WizardVersion="{Binding WizardVersion}"
             TemplatesVersion="{Binding TemplatesVersion}"
             Visible="{Binding IsOverlayBoxVisible}" />
