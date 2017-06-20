@@ -84,11 +84,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public ObservableCollection<MetadataInfoViewModel> ProjectTypes { get; } = new ObservableCollection<MetadataInfoViewModel>();
         public ObservableCollection<MetadataInfoViewModel> Frameworks { get; } = new ObservableCollection<MetadataInfoViewModel>();
 
-        public async Task InitializeAsync()
+        public async Task InitializeAsync(bool force = false)
         {
             MainViewModel.Current.Title = StringRes.ProjectSetupTitle;
 
-            if (SelectedProjectType == null)
+            if (SelectedProjectType == null || force)
             {
                 ProjectTypes.Clear();
 

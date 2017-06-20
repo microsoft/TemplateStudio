@@ -88,6 +88,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (CheckProjectSetupChanged())
             {
                 ProjectTemplates.ResetSelection();
+                _summaryPageGroups.Children.Clear();
                 CleanStatus();
             }
             NavigationService.Navigate(new ProjectTemplatesView());
@@ -98,7 +99,18 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             base.OnFinish(parameter);
         }
         protected override async void OnTemplatesAvailable() => await ProjectSetup.InitializeAsync();
-        protected override async void OnNewTemplatesAvailable() => await MainView.ResetAsync();
+        protected override async void OnNewTemplatesAvailable()
+        {
+            _canGoBack = false;
+            _templatesReady = false;
+            FinishCommand.OnCanExecuteChanged();
+            BackCommand.OnCanExecuteChanged();
+            EnableGoForward();
+            ProjectTemplates.ResetSelection();
+            _summaryPageGroups.Children.Clear();
+            NavigationService.Navigate(new ProjectSetupView());
+            await ProjectSetup.InitializeAsync(true);
+        }
 
         protected override UserSelection CreateUserSelection()
         {

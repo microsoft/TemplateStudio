@@ -77,7 +77,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             SavedFeatures.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SavedFeatures)); };
             SavedPages.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SavedPages)); };
-        }
+        }        
 
         public IEnumerable<string> Names
         {
@@ -401,7 +401,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             foreach (var spg in SavedPages)
             {
-                spg.ToList().ForEach(sp => sp.UpdateAllowDragAndDrop(SavedPages.Count));
+                spg.ToList().ForEach(sp => sp.UpdateAllowDragAndDrop(SavedPages[0].Count));
             }
         }
 

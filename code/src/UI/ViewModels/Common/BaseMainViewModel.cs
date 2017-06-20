@@ -29,7 +29,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     public abstract class BaseMainViewModel : Observable
     {
         private Window _mainView;
-        private bool _templatesReady;
+        protected bool _templatesReady;
         protected bool _canGoBack;
         protected bool _canGoForward;
         protected bool _hasValidationErrors;
@@ -202,7 +202,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             try
             {
-
                 await GenContext.ToolBox.Repo.RefreshAsync();
                 TemplatesVersion = GenContext.ToolBox.TemplatesVersion;
                 OnNewTemplatesAvailable();

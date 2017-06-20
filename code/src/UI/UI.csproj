@@ -212,7 +212,6 @@
     <Compile Include="Controls\StatusType.cs" />
     <Compile Include="Controls\SymbolFonts.cs" />
     <Compile Include="Controls\TextBoxEx.cs" />
-    <Compile Include="Controls\TogglePane\TogglePane.Members.cs" />
     <Compile Include="Converters\ColumnCountConverter.cs" />
     <Compile Include="Converters\EmptyCollectionVisibilityConverter.cs" />
     <Compile Include="Converters\FixedWidthConverter.cs" />
@@ -220,7 +219,7 @@
     <Compile Include="Converters\MicrosoftTemplatesAuthorConverter.cs" />
     <Compile Include="Converters\StringVisibilityConverter.cs" />
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
-    <Compile Include="Controls\TogglePane\TogglePane.cs" />
+    <Compile Include="Controls\TogglePane.cs" />
     <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="Generation\NewProjectGenController.cs" />
     <Compile Include="Generation\NewItemGenController.cs" />
@@ -347,7 +346,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\TogglePane\TogglePane.xaml">
+    <Page Include="Controls\TogglePane.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -11,6 +11,7 @@
 // ******************************************************************
 
 using Microsoft.Templates.UI.ViewModels.NewItem;
+using System.Windows.Controls;
 
 namespace Microsoft.Templates.UI.Views.NewItem
 {

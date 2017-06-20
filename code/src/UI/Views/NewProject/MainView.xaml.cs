@@ -95,12 +95,5 @@ namespace Microsoft.Templates.UI.Views.NewProject
                 });
             }
         }
-
-        public async Task ResetAsync()
-        {
-            Result = null;
-            ViewModel = new MainViewModel(this);
-            await ViewModel.InitializeAsync(stepFrame, summaryPageGroups);
-        }
     }
 }
