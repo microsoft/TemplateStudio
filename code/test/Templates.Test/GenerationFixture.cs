@@ -58,8 +58,8 @@ namespace Microsoft.Templates.Test
         {
             if (Directory.Exists(TestRunPath))
             {
-                if ((!Directory.Exists(TestProjectsPath) || Directory.EnumerateDirectories(TestProjectsPath).Count() == 0
-                    && !Directory.Exists(TestNewItemPath) || Directory.EnumerateDirectories(TestNewItemPath).Count() == 0))
+                if ((!Directory.Exists(TestProjectsPath) || Directory.EnumerateDirectories(TestProjectsPath).Count() == 0)
+                    && (!Directory.Exists(TestNewItemPath) || Directory.EnumerateDirectories(TestNewItemPath).Count() == 0))
                 {
                     Directory.Delete(TestRunPath, true);
                 }
