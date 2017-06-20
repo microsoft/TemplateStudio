@@ -134,6 +134,7 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkBlue}" />
+                <Setter Property="TextDecorations" Value="Underline"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -164,7 +165,7 @@
     </Style>
 
     <Style TargetType="TextBlock" x:Key="TextOverlayBoxDescriptionStyle" BasedOn="{StaticResource UIBaseText}">
-        <Setter Property="FontSize" Value="{StaticResource UI_XS_FontSize}" />
+        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
     </Style>
     
     <Style TargetType="TextBlock" x:Key="TextOverlayBoxNotificationStyle" BasedOn="{StaticResource UIBaseText}">

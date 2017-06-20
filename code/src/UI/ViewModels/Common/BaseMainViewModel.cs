@@ -206,6 +206,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 TemplatesVersion = GenContext.ToolBox.TemplatesVersion;
                 OnNewTemplatesAvailable();
                 NewVersionAvailable = false;
+                IsOverlayBoxVisible = false;
             }
             catch (Exception ex)
             {
@@ -224,6 +225,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             try
             {
+                IsOverlayBoxVisible = false;
                 await GenContext.ToolBox.Repo.CheckForUpdatesAsync();
             }
             catch (Exception ex)

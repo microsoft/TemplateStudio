@@ -547,6 +547,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to By refreshing templates current selection will be reset..
+        /// </summary>
+        public static string NewVersionInstructions {
+            get {
+                return ResourceManager.GetString("NewVersionInstructions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No content available.
         /// </summary>
         public static string NoContentText {

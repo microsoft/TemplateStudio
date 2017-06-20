@@ -105,6 +105,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             _templatesReady = false;
             FinishCommand.OnCanExecuteChanged();
             BackCommand.OnCanExecuteChanged();
+            ShowFinishButton = false;
             EnableGoForward();
             ProjectTemplates.ResetSelection();
             _summaryPageGroups.Children.Clear();

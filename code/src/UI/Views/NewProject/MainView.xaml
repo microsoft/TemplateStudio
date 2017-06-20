@@ -276,6 +276,14 @@
                     </Grid>
                 </Grid>
             </Grid>
+            <Grid
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                Visibility="{Binding InfoShapeVisibility, FallbackValue=Collapsed}">
+                <Grid.Background>
+                    <SolidColorBrush Opacity="0.4" Color="Black" />
+                </Grid.Background>
+            </Grid>
         </Grid>
         <controls:OverlayBox            
             Opacity="0"            
@@ -288,13 +296,5 @@
             Visible="{Binding IsOverlayBoxVisible}"
             RefreshCommand="{Binding RefreshTemplatesCommand}"
             CheckForUpdatesCommand="{Binding CheckUpdatesCommand}"/>
-        <Grid
-            Grid.Row="0"
-            Grid.RowSpan="3"
-            Visibility="{Binding InfoShapeVisibility, FallbackValue=Collapsed}">
-            <Grid.Background>
-                <SolidColorBrush Opacity="0.4" Color="Black" />
-            </Grid.Background>
-        </Grid>
     </Grid>
 </Window>

@@ -454,4 +454,7 @@
   <data name="ErrorSyncRefresh" xml:space="preserve">
     <value>Error refreshing templates. See output for more details.</value>
   </data>
+  <data name="NewVersionInstructions" xml:space="preserve">
+    <value>By refreshing templates current selection will be reset.</value>
+  </data>
 </root>
