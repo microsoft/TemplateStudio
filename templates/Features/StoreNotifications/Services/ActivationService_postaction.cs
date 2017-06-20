@@ -1,5 +1,7 @@
 using System;
+//{[{
 using Param_RootNamespace.Helpers;
+//}]}
 
 namespace Param_ItemNamespace.Services
 {
@@ -7,12 +9,16 @@ namespace Param_ItemNamespace.Services
     {
         private async Task InitializeAsync()
         {
+            //{[{
             await Singleton<StoreNotificationsFeatureService>.Instance.InitializeAsync();
+            //}]}
         }
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
+            //{[{
             yield return Singleton<StoreNotificationsFeatureService>.Instance;
+            //}]}
 //{--{
             yield break;//}--}
         }

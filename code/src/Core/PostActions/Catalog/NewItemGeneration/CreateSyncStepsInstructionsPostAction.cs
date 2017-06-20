@@ -50,7 +50,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             foreach (var mergeFile in GenContext.Current.MergeFilesFromProject)
             {
-                sb.AppendLine($"### Changes in File '{mergeFile.Key}':");
+                sb.AppendLine($"### Changes required in file '{mergeFile.Key}':");
                 sb.AppendLine();
                 foreach (var mergeInfo in mergeFile.Value)
                 {

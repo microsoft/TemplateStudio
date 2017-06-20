@@ -1,6 +1,8 @@
 using System;
 
+//{[{
 using Windows.ApplicationModel;
+//}]}
 
 namespace Param_RootNamespace
 {
@@ -10,11 +12,13 @@ namespace Param_RootNamespace
         {
             InitializeComponent();
 
+            //{[{
             EnteredBackground += App_EnteredBackground;
+            //}]}
         }
         //^^
         //{[{
-            
+
         private async void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e)
         {
             var deferral = e.GetDeferral();
