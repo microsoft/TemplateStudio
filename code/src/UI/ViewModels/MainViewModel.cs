@@ -284,7 +284,6 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 ItemsSource = items,
                 Style = MainView.FindResource("SummaryListViewStyle") as Style,
-                Tag = "AllowClick",
                 ItemTemplate = MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate
             };
             if (allowDragAndDrop)
