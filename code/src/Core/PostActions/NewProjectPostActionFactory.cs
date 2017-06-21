@@ -10,17 +10,13 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Core.PostActions.Catalog.SortUsings;
-using System.Text.RegularExpressions;
 
 namespace Microsoft.Templates.Core.PostActions
 {

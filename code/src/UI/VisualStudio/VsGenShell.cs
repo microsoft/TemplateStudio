@@ -29,7 +29,6 @@ using Microsoft.VisualStudio.TemplateWizard;
 using NuGet.VisualStudio;
 using Microsoft.VisualStudio;
 using Microsoft.Templates.UI.Resources;
-using Microsoft.VisualStudio;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {

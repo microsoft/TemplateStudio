@@ -196,7 +196,6 @@ namespace Microsoft.Templates.Core.Locations
             });
         }
 
-
         private void UpdateTemplatesCache()
         {
             try

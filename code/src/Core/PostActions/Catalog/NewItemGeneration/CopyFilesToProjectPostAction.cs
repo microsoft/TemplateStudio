@@ -20,30 +20,43 @@ using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
-    public class CopyFilesToProjectPostAction : PostAction
+    public class CopyFilesToProjectPostAction : PostAction<TempGenerationResult>
     {
+        public CopyFilesToProjectPostAction(TempGenerationResult config) : base(config)
+        {
+        }
+
         public override void Execute()
         {
-            var modifiedFiles = GenContext.Current.ConflictFiles.Concat(GenContext.Current.MergeFilesFromProject.Keys);
-
-            foreach (var file in modifiedFiles)
+            foreach (var file in _config.ConflictingFiles)
             {
                 var sourceFile = Path.Combine(GenContext.Current.OutputPath, file);
                 var destFilePath = Path.Combine(GenContext.Current.ProjectPath, file);
+
                 var destDirectory = Path.GetDirectoryName(destFilePath);
                 Fs.SafeCopyFile(sourceFile, destDirectory, true);
             }
 
-            foreach (var file in GenContext.Current.NewFiles)
+            foreach (var file in _config.ModifiedFiles)
             {
                 var sourceFile = Path.Combine(GenContext.Current.OutputPath, file);
-                var destFileName = Path.Combine(GenContext.Current.ProjectPath, file);
-                var destDirectory = Path.GetDirectoryName(destFileName);
+                var destFilePath = Path.Combine(GenContext.Current.ProjectPath, file);
+
+                var destDirectory = Path.GetDirectoryName(destFilePath);
+                Fs.SafeCopyFile(sourceFile, destDirectory, true);
+            }
+
+            foreach (var file in _config.NewFiles)
+            {
+                var sourceFile = Path.Combine(GenContext.Current.OutputPath, file);
+                var destFilePath = Path.Combine(GenContext.Current.ProjectPath, file);
+
+                var destDirectory = Path.GetDirectoryName(destFilePath);
                 Fs.SafeCopyFile(sourceFile, destDirectory, true);
 
                 // Add to projectItems to add to project later
-                GenContext.Current.ProjectItems.Add(destFileName);
-                GenContext.Current.FilesToOpen.Add(destFileName);
+                GenContext.Current.ProjectItems.Add(destFilePath);
+                GenContext.Current.FilesToOpen.Add(destFilePath);
             }
         }
     }

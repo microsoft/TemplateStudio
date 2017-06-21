@@ -20,9 +20,9 @@ using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
-    public class CreateSyncStepsInstructionsPostAction : PostAction
+    public class CreateSyncStepsInstructionsPostAction : PostAction<TempGenerationResult>
     {
-        public CreateSyncStepsInstructionsPostAction() : base()
+        public CreateSyncStepsInstructionsPostAction(TempGenerationResult config) : base(config)
         {
         }
 
@@ -35,11 +35,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             sb.AppendLine("# Steps to include new item generation");
             sb.AppendLine("You have to follow these steps to include the new item into you project");
 
-            if (GenContext.Current.NewFiles.Any())
+            if (_config.NewFiles.Any())
             {
                 sb.AppendLine($"## New files:");
                 sb.AppendLine("Copy and add the following files to your project:");
-                foreach (var newFile in GenContext.Current.NewFiles)
+                foreach (var newFile in _config.NewFiles)
                 {
                     sb.AppendLine(GetLinkToLocalFile(newFile));
                 }
@@ -75,24 +75,24 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 }
             }
 
-            if (GenContext.Current.ConflictFiles.Any())
+            if (_config.ConflictingFiles.Any())
             {
                 sb.AppendLine($"## Conflicting files:");
                 sb.AppendLine("These files already exist in your project, and were also generated as part of the new item.");
                 sb.AppendLine();
                 sb.AppendLine("Please compare and make sure everything is in the right place.");
                 sb.AppendLine();
-                foreach (var conflictFile in GenContext.Current.ConflictFiles)
+                foreach (var conflictFile in _config.ConflictingFiles)
                 {
                     sb.AppendLine(GetLinkToLocalFile(conflictFile));
                 }
             }
 
-            if (GenContext.Current.UnchangedFiles.Any())
+            if (_config.UnchangedFiles.Any())
             {
                 sb.AppendLine($"## Unchanged files:");
                 sb.AppendLine("These files already exist in your project, no action is necessary:");
-                foreach (var unchangedFile in GenContext.Current.UnchangedFiles)
+                foreach (var unchangedFile in _config.UnchangedFiles)
                 {
                     sb.AppendLine(GetLinkToLocalFile(unchangedFile));
                 }
@@ -102,10 +102,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             GenContext.Current.FilesToOpen.Add(fileName);
 
-            GenContext.Current.NewFiles.Clear();
-            GenContext.Current.ConflictFiles.Clear();
-            GenContext.Current.UnchangedFiles.Clear();
-            GenContext.Current.ModifiedFiles.Clear();
             GenContext.Current.GenerationWarnings.Clear();
             GenContext.Current.MergeFilesFromProject.Clear();
         }
