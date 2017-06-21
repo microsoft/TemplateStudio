@@ -19,7 +19,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public override FileType FileType => FileType.Unchanged;
         public UnchangedFileViewModel(NewItemGenerationFileInfo generationInfo) : base(generationInfo)
         {
-            DetailTitle = string.Format(StringRes.ChangesSummaryDetailTitleUnchangedFiles, generationInfo.Name);
+            DetailTitle = StringRes.ChangesSummaryDetailTitleUnchangedFiles;
         }
     }
 }

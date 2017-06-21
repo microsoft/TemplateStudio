@@ -223,7 +223,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file {0} already exist. By countinuing this file will be replaced..
+        ///   Looks up a localized string similar to The file {0} has been modified outside of Windows Template Studio actions and your changes will be overwritten. If you continue and automatically include the changes in your project, the file will be overwritten loosing the your modifications. Following you can see the changes that will be applied to the file..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionOverwrittenFiles {
             get {
@@ -241,7 +241,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Merge not succedded {0}.
+        ///   Looks up a localized string similar to Merge not succedded.
         /// </summary>
         public static string ChangesSummaryDetailTitleMergeConflicts {
             get {
@@ -250,7 +250,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Modified file {0}.
+        ///   Looks up a localized string similar to Modified file.
         /// </summary>
         public static string ChangesSummaryDetailTitleModifiedFiles {
             get {
@@ -259,7 +259,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New file  {0}.
+        ///   Looks up a localized string similar to New file.
         /// </summary>
         public static string ChangesSummaryDetailTitleNewFiles {
             get {
@@ -268,7 +268,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Overwritten file  {0}.
+        ///   Looks up a localized string similar to Overwritten file.
         /// </summary>
         public static string ChangesSummaryDetailTitleOverwrittenFiles {
             get {
@@ -277,7 +277,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UnchangedFile  {0}.
+        ///   Looks up a localized string similar to UnchangedFile.
         /// </summary>
         public static string ChangesSummaryDetailTitleUnchangedFiles {
             get {
@@ -1128,6 +1128,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ValidationError_ReservedName {
             get {
                 return ResourceManager.GetString("ValidationError_ReservedName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to view more details.
+        /// </summary>
+        public static string ViewMoreDetails {
+            get {
+                return ResourceManager.GetString("ViewMoreDetails", resourceCulture);
             }
         }
         

@@ -10,14 +10,15 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Windows.Input;
+
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.ViewModels.Common;
-
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows.Input;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -34,10 +35,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
 
         public ICommand UpdateFontSizeCommand { get; }
+        public ICommand MoreDetailsCommand { get; }
 
         public ChangesSummaryViewModel()
         {
             UpdateFontSizeCommand = new RelayCommand<string>(UpdateFontSize);
+            MoreDetailsCommand = new RelayCommand(OnMoreDetails);
         }
 
         public void Initialize()
@@ -56,6 +59,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 group.SelectedItem = group.Templates.First();
             }
+        }
+
+        private void OnMoreDetails()
+        {
+            Process.Start("https://github.com/Microsoft/WindowsTemplateStudio/blob/issue267-rightclick/docs/newitem.md");
         }
 
         private void OnItemChanged(ItemsGroupViewModel<BaseFileViewModel> group)

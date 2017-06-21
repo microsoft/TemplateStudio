@@ -19,7 +19,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public override FileType FileType => FileType.AddedFile;
         public AddedFileViewModel(NewItemGenerationFileInfo generationInfo) : base(generationInfo)
         {
-            DetailTitle = string.Format(StringRes.ChangesSummaryDetailTitleNewFiles, generationInfo.Name);
+            DetailTitle = StringRes.ChangesSummaryDetailTitleNewFiles;
         }
     }
 }

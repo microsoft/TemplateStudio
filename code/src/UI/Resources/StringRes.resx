@@ -458,30 +458,33 @@
     <value />
   </data>
   <data name="ChangesSummaryDetailTitleMergeConflicts" xml:space="preserve">
-    <value>Merge not succedded {0}</value>
+    <value>Merge not succedded</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionNewFiles" xml:space="preserve">
     <value />
   </data>
   <data name="ChangesSummaryDetailTitleNewFiles" xml:space="preserve">
-    <value>New file  {0}</value>
+    <value>New file</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionModifiedFiles" xml:space="preserve">
     <value />
   </data>
   <data name="ChangesSummaryDetailTitleModifiedFiles" xml:space="preserve">
-    <value>Modified file {0}</value>
+    <value>Modified file</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionOverwrittenFiles" xml:space="preserve">
-    <value>The file {0} already exist. By countinuing this file will be replaced.</value>
+    <value>The file {0} has been modified outside of Windows Template Studio actions and your changes will be overwritten. If you continue and automatically include the changes in your project, the file will be overwritten loosing the your modifications. Following you can see the changes that will be applied to the file.</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionUnchangedFiles" xml:space="preserve">
     <value />
   </data>
   <data name="ChangesSummaryDetailTitleOverwrittenFiles" xml:space="preserve">
-    <value>Overwritten file  {0}</value>
+    <value>Overwritten file</value>
   </data>
   <data name="ChangesSummaryDetailTitleUnchangedFiles" xml:space="preserve">
-    <value>UnchangedFile  {0}</value>
+    <value>UnchangedFile</value>
+  </data>
+  <data name="ViewMoreDetails" xml:space="preserve">
+    <value>view more details</value>
   </data>
 </root>

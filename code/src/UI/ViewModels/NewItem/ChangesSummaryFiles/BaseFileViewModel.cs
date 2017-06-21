@@ -13,7 +13,6 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Windows.Input;
 using System.Windows.Media;
 
 using Microsoft.Templates.Core.Gen;
@@ -44,7 +43,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public ObservableCollection<CodeLineViewModel> CurrentFileLines { get; private set; } = new ObservableCollection<CodeLineViewModel>();
         public ObservableCollection<CodeLineViewModel> MergedFileLines { get; private set; } = new ObservableCollection<CodeLineViewModel>();
 
-        public ICommand UpdateFontSizeCommand { get; }
         public abstract FileType FileType { get; }
 
         public BaseFileViewModel(string name)
@@ -63,9 +61,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 case FileType.AddedFile:
                     return MainViewModel.Current.MainView.FindResource("UIGreen") as SolidColorBrush;
                 case FileType.ModifiedFile:
-                    return MainViewModel.Current.MainView.FindResource("UIDarkBlue") as SolidColorBrush;
+                    return MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
                 case FileType.ConflictingFile:
-                    return MainViewModel.Current.MainView.FindResource("UIDarkRed") as SolidColorBrush;
+                    return MainViewModel.Current.MainView.FindResource("UIRed") as SolidColorBrush;
                 case FileType.WarningFile:
                     return MainViewModel.Current.MainView.FindResource("UIDarkYellow") as SolidColorBrush;
                 case FileType.Unchanged:

@@ -62,7 +62,7 @@
                                         <TextBlock Text="{x:Static res:StringRes.VisitProjectWebSite}" Style="{StaticResource TextSumaryLicenseStyle}" />
                                     </Hyperlink>
                                 </TextBlock>
-                                    <TextBlock Margin="{StaticResource SmallTopMargin}">
+                                <TextBlock Margin="{StaticResource SmallTopMargin}">
                                     <Hyperlink Command="{TemplateBinding OpenUrlCommand}" CommandParameter="https://github.com/Microsoft/WindowsTemplateStudio/blob/master/LICENSE.md" Style="{StaticResource LicenseHyperlinkStyle}" Focusable="{TemplateBinding Visible}">
                                         <TextBlock Text="{x:Static res:StringRes.PrivacyTermns}" Style="{StaticResource TextSumaryLicenseStyle}" />
                                     </Hyperlink>

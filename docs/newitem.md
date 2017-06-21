@@ -9,18 +9,18 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 
 ## New files
-When a new file is added to your project by the selected template.
+* When a new file is added to your project by the selected template.
 
 ## Modified files
-When a existing file in your project is modified by template postactions.
+* When a existing file in your project is modified by template postactions.
 
 ## Unchanged files
-When a new template is going to add a new file in your project and this file already exist but those files are equals.
-When a new template is going to modify a existing file but the result file is equal than your current file.
+* When a new template is going to add a new file in your project and this file already exist but those files are equals.
+* When a new template is going to modify a existing file but the result file is equal than your current file.
 
 ## Merge warnings
-When a new template is going to merge some code on a existing file but can not find this file in your project.
-When a new template is going to merge some code on a existing file but the file does not contain the expected content.
+* When a new template is going to merge some code on a existing file but can not find this file in your project.
+* When a new template is going to merge some code on a existing file but the file does not contain the expected content.
 
 ## Overwritten files
-When a new template is going to add a new file in your project and this file already exist and those files are different.
+* When a new template is going to add a new file in your project and this file already exist and those files are different.

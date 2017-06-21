@@ -21,7 +21,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public WarningFileViewModel(GenerationWarning warning) : base(warning.FailedFileName)
         {
-            DetailTitle = string.Format(StringRes.ChangesSummaryDetailTitleMergeConflicts, warning.FileName);
+            DetailTitle = StringRes.ChangesSummaryDetailTitleMergeConflicts;
             DetailDescription = warning.Description;
             DetailExtendedInfo = warning.ExtendedInfo;
             Subject = warning.FileName;

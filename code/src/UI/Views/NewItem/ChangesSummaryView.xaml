@@ -102,16 +102,25 @@
                 </ScrollViewer>
             </DataTemplate>
             <DataTemplate x:Key="ConflictingDetailTemplate">
-                <ScrollViewer>
-                    <TabControl>
-                        <TabItem Header="{x:Static res:StringRes.ConflictingDetailNewFile}" HeaderTemplate="{StaticResource NewFileTabItemHeaderTemplate}">
-                            <ItemsControl Margin="{StaticResource MediumMargin}" ItemsSource="{Binding NewFileLines}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
-                        </TabItem>
-                        <TabItem Header="{x:Static res:StringRes.ConflictingDetailExistingFile}" HeaderTemplate="{StaticResource NewFileTabItemHeaderTemplate}">
-                            <ItemsControl Margin="{StaticResource MediumMargin}" ItemsSource="{Binding CurrentFileLines}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
-                        </TabItem>
-                    </TabControl>
-                </ScrollViewer>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Margin="0,0,17,0">
+                        <Grid Background="{StaticResource UIGray}" Margin="{StaticResource MediumLeftRightMargin}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="{Binding Icon}" Margin="{StaticResource MediumLeftMargin}" Stretch="Uniform" MaxHeight="15" MaxWidth="15"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Subject}" Margin="{StaticResource MediumLeftMargin}" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+                    <ScrollViewer Grid.Row="1">
+                        <ItemsControl Margin="{StaticResource MediumMargin}" ItemsSource="{Binding MergedFileLines}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
+                    </ScrollViewer>
+                </Grid>
             </DataTemplate>
 
             <DataTemplate x:Key="ModifiedDetailTemplate">
@@ -133,11 +142,18 @@
     </Page.Resources>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="17"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="17"/>
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ScrollViewer>
+        <Grid Background="{StaticResource UILightGray}" Grid.Row="0" Grid.ColumnSpan="3"/>
+        <Grid Background="{StaticResource UILightGray}" Grid.Column="0" Grid.RowSpan="3"/>
+        <ScrollViewer Grid.Column="1" Grid.Row="1">
             <ItemsControl ItemsSource="{Binding ChangesSummary.FileGroups}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -159,22 +175,40 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="2" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="17"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <StackPanel Margin="{StaticResource BigMargin}">
-                <TextBlock Foreground="{Binding ChangesSummary.SelectedFile.CircleColor}" Text="{Binding ChangesSummary.SelectedFile.DetailTitle}" Style="{StaticResource ChangesSummaryDetailTitleStyle}" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Foreground="{Binding ChangesSummary.SelectedFile.CircleColor}" Text="{Binding ChangesSummary.SelectedFile.DetailTitle}" Style="{StaticResource ChangesSummaryDetailTitleStyle}" />
+                    <TextBlock Grid.Column="1">
+                        <Hyperlink Command="{Binding ChangesSummary.MoreDetailsCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
+                            <TextBlock Text="{x:Static res:StringRes.ViewMoreDetails}" Style="{StaticResource TextSumaryLicenseStyle}" />
+                        </Hyperlink>
+                    </TextBlock>
+                </Grid>
                 <TextBlock Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Margin="{StaticResource MediumTopMargin}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}" Visibility="{Binding ChangesSummary.SelectedFile.DetailDescription, Converter={StaticResource StringVisibilityConverter}}"/>
                 <TextBlock Text="{Binding ChangesSummary.SelectedFile.DetailExtendedInfo}" Margin="{StaticResource MediumTopMargin}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}" Visibility="{Binding ChangesSummary.SelectedFile.DetailExtendedInfo, Converter={StaticResource StringVisibilityConverter}}"/>
             </StackPanel>
+            <Grid Grid.Column="1" Grid.RowSpan="2" Background="{StaticResource UILightGray}"/>
             <ContentPresenter
                 Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
                 Content="{Binding ChangesSummary.SelectedFile}"
                 ContentTemplateSelector="{StaticResource DetailTemplateSelector}"/>
         </Grid>
-        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,21,21">
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,21,21">
             <Button Content="+" Command="{Binding ChangesSummary.UpdateFontSizeCommand}" CommandParameter="Plus" Style="{StaticResource ButtonUpdateFontSizeStyle}" />
             <Button Content="-" Command="{Binding ChangesSummary.UpdateFontSizeCommand}" CommandParameter="Minus" Style="{StaticResource ButtonUpdateFontSizeStyle}" />
         </StackPanel>

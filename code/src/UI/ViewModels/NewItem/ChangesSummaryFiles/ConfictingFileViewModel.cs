@@ -21,7 +21,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public ConfictingFileViewModel(NewItemGenerationFileInfo generationInfo) : base(generationInfo)
         {
-            DetailTitle = string.Format(StringRes.ChangesSummaryDetailTitleOverwrittenFiles, generationInfo.Name);
+            DetailTitle = StringRes.ChangesSummaryDetailTitleOverwrittenFiles;
             DetailDescription = string.Format(StringRes.ChangesSummaryDetailDescriptionOverwrittenFiles, generationInfo.Name);
         }
     }

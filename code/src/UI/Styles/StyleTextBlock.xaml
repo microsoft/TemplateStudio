@@ -202,9 +202,6 @@
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
     <Style TargetType="TextBlock" x:Key="ChangesSummaryDetailDescriptionStyle" BasedOn="{StaticResource UIBaseText}">
-        <Setter Property="FontWeight" Value="Light"/>
     </Style>
-    <Style TargetType="TextBlock" x:Key="NewItemFileDescriptionTextStyle" BasedOn="{StaticResource UIBaseText}">
-    </Style>
-
+    
 </ResourceDictionary>
