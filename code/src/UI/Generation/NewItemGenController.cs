@@ -270,7 +270,7 @@ namespace Microsoft.Templates.UI
 
             var backupFolder = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
-                Configuration.Current.BackupFolderName,
+                Configuration.Current.BackupFolderPath,
                 projectGuid);
 
             var fileName = Path.Combine(backupFolder, "backup.json");
