@@ -51,10 +51,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             foreach (var mergeFile in GenContext.Current.MergeFilesFromProject)
             {
                 sb.AppendLine($"### Changes required in file '{mergeFile.Key}':");
-                sb.AppendLine();
                 foreach (var mergeInfo in mergeFile.Value)
                 {
-                    sb.AppendLine(mergeInfo.Intent);
+                    if (!string.IsNullOrEmpty(mergeInfo.Intent))
+                    {
+                        sb.AppendLine(mergeInfo.Intent);
+                    }
                     sb.AppendLine();
 
                     sb.AppendLine($"```{mergeInfo.Format}");
@@ -70,8 +72,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 }
                 else
                 {
-                    var warning = GenContext.Current.GenerationWarnings.FirstOrDefault(w => w.FileName == mergeFile.Key);
-                    sb.AppendLine(warning.Description);
+                    foreach (var warning in GenContext.Current.GenerationWarnings.Where(w => w.FileName == mergeFile.Key))
+                    {
+                        sb.AppendLine(warning.Description);
+                        sb.AppendLine();
+                    }
                 }
             }
 

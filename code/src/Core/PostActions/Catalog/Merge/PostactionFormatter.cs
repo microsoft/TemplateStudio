@@ -10,28 +10,19 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
-using System.Linq;
-
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
-    public static class StringExtensions
+    public static class PostActionFormatter
     {
-        public static int GetLeadingTrivia(this string statement)
+        public static string AsUserFriendlyPostAction(this string postactionCode)
         {
-            return statement.TakeWhile(char.IsWhiteSpace).Count();
-        }
-
-        public static string WithLeadingTrivia(this string statement, int triviaCount)
-        {
-            if (triviaCount < 1)
-            {
-                return statement;
-            }
-            else
-            {
-                return string.Concat(new string(' ', triviaCount), statement);
-            }
+            var output = postactionCode
+                            .Replace("^^", string.Empty)
+                            .Replace("{[{", "Include the following block")
+                            .Replace("}]}", "End of block")
+                            .Replace("{--{", "Remove the following block")
+                            .Replace("}--}", "End of block");
+            return output;
         }
     }
 }
