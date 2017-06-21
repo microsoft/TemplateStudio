@@ -48,6 +48,7 @@
                         </Hyperlink>
                     </TextBlock>
                     
+                    <CheckBox Content="Force local templates refresh" IsChecked="{Binding ForceLocalTemplatesRefresh, Mode=TwoWay}" Margin="0,12,0,0"/>
                 </StackPanel>
                 
                 <ScrollViewer x:Name="logScroll" Grid.Row="1" VerticalAlignment="Bottom" VerticalScrollBarVisibility="Auto" Height="200">

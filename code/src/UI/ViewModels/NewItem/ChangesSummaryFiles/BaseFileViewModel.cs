@@ -30,8 +30,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
     {
         Default, CSharp, Resw, Xaml
     }
-    public abstract class BaseNewItemFileViewModel : Observable
+    public abstract class BaseFileViewModel : Observable
     {
+        public string DetailTitle { get; protected set; }
+        public string DetailDescription { get; protected set; }
+        public string DetailExtendedInfo { get; protected set; }
         public string Subject { get; protected set; }
         public string Icon { get; private set; }
         public SolidColorBrush CircleColor { get; private set; }
@@ -44,7 +47,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public ICommand UpdateFontSizeCommand { get; }
         public abstract FileType FileType { get; }
 
-        public BaseNewItemFileViewModel(string name)
+        public BaseFileViewModel(string name)
         {
             Subject = name;
             FileExtension = GetFileExtension(name);
@@ -72,7 +75,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        public BaseNewItemFileViewModel(NewItemGenerationFileInfo generationInfo)
+        public BaseFileViewModel(NewItemGenerationFileInfo generationInfo)
         {
             Subject = generationInfo.Name;
             FileExtension = GetFileExtension(generationInfo.Name);

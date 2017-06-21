@@ -48,6 +48,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         public string ProjectName { get; private set; }
         public string OutputPath { get; private set; }
         public string ProjectPath { get; private set; }
+        public bool ForceLocalTemplatesRefresh { get; set; } = true;
 
         public List<string> ProjectItems { get; } = new List<string>();
 
@@ -142,7 +143,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private async void NewProject()
         {
-            ConfigureGenContext();
+            ConfigureGenContext(ForceLocalTemplatesRefresh);
 
             try
             {
@@ -187,7 +188,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void AddNewFeature()
         {
-            ConfigureGenContext();
+            ConfigureGenContext(ForceLocalTemplatesRefresh);
             OutputPath = Path.Combine(Path.GetTempPath(), TempGenerationFolder, Path.GetRandomFileName());
             ClearContext();
 
@@ -223,7 +224,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void AddNewPage()
         {
-            ConfigureGenContext();
+            ConfigureGenContext(ForceLocalTemplatesRefresh);
             OutputPath = Path.Combine(Path.GetTempPath(), TempGenerationFolder, Path.GetRandomFileName());
             ClearContext();
             try
@@ -281,7 +282,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 WizardVersion = dialog.ViewModel.Result.WizardVersion;
                 TemplatesVersion = dialog.ViewModel.Result.TemplatesVersion;
-                ConfigureGenContext();
+                ConfigureGenContext(ForceLocalTemplatesRefresh);
             }
         }
 
@@ -368,7 +369,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             });
         }
 
-        private void ConfigureGenContext()
+        private void ConfigureGenContext(bool forceLocalTemplatesRefresh)
         {
             GenContext.Bootstrap(new LocalTemplatesSource(WizardVersion, TemplatesVersion)
                 , new FakeGenShell(msg => SetState(msg), l => AddLog(l), _host)

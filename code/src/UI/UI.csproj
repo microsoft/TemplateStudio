@@ -230,12 +230,12 @@
     <Compile Include="TemplateSelectors\SummaryItemTemplateSelector.cs" />
     <Compile Include="ViewModels\Common\BaseMainViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\UnchangedFileViewModel.cs" />
-    <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\BaseNewItemFileViewModel.cs" />
-    <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\AddedNewItemFileViewModel.cs" />
-    <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\ConfictingNewItemFileViewModel.cs" />
-    <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\ModifiedNewItemFileViewModel.cs" />
+    <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\BaseFileViewModel.cs" />
+    <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\AddedFileViewModel.cs" />
+    <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\ConfictingFileViewModel.cs" />
+    <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\ModifiedFileViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryViewModel.cs" />
-    <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\WarningNewItemFileViewModel.cs" />
+    <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\WarningFileViewModel.cs" />
     <Compile Include="Comparison\CodeLine.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\CodeLineViewModel.cs" />
     <Compile Include="ViewModels\NewItem\MainViewModel.cs" />

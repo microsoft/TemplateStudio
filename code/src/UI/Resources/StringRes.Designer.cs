@@ -196,6 +196,96 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ChangesSummaryDetailDescriptionMergeConflicts {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailDescriptionMergeConflicts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ChangesSummaryDetailDescriptionModifiedFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailDescriptionModifiedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ChangesSummaryDetailDescriptionNewFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailDescriptionNewFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file {0} already exist. By countinuing this file will be replaced..
+        /// </summary>
+        public static string ChangesSummaryDetailDescriptionOverwrittenFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailDescriptionOverwrittenFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ChangesSummaryDetailDescriptionUnchangedFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailDescriptionUnchangedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merge not succedded {0}.
+        /// </summary>
+        public static string ChangesSummaryDetailTitleMergeConflicts {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailTitleMergeConflicts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modified file {0}.
+        /// </summary>
+        public static string ChangesSummaryDetailTitleModifiedFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailTitleModifiedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New file  {0}.
+        /// </summary>
+        public static string ChangesSummaryDetailTitleNewFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailTitleNewFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overwritten file  {0}.
+        /// </summary>
+        public static string ChangesSummaryDetailTitleOverwrittenFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailTitleOverwrittenFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UnchangedFile  {0}.
+        /// </summary>
+        public static string ChangesSummaryDetailTitleUnchangedFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailTitleUnchangedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Changes summary.
         /// </summary>
         public static string ChangesSummaryTitle {
@@ -1047,15 +1137,6 @@ namespace Microsoft.Templates.UI.Resources {
         public static string VisitProjectWebSite {
             get {
                 return ResourceManager.GetString("VisitProjectWebSite", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Merge not succedded.
-        /// </summary>
-        public static string WarningDetailTitle {
-            get {
-                return ResourceManager.GetString("WarningDetailTitle", resourceCulture);
             }
         }
         

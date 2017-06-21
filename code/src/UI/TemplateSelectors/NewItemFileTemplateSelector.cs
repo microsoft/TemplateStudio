@@ -14,7 +14,7 @@ namespace Microsoft.Templates.UI.TemplateSelectors
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            var newItemFile = item as BaseNewItemFileViewModel;
+            var newItemFile = item as BaseFileViewModel;
             if (newItemFile != null)
             {
                 switch (newItemFile.FileType)

@@ -17,8 +17,10 @@
     <Thickness x:Key="MediumTopMargin">0,10,0,0</Thickness>
     <Thickness x:Key="MediumLeftRightMargin">10,0</Thickness>
     <Thickness x:Key="MediumRightBottomMargin">0,0,10,10</Thickness>
+    <Thickness x:Key="MediumBottomMargin">0,0,0,10</Thickness>
 
     <Thickness x:Key="BigLeftMargin">20,0,0,0</Thickness>
+    <Thickness x:Key="BigLeftRightBottomMargin">20,20,0,20</Thickness>
     <Thickness x:Key="BigRightBottomMargin">0,0,20,20</Thickness>
     <Thickness x:Key="BigTopRightBottomMargin">0,20,20,20</Thickness>
     <Thickness x:Key="BigLeftTopRightMargin">20,20,20,0</Thickness>
