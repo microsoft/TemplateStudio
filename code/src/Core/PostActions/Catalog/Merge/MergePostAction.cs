@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         public const string PostActionIntentExtension = ".md";
 
         public const string PostactionRegex = @"(\$\S*)?(_" + Suffix + "|_g" + Suffix + @")\.";
-        public const string FailedPostactionRegex = @"(\$\S*)?(_" + NewSuffix + "|_g" + NewSuffix + @")\.";
+        public const string FailedPostactionRegex = @"(\$\S*)?(_" + NewSuffix + "|_g" + NewSuffix + @")(\d)?\.";
 
         public MergePostAction(MergeConfiguration config) : base(config)
         {
@@ -93,7 +93,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var sourceFileName = originalFilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
 
             var postactionFileName = _config.FilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
-            var description = $"Could not find the expected line '{errorLine.Trim()}' in file '{sourceFileName}'. Please merge the content from the postaction file manually.";
+            var description = $"Could not find the expected line `{errorLine.Trim()}` in file '{sourceFileName}'. Please merge the content from the postaction file manually.";
             var intent = GetPostActionIntent();
             var failedFileName = GetFailedPostActionFileName();
             GenContext.Current.GenerationWarnings.Add(new GenerationWarning(sourceFileName, failedFileName, _config.FilePath, description, intent));

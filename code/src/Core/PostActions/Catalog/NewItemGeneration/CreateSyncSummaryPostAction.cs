@@ -66,14 +66,19 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 }
                 else
                 {
-                    var warning = GenContext.Current.GenerationWarnings.FirstOrDefault(w => w.FileName == mergeFile.Key);
-                    sb.AppendLine(warning.Description);
-                    sb.AppendLine();
+                    foreach (var warning in GenContext.Current.GenerationWarnings.Where(w => w.FileName == mergeFile.Key))
+                    {
+                        sb.AppendLine(warning.Description);
+                        sb.AppendLine();
+                    }
                 }
 
                 foreach (var mergeInfo in mergeFile.Value)
                 {
-                    sb.AppendLine(mergeInfo.Intent);
+                    if (!string.IsNullOrEmpty(mergeInfo.Intent))
+                    {
+                        sb.AppendLine(mergeInfo.Intent);
+                    }
                     sb.AppendLine();
 
                     sb.AppendLine($"```{mergeInfo.Format}");
