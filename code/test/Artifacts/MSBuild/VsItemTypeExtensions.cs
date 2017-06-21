@@ -39,7 +39,7 @@ namespace Microsoft.Templates.Test.Artifacts.MSBuild
 
         private static XElement GetCompileXElement(string includePath, bool dependentUpon)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append($"<Compile Include=\"{includePath}\"");
 
             if (dependentUpon)
@@ -54,44 +54,44 @@ namespace Microsoft.Templates.Test.Artifacts.MSBuild
                 sb.AppendLine(" />");
             }
 
-            StringReader sr = new StringReader(sb.ToString());
-            XElement itemElement = XElement.Load(sr);
+            var sr = new StringReader(sb.ToString());
+            var itemElement = XElement.Load(sr);
 
             return itemElement;
         }
 
         private static XElement GetXamlPageXElement(string includePath)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append($"<Page Include=\"{includePath}\"");
             sb.AppendLine(">");
             sb.AppendLine($"<Generator>MSBuild:Compile</Generator>");
             sb.AppendLine($"<SubType>Designer</SubType>");
             sb.AppendLine("</Page>");
 
-            StringReader sr = new StringReader(sb.ToString());
-            XElement itemElement = XElement.Load(sr);
+            var sr = new StringReader(sb.ToString());
+            var itemElement = XElement.Load(sr);
 
             return itemElement;
         }
 
         private static XElement GetResourceXElement(string includePath)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append($"<PRIResource Include=\"{includePath}\" />");
 
-            XElement itemElement = XElement.Parse(sb.ToString());
+            var itemElement = XElement.Parse(sb.ToString());
 
             return itemElement;
         }
 
         private static XElement GetContentXElement(string includePath)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.AppendLine($"<Content Include=\"{includePath}\" />");
 
-            StringReader sr = new StringReader(sb.ToString());
-            XElement itemElement = XElement.Load(sr);
+            var sr = new StringReader(sb.ToString());
+            var itemElement = XElement.Load(sr);
 
             return itemElement;
         }

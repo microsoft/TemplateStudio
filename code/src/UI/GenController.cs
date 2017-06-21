@@ -40,17 +40,16 @@ namespace Microsoft.Templates.UI
                 GenContext.ToolBox.Shell.ShowModal(mainView);
                 if (mainView.Result != null)
                 {
-                    //TODO: Review when right-click-actions available to track Project or Page completed.
+                    // TODO: Review when right-click-actions available to track Project or Page completed.
                     AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject).FireAndForget();
 
                     return mainView.Result;
                 }
                 else
                 {
-                    //TODO: Review when right-click-actions available to track Project or Page cancelled.
+                    // TODO: Review when right-click-actions available to track Project or Page cancelled.
                     AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewProject).FireAndForget();
                 }
-
             }
             catch (Exception ex) when (!(ex is WizardBackoutException))
             {
@@ -117,7 +116,7 @@ namespace Microsoft.Templates.UI
 
             chrono.Stop();
 
-            TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.Framework);
+            TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework);
         }
 
         private static void ExecuteGlobalPostActions(List<GenInfo> genItems)
@@ -132,7 +131,7 @@ namespace Microsoft.Templates.UI
 
         private static void ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult)
         {
-            //Get post actions from template
+            // Get post actions from template
             var postActions = PostActionFactory.Find(genInfo, generationResult);
 
             foreach (var postAction in postActions)
@@ -171,7 +170,7 @@ namespace Microsoft.Templates.UI
             GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Empty);
         }
 
-        private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appFx)
+        private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appProjectType, string appFx)
         {
             try
             {
@@ -189,12 +188,12 @@ namespace Microsoft.Templates.UI
 
                     if (genInfo.Template.GetTemplateType() == TemplateType.Project)
                     {
-                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, 
-                            appFx, genResults[resultsKey], pagesAdded, featuresAdded, timeSpent).FireAndForget();
+                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template,
+                            appProjectType, appFx, genResults[resultsKey], GenContext.ToolBox.Shell.GetVsProjectId(), pagesAdded, featuresAdded, timeSpent).FireAndForget();
                     }
                     else
                     {
-                        AppHealth.Current.Telemetry.TrackItemGenAsync(genInfo.Template, appFx, genResults[resultsKey]).FireAndForget();
+                        AppHealth.Current.Telemetry.TrackItemGenAsync(genInfo.Template, appProjectType, appFx, genResults[resultsKey]).FireAndForget();
                     }
                 }
             }

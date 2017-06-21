@@ -19,7 +19,7 @@ using Microsoft.Templates.Core.Gen;
 namespace Microsoft.Templates.Core.Diagnostics
 {
     public class ShellHealthWriter : IHealthWriter
-    {       
+    {
         public async SystemTasks.Task WriteExceptionAsync(Exception ex, string message = null)
         {
             if (GenContext.ToolBox.Shell != null)
@@ -36,7 +36,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
                     GenContext.ToolBox.Shell.WriteOutput($"{ex.ToString()}\n");
 
-                    string footer = $"{new String('-', header.Length - 2)}\n";
+                    string footer = $"{new string('-', header.Length - 2)}\n";
                     GenContext.ToolBox.Shell.WriteOutput(footer);
                 });
             }
@@ -54,7 +54,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                     if (ex != null)
                     {
                         string header = $"----------- Addtional Exception Info -----------\n";
-                        string footer = $"{new String('-', header.Length - 2)}\n";
+                        string footer = $"{new string('-', header.Length - 2)}\n";
                         string exceptionInfo = header + $"{ex.ToString()}\n" + footer;
                         GenContext.ToolBox.Shell.WriteOutput(exceptionInfo);
                     }
@@ -62,13 +62,12 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
 
-       
-
         private async SystemTasks.Task SafeTrackAsync(Action trackAction)
         {
             try
             {
-                var task = SystemTasks.Task.Run(() => {
+                var task = SystemTasks.Task.Run(() =>
+                {
                     trackAction();
                 });
 

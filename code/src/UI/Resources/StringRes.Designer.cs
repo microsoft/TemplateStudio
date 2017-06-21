@@ -133,6 +133,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It&apos;s not possible to create a project without Home Page.
+        /// </summary>
+        public static string ErrorNoHomePage {
+            get {
+                return ResourceManager.GetString("ErrorNoHomePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error syncing templates. See output for more details..
         /// </summary>
         public static string ErrorSync {
@@ -340,15 +349,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Made by {0}.
-        /// </summary>
-        public static string MadeBy {
-            get {
-                return ResourceManager.GetString("MadeBy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to More detail.
         /// </summary>
         public static string MoreDetail {
@@ -520,6 +520,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reorder (Ctrl + arrows).
+        /// </summary>
+        public static string SummaryDragAndDrop {
+            get {
+                return ResourceManager.GetString("SummaryDragAndDrop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Features.
         /// </summary>
         public static string SummaryFeaturesTitle {
@@ -570,6 +579,42 @@ namespace Microsoft.Templates.UI.Resources {
         public static string SummaryNoPages {
             get {
                 return ResourceManager.GetString("SummaryNoPages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options menu.
+        /// </summary>
+        public static string SummaryOpenMenu {
+            get {
+                return ResourceManager.GetString("SummaryOpenMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string SummaryOpenMenuClose {
+            get {
+                return ResourceManager.GetString("SummaryOpenMenuClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string SummaryOptionDelete {
+            get {
+                return ResourceManager.GetString("SummaryOptionDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename.
+        /// </summary>
+        public static string SummaryOptionRename {
+            get {
+                return ResourceManager.GetString("SummaryOptionRename", resourceCulture);
             }
         }
         
@@ -714,6 +759,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string UnableAddProjectToSolution {
             get {
                 return ResourceManager.GetString("UnableAddProjectToSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to refresh the project. Try to refresh it manually..
+        /// </summary>
+        public static string UnableToRefreshProject {
+            get {
+                return ResourceManager.GetString("UnableToRefreshProject", resourceCulture);
             }
         }
         

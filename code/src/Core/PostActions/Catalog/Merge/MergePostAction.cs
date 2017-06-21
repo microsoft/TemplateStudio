@@ -11,6 +11,7 @@
 // ******************************************************************
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -41,12 +42,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var source = File.ReadAllLines(originalFilePath).ToList();
             var merge = File.ReadAllLines(_config).ToList();
 
-            var result = source.Merge(merge);
+            IEnumerable<string> result = source.HandleRemovals(merge);
+            result = result.Merge(merge.RemoveRemovals());
 
             File.WriteAllLines(originalFilePath, result);
             File.Delete(_config);
 
-            //REFRESH PROJECT TO UN-DIRTY IT
+            // REFRESH PROJECT TO UN-DIRTY IT
             if (Path.GetExtension(_config).Equals(".csproj", StringComparison.OrdinalIgnoreCase))
             {
                 Gen.GenContext.ToolBox.Shell.RefreshProject();
@@ -66,7 +68,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 var path = Regex.Replace(_config, PostactionRegex, ".");
 
-                return (File.Exists(path) ? path : String.Empty);
+                return (File.Exists(path) ? path : string.Empty);
             }
         }
     }

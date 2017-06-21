@@ -17,8 +17,8 @@ namespace Param_ItemNamespace.ViewModels
 
         private VisualState _currentState;
 
-        private SampleModel _selected;
-        public SampleModel Selected
+        private Order _selected;
+        public Order Selected
         {
             get { return _selected; }
             set { Set(ref _selected, value); }
@@ -27,7 +27,7 @@ namespace Param_ItemNamespace.ViewModels
         public ICommand ItemClickCommand { get; private set; }
         public ICommand StateChangedCommand { get; private set; }
 
-        public ObservableCollection<SampleModel> SampleItems { get; private set; } = new ObservableCollection<SampleModel>();
+        public ObservableCollection<Order> SampleItems { get; private set; } = new ObservableCollection<Order>();
 
         public MasterDetailViewModel()
         {
@@ -40,8 +40,7 @@ namespace Param_ItemNamespace.ViewModels
             _currentState = currentState;
             SampleItems.Clear();
 
-            var service = new SampleModelService();
-            var data = await service.GetDataAsync();
+            var data = await SampleDataService.GetSampleModelDataAsync();
 
             foreach (var item in data)
             {

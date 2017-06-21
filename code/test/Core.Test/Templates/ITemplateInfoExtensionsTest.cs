@@ -20,7 +20,8 @@ using Xunit;
 
 namespace Microsoft.Templates.Core.Test
 {
-    public class ITemplateInfoExtensionsTest : IClassFixture<TemplatesFixture>
+    [Collection("Unit Test Templates")]
+    public class ITemplateInfoExtensionsTest 
     {
         private readonly TemplatesFixture _fixture;
 

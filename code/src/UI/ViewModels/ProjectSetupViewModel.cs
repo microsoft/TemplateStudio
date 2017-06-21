@@ -10,7 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,7 +24,6 @@ namespace Microsoft.Templates.UI.ViewModels
 {
     public class ProjectSetupViewModel : Observable
     {
-
         private string _projectTypesHeader;
         public string ProjectTypesHeader
         {
@@ -60,7 +58,7 @@ namespace Microsoft.Templates.UI.ViewModels
                         MainViewModel.Current.AlertProjectSetupChanged();
                     }
                 }
-                
+
                 MainViewModel.Current.RebuildLicenses();
             }
         }
@@ -116,7 +114,7 @@ namespace Microsoft.Templates.UI.ViewModels
                     MainViewModel.Current.NoContentVisibility = Visibility.Visible;
                 }
 
-                ProjectTypesHeader = String.Format(StringRes.GroupProjectTypeHeader_SF, ProjectTypes.Count);
+                ProjectTypesHeader = string.Format(StringRes.GroupProjectTypeHeader_SF, ProjectTypes.Count);
 
                 await Task.CompletedTask;
             }
@@ -144,7 +142,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 SelectedFramework = Frameworks.FirstOrDefault();
             }
 
-            FrameworkHeader = String.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
+            FrameworkHeader = string.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
             MainViewModel.Current.EnableGoForward();
         }
     }

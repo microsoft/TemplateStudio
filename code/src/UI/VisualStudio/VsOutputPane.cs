@@ -16,6 +16,7 @@ using System.Reflection;
 
 using EnvDTE;
 using EnvDTE80;
+
 using Microsoft.Templates.UI.Resources;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Shell;
@@ -27,7 +28,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         private const string TemplatesPaneGuid = "45480fff-0658-42e1-97f0-82cac23603aa";
         private OutputWindowPane _pane;
 
-        public VsOutputPane() 
+        public VsOutputPane()
         {
             _pane = GetOrCreatePane(Guid.Parse(TemplatesPaneGuid), true, false);
 
@@ -69,7 +70,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         private static void CreateUwpPane(Guid paneGuid, bool visible, bool clearWithSolution, string title)
         {
             IVsOutputWindow output = ServiceProvider.GlobalProvider.GetService(typeof(SVsOutputWindow)) as IVsOutputWindow;
-            // Create a new pane.  
+            // Create a new pane.
             int createRetVal = output.CreatePane(
                 ref paneGuid,
                 title,

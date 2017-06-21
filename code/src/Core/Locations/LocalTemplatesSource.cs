@@ -12,6 +12,8 @@
 
 using System;
 using System.IO;
+using System.Security;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -20,9 +22,8 @@ namespace Microsoft.Templates.Core.Locations
         public string LocalTemplatesVersion { get; private set; }
         public string LocalWizardVersion { get; private set; }
 
-        public override string Id { get => "Local"; }
-
-        public string Origin { get => $@"..\..\..\..\..\{SourceFolderName}"; }
+        protected override bool VerifyPackageSignatures => false;
+        public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
 
         public LocalTemplatesSource() : this("0.0.0.0", "0.0.0.0")
         {
@@ -34,17 +35,16 @@ namespace Microsoft.Templates.Core.Locations
             LocalWizardVersion = wizardVersion;
         }
 
-        public override void Acquire(string targetFolder)
+        protected override string AcquireMstx()
         {
-            var targetVersionFolder = Path.Combine(targetFolder, LocalTemplatesVersion);
-            Copy(Origin, targetVersionFolder);
-        }
+            // Compress Content adding version return templatex path.
+            var tempFolder = Path.Combine(GetTempFolder(), SourceFolderName);
 
-        public override void ExtractFromMstx(string mstxFilePath, string targetFolder)
-        {
-            //Running locally "Extract" a version compatible with the wizard
-            var targetVersionFolder = Path.Combine(targetFolder, LocalWizardVersion);
-            Copy(Origin, targetVersionFolder);
+            Copy(Origin, tempFolder);
+
+            File.WriteAllText(Path.Combine(tempFolder, "version.txt"), LocalTemplatesVersion);
+
+            return Templatex.Pack(tempFolder);
         }
 
         protected static void Copy(string sourceFolder, string targetFolder)

@@ -28,7 +28,45 @@ namespace Microsoft.Templates.Core.Test.Locations
     public class TemplatexTests
     {
         [Fact]
-        public void PackFolder()
+        public void Pack_Folder()
+        {
+            int filesInCurrentFolder = new DirectoryInfo(Environment.CurrentDirectory).GetFiles("*", SearchOption.AllDirectories).Count();
+            var inFolder = Environment.CurrentDirectory;
+            var outDir = @"C:\Temp\PackTests";
+            var outFile = Path.Combine(outDir, "JustPacked.mstx");
+            var extractDir = Path.Combine(outDir, "Extraction");
+
+            Templatex.Pack(inFolder, outFile, MediaTypeNames.Text.Plain);
+
+            Templatex.Extract(outFile, extractDir, false);
+
+            int filesInExtractionFolder = new DirectoryInfo(extractDir).GetFiles("*", SearchOption.AllDirectories).Count();
+            Assert.Equal(filesInCurrentFolder, filesInExtractionFolder);
+
+            Directory.Delete(outDir, true);
+        }
+
+        [Fact]
+        public void Pack_FolderWithDefaultNaming()
+        {
+            int filesInCurrentFolder = new DirectoryInfo(Environment.CurrentDirectory).GetFiles("*", SearchOption.AllDirectories).Count();
+            var inFolder = Environment.CurrentDirectory;
+            var outDir = @"C:\Temp\PackTests";
+            var extractDir = Path.Combine(outDir, "Extraction");
+
+            var outFile = Templatex.Pack(inFolder);
+
+            Templatex.Extract(outFile, extractDir, false);
+
+            int filesInExtractionFolder = new DirectoryInfo(extractDir).GetFiles("*", SearchOption.AllDirectories).Count();
+            Assert.Equal(filesInCurrentFolder, filesInExtractionFolder);
+
+            File.Delete(outFile);
+            Directory.Delete(outDir, true);
+        }
+
+        [Fact]
+        public void PackAndSign_Folder()
         {
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = Templatex.LoadCert(@"Locations\TestCert.pfx", certPass);
@@ -48,7 +86,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
         [Fact]
-        public void PackFolderExtractToAbsoluteDir()
+        public void PackAndSign_FolderExtractToAbsoluteDir()
         {
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = Templatex.LoadCert(@"Locations\TestCert.pfx", certPass);
@@ -68,7 +106,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
         [Fact]
-        public void PackAndSignCertNotFound()
+        public void PackAndSign_CertNotFound()
         {
             Exception ex = Assert.Throws<SignCertNotFoundException>(() => {
                 Templatex.PackAndSign(@"Locations\SampleContent.txt", "SignedContent.package", "CERT_NOT_FOUND", MediaTypeNames.Text.Plain);
@@ -133,7 +171,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
         [Fact]
-        public void PackAndSignWithThumbprint()
+        public void PackAndSign_WithThumbprint()
         {
             EnsureTestCertificateInStore();
 

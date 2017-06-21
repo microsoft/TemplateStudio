@@ -10,6 +10,7 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
 using System.Windows;
 
 namespace Microsoft.Templates.Core.Gen
@@ -32,11 +33,7 @@ namespace Microsoft.Templates.Core.Gen
         public abstract void WriteOutput(string data);
         public abstract void CloseSolution();
 
-        public abstract string GetVsCultureInfo();
-
-        public abstract string GetVsVersion();
-
-        public abstract string GetVsEdition();
+        public abstract Guid GetVsProjectId();
 
         public virtual void RestorePackages()
         {
@@ -46,11 +43,8 @@ namespace Microsoft.Templates.Core.Gen
         {
         }
 
-        
-
         public virtual void RefreshProject()
         {
-
         }
     }
 }

@@ -13,8 +13,9 @@
     "type": "item",
     "wts.type": "page",
     "wts.framework": "CodeBehind",
-    "wts.version": "1.0.0",
-    "wts.order": "1"
+    "wts.version": "2.0.0",
+    "wts.order": "1",
+    "wts.genGroup": "0"
   },
   "sourceName": "WebViewPage",
   "preferNameDirectory": true,

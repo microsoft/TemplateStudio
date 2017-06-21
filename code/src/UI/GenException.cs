@@ -11,18 +11,23 @@
 // ******************************************************************
 
 using System;
+using System.Runtime.Serialization;
 
 using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI
 {
+    [Serializable]
     public class GenException : Exception
     {
+        protected GenException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
         public GenException(string message) : base(message)
         {
         }
-        
-        public GenException(string name, string template, string reason) : base (string.Format(StringRes.ExceptionGenerating, template, name, reason))
+
+        public GenException(string name, string template, string reason) : base(string.Format(StringRes.ExceptionGenerating, template, name, reason))
         {
         }
     }

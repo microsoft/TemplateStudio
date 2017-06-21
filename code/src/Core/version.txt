@@ -1,0 +1,2 @@
+AssemblyFileVersion=15.3-master
+AssemblyVersion=15.0

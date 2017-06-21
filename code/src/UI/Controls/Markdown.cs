@@ -1,4 +1,16 @@
-﻿using System;
+﻿// ******************************************************************
+// Copyright (c) Microsoft. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
+// ******************************************************************
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -26,8 +38,8 @@ namespace Microsoft.Templates.UI.Controls
         private const int _nestDepth = 6;
 
         /// <summary>
-        /// Tabs are automatically converted to spaces as part of the transform  
-        /// this constant determines how "wide" those tabs become in spaces  
+        /// Tabs are automatically converted to spaces as part of the transform
+        /// this constant determines how "wide" those tabs become in spaces
         /// </summary>
         private const int _tabWidth = 4;
 
@@ -37,10 +49,9 @@ namespace Microsoft.Templates.UI.Controls
         private int _listLevel;
 
         /// <summary>
-        /// when true, bold and italic require non-word characters on either side  
+        /// when true, bold and italic require non-word characters on either side
         /// WARNING: this is a significant deviation from the markdown spec
         /// </summary>
-        /// 
         public bool StrictBoldItalic { get; set; }
 
         public ICommand HyperlinkCommand { get; set; }
@@ -158,18 +169,18 @@ namespace Microsoft.Templates.UI.Controls
                     s2 => DoLists(s2,
                     sn => FormParagraphs(sn))));
 
-            //text = DoCodeBlocks(text);
-            //text = DoBlockQuotes(text);
+            // text = DoCodeBlocks(text);
+            // text = DoBlockQuotes(text);
 
             //// We already ran HashHTMLBlocks() before, in Markdown(), but that
             //// was to escape raw HTML in the original Markdown source. This time,
             //// we're escaping the markup we've just created, so that we don't wrap
             //// <p> tags around block-level tags.
-            //text = HashHTMLBlocks(text);
+            // text = HashHTMLBlocks(text);
 
-            //text = FormParagraphs(text);
+            // text = FormParagraphs(text);
 
-            //return text;
+            // return text;
         }
 
         /// <summary>
@@ -188,22 +199,22 @@ namespace Microsoft.Templates.UI.Controls
                 s2 => DoItalicsAndBold(s2,
                 s3 => DoText(s3)))));
 
-            //text = EscapeSpecialCharsWithinTagAttributes(text);
-            //text = EscapeBackslashes(text);
+            // text = EscapeSpecialCharsWithinTagAttributes(text);
+            // text = EscapeBackslashes(text);
 
             //// Images must come first, because ![foo][f] looks like an anchor.
-            //text = DoImages(text);
-            //text = DoAnchors(text);
+            // text = DoImages(text);
+            // text = DoAnchors(text);
 
             //// Must come after DoAnchors(), because you can use < and >
             //// delimiters in inline links like [this](<url>).
-            //text = DoAutoLinks(text);
+            // text = DoAutoLinks(text);
 
-            //text = EncodeAmpsAndAngles(text);
-            //text = DoItalicsAndBold(text);
-            //text = DoHardBreaks(text);
+            // text = EncodeAmpsAndAngles(text);
+            // text = DoItalicsAndBold(text);
+            // text = DoHardBreaks(text);
 
-            //return text;
+            // return text;
         }
 
         private static Regex _newlinesLeadingTrailing = new Regex(@"^\n+|\n+\z", RegexOptions.Compiled);
@@ -211,7 +222,7 @@ namespace Microsoft.Templates.UI.Controls
         private static Regex _leadingWhitespace = new Regex(@"^[ ]*", RegexOptions.Compiled);
 
         /// <summary>
-        /// splits on two or more newlines, to form "paragraphs";    
+        /// splits on two or more newlines, to form "paragraphs";
         /// </summary>
         private IEnumerable<Block> FormParagraphs(string text)
         {
@@ -232,7 +243,7 @@ namespace Microsoft.Templates.UI.Controls
         private static string _nestedBracketsPattern;
 
         /// <summary>
-        /// Reusable pattern to match balanced [brackets]. See Friedl's 
+        /// Reusable pattern to match balanced [brackets]. See Friedl's
         /// "Mastering Regular Expressions", 2nd Ed., pp. 328-331.
         /// </summary>
         private static string GetNestedBracketsPattern()
@@ -248,15 +259,15 @@ namespace Microsoft.Templates.UI.Controls
                        \[
                            ", _nestDepth) + RepeatString(
                     @" \]
-                    )*"
-                    , _nestDepth);
+                    )*",
+                    _nestDepth);
             return _nestedBracketsPattern;
         }
 
         private static string _nestedParensPattern;
 
         /// <summary>
-        /// Reusable pattern to match balanced (parens). See Friedl's 
+        /// Reusable pattern to match balanced (parens). See Friedl's
         /// "Mastering Regular Expressions", 2nd Ed., pp. 328-331.
         /// </summary>
         private static string GetNestedParensPattern()
@@ -272,15 +283,15 @@ namespace Microsoft.Templates.UI.Controls
                        \(
                            ", _nestDepth) + RepeatString(
                     @" \)
-                    )*"
-                    , _nestDepth);
+                    )*",
+                    _nestDepth);
             return _nestedParensPattern;
         }
 
         private static string _nestedParensPatternWithWhiteSpace;
 
         /// <summary>
-        /// Reusable pattern to match balanced (parens), including whitespace. See Friedl's 
+        /// Reusable pattern to match balanced (parens), including whitespace. See Friedl's
         /// "Mastering Regular Expressions", 2nd Ed., pp. 328-331.
         /// </summary>
         private static string GetNestedParensPatternWithWhiteSpace()
@@ -296,8 +307,8 @@ namespace Microsoft.Templates.UI.Controls
                        \(
                            ", _nestDepth) + RepeatString(
                     @" \)
-                    )*"
-                    , _nestDepth);
+                    )*",
+                    _nestDepth);
             return _nestedParensPatternWithWhiteSpace;
         }
 
@@ -343,7 +354,7 @@ namespace Microsoft.Templates.UI.Controls
         /// Turn Markdown images into images
         /// </summary>
         /// <remarks>
-        /// ![image alt](url) 
+        /// ![image alt](url)
         /// </remarks>
         private IEnumerable<Inline> DoImages(string text, Func<string, IEnumerable<Inline>> defaultHandler)
         {
@@ -379,7 +390,7 @@ namespace Microsoft.Templates.UI.Controls
                 return new Run("!" + url) { Foreground = Brushes.Red };
             }
 
-            Image image = new Image { Source = imgSource, Tag = linkText };
+            var image = new Image { Source = imgSource, Tag = linkText };
             if (ImageStyle == null)
             {
                 image.Margin = new Thickness(0);
@@ -392,9 +403,11 @@ namespace Microsoft.Templates.UI.Controls
             // Bind size so document is updated when image is downloaded
             if (imgSource.IsDownloading)
             {
-                Binding binding = new Binding(nameof(BitmapImage.Width));
-                binding.Source = imgSource;
-                binding.Mode = BindingMode.OneWay;
+                var binding = new Binding(nameof(BitmapImage.Width))
+                {
+                    Source = imgSource,
+                    Mode = BindingMode.OneWay
+                };
 
                 BindingExpressionBase bindingExpression = BindingOperations.SetBinding(image, Image.WidthProperty, binding);
                 EventHandler downloadCompletedHandler = null;
@@ -417,7 +430,7 @@ namespace Microsoft.Templates.UI.Controls
         /// Turn Markdown link shortcuts into hyperlinks
         /// </summary>
         /// <remarks>
-        /// [link text](url "title") 
+        /// [link text](url "title")
         /// </remarks>
         private IEnumerable<Inline> DoAnchors(string text, Func<string, IEnumerable<Inline>> defaultHandler)
         {
@@ -474,17 +487,17 @@ namespace Microsoft.Templates.UI.Controls
         /// Turn Markdown headers into HTML header tags
         /// </summary>
         /// <remarks>
-        /// Header 1  
-        /// ========  
-        /// 
-        /// Header 2  
-        /// --------  
-        /// 
-        /// # Header 1  
-        /// ## Header 2  
-        /// ## Header 2 with closing hashes ##  
-        /// ...  
-        /// ###### Header 6  
+        /// Header 1
+        /// ========
+        ///
+        /// Header 2
+        /// --------
+        ///
+        /// # Header 1
+        /// ## Header 2
+        /// ## Header 2 with closing hashes ##
+        /// ...
+        /// ###### Header 6
         /// </remarks>
         private IEnumerable<Block> DoHeaders(string text, Func<string, IEnumerable<Block>> defaultHandler)
         {
@@ -507,7 +520,7 @@ namespace Microsoft.Templates.UI.Controls
             string header = match.Groups[1].Value;
             int level = match.Groups[2].Value.StartsWith("=") ? 1 : 2;
 
-            //TODO: Style the paragraph based on the header level
+            // TODO: Style the paragraph based on the header level
             return CreateHeader(level, RunSpanGamut(header.Trim()));
         }
 
@@ -581,8 +594,8 @@ namespace Microsoft.Templates.UI.Controls
         /// Turn Markdown horizontal rules into HTML hr tags
         /// </summary>
         /// <remarks>
-        /// ***  
-        /// * * *  
+        /// ***
+        /// * * *
         /// ---
         /// - - -
         /// </remarks>
@@ -603,7 +616,7 @@ namespace Microsoft.Templates.UI.Controls
                 throw new ArgumentNullException("match");
             }
 
-            Line line = new Line();
+            var line = new Line();
             if (SeparatorStyle == null)
             {
                 line.X2 = 1;
@@ -696,9 +709,9 @@ namespace Microsoft.Templates.UI.Controls
             // We do this because when we're not inside a list, we want to treat
             // something like this:
 
-            //    I recommend upgrading to version
-            //    8. Oops, now this line is treated
-            //    as a sub-list.
+            // I recommend upgrading to version
+            // 8. Oops, now this line is treated
+            // as a sub-list.
 
             // As a single paragraph, despite the fact that the second line starts
             // with a digit-period-space sequence.
@@ -747,9 +760,11 @@ namespace Microsoft.Templates.UI.Controls
             string item = match.Groups[4].Value;
             string leadingLine = match.Groups[1].Value;
 
-            if (!String.IsNullOrEmpty(leadingLine) || Regex.IsMatch(item, @"\n{2,}"))
+            if (!string.IsNullOrEmpty(leadingLine) || Regex.IsMatch(item, @"\n{2,}"))
+            {
                 // we could correct any bad indentation here..
                 return Create<ListItem, Block>(RunBlockGamut(item));
+            }
             else
             {
                 // recursion for sub-lists
@@ -775,27 +790,27 @@ namespace Microsoft.Templates.UI.Controls
                 throw new ArgumentNullException("text");
             }
 
-            //    * You can use multiple backticks as the delimiters if you want to
-            //        include literal backticks in the code span. So, this input:
-            //
-            //        Just type ``foo `bar` baz`` at the prompt.
-            //
-            //        Will translate to:
-            //
-            //          <p>Just type <code>foo `bar` baz</code> at the prompt.</p>
-            //
-            //        There's no arbitrary limit to the number of backticks you
-            //        can use as delimters. If you need three consecutive backticks
-            //        in your code, use four for delimiters, etc.
-            //
-            //    * You can use spaces to get literal backticks at the edges:
-            //
-            //          ... type `` `bar` `` ...
-            //
-            //        Turns to:
-            //
-            //          ... type <code>`bar`</code> ...         
-            //
+            ////    * You can use multiple backticks as the delimiters if you want to
+            ////        include literal backticks in the code span. So, this input:
+            ////
+            ////        Just type ``foo `bar` baz`` at the prompt.
+            ////
+            ////        Will translate to:
+            ////
+            ////          <p>Just type <code>foo `bar` baz</code> at the prompt.</p>
+            ////
+            ////        There's no arbitrary limit to the number of backticks you
+            ////        can use as delimters. If you need three consecutive backticks
+            ////        in your code, use four for delimiters, etc.
+            ////
+            ////    * You can use spaces to get literal backticks at the edges:
+            ////
+            ////          ... type `` `bar` `` ...
+            ////
+            ////        Turns to:
+            ////
+            ////          ... type <code>`bar`</code> ...
+            ////
 
             return Evaluate(text, _codeSpan, CodeSpanEvaluator, defaultHandler);
         }
@@ -888,9 +903,9 @@ namespace Microsoft.Templates.UI.Controls
         }
 
         /// <summary>
-        /// convert all tabs to _tabWidth spaces; 
-        /// standardizes line endings from DOS (CR LF) or Mac (CR) to UNIX (LF); 
-        /// makes sure text ends with a couple of newlines; 
+        /// convert all tabs to _tabWidth spaces;
+        /// standardizes line endings from DOS (CR LF) or Mac (CR) to UNIX (LF);
+        /// makes sure text ends with a couple of newlines;
         /// removes any blank lines (only spaces) in the text
         /// </summary>
         private string Normalize(string text)

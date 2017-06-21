@@ -227,36 +227,9 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void ConfigureGenContext()
         {
-            if (TemplatesVersion == "0.0.0.0")
-            {
-                CleanUpContent();
-            }
-
             GenContext.Bootstrap(new LocalTemplatesSource(WizardVersion, TemplatesVersion)
                 , new FakeGenShell(msg => SetState(msg), l => AddLog(l), _host)
                 , new Version(WizardVersion));
-        }
-
-        private void CleanUpContent()
-        {
-            DirectoryInfo di = new DirectoryInfo(GetTemplatesFolder());
-
-            if (di.Exists)
-            {
-                foreach (var sdi in di.EnumerateDirectories())
-                {
-                    Fs.SafeDeleteDirectory(sdi.FullName);
-                }
-            }
-        }
-        private string GetTemplatesFolder()
-        {
-            //TODO: Think in having a way to get the target TemplatesFolder to avoid instantiating all this staff
-            LocalTemplatesSource _templatesSource = new LocalTemplatesSource(WizardVersion, TemplatesVersion);
-            TemplatesSynchronization _templatesSync = new TemplatesSynchronization(_templatesSource, new Version(WizardVersion));
-            string currentTemplatesFolder = _templatesSync.CurrentTemplatesFolder;
-
-            return currentTemplatesFolder;
         }
 
         public void DoEvents()

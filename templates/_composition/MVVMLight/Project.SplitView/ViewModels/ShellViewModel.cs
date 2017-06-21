@@ -78,7 +78,7 @@ namespace wts.ItemName.ViewModels
             {
                 if (_itemSelected == null)
                 {
-                    _itemSelected = new RelayCommand<ShellNavigationItem>(ItemSelected);
+                    _itemSelected = new RelayCommand<ItemClickEventArgs>(ItemSelected);
                 }
 
                 return _itemSelected;
@@ -92,16 +92,16 @@ namespace wts.ItemName.ViewModels
             {
                 if (_stateChangedCommand == null)
                 {
-                    _stateChangedCommand = new RelayCommand<Windows.UI.Xaml.VisualStateChangedEventArgs>(OnStateChanged);
+                    _stateChangedCommand = new RelayCommand<Windows.UI.Xaml.VisualStateChangedEventArgs>(args => GoToState(args.NewState.Name));
                 }
 
                 return _stateChangedCommand;
             }
         }
 
-        private void OnStateChanged(VisualStateChangedEventArgs args)
+        private void GoToState(string stateName)
         {
-            switch (args.NewState.Name)
+            switch (stateName)
             {
                 case PanoramicStateName:
                     DisplayMode = SplitViewDisplayMode.CompactInline;
@@ -124,6 +124,11 @@ namespace wts.ItemName.ViewModels
             NavigationService.Frame = frame;
             NavigationService.Frame.Navigated += NavigationService_Navigated;
             PopulateNavItems();
+
+            if (Window.Current.Bounds.Width < 640)
+            {
+                GoToState(NarrowStateName);
+            }
         }
 
         private void PopulateNavItems()
@@ -135,13 +140,13 @@ namespace wts.ItemName.ViewModels
             // Edit String/en-US/Resources.resw: Add a menu item title for each page
         }
 
-        private void ItemSelected(ShellNavigationItem e)
+        private void ItemSelected(ItemClickEventArgs args)
         {
             if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
             {
                 IsPaneOpen = false;
             }
-            Navigate(e);
+            Navigate(args.ClickedItem);
         }
 
         private void NavigationService_Navigated(object sender, NavigationEventArgs e)
@@ -149,16 +154,16 @@ namespace wts.ItemName.ViewModels
             if (e != null)
             {
                 var vm = NavigationService.GetNameOfRegisteredPage(e.SourcePageType);
-                var item = PrimaryItems?.FirstOrDefault(i => i.ViewModelName == vm);
-                if (item == null)
+                var navigationItem = PrimaryItems?.FirstOrDefault(i => i.ViewModelName == vm);
+                if (navigationItem == null)
                 {
-                    item = SecondaryItems?.FirstOrDefault(i => i.ViewModelName == vm);
+                    navigationItem = SecondaryItems?.FirstOrDefault(i => i.ViewModelName == vm);
                 }
 
-                if (item != null)
+                if (navigationItem != null)
                 {
-                    ChangeSelected(_lastSelectedItem, item);
-                    _lastSelectedItem = item;
+                    ChangeSelected(_lastSelectedItem, navigationItem);
+                    _lastSelectedItem = navigationItem;
                 }
             }
         }

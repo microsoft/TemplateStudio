@@ -12,16 +12,16 @@
 
 using System;
 using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
-using System.Reflection;
 
 namespace Microsoft.Templates.Core.Locations
 {
     public class TemplatesSynchronization
     {
-        public event Action<object, SyncStatus> SyncStatusChanged;
+        public event Action<object, SyncStatusEventArgs> SyncStatusChanged;
 
         private static readonly string FolderName = Configuration.Current.RepositoryFolderName;
 
@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             bool contentIsUnderVersion = _content.ExistUnderVersion();
 
-            if (contentIsUnderVersion || CurrentContentVersion.IsZero())
+            if (forced || contentIsUnderVersion || CurrentContentVersion.IsNullOrZero())
             {
                 await CheckMandatoryAdquisitionAsync(true);
                 await UpdateTemplatesCacheAsync();
@@ -67,25 +67,24 @@ namespace Microsoft.Templates.Core.Locations
 
         private void SafeSetContentVersionInTelemetry()
         {
-            
         }
 
         private async Task AdquireContentAsync()
         {
-            SyncStatusChanged?.Invoke(this, SyncStatus.Adquiring);
+            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Adquiring });
 
             await Task.Run(() => AdquireContent());
 
-            SyncStatusChanged?.Invoke(this, SyncStatus.Adquired);
+            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Adquired });
         }
 
         private async Task ExtractInstalledContentAsync()
         {
-            SyncStatusChanged?.Invoke(this, SyncStatus.Preparing);
+            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Preparing });
 
             await Task.Run(() => ExtractInstalledContent());
 
-            SyncStatusChanged?.Invoke(this, SyncStatus.Prepared);
+            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Prepared });
         }
 
         private async Task CheckExpirationAdquisitionAsync()
@@ -98,13 +97,14 @@ namespace Microsoft.Templates.Core.Locations
 
         private async Task CheckMandatoryAdquisitionAsync(bool forceUpdate)
         {
+            if (forceUpdate)
+            {
+                await AdquireContentAsync();
+            }
+
             if (!_content.Exists())
             {
                 await ExtractInstalledContentAsync();
-            }
-            else if (forceUpdate)
-            {
-                await AdquireContentAsync();
             }
         }
 
@@ -125,7 +125,7 @@ namespace Microsoft.Templates.Core.Locations
             try
             {
                 string installedTemplatesPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", "Templates.mstx");
-                _source.ExtractFromMstx(installedTemplatesPath, _content.TemplatesFolder);
+                _source.Extract(installedTemplatesPath, _content.TemplatesFolder);
             }
             catch (Exception ex)
             {
@@ -135,11 +135,11 @@ namespace Microsoft.Templates.Core.Locations
 
         private async Task UpdateTemplatesCacheAsync()
         {
-            SyncStatusChanged?.Invoke(this, SyncStatus.Updating);
+            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Updating });
 
             await Task.Run(() => UpdateTemplatesCache());
 
-            SyncStatusChanged?.Invoke(this, SyncStatus.Updated);
+            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Updated });
         }
 
         private async Task CheckContentOverVersion()
@@ -150,11 +150,11 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     if (CurrentContentVersion.IsNull())
                     {
-                        SyncStatusChanged?.Invoke(this, SyncStatus.OverVersionNoContent);
+                        SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.OverVersionNoContent });
                     }
                     else
                     {
-                        SyncStatusChanged?.Invoke(this, SyncStatus.OverVersion);
+                        SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.OverVersion });
                     }
                 }
             });
@@ -168,7 +168,7 @@ namespace Microsoft.Templates.Core.Locations
 
                 if (result)
                 {
-                    SyncStatusChanged?.Invoke(this, SyncStatus.UnderVersion);
+                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.UnderVersion });
                 }
             });
         }
@@ -177,7 +177,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                if (_content.ExitsNewerVersion(CurrentContentFolder) || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
+                if (_content.RequiresUpdate(CurrentContentFolder) || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
                 {
                     CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
                     CodeGen.Instance.Cache.Scan(_content.LatestContentFolder);
