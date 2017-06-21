@@ -24,10 +24,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
     public class ChangesSummaryViewModel : Observable
     {
         private double _currentPoints = CodeLineViewModel.DefaultFontSize;
-        public ObservableCollection<ItemsGroupViewModel<BaseNewItemFileViewModel>> FileGroups { get; } = new ObservableCollection<ItemsGroupViewModel<BaseNewItemFileViewModel>>();
+        public ObservableCollection<ItemsGroupViewModel<BaseFileViewModel>> FileGroups { get; } = new ObservableCollection<ItemsGroupViewModel<BaseFileViewModel>>();
 
-        private BaseNewItemFileViewModel _selectedFile;
-        public BaseNewItemFileViewModel SelectedFile
+        private BaseFileViewModel _selectedFile;
+        public BaseFileViewModel SelectedFile
         {
             get => _selectedFile;
             set => SetProperty(ref _selectedFile, value);
@@ -43,13 +43,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public void Initialize()
         {
             var output = NewItemGenController.Instance.CompareOutputAndProject();
-            var warnings = GenContext.Current.GenerationWarnings.Select(w => new WarningNewItemFileViewModel(w));
+            var warnings = GenContext.Current.GenerationWarnings.Select(w => new WarningFileViewModel(w));
             FileGroups.Clear();
-            FileGroups.Add(new ItemsGroupViewModel<BaseNewItemFileViewModel>(StringRes.ChangesSummaryCategoryOverwrittenFiles, output.ConflictingFiles.Select(cf => new ConfictingNewItemFileViewModel(cf)), OnItemChanged));
-            FileGroups.Add(new ItemsGroupViewModel<BaseNewItemFileViewModel>(StringRes.ChangesSummaryCategoryMergeConflicts, warnings, OnItemChanged));
-            FileGroups.Add(new ItemsGroupViewModel<BaseNewItemFileViewModel>(StringRes.ChangesSummaryCategotyModifiedFiles, output.ModifiedFiles.Select(mf => new ModifiedNewItemFileViewModel(mf)), OnItemChanged));
-            FileGroups.Add(new ItemsGroupViewModel<BaseNewItemFileViewModel>(StringRes.ChangesSummaryCategoryNewFiles, output.NewFiles.Select(nf => new AddedNewItemFileViewModel(nf)), OnItemChanged));
-            FileGroups.Add(new ItemsGroupViewModel<BaseNewItemFileViewModel>(StringRes.ChangesSummaryCategoryUnchangedFiles, output.UnchangedFiles.Select(nf => new UnchangedFileViewModel(nf)), OnItemChanged));
+            FileGroups.Add(new ItemsGroupViewModel<BaseFileViewModel>(StringRes.ChangesSummaryCategoryOverwrittenFiles, output.ConflictingFiles.Select(cf => new ConfictingFileViewModel(cf)), OnItemChanged));
+            FileGroups.Add(new ItemsGroupViewModel<BaseFileViewModel>(StringRes.ChangesSummaryCategoryMergeConflicts, warnings, OnItemChanged));
+            FileGroups.Add(new ItemsGroupViewModel<BaseFileViewModel>(StringRes.ChangesSummaryCategotyModifiedFiles, output.ModifiedFiles.Select(mf => new ModifiedFileViewModel(mf)), OnItemChanged));
+            FileGroups.Add(new ItemsGroupViewModel<BaseFileViewModel>(StringRes.ChangesSummaryCategoryNewFiles, output.NewFiles.Select(nf => new AddedFileViewModel(nf)), OnItemChanged));
+            FileGroups.Add(new ItemsGroupViewModel<BaseFileViewModel>(StringRes.ChangesSummaryCategoryUnchangedFiles, output.UnchangedFiles.Select(nf => new UnchangedFileViewModel(nf)), OnItemChanged));
 
             var group = FileGroups.FirstOrDefault(gr => gr.Templates.Any());
             if (group != null)
@@ -58,7 +58,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        private void OnItemChanged(ItemsGroupViewModel<BaseNewItemFileViewModel> group)
+        private void OnItemChanged(ItemsGroupViewModel<BaseFileViewModel> group)
         {
             foreach (var item in FileGroups)
             {

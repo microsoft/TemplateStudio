@@ -14,13 +14,12 @@ using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
-    public class ConfictingNewItemFileViewModel : BaseNewItemFileViewModel
+    public class AddedFileViewModel : BaseFileViewModel
     {
-        public override FileType FileType => FileType.ConflictingFile;
-        public string ConflictingDetailDescription => string.Format(StringRes.ConflictingDetailDescription_SF, Subject);
-
-        public ConfictingNewItemFileViewModel(NewItemGenerationFileInfo generationInfo) : base(generationInfo)
+        public override FileType FileType => FileType.AddedFile;
+        public AddedFileViewModel(NewItemGenerationFileInfo generationInfo) : base(generationInfo)
         {
+            DetailTitle = string.Format(StringRes.ChangesSummaryDetailTitleNewFiles, generationInfo.Name);
         }
     }
 }

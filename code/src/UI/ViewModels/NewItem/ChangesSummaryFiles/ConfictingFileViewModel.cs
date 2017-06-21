@@ -10,22 +10,19 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
-    public class WarningNewItemFileViewModel : BaseNewItemFileViewModel
+    public class ConfictingFileViewModel : BaseFileViewModel
     {
-        public string Description { get; private set; }
-        public string ExtendedInfo { get; private set; }
+        public override FileType FileType => FileType.ConflictingFile;
+        public string ConflictingDetailDescription => string.Format(StringRes.ConflictingDetailDescription_SF, Subject);
 
-        public override FileType FileType => FileType.WarningFile;
-
-        public WarningNewItemFileViewModel(GenerationWarning warning) : base(warning.FailedFileName)
+        public ConfictingFileViewModel(NewItemGenerationFileInfo generationInfo) : base(generationInfo)
         {
-            Description = warning.Description;
-            ExtendedInfo = warning.ExtendedInfo;
-            Subject = warning.FileName;
+            DetailTitle = string.Format(StringRes.ChangesSummaryDetailTitleOverwrittenFiles, generationInfo.Name);
+            DetailDescription = string.Format(StringRes.ChangesSummaryDetailDescriptionOverwrittenFiles, generationInfo.Name);
         }
     }
 }

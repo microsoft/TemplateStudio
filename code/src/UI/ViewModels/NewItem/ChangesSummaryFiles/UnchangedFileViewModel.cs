@@ -10,13 +10,16 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using Microsoft.Templates.UI.Resources;
+
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
-    public class UnchangedFileViewModel : BaseNewItemFileViewModel
+    public class UnchangedFileViewModel : BaseFileViewModel
     {
         public override FileType FileType => FileType.Unchanged;
         public UnchangedFileViewModel(NewItemGenerationFileInfo generationInfo) : base(generationInfo)
         {
+            DetailTitle = string.Format(StringRes.ChangesSummaryDetailTitleUnchangedFiles, generationInfo.Name);
         }
     }
 }
