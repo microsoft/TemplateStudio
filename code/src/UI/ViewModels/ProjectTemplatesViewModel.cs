@@ -104,30 +104,33 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void ValidateCurrentTemplateName(SavedTemplateViewModel item)
         {
-            var validators = new List<Validator>()
+            if (item.NewItemName != item.ItemName)
             {
-                new ExistingNamesValidator(Names),
-                new ReservedNamesValidator()
-            };
-            if (item.CanChooseItemName)
-            {
-                validators.Add(new DefaultNamesValidator());
-            }
-            var validationResult = Naming.Validate(item.NewItemName, validators);
-
-            item.IsValidName = validationResult.IsValid;
-            item.ErrorMessage = string.Empty;
-
-            if (!item.IsValidName)
-            {
-                item.ErrorMessage = StringRes.ResourceManager.GetString($"ValidationError_{validationResult.ErrorType}");
-
-                if (string.IsNullOrWhiteSpace(item.ErrorMessage))
+                var validators = new List<Validator>()
                 {
-                    item.ErrorMessage = "UndefinedError";
+                    new ExistingNamesValidator(Names),
+                    new ReservedNamesValidator()
+                };
+                if (item.CanChooseItemName)
+                {
+                    validators.Add(new DefaultNamesValidator());
                 }
-                MainViewModel.Current.SetValidationErrors(item.ErrorMessage);
-                throw new Exception(item.ErrorMessage);
+                var validationResult = Naming.Validate(item.NewItemName, validators);
+
+                item.IsValidName = validationResult.IsValid;
+                item.ErrorMessage = string.Empty;
+
+                if (!item.IsValidName)
+                {
+                    item.ErrorMessage = StringRes.ResourceManager.GetString($"ValidationError_{validationResult.ErrorType}");
+
+                    if (string.IsNullOrWhiteSpace(item.ErrorMessage))
+                    {
+                        item.ErrorMessage = "UndefinedError";
+                    }
+                    MainViewModel.Current.SetValidationErrors(item.ErrorMessage);
+                    throw new Exception(item.ErrorMessage);
+                }
             }
             MainViewModel.Current.CleanStatus(true);
         }
@@ -257,6 +260,11 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnConfirmRenameSummaryItem(SavedTemplateViewModel item)
         {
+            if (item.NewItemName == item.ItemName)
+            {
+                item.IsEditionEnabled = false;
+                return;
+            }
             var validators = new List<Validator>()
             {
                 new ExistingNamesValidator(Names),
