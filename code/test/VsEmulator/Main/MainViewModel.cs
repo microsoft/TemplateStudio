@@ -29,14 +29,13 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using System.Diagnostics;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
     public class MainViewModel : Observable, IContextProvider
     {
         private readonly MainView _host;
-
-        private const string TempGenerationFolder = "WTSTempGeneration";
 
         public MainViewModel(MainView host)
         {
@@ -189,7 +188,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private void AddNewFeature()
         {
             ConfigureGenContext(ForceLocalTemplatesRefresh);
-            OutputPath = Path.Combine(Path.GetTempPath(), TempGenerationFolder, Path.GetRandomFileName());
+            OutputPath = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath, Path.GetRandomFileName());
             ClearContext();
 
             try
@@ -225,7 +224,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private void AddNewPage()
         {
             ConfigureGenContext(ForceLocalTemplatesRefresh);
-            OutputPath = Path.Combine(Path.GetTempPath(), TempGenerationFolder, Path.GetRandomFileName());
+            OutputPath = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath, Path.GetRandomFileName());
             ClearContext();
             try
             {
@@ -375,6 +374,8 @@ namespace Microsoft.Templates.VsEmulator.Main
                 , new FakeGenShell(msg => SetState(msg), l => AddLog(l), _host)
                 , new Version(WizardVersion));
         }
+
+        
 
         public void DoEvents()
         {
