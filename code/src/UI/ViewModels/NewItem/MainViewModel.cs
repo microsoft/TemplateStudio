@@ -95,7 +95,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         protected override void OnTemplatesAvailable() => NewItemSetup.Initialize(true);
         protected override void OnNewTemplatesAvailable()
         {
-            throw new NotImplementedException();
+            _canGoBack = false;
+            _templatesReady = false;
+            FinishCommand.OnCanExecuteChanged();
+            BackCommand.OnCanExecuteChanged();
+            ShowFinishButton = false;
+            EnableGoForward();
+            NavigationService.Navigate(new NewItemSetupView());
+            NewItemSetup.Initialize(true);
         }
         protected override UserSelection CreateUserSelection()
         {
