@@ -65,12 +65,13 @@ namespace Microsoft.Templates.UI.Services
                 var bounds = VisualTreeHelper.GetDescendantBounds(listViewItem);
                 var ptInItem = this._listView.TranslatePoint(_mouseDownPosition, listViewItem);
 
+                int distanceScale = 3;
+
                 double topOffset = Math.Abs(ptInItem.Y);
                 double btmOffset = Math.Abs(bounds.Height - ptInItem.Y);
                 double vertOffset = Math.Min(topOffset, btmOffset);
-
-                double width = SystemParameters.MinimumHorizontalDragDistance * 2;
-                double height = Math.Min(SystemParameters.MinimumVerticalDragDistance, vertOffset) * 2;
+                double width = SystemParameters.MinimumHorizontalDragDistance * distanceScale;
+                double height = Math.Min(SystemParameters.MinimumVerticalDragDistance, vertOffset) * distanceScale;
                 Size szThreshold = new Size(width, height);
 
                 Rect rect = new Rect(this._mouseDownPosition, szThreshold);
