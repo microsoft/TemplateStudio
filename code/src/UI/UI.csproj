@@ -185,6 +185,8 @@
   <ItemGroup>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Extensions\ListViewExtensions.cs" />
+    <Compile Include="Generation\NewItemGenerationFileInfo.cs" />
+    <Compile Include="Generation\NewItemGenerationResult.cs" />
     <Compile Include="Services\DragAndDropService\DragAndDropService.Members.cs" />
     <Compile Include="Services\DragAndDropService\DragAdornerLayer.cs" />
     <Compile Include="Services\DragAndDropService\DragAndDropService.cs" />
@@ -192,8 +194,6 @@
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
     <Compile Include="Comparison\ComparisonService.cs" />
-    <Compile Include="Generation\NewItemGenerationFileInfo.cs" />
-    <Compile Include="Generation\NewItemGenerationResult.cs" />
     <Compile Include="Controls\ImageEx.cs" />
     <Compile Include="Controls\LogoDisplay.xaml.cs">
       <DependentUpon>LogoDisplay.xaml</DependentUpon>

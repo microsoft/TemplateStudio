@@ -20,9 +20,9 @@ using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
-    public class CreateSyncSummaryPostAction : PostAction
+    public class CreateSyncSummaryPostAction : PostAction<TempGenerationResult>
     {
-        public CreateSyncSummaryPostAction() : base()
+        public CreateSyncSummaryPostAction(TempGenerationResult config) : base(config)
         {
         }
 
@@ -35,12 +35,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             sb.AppendLine("# Generation summary");
             sb.AppendLine("The following changes have been incorporated in your project");
 
-            if (GenContext.Current.NewFiles.Any())
+            if (_config.NewFiles.Any())
             {
                 sb.AppendLine($"## New files:");
                 sb.AppendLine();
 
-                foreach (var newFile in GenContext.Current.NewFiles)
+                foreach (var newFile in _config.NewFiles)
                 {
                     var newFilePath = Path.Combine(GenContext.Current.ProjectPath, newFile);
 
@@ -84,11 +84,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 }
             }
 
-            if (GenContext.Current.ConflictFiles.Any())
+            if (_config.ConflictingFiles.Any())
             {
                 sb.AppendLine($"## Conflicting files:");
                 sb.AppendLine();
-                foreach (var conflictFile in GenContext.Current.ConflictFiles)
+                foreach (var conflictFile in _config.ConflictingFiles)
                 {
                     var conflictFilePath = Path.Combine(GenContext.Current.ProjectPath, conflictFile);
 
@@ -100,10 +100,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             GenContext.Current.FilesToOpen.Add(fileName);
 
-            GenContext.Current.NewFiles.Clear();
-            GenContext.Current.ConflictFiles.Clear();
-            GenContext.Current.UnchangedFiles.Clear();
-            GenContext.Current.ModifiedFiles.Clear();
             GenContext.Current.GenerationWarnings.Clear();
             GenContext.Current.MergeFilesFromProject.Clear();
         }

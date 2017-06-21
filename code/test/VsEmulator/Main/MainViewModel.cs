@@ -57,15 +57,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public List<string> FilesToOpen { get; } = new List<string>();
 
-        public List<string> NewFiles { get; } = new List<string>();
-
-        public List<string> ModifiedFiles { get; } = new List<string>();
-
-        public List<string> ConflictFiles { get; } = new List<string>();
-
-        public List<string> UnchangedFiles { get; } = new List<string>();
-
-
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
@@ -225,10 +216,6 @@ namespace Microsoft.Templates.VsEmulator.Main
         private void ClearContext()
         {
             ProjectItems.Clear();
-            NewFiles.Clear();
-            ModifiedFiles.Clear();
-            ConflictFiles.Clear();
-            UnchangedFiles.Clear();
             MergeFilesFromProject.Clear();
             GenerationWarnings.Clear();
             FilesToOpen.Clear();

@@ -46,15 +46,8 @@ namespace Microsoft.Templates.Test
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
 
-        public List<string> NewFiles { get; } = new List<string>();
-
-        public List<string> ModifiedFiles { get; } = new List<string>();
-
         public List<string> FilesToOpen { get; } = new List<string>();
 
-        public List<string> ConflictFiles { get; } = new List<string>();
-
-        public List<string> UnchangedFiles { get; } = new List<string>();
 
         public ProjectGenerationTests(GenerationFixture fixture)
         {

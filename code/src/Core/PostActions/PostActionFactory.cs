@@ -10,17 +10,14 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using System.Text.RegularExpressions;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
-using Microsoft.Templates.Core.PostActions.Catalog.SortUsings;
-using System.Text.RegularExpressions;
 
 namespace Microsoft.Templates.Core.PostActions
 {
@@ -30,12 +27,12 @@ namespace Microsoft.Templates.Core.PostActions
 
         public abstract IEnumerable<PostAction> FindGlobalPostActions();
 
-        public virtual IEnumerable<PostAction> FindSyncGenerationPostActions()
+        public virtual IEnumerable<PostAction> FindSyncGenerationPostActions(TempGenerationResult result)
         {
             return new List<PostAction>();
         }
 
-        public virtual IEnumerable<PostAction> FindOutputGenerationPostActions()
+        public virtual IEnumerable<PostAction> FindOutputGenerationPostActions(TempGenerationResult result)
         {
             return new List<PostAction>();
         }

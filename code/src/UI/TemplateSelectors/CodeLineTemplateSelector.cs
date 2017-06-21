@@ -1,7 +1,7 @@
-﻿using Microsoft.Templates.UI.Comparison;
-using Microsoft.Templates.UI.ViewModels.NewItem;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
+using Microsoft.Templates.UI.Comparison;
+using Microsoft.Templates.UI.ViewModels.NewItem;
 
 namespace Microsoft.Templates.UI.TemplateSelectors
 {

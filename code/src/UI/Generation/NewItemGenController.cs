@@ -122,34 +122,94 @@ namespace Microsoft.Templates.UI
             TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework);
         }
 
+        private TempGenerationResult CompareTempGenerationWithProject()
+        {
+            var result = new TempGenerationResult();
+            var files = Directory
+                .EnumerateFiles(GenContext.Current.OutputPath, "*", SearchOption.AllDirectories)
+                .Where(f => !Regex.IsMatch(f, MergePostAction.PostactionRegex) && !Regex.IsMatch(f, MergePostAction.FailedPostactionRegex))
+                .ToList();
+
+            foreach (var file in files)
+            {
+                var destFilePath = file.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
+                var fileName = file.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
+
+                var projectFileName = Path.GetFullPath(Path.Combine(GenContext.Current.ProjectPath, fileName));
+
+                if (File.Exists(projectFileName))
+                {
+                    if (GenContext.Current.MergeFilesFromProject.ContainsKey(fileName))
+                    {
+                        if (FilesAreEqual(file, destFilePath))
+                        {
+                            var warning = GenContext.Current.GenerationWarnings.FirstOrDefault(g => g.FileName == fileName);
+                            if (warning == null)
+                            {
+                                GenContext.Current.MergeFilesFromProject.Remove(fileName);
+                                result.UnchangedFiles.Add(fileName);
+                            }
+                        }
+                        else
+                        {
+                            result.ModifiedFiles.Add(fileName);
+                        }
+                    }
+                    else
+                    {
+                        if (FilesAreEqual(file, destFilePath))
+                        {
+                            result.UnchangedFiles.Add(fileName);
+                        }
+                        else
+                        {
+                            result.ConflictingFiles.Add(fileName);
+                        }
+                    }
+                }
+                else
+                {
+                    result.NewFiles.Add(fileName);
+                }
+            }
+
+            return result;
+        }
+
         public NewItemGenerationResult CompareOutputAndProject()
         {
+            var compareResult = CompareTempGenerationWithProject();
             var result = new NewItemGenerationResult();
-            result.NewFiles.AddRange(GenContext.Current.NewFiles.Select(n =>
+            result.NewFiles.AddRange(compareResult.NewFiles.Select(n =>
                 new NewItemGenerationFileInfo(
                         n,
                         Path.Combine(GenContext.Current.OutputPath, n),
                         Path.Combine(GenContext.Current.ProjectPath, n))));
 
-            result.ConflictingFiles.AddRange(GenContext.Current.ConflictFiles.Select(n =>
+            result.ConflictingFiles.AddRange(compareResult.ConflictingFiles.Select(n =>
                 new NewItemGenerationFileInfo(
                         n,
                         Path.Combine(GenContext.Current.OutputPath, n),
                         Path.Combine(GenContext.Current.ProjectPath, n))));
 
-            result.ModifiedFiles.AddRange(GenContext.Current.ModifiedFiles.Select(n =>
-              new NewItemGenerationFileInfo(
+            result.ModifiedFiles.AddRange(compareResult.ModifiedFiles.Select(n =>
+                new NewItemGenerationFileInfo(
                       n,
                       Path.Combine(GenContext.Current.OutputPath, n),
                       Path.Combine(GenContext.Current.ProjectPath, n))));
 
-            result.UnchangedFiles.AddRange(GenContext.Current.UnchangedFiles.Select(n =>
-             new NewItemGenerationFileInfo(
+            result.UnchangedFiles.AddRange(compareResult.UnchangedFiles.Select(n =>
+                new NewItemGenerationFileInfo(
                      n,
                      Path.Combine(GenContext.Current.OutputPath, n),
                      Path.Combine(GenContext.Current.ProjectPath, n))));
 
             return result;
+        }
+
+        private static bool FilesAreEqual(string file, string destFilePath)
+        {
+            return File.ReadAllLines(file).SequenceEqual(File.ReadAllLines(destFilePath));
         }
 
         public void FinishGeneration(UserSelection userSelection)
@@ -167,23 +227,20 @@ namespace Microsoft.Templates.UI
 
         public void UnsafeFinishGeneration(UserSelection userSelection)
         {
+            var compareResult = CompareTempGenerationWithProject();
             if (userSelection.ItemGenerationType == ItemGenerationType.GenerateAndMerge)
             {
                 // BackupProjectFiles
-                ExecuteSyncGenerationPostActions();
+                ExecuteSyncGenerationPostActions(compareResult);
             }
             else
             {
-                ExecuteOutputGenerationPostActions();
+                ExecuteOutputGenerationPostActions(compareResult);
             }
         }
 
         public void CleanupTempGeneration()
         {
-            GenContext.Current.NewFiles.Clear();
-            GenContext.Current.ConflictFiles.Clear();
-            GenContext.Current.UnchangedFiles.Clear();
-            GenContext.Current.ModifiedFiles.Clear();
             GenContext.Current.GenerationWarnings.Clear();
             GenContext.Current.MergeFilesFromProject.Clear();
 
@@ -202,7 +259,7 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        private void BackupProjectFiles(NewItemGenerationResult result)
+        private void BackupProjectFiles(TempGenerationResult result)
         {
             var projectGuid = GenContext.ToolBox.Shell.GetActiveProjectGuid();
 
@@ -231,17 +288,17 @@ namespace Microsoft.Templates.UI
 
             foreach (var file in modifiedFiles)
             {
-                var originalFile = file.ProjectFilePath;
-                var backupFile = Path.Combine(backupFolder, file.Name);
+                var originalFile = Path.Combine(GenContext.Current.ProjectPath, file);
+                var backupFile = Path.Combine(backupFolder, file);
                 var destDirectory = Path.GetDirectoryName(backupFile);
 
                 Fs.SafeCopyFile(originalFile, destDirectory, true);
             }
         }
 
-        private void ExecuteSyncGenerationPostActions()
+        private void ExecuteSyncGenerationPostActions(TempGenerationResult result)
         {
-            var postActions = _postactionFactory.FindSyncGenerationPostActions();
+            var postActions = _postactionFactory.FindSyncGenerationPostActions(result);
 
             foreach (var postAction in postActions)
             {
@@ -249,9 +306,9 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        private void ExecuteOutputGenerationPostActions()
+        private void ExecuteOutputGenerationPostActions(TempGenerationResult result)
         {
-            var postActions = _postactionFactory.FindOutputGenerationPostActions();
+            var postActions = _postactionFactory.FindOutputGenerationPostActions(result);
 
             foreach (var postAction in postActions)
             {

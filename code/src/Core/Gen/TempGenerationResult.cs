@@ -10,17 +10,18 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core.Gen;
+using System.Collections.Generic;
 
-namespace Microsoft.Templates.Core.PostActions.Catalog
+namespace Microsoft.Templates.Core.Gen
 {
-    public class AddContextItemsToProjectPostAction : PostAction
+    public class TempGenerationResult
     {
-        public override void Execute()
-        {
-            GenContext.ToolBox.Shell.ShowStatusBarMessage(Strings.Resources.StatusAddingItems);
-            GenContext.ToolBox.Shell.AddItems(GenContext.Current.ProjectItems.ToArray());
-            GenContext.Current.ProjectItems.Clear();
-        }
+        public List<string> NewFiles { get; } = new List<string>();
+
+        public List<string> ModifiedFiles { get; } = new List<string>();
+
+        public List<string> ConflictingFiles { get; } = new List<string>();
+
+        public List<string> UnchangedFiles { get; } = new List<string>();
     }
 }

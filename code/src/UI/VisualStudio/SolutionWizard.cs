@@ -12,17 +12,14 @@
 
 using System.Collections.Generic;
 using System.IO;
-
 using EnvDTE;
-
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
-using Microsoft.VisualStudio.TemplateWizard;
-using Microsoft.Templates.UI.Resources;
-using System.IO;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.UI.Resources;
+using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -43,14 +40,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
         public List<string> FilesToOpen { get; } = new List<string>();
-
-        public List<string> NewFiles { get; } = new List<string>();
-
-        public List<string> ModifiedFiles { get; } = new List<string>();
-
-        public List<string> ConflictFiles { get; } = new List<string>();
-
-        public List<string> UnchangedFiles { get; } = new List<string>();
 
         public SolutionWizard()
         {
