@@ -13,7 +13,7 @@ namespace Param_ItemNamespace.Views
     public sealed partial class MapPagePage : Page, System.ComponentModel.INotifyPropertyChanged
     {
         // TODO UWPTemplates: Set your preferred default zoom level
-        private const double defaultZoomLevel = 17;
+        private const double DefaultZoomLevel = 17;
 
         private readonly LocationService locationService;
 
@@ -25,6 +25,7 @@ namespace Param_ItemNamespace.Views
         };
 
         private double _zoomLevel;
+
         public double ZoomLevel
         {
             get { return _zoomLevel; }
@@ -32,6 +33,7 @@ namespace Param_ItemNamespace.Views
         }
 
         private Geopoint _center;
+
         public Geopoint Center
         {
             get { return _center; }
@@ -42,7 +44,7 @@ namespace Param_ItemNamespace.Views
         {
             locationService = new LocationService();
             Center = new Geopoint(defaultPosition);
-            ZoomLevel = defaultZoomLevel;
+            ZoomLevel = DefaultZoomLevel;
             InitializeComponent();
         }
 
@@ -53,7 +55,7 @@ namespace Param_ItemNamespace.Views
                 locationService.PositionChanged += LocationServicePositionChanged;
 
                 var initializationSuccessful = await locationService.InitializeAsync();
-                
+
                 if (initializationSuccessful)
                 {
                     await locationService.StartListeningAsync();
@@ -71,8 +73,8 @@ namespace Param_ItemNamespace.Views
 
             if (mapControl != null)
             {
-                // TODO UWPTemplates: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
-                mapControl.MapServiceToken = "";
+                // TODO UWPTemplates: Set your map service token. If you don't have one, request at https://www.bingmapsportal.com/
+                mapControl.MapServiceToken = string.Empty;
 
                 AddMapIcon(Center, "Map_YourLocation".GetLocalized());
             }

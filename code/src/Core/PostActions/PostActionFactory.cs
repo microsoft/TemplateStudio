@@ -30,6 +30,7 @@ namespace Microsoft.Templates.Core.PostActions
 
             AddPredefinedActions(genInfo, genResult, postActions);
             AddMergeActions(postActions, $"*{MergePostAction.Extension}*");
+            AddSearchAndReplaceActions(postActions, $"*{SearchAndReplacePostAction.Extension}*");
 
             return postActions;
         }
@@ -71,9 +72,17 @@ namespace Microsoft.Templates.Core.PostActions
         private static void AddMergeActions(List<PostAction> postActions, string searchPattern)
         {
             Directory
-               .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
-               .ToList()
-               .ForEach(f => postActions.Add(new MergePostAction(f)));
+                .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
+                .ToList()
+                .ForEach(f => postActions.Add(new MergePostAction(f)));
+        }
+
+        private static void AddSearchAndReplaceActions(List<PostAction> postActions, string searchPattern)
+        {
+            Directory
+                .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
+                .ToList()
+                .ForEach(f => postActions.Add(new SearchAndReplacePostAction(f)));
         }
     }
 }

@@ -10,9 +10,10 @@ namespace Param_RootNamespace.Services
     {
         private const string SettingsKey = "RequestedTheme";
 
-        public static event EventHandler<ElementTheme> OnThemeChanged = delegate { };
+        public static event EventHandler<ElementTheme> OnThemeChanged = (sender, args) => { };
 
         public static bool IsLightThemeEnabled => Theme == ElementTheme.Light;
+
         public static ElementTheme Theme { get; set; }
 
         public static async Task InitializeAsync()
@@ -53,7 +54,7 @@ namespace Param_RootNamespace.Services
         {
             ElementTheme cacheTheme = ElementTheme.Light;
             string themeName = await ApplicationData.Current.LocalSettings.ReadAsync<string>(SettingsKey);
-            if (String.IsNullOrEmpty(themeName))
+            if (string.IsNullOrEmpty(themeName))
             {
                 cacheTheme = Application.Current.RequestedTheme == ApplicationTheme.Dark ? ElementTheme.Dark : ElementTheme.Light;
             }
@@ -61,6 +62,7 @@ namespace Param_RootNamespace.Services
             {
                 Enum.TryParse<ElementTheme>(themeName, out cacheTheme);
             }
+
             return cacheTheme;
         }
 

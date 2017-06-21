@@ -9,6 +9,7 @@ namespace Param_ItemNamespace.ViewModels
     {
         // TODO UWPTemplates: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
         private bool _isLightThemeEnabled;
+
         public bool IsLightThemeEnabled
         {
             get { return _isLightThemeEnabled; }
@@ -16,6 +17,7 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         private string _appDescription;
+
         public string AppDescription
         {
             get { return _appDescription; }

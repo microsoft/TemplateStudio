@@ -17,6 +17,7 @@ namespace wts.ItemName.ViewModels
         private const string NarrowStateName = "NarrowState";
 
         private bool _isPaneOpen;
+
         public bool IsPaneOpen
         {
             get { return _isPaneOpen; }
@@ -24,6 +25,7 @@ namespace wts.ItemName.ViewModels
         }
 
         private SplitViewDisplayMode _displayMode = SplitViewDisplayMode.CompactInline;
+
         public SplitViewDisplayMode DisplayMode
         {
             get { return _displayMode; }
@@ -33,6 +35,7 @@ namespace wts.ItemName.ViewModels
         private object _lastSelectedItem;
 
         private ObservableCollection<ShellNavigationItem> _primaryItems = new ObservableCollection<ShellNavigationItem>();
+
         public ObservableCollection<ShellNavigationItem> PrimaryItems
         {
             get { return _primaryItems; }
@@ -40,6 +43,7 @@ namespace wts.ItemName.ViewModels
         }
 
         private ObservableCollection<ShellNavigationItem> _secondaryItems = new ObservableCollection<ShellNavigationItem>();
+
         public ObservableCollection<ShellNavigationItem> SecondaryItems
         {
             get { return _secondaryItems; }
@@ -47,6 +51,7 @@ namespace wts.ItemName.ViewModels
         }
 
         private ICommand _openPaneCommand;
+
         public ICommand OpenPaneCommand
         {
             get
@@ -61,6 +66,7 @@ namespace wts.ItemName.ViewModels
         }
 
         private ICommand _itemSelected;
+
         public ICommand ItemSelectedCommand
         {
             get
@@ -75,6 +81,7 @@ namespace wts.ItemName.ViewModels
         }
 
         private ICommand _stateChangedCommand;
+
         public ICommand StateChangedCommand
         {
             get

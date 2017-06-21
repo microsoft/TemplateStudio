@@ -7,9 +7,10 @@ namespace Param_ItemNamespace.Views
     public sealed partial class WebViewPagePage : Page, System.ComponentModel.INotifyPropertyChanged
     {
         // TODO UWPTemplates: Set your hyperlink default here
-        private const string defaultUrl = "https://developer.microsoft.com/en-us/windows/apps";
+        private const string DefaultUrl = "https://developer.microsoft.com/en-us/windows/apps";
 
         private Uri _source;
+
         public Uri Source
         {
             get { return _source; }
@@ -17,47 +18,61 @@ namespace Param_ItemNamespace.Views
         }
 
         private bool _isLoading;
+
         public bool IsLoading
         {
-            get { return _isLoading; }
+            get
+            {
+                return _isLoading;
+            }
+
             set
             {
-                if (value) IsShowingFailedMessage = false;
+                if (value)
+                {
+                    IsShowingFailedMessage = false;
+                }
+
                 Set(ref _isLoading, value);
                 IsLoadingVisibility = value ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
         private Visibility _isLoadingVisibility;
+
         public Visibility IsLoadingVisibility
         {
             get { return _isLoadingVisibility; }
-            set
-            {
-                Set(ref _isLoadingVisibility, value);
-            }
+            set { Set(ref _isLoadingVisibility, value); }
         }
 
         private bool _isShowingFailedMessage;
+
         public bool IsShowingFailedMessage
         {
-            get { return _isShowingFailedMessage; }
+            get
+            {
+                return _isShowingFailedMessage;
+            }
+
             set
             {
-                if (value) IsLoading = false;
+                if (value)
+                {
+                    IsLoading = false;
+                }
+
                 Set(ref _isShowingFailedMessage, value);
                 FailedMesageVisibility = value ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
         private Visibility _failedMesageVisibility;
+
         public Visibility FailedMesageVisibility
         {
             get { return _failedMesageVisibility; }
-            set
-            {
-                Set(ref _failedMesageVisibility, value);
-            }
+            set { Set(ref _failedMesageVisibility, value); }
         }
 
         private void OnNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
@@ -113,7 +128,7 @@ namespace Param_ItemNamespace.Views
 
         public WebViewPagePage()
         {
-            Source = new Uri(defaultUrl);
+            Source = new Uri(DefaultUrl);
             InitializeComponent();
             IsLoading = true;
         }

@@ -4,7 +4,7 @@ using Windows.ApplicationModel;
 
 namespace Param_RootNamespace
 {
-    sealed partial class App : Application
+    public sealed partial class App : Application
     {
         public App()
         {
@@ -12,15 +12,15 @@ namespace Param_RootNamespace
 
             EnteredBackground += App_EnteredBackground;
         }
-        //^^
-        //{[{
-            
+//^^
+//{[{
+
         private async void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e)
         {
             var deferral = e.GetDeferral();
             await Helpers.Singleton<SuspendAndResumeService>.Instance.SaveStateAsync();
             deferral.Complete();
         }
-        //}]}
+//}]}
     }
 }

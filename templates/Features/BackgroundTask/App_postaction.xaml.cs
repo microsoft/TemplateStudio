@@ -1,11 +1,14 @@
-﻿sealed partial class App : Application
+﻿namespace Param_RootNamespace
 {
-    //^^
-    //{[{
-
-    protected override async void OnBackgroundActivated(BackgroundActivatedEventArgs args)
+    public sealed partial class App : Application
     {
-        await ActivationService.ActivateAsync(args);
+//^^
+//{[{
+
+        protected override async void OnBackgroundActivated(BackgroundActivatedEventArgs args)
+        {
+            await ActivationService.ActivateAsync(args);
+        }
+ //}]}
     }
-    //}]}
 }

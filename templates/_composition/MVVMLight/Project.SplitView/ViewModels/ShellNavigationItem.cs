@@ -10,6 +10,7 @@ namespace wts.ItemName.ViewModels
         private bool _isSelected;
 
         private Visibility _selectedVis = Visibility.Collapsed;
+
         public Visibility SelectedVis
         {
             get { return _selectedVis; }
@@ -17,23 +18,31 @@ namespace wts.ItemName.ViewModels
         }
 
         private SolidColorBrush _selectedForeground = null;
+
         public SolidColorBrush SelectedForeground
         {
-            get
-            {
-                return _selectedForeground ?? (_selectedForeground = GetStandardTextColorBrush());
-            }
+            get { return _selectedForeground ?? (_selectedForeground = GetStandardTextColorBrush()); }
             set { Set(ref _selectedForeground, value); }
         }
 
         public string Label { get; set; }
+
         public Symbol Symbol { get; set; }
-        public char SymbolAsChar { get { return (char)Symbol; } }
+
+        public char SymbolAsChar
+        {
+            get { return (char)Symbol; }
+        }
+
         public string ViewModelName { get; set; }
 
         public bool IsSelected
         {
-            get { return _isSelected; }
+            get
+            {
+                return _isSelected;
+            }
+
             set
             {
                 Set(ref _isSelected, value);
