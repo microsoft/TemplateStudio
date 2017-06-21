@@ -142,6 +142,7 @@ namespace wts.ItemName.ViewModels
             {
                 IsPaneOpen = false;
             }
+
             Navigate(args.ClickedItem);
         }
 
@@ -166,6 +167,7 @@ namespace wts.ItemName.ViewModels
             {
                 (oldValue as ShellNavigationItem).IsSelected = false;
             }
+
             if (newValue != null)
             {
                 (newValue as ShellNavigationItem).IsSelected = true;
