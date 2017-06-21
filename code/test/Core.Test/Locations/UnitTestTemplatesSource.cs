@@ -19,12 +19,13 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace Microsoft.Templates.Core.Test.Locations
 {
-    public class UnitTestsTemplatesSource : TemplatesSource
+    public sealed class UnitTestsTemplatesSource : TemplatesSource
     {
         private string LocalVersion = "0.0.0.0";
 
         public override string Id => "UnitTest"; 
         protected override bool VerifyPackageSignatures => false;
+        public override bool ForcedAdquisition => true; 
 
         protected override string AcquireMstx()
         {
