@@ -46,7 +46,7 @@ namespace Microsoft.Templates.Test
             GenContext.Current = this;
         }
 
-        [Theory, MemberData("GetProjectTemplatesTest"), Trait("Type", "ProjectGeneration")]
+        [Theory, MemberData("GetProjectTemplatesForStyleCop"), Trait("Type", "ProjectGeneration")]
         public async void GenerateAllPagesAndFeaturesAndCheckWithStyleCop(string projectType, string framework)
         {
             var targetProjectTemplate = StyleCopGenerationTestsFixture.Templates
@@ -158,13 +158,7 @@ namespace Microsoft.Templates.Test
             return (userSelection.Pages.Any(p => p.template.Identity == item.Identity) || userSelection.Features.Any(f => f.template.Identity == item.Identity));
         }
 
-        public static IEnumerable<object[]> GetProjectTemplatesTest()
-        {
-            GenContext.Bootstrap(new StyleCopPlusLocalTemplatesSource(), new FakeGenShell());
-            yield return new object[] { "SplitView", "MVVMLight" };
-        }
-
-        public static IEnumerable<object[]> GetProjectTemplates()
+        public static IEnumerable<object[]> GetProjectTemplatesForStyleCop()
         {
             GenContext.Bootstrap(new StyleCopPlusLocalTemplatesSource(), new FakeGenShell());
             var projectTemplates = StyleCopGenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project);

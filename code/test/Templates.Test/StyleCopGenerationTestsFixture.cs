@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Test
 {
     public sealed class StyleCopGenerationTestsFixture : IDisposable
     {
-        internal string TestRunPath = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\{DateTime.Now.ToString("dd_HHmm")}\\";
+        internal string TestRunPath = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\SC{DateTime.Now.ToString("dd_HHmm")}\\";
 
         internal string TestProjectsPath => Path.GetFullPath(Path.Combine(TestRunPath, "Proj"));
 
