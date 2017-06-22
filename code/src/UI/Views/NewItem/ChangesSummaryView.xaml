@@ -59,10 +59,7 @@
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="DeletedLineTemplate">
-                <Grid>
-                    <Grid.Background>
-                        <SolidColorBrush Color="{StaticResource UIRedColor}" Opacity="0.3"/>
-                    </Grid.Background>
+                <Grid Background="{StaticResource UILightRed}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
@@ -85,10 +82,25 @@
                 DeletedLineTemplate="{StaticResource DeletedLineTemplate }" />
 
             <DataTemplate x:Key="NewtDetailTemplate">
-                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
-                    <ItemsControl
-                        ItemsSource="{Binding NewFileLines}" Margin="{StaticResource MediumMargin}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
-                </ScrollViewer>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Margin="0,0,17,0">
+                        <Grid Background="{StaticResource UIGray}" Margin="{StaticResource MediumLeftRightMargin}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="{Binding Icon}" Margin="{StaticResource MediumLeftMargin}" Stretch="Uniform" MaxHeight="15" MaxWidth="15"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Subject}" Margin="{StaticResource MediumLeftMargin}" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+                    <ScrollViewer Grid.Row="1">
+                        <ItemsControl Margin="{StaticResource MediumMargin}" ItemsSource="{Binding NewFileLines}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
+                    </ScrollViewer>
+                </Grid>
             </DataTemplate>
             <DataTemplate x:Key="UnchangedtDetailTemplate">
                 <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">

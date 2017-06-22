@@ -5,8 +5,9 @@
     <Color x:Key="UIMiddleDarkBlueColor">#017af3</Color>
     <Color x:Key="UIDarkBlueColor">#004f9e</Color>
 
-    <Color x:Key="UILightGreenColor">#EBF1DD</Color>
+    <Color x:Key="UILightGreenColor">#E6FFED</Color>
     <Color x:Key="UIGreenColor">#00CC6A</Color>
+    
     <Color x:Key="UIWhiteColor">#ffffff</Color>
 
     <Color x:Key="UIBlackColor">#000000</Color>
@@ -18,7 +19,9 @@
     <Color x:Key="UIMiddleDarkGrayColor">#666666</Color>
 
     <Color x:Key="UIRedColor">#E81123</Color>
+    <Color x:Key="UILightRedColor">#ffeef0</Color>
     <Color x:Key="UIDarkRedColor">#990000</Color>
+    
     <Color x:Key="UIYellowColor">#FDFBAC</Color>
     <Color x:Key="UIDarkYellowColor">#FFB900</Color>
 
@@ -41,6 +44,8 @@
 
     <SolidColorBrush x:Key="UIRed" Color="{StaticResource UIRedColor}"/>
     <SolidColorBrush x:Key="UIDarkRed" Color="{StaticResource UIDarkRedColor}"/>
+    <SolidColorBrush x:Key="UILightRed" Color="{StaticResource UILightRedColor}"/>
+    
     <SolidColorBrush x:Key="UIYellow" Color="{StaticResource UIYellowColor}"/>
     <SolidColorBrush x:Key="UIDarkYellow" Color="{StaticResource UIDarkYellowColor}"/>
 
