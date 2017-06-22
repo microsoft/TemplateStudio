@@ -24,7 +24,10 @@ namespace Microsoft.Templates.Core.Locations
         private const string VersionFileName = "version.txt";
 
         private List<string> _tempFoldersUsed = new List<string>();
+        public virtual bool ForcedAdquisition { get; protected set; }
+
         protected virtual bool VerifyPackageSignatures { get => true; }
+
         public virtual string Id { get => Configuration.Current.Environment; }
 
         public void Acquire(string targetFolder)

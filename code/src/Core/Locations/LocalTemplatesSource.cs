@@ -17,20 +17,23 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace Microsoft.Templates.Core.Locations
 {
-    public class LocalTemplatesSource : TemplatesSource
+    public sealed class LocalTemplatesSource : TemplatesSource
     {
         public string LocalTemplatesVersion { get; private set; }
         public string LocalWizardVersion { get; private set; }
-
         protected override bool VerifyPackageSignatures => false;
+        public override bool ForcedAdquisition { get => base.ForcedAdquisition; protected set => base.ForcedAdquisition = value; }
+
         public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
 
         public LocalTemplatesSource() : this("0.0.0.0", "0.0.0.0")
         {
+            base.ForcedAdquisition = true;
         }
 
-        public LocalTemplatesSource(string wizardVersion, string templatesVersion)
+        public LocalTemplatesSource(string wizardVersion, string templatesVersion, bool forcedAdquisition = true)
         {
+            base.ForcedAdquisition = forcedAdquisition;
             LocalTemplatesVersion = templatesVersion;
             LocalWizardVersion = wizardVersion;
         }
