@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             var sb = new StringBuilder();
 
             sb.AppendLine("# Generation summary");
-            sb.AppendLine("The following changes have been incorporated in your project");
+            sb.AppendLine("The following changes have been incorporated into your project:");
 
             if (_config.NewFiles.Any())
             {
@@ -48,50 +48,62 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 }
             }
 
-            sb.AppendLine("## Modified files: ");
-
-            foreach (var mergeFile in GenContext.Current.MergeFilesFromProject)
+            if (GenContext.Current.MergeFilesFromProject.Any())
             {
-                var modifiedFilePath = Path.Combine(GenContext.Current.ProjectPath, mergeFile.Key);
+                sb.AppendLine("## Modified files: ");
 
-                sb.AppendLine($"### Changes in File '{mergeFile.Key}':");
-                sb.AppendLine();
+                foreach (var mergeFile in GenContext.Current.MergeFilesFromProject)
+                {
+                    var modifiedFilePath = Path.Combine(GenContext.Current.ProjectPath, mergeFile.Key);
 
-                if (!GenContext.Current.GenerationWarnings.Any(w => w.FileName == mergeFile.Key))
-                {
-                    sb.AppendLine($"See the final result: [{mergeFile.Key}]({Uri.EscapeUriString(modifiedFilePath)})");
+                    sb.AppendLine($"### Changes in File '{mergeFile.Key}':");
                     sb.AppendLine();
-                    sb.AppendLine($"The following changes were applied:");
-                    sb.AppendLine();
-                }
-                else
-                {
-                    foreach (var warning in GenContext.Current.GenerationWarnings.Where(w => w.FileName == mergeFile.Key))
+
+                    if (!GenContext.Current.GenerationWarnings.Any(w => w.FileName == mergeFile.Key))
                     {
-                        sb.AppendLine(warning.Description);
+                        sb.AppendLine($"See the final result: [{mergeFile.Key}]({Uri.EscapeUriString(modifiedFilePath)})");
+                        sb.AppendLine();
+                        sb.AppendLine($"The following changes were applied:");
+                        sb.AppendLine();
+                    }
+                    else
+                    {
+                        var warnings = GenContext.Current.GenerationWarnings.Where(w => w.FileName == mergeFile.Key);
+                        if (warnings.Count() == 1)
+                        {
+                            sb.AppendLine($"The changes could not be integrated: {warnings.First()?.Description}");
+                        }
+                        else
+                        {
+                            sb.AppendLine("The changes could not be integrated. The following warnings were generated:");
+                            foreach (var warning in warnings)
+                            {
+                                sb.AppendLine($"* {warning.Description}");
+                                sb.AppendLine();
+                            }
+                        }
+                    }
+
+                    foreach (var mergeInfo in mergeFile.Value)
+                    {
+                        if (!string.IsNullOrEmpty(mergeInfo.Intent))
+                        {
+                            sb.AppendLine(mergeInfo.Intent);
+                        }
+                        sb.AppendLine();
+
+                        sb.AppendLine($"```{mergeInfo.Format}");
+                        sb.AppendLine(mergeInfo.PostActionCode);
+                        sb.AppendLine("```");
+
                         sb.AppendLine();
                     }
                 }
-
-                foreach (var mergeInfo in mergeFile.Value)
-                {
-                    if (!string.IsNullOrEmpty(mergeInfo.Intent))
-                    {
-                        sb.AppendLine(mergeInfo.Intent);
-                    }
-                    sb.AppendLine();
-
-                    sb.AppendLine($"```{mergeInfo.Format}");
-                    sb.AppendLine(mergeInfo.PostActionCode);
-                    sb.AppendLine("```");
-
-                    sb.AppendLine();
-                }
             }
-
             if (_config.ConflictingFiles.Any())
             {
                 sb.AppendLine($"## Conflicting files:");
+                sb.AppendLine("These files already existed in your project and were overwritten by the new item generation. Please make sure everything is in the right place.");
                 sb.AppendLine();
                 foreach (var conflictFile in _config.ConflictingFiles)
                 {
