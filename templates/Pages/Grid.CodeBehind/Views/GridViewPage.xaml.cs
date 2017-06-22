@@ -14,6 +14,11 @@ namespace Param_ItemNamespace.Views
         public GridViewPage()
         {
             InitializeComponent();
+            
+            // TODO: Moving from x:Bind to Binding as workarround for https://github.com/Microsoft/WindowsTemplateStudio/issues/496
+            // Once Telerik fix the root cause, we get back to x:Bind and remove the following line
+            DataContext = this;
+
         }
 
         public ObservableCollection<Order> Source
