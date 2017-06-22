@@ -5,14 +5,12 @@ namespace Param_ItemNamespace.Services
 {
     internal class ActivationService
     {
-        private async Task StartupAsync()
-        {
-            Singleton<ToastNotificationsFeatureService>.Instance.ShowToastNotificationSample();
-        }
-
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
             yield return Singleton<ToastNotificationsFeatureService>.Instance;
+//{--{
+
+            yield break;//}--}
         }
     }
 }

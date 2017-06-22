@@ -1,14 +1,14 @@
 ﻿        private SolidColorBrush GetStandardTextColorBrush()
         {
-            var result = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
+            var brush = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
 
             //{[{
             if (!Services.ThemeSelectorService.IsLightThemeEnabled)
             {
-                result = Application.Current.Resources["SystemControlForegroundAltHighBrush"] as SolidColorBrush;
+                brush = Application.Current.Resources["SystemControlForegroundAltHighBrush"] as SolidColorBrush;
             }
             //}]}
-            return result;
+            return brush;
         }
 
         private ShellNavigationItem(string name, Symbol symbol, Type pageType)

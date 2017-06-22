@@ -34,7 +34,7 @@ namespace Microsoft.Templates.UI.Services
             if (_frame.CanGoBack)
             {
                 _frame.GoBack();
-            }            
-        }        
+            }
+        }
     }
 }

@@ -94,7 +94,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
 
         private void ReadAvailableContent()
         {
-            DirectoryInfo di = new DirectoryInfo(GetTemplatesFolder());
+            var di = new DirectoryInfo(GetTemplatesFolder());
             AvailableContent.Clear();
 
             foreach(var sdi in di.EnumerateDirectories())
@@ -107,7 +107,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
 
         private void Clean()
         {
-            DirectoryInfo di = new DirectoryInfo(GetTemplatesFolder());
+            var di = new DirectoryInfo(GetTemplatesFolder());
 
             foreach (var sdi in di.EnumerateDirectories())
             {
@@ -139,8 +139,8 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
 
         private string GetTemplatesFolder()
         {
-            LocalTemplatesSource _templatesSource = new LocalTemplatesSource(_useTemplatesVersion);
-            TemplatesSynchronization _templatesSync = new TemplatesSynchronization(_templatesSource, new Version(_useWizardVersion));
+            var _templatesSource = new LocalTemplatesSource(_useWizardVersion, _useTemplatesVersion);
+            var _templatesSync = new TemplatesSynchronization(_templatesSource, new Version(_useWizardVersion));
             string currentTemplatesFolder = _templatesSync.CurrentTemplatesFolder;
 
             return currentTemplatesFolder;

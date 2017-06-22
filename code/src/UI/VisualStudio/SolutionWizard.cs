@@ -10,8 +10,8 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
 using System.Collections.Generic;
+using System.IO;
 
 using EnvDTE;
 
@@ -21,7 +21,6 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.Templates.UI.Resources;
-using System.IO;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -43,7 +42,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 #else
                 GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell());
 #endif
-            }
+                }
         }
 
         public void BeforeOpeningFile(ProjectItem projectItem)
@@ -69,7 +68,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private static void PostGenerationActions()
         {
-
             GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.RestoringMessage);
             GenContext.ToolBox.Shell.RestorePackages();
 
@@ -78,13 +76,27 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
-            if (runKind == WizardRunKind.AsNewProject || runKind == WizardRunKind.AsMultiProject)
+            var solutionDirectory = replacementsDictionary["$solutiondirectory$"];
+
+            try
             {
-                _replacementsDictionary = replacementsDictionary;
+                if (runKind == WizardRunKind.AsNewProject || runKind == WizardRunKind.AsMultiProject)
+                {
+                    _replacementsDictionary = replacementsDictionary;
 
-                GenContext.Current = this;
+                    GenContext.Current = this;
 
-                _userSelection = GenController.GetUserSelection();
+                    _userSelection = GenController.GetUserSelection();
+                }
+            }
+            catch (WizardBackoutException)
+            {
+                if (Directory.Exists(solutionDirectory))
+                {
+                    Directory.Delete(solutionDirectory, true);
+                }
+
+                throw;
             }
         }
 

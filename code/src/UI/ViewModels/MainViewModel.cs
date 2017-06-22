@@ -16,6 +16,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -32,16 +33,18 @@ namespace Microsoft.Templates.UI.ViewModels
     public class MainViewModel : Observable
     {
         private bool _canGoBack;
-        private bool _canGoForward;        
-        private bool _canCreate;
+        private bool _canGoForward;
+        private bool _templatesReady;
+        private bool _hasValidationErrors;
         private bool _templatesAvailable;
 
         public static MainViewModel Current;
         public MainView MainView;
 
         private StatusViewModel _status = StatusControl.EmptyStatus;
+
         public StatusViewModel Status
-        {            
+        {
             get => _status;
             set => SetProperty(ref _status, value);
         }
@@ -122,9 +125,28 @@ namespace Microsoft.Templates.UI.ViewModels
         private RelayCommand _createCommand;
 
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
-        public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));                
+        public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && _canGoForward));
-        public RelayCommand CreateCommand => _createCommand ?? (_createCommand = new RelayCommand(OnCreate, () => _canCreate));
+        public RelayCommand CreateCommand => _createCommand ?? (_createCommand = new RelayCommand(OnCreate, CanCreate));
+
+        private bool CanCreate()
+        {
+            if (!_templatesReady)
+            {
+                return false;
+            }
+            if (_hasValidationErrors)
+            {
+                return false;
+            }
+            if (string.IsNullOrEmpty(ProjectTemplates.HomeName))
+            {
+                Status = new StatusViewModel(StatusType.Error, StringRes.ErrorNoHomePage);
+                return false;
+            }
+            CleanStatus();
+            return true;
+        }
 
         public ProjectSetupViewModel ProjectSetup { get; private set; } = new ProjectSetupViewModel();
 
@@ -138,8 +160,10 @@ namespace Microsoft.Templates.UI.ViewModels
             Current = this;
         }
 
-        public async Task InitializeAsync()
-        {            
+        private StackPanel _summaryPageGroups;
+        public async Task InitializeAsync(StackPanel summaryPageGroups)
+        {
+            _summaryPageGroups = summaryPageGroups;
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += Sync_SyncStatusChanged;
 
             SummaryLicenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryLicenses)); };
@@ -153,14 +177,14 @@ namespace Microsoft.Templates.UI.ViewModels
             }
             catch (Exception ex)
             {
-                Status = new StatusViewModel(StatusType.Information, StringRes.ErrorSync);
+                Status = new StatusViewModel(StatusType.Information, StringRes.ErrorSync, true);
 
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);
             }
             finally
             {
-                Current.LoadingContentVisibility = Visibility.Collapsed;                
+                Current.LoadingContentVisibility = Visibility.Collapsed;
             }
         }
 
@@ -169,11 +193,11 @@ namespace Microsoft.Templates.UI.ViewModels
             if (CheckProjectSetupChanged())
             {
                 Status = new StatusViewModel(StatusType.Warning, string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName));
-            }    
+            }
             else
             {
-                Status = StatusControl.EmptyStatus;
-            }   
+                CleanStatus();
+            }
         }
 
         public void UnsuscribeEventHandlers()
@@ -194,9 +218,9 @@ namespace Microsoft.Templates.UI.ViewModels
             SyncLicenses(genLicenses);
         }
 
-        public void EnableProjectCreation()
+        public void SetTemplatesReadyForProjectCreation()
         {
-            _canCreate = true;
+            _templatesReady = true;
             CreateCommand.OnCanExecuteChanged();
         }
 
@@ -206,18 +230,18 @@ namespace Microsoft.Templates.UI.ViewModels
             NextCommand.OnCanExecuteChanged();
         }
 
-        private void Sync_SyncStatusChanged(object sender, SyncStatus status)
+        private async void Sync_SyncStatusChanged(object sender, SyncStatusEventArgs args)
         {
-
+            SyncStatus status = args.Status;
             Status = new StatusViewModel(StatusType.Information, GetStatusText(status), true);
 
             if (status == SyncStatus.Updated)
             {
                 TemplatesVersion = GenContext.ToolBox.Repo.TemplatesVersion;
-                Status = StatusControl.EmptyStatus;
+                CleanStatus();
 
                 _templatesAvailable = true;
-                NextCommand.OnCanExecuteChanged();
+                await ProjectSetup.InitializeAsync();
             }
 
             if (status == SyncStatus.OverVersion)
@@ -249,6 +273,27 @@ namespace Microsoft.Templates.UI.ViewModels
             }
         }
 
+        private string GetStatusText(object status)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DefineDragAndDrop(ObservableCollection<SavedTemplateViewModel> items, bool allowDragAndDrop)
+        {
+            var listView = new ListView()
+            {
+                ItemsSource = items,
+                Style = MainView.FindResource("SummaryListViewStyle") as Style,
+                ItemTemplate = MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate
+            };
+            if (allowDragAndDrop)
+            {
+                var service = new DragAndDropService<SavedTemplateViewModel>(listView);
+                service.ProcessDrop += ProjectTemplates.DropTemplate;
+            }
+            _summaryPageGroups.Children.Add(listView);
+        }
+
         private string GetStatusText(SyncStatus status)
         {
             switch (status)
@@ -261,6 +306,10 @@ namespace Microsoft.Templates.UI.ViewModels
                     return StringRes.StatusAdquiring;
                 case SyncStatus.Adquired:
                     return StringRes.StatusAdquired;
+                case SyncStatus.Preparing:
+                    return StringRes.StatusPreparing;
+                case SyncStatus.Prepared:
+                    return StringRes.StatusPrepared;
                 default:
                     return string.Empty;
             }
@@ -272,17 +321,18 @@ namespace Microsoft.Templates.UI.ViewModels
             MainView.Result = null;
 
             MainView.Close();
-        }        
+        }
 
         private void OnNext()
         {
-           if (CheckProjectSetupChanged())
+            if (CheckProjectSetupChanged())
             {
                 ProjectTemplates.ResetSelection();
+                _summaryPageGroups.Children.Clear();
 
-                Status = StatusControl.EmptyStatus;
+                CleanStatus();
             }
-            
+
             NavigationService.Navigate(new ProjectTemplatesView());
 
             _canGoBack = true;
@@ -298,7 +348,7 @@ namespace Microsoft.Templates.UI.ViewModels
             NavigationService.GoBack();
 
             _canGoBack = false;
-            _canCreate = false;
+            _templatesReady = false;
 
             BackCommand.OnCanExecuteChanged();
 
@@ -308,17 +358,16 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private bool CheckProjectSetupChanged()
         {
-            if (ProjectTemplates.SavedTemplates != null && ProjectTemplates.SavedTemplates.Count != 0)
+            if (ProjectTemplates.HasTemplatesAdded && (FrameworkChanged || ProjectTypeChanged))
             {
-                if (ProjectTemplates.ContextFramework.Name != ProjectSetup.SelectedFramework.Name || 
-                    ProjectTemplates.ContextProjectType.Name != ProjectSetup.SelectedProjectType.Name)
-                {
-                    return true;
-                }
+                return true;
             }
-
             return false;
         }
+
+        private bool FrameworkChanged => ProjectTemplates.ContextFramework.Name != ProjectSetup.SelectedFramework.Name;
+
+        private bool ProjectTypeChanged => ProjectTemplates.ContextProjectType.Name != ProjectSetup.SelectedProjectType.Name;
 
         private void OnCreate()
         {
@@ -335,11 +384,12 @@ namespace Microsoft.Templates.UI.ViewModels
             var userSelection = new UserSelection()
             {
                 ProjectType = ProjectSetup.SelectedProjectType?.Name,
-                Framework = ProjectSetup.SelectedFramework?.Name
+                Framework = ProjectSetup.SelectedFramework?.Name,
+                HomeName = ProjectTemplates.HomeName
             };
 
-            userSelection.Pages.AddRange(ProjectTemplates.SavedPages);
-            userSelection.Features.AddRange(ProjectTemplates.SavedFeatures);
+            ProjectTemplates.SavedPages.ToList().ForEach(spg => userSelection.Pages.AddRange(spg.Select(sp => sp.UserSelection)));
+            userSelection.Features.AddRange(ProjectTemplates.SavedFeatures.Select(sf => sf.UserSelection));
 
             return userSelection;
         }
@@ -367,7 +417,24 @@ namespace Microsoft.Templates.UI.ViewModels
                 {
                     SummaryLicenses.Add(new SummaryLicenseViewModel(license));
                 }
-            }            
+            }
+        }
+
+        public void SetValidationErrors(string errorMessage, StatusType statusType = StatusType.Error)
+        {
+            Status = new StatusViewModel(statusType, errorMessage);
+            _hasValidationErrors = true;
+            CreateCommand.OnCanExecuteChanged();
+        }
+
+        public void CleanStatus(bool cleanValidationError = false)
+        {
+            Status = StatusControl.EmptyStatus;
+            if (cleanValidationError)
+            {
+                _hasValidationErrors = false;
+                CreateCommand.OnCanExecuteChanged();
+            }
         }
     }
 }

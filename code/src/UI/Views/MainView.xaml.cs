@@ -10,10 +10,14 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels;
+using Microsoft.Templates.UI.Controls;
 
 namespace Microsoft.Templates.UI.Views
 {
@@ -33,9 +37,8 @@ namespace Microsoft.Templates.UI.Views
 
             Loaded += async (sender, e) =>
             {
-                await ViewModel.InitializeAsync();
-
                 NavigationService.Initialize(stepFrame, new ProjectSetupView());
+                await ViewModel.InitializeAsync(summaryPageGroups);
             };
 
             Unloaded += (sender, e) =>
@@ -43,7 +46,49 @@ namespace Microsoft.Templates.UI.Views
                 ViewModel.UnsuscribeEventHandlers();
             };
 
-            InitializeComponent();            
+            InitializeComponent();
+        }
+
+        private void OnPreviewLostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            var control = e.OldFocus as TextBoxEx;
+            var button = e.NewFocus as Button;
+            string name = (button != null && button.Tag != null) ? button.Tag.ToString() : string.Empty;
+
+            if (control != null && string.IsNullOrEmpty(name))
+            {
+                var templateInfo = control.Tag as TemplateInfoViewModel;
+                if (templateInfo != null)
+                {
+                    templateInfo.CloseEdition();
+                }
+                var summaryItem = control.Tag as SavedTemplateViewModel;
+                if (summaryItem != null)
+                {
+                    summaryItem.OnCancelRename();
+                }
+            }
+        }
+
+        private void OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ViewModel.ProjectTemplates.SavedPages.ToList().ForEach(spg => spg.ToList().ForEach(p =>
+            {
+                if (p.IsEditionEnabled)
+                {
+                    p.ConfirmRenameCommand.Execute(p);
+                    p.TryClose();
+                }
+            }));
+
+            ViewModel?.ProjectTemplates?.SavedFeatures?.ToList()?.ForEach(f =>
+            {
+                if (f.IsEditionEnabled)
+                {
+                    f.ConfirmRenameCommand.Execute(f);
+                    f.TryClose();
+                }
+            });
         }
     }
 }

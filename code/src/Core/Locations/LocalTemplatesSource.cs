@@ -10,31 +10,41 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
 using System.IO;
+using System.Security;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Microsoft.Templates.Core.Locations
 {
     public class LocalTemplatesSource : TemplatesSource
     {
-        public string LocalVersion { get; private set; }
+        public string LocalTemplatesVersion { get; private set; }
+        public string LocalWizardVersion { get; private set; }
 
-        public override string Id { get => "Local"; }
+        protected override bool VerifyPackageSignatures => false;
+        public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
 
-        public string Origin { get => $@"..\..\..\..\..\{SourceFolderName}"; }
-
-        public LocalTemplatesSource() : this("0.0.0.0")
+        public LocalTemplatesSource() : this("0.0.0.0", "0.0.0.0")
         {
         }
 
-        public LocalTemplatesSource(string version)
+        public LocalTemplatesSource(string wizardVersion, string templatesVersion)
         {
-            LocalVersion = version;
+            LocalTemplatesVersion = templatesVersion;
+            LocalWizardVersion = wizardVersion;
         }
 
-        public override void Acquire(string targetFolder)
+        protected override string AcquireMstx()
         {
-            var targetVersionFolder = Path.Combine(targetFolder, LocalVersion);
-            Copy(Origin, targetVersionFolder);
+            // Compress Content adding version return templatex path.
+            var tempFolder = Path.Combine(GetTempFolder(), SourceFolderName);
+
+            Copy(Origin, tempFolder);
+
+            File.WriteAllText(Path.Combine(tempFolder, "version.txt"), LocalTemplatesVersion);
+
+            return Templatex.Pack(tempFolder);
         }
 
         protected static void Copy(string sourceFolder, string targetFolder)

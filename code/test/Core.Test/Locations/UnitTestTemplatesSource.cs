@@ -10,9 +10,12 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
 using System.IO;
 
 using Microsoft.Templates.Core.Locations;
+using System.Security;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Microsoft.Templates.Core.Test.Locations
 {
@@ -20,13 +23,20 @@ namespace Microsoft.Templates.Core.Test.Locations
     {
         private string LocalVersion = "0.0.0.0";
 
-        public override string Id { get => "UnitTest"; }
+        public override string Id => "UnitTest"; 
+        protected override bool VerifyPackageSignatures => false;
 
-        public override void Acquire(string targetFolder)
+        protected override string AcquireMstx()
         {
-            var targetVersionFolder = Path.Combine(targetFolder, LocalVersion);
+            var tempFolder = Path.Combine(GetTempFolder(), SourceFolderName);
 
-            Copy($@"..\..\TestData\{SourceFolderName}", targetVersionFolder);
+            var sourcePath = $@"..\..\TestData\{SourceFolderName}";
+
+            Copy(sourcePath, tempFolder);
+
+            File.WriteAllText(Path.Combine(tempFolder, "version.txt"), LocalVersion);
+
+            return Templatex.Pack(tempFolder);
         }
 
         protected static void Copy(string sourceFolder, string targetFolder)

@@ -133,7 +133,16 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error updating templates. See output for more details..
+        ///   Looks up a localized string similar to It&apos;s not possible to create a project without Home Page.
+        /// </summary>
+        public static string ErrorNoHomePage {
+            get {
+                return ResourceManager.GetString("ErrorNoHomePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error syncing templates. See output for more details..
         /// </summary>
         public static string ErrorSync {
             get {
@@ -340,15 +349,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Made by {0}.
-        /// </summary>
-        public static string MadeBy {
-            get {
-                return ResourceManager.GetString("MadeBy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to More detail.
         /// </summary>
         public static string MoreDetail {
@@ -421,7 +421,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Templates downloaded.
+        ///   Looks up a localized string similar to Done.
         /// </summary>
         public static string StatusAdquired {
             get {
@@ -430,7 +430,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Downloading templates....
+        ///   Looks up a localized string similar to Checking for template updates....
         /// </summary>
         public static string StatusAdquiring {
             get {
@@ -484,6 +484,24 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Templates ready.
+        /// </summary>
+        public static string StatusPrepared {
+            get {
+                return ResourceManager.GetString("StatusPrepared", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preparing templates for first use....
+        /// </summary>
+        public static string StatusPreparing {
+            get {
+                return ResourceManager.GetString("StatusPreparing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Templates updated.
         /// </summary>
         public static string StatusUpdated {
@@ -498,6 +516,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string StatusUpdating {
             get {
                 return ResourceManager.GetString("StatusUpdating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reorder (Ctrl + arrows).
+        /// </summary>
+        public static string SummaryDragAndDrop {
+            get {
+                return ResourceManager.GetString("SummaryDragAndDrop", resourceCulture);
             }
         }
         
@@ -552,6 +579,42 @@ namespace Microsoft.Templates.UI.Resources {
         public static string SummaryNoPages {
             get {
                 return ResourceManager.GetString("SummaryNoPages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options menu.
+        /// </summary>
+        public static string SummaryOpenMenu {
+            get {
+                return ResourceManager.GetString("SummaryOpenMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string SummaryOpenMenuClose {
+            get {
+                return ResourceManager.GetString("SummaryOpenMenuClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string SummaryOptionDelete {
+            get {
+                return ResourceManager.GetString("SummaryOptionDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename.
+        /// </summary>
+        public static string SummaryOptionRename {
+            get {
+                return ResourceManager.GetString("SummaryOptionRename", resourceCulture);
             }
         }
         
@@ -678,6 +741,33 @@ namespace Microsoft.Templates.UI.Resources {
         public static string UIMessageBoxTitlePattern {
             get {
                 return ResourceManager.GetString("UIMessageBoxTitlePattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable add project items. Ensure you have the required SDK..
+        /// </summary>
+        public static string UnableAddItemsToProject {
+            get {
+                return ResourceManager.GetString("UnableAddItemsToProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to add the project to the solution because is not ready. Ensure you have the expected SDK installed..
+        /// </summary>
+        public static string UnableAddProjectToSolution {
+            get {
+                return ResourceManager.GetString("UnableAddProjectToSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to refresh the project. Try to refresh it manually..
+        /// </summary>
+        public static string UnableToRefreshProject {
+            get {
+                return ResourceManager.GetString("UnableToRefreshProject", resourceCulture);
             }
         }
         

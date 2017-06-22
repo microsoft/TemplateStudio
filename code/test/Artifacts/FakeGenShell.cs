@@ -35,8 +35,7 @@ namespace Microsoft.Templates.Test.Artifacts
                 {
                     return Path.Combine(Path.GetDirectoryName(GenContext.Current.OutputPath), $"{GenContext.Current.ProjectName}.sln");
                 }
-
-                throw new Exception("Context doesn't exists");
+                return null;
             }
         }
 
@@ -150,6 +149,11 @@ namespace Microsoft.Templates.Test.Artifacts
 
         public override void CloseSolution()
         {
+        }
+
+        public override Guid GetVsProjectId()
+        {
+            return Guid.Empty;
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Microsoft.Templates.UI
         public static IEnumerable<string> GetSupportedFx(string projectType)
         {
             return GenContext.ToolBox.Repo.GetAll()
-                .Where(t => t.GetProjectType() == projectType)
+                .Where(t => t.GetProjectTypeList().Contains(projectType))
                 .SelectMany(t => t.GetFrameworkList())
                 .Distinct();
         }
@@ -48,7 +48,7 @@ namespace Microsoft.Templates.UI
                 else
                 {
                     var templateType = template.GetTemplateType();
-                    
+
                     if (templateType != TemplateType.Page && templateType != TemplateType.Feature)
                     {
                         LogOrAlertException(string.Format(StringRes.ExceptionLayoutType, template.Identity));
@@ -62,7 +62,7 @@ namespace Microsoft.Templates.UI
         }
 
         public static IEnumerable<ITemplateInfo> GetAllDependencies(ITemplateInfo template, string framework)
-        {            
+        {
            return GetDependencies(template, framework, new List<ITemplateInfo>());
         }
 
@@ -72,7 +72,7 @@ namespace Microsoft.Templates.UI
 
             foreach (var dependency in dependencies)
             {
-                var dependencyTemplate =  GenContext.ToolBox.Repo.Find(t => t.Identity == dependency && t.GetFrameworkList().Contains(framework));
+                var dependencyTemplate = GenContext.ToolBox.Repo.Find(t => t.Identity == dependency && t.GetFrameworkList().Contains(framework));
 
                 if (dependencyTemplate == null)
                 {
@@ -106,8 +106,6 @@ namespace Microsoft.Templates.UI
             return dependencyList;
         }
 
-        
-
         public static IEnumerable<GenInfo> Compose(UserSelection userSelection)
         {
             var genQueue = new List<GenInfo>();
@@ -118,8 +116,8 @@ namespace Microsoft.Templates.UI
             }
 
             AddProject(userSelection, genQueue);
-            AddTemplates(userSelection.Pages, genQueue);
-            AddTemplates(userSelection.Features, genQueue);
+            AddTemplates(userSelection.Pages, genQueue, userSelection);
+            AddTemplates(userSelection.Features, genQueue, userSelection);
 
             AddCompositionTemplates(genQueue, userSelection);
 
@@ -140,25 +138,27 @@ namespace Microsoft.Templates.UI
         {
             return GenContext.ToolBox.Repo
                                     .Find(t => t.GetTemplateType() == TemplateType.Project
-                                            && t.GetProjectType() == projectType
+                                            && t.GetProjectTypeList().Any(p => p == projectType)
                                             && t.GetFrameworkList().Any(f => f == framework));
         }
 
-        private static void AddTemplates(IEnumerable<(string name, ITemplateInfo template)> userSelection, List<GenInfo> genQueue)
+        private static void AddTemplates(IEnumerable<(string name, ITemplateInfo template)> templates, List<GenInfo> genQueue, UserSelection userSelection)
         {
-            foreach (var selectionItem in userSelection)
+            foreach (var selectionItem in templates)
             {
-                CreateGenInfo(selectionItem.name, selectionItem.template, genQueue);
+                var genInfo = CreateGenInfo(selectionItem.name, selectionItem.template, genQueue);
+                genInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
             }
         }
 
         private static void AddCompositionTemplates(List<GenInfo> genQueue, UserSelection userSelection)
         {
             var compositionCatalog = GetCompositionCatalog().ToList();
-            var context = new QueryablePropertyDictionary();
-
-            context.Add(new QueryableProperty("projectType", userSelection.ProjectType));
-            context.Add(new QueryableProperty("framework", userSelection.Framework));
+            var context = new QueryablePropertyDictionary
+            {
+                new QueryableProperty("projectType", userSelection.ProjectType),
+                new QueryableProperty("framework", userSelection.Framework)
+            };
 
             var compositionQueue = new List<GenInfo>();
 
@@ -168,9 +168,8 @@ namespace Microsoft.Templates.UI
                 {
                     if (compositionItem.query.Match(genItem.Template, context))
                     {
-                        AddTemplate(genItem, compositionQueue, compositionItem.template);
+                        AddTemplate(genItem, compositionQueue, compositionItem.template, userSelection);
                     }
-
                 }
             }
 
@@ -181,11 +180,13 @@ namespace Microsoft.Templates.UI
         {
             return GenContext.ToolBox.Repo
                                         .Get(t => t.GetTemplateType() == TemplateType.Composition)
+#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
                                         .Select(t => (CompositionQuery.Parse(t.GetCompositionFilter()), t))
+#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
                                         .ToList();
         }
 
-        private static void AddTemplate(GenInfo mainGenInfo, List<GenInfo> queue, ITemplateInfo targetTemplate)
+        private static void AddTemplate(GenInfo mainGenInfo, List<GenInfo> queue, ITemplateInfo targetTemplate, UserSelection userSelection)
         {
             if (targetTemplate != null)
             {
@@ -194,7 +195,8 @@ namespace Microsoft.Templates.UI
                     mainGenInfo.Parameters.Add(export.name, export.value);
                 }
 
-                CreateGenInfo(mainGenInfo.Name, targetTemplate, queue);
+                var genInfo = CreateGenInfo(mainGenInfo.Name, targetTemplate, queue);
+                genInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
             }
         }
 
@@ -233,7 +235,7 @@ namespace Microsoft.Templates.UI
 
             genInfo.Parameters.Add(GenParams.RootNamespace, ns);
 
-            //TODO: THIS SHOULD BE THE ITEM IN CONTEXT
+            // TODO: THIS SHOULD BE THE ITEM IN CONTEXT
             genInfo.Parameters.Add(GenParams.ItemNamespace, ns);
         }
     }

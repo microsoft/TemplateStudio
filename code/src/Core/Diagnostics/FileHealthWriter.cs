@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
-    public class FileHealthWriter: IHealthWriter
+    public class FileHealthWriter : IHealthWriter
     {
         private static SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1);
         private string _workingFolder;
@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             get
             {
-                if(_current == null)
+                if (_current == null)
                 {
                     _current = new FileHealthWriter();
                 }
@@ -42,16 +42,16 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
         private FileHealthWriter()
-        {        
+        {
             _workingFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), Configuration.Current.LogFileFolderPath);
 
             InitializeLogFile();
             PurgeOldLogs(_workingFolder, Configuration.Current.DaysToKeepDiagnosticsLogs);
         }
 
-        public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex=null)
+        public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{eventType.ToString()}\t{message}");
 
             if (ex != null)
@@ -70,7 +70,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 throw new ArgumentNullException("ex");
             }
 
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{TraceEventType.Critical.ToString():11}\tException Tracked. {(message ?? "")}");
 
             if (ex != null)
@@ -138,10 +138,10 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         private void StartLog()
         {
-            StackTrace stackTrace = new StackTrace();
-            StackFrame[] stackFrames = stackTrace.GetFrames();
+            var stackTrace = new StackTrace();
+            var stackFrames = stackTrace.GetFrames();
 
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             sb.AppendLine($"\r\n>>>>>>>>>>>>>> Log started {DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}");
             sb.AppendLine($">>>>>>>>>>>>>> Assembly File Version: {GetVersion()}");
@@ -182,7 +182,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             if (Directory.Exists(logFolder))
             {
-                DirectoryInfo di = new DirectoryInfo(logFolder);
+                var di = new DirectoryInfo(logFolder);
                 var toBeDeleted = di.GetFiles().Where(f => f.CreationTimeUtc.AddDays(daysToKeep) < DateTime.UtcNow);
 
                 foreach (var f in toBeDeleted)

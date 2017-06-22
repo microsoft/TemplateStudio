@@ -141,7 +141,9 @@ namespace Microsoft.Templates.Core
 
             return ti.Tags
                         .Where(t => t.Key.Contains(TagPrefix + "export."))
+#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
                         .Select(t => (t.Key.Replace(TagPrefix + "export.", string.Empty), t.Value.DefaultValue))
+#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
                         .ToList();
         }
 
@@ -187,9 +189,7 @@ namespace Microsoft.Templates.Core
 
             if (!string.IsNullOrEmpty(rawOrder))
             {
-                int order;
-
-                if (int.TryParse(rawOrder, out order))
+                if (int.TryParse(rawOrder, out int order))
                 {
                     return order;
                 }
@@ -198,9 +198,33 @@ namespace Microsoft.Templates.Core
             return int.MaxValue;
         }
 
-        public static string GetProjectType(this ITemplateInfo ti)
+        public static bool GetIsHidden(this ITemplateInfo ti)
         {
-            return GetValueFromTag(ti, TagPrefix + "ProjectType");
+            var result = GetValueFromTag(ti, TagPrefix + "isHidden");
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                if (bool.TryParse(result, out bool boolResult))
+                {
+                    return boolResult;
+                }
+            }
+
+            return false;
+        }
+
+        public static List<string> GetProjectTypeList(this ITemplateInfo ti)
+        {
+            var projectTypes = GetValueFromTag(ti, TagPrefix + "projecttype");
+
+            var result = new List<string>();
+
+            if (!string.IsNullOrEmpty(projectTypes))
+            {
+                result.AddRange(projectTypes.Split(Separator.ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
+            }
+
+            return result;
         }
 
         public static IEnumerable<LayoutItem> GetLayout(this ITemplateInfo ti)
@@ -237,13 +261,28 @@ namespace Microsoft.Templates.Core
 
             if (!string.IsNullOrEmpty(result))
             {
-                if (Boolean.TryParse(result, out bool boolResult))
+                if (bool.TryParse(result, out bool boolResult))
                 {
                     return boolResult;
                 }
             }
 
             return true;
+        }
+
+        public static int GetGenGroup(this ITemplateInfo ti)
+        {
+            var result = GetValueFromTag(ti, TagPrefix + "genGroup");
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                if (int.TryParse(result, out int intResult))
+                {
+                    return intResult;
+                }
+            }
+
+            return 0;
         }
 
         public static bool GetItemNameEditable(this ITemplateInfo ti)
