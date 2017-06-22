@@ -10,11 +10,11 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System.Windows;
+
 using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.NewItem;
-
-using System.Windows;
 
 namespace Microsoft.Templates.UI.Views.NewItem
 {

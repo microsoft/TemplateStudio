@@ -122,7 +122,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 HomeName = ProjectTemplates.HomeName
             };
 
-
             ProjectTemplates.SavedPages.ToList().ForEach(spg => userSelection.Pages.AddRange(spg.Select(sp => sp.UserSelection)));
             userSelection.Features.AddRange(ProjectTemplates.SavedFeatures.Select(sf => sf.UserSelection));
 

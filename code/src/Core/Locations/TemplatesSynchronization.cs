@@ -60,7 +60,6 @@ namespace Microsoft.Templates.Core.Locations
             TelemetryService.Current.SetContentVersionToContext(CurrentContentVersion);
         }
 
-
         public async Task RefreshAsync()
         {
             await UpdateTemplatesCacheAsync();
@@ -112,7 +111,6 @@ namespace Microsoft.Templates.Core.Locations
             SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Prepared });
         }
 
-
         private void AdquireContent()
         {
             try
@@ -140,7 +138,7 @@ namespace Microsoft.Templates.Core.Locations
 
         private string GetInstalledTemplatesPath()
         {
-            return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", "Templates.mstx"); ;
+            return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", "Templates.mstx");
         }
 
         private async Task UpdateTemplatesCacheAsync()

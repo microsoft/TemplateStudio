@@ -10,16 +10,16 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views.NewItem;
-
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -125,7 +125,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 foreach (var dependencyTemplate in dependencies)
                 {
                     AddTemplate(userSelection, dependencyTemplate.GetDefaultName(), dependencyTemplate, dependencyTemplate.GetTemplateType());
-                }                
+                }
             }
             return userSelection;
         }

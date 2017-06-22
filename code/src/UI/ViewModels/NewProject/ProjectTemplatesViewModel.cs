@@ -77,7 +77,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             SavedFeatures.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SavedFeatures)); };
             SavedPages.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SavedPages)); };
-        }        
+        }
 
         public IEnumerable<string> Names
         {

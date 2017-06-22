@@ -10,13 +10,13 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
-using System;
-using System.Linq;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {

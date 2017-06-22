@@ -317,36 +317,7 @@ namespace Microsoft.Templates.UI
 
         private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appProjectType, string appFx)
         {
-            // mvegaca
-            //try
-            //{
-            //    int pagesAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Count();
-            //    int featuresAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Count();
-
-            //    foreach (var genInfo in genItems)
-            //    {
-            //        if (genInfo.Template == null)
-            //        {
-            //            continue;
-            //        }
-
-            //        string resultsKey = $"{genInfo.Template.Identity}_{genInfo.Name}";
-
-            //        if (genInfo.Template.GetTemplateType() == TemplateType.Project)
-            //        {
-            //            AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template,
-            //                appProjectType, appFx, genResults[resultsKey], pagesAdded, featuresAdded, timeSpent).FireAndForget();
-            //        }
-            //        else
-            //        {
-            //            AppHealth.Current.Telemetry.TrackItemGenAsync(genInfo.Template, appProjectType, appFx, genResults[resultsKey]).FireAndForget();
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    AppHealth.Current.Exception.TrackAsync(ex, "Exception tracking telemetry for Template Generation.").FireAndForget();
-            //}
+            // TODO: Include telemetry for new item
         }
     }
 }
