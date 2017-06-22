@@ -223,7 +223,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file {0} has been modified outside of Windows Template Studio actions and your changes will be overwritten. If you continue and automatically include the changes in your project, the file will be overwritten loosing the your modifications. Following you can see the changes that will be applied to the file..
+        ///   Looks up a localized string similar to The file {0} has been modified outside of Windows Template Studio actions and your changes will be overwritten. If you continue and automatically include the changes in your project, the file will be overwritten loosing your modifications. Following you can see the changes that will be applied to the file..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionOverwrittenFiles {
             get {
