@@ -4,6 +4,10 @@ Windows Template Studio wizard is ready to gather basic diagnostics telemetry an
 
 The class [`Diagnostics`](code/src/Core/Diagnostics)/[`TelemetryService`](../code/src/Core/Diagnostics/TelemetryService.cs), within the [Core](../code/src/Core) assembly, isolates the telemetry service implementation details and offer a smooth and easy way to invoke telemetry events. Just in case the telemetry backend needs / wants to be replaced, all the changes will be located at this class.
 
+## Trends
+
+Please head to our [Telemetry Data](telemetryData.md) where we show trends from the gathered telemetry.
+
 ## Telemetry Gathered
 
 The Wizard for Windows Template Studio collects basic diagnostics telemetry and usage data:
