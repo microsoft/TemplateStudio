@@ -15,10 +15,9 @@ namespace Param_ItemNamespace.Views
         {
             InitializeComponent();
             
-            // TODO: Moving from x:Bind to Binding as workarround for https://github.com/Microsoft/WindowsTemplateStudio/issues/496
+            // TODO: Moving from x:Bind to Binding as workaround for https://github.com/Microsoft/WindowsTemplateStudio/issues/496
             // Once Telerik fix the root cause, we get back to x:Bind and remove the following line
             DataContext = this;
-
         }
 
         public ObservableCollection<Order> Source
