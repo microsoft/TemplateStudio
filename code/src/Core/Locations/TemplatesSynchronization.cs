@@ -45,7 +45,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public async Task Do()
         {
-            await MandatoryAdquireContentAsync();
+            await CheckMandatoryAdquireContentAsync();
 
             await UpdateTemplatesCacheAsync();
 
@@ -77,7 +77,7 @@ namespace Microsoft.Templates.Core.Locations
         }
 
 
-        private async Task MandatoryAdquireContentAsync()
+        private async Task CheckMandatoryAdquireContentAsync()
         {
             await AdquireContentAsync(_source.ForcedAdquisition || _content.ExistUnderVersion());
 

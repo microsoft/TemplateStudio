@@ -96,10 +96,12 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
         {
             var di = new DirectoryInfo(GetTemplatesFolder());
             AvailableContent.Clear();
-
-            foreach(var sdi in di.EnumerateDirectories())
+            if (Directory.Exists(di.FullName))
             {
-                AvailableContent.Add(sdi.Name);
+                foreach (var sdi in di.EnumerateDirectories())
+                {
+                    AvailableContent.Add(sdi.Name);
+                }
             }
         }
 

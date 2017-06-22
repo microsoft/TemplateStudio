@@ -374,7 +374,10 @@ namespace Microsoft.Templates.VsEmulator.Main
             GenContext.Bootstrap(new LocalTemplatesSource(WizardVersion, TemplatesVersion, forceLocalTemplatesRefresh)
                 , new FakeGenShell(msg => SetState(msg), l => AddLog(l), _host)
                 , new Version(WizardVersion));
+
+            CleanUpNotUsedContentVersions();
         }
+
 
         public void DoEvents()
         {
@@ -389,5 +392,33 @@ namespace Microsoft.Templates.VsEmulator.Main
             Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Background, method, frame);
             Dispatcher.PushFrame(frame);
         }
+
+        private void CleanUpNotUsedContentVersions()
+        {
+            if (_wizardVersion == "0.0.0.0" && _templatesVersion == "0.0.0.0")
+            {
+                var templatesFolder = GetTemplatesFolder();
+                if (Directory.Exists(templatesFolder))
+                {
+                    var dirs = Directory.EnumerateDirectories(templatesFolder);
+                    foreach (var dir in dirs)
+                    {
+                        if (!dir.EndsWith("0.0.0.0"))
+                        {
+                            Fs.SafeDeleteDirectory(dir);
+                        }
+                    }
+                }
+            }
+        }
+        private string GetTemplatesFolder()
+        {
+            var _templatesSource = new LocalTemplatesSource(_wizardVersion, _templatesVersion);
+            var _templatesSync = new TemplatesSynchronization(_templatesSource, new Version(_wizardVersion));
+            string currentTemplatesFolder = _templatesSync.CurrentTemplatesFolder;
+
+            return currentTemplatesFolder;
+        }
+
     }
 }
