@@ -286,11 +286,11 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Changes summary.
+        ///   Looks up a localized string similar to Changes summary: {0}.
         /// </summary>
-        public static string ChangesSummaryTitle {
+        public static string ChangesSummaryTitle_SF {
             get {
-                return ResourceManager.GetString("ChangesSummaryTitle", resourceCulture);
+                return ResourceManager.GetString("ChangesSummaryTitle_SF", resourceCulture);
             }
         }
         
