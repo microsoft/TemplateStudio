@@ -22,6 +22,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
 
 using Microsoft.Templates.Core.Diagnostics;
+using System.IO.Compression;
 
 namespace Microsoft.Templates.Core.Locations
 {

@@ -50,7 +50,7 @@ namespace Microsoft.Templates.Core.Locations
             return Templatex.Pack(tempFolder);
         }
 
-        protected static void Copy(string sourceFolder, string targetFolder)
+        private static void Copy(string sourceFolder, string targetFolder)
         {
             Fs.SafeDeleteDirectory(targetFolder);
             Fs.CopyRecursive(sourceFolder, targetFolder);
