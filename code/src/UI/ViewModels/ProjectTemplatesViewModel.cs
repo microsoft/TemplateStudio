@@ -10,6 +10,13 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
+
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -17,12 +24,6 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
@@ -103,30 +104,33 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void ValidateCurrentTemplateName(SavedTemplateViewModel item)
         {
-            var validators = new List<Validator>()
+            if (item.NewItemName != item.ItemName)
             {
-                new ExistingNamesValidator(Names),
-                new ReservedNamesValidator()
-            };
-            if (item.CanChooseItemName)
-            {
-                validators.Add(new DefaultNamesValidator());
-            }
-            var validationResult = Naming.Validate(item.NewItemName, validators);
-
-            item.IsValidName = validationResult.IsValid;
-            item.ErrorMessage = string.Empty;
-
-            if (!item.IsValidName)
-            {
-                item.ErrorMessage = StringRes.ResourceManager.GetString($"ValidationError_{validationResult.ErrorType}");
-
-                if (string.IsNullOrWhiteSpace(item.ErrorMessage))
+                var validators = new List<Validator>()
                 {
-                    item.ErrorMessage = "UndefinedError";
+                    new ExistingNamesValidator(Names),
+                    new ReservedNamesValidator()
+                };
+                if (item.CanChooseItemName)
+                {
+                    validators.Add(new DefaultNamesValidator());
                 }
-                MainViewModel.Current.SetValidationErrors(item.ErrorMessage);
-                throw new Exception(item.ErrorMessage);
+                var validationResult = Naming.Validate(item.NewItemName, validators);
+
+                item.IsValidName = validationResult.IsValid;
+                item.ErrorMessage = string.Empty;
+
+                if (!item.IsValidName)
+                {
+                    item.ErrorMessage = StringRes.ResourceManager.GetString($"ValidationError_{validationResult.ErrorType}");
+
+                    if (string.IsNullOrWhiteSpace(item.ErrorMessage))
+                    {
+                        item.ErrorMessage = "UndefinedError";
+                    }
+                    MainViewModel.Current.SetValidationErrors(item.ErrorMessage);
+                    throw new Exception(item.ErrorMessage);
+                }
             }
             MainViewModel.Current.CleanStatus(true);
         }
@@ -256,6 +260,11 @@ namespace Microsoft.Templates.UI.ViewModels
 
         private void OnConfirmRenameSummaryItem(SavedTemplateViewModel item)
         {
+            if (item.NewItemName == item.ItemName)
+            {
+                item.IsEditionEnabled = false;
+                return;
+            }
             var validators = new List<Validator>()
             {
                 new ExistingNamesValidator(Names),
@@ -307,7 +316,11 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             if (!item.IsHome)
             {
-                foreach (var spg in SavedPages) { spg.ToList().ForEach(sp => sp.TryReleaseHome()); }
+                foreach (var spg in SavedPages)
+                {
+                    spg.ToList().ForEach(sp => sp.TryReleaseHome());
+                }
+
                 item.IsHome = true;
                 HomeName = item.ItemName;
                 AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.SetHome).FireAndForget();
@@ -395,7 +408,7 @@ namespace Microsoft.Templates.UI.ViewModels
         {
             foreach (var spg in SavedPages)
             {
-                spg.ToList().ForEach(sp => sp.UpdateAllowDragAndDrop(SavedPages.Count));
+                spg.ToList().ForEach(sp => sp.UpdateAllowDragAndDrop(SavedPages[0].Count));
             }
         }
 

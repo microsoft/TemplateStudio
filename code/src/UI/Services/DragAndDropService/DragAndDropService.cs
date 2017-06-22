@@ -1,4 +1,14 @@
-﻿using Microsoft.Templates.UI.Extensions;
+﻿// ******************************************************************
+// Copyright (c) Microsoft. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
+// ******************************************************************
 
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -7,6 +17,8 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+
+using Microsoft.Templates.UI.Extensions;
 
 namespace Microsoft.Templates.UI.Services
 {
@@ -28,6 +40,7 @@ namespace Microsoft.Templates.UI.Services
             {
                 _listView.AllowDrop = true;
             }
+
             _listView.PreviewMouseLeftButtonDown += OnPreviewMouseLeftButtonDown;
             _listView.PreviewMouseMove += OnPreviewMouseMove;
             _listView.DragOver += OnDragOver;
@@ -72,6 +85,7 @@ namespace Microsoft.Templates.UI.Services
                 if (_listView.SelectedItem != null)
                 {
                     var itemToDrag = _listView.GetCurrentListViewItem();
+
                     if (itemToDrag != null)
                     {
                         var adornerLayer = ShowDragAdornerLayerResolved ? InitializeAdornerLayer(itemToDrag) : null;
@@ -124,10 +138,11 @@ namespace Microsoft.Templates.UI.Services
 
         private void OnDrop(object sender, DragEventArgs e)
         {
-            if (this.ItemUnderDragCursor != null)
+            if (ItemUnderDragCursor != null)
             {
-                this.ItemUnderDragCursor = null;
+                ItemUnderDragCursor = null;
             }
+
             e.Effects = DragDropEffects.None;
 
             if (e.Data.GetDataPresent(typeof(T)))

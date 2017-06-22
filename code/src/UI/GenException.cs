@@ -11,9 +11,9 @@
 // ******************************************************************
 
 using System;
+using System.Runtime.Serialization;
 
 using Microsoft.Templates.UI.Resources;
-using System.Runtime.Serialization;
 
 namespace Microsoft.Templates.UI
 {

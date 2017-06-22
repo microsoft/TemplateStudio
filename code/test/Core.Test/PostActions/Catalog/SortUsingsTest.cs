@@ -169,5 +169,57 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Assert.True(result);
             Assert.Equal(expected, factData);
         }
+
+        [Fact]
+        public void Sort_UsingsNotAtTopOfFile()
+        {
+            var factData = new List<string>
+            {
+                "// comment",
+                "// comment",
+                "// comment",
+                "// comment",
+                "// comment",
+                "// comment",
+                "// comment",
+                "",
+                "using System.Text;",
+                "using Microsoft.Templates;",
+                "",
+                "using System;",
+                "using Microsoft.Templates.Core;",
+                "",
+                "namespace Microsoft.Templates",
+                "{",
+                "}"
+            };
+
+            var expected = new List<string>
+            {
+                "// comment",
+                "// comment",
+                "// comment",
+                "// comment",
+                "// comment",
+                "// comment",
+                "// comment",
+                "",
+                "using System;",
+                "using System.Text;",
+                "",
+                "using Microsoft.Templates;",
+                "using Microsoft.Templates.Core;",
+                "",
+                "namespace Microsoft.Templates",
+                "{",
+                "}"
+            };
+
+            var result = factData.SortUsings();
+
+            Assert.True(result);
+            Assert.Equal(expected, factData);
+        }
+
     }
 }

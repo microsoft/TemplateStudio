@@ -10,29 +10,24 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-﻿using System.Windows;
-using System.Windows.Controls;
+using System;
+using System.Runtime.InteropServices;
 
-using Microsoft.Templates.UI.ViewModels;
-
-namespace Microsoft.Templates.UI.TemplateSelectors
+namespace Microsoft.Templates.UI.Services
 {
-    public class SummaryItemTemplateSelector : DataTemplateSelector
+    internal class NativeMethods
     {
-        public DataTemplate MicrosoftTemplate { get; set; }
-        public DataTemplate CommunityTemplate { get; set; }
-
-        public override DataTemplate SelectTemplate(object item, DependencyObject container)
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct Win32Point
         {
-            var summaryItem = item as SavedTemplateViewModel;
-            if (summaryItem != null)
-            {
-                if (summaryItem.Author.ToLower() == "microsoft")
-                {
-                    return MicrosoftTemplate;
-                }
-            }
-            return CommunityTemplate;
+            public int X;
+            public int Y;
         }
+
+        [DllImport("user32.dll")]
+        internal static extern bool GetCursorPos(ref Win32Point pt);
+
+        [DllImport("user32.dll")]
+        internal static extern bool ScreenToClient(IntPtr hwnd, ref Win32Point pt);
     }
 }

@@ -103,7 +103,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
             {
                 if (!expression(skipContent[i]))
                 {
-                    return i;
+                    return i + startIndex;
                 }
             }
 

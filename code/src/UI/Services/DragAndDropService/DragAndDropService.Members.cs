@@ -1,13 +1,24 @@
-﻿using Microsoft.Templates.UI.Extensions;
+﻿// ******************************************************************
+// Copyright (c) Microsoft. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
+// ******************************************************************
+
 using System;
-using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
+
+using Microsoft.Templates.UI.Extensions;
 
 namespace Microsoft.Templates.UI.Services
 {
@@ -36,6 +47,7 @@ namespace Microsoft.Templates.UI.Services
                 {
                     return false;
                 }
+
                 return true;
             }
         }
@@ -44,7 +56,7 @@ namespace Microsoft.Templates.UI.Services
         {
             get
             {
-                if (this._indexToSelect < 0)
+                if (_indexToSelect < 0)
                 {
                     return false;
                 }
@@ -53,17 +65,20 @@ namespace Microsoft.Templates.UI.Services
                 var bounds = VisualTreeHelper.GetDescendantBounds(listViewItem);
                 var ptInItem = this._listView.TranslatePoint(_mouseDownPosition, listViewItem);
 
+                int distanceScale = 3;
+
                 double topOffset = Math.Abs(ptInItem.Y);
                 double btmOffset = Math.Abs(bounds.Height - ptInItem.Y);
                 double vertOffset = Math.Min(topOffset, btmOffset);
-
-                double width = SystemParameters.MinimumHorizontalDragDistance * 2;
-                double height = Math.Min(SystemParameters.MinimumVerticalDragDistance, vertOffset) * 2;
+                double width = SystemParameters.MinimumHorizontalDragDistance * distanceScale;
+                double height = Math.Min(SystemParameters.MinimumVerticalDragDistance, vertOffset) * distanceScale;
                 Size szThreshold = new Size(width, height);
 
                 Rect rect = new Rect(this._mouseDownPosition, szThreshold);
                 rect.Offset(szThreshold.Width / -2, szThreshold.Height / -2);
-                Point ptInListView = MouseUtilities.GetMousePosition(this._listView);
+
+                Point ptInListView = MouseUtilities.GetMousePosition(_listView);
+
                 return !rect.Contains(ptInListView);
             }
         }
@@ -72,14 +87,16 @@ namespace Microsoft.Templates.UI.Services
         {
             get
             {
-                var mousePosition = MouseUtilities.GetMousePosition(this._listView);
-                var result = VisualTreeHelper.HitTest(this._listView, mousePosition);
+                var mousePosition = MouseUtilities.GetMousePosition(_listView);
+                var result = VisualTreeHelper.HitTest(_listView, mousePosition);
+
                 if (result == null)
                 {
                     return false;
                 }
 
                 var dependencyObject = result.VisualHit;
+
                 while (dependencyObject != null)
                 {
                     if (dependencyObject is ScrollBar)
@@ -96,6 +113,7 @@ namespace Microsoft.Templates.UI.Services
                         dependencyObject = LogicalTreeHelper.GetParent(dependencyObject);
                     }
                 }
+
                 return false;
             }
         }
@@ -105,7 +123,7 @@ namespace Microsoft.Templates.UI.Services
             get => _itemUnderDragCursor;
             set
             {
-                if (this._itemUnderDragCursor == value)
+                if (_itemUnderDragCursor == value)
                 {
                     return;
                 }
@@ -116,12 +134,13 @@ namespace Microsoft.Templates.UI.Services
                 {
                     if (step == 1)
                     {
-                        this._itemUnderDragCursor = value;
+                        _itemUnderDragCursor = value;
                     }
 
-                    if (this._itemUnderDragCursor != null)
+                    if (_itemUnderDragCursor != null)
                     {
                         var listViewItem = GetListViewItem(_itemUnderDragCursor);
+
                         if (listViewItem != null)
                         {
                             ListViewItemDragState.SetIsUnderDragCursor(listViewItem, step == 1);

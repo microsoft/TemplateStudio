@@ -16,6 +16,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -26,8 +27,6 @@ using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Views;
-using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
@@ -288,7 +287,6 @@ namespace Microsoft.Templates.UI.ViewModels
             {
                 ItemsSource = items,
                 Style = MainView.FindResource("SummaryListViewStyle") as Style,
-                Tag = "AllowClick",
                 ItemTemplate = MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate
             };
             if (allowDragAndDrop)
@@ -333,6 +331,7 @@ namespace Microsoft.Templates.UI.ViewModels
             if (CheckProjectSetupChanged())
             {
                 ProjectTemplates.ResetSelection();
+                _summaryPageGroups.Children.Clear();
 
                 CleanStatus();
             }
