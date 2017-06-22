@@ -183,7 +183,7 @@
                 </Grid>
 
                 <Grid Grid.Column="1" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
-                    <ScrollViewer Padding="0,40,0,65">
+                    <ScrollViewer Padding="0,40,0,65" Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}}">
                         <StackPanel Margin="{StaticResource MediumLeftMargin}">
 
                             <StackPanel Margin="7,0,0,0" Orientation="Horizontal">
@@ -224,7 +224,7 @@
                             </Expander>
                         </StackPanel>
                     </ScrollViewer>
-                    <Grid Margin="0,0,17,0">
+                    <Grid Margin="0,0,17,0" Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}}">
                         <TextBlock Margin="16,10,0,0" Style="{StaticResource TextSummaryTitle}" Text="{x:Static res:StringRes.SummaryTitle}" />
                         <TextBlock Margin="{StaticResource MediumMargin}" VerticalAlignment="Bottom" Style="{StaticResource TextSummaryTermsStyle}" Text="{x:Static res:StringRes.SummaryTerms}" />
                     </Grid>
