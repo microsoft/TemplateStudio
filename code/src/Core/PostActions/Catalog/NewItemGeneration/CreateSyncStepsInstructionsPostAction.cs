@@ -33,7 +33,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             var sb = new StringBuilder();
 
             sb.AppendLine("# Steps to include new item generation");
-            sb.AppendLine("You have to follow these steps to include the new item into you project");
+            sb.AppendLine("Please follow the indicated steps to include the new item into you project:");
+            sb.AppendLine();
 
             if (_config.NewFiles.Any())
             {
@@ -43,39 +44,55 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 {
                     sb.AppendLine(GetLinkToLocalFile(newFile));
                 }
+                sb.AppendLine();
             }
-            sb.AppendLine("## Modified files: ");
-            sb.AppendLine("To integrate your new item with the existing project apply the following changes: ");
-            sb.AppendLine();
 
-            foreach (var mergeFile in GenContext.Current.MergeFilesFromProject)
+            if (GenContext.Current.MergeFilesFromProject.Any())
             {
-                sb.AppendLine($"### Changes required in file '{mergeFile.Key}':");
-                foreach (var mergeInfo in mergeFile.Value)
+                sb.AppendLine("## Modified files: ");
+                sb.AppendLine("To integrate your new item with the existing project apply the following changes: ");
+                sb.AppendLine();
+
+                foreach (var mergeFile in GenContext.Current.MergeFilesFromProject)
                 {
-                    if (!string.IsNullOrEmpty(mergeInfo.Intent))
+                    sb.AppendLine($"### Changes required in file '{mergeFile.Key}':");
+                    foreach (var mergeInfo in mergeFile.Value)
                     {
-                        sb.AppendLine(mergeInfo.Intent);
-                    }
-                    sb.AppendLine();
-
-                    sb.AppendLine($"```{mergeInfo.Format}");
-                    sb.AppendLine(mergeInfo.PostActionCode);
-                    sb.AppendLine("```");
-
-                    sb.AppendLine();
-                }
-
-                if (!GenContext.Current.GenerationWarnings.Any(w => w.FileName == mergeFile.Key))
-                {
-                    sb.AppendLine($"Preview the changes in: [{mergeFile.Key}]({mergeFile.Key})");
-                }
-                else
-                {
-                    foreach (var warning in GenContext.Current.GenerationWarnings.Where(w => w.FileName == mergeFile.Key))
-                    {
-                        sb.AppendLine(warning.Description);
+                        if (!string.IsNullOrEmpty(mergeInfo.Intent))
+                        {
+                            sb.AppendLine(mergeInfo.Intent);
+                        }
                         sb.AppendLine();
+
+                        sb.AppendLine($"```{mergeInfo.Format}");
+                        sb.AppendLine(mergeInfo.PostActionCode);
+                        sb.AppendLine("```");
+
+                        sb.AppendLine();
+                    }
+
+                    if (!GenContext.Current.GenerationWarnings.Any(w => w.FileName == mergeFile.Key))
+                    {
+                        sb.AppendLine($"Preview the changes in: [{mergeFile.Key}]({mergeFile.Key})");
+                        sb.AppendLine();
+                    }
+                    else
+                    {
+                        var warnings = GenContext.Current.GenerationWarnings.Where(w => w.FileName == mergeFile.Key);
+
+                        if (warnings.Count() == 1)
+                        {
+                            sb.AppendLine($"The changes could not be integrated: {warnings.First()?.Description}");
+                        }
+                        else
+                        {
+                            sb.AppendLine("The changes could not be integrated. The following warnings were generated:");
+                            foreach (var warning in warnings)
+                            {
+                                sb.AppendLine($"* {warning.Description}");
+                                sb.AppendLine();
+                            }
+                        }
                     }
                 }
             }
@@ -83,10 +100,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             if (_config.ConflictingFiles.Any())
             {
                 sb.AppendLine($"## Conflicting files:");
-                sb.AppendLine("These files already exist in your project, and were also generated as part of the new item.");
+                sb.AppendLine("These files already exist in your project and were also generated as part of the new item.");
                 sb.AppendLine();
                 sb.AppendLine("Please compare and make sure everything is in the right place.");
                 sb.AppendLine();
+
                 foreach (var conflictFile in _config.ConflictingFiles)
                 {
                     sb.AppendLine(GetLinkToLocalFile(conflictFile));

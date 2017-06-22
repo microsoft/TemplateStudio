@@ -143,8 +143,7 @@ namespace Microsoft.Templates.UI
                     {
                         if (FilesAreEqual(file, destFilePath))
                         {
-                            var warning = GenContext.Current.GenerationWarnings.FirstOrDefault(g => g.FileName == fileName);
-                            if (warning == null)
+                            if (!GenContext.Current.GenerationWarnings.Any(g => g.FileName == fileName))
                             {
                                 GenContext.Current.MergeFilesFromProject.Remove(fileName);
                                 result.UnchangedFiles.Add(fileName);
