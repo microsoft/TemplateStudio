@@ -406,8 +406,8 @@
   <data name="VisitProjectWebSite" xml:space="preserve">
     <value>Visit project web site</value>
   </data>
-  <data name="ChangesSummaryTitle" xml:space="preserve">
-    <value>Changes summary</value>
+  <data name="ChangesSummaryTitle_SF" xml:space="preserve">
+    <value>Changes summary: {0}</value>
   </data>
   <data name="ChangesSummaryCategoryMergeConflicts" xml:space="preserve">
     <value>Merge conflicts</value>
@@ -473,7 +473,7 @@
     <value>Modified file</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionOverwrittenFiles" xml:space="preserve">
-    <value>The file {0} has been modified outside of Windows Template Studio actions and your changes will be overwritten. If you continue and automatically include the changes in your project, the file will be overwritten loosing the your modifications. Following you can see the changes that will be applied to the file.</value>
+    <value>The file {0} has been modified outside of Windows Template Studio actions and your changes will be overwritten. If you continue and automatically include the changes in your project, the file will be overwritten loosing your modifications. Following you can see the changes that will be applied to the file.</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionUnchangedFiles" xml:space="preserve">
     <value />

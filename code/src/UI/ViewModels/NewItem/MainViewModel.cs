@@ -70,7 +70,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             NewItemGenController.Instance.CleanupTempGeneration();
             await NewItemGenController.Instance.GenerateNewItemAsync(MainView.Result);
             NavigationService.Navigate(new ChangesSummaryView());
-            Title = StringRes.ChangesSummaryTitle;
+            var template = GetActiveTemplate();
+            Title = string.Format(StringRes.ChangesSummaryTitle_SF, template.Name);
         }
         protected override void OnFinish(string parameter)
         {
