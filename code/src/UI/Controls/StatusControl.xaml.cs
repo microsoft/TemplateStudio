@@ -40,6 +40,13 @@ namespace Microsoft.Templates.UI.Controls
             control.UpdateStatus(e.NewValue as StatusViewModel);
         }
 
+        public Brush InformationStatusBackground
+        {
+            get => (Brush)GetValue(InformationStatusBackgroundProperty);
+            set => SetValue(InformationStatusBackgroundProperty, value);
+        }
+        public static readonly DependencyProperty InformationStatusBackgroundProperty = DependencyProperty.Register("InformationStatusBackground", typeof(Brush), typeof(StatusControl), new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+
         public StatusControl()
         {
             InitializeComponent();
@@ -67,7 +74,7 @@ namespace Microsoft.Templates.UI.Controls
                     txtStatus.Text = status.Message;
                     txtIcon.Text = ConvertToChar(SymbolFonts.Completed);
                     txtIcon.Foreground = FindResource("UIBlack") as SolidColorBrush;
-                    Background = new SolidColorBrush(Colors.Transparent);
+                    Background = InformationStatusBackground;
                     break;
                 case StatusType.Warning:
                     txtStatus.Text = status.Message;

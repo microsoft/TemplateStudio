@@ -37,6 +37,7 @@
         <Grid Panel.ZIndex="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
+                <RowDefinition Height="17" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
@@ -67,7 +68,8 @@
                     </Button.Content>
                 </Button>
             </Grid>
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" Background="{StaticResource UILightGray}"/>
+            <Grid Grid.Row="2">
                 <Grid Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}">
                     <TextBlock Style="{StaticResource TextMainLoadingStyle}" Text="{x:Static res:StringRes.LoadingTemplatesText}" />
                 </Grid>
@@ -78,10 +80,12 @@
                     <TextBlock Style="{StaticResource TextMainLoadingStyle}" Text="{x:Static res:StringRes.NoContentText}"  Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}"/>
                 </Grid>
                 <controls:StatusControl
+                    Margin="17,0,317,0"
                     VerticalAlignment="Bottom"
-                    Status="{Binding Status}" />
+                    Status="{Binding Status}"
+                    InformationStatusBackground="{StaticResource UIWhite}" />
             </Grid>
-            <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
+            <Grid Grid.Row="3" Style="{StaticResource GridBottomBarStyle}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
