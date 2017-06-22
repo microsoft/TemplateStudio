@@ -763,7 +763,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An update to the templates is available. Update the extension to get the latest content..
+        ///   Looks up a localized string similar to An update to the templates is available but not compatible with the wizard version. Update the extension to access the latest content..
         /// </summary>
         public static string StatusOverVersionContent {
             get {

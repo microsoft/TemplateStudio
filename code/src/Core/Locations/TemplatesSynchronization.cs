@@ -43,51 +43,60 @@ namespace Microsoft.Templates.Core.Locations
             CurrentContentFolder = CodeGen.Instance?.GetCurrentContentSource(WorkingFolder);
         }
 
-        public async Task Do(bool forced = false)
+        public async Task Do()
         {
-            bool contentIsUnderVersion = _content.ExistUnderVersion();
+            await CheckMandatoryAdquireContentAsync();
 
-            if (forced || contentIsUnderVersion || CurrentContentVersion.IsNullOrZero())
-            {
-                await CheckMandatoryAdquisitionAsync(true);
-                await UpdateTemplatesCacheAsync();
-                await CheckContentUnderVersion();
-            }
-            else
-            {
-                await CheckMandatoryAdquisitionAsync(forced);
-                await UpdateTemplatesCacheAsync();
-                await CheckExpirationAdquisitionAsync();
-                await CheckNewVersionAvailableAsync();
-                await CheckContentOverVersion();
-            }
+            await UpdateTemplatesCacheAsync();
+
+            await AdquireContentAsync();
+
+            await CheckContentStatusAsync();
 
             PurgeContentAsync().FireAndForget();
             TelemetryService.Current.SetContentVersionToContext(CurrentContentVersion);
         }
+
 
         public async Task RefreshAsync()
         {
             await UpdateTemplatesCacheAsync();
         }
 
-        public async Task CheckForUpdatesAsync()
+        public async Task CheckForNewContentAsync()
         {
-            await AdquireContentAsync();
+            await AdquireContentAsync(true);
+            await CheckContentStatusAsync();
+        }
+
+        private async Task CheckContentStatusAsync()
+        {
+            await CheckContentUnderVersion();
             await CheckNewVersionAvailableAsync();
+            await CheckContentOverVersion();
         }
 
-        private void SafeSetContentVersionInTelemetry()
+
+        private async Task CheckMandatoryAdquireContentAsync()
         {
+            await AdquireContentAsync(_source.ForcedAdquisition || _content.ExistUnderVersion());
+
+            if (!_content.Exists())
+            {
+                await ExtractInstalledContentAsync();
+            }
         }
 
-        private async Task AdquireContentAsync()
+        private async Task AdquireContentAsync(bool force = false)
         {
-            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Adquiring });
+            if (force || _content.IsExpired(CurrentContentFolder))
+            {
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Adquiring });
 
-            await Task.Run(() => AdquireContent());
+                await Task.Run(() => AdquireContent());
 
-            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Adquired });
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Adquired });
+            }
         }
 
         private async Task ExtractInstalledContentAsync()
@@ -99,26 +108,6 @@ namespace Microsoft.Templates.Core.Locations
             SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Prepared });
         }
 
-        private async Task CheckExpirationAdquisitionAsync()
-        {
-            if (_content.IsExpired(CurrentContentFolder))
-            {
-                await AdquireContentAsync();
-            }
-        }
-
-        private async Task CheckMandatoryAdquisitionAsync(bool forceUpdate)
-        {
-            if (forceUpdate)
-            {
-                await AdquireContentAsync();
-            }
-
-            if (!_content.Exists())
-            {
-                await ExtractInstalledContentAsync();
-            }
-        }
 
         private void AdquireContent()
         {
