@@ -183,6 +183,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\CodeViewer.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Extensions\ListViewExtensions.cs" />
     <Compile Include="Generation\NewItemGenerationFileInfo.cs" />
@@ -338,6 +339,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\CodeViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\OverlayBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -481,6 +486,64 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\FileExtensions\Resw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\vs\base\worker\workerMain.js" />
+    <Content Include="Assets\vs\basic-languages\src\bat.js" />
+    <Content Include="Assets\vs\basic-languages\src\coffee.js" />
+    <Content Include="Assets\vs\basic-languages\src\cpp.js" />
+    <Content Include="Assets\vs\basic-languages\src\csharp.js" />
+    <Content Include="Assets\vs\basic-languages\src\css.js" />
+    <Content Include="Assets\vs\basic-languages\src\dockerfile.js" />
+    <Content Include="Assets\vs\basic-languages\src\fsharp.js" />
+    <Content Include="Assets\vs\basic-languages\src\go.js" />
+    <Content Include="Assets\vs\basic-languages\src\handlebars.js" />
+    <Content Include="Assets\vs\basic-languages\src\html.js" />
+    <Content Include="Assets\vs\basic-languages\src\ini.js" />
+    <Content Include="Assets\vs\basic-languages\src\jade.js" />
+    <Content Include="Assets\vs\basic-languages\src\java.js" />
+    <Content Include="Assets\vs\basic-languages\src\less.js" />
+    <Content Include="Assets\vs\basic-languages\src\lua.js" />
+    <Content Include="Assets\vs\basic-languages\src\markdown.js" />
+    <Content Include="Assets\vs\basic-languages\src\objective-c.js" />
+    <Content Include="Assets\vs\basic-languages\src\php.js" />
+    <Content Include="Assets\vs\basic-languages\src\postiats.js" />
+    <Content Include="Assets\vs\basic-languages\src\powershell.js" />
+    <Content Include="Assets\vs\basic-languages\src\python.js" />
+    <Content Include="Assets\vs\basic-languages\src\r.js" />
+    <Content Include="Assets\vs\basic-languages\src\razor.js" />
+    <Content Include="Assets\vs\basic-languages\src\ruby.js" />
+    <Content Include="Assets\vs\basic-languages\src\scss.js" />
+    <Content Include="Assets\vs\basic-languages\src\sql.js" />
+    <Content Include="Assets\vs\basic-languages\src\swift.js" />
+    <Content Include="Assets\vs\basic-languages\src\vb.js" />
+    <Content Include="Assets\vs\basic-languages\src\xml.js" />
+    <Content Include="Assets\vs\basic-languages\src\yaml.js" />
+    <Content Include="Assets\vs\editor\contrib\quickOpen\browser\symbol-sprite.svg" />
+    <Content Include="Assets\vs\editor\contrib\suggest\browser\String_16x.svg" />
+    <Content Include="Assets\vs\editor\contrib\suggest\browser\String_inverse_16x.svg" />
+    <Content Include="Assets\vs\editor\editor.main.css" />
+    <Content Include="Assets\vs\editor\editor.main.js" />
+    <Content Include="Assets\vs\editor\editor.main.nls.de.js" />
+    <Content Include="Assets\vs\editor\editor.main.nls.es.js" />
+    <Content Include="Assets\vs\editor\editor.main.nls.fr.js" />
+    <Content Include="Assets\vs\editor\editor.main.nls.it.js" />
+    <Content Include="Assets\vs\editor\editor.main.nls.ja.js" />
+    <Content Include="Assets\vs\editor\editor.main.nls.js" />
+    <Content Include="Assets\vs\editor\editor.main.nls.ko.js" />
+    <Content Include="Assets\vs\editor\editor.main.nls.ru.js" />
+    <Content Include="Assets\vs\editor\editor.main.nls.zh-cn.js" />
+    <Content Include="Assets\vs\editor\editor.main.nls.zh-tw.js" />
+    <Content Include="Assets\vs\language\css\cssMode.js" />
+    <Content Include="Assets\vs\language\css\cssWorker.js" />
+    <Content Include="Assets\vs\language\html\htmlMode.js" />
+    <Content Include="Assets\vs\language\html\htmlWorker.js" />
+    <Content Include="Assets\vs\language\json\jsonMode.js" />
+    <Content Include="Assets\vs\language\json\jsonWorker.js" />
+    <Content Include="Assets\vs\language\typescript\lib\typescriptServices.js" />
+    <Content Include="Assets\vs\language\typescript\src\mode.js" />
+    <Content Include="Assets\vs\language\typescript\src\worker.js" />
+    <Content Include="Assets\vs\loader.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
