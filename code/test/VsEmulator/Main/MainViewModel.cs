@@ -51,7 +51,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public List<string> ProjectItems { get; } = new List<string>();
 
-        public List<GenerationWarning> GenerationWarnings { get; } = new List<GenerationWarning>();
+        public List<FailedMergePostAction> FailedMergePostActions { get; } = new List<FailedMergePostAction>();
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
 
@@ -217,7 +217,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             ProjectItems.Clear();
             MergeFilesFromProject.Clear();
-            GenerationWarnings.Clear();
+            FailedMergePostActions.Clear();
             FilesToOpen.Clear();
         }
 

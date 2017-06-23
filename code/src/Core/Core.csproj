@@ -176,7 +176,7 @@
     <Compile Include="Gen\GenContext.cs" />
     <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Gen\IContextProvider.cs" />
-    <Compile Include="Gen\GenerationWarning.cs" />
+    <Compile Include="PostActions\Catalog\Merge\FailedMergePostAction.cs" />
     <Compile Include="Fs.cs" />
     <Compile Include="Gen\TempGenerationResult.cs" />
     <Compile Include="Locations\InvalidSignatureException.cs" />
@@ -189,6 +189,7 @@
     <Compile Include="Naming\ReservedNameValidator.cs" />
     <Compile Include="Naming\Validator.cs" />
     <Compile Include="PostActions\Catalog\AddContextItemsToProjectPostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\MergeFailureType.cs" />
     <Compile Include="PostActions\Catalog\Merge\PostActionFormatter.cs" />
     <Compile Include="PostActions\Catalog\NewItemGeneration\CreateSyncStepsInstructionsPostAction.cs" />
     <Compile Include="PostActions\Catalog\NewItemGeneration\CreateSyncSummaryPostAction.cs" />

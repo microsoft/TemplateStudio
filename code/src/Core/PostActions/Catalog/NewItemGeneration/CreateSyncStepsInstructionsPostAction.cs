@@ -71,25 +71,25 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                         sb.AppendLine();
                     }
 
-                    if (!GenContext.Current.GenerationWarnings.Any(w => w.FileName == mergeFile.Key))
+                    if (!GenContext.Current.FailedMergePostActions.Any(w => w.FileName == mergeFile.Key))
                     {
                         sb.AppendLine($"Preview the changes in: [{mergeFile.Key}]({mergeFile.Key})");
                         sb.AppendLine();
                     }
                     else
                     {
-                        var warnings = GenContext.Current.GenerationWarnings.Where(w => w.FileName == mergeFile.Key);
+                        var failedMergePostActions = GenContext.Current.FailedMergePostActions.Where(w => w.FileName == mergeFile.Key);
 
-                        if (warnings.Count() == 1)
+                        if (failedMergePostActions.Count() == 1)
                         {
-                            sb.AppendLine($"The changes could not be integrated: {warnings.First()?.Description}");
+                            sb.AppendLine($"The changes could not be integrated: {failedMergePostActions.First()?.Description}");
                         }
                         else
                         {
                             sb.AppendLine("The changes could not be integrated. The following warnings were generated:");
-                            foreach (var warning in warnings)
+                            foreach (var failedMergePostAction in failedMergePostActions)
                             {
-                                sb.AppendLine($"* {warning.Description}");
+                                sb.AppendLine($"* {failedMergePostAction.Description}");
                                 sb.AppendLine();
                             }
                         }
@@ -125,7 +125,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             GenContext.Current.FilesToOpen.Add(fileName);
 
-            GenContext.Current.GenerationWarnings.Clear();
+            GenContext.Current.FailedMergePostActions.Clear();
             GenContext.Current.MergeFilesFromProject.Clear();
         }
 

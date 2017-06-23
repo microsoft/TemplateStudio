@@ -143,7 +143,7 @@ namespace Microsoft.Templates.UI
                     {
                         if (FilesAreEqual(file, destFilePath))
                         {
-                            if (!GenContext.Current.GenerationWarnings.Any(g => g.FileName == fileName))
+                            if (!GenContext.Current.FailedMergePostActions.Any(g => g.FileName == fileName))
                             {
                                 GenContext.Current.MergeFilesFromProject.Remove(fileName);
                                 result.UnchangedFiles.Add(fileName);
@@ -240,7 +240,7 @@ namespace Microsoft.Templates.UI
 
         public void CleanupTempGeneration()
         {
-            GenContext.Current.GenerationWarnings.Clear();
+            GenContext.Current.FailedMergePostActions.Clear();
             GenContext.Current.MergeFilesFromProject.Clear();
 
             var directory = GenContext.Current.OutputPath;
