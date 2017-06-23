@@ -15,6 +15,8 @@ namespace wts.ItemName.ViewModels
         private const string PanoramicStateName = "PanoramicState";
         private const string WideStateName = "WideState";
         private const string NarrowStateName = "NarrowState";
+        private const double WideStateMinWindowWidth = 640;
+        private const double PanoramicStateMinWindowWidth = 1024;
 
         private bool _isPaneOpen;
         public bool IsPaneOpen
@@ -81,16 +83,32 @@ namespace wts.ItemName.ViewModels
             {
                 if (_stateChangedCommand == null)
                 {
-                    _stateChangedCommand = new RelayCommand<Windows.UI.Xaml.VisualStateChangedEventArgs>(OnStateChanged);
+                    _stateChangedCommand = new RelayCommand<Windows.UI.Xaml.VisualStateChangedEventArgs>(args => GoToState(args.NewState.Name));
                 }
 
                 return _stateChangedCommand;
             }
         }
 
-        private void OnStateChanged(VisualStateChangedEventArgs args)
+        private void InitializeState(double windowWith)
         {
-            switch (args.NewState.Name)
+            if (windowWith < WideStateMinWindowWidth)
+            {
+                GoToState(NarrowStateName);
+            }
+            else if (windowWith < PanoramicStateMinWindowWidth)
+            {
+                GoToState(WideStateName);
+            }
+            else
+            {
+                GoToState(PanoramicStateName);
+            }
+        }
+
+        private void GoToState(string stateName)
+        {
+            switch (stateName)
             {
                 case PanoramicStateName:
                     DisplayMode = SplitViewDisplayMode.CompactInline;
@@ -113,6 +131,8 @@ namespace wts.ItemName.ViewModels
             NavigationService.Frame = frame;
             NavigationService.Frame.Navigated += NavigationService_Navigated;
             PopulateNavItems();
+
+            InitializeState(Window.Current.Bounds.Width);
         }
 
         private void PopulateNavItems()

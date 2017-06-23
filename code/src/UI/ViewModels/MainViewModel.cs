@@ -16,6 +16,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -26,7 +27,6 @@ using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Views;
-using System.Windows.Controls;
 
 namespace Microsoft.Templates.UI.ViewModels
 {
@@ -160,8 +160,10 @@ namespace Microsoft.Templates.UI.ViewModels
             Current = this;
         }
 
-        public async Task InitializeAsync()
+        private StackPanel _summaryPageGroups;
+        public async Task InitializeAsync(StackPanel summaryPageGroups)
         {
+            _summaryPageGroups = summaryPageGroups;
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += Sync_SyncStatusChanged;
 
             SummaryLicenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryLicenses)); };
@@ -276,6 +278,22 @@ namespace Microsoft.Templates.UI.ViewModels
             throw new NotImplementedException();
         }
 
+        public void DefineDragAndDrop(ObservableCollection<SavedTemplateViewModel> items, bool allowDragAndDrop)
+        {
+            var listView = new ListView()
+            {
+                ItemsSource = items,
+                Style = MainView.FindResource("SummaryListViewStyle") as Style,
+                ItemTemplate = MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate
+            };
+            if (allowDragAndDrop)
+            {
+                var service = new DragAndDropService<SavedTemplateViewModel>(listView);
+                service.ProcessDrop += ProjectTemplates.DropTemplate;
+            }
+            _summaryPageGroups.Children.Add(listView);
+        }
+
         private string GetStatusText(SyncStatus status)
         {
             switch (status)
@@ -310,6 +328,7 @@ namespace Microsoft.Templates.UI.ViewModels
             if (CheckProjectSetupChanged())
             {
                 ProjectTemplates.ResetSelection();
+                _summaryPageGroups.Children.Clear();
 
                 CleanStatus();
             }
@@ -369,7 +388,7 @@ namespace Microsoft.Templates.UI.ViewModels
                 HomeName = ProjectTemplates.HomeName
             };
 
-            userSelection.Pages.AddRange(ProjectTemplates.SavedPages.Select(sp => sp.UserSelection));
+            ProjectTemplates.SavedPages.ToList().ForEach(spg => userSelection.Pages.AddRange(spg.Select(sp => sp.UserSelection)));
             userSelection.Features.AddRange(ProjectTemplates.SavedFeatures.Select(sf => sf.UserSelection));
 
             return userSelection;

@@ -93,7 +93,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortUsings
             {
                 if (!expression(skipContent[i]))
                 {
-                    return i;
+                    return i + startIndex;
                 }
             }
 

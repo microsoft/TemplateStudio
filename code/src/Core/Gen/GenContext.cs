@@ -53,8 +53,6 @@ namespace Microsoft.Templates.Core.Gen
 
         public static void Bootstrap(TemplatesSource source, GenShell shell, Version wizardVersion)
         {
-            TelemetryService.Current.SetVisualStudioInfoToContext(shell.GetVsVersion(), shell.GetVsEdition(), shell.GetVsCultureInfo());
-
             AppHealth.Current.AddWriter(new ShellHealthWriter());
             AppHealth.Current.Info.TrackAsync($"{StringRes.ConfigurationFileLoadedString}: {Configuration.LoadedConfigFile}").FireAndForget();
 

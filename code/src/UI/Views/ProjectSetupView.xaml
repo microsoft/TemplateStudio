@@ -46,13 +46,7 @@
                             <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding Summary}" Margin="{StaticResource MediumLeftMargin}"/>
 
                             <!--Row 2-->
-                            <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateItemAuthorStyle}" MaxHeight="20" Margin="{StaticResource MediumLeftMargin}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}">
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="{x:Static res:StringRes.MadeBy}">
-                                        <Binding Path="Author" />
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateItemAuthorStyle}" MaxHeight="20" Margin="{StaticResource MediumLeftMargin}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}" Text="{Binding Author}"/>
                         </Grid>
                     </Border>
                 </Grid>

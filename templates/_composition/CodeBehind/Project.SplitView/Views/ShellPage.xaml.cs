@@ -15,6 +15,8 @@ namespace wts.ItemName.Views
         private const string PanoramicStateName = "PanoramicState";
         private const string WideStateName = "WideState";
         private const string NarrowStateName = "NarrowState";
+        private const double WideStateMinWindowWidth = 640;
+        private const double PanoramicStateMinWindowWidth = 1024;
 
         private bool _isPaneOpen;
         public bool IsPaneOpen
@@ -58,6 +60,24 @@ namespace wts.ItemName.Views
             NavigationService.Frame = shellFrame;
             NavigationService.Frame.Navigated += NavigationService_Navigated;
             PopulateNavItems();
+
+            InitializeState(Window.Current.Bounds.Width);
+        }
+        
+        private void InitializeState(double windowWith)
+        {
+            if (windowWith < WideStateMinWindowWidth)
+            {
+                GoToState(NarrowStateName);
+            }
+            else if (windowWith < PanoramicStateMinWindowWidth)
+            {
+                GoToState(WideStateName);
+            }
+            else
+            {
+                GoToState(PanoramicStateName);
+            }
         }
 
         private void PopulateNavItems()
@@ -119,9 +139,11 @@ namespace wts.ItemName.Views
             IsPaneOpen = !_isPaneOpen;
         }
 
-        private void WindowStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
+        private void WindowStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e) => GoToState(e.NewState.Name);
+        
+        private void GoToState(string stateName)
         {
-            switch (e.NewState.Name)
+            switch (stateName)
             {
                 case PanoramicStateName:
                     DisplayMode = SplitViewDisplayMode.CompactInline;
@@ -136,7 +158,7 @@ namespace wts.ItemName.Views
                     break;
                 default:
                     break;
-            }            
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

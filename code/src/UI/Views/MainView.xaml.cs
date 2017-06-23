@@ -10,16 +10,14 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels;
-using System.Windows.Input;
-using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Controls;
-using System.Windows.Controls;
-using System;
-using System.Linq;
 
 namespace Microsoft.Templates.UI.Views
 {
@@ -40,7 +38,7 @@ namespace Microsoft.Templates.UI.Views
             Loaded += async (sender, e) =>
             {
                 NavigationService.Initialize(stepFrame, new ProjectSetupView());
-                await ViewModel.InitializeAsync();
+                await ViewModel.InitializeAsync(summaryPageGroups);
             };
 
             Unloaded += (sender, e) =>
@@ -74,26 +72,23 @@ namespace Microsoft.Templates.UI.Views
 
         private void OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            var element = e.Source as FrameworkElement;
-            if (element == null || element.Tag == null || element.Tag.ToString() != "AllowClick")
+            ViewModel.ProjectTemplates.SavedPages.ToList().ForEach(spg => spg.ToList().ForEach(p =>
             {
-                ViewModel?.ProjectTemplates?.SavedPages?.ToList()?.ForEach(p =>
+                if (p.IsEditionEnabled)
                 {
-                    if (p.IsEditionEnabled)
-                    {
-                        p.ConfirmRenameCommand.Execute(p);
-                        p.TryClose();
-                    }
-                });
-                ViewModel?.ProjectTemplates?.SavedFeatures?.ToList()?.ForEach(f =>
+                    p.ConfirmRenameCommand.Execute(p);
+                    p.TryClose();
+                }
+            }));
+
+            ViewModel?.ProjectTemplates?.SavedFeatures?.ToList()?.ForEach(f =>
+            {
+                if (f.IsEditionEnabled)
                 {
-                    if (f.IsEditionEnabled)
-                    {
-                        f.ConfirmRenameCommand.Execute(f);
-                        f.TryClose();
-                    }
-                });
-            }
+                    f.ConfirmRenameCommand.Execute(f);
+                    f.TryClose();
+                }
+            });
         }
     }
 }
