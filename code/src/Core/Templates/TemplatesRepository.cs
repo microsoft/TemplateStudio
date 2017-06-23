@@ -16,13 +16,13 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Globalization;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.Locations;
 
 using Newtonsoft.Json;
-using System.Globalization;
 
 namespace Microsoft.Templates.Core
 {

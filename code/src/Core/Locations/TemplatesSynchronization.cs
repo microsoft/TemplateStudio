@@ -13,9 +13,9 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using System.Reflection;
 
 using Microsoft.Templates.Core.Diagnostics;
-using System.Reflection;
 using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations

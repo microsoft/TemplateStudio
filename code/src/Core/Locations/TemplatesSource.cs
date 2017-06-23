@@ -13,8 +13,9 @@
 using System;
 using System.IO;
 using System.Net;
-using Microsoft.Templates.Core.Diagnostics;
 using System.Collections.Generic;
+
+using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
