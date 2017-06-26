@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <!--This is the file that defines the IDs for all the commands exposed by VisualStudio. -->
+  <Extern href="stdidcmd.h"/>
+
+  <!--This header contains the command ids for the menus provided by the shell. -->
+  <Extern href="vsshlids.h"/>
+
+  <Commands package="guidRelayCommandPackage">
+    <Groups>
+      <Group guid="guidRelayCommandPackageCmdSet" id="AddItemContextGroup" priority="0x0000"/>
+      <Group guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenuGroup" priority="0x0000"/>
+    </Groups>
+    
+    <Menus>
+      <Menu guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenu" type="Context" priority="0x0100">
+        <Strings>
+          <CommandName>Windows Template Studio</CommandName>
+          <ButtonText>Windows Template Studio</ButtonText>
+          <MenuText>Windows Template Studio</MenuText>
+          <ToolTipText>Windows Template Studio</ToolTipText>
+        </Strings>
+      </Menu>
+    </Menus>
+    
+    <Buttons>
+      <Button guid="guidRelayCommandPackageCmdSet" id="AddPageCommand" priority="0x0100" type="Button">
+        <Icon guid="guidImages" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Add new page...</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidRelayCommandPackageCmdSet" id="AddFeatureCommand" priority="0x0200" type="Button">
+        <Icon guid="guidImages" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Add new feature...</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+
+    <Bitmaps>
+      <Bitmap guid="guidImages" href="Resources\RelayCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>
+    </Bitmaps>
+  </Commands>
+
+  <Symbols>
+    <GuidSymbol name="guidRelayCommandPackage" value="{995f080c-9f70-4550-8a21-b3ffeeff17eb}" />
+
+    <GuidSymbol name="guidRelayCommandPackageCmdSet" value="{dec1ebd7-fb6b-49e7-b562-b46af0d419d1}">
+      <IDSymbol name="AddItemContextGroup" value="0x0100" />
+      <IDSymbol name="AddItemContextMenu" value="0x0200" />
+      <IDSymbol name="AddItemContextMenuGroup" value="0x0300" />
+      <IDSymbol name="AddPageCommand" value="0x0400"/>
+      <IDSymbol name="AddFeatureCommand" value="0x0500"/>
+    </GuidSymbol>
+
+    <GuidSymbol name="guidImages" value="{2be1a05a-8b56-4036-9f02-8bfee4cf74c7}" >
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>
