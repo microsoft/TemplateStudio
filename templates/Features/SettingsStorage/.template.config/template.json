@@ -5,7 +5,7 @@
   "groupIdentity": "wts.Feat.SettingsStorage",
   "identity": "wts.Feat.SettingsStorage",
   "shortName": "Settings Storage",
-  "description": "Setting storage is a class to simplify storing your application data.",
+  "description": "Setting storage helps simplify storing data inside your application data folder.",
   "tags": {
     "language": "C#",
     "type": "item",
