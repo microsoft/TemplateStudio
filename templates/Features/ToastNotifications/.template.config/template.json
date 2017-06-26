@@ -6,7 +6,7 @@
   "name": "Toast Notifications",
   "groupIdentity": "wts.Feat.ToastNotifications",
   "identity": "wts.Feat.ToastNotifications",
-  "shortName": "Toasts",
+  "shortName": "Toast Notifications",
   "description": "Adaptive and interactive toast notifications let you create flexible pop-up notifications with rich content.",
   "tags": {
     "language": "C#",

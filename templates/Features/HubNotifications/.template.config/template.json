@@ -3,11 +3,11 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Azure Notification Hub",
+  "name": "Azure Notifications",
   "groupIdentity": "wts.Feat.HubNotifications",
   "identity": "wts.Feat.HubNotifications",
-  "shortName": "Hub Notifications",
-  "description": "Azure Notification Hubs provide an easy-to-use, multi-platform, scaled-out push engine.",
+  "shortName": "Azure Notifications",
+  "description": "Azure Notification Hubs provide an easy-to-use, multi-platform, notification-based engagement engine.",
   "tags": {
     "language": "C#",
     "type": "item",
