@@ -10,7 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
     public enum MergeFailureType

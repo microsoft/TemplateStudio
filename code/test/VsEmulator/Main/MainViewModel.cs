@@ -193,7 +193,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             try
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewItem(TemplateType.Feature);
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature();
 
                 if (userSelection != null)
                 {
@@ -228,7 +228,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             ClearContext();
             try
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewItem(TemplateType.Page);
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage();
 
                 if (userSelection != null)
                 {

@@ -12,10 +12,9 @@
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
-    public enum WizardTypeEnum
+    public enum WizardActionEnum
     {
-        NewProject = 0,
-        AddPage = 1,
-        AddFeature = 2
+        Generate = 0,
+        GenerateAndMerge = 1
     }
 }

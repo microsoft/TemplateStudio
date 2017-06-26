@@ -164,7 +164,9 @@
     <Compile Include="Diagnostics\TelemetryTracker.cs" />
     <Compile Include="Diagnostics\TraceHealthWriter.cs" />
     <Compile Include="Diagnostics\ShellHealthWriter.cs" />
+    <Compile Include="Diagnostics\WizardActionEnum.cs" />
     <Compile Include="Diagnostics\WizardStatusEnum.cs" />
+    <Compile Include="Diagnostics\GenSourceEnum.cs" />
     <Compile Include="Diagnostics\WizardTypeEnum.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />

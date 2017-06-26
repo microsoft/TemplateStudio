@@ -62,9 +62,9 @@ namespace Microsoft.Templates.UI
             return (string.Empty, string.Empty);
         }
 
-        public UserSelection GetUserSelectionNewItem(TemplateType templateType)
+        public UserSelection GetUserSelectionNewFeature()
         {
-            var newItem = new Views.NewItem.MainView(templateType);
+            var newItem = new Views.NewItem.MainView(TemplateType.Feature);
 
             try
             {
@@ -73,15 +73,44 @@ namespace Microsoft.Templates.UI
                 GenContext.ToolBox.Shell.ShowModal(newItem);
                 if (newItem.Result != null)
                 {
-                    // TODO: Review when right-click-actions available to track Project or Page completed.
-                    // AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewItem).FireAndForget();
+                    TrackWizardCompletedTelemery(WizardTypeEnum.AddFeature, newItem.Result.ItemGenerationType);
 
                     return newItem.Result;
                 }
                 else
                 {
-                    // TODO: Review when right-click-actions available to track Project or Page cancelled.
-                    // AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewItem).FireAndForget();
+                    AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.AddFeature).FireAndForget();
+                }
+            }
+            catch (Exception ex) when (!(ex is WizardBackoutException))
+            {
+                newItem.SafeClose();
+                ShowError(ex);
+            }
+
+            GenContext.ToolBox.Shell.CancelWizard();
+
+            return null;
+        }
+
+        public UserSelection GetUserSelectionNewPage()
+        {
+            var newItem = new Views.NewItem.MainView(TemplateType.Page);
+
+            try
+            {
+                CleanStatusBar();
+
+                GenContext.ToolBox.Shell.ShowModal(newItem);
+                if (newItem.Result != null)
+                {
+                    TrackWizardCompletedTelemery(WizardTypeEnum.AddPage, newItem.Result.ItemGenerationType);
+
+                    return newItem.Result;
+                }
+                else
+                {
+                    AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.AddPage).FireAndForget();
                 }
             }
             catch (Exception ex) when (!(ex is WizardBackoutException))
@@ -118,7 +147,6 @@ namespace Microsoft.Templates.UI
 
             chrono.Stop();
 
-            // TODO: Review New Item telemetry
             TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework);
         }
 
@@ -317,7 +345,43 @@ namespace Microsoft.Templates.UI
 
         private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appProjectType, string appFx)
         {
-            // TODO: Include telemetry for new item
+            try
+            {
+                int pagesAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Count();
+                int featuresAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Count();
+
+                foreach (var genInfo in genItems)
+                {
+                    if (genInfo.Template == null)
+                    {
+                        continue;
+                    }
+
+                    string resultsKey = $"{genInfo.Template.Identity}_{genInfo.Name}";
+
+                    AppHealth.Current.Telemetry.TrackItemGenAsync(genInfo.Template, GenSourceEnum.NewItem, appProjectType, appFx, genResults[resultsKey]).FireAndForget();
+                }
+            }
+            catch (Exception ex)
+            {
+                AppHealth.Current.Exception.TrackAsync(ex, "Exception tracking telemetry for Template Generation.").FireAndForget();
+            }
+        }
+
+        private static void TrackWizardCompletedTelemery(WizardTypeEnum wizardType, ItemGenerationType generationType)
+        {
+            switch (generationType)
+            {
+                case ItemGenerationType.Generate:
+                    AppHealth.Current.Telemetry.TrackWizardCompletedAsync(wizardType, WizardActionEnum.Generate).FireAndForget();
+
+                    break;
+                case ItemGenerationType.GenerateAndMerge:
+                    AppHealth.Current.Telemetry.TrackWizardCompletedAsync(wizardType, WizardActionEnum.GenerateAndMerge).FireAndForget();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
