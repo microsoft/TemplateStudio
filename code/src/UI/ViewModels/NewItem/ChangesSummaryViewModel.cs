@@ -46,7 +46,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public void Initialize()
         {
             var output = NewItemGenController.Instance.CompareOutputAndProject();
-            var warnings = GenContext.Current.GenerationWarnings.Select(w => new WarningFileViewModel(w));
+            var warnings = GenContext.Current.FailedMergePostActions.Select(w => new WarningFileViewModel(w));
             FileGroups.Clear();
             FileGroups.Add(new ItemsGroupViewModel<BaseFileViewModel>(StringRes.ChangesSummaryCategoryOverwrittenFiles, output.ConflictingFiles.Select(cf => new ConfictingFileViewModel(cf)), OnItemChanged));
             FileGroups.Add(new ItemsGroupViewModel<BaseFileViewModel>(StringRes.ChangesSummaryCategoryMergeConflicts, warnings, OnItemChanged));

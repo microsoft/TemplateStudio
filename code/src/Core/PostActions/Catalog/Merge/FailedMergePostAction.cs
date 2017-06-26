@@ -9,17 +9,15 @@
 // TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Microsoft.Templates.Core.Gen
+namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
-    public class GenerationWarning
+    public class FailedMergePostAction
     {
+        public MergeFailureType MergeFailureType { get; private set; }
+
         public string FileName { get; private set; }
+
         public string FailedFileName { get; private set; }
 
         public string FilePath { get; set; }
@@ -28,13 +26,14 @@ namespace Microsoft.Templates.Core.Gen
 
         public string ExtendedInfo { get; private set; }
 
-        public GenerationWarning(string fileName, string failedFileName, string filePath, string description, string extendedInfo)
+        public FailedMergePostAction(string fileName, string filePath, string failedFileName, string description, string extendedInfo, MergeFailureType mergeFailureType)
         {
             FileName = fileName;
             FilePath = filePath;
             FailedFileName = failedFileName;
             Description = description;
             ExtendedInfo = extendedInfo;
+            MergeFailureType = mergeFailureType;
         }
     }
 }

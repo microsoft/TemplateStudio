@@ -39,7 +39,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         public string ProjectPath { get; set; }
         public List<string> ProjectItems { get; } = new List<string>();
 
-        public List<GenerationWarning> GenerationWarnings { get; } = new List<GenerationWarning>();
+        public List<FailedMergePostAction> FailedMergePostActions { get; } = new List<FailedMergePostAction>();
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
 

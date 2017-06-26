@@ -10,7 +10,7 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
@@ -19,7 +19,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
     {
         public override FileType FileType => FileType.WarningFile;
 
-        public WarningFileViewModel(GenerationWarning warning) : base(warning.FailedFileName)
+        public WarningFileViewModel(FailedMergePostAction warning) : base(warning.FailedFileName)
         {
             DetailTitle = StringRes.ChangesSummaryDetailTitleMergeConflicts;
             DetailDescription = warning.Description;
