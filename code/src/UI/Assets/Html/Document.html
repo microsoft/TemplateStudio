@@ -25,12 +25,10 @@
 
         require(['vs/editor/editor.main'], function ()
         {
+            var model = monaco.editor.createModel('##code##', '##language##');
             var editor = monaco.editor.create(document.getElementById('container'),
             {
-                value: [
-                    ##code##
-                ].join('\n'),
-                language: '##language##',
+                model: model,
                 readOnly: 'true'
             });
         });

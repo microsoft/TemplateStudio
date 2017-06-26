@@ -53,8 +53,8 @@ namespace Microsoft.Templates.UI.Controls
                 var patternText = File.ReadAllText(Path.Combine(executingDirectory, $@"Assets\Html\Compare.html"));
                 patternText = patternText
                     .Replace("##ExecutingDirectory##", executingDirectory)
-                    .Replace("##modifiedCode##", HttpUtility.JavaScriptStringEncode(GetFileString(CodeLines)))
-                    .Replace("##originalCode##", HttpUtility.JavaScriptStringEncode(GetFileString(OriginalCodeLines)))
+                    .Replace("##modifiedCode##", GetFileString(CodeLines))
+                    .Replace("##originalCode##", GetFileString(OriginalCodeLines))
                     .Replace("##language##", "csharp");
 
                 _webBrowser.NavigateToString(patternText);
@@ -63,20 +63,12 @@ namespace Microsoft.Templates.UI.Controls
             {
                 var patternText = File.ReadAllText(Path.Combine(executingDirectory, $@"Assets\Html\Document.html"));
 
-                patternText = patternText.Replace("##ExecutingDirectory##", executingDirectory).Replace("##code##", GetCodeString(CodeLines)).Replace("##language##", "csharp");
+                patternText = patternText
+                    .Replace("##ExecutingDirectory##", executingDirectory)
+                    .Replace("##code##", GetFileString(CodeLines))
+                    .Replace("##language##", "csharp");
                 _webBrowser.NavigateToString(patternText);
             }
-        }
-
-        private string GetCodeString(IEnumerable<CodeLineViewModel> codeLines)
-        {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < codeLines.Count() - 1; i++)
-            {
-                sb.Append($"'{codeLines.ElementAt(i).Text}',");
-            }
-            sb.Append($"'{codeLines.ElementAt(codeLines.Count() - 1).Text}'");
-            return sb.ToString();
         }
 
         private string GetFileString(IEnumerable<CodeLineViewModel> codeLines)
@@ -87,7 +79,7 @@ namespace Microsoft.Templates.UI.Controls
             {
                 sb.AppendLine(line.Text);
             }
-            return sb.ToString();
+            return HttpUtility.JavaScriptStringEncode(sb.ToString());
         }
 
         private static void OnCodeLinesPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
