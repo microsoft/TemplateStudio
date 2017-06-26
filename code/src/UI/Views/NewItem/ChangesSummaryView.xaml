@@ -34,53 +34,9 @@
                     <TextBlock Grid.Column="2" Text="{Binding Subject}" Style="{StaticResource ChangesSummaryListFileNameStyle}" Margin="{StaticResource MediumLeftMargin}" />
                 </Grid>
             </DataTemplate>
-
-            <DataTemplate x:Key="DefaultLineTemplate">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="{Binding NumberString}" FontSize="{Binding FontSize}" Style="{StaticResource ChangesSummaryCodeLineStyle}"/>
-                    <TextBlock Grid.Column="1" Text="   " FontSize="{Binding FontSize}" Style="{StaticResource ChangesSummaryCodeLineStyle}"/>
-                    <TextBlock Grid.Column="2" Text="{Binding Text}" FontSize="{Binding FontSize}" Style="{StaticResource ChangesSummaryCodeLineStyle}"/>
-                </Grid>
-            </DataTemplate>
-            <DataTemplate x:Key="NewLineTemplate">
-                <Grid Background="{StaticResource UILightGreen}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="{Binding NumberString}" FontSize="{Binding FontSize}" Style="{StaticResource ChangesSummaryCodeLineStyle}"/>
-                    <TextBlock Grid.Column="1" Text=" + " FontSize="{Binding FontSize}" Style="{StaticResource ChangesSummaryCodeLineStyle}"/>
-                    <TextBlock Grid.Column="2" Text="{Binding Text}" FontSize="{Binding FontSize}" Style="{StaticResource ChangesSummaryCodeLineStyle}"/>
-                </Grid>
-            </DataTemplate>
-            <DataTemplate x:Key="DeletedLineTemplate">
-                <Grid Background="{StaticResource UILightRed}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="{Binding NumberString}" FontSize="{Binding FontSize}" Style="{StaticResource ChangesSummaryCodeLineStyle}"/>
-                    <TextBlock Grid.Column="1" Text=" - " FontSize="{Binding FontSize}" Style="{StaticResource ChangesSummaryCodeLineStyle}"/>
-                    <TextBlock Grid.Column="2" Text="{Binding Text}" FontSize="{Binding FontSize}" Style="{StaticResource ChangesSummaryCodeLineStyle}"/>
-                </Grid>
-            </DataTemplate>
-
             <DataTemplate x:Key="NewFileTabItemHeaderTemplate">
                 <TextBlock Text="{Binding}"/>
             </DataTemplate>
-
-            <templateSelector:CodeLineTemplateSelector
-                x:Key="CodeLineTemplateSelector"
-                DefaultLineTemplate="{StaticResource DefaultLineTemplate }"
-                NewLineTemplate="{StaticResource NewLineTemplate }"
-                DeletedLineTemplate="{StaticResource DeletedLineTemplate }" />
 
             <DataTemplate x:Key="SimpletDetailTemplate">
                 <Grid>
@@ -98,7 +54,7 @@
                             <TextBlock Grid.Column="1" Text="{Binding Subject}" Margin="{StaticResource MediumLeftMargin}" VerticalAlignment="Center"/>
                         </Grid>
                     </Grid>
-                    <controls:CodeViewer Grid.Row="1" CodeLines="{Binding NewFileLines}"/>
+                    <controls:CodeViewer Grid.Row="1" FilePath="{Binding NewFile}"/>
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="ConflictingDetailTemplate">
@@ -117,10 +73,6 @@
                             <TextBlock Grid.Column="1" Text="{Binding Subject}" Margin="{StaticResource MediumLeftMargin}" VerticalAlignment="Center"/>
                         </Grid>
                     </Grid>
-                    <!--<controls:CodeViewer Grid.Row="1" NewFileName="{Binding NewFile}" OldFileName="{Binding CurrentFile}"/>-->
-                    <!--<ScrollViewer Grid.Row="1">
-                        <ItemsControl Margin="{StaticResource MediumMargin}" ItemsSource="{Binding MergedFileLines}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
-                    </ScrollViewer>-->
                 </Grid>
             </DataTemplate>
 
@@ -140,7 +92,7 @@
                             <TextBlock Grid.Column="1" Text="{Binding Subject}" Margin="{StaticResource MediumLeftMargin}" VerticalAlignment="Center"/>
                         </Grid>
                     </Grid>
-                    <controls:CodeViewer Grid.Row="1" CodeLines="{Binding NewFileLines}" OriginalCodeLines="{Binding CurrentFileLines}"/>
+                    <controls:CodeViewer Grid.Row="1" FilePath="{Binding NewFile}" OriginalFilePath="{Binding CurrentFile}" />
                 </Grid>
             </DataTemplate>
 

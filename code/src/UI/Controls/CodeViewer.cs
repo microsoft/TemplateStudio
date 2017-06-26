@@ -1,11 +1,5 @@
-﻿using Microsoft.Templates.UI.ViewModels.NewItem;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,19 +11,19 @@ namespace Microsoft.Templates.UI.Controls
         private bool _isInitialized;
         private WebBrowser _webBrowser;
 
-        public IEnumerable<CodeLineViewModel> CodeLines
+        public string FilePath
         {
-            get { return (IEnumerable<CodeLineViewModel>)GetValue(CodeLinesProperty); }
-            set { SetValue(CodeLinesProperty, value); }
+            get { return (string)GetValue(FilePathProperty); }
+            set { SetValue(FilePathProperty, value); }
         }
-        public static readonly DependencyProperty CodeLinesProperty = DependencyProperty.Register("CodeLines", typeof(IEnumerable<CodeLineViewModel>), typeof(CodeViewer), new PropertyMetadata(null, OnCodeLinesPropertyChanged));
+        public static readonly DependencyProperty FilePathProperty = DependencyProperty.Register("FilePath", typeof(string), typeof(CodeViewer), new PropertyMetadata(string.Empty, OnCodeLinesPropertyChanged));
 
-        public IEnumerable<CodeLineViewModel> OriginalCodeLines
+        public string OriginalFilePath
         {
-            get { return (IEnumerable<CodeLineViewModel>)GetValue(OriginalCodeLinesProperty); }
-            set { SetValue(OriginalCodeLinesProperty, value); }
+            get { return (string)GetValue(OriginalFilePathProperty); }
+            set { SetValue(OriginalFilePathProperty, value); }
         }
-        public static readonly DependencyProperty OriginalCodeLinesProperty = DependencyProperty.Register("OriginalCodeLines", typeof(IEnumerable<CodeLineViewModel>), typeof(CodeViewer), new PropertyMetadata(null, OnCodeLinesPropertyChanged));
+        public static readonly DependencyProperty OriginalFilePathProperty = DependencyProperty.Register("OriginalFilePath", typeof(string), typeof(CodeViewer), new PropertyMetadata(string.Empty, OnCodeLinesPropertyChanged));
 
         public CodeViewer()
         {
@@ -48,38 +42,38 @@ namespace Microsoft.Templates.UI.Controls
         {
             var executingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).Replace('\\', '/');
 
-            if (_isInitialized && CodeLines != null && CodeLines.Any() && OriginalCodeLines != null && OriginalCodeLines.Any())
+            string fileText = LoadFile(FilePath);
+            string originalFileText = LoadFile(OriginalFilePath);
+            if (_isInitialized && !string.IsNullOrEmpty(fileText) && !string.IsNullOrEmpty(originalFileText))
             {
                 var patternText = File.ReadAllText(Path.Combine(executingDirectory, $@"Assets\Html\Compare.html"));
                 patternText = patternText
                     .Replace("##ExecutingDirectory##", executingDirectory)
-                    .Replace("##modifiedCode##", GetFileString(CodeLines))
-                    .Replace("##originalCode##", GetFileString(OriginalCodeLines))
+                    .Replace("##modifiedCode##", fileText)
+                    .Replace("##originalCode##", originalFileText)
                     .Replace("##language##", "csharp");
 
                 _webBrowser.NavigateToString(patternText);
             }
-            else if (_isInitialized && CodeLines != null && CodeLines.Any())
+            else if (_isInitialized && !string.IsNullOrEmpty(fileText))
             {
                 var patternText = File.ReadAllText(Path.Combine(executingDirectory, $@"Assets\Html\Document.html"));
 
                 patternText = patternText
                     .Replace("##ExecutingDirectory##", executingDirectory)
-                    .Replace("##code##", GetFileString(CodeLines))
+                    .Replace("##code##", fileText)
                     .Replace("##language##", "csharp");
                 _webBrowser.NavigateToString(patternText);
             }
         }
 
-        private string GetFileString(IEnumerable<CodeLineViewModel> codeLines)
+        private string LoadFile(string filePath)
         {
-            StringBuilder sb = new StringBuilder();
-
-            foreach (var line in codeLines)
+            if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
             {
-                sb.AppendLine(line.Text);
+                return HttpUtility.JavaScriptStringEncode(File.ReadAllText(filePath));
             }
-            return HttpUtility.JavaScriptStringEncode(sb.ToString());
+            return string.Empty;
         }
 
         private static void OnCodeLinesPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

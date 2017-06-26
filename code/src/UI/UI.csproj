@@ -195,7 +195,6 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
-    <Compile Include="Comparison\ComparisonService.cs" />
     <Compile Include="Controls\ImageEx.cs" />
     <Compile Include="Controls\LogoDisplay.xaml.cs">
       <DependentUpon>LogoDisplay.xaml</DependentUpon>
@@ -225,7 +224,6 @@
     <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="Generation\NewProjectGenController.cs" />
     <Compile Include="Generation\NewItemGenController.cs" />
-    <Compile Include="TemplateSelectors\CodeLineTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\NewItemFileTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\SummaryItemOptionsTemplateSelector.cs" />
     <Compile Include="Services\DragAndDropService\DragAndDropEventArgs.cs" />
@@ -238,8 +236,6 @@
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\ModifiedFileViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\WarningFileViewModel.cs" />
-    <Compile Include="Comparison\CodeLine.cs" />
-    <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\CodeLineViewModel.cs" />
     <Compile Include="ViewModels\NewItem\MainViewModel.cs" />
     <Compile Include="ViewModels\NewItem\NewItemSetupViewModel.cs" />
     <Compile Include="ViewModels\NewItem\TemplateInfoViewModel.cs" />

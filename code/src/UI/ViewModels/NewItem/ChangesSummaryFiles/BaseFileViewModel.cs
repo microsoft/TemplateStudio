@@ -17,7 +17,6 @@ using System.Windows.Media;
 
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.UI.Comparison;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -42,9 +41,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public string NewFile { get; set; }
         public string CurrentFile { get; set; }
 
-        public ObservableCollection<CodeLineViewModel> NewFileLines { get; private set; } = new ObservableCollection<CodeLineViewModel>();
-        public ObservableCollection<CodeLineViewModel> CurrentFileLines { get; private set; } = new ObservableCollection<CodeLineViewModel>();
-        public ObservableCollection<CodeLineViewModel> MergedFileLines { get; private set; } = new ObservableCollection<CodeLineViewModel>();
+        //public ObservableCollection<string> NewFileLines { get; private set; } = new ObservableCollection<string>();
+        //public ObservableCollection<string> CurrentFileLines { get; private set; } = new ObservableCollection<string>();
 
         public abstract FileType FileType { get; }
 
@@ -88,40 +86,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private void LoadFile()
         {
             NewFile = Path.Combine(GenContext.Current.OutputPath, Subject);
-            var newFileCodeLines = ComparisonService.FromPath(NewFile);
-            NewFileLines.AddRange(newFileCodeLines.Select(cl => new CodeLineViewModel(cl)));
-
             CurrentFile = Path.Combine(GenContext.Current.ProjectPath, Subject);
-            var currentFileCodeLines = ComparisonService.FromPath(CurrentFile);
-            CurrentFileLines.AddRange(currentFileCodeLines.Select(cl => new CodeLineViewModel(cl)));
-
-            var comparsion = ComparisonService.CompareFiles(currentFileCodeLines, newFileCodeLines);
-            MergedFileLines.AddRange(comparsion.Select(cl => new CodeLineViewModel(cl)));
-        }
-
-        public void UpdateFontSize(double points)
-        {
-            if (NewFileLines != null && NewFileLines.Any())
-            {
-                foreach (var line in NewFileLines)
-                {
-                    line.FontSize = points;
-                }
-            }
-            if (CurrentFileLines != null && CurrentFileLines.Any())
-            {
-                foreach (var line in CurrentFileLines)
-                {
-                    line.FontSize = points;
-                }
-            }
-            if (MergedFileLines != null && MergedFileLines.Any())
-            {
-                foreach (var line in MergedFileLines)
-                {
-                    line.FontSize = points;
-                }
-            }
         }
 
         private FileExtension GetFileExtension(string name)
