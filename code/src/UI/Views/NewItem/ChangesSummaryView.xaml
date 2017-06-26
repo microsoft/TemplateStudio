@@ -6,6 +6,7 @@
       xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
       xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
       xmlns:templateSelector="clr-namespace:Microsoft.Templates.UI.TemplateSelectors"
+      xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300">
 
@@ -81,7 +82,7 @@
                 NewLineTemplate="{StaticResource NewLineTemplate }"
                 DeletedLineTemplate="{StaticResource DeletedLineTemplate }" />
 
-            <DataTemplate x:Key="NewtDetailTemplate">
+            <DataTemplate x:Key="SimpletDetailTemplate">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
@@ -97,21 +98,8 @@
                             <TextBlock Grid.Column="1" Text="{Binding Subject}" Margin="{StaticResource MediumLeftMargin}" VerticalAlignment="Center"/>
                         </Grid>
                     </Grid>
-                    <ScrollViewer Grid.Row="1">
-                        <ItemsControl Margin="{StaticResource MediumMargin}" ItemsSource="{Binding NewFileLines}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
-                    </ScrollViewer>
+                    <controls:CodeViewer Grid.Row="1" CodeLines="{Binding NewFileLines}"/>
                 </Grid>
-            </DataTemplate>
-            <DataTemplate x:Key="UnchangedtDetailTemplate">
-                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
-                    <ItemsControl
-                        ItemsSource="{Binding NewFileLines}" Margin="{StaticResource MediumMargin}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
-                </ScrollViewer>
-            </DataTemplate>
-            <DataTemplate x:Key="WarningDetailTemplate">
-                <ScrollViewer>
-                    <ItemsControl ItemsSource="{Binding NewFileLines}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}" Margin="{StaticResource MediumMargin}"/>
-                </ScrollViewer>
             </DataTemplate>
             <DataTemplate x:Key="ConflictingDetailTemplate">
                 <Grid>
@@ -129,25 +117,40 @@
                             <TextBlock Grid.Column="1" Text="{Binding Subject}" Margin="{StaticResource MediumLeftMargin}" VerticalAlignment="Center"/>
                         </Grid>
                     </Grid>
-                    <ScrollViewer Grid.Row="1">
+                    <!--<controls:CodeViewer Grid.Row="1" NewFileName="{Binding NewFile}" OldFileName="{Binding CurrentFile}"/>-->
+                    <!--<ScrollViewer Grid.Row="1">
                         <ItemsControl Margin="{StaticResource MediumMargin}" ItemsSource="{Binding MergedFileLines}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
-                    </ScrollViewer>
+                    </ScrollViewer>-->
                 </Grid>
             </DataTemplate>
 
             <DataTemplate x:Key="ModifiedDetailTemplate">
-                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
-                    <ItemsControl ItemsSource="{Binding MergedFileLines}" Margin="{StaticResource MediumMargin}" ItemTemplateSelector="{StaticResource CodeLineTemplateSelector}"/>
-                </ScrollViewer>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Margin="0,0,17,0">
+                        <Grid Background="{StaticResource UIGray}" Margin="{StaticResource MediumLeftRightMargin}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="{Binding Icon}" Margin="{StaticResource MediumLeftMargin}" Stretch="Uniform" MaxHeight="15" MaxWidth="15"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Subject}" Margin="{StaticResource MediumLeftMargin}" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+                    <controls:CodeViewer Grid.Row="1" CodeLines="{Binding NewFileLines}" OriginalCodeLines="{Binding CurrentFileLines}"/>
+                </Grid>
             </DataTemplate>
 
             <templateSelector:NewItemFileTemplateSelector
                 x:Key="DetailTemplateSelector"
-                AddedFileTemplate="{StaticResource NewtDetailTemplate}"
+                AddedFileTemplate="{StaticResource SimpletDetailTemplate}"
                 ModifiedFileTemplate="{StaticResource ModifiedDetailTemplate}"
                 ConflictingFileTemplate="{StaticResource ConflictingDetailTemplate}"
-                WarningFileTemplate="{StaticResource WarningDetailTemplate}"
-                UnchangedFileTemplate="{StaticResource UnchangedtDetailTemplate}"/>
+                WarningFileTemplate="{StaticResource SimpletDetailTemplate}"
+                UnchangedFileTemplate="{StaticResource SimpletDetailTemplate}"/>
 
 
         </ResourceDictionary>

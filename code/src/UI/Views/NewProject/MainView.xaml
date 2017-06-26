@@ -296,11 +296,5 @@
             Visible="{Binding IsOverlayBoxVisible}"
             RefreshCommand="{Binding RefreshTemplatesCommand}"
             CheckForUpdatesCommand="{Binding CheckUpdatesCommand}"/>
-
-        <controls:CodeViewer>
-            <controls:CodeViewer.Text>
-                public class MyClass { public MuClass() { } }
-            </controls:CodeViewer.Text>
-        </controls:CodeViewer>
     </Grid>
 </Window>

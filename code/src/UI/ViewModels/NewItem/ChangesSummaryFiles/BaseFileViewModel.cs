@@ -39,6 +39,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public SolidColorBrush CircleColor { get; private set; }
         public FileExtension FileExtension { get; private set; }
 
+        public string NewFile { get; set; }
+        public string CurrentFile { get; set; }
+
         public ObservableCollection<CodeLineViewModel> NewFileLines { get; private set; } = new ObservableCollection<CodeLineViewModel>();
         public ObservableCollection<CodeLineViewModel> CurrentFileLines { get; private set; } = new ObservableCollection<CodeLineViewModel>();
         public ObservableCollection<CodeLineViewModel> MergedFileLines { get; private set; } = new ObservableCollection<CodeLineViewModel>();
@@ -84,12 +87,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void LoadFile()
         {
-            var newFilePath = Path.Combine(GenContext.Current.OutputPath, Subject);
-            var newFileCodeLines = ComparisonService.FromPath(newFilePath);
+            NewFile = Path.Combine(GenContext.Current.OutputPath, Subject);
+            var newFileCodeLines = ComparisonService.FromPath(NewFile);
             NewFileLines.AddRange(newFileCodeLines.Select(cl => new CodeLineViewModel(cl)));
 
-            var currentFilePath = Path.Combine(GenContext.Current.ProjectPath, Subject);
-            var currentFileCodeLines = ComparisonService.FromPath(currentFilePath);
+            CurrentFile = Path.Combine(GenContext.Current.ProjectPath, Subject);
+            var currentFileCodeLines = ComparisonService.FromPath(CurrentFile);
             CurrentFileLines.AddRange(currentFileCodeLines.Select(cl => new CodeLineViewModel(cl)));
 
             var comparsion = ComparisonService.CompareFiles(currentFileCodeLines, newFileCodeLines);
