@@ -58,15 +58,17 @@
                     VerticalAlignment="Center"
                     Style="{StaticResource TextTitleStyle}"
                     Text="{Binding Title}" />
-                <Grid Grid.Column="2" Background="{StaticResource UIDarkGray}" Visibility="{Binding IsOverlayBoxVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                <Button Grid.Column="2" Style="{StaticResource TopBarMenuStyle}" Command="{Binding ShowOverlayMenuCommand}">
-                    <Button.Content>
-                        <Grid>
-                            <TextBlock Text="&#xEC42;" Style="{StaticResource IconButtonTextStyle}" Foreground="{StaticResource UIWhite}" FontSize="24" Margin="{StaticResource MediumMargin}" />
-                            <Ellipse Width="12" Height="12" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,5,0" Visibility="{Binding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}}" Fill="{StaticResource UIDarkYellow}" />
-                        </Grid>
-                    </Button.Content>
-                </Button>
+                <Grid Grid.Column="2" Visibility="{Binding HasOverlayBox, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Grid Background="{StaticResource UIDarkGray}" Visibility="{Binding IsOverlayBoxVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    <Button Style="{StaticResource TopBarMenuStyle}" Command="{Binding ShowOverlayMenuCommand}">
+                        <Button.Content>
+                            <Grid>
+                                <TextBlock Text="&#xEC42;" Style="{StaticResource IconButtonTextStyle}" Foreground="{StaticResource UIWhite}" FontSize="24" Margin="{StaticResource MediumMargin}" />
+                                <Ellipse Width="12" Height="12" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,5,0" Visibility="{Binding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}}" Fill="{StaticResource UIDarkYellow}" />
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+                </Grid>
             </Grid>
             <Grid Grid.Row="1" Background="{StaticResource UILightGray}"/>
             <Grid Grid.Row="2">

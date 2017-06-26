@@ -7,7 +7,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:CodeViewer}">
-                    <WebBrowser x:Name="webBrowser"/>
+                    <WebBrowser x:Name="webBrowser" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
