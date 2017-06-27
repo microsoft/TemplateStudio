@@ -16,11 +16,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class ModifiedFileViewModel : BaseFileViewModel
     {
-        public override FileType FileType => FileType.ModifiedFile;
+        public override FileStatus FileStatus => FileStatus.ModifiedFile;
 
         public ModifiedFileViewModel(NewItemGenerationFileInfo generationInfo) : base(generationInfo)
         {
             DetailTitle = StringRes.ChangesSummaryDetailTitleModifiedFiles;
+            DetailDescription = string.Format(StringRes.ChangesSummaryDetailDescriptionModifiedFiles, generationInfo.Name);
         }
     }
 }
