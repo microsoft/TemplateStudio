@@ -68,12 +68,6 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
-    <Compile Include="obj\Analyze\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Analyze\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Analyze\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\StringRes.cs-CZ1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -172,35 +166,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <VSIXSubPath>InstalledTemplates</VSIXSubPath>
     </Content>
-    <None Include="obj\Analyze\build.force" />
-    <None Include="obj\Analyze\CoreCompileInputs.cache" />
-    <None Include="obj\Analyze\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Analyze\Installer.2017.csproj.GenerateResource.Cache" />
-    <None Include="obj\Analyze\Installer.2017.csprojResolveAssemblyReference.cache" />
-    <None Include="obj\Analyze\TemplateManifests\templateManifest0.1033.vstman" />
-    <None Include="obj\Analyze\TemplateManifests\templateManifest0.3082.vstman" />
-    <None Include="obj\Analyze\TemplateManifests\templateManifest1.1033.vstman" />
-    <None Include="obj\Debug\CoreCompileInputs.cache" />
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Debug\Installer.2017.csproj.GenerateResource.Cache" />
-    <None Include="obj\Debug\Installer.2017.csprojResolveAssemblyReference.cache" />
-    <None Include="obj\Debug\TemplateManifests\templateManifest0.1029.vstman" />
-    <None Include="obj\Debug\TemplateManifests\templateManifest0.3082.vstman" />
-    <None Include="obj\Debug\TemplateManifests\templateManifest1.1031.vstman" />
-    <None Include="obj\Debug\TemplateManifests\templateManifest1.1033.vstman" />
-    <None Include="obj\Debug\TemplateManifests\templateManifest10.1033.vstman" />
-    <None Include="obj\Debug\TemplateManifests\templateManifest11.1055.vstman" />
-    <None Include="obj\Debug\TemplateManifests\templateManifest12.2052.vstman" />
-    <None Include="obj\Debug\TemplateManifests\templateManifest13.1028.vstman" />
-    <None Include="obj\Debug\TemplateManifests\templateManifest2.3082.vstman" />
-    <None Include="obj\Debug\TemplateManifests\templateManifest3.1033.vstman" />
-    <None Include="obj\Debug\TemplateManifests\templateManifest3.1036.vstman" />
-    <None Include="obj\Debug\TemplateManifests\templateManifest4.1040.vstman" />
-    <None Include="obj\Debug\TemplateManifests\templateManifest5.1041.vstman" />
-    <None Include="obj\Debug\TemplateManifests\templateManifest6.1042.vstman" />
-    <None Include="obj\Debug\TemplateManifests\templateManifest7.1045.vstman" />
-    <None Include="obj\Debug\TemplateManifests\templateManifest8.1046.vstman" />
-    <None Include="obj\Debug\TemplateManifests\templateManifest9.1049.vstman" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -226,65 +191,6 @@
     <Content Include="ko-KR\Extension.vsixlangpack">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="obj\Analyze\extension.vsixmanifest" />
-    <Content Include="obj\Analyze\Installer.2017.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Analyze\Microsoft.Templates.2017.dll" />
-    <Content Include="obj\Analyze\Microsoft.Templates.2017.pdb" />
-    <Content Include="obj\Analyze\ProjectTemplates\CSharp\Windows Universal\1033\CSharp.UWP.VS2017.Solution\CSharp.UWP.VS2017.Solution.vstemplate" />
-    <Content Include="obj\Analyze\ProjectTemplates\CSharp\Windows Universal\1033\CSharp.UWP.VS2017.Solution\windowsTemplateStudio_Logo_256x256.ico" />
-    <Content Include="obj\Analyze\ProjectTemplates\CSharp\Windows Universal\3082\CSharp.UWP.VS2017.Solution\CSharp.UWP.VS2017.Solution.vstemplate" />
-    <Content Include="obj\Analyze\ProjectTemplates\CSharp\Windows Universal\3082\CSharp.UWP.VS2017.Solution\windowsTemplateStudio_Logo_256x256.ico" />
-    <Content Include="obj\Analyze\TempPE\Resources.StringRes.Designer.cs.dll" />
-    <Content Include="obj\Debug\extension.vsixmanifest" />
-    <Content Include="obj\Debug\Installer.2017.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\Microsoft.Templates.2017.dll" />
-    <Content Include="obj\Debug\Microsoft.Templates.2017.pdb" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1028\CSharp.UWP.VS2017.Solution\CSharp.UWP.VS2017.Solution.vstemplate" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1028\CSharp.UWP.VS2017.Solution\windowsTemplateStudio_Logo_256x256.ico" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1029\CSharp.UWP.VS2017.Solution\CSharp.UWP.VS2017.Solution.vstemplate" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1029\CSharp.UWP.VS2017.Solution\windowsTemplateStudio_Logo_256x256.ico" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1031\CSharp.UWP.VS2017.Solution\CSharp.UWP.VS2017.Solution.vstemplate" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1031\CSharp.UWP.VS2017.Solution\windowsTemplateStudio_Logo_256x256.ico" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1033\CSharp.UWP.VS2017.Solution\CSharp.UWP.VS2017.Solution.vstemplate" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1033\CSharp.UWP.VS2017.Solution\windowsTemplateStudio_Logo_256x256.ico" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1036\CSharp.UWP.VS2017.Solution\CSharp.UWP.VS2017.Solution.vstemplate" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1036\CSharp.UWP.VS2017.Solution\windowsTemplateStudio_Logo_256x256.ico" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1040\CSharp.UWP.VS2017.Solution\CSharp.UWP.VS2017.Solution.vstemplate" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1040\CSharp.UWP.VS2017.Solution\windowsTemplateStudio_Logo_256x256.ico" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1041\CSharp.UWP.VS2017.Solution\CSharp.UWP.VS2017.Solution.vstemplate" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1041\CSharp.UWP.VS2017.Solution\windowsTemplateStudio_Logo_256x256.ico" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1042\CSharp.UWP.VS2017.Solution\CSharp.UWP.VS2017.Solution.vstemplate" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1042\CSharp.UWP.VS2017.Solution\windowsTemplateStudio_Logo_256x256.ico" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1045\CSharp.UWP.VS2017.Solution\CSharp.UWP.VS2017.Solution.vstemplate" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1045\CSharp.UWP.VS2017.Solution\windowsTemplateStudio_Logo_256x256.ico" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1046\CSharp.UWP.VS2017.Solution\CSharp.UWP.VS2017.Solution.vstemplate" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1046\CSharp.UWP.VS2017.Solution\windowsTemplateStudio_Logo_256x256.ico" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1049\CSharp.UWP.VS2017.Solution\CSharp.UWP.VS2017.Solution.vstemplate" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1049\CSharp.UWP.VS2017.Solution\windowsTemplateStudio_Logo_256x256.ico" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1055\CSharp.UWP.VS2017.Solution\CSharp.UWP.VS2017.Solution.vstemplate" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\1055\CSharp.UWP.VS2017.Solution\windowsTemplateStudio_Logo_256x256.ico" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\2052\CSharp.UWP.VS2017.Solution\CSharp.UWP.VS2017.Solution.vstemplate" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\2052\CSharp.UWP.VS2017.Solution\windowsTemplateStudio_Logo_256x256.ico" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\3082\CSharp.UWP.VS2017.Solution\CSharp.UWP.VS2017.Solution.vstemplate" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Windows Universal\3082\CSharp.UWP.VS2017.Solution\windowsTemplateStudio_Logo_256x256.ico" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Крутые приложения Windows\1049\CSharp.UWP.VS2017.Solution\CSharp.UWP.VS2017.Solution.vstemplate" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Крутые приложения Windows\1049\CSharp.UWP.VS2017.Solution\windowsTemplateStudio_Logo_256x256.ico" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Универсальные приложения Windows\1049\CSharp.UWP.VS2017.Solution\CSharp.UWP.VS2017.Solution.vstemplate" />
-    <Content Include="obj\Debug\ProjectTemplates\CSharp\Универсальные приложения Windows\1049\CSharp.UWP.VS2017.Solution\windowsTemplateStudio_Logo_256x256.ico" />
-    <Content Include="obj\Debug\TempPE\Resources.StringRes.cs-CZ1.Designer.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Resources.StringRes.de-DE.Designer.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Resources.StringRes.Designer.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Resources.StringRes.es-ES.Designer.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Resources.StringRes.fr-FR.Designer.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Resources.StringRes.it-IT.Designer.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Resources.StringRes.ja-JP.Designer.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Resources.StringRes.ko-KR.Designer.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Resources.StringRes.pl-PL.Designer.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Resources.StringRes.pt-BR.Designer.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Resources.StringRes.ru-RU.Designer.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Resources.StringRes.tr-TR.Designer.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Resources.StringRes.zh-CN.Designer.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Resources.StringRes.zh-TW.Designer.cs.dll" />
     <Content Include="pl-PL\Extension.vsixlangpack">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -435,8 +341,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="obj\Analyze\Microsoft.Templates.Extension.Resources.StringRes.resources" />
-    <EmbeddedResource Include="obj\Debug\Microsoft.Templates.Extension.Resources.StringRes.resources" />
     <EmbeddedResource Include="Resources\StringRes.cs-CZ.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.cs-CZ1.Designer.cs</LastGenOutput>
