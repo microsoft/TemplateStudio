@@ -50,11 +50,14 @@ namespace Localization
             string destinationDirectory = commandInfo.Arguments[1];
             List<string> cultures = new List<string>(commandInfo.Arguments[2].Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries));
             LocalizableItemsExtractor extractor = new LocalizableItemsExtractor(sourceDirectory, destinationDirectory);
+            extractor.ExtractVsix(cultures);
             foreach (string culture in cultures)
             {
                 extractor.ExtractProjectTemplate(culture);
             }
-            // CSharp.UWP.2017.{culture}.Solution/CSharp.UWP.VS2017.Solution.vstemplate
+            extractor.ExtractTemplateEngineTemplates(cultures);
+            extractor.ExtractWtsTemplates(cultures);
+            extractor.ExtractResourceFiles(cultures);
             // TemplateEngine Json
             // TemplateEngine Md
             // Wts Json

@@ -42,15 +42,14 @@ namespace Localization
                 this.destinationDir.Create();
         }
 
-        internal bool GenerateProjectTemplate(string culture)
+        internal void GenerateProjectTemplate(string culture)
         {
             DirectoryInfo templateDirectory = new DirectoryInfo(Path.Combine(this.destinationDir.FullName, string.Format(destinationDirNamePattern, culture)));
             if (templateDirectory.Exists)
-                return false;
+                return;
             templateDirectory.Create();
             this.CopyDirectory(this.sourceDir, templateDirectory);
             this.LocalizeCsprojFile(culture, templateDirectory);
-            return true;
         }
 
         private void LocalizeCsprojFile(string culture, DirectoryInfo templateDirectory)

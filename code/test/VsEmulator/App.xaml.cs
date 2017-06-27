@@ -27,8 +27,8 @@ namespace Microsoft.Templates.VsEmulator
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            System.Globalization.CultureInfo.CurrentUICulture = new System.Globalization.CultureInfo("es-ES");
-            System.Globalization.CultureInfo.CurrentCulture = new System.Globalization.CultureInfo("es-ES");
+            System.Globalization.CultureInfo.CurrentUICulture = new System.Globalization.CultureInfo("de-DE");
+            System.Globalization.CultureInfo.CurrentCulture = new System.Globalization.CultureInfo("de-DE");
             base.OnStartup(e);
         }
     }

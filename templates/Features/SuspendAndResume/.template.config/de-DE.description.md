@@ -1,0 +1,3 @@
+A user can suspend your app at any time so let's be ready for it.  We have a nifty suspend and resume service you can hook into that can help you in bringing your app back to the state it was before!
+
+See these three great topics for more information about [application lifecycle](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/app-lifecycle),  [resuming an app](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/resume-an-app) and  [suspending an app](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/suspend-an-app).
