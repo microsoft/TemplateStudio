@@ -3,6 +3,7 @@
   "CdnUrl": "###CdnUrl###",
   "RemoteTelemetryKey": "###RemoteTelemetryKey###",
   "LogFileFolderPath": "WindowsTemplateStudio\\Logs",
+  "CustomTelemetryEndpoint": "###CustomTelemetryEndpoint###",
   "RepositoryFolderName": "WindowsTemplateStudio",
   "DiagnosticsTraceLevel": "###DiagnosticsTraceLevel###",
   "DaysToKeepDiagnosticsLogs": 5,
