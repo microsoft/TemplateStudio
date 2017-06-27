@@ -44,6 +44,28 @@
     </Bitmaps>
   </Commands>
 
+  <CommandPlacements>
+    <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="AddItemContextGroup" priority="0x0000">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_PROJNODE" />
+    </CommandPlacement>
+
+    <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenu" priority="0x0100">
+      <Parent guid="guidRelayCommandPackageCmdSet" id="AddItemContextGroup" />
+    </CommandPlacement>
+
+    <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenuGroup" priority="0x0100">
+      <Parent guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenu" />
+    </CommandPlacement>
+
+    <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="AddPageCommand" priority="0x0100">
+      <Parent guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenuGroup" />
+    </CommandPlacement>
+
+    <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="AddFeatureCommand" priority="0x0200">
+      <Parent guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenuGroup" />
+    </CommandPlacement>
+  </CommandPlacements>
+  
   <Symbols>
     <GuidSymbol name="guidRelayCommandPackage" value="{995f080c-9f70-4550-8a21-b3ffeeff17eb}" />
 

@@ -41,41 +41,75 @@ namespace Microsoft.Templates.Extension.Commands
     /// To get loaded into VS, the package must be referred by &lt;Asset Type="Microsoft.VisualStudio.VsPackage" ...&gt; in .vsixmanifest file.
     /// </para>
     /// </remarks>
+    [ProvideAutoLoad("{f1536ef8-92ec-443c-9ed7-fdadf150da82}")]
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    [Guid(RelayCommandPackage.PackageGuidString)]
+    [Guid(PackageGuids.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     public sealed class RelayCommandPackage : Package
     {
-        /// <summary>
-        /// RelayCommandPackage GUID string.
-        /// </summary>
-        public const string PackageGuidString = "995f080c-9f70-4550-8a21-b3ffeeff17eb";
+        private RelayCommand addPageCommand;
+        private RelayCommand addFeatureCommand;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RelayCommandPackage"/> class.
-        /// </summary>
         public RelayCommandPackage()
         {
-            // Inside this method you can place any initialization code that does not require
-            // any Visual Studio service because at this point the package object is created but
-            // not sited yet inside Visual Studio environment. The place to do all the other
-            // initialization is the Initialize method.
         }
 
-        #region Package Members
-
-        /// <summary>
-        /// Initialization of the package; this method is called right after the package is sited, so this is the place
-        /// where you can put all the initialization code that rely on services provided by VisualStudio.
-        /// </summary>
         protected override void Initialize()
         {
-            RelayCommand.Initialize(this);
+            InitializeAddPageCommand();
+            InitializeAddFeatureCommand();
+
             base.Initialize();
         }
 
-        #endregion
+        private void InitializeAddPageCommand()
+        {
+            addPageCommand = new RelayCommand(this, PackageIds.AddPageCommand, PackageGuids.GuidRelayCommandPackageCmdSet,
+                (sender, e) =>
+                {
+                    string message = string.Format(CultureInfo.CurrentCulture, "Inside PAGE {0}.MenuItemCallback()", this.GetType().FullName);
+                    string title = "RelayMenuCommandCallback";
+
+                    // Show a message box to prove we were here
+                    VsShellUtilities.ShowMessageBox(
+                            ServiceProvider.GlobalProvider,
+                            message,
+                            title,
+                            OLEMSGICON.OLEMSGICON_INFO,
+                            OLEMSGBUTTON.OLEMSGBUTTON_OK,
+                            OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+                },
+                (sender, e) =>
+                {
+                    var cmd = (OleMenuCommand)sender;
+                    cmd.Visible = true;
+                });
+        }
+
+        private void InitializeAddFeatureCommand()
+        {
+            addFeatureCommand = new RelayCommand(this, PackageIds.AddFeatureCommand, PackageGuids.GuidRelayCommandPackageCmdSet,
+                (sender, e) =>
+                {
+                    string message = string.Format(CultureInfo.CurrentCulture, "Inside FEATURE {0}.MenuItemCallback()", this.GetType().FullName);
+                    string title = "RelayMenuCommandCallback";
+
+                    // Show a message box to prove we were here
+                    VsShellUtilities.ShowMessageBox(
+                            ServiceProvider.GlobalProvider,
+                            message,
+                            title,
+                            OLEMSGICON.OLEMSGICON_INFO,
+                            OLEMSGBUTTON.OLEMSGBUTTON_OK,
+                            OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+                },
+                (sender, e) =>
+                {
+                    var cmd = (OleMenuCommand)sender;
+                    cmd.Visible = true;
+                });
+        }
     }
 }
