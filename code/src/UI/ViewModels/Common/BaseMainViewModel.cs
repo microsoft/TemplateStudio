@@ -50,6 +50,13 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             private set => SetProperty(ref _isOverlayBoxVisible, value);
         }
 
+        protected bool _hasOverlayBox = true;
+        public bool HasOverlayBox
+        {
+            get => _hasOverlayBox;
+            protected set => SetProperty(ref _hasOverlayBox, value);
+        }
+
         protected string _wizardVersion;
         public string WizardVersion
         {

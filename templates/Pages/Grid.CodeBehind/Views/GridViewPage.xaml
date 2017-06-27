@@ -24,7 +24,8 @@
         <Grid
             Grid.Row="1" 
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <tg:RadDataGrid ColumnDataOperationsMode="Flyout" x:Name="grid" ItemsSource="{x:Bind Source}" />
+            <!-- TODO: Moving from x:Bind to Binding as workaround for https://github.com/Microsoft/WindowsTemplateStudio/issues/496 -->
+            <tg:RadDataGrid ColumnDataOperationsMode="Flyout" x:Name="grid" ItemsSource="{Binding Source}" />
         </Grid>
     </Grid>
 </Page>

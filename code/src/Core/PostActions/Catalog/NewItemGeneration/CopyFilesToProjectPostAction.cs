@@ -28,15 +28,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         public override void Execute()
         {
-            foreach (var file in _config.ConflictingFiles)
-            {
-                var sourceFile = Path.Combine(GenContext.Current.OutputPath, file);
-                var destFilePath = Path.Combine(GenContext.Current.ProjectPath, file);
-
-                var destDirectory = Path.GetDirectoryName(destFilePath);
-                Fs.SafeCopyFile(sourceFile, destDirectory, true);
-            }
-
             foreach (var file in _config.ModifiedFiles)
             {
                 var sourceFile = Path.Combine(GenContext.Current.OutputPath, file);

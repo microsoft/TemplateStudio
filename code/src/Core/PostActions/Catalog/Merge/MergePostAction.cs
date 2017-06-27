@@ -84,7 +84,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var description = $"Could not find merge target for file '{postactionFileName}'. Please merge the content from the postaction file manually.";
             var intent = GetPostActionIntent();
             var failedFileName = GetFailedPostActionFileName();
-            GenContext.Current.GenerationWarnings.Add(new GenerationWarning(sourceFileName, failedFileName, _config.FilePath, description, intent));
+            GenContext.Current.FailedMergePostActions.Add(new FailedMergePostAction(sourceFileName, _config.FilePath, failedFileName, description, intent, MergeFailureType.FileNotFound));
             File.Copy(_config.FilePath, failedFileName, true);
         }
 
@@ -96,7 +96,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var description = $"Could not find the expected line `{errorLine.Trim()}` in file '{sourceFileName}'. Please merge the content from the postaction file manually.";
             var intent = GetPostActionIntent();
             var failedFileName = GetFailedPostActionFileName();
-            GenContext.Current.GenerationWarnings.Add(new GenerationWarning(sourceFileName, failedFileName, _config.FilePath, description, intent));
+            GenContext.Current.FailedMergePostActions.Add(new FailedMergePostAction(sourceFileName, failedFileName, _config.FilePath, description, intent, MergeFailureType.LineNotFound));
             File.Copy(_config.FilePath, failedFileName, true);
         }
 

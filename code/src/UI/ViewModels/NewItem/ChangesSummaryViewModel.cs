@@ -24,7 +24,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class ChangesSummaryViewModel : Observable
     {
-        private double _currentPoints = CodeLineViewModel.DefaultFontSize;
+        private double _currentPoints = 12;
         public ObservableCollection<ItemsGroupViewModel<BaseFileViewModel>> FileGroups { get; } = new ObservableCollection<ItemsGroupViewModel<BaseFileViewModel>>();
 
         private BaseFileViewModel _selectedFile;
@@ -46,7 +46,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public void Initialize()
         {
             var output = NewItemGenController.Instance.CompareOutputAndProject();
-            var warnings = GenContext.Current.GenerationWarnings.Select(w => new WarningFileViewModel(w));
+            var warnings = GenContext.Current.FailedMergePostActions.Select(w => new WarningFileViewModel(w));
             FileGroups.Clear();
             FileGroups.Add(new ItemsGroupViewModel<BaseFileViewModel>(StringRes.ChangesSummaryCategoryOverwrittenFiles, output.ConflictingFiles.Select(cf => new ConfictingFileViewModel(cf)), OnItemChanged));
             FileGroups.Add(new ItemsGroupViewModel<BaseFileViewModel>(StringRes.ChangesSummaryCategoryMergeConflicts, warnings, OnItemChanged));
@@ -84,13 +84,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             double newPoints = _currentPoints + points;
             if (newPoints > 4 && newPoints < 25)
             {
-                foreach (var group in FileGroups)
-                {
-                    foreach (var file in group.Templates)
-                    {
-                        file.UpdateFontSize(newPoints);
-                    }
-                }
+                //foreach (var group in FileGroups)
+                //{
+                //    foreach (var file in group.Templates)
+                //    {
+                //        file.UpdateFontSize(newPoints);
+                //    }
+                //}
                 _currentPoints = newPoints;
             }
         }

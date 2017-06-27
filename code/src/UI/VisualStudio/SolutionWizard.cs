@@ -36,7 +36,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public List<string> ProjectItems { get; } = new List<string>();
 
-        public List<GenerationWarning> GenerationWarnings { get; } = new List<GenerationWarning>();
+        public List<FailedMergePostAction> FailedMergePostActions { get; } = new List<FailedMergePostAction>();
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
         public List<string> FilesToOpen { get; } = new List<string>();

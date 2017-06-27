@@ -18,42 +18,39 @@ using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
-    public class GetFilesFromProjectPostAction : PostAction<string>
+    public class GetMergeFilesFromProjectPostAction : PostAction<string>
     {
-        public GetFilesFromProjectPostAction(string config) : base(config)
+        public GetMergeFilesFromProjectPostAction(string config) : base(config)
         {
         }
 
         public override void Execute()
         {
-            if (Regex.IsMatch(_config, MergePostAction.PostactionRegex))
+            if (Regex.IsMatch(_config, MergePostAction.GlobalExtension))
             {
-                var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(_config.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath)));
-                var relFilePath = filePath.Replace(GenContext.Current.ProjectPath + Path.DirectorySeparatorChar, string.Empty);
-
-                if (File.Exists(filePath) && !GenContext.Current.MergeFilesFromProject.ContainsKey(relFilePath))
-                {
-                    GenContext.Current.MergeFilesFromProject.Add(relFilePath, new List<MergeInfo>());
-
-                    var destFile = filePath.Replace(GenContext.Current.ProjectPath, GenContext.Current.OutputPath);
-                    File.Copy(filePath, destFile, true);
-                }
-                else if (!CheckLocalMergeFileAvailable())
-                {
-                    // Check if file is available locally, if not, add as missing merge file from project
-                    GenContext.Current.MergeFilesFromProject.Add(relFilePath, new List<MergeInfo>());
-                }
+                GetFileFromProject();
             }
             else
             {
-                var relFilePath = _config.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
-                if (!GenContext.Current.MergeFilesFromProject.ContainsKey(relFilePath))
+                if (!CheckLocalMergeFileAvailable())
                 {
-                    var projFile = _config.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
-                    if (File.Exists(projFile))
-                    {
-                        File.Copy(projFile, _config, true);
-                    }
+                    GetFileFromProject();
+                }
+            }
+        }
+
+        private void GetFileFromProject()
+        {
+            var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(_config.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath)));
+            var relFilePath = filePath.Replace(GenContext.Current.ProjectPath + Path.DirectorySeparatorChar, string.Empty);
+
+            if (!GenContext.Current.MergeFilesFromProject.ContainsKey(relFilePath))
+            {
+                GenContext.Current.MergeFilesFromProject.Add(relFilePath, new List<MergeInfo>());
+                if (File.Exists(filePath))
+                {
+                    var destFile = filePath.Replace(GenContext.Current.ProjectPath, GenContext.Current.OutputPath);
+                    File.Copy(filePath, destFile, true);
                 }
             }
         }

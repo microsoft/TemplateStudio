@@ -41,9 +41,9 @@ namespace Microsoft.Templates.Core.PostActions
         {
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, "*.*", SearchOption.AllDirectories)
-                .Where(f => Path.GetExtension(f) != MergePostAction.PostActionIntentExtension)
+                .Where(f => Regex.IsMatch(f, MergePostAction.PostactionRegex) && Path.GetExtension(f) != MergePostAction.PostActionIntentExtension)
                 .ToList()
-                .ForEach(f => postActions.Add(new GetFilesFromProjectPostAction(f)));
+                .ForEach(f => postActions.Add(new GetMergeFilesFromProjectPostAction(f)));
         }
 
         internal void AddGenerateMergeInfoPostAction(List<PostAction> postActions)

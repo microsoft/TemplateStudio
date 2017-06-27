@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Core.Gen
         List<string> ProjectItems { get; }
         List<string> FilesToOpen { get; }
 
-        List<GenerationWarning> GenerationWarnings { get; }
+        List<FailedMergePostAction> FailedMergePostActions { get; }
         Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; }
     }
 }
