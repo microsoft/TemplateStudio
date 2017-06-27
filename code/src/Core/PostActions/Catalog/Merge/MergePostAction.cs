@@ -49,7 +49,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             File.Delete(_config);
 
             // REFRESH PROJECT TO UN-DIRTY IT
-            if (Path.GetExtension(_config).Equals(".csproj", StringComparison.OrdinalIgnoreCase))
+            if (Path.GetExtension(_config).Equals(".csproj", StringComparison.OrdinalIgnoreCase)
+             || Path.GetExtension(_config).Equals(".vbproj", StringComparison.OrdinalIgnoreCase))
             {
                 Gen.GenContext.ToolBox.Shell.RefreshProject();
             }

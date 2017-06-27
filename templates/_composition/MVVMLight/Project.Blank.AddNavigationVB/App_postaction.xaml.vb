@@ -4,7 +4,7 @@ NotInheritable Partial Class App
 //{[{
 
     Private Function CreateActivationService() As ActivationService
-        Return New ActivationService(Me, GetType(Views.Param_HomeNamePage))
+        Return New ActivationService(Me, GetType(ViewModels.Param_HomeNameViewModel))
     End Function
 //}]}
 End Class
