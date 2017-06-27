@@ -4,17 +4,19 @@ Imports Windows.UI.Xaml.Media.Animation
 
 Namespace Services
     Public NotInheritable Class NavigationService
+
         Private Sub New()
         End Sub
+
         Private Shared _frame As Frame
 
         Public Shared Property Frame() As Frame
             Get
-                If _frame Is Nothing Then
-                    _frame = TryCast(Window.Current.Content, Frame)
-                End If
+              If _frame Is Nothing Then
+                  _frame = TryCast(Window.Current.Content, Frame)
+              End If
 
-                Return _frame
+              Return _frame
             End Get
             Set
                 _frame = value
@@ -50,8 +52,9 @@ Namespace Services
             End If
         End Function
 
-        Public Shared Function Navigate(Of T As Page)(Optional parameter As Object = Nothing, Optional infoOverride As NavigationTransitionInfo = Nothing) As Boolean
-            Return Navigate(GetType(T), parameter, infoOverride)
-        End Function
+    Public Shared Function Navigate(Of T As Page)(Optional parameter As Object = Nothing, Optional infoOverride As NavigationTransitionInfo = Nothing) As Boolean
+        Return Navigate(GetType(T), parameter, infoOverride)
+    End Function
+
     End Class
 End Namespace

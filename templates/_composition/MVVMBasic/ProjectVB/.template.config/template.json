@@ -3,16 +3,27 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Project.Blank.AddNavigation.VB",
+  "name": "MVVMBasic.Project.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind & $projectType == Blank & wts.type == project"
- },
+    "wts.compositionFilter": "$framework == MVVMBasic & wts.type == project"
+  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Services\\NavigationService.vb"
+    },
+    {
+      "path": ".\\Helpers\\Observable.vb"
+    },
+    {
+      "path": ".\\Helpers\\RelayCommand.vb"
+    }
+  ],
   "symbols": {
     "wts.rootNamespace": {
       "type": "parameter",
@@ -21,10 +32,6 @@
     "wts.itemNamespace": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
-    },
-    "wts.homePageName": {
-      "type":"parameter",
-      "replaces":"Param_HomeName"
     }
   }
 }

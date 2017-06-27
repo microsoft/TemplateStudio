@@ -15,7 +15,7 @@
         "author": "Microsoft",
         "order": "1",
         "licenses": "",
-        "languages": [ "C#" ]
+        "languages": [ "C#", "VisualBasic" ]
     },
     {
         "name": "TabbedPivot",
@@ -24,6 +24,6 @@
         "author": "Microsoft",
         "order": "3",
         "licenses": "",
-        "languages": [ "C#" ]
+        "languages": [ "C#", "VisualBasic" ]
     }
 ]

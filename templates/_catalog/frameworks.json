@@ -6,7 +6,7 @@
         "author": "Microsoft",
         "order": "3",
         "licenses": "",
-        "languages": [ "C#" ]
+        "languages": [ "C#", "VisualBasic" ]
     },
     {
         "name": "MVVMLight",
@@ -15,7 +15,7 @@
         "author": "Laurent Bugnion",
         "order": "2",
         "licenses": "[MVVM Light](http://mvvmlight.codeplex.com/license)",
-        "languages": [ "C#" ]
+        "languages": [ "C#", "VisualBasic" ]
     },
     {
         "name": "CodeBehind",
