@@ -170,6 +170,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -183,6 +184,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\CodeViewer.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Extensions\ListViewExtensions.cs" />
     <Compile Include="Generation\NewItemGenerationFileInfo.cs" />
@@ -193,7 +195,6 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
-    <Compile Include="Comparison\ComparisonService.cs" />
     <Compile Include="Controls\ImageEx.cs" />
     <Compile Include="Controls\LogoDisplay.xaml.cs">
       <DependentUpon>LogoDisplay.xaml</DependentUpon>
@@ -223,7 +224,6 @@
     <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="Generation\NewProjectGenController.cs" />
     <Compile Include="Generation\NewItemGenController.cs" />
-    <Compile Include="TemplateSelectors\CodeLineTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\NewItemFileTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\SummaryItemOptionsTemplateSelector.cs" />
     <Compile Include="Services\DragAndDropService\DragAndDropEventArgs.cs" />
@@ -236,8 +236,6 @@
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\ModifiedFileViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\WarningFileViewModel.cs" />
-    <Compile Include="Comparison\CodeLine.cs" />
-    <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\CodeLineViewModel.cs" />
     <Compile Include="ViewModels\NewItem\MainViewModel.cs" />
     <Compile Include="ViewModels\NewItem\NewItemSetupViewModel.cs" />
     <Compile Include="ViewModels\NewItem\TemplateInfoViewModel.cs" />
@@ -337,6 +335,10 @@
     <Page Include="Controls\LogoDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CodeViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\OverlayBox.xaml">
       <SubType>Designer</SubType>
@@ -462,9 +464,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Naming\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
@@ -481,6 +481,182 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\FileExtensions\Resw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Html\Document.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\Html\Compare.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="Assets\Html\min\vs\base\worker\workerMain.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\bat.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\coffee.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\cpp.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\csharp.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\css.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\dockerfile.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\fsharp.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\go.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\handlebars.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\html.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\ini.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\jade.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\java.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\less.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\lua.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\markdown.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\objective-c.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\php.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\postiats.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\powershell.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\python.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\r.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\razor.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\ruby.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\scss.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\sql.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\swift.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\vb.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\xml.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\basic-languages\src\yaml.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\editor\contrib\quickOpen\browser\symbol-sprite.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\editor\contrib\suggest\browser\String_16x.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\editor\contrib\suggest\browser\String_inverse_16x.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\editor\editor.main.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\editor\editor.main.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\editor\editor.main.nls.de.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\editor\editor.main.nls.es.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\editor\editor.main.nls.fr.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\editor\editor.main.nls.it.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\editor\editor.main.nls.ja.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\editor\editor.main.nls.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\editor\editor.main.nls.ko.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\editor\editor.main.nls.ru.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\editor\editor.main.nls.zh-cn.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\editor\editor.main.nls.zh-tw.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\language\css\cssMode.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\language\css\cssWorker.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\language\html\htmlMode.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\language\html\htmlWorker.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\language\json\jsonMode.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\language\json\jsonWorker.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\language\typescript\lib\typescriptServices.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\language\typescript\src\mode.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\language\typescript\src\worker.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Html\min\vs\loader.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

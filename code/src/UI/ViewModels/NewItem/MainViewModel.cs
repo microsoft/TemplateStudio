@@ -61,6 +61,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             base.OnGoBack();
             NewItemSetup.Initialize(false);
+            HasOverlayBox = true;
         }
         protected override async void OnNext()
         {
@@ -72,6 +73,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             NavigationService.Navigate(new ChangesSummaryView());
             var template = GetActiveTemplate();
             Title = string.Format(StringRes.ChangesSummaryTitle_SF, template.Name);
+            HasOverlayBox = false;
         }
         protected override void OnFinish(string parameter)
         {

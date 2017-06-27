@@ -24,7 +24,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class ChangesSummaryViewModel : Observable
     {
-        private double _currentPoints = CodeLineViewModel.DefaultFontSize;
+        private double _currentPoints = 12;
         public ObservableCollection<ItemsGroupViewModel<BaseFileViewModel>> FileGroups { get; } = new ObservableCollection<ItemsGroupViewModel<BaseFileViewModel>>();
 
         private BaseFileViewModel _selectedFile;
@@ -84,13 +84,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             double newPoints = _currentPoints + points;
             if (newPoints > 4 && newPoints < 25)
             {
-                foreach (var group in FileGroups)
-                {
-                    foreach (var file in group.Templates)
-                    {
-                        file.UpdateFontSize(newPoints);
-                    }
-                }
+                //foreach (var group in FileGroups)
+                //{
+                //    foreach (var file in group.Templates)
+                //    {
+                //        file.UpdateFontSize(newPoints);
+                //    }
+                //}
                 _currentPoints = newPoints;
             }
         }
