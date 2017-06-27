@@ -47,7 +47,13 @@ namespace Microsoft.Templates.VsEmulator.Main
         public string ProjectName { get; private set; }
         public string OutputPath { get; private set; }
         public string ProjectPath { get; private set; }
-        public bool ForceLocalTemplatesRefresh { get; set; } = true;
+
+        private bool _forceLocalTemplatesRefresh = true;
+        public bool ForceLocalTemplatesRefresh
+        {
+            get => _forceLocalTemplatesRefresh;
+            set => SetProperty(ref _forceLocalTemplatesRefresh, value);
+        }
 
         public List<string> ProjectItems { get; } = new List<string>();
 
