@@ -17,7 +17,7 @@ using Microsoft.Templates.UI.ViewModels.NewItem;
 
 namespace Microsoft.Templates.UI.TemplateSelectors
 {
-    public class NewItemFileTemplateSelector : DataTemplateSelector
+    public class FileStatusTemplateSelector : DataTemplateSelector
     {
         public DataTemplate AddedFileTemplate { get; set; }
         public DataTemplate ModifiedFileTemplate { get; set; }
@@ -30,17 +30,17 @@ namespace Microsoft.Templates.UI.TemplateSelectors
             var newItemFile = item as BaseFileViewModel;
             if (newItemFile != null)
             {
-                switch (newItemFile.FileType)
+                switch (newItemFile.FileStatus)
                 {
-                    case FileType.AddedFile:
+                    case FileStatus.AddedFile:
                         return AddedFileTemplate;
-                    case FileType.ModifiedFile:
+                    case FileStatus.ModifiedFile:
                         return ModifiedFileTemplate;
-                    case FileType.ConflictingFile:
+                    case FileStatus.ConflictingFile:
                         return ConflictingFileTemplate;
-                    case FileType.WarningFile:
+                    case FileStatus.WarningFile:
                         return WarningFileTemplate;
-                    case FileType.Unchanged:
+                    case FileStatus.Unchanged:
                         return UnchangedFileTemplate;
                 }
             }

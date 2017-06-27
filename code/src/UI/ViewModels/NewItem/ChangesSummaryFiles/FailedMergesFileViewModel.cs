@@ -12,19 +12,34 @@
 
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI.Resources;
+using System;
+using System.Text;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
-    public class WarningFileViewModel : BaseFileViewModel
+    public class FailedMergesFileViewModel : BaseFileViewModel
     {
-        public override FileType FileType => FileType.WarningFile;
+        public override FileStatus FileStatus => FileStatus.WarningFile;
 
-        public WarningFileViewModel(FailedMergePostAction warning) : base(warning.FailedFileName)
+        public FailedMergesFileViewModel(FailedMergePostAction warning) : base(warning.FailedFileName)
         {
-            DetailTitle = StringRes.ChangesSummaryDetailTitleMergeConflicts;
-            DetailDescription = warning.Description;
-            DetailExtendedInfo = warning.ExtendedInfo;
+            DetailTitle = StringRes.ChangesSummaryDetailTitleFailedMerges;
+
+            var sb = new StringBuilder();
+            sb.AppendLine(StringRes.ChangesSummaryDetailDescriptionFailedMerges);
+            if (!string.IsNullOrEmpty(warning.Description))
+            {
+                sb.AppendLine(warning.Description);
+            }
+            if (!string.IsNullOrEmpty(warning.ExtendedInfo))
+            {
+                sb.AppendLine(warning.ExtendedInfo);
+            }
+
+            DetailDescription = sb.ToString();
             Subject = warning.FileName;
         }
+
+        public override string UpdateText(string fileText) => base.UpdateText(fileText).AsUserFriendlyPostAction();
     }
 }
