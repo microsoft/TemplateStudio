@@ -85,7 +85,7 @@ namespace Microsoft.Templates.Test
                 };
 
                 GenerationFixture.AddItem(newUserSelection, item, GenerationFixture.GetDefaultName);
-                await NewItemGenController.Instance.UnsafeGenerateNewItemAsync(newUserSelection);
+                await NewItemGenController.Instance.UnsafeGenerateNewItemAsync(item.GetTemplateType(), newUserSelection);
                 NewItemGenController.Instance.UnsafeFinishGeneration(newUserSelection);
             }
 

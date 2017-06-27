@@ -409,11 +409,11 @@
   <data name="ChangesSummaryTitle_SF" xml:space="preserve">
     <value>Changes summary: {0}</value>
   </data>
-  <data name="ChangesSummaryCategoryMergeConflicts" xml:space="preserve">
-    <value>Merge conflicts</value>
+  <data name="ChangesSummaryCategoryFailedMerges" xml:space="preserve">
+    <value>Failed merges</value>
   </data>
-  <data name="ChangesSummaryCategoryOverwrittenFiles" xml:space="preserve">
-    <value>Overwritten files</value>
+  <data name="ChangesSummaryCategoryConflictingFiles" xml:space="preserve">
+    <value>Conflicting files</value>
   </data>
   <data name="ChangesSummaryCategotyModifiedFiles" xml:space="preserve">
     <value>Modified files</value>
@@ -440,7 +440,7 @@
     <value>New file</value>
   </data>
   <data name="ChangesSummaryCategoryUnchangedFiles" xml:space="preserve">
-    <value>UnchangedFiles</value>
+    <value>Unchanged files</value>
   </data>
   <data name="StatusNewVersionAvailable" xml:space="preserve">
     <value>There is new templates content available...</value>
@@ -454,35 +454,35 @@
   <data name="NewVersionInstructions" xml:space="preserve">
     <value>By refreshing templates current selection will be reset.</value>
   </data>
-  <data name="ChangesSummaryDetailDescriptionMergeConflicts" xml:space="preserve">
-    <value />
+  <data name="ChangesSummaryDetailDescriptionFailedMerges" xml:space="preserve">
+    <value>The changes could not be integrated.</value>
   </data>
-  <data name="ChangesSummaryDetailTitleMergeConflicts" xml:space="preserve">
-    <value>Merge not succedded</value>
+  <data name="ChangesSummaryDetailTitleFailedMerges" xml:space="preserve">
+    <value>Failed merges</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionNewFiles" xml:space="preserve">
-    <value />
+    <value>The fille {0} will be added as new file.</value>
   </data>
   <data name="ChangesSummaryDetailTitleNewFiles" xml:space="preserve">
     <value>New file</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionModifiedFiles" xml:space="preserve">
-    <value />
+    <value>The file {0} has been modified.</value>
   </data>
   <data name="ChangesSummaryDetailTitleModifiedFiles" xml:space="preserve">
     <value>Modified file</value>
   </data>
-  <data name="ChangesSummaryDetailDescriptionOverwrittenFiles" xml:space="preserve">
-    <value>The file {0} has been modified outside of Windows Template Studio actions and your changes will be overwritten. If you continue and automatically include the changes in your project, the file will be overwritten loosing your modifications. Following you can see the changes that will be applied to the file.</value>
+  <data name="ChangesSummaryDetailDescriptionConflictingFiles" xml:space="preserve">
+    <value>The file {0} already exist in your project and was also generated as part of the new item. Please compare and make sure everything is the right place.</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionUnchangedFiles" xml:space="preserve">
-    <value />
+    <value>The file {0} already exist in your project, no action is necessary.</value>
   </data>
-  <data name="ChangesSummaryDetailTitleOverwrittenFiles" xml:space="preserve">
-    <value>Overwritten file</value>
+  <data name="ChangesSummaryDetailTitleConflictingFiles" xml:space="preserve">
+    <value>Conflicting file</value>
   </data>
   <data name="ChangesSummaryDetailTitleUnchangedFiles" xml:space="preserve">
-    <value>UnchangedFile</value>
+    <value>Unchanged file</value>
   </data>
   <data name="ViewMoreDetails" xml:space="preserve">
     <value>view more details</value>

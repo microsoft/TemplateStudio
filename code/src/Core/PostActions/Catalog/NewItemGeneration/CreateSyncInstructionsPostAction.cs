@@ -28,18 +28,18 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         public override void Execute()
         {
-            var fileName = Path.Combine(GenContext.Current.OutputPath, "Steps to include new item generation.md");
+            var fileName = Path.Combine(GenContext.Current.OutputPath, Strings.Resources.SyncInstructionsFileName);
 
             var sb = new StringBuilder();
 
-            sb.AppendLine("# Steps to include new item generation");
-            sb.AppendLine("Please follow the indicated steps to include the new item into you project:");
+            sb.AppendLine(Strings.Resources.SyncInstructionsHeader);
+            sb.AppendLine();
             sb.AppendLine();
 
             if (_config.NewFiles.Any())
             {
-                sb.AppendLine($"## New files:");
-                sb.AppendLine("Copy and add the following files to your project:");
+                sb.AppendLine(Strings.Resources.SyncInstructionsNewFiles);
+                sb.AppendLine(Strings.Resources.SyncInstructionsNewFilesDescription);
                 foreach (var newFile in _config.NewFiles)
                 {
                     sb.AppendLine(GetLinkToLocalFile(newFile));
@@ -49,13 +49,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             if (GenContext.Current.MergeFilesFromProject.Any())
             {
-                sb.AppendLine("## Modified files: ");
-                sb.AppendLine("To integrate your new item with the existing project apply the following changes: ");
+                sb.AppendLine(Strings.Resources.SyncInstructionsModifiedFiles);
+                sb.AppendLine(Strings.Resources.SyncInstructionsModifiedFilesDescription);
                 sb.AppendLine();
 
                 foreach (var mergeFile in GenContext.Current.MergeFilesFromProject)
                 {
-                    sb.AppendLine($"### Changes required in file '{mergeFile.Key}':");
+                    sb.AppendLine(string.Format(Strings.Resources.SyncInstructionsMergeFile, mergeFile.Key));
                     foreach (var mergeInfo in mergeFile.Value)
                     {
                         if (!string.IsNullOrEmpty(mergeInfo.Intent))
@@ -73,7 +73,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
                     if (!GenContext.Current.FailedMergePostActions.Any(w => w.FileName == mergeFile.Key))
                     {
-                        sb.AppendLine($"Preview the changes in: [{mergeFile.Key}]({mergeFile.Key})");
+                        sb.AppendLine(string.Format(Strings.Resources.SyncInstructionsMergeFilePreview, mergeFile.Key));
                         sb.AppendLine();
                     }
                     else
@@ -82,11 +82,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
                         if (failedMergePostActions.Count() == 1)
                         {
-                            sb.AppendLine($"The changes could not be integrated: {failedMergePostActions.First()?.Description}");
+                            sb.AppendLine(string.Format(Strings.Resources.SyncInstructionsMergeFileError, failedMergePostActions.First()?.Description));
                         }
                         else
                         {
-                            sb.AppendLine("The changes could not be integrated. The following warnings were generated:");
+                            sb.AppendLine(Strings.Resources.SyncInstructionsMergeFileError);
                             foreach (var failedMergePostAction in failedMergePostActions)
                             {
                                 sb.AppendLine($"* {failedMergePostAction.Description}");
@@ -99,10 +99,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             if (_config.ConflictingFiles.Any())
             {
-                sb.AppendLine($"## Conflicting files:");
-                sb.AppendLine("These files already exist in your project and were also generated as part of the new item.");
+                sb.AppendLine(Strings.Resources.SyncInstructionsConflictingFiles);
                 sb.AppendLine();
-                sb.AppendLine("Please compare and make sure everything is in the right place.");
+                sb.AppendLine(Strings.Resources.SyncInstructionsConflictingFilesDescription);
                 sb.AppendLine();
 
                 foreach (var conflictFile in _config.ConflictingFiles)
@@ -113,8 +112,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             if (_config.UnchangedFiles.Any())
             {
-                sb.AppendLine($"## Unchanged files:");
-                sb.AppendLine("These files already exist in your project, no action is necessary:");
+                sb.AppendLine(Strings.Resources.SyncInstructionsUnchangedFiles);
+                sb.AppendLine(Strings.Resources.SyncInstructionsUnchangedFilesDescription);
                 foreach (var unchangedFile in _config.UnchangedFiles)
                 {
                     sb.AppendLine(GetLinkToLocalFile(unchangedFile));

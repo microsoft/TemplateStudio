@@ -17,105 +17,124 @@ using System.Windows.Media;
 
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
+using System;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
-    public enum FileType
+    public enum FileStatus
     {
         AddedFile, ModifiedFile, ConflictingFile, WarningFile, Unchanged
     }
     public enum FileExtension
     {
-        Default, CSharp, Resw, Xaml
+        Default, CSharp, Resw, Xaml, Xml, Csproj, Appxmanifest, Json, Jpg, Png, Jpeg
     }
     public abstract class BaseFileViewModel : Observable
     {
         public string DetailTitle { get; protected set; }
         public string DetailDescription { get; protected set; }
-        public string DetailExtendedInfo { get; protected set; }
         public string Subject { get; protected set; }
         public string Icon { get; private set; }
         public SolidColorBrush CircleColor { get; private set; }
         public FileExtension FileExtension { get; private set; }
+        public Func<string, string> UpdateTextAction { get; }
 
-        public string NewFile { get; set; }
-        public string CurrentFile { get; set; }
+        public string TempFile { get; set; }
+        public string ProjectFile { get; set; }
 
-        //public ObservableCollection<string> NewFileLines { get; private set; } = new ObservableCollection<string>();
-        //public ObservableCollection<string> CurrentFileLines { get; private set; } = new ObservableCollection<string>();
+        public abstract FileStatus FileStatus { get; }
 
-        public abstract FileType FileType { get; }
+        public virtual string UpdateText(string fileText) => fileText;
 
         public BaseFileViewModel(string name)
         {
             Subject = name;
-            FileExtension = GetFileExtension(name);
-            Icon = GetIcon(FileExtension);
-            CircleColor = GetCircleColor();
             LoadFile();
+            UpdateTextAction = fileText => UpdateText(fileText);
+        }
+
+        public BaseFileViewModel(NewItemGenerationFileInfo generationInfo)
+        {
+            Subject = generationInfo.Name;
+            LoadFile();
+            UpdateTextAction = fileText => UpdateText(fileText);
+        }
+
+        private void LoadFile()
+        {
+            TempFile = Path.Combine(GenContext.Current.OutputPath, Subject);
+            ProjectFile = Path.Combine(GenContext.Current.ProjectPath, Subject);
+            FileExtension = GetFileExtension();
+            Icon = GetIcon();
+            CircleColor = GetCircleColor();
         }
 
         private SolidColorBrush GetCircleColor()
         {
-            switch (FileType)
+            switch (FileStatus)
             {
-                case FileType.AddedFile:
+                case FileStatus.AddedFile:
                     return MainViewModel.Current.MainView.FindResource("UIGreen") as SolidColorBrush;
-                case FileType.ModifiedFile:
+                case FileStatus.ModifiedFile:
                     return MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
-                case FileType.ConflictingFile:
+                case FileStatus.ConflictingFile:
                     return MainViewModel.Current.MainView.FindResource("UIRed") as SolidColorBrush;
-                case FileType.WarningFile:
+                case FileStatus.WarningFile:
                     return MainViewModel.Current.MainView.FindResource("UIDarkYellow") as SolidColorBrush;
-                case FileType.Unchanged:
+                case FileStatus.Unchanged:
                     return MainViewModel.Current.MainView.FindResource("UIDarkBlue") as SolidColorBrush;
                 default:
                     return new SolidColorBrush(Colors.Transparent);
             }
         }
 
-        public BaseFileViewModel(NewItemGenerationFileInfo generationInfo)
+        private FileExtension GetFileExtension()
         {
-            Subject = generationInfo.Name;
-            FileExtension = GetFileExtension(generationInfo.Name);
-            Icon = GetIcon(FileExtension);
-            CircleColor = GetCircleColor();
-            LoadFile();
-        }
-
-        private void LoadFile()
-        {
-            NewFile = Path.Combine(GenContext.Current.OutputPath, Subject);
-            CurrentFile = Path.Combine(GenContext.Current.ProjectPath, Subject);
-        }
-
-        private FileExtension GetFileExtension(string name)
-        {
-            switch (Path.GetExtension(name).ToLowerInvariant())
+            switch (Path.GetExtension(TempFile))
             {
-                case "cs":
+                case ".cs":
                     return FileExtension.CSharp;
-                case "xaml":
+                case ".xaml":
                     return FileExtension.Xaml;
-                case "resw":
+                case ".xml":
+                    return FileExtension.Xml;
+                case ".resw":
                     return FileExtension.Resw;
+                case ".csproj":
+                    return FileExtension.Csproj;
+                case ".appxmanifest":
+                    return FileExtension.Appxmanifest;
+                case ".json":
+                    return FileExtension.Json;
+                case ".jpg":
+                    return FileExtension.Jpg;
+                case ".jpeg":
+                    return FileExtension.Jpeg;
+                case ".png":
+                    return FileExtension.Png;
                 default:
                     return FileExtension.Default;
             }
         }
 
-        private string GetIcon(FileExtension fileExtension)
+        private string GetIcon()
         {
             switch (FileExtension)
             {
-                case FileExtension.Default:
-                    return "/Microsoft.Templates.UI;component/Assets/FileExtensions/DefaultFile.png";
                 case FileExtension.CSharp:
                     return "/Microsoft.Templates.UI;component/Assets/FileExtensions/CSharp.png";
                 case FileExtension.Resw:
                     return "/Microsoft.Templates.UI;component/Assets/FileExtensions/Resw.png";
                 case FileExtension.Xaml:
                     return "/Microsoft.Templates.UI;component/Assets/FileExtensions/Xaml.png";
+                case FileExtension.Png:
+                case FileExtension.Jpg:
+                case FileExtension.Jpeg:
+                    return "/Microsoft.Templates.UI;component/Assets/FileExtensions/Image.png";
+                case FileExtension.Csproj:
+                    return "/Microsoft.Templates.UI;component/Assets/FileExtensions/Csproj.png";
+                case FileExtension.Json:
+                    return "/Microsoft.Templates.UI;component/Assets/FileExtensions/Json.png";
                 default:
                     return "/Microsoft.Templates.UI;component/Assets/FileExtensions/DefaultFile.png";
             }

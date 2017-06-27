@@ -22,12 +22,16 @@
         require.config({ paths: { 'vs': '##ExecutingDirectory##/Assets/Html/min/vs' } });
         require(['vs/editor/editor.main'], function ()
         {
-            var diffEditor = monaco.editor.createDiffEditor(document.getElementById('container'));
+            var diffEditor = monaco.editor.createDiffEditor(document.getElementById('container'),
+            {
+                readOnly: 'true',
+                automaticLayout: 'true'
+            });
             diffEditor.setModel({
                 original: monaco.editor.createModel('##originalCode##', '##language##'),
                 modified: monaco.editor.createModel('##modifiedCode##', '##language##'),
             });
         });
-    </script>
+    </script>    
 </body>
 </html>

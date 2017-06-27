@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 using System.Web;
 using System.Windows;
@@ -11,19 +12,26 @@ namespace Microsoft.Templates.UI.Controls
         private bool _isInitialized;
         private WebBrowser _webBrowser;
 
-        public string FilePath
+        public string TempFilePath
         {
-            get { return (string)GetValue(FilePathProperty); }
-            set { SetValue(FilePathProperty, value); }
+            get { return (string)GetValue(TempFilePathProperty); }
+            set { SetValue(TempFilePathProperty, value); }
         }
-        public static readonly DependencyProperty FilePathProperty = DependencyProperty.Register("FilePath", typeof(string), typeof(CodeViewer), new PropertyMetadata(string.Empty, OnCodeLinesPropertyChanged));
+        public static readonly DependencyProperty TempFilePathProperty = DependencyProperty.Register("TempFilePath", typeof(string), typeof(CodeViewer), new PropertyMetadata(string.Empty, OnFilePathChanged));
 
-        public string OriginalFilePath
+        public string ProjectFilePath
         {
-            get { return (string)GetValue(OriginalFilePathProperty); }
-            set { SetValue(OriginalFilePathProperty, value); }
+            get { return (string)GetValue(ProjectFilePathProperty); }
+            set { SetValue(ProjectFilePathProperty, value); }
         }
-        public static readonly DependencyProperty OriginalFilePathProperty = DependencyProperty.Register("OriginalFilePath", typeof(string), typeof(CodeViewer), new PropertyMetadata(string.Empty, OnCodeLinesPropertyChanged));
+        public static readonly DependencyProperty ProjectFilePathProperty = DependencyProperty.Register("ProjectFilePath", typeof(string), typeof(CodeViewer), new PropertyMetadata(string.Empty, OnFilePathChanged));
+
+        public Func<string, string> UpdateTextAction
+        {
+            get { return (Func<string, string>)GetValue(UpdateTextActionProperty); }
+            set { SetValue(UpdateTextActionProperty, value); }
+        }
+        public static readonly DependencyProperty UpdateTextActionProperty = DependencyProperty.Register("UpdateTextAction", typeof(Func<string, string>), typeof(CodeViewer), new PropertyMetadata(null, OnFilePathChanged));
 
         public CodeViewer()
         {
@@ -40,43 +48,71 @@ namespace Microsoft.Templates.UI.Controls
 
         private void UpdateCodeView()
         {
+            if (!_isInitialized || UpdateTextAction == null)
+            {
+                return;
+            }
+
             var executingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).Replace('\\', '/');
-
-            string fileText = LoadFile(FilePath);
-            string originalFileText = LoadFile(OriginalFilePath);
-            if (_isInitialized && !string.IsNullOrEmpty(fileText) && !string.IsNullOrEmpty(originalFileText))
+            string fileText = LoadFile(TempFilePath);
+            string originalFileText = LoadFile(ProjectFilePath);
+            string patternText = string.Empty;
+            if (!string.IsNullOrEmpty(fileText) && !string.IsNullOrEmpty(originalFileText))
             {
-                var patternText = File.ReadAllText(Path.Combine(executingDirectory, $@"Assets\Html\Compare.html"));
+                patternText = File.ReadAllText(Path.Combine(executingDirectory, $@"Assets\Html\Compare.html"));
                 patternText = patternText
-                    .Replace("##ExecutingDirectory##", executingDirectory)
                     .Replace("##modifiedCode##", fileText)
-                    .Replace("##originalCode##", originalFileText)
-                    .Replace("##language##", "csharp");
-
-                _webBrowser.NavigateToString(patternText);
+                    .Replace("##originalCode##", originalFileText);
             }
-            else if (_isInitialized && !string.IsNullOrEmpty(fileText))
+            else if (!string.IsNullOrEmpty(fileText))
             {
-                var patternText = File.ReadAllText(Path.Combine(executingDirectory, $@"Assets\Html\Document.html"));
+                patternText = File.ReadAllText(Path.Combine(executingDirectory, $@"Assets\Html\Document.html"));
 
                 patternText = patternText
-                    .Replace("##ExecutingDirectory##", executingDirectory)
-                    .Replace("##code##", fileText)
-                    .Replace("##language##", "csharp");
+                    .Replace("##code##", fileText);
+            }
+            if (!string.IsNullOrEmpty(patternText))
+            {
+                var language = GetLanguage(TempFilePath);
+                if (!string.IsNullOrEmpty(language))
+                {
+                    patternText = patternText.Replace("##language##", language);
+                }
+                patternText = patternText.Replace("##ExecutingDirectory##", executingDirectory);
                 _webBrowser.NavigateToString(patternText);
             }
+        }
+
+        private string GetLanguage(string filePath)
+        {
+            string extension = Path.GetExtension(TempFilePath);
+            if (extension == ".xaml" || extension == ".csproj" || extension == ".appxmanifest" || extension == ".resw" || extension == ".xml")
+            {
+                return "xml";
+            }
+            else if (extension == ".cs")
+            {
+                return "csharp";
+            }
+            else if (extension == ".json")
+            {
+                return "json";
+            }
+            return string.Empty;
         }
 
         private string LoadFile(string filePath)
         {
             if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
             {
-                return HttpUtility.JavaScriptStringEncode(File.ReadAllText(filePath));
+                string fileText = File.ReadAllText(filePath);
+                fileText = UpdateTextAction(fileText);
+                return HttpUtility.JavaScriptStringEncode(fileText);
             }
             return string.Empty;
         }
 
-        private static void OnCodeLinesPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnFilePathChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as CodeViewer;
             control.UpdateCodeView();

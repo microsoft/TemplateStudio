@@ -151,11 +151,20 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Merge conflicts.
+        ///   Looks up a localized string similar to Conflicting files.
         /// </summary>
-        public static string ChangesSummaryCategoryMergeConflicts {
+        public static string ChangesSummaryCategoryConflictingFiles {
             get {
-                return ResourceManager.GetString("ChangesSummaryCategoryMergeConflicts", resourceCulture);
+                return ResourceManager.GetString("ChangesSummaryCategoryConflictingFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed merges.
+        /// </summary>
+        public static string ChangesSummaryCategoryFailedMerges {
+            get {
+                return ResourceManager.GetString("ChangesSummaryCategoryFailedMerges", resourceCulture);
             }
         }
         
@@ -169,16 +178,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Overwritten files.
-        /// </summary>
-        public static string ChangesSummaryCategoryOverwrittenFiles {
-            get {
-                return ResourceManager.GetString("ChangesSummaryCategoryOverwrittenFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to UnchangedFiles.
+        ///   Looks up a localized string similar to Unchanged files.
         /// </summary>
         public static string ChangesSummaryCategoryUnchangedFiles {
             get {
@@ -196,16 +196,25 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to The file {0} already exist in your project and was also generated as part of the new item. Please compare and make sure everything is the right place..
         /// </summary>
-        public static string ChangesSummaryDetailDescriptionMergeConflicts {
+        public static string ChangesSummaryDetailDescriptionConflictingFiles {
             get {
-                return ResourceManager.GetString("ChangesSummaryDetailDescriptionMergeConflicts", resourceCulture);
+                return ResourceManager.GetString("ChangesSummaryDetailDescriptionConflictingFiles", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to The changes could not be integrated..
+        /// </summary>
+        public static string ChangesSummaryDetailDescriptionFailedMerges {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailDescriptionFailedMerges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file {0} has been modified..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionModifiedFiles {
             get {
@@ -214,7 +223,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to The fille {0} will be added as new file..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionNewFiles {
             get {
@@ -223,16 +232,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file {0} has been modified outside of Windows Template Studio actions and your changes will be overwritten. If you continue and automatically include the changes in your project, the file will be overwritten loosing your modifications. Following you can see the changes that will be applied to the file..
-        /// </summary>
-        public static string ChangesSummaryDetailDescriptionOverwrittenFiles {
-            get {
-                return ResourceManager.GetString("ChangesSummaryDetailDescriptionOverwrittenFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to The file {0} already exist in your project, no action is necessary..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionUnchangedFiles {
             get {
@@ -241,11 +241,20 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Merge not succedded.
+        ///   Looks up a localized string similar to Conflicting file.
         /// </summary>
-        public static string ChangesSummaryDetailTitleMergeConflicts {
+        public static string ChangesSummaryDetailTitleConflictingFiles {
             get {
-                return ResourceManager.GetString("ChangesSummaryDetailTitleMergeConflicts", resourceCulture);
+                return ResourceManager.GetString("ChangesSummaryDetailTitleConflictingFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed merges.
+        /// </summary>
+        public static string ChangesSummaryDetailTitleFailedMerges {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailTitleFailedMerges", resourceCulture);
             }
         }
         
@@ -268,16 +277,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Overwritten file.
-        /// </summary>
-        public static string ChangesSummaryDetailTitleOverwrittenFiles {
-            get {
-                return ResourceManager.GetString("ChangesSummaryDetailTitleOverwrittenFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to UnchangedFile.
+        ///   Looks up a localized string similar to Unchanged file.
         /// </summary>
         public static string ChangesSummaryDetailTitleUnchangedFiles {
             get {

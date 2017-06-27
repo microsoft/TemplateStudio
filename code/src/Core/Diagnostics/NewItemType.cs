@@ -10,16 +10,11 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.UI.Resources;
-
-namespace Microsoft.Templates.UI.ViewModels.NewItem
+namespace Microsoft.Templates.Core.Diagnostics
 {
-    public class AddedFileViewModel : BaseFileViewModel
+    public enum NewItemType
     {
-        public override FileType FileType => FileType.AddedFile;
-        public AddedFileViewModel(NewItemGenerationFileInfo generationInfo) : base(generationInfo)
-        {
-            DetailTitle = StringRes.ChangesSummaryDetailTitleNewFiles;
-        }
+        Page,
+        Feature
     }
 }

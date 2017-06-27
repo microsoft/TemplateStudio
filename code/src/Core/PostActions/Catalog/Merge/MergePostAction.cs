@@ -43,11 +43,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 if (_config.FailOnError )
                 {
-                    throw new FileNotFoundException($"There is no merge target for file '{_config.FilePath}'");
+                    throw new FileNotFoundException(string.Format(Strings.Resources.MergeFileNotFoundExceptionMessage, _config.FilePath));
                 }
                 else
                 {
-                    AddFileNotFoundGenerationWarning(originalFilePath);
+                    AddFailedMergePostActionsFileNotFound(originalFilePath);
                     File.Delete(_config.FilePath);
                     return;
                 }
@@ -61,7 +61,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             if (errorLine != string.Empty)
             {
-                AddLineNotFoundGenerationWarning(originalFilePath, errorLine);
+                AddFailedMergePostActionsAddLineNotFound(originalFilePath, errorLine);
             }
             else
             {
@@ -76,24 +76,24 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             File.Delete(_config.FilePath);
         }
 
-        private void AddFileNotFoundGenerationWarning(string originalFilePath)
+        private void AddFailedMergePostActionsFileNotFound(string originalFilePath)
         {
             var sourceFileName = originalFilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
             var postactionFileName = _config.FilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
 
-            var description = $"Could not find merge target for file '{postactionFileName}'. Please merge the content from the postaction file manually.";
+            var description = string.Format(Strings.Resources.FailedMergePostActionFileNotFound, postactionFileName);
             var intent = GetPostActionIntent();
             var failedFileName = GetFailedPostActionFileName();
             GenContext.Current.FailedMergePostActions.Add(new FailedMergePostAction(sourceFileName, _config.FilePath, failedFileName, description, intent, MergeFailureType.FileNotFound));
             File.Copy(_config.FilePath, failedFileName, true);
         }
 
-        private void AddLineNotFoundGenerationWarning(string originalFilePath, string errorLine)
+        private void AddFailedMergePostActionsAddLineNotFound(string originalFilePath, string errorLine)
         {
             var sourceFileName = originalFilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
 
             var postactionFileName = _config.FilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
-            var description = $"Could not find the expected line `{errorLine.Trim()}` in file '{sourceFileName}'. Please merge the content from the postaction file manually.";
+            var description = string.Format(Strings.Resources.FailedMergePostActionLineNotFound, errorLine.Trim(), sourceFileName);
             var intent = GetPostActionIntent();
             var failedFileName = GetFailedPostActionFileName();
             GenContext.Current.FailedMergePostActions.Add(new FailedMergePostAction(sourceFileName, failedFileName, _config.FilePath, description, intent, MergeFailureType.LineNotFound));

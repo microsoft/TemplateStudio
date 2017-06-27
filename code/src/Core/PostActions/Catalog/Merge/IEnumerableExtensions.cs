@@ -20,9 +20,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
     public static class IEnumerableExtensions
     {
-        private const string MacroBeforeMode = "^^";
-        private const string MacroStartGroup = "{[{";
-        private const string MarcoEndGroup = "}]}";
+        internal const string MacroBeforeMode = "^^";
+        internal const string MacroStartGroup = "{[{";
+        internal const string MarcoEndGroup = "}]}";
         private const string MacroStartDelete = "//{--{";
         private const string MacroEndDelete = "//}--}";
 
