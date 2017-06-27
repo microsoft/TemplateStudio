@@ -610,6 +610,42 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add new feature cancelled.
+        /// </summary>
+        public static string NewItemAddFeatureCancelled {
+            get {
+                return ResourceManager.GetString("NewItemAddFeatureCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feature {0} successfully added.
+        /// </summary>
+        public static string NewItemAddFeatureSuccessStatusMsg {
+            get {
+                return ResourceManager.GetString("NewItemAddFeatureSuccessStatusMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new page cancelled.
+        /// </summary>
+        public static string NewItemAddPageCancelled {
+            get {
+                return ResourceManager.GetString("NewItemAddPageCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page {0} successfully added.
+        /// </summary>
+        public static string NewItemAddPageSuccessStatusMsg {
+            get {
+                return ResourceManager.GetString("NewItemAddPageSuccessStatusMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name:.
         /// </summary>
         public static string NewItemName {

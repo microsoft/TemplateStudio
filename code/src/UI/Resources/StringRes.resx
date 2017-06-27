@@ -487,4 +487,16 @@
   <data name="ViewMoreDetails" xml:space="preserve">
     <value>view more details</value>
   </data>
+  <data name="NewItemAddFeatureCancelled" xml:space="preserve">
+    <value>Add new feature cancelled</value>
+  </data>
+  <data name="NewItemAddFeatureSuccessStatusMsg" xml:space="preserve">
+    <value>Feature {0} successfully added</value>
+  </data>
+  <data name="NewItemAddPageCancelled" xml:space="preserve">
+    <value>Add new page cancelled</value>
+  </data>
+  <data name="NewItemAddPageSuccessStatusMsg" xml:space="preserve">
+    <value>Page {0} successfully added</value>
+  </data>
 </root>

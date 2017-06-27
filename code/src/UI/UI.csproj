@@ -290,7 +290,7 @@
     <Compile Include="Views\NewProject\ProjectTemplatesView.xaml.cs">
       <DependentUpon>ProjectTemplatesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VisualStudio\RightClick.cs" />
+    <Compile Include="VisualStudio\RightClickActions.cs" />
     <Compile Include="VisualStudio\SolutionWizard.cs" />
     <Compile Include="VisualStudio\VsGenShell.cs" />
     <Compile Include="VisualStudio\VsOutputPane.cs" />

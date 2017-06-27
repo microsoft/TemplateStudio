@@ -21,6 +21,7 @@ using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.Win32;
+using Microsoft.Templates.UI.VisualStudio;
 
 namespace Microsoft.Templates.Extension.Commands
 {
@@ -58,58 +59,35 @@ namespace Microsoft.Templates.Extension.Commands
 
         protected override void Initialize()
         {
-            InitializeAddPageCommand();
-            InitializeAddFeatureCommand();
+            addPageCommand = new RelayCommand(this,
+                 PackageIds.AddPageCommand,
+                 PackageGuids.GuidRelayCommandPackageCmdSet,
+                 AddPage,
+                 RightClickEnabled);
+
+            addFeatureCommand = new RelayCommand(this,
+                PackageIds.AddFeatureCommand,
+                PackageGuids.GuidRelayCommandPackageCmdSet,
+                AddFeature,
+                RightClickEnabled);
 
             base.Initialize();
         }
 
-        private void InitializeAddPageCommand()
+        void AddPage(object sender, EventArgs e)
         {
-            addPageCommand = new RelayCommand(this, PackageIds.AddPageCommand, PackageGuids.GuidRelayCommandPackageCmdSet,
-                (sender, e) =>
-                {
-                    string message = string.Format(CultureInfo.CurrentCulture, "Inside PAGE {0}.MenuItemCallback()", this.GetType().FullName);
-                    string title = "RelayMenuCommandCallback";
-
-                    // Show a message box to prove we were here
-                    VsShellUtilities.ShowMessageBox(
-                            ServiceProvider.GlobalProvider,
-                            message,
-                            title,
-                            OLEMSGICON.OLEMSGICON_INFO,
-                            OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                            OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
-                },
-                (sender, e) =>
-                {
-                    var cmd = (OleMenuCommand)sender;
-                    cmd.Visible = true;
-                });
+            RightClickActions.AddNewPage();
         }
 
-        private void InitializeAddFeatureCommand()
+        void AddFeature(object sender, EventArgs e)
         {
-            addFeatureCommand = new RelayCommand(this, PackageIds.AddFeatureCommand, PackageGuids.GuidRelayCommandPackageCmdSet,
-                (sender, e) =>
-                {
-                    string message = string.Format(CultureInfo.CurrentCulture, "Inside FEATURE {0}.MenuItemCallback()", this.GetType().FullName);
-                    string title = "RelayMenuCommandCallback";
+            RightClickActions.AddNewFeature();
+        }
 
-                    // Show a message box to prove we were here
-                    VsShellUtilities.ShowMessageBox(
-                            ServiceProvider.GlobalProvider,
-                            message,
-                            title,
-                            OLEMSGICON.OLEMSGICON_INFO,
-                            OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                            OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
-                },
-                (sender, e) =>
-                {
-                    var cmd = (OleMenuCommand)sender;
-                    cmd.Visible = true;
-                });
+        void RightClickEnabled(object sender, EventArgs e)
+        {
+            var cmd = (OleMenuCommand)sender;
+            cmd.Visible = RightClickActions.Enabled();
         }
     }
 }
