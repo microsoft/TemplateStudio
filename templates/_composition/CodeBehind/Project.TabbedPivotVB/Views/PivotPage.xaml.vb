@@ -1,7 +1,7 @@
 Imports Windows.UI.Xaml.Controls
 Imports Windows.UI.Xaml.Navigation
 
-Namespace wts.ItemName.Views
+Namespace Views
     Public NotInheritable Partial Class PivotPage
         Inherits Page
         Public Sub New()
