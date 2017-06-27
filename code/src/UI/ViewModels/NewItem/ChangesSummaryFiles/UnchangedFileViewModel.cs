@@ -20,7 +20,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public UnchangedFileViewModel(NewItemGenerationFileInfo generationInfo) : base(generationInfo)
         {
             DetailTitle = StringRes.ChangesSummaryDetailTitleUnchangedFiles;
-            DetailDescription = "Este archivo no ha sido modificado.";
+            DetailDescription = StringRes.ChangesSummaryDetailDescriptionUnchangedFiles;
         }
     }
 }
