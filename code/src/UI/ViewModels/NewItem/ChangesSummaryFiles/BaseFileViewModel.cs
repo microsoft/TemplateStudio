@@ -127,6 +127,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     return "/Microsoft.Templates.UI;component/Assets/FileExtensions/Resw.png";
                 case FileExtension.Xaml:
                     return "/Microsoft.Templates.UI;component/Assets/FileExtensions/Xaml.png";
+                case FileExtension.Png:
+                case FileExtension.Jpg:
+                case FileExtension.Jpeg:
+                    return "/Microsoft.Templates.UI;component/Assets/FileExtensions/Image.png";
+                case FileExtension.Csproj:
+                    return "/Microsoft.Templates.UI;component/Assets/FileExtensions/Csproj.png";
+                case FileExtension.Json:
+                    return "/Microsoft.Templates.UI;component/Assets/FileExtensions/Json.png";
                 default:
                     return "/Microsoft.Templates.UI;component/Assets/FileExtensions/DefaultFile.png";
             }

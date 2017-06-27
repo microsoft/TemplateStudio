@@ -193,6 +193,7 @@
     <Style TargetType="TextBlock" x:Key="ChangesSummaryListFileNameStyle" BasedOn="{StaticResource UIBaseText}">
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
     <Style TargetType="TextBlock" x:Key="ChangesSummaryCodeLineStyle" BasedOn="{StaticResource UIBaseText}">
         <Setter Property="FontFamily" Value="Consolas"/>

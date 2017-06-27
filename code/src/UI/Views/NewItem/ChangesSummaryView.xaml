@@ -23,15 +23,17 @@
                 <TextBlock Text="{Binding}" Style="{StaticResource TextSummaryGroupHeader}"/>
             </DataTemplate>
             <DataTemplate x:Key="ListItemTemplate">
-                <Grid Margin="{StaticResource SmallMargin}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="&#xE91F;" Style="{StaticResource IconButtonTextStyle}" Foreground="{Binding CircleColor, FallbackValue=Red}" FontSize="9"/>
-                    <Image Grid.Column="1" Source="{Binding Icon}" Margin="{StaticResource SmallLeftMargin}"/>
-                    <TextBlock Grid.Column="2" Text="{Binding Subject}" Style="{StaticResource ChangesSummaryListFileNameStyle}" Margin="{StaticResource MediumLeftMargin}" />
+                <Grid Width="281" ToolTip="{Binding Subject}" Height="30">
+                    <Grid Margin="{StaticResource SmallMargin}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="&#xE91F;" Style="{StaticResource IconButtonTextStyle}" Foreground="{Binding CircleColor, FallbackValue=Red}" FontSize="9" VerticalAlignment="Center"/>
+                        <Image Grid.Column="1" Source="{Binding Icon}" Margin="{StaticResource SmallLeftMargin}" VerticalAlignment="Center" Stretch="None"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Subject}" Style="{StaticResource ChangesSummaryListFileNameStyle}" Margin="{StaticResource MediumLeftMargin}"/>
+                    </Grid>
                 </Grid>
             </DataTemplate>
 
@@ -59,7 +61,7 @@
                                 <ColumnDefinition Width="30"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Source="{Binding Icon}" Margin="{StaticResource MediumLeftMargin}" Stretch="Uniform" MaxHeight="15" MaxWidth="15"/>
+                            <Image Grid.Column="0" Source="{Binding Icon}" Margin="{StaticResource MediumLeftMargin}" Stretch="None" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="1" Text="{Binding Subject}" Margin="{StaticResource MediumLeftMargin}" VerticalAlignment="Center"/>
                         </Grid>
                     </Grid>
@@ -84,7 +86,7 @@
                                 <ColumnDefinition Width="30"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Source="{Binding Icon}" Margin="{StaticResource MediumLeftMargin}" Stretch="Uniform" MaxHeight="15" MaxWidth="15"/>
+                            <Image Grid.Column="0" Source="{Binding Icon}" Margin="{StaticResource MediumLeftMargin}" Stretch="None" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="1" Text="{Binding Subject}" Margin="{StaticResource MediumLeftMargin}" VerticalAlignment="Center"/>
                         </Grid>
                     </Grid>

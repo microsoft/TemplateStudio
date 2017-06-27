@@ -490,6 +490,9 @@
     <EmbeddedResource Include="Assets\Html\Compare.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Resource Include="Assets\FileExtensions\Image.png" />
+    <Resource Include="Assets\FileExtensions\Csproj.png" />
+    <Resource Include="Assets\FileExtensions\Json.png" />
     <Content Include="Assets\Html\min\vs\base\worker\workerMain.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
