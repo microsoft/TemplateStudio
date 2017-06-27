@@ -32,7 +32,7 @@
         </Strings>
       </Button>
       <Button guid="guidRelayCommandPackageCmdSet" id="AddFeatureCommand" priority="0x0200" type="Button">
-        <Icon guid="guidImages" id="bmpPic1" />
+        <Icon guid="guidImages" id="bmpPic2" />
         <Strings>
           <ButtonText>Add new feature...</ButtonText>
         </Strings>
