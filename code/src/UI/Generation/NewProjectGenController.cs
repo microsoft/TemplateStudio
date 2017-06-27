@@ -105,6 +105,8 @@ namespace Microsoft.Templates.UI
             {
                 int pagesAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Count();
                 int featuresAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Count();
+                var pageIdentities = string.Join(",", genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Select(t => t.Template.Identity));
+                var featureIdentities = string.Join(",", genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Select(t => t.Template.Identity));
 
                 foreach (var genInfo in genItems)
                 {
@@ -118,7 +120,7 @@ namespace Microsoft.Templates.UI
                     if (genInfo.Template.GetTemplateType() == TemplateType.Project)
                     {
                         AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template,
-                            appProjectType, appFx, genResults[resultsKey], GenContext.ToolBox.Shell.GetVsProjectId(), pagesAdded, featuresAdded, timeSpent).FireAndForget();
+                            appProjectType, appFx, genResults[resultsKey], GenContext.ToolBox.Shell.GetVsProjectId(), pagesAdded, featuresAdded, pageIdentities, featureIdentities, timeSpent).FireAndForget();
                     }
                     else
                     {
