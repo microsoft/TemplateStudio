@@ -194,7 +194,7 @@
     <Compile Include="PostActions\Catalog\AddContextItemsToProjectPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeFailureType.cs" />
     <Compile Include="PostActions\Catalog\Merge\PostActionFormatter.cs" />
-    <Compile Include="PostActions\Catalog\NewItemGeneration\CreateSyncStepsInstructionsPostAction.cs" />
+    <Compile Include="PostActions\Catalog\NewItemGeneration\CreateSyncInstructionsPostAction.cs" />
     <Compile Include="PostActions\Catalog\NewItemGeneration\CreateSyncSummaryPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\GenerateMergeInfoPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\GetMergeFilesFromProjectPostAction.cs" />
