@@ -68,7 +68,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             NewItemSetup.EditionVisibility = System.Windows.Visibility.Collapsed;
             MainView.Result = CreateUserSelection();
             NewItemGenController.Instance.CleanupTempGeneration();
-            await NewItemGenController.Instance.GenerateNewItemAsync(MainView.Result);
+            await NewItemGenController.Instance.GenerateNewItemAsync(ConfigTemplateType, MainView.Result);
             NavigationService.Navigate(new ChangesSummaryView());
             var template = GetActiveTemplate();
             Title = string.Format(StringRes.ChangesSummaryTitle_SF, template.Name);

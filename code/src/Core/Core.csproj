@@ -150,9 +150,11 @@
     <Compile Include="Configuration\Configuration.cs" />
     <Compile Include="Diagnostics\EditItemActionEnum.cs" />
     <Compile Include="Diagnostics\FormattedWriterMessages.cs" />
+    <Compile Include="Diagnostics\GenSourceEnum.cs" />
     <Compile Include="Diagnostics\GenStatusEnum.cs" />
     <Compile Include="Diagnostics\HealthWriters.cs" />
     <Compile Include="Diagnostics\ExceptionTracker.cs" />
+    <Compile Include="Diagnostics\NewItemType.cs" />
     <Compile Include="Diagnostics\TelemetryMetrics.cs" />
     <Compile Include="Diagnostics\TelemetryProperties.cs" />
     <Compile Include="Diagnostics\TraceTracker.cs" />
@@ -166,7 +168,6 @@
     <Compile Include="Diagnostics\ShellHealthWriter.cs" />
     <Compile Include="Diagnostics\WizardActionEnum.cs" />
     <Compile Include="Diagnostics\WizardStatusEnum.cs" />
-    <Compile Include="Diagnostics\GenSourceEnum.cs" />
     <Compile Include="Diagnostics\WizardTypeEnum.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
