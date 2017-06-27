@@ -117,10 +117,117 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
+    <value>Could not find merge target for file '{0}'. Please merge the content from the postaction file manually.</value>
+  </data>
+  <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
+    <value>Could not find the expected line `{0}` in file '{1}'. Please merge the content from the postaction file manually.</value>
+  </data>
+  <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
+    <value>There is no merge target for file '{0}'</value>
+  </data>
   <data name="StatusAddingItems" xml:space="preserve">
     <value>Adding items to project ...</value>
   </data>
   <data name="StatusOpeningItems" xml:space="preserve">
     <value>Opening generated files ...</value>
+  </data>
+  <data name="SyncInstructionsConflictingFiles" xml:space="preserve">
+    <value>## Conflicting files:</value>
+  </data>
+  <data name="SyncInstructionsConflictingFilesDescription" xml:space="preserve">
+    <value>These files already exist in your project and were also generated as part of the new item.
+Please compare and make sure everything is in the right place.</value>
+  </data>
+  <data name="SyncInstructionsDescription" xml:space="preserve">
+    <value>Please follow the indicated steps to include the new item into you project:</value>
+  </data>
+  <data name="SyncInstructionsFileName" xml:space="preserve">
+    <value>Steps to include new item generation.md</value>
+  </data>
+  <data name="SyncInstructionsHeader" xml:space="preserve">
+    <value># Steps to include new item generation</value>
+  </data>
+  <data name="SyncInstructionsMergeFile" xml:space="preserve">
+    <value>### Changes required in file '{0}':</value>
+  </data>
+  <data name="SyncInstructionsMergeFileError" xml:space="preserve">
+    <value>The changes could not be integrated: {0}</value>
+  </data>
+  <data name="SyncInstructionsMergeFileErrors" xml:space="preserve">
+    <value>The changes could not be integrated. The following warnings were generated:</value>
+  </data>
+  <data name="SyncInstructionsMergeFilePreview" xml:space="preserve">
+    <value>Preview the changes in: [{0}]({0})</value>
+  </data>
+  <data name="SyncInstructionsModifiedFiles" xml:space="preserve">
+    <value>## Modified files:</value>
+  </data>
+  <data name="SyncInstructionsModifiedFilesDescription" xml:space="preserve">
+    <value>To integrate your new item with the existing project apply the following changes: </value>
+  </data>
+  <data name="SyncInstructionsNewFiles" xml:space="preserve">
+    <value>## New files:</value>
+  </data>
+  <data name="SyncInstructionsNewFilesDescription" xml:space="preserve">
+    <value>Copy and add the following files to your project:</value>
+  </data>
+  <data name="SyncInstructionsUnchangedFiles" xml:space="preserve">
+    <value>## Unchanged files:</value>
+  </data>
+  <data name="SyncInstructionsUnchangedFilesDescription" xml:space="preserve">
+    <value>These files already exist in your project, no action is necessary:</value>
+  </data>
+  <data name="SyncSummaryConflictingFiles" xml:space="preserve">
+    <value>## Conflicting files:</value>
+  </data>
+  <data name="SyncSummaryConflictingFilesDescription" xml:space="preserve">
+    <value>These files already exist in your project and were also generated as part of the new item.
+Please compare and make sure everything is in the right place.</value>
+  </data>
+  <data name="SyncSummaryDescription" xml:space="preserve">
+    <value>The following changes have been incorporated into your project:</value>
+  </data>
+  <data name="SyncSummaryFileName" xml:space="preserve">
+    <value>GenerationSummary.md</value>
+  </data>
+  <data name="SyncSummaryHeader" xml:space="preserve">
+    <value># Generation summary</value>
+  </data>
+  <data name="SyncSummaryMergeFile" xml:space="preserve">
+    <value>### Changes in file '{0}':</value>
+  </data>
+  <data name="SyncSummaryMergeFileError" xml:space="preserve">
+    <value>The changes could not be integrated: {0}</value>
+  </data>
+  <data name="SyncSummaryMergeFileErrors" xml:space="preserve">
+    <value>The changes could not be integrated. The following warnings were generated:</value>
+  </data>
+  <data name="SyncSummaryMergeFilePreview" xml:space="preserve">
+    <value>See the final result: [{0}]({1})</value>
+  </data>
+  <data name="SyncSummaryModifiedFiles" xml:space="preserve">
+    <value>## Modified files:</value>
+  </data>
+  <data name="SyncSummaryModifiedFilesDescription" xml:space="preserve">
+    <value>The following changes have been applied:</value>
+  </data>
+  <data name="SyncSummaryNewFiles" xml:space="preserve">
+    <value>## New files:</value>
+  </data>
+  <data name="SyncSummaryNewFilesDescription" xml:space="preserve">
+    <value>These files have been added to your project.</value>
+  </data>
+  <data name="SyncSummaryProjectFile" xml:space="preserve">
+    <value>ProjectFile</value>
+  </data>
+  <data name="SyncSummaryTempGenerationFile" xml:space="preserve">
+    <value>Temp</value>
+  </data>
+  <data name="UserFriendlyPostActionMacroEndGroup" xml:space="preserve">
+    <value>End of block</value>
+  </data>
+  <data name="UserFriendlyPostActionMacroStartGroup" xml:space="preserve">
+    <value>Include the following block</value>
   </data>
 </root>

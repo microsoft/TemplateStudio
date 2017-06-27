@@ -10,6 +10,8 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
+
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
     public static class PostActionFormatter
@@ -17,11 +19,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         public static string AsUserFriendlyPostAction(this string postactionCode)
         {
             var output = postactionCode
-                            .Replace("^^", string.Empty)
-                            .Replace("{[{", "Include the following block")
-                            .Replace("}]}", "End of block")
-                            .Replace("{--{", "Remove the following block")
-                            .Replace("}--}", "End of block");
+                            .Replace(IEnumerableExtensions.MacroBeforeMode, string.Empty)
+                            .Replace(IEnumerableExtensions.MacroStartGroup, Strings.Resources.UserFriendlyPostActionMacroStartGroup)
+                            .Replace(IEnumerableExtensions.MarcoEndGroup, Strings.Resources.UserFriendlyPostActionMacroEndGroup);
+
+            var cleanRemovals = output.Split(new[] { Environment.NewLine }, StringSplitOptions.None).RemoveRemovals();
+            output = string.Join(Environment.NewLine, cleanRemovals);
             return output;
         }
     }
