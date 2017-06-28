@@ -1,27 +1,29 @@
 {
-  "author": "Laurent Bugnion + Community Contribution",
+  "author": "Microsoft Community Contribution",
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMLight.Project.VB",
+  "name": "MVVMLight.Project.TabbedPivot.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.order": "0",
-    "wts.licenses": "[MVVM Light](http://mvvmlight.codeplex.com/license)",
-    "wts.compositionFilter": "$framework == MVVMLight & wts.type == project"
+    "wts.order": "1",
+    "wts.compositionFilter": "$framework == MVVMLight & $projectType == TabbedPivot & wts.type == project"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\ViewModels\\ViewModelLocator.vb"
-    },
-    {
-      "path": ".\\Services\\NavigationServiceEx.vb"
-    }
+  {
+    "path": ".\\ViewModels\\PivotViewModel.vb"
+  },
+  {
+    "path": ".\\Views\\PivotPage.xaml"
+  },
+  {
+    "path": ".\\Views\\PivotPage.xaml.vb"
+  }
   ],
   "symbols": {
     "wts.rootNamespace": {

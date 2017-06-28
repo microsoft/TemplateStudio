@@ -173,7 +173,7 @@ namespace Microsoft.Templates.UI
                 }
             }
 
-            genQueue.AddRange(compositionQueue);
+            genQueue.AddRange(compositionQueue.OrderBy(g => g.Template.GetOrder()));
         }
 
         private static IEnumerable<(CompositionQuery query, ITemplateInfo template)> GetCompositionCatalog()
