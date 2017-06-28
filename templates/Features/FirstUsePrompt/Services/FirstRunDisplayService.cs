@@ -11,7 +11,7 @@ namespace Param_ItemNamespace.Services
         internal static async Task ShowIfAppropriate()
         {
             bool hasShownFirstRun = false;
-            hasShownFirstRun = await SettingsStorageExtensions.ReadAsync<bool>(Windows.Storage.ApplicationData.Current.LocalSettings, nameof(hasShownFirstRun));
+            hasShownFirstRun = await Windows.Storage.ApplicationData.Current.LocalSettings.ReadAsync<bool>(nameof(hasShownFirstRun));
 
             if (!hasShownFirstRun)
             {
