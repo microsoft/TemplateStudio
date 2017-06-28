@@ -1,1 +1,2 @@
-This postaction will register the HubNotificationsFeatureService Instance as an Activation Handler in the ActivationService.
+This merge includes the HubNotificationsFeatureService Instance in the method `GetActivationHandlers()` in the ActivationService of your project.
+Furthermore it adds some documentation about how to use the HubNotificationsFeatureService

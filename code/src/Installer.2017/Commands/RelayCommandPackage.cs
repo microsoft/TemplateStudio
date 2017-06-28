@@ -50,6 +50,9 @@ namespace Microsoft.Templates.Extension.Commands
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     public sealed class RelayCommandPackage : Package
     {
+        private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions());
+        private RightClickActions RightClickActions => _rightClickActions.Value;
+
         private RelayCommand addPageCommand;
         private RelayCommand addFeatureCommand;
 

@@ -17,6 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
@@ -32,14 +33,16 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             var sb = new StringBuilder();
 
+            sb.AppendLine(Strings.Resources.MarkdownHeader);
+            sb.AppendLine();
             sb.AppendLine(Strings.Resources.SyncSummaryHeader);
             sb.AppendLine(Strings.Resources.SyncSummaryDescription);
+            sb.AppendLine();
 
             if (_config.NewFiles.Any())
             {
                 sb.AppendLine(Strings.Resources.SyncSummaryNewFiles);
                 sb.AppendLine(Strings.Resources.SyncSummaryNewFilesDescription);
-                sb.AppendLine();
 
                 foreach (var newFile in _config.NewFiles)
                 {
@@ -47,50 +50,76 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
                     sb.AppendLine(GetLinkToProjectFile(newFile, newFilePath));
                 }
+                sb.AppendLine();
             }
 
-            if (GenContext.Current.MergeFilesFromProject.Any())
+            if (_config.ModifiedFiles.Any())
             {
                 sb.AppendLine(Strings.Resources.SyncSummaryModifiedFiles);
                 sb.AppendLine(Strings.Resources.SyncSummaryModifiedFilesDescription);
+                sb.AppendLine();
 
-                foreach (var mergeFile in GenContext.Current.MergeFilesFromProject)
+                foreach (var file in _config.ModifiedFiles)
                 {
-                    var modifiedFilePath = Path.Combine(GenContext.Current.ProjectPath, mergeFile.Key);
+                    var mergeFile = GenContext.Current.MergeFilesFromProject.FirstOrDefault(m => m.Key == file);
 
-                    sb.AppendLine(string.Format(Strings.Resources.SyncSummaryMergeFile, mergeFile.Key));
-                    sb.AppendLine();
+                    if (mergeFile.Value != null)
+                    {
+                        var modifiedFilePath = Path.Combine(GenContext.Current.ProjectPath, mergeFile.Key);
 
-                    if (!GenContext.Current.FailedMergePostActions.Any(w => w.FileName == mergeFile.Key))
-                    {
-                        sb.AppendLine(string.Format(Strings.Resources.SyncSummaryMergeFilePreview, mergeFile.Key, Uri.EscapeUriString(modifiedFilePath)));
-                        sb.AppendLine();
-                    }
-                    else
-                    {
-                        var failedMergePostActions = GenContext.Current.FailedMergePostActions.Where(w => w.FileName == mergeFile.Key);
-                        if (failedMergePostActions.Count() == 1)
+                        sb.AppendLine(string.Format(Strings.Resources.SyncSummaryMergeFile, mergeFile.Key));
+
+                        if (!GenContext.Current.FailedMergePostActions.Any(w => w.FileName == mergeFile.Key))
                         {
-                            sb.AppendLine(string.Format(Strings.Resources.SyncSummaryMergeFileError, failedMergePostActions.First()?.Description));
-                        }
-                        else
-                        {
-                            sb.AppendLine(Strings.Resources.SyncSummaryMergeFileErrors);
-                            foreach (var failedMergePostAction in failedMergePostActions)
+                            sb.AppendLine(string.Format(Strings.Resources.SyncSummaryMergeFilePreview, mergeFile.Key, Uri.EscapeUriString(modifiedFilePath)));
+                            sb.AppendLine();
+
+                            foreach (var mergeInfo in mergeFile.Value)
                             {
-                                sb.AppendLine($"* {failedMergePostAction.Description}");
+                                if (!string.IsNullOrEmpty(mergeInfo.Intent))
+                                {
+                                    sb.AppendLine(mergeInfo.Intent);
+                                    sb.AppendLine();
+                                }
+
+                                sb.AppendLine($"```{mergeInfo.Format}");
+                                sb.AppendLine(mergeInfo.PostActionCode);
+                                sb.AppendLine("```");
+
                                 sb.AppendLine();
                             }
                         }
                     }
+                }
+            }
 
-                    foreach (var mergeInfo in mergeFile.Value)
+            var failedMergeFiles = GenContext.Current.MergeFilesFromProject.Where(f => GenContext.Current.FailedMergePostActions.Any(m => m.FileName == f.Key));
+            if (failedMergeFiles.Any())
+            {
+                sb.AppendLine(Strings.Resources.SyncSummaryFailedMerges);
+                sb.AppendLine(Strings.Resources.SyncSummaryFailedMergesDescription);
+                sb.AppendLine();
+
+                foreach (var failedMergeFile in failedMergeFiles)
+                {
+                    sb.AppendLine(string.Format(Strings.Resources.SyncSummaryMergeFile, failedMergeFile.Key));
+
+                    var failedMergePostActions = GenContext.Current.FailedMergePostActions.Where(w => w.FileName == failedMergeFile.Key);
+
+                    sb.AppendLine(Strings.Resources.SyncSummaryMergeFileError);
+                    foreach (var failedMergePostAction in failedMergePostActions)
+                    {
+                        sb.AppendLine($"* {failedMergePostAction.Description}");
+                        sb.AppendLine();
+                    }
+
+                    foreach (var mergeInfo in failedMergeFile.Value)
                     {
                         if (!string.IsNullOrEmpty(mergeInfo.Intent))
                         {
                             sb.AppendLine(mergeInfo.Intent);
+                            sb.AppendLine();
                         }
-                        sb.AppendLine();
 
                         sb.AppendLine($"```{mergeInfo.Format}");
                         sb.AppendLine(mergeInfo.PostActionCode);

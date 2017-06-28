@@ -233,6 +233,7 @@ namespace Microsoft.Templates.UI
                      Path.Combine(GenContext.Current.OutputPath, n),
                      Path.Combine(GenContext.Current.ProjectPath, n))));
 
+            result.HasChangesToApply = result.NewFiles.Any() || result.ModifiedFiles.Any() ? true : false;
             return result;
         }
 

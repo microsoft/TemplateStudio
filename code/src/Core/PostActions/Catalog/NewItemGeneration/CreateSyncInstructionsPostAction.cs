@@ -32,8 +32,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             var sb = new StringBuilder();
 
-            sb.AppendLine(Strings.Resources.SyncInstructionsHeader);
+            sb.AppendLine(Strings.Resources.MarkdownHeader);
             sb.AppendLine();
+            sb.AppendLine(Strings.Resources.SyncInstructionsHeader);
+            sb.AppendLine(Strings.Resources.SyncInstructionsDescription);
             sb.AppendLine();
 
             if (_config.NewFiles.Any())
@@ -80,18 +82,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                     {
                         var failedMergePostActions = GenContext.Current.FailedMergePostActions.Where(w => w.FileName == mergeFile.Key);
 
-                        if (failedMergePostActions.Count() == 1)
+                        sb.AppendLine(Strings.Resources.SyncInstructionsMergeFileError);
+                        foreach (var failedMergePostAction in failedMergePostActions)
                         {
-                            sb.AppendLine(string.Format(Strings.Resources.SyncInstructionsMergeFileError, failedMergePostActions.First()?.Description));
-                        }
-                        else
-                        {
-                            sb.AppendLine(Strings.Resources.SyncInstructionsMergeFileError);
-                            foreach (var failedMergePostAction in failedMergePostActions)
-                            {
-                                sb.AppendLine($"* {failedMergePostAction.Description}");
-                                sb.AppendLine();
-                            }
+                            sb.AppendLine($"* {failedMergePostAction.Description}");
+                            sb.AppendLine();
                         }
                     }
                 }
@@ -108,6 +103,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 {
                     sb.AppendLine(GetLinkToLocalFile(conflictFile));
                 }
+                sb.AppendLine();
             }
 
             if (_config.UnchangedFiles.Any())

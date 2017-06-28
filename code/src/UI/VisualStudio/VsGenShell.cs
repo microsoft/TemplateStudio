@@ -246,14 +246,14 @@ namespace Microsoft.Templates.UI.VisualStudio
             return GetActiveProjectPath();
         }
 
-        protected override string GetActiveProjectName()
+        public override string GetActiveProjectName()
         {
             var p = GetActiveProject();
 
             return p?.Name;
         }
 
-        protected override string GetActiveProjectPath()
+        public override string GetActiveProjectPath()
         {
             var p = GetActiveProject();
 
