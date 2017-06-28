@@ -286,7 +286,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Changes summary: {0}.
+        ///   Looks up a localized string similar to Changes summary: {0} {1}.
         /// </summary>
         public static string ChangesSummaryTitle_SF {
             get {

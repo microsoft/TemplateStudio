@@ -47,8 +47,23 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var projectConfiguration = NewItemGenController.Instance.ReadProjectConfiguration();
             ConfigProjectType = projectConfiguration.ProjectType;
             ConfigFramework = projectConfiguration.Framework;
-            Title = string.Format(StringRes.NewItemTitle_SF, ConfigTemplateType.ToString().ToLower());
+            SetNewItemSetupTitle();
             await BaseInitializeAsync();
+        }
+
+        public void SetNewItemSetupTitle() => Title = string.Format(StringRes.NewItemTitle_SF, ConfigTemplateType.ToString().ToLower());
+
+        public void SetChangesSummaryTitle()
+        {
+            var template = GetActiveTemplate();
+            if (template.IsItemNameEditable)
+            {
+                Title = string.Format(StringRes.ChangesSummaryTitle_SF, NewItemSetup.ItemName, template.TemplateType.ToString().ToLower());
+            }
+            else
+            {
+                Title = string.Format(StringRes.ChangesSummaryTitle_SF, template.Name, template.TemplateType.ToString().ToLower());
+            }
         }
 
         protected override void OnCancel()
@@ -62,6 +77,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             base.OnGoBack();
             NewItemSetup.Initialize(false);
             HasOverlayBox = true;
+            SetNewItemSetupTitle();
         }
         protected override async void OnNext()
         {
@@ -71,8 +87,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             NewItemGenController.Instance.CleanupTempGeneration();
             await NewItemGenController.Instance.GenerateNewItemAsync(ConfigTemplateType, MainView.Result);
             NavigationService.Navigate(new ChangesSummaryView());
-            var template = GetActiveTemplate();
-            Title = string.Format(StringRes.ChangesSummaryTitle_SF, template.Name);
+            SetChangesSummaryTitle();
             HasOverlayBox = false;
         }
         protected override void OnFinish(string parameter)

@@ -407,7 +407,7 @@
     <value>Visit project web site</value>
   </data>
   <data name="ChangesSummaryTitle_SF" xml:space="preserve">
-    <value>Changes summary: {0}</value>
+    <value>Changes summary: {0} {1}</value>
   </data>
   <data name="ChangesSummaryCategoryFailedMerges" xml:space="preserve">
     <value>Failed merges</value>
