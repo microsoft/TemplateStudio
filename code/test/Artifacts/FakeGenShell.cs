@@ -108,12 +108,12 @@ namespace Microsoft.Templates.Test.Artifacts
             return msbuildProj.Guid;
         }
 
-        protected override string GetActiveProjectName()
+        public override string GetActiveProjectName()
         {
             return GenContext.Current.ProjectName;
         }
 
-        protected override string GetActiveProjectPath()
+        public override string GetActiveProjectPath()
         {
             return string.Empty;
         }

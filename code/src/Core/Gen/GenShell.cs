@@ -17,8 +17,8 @@ namespace Microsoft.Templates.Core.Gen
 {
     public abstract class GenShell
     {
-        protected abstract string GetActiveProjectName();
-        protected abstract string GetActiveProjectPath();
+        public abstract string GetActiveProjectName();
+        public abstract string GetActiveProjectPath();
         protected abstract string GetSelectedItemPath();
 
         public abstract bool SetActiveConfigurationAndPlatform(string configurationName, string platformName);

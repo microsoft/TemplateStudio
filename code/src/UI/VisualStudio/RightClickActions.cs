@@ -12,20 +12,51 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
-    public class RightClickActions
+    public class RightClickActions : IContextProvider
     {
-        public static void AddNewPage()
+        public string ProjectName { get; private set; }
+
+        public string OutputPath { get; private set; }
+
+        public string ProjectPath { get; private set; }
+
+        public List<string> ProjectItems { get; private set; }
+
+        public List<string> FilesToOpen { get; private set; }
+
+        public List<FailedMergePostAction> FailedMergePostActions { get; private set; }
+
+        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; private set; }
+
+        public RightClickActions()
         {
+            if (!GenContext.IsInitialized)
+            {
+#if DEBUG
+                GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell());
+#else
+                GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell());
+#endif
+            }
+        }
+
+        public void AddNewPage()
+        {
+            SetContext();
+
             try
             {
                 var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage();
@@ -42,8 +73,25 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public static void AddNewFeature()
+        private void SetContext()
         {
+            if (GenContext.IsInitialized)
+            {
+                ProjectPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
+                ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
+                OutputPath = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath, Path.GetRandomFileName());
+                ProjectItems = new List<string>();
+                FilesToOpen = new List<string>();
+                FailedMergePostActions = new List<FailedMergePostAction>();
+                MergeFilesFromProject = new Dictionary<string, List<MergeInfo>>();
+
+                GenContext.Current = this;
+            }
+        }
+
+        public void AddNewFeature()
+        {
+            SetContext();
             try
             {
                 var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature();
@@ -60,7 +108,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public static bool Enabled()
+        public bool Enabled()
         {
             // TODO: Depends if the current project has been created with WTS or not
             return true;

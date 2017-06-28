@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>Could not find merge target for file '{0}'. Please merge the content from the postaction file manually.</value>
+    <value>Could not find file '{0}' to include the following changes. Please review the code blocks to include the changes manually where required in your project. </value>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
     <value>Could not find the expected line `{0}` in file '{1}'. Please merge the content from the postaction file manually.</value>
@@ -228,6 +228,6 @@ Please compare and make sure everything is in the right place.</value>
     <value>End of block</value>
   </data>
   <data name="UserFriendlyPostActionMacroStartGroup" xml:space="preserve">
-    <value>Include the following block</value>
+    <value>Block to be included</value>
   </data>
 </root>

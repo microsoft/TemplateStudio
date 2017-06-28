@@ -61,7 +61,7 @@ namespace Microsoft.Templates.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not find merge target for file &apos;{0}&apos;. Please merge the content from the postaction file manually..
+        ///   Looks up a localized string similar to Could not find file &apos;{0}&apos; to include the following changes. Please review the code blocks to include the changes manually where required in your project. .
         /// </summary>
         internal static string FailedMergePostActionFileNotFound {
             get {
@@ -387,7 +387,7 @@ namespace Microsoft.Templates.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Include the following block.
+        ///   Looks up a localized string similar to Block to be included.
         /// </summary>
         internal static string UserFriendlyPostActionMacroStartGroup {
             get {

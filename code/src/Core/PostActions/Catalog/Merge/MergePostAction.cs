@@ -81,7 +81,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var sourceFileName = originalFilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
             var postactionFileName = _config.FilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
 
-            var description = string.Format(Strings.Resources.FailedMergePostActionFileNotFound, postactionFileName);
+            var description = string.Format(Strings.Resources.FailedMergePostActionFileNotFound, sourceFileName);
             var intent = GetPostActionIntent();
             var failedFileName = GetFailedPostActionFileName();
             GenContext.Current.FailedMergePostActions.Add(new FailedMergePostAction(sourceFileName, _config.FilePath, failedFileName, description, intent, MergeFailureType.FileNotFound));
