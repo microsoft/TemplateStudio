@@ -12,19 +12,19 @@ namespace Microsoft.Templates.UI.Controls
         private bool _isInitialized;
         private WebBrowser _webBrowser;
 
-        public string TempFilePath
+        public string OriginalFilePath
         {
-            get { return (string)GetValue(TempFilePathProperty); }
-            set { SetValue(TempFilePathProperty, value); }
+            get { return (string)GetValue(OriginalFilePathProperty); }
+            set { SetValue(OriginalFilePathProperty, value); }
         }
-        public static readonly DependencyProperty TempFilePathProperty = DependencyProperty.Register("TempFilePath", typeof(string), typeof(CodeViewer), new PropertyMetadata(string.Empty, OnFilePathChanged));
+        public static readonly DependencyProperty OriginalFilePathProperty = DependencyProperty.Register("OriginalFilePath", typeof(string), typeof(CodeViewer), new PropertyMetadata(string.Empty, OnFilePathChanged));
 
-        public string ProjectFilePath
+        public string ModifiedFilePath
         {
-            get { return (string)GetValue(ProjectFilePathProperty); }
-            set { SetValue(ProjectFilePathProperty, value); }
+            get { return (string)GetValue(ModifiedFilePathProperty); }
+            set { SetValue(ModifiedFilePathProperty, value); }
         }
-        public static readonly DependencyProperty ProjectFilePathProperty = DependencyProperty.Register("ProjectFilePath", typeof(string), typeof(CodeViewer), new PropertyMetadata(string.Empty, OnFilePathChanged));
+        public static readonly DependencyProperty ModifiedFilePathProperty = DependencyProperty.Register("ModifiedFilePath", typeof(string), typeof(CodeViewer), new PropertyMetadata(string.Empty, OnFilePathChanged));
 
         public Func<string, string> UpdateTextAction
         {
@@ -32,6 +32,14 @@ namespace Microsoft.Templates.UI.Controls
             set { SetValue(UpdateTextActionProperty, value); }
         }
         public static readonly DependencyProperty UpdateTextActionProperty = DependencyProperty.Register("UpdateTextAction", typeof(Func<string, string>), typeof(CodeViewer), new PropertyMetadata(null, OnFilePathChanged));
+
+
+        public bool RenderSideBySide
+        {
+            get { return (bool)GetValue(RenderSideBySideProperty); }
+            set { SetValue(RenderSideBySideProperty, value); }
+        }
+        public static readonly DependencyProperty RenderSideBySideProperty = DependencyProperty.Register("RenderSideBySide", typeof(bool), typeof(CodeViewer), new PropertyMetadata(true, OnFilePathChanged));
 
         public CodeViewer()
         {
@@ -54,8 +62,8 @@ namespace Microsoft.Templates.UI.Controls
             }
 
             var executingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).Replace('\\', '/');
-            string fileText = LoadFile(TempFilePath);
-            string originalFileText = LoadFile(ProjectFilePath);
+            string fileText = LoadFile(OriginalFilePath);
+            string originalFileText = LoadFile(ModifiedFilePath);
             string patternText = string.Empty;
             if (!string.IsNullOrEmpty(fileText) && !string.IsNullOrEmpty(originalFileText))
             {
@@ -73,19 +81,19 @@ namespace Microsoft.Templates.UI.Controls
             }
             if (!string.IsNullOrEmpty(patternText))
             {
-                var language = GetLanguage(TempFilePath);
+                var language = GetLanguage(OriginalFilePath);
                 if (!string.IsNullOrEmpty(language))
                 {
                     patternText = patternText.Replace("##language##", language);
                 }
-                patternText = patternText.Replace("##ExecutingDirectory##", executingDirectory);
+                patternText = patternText.Replace("##ExecutingDirectory##", executingDirectory).Replace("##renderSideBySide##", (RenderSideBySide.ToString().ToLower()));
                 _webBrowser.NavigateToString(patternText);
             }
         }
 
         private string GetLanguage(string filePath)
         {
-            string extension = Path.GetExtension(TempFilePath);
+            string extension = Path.GetExtension(OriginalFilePath);
             if (extension == ".xaml" || extension == ".csproj" || extension == ".appxmanifest" || extension == ".resw" || extension == ".xml")
             {
                 return "xml";
