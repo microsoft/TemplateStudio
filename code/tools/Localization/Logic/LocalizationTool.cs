@@ -34,10 +34,7 @@ namespace Localization
             string destinationDirectory = commandInfo.Arguments[1];
             List<string> cultures = new List<string>(commandInfo.Arguments[2].Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries));
             ProjectTemplateGenerator projectTemplateGenerator = new ProjectTemplateGenerator(sourceDirectory, destinationDirectory);
-            foreach (string culture in cultures)
-            {
-                projectTemplateGenerator.GenerateProjectTemplate(culture);
-            }
+            projectTemplateGenerator.GenerateProjectTemplates(cultures);
         }
 
         public void ExtractLocalizableItems(ToolCommandInfo commandInfo)
@@ -51,10 +48,7 @@ namespace Localization
             List<string> cultures = new List<string>(commandInfo.Arguments[2].Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries));
             LocalizableItemsExtractor extractor = new LocalizableItemsExtractor(sourceDirectory, destinationDirectory);
             extractor.ExtractVsix(cultures);
-            foreach (string culture in cultures)
-            {
-                extractor.ExtractProjectTemplate(culture);
-            }
+            extractor.ExtractProjectTemplates(cultures);
             extractor.ExtractTemplateEngineTemplates(cultures);
             extractor.ExtractWtsTemplates(cultures);
             extractor.ExtractResourceFiles(cultures);

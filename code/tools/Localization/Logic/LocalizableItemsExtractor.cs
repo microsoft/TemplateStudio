@@ -11,9 +11,8 @@ namespace Localization
         private DirectoryInfo sourceDir;
         private DirectoryInfo destinationDir;
 
-        private const string projectTemplateFileNamePattern = "CSharp.UWP.VS2017.Solution.vstemplate";
-        private const string projectTemplateLocFileNamePattern = "CSharp.UWP.VS2017.{0}.Solution.csproj";
-        private const string projectTemplateDirNamePattern = "CSharp.UWP.2017.{0}.Solution";
+        private const string projectTemplateFileNamePattern = "CSharp.UWP.VS2017.Solution.{0}.vstemplate";
+        private const string projectTemplateDirNamePattern = "CSharp.UWP.2017.Solution";
         private const string projectTemplateRootDirPath = "code\\src\\ProjectTemplates";
         private const string templatesRootDirPath = "templates";
         private const string templateDescriptionFile = "description.md";
@@ -90,23 +89,22 @@ namespace Localization
             }
         }
 
-        internal void ExtractProjectTemplate(string culture)
+        internal void ExtractProjectTemplates(List<string> cultures)
         {
-            DirectoryInfo templateDesDirectory = new DirectoryInfo(Path.Combine(this.destinationDir.FullName, projectTemplateRootDirPath, string.Format(projectTemplateDirNamePattern, culture)));
+            DirectoryInfo templateDesDirectory = new DirectoryInfo(Path.Combine(this.destinationDir.FullName, projectTemplateRootDirPath, projectTemplateDirNamePattern));
             if (templateDesDirectory.Exists)
                 return;
             templateDesDirectory.Create();
-            DirectoryInfo templateSrcDirectory = new DirectoryInfo(Path.Combine(this.sourceDir.FullName, projectTemplateRootDirPath, string.Format(projectTemplateDirNamePattern, culture)));
+            DirectoryInfo templateSrcDirectory = new DirectoryInfo(Path.Combine(this.sourceDir.FullName, projectTemplateRootDirPath, projectTemplateDirNamePattern));
             if (!templateSrcDirectory.Exists)
                 throw new DirectoryNotFoundException($"Source directory \"{templateSrcDirectory.FullName}\" not found.");
-            FileInfo file = new FileInfo(Path.Combine(templateSrcDirectory.FullName, projectTemplateFileNamePattern));
-            if (!file.Exists)
-                throw new FileNotFoundException($"File \"{file.FullName}\" not found.");
-            file.CopyTo(Path.Combine(templateDesDirectory.FullName, projectTemplateFileNamePattern));
-            /*file = new FileInfo(Path.Combine(templateSrcDirectory.FullName, string.Format(projectTemplateLocFileNamePattern, culture)));
-            if (!file.Exists)
-                throw new FileNotFoundException($"File \"{file.FullName}\" not found.");
-            file.CopyTo(Path.Combine(templateDesDirectory.FullName, string.Format(projectTemplateLocFileNamePattern, culture)));*/
+            foreach (string culture in cultures)
+            {
+                FileInfo file = new FileInfo(Path.Combine(templateSrcDirectory.FullName, string.Format(projectTemplateFileNamePattern, culture)));
+                if (!file.Exists)
+                    throw new FileNotFoundException($"File \"{file.FullName}\" not found.");
+                file.CopyTo(Path.Combine(templateDesDirectory.FullName, string.Format(projectTemplateFileNamePattern, culture)));
+            }
         }
 
         internal void ExtractTemplateEngineTemplates(List<string> cultures)

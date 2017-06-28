@@ -84,6 +84,10 @@ namespace Localization
                         Console.WriteLine();
                         Console.WriteLine("GEN \"sourceDirectoryPath\" \"destinationDirectoryPath\" \"cultures\"");
                         Console.WriteLine();
+                        Console.WriteLine("\tsourceDirectoryPath - ");
+                        Console.WriteLine();
+                        Console.WriteLine("GEN \"C:\\MyFolder\\SourceFolder\" \"C:\\MyFolder\\Generated\\ProjectTemplates\" \"de-DE;es-ES;fr-FR\"");
+                        Console.WriteLine();
                         break;
                     case "HELP":
                         Console.WriteLine("Provides Help information for Windows Template Studio Localization Tool.");

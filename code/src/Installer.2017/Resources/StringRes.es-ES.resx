@@ -127,7 +127,7 @@
     <value>Add Project</value>
   </data>
   <data name="UIMessageBoxTitlePattern" xml:space="preserve">
-    <value>Windows Template Studio: {0}</value>
+    <value>Windows Template Studio Español: {0}</value>
     <comment>Generic MessageBox Title</comment>
   </data>
   <data name="UIStatusMsgPattern" xml:space="preserve">
