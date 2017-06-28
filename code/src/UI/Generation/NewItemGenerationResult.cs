@@ -23,5 +23,7 @@ namespace Microsoft.Templates.UI
         public List<NewItemGenerationFileInfo> ConflictingFiles { get; } = new List<NewItemGenerationFileInfo>();
 
         public List<NewItemGenerationFileInfo> UnchangedFiles { get; } = new List<NewItemGenerationFileInfo>();
+
+        public bool HasChangesToApply { get; set; }
     }
 }
