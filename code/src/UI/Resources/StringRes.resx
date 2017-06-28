@@ -395,7 +395,8 @@
     <value>Refresh templates</value>
   </data>
   <data name="NewVersionAvailable" xml:space="preserve">
-    <value>There is new content available.</value>
+    <value>There is new content available.‌
+By refreshing templates current selection will be reset.</value>
   </data>
   <data name="CheckForUpdates" xml:space="preserve">
     <value>Check for new templates</value>
@@ -443,7 +444,7 @@
     <value>Unchanged files</value>
   </data>
   <data name="StatusNewVersionAvailable" xml:space="preserve">
-    <value>There is new templates content available...</value>
+    <value>There is new templates content available</value>
   </data>
   <data name="ErrorSyncCheckNewVersion" xml:space="preserve">
     <value>Error checking for updates. See output for more details.</value>

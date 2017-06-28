@@ -233,7 +233,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             try
             {
-                IsOverlayBoxVisible = false;
                 await GenContext.ToolBox.Repo.CheckForUpdatesAsync();
             }
             catch (Exception ex)

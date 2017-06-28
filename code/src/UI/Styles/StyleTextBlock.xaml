@@ -47,7 +47,7 @@
     <Style TargetType="TextBlock" x:Key="TextSubGroupTemplateItemsHeaderStyle" BasedOn="{StaticResource UIBaseText}">
         <Setter Property="Foreground" Value="{StaticResource UIDarkGray}" />
         <Setter Property="FontSize" Value="{StaticResource UI_M_FontSize}" />
-        <Setter Property="Margin" Value="{StaticResource MediumLeftTopMargin}" />
+        <Setter Property="Margin" Value="{StaticResource Margin_M_LeftTop}" />
     </Style>
 
     <Style TargetType="TextBlock" x:Key="TextTemplateItemTitleStyle" BasedOn="{StaticResource UIBase}">
@@ -165,13 +165,10 @@
     </Style>
 
     <Style TargetType="TextBlock" x:Key="TextOverlayBoxDescriptionStyle" BasedOn="{StaticResource UIBaseText}">
-        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
     </Style>
-    
-    <Style TargetType="TextBlock" x:Key="TextOverlayBoxNotificationStyle" BasedOn="{StaticResource UIBaseText}">
-        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
-        <Setter Property="Foreground" Value="{StaticResource UIDarkYellow}" />
-        <Setter Property="FontWeight" Value="Bold" />
+
+    <Style TargetType="TextBlock" x:Key="TextOverlayBoxImportantInformationStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>
 
 

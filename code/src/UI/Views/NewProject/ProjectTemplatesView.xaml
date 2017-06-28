@@ -19,7 +19,7 @@
                 <Grid>
                     <Rectangle Style="{StaticResource RectangleDropShadowStyle}" />
                     <Border Width="205" Height="180" Background="{StaticResource UIWhite}">
-                        <Grid Margin="{StaticResource MediumMargin}">
+                        <Grid Margin="{StaticResource Margin_M_All}">
 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="60" />
@@ -40,8 +40,8 @@
                                 </Grid.ColumnDefinitions>
 
                                 <controls:ImageEx Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Focusable="False" MaxWidth="50" SourcePath="{Binding Icon}" FallbackImage="/Microsoft.Templates.UI;component/Assets/DefaultIcon.png" />
-                                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding Name}" Margin="{StaticResource MediumLeftRightMargin}" Foreground="{Binding TitleForeground, FallbackValue={StaticResource UIBlack}}" />
-                                <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateItemAuthorStyle}" MaxHeight="40" Margin="{StaticResource MediumLeftMargin}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}" Text="{Binding Author}"/>
+                                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding Name}" Margin="{StaticResource Margin_M_LeftRight}" Foreground="{Binding TitleForeground, FallbackValue={StaticResource UIBlack}}" />
+                                <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateItemAuthorStyle}" MaxHeight="40" Margin="{StaticResource Margin_M_Left}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}" Text="{Binding Author}"/>
                                 <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" Command="{Binding ShowItemInfoCommand}">
                                     <Button.Content>
                                         <TextBlock Text="&#xE946;" FontSize="18" Style="{StaticResource IconButtonTextStyle}" />
@@ -51,7 +51,7 @@
                             </Grid>
                             <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding Summary}" Visibility="{Binding NoEditingContentVisibility}" Foreground="{StaticResource UIBlack}"/>
 
-                            <Grid Grid.Row="1" VerticalAlignment="Bottom" Margin="{StaticResource SmallBottomMargin}" Visibility="{Binding EditingContentVisibility}">
+                            <Grid Grid.Row="1" VerticalAlignment="Bottom" Margin="{StaticResource Margin_S_Bottom}" Visibility="{Binding EditingContentVisibility}">
 
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
@@ -121,7 +121,7 @@
     </Page.Resources>
     <ScrollViewer>
         <StackPanel>
-            <GroupBox Header="{Binding PagesHeader}" Margin="{StaticResource MediumLeftTopRightMargin}">
+            <GroupBox Header="{Binding PagesHeader}" Margin="{StaticResource Margin_M_LeftTopRight}">
                 <ItemsControl ItemsSource="{Binding PagesGroups}" Focusable="False">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -133,13 +133,13 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </GroupBox>
-            <GroupBox Header="{Binding FeaturesHeader}" Margin="{StaticResource MediumLeftTopRightMargin}">
-                <ItemsControl ItemsSource="{Binding FeatureGroups}" Margin="{StaticResource MediumTopMargin}" Focusable="False">
+            <GroupBox Header="{Binding FeaturesHeader}" Margin="{StaticResource Margin_M_LeftTopRight}">
+                <ItemsControl ItemsSource="{Binding FeatureGroups}" Margin="{StaticResource Margin_M_Top}" Focusable="False">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock Text="{Binding Title}" Style="{StaticResource TextSubGroupTemplateItemsHeaderStyle}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
-                                <ListView KeyboardNavigation.TabNavigation="Local" Margin="{StaticResource MediumMargin}" ItemsSource="{Binding Templates}" Style="{StaticResource ListViewProjectTemplatesStyle}" ItemTemplate="{StaticResource ProjectTemplatesItemTemplate}" />
+                                <ListView KeyboardNavigation.TabNavigation="Local" Margin="{StaticResource Margin_M_All}" ItemsSource="{Binding Templates}" Style="{StaticResource ListViewProjectTemplatesStyle}" ItemTemplate="{StaticResource ProjectTemplatesItemTemplate}" />
                             </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

@@ -50,11 +50,11 @@
                 <controls:LogoDisplay
                     Grid.Column="0"
                     Width="40"
-                    Margin="{StaticResource MediumLeftMargin}"
+                    Margin="{StaticResource Margin_M_Left}"
                     HorizontalAlignment="Left" />
                 <TextBlock
                     Grid.Column="1"
-                    Margin="{StaticResource MediumLeftMargin}"
+                    Margin="{StaticResource Margin_M_Left}"
                     VerticalAlignment="Center"
                     Style="{StaticResource TextTitleStyle}"
                     Text="{Binding Title}" />
@@ -63,7 +63,7 @@
                     <Button Style="{StaticResource TopBarMenuStyle}" Command="{Binding ShowOverlayMenuCommand}">
                         <Button.Content>
                             <Grid>
-                                <TextBlock Text="&#xEC42;" Style="{StaticResource IconButtonTextStyle}" Foreground="{StaticResource UIWhite}" FontSize="24" Margin="{StaticResource MediumMargin}" />
+                                <TextBlock Text="&#xEC42;" Style="{StaticResource IconButtonTextStyle}" Foreground="{StaticResource UIWhite}" FontSize="24" Margin="{StaticResource Margin_M_All}" />
                                 <Ellipse Width="12" Height="12" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,5,0" Visibility="{Binding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}}" Fill="{StaticResource UIDarkYellow}" />
                             </Grid>
                         </Button.Content>
@@ -94,11 +94,11 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Style="{StaticResource TextBottomBarStyle}" Text="{x:Static res:StringRes.NewItemName}" Margin="{StaticResource MediumLeftTopBottomMargin}" Visibility="{Binding NewItemSetup.EditionVisibility}"/>
+                    <TextBlock Style="{StaticResource TextBottomBarStyle}" Text="{x:Static res:StringRes.NewItemName}" Margin="{StaticResource Margin_M_LeftTopBottom}" Visibility="{Binding NewItemSetup.EditionVisibility}"/>
                     <TextBox
                         Grid.Column="1"
                         Text="{Binding NewItemSetup.ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"                    
-                        Margin="{StaticResource MediumMargin}"
+                        Margin="{StaticResource Margin_M_All}"
                         Width="360"
                         MaxLength="30" HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
                         Visibility="{Binding NewItemSetup.EditionVisibility}">

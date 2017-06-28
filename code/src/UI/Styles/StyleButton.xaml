@@ -11,7 +11,7 @@
 
 
     <Style TargetType="Button" x:Key="ButtonNavigationStyle">
-        <Setter Property="Margin" Value="{StaticResource MediumLeftMargin}" />
+        <Setter Property="Margin" Value="{StaticResource Margin_M_Left}" />
         <Setter Property="Width" Value="75" />
         <Setter Property="Height" Value="27" />
         <Setter Property="Foreground" Value="{StaticResource UIBlack}" />
@@ -344,9 +344,9 @@
     </Style>
 
     <Style TargetType="Button" x:Key="ButtonRefreshTemplatesStyle">
-        <Setter Property="Margin" Value="{StaticResource MediumLeftRightMargin}" />
         <Setter Property="Height" Value="35" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
         <Setter Property="Foreground" Value="{StaticResource UIBlack}" />
         <Setter Property="BorderBrush" Value="{StaticResource UIBlack}" />
         <Setter Property="Background" Value="{StaticResource UIMiddleLightGray}" />
@@ -371,7 +371,7 @@
     </Style>
 
     <Style TargetType="Button" x:Key="ButtonUpdateFontSizeStyle">
-        <Setter Property="Margin" Value="{StaticResource SmallLeftMargin}" />
+        <Setter Property="Margin" Value="{StaticResource Margin_S_Left}" />
         <Setter Property="Height" Value="60" />
         <Setter Property="Width" Value="60" />
         <Setter Property="FontSize" Value="25" />

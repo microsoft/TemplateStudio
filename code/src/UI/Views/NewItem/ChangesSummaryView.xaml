@@ -24,15 +24,15 @@
             </DataTemplate>
             <DataTemplate x:Key="ListItemTemplate">
                 <Grid Width="281" ToolTip="{Binding Subject}" Height="30">
-                    <Grid Margin="{StaticResource SmallMargin}">
+                    <Grid Margin="{StaticResource Margin_S_All}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="&#xE91F;" Style="{StaticResource IconButtonTextStyle}" Foreground="{Binding CircleColor, FallbackValue=Red}" FontSize="9" VerticalAlignment="Center"/>
-                        <Image Grid.Column="1" Source="{Binding Icon}" Margin="{StaticResource SmallLeftMargin}" VerticalAlignment="Center" Stretch="None"/>
-                        <TextBlock Grid.Column="2" Text="{Binding Subject}" Style="{StaticResource ChangesSummaryListFileNameStyle}" Margin="{StaticResource MediumLeftMargin}"/>
+                        <Image Grid.Column="1" Source="{Binding Icon}" Margin="{StaticResource Margin_S_Left}" VerticalAlignment="Center" Stretch="None"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Subject}" Style="{StaticResource ChangesSummaryListFileNameStyle}" Margin="{StaticResource Margin_M_Left}"/>
                     </Grid>
                 </Grid>
             </DataTemplate>
@@ -49,20 +49,20 @@
                 <controls:CodeViewer TempFilePath="{Binding TempFile}" ProjectFilePath="{Binding ProjectFile}" UpdateTextAction="{Binding UpdateTextAction}"/>
             </DataTemplate>
 
-            <DataTemplate x:Key="SimpletDetailTemplate">
+            <DataTemplate x:Key="SimpleDetailTemplate">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid Margin="0,0,17,0">
-                        <Grid Background="{StaticResource UIGray}" Margin="{StaticResource MediumLeftRightMargin}">
+                        <Grid Background="{StaticResource UIGray}" Margin="{StaticResource Margin_M_LeftRight}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="30"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Source="{Binding Icon}" Margin="{StaticResource MediumLeftMargin}" Stretch="None" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" Text="{Binding Subject}" Margin="{StaticResource MediumLeftMargin}" VerticalAlignment="Center"/>
+                            <Image Grid.Column="0" Source="{Binding Icon}" Margin="{StaticResource Margin_M_Left}" Stretch="None" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Subject}" Margin="{StaticResource Margin_M_Left}" VerticalAlignment="Center"/>
                         </Grid>
                     </Grid>
                     <ContentPresenter Grid.Row="1" Content="{Binding}">
@@ -81,13 +81,13 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid Margin="0,0,17,0">
-                        <Grid Background="{StaticResource UIGray}" Margin="{StaticResource MediumLeftRightMargin}">
+                        <Grid Background="{StaticResource UIGray}" Margin="{StaticResource Margin_M_LeftRight}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="30"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Source="{Binding Icon}" Margin="{StaticResource MediumLeftMargin}" Stretch="None" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" Text="{Binding Subject}" Margin="{StaticResource MediumLeftMargin}" VerticalAlignment="Center"/>
+                            <Image Grid.Column="0" Source="{Binding Icon}" Margin="{StaticResource Margin_M_Left}" Stretch="None" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Subject}" Margin="{StaticResource Margin_M_Left}" VerticalAlignment="Center"/>
                         </Grid>
                     </Grid>
                     <ContentPresenter Grid.Row="1" Content="{Binding}">
@@ -102,34 +102,34 @@
 
             <templateSelector:FileStatusTemplateSelector
                 x:Key="DetailTemplateSelector"
-                AddedFileTemplate="{StaticResource SimpletDetailTemplate}"
+                AddedFileTemplate="{StaticResource SimpleDetailTemplate}"
                 ModifiedFileTemplate="{StaticResource ModifiedDetailTemplate}"
                 ConflictingFileTemplate="{StaticResource ModifiedDetailTemplate}"
-                WarningFileTemplate="{StaticResource SimpletDetailTemplate}"
-                UnchangedFileTemplate="{StaticResource SimpletDetailTemplate}"/>
+                WarningFileTemplate="{StaticResource SimpleDetailTemplate}"
+                UnchangedFileTemplate="{StaticResource SimpleDetailTemplate}"/>
 
 
         </ResourceDictionary>
     </Page.Resources>
 
     <Grid>
-        <Grid.RowDefinitions>
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="17"/>
             <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        </Grid.RowDefinitions>-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="17"/>
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid Background="{StaticResource UILightGray}" Grid.Row="0" Grid.ColumnSpan="3"/>
+        <!--<Grid Background="{StaticResource UILightGray}" Grid.Row="0" Grid.ColumnSpan="3"/>-->
         <Grid Background="{StaticResource UILightGray}" Grid.Column="0" Grid.RowSpan="3"/>
-        <ScrollViewer Grid.Column="1" Grid.Row="1">
+        <ScrollViewer Grid.Column="1"><!--Grid.Row="1"-->
             <ItemsControl ItemsSource="{Binding ChangesSummary.FileGroups}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Expander
-                            Margin="{StaticResource MediumTopMargin}"
+                            Margin="{StaticResource Margin_M_Top}"
                             Header="{Binding Name}"
                             HeaderTemplate="{StaticResource ChangesSummaryExpanderHeaderTemplate}"
                             IsExpanded="True"
@@ -146,7 +146,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        <Grid Grid.Column="2" Grid.Row="1">
+        <Grid Grid.Column="2"> <!--Grid.Row="1"-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="17"/>
@@ -158,7 +158,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 
-                <StackPanel Margin="{StaticResource BigLeftTopRightMargin}">
+                <StackPanel Margin="{StaticResource Margin_XL_LeftTopRight}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -171,10 +171,10 @@
                         </Hyperlink>
                     </TextBlock>
                     </Grid>
-                    <TextBlock Margin="{StaticResource MediumTopMargin}" Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}"/>
+                    <TextBlock Margin="{StaticResource Margin_M_Top}" Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}"/>
                 </StackPanel>
                 
-                <ContentPresenter Grid.Row="1" Content="{Binding ChangesSummary.SelectedFile}" ContentTemplateSelector="{StaticResource DetailTemplateSelector}"/>
+                <ContentPresenter Grid.Row="1" Content="{Binding ChangesSummary.SelectedFile}" ContentTemplateSelector="{StaticResource DetailTemplateSelector}" Margin="{StaticResource Margin_M_Top}"/>
             </Grid>
             
             <Grid Grid.Column="1" Background="{StaticResource UILightGray}"/>
