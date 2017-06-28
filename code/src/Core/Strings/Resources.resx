@@ -123,6 +123,9 @@
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
     <value>Could not find the expected line `{0}` in file '{1}'. Please merge the content from the postaction file manually.</value>
   </data>
+  <data name="MarkdownHeader" xml:space="preserve">
+    <value>*This is a markdown file, to see this formatted correctly install a Visual Studio extension for markdown files.*</value>
+  </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
     <value>There is no merge target for file '{0}'</value>
   </data>
@@ -152,10 +155,7 @@ Please compare and make sure everything is in the right place.</value>
     <value>### Changes required in file '{0}':</value>
   </data>
   <data name="SyncInstructionsMergeFileError" xml:space="preserve">
-    <value>The changes could not be integrated: {0}</value>
-  </data>
-  <data name="SyncInstructionsMergeFileErrors" xml:space="preserve">
-    <value>The changes could not be integrated. The following warnings were generated:</value>
+    <value>No preview file could be generated, the following changes could not be integrated: </value>
   </data>
   <data name="SyncInstructionsMergeFilePreview" xml:space="preserve">
     <value>Preview the changes in: [{0}]({0})</value>
@@ -188,6 +188,12 @@ Please compare and make sure everything is in the right place.</value>
   <data name="SyncSummaryDescription" xml:space="preserve">
     <value>The following changes have been incorporated into your project:</value>
   </data>
+  <data name="SyncSummaryFailedMerges" xml:space="preserve">
+    <value>## Failed changes in files:</value>
+  </data>
+  <data name="SyncSummaryFailedMergesDescription" xml:space="preserve">
+    <value>Merges in the following files failed:</value>
+  </data>
   <data name="SyncSummaryFileName" xml:space="preserve">
     <value>GenerationSummary.md</value>
   </data>
@@ -198,10 +204,7 @@ Please compare and make sure everything is in the right place.</value>
     <value>### Changes in file '{0}':</value>
   </data>
   <data name="SyncSummaryMergeFileError" xml:space="preserve">
-    <value>The changes could not be integrated: {0}</value>
-  </data>
-  <data name="SyncSummaryMergeFileErrors" xml:space="preserve">
-    <value>The changes could not be integrated. The following warnings were generated:</value>
+    <value>The following changes could not be integrated:</value>
   </data>
   <data name="SyncSummaryMergeFilePreview" xml:space="preserve">
     <value>See the final result: [{0}]({1})</value>

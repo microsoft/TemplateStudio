@@ -79,6 +79,15 @@ namespace Microsoft.Templates.Core.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to *This is a markdown file, to see this formatted correctly install a Visual Studio extension for markdown files.*.
+        /// </summary>
+        internal static string MarkdownHeader {
+            get {
+                return ResourceManager.GetString("MarkdownHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is no merge target for file &apos;{0}&apos;.
         /// </summary>
         internal static string MergeFileNotFoundExceptionMessage {
@@ -161,20 +170,11 @@ namespace Microsoft.Templates.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The changes could not be integrated: {0}.
+        ///   Looks up a localized string similar to No preview file could be generated, the following changes could not be integrated: .
         /// </summary>
         internal static string SyncInstructionsMergeFileError {
             get {
                 return ResourceManager.GetString("SyncInstructionsMergeFileError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The changes could not be integrated. The following warnings were generated:.
-        /// </summary>
-        internal static string SyncInstructionsMergeFileErrors {
-            get {
-                return ResourceManager.GetString("SyncInstructionsMergeFileErrors", resourceCulture);
             }
         }
         
@@ -270,6 +270,24 @@ namespace Microsoft.Templates.Core.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ## Failed changes in files:.
+        /// </summary>
+        internal static string SyncSummaryFailedMerges {
+            get {
+                return ResourceManager.GetString("SyncSummaryFailedMerges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merges in the following files failed:.
+        /// </summary>
+        internal static string SyncSummaryFailedMergesDescription {
+            get {
+                return ResourceManager.GetString("SyncSummaryFailedMergesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GenerationSummary.md.
         /// </summary>
         internal static string SyncSummaryFileName {
@@ -297,20 +315,11 @@ namespace Microsoft.Templates.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The changes could not be integrated: {0}.
+        ///   Looks up a localized string similar to The following changes could not be integrated:.
         /// </summary>
         internal static string SyncSummaryMergeFileError {
             get {
                 return ResourceManager.GetString("SyncSummaryMergeFileError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The changes could not be integrated. The following warnings were generated:.
-        /// </summary>
-        internal static string SyncSummaryMergeFileErrors {
-            get {
-                return ResourceManager.GetString("SyncSummaryMergeFileErrors", resourceCulture);
             }
         }
         
