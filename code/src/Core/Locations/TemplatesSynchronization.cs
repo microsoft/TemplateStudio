@@ -71,11 +71,11 @@ namespace Microsoft.Templates.Core.Locations
 
         private async Task AdquireContentAsync()
         {
-            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Adquiring });
+            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring });
 
             await Task.Run(() => AdquireContent());
 
-            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Adquired });
+            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquired });
         }
 
         private async Task ExtractInstalledContentAsync()
@@ -116,7 +116,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             catch (Exception ex)
             {
-                throw new RepositorySynchronizationException(SyncStatus.Adquiring, ex);
+                throw new RepositorySynchronizationException(SyncStatus.Acquiring, ex);
             }
         }
 
@@ -125,11 +125,12 @@ namespace Microsoft.Templates.Core.Locations
             try
             {
                 string installedTemplatesPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", "Templates.mstx");
+
                 _source.Extract(installedTemplatesPath, _content.TemplatesFolder);
             }
             catch (Exception ex)
             {
-                throw new RepositorySynchronizationException(SyncStatus.Adquiring, ex);
+                throw new RepositorySynchronizationException(SyncStatus.Acquiring, ex);
             }
         }
 
