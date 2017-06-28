@@ -303,9 +303,9 @@ namespace Microsoft.Templates.UI.ViewModels
                 case SyncStatus.Updated:
                     return StringRes.StatusUpdated;
                 case SyncStatus.Acquiring:
-                    return StringRes.StatusAdquiring;
+                    return StringRes.StatusAcquiring;
                 case SyncStatus.Acquired:
-                    return StringRes.StatusAdquired;
+                    return StringRes.StatusAcquired;
                 case SyncStatus.Preparing:
                     return StringRes.StatusPreparing;
                 case SyncStatus.Prepared:

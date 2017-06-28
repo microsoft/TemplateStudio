@@ -69,11 +69,11 @@ namespace Microsoft.Templates.Core.Locations
         {
         }
 
-        private async Task AdquireContentAsync()
+        private async Task AcquireContentAsync()
         {
             SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring });
 
-            await Task.Run(() => AdquireContent());
+            await Task.Run(() => AcquireContent());
 
             SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquired });
         }
@@ -91,7 +91,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             if (_content.IsExpired(CurrentContentFolder))
             {
-                await AdquireContentAsync();
+                await AcquireContentAsync();
             }
         }
 
@@ -99,7 +99,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             if (forceUpdate)
             {
-                await AdquireContentAsync();
+                await AcquireContentAsync();
             }
 
             if (!_content.Exists())
@@ -108,7 +108,7 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private void AdquireContent()
+        private void AcquireContent()
         {
             try
             {
