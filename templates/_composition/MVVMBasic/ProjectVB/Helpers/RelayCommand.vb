@@ -20,28 +20,20 @@
             Me._canExecute = canExecute
         End Sub
 
-        Public Function CanExecute(parameter As Object) As Boolean
+        Public Function CanExecute(parameter As Object) As Boolean Implements ICommand.CanExecute
             If _canExecute Is Nothing Then
-                Return False
+                Return True
             Else
                 Return _canExecute()
             End If
         End Function
 
-        Public Sub Execute(parameter As Object)
+        Public Sub Execute(parameter As Object) Implements ICommand.Execute
             _execute()
         End Sub
 
         Public Sub OnCanExecuteChanged()
             RaiseEvent CanExecuteChanged(Me, EventArgs.Empty)
-        End Sub
-
-        Private Function ICommand_CanExecute(parameter As Object) As Boolean Implements ICommand.CanExecute
-            Throw New NotImplementedException()
-        End Function
-
-        Private Sub ICommand_Execute(parameter As Object) Implements ICommand.Execute
-            Throw New NotImplementedException()
         End Sub
     End Class
 
@@ -69,7 +61,7 @@
 
         Public Function CanExecute(parameter As Object) As Boolean Implements ICommand.CanExecute
             If _canExecute Is Nothing Then
-                Return False
+                Return True
             Else
                 Return _canExecute(parameter)
             End If
