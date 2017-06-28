@@ -664,8 +664,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is new content available.‌
-        ///By refreshing templates current selection will be reset..
+        ///   Looks up a localized string similar to There is new content available, click refresh to get the latest updates (current selection will be reseted)..
         /// </summary>
         public static string NewVersionAvailable {
             get {

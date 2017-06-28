@@ -395,8 +395,7 @@
     <value>Refresh templates</value>
   </data>
   <data name="NewVersionAvailable" xml:space="preserve">
-    <value>There is new content available.‌
-By refreshing templates current selection will be reset.</value>
+    <value>There is new content available, click refresh to get the latest updates (current selection will be reseted).</value>
   </data>
   <data name="CheckForUpdates" xml:space="preserve">
     <value>Check for new templates</value>
