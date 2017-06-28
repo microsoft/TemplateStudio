@@ -13,7 +13,7 @@ namespace Param_ItemNamespace.Services
         {
             var currentVersion = PackageVersionToReadableString(Package.Current.Id.Version);
 
-            var lastVersion = await SettingsStorageExtensions.ReadAsync<string>(Windows.Storage.ApplicationData.Current.LocalSettings, nameof(currentVersion));
+            var lastVersion = await Windows.Storage.ApplicationData.Current.LocalSettings.ReadAsync<string>(nameof(currentVersion));
 
             if (lastVersion == null)
             {
