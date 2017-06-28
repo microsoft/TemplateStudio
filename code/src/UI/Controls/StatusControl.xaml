@@ -17,15 +17,15 @@
     </UserControl.Resources>
 
     <Grid>
-        <Grid Margin="{StaticResource SmallMargin}">
+        <Grid Margin="{StaticResource Margin_S_All}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Style="{StaticResource TextWizardStatusStyle}" Margin="{StaticResource MediumLeftMargin}">
+            <TextBlock Style="{StaticResource TextWizardStatusStyle}" Margin="{StaticResource Margin_M_Left}">
                 <Run x:Name="txtIcon" FontFamily="Segoe MDL2 Assets" FontSize="18" BaselineAlignment="Center" Text=" " />
             </TextBlock>
-            <TextBlock Margin="{StaticResource MediumLeftMargin}" Style="{StaticResource TextWizardStatusStyle}" Grid.Column="1">
+            <TextBlock Margin="{StaticResource Margin_M_Left}" Style="{StaticResource TextWizardStatusStyle}" Grid.Column="1">
                 <Run x:Name="txtStatus" />
             </TextBlock>
         </Grid>

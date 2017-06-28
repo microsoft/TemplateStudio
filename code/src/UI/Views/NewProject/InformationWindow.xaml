@@ -49,7 +49,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Style="{StaticResource GridTitleStyle}">
-            <TextBlock Style="{StaticResource TextTitleStyle}" Margin="{StaticResource BigHorizontalMediumVerticalMargin}">
+            <TextBlock Style="{StaticResource TextTitleStyle}" Margin="{StaticResource Margin_XL_LeftRight_M_TopBottom}">
                 <TextBlock.Text>
                     <MultiBinding StringFormat="{}{0} ({1})">
                         <Binding Path="Name" />
@@ -58,49 +58,49 @@
                 </TextBlock.Text>
             </TextBlock>
         </Grid>
-        <Grid Grid.Row="1" Margin="{StaticResource BigLeftMargin}">
+        <Grid Grid.Row="1" Margin="{StaticResource Margin_XL_Left}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackPanel>
-                <Grid Margin="{StaticResource MediumTopMargin}" Visibility="{Binding Version, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
+                <Grid Margin="{StaticResource Margin_M_Top}" Visibility="{Binding Version, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalVersion}" Style="{StaticResource TextInformationPropertyTitle}" />
-                    <TextBlock Grid.Column="1" Margin="{StaticResource MediumLeftMargin}" Text="{Binding Version}" Style="{StaticResource TextInformationPropertyValue}"/>
+                    <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Text="{Binding Version}" Style="{StaticResource TextInformationPropertyValue}"/>
                 </Grid>
-                <Grid Margin="{StaticResource MediumTopMargin}" Visibility="{Binding Author, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
+                <Grid Margin="{StaticResource Margin_M_Top}" Visibility="{Binding Author, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalAuthor}" Style="{StaticResource TextInformationPropertyTitle}" />
-                    <TextBlock Grid.Column="1" Text="{Binding Author}" Margin="{StaticResource MediumLeftMargin}" Style="{StaticResource TextInformationPropertyValue}" />
+                    <TextBlock Grid.Column="1" Text="{Binding Author}" Margin="{StaticResource Margin_M_Left}" Style="{StaticResource TextInformationPropertyValue}" />
                 </Grid>
-                <Grid Margin="{StaticResource MediumTopMargin}" Visibility="{Binding LicensesVisibility, FallbackValue=Collapsed}">
+                <Grid Margin="{StaticResource Margin_M_Top}" Visibility="{Binding LicensesVisibility, FallbackValue=Collapsed}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalLicenses}" Style="{StaticResource TextInformationPropertyTitle}" />
-                    <ItemsControl Grid.Column="1" ItemsSource="{Binding LicenseTerms}" Margin="{StaticResource MediumLeftMargin}" ItemTemplate="{StaticResource LicenseInfoModalItemTemplate}" Focusable="False"/>
+                    <ItemsControl Grid.Column="1" ItemsSource="{Binding LicenseTerms}" Margin="{StaticResource Margin_M_Left}" ItemTemplate="{StaticResource LicenseInfoModalItemTemplate}" Focusable="False"/>
                 </Grid>
-                <Grid Margin="{StaticResource MediumTopMargin}" Visibility="{Binding DependenciesVisibility, FallbackValue=Collapsed}">
+                <Grid Margin="{StaticResource Margin_M_Top}" Visibility="{Binding DependenciesVisibility, FallbackValue=Collapsed}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalDependencies}" Style="{StaticResource TextInformationPropertyTitle}" />
-                    <ItemsControl Grid.Column="1" ItemsSource="{Binding DependencyItems}" Margin="{StaticResource MediumLeftMargin}" ItemTemplate="{StaticResource DependencyInfoModalTemplate}" Focusable="False"/>
+                    <ItemsControl Grid.Column="1" ItemsSource="{Binding DependencyItems}" Margin="{StaticResource Margin_M_Left}" ItemTemplate="{StaticResource DependencyInfoModalTemplate}" Focusable="False"/>
                 </Grid>
             </StackPanel>
-            <controls:MarkdownBlock Grid.Row="1" Margin="{StaticResource BigTopRightBottomMargin}" Text="{Binding InformationMD}" />
+            <controls:MarkdownBlock Grid.Row="1" Margin="{StaticResource Margin_XL_TopRightBottom}" Text="{Binding InformationMD}" />
         </Grid>
         <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="{StaticResource MediumMargin}">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="{StaticResource Margin_M_All}">
                 <Button Style="{StaticResource ButtonNavigationStyle}" Content="{x:Static res:StringRes.ButtonOk}" Command="{Binding OkCommand}" IsCancel="True" />
             </StackPanel>
         </Grid>

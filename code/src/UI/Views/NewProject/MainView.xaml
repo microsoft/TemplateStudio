@@ -62,7 +62,7 @@
                         <templateSelectors:SummaryItemTemplateSelector>
                             <templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
                                 <DataTemplate>
-                                    <Grid Height="30" Focusable="False" Margin="{StaticResource MediumLeftMargin}">
+                                    <Grid Height="30" Focusable="False" Margin="{StaticResource Margin_M_Left}">
                                         <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
                                         <controls:TextBoxEx Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}">
                                             <controls:TextBoxEx.InputBindings>
@@ -75,7 +75,7 @@
                             </templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
                             <templateSelectors:SummaryItemTemplateSelector.CommunityTemplate>
                                 <DataTemplate>
-                                    <Grid Height="40" Margin="{StaticResource MediumLeftMargin}">
+                                    <Grid Height="40" Margin="{StaticResource Margin_M_Left}">
                                         <Grid VerticalAlignment="Center">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto" />
@@ -146,11 +146,11 @@
                 <controls:LogoDisplay
                     Grid.Column="0"
                     Width="40"
-                    Margin="{StaticResource MediumLeftMargin}"
+                    Margin="{StaticResource Margin_M_Left}"
                     HorizontalAlignment="Left" />
                 <TextBlock
                     Grid.Column="1"
-                    Margin="{StaticResource MediumLeftMargin}"
+                    Margin="{StaticResource Margin_M_Left}"
                     VerticalAlignment="Center"
                     Style="{StaticResource TextTitleStyle}"
                     Text="{Binding Title}" />
@@ -159,7 +159,7 @@
                     <Button Style="{StaticResource TopBarMenuStyle}" Command="{Binding ShowOverlayMenuCommand}">
                         <Button.Content>
                             <Grid>
-                                <TextBlock Text="&#xEC42;" Style="{StaticResource IconButtonTextStyle}" Foreground="{StaticResource UIWhite}" FontSize="24" Margin="{StaticResource MediumMargin}" />
+                                <TextBlock Text="&#xEC42;" Style="{StaticResource IconButtonTextStyle}" Foreground="{StaticResource UIWhite}" FontSize="24" Margin="{StaticResource Margin_M_All}" />
                                 <Ellipse Width="12" Height="12" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,5,0" Visibility="{Binding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}}" Fill="{StaticResource UIDarkYellow}" />
                             </Grid>
                         </Button.Content>
@@ -186,39 +186,39 @@
 
                 <Grid Grid.Column="1" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
                     <ScrollViewer Padding="0,40,0,65" Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}}">
-                        <StackPanel Margin="{StaticResource MediumLeftMargin}">
+                        <StackPanel Margin="{StaticResource Margin_M_Left}">
 
                             <StackPanel Margin="7,0,0,0" Orientation="Horizontal">
                                 <TextBlock Style="{StaticResource TextSummaryIconPoint}" />
-                                <StackPanel Margin="{StaticResource MediumLeftMargin}" DataContext="{Binding ProjectSetup.SelectedProjectType}">
+                                <StackPanel Margin="{StaticResource Margin_M_Left}" DataContext="{Binding ProjectSetup.SelectedProjectType}">
                                     <TextBlock Style="{StaticResource TextSummaryGroupHeader}" Text="{x:Static res:StringRes.SummaryProjectTypeTitle}" />
                                     <TextBlock Style="{StaticResource TextSummaryItemStyle}" Text="{Binding DisplayName}" />
                                     <TextBlock Style="{StaticResource TextSummaryAuthorStyle}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}" Text="{Binding Author}"/>
                                 </StackPanel>
                             </StackPanel>
-                            <Grid Margin="{StaticResource MediumTopMargin}">
+                            <Grid Margin="{StaticResource Margin_M_Top}">
                                 <StackPanel Margin="7,0,0,0" Orientation="Horizontal">
                                     <TextBlock Style="{StaticResource TextSummaryIconPoint}" />
-                                    <StackPanel Margin="{StaticResource MediumLeftMargin}" DataContext="{Binding ProjectSetup.SelectedFramework}">
+                                    <StackPanel Margin="{StaticResource Margin_M_Left}" DataContext="{Binding ProjectSetup.SelectedFramework}">
                                         <TextBlock Style="{StaticResource TextSummaryGroupHeader}" Text="{x:Static res:StringRes.SummaryFrameworkTitle}" />
                                         <TextBlock Style="{StaticResource TextSummaryItemStyle}" Text="{Binding DisplayName}" />
                                         <TextBlock Style="{StaticResource TextSummaryAuthorStyle}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}" Text="{Binding Author}"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>
-                            <Expander Margin="{StaticResource MediumTopMargin}" Header="{x:Static res:StringRes.SummaryLicenseTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
+                            <Expander Margin="{StaticResource Margin_M_Top}" Header="{x:Static res:StringRes.SummaryLicenseTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
                                 <Grid>
-                                    <ItemsControl Focusable="False" Margin="{StaticResource ExtraBigLeftMargin}" ItemTemplate="{StaticResource LicenseSummaryItemTemplate}" ItemsSource="{Binding SummaryLicenses}" />
+                                    <ItemsControl Focusable="False" Margin="{StaticResource Margin_XL_Left}" ItemTemplate="{StaticResource LicenseSummaryItemTemplate}" ItemsSource="{Binding SummaryLicenses}" />
                                     <TextBlock Margin="27,0,0,0" Text="{x:Static res:StringRes.SummaryNoLicenses}" Visibility="{Binding SummaryLicenses, Converter={StaticResource EmptyCollectionConverter}}" />
                                 </Grid>
                             </Expander>
-                            <Expander Margin="{StaticResource MediumTopMargin}" Header="{x:Static res:StringRes.SummaryPagesTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
+                            <Expander Margin="{StaticResource Margin_M_Top}" Header="{x:Static res:StringRes.SummaryPagesTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
                                 <Grid>
                                     <StackPanel x:Name="summaryPageGroups"/>
                                     <TextBlock Margin="27,0,0,0" Text="{x:Static res:StringRes.SummaryNoPages}" Visibility="{Binding ProjectTemplates.SavedPages, Converter={StaticResource EmptyCollectionConverter}}" />
                                 </Grid>
                             </Expander>
-                            <Expander Margin="{StaticResource MediumTopMargin}" Header="{x:Static res:StringRes.SummaryFeaturesTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
+                            <Expander Margin="{StaticResource Margin_M_Top}" Header="{x:Static res:StringRes.SummaryFeaturesTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
                                 <Grid>
                                     <ItemsControl KeyboardNavigation.TabNavigation="Local" Focusable="False" ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}" ItemsSource="{Binding ProjectTemplates.SavedFeatures}" Tag="AllowClick" />
                                     <TextBlock Margin="27,0,0,0" Text="{x:Static res:StringRes.SummaryNoFeatures}" Visibility="{Binding ProjectTemplates.SavedFeatures, Converter={StaticResource EmptyCollectionConverter}}" />
@@ -228,7 +228,7 @@
                     </ScrollViewer>
                     <Grid Margin="0,0,17,0" Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}}">
                         <TextBlock Margin="16,10,0,0" Style="{StaticResource TextSummaryTitle}" Text="{x:Static res:StringRes.SummaryTitle}" />
-                        <TextBlock Margin="{StaticResource MediumMargin}" VerticalAlignment="Bottom" Style="{StaticResource TextSummaryTermsStyle}" Text="{x:Static res:StringRes.SummaryTerms}" />
+                        <TextBlock Margin="{StaticResource Margin_M_All}" VerticalAlignment="Bottom" Style="{StaticResource TextSummaryTermsStyle}" Text="{x:Static res:StringRes.SummaryTerms}" />
                     </Grid>
                 </Grid>
             </Grid>
@@ -240,7 +240,7 @@
                     </Grid.ColumnDefinitions>
                     <controls:StatusControl
                     Grid.Column="0"
-                    Margin="{StaticResource MediumLeftMargin}"
+                    Margin="{StaticResource Margin_M_Left}"
                     VerticalAlignment="Center"
                     Status="{Binding Status}"/>
                     <Grid

@@ -23,7 +23,7 @@
                 <Grid>
                     <Rectangle Style="{StaticResource RectangleDropShadowStyle}" />
                     <Border Width="205" Height="180" Background="{StaticResource UIWhite}">
-                        <Grid Margin="{StaticResource MediumMargin}">
+                        <Grid Margin="{StaticResource Margin_M_All}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="60" />
                                 <RowDefinition Height="*" />
@@ -41,8 +41,8 @@
                                 </Grid.ColumnDefinitions>
 
                                 <controls:ImageEx Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Focusable="False" SourcePath="{Binding Icon}" MaxWidth="50"/>
-                                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding Name}" Margin="{StaticResource MediumLeftRightMargin}" />
-                                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource TextTemplateItemAuthorStyle}" MaxHeight="40" Margin="{StaticResource MediumLeftMargin}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}" Text="{Binding Author}"/>
+                                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding Name}" Margin="{StaticResource Margin_M_LeftRight}" />
+                                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource TextTemplateItemAuthorStyle}" MaxHeight="40" Margin="{StaticResource Margin_M_Left}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}" Text="{Binding Author}"/>
                             </Grid>
 
                             <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding Summary}" Foreground="{StaticResource UIBlack}"/>
@@ -83,7 +83,7 @@
         <Grid Background="{StaticResource UILightGray}"/>
         <ScrollViewer Grid.Column="1">
             <StackPanel>
-                <GroupBox Header="{Binding NewItemSetup.Header}" Margin="{StaticResource MediumLeftTopRightMargin}">
+                <GroupBox Header="{Binding NewItemSetup.Header}" Margin="{StaticResource Margin_M_LeftTopRight}">
                     <ItemsControl ItemsSource="{Binding NewItemSetup.TemplateGroups}" Focusable="False">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
@@ -104,46 +104,46 @@
             </StackPanel>
         </ScrollViewer>
         <ScrollViewer Grid.Column="2">
-            <Grid Margin="{StaticResource BigLeftMargin}">
+            <Grid Margin="{StaticResource Margin_XL_Left}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <StackPanel>
-                    <Grid Margin="{StaticResource MediumTopMargin}" Visibility="{Binding NewItemSetup.Information.Version, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
+                    <Grid Margin="{StaticResource Margin_M_Top}" Visibility="{Binding NewItemSetup.Information.Version, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalVersion}" Style="{StaticResource TextInformationPropertyTitle}" />
-                        <TextBlock Grid.Column="1" Margin="{StaticResource MediumLeftMargin}" Text="{Binding NewItemSetup.Information.Version}" Style="{StaticResource TextInformationPropertyValue}"/>
+                        <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Text="{Binding NewItemSetup.Information.Version}" Style="{StaticResource TextInformationPropertyValue}"/>
                     </Grid>
-                    <Grid Margin="{StaticResource MediumTopMargin}" Visibility="{Binding NewItemSetup.Information.Author, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
+                    <Grid Margin="{StaticResource Margin_M_Top}" Visibility="{Binding NewItemSetup.Information.Author, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalAuthor}" Style="{StaticResource TextInformationPropertyTitle}" />
-                        <TextBlock Grid.Column="1" Text="{Binding NewItemSetup.Information.Author}" Margin="{StaticResource MediumLeftMargin}" Style="{StaticResource TextInformationPropertyValue}" />
+                        <TextBlock Grid.Column="1" Text="{Binding NewItemSetup.Information.Author}" Margin="{StaticResource Margin_M_Left}" Style="{StaticResource TextInformationPropertyValue}" />
                     </Grid>
-                    <Grid Margin="{StaticResource MediumTopMargin}" Visibility="{Binding NewItemSetup.Information.LicensesVisibility, FallbackValue=Collapsed}">
+                    <Grid Margin="{StaticResource Margin_M_Top}" Visibility="{Binding NewItemSetup.Information.LicensesVisibility, FallbackValue=Collapsed}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalLicenses}" Style="{StaticResource TextInformationPropertyTitle}" />
-                        <ItemsControl Grid.Column="1" ItemsSource="{Binding NewItemSetup.Information.LicenseTerms}" Margin="{StaticResource MediumLeftMargin}" ItemTemplate="{StaticResource LicenseInfoModalItemTemplate}" Focusable="False"/>
+                        <ItemsControl Grid.Column="1" ItemsSource="{Binding NewItemSetup.Information.LicenseTerms}" Margin="{StaticResource Margin_M_Left}" ItemTemplate="{StaticResource LicenseInfoModalItemTemplate}" Focusable="False"/>
                     </Grid>
-                    <Grid Margin="{StaticResource MediumTopMargin}" Visibility="{Binding NewItemSetup.Information.DependenciesVisibility, FallbackValue=Collapsed}">
+                    <Grid Margin="{StaticResource Margin_M_Top}" Visibility="{Binding NewItemSetup.Information.DependenciesVisibility, FallbackValue=Collapsed}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalDependencies}" Style="{StaticResource TextInformationPropertyTitle}" />
-                        <ItemsControl Grid.Column="1" ItemsSource="{Binding NewItemSetup.Information.DependencyItems}" Margin="{StaticResource MediumLeftMargin}" ItemTemplate="{StaticResource DependencyInfoModalTemplate}" Focusable="False"/>
+                        <ItemsControl Grid.Column="1" ItemsSource="{Binding NewItemSetup.Information.DependencyItems}" Margin="{StaticResource Margin_M_Left}" ItemTemplate="{StaticResource DependencyInfoModalTemplate}" Focusable="False"/>
                     </Grid>
                 </StackPanel>
-                <controls:MarkdownBlock Grid.Row="1" Margin="{StaticResource BigTopRightBottomMargin}" Text="{Binding NewItemSetup.Information.InformationMD}" />
+                <controls:MarkdownBlock Grid.Row="1" Margin="{StaticResource Margin_XL_TopRightBottom}" Text="{Binding NewItemSetup.Information.InformationMD}" />
             </Grid>
         </ScrollViewer>
     </Grid>

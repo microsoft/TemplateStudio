@@ -15,7 +15,7 @@
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Focusable" Value="False"/>
-        <Setter Property="Margin" Value="{StaticResource MediumTopRightMargin}"/>
+        <Setter Property="Margin" Value="{StaticResource Margin_M_TopRight}"/>
         <Setter Property="Foreground" Value="{StaticResource UIBlack}"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -51,7 +51,7 @@
     <Style TargetType="Border" x:Key="ListViewItemBorderStyle">
         <Setter Property="BorderThickness" Value="5,1,1,1"/>
         <Setter Property="BorderBrush" Value="{StaticResource UIGray}"/>
-        <Setter Property="Margin" Value="{StaticResource BigRightBottomMargin}"/>
+        <Setter Property="Margin" Value="{StaticResource Margin_XL_RightBottom}"/>
     </Style>
 
     <Style x:Key="ListViewProjectSetupStyle" TargetType="ListView" BasedOn="{StaticResource ListViewBaseStyle}">
@@ -65,7 +65,7 @@
                                 <Setter Property="Control.Template">
                                     <Setter.Value>
                                         <ControlTemplate>
-                                            <Grid Margin="{StaticResource BigRightBottomMargin}">
+                                            <Grid Margin="{StaticResource Margin_XL_RightBottom}">
                                                 <Grid.Background>
                                                     <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
                                                 </Grid.Background>
@@ -132,7 +132,7 @@
                                 <Setter Property="Control.Template">
                                     <Setter.Value>
                                         <ControlTemplate>
-                                            <Grid Margin="{StaticResource BigRightBottomMargin}">
+                                            <Grid Margin="{StaticResource Margin_XL_RightBottom}">
                                                 <Grid.Background>
                                                     <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
                                                 </Grid.Background>
