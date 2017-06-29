@@ -19,6 +19,8 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.UI.Generation
 {
@@ -32,49 +34,72 @@ namespace Microsoft.Templates.UI.Generation
         const string ProjTypeSplitView = "SplitView";
         const string ProjTypeTabbedPivot = "TabbedPivot";
 
+        const string ProjectTypeLiteral = "projectType";
+        const string FrameworkLiteral = "framework";
+        const string MetadataLiteral = "Metadata";
+        const string NameAttribLiteral = "Name";
+        const string ValueAttribLiteral = "Value";
+        const string ItemLiteral = "Item";
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1008:Opening parenthesis must be spaced correctly", Justification = "Using tuples must allow to have preceding whitespace", Scope = "member")]
         public static (string ProjectType, string Framework) ReadProjectConfiguration()
         {
-            var path = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
-            if (File.Exists(path))
+            try
             {
-                var manifest = XElement.Load(path);
-                XNamespace ns = "http://schemas.microsoft.com/appx/developer/windowsTemplateStudio";
-
-                var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == "Metadata" && e.Name.Namespace == ns);
-
-                var projectType = metadata?.Descendants().FirstOrDefault(m => m.Attribute("Name").Value == "projectType")?.Attribute("Value")?.Value;
-                var framework = metadata?.Descendants().FirstOrDefault(m => m.Attribute("Name").Value == "framework")?.Attribute("Value")?.Value;
-                if (!string.IsNullOrEmpty(projectType) && !string.IsNullOrEmpty(framework))
+                var path = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
+                if (File.Exists(path))
                 {
-                    return (projectType, framework);
-                }
-                else
-                {
-                    var inferredConfig = InferProjectConfiguration();
-                    if (!string.IsNullOrEmpty(inferredConfig.ProjectType) && !string.IsNullOrEmpty(inferredConfig.Framework))
+                    var manifest = XElement.Load(path);
+                    XNamespace ns = "http://schemas.microsoft.com/appx/developer/windowsTemplateStudio";
+
+                    var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == MetadataLiteral && e.Name.Namespace == ns);
+
+                    var projectType = metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == ProjectTypeLiteral)?.Attribute(ValueAttribLiteral)?.Value;
+                    var framework = metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == FrameworkLiteral)?.Attribute(ValueAttribLiteral)?.Value;
+                    if (!string.IsNullOrEmpty(projectType) && !string.IsNullOrEmpty(framework))
                     {
-                        SaveProjectConfiguration(inferredConfig.ProjectType, inferredConfig.Framework);
+                        return (projectType, framework);
                     }
-                    return inferredConfig;
+                    else
+                    {
+                        var inferredConfig = InferProjectConfiguration();
+                        if (!string.IsNullOrEmpty(inferredConfig.ProjectType) && !string.IsNullOrEmpty(inferredConfig.Framework))
+                        {
+                            SaveProjectConfiguration(inferredConfig.ProjectType, inferredConfig.Framework);
+                        }
+                        return inferredConfig;
+                    }
                 }
+                return (string.Empty, string.Empty);
             }
-            return (string.Empty, string.Empty);
+            catch (Exception ex)
+            {
+                AppHealth.Current.Warning.TrackAsync("Exception reading projectType and framework from Package.appxmanifest", ex).FireAndForget();
+                return (string.Empty, string.Empty);
+            }
         }
 
         public static void SaveProjectConfiguration(string projectType, string framework)
         {
-            var path = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
-            if (File.Exists(path))
+            try
             {
-                var manifest = XElement.Load(path);
-                XNamespace ns = "http://schemas.microsoft.com/appx/developer/windowsTemplateStudio";
-                manifest.GetPrefixOfNamespace(ns);
-                var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == "Metadata" && e.Name.Namespace == ns);
-                metadata.Add(new XElement(ns + "Item", new XAttribute("projectType", projectType)));
-                metadata.Add(new XElement(ns + "Item", new XAttribute("framework", framework)));
+                var path = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
+                if (File.Exists(path))
+                {
+                    var manifest = XElement.Load(path);
+                    XNamespace ns = "http://schemas.microsoft.com/appx/developer/windowsTemplateStudio";
 
-                manifest.Save(path);
+                    var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == MetadataLiteral && e.Name.Namespace == ns);
+                    metadata.Add(new XElement(ns + ItemLiteral, new XAttribute(NameAttribLiteral, ProjectTypeLiteral), new XAttribute(ValueAttribLiteral, projectType)));
+                    metadata.Add(new XElement(ns + ItemLiteral, new XAttribute(NameAttribLiteral, FrameworkLiteral), new XAttribute(ValueAttribLiteral, framework)));
+
+                    manifest.Save(path);
+                }
+            }
+            catch (Exception ex)
+            {
+                AppHealth.Current.Warning.TrackAsync("Exception saving inferred projectType and framework to Package.appxmanifest", ex).FireAndForget();
+                throw;
             }
         }
 
@@ -140,7 +165,7 @@ namespace Microsoft.Templates.UI.Generation
 
         private static bool IsMVVMBasic()
         {
-            return ExistsFileInProjectPath("Services", "ActivationService.cs")
+            return ExistsFileInProjectPath("Services", "ActivationServiHace.cs")
                 && ExistsFileInProjectPath("Helpers", "Observable.cs");
         }
 

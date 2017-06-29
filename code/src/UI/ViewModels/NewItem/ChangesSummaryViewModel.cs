@@ -89,7 +89,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
             if (!HasChangesToApply)
             {
-                MainViewModel.Current.Status = new StatusViewModel(Controls.StatusType.Warning, StringRes.HasNotChangesToApply);
+                MainViewModel.Current.Status = new StatusViewModel(Controls.StatusType.Warning, StringRes.NoProjectChanges);
             }
         }
 
