@@ -11,6 +11,7 @@
 // ******************************************************************
 
 using System;
+using System.IO;
 using System.Windows;
 
 namespace Microsoft.Templates.Core.Gen
@@ -49,6 +50,22 @@ namespace Microsoft.Templates.Core.Gen
 
         public virtual void RefreshProject()
         {
+        }
+
+        public bool GetActiveProjectIsWts()
+        {
+            bool result = false;
+            var activeProjectPath = GetActiveProjectPath();
+            if (!string.IsNullOrEmpty(activeProjectPath))
+            {
+                var appManifestFilePath = Path.Combine(GetActiveProjectPath(), "Package.appxmanifest");
+                if (File.Exists(appManifestFilePath))
+                {
+                    var fileContent = File.ReadAllText(appManifestFilePath);
+                    result = fileContent.Contains("genTemplate:Metadata");
+                }
+            }
+            return result;
         }
     }
 }

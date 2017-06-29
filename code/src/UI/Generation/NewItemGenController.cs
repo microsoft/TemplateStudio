@@ -46,24 +46,6 @@ namespace Microsoft.Templates.UI
             _postactionFactory = postactionFactory;
         }
 
-        public(string ProjectType, string Framework) ReadProjectConfiguration()
-        {
-            var path = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
-            if (File.Exists(path))
-            {
-                var manifest = XElement.Load(path);
-
-                var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == "Metadata");
-                var projectType = metadata?.Descendants().FirstOrDefault(m => m.Attribute("Name").Value == "projectType")?.Attribute("Value")?.Value;
-                var framework = metadata?.Descendants().FirstOrDefault(m => m.Attribute("Name").Value == "framework")?.Attribute("Value")?.Value;
-                if (!string.IsNullOrEmpty(projectType) && !string.IsNullOrEmpty(framework))
-                {
-                    return (projectType, framework);
-                }
-            }
-            return (string.Empty, string.Empty);
-        }
-
         public UserSelection GetUserSelectionNewFeature()
         {
             var newItem = new Views.NewItem.MainView(TemplateType.Feature);
@@ -157,7 +139,7 @@ namespace Microsoft.Templates.UI
             var result = new TempGenerationResult();
             var files = Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, "*", SearchOption.AllDirectories)
-                .Where(f => !Regex.IsMatch(f, MergePostAction.PostactionRegex) && !Regex.IsMatch(f, MergePostAction.FailedPostactionRegex))
+                .Where(f => !Regex.IsMatch(f, MergePostAction.PostactionRegex) && !Regex.IsMatch(f, MergePostAction.FailedPostactionRegex) && (Path.GetExtension(f) != MergePostAction.PostActionIntentExtension))
                 .ToList();
 
             foreach (var file in files)

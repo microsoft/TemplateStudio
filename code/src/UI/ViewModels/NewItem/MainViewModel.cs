@@ -20,6 +20,7 @@ using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views.NewItem;
+using Microsoft.Templates.UI.Generation;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -43,10 +44,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public async Task InitializeAsync(TemplateType templateType)
         {
+            var configInfo = ProjectConfigInfo.ReadProjectConfiguration();
+
             ConfigTemplateType = templateType;
-            var projectConfiguration = NewItemGenController.Instance.ReadProjectConfiguration();
-            ConfigProjectType = projectConfiguration.ProjectType;
-            ConfigFramework = projectConfiguration.Framework;
+            ConfigProjectType = configInfo.ProjectType;
+            ConfigFramework = configInfo.Framework;
             SetNewItemSetupTitle();
             await BaseInitializeAsync();
         }

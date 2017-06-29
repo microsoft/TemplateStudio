@@ -103,7 +103,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var description = string.Format(Strings.Resources.FailedMergePostActionLineNotFound, errorLine.Trim(), sourceFileName);
             var intent = GetPostActionIntent();
             var failedFileName = GetFailedPostActionFileName();
-            GenContext.Current.FailedMergePostActions.Add(new FailedMergePostAction(sourceFileName, failedFileName, _config.FilePath, description, intent, MergeFailureType.LineNotFound));
+            GenContext.Current.FailedMergePostActions.Add(new FailedMergePostAction(sourceFileName, _config.FilePath, failedFileName, description, intent, MergeFailureType.LineNotFound));
             File.Copy(_config.FilePath, failedFileName, true);
         }
 

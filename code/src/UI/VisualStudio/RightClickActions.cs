@@ -110,8 +110,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public bool Enabled()
         {
-            // TODO: Depends if the current project has been created with WTS or not
-            return true;
+            return GenContext.ToolBox.Shell.GetActiveProjectIsWts();
         }
     }
 }
