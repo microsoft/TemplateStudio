@@ -41,6 +41,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             set => SetProperty(ref _hasLicenses, value);
         }
 
+        private bool _doNotMerge;
+        public bool DoNotMerge
+        {
+            get => _doNotMerge;
+            set => SetProperty(ref _doNotMerge, value);
+        }
+
         public ICommand MoreDetailsCommand { get; }
 
         public ChangesSummaryViewModel()

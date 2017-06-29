@@ -129,9 +129,14 @@
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid Background="{StaticResource UILightGray}" Grid.Column="0" Grid.RowSpan="3"/>
-        <ScrollViewer Grid.Column="1">
-            <StackPanel>
+        <Grid Background="{StaticResource UILightGray}" />
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <ScrollViewer>
+                <StackPanel>
                 <ItemsControl ItemsSource="{Binding ChangesSummary.FileGroups}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -158,14 +163,16 @@
                     HeaderTemplate="{StaticResource ChangesSummaryExpanderHeaderTemplate}"
                     IsExpanded="True"
                     BorderThickness="0"
-                    Visibility="{Binding HasLicenses, Converter={StaticResource BoolToVisibilityConverter}}">
+                    Visibility="{Binding ChangesSummary.HasLicenses, Converter={StaticResource BoolToVisibilityConverter}}">
                     <ItemsControl
                         Focusable="False"
                         ItemTemplate="{StaticResource ListLicenseTemplate}"                                
                         ItemsSource="{Binding ChangesSummary.Licenses}" />
                 </Expander>
             </StackPanel>
-        </ScrollViewer>
+            </ScrollViewer>
+            <CheckBox Grid.Row="1" Content="{x:Static res:StringRes.ChangesSummaryCheckBoxText}" IsEnabled="True" Margin="{StaticResource Margin_M_All}" IsChecked="{Binding ChangesSummary.DoNotMerge, Mode=TwoWay}"/>
+        </Grid>
         <Grid Grid.Column="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -207,6 +214,6 @@
             </Grid>
 
             <Grid Grid.Column="1" Background="{StaticResource UILightGray}"/>
-        </Grid>
+        </Grid>        
     </Grid>
 </Page>

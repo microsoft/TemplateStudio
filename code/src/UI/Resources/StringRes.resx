@@ -502,4 +502,7 @@
   <data name="ChangesSummaryCategoryLicenses" xml:space="preserve">
     <value>Licenses</value>
   </data>
+  <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
+    <value>Do not merge changes in my project.</value>
+  </data>
 </root>

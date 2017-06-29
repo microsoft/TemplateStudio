@@ -205,6 +205,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do not merge changes in my project..
+        /// </summary>
+        public static string ChangesSummaryCheckBoxText {
+            get {
+                return ResourceManager.GetString("ChangesSummaryCheckBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The file {0} already exist in your project and was also generated as part of the new item. Please compare and make sure everything is the right place..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionConflictingFiles {

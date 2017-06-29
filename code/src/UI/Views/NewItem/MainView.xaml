@@ -111,7 +111,7 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
+                            <!--<ColumnDefinition Width="Auto" />-->
                         </Grid.ColumnDefinitions>
                         <Button
                             Grid.Column="0"
@@ -133,18 +133,8 @@
                         <Button
                             Grid.Column="2"
                             Command="{Binding FinishCommand}"
-                            Content="{x:Static res:StringRes.ButtonGenerate}"
-                            CommandParameter="Generate"
-                            Style="{StaticResource ButtonFinishStyle}"
-                            Width="100"
-                            Visibility="{Binding ShowFinishButton, Converter={StaticResource BoolToVisibilityConverter}}" />
-                        <Button
-                            Grid.Column="3"
-                            Command="{Binding FinishCommand}"
-                            CommandParameter="GenerateAndMerge"
-                            Content="{x:Static res:StringRes.ButtonGenerateAndMerge}"
-                            Style="{StaticResource ButtonFinishStyle}"
-                            Width="151"
+                            Content="{x:Static res:StringRes.ButtonFinish}"
+                            Style="{StaticResource ButtonFinishStyle}"                            
                             Visibility="{Binding ShowFinishButton, Converter={StaticResource BoolToVisibilityConverter}}" />
                     </Grid>
                 </Grid>

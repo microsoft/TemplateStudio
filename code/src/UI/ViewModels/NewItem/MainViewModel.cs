@@ -77,6 +77,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             base.OnGoBack();
             NewItemSetup.Initialize(false);
             HasOverlayBox = true;
+            ChangesSummary.HasLicenses = false;
+            ChangesSummary.Licenses.Clear();
             SetNewItemSetupTitle();
         }
         protected override async void OnNext()
@@ -92,12 +94,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
         protected override void OnFinish(string parameter)
         {
-            ItemGenerationType itemGenerationType;
-            if (Enum.TryParse(parameter, out itemGenerationType))
-            {
-                MainView.Result.ItemGenerationType = itemGenerationType;
-                base.OnFinish(parameter);
-            }
+            MainView.Result.ItemGenerationType = ChangesSummary.DoNotMerge ? ItemGenerationType.Generate : ItemGenerationType.GenerateAndMerge;
+            base.OnFinish(parameter);
         }
 
         public TemplateInfoViewModel GetActiveTemplate()
