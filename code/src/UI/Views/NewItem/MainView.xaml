@@ -135,7 +135,7 @@
                             <Button
                                 Command="{Binding CloseCommand}"
                                 Content="{x:Static res:StringRes.ButtonClose}"
-                                Style="{StaticResource ButtonNavigationStyle}"
+                                Style="{StaticResource ButtonFinishStyle}"
                                 Visibility="{Binding ChangesSummary.HasChangesToApply, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}"/>
                             <Button
                                 Command="{Binding FinishCommand}"

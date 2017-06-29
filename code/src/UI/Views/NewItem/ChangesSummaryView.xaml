@@ -49,7 +49,7 @@
             </DataTemplate>
 
             <DataTemplate x:Key="CodeFileTemplate">
-                <controls:CodeViewer OriginalFilePath="{Binding TempFile}" UpdateTextAction="{Binding UpdateTextAction}"/>
+                <controls:CodeViewer Item="{Binding}"/>
             </DataTemplate>
 
             <DataTemplate x:Key="CodeModifiedFileTemplate">
@@ -61,7 +61,7 @@
                     <Grid Background="{StaticResource UILightGray}">
                         <TextBlock Text="Resulting file" Margin="40,0,0,0" VerticalAlignment="Center"/>
                     </Grid>
-                    <controls:CodeViewer Grid.Row="1" OriginalFilePath="{Binding TempFile}" ModifiedFilePath="{Binding ProjectFile}" UpdateTextAction="{Binding UpdateTextAction}" RenderSideBySide="False"/>
+                    <controls:CodeViewer Grid.Row="1" Item="{Binding}" />
                 </Grid>
             </DataTemplate>
 
@@ -79,7 +79,7 @@
                         <TextBlock Text="Exisiting file" Margin="40,0,0,0" VerticalAlignment="Center"/>
                         <TextBlock Grid.Column="1" Text="Generated file" Margin="30,0,0,0" VerticalAlignment="Center"/>
                     </Grid>
-                    <controls:CodeViewer Grid.Row="1" OriginalFilePath="{Binding TempFile}" ModifiedFilePath="{Binding ProjectFile}" UpdateTextAction="{Binding UpdateTextAction}"/>
+                    <controls:CodeViewer Grid.Row="1" Item="{Binding}"/>
                 </Grid>
             </DataTemplate>
 
