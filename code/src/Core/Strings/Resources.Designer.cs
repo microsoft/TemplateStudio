@@ -233,6 +233,15 @@ namespace Microsoft.Templates.Core.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can find all referenced files in the temporary generation folder: {0}.
+        /// </summary>
+        internal static string SyncInstructionsTempFolder {
+            get {
+                return ResourceManager.GetString("SyncInstructionsTempFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ## Unchanged files:.
         /// </summary>
         internal static string SyncInstructionsUnchangedFiles {
@@ -383,6 +392,15 @@ namespace Microsoft.Templates.Core.Strings {
         internal static string SyncSummaryProjectFile {
             get {
                 return ResourceManager.GetString("SyncSummaryProjectFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can find the files from the generation in the temporary generation folder: {0}.
+        /// </summary>
+        internal static string SyncSummaryTempFolder {
+            get {
+                return ResourceManager.GetString("SyncSummaryTempFolder", resourceCulture);
             }
         }
         

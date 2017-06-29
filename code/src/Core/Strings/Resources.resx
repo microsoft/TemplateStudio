@@ -175,6 +175,9 @@ Please compare and make sure everything is in the right place.</value>
   <data name="SyncInstructionsNewFilesDescription" xml:space="preserve">
     <value>Copy and add the following files to your project:</value>
   </data>
+  <data name="SyncInstructionsTempFolder" xml:space="preserve">
+    <value>You can find all referenced files in the temporary generation folder: {0}</value>
+  </data>
   <data name="SyncInstructionsUnchangedFiles" xml:space="preserve">
     <value>## Unchanged files:</value>
   </data>
@@ -226,6 +229,9 @@ Please compare and make sure everything is in the right place.</value>
   </data>
   <data name="SyncSummaryProjectFile" xml:space="preserve">
     <value>ProjectFile</value>
+  </data>
+  <data name="SyncSummaryTempFolder" xml:space="preserve">
+    <value>You can find the files from the generation in the temporary generation folder: {0}</value>
   </data>
   <data name="SyncSummaryTempGenerationFile" xml:space="preserve">
     <value>Temp</value>

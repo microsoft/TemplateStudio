@@ -37,6 +37,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             sb.AppendLine(Strings.Resources.SyncInstructionsHeader);
             sb.AppendLine(Strings.Resources.SyncInstructionsDescription);
             sb.AppendLine();
+            sb.AppendLine(string.Format(Strings.Resources.SyncInstructionsTempFolder, GenContext.Current.OutputPath));
+            sb.AppendLine();
 
             if (_config.NewFiles.Any())
             {
