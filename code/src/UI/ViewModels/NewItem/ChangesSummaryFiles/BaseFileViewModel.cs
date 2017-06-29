@@ -43,6 +43,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public virtual string UpdateText(string fileText) => fileText;
 
+        // TODO: Review constructor to remove this suppresion. Important
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BaseFileViewModel(string name)
         {
             Subject = name;
@@ -50,6 +52,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             UpdateTextAction = fileText => UpdateText(fileText);
         }
 
+        // TODO: Review constructor to remove this suppresion. Important
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BaseFileViewModel(NewItemGenerationFileInfo generationInfo)
         {
             Subject = generationInfo.Name;
