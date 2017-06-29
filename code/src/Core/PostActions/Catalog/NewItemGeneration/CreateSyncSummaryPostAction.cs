@@ -38,6 +38,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             sb.AppendLine(Strings.Resources.SyncSummaryHeader);
             sb.AppendLine(Strings.Resources.SyncSummaryDescription);
             sb.AppendLine();
+            sb.AppendLine(string.Format(Strings.Resources.SyncSummaryTempFolder, GenContext.Current.OutputPath));
+            sb.AppendLine();
 
             if (_config.NewFiles.Any())
             {

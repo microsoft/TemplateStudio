@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
         public override string Id => "UnitTest"; 
         protected override bool VerifyPackageSignatures => false;
-        public override bool ForcedAdquisition => true; 
+        public override bool ForcedAcquisition => true; 
 
         protected override string AcquireMstx()
         {
