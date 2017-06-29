@@ -407,7 +407,7 @@
     <value>Visit project web site</value>
   </data>
   <data name="ChangesSummaryTitle_SF" xml:space="preserve">
-    <value>Changes summary: {0} {1}</value>
+    <value>Changes summary: add {0} {1}</value>
   </data>
   <data name="ChangesSummaryCategoryFailedMerges" xml:space="preserve">
     <value>Failed merges</value>
@@ -503,7 +503,8 @@
     <value>Licenses</value>
   </data>
   <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
-    <value>Do not merge changes in my project.</value>
+    <value>Do not merge changes
+(generate in a temp folder)</value>
   </data>
   <data name="HasNotChangesToApply" xml:space="preserve">
     <value>Has not changes to apply</value>
