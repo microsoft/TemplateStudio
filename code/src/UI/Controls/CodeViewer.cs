@@ -24,6 +24,7 @@ namespace Microsoft.Templates.UI.Controls
     public class CodeViewer : Control
     {
         private bool _isInitialized;
+        private bool _isCompleated;
         private WebBrowser _webBrowser;
 
         public object Item
@@ -50,12 +51,15 @@ namespace Microsoft.Templates.UI.Controls
             }
         }
 
-        private void UpdateCodeView(Func<string, string> updateTextAction, string original, string modified = null, bool renderSideBySide = false)
+
+        private string lastSubject;
+        private void UpdateCodeView(string subject, Func<string, string> updateTextAction, string original, string modified = null, bool renderSideBySide = false)
         {
-            if (!_isInitialized)
+            if (!_isInitialized || subject == lastSubject)
             {
                 return;
             }
+            lastSubject = subject;
 
             var executingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).Replace('\\', '/');
             string fileText = LoadFile(original, updateTextAction);
@@ -84,6 +88,7 @@ namespace Microsoft.Templates.UI.Controls
                 }
                 patternText = patternText.Replace("##ExecutingDirectory##", executingDirectory).Replace("##renderSideBySide##", (renderSideBySide.ToString().ToLower()));
                 _webBrowser.NavigateToString(patternText);
+                _isCompleated = true;
             }
         }
 
@@ -133,13 +138,13 @@ namespace Microsoft.Templates.UI.Controls
                 case FileStatus.NewFile:
                 case FileStatus.WarningFile:
                 case FileStatus.Unchanged:
-                    UpdateCodeView(item.UpdateTextAction, item.TempFile);
+                    UpdateCodeView(item.Subject, item.UpdateTextAction, item.TempFile);
                     break;
                 case FileStatus.ModifiedFile:
-                    UpdateCodeView(item.UpdateTextAction, item.TempFile, item.ProjectFile);
+                    UpdateCodeView(item.Subject, item.UpdateTextAction, item.TempFile, item.ProjectFile);
                     break;
                 case FileStatus.ConflictingFile:
-                    UpdateCodeView(item.UpdateTextAction, item.TempFile, item.ProjectFile, true);
+                    UpdateCodeView(item.Subject, item.UpdateTextAction, item.TempFile, item.ProjectFile, true);
                     break;
             }
         }

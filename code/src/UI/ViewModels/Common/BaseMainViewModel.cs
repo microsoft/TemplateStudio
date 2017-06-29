@@ -144,6 +144,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         protected virtual void OnNext()
         {
             _canGoBack = true;
+            IsOverlayBoxVisible = false;
             BackCommand.OnCanExecuteChanged();
             ShowFinishButton = true;
         }
