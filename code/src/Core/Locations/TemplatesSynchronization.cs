@@ -47,11 +47,11 @@ namespace Microsoft.Templates.Core.Locations
         {
             await CheckInstallDeployedContent();
 
-            await CheckMandatoryAdquireContentAsync();
+            await CheckMandatoryAcquireContentAsync();
 
             await UpdateTemplatesCacheAsync();
 
-            await AdquireContentAsync();
+            await AcquireContentAsync();
 
             await CheckContentStatusAsync();
 
@@ -67,7 +67,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public async Task CheckForNewContentAsync()
         {
-            await AdquireContentAsync(true);
+            await AcquireContentAsync(true);
             await CheckContentStatusAsync();
         }
 
@@ -85,20 +85,20 @@ namespace Microsoft.Templates.Core.Locations
                 await ExtractInstalledContentAsync();
             }
         }
-        private async Task CheckMandatoryAdquireContentAsync()
+        private async Task CheckMandatoryAcquireContentAsync()
         {
-            await AdquireContentAsync(_source.ForcedAdquisition || _content.ExistUnderVersion());
+            await AcquireContentAsync(_source.ForcedAcquisition || _content.ExistUnderVersion());
         }
 
-        private async Task AdquireContentAsync(bool force = false)
+        private async Task AcquireContentAsync(bool force = false)
         {
             if (force || _content.IsExpired(CurrentContentFolder))
             {
-                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Adquiring });
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring });
 
-                await Task.Run(() => AdquireContent());
+                await Task.Run(() => AcquireContent());
 
-                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Adquired });
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquired });
             }
         }
 
@@ -111,7 +111,7 @@ namespace Microsoft.Templates.Core.Locations
             SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Prepared });
         }
 
-        private void AdquireContent()
+        private void AcquireContent()
         {
             try
             {
@@ -119,7 +119,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             catch (Exception ex)
             {
-                throw new RepositorySynchronizationException(SyncStatus.Adquiring, ex);
+                throw new RepositorySynchronizationException(SyncStatus.Acquiring, ex);
             }
         }
 
@@ -132,7 +132,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             catch (Exception ex)
             {
-                throw new RepositorySynchronizationException(SyncStatus.Adquiring, ex);
+                throw new RepositorySynchronizationException(SyncStatus.Acquiring, ex);
             }
         }
 

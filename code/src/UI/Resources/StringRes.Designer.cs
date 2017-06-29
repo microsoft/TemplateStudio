@@ -765,18 +765,18 @@ namespace Microsoft.Templates.UI.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Done.
         /// </summary>
-        public static string StatusAdquired {
+        public static string StatusAcquired {
             get {
-                return ResourceManager.GetString("StatusAdquired", resourceCulture);
+                return ResourceManager.GetString("StatusAcquired", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Checking for template updates....
         /// </summary>
-        public static string StatusAdquiring {
+        public static string StatusAcquiring {
             get {
-                return ResourceManager.GetString("StatusAdquiring", resourceCulture);
+                return ResourceManager.GetString("StatusAcquiring", resourceCulture);
             }
         }
         

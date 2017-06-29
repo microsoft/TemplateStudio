@@ -22,18 +22,18 @@ namespace Microsoft.Templates.Core.Locations
         public string LocalTemplatesVersion { get; private set; }
         public string LocalWizardVersion { get; private set; }
         protected override bool VerifyPackageSignatures => false;
-        public override bool ForcedAdquisition { get => base.ForcedAdquisition; protected set => base.ForcedAdquisition = value; }
+        public override bool ForcedAcquisition { get => base.ForcedAcquisition; protected set => base.ForcedAcquisition = value; }
 
         public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
 
         public LocalTemplatesSource() : this("0.0.0.0", "0.0.0.0")
         {
-            base.ForcedAdquisition = true;
+            base.ForcedAcquisition = true;
         }
 
         public LocalTemplatesSource(string wizardVersion, string templatesVersion, bool forcedAdquisition = true)
         {
-            base.ForcedAdquisition = forcedAdquisition;
+            base.ForcedAcquisition = forcedAdquisition;
             LocalTemplatesVersion = templatesVersion;
             LocalWizardVersion = wizardVersion;
         }

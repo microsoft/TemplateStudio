@@ -213,10 +213,10 @@
   <data name="RestoringMessage" xml:space="preserve">
     <value>Restoring packages...</value>
   </data>
-  <data name="StatusAdquired" xml:space="preserve">
+  <data name="StatusAcquired" xml:space="preserve">
     <value>Done</value>
   </data>
-  <data name="StatusAdquiring" xml:space="preserve">
+  <data name="StatusAcquiring" xml:space="preserve">
     <value>Checking for template updates...</value>
   </data>
   <data name="StatusLowerVersionContent" xml:space="preserve">
