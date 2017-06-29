@@ -334,9 +334,9 @@ namespace Microsoft.Templates.Core.Test.Locations
                 RemoteTemplatesSource rts = new RemoteTemplatesSource();
                 rts.Acquire(targetFolder);
 
-                string aquiredContentFolder = Directory.EnumerateDirectories(targetFolder).FirstOrDefault();
+                string acquiredContentFolder = Directory.EnumerateDirectories(targetFolder).FirstOrDefault();
 
-                Assert.NotNull(aquiredContentFolder);
+                Assert.NotNull(acquiredContentFolder);
 
                 //There is just one
                 Assert.True(Directory.EnumerateDirectories(targetFolder).Count() == 1);
@@ -345,8 +345,8 @@ namespace Microsoft.Templates.Core.Test.Locations
                 rts.Acquire(targetFolder);
                 Assert.True(Directory.EnumerateDirectories(targetFolder).Count() == 1);
 
-                //Change the previous adquired content and ensure it is adquired again
-                Directory.Move(aquiredContentFolder, aquiredContentFolder + "_old");
+                //Change the previous acquired content and ensure it is acquired again
+                Directory.Move(acquiredContentFolder, acquiredContentFolder + "_old");
 
                 rts.Acquire(targetFolder);
 
