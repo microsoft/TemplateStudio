@@ -19,7 +19,8 @@
     "wts.licenses": "[WindowsAzure.Messaging.Managed](http://go.microsoft.com/fwlink/?LinkId=218949)",
     "wts.defaultInstance": "HubNotifications",
     "wts.multipleInstance": "false",
-    "wts.genGroup": "0"
+    "wts.genGroup": "0",    
+    "wts.rightClickEnabled":"true"
   },
   "sourceName": "HubNotificationsFeature",
   "preferNameDirectory": true,

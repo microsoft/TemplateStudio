@@ -1,4 +1,6 @@
+//{[{
 using Param_RootNamespace.Helpers;
+//}]}
 
 namespace Param_RootNamespace.Activation
 {

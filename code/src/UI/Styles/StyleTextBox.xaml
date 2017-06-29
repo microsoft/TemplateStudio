@@ -12,7 +12,7 @@
         <Setter Property="Height" Value="240" />
         <Setter Property="IsReadOnly" Value="True" />
         <Setter Property="TextWrapping" Value="Wrap" />
-        <Setter Property="Margin" Value="{StaticResource MediumTopMargin}" />
+        <Setter Property="Margin" Value="{StaticResource Margin_M_Top}" />
     </Style>
     
 </ResourceDictionary>

@@ -75,7 +75,7 @@ namespace Microsoft.Templates.Core
 
         private bool IsHigherVersion(string currentPlace, string newPlace)
         {
-            Version.TryParse(currentPlace, out Version current);
+            Version.TryParse(Path.GetFileName(currentPlace), out Version current);
             Version.TryParse(Path.GetFileName(newPlace), out Version newp);
 
             if (newp == null)

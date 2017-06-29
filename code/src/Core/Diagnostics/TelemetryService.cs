@@ -28,6 +28,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         private Configuration _currentConfig;
         private TelemetryClient _client;
+        private bool vsTelemAvailable = false;
 
         public static TelemetryService _current;
         public static TelemetryService Current
@@ -133,6 +134,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             try
             {
                 Assembly.Load(new AssemblyName("Microsoft.VisualStudio.Telemetry"));
+                vsTelemAvailable = true;
                 return SafeVsTelemetryIsOptedIn();
             }
             catch (Exception ex)
@@ -226,30 +228,14 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
 
-        public void SafeTrackProjectVsTelemetry(Dictionary<string, string> properties, Dictionary<string, double> metrics, bool success = true)
+        public void SafeTrackProjectVsTelemetry(Dictionary<string, string> properties, string pageIdentities, string featureIdentities, Dictionary<string, double> metrics, bool success = true)
         {
             try
             {
-                VsTelem.TelemetryResult result = success ? VsTelem.TelemetryResult.Success : VsTelem.TelemetryResult.Failure;
-
-                VsTelem.UserTaskEvent e = new VsTelem.UserTaskEvent(VsTelemetryEvents.ProjectGen, result, "Project generated");
-
-                foreach (var key in properties.Keys)
+                if (vsTelemAvailable)
                 {
-                    string renamedKey = key.Replace(TelemetryEvents.Prefix, VsTelemetryEvents.Prefix);
-                    if (!string.IsNullOrEmpty(properties[key]))
-                    {
-                        e.Properties[renamedKey] = properties[key];
-                    }
+                    TrackProjectVsTelemetry(properties, pageIdentities, featureIdentities, metrics, success);
                 }
-
-                foreach (var key in metrics.Keys)
-                {
-                    string renamedKey = key.Replace(TelemetryEvents.Prefix, TelemetryEvents.Prefix.ToUpper() + ".");
-                    e.Properties[renamedKey] = new VsTelem.TelemetryMetricProperty(metrics[key]);
-                }
-
-                VsTelem.TelemetryService.DefaultSession.PostEvent(e);
             }
             catch (Exception ex)
             {
@@ -257,6 +243,72 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
 
+        private static void TrackProjectVsTelemetry(Dictionary<string, string> properties, string pageIdentities, string featureIdentities, Dictionary<string, double> metrics, bool success)
+        {
+            VsTelem.TelemetryResult result = success ? VsTelem.TelemetryResult.Success : VsTelem.TelemetryResult.Failure;
+
+            VsTelem.UserTaskEvent e = new VsTelem.UserTaskEvent(VsTelemetryEvents.WtsGen, result, "Project generated");
+
+            foreach (var key in properties.Keys)
+            {
+                string renamedKey = key.Replace(TelemetryEvents.Prefix, VsTelemetryEvents.Prefix);
+                if (!string.IsNullOrEmpty(properties[key]))
+                {
+                    e.Properties[renamedKey] = properties[key];
+                }
+            }
+
+            e.Properties.Add(VsTelemetryProperties.Pages, pageIdentities);
+            e.Properties.Add(VsTelemetryProperties.Features, featureIdentities);
+
+            foreach (var key in metrics.Keys)
+            {
+                string renamedKey = key.Replace(TelemetryEvents.Prefix, TelemetryEvents.Prefix.ToUpper() + ".");
+                e.Properties[renamedKey] = new VsTelem.TelemetryMetricProperty(metrics[key]);
+            }
+
+            VsTelem.TelemetryService.DefaultSession.PostEvent(e);
+        }
+
+        public void SafeTrackNewItemVsTelemetry(Dictionary<string, string> properties, string pageIdentities, string featureIdentities, Dictionary<string, double> metrics, bool success = true)
+        {
+            try
+            {
+                if (vsTelemAvailable)
+                {
+                    TrackNewItemVsTelemetry(properties, pageIdentities, featureIdentities, metrics, success);
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceInformation($"Exception tracking New Item Creation in VsTelemetry:\r\n" + ex.ToString());
+            }
+        }
+        private void TrackNewItemVsTelemetry(Dictionary<string, string> properties, string pageIdentities, string featureIdentities, Dictionary<string, double> metrics, bool success = true)
+        {
+            VsTelem.TelemetryResult result = success ? VsTelem.TelemetryResult.Success : VsTelem.TelemetryResult.Failure;
+
+            VsTelem.UserTaskEvent e = new VsTelem.UserTaskEvent(VsTelemetryEvents.WtsGen, result, "New Item generated");
+
+            foreach (var key in properties.Keys)
+            {
+                string renamedKey = key.Replace(TelemetryEvents.Prefix, VsTelemetryEvents.Prefix);
+                if (!string.IsNullOrEmpty(properties[key]))
+                {
+                    e.Properties[renamedKey] = properties[key];
+                }
+            }
+            properties.Add(VsTelemetryProperties.Pages, pageIdentities);
+            properties.Add(VsTelemetryProperties.Features, featureIdentities);
+
+            foreach (var key in metrics.Keys)
+            {
+                string renamedKey = key.Replace(TelemetryEvents.Prefix, TelemetryEvents.Prefix.ToUpper() + ".");
+                e.Properties[renamedKey] = new VsTelem.TelemetryMetricProperty(metrics[key]);
+            }
+
+            VsTelem.TelemetryService.DefaultSession.PostEvent(e);
+        }
         private async Task SafeExecuteAsync(Action action)
         {
             try

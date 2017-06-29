@@ -20,5 +20,7 @@ namespace Microsoft.Templates.Core.Gen
         public const string WizardVersion = "wts.wizardVersion";
         public const string TemplatesVersion = "wts.templatesVersion";
         public const string HomePageName = "wts.homePageName";
+        public const string ProjectType = "wts.generationProjectType";
+        public const string Framework = "wts.generationFramework";
     }
 }

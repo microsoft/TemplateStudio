@@ -57,7 +57,9 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var merge1 = new[] {
                 "public void SomeMethod()",
                 "{",
+                "    //{[{",
                 "    // Merge1",
+                "    //}]}",
                 "//{--{",
                 "    yield break;//}--}",
                 "}"
@@ -68,7 +70,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    // Merge1",
                 "}" };
             var result = source.HandleRemovals(merge1);
-            result = result.Merge(merge1.RemoveRemovals()).ToList();
+            result = result.Merge(merge1.RemoveRemovals(), out string errorLine).ToList();
 
             Assert.Equal(expected, result);
         }
@@ -86,7 +88,9 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var merge1 = new[] {
                 "public void SomeMethod()",
                 "{",
+                "    //{[{",
                 "    // Merge1",
+                "    //}]}",
                 "//{--{",
                 "    yield break;//}--}",
                 "}"
@@ -94,7 +98,9 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var merge2 = new[] {
                 "public void SomeMethod()",
                 "{",
+                "    //{[{",
                 "    // Merge2",
+                "    //}]}",
                 "//{--{",
                 "    yield break;//}--}",
                 "}"
@@ -106,9 +112,9 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    // Merge1",
                 "}" };
             var result = source.HandleRemovals(merge1);
-            result = result.Merge(merge1.RemoveRemovals()).ToList();
+            result = result.Merge(merge1.RemoveRemovals(), out string errorLine).ToList();
             result = result.HandleRemovals(merge2);
-            result = result.Merge(merge2.RemoveRemovals()).ToList();
+            result = result.Merge(merge2.RemoveRemovals(), out errorLine).ToList();
 
             Assert.Equal(expected, result);
         }
