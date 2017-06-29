@@ -1,0 +1,6 @@
+{
+    "author": "Microsoft Community Contribution",
+    "name": "Erste Eingabeaufforderung",
+    "description": "Zeigen Sie eine Aufforderung an, wenn die App zum ersten Mal verwendet wird.",
+    "identity": "wts.Feat.FirstRunPrompt"
+}

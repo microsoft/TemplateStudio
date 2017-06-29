@@ -1,0 +1,6 @@
+{
+    "author": "Microsoft Community Contribution",
+    "name": "Aviso de primera ejecución",
+    "description": "Mostrar un mensaje cuando se utiliza la aplicación por primera vez.",
+    "identity": "wts.Feat.FirstRunPrompt"
+}
