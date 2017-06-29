@@ -565,6 +565,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Has not changes to apply.
+        /// </summary>
+        public static string HasNotChangesToApply {
+            get {
+                return ResourceManager.GetString("HasNotChangesToApply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Author:.
         /// </summary>
         public static string InfoModalAuthor {

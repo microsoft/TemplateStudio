@@ -48,6 +48,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             set => SetProperty(ref _doNotMerge, value);
         }
 
+        private bool _hasChangesToApply;
+        public bool HasChangesToApply
+        {
+            get => _hasChangesToApply;
+            set => SetProperty(ref _hasChangesToApply, value);
+        }
+
         public ICommand MoreDetailsCommand { get; }
 
         public ChangesSummaryViewModel()
@@ -60,6 +67,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var output = NewItemGenController.Instance.CompareOutputAndProject();
             var warnings = GenContext.Current.FailedMergePostActions.Select(w => new FailedMergesFileViewModel(w));
             var licenses = MainViewModel.Current.GetActiveTemplate().LicenseTerms;
+            HasChangesToApply = output.HasChangesToApply;
 
             FileGroups.Clear();
             FileGroups.Add(new ItemsGroupViewModel<BaseFileViewModel>(StringRes.ChangesSummaryCategoryConflictingFiles, output.ConflictingFiles.Select(cf => new ConflictingFileViewModel(cf)), OnItemChanged));
@@ -78,6 +86,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 Licenses.AddRange(licenses.Select(l => new SummaryLicenseViewModel(l)));
             }
+
+            if (!HasChangesToApply)
+            {
+                MainViewModel.Current.Status = new StatusViewModel(Controls.StatusType.Warning, StringRes.HasNotChangesToApply);
+            }
         }
 
         private void OnMoreDetails()
@@ -94,7 +107,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     item.CleanSelected();
                 }
             }
-            SelectedFile = group.SelectedItem;
+            SelectedFile = group.SelectedItem;            
         }
     }
 }

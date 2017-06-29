@@ -72,6 +72,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             MainView.Result = null;
             MainView.Close();
         }
+
+        protected override void OnClose()
+        {
+            MainView.DialogResult = true;
+            MainView.Result = null;
+            MainView.Close();
+        }
+
         protected override void OnGoBack()
         {
             base.OnGoBack();
@@ -80,6 +88,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             ChangesSummary.HasLicenses = false;
             ChangesSummary.Licenses.Clear();
             SetNewItemSetupTitle();
+            CleanStatus();
         }
         protected override async void OnNext()
         {

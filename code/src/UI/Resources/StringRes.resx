@@ -505,4 +505,7 @@
   <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
     <value>Do not merge changes in my project.</value>
   </data>
+  <data name="HasNotChangesToApply" xml:space="preserve">
+    <value>Has not changes to apply</value>
+  </data>
 </root>

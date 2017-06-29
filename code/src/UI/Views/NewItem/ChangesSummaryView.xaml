@@ -171,7 +171,7 @@
                 </Expander>
             </StackPanel>
             </ScrollViewer>
-            <CheckBox Grid.Row="1" Content="{x:Static res:StringRes.ChangesSummaryCheckBoxText}" IsEnabled="True" Margin="{StaticResource Margin_M_All}" IsChecked="{Binding ChangesSummary.DoNotMerge, Mode=TwoWay}"/>
+            <CheckBox Grid.Row="1" Content="{x:Static res:StringRes.ChangesSummaryCheckBoxText}" IsEnabled="True" Margin="{StaticResource Margin_M_All}" IsChecked="{Binding ChangesSummary.DoNotMerge, Mode=TwoWay}" Visibility="{Binding ChangesSummary.HasChangesToApply, Converter={StaticResource BoolToVisibilityConverter}}"/>
         </Grid>
         <Grid Grid.Column="2">
             <Grid.ColumnDefinitions>
