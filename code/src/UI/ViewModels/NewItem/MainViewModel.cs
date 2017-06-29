@@ -44,13 +44,34 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public async Task InitializeAsync(TemplateType templateType)
         {
-            var configInfo = ProjectConfigInfo.ReadProjectConfiguration();
+            var configInfo = GetProjectConfig();
 
             ConfigTemplateType = templateType;
             ConfigProjectType = configInfo.ProjectType;
             ConfigFramework = configInfo.Framework;
             SetNewItemSetupTitle();
             await BaseInitializeAsync();
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1008:Opening parenthesis must be spaced correctly", Justification = "Using tuples must allow to have preceding whitespace", Scope = "member")]
+        private (string ProjectType, string Framework) GetProjectConfig()
+        {
+            var configInfo = ProjectConfigInfo.ReadProjectConfiguration();
+            if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework))
+            {
+                ProjectConfigurationWindow projectConfig = new ProjectConfigurationWindow();
+                if (projectConfig.ShowDialog().Value)
+                {
+                    configInfo.Framework = projectConfig.ViewModel.Framework;
+                    configInfo.ProjectType = projectConfig.ViewModel.ProjectType;
+                }
+                else
+                {
+                    // TODO: Cancel --> Show Message can't continue
+                }
+            }
+
+            return configInfo;
         }
 
         public void SetNewItemSetupTitle() => Title = string.Format(StringRes.NewItemTitle_SF, ConfigTemplateType.ToString().ToLower());

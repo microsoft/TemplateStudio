@@ -19,7 +19,6 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 
 using Microsoft.Templates.Core.Gen;
-using System.Text.RegularExpressions;
 
 namespace Microsoft.Templates.UI.Generation
 {
@@ -63,7 +62,7 @@ namespace Microsoft.Templates.UI.Generation
             return (string.Empty, string.Empty);
         }
 
-        private static void SaveProjectConfiguration(string projectType, string framework)
+        public static void SaveProjectConfiguration(string projectType, string framework)
         {
             var path = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
             if (File.Exists(path))
