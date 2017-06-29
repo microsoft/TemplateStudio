@@ -12,25 +12,16 @@
         <DataTemplate>
             <StackPanel Orientation="Horizontal">
                 <Image Source="ms-appx:///Assets/StoreLogo.png" Width="40" Height="40" Margin="0"/>
-                <TextBlock Text="What's new in this version" Margin="10,5,0,0"/>
+                <TextBlock x:Uid="AfterUpdate_Title" Text="What's new in this version" Margin="10,5,0,0"/>
             </StackPanel>
         </DataTemplate>
     </ContentDialog.TitleTemplate>
     <ScrollViewer>
         <StackPanel>
-            <TextBlock TextWrapping="WrapWholeWords">
+            <TextBlock x:Uid="AfterUpdate_Body" TextWrapping="WrapWholeWords">
                 <Run>Replace the content of this dialog with whatever content is appropriate to your app.</Run><LineBreak/>
                 <Run>You might want to consider lists of bug fixes and new features.</Run><LineBreak/>
                 <Run>Don't feel restricted to just text. You can also include images and animations if you wish too.</Run><LineBreak/>
-                <LineBreak/>
-                <Run>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor
-                     congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus
-                     malesuada libero, sit amet commodo magna eros quis urna.</Run><LineBreak/>
-                <Run>Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.</Run><LineBreak/>
-                <Run>Pellentesque habitant morbi tristique senectus et netus et malesuada fames
-                     ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.</Run><LineBreak/>
-                <Run>Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc.
-                     Mauris eget neque at sem venenatis eleifend. Ut nonummy.</Run>
             </TextBlock>
         </StackPanel>
     </ScrollViewer>
