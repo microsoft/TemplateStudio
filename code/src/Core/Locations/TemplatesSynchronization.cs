@@ -69,13 +69,13 @@ namespace Microsoft.Templates.Core.Locations
         {
         }
 
-        private async Task AdquireContentAsync()
+        private async Task AcquireContentAsync()
         {
-            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Adquiring });
+            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring });
 
-            await Task.Run(() => AdquireContent());
+            await Task.Run(() => AcquireContent());
 
-            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Adquired });
+            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquired });
         }
 
         private async Task ExtractInstalledContentAsync()
@@ -91,7 +91,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             if (_content.IsExpired(CurrentContentFolder))
             {
-                await AdquireContentAsync();
+                await AcquireContentAsync();
             }
         }
 
@@ -99,7 +99,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             if (forceUpdate)
             {
-                await AdquireContentAsync();
+                await AcquireContentAsync();
             }
 
             if (!_content.Exists())
@@ -108,7 +108,7 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private void AdquireContent()
+        private void AcquireContent()
         {
             try
             {
@@ -116,7 +116,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             catch (Exception ex)
             {
-                throw new RepositorySynchronizationException(SyncStatus.Adquiring, ex);
+                throw new RepositorySynchronizationException(SyncStatus.Acquiring, ex);
             }
         }
 
@@ -125,11 +125,12 @@ namespace Microsoft.Templates.Core.Locations
             try
             {
                 string installedTemplatesPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", "Templates.mstx");
+
                 _source.Extract(installedTemplatesPath, _content.TemplatesFolder);
             }
             catch (Exception ex)
             {
-                throw new RepositorySynchronizationException(SyncStatus.Adquiring, ex);
+                throw new RepositorySynchronizationException(SyncStatus.Acquiring, ex);
             }
         }
 
