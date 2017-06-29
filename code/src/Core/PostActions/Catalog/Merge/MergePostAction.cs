@@ -38,7 +38,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         public override void Execute()
         {
             string originalFilePath = GetFilePath();
-
+            string postActionIntentFilePath = GetIntentFilePath();
             if (!File.Exists(originalFilePath))
             {
                 if (_config.FailOnError )
@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 }
                 else
                 {
-                    AddFailedMergePostActionsFileNotFound(originalFilePath);
+                    AddFailedMergePostActionsFileNotFound(originalFilePath, postActionIntentFilePath);
                     File.Delete(_config.FilePath);
                     return;
                 }
@@ -67,11 +67,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 }
                 else
                 {
-                    AddFailedMergePostActionsAddLineNotFound(originalFilePath, errorLine);
+                    AddFailedMergePostActionsAddLineNotFound(originalFilePath, errorLine, postActionIntentFilePath);
                 }
             }
             else
             {
+                Fs.EnsureFileEditable(originalFilePath);
                 File.WriteAllLines(originalFilePath, result);
                 // REFRESH PROJECT TO UN-DIRTY IT
                 if (Path.GetExtension(_config.FilePath).Equals(".csproj", StringComparison.OrdinalIgnoreCase))
@@ -81,27 +82,28 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             }
 
             File.Delete(_config.FilePath);
+            File.Delete(postActionIntentFilePath);
         }
 
-        private void AddFailedMergePostActionsFileNotFound(string originalFilePath)
+        private void AddFailedMergePostActionsFileNotFound(string originalFilePath, string postActionIntentFilePath)
         {
             var sourceFileName = originalFilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
             var postactionFileName = _config.FilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
 
             var description = string.Format(Strings.Resources.FailedMergePostActionFileNotFound, sourceFileName);
-            var intent = GetPostActionIntent();
+            var intent = GetPostActionIntent(postActionIntentFilePath);
             var failedFileName = GetFailedPostActionFileName();
             GenContext.Current.FailedMergePostActions.Add(new FailedMergePostAction(sourceFileName, _config.FilePath, failedFileName, description, intent, MergeFailureType.FileNotFound));
             File.Copy(_config.FilePath, failedFileName, true);
         }
 
-        private void AddFailedMergePostActionsAddLineNotFound(string originalFilePath, string errorLine)
+        private void AddFailedMergePostActionsAddLineNotFound(string originalFilePath, string errorLine, string postActionIntentFilePath)
         {
             var sourceFileName = originalFilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
 
             var postactionFileName = _config.FilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
             var description = string.Format(Strings.Resources.FailedMergePostActionLineNotFound, errorLine.Trim(), sourceFileName);
-            var intent = GetPostActionIntent();
+            var intent = GetPostActionIntent(postActionIntentFilePath);
             var failedFileName = GetFailedPostActionFileName();
             GenContext.Current.FailedMergePostActions.Add(new FailedMergePostAction(sourceFileName, _config.FilePath, failedFileName, description, intent, MergeFailureType.LineNotFound));
             File.Copy(_config.FilePath, failedFileName, true);
@@ -122,14 +124,18 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             return Path.Combine(folder, newFileName + extension);
         }
 
-        private string GetPostActionIntent()
+        private string GetPostActionIntent(string postActionIntentFilePath)
         {
-            var intentFile = _config.FilePath.Replace(Path.GetExtension(_config.FilePath), PostActionIntentExtension);
-            if (File.Exists(intentFile))
+            if (File.Exists(postActionIntentFilePath))
             {
-                return File.ReadAllText(intentFile);
+                return File.ReadAllText(postActionIntentFilePath);
             }
             return string.Empty;
+        }
+
+        private string GetIntentFilePath()
+        {
+            return _config.FilePath.Replace(Path.GetExtension(_config.FilePath), PostActionIntentExtension);
         }
 
         private string GetFilePath()
