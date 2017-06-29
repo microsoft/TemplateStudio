@@ -1,0 +1,1 @@
+This code block adds the subscription to `App_EnteredBackground` to the App class of your project.

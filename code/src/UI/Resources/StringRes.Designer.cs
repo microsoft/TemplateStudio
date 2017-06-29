@@ -205,7 +205,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not merge changes in my project..
+        ///   Looks up a localized string similar to Do not merge changes (generate in a temp folder).
         /// </summary>
         public static string ChangesSummaryCheckBoxText {
             get {
@@ -304,7 +304,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Changes summary: {0} {1}.
+        ///   Looks up a localized string similar to Changes summary: add {0} {1}.
         /// </summary>
         public static string ChangesSummaryTitle_SF {
             get {
@@ -1191,15 +1191,6 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ValidationError_ReservedName {
             get {
                 return ResourceManager.GetString("ValidationError_ReservedName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to view more details.
-        /// </summary>
-        public static string ViewMoreDetails {
-            get {
-                return ResourceManager.GetString("ViewMoreDetails", resourceCulture);
             }
         }
         

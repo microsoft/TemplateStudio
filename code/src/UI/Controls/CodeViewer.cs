@@ -1,9 +1,23 @@
-﻿using System;
+﻿// ******************************************************************
+// Copyright (c) Microsoft. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
+// ******************************************************************
+
+using System;
 using System.IO;
 using System.Reflection;
-using System.Web;
 using System.Windows;
 using System.Windows.Controls;
+using System.Web;
+
+using Microsoft.Templates.UI.ViewModels.NewItem;
 
 namespace Microsoft.Templates.UI.Controls
 {
@@ -12,34 +26,12 @@ namespace Microsoft.Templates.UI.Controls
         private bool _isInitialized;
         private WebBrowser _webBrowser;
 
-        public string OriginalFilePath
+        public object Item
         {
-            get { return (string)GetValue(OriginalFilePathProperty); }
-            set { SetValue(OriginalFilePathProperty, value); }
+            get { return GetValue(ItemProperty); }
+            set { SetValue(ItemProperty, value); }
         }
-        public static readonly DependencyProperty OriginalFilePathProperty = DependencyProperty.Register("OriginalFilePath", typeof(string), typeof(CodeViewer), new PropertyMetadata(string.Empty, OnFilePathChanged));
-
-        public string ModifiedFilePath
-        {
-            get { return (string)GetValue(ModifiedFilePathProperty); }
-            set { SetValue(ModifiedFilePathProperty, value); }
-        }
-        public static readonly DependencyProperty ModifiedFilePathProperty = DependencyProperty.Register("ModifiedFilePath", typeof(string), typeof(CodeViewer), new PropertyMetadata(string.Empty, OnFilePathChanged));
-
-        public Func<string, string> UpdateTextAction
-        {
-            get { return (Func<string, string>)GetValue(UpdateTextActionProperty); }
-            set { SetValue(UpdateTextActionProperty, value); }
-        }
-        public static readonly DependencyProperty UpdateTextActionProperty = DependencyProperty.Register("UpdateTextAction", typeof(Func<string, string>), typeof(CodeViewer), new PropertyMetadata(null, OnFilePathChanged));
-
-
-        public bool RenderSideBySide
-        {
-            get { return (bool)GetValue(RenderSideBySideProperty); }
-            set { SetValue(RenderSideBySideProperty, value); }
-        }
-        public static readonly DependencyProperty RenderSideBySideProperty = DependencyProperty.Register("RenderSideBySide", typeof(bool), typeof(CodeViewer), new PropertyMetadata(true, OnFilePathChanged));
+        public static readonly DependencyProperty ItemProperty = DependencyProperty.Register("Item", typeof(object), typeof(CodeViewer), new PropertyMetadata(true, OnItemChanged));
 
         public CodeViewer()
         {
@@ -51,21 +43,23 @@ namespace Microsoft.Templates.UI.Controls
             base.OnApplyTemplate();
             _webBrowser = GetTemplateChild("webBrowser") as WebBrowser;
             _isInitialized = true;
-            UpdateCodeView();
+            var item = Item as BaseFileViewModel;
+            if (item != null)
+            {
+                UpdateCodeView(item);
+            }
         }
 
-        private string _lastFile = string.Empty;
-
-        private void UpdateCodeView()
+        private void UpdateCodeView(Func<string, string> updateTextAction, string original, string modified = null, bool renderSideBySide = false)
         {
-            if (!_isInitialized || UpdateTextAction == null || _lastFile == OriginalFilePath)
+            if (!_isInitialized)
             {
                 return;
             }
 
             var executingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).Replace('\\', '/');
-            string fileText = LoadFile(OriginalFilePath);
-            string originalFileText = LoadFile(ModifiedFilePath);
+            string fileText = LoadFile(original, updateTextAction);
+            string originalFileText = LoadFile(modified, updateTextAction);
             string patternText = string.Empty;
             if (!string.IsNullOrEmpty(fileText) && !string.IsNullOrEmpty(originalFileText))
             {
@@ -83,20 +77,19 @@ namespace Microsoft.Templates.UI.Controls
             }
             if (!string.IsNullOrEmpty(patternText))
             {
-                var language = GetLanguage(OriginalFilePath);
+                var language = GetLanguage(original);
                 if (!string.IsNullOrEmpty(language))
                 {
                     patternText = patternText.Replace("##language##", language);
                 }
-                patternText = patternText.Replace("##ExecutingDirectory##", executingDirectory).Replace("##renderSideBySide##", (RenderSideBySide.ToString().ToLower()));
+                patternText = patternText.Replace("##ExecutingDirectory##", executingDirectory).Replace("##renderSideBySide##", (renderSideBySide.ToString().ToLower()));
                 _webBrowser.NavigateToString(patternText);
             }
-            _lastFile = OriginalFilePath;
         }
 
         private string GetLanguage(string filePath)
         {
-            string extension = Path.GetExtension(OriginalFilePath);
+            string extension = Path.GetExtension(filePath);
             if (extension == ".xaml" || extension == ".csproj" || extension == ".appxmanifest" || extension == ".resw" || extension == ".xml")
             {
                 return "xml";
@@ -112,21 +105,43 @@ namespace Microsoft.Templates.UI.Controls
             return string.Empty;
         }
 
-        private string LoadFile(string filePath)
+        private string LoadFile(string filePath, Func<string, string> updateTextAction)
         {
             if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
             {
                 string fileText = File.ReadAllText(filePath);
-                fileText = UpdateTextAction(fileText);
+                fileText = updateTextAction(fileText);
                 return HttpUtility.JavaScriptStringEncode(fileText);
             }
             return string.Empty;
         }
 
-        private static void OnFilePathChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as CodeViewer;
-            control.UpdateCodeView();
+            var item = e.NewValue as BaseFileViewModel;
+            if (control != null && item != null)
+            {
+                control.UpdateCodeView(item);
+            }
+        }
+
+        public void UpdateCodeView(BaseFileViewModel item)
+        {
+            switch (item.FileStatus)
+            {
+                case FileStatus.NewFile:
+                case FileStatus.WarningFile:
+                case FileStatus.Unchanged:
+                    UpdateCodeView(item.UpdateTextAction, item.TempFile);
+                    break;
+                case FileStatus.ModifiedFile:
+                    UpdateCodeView(item.UpdateTextAction, item.TempFile, item.ProjectFile);
+                    break;
+                case FileStatus.ConflictingFile:
+                    UpdateCodeView(item.UpdateTextAction, item.TempFile, item.ProjectFile, true);
+                    break;
+            }
         }
     }
 }

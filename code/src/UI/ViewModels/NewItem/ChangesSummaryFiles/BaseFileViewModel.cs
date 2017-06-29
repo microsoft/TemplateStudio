@@ -9,15 +9,12 @@
 // TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
-
-using System.Collections.ObjectModel;
+using System;
 using System.IO;
-using System.Linq;
 using System.Windows.Media;
 
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
-using System;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -34,7 +31,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public string DetailTitle { get; protected set; }
         public string DetailDescription { get; protected set; }
         public string Subject { get; protected set; }
-        public string Icon { get; private set; }        
+        public string Icon { get; private set; }
         public SolidColorBrush CircleColor { get; private set; }
         public FileExtension FileExtension { get; private set; }
         public Func<string, string> UpdateTextAction { get; }

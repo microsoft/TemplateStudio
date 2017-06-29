@@ -135,7 +135,7 @@
                             <Button
                                 Command="{Binding CloseCommand}"
                                 Content="{x:Static res:StringRes.ButtonClose}"
-                                Style="{StaticResource ButtonNavigationStyle}"
+                                Style="{StaticResource ButtonFinishStyle}"
                                 Visibility="{Binding ChangesSummary.HasChangesToApply, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}"/>
                             <Button
                                 Command="{Binding FinishCommand}"
@@ -145,6 +145,15 @@
                         </Grid>
                     </Grid>
                 </Grid>
+            </Grid>
+            <Grid Grid.Row="3" Visibility="{Binding ShowFinishButton, Converter={StaticResource BoolToVisibilityConverter}}">
+                <CheckBox Content="{x:Static res:StringRes.ChangesSummaryCheckBoxText}" IsEnabled="True" Margin="17,0,0,0" IsChecked="{Binding ChangesSummary.DoNotMerge, Mode=TwoWay}" Visibility="{Binding ChangesSummary.HasChangesToApply, Converter={StaticResource BoolToVisibilityConverter}}" VerticalAlignment="Center">
+                    <CheckBox.ContentTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" FontSize="{StaticResource UI_S_FontSize}" FontWeight="Normal"/>
+                        </DataTemplate>
+                    </CheckBox.ContentTemplate>
+                </CheckBox>
             </Grid>
             <Grid
                 Grid.Row="0"

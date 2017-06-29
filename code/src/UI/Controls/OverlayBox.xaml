@@ -15,7 +15,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:OverlayBox}">
-                    <Grid Width="420" Height="300">
+                    <Grid Width="420" Height="285">
                         <Polygon
                             Fill="{StaticResource UIMiddleDarkGray}"                            
                             Points="0,8 20,8 10,0"
@@ -82,14 +82,14 @@
                                     <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="{StaticResource Margin_M_Top}">
                                         <TextBlock VerticalAlignment="Center">
                                         <Hyperlink Command="{TemplateBinding OpenUrlCommand}" CommandParameter="https://github.com/Microsoft/WindowsTemplateStudio" Style="{StaticResource LicenseHyperlinkStyle}" Focusable="{TemplateBinding Visible}">
-                                            <TextBlock Text="{x:Static res:StringRes.VisitProjectWebSite}" Style="{StaticResource TextSumaryLicenseStyle}" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{x:Static res:StringRes.VisitProjectWebSite}" Style="{StaticResource TextSumaryLicenseStyle}" VerticalAlignment="Center" FontSize="{StaticResource UI_S_FontSize}"/>
                                         </Hyperlink>
                                     </TextBlock>
                                         <TextBlock Text="|" Margin="{StaticResource Margin_M_Left}" Foreground="{StaticResource UIBlue}" FontSize="19" VerticalAlignment="Center"/>
 
                                         <TextBlock Margin="{StaticResource Margin_M_Left}" VerticalAlignment="Center">
                                         <Hyperlink Command="{TemplateBinding OpenUrlCommand}" CommandParameter="https://github.com/Microsoft/WindowsTemplateStudio/blob/master/LICENSE.md" Style="{StaticResource LicenseHyperlinkStyle}" Focusable="{TemplateBinding Visible}">
-                                            <TextBlock Text="{x:Static res:StringRes.PrivacyTermns}" Style="{StaticResource TextSumaryLicenseStyle}" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{x:Static res:StringRes.PrivacyTermns}" Style="{StaticResource TextSumaryLicenseStyle}" VerticalAlignment="Center" FontSize="{StaticResource UI_S_FontSize}"/>
                                         </Hyperlink>
                                     </TextBlock>
                                     </StackPanel>

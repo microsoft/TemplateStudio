@@ -232,17 +232,17 @@
                     </Grid>
                 </Grid>
             </Grid>
+            <controls:StatusControl
+                    Grid.Row="1"
+                    VerticalAlignment="Top"
+                    InformationStatusBackground="{StaticResource UIWhite}"
+                    Status="{Binding Status}"/>
             <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="317" />
                     </Grid.ColumnDefinitions>
-                    <controls:StatusControl
-                    Grid.Column="0"
-                    Margin="{StaticResource Margin_M_Left}"
-                    VerticalAlignment="Center"
-                    Status="{Binding Status}"/>
                     <Grid
                     Grid.Column="1"
                     Margin="0,0,17,0"
