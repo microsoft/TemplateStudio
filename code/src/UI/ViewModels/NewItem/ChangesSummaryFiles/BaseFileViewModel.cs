@@ -23,7 +23,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public enum FileStatus
     {
-        AddedFile, ModifiedFile, ConflictingFile, WarningFile, Unchanged
+        NewFile, ModifiedFile, ConflictingFile, WarningFile, Unchanged
     }
     public enum FileExtension
     {
@@ -34,7 +34,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public string DetailTitle { get; protected set; }
         public string DetailDescription { get; protected set; }
         public string Subject { get; protected set; }
-        public string Icon { get; private set; }
+        public string Icon { get; private set; }        
         public SolidColorBrush CircleColor { get; private set; }
         public FileExtension FileExtension { get; private set; }
         public Func<string, string> UpdateTextAction { get; }
@@ -73,7 +73,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             switch (FileStatus)
             {
-                case FileStatus.AddedFile:
+                case FileStatus.NewFile:
                     return MainViewModel.Current.MainView.FindResource("UIGreen") as SolidColorBrush;
                 case FileStatus.ModifiedFile:
                     return MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;

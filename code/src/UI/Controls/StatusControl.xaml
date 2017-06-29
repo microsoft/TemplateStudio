@@ -17,6 +17,8 @@
     </UserControl.Resources>
 
     <Grid>
+        <Grid x:Name="backBackground" Opacity="0.0"/>
+        <Grid x:Name="shapeBackground" Background="Transparent" />
         <Grid Margin="{StaticResource Margin_S_All}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>

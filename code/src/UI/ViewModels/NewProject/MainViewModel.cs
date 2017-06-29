@@ -82,6 +82,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             MainView.Result = null;
             MainView.Close();
         }
+
+        protected override void OnClose()
+        {
+            MainView.DialogResult = true;
+            MainView.Result = null;
+            MainView.Close();
+        }
+
         protected override void OnNext()
         {
             base.OnNext();

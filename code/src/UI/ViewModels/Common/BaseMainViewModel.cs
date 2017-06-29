@@ -115,6 +115,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         #region Commands
         private RelayCommand _showOverlayMenuCommand;
+        protected RelayCommand _closeCommand;
         protected RelayCommand _cancelCommand;
         protected RelayCommand _goBackCommand;
         protected RelayCommand _nextCommand;
@@ -124,6 +125,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         protected RelayCommand _refreshTemplatesCommand;
 
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
+        public RelayCommand CloseCommand => _closeCommand ?? (_closeCommand = new RelayCommand(OnClose));
         public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && !_hasValidationErrors && _canGoForward));
         public RelayCommand ShowOverlayMenuCommand => _showOverlayMenuCommand ?? (_showOverlayMenuCommand = new RelayCommand(() => IsOverlayBoxVisible = !IsOverlayBoxVisible));
@@ -138,6 +140,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         protected abstract void OnCancel();
+        protected abstract void OnClose();
         protected virtual void OnNext()
         {
             _canGoBack = true;

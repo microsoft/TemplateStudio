@@ -169,6 +169,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Licenses.
+        /// </summary>
+        public static string ChangesSummaryCategoryLicenses {
+            get {
+                return ResourceManager.GetString("ChangesSummaryCategoryLicenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New files.
         /// </summary>
         public static string ChangesSummaryCategoryNewFiles {
@@ -192,6 +201,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ChangesSummaryCategotyModifiedFiles {
             get {
                 return ResourceManager.GetString("ChangesSummaryCategotyModifiedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not merge changes in my project..
+        /// </summary>
+        public static string ChangesSummaryCheckBoxText {
+            get {
+                return ResourceManager.GetString("ChangesSummaryCheckBoxText", resourceCulture);
             }
         }
         
@@ -543,6 +561,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string GroupProjectTypeHeader_SF {
             get {
                 return ResourceManager.GetString("GroupProjectTypeHeader_SF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Has not changes to apply.
+        /// </summary>
+        public static string HasNotChangesToApply {
+            get {
+                return ResourceManager.GetString("HasNotChangesToApply", resourceCulture);
             }
         }
         
