@@ -54,9 +54,11 @@ namespace Microsoft.Templates.UI.Controls
             UpdateCodeView();
         }
 
+        private string _lastFile = string.Empty;
+
         private void UpdateCodeView()
         {
-            if (!_isInitialized || UpdateTextAction == null)
+            if (!_isInitialized || UpdateTextAction == null || _lastFile == OriginalFilePath)
             {
                 return;
             }
@@ -89,6 +91,7 @@ namespace Microsoft.Templates.UI.Controls
                 patternText = patternText.Replace("##ExecutingDirectory##", executingDirectory).Replace("##renderSideBySide##", (RenderSideBySide.ToString().ToLower()));
                 _webBrowser.NavigateToString(patternText);
             }
+            _lastFile = OriginalFilePath;
         }
 
         private string GetLanguage(string filePath)
