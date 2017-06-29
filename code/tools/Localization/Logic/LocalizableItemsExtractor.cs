@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using Newtonsoft.Json;
@@ -14,12 +15,20 @@ namespace Localization
         private const string projectTemplateFileNamePattern = "CSharp.UWP.VS2017.Solution.{0}.vstemplate";
         private const string projectTemplateDirNamePattern = "CSharp.UWP.2017.Solution";
         private const string projectTemplateRootDirPath = "code\\src\\ProjectTemplates";
+
+        private const string commandTemplateFileNamePattern = "command{0}.vsct";
+        private const string commandTemplateRootDirPath = "code\\src\\CommandTemplates";
+
+        private const string rightClickMdsRootDirPath = "code\\src\\RightClick";
+
         private const string templatesRootDirPath = "templates";
         private const string templateDescriptionFile = "description.md";
         private const string templateJsonFile = "template.json";
+
         private const string wtsTemplatesRootDirPath = "templates\\_catalog";
         private const string wtsProjectTypes = "projectTypes";
         private const string wtsFrameworks = "frameworks";
+
         private const string vsixRootDirPath = "code\\src\\Installer.2017";
         private const string vsixManifestFile = "source.extension.vsixmanifest";
         private const string vsixLangpackFile = "Extension.vsixlangpack";
@@ -61,12 +70,16 @@ namespace Localization
             if (vsixDesDirectory.Exists)
                 return;
             vsixDesDirectory.Create();
+            vsixDesDirectory.CreateSubdirectory("Content");
             DirectoryInfo vsixSrcDirectory = new DirectoryInfo(Path.Combine(this.sourceDir.FullName, vsixRootDirPath));
             if (!vsixSrcDirectory.Exists)
                 throw new DirectoryNotFoundException($"Source directory \"{vsixSrcDirectory.FullName}\" not found.");
             FileInfo manifiestFile = new FileInfo(Path.Combine(vsixSrcDirectory.FullName, vsixManifestFile));
             if (!manifiestFile.Exists)
                 throw new FileNotFoundException($"File \"{manifiestFile.FullName}\" not found.");
+            FileInfo eulaFile = new FileInfo(Path.Combine(vsixSrcDirectory.FullName, "Content\\EULA.rtf"));
+            if (!eulaFile.Exists)
+                throw new FileNotFoundException($"File \"{eulaFile.FullName}\" not found.");
             XmlDocument xmlManifiestFile = XmlUtility.LoadXmlFile(manifiestFile.FullName);
             FileInfo langpackFile;
             DirectoryInfo vsixLocDesDirectory;
@@ -86,6 +99,7 @@ namespace Localization
                         writer.Write(string.Format(vsixLangpackContent, localizedName, localizedDescription, culture));
                     }
                 }
+                eulaFile.CopyTo(Path.Combine(vsixDesDirectory.FullName, $"Content\\EULA.{culture}.rtf"));
             }
         }
 
@@ -105,6 +119,25 @@ namespace Localization
                     throw new FileNotFoundException($"File \"{file.FullName}\" not found.");
                 file.CopyTo(Path.Combine(templateDesDirectory.FullName, string.Format(projectTemplateFileNamePattern, culture)));
             }
+        }
+
+        internal void ExtractCommandTemplates(List<string> cultures)
+        {
+            DirectoryInfo templateDesDirectory = new DirectoryInfo(Path.Combine(this.destinationDir.FullName, commandTemplateRootDirPath));
+            if (templateDesDirectory.Exists)
+                return;
+            templateDesDirectory.Create();
+            DirectoryInfo templateSrcDirectory = new DirectoryInfo(Path.Combine(this.sourceDir.FullName, commandTemplateRootDirPath));
+            if (!templateSrcDirectory.Exists)
+                throw new DirectoryNotFoundException($"Source directory \"{templateSrcDirectory.FullName}\" not found.");
+            FileInfo file = new FileInfo(Path.Combine(templateSrcDirectory.FullName, string.Format(commandTemplateFileNamePattern, string.Empty)));
+            if (!file.Exists)
+                throw new FileNotFoundException($"File \"{file.FullName}\" not found.");
+            foreach (string culture in cultures)
+            {
+                file.CopyTo(Path.Combine(templateDesDirectory.FullName, string.Format(commandTemplateFileNamePattern, "." + culture)));
+            }
+            throw new NotImplementedException("TODO :: Implementarlo despues de Merge.");
         }
 
         internal void ExtractTemplateEngineTemplates(List<string> cultures)
@@ -236,6 +269,19 @@ namespace Localization
                     //designerFile.CopyTo(Path.Combine(resourceDesDirectory.FullName, string.Format(resourcesFilePathPattern, culture + ".Designer.cs")));
                 }
             }
+        }
+
+        internal void ExtractRightClickMds(List<string> cultures)
+        {
+            DirectoryInfo mdsDesDirectory = new DirectoryInfo(Path.Combine(this.destinationDir.FullName, rightClickMdsRootDirPath));
+            if (mdsDesDirectory.Exists)
+                return;
+            mdsDesDirectory.Create();
+            DirectoryInfo mdsSrcDirectory = new DirectoryInfo(Path.Combine(this.sourceDir.FullName, rightClickMdsRootDirPath));
+            if (!mdsSrcDirectory.Exists)
+                throw new DirectoryNotFoundException($"Source directory \"{mdsSrcDirectory.FullName}\" not found.");
+
+            throw new NotImplementedException("TODO :: Implementarlo despues de Merge.");
         }
     }
 }

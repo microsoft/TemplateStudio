@@ -21,6 +21,7 @@ namespace Localization
     class Program
     {
         private const string separator = "**********************************************************************";
+        private const string argumentNewLine = "\r\n\t\t\t\t   ";
 
         static void Main(string[] args)
         {
@@ -76,7 +77,17 @@ namespace Localization
                     case "EXT":
                         Console.WriteLine("Extract localizable items for different cultures.");
                         Console.WriteLine();
-                        Console.WriteLine("EXT [::TODO::]");
+                        Console.WriteLine("EXT \"sourceDirectoryPath\" \"destinationDirectoryPath\" \"cultures\"");
+                        Console.WriteLine();
+                        Console.WriteLine($"\tsourceDirectoryPath\t - path to the folder that contains{argumentNewLine}source files for data extraction{argumentNewLine}(it's root project folder).");
+                        Console.WriteLine();
+                        Console.WriteLine($"\tdestinationDirectoryPath - path to the folder in which will be{argumentNewLine}saved all extracted items.");
+                        Console.WriteLine();
+                        Console.WriteLine($"\tcultures\t\t - list of cultures, to extract{argumentNewLine}localizable items for. It's case{argumentNewLine}sensitive (es-us != en-US).");
+                        Console.WriteLine();
+                        Console.WriteLine("Example:");
+                        Console.WriteLine();
+                        Console.WriteLine("\tEXT \"C:\\Projects\\wts\" \"C:\\MyFolder\\Extracted\" \"de-DE;es-ES;fr-FR\"");
                         Console.WriteLine();
                         break;
                     case "GEN":
@@ -84,9 +95,15 @@ namespace Localization
                         Console.WriteLine();
                         Console.WriteLine("GEN \"sourceDirectoryPath\" \"destinationDirectoryPath\" \"cultures\"");
                         Console.WriteLine();
-                        Console.WriteLine("\tsourceDirectoryPath - ");
+                        Console.WriteLine($"\tsourceDirectoryPath\t - path to the folder that contains{argumentNewLine}source files for Project Templates{argumentNewLine}(it's name is CSharp.UWP.2017.{argumentNewLine}Solution).");
                         Console.WriteLine();
-                        Console.WriteLine("GEN \"C:\\MyFolder\\SourceFolder\" \"C:\\MyFolder\\Generated\\ProjectTemplates\" \"de-DE;es-ES;fr-FR\"");
+                        Console.WriteLine($"\tdestinationDirectoryPath - path to the folder in which will be{argumentNewLine}saved all localized Project{argumentNewLine}Templates (parent for CSharp.UWP.{argumentNewLine}2017.Solution directory).");
+                        Console.WriteLine();
+                        Console.WriteLine($"\tcultures\t\t - list of cultures, to generate{argumentNewLine}Project Templates for. It's case{argumentNewLine}sensitive (es-us != en-US).");
+                        Console.WriteLine();
+                        Console.WriteLine("Example:");
+                        Console.WriteLine();
+                        Console.WriteLine("\tGEN \"C:\\MyFolder\\ProjectTemplates\\CSharp.UWP.2017.Solution\" \"C:\\MyFolder\\Generated\\ProjectTemplates\" \"de-DE;es-ES;fr-FR\"");
                         Console.WriteLine();
                         break;
                     case "HELP":

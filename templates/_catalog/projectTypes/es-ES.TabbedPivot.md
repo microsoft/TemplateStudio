@@ -1,3 +1,3 @@
-¡España! Tabs across the top allow for quickly navigating between pages.
+Las pestañas en la parte superior permiten navegar rápidamente entre las páginas.
 
-The Pivot control is useful for navigating between related or frequently accessed pages. The user can navigate between pivot panes (pages) by selecting from the text headers which are always displayed.
+El control Pivot es útil para navegar entre páginas relacionadas o de acceso frecuente. El usuario puede navegar entre paneles de pivote (páginas) seleccionando entre los encabezados de texto que siempre se muestran.

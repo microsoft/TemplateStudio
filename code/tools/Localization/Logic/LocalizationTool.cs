@@ -49,13 +49,11 @@ namespace Localization
             LocalizableItemsExtractor extractor = new LocalizableItemsExtractor(sourceDirectory, destinationDirectory);
             extractor.ExtractVsix(cultures);
             extractor.ExtractProjectTemplates(cultures);
+            extractor.ExtractCommandTemplates(cultures); // Not implemented
             extractor.ExtractTemplateEngineTemplates(cultures);
             extractor.ExtractWtsTemplates(cultures);
             extractor.ExtractResourceFiles(cultures);
-            // TemplateEngine Json
-            // TemplateEngine Md
-            // Wts Json
-            // Wts Md
+            extractor.ExtractRightClickMds(cultures); // Not implemented
         }
     }
 }

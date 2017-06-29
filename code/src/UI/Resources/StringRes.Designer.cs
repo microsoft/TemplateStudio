@@ -826,7 +826,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Only alphanumeric and &apos;-&apos; characters are allowed.
+        ///   Looks up a localized string similar to Only alphanumeric and &apos;_&apos; characters are allowed.
         /// </summary>
         public static string ValidationError_BadFormat {
             get {

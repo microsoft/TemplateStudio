@@ -118,22 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddFeatureAction" xml:space="preserve">
-    <value>Add Feature</value>
+    <value>Añadir función</value>
   </data>
   <data name="AddPageAction" xml:space="preserve">
-    <value>Add Page</value>
+    <value>Añadir página</value>
   </data>
   <data name="AddProjectAction" xml:space="preserve">
-    <value>Add Project</value>
+    <value>Agregar proyecto</value>
   </data>
   <data name="UIMessageBoxTitlePattern" xml:space="preserve">
-    <value>Windows Template Studio Español: {0}</value>
-    <comment>Generic MessageBox Title</comment>
+    <value>Windows Template Studio ES: {0}</value>
   </data>
   <data name="UIStatusMsgPattern" xml:space="preserve">
-    <value>Windows Template Studio: {0}</value>
+    <value>Windows Template Studio ES: {0}</value>
   </data>
   <data name="UnexpectedExPattern" xml:space="preserve">
-    <value>Unexpected Exception.\n{0}</value>
+    <value>Excepción inesperada. \n{0}</value>
   </data>
 </root>

@@ -1,1 +1,1 @@
-This is the most basic page. A blank canvas to mold into whatever you wish. The blank page leaves pretty much everything up to you.
+Это самая простая страница. Пустое полотно, чтобы вставить все, что вы пожелаете. Пустая страница оставляет почьти все вам.

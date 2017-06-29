@@ -22,8 +22,8 @@ namespace Microsoft.Templates.Core
 {
     public class Naming
     {
-        private const string ValidationPattern = @"^([a-zA-Z])([\w\-])*$";
-        private const string InferInvalidPattern = @"[^a-zA-Z\d_\-]";
+        private const string ValidationPattern = @"^((?!\d)\w+)$";
+        private const string InferInvalidPattern = @"[^((?!\d)\w+)$]";
 
         public static string Infer(string suggestedName, IEnumerable<Validator> validators)
         {

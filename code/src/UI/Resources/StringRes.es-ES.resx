@@ -118,289 +118,288 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ButtonBack" xml:space="preserve">
-    <value>Back</value>
+    <value>Volver</value>
   </data>
   <data name="ButtonCancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="ButtonClose" xml:space="preserve">
-    <value>Close</value>
+    <value>Cerrar</value>
   </data>
   <data name="ButtonCreate" xml:space="preserve">
-    <value>Create</value>
+    <value>Crear</value>
   </data>
   <data name="ButtonNext" xml:space="preserve">
-    <value>Next</value>
+    <value>Siguiente</value>
   </data>
   <data name="ButtonOk" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="EditTemplateDescription" xml:space="preserve">
+    <value>Ingresa un nombre</value>
+  </data>
+  <data name="ErrorDialogTitle" xml:space="preserve">
+    <value>Algo salió mal :-(</value>
+  </data>
+  <data name="ErrorNoHomePage" xml:space="preserve">
+    <value>No es posible crear un proyecto sin Home Page</value>
+  </data>
   <data name="ErrorSync" xml:space="preserve">
-    <value>Error syncing templates. See output for more details.</value>
+    <value>Error al sincronizar plantillas. Consulte la salida para obtener más detalles.</value>
+  </data>
+  <data name="ErrorViewProblemDetails" xml:space="preserve">
+    <value>Ver detalles del problema</value>
   </data>
   <data name="ExceptionDependencyCircularReference" xml:space="preserve">
-    <value>Circular dependency detected on template {0} with {1}.</value>
+    <value>Dependencia circular detectada en la plantilla {0} con {1}.</value>
   </data>
   <data name="ExceptionDependencyMultipleInstance" xml:space="preserve">
-    <value>Invalid dependency item {0}. Dependencies have to be configured as multpleInstance = false.</value>
+    <value>Elemento de dependencia no válido {0}. Las dependencias deben configurarse como multpleInstance = false.</value>
   </data>
   <data name="ExceptionDependencyNotFound" xml:space="preserve">
-    <value>Dependency template {0} not found for framework {1}.</value>
+    <value>Plantilla de dependencia {0} no encontrada para el framework {1}.</value>
   </data>
   <data name="ExceptionDependencyType" xml:space="preserve">
-    <value>Invalid dependency item {0}. Dependency items must be of type Page or Feature.</value>
+    <value>Elemento de dependencia no válido {0}. Los elementos de dependencia deben ser del tipo Página o Característica.</value>
   </data>
   <data name="ExceptionGenerating" xml:space="preserve">
-    <value>Template '{0}', name: '{1}', reason: '{2}'</value>
+    <value>Plantilla '{0}', nombre: '{1}', razón: '{2}'</value>
   </data>
   <data name="ExceptionLayoutNotFound" xml:space="preserve">
-    <value>Layout template {0} not found for framework {1}.</value>
+    <value>Plantilla de diseño {0} no encontrada para framework {1}.</value>
   </data>
   <data name="ExceptionLayoutType" xml:space="preserve">
-    <value>Invalid layout item {0}. Layout items must be of type Page or Feature.</value>
+    <value>Elemento de diseño no válido {0}. Los elementos de diseño deben ser del tipo Página o Característica.</value>
+  </data>
+  <data name="GenControllerUnsafeGenerateAsyncMessage" xml:space="preserve">
+    <value>Generación de la plantilla {0} a {1}.</value>
   </data>
   <data name="GeneratingFeatureMessage" xml:space="preserve">
-    <value>Adding '{0}' feature to project...</value>
+    <value>Agregando la función '{0}' al proyecto ...</value>
   </data>
   <data name="GeneratingPageMessage" xml:space="preserve">
-    <value>Adding '{0}' page to project...</value>
+    <value>Agregar la página '{0}' al proyecto ...</value>
   </data>
   <data name="GeneratingProjectMessage" xml:space="preserve">
-    <value>Creating project '{0}'...</value>
+    <value>Creando el proyecto '{0}' ...</value>
+  </data>
+  <data name="GenerationFinishedString" xml:space="preserve">
+    <value>Generación terminada</value>
   </data>
   <data name="GroupFeaturesHeader_SF" xml:space="preserve">
-    <value>Features ({0}) - Add multiple</value>
+    <value>Características ({0}) - Añadir múltiples</value>
   </data>
   <data name="GroupFrameworkHeader_SF" xml:space="preserve">
-    <value>Framework ({0}) - Pick one</value>
+    <value>Framework ({0}) - Elija uno</value>
   </data>
   <data name="GroupPagesHeader_SF" xml:space="preserve">
-    <value>Pages ({0}) - Add multiple</value>
+    <value>Páginas ({0}) - Añadir múltiples</value>
   </data>
   <data name="GroupProjectType" xml:space="preserve">
-    <value>Project Type</value>
+    <value>Tipo de proyecto</value>
   </data>
   <data name="GroupProjectTypeHeader_SF" xml:space="preserve">
-    <value>Project Type ({0}) - Pick one</value>
+    <value>Tipo de proyecto ({0}) - Elija uno</value>
+  </data>
+  <data name="InfoModalAuthor" xml:space="preserve">
+    <value>Autor:</value>
+  </data>
+  <data name="InfoModalDependencies" xml:space="preserve">
+    <value>Dependencias:</value>
+  </data>
+  <data name="InfoModalLicenses" xml:space="preserve">
+    <value>Licencias:</value>
+  </data>
+  <data name="InfoModalVersion" xml:space="preserve">
+    <value>Versión:</value>
+  </data>
+  <data name="InformationWindowIntilizeViewModelMessage" xml:space="preserve">
+    <value>{0} no se espera como tipo válido para la ventana de información.</value>
   </data>
   <data name="LessDetail" xml:space="preserve">
-    <value>Less detail</value>
+    <value>Menos detalle</value>
   </data>
   <data name="LoadingTemplatesText" xml:space="preserve">
-    <value>Loading available templates...</value>
+    <value>Cargando plantillas disponibles ...</value>
   </data>
   <data name="MoreDetail" xml:space="preserve">
-    <value>More detail</value>
+    <value>Mas detalle</value>
   </data>
   <data name="NoContentText" xml:space="preserve">
-    <value>No content available</value>
+    <value>No hay contenido disponible</value>
   </data>
   <data name="NoData" xml:space="preserve">
-    <value>No data</value>
+    <value>Sin datos</value>
   </data>
   <data name="ProjectSetupTitle" xml:space="preserve">
-    <value>Select project type and framework</value>
+    <value>Seleccione el tipo de proyecto y el marco</value>
   </data>
   <data name="ProjectTemplatesTitle" xml:space="preserve">
-    <value>Select pages and features</value>
+    <value>Seleccionar páginas y funciones</value>
   </data>
   <data name="ResetSelection" xml:space="preserve">
-    <value>You have changed your project type or framework selection. If you continue you will lose all pages and features added previously. To conserve pages and features, you can go back to your original selection ({0}, {1}).</value>
+    <value>Ha cambiado el tipo de proyecto o la selección del marco. Si continúa, perderá todas las páginas y características añadidas anteriormente. Para conservar páginas y funciones, puede volver a su selección original ({0}, {1}).</value>
   </data>
   <data name="ResetSelectionTitle" xml:space="preserve">
-    <value>Reset selection</value>
+    <value>Restablecer la selección</value>
   </data>
   <data name="RestoringMessage" xml:space="preserve">
-    <value>Restoring packages...</value>
+    <value>Restauración de paquetes ...</value>
+  </data>
+  <data name="SolutionWizardRunFinishedMessage" xml:space="preserve">
+    <value>Creación de un proyecto de Windows Template Studio ...</value>
   </data>
   <data name="StatusAdquired" xml:space="preserve">
-    <value>Done</value>
+    <value>Hecho</value>
   </data>
   <data name="StatusAdquiring" xml:space="preserve">
-    <value>Checking for template updates...</value>
+    <value>Comprobación de actualizaciones de plantillas ...</value>
   </data>
   <data name="StatusLowerVersionContent" xml:space="preserve">
-    <value>There is no templates content available for the current wizard version. Please ensure you have connectivity and restart the wizard again.</value>
+    <value>No hay contenido de plantillas disponible para la versión actual del asistente. Asegúrese de tener conectividad y reinicie el asistente de nuevo.</value>
   </data>
   <data name="StatusLowerVersionTitle" xml:space="preserve">
-    <value>Wizard incompatible with templates content</value>
+    <value>Asistente incompatible con el contenido de plantillas</value>
   </data>
   <data name="StatusOverVersionContent" xml:space="preserve">
-    <value>An update to the templates is available. Update the extension to get the latest content.</value>
+    <value>Una actualización de las plantillas está disponible. Actualice la extensión para obtener el contenido más reciente.</value>
   </data>
   <data name="StatusOverVersionNoContent" xml:space="preserve">
-    <value>There is no content available for this extension version. Update the extension to access to the latest content.</value>
+    <value>No hay contenido disponible para esta versión de extensión. Actualice la extensión para acceder al contenido más reciente.</value>
   </data>
   <data name="StatusOverVersionTitle" xml:space="preserve">
-    <value>Wizard update available</value>
+    <value>Actualización del asistente disponible</value>
+  </data>
+  <data name="StatusPrepared" xml:space="preserve">
+    <value>Plantillas listas</value>
+  </data>
+  <data name="StatusPreparing" xml:space="preserve">
+    <value>Preparación de plantillas para el primer uso ...</value>
   </data>
   <data name="StatusUpdated" xml:space="preserve">
-    <value>Templates updated</value>
+    <value>Plantillas actualizadas</value>
   </data>
   <data name="StatusUpdating" xml:space="preserve">
-    <value>Updating templates...</value>
+    <value>Actualización de plantillas ...</value>
+  </data>
+  <data name="SummaryDragAndDrop" xml:space="preserve">
+    <value>Reordenar (Ctrl + flechas)</value>
   </data>
   <data name="SummaryFeaturesTitle" xml:space="preserve">
-    <value>Features</value>
+    <value>Caracteristicas</value>
   </data>
   <data name="SummaryFrameworkTitle" xml:space="preserve">
-    <value>Framework</value>
+    <value>Marco de referencia</value>
   </data>
   <data name="SummaryLicenseTitle" xml:space="preserve">
-    <value>Licenses</value>
+    <value>Licencias</value>
+  </data>
+  <data name="SummaryNoFeatures" xml:space="preserve">
+    <value>Ninguna seleccionada</value>
+  </data>
+  <data name="SummaryNoLicenses" xml:space="preserve">
+    <value>Ninguna</value>
+  </data>
+  <data name="SummaryNoPages" xml:space="preserve">
+    <value>Ninguna seleccionada</value>
+  </data>
+  <data name="SummaryOpenMenu" xml:space="preserve">
+    <value>Menú Opciones</value>
+  </data>
+  <data name="SummaryOpenMenuClose" xml:space="preserve">
+    <value>Cerca</value>
+  </data>
+  <data name="SummaryOptionDelete" xml:space="preserve">
+    <value>Borrar</value>
+  </data>
+  <data name="SummaryOptionRename" xml:space="preserve">
+    <value>Rebautizar</value>
   </data>
   <data name="SummaryPagesTitle" xml:space="preserve">
-    <value>Pages</value>
+    <value>Páginas</value>
   </data>
   <data name="SummaryProjectTypeTitle" xml:space="preserve">
-    <value>Project Type</value>
+    <value>Tipo de proyecto</value>
   </data>
   <data name="SummaryTerms" xml:space="preserve">
-    <value>By continuing, you agree to the terms of all the licenses in the licensing section above.</value>
+    <value>Al continuar, acepta los términos de todas las licencias en la sección de licencias anterior.</value>
   </data>
   <data name="SummaryTitle" xml:space="preserve">
-    <value>Summary</value>
+    <value>Resumen</value>
   </data>
   <data name="TemplateGroup_ApplicationLifecycle" xml:space="preserve">
-    <value>Application Lifecycle</value>
+    <value>Ciclo de vida de la aplicación</value>
   </data>
   <data name="TemplateGroup_BackgroundWork" xml:space="preserve">
-    <value>Background Work</value>
+    <value>Trabajo de fondo</value>
   </data>
   <data name="TemplateGroup_UserInteraction" xml:space="preserve">
-    <value>User Interaction</value>
+    <value>La interacción del usuario</value>
   </data>
   <data name="TemplatesVersion" xml:space="preserve">
-    <value>Templates version:</value>
+    <value>Versión de plantillas:</value>
   </data>
   <data name="TemplateTypeFeature" xml:space="preserve">
-    <value>Feature</value>
+    <value>Característica</value>
   </data>
   <data name="TemplateTypeFramework" xml:space="preserve">
-    <value>Framework</value>
+    <value>Marco de referencia</value>
   </data>
   <data name="TemplateTypePage" xml:space="preserve">
-    <value>Page</value>
+    <value>Página</value>
   </data>
   <data name="TemplateTypeProjectType" xml:space="preserve">
-    <value>Project type</value>
+    <value>Tipo de proyecto</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Windows Template Studio Español</value>
   </data>
   <data name="UIMessageBoxTitlePattern" xml:space="preserve">
-    <value>Windows Template Studio: {0}</value>
-    <comment>Generic Message Box Title</comment>
-  </data>
-  <data name="ValidationError_AlreadyExists" xml:space="preserve">
-    <value>Name already exists</value>
-  </data>
-  <data name="ValidationError_BadFormat" xml:space="preserve">
-    <value>Only alphanumeric and '-' characters are allowed</value>
-  </data>
-  <data name="ValidationError_CanNotRemoveTemplate_SF" xml:space="preserve">
-    <value>You can not remove {0} because {1} {2} depends on it.</value>
-  </data>
-  <data name="ValidationError_Empty" xml:space="preserve">
-    <value>Name cannot be empty</value>
-  </data>
-  <data name="ValidationError_RenameNotAllowed" xml:space="preserve">
-    <value>Cannot set a custom name</value>
-  </data>
-  <data name="ValidationError_ReservedName" xml:space="preserve">
-    <value>Name is reserved</value>
-  </data>
-  <data name="WizardVersion" xml:space="preserve">
-    <value>Wizard version:</value>
-  </data>
-  <data name="ErrorDialogTitle" xml:space="preserve">
-    <value>Something went wrong :-(</value>
-  </data>
-  <data name="ErrorViewProblemDetails" xml:space="preserve">
-    <value>View problem details</value>
-  </data>
-  <data name="EditTemplateDescription" xml:space="preserve">
-    <value>Enter a name</value>
-  </data>
-  <data name="InfoModalAuthor" xml:space="preserve">
-    <value>Author:</value>
-  </data>
-  <data name="InfoModalDependencies" xml:space="preserve">
-    <value>Dependencies:</value>
-  </data>
-  <data name="InfoModalLicenses" xml:space="preserve">
-    <value>Licenses:</value>
-  </data>
-  <data name="InfoModalVersion" xml:space="preserve">
-    <value>Version:</value>
-  </data>
-  <data name="SummaryNoFeatures" xml:space="preserve">
-    <value>None Selected</value>
-  </data>
-  <data name="SummaryNoLicenses" xml:space="preserve">
-    <value>None</value>
-  </data>
-  <data name="SummaryNoPages" xml:space="preserve">
-    <value>None Selected</value>
-  </data>
-  <data name="StatusPrepared" xml:space="preserve">
-    <value>Templates ready</value>
-  </data>
-  <data name="StatusPreparing" xml:space="preserve">
-    <value>Preparing templates for first use...</value>
+    <value>Plantilla de Windows Studio: {0}</value>
   </data>
   <data name="UnableAddItemsToProject" xml:space="preserve">
-    <value>Unable add project items. Ensure you have the required SDK.</value>
+    <value>No se pueden agregar elementos del proyecto. Asegúrese de que tiene el SDK necesario.</value>
   </data>
   <data name="UnableAddProjectToSolution" xml:space="preserve">
-    <value>Unable to add the project to the solution because is not ready. Ensure you have the expected SDK installed.</value>
-  </data>
-  <data name="ErrorNoHomePage" xml:space="preserve">
-    <value>It's not possible to create a project without Home Page</value>
-  </data>
-  <data name="SummaryOptionDelete" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="SummaryOptionRename" xml:space="preserve">
-    <value>Rename</value>
+    <value>No se puede agregar el proyecto a la solución porque no está listo. Asegúrese de que tiene instalado el SDK esperado.</value>
   </data>
   <data name="UnableToRefreshProject" xml:space="preserve">
-    <value>Unable to refresh the project. Try to refresh it manually.</value>
-  </data>
-  <data name="GenControllerUnsafeGenerateAsyncMessage" xml:space="preserve">
-    <value>Generating the template {0} to {1}.</value>
-  </data>
-  <data name="InformationWindowIntilizeViewModelMessage" xml:space="preserve">
-    <value>"{0} is not expected as valid type for the Information Window."</value>
+    <value>No se puede actualizar el proyecto. Intente actualizarlo manualmente.</value>
   </data>
   <data name="UndefinedErrorString" xml:space="preserve">
     <value>UndefinedError</value>
   </data>
-  <data name="GenerationFinishedString" xml:space="preserve">
-    <value>Generation finished</value>
+  <data name="ValidationError_AlreadyExists" xml:space="preserve">
+    <value>Nombre ya existe</value>
   </data>
-  <data name="SolutionWizardRunFinishedMessage" xml:space="preserve">
-    <value>Creating Windows Template Studio project...</value>
+  <data name="ValidationError_BadFormat" xml:space="preserve">
+    <value>Solo se permiten caracteres alfanuméricos y '_'</value>
+  </data>
+  <data name="ValidationError_CanNotRemoveTemplate_SF" xml:space="preserve">
+    <value>No puedes eliminar {0} porque {1} {2} depende de ello.</value>
+  </data>
+  <data name="ValidationError_Empty" xml:space="preserve">
+    <value>El nombre no puede estar vacío</value>
+  </data>
+  <data name="ValidationError_RenameNotAllowed" xml:space="preserve">
+    <value>No se puede establecer un nombre personalizado</value>
+  </data>
+  <data name="ValidationError_ReservedName" xml:space="preserve">
+    <value>El nombre está reservado</value>
   </data>
   <data name="VsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
-    <value>There was an error collapsing the solution tree. Ex:</value>
+    <value>Hubo un error al colapsar el árbol de la solución. Ex:</value>
   </data>
   <data name="VsGenShellRestorePackagesErrorMessage" xml:space="preserve">
-    <value>There was an error restoring the packages. Ex:</value>
+    <value>Se ha producido un error al restaurar los paquetes. Ex:</value>
   </data>
   <data name="VsGenShellRestorePackagesWarningMessage" xml:space="preserve">
-    <value>Unable to automatically perform Restore NuGet Packages for the solution. Please, try to manually restore the NuGet packages.</value>
+    <value>No se puede realizar automáticamente la restauración de paquetes NuGet para la solución. Intente restaurar manualmente los paquetes de NuGet.</value>
   </data>
   <data name="VsGenShellShowStatusBarMessageMessage" xml:space="preserve">
-    <value>There was an error showing status message. Ex:</value>
+    <value>Se ha producido un error al mostrar el mensaje de estado. Ex:</value>
   </data>
-  <data name="SummaryDragAndDrop" xml:space="preserve">
-    <value>Reorder (Ctrl + arrows)</value>
-  </data>
-  <data name="SummaryOpenMenu" xml:space="preserve">
-    <value>Options menu</value>
-  </data>
-  <data name="SummaryOpenMenuClose" xml:space="preserve">
-    <value>Close</value>
+  <data name="WizardVersion" xml:space="preserve">
+    <value>Versión del Asistente:</value>
   </data>
 </root>
