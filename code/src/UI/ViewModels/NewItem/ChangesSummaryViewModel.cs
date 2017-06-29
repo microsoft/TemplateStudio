@@ -107,7 +107,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     item.CleanSelected();
                 }
             }
-            SelectedFile = group.SelectedItem;            
+            SelectedFile = group.SelectedItem;
         }
     }
 }
