@@ -24,7 +24,6 @@ namespace Microsoft.Templates.UI.Controls
     public class CodeViewer : Control
     {
         private bool _isInitialized;
-        private bool _isCompleated;
         private WebBrowser _webBrowser;
 
         public object Item
@@ -50,7 +49,6 @@ namespace Microsoft.Templates.UI.Controls
                 UpdateCodeView(item);
             }
         }
-
 
         private string lastSubject;
         private void UpdateCodeView(string subject, Func<string, string> updateTextAction, string original, string modified = null, bool renderSideBySide = false)
@@ -88,7 +86,6 @@ namespace Microsoft.Templates.UI.Controls
                 }
                 patternText = patternText.Replace("##ExecutingDirectory##", executingDirectory).Replace("##renderSideBySide##", (renderSideBySide.ToString().ToLower()));
                 _webBrowser.NavigateToString(patternText);
-                _isCompleated = true;
             }
         }
 
