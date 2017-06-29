@@ -12,15 +12,14 @@
 
 using System.Collections.Generic;
 using System.IO;
-
 using EnvDTE;
-
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
-using Microsoft.VisualStudio.TemplateWizard;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -31,7 +30,16 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string ProjectName => _replacementsDictionary["$safeprojectname$"];
 
-        public string OutputPath => new DirectoryInfo(_replacementsDictionary["$destinationdirectory$"]).FullName;
+        public string ProjectPath => new DirectoryInfo(_replacementsDictionary["$destinationdirectory$"]).FullName;
+
+        public string OutputPath => ProjectPath;
+
+        public List<string> ProjectItems { get; } = new List<string>();
+
+        public List<FailedMergePostAction> FailedMergePostActions { get; } = new List<FailedMergePostAction>();
+
+        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
+        public List<string> FilesToOpen { get; } = new List<string>();
 
         public SolutionWizard()
         {
@@ -60,7 +68,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         public async void RunFinished()
         {
             AppHealth.Current.Info.TrackAsync(StringRes.SolutionWizardRunFinishedMessage).FireAndForget();
-            await GenController.GenerateAsync(_userSelection);
+            await NewProjectGenController.Instance.GenerateProjectAsync(_userSelection);
             AppHealth.Current.Info.TrackAsync(StringRes.GenerationFinishedString).FireAndForget();
 
             PostGenerationActions();
@@ -86,7 +94,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     GenContext.Current = this;
 
-                    _userSelection = GenController.GetUserSelection();
+                    _userSelection = NewProjectGenController.Instance.GetUserSelection();
                 }
             }
             catch (WizardBackoutException)

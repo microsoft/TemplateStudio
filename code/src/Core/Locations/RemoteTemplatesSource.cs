@@ -19,8 +19,9 @@ using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
 {
-    public class RemoteTemplatesSource : TemplatesSource
+    public sealed class RemoteTemplatesSource : TemplatesSource
     {
+        public override bool ForcedAcquisition => true;
         private readonly string _cdnUrl = Configuration.Current.CdnUrl;
         private const string TemplatesPackageFileName = "Templates.mstx";
 

@@ -13,40 +13,49 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using System.Text.RegularExpressions;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
-using Microsoft.Templates.Core.PostActions.Catalog.SortUsings;
 
 namespace Microsoft.Templates.Core.PostActions
 {
-    public static class PostActionFactory
+    public abstract class PostActionFactory
     {
-        public static IEnumerable<PostAction> Find(GenInfo genInfo, TemplateCreationResult genResult)
+        public abstract IEnumerable<PostAction> FindPostActions(GenInfo genInfo, TemplateCreationResult genResult);
+
+        public abstract IEnumerable<PostAction> FindGlobalPostActions();
+
+        public virtual IEnumerable<PostAction> FindSyncGenerationPostActions(TempGenerationResult result)
         {
-            var postActions = new List<PostAction>();
-
-            AddPredefinedActions(genInfo, genResult, postActions);
-            AddMergeActions(postActions, $"*{MergePostAction.Extension}*");
-
-            return postActions;
+            return new List<PostAction>();
         }
 
-        public static IEnumerable<PostAction> FindGlobal(List<GenInfo> genItems)
+        public virtual IEnumerable<PostAction> FindOutputGenerationPostActions(TempGenerationResult result)
         {
-            var postActions = new List<PostAction>();
-
-            AddMergeActions(postActions, $"*{MergePostAction.GlobalExtension}*");
-
-            postActions.Add(new SetDefaultSolutionConfigurationPostAction());
-            postActions.Add(new SortUsingsPostAction());
-
-            return postActions;
+            return new List<PostAction>();
         }
 
-        private static void AddPredefinedActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
+        internal void AddGetMergeFilesFromProjectPostAction(List<PostAction> postActions)
+        {
+            Directory
+                .EnumerateFiles(GenContext.Current.OutputPath, "*.*", SearchOption.AllDirectories)
+                .Where(f => Regex.IsMatch(f, MergePostAction.PostactionRegex) && Path.GetExtension(f) != MergePostAction.PostActionIntentExtension)
+                .ToList()
+                .ForEach(f => postActions.Add(new GetMergeFilesFromProjectPostAction(f)));
+        }
+
+        internal void AddGenerateMergeInfoPostAction(List<PostAction> postActions)
+        {
+            Directory
+                .EnumerateFiles(GenContext.Current.OutputPath, "*.*", SearchOption.AllDirectories)
+                .Where(f => Regex.IsMatch(f, MergePostAction.PostactionRegex) && Path.GetExtension(f) != MergePostAction.PostActionIntentExtension)
+                .ToList()
+                .ForEach(f => postActions.Add(new GenerateMergeInfoPostAction(f)));
+        }
+
+        internal void AddPredefinedActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
         {
             switch (genInfo.Template.GetTemplateType())
             {
@@ -55,25 +64,31 @@ namespace Microsoft.Templates.Core.PostActions
                     postActions.Add(new GenerateTestCertificatePostAction(genInfo.GetUserName()));
                     break;
                 case TemplateType.Page:
-                    postActions.Add(new AddItemToProjectPostAction(genResult.ResultInfo.PrimaryOutputs));
-                    break;
                 case TemplateType.Feature:
-                    postActions.Add(new AddItemToProjectPostAction(genResult.ResultInfo.PrimaryOutputs));
-                    break;
                 case TemplateType.Composition:
-                    postActions.Add(new AddItemToProjectPostAction(genResult.ResultInfo.PrimaryOutputs));
+                    postActions.Add(new AddItemToContextPostAction(genResult.ResultInfo.PrimaryOutputs));
                     break;
                 default:
                     break;
             }
         }
 
-        private static void AddMergeActions(List<PostAction> postActions, string searchPattern)
+        internal void AddMergeActions(List<PostAction> postActions, string searchPattern, bool failOnError)
         {
             Directory
-               .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
-               .ToList()
-               .ForEach(f => postActions.Add(new MergePostAction(f)));
+                .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
+                .Where(f => Path.GetExtension(f) != MergePostAction.PostActionIntentExtension)
+                .ToList()
+                .ForEach(f => postActions.Add(new MergePostAction(new MergeConfiguration(f, failOnError))));
+        }
+
+        internal void AddGlobalMergeActions(List<PostAction> postActions, string searchPattern, bool failOnError)
+        {
+            Directory
+                .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
+                .Where(f => Path.GetExtension(f) != MergePostAction.PostActionIntentExtension)
+                .ToList()
+                .ForEach(f => postActions.Add(new MergePostAction(new MergeConfiguration(f, failOnError))));
         }
     }
 }

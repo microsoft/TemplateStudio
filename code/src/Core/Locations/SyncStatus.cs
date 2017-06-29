@@ -23,6 +23,7 @@ namespace Microsoft.Templates.Core.Locations
         Prepared = 6,
         OverVersion = 7,
         OverVersionNoContent = 8,
-        UnderVersion = 9
+        UnderVersion = 9,
+        NewVersionAvailable
     }
 }

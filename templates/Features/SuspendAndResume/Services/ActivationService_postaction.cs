@@ -1,5 +1,7 @@
 using System;
+//{[{
 using Param_RootNamespace.Helpers;
+//}]}
 
 namespace Param_ItemNamespace.Services
 {
@@ -7,9 +9,10 @@ namespace Param_ItemNamespace.Services
     {
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
+            //{[{
             yield return Singleton<SuspendAndResumeService>.Instance;
+            //}]}
 //{--{
-
             yield break;//}--}
         }
     }

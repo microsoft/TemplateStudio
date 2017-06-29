@@ -15,7 +15,7 @@
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Focusable" Value="False"/>
-        <Setter Property="Margin" Value="{StaticResource MediumTopRightMargin}"/>
+        <Setter Property="Margin" Value="{StaticResource Margin_M_TopRight}"/>
         <Setter Property="Foreground" Value="{StaticResource UIBlack}"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -51,7 +51,7 @@
     <Style TargetType="Border" x:Key="ListViewItemBorderStyle">
         <Setter Property="BorderThickness" Value="5,1,1,1"/>
         <Setter Property="BorderBrush" Value="{StaticResource UIGray}"/>
-        <Setter Property="Margin" Value="{StaticResource BigRightBottomMargin}"/>
+        <Setter Property="Margin" Value="{StaticResource Margin_XL_RightBottom}"/>
     </Style>
 
     <Style x:Key="ListViewProjectSetupStyle" TargetType="ListView" BasedOn="{StaticResource ListViewBaseStyle}">
@@ -65,7 +65,7 @@
                                 <Setter Property="Control.Template">
                                     <Setter.Value>
                                         <ControlTemplate>
-                                            <Grid Margin="{StaticResource BigRightBottomMargin}">
+                                            <Grid Margin="{StaticResource Margin_XL_RightBottom}">
                                                 <Grid.Background>
                                                     <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
                                                 </Grid.Background>
@@ -89,8 +89,8 @@
                                             <Condition Property="IsMouseOver" Value="True"/>
                                         </MultiTrigger.Conditions>
                                         <MultiTrigger.Setters>
-                                            <Setter Property="Foreground" Value="{StaticResource UIDarkBlue}"/>
-                                            <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{StaticResource UIDarkBlue}"/>
+                                            <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkBlue}"/>
+                                            <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{StaticResource UIMiddleDarkBlue}"/>
                                         </MultiTrigger.Setters>
                                     </MultiTrigger>
                                     <MultiTrigger>
@@ -132,7 +132,7 @@
                                 <Setter Property="Control.Template">
                                     <Setter.Value>
                                         <ControlTemplate>
-                                            <Grid Margin="{StaticResource BigRightBottomMargin}">
+                                            <Grid Margin="{StaticResource Margin_XL_RightBottom}">
                                                 <Grid.Background>
                                                     <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
                                                 </Grid.Background>
@@ -195,4 +195,54 @@
         </Setter>
     </Style>
 
+    
+    <Style TargetType="ListView" x:Key="ListViewChangesSummaryFiles">
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <Border x:Name="ContentBorder">
+                                    <ContentPresenter/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsSelected" Value="True"/>
+                                            <Condition Property="IsMouseOver" Value="True"/>
+                                        </MultiTrigger.Conditions>
+                                        <MultiTrigger.Setters>
+                                            <Setter Property="Background" TargetName="ContentBorder" Value="{StaticResource UIGray}"/>
+                                        </MultiTrigger.Setters>
+                                    </MultiTrigger>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsSelected" Value="True"/>
+                                            <Condition Property="IsMouseOver" Value="False"/>
+                                        </MultiTrigger.Conditions>
+                                        <MultiTrigger.Setters>
+                                            <Setter Property="Background" TargetName="ContentBorder" Value="{StaticResource UIMiddleLightGray}"/>
+                                        </MultiTrigger.Setters>
+                                    </MultiTrigger>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsSelected" Value="False"/>
+                                            <Condition Property="IsMouseOver" Value="True"/>
+                                        </MultiTrigger.Conditions>
+                                        <MultiTrigger.Setters>
+                                            <Setter Property="Background" TargetName="ContentBorder" Value="{StaticResource UIGray}"/>
+                                        </MultiTrigger.Setters>
+                                    </MultiTrigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

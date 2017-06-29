@@ -160,10 +160,10 @@
     <value>Invalid layout item {0}. Layout items must be of type Page or Feature.</value>
   </data>
   <data name="GeneratingFeatureMessage" xml:space="preserve">
-    <value>Adding '{0}' feature to project...</value>
+    <value>Creating '{0}' feature ...</value>
   </data>
   <data name="GeneratingPageMessage" xml:space="preserve">
-    <value>Adding '{0}' page to project...</value>
+    <value>Creating '{0}' page ...</value>
   </data>
   <data name="GeneratingProjectMessage" xml:space="preserve">
     <value>Creating project '{0}'...</value>
@@ -226,7 +226,7 @@
     <value>Wizard incompatible with templates content</value>
   </data>
   <data name="StatusOverVersionContent" xml:space="preserve">
-    <value>An update to the templates is available. Update the extension to get the latest content.</value>
+    <value>An update to the templates is available but not compatible with the wizard version. Update the extension to access the latest content.</value>
   </data>
   <data name="StatusOverVersionNoContent" xml:space="preserve">
     <value>There is no content available for this extension version. Update the extension to access to the latest content.</value>
@@ -355,9 +355,6 @@
   <data name="UnableAddProjectToSolution" xml:space="preserve">
     <value>Unable to add the project to the solution because is not ready. Ensure you have the expected SDK installed.</value>
   </data>
-  <data name="ErrorNoHomePage" xml:space="preserve">
-    <value>It's not possible to create a project without Home Page</value>
-  </data>
   <data name="SummaryOptionDelete" xml:space="preserve">
     <value>Delete</value>
   </data>
@@ -402,5 +399,137 @@
   </data>
   <data name="SummaryOpenMenuClose" xml:space="preserve">
     <value>Close</value>
+  </data>
+  <data name="NewItemTitle_SF" xml:space="preserve">
+    <value>Add new {0}</value>
+  </data>
+  <data name="GroupFeatureHeader_SF" xml:space="preserve">
+    <value>Features ({0}) - Pick one</value>
+  </data>
+  <data name="GroupPageHeader_SF" xml:space="preserve">
+    <value>Pages ({0}) - Pick one</value>
+  </data>
+  <data name="NewItemName" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="ButtonFinish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="WTSDescription" xml:space="preserve">
+    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</value>
+  </data>
+  <data name="ButtonRefreshTemplates" xml:space="preserve">
+    <value>Refresh templates</value>
+  </data>
+  <data name="NewVersionAvailable" xml:space="preserve">
+    <value>There is new content available, click refresh to get the latest updates (current selection will be reseted).</value>
+  </data>
+  <data name="CheckForUpdates" xml:space="preserve">
+    <value>Check for new templates</value>
+  </data>
+  <data name="PrivacyTermns" xml:space="preserve">
+    <value>Privacy termns</value>
+  </data>
+  <data name="VisitProjectWebSite" xml:space="preserve">
+    <value>Visit project web site</value>
+  </data>
+  <data name="ChangesSummaryTitle_SF" xml:space="preserve">
+    <value>Changes summary: add {0} {1}</value>
+  </data>
+  <data name="ChangesSummaryCategoryFailedMerges" xml:space="preserve">
+    <value>Failed merges</value>
+  </data>
+  <data name="ChangesSummaryCategoryConflictingFiles" xml:space="preserve">
+    <value>Conflicting files</value>
+  </data>
+  <data name="ChangesSummaryCategotyModifiedFiles" xml:space="preserve">
+    <value>Modified files</value>
+  </data>
+  <data name="ChangesSummaryCategoryNewFiles" xml:space="preserve">
+    <value>New files</value>
+  </data>
+  <data name="ButtonGenerate" xml:space="preserve">
+    <value>Generate</value>
+  </data>
+  <data name="ButtonGenerateAndMerge" xml:space="preserve">
+    <value>Generate &amp; Merge</value>
+  </data>
+  <data name="ConflictingDetailDescription_SF" xml:space="preserve">
+    <value>The file {0} already exist. By countinuing this file will be replaced.</value>
+  </data>
+  <data name="ConflictingDetailTitle" xml:space="preserve">
+    <value>Destination file exist</value>
+  </data>
+  <data name="ConflictingDetailExistingFile" xml:space="preserve">
+    <value>Existing file</value>
+  </data>
+  <data name="ConflictingDetailNewFile" xml:space="preserve">
+    <value>New file</value>
+  </data>
+  <data name="ChangesSummaryCategoryUnchangedFiles" xml:space="preserve">
+    <value>Unchanged files</value>
+  </data>
+  <data name="StatusNewVersionAvailable" xml:space="preserve">
+    <value>There is new templates content available</value>
+  </data>
+  <data name="ErrorSyncCheckNewVersion" xml:space="preserve">
+    <value>Error checking for updates. See output for more details.</value>
+  </data>
+  <data name="ErrorSyncRefresh" xml:space="preserve">
+    <value>Error refreshing templates. See output for more details.</value>
+  </data>
+  <data name="NewVersionInstructions" xml:space="preserve">
+    <value>By refreshing templates current selection will be reset.</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionFailedMerges" xml:space="preserve">
+    <value>The changes could not be integrated.</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleFailedMerges" xml:space="preserve">
+    <value>Failed merges</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionNewFiles" xml:space="preserve">
+    <value>The fille {0} will be added as new file.</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleNewFiles" xml:space="preserve">
+    <value>New file</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionModifiedFiles" xml:space="preserve">
+    <value>The file {0} has been modified.</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleModifiedFiles" xml:space="preserve">
+    <value>Modified file</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionConflictingFiles" xml:space="preserve">
+    <value>The file {0} already exist in your project and was also generated as part of the new item. Please compare and make sure everything is the right place.</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionUnchangedFiles" xml:space="preserve">
+    <value>The file {0} already exist in your project, no action is necessary.</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleConflictingFiles" xml:space="preserve">
+    <value>Conflicting file</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleUnchangedFiles" xml:space="preserve">
+    <value>Unchanged file</value>
+  </data>
+  <data name="NewItemAddFeatureCancelled" xml:space="preserve">
+    <value>Add new feature cancelled</value>
+  </data>
+  <data name="NewItemAddFeatureSuccessStatusMsg" xml:space="preserve">
+    <value>Feature {0} successfully added</value>
+  </data>
+  <data name="NewItemAddPageCancelled" xml:space="preserve">
+    <value>Add new page cancelled</value>
+  </data>
+  <data name="NewItemAddPageSuccessStatusMsg" xml:space="preserve">
+    <value>Page {0} successfully added</value>
+  </data>
+  <data name="ChangesSummaryCategoryLicenses" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
+  <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
+    <value>Do not merge changes (generate in a temp folder)</value>
+  </data>
+  <data name="NoProjectChanges" xml:space="preserve">
+    <value>There are no changes to apply to your project. Everything already exisits.</value>
   </data>
 </root>

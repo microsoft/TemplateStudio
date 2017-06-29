@@ -317,6 +317,21 @@ namespace Microsoft.Templates.Core
             return 0;
         }
 
+        public static bool GetRightClickEnabled(this ITemplateInfo ti)
+        {
+            var result = GetValueFromTag(ti, TagPrefix + "rightClickEnabled");
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                if (bool.TryParse(result, out bool boolResult))
+                {
+                    return boolResult;
+                }
+            }
+
+            return false;
+        }
+
         public static bool GetItemNameEditable(this ITemplateInfo ti)
         {
             return (ti.GetTemplateType() == TemplateType.Page || ti.GetMultipleInstance());

@@ -209,6 +209,7 @@
     <Content Include="TestData\Templates\PageTemplate\.template.config\en-US.description.md" />
     <None Include="TestData\Templates\PageTemplate\.template.config\es-ES.template.json" />
     <Content Include="TestData\Templates\PageTemplate\.template.config\es-ES.description.md" />
+    <Content Include="TestData\Templates\RightClick.FeatureTemplate\.template.config\template.json" />
     <None Include="TestData\Templates\ProjectTemplate\.template.config\description.md" />
     <Content Include="TestData\Templates\ProjectTemplate\.template.config\icon.png" />
     <Content Include="TestData\Templates\ProjectTemplate\.template.config\template.json" />

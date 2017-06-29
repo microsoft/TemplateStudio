@@ -2,7 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Color x:Key="UIBlueColor">#3399ff</Color>
-    <Color x:Key="UIDarkBlueColor">#017af3</Color>
+    <Color x:Key="UIMiddleDarkBlueColor">#017af3</Color>
+    <Color x:Key="UIDarkBlueColor">#004f9e</Color>
+
+    <Color x:Key="UILightGreenColor">#E6FFED</Color>
+    <Color x:Key="UIGreenColor">#00CC6A</Color>
     
     <Color x:Key="UIWhiteColor">#ffffff</Color>
 
@@ -12,15 +16,21 @@
     <Color x:Key="UILightGrayColor">#f0f0f0</Color>
     <Color x:Key="UIMiddleLightGrayColor">#dddddd</Color>
     <Color x:Key="UIGrayColor">#c6c6c6</Color>
-    <Color x:Key="UIMiddleDarkGrayColor">#999999</Color>
+    <Color x:Key="UIMiddleDarkGrayColor">#666666</Color>
 
-    <Color x:Key="UIRedColor">#FF0000</Color>
+    <Color x:Key="UIRedColor">#E81123</Color>
+    <Color x:Key="UILightRedColor">#ffeef0</Color>
     <Color x:Key="UIDarkRedColor">#990000</Color>
+    
     <Color x:Key="UIYellowColor">#FDFBAC</Color>
-    <Color x:Key="UIDarkYellowColor">#FFCC00</Color>
+    <Color x:Key="UIDarkYellowColor">#FFB900</Color>
 
     <SolidColorBrush x:Key="UIBlue" Color="{StaticResource UIBlueColor}"/>
+    <SolidColorBrush x:Key="UIMiddleDarkBlue" Color="{StaticResource UIMiddleDarkBlueColor}"/>
     <SolidColorBrush x:Key="UIDarkBlue" Color="{StaticResource UIDarkBlueColor}"/>
+    
+    <SolidColorBrush x:Key="UILightGreen" Color="{StaticResource UILightGreenColor}"/>
+    <SolidColorBrush x:Key="UIGreen" Color="{StaticResource UIGreenColor}"/>
     
     <SolidColorBrush x:Key="UIWhite" Color="{StaticResource UIWhiteColor}"/>
 
@@ -34,6 +44,8 @@
 
     <SolidColorBrush x:Key="UIRed" Color="{StaticResource UIRedColor}"/>
     <SolidColorBrush x:Key="UIDarkRed" Color="{StaticResource UIDarkRedColor}"/>
+    <SolidColorBrush x:Key="UILightRed" Color="{StaticResource UILightRedColor}"/>
+    
     <SolidColorBrush x:Key="UIYellow" Color="{StaticResource UIYellowColor}"/>
     <SolidColorBrush x:Key="UIDarkYellow" Color="{StaticResource UIDarkYellowColor}"/>
 

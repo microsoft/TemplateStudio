@@ -150,9 +150,11 @@
     <Compile Include="Configuration\Configuration.cs" />
     <Compile Include="Diagnostics\EditItemActionEnum.cs" />
     <Compile Include="Diagnostics\FormattedWriterMessages.cs" />
+    <Compile Include="Diagnostics\GenSourceEnum.cs" />
     <Compile Include="Diagnostics\GenStatusEnum.cs" />
     <Compile Include="Diagnostics\HealthWriters.cs" />
     <Compile Include="Diagnostics\ExceptionTracker.cs" />
+    <Compile Include="Diagnostics\NewItemType.cs" />
     <Compile Include="Diagnostics\TelemetryMetrics.cs" />
     <Compile Include="Diagnostics\TelemetryProperties.cs" />
     <Compile Include="Diagnostics\TraceTracker.cs" />
@@ -164,6 +166,7 @@
     <Compile Include="Diagnostics\TelemetryTracker.cs" />
     <Compile Include="Diagnostics\TraceHealthWriter.cs" />
     <Compile Include="Diagnostics\ShellHealthWriter.cs" />
+    <Compile Include="Diagnostics\WizardActionEnum.cs" />
     <Compile Include="Diagnostics\WizardStatusEnum.cs" />
     <Compile Include="Diagnostics\WizardTypeEnum.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
@@ -176,7 +179,9 @@
     <Compile Include="Gen\GenContext.cs" />
     <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Gen\IContextProvider.cs" />
-    <Compile Include="Locations\Fs.cs" />
+    <Compile Include="PostActions\Catalog\Merge\FailedMergePostAction.cs" />
+    <Compile Include="Fs.cs" />
+    <Compile Include="Gen\TempGenerationResult.cs" />
     <Compile Include="Locations\InvalidSignatureException.cs" />
     <Compile Include="Locations\LocalTemplatesSource.cs" />
     <Compile Include="Composition\CompositionQuery.cs" />
@@ -185,8 +190,19 @@
     <Compile Include="MetadataLocalizedInfo.cs" />
     <Compile Include="Naming\DefaultNameValidator.cs" />
     <Compile Include="Naming\ExistingNamesValidator.cs" />
+    <Compile Include="Naming\FileExistsValidator.cs" />
     <Compile Include="Naming\ReservedNameValidator.cs" />
     <Compile Include="Naming\Validator.cs" />
+    <Compile Include="PostActions\Catalog\AddContextItemsToProjectPostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\MergeFailureType.cs" />
+    <Compile Include="PostActions\Catalog\Merge\PostActionFormatter.cs" />
+    <Compile Include="PostActions\Catalog\NewItemGeneration\CreateSyncInstructionsPostAction.cs" />
+    <Compile Include="PostActions\Catalog\NewItemGeneration\CreateSyncSummaryPostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\GenerateMergeInfoPostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\GetMergeFilesFromProjectPostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\MergeConfiguration.cs" />
+    <Compile Include="PostActions\Catalog\Merge\MergeInfo.cs" />
+    <Compile Include="PostActions\Catalog\NewItemGeneration\OpenFilesPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\SortUsingsPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\IEnumerableExtensions.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\UsingComparer.cs" />
@@ -260,6 +276,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StringRes.zh-TW.resx</DependentUpon>
     </Compile>
+    <Compile Include="PostActions\Catalog\NewItemGeneration\CopyFilesToProjectPostAction.cs" />
+    <Compile Include="PostActions\NewItemPostActionFactory.cs" />
+    <Compile Include="PostActions\NewProjectPostActionFactory.cs" />
+    <Compile Include="Strings\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Templates\ITemplateInfoExtensions.cs" />
     <Compile Include="Locations\RemoteTemplatesSource.cs" />
     <Compile Include="Locations\TemplatesSynchronization.cs" />
@@ -272,7 +296,7 @@
     <Compile Include="Mvvm\RelayCommand.cs" />
     <Compile Include="Naming\Naming.cs" />
     <Compile Include="Templates\LayoutItem.cs" />
-    <Compile Include="PostActions\Catalog\AddItemToProjectPostAction.cs" />
+    <Compile Include="PostActions\Catalog\AddItemToContextPostAction.cs" />
     <Compile Include="PostActions\Catalog\AddProjectToSolutionPostAction.cs" />
     <Compile Include="PostActions\Catalog\GenerateTestCertificatePostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\IEnumerableExtensions.cs" />
@@ -382,6 +406,14 @@
     <EmbeddedResource Include="Resources\StringRes.zh-TW.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.zh-TW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Strings\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -12,6 +12,9 @@
 
 using System;
 using System.IO;
+using System.IO.Compression;
+using System.Linq;
+using System.Collections.Generic;
 using System.Net;
 using System.Collections.Generic;
 
@@ -26,7 +29,10 @@ namespace Microsoft.Templates.Core.Locations
         private const string VersionFileName = "version.txt";
 
         private List<string> _tempFoldersUsed = new List<string>();
+        public virtual bool ForcedAcquisition { get; protected set; }
+
         protected virtual bool VerifyPackageSignatures { get => true; }
+
         public virtual string Id { get => Configuration.Current.Environment; }
 
         public void Acquire(string targetFolder)
@@ -60,6 +66,38 @@ namespace Microsoft.Templates.Core.Locations
             {
                 return string.Empty;
             }
+        }
+
+        public Version GetVersionFromMstx(string mstxFilePath)
+        {
+            string content = GetFileContent(mstxFilePath, VersionFileName);
+
+            if (!Version.TryParse(content, out Version result))
+            {
+                result = new Version(0, 0, 0, 0);
+            }
+
+            return result;
+        }
+
+        private static string GetFileContent(string mstxFilePath, string fileName)
+        {
+            string result = string.Empty;
+            if (File.Exists(mstxFilePath))
+            {
+                using (ZipArchive zip = ZipFile.Open(mstxFilePath, ZipArchiveMode.Read))
+                {
+                    var entry = zip.Entries.Where(e => e.Name == fileName).FirstOrDefault();
+                    if (entry != null)
+                    {
+                        using (StreamReader sr = new StreamReader(entry.Open()))
+                        {
+                            result = sr.ReadToEnd();
+                        }
+                    }
+                }
+            }
+            return result;
         }
 
         protected void ExtractContent(string file, string tempFolder)
