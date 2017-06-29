@@ -19,7 +19,7 @@ namespace Microsoft.Templates.UI.TemplateSelectors
 {
     public class FileStatusTemplateSelector : DataTemplateSelector
     {
-        public DataTemplate AddedFileTemplate { get; set; }
+        public DataTemplate NewFileTemplate { get; set; }
         public DataTemplate ModifiedFileTemplate { get; set; }
         public DataTemplate ConflictingFileTemplate { get; set; }
         public DataTemplate WarningFileTemplate { get; set; }
@@ -32,8 +32,8 @@ namespace Microsoft.Templates.UI.TemplateSelectors
             {
                 switch (newItemFile.FileStatus)
                 {
-                    case FileStatus.AddedFile:
-                        return AddedFileTemplate;
+                    case FileStatus.NewFile:
+                        return NewFileTemplate;
                     case FileStatus.ModifiedFile:
                         return ModifiedFileTemplate;
                     case FileStatus.ConflictingFile:

@@ -499,4 +499,7 @@
   <data name="NewItemAddPageSuccessStatusMsg" xml:space="preserve">
     <value>Page {0} successfully added</value>
   </data>
+  <data name="ChangesSummaryCategoryLicenses" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
 </root>

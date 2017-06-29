@@ -16,7 +16,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class NewFileViewModel : BaseFileViewModel
     {
-        public override FileStatus FileStatus => FileStatus.AddedFile;
+        public override FileStatus FileStatus => FileStatus.NewFile;
         public NewFileViewModel(NewItemGenerationFileInfo generationInfo) : base(generationInfo)
         {
             DetailTitle = StringRes.ChangesSummaryDetailTitleNewFiles;

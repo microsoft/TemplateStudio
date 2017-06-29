@@ -25,12 +25,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
     public class ChangesSummaryViewModel : Observable
     {
         public ObservableCollection<ItemsGroupViewModel<BaseFileViewModel>> FileGroups { get; } = new ObservableCollection<ItemsGroupViewModel<BaseFileViewModel>>();
+        public ObservableCollection<SummaryLicenseViewModel> Licenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
 
         private BaseFileViewModel _selectedFile;
         public BaseFileViewModel SelectedFile
         {
             get => _selectedFile;
             set => SetProperty(ref _selectedFile, value);
+        }
+
+        private bool _hasLicenses;
+        public bool HasLicenses
+        {
+            get => _hasLicenses;
+            set => SetProperty(ref _hasLicenses, value);
         }
 
         public ICommand MoreDetailsCommand { get; }
@@ -44,6 +52,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             var output = NewItemGenController.Instance.CompareOutputAndProject();
             var warnings = GenContext.Current.FailedMergePostActions.Select(w => new FailedMergesFileViewModel(w));
+            var licenses = MainViewModel.Current.GetActiveTemplate().LicenseTerms;
+
             FileGroups.Clear();
             FileGroups.Add(new ItemsGroupViewModel<BaseFileViewModel>(StringRes.ChangesSummaryCategoryConflictingFiles, output.ConflictingFiles.Select(cf => new ConflictingFileViewModel(cf)), OnItemChanged));
             FileGroups.Add(new ItemsGroupViewModel<BaseFileViewModel>(StringRes.ChangesSummaryCategoryFailedMerges, warnings, OnItemChanged));
@@ -55,6 +65,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             if (group != null)
             {
                 group.SelectedItem = group.Templates.First();
+            }
+            HasLicenses = licenses != null && licenses.Any();
+            if (HasLicenses)
+            {
+                Licenses.AddRange(licenses.Select(l => new SummaryLicenseViewModel(l)));
             }
         }
 

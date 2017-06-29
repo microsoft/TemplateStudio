@@ -169,6 +169,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Licenses.
+        /// </summary>
+        public static string ChangesSummaryCategoryLicenses {
+            get {
+                return ResourceManager.GetString("ChangesSummaryCategoryLicenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New files.
         /// </summary>
         public static string ChangesSummaryCategoryNewFiles {
