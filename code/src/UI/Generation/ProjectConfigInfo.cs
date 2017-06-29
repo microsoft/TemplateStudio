@@ -26,7 +26,7 @@ namespace Microsoft.Templates.UI.Generation
     {
         const string FxMVVMBasic = "MVVMBasic";
         const string FxMVVMLight = "MVVMLight";
-        const string FxCodeBehid = "Codebehind";
+        const string FxCodeBehid = "CodeBehind";
 
         const string ProjTypeBlank = "Blank";
         const string ProjTypeSplitView = "SplitView";
@@ -51,18 +51,18 @@ namespace Microsoft.Templates.UI.Generation
                 }
                 else
                 {
-                    var inferedConfig = InferProjectConfiguration();
-                    if (!string.IsNullOrEmpty(inferedConfig.ProjectType) && !string.IsNullOrEmpty(inferedConfig.Framework))
+                    var inferredConfig = InferProjectConfiguration();
+                    if (!string.IsNullOrEmpty(inferredConfig.ProjectType) && !string.IsNullOrEmpty(inferredConfig.Framework))
                     {
-                        SaveProjectConfiguration(inferedConfig.ProjectType, inferedConfig.Framework);
+                        SaveProjectConfiguration(inferredConfig.ProjectType, inferredConfig.Framework);
                     }
-                    return inferedConfig;
+                    return inferredConfig;
                 }
             }
             return (string.Empty, string.Empty);
         }
 
-        private static void SaveProjectConfiguration(string projectType, string framework)
+        public static void SaveProjectConfiguration(string projectType, string framework)
         {
             var path = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
             if (File.Exists(path))
@@ -96,9 +96,13 @@ namespace Microsoft.Templates.UI.Generation
             {
                 return FxMVVMLight;
             }
-            else
+            else if (IsCodeBehind())
             {
                 return FxCodeBehid;
+            }
+            else
+            {
+                return string.Empty;
             }
         }
 
@@ -120,12 +124,15 @@ namespace Microsoft.Templates.UI.Generation
 
         private static bool IsMVVMLight()
         {
-            var files = Directory.GetFiles(GenContext.Current.ProjectPath, "*.*proj", SearchOption.TopDirectoryOnly);
-            foreach (string file in files)
+            if (ExistsFileInProjectPath("Services", "ActivationService.cs"))
             {
-                if (File.ReadAllText(file).Contains("<PackageReference Include=\"MvvmLight\"> csproj"))
+                var files = Directory.GetFiles(GenContext.Current.ProjectPath, "*.*proj", SearchOption.TopDirectoryOnly);
+                foreach (string file in files)
                 {
-                    return true;
+                    if (File.ReadAllText(file).Contains("<PackageReference Include=\"MvvmLight\">"))
+                    {
+                        return true;
+                    }
                 }
             }
             return false;
@@ -133,17 +140,36 @@ namespace Microsoft.Templates.UI.Generation
 
         private static bool IsMVVMBasic()
         {
-            return ExistsFileInProjectPath("Helpers", "Observable.cs");
+            return ExistsFileInProjectPath("Services", "ActivationService.cs")
+                && ExistsFileInProjectPath("Helpers", "Observable.cs");
         }
 
         private static bool IsTabbedPivot()
         {
-            return ExistsFileInProjectPath("Views", "PivotPage.xaml");
+            return ExistsFileInProjectPath("Services", "ActivationService.cs")
+                && ExistsFileInProjectPath("Views", "PivotPage.xaml");
+        }
+
+        private static bool IsCodeBehind()
+        {
+            if (ExistsFileInProjectPath("Services", "ActivationService.cs"))
+            {
+                var codebehindFile = Directory.GetFiles(Path.Combine(GenContext.Current.ProjectPath, "Views"), "*.xaml.cs", SearchOption.TopDirectoryOnly).FirstOrDefault();
+                if (!string.IsNullOrEmpty(codebehindFile))
+                {
+                    var fileContent = File.ReadAllText(codebehindFile);
+                    return fileContent.Contains($"INotifyPropertyChanged") &&
+                        fileContent.Contains("public event PropertyChangedEventHandler PropertyChanged;");
+                }
+            }
+            return false;
         }
 
         private static bool IsSplitView()
         {
-            return ExistsFileInProjectPath("Views", "ShellPage.xaml") && (ExistsFileInProjectPath("Views", "ShellNavigationItem.cs") || ExistsFileInProjectPath("ViewModels", "ShellNavigationItem.cs"));
+            return ExistsFileInProjectPath("Services", "ActivationService.cs")
+                && ExistsFileInProjectPath("Views", "ShellPage.xaml")
+                && (ExistsFileInProjectPath("Views", "ShellNavigationItem.cs") || ExistsFileInProjectPath("ViewModels", "ShellNavigationItem.cs"));
         }
 
         private static bool ExistsFileInProjectPath(string subPath, string fileName)
