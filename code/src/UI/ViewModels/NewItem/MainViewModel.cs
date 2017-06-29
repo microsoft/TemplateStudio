@@ -62,8 +62,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 ProjectConfigurationWindow projectConfig = new ProjectConfigurationWindow();
                 if (projectConfig.ShowDialog().Value)
                 {
-                    configInfo.Framework = projectConfig.ViewModel.Framework;
-                    configInfo.ProjectType = projectConfig.ViewModel.ProjectType;
+                    configInfo.Framework = projectConfig.ViewModel.SelectedFramework;
+                    configInfo.ProjectType = projectConfig.ViewModel.SelectedProjectType;
                 }
                 else
                 {
