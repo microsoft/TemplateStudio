@@ -499,4 +499,13 @@
   <data name="NewItemAddPageSuccessStatusMsg" xml:space="preserve">
     <value>Page {0} successfully added</value>
   </data>
+  <data name="ChangesSummaryCategoryLicenses" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
+  <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
+    <value>Do not merge changes in my project.</value>
+  </data>
+  <data name="HasNotChangesToApply" xml:space="preserve">
+    <value>Has not changes to apply</value>
+  </data>
 </root>

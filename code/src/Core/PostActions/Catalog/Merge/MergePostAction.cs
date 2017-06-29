@@ -61,7 +61,14 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             if (errorLine != string.Empty)
             {
-                AddFailedMergePostActionsAddLineNotFound(originalFilePath, errorLine);
+                if (_config.FailOnError)
+                {
+                    throw new InvalidDataException(string.Format(Strings.Resources.MergeLineNotFoundExceptionMessage, errorLine, originalFilePath));
+                }
+                else
+                {
+                    AddFailedMergePostActionsAddLineNotFound(originalFilePath, errorLine);
+                }
             }
             else
             {

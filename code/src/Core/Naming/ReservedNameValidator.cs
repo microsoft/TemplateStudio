@@ -16,7 +16,7 @@ namespace Microsoft.Templates.Core
 {
     public class ReservedNamesValidator : Validator
     {
-        private static readonly string[] ReservedNames = new string[] { "Page", "BackgroundTask", "Pivot" };
+        private static readonly string[] ReservedNames = new string[] { "Page", "BackgroundTask", "Pivot", "Shell" };
 
         public override ValidationResult Validate(string suggestedName)
         {

@@ -16,7 +16,8 @@
     "wts.group": "UserInteraction",
     "wts.dependencies":"wts.Feat.SettingsStorage",
     "wts.multipleInstance": "false",
-    "wts.defaultInstance": "FirstRunPrompt"
+    "wts.defaultInstance": "FirstRunPrompt",    
+    "wts.rightClickEnabled":"true"
   },
   "sourceName": "FirstRunPromptFeature",
   "preferNameDirectory": true,

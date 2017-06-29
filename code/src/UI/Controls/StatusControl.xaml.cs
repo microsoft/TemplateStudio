@@ -74,34 +74,34 @@ namespace Microsoft.Templates.UI.Controls
                     txtStatus.Text = status.Message;
                     txtIcon.Text = ConvertToChar(SymbolFonts.Completed);
                     txtIcon.Foreground = FindResource("UIBlack") as SolidColorBrush;
-                    Background = InformationStatusBackground;
+                    backBackground.Opacity = 1.0;
+                    shapeBackground.Background = InformationStatusBackground;
                     break;
                 case StatusType.Warning:
                     txtStatus.Text = status.Message;
                     txtIcon.Text = ConvertToChar(SymbolFonts.ErrorBadge);
                     txtIcon.Foreground = FindResource("UIDarkYellow") as SolidColorBrush;
-                    // Color yellow = (Color)FindResource("UIYellowColor");
-                    // Background = new LinearGradientBrush(yellow, Colors.Transparent, 0);
-                    Background = FindResource("UIYellow") as SolidColorBrush;
+                    shapeBackground.Background = FindResource("UIYellow") as SolidColorBrush;
+                    backBackground.Opacity = 1.0;
                     break;
                 case StatusType.Error:
                     txtStatus.Text = status.Message;
                     txtIcon.Text = ConvertToChar(SymbolFonts.StatusErrorFull);
                     txtIcon.Foreground = FindResource("UIDarkRed") as SolidColorBrush;
-                    // Color red = (Color)FindResource("UIRedColor");
-                    // var brush = new LinearGradientBrush(red, Colors.Transparent, 0);
                     var brush = FindResource("UIRed") as SolidColorBrush;
                     brush.Opacity = 0.4;
-                    Background = brush;
+                    backBackground.Opacity = 1.0;
+                    shapeBackground.Background = brush;
                     break;
                 default:
 
                     txtStatus.Text = " ";
                     txtIcon.Text = " ";
-
-                    Background = new SolidColorBrush(Colors.Transparent);
+                    backBackground.Opacity = 0.0;
+                    shapeBackground.Background = new SolidColorBrush(Colors.Transparent);
                     break;
             }
+            backBackground.Background = InformationStatusBackground;
             if (status.AutoHide == true)
             {
                 _hideTimer.Start();

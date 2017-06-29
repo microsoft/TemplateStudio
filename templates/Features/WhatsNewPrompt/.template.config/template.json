@@ -16,7 +16,8 @@
     "wts.group": "UserInteraction",
     "wts.dependencies":"wts.Feat.SettingsStorage",
     "wts.multipleInstance": "false",
-    "wts.defaultInstance": "WhatsNewPrompt"
+    "wts.defaultInstance": "WhatsNewPrompt",    
+    "wts.rightClickEnabled":"true"
   },
   "sourceName": "WhatsNewPromptFeature",
   "preferNameDirectory": true,

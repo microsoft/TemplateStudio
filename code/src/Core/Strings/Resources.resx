@@ -129,6 +129,9 @@
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
     <value>There is no merge target for file '{0}'</value>
   </data>
+  <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
+    <value>Line {0} not found in file '{1}'</value>
+  </data>
   <data name="StatusAddingItems" xml:space="preserve">
     <value>Adding items to project ...</value>
   </data>
@@ -171,6 +174,9 @@ Please compare and make sure everything is in the right place.</value>
   </data>
   <data name="SyncInstructionsNewFilesDescription" xml:space="preserve">
     <value>Copy and add the following files to your project:</value>
+  </data>
+  <data name="SyncInstructionsTempFolder" xml:space="preserve">
+    <value>You can find all referenced files in the temporary generation folder: {0}</value>
   </data>
   <data name="SyncInstructionsUnchangedFiles" xml:space="preserve">
     <value>## Unchanged files:</value>
@@ -223,6 +229,9 @@ Please compare and make sure everything is in the right place.</value>
   </data>
   <data name="SyncSummaryProjectFile" xml:space="preserve">
     <value>ProjectFile</value>
+  </data>
+  <data name="SyncSummaryTempFolder" xml:space="preserve">
+    <value>You can find the files from the generation in the temporary generation folder: {0}</value>
   </data>
   <data name="SyncSummaryTempGenerationFile" xml:space="preserve">
     <value>Temp</value>
