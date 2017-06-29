@@ -24,7 +24,7 @@ namespace Microsoft.Templates.UI.Views.NewItem
 
         public ProjectConfigurationWindow()
         {
-            ViewModel = new ProjectConfigurationViewModel();
+            ViewModel = new ProjectConfigurationViewModel(this);
             DataContext = ViewModel;
             Loaded += ProjectConfigurationWindow_Loaded;
 

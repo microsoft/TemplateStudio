@@ -21,62 +21,73 @@ using System.Windows.Input;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Generation;
+using Microsoft.Templates.UI.Views.NewItem;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class ProjectConfigurationViewModel : Observable
     {
-        public ICommand OkCommand => new RelayCommand(SetProjectConfig);
+        private ProjectConfigurationWindow _window;
+        public ICommand OkCommand => new RelayCommand(OnOkCommand);
         public ICommand CancelCommand => new RelayCommand(Cancel);
 
         public ObservableCollection<string> ProjectTypes { get; } = new ObservableCollection<string>();
         public ObservableCollection<string> Frameworks { get; } = new ObservableCollection<string>();
 
-        private string _projectType;
-        public string ProjectType
+        private string _selectedProjectType;
+        public string SelectedProjectType
         {
-            get => _projectType;
-            set => SetProperty(ref _projectType, value);
+            get => _selectedProjectType;
+            set
+            {
+                SetProperty(ref _selectedProjectType, value);
+                LoadFrameworks();
+            }
         }
 
-        private string _framework;
-        public string Framework
+        private string _selectedFramework;
+        public string SelectedFramework
         {
-            get => _framework;
-            set => SetProperty(ref _framework, value);
+            get => _selectedFramework;
+            set => SetProperty(ref _selectedFramework, value);
         }
 
-        public ProjectConfigurationViewModel()
+        public ProjectConfigurationViewModel(ProjectConfigurationWindow window)
         {
+            _window = window;
         }
 
         public void Initialize()
         {
             ProjectTypes.AddRange(GenContext.ToolBox.Repo.GetProjectTypes().Select(f => f.DisplayName));
+            SelectedProjectType = ProjectTypes.FirstOrDefault();
         }
 
         private void LoadFrameworks()
         {
-            var projectFrameworks = GenComposer.GetSupportedFx(_projectType);
+            var projectFrameworks = GenComposer.GetSupportedFx(SelectedProjectType);
             var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks()
                                                                 .Where(m => projectFrameworks.Contains(m.Name))
                                                                 .Select(f => f.DisplayName)
                                                                 .ToList();
             Frameworks.Clear();
             Frameworks.AddRange(targetFrameworks);
-            if (Framework == null)
+            if (SelectedFramework == null)
             {
-                Framework = Frameworks.FirstOrDefault();
+                SelectedFramework = Frameworks.FirstOrDefault();
             }
         }
 
-        private void SetProjectConfig()
+        private void OnOkCommand()
         {
-            ProjectConfigInfo.SaveProjectConfiguration(ProjectType, Framework);
+            ProjectConfigInfo.SaveProjectConfiguration(SelectedProjectType, SelectedFramework);
+            _window.DialogResult = true;
+            _window.Close();
         }
         private void Cancel()
         {
-            throw new NotImplementedException();
+            _window.DialogResult = false;
+            _window.Close();
         }
     }
 }
