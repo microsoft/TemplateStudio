@@ -279,10 +279,10 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                     return StringRes.StatusUpdating;
                 case SyncStatus.Updated:
                     return StringRes.StatusUpdated;
-                case SyncStatus.Adquiring:
-                    return StringRes.StatusAdquiring;
-                case SyncStatus.Adquired:
-                    return StringRes.StatusAdquired;
+                case SyncStatus.Acquiring:
+                    return StringRes.StatusAcquiring;
+                case SyncStatus.Acquired:
+                    return StringRes.StatusAcquired;
                 case SyncStatus.Preparing:
                     return StringRes.StatusPreparing;
                 case SyncStatus.Prepared:
