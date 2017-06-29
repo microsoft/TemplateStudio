@@ -97,6 +97,15 @@ namespace Microsoft.Templates.Core.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Line {0} not found in file &apos;{1}&apos;.
+        /// </summary>
+        internal static string MergeLineNotFoundExceptionMessage {
+            get {
+                return ResourceManager.GetString("MergeLineNotFoundExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adding items to project ....
         /// </summary>
         internal static string StatusAddingItems {

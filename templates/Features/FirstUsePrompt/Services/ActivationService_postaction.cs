@@ -6,7 +6,9 @@ namespace Param_ItemNamespace.Services
     {
         private async Task StartupAsync()
         {
+            //{[{
             await FirstRunDisplayService.ShowIfAppropriate();
+            //}]}
         }
     }
 }

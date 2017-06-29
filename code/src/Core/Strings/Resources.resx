@@ -129,6 +129,9 @@
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
     <value>There is no merge target for file '{0}'</value>
   </data>
+  <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
+    <value>Line {0} not found in file '{1}'</value>
+  </data>
   <data name="StatusAddingItems" xml:space="preserve">
     <value>Adding items to project ...</value>
   </data>
