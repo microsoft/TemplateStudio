@@ -26,12 +26,14 @@
     
     <Buttons>
       <Button guid="guidRelayCommandPackageCmdSet" id="AddPageCommand" priority="0x0100" type="Button">
+        <CommandFlag>DynamicVisibility</CommandFlag>
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
           <ButtonText>Add new page...</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidRelayCommandPackageCmdSet" id="AddFeatureCommand" priority="0x0200" type="Button">
+        <CommandFlag>DynamicVisibility</CommandFlag>
         <Icon guid="guidImages" id="bmpPic2" />
         <Strings>
           <ButtonText>Add new feature...</ButtonText>
