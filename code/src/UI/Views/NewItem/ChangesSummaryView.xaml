@@ -26,20 +26,21 @@
                 <Grid Width="281" ToolTip="{Binding Subject}" Height="30">
                     <Grid Margin="{StaticResource Margin_S_All}">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="&#xE91F;" Style="{StaticResource IconButtonTextStyle}" Foreground="{Binding CircleColor, FallbackValue=Red}" FontSize="9" VerticalAlignment="Center"/>
-                        <Image Grid.Column="1" Source="{Binding Icon}" Margin="{StaticResource Margin_S_Left}" VerticalAlignment="Center" Stretch="None"/>
-                        <TextBlock Grid.Column="2" Text="{Binding Subject}" Style="{StaticResource ChangesSummaryListFileNameStyle}" Margin="{StaticResource Margin_M_Left}"/>
+                        <TextBlock Grid.Column="1" Text="&#xE91F;" Style="{StaticResource IconButtonTextStyle}" Foreground="{Binding CircleColor, FallbackValue=Red}" FontSize="7" VerticalAlignment="Center"/>
+                        <Image Grid.Column="2" Source="{Binding Icon}" Margin="{StaticResource Margin_M_Left}" VerticalAlignment="Center" Stretch="None"/>
+                        <TextBlock Grid.Column="3" Text="{Binding Subject}" Style="{StaticResource ChangesSummaryListFileNameStyle}" Margin="{StaticResource Margin_S_Left}"/>
                     </Grid>
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="ListLicenseTemplate">
                 <TextBlock Margin="{StaticResource Margin_M_LeftTopRight}" VerticalAlignment="Center">
                     <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
-                        <TextBlock Text="{Binding Text}" Style="{StaticResource TextSumaryLicenseStyle}" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding Text}" Style="{StaticResource TextSumaryLicenseStyle}" VerticalAlignment="Center" Margin="{StaticResource Margin_L_Left}"/>
                     </Hyperlink>
                 </TextBlock>
             </DataTemplate>
@@ -137,41 +138,41 @@
             </Grid.RowDefinitions>
             <ScrollViewer>
                 <StackPanel>
-                <ItemsControl ItemsSource="{Binding ChangesSummary.FileGroups}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Expander
-                                Margin="{StaticResource Margin_M_Top}"
-                                Header="{Binding Name}"
-                                HeaderTemplate="{StaticResource ChangesSummaryExpanderHeaderTemplate}"
-                                IsExpanded="True"
-                                BorderThickness="0"
-                                Visibility="{Binding HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
-                                <ListView
-                                    Focusable="False"
-                                    Style="{StaticResource ListViewChangesSummaryFiles}"
-                                    ItemTemplate="{StaticResource ListItemTemplate}"                                
-                                    ItemsSource="{Binding Templates}"
-                                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
-                            </Expander>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-                <Expander
+                    <ItemsControl ItemsSource="{Binding ChangesSummary.FileGroups}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Expander
+                                    Margin="{StaticResource Margin_M_Top}"
+                                    Header="{Binding Name}"
+                                    HeaderTemplate="{StaticResource ChangesSummaryExpanderHeaderTemplate}"
+                                    IsExpanded="True"
+                                    BorderThickness="0"
+                                    Visibility="{Binding HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <ListView
+                                        Focusable="False"
+                                        Style="{StaticResource ListViewChangesSummaryFiles}"
+                                        ItemTemplate="{StaticResource ListItemTemplate}"                                
+                                        ItemsSource="{Binding Templates}"
+                                        SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
+                                </Expander>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Expander
                     Margin="{StaticResource Margin_M_Top}"
                     Header="{x:Static res:StringRes.ChangesSummaryCategoryLicenses}"
                     HeaderTemplate="{StaticResource ChangesSummaryExpanderHeaderTemplate}"
                     IsExpanded="True"
                     BorderThickness="0"
                     Visibility="{Binding ChangesSummary.HasLicenses, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <ItemsControl
+                        <ItemsControl
                         Focusable="False"
                         ItemTemplate="{StaticResource ListLicenseTemplate}"                                
                         ItemsSource="{Binding ChangesSummary.Licenses}" />
-                </Expander>
-            </StackPanel>
+                    </Expander>
+                </StackPanel>
             </ScrollViewer>
-            <CheckBox Grid.Row="1" Content="{x:Static res:StringRes.ChangesSummaryCheckBoxText}" IsEnabled="True" Margin="{StaticResource Margin_M_All}" IsChecked="{Binding ChangesSummary.DoNotMerge, Mode=TwoWay}" Visibility="{Binding ChangesSummary.HasChangesToApply, Converter={StaticResource BoolToVisibilityConverter}}"/>
+            <Grid HorizontalAlignment="Right" Background="{StaticResource UILightGray}" Width="17" Grid.RowSpan="2"/>
         </Grid>
         <Grid Grid.Column="2">
             <Grid.ColumnDefinitions>
@@ -193,16 +194,19 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Foreground="{Binding ChangesSummary.SelectedFile.CircleColor}" Text="{Binding ChangesSummary.SelectedFile.DetailTitle}" Style="{StaticResource ChangesSummaryDetailTitleStyle}" />
-                        <TextBlock Grid.Column="1">
+                        <TextBlock Grid.Column="1" VerticalAlignment="Bottom">
                             <Hyperlink Command="{Binding ChangesSummary.MoreDetailsCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
-                                <TextBlock Text="{x:Static res:StringRes.ViewMoreDetails}" Style="{StaticResource TextSumaryLicenseStyle}" />
+                                <Grid>
+                                    <TextBlock Text="&#xECCA;" FontSize="16" Style="{StaticResource IconButtonTextStyle}" />
+                                    <TextBlock Text="&#xE11B;" FontSize="9" Style="{StaticResource IconButtonTextStyle}" FontWeight="Bold"/>
+                                </Grid>
                             </Hyperlink>
                         </TextBlock>
                     </Grid>
                     <TextBlock Margin="{StaticResource Margin_M_Top}" Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}"/>
                 </StackPanel>
 
-                <Grid Grid.Row="1" Background="{StaticResource UIGray}" Margin="{StaticResource Margin_M_Top}" Height="30">
+                <Grid Grid.Row="1" Background="{StaticResource UIGray}" Margin="{StaticResource Margin_M_LeftTopRight}" Height="30">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="30"/>
                         <ColumnDefinition Width="*"/>
