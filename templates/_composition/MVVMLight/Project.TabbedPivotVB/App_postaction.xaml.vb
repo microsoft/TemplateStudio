@@ -3,7 +3,6 @@ NotInheritable Partial Class App
 //^^
 //{[{
 
-
     Private Function CreateActivationService() As ActivationService
         Return New ActivationService(Me, GetType(ViewModels.PivotViewModel))
     End Function

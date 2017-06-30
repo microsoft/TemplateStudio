@@ -1,4 +1,6 @@
+//{[{
 Imports Windows.UI.Xaml.Navigation
+//}]}
 Namespace Views
     Public NotInheritable Partial Class wts.ItemNamePage
         Inherits Page

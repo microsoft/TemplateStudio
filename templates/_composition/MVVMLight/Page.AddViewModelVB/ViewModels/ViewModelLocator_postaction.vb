@@ -2,7 +2,9 @@
     Public Class ViewModelLocator
         Public Sub New()
             //^^
+            //{[{
             Register(Of wts.ItemNameViewModel, wts.ItemNamePage)()
+            //}]}
         End Sub
 
 //{[{

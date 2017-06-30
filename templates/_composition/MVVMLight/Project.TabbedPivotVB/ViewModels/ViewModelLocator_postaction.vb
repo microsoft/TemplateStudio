@@ -2,7 +2,9 @@
     Public Class ViewModelLocator
         Public Sub New()
             //^^
+            //{[{
             Register(Of PivotViewModel, PivotPage)()
+            //}]}
         End Sub
 //{[{
         Public ReadOnly Property PivotViewModel() As PivotViewModel
