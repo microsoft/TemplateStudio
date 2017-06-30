@@ -1,0 +1,1 @@
+﻿This code block add code to the ShellNavigationItem to apply the correct color based on the selected theme.

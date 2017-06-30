@@ -1,0 +1,1 @@
+This xml block adds string resources from the wts.ItemNamePage in the NavigationPane to your project.

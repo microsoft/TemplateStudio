@@ -1,0 +1,1 @@
+This xml blocks include string resources for the TabbedPivotPagePage to your project.

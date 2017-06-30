@@ -2,4 +2,4 @@ A page displaying a [RadDataGrid control](http://www.telerik.com/universal-windo
 
 A native, rich and powerful rid with unmatched performance. The grid offers advanced UI virtualization, customizable columns, single and multi-column sorting, data editing, selection and filtering.
 
-More details on using these charts can be found at http://docs.telerik.com/windows-universal/controls/raddatagrid/gettingstarted
+More details on using this control can be found in [the official getting started documentation](http://docs.telerik.com/windows-universal/controls/raddatagrid/gettingstarted).

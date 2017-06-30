@@ -1,0 +1,1 @@
+These code blocks include the BackgroundTaskService Instance in the method `GetActivationHandlers()`  and background task registration to the method `InitializeAsync()` in the ActivationService of your project.

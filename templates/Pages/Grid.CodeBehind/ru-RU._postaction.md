@@ -1,0 +1,1 @@
+This xml block adds a reference to Telerik.UI.for.UniversalWindowsPlatform to your project.

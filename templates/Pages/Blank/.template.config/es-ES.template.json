@@ -1,6 +1,6 @@
 {
     "author": "Microsoft",
-    "name": "En Blanko",
-    "description": "Esta es la página más básica. Un lienzo en blanco para moldear en lo que desee.",
+    "name": "Blank",
+    "description": "This is the most basic page. A blank canvas to mold into whatever you wish.",
     "identity": "wts.Page.Blank"
 }

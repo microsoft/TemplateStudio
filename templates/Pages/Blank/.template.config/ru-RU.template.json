@@ -1,6 +1,6 @@
 {
     "author": "Microsoft",
-    "name": "Пустая",
-    "description": "Это самая простая страница. Пустое полотно, чтобы вставить все, что вы пожелаете.",
+    "name": "Blank",
+    "description": "This is the most basic page. A blank canvas to mold into whatever you wish.",
     "identity": "wts.Page.Blank"
 }
