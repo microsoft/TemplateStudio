@@ -10,28 +10,28 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
-using System.IO;
-using System.Linq;
+using System.Windows;
 
-using Microsoft.Templates.Core.PostActions.Catalog.Merge;
-
-using Xunit;
-
-namespace Microsoft.Templates.Core.Test.PostActions.Catalog
+namespace Microsoft.Templates.VsEmulator.LoadProject
 {
-    public class MergeTest
+    /// <summary>
+    /// Interaction logic for LoadProjectView.xaml
+    /// </summary>
+    public partial class LoadProjectView : Window
     {
-        [Fact]
-        public void Merge()
-        {
-            var source = File.ReadAllLines(@".\TestData\Merge\Source.cs");
-            var merge = File.ReadAllLines(@".\TestData\Merge\Source_postaction.cs");
-            var expected = File.ReadAllText(@".\TestData\Merge\Source_expected.cs");
-            var result = source.Merge(merge, out string errorLine);
+        public LoadProjectViewModel ViewModel { get; set; }
 
-            Assert.Equal(expected, string.Join(Environment.NewLine, result.ToArray()));
-            Assert.Equal(errorLine, string.Empty);
+        public LoadProjectView(string solutionPath)
+        {
+            ViewModel = new LoadProjectViewModel(this);
+            InitializeComponent();
+
+            DataContext = ViewModel;
+
+            Loaded += (o, e) =>
+            {
+                ViewModel.Initialize(solutionPath);
+            };
         }
     }
 }

@@ -181,6 +181,7 @@
     <None Include="TestData\Templates\ProjectTemplateVB\.template.config\description.md" />
     <Content Include="TestData\Templates\ProjectTemplateVB\.template.config\Layout.json" />
     <Content Include="TestData\Templates\ProjectTemplateVB\.template.config\template.json" />
+    <Content Include="TestData\Templates\RightClick.FeatureTemplate\.template.config\template.json" />
     <None Include="TestData\Templates\ProjectTemplate\.template.config\description.md" />
     <Content Include="TestData\Templates\ProjectTemplateVB\.template.config\icon.png" />
     <Content Include="TestData\Templates\ProjectTemplate\.template.config\icon.png" />

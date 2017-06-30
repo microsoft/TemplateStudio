@@ -21,34 +21,52 @@ using Microsoft.Templates.Core.Test.Locations;
 using Microsoft.Templates.Test.Artifacts;
 
 using Xunit;
+using System.Collections.Generic;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 {
+    [Collection("Unit Test Templates")]
     public class GenerateTestCertificatePostActionTest : IContextProvider
     {
+        private TemplatesFixture _fixture;
+
+        public GenerateTestCertificatePostActionTest(TemplatesFixture fixture)
+        {
+            _fixture = fixture;
+        }
+
         public string ProjectName { get; set; }
         public string OutputPath { get; set; }
+        public string ProjectPath { get; set; }
+        public List<string> ProjectItems { get; } = new List<string>();
+
+        public List<FailedMergePostAction> FailedMergePostActions { get; } = new List<FailedMergePostAction>();
+
+        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
+
+        public List<string> FilesToOpen { get; } = new List<string>();
+
 
         [Theory, MemberData("GetAllLanguages"), Trait("Type", "ProjectGeneration")]
         public void Execute_Ok(string language)
         {
-            GenContext.Bootstrap(new UnitTestsTemplatesSource(), new FakeGenShell(), language);
-
+            // [ML] GenContext.Bootstrap(new UnitTestsTemplatesSource(), new FakeGenShell(), language);
             var projectName = "test";
 
             ProjectName = projectName;
-            OutputPath = @".\TestData\tmp";
+            ProjectPath = @".\TestData\tmp";
 
             GenContext.Current = this;
 
-            Directory.CreateDirectory(GenContext.Current.OutputPath);
-            File.Copy(Path.Combine(Environment.CurrentDirectory, "TestData\\TestProject\\Test.csproj"), Path.Combine(GenContext.Current.OutputPath, "Test.csproj"), true);
+            Directory.CreateDirectory(GenContext.Current.ProjectPath);
+            File.Copy(Path.Combine(Environment.CurrentDirectory, "TestData\\TestProject\\Test.csproj"), Path.Combine(GenContext.Current.ProjectPath, "Test.csproj"), true);
 
             var postAction = new GenerateTestCertificatePostAction("TestUser");
 
             postAction.Execute();
 
-            var certFilePath = Path.Combine(GenContext.Current.OutputPath, $"{projectName}_TemporaryKey.pfx");
+            var certFilePath = Path.Combine(GenContext.Current.ProjectPath, $"{projectName}_TemporaryKey.pfx");
 
             Assert.True(File.Exists(certFilePath));
 

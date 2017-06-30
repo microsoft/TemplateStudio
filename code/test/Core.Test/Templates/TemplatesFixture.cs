@@ -29,8 +29,10 @@ namespace Microsoft.Templates.Core.Test
 
             GenContext.Bootstrap(source, new FakeGenShell(), language);
 
-            Repository = new TemplatesRepository(source, Version.Parse("0.0.0.0"), language);
-            Repository.SynchronizeAsync(true).Wait();
+            // [ML] Repository = new TemplatesRepository(source, Version.Parse("0.0.0.0"), language);
+            GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
+
+            Repository = GenContext.ToolBox.Repo;
         }
     }
 

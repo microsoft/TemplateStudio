@@ -10,28 +10,13 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
-using System.IO;
-using System.Linq;
-
-using Microsoft.Templates.Core.PostActions.Catalog.Merge;
-
 using Xunit;
 
-namespace Microsoft.Templates.Core.Test.PostActions.Catalog
+namespace Microsoft.Templates.Test
 {
-    public class MergeTest
+    [CollectionDefinition("Generation collection")]
+    public class DatabaseCollection : ICollectionFixture<GenerationFixture>
     {
-        [Fact]
-        public void Merge()
-        {
-            var source = File.ReadAllLines(@".\TestData\Merge\Source.cs");
-            var merge = File.ReadAllLines(@".\TestData\Merge\Source_postaction.cs");
-            var expected = File.ReadAllText(@".\TestData\Merge\Source_expected.cs");
-            var result = source.Merge(merge, out string errorLine);
-
-            Assert.Equal(expected, string.Join(Environment.NewLine, result.ToArray()));
-            Assert.Equal(errorLine, string.Empty);
-        }
+        
     }
 }

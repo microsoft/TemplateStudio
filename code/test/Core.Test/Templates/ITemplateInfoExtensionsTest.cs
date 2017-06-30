@@ -292,6 +292,24 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal("DefaultName", result);
         }
 
+        [Fact]
+        public void GetRightClickEnabled()
+        {
+            var target = GetTarget("RightClickTemplate");
+            var result = target.GetRightClickEnabled();
+
+            Assert.Equal(true, result);
+        }
+
+        [Fact]
+        public void GetRightClickEnabledFalse()
+        {
+            var target = GetTarget("FeatureTemplate");
+            var result = target.GetRightClickEnabled();
+
+            Assert.Equal(false, result);
+        }
+
         [Theory, MemberData("GetAllLanguages"), Trait("Type", "ProjectGeneration")]
         public void GetDefaultName_unspecified(string language)
         {
