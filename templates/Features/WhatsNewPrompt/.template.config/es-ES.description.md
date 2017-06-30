@@ -1,3 +1,5 @@
-Esta función mostrará un mensaje a la persona que lo usa cuando se usa la aplicación por primera vez. Puede utilizarlo para proporcionar instrucciones útiles o información a una persona que no haya utilizado la aplicación antes.
+After you update your app it's important to tell the people using it about the changes you make. This feature will display a message to the person using it when the app is updated.
 
-El mensaje exhibido es completamente adaptable y puede exhibir el texto, las imágenes, o cualquier otra cosa.
+The message displayed is fully customizable and can be used to give details about new features or bugs that have been fixed.
+
+Add this feature now so that it will be able to tell when it has been updated.

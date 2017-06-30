@@ -188,6 +188,9 @@
     <Compile Include="Controls\CodeViewer.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Extensions\ListViewExtensions.cs" />
+    <Compile Include="Generation\NewItemGenerationFileInfo.cs" />
+    <Compile Include="Generation\NewItemGenerationResult.cs" />
+    <Compile Include="Generation\ProjectConfigInfo.cs" />
     <Compile Include="Resources\StringRes.cs-CZ.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -535,6 +538,7 @@
     <EmbeddedResource Include="Resources\StringRes.cs-CZ.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.cs-CZ.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.de-DE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -7,7 +7,7 @@
     {
         "name": "SplitView",
         "displayName": "Panel de navegación",
-        "summary": "Se incluye un panel de navegación (o "menú de hamburguesas") para navegar entre páginas."
+        "summary": "Se incluye un panel de navegación (o 'menú de hamburguesas') para navegar entre páginas."
     },
     {
         "name": "TabbedPivot",

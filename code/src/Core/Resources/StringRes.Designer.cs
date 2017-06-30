@@ -142,6 +142,24 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not find file &apos;{0}&apos; to include the following changes. Please review the code blocks to include the changes manually where required in your project. .
+        /// </summary>
+        internal static string FailedMergePostActionFileNotFound {
+            get {
+                return ResourceManager.GetString("FailedMergePostActionFileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not find the expected line `{0}` in file &apos;{1}&apos;. Please merge the content from the postaction file manually..
+        /// </summary>
+        internal static string FailedMergePostActionLineNotFound {
+            get {
+                return ResourceManager.GetString("FailedMergePostActionLineNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The folder {0} can&apos;t be copied to {1}. Error: {2}.
         /// </summary>
         internal static string FsSafeCopyFileMessage {
@@ -205,6 +223,33 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to *This is a markdown file, to improve visualization you can install a Visual Studio extension for markdown files, for example: [Markdown Editor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*.
+        /// </summary>
+        internal static string MarkdownHeader {
+            get {
+                return ResourceManager.GetString("MarkdownHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no merge target for file &apos;{0}&apos;.
+        /// </summary>
+        internal static string MergeFileNotFoundExceptionMessage {
+            get {
+                return ResourceManager.GetString("MergeFileNotFoundExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line {0} not found in file &apos;{1}&apos;.
+        /// </summary>
+        internal static string MergeLineNotFoundExceptionMessage {
+            get {
+                return ResourceManager.GetString("MergeLineNotFoundExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is no merge target for file &apos;{0}&apos;.
         /// </summary>
         internal static string MergePostActionExecuteMessage {
@@ -264,6 +309,314 @@ namespace Microsoft.Templates.Core.Resources {
         internal static string RepositorySynchronizationExceptionMessage {
             get {
                 return ResourceManager.GetString("RepositorySynchronizationExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding items to project ....
+        /// </summary>
+        internal static string StatusAddingItems {
+            get {
+                return ResourceManager.GetString("StatusAddingItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opening generated files ....
+        /// </summary>
+        internal static string StatusOpeningItems {
+            get {
+                return ResourceManager.GetString("StatusOpeningItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ## Conflicting files:.
+        /// </summary>
+        internal static string SyncInstructionsConflictingFiles {
+            get {
+                return ResourceManager.GetString("SyncInstructionsConflictingFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to These files already exist in your project and were also generated as part of the new item.
+        ///Please compare and make sure everything is in the right place..
+        /// </summary>
+        internal static string SyncInstructionsConflictingFilesDescription {
+            get {
+                return ResourceManager.GetString("SyncInstructionsConflictingFilesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please follow the indicated steps to include the new item into you project:.
+        /// </summary>
+        internal static string SyncInstructionsDescription {
+            get {
+                return ResourceManager.GetString("SyncInstructionsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steps to include new item generation.md.
+        /// </summary>
+        internal static string SyncInstructionsFileName {
+            get {
+                return ResourceManager.GetString("SyncInstructionsFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # Steps to include new item generation.
+        /// </summary>
+        internal static string SyncInstructionsHeader {
+            get {
+                return ResourceManager.GetString("SyncInstructionsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ### Changes required in file &apos;{0}&apos;:.
+        /// </summary>
+        internal static string SyncInstructionsMergeFile {
+            get {
+                return ResourceManager.GetString("SyncInstructionsMergeFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No preview file could be generated, the following changes could not be integrated: .
+        /// </summary>
+        internal static string SyncInstructionsMergeFileError {
+            get {
+                return ResourceManager.GetString("SyncInstructionsMergeFileError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview the changes in: [{0}]({0}).
+        /// </summary>
+        internal static string SyncInstructionsMergeFilePreview {
+            get {
+                return ResourceManager.GetString("SyncInstructionsMergeFilePreview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ## Modified files:.
+        /// </summary>
+        internal static string SyncInstructionsModifiedFiles {
+            get {
+                return ResourceManager.GetString("SyncInstructionsModifiedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To integrate your new item with the existing project apply the following changes: .
+        /// </summary>
+        internal static string SyncInstructionsModifiedFilesDescription {
+            get {
+                return ResourceManager.GetString("SyncInstructionsModifiedFilesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ## New files:.
+        /// </summary>
+        internal static string SyncInstructionsNewFiles {
+            get {
+                return ResourceManager.GetString("SyncInstructionsNewFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy and add the following files to your project:.
+        /// </summary>
+        internal static string SyncInstructionsNewFilesDescription {
+            get {
+                return ResourceManager.GetString("SyncInstructionsNewFilesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can find all referenced files in the temporary generation folder: {0}.
+        /// </summary>
+        internal static string SyncInstructionsTempFolder {
+            get {
+                return ResourceManager.GetString("SyncInstructionsTempFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ## Unchanged files:.
+        /// </summary>
+        internal static string SyncInstructionsUnchangedFiles {
+            get {
+                return ResourceManager.GetString("SyncInstructionsUnchangedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to These files already exist in your project, no action is necessary:.
+        /// </summary>
+        internal static string SyncInstructionsUnchangedFilesDescription {
+            get {
+                return ResourceManager.GetString("SyncInstructionsUnchangedFilesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ## Conflicting files:.
+        /// </summary>
+        internal static string SyncSummaryConflictingFiles {
+            get {
+                return ResourceManager.GetString("SyncSummaryConflictingFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to These files already exist in your project and were also generated as part of the new item.
+        ///Please compare and make sure everything is in the right place..
+        /// </summary>
+        internal static string SyncSummaryConflictingFilesDescription {
+            get {
+                return ResourceManager.GetString("SyncSummaryConflictingFilesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following changes have been incorporated into your project:.
+        /// </summary>
+        internal static string SyncSummaryDescription {
+            get {
+                return ResourceManager.GetString("SyncSummaryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ## Failed changes in files:.
+        /// </summary>
+        internal static string SyncSummaryFailedMerges {
+            get {
+                return ResourceManager.GetString("SyncSummaryFailedMerges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merges in the following files failed:.
+        /// </summary>
+        internal static string SyncSummaryFailedMergesDescription {
+            get {
+                return ResourceManager.GetString("SyncSummaryFailedMergesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GenerationSummary.md.
+        /// </summary>
+        internal static string SyncSummaryFileName {
+            get {
+                return ResourceManager.GetString("SyncSummaryFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # Generation summary.
+        /// </summary>
+        internal static string SyncSummaryHeader {
+            get {
+                return ResourceManager.GetString("SyncSummaryHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ### Changes in file &apos;{0}&apos;:.
+        /// </summary>
+        internal static string SyncSummaryMergeFile {
+            get {
+                return ResourceManager.GetString("SyncSummaryMergeFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following changes could not be integrated:.
+        /// </summary>
+        internal static string SyncSummaryMergeFileError {
+            get {
+                return ResourceManager.GetString("SyncSummaryMergeFileError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See the final result: [{0}]({1}).
+        /// </summary>
+        internal static string SyncSummaryMergeFilePreview {
+            get {
+                return ResourceManager.GetString("SyncSummaryMergeFilePreview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ## Modified files:.
+        /// </summary>
+        internal static string SyncSummaryModifiedFiles {
+            get {
+                return ResourceManager.GetString("SyncSummaryModifiedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following changes have been applied:.
+        /// </summary>
+        internal static string SyncSummaryModifiedFilesDescription {
+            get {
+                return ResourceManager.GetString("SyncSummaryModifiedFilesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ## New files:.
+        /// </summary>
+        internal static string SyncSummaryNewFiles {
+            get {
+                return ResourceManager.GetString("SyncSummaryNewFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to These files have been added to your project..
+        /// </summary>
+        internal static string SyncSummaryNewFilesDescription {
+            get {
+                return ResourceManager.GetString("SyncSummaryNewFilesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProjectFile.
+        /// </summary>
+        internal static string SyncSummaryProjectFile {
+            get {
+                return ResourceManager.GetString("SyncSummaryProjectFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can find the files from the generation in the temporary generation folder: {0}.
+        /// </summary>
+        internal static string SyncSummaryTempFolder {
+            get {
+                return ResourceManager.GetString("SyncSummaryTempFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Temp.
+        /// </summary>
+        internal static string SyncSummaryTempGenerationFile {
+            get {
+                return ResourceManager.GetString("SyncSummaryTempGenerationFile", resourceCulture);
             }
         }
         
@@ -381,6 +734,24 @@ namespace Microsoft.Templates.Core.Resources {
         internal static string TemplatexVerifyCertificateMessage {
             get {
                 return ResourceManager.GetString("TemplatexVerifyCertificateMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End of block.
+        /// </summary>
+        internal static string UserFriendlyPostActionMacroEndGroup {
+            get {
+                return ResourceManager.GetString("UserFriendlyPostActionMacroEndGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Block to be included.
+        /// </summary>
+        internal static string UserFriendlyPostActionMacroStartGroup {
+            get {
+                return ResourceManager.GetString("UserFriendlyPostActionMacroStartGroup", resourceCulture);
             }
         }
     }

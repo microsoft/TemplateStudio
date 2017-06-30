@@ -1,6 +1,6 @@
 {
     "author": "Microsoft Community Contribution",
-    "name": "Сообщение о первом запуске",
-    "description": "Отображение подсказки, когда приложение используется в первый раз.",
-    "identity": "wts.Feat.FirstRunPrompt"
+    "name": "What's New Prompt",
+    "description": "Display a prompt when the app is first used after an update.",
+    "identity": "wts.Feat.WhatsNewPrompt"
 }

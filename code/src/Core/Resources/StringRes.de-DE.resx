@@ -144,6 +144,12 @@
   <data name="ExceptionTrackedString" xml:space="preserve">
     <value>Ausnahme verfolgt</value>
   </data>
+  <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
+    <value>Die Datei '{0}' konnte nicht gefunden werden, um die folgenden Änderungen hinzuzufügen. Bitte überprüfen Sie die Codeblöcke, um die Änderungen manuell einzugeben, wenn dies in Ihrem Projekt erforderlich ist.</value>
+  </data>
+  <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
+    <value>Konnte die erwartete Zeile `{0}` in der Datei '{1}' nicht finden. Bitte fügen Sie den Inhalt aus der Postaktionsdatei manuell zusammen.</value>
+  </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
     <value>Der Ordner {0} kann nicht auf {1} kopiert werden. Fehler: {2}</value>
   </data>
@@ -165,6 +171,15 @@
   <data name="LogStartedString" xml:space="preserve">
     <value>Log begonnen</value>
   </data>
+  <data name="MarkdownHeader" xml:space="preserve">
+    <value>* Dies ist eine Markdown-Datei, um die Visualisierung zu verbessern, können Sie eine Visual Studio-Erweiterung für Markdown-Dateien installieren, zum Beispiel: [Markdown Editor] (https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor) *</value>
+  </data>
+  <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
+    <value>Es gibt kein Zusammenführungsziel für die Datei '{0}'</value>
+  </data>
+  <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
+    <value>Zeile {0} nicht in der Datei '{1}' gefunden</value>
+  </data>
   <data name="MergePostActionExecuteMessage" xml:space="preserve">
     <value>Es gibt kein Zusammenführungsziel für die Datei '{0}'</value>
   </data>
@@ -185,6 +200,114 @@
   </data>
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>Fehler beim Synchronisieren von Vorlagen. Status:</value>
+  </data>
+  <data name="StatusAddingItems" xml:space="preserve">
+    <value>Hinzufügen von Elementen zum Projekt ...</value>
+  </data>
+  <data name="StatusOpeningItems" xml:space="preserve">
+    <value>Eröffnete generierte Dateien ...</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>Bitte vergleichen und sicherstellen, dass alles an der richtigen Stelle ist.</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Bitte vergleichen und sicherstellen, dass alles an der richtigen Stelle ist.</value>
+  </data>
+  <data name="SyncInstructionsConflictingFiles" xml:space="preserve">
+    <value>## Konfliktdateien:</value>
+  </data>
+  <data name="SyncInstructionsConflictingFilesDescription" xml:space="preserve">
+    <value>Diese Dateien existieren bereits in deinem Projekt und wurden auch als Teil des neuen Artikels generiert.</value>
+  </data>
+  <data name="SyncInstructionsDescription" xml:space="preserve">
+    <value>Bitte folgen Sie den angezeigten Schritten, um das neue Element in das Projekt aufzunehmen:</value>
+  </data>
+  <data name="SyncInstructionsFileName" xml:space="preserve">
+    <value>Schritte, um neue Element generation.md enthalten</value>
+  </data>
+  <data name="SyncInstructionsHeader" xml:space="preserve">
+    <value># Schritte zur neuen Elementgenerierung</value>
+  </data>
+  <data name="SyncInstructionsMergeFile" xml:space="preserve">
+    <value>### Änderungen in der Datei '{0}' erforderlich:</value>
+  </data>
+  <data name="SyncInstructionsMergeFileError" xml:space="preserve">
+    <value>Es konnte keine Vorschau-Datei erstellt werden, die folgenden Änderungen konnten nicht integriert werden:</value>
+  </data>
+  <data name="SyncInstructionsMergeFilePreview" xml:space="preserve">
+    <value>Vorschau der Änderungen in: [{0}] ({0})</value>
+  </data>
+  <data name="SyncInstructionsModifiedFiles" xml:space="preserve">
+    <value>## Geänderte Dateien:</value>
+  </data>
+  <data name="SyncInstructionsModifiedFilesDescription" xml:space="preserve">
+    <value>Um Ihr neues Element mit dem vorhandenen Projekt zu integrieren, gelten folgende Änderungen:</value>
+  </data>
+  <data name="SyncInstructionsNewFiles" xml:space="preserve">
+    <value>## Neue Dateien:</value>
+  </data>
+  <data name="SyncInstructionsNewFilesDescription" xml:space="preserve">
+    <value>Kopiere und füge folgende Dateien zu deinem Projekt hinzu:</value>
+  </data>
+  <data name="SyncInstructionsTempFolder" xml:space="preserve">
+    <value>Sie finden alle referenzierten Dateien im Ordner der temporären Generation: {0}</value>
+  </data>
+  <data name="SyncInstructionsUnchangedFiles" xml:space="preserve">
+    <value>## Unveränderte Dateien:</value>
+  </data>
+  <data name="SyncInstructionsUnchangedFilesDescription" xml:space="preserve">
+    <value>Diese Dateien existieren bereits in deinem Projekt, keine Aktion ist notwendig:</value>
+  </data>
+  <data name="SyncSummaryConflictingFiles" xml:space="preserve">
+    <value>## Konfliktdateien:</value>
+  </data>
+  <data name="SyncSummaryConflictingFilesDescription" xml:space="preserve">
+    <value>Diese Dateien existieren bereits in deinem Projekt und wurden auch als Teil des neuen Artikels generiert.</value>
+  </data>
+  <data name="SyncSummaryDescription" xml:space="preserve">
+    <value>Folgende Änderungen wurden in Ihr Projekt aufgenommen:</value>
+  </data>
+  <data name="SyncSummaryFailedMerges" xml:space="preserve">
+    <value>## Fehler beim Ändern von Dateien:</value>
+  </data>
+  <data name="SyncSummaryFailedMergesDescription" xml:space="preserve">
+    <value>Zusammenfassen in den folgenden Dateien fehlgeschlagen:</value>
+  </data>
+  <data name="SyncSummaryFileName" xml:space="preserve">
+    <value>GenerationSummary.md</value>
+  </data>
+  <data name="SyncSummaryHeader" xml:space="preserve">
+    <value># Generationszusammenfassung</value>
+  </data>
+  <data name="SyncSummaryMergeFile" xml:space="preserve">
+    <value>### Änderungen in der Datei '{0}':</value>
+  </data>
+  <data name="SyncSummaryMergeFileError" xml:space="preserve">
+    <value>Folgende Änderungen konnten nicht integriert werden:</value>
+  </data>
+  <data name="SyncSummaryMergeFilePreview" xml:space="preserve">
+    <value>Siehe das Endergebnis: [{0}] ({1})</value>
+  </data>
+  <data name="SyncSummaryModifiedFiles" xml:space="preserve">
+    <value>## Geänderte Dateien:</value>
+  </data>
+  <data name="SyncSummaryModifiedFilesDescription" xml:space="preserve">
+    <value>Folgende Änderungen wurden vorgenommen:</value>
+  </data>
+  <data name="SyncSummaryNewFiles" xml:space="preserve">
+    <value>## Neue Dateien:</value>
+  </data>
+  <data name="SyncSummaryNewFilesDescription" xml:space="preserve">
+    <value>Diese Dateien wurden zu Ihrem Projekt hinzugefügt.</value>
+  </data>
+  <data name="SyncSummaryProjectFile" xml:space="preserve">
+    <value>ProjectFile</value>
+  </data>
+  <data name="SyncSummaryTempFolder" xml:space="preserve">
+    <value>Sie finden die Dateien aus der Generation im Ordner der temporären Generation: {0}</value>
+  </data>
+  <data name="SyncSummaryTempGenerationFile" xml:space="preserve">
+    <value>Temp</value>
   </data>
   <data name="TemplatesContentExtractedToString" xml:space="preserve">
     <value>Vorlageninhalt extrahiert</value>
@@ -211,10 +334,10 @@
     <value>Die angegebene Quelle '{0}' ist ungültig. Oder die Datei existiert nicht oder der Ordner ist leer.</value>
   </data>
   <data name="TemplatexLoadCertMessage" xml:space="preserve">
-    <value>Kein Zertifikat gefunden mit dem Thumbrint {0}. Gesucht auf CurrentUser / My und LocalMachine / Meine Shops.</value>
+    <value>Kein Zertifikat gefunden mit dem Thumbrint {0}. Gesucht auf CurrentUser/My und LocalMachine/Meine Shops.</value>
   </data>
   <data name="TemplatexPackAndSignMessage" xml:space="preserve">
-    <value>Das Zertifikat mit thumbprint {0} kann nicht in CurrentUser / My oder LocalMachine / My gefunden werden.</value>
+    <value>Das Zertifikat mit thumbprint {0} kann nicht in CurrentUser/My oder LocalMachine/My gefunden werden.</value>
   </data>
   <data name="TemplatexSignAllPartsMessage" xml:space="preserve">
     <value>Fehler sigingn Paket.</value>
@@ -224,5 +347,11 @@
   </data>
   <data name="TemplatexVerifyCertificateMessage" xml:space="preserve">
     <value>Zertifikat '{0}' Bestätigung beendet mit Status '{1}'</value>
+  </data>
+  <data name="UserFriendlyPostActionMacroEndGroup" xml:space="preserve">
+    <value>Ende des Blocks</value>
+  </data>
+  <data name="UserFriendlyPostActionMacroStartGroup" xml:space="preserve">
+    <value>Block, um aufgenommen zu werden</value>
   </data>
 </root>

@@ -11,6 +11,7 @@
 // ******************************************************************
 
 using System;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
@@ -20,8 +21,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
             var output = postactionCode
                             .Replace(IEnumerableExtensions.MacroBeforeMode, string.Empty)
-                            .Replace(IEnumerableExtensions.MacroStartGroup, Strings.Resources.UserFriendlyPostActionMacroStartGroup)
-                            .Replace(IEnumerableExtensions.MarcoEndGroup, Strings.Resources.UserFriendlyPostActionMacroEndGroup);
+                            .Replace(IEnumerableExtensions.MacroStartGroup, StringRes.UserFriendlyPostActionMacroStartGroup)
+                            .Replace(IEnumerableExtensions.MarcoEndGroup, StringRes.UserFriendlyPostActionMacroEndGroup);
 
             var cleanRemovals = output.Split(new[] { Environment.NewLine }, StringSplitOptions.None).RemoveRemovals();
             output = string.Join(Environment.NewLine, cleanRemovals);

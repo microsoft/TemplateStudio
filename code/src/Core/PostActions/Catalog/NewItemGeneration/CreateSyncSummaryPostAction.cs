@@ -18,6 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
@@ -29,22 +30,22 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         public override void Execute()
         {
-            var fileName = Path.Combine(GenContext.Current.OutputPath, Strings.Resources.SyncSummaryFileName);
+            var fileName = Path.Combine(GenContext.Current.OutputPath, StringRes.SyncSummaryFileName);
 
             var sb = new StringBuilder();
 
-            sb.AppendLine(Strings.Resources.MarkdownHeader);
+            sb.AppendLine(StringRes.MarkdownHeader);
             sb.AppendLine();
-            sb.AppendLine(Strings.Resources.SyncSummaryHeader);
-            sb.AppendLine(Strings.Resources.SyncSummaryDescription);
+            sb.AppendLine(StringRes.SyncSummaryHeader);
+            sb.AppendLine(StringRes.SyncSummaryDescription);
             sb.AppendLine();
-            sb.AppendLine(string.Format(Strings.Resources.SyncSummaryTempFolder, GenContext.Current.OutputPath));
+            sb.AppendLine(string.Format(StringRes.SyncSummaryTempFolder, GenContext.Current.OutputPath));
             sb.AppendLine();
 
             if (_config.NewFiles.Any())
             {
-                sb.AppendLine(Strings.Resources.SyncSummaryNewFiles);
-                sb.AppendLine(Strings.Resources.SyncSummaryNewFilesDescription);
+                sb.AppendLine(StringRes.SyncSummaryNewFiles);
+                sb.AppendLine(StringRes.SyncSummaryNewFilesDescription);
 
                 foreach (var newFile in _config.NewFiles)
                 {
@@ -57,8 +58,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             if (_config.ModifiedFiles.Any())
             {
-                sb.AppendLine(Strings.Resources.SyncSummaryModifiedFiles);
-                sb.AppendLine(Strings.Resources.SyncSummaryModifiedFilesDescription);
+                sb.AppendLine(StringRes.SyncSummaryModifiedFiles);
+                sb.AppendLine(StringRes.SyncSummaryModifiedFilesDescription);
                 sb.AppendLine();
 
                 foreach (var file in _config.ModifiedFiles)
@@ -69,11 +70,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                     {
                         var modifiedFilePath = Path.Combine(GenContext.Current.ProjectPath, mergeFile.Key);
 
-                        sb.AppendLine(string.Format(Strings.Resources.SyncSummaryMergeFile, mergeFile.Key));
+                        sb.AppendLine(string.Format(StringRes.SyncSummaryMergeFile, mergeFile.Key));
 
                         if (!GenContext.Current.FailedMergePostActions.Any(w => w.FileName == mergeFile.Key))
                         {
-                            sb.AppendLine(string.Format(Strings.Resources.SyncSummaryMergeFilePreview, mergeFile.Key, Uri.EscapeUriString(modifiedFilePath)));
+                            sb.AppendLine(string.Format(StringRes.SyncSummaryMergeFilePreview, mergeFile.Key, Uri.EscapeUriString(modifiedFilePath)));
                             sb.AppendLine();
 
                             foreach (var mergeInfo in mergeFile.Value)
@@ -98,17 +99,17 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             var failedMergeFiles = GenContext.Current.MergeFilesFromProject.Where(f => GenContext.Current.FailedMergePostActions.Any(m => m.FileName == f.Key));
             if (failedMergeFiles.Any())
             {
-                sb.AppendLine(Strings.Resources.SyncSummaryFailedMerges);
-                sb.AppendLine(Strings.Resources.SyncSummaryFailedMergesDescription);
+                sb.AppendLine(StringRes.SyncSummaryFailedMerges);
+                sb.AppendLine(StringRes.SyncSummaryFailedMergesDescription);
                 sb.AppendLine();
 
                 foreach (var failedMergeFile in failedMergeFiles)
                 {
-                    sb.AppendLine(string.Format(Strings.Resources.SyncSummaryMergeFile, failedMergeFile.Key));
+                    sb.AppendLine(string.Format(StringRes.SyncSummaryMergeFile, failedMergeFile.Key));
 
                     var failedMergePostActions = GenContext.Current.FailedMergePostActions.Where(w => w.FileName == failedMergeFile.Key);
 
-                    sb.AppendLine(Strings.Resources.SyncSummaryMergeFileError);
+                    sb.AppendLine(StringRes.SyncSummaryMergeFileError);
                     foreach (var failedMergePostAction in failedMergePostActions)
                     {
                         sb.AppendLine($"* {failedMergePostAction.Description}");
@@ -133,8 +134,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             }
             if (_config.ConflictingFiles.Any())
             {
-                sb.AppendLine(Strings.Resources.SyncSummaryConflictingFiles);
-                sb.AppendLine(Strings.Resources.SyncSummaryConflictingFilesDescription);
+                sb.AppendLine(StringRes.SyncSummaryConflictingFiles);
+                sb.AppendLine(StringRes.SyncSummaryConflictingFilesDescription);
                 sb.AppendLine();
                 foreach (var conflictFile in _config.ConflictingFiles)
                 {
@@ -159,7 +160,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private static string GetCompareLink(string fileName, string filePath)
         {
-            return $"* {Strings.Resources.SyncSummaryTempGenerationFile}: [{fileName}]({fileName}), {Strings.Resources.SyncSummaryProjectFile}: [{fileName}]({Uri.EscapeUriString(filePath)})";
+            return $"* {StringRes.SyncSummaryTempGenerationFile}: [{fileName}]({fileName}), {StringRes.SyncSummaryProjectFile}: [{fileName}]({Uri.EscapeUriString(filePath)})";
         }
     }
 }

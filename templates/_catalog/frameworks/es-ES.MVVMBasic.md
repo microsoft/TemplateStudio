@@ -1,3 +1,3 @@
-Se trata de una versión genérica de un patrón MVVM. El patrón [Model-View-ViewModel] (https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) se puede utilizar en todas las plataformas XAML. Su intención es proporcionar una separación limpia de las preocupaciones entre los controles de la interfaz de usuario y su lógica.
+¡España! This is a generic version of a MVVM pattern.  The [Model-View-ViewModel pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) can be used on all XAML platforms. Its intent is to provide a clean separation of concerns between the user interface controls and their logic.
 
-Hay tres componentes principales en el patrón MVVM: el modelo, la vista y el modelo de vista. Cada uno desempeña un papel distinto y separado.
+There are three core components in the MVVM pattern: the model, the view, and the view model. Each serves a distinct and separate role.

@@ -12,6 +12,7 @@
 
 using System.Windows;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.Views.NewProject
 {

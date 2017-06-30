@@ -75,7 +75,6 @@
     <Compile Include="Logic\LocalizableItemsExtractor.cs" />
     <Compile Include="Logic\LocalizationTool.cs" />
     <Compile Include="Logic\XmlUtility.cs" />
-    <Compile Include="Logic\пола.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Logic\ProjectTemplateGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

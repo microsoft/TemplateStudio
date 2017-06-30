@@ -129,11 +129,92 @@
   <data name="ButtonCreate" xml:space="preserve">
     <value>Erstellen</value>
   </data>
+  <data name="ButtonFinish" xml:space="preserve">
+    <value>Fertig</value>
+  </data>
+  <data name="ButtonGenerate" xml:space="preserve">
+    <value>Generieren</value>
+  </data>
+  <data name="ButtonGenerateAndMerge" xml:space="preserve">
+    <value>Generieren &amp; Zusammenführen</value>
+  </data>
   <data name="ButtonNext" xml:space="preserve">
     <value>Nächster</value>
   </data>
   <data name="ButtonOk" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="ButtonRefreshTemplates" xml:space="preserve">
+    <value>Vorlagen aktualisieren</value>
+  </data>
+  <data name="ChangesSummaryCategoryConflictingFiles" xml:space="preserve">
+    <value>Konfliktdateien</value>
+  </data>
+  <data name="ChangesSummaryCategoryFailedMerges" xml:space="preserve">
+    <value>Failed fusioniert</value>
+  </data>
+  <data name="ChangesSummaryCategoryLicenses" xml:space="preserve">
+    <value>Lizenzen</value>
+  </data>
+  <data name="ChangesSummaryCategoryNewFiles" xml:space="preserve">
+    <value>Neue Dateien</value>
+  </data>
+  <data name="ChangesSummaryCategoryUnchangedFiles" xml:space="preserve">
+    <value>Unveränderte Dateien</value>
+  </data>
+  <data name="ChangesSummaryCategotyModifiedFiles" xml:space="preserve">
+    <value>Geänderte Dateien</value>
+  </data>
+  <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
+    <value>Nicht zusammenführen (in einem temporären Ordner generieren)</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionConflictingFiles" xml:space="preserve">
+    <value>Die Datei {0} existiert bereits in deinem Projekt und wurde auch als Teil des neuen Elements generiert. Bitte vergleichen und sicherstellen, dass alles der richtige Ort ist.</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionFailedMerges" xml:space="preserve">
+    <value>Die Änderungen konnten nicht integriert werden.</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionModifiedFiles" xml:space="preserve">
+    <value>Die Datei {0} wurde geändert.</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionNewFiles" xml:space="preserve">
+    <value>Das Fille {0} wird als neue Datei hinzugefügt.</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionUnchangedFiles" xml:space="preserve">
+    <value>Die Datei {0} existiert bereits in deinem Projekt, keine Aktion ist notwendig.</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleConflictingFiles" xml:space="preserve">
+    <value>Konfliktdatei</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleFailedMerges" xml:space="preserve">
+    <value>Failed fusioniert</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleModifiedFiles" xml:space="preserve">
+    <value>Geänderte Datei</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleNewFiles" xml:space="preserve">
+    <value>Neue Datei</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleUnchangedFiles" xml:space="preserve">
+    <value>Unveränderte Datei</value>
+  </data>
+  <data name="ChangesSummaryTitle_SF" xml:space="preserve">
+    <value>Änderungen der Zusammenfassung: add {0} {1}</value>
+  </data>
+  <data name="CheckForUpdates" xml:space="preserve">
+    <value>Überprüfen Sie auf neue Vorlagen</value>
+  </data>
+  <data name="ConflictingDetailDescription_SF" xml:space="preserve">
+    <value>Die Datei {0} existiert bereits. Durch die Fortsetzung dieser Datei wird ersetzt.</value>
+  </data>
+  <data name="ConflictingDetailExistingFile" xml:space="preserve">
+    <value>Bestehende Datei</value>
+  </data>
+  <data name="ConflictingDetailNewFile" xml:space="preserve">
+    <value>Neue Datei</value>
+  </data>
+  <data name="ConflictingDetailTitle" xml:space="preserve">
+    <value>Zieldatei existiert</value>
   </data>
   <data name="EditTemplateDescription" xml:space="preserve">
     <value>Geben Sie einen Namen ein</value>
@@ -141,11 +222,14 @@
   <data name="ErrorDialogTitle" xml:space="preserve">
     <value>Etwas ist schief gelaufen :-(</value>
   </data>
-  <data name="ErrorNoHomePage" xml:space="preserve">
-    <value>Es ist nicht möglich, ein Projekt ohne Home Page zu erstellen</value>
-  </data>
   <data name="ErrorSync" xml:space="preserve">
     <value>Fehler beim Synchronisieren von Vorlagen. Siehe Ausgabe für weitere Details.</value>
+  </data>
+  <data name="ErrorSyncCheckNewVersion" xml:space="preserve">
+    <value>Fehler bei der Überprüfung auf Updates. Siehe Ausgabe für weitere Details.</value>
+  </data>
+  <data name="ErrorSyncRefresh" xml:space="preserve">
+    <value>Fehler beim Auffrischen von Vorlagen. Siehe Ausgabe für weitere Details.</value>
   </data>
   <data name="ErrorViewProblemDetails" xml:space="preserve">
     <value>Problemdetails anzeigen</value>
@@ -175,10 +259,10 @@
     <value>Erzeugen der Vorlage {0} bis {1}.</value>
   </data>
   <data name="GeneratingFeatureMessage" xml:space="preserve">
-    <value>Hinzufügen von '{0}' Funktion zum Projekt ...</value>
+    <value>Erstellen '{0}' Feature ...</value>
   </data>
   <data name="GeneratingPageMessage" xml:space="preserve">
-    <value>Hinzufügen '{0}' Seite zum Projekt ...</value>
+    <value>Erstellen '{0}' Seite ...</value>
   </data>
   <data name="GeneratingProjectMessage" xml:space="preserve">
     <value>Erstellen von Projekt '{0}' ...</value>
@@ -186,11 +270,17 @@
   <data name="GenerationFinishedString" xml:space="preserve">
     <value>Generation fertig</value>
   </data>
+  <data name="GroupFeatureHeader_SF" xml:space="preserve">
+    <value>Features ({0}) - Wählen Sie eine</value>
+  </data>
   <data name="GroupFeaturesHeader_SF" xml:space="preserve">
     <value>Features ({0}) - Mehrfach hinzufügen</value>
   </data>
   <data name="GroupFrameworkHeader_SF" xml:space="preserve">
     <value>Framework ({0}) - Wähle einen</value>
+  </data>
+  <data name="GroupPageHeader_SF" xml:space="preserve">
+    <value>Seiten ({0}) - Wähle einen</value>
   </data>
   <data name="GroupPagesHeader_SF" xml:space="preserve">
     <value>Seiten ({0}) - Mehrfach hinzufügen</value>
@@ -225,11 +315,41 @@
   <data name="MoreDetail" xml:space="preserve">
     <value>Mehr Details</value>
   </data>
+  <data name="NewItemAddFeatureCancelled" xml:space="preserve">
+    <value>Neue Funktion hinzufügen abgebrochen</value>
+  </data>
+  <data name="NewItemAddFeatureSuccessStatusMsg" xml:space="preserve">
+    <value>Feature {0} erfolgreich hinzugefügt</value>
+  </data>
+  <data name="NewItemAddPageCancelled" xml:space="preserve">
+    <value>Neue Seite wird abgebrochen</value>
+  </data>
+  <data name="NewItemAddPageSuccessStatusMsg" xml:space="preserve">
+    <value>Seite {0} erfolgreich hinzugefügt</value>
+  </data>
+  <data name="NewItemName" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="NewItemTitle_SF" xml:space="preserve">
+    <value>Neue {0} hinzufügen</value>
+  </data>
+  <data name="NewVersionAvailable" xml:space="preserve">
+    <value>Es gibt neue Inhalte, klicken Sie auf Aktualisieren, um die neuesten Updates zu erhalten (aktuelle Auswahl wird zurückgesetzt).</value>
+  </data>
+  <data name="NewVersionInstructions" xml:space="preserve">
+    <value>Durch die Aktualisierung der Vorlagen wird die aktuelle Auswahl zurückgesetzt.</value>
+  </data>
   <data name="NoContentText" xml:space="preserve">
     <value>Kein Inhalt verfügbar</value>
   </data>
   <data name="NoData" xml:space="preserve">
     <value>Keine Daten</value>
+  </data>
+  <data name="NoProjectChanges" xml:space="preserve">
+    <value>Für Ihr Projekt gelten keine Änderungen. Alles schon existiert.</value>
+  </data>
+  <data name="PrivacyTermns" xml:space="preserve">
+    <value>Datenschutzerklärung</value>
   </data>
   <data name="ProjectSetupTitle" xml:space="preserve">
     <value>Projekttyp und Rahmen auswählen</value>
@@ -249,10 +369,10 @@
   <data name="SolutionWizardRunFinishedMessage" xml:space="preserve">
     <value>Erstellen von Windows Template Studio-Projekt ...</value>
   </data>
-  <data name="StatusAdquired" xml:space="preserve">
+  <data name="StatusAcquired" xml:space="preserve">
     <value>Erledigt</value>
   </data>
-  <data name="StatusAdquiring" xml:space="preserve">
+  <data name="StatusAcquiring" xml:space="preserve">
     <value>Prüfen auf Vorlagen-Updates ...</value>
   </data>
   <data name="StatusLowerVersionContent" xml:space="preserve">
@@ -261,11 +381,14 @@
   <data name="StatusLowerVersionTitle" xml:space="preserve">
     <value>Zauberer, der mit Vorlageninhalt nicht kompatibel ist</value>
   </data>
+  <data name="StatusNewVersionAvailable" xml:space="preserve">
+    <value>Es stehen neue Vorlagen zur Verfügung</value>
+  </data>
   <data name="StatusOverVersionContent" xml:space="preserve">
-    <value>Ein Update auf die Vorlagen ist verfügbar. Aktualisiere die Erweiterung, um die neuesten Inhalte zu erhalten.</value>
+    <value>Ein Update auf die Vorlagen ist verfügbar, aber nicht kompatibel mit der Assistentenversion. Aktualisieren Sie die Erweiterung, um auf den neuesten Inhalt zuzugreifen.</value>
   </data>
   <data name="StatusOverVersionNoContent" xml:space="preserve">
-    <value>Für diese Erweiterungsversion steht kein Inhalt zur Verfügung. Aktualisieren Sie die Erweiterung auf den aktuellen Inhalt.</value>
+    <value>Für diese Erweiterungsversion stehen keine Inhalte zur Verfügung. Aktualisieren Sie die Erweiterung auf den aktuellen Inhalt.</value>
   </data>
   <data name="StatusOverVersionTitle" xml:space="preserve">
     <value>Wizard Update verfügbar</value>
@@ -352,7 +475,7 @@
     <value>Projekttyp</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Windows Template Studio Español</value>
+    <value>Windows Template Studio</value>
   </data>
   <data name="UIMessageBoxTitlePattern" xml:space="preserve">
     <value>Windows Template Studio: {0}</value>
@@ -387,6 +510,9 @@
   <data name="ValidationError_ReservedName" xml:space="preserve">
     <value>Name ist reserviert</value>
   </data>
+  <data name="VisitProjectWebSite" xml:space="preserve">
+    <value>Besuchen Sie die Projektwebsite</value>
+  </data>
   <data name="VsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>Es gab einen Fehler, der den Lösungsbaum zusammenbricht. Ex:</value>
   </data>
@@ -401,5 +527,8 @@
   </data>
   <data name="WizardVersion" xml:space="preserve">
     <value>Wizard Version:</value>
+  </data>
+  <data name="WTSDescription" xml:space="preserve">
+    <value>Lorem ipsum dolor sitzen amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</value>
   </data>
 </root>

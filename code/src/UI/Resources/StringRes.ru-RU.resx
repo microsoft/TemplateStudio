@@ -129,11 +129,92 @@
   <data name="ButtonCreate" xml:space="preserve">
     <value>Создать</value>
   </data>
+  <data name="ButtonFinish" xml:space="preserve">
+    <value>Конец</value>
+  </data>
+  <data name="ButtonGenerate" xml:space="preserve">
+    <value>генерировать</value>
+  </data>
+  <data name="ButtonGenerateAndMerge" xml:space="preserve">
+    <value>Создать и объединить</value>
+  </data>
   <data name="ButtonNext" xml:space="preserve">
-    <value>Следующий</value>
+    <value>следующий</value>
   </data>
   <data name="ButtonOk" xml:space="preserve">
     <value>ОК</value>
+  </data>
+  <data name="ButtonRefreshTemplates" xml:space="preserve">
+    <value>Обновить шаблоны</value>
+  </data>
+  <data name="ChangesSummaryCategoryConflictingFiles" xml:space="preserve">
+    <value>Конфликтующие файлы</value>
+  </data>
+  <data name="ChangesSummaryCategoryFailedMerges" xml:space="preserve">
+    <value>Неудачные слияния</value>
+  </data>
+  <data name="ChangesSummaryCategoryLicenses" xml:space="preserve">
+    <value>Лицензии</value>
+  </data>
+  <data name="ChangesSummaryCategoryNewFiles" xml:space="preserve">
+    <value>Новые файлы</value>
+  </data>
+  <data name="ChangesSummaryCategoryUnchangedFiles" xml:space="preserve">
+    <value>Неизменные файлы</value>
+  </data>
+  <data name="ChangesSummaryCategotyModifiedFiles" xml:space="preserve">
+    <value>Модифицированные файлы</value>
+  </data>
+  <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
+    <value>Не объединять изменения (сгенерировать во временной папке)</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionConflictingFiles" xml:space="preserve">
+    <value>Файл {0} уже существует в вашем проекте и также был сгенерирован как часть нового элемента. Пожалуйста, сравните и убедитесь, что все в нужном месте.</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionFailedMerges" xml:space="preserve">
+    <value>Изменения не могут быть интегрированы.</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionModifiedFiles" xml:space="preserve">
+    <value>Файл {0} был изменен.</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionNewFiles" xml:space="preserve">
+    <value>Филе {0} будет добавлено в качестве нового файла.</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionUnchangedFiles" xml:space="preserve">
+    <value>Файл {0} уже существует в вашем проекте, никаких действий не требуется.</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleConflictingFiles" xml:space="preserve">
+    <value>Конфликтный файл</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleFailedMerges" xml:space="preserve">
+    <value>Неудачные слияния</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleModifiedFiles" xml:space="preserve">
+    <value>Модифицированный файл</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleNewFiles" xml:space="preserve">
+    <value>Новый файл</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleUnchangedFiles" xml:space="preserve">
+    <value>Неизменный файл</value>
+  </data>
+  <data name="ChangesSummaryTitle_SF" xml:space="preserve">
+    <value>Сводка изменений: add {0} {1}</value>
+  </data>
+  <data name="CheckForUpdates" xml:space="preserve">
+    <value>Проверка новых шаблонов</value>
+  </data>
+  <data name="ConflictingDetailDescription_SF" xml:space="preserve">
+    <value>Файл {0} уже существует. По счету этот файл будет заменен.</value>
+  </data>
+  <data name="ConflictingDetailExistingFile" xml:space="preserve">
+    <value>Существующий файл</value>
+  </data>
+  <data name="ConflictingDetailNewFile" xml:space="preserve">
+    <value>Новый файл</value>
+  </data>
+  <data name="ConflictingDetailTitle" xml:space="preserve">
+    <value>Файл назначения существует</value>
   </data>
   <data name="EditTemplateDescription" xml:space="preserve">
     <value>Введите имя</value>
@@ -141,11 +222,14 @@
   <data name="ErrorDialogTitle" xml:space="preserve">
     <value>Что-то пошло не так :-(</value>
   </data>
-  <data name="ErrorNoHomePage" xml:space="preserve">
-    <value>Невозможно создать проект без главной страницы</value>
-  </data>
   <data name="ErrorSync" xml:space="preserve">
     <value>Ошибка синхронизации шаблонов. См. Вывод для получения более подробной информации.</value>
+  </data>
+  <data name="ErrorSyncCheckNewVersion" xml:space="preserve">
+    <value>Ошибка проверки обновлений. См. Вывод для получения более подробной информации.</value>
+  </data>
+  <data name="ErrorSyncRefresh" xml:space="preserve">
+    <value>Ошибка обновления шаблонов. См. Вывод для получения более подробной информации.</value>
   </data>
   <data name="ErrorViewProblemDetails" xml:space="preserve">
     <value>Просмотреть сведения о проблемах</value>
@@ -175,10 +259,10 @@
     <value>Создание шаблона {0} до {1}.</value>
   </data>
   <data name="GeneratingFeatureMessage" xml:space="preserve">
-    <value>Добавление функции '{0}' в проект ...</value>
+    <value>Создание функции '{0}' ...</value>
   </data>
   <data name="GeneratingPageMessage" xml:space="preserve">
-    <value>Добавление страницы '{0}' в проект ...</value>
+    <value>Создание страницы '{0}' ...</value>
   </data>
   <data name="GeneratingProjectMessage" xml:space="preserve">
     <value>Создание проекта '{0}' ...</value>
@@ -186,11 +270,17 @@
   <data name="GenerationFinishedString" xml:space="preserve">
     <value>Поколение завершено</value>
   </data>
+  <data name="GroupFeatureHeader_SF" xml:space="preserve">
+    <value>Особенности ({0}) - выберите один</value>
+  </data>
   <data name="GroupFeaturesHeader_SF" xml:space="preserve">
     <value>Особенности ({0}) - добавление нескольких</value>
   </data>
   <data name="GroupFrameworkHeader_SF" xml:space="preserve">
     <value>Framework ({0}) - выберите один</value>
+  </data>
+  <data name="GroupPageHeader_SF" xml:space="preserve">
+    <value>Страницы ({0}) - выберите один</value>
   </data>
   <data name="GroupPagesHeader_SF" xml:space="preserve">
     <value>Страницы ({0}) - добавьте несколько</value>
@@ -205,7 +295,7 @@
     <value>Автор:</value>
   </data>
   <data name="InfoModalDependencies" xml:space="preserve">
-    <value>Зависимости:</value>
+    <value>зависимости:</value>
   </data>
   <data name="InfoModalLicenses" xml:space="preserve">
     <value>Лицензии:</value>
@@ -214,7 +304,7 @@
     <value>Версия:</value>
   </data>
   <data name="InformationWindowIntilizeViewModelMessage" xml:space="preserve">
-    <value>{0} не ожидается как допустимый тип для информационного окна.</value>
+    <value>{0} не ожидается как допустимый тип для информационного окна'.</value>
   </data>
   <data name="LessDetail" xml:space="preserve">
     <value>Меньше деталей</value>
@@ -225,11 +315,41 @@
   <data name="MoreDetail" xml:space="preserve">
     <value>Более детально</value>
   </data>
+  <data name="NewItemAddFeatureCancelled" xml:space="preserve">
+    <value>Добавить отмененную функцию</value>
+  </data>
+  <data name="NewItemAddFeatureSuccessStatusMsg" xml:space="preserve">
+    <value>Добавлена ​​функция {0}</value>
+  </data>
+  <data name="NewItemAddPageCancelled" xml:space="preserve">
+    <value>Добавить новую страницу отменена</value>
+  </data>
+  <data name="NewItemAddPageSuccessStatusMsg" xml:space="preserve">
+    <value>Страница {0} успешно добавлена</value>
+  </data>
+  <data name="NewItemName" xml:space="preserve">
+    <value>Имя:</value>
+  </data>
+  <data name="NewItemTitle_SF" xml:space="preserve">
+    <value>Добавить {0}</value>
+  </data>
+  <data name="NewVersionAvailable" xml:space="preserve">
+    <value>Доступен новый контент, нажмите 'Обновить', чтобы получить последние обновления (текущий выбор будет сброшен).</value>
+  </data>
+  <data name="NewVersionInstructions" xml:space="preserve">
+    <value>При обновлении шаблонов текущий выбор будет сброшен.</value>
+  </data>
   <data name="NoContentText" xml:space="preserve">
     <value>Нет доступных материалов</value>
   </data>
   <data name="NoData" xml:space="preserve">
     <value>Нет данных</value>
+  </data>
+  <data name="NoProjectChanges" xml:space="preserve">
+    <value>Для вашего проекта нет изменений. Все уже существует.</value>
+  </data>
+  <data name="PrivacyTermns" xml:space="preserve">
+    <value>Конфиденциальность</value>
   </data>
   <data name="ProjectSetupTitle" xml:space="preserve">
     <value>Выберите тип проекта и структуру</value>
@@ -249,10 +369,10 @@
   <data name="SolutionWizardRunFinishedMessage" xml:space="preserve">
     <value>Создание проекта Windows Template Studio ...</value>
   </data>
-  <data name="StatusAdquired" xml:space="preserve">
+  <data name="StatusAcquired" xml:space="preserve">
     <value>Готово</value>
   </data>
-  <data name="StatusAdquiring" xml:space="preserve">
+  <data name="StatusAcquiring" xml:space="preserve">
     <value>Проверка обновлений шаблонов ...</value>
   </data>
   <data name="StatusLowerVersionContent" xml:space="preserve">
@@ -261,8 +381,11 @@
   <data name="StatusLowerVersionTitle" xml:space="preserve">
     <value>Мастер несовместим с содержимым шаблонов</value>
   </data>
+  <data name="StatusNewVersionAvailable" xml:space="preserve">
+    <value>Доступен новый контент шаблонов</value>
+  </data>
   <data name="StatusOverVersionContent" xml:space="preserve">
-    <value>Доступно обновление шаблонов. Обновите расширение, чтобы получить последний контент.</value>
+    <value>Обновление шаблонов доступно, но несовместимо с версией мастера. Обновите расширение, чтобы получить доступ к последнему контенту.</value>
   </data>
   <data name="StatusOverVersionNoContent" xml:space="preserve">
     <value>Для этой версии расширения нет содержимого. Обновите расширение, чтобы получить доступ к последнему контенту.</value>
@@ -313,10 +436,10 @@
     <value>Удалить</value>
   </data>
   <data name="SummaryOptionRename" xml:space="preserve">
-    <value>Переименовывать</value>
+    <value>переименовывать</value>
   </data>
   <data name="SummaryPagesTitle" xml:space="preserve">
-    <value>Страницы</value>
+    <value>страницы</value>
   </data>
   <data name="SummaryProjectTypeTitle" xml:space="preserve">
     <value>Тип проекта</value>
@@ -352,10 +475,10 @@
     <value>Тип проекта</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Windows Template Studio RU</value>
+    <value>Студия Windows Template Studio</value>
   </data>
   <data name="UIMessageBoxTitlePattern" xml:space="preserve">
-    <value>Windows Template Studio RU: {0}</value>
+    <value>Студия шаблонов Windows: {0}</value>
   </data>
   <data name="UnableAddItemsToProject" xml:space="preserve">
     <value>Невозможно добавить элементы проекта. Убедитесь, что у вас есть необходимый SDK.</value>
@@ -367,7 +490,7 @@
     <value>Не удалось обновить проект. Попробуйте обновить его вручную.</value>
   </data>
   <data name="UndefinedErrorString" xml:space="preserve">
-    <value>Неизвестная ошибка</value>
+    <value>UndefinedError</value>
   </data>
   <data name="ValidationError_AlreadyExists" xml:space="preserve">
     <value>Имя уже существует</value>
@@ -387,6 +510,9 @@
   <data name="ValidationError_ReservedName" xml:space="preserve">
     <value>Имя зарезервировано</value>
   </data>
+  <data name="VisitProjectWebSite" xml:space="preserve">
+    <value>Посетите веб-сайт проекта</value>
+  </data>
   <data name="VsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>Произошла ошибка, разрушающая дерево решений. Пример:</value>
   </data>
@@ -401,5 +527,8 @@
   </data>
   <data name="WizardVersion" xml:space="preserve">
     <value>Версия мастера:</value>
+  </data>
+  <data name="WTSDescription" xml:space="preserve">
+    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem incididunt.</value>
   </data>
 </root>

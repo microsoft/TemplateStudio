@@ -15,8 +15,6 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Collections.Generic;
-using System.Net;
-using System.Collections.Generic;
 
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Resources;

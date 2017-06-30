@@ -45,7 +45,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 if (_config.FailOnError )
                 {
-                    throw new FileNotFoundException(string.Format(Strings.Resources.MergeFileNotFoundExceptionMessage, _config.FilePath));
+                    throw new FileNotFoundException(string.Format(StringRes.MergeFileNotFoundExceptionMessage, _config.FilePath));
                 }
                 else
                 {
@@ -65,7 +65,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 if (_config.FailOnError)
                 {
-                    throw new InvalidDataException(string.Format(Strings.Resources.MergeLineNotFoundExceptionMessage, errorLine, originalFilePath));
+                    throw new InvalidDataException(string.Format(StringRes.MergeLineNotFoundExceptionMessage, errorLine, originalFilePath));
                 }
                 else
                 {
@@ -92,7 +92,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var sourceFileName = originalFilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
             var postactionFileName = _config.FilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
 
-            var description = string.Format(Strings.Resources.FailedMergePostActionFileNotFound, sourceFileName);
+            var description = string.Format(StringRes.FailedMergePostActionFileNotFound, sourceFileName);
             var intent = GetPostActionIntent(postActionIntentFilePath);
             var failedFileName = GetFailedPostActionFileName();
             GenContext.Current.FailedMergePostActions.Add(new FailedMergePostAction(sourceFileName, _config.FilePath, failedFileName, description, intent, MergeFailureType.FileNotFound));
@@ -104,7 +104,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var sourceFileName = originalFilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
 
             var postactionFileName = _config.FilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
-            var description = string.Format(Strings.Resources.FailedMergePostActionLineNotFound, errorLine.Trim(), sourceFileName);
+            var description = string.Format(StringRes.FailedMergePostActionLineNotFound, errorLine.Trim(), sourceFileName);
             var intent = GetPostActionIntent(postActionIntentFilePath);
             var failedFileName = GetFailedPostActionFileName();
             GenContext.Current.FailedMergePostActions.Add(new FailedMergePostAction(sourceFileName, _config.FilePath, failedFileName, description, intent, MergeFailureType.LineNotFound));
