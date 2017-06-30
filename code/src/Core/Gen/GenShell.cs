@@ -11,14 +11,15 @@
 // ******************************************************************
 
 using System;
+using System.IO;
 using System.Windows;
 
 namespace Microsoft.Templates.Core.Gen
 {
     public abstract class GenShell
     {
-        protected abstract string GetActiveProjectName();
-        protected abstract string GetActiveProjectPath();
+        public abstract string GetActiveProjectName();
+        public abstract string GetActiveProjectPath();
         protected abstract string GetSelectedItemPath();
 
         public abstract bool SetActiveConfigurationAndPlatform(string configurationName, string platformName);
@@ -35,6 +36,10 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract Guid GetVsProjectId();
 
+        public abstract string GetActiveProjectGuid();
+
+        public abstract void OpenItems(params string[] itemsFullPath);
+
         public virtual void RestorePackages()
         {
         }
@@ -45,6 +50,22 @@ namespace Microsoft.Templates.Core.Gen
 
         public virtual void RefreshProject()
         {
+        }
+
+        public bool GetActiveProjectIsWts()
+        {
+            bool result = false;
+            var activeProjectPath = GetActiveProjectPath();
+            if (!string.IsNullOrEmpty(activeProjectPath))
+            {
+                var appManifestFilePath = Path.Combine(GetActiveProjectPath(), "Package.appxmanifest");
+                if (File.Exists(appManifestFilePath))
+                {
+                    var fileContent = File.ReadAllText(appManifestFilePath);
+                    result = fileContent.Contains("genTemplate:Metadata");
+                }
+            }
+            return result;
         }
     }
 }

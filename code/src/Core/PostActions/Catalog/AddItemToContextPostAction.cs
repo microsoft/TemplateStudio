@@ -10,32 +10,29 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
-namespace Microsoft.Templates.Core
-{
-    public class ReservedNamesValidator : Validator
-    {
-        private static readonly string[] ReservedNames = new string[] { "Page", "BackgroundTask", "Pivot", "Shell" };
+using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.Core.Gen;
 
-        public override ValidationResult Validate(string suggestedName)
+namespace Microsoft.Templates.Core.PostActions.Catalog
+{
+    public class AddItemToContextPostAction : PostAction<IReadOnlyList<ICreationPath>>
+    {
+        public AddItemToContextPostAction(IReadOnlyList<ICreationPath> config) : base(config)
         {
-            if (ReservedNames.Contains(suggestedName))
-            {
-                return new ValidationResult()
-                {
-                    IsValid = false,
-                    ErrorType = ValidationErrorType.ReservedName
-                };
-            }
-            else
-            {
-                return new ValidationResult()
-                {
-                    IsValid = true,
-                    ErrorType = ValidationErrorType.None
-                };
-            }
+        }
+
+        public override void Execute()
+        {
+            var itemsToAdd = _config
+                                .Where(o => !string.IsNullOrWhiteSpace(o.Path))
+                                .Select(o => Path.GetFullPath(Path.Combine(GenContext.Current.ProjectPath, o.Path)))
+                                .ToList();
+
+            GenContext.Current.ProjectItems.AddRange(itemsToAdd);
         }
     }
 }

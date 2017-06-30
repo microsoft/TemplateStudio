@@ -11,19 +11,17 @@
 // ******************************************************************
 
 using System.Collections.Generic;
-using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 
 namespace Microsoft.Templates.Core.Gen
 {
-    public interface IContextProvider
+    public class TempGenerationResult
     {
-        string ProjectName { get; }
-        string OutputPath { get; }
-        string ProjectPath { get; }
-        List<string> ProjectItems { get; }
-        List<string> FilesToOpen { get; }
+        public List<string> NewFiles { get; } = new List<string>();
 
-        List<FailedMergePostAction> FailedMergePostActions { get; }
-        Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; }
+        public List<string> ModifiedFiles { get; } = new List<string>();
+
+        public List<string> ConflictingFiles { get; } = new List<string>();
+
+        public List<string> UnchangedFiles { get; } = new List<string>();
     }
 }

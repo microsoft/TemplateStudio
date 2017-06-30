@@ -17,20 +17,23 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace Microsoft.Templates.Core.Locations
 {
-    public class LocalTemplatesSource : TemplatesSource
+    public sealed class LocalTemplatesSource : TemplatesSource
     {
         public string LocalTemplatesVersion { get; private set; }
         public string LocalWizardVersion { get; private set; }
-
         protected override bool VerifyPackageSignatures => false;
+        public override bool ForcedAcquisition { get => base.ForcedAcquisition; protected set => base.ForcedAcquisition = value; }
+
         public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
 
         public LocalTemplatesSource() : this("0.0.0.0", "0.0.0.0")
         {
+            base.ForcedAcquisition = true;
         }
 
-        public LocalTemplatesSource(string wizardVersion, string templatesVersion)
+        public LocalTemplatesSource(string wizardVersion, string templatesVersion, bool forcedAdquisition = true)
         {
+            base.ForcedAcquisition = forcedAdquisition;
             LocalTemplatesVersion = templatesVersion;
             LocalWizardVersion = wizardVersion;
         }
@@ -47,7 +50,7 @@ namespace Microsoft.Templates.Core.Locations
             return Templatex.Pack(tempFolder);
         }
 
-        protected static void Copy(string sourceFolder, string targetFolder)
+        private static void Copy(string sourceFolder, string targetFolder)
         {
             Fs.SafeDeleteDirectory(targetFolder);
             Fs.CopyRecursive(sourceFolder, targetFolder);

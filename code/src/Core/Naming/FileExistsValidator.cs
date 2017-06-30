@@ -9,23 +9,29 @@
 // TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
-
+using System.IO;
 using System.Linq;
 
 namespace Microsoft.Templates.Core
 {
-    public class ReservedNamesValidator : Validator
+    public class FileExistsValidator : Validator<string>
     {
-        private static readonly string[] ReservedNames = new string[] { "Page", "BackgroundTask", "Pivot", "Shell" };
+        public FileExistsValidator(string config) : base(config)
+        {
+        }
 
         public override ValidationResult Validate(string suggestedName)
         {
-            if (ReservedNames.Contains(suggestedName))
+            var existing = Directory.EnumerateFiles(_config)
+                                            .Select(f => Path.GetFileNameWithoutExtension(f))
+                                            .ToList();
+
+            if (existing.Contains(suggestedName))
             {
                 return new ValidationResult()
                 {
                     IsValid = false,
-                    ErrorType = ValidationErrorType.ReservedName
+                    ErrorType = ValidationErrorType.AlreadyExists
                 };
             }
             else

@@ -15,7 +15,7 @@ using System.IO;
 
 using Microsoft.Templates.Core.Diagnostics;
 
-namespace Microsoft.Templates.Core.Locations
+namespace Microsoft.Templates.Core
 {
     public static class Fs
     {
@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public static void SafeCopyFile(string sourceFile, string destFolder)
+        public static void SafeCopyFile(string sourceFile, string destFolder, bool overwrite)
         {
             try
             {
@@ -50,7 +50,13 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     Directory.CreateDirectory(destFolder);
                 }
-                File.Copy(sourceFile, Path.Combine(destFolder, Path.GetFileName(sourceFile)));
+                var destFile = Path.Combine(destFolder, Path.GetFileName(sourceFile));
+
+                if (File.Exists(destFile))
+                {
+                    EnsureFileEditable(destFile);
+                }
+                File.Copy(sourceFile, destFile, overwrite);
             }
             catch (Exception ex)
             {
@@ -88,6 +94,23 @@ namespace Microsoft.Templates.Core.Locations
             catch (Exception ex)
             {
                 var msg = $"The folder {sourceDir} can't be moved to {targetDir}. Error: {ex.Message}";
+                AppHealth.Current.Warning.TrackAsync(msg, ex).FireAndForget();
+            }
+        }
+
+        public static void EnsureFileEditable(string filePath)
+        {
+            try
+            {
+                var fileInfo = new FileInfo(filePath);
+                if (fileInfo.IsReadOnly)
+                {
+                    fileInfo.IsReadOnly = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                var msg = $"Cannot remove readonly protection of file {filePath}";
                 AppHealth.Current.Warning.TrackAsync(msg, ex).FireAndForget();
             }
         }
