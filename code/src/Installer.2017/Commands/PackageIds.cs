@@ -10,21 +10,26 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.UI.Controls;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Microsoft.Templates.UI.ViewModels
+namespace Microsoft.Templates.Extension.Commands
 {
-    public class StatusViewModel
+    internal class PackageIds
     {
-        public StatusType Status { get; set; }
-        public string Message { get; set; }
-        public bool AutoHide { get; set; }
+        public const int AddPageCommand = 0x0400;
+        public const int AddFeatureCommand = 0x500;
+    }
 
-        public StatusViewModel(StatusType status, string message, bool autoHide = false)
-        {
-            AutoHide = autoHide;
-            Message = message;
-            Status = status;
-        }
+    internal class PackageGuids
+    {
+        /// <summary>
+        /// RelayCommandPackage GUID string.
+        /// </summary>
+        public const string PackageGuidString = "995f080c-9f70-4550-8a21-b3ffeeff17eb";
+        public static Guid GuidRelayCommandPackageCmdSet = Guid.Parse("dec1ebd7-fb6b-49e7-b562-b46af0d419d1");
     }
 }
