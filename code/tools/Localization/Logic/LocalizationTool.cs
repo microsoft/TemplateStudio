@@ -49,7 +49,7 @@ namespace Localization
             LocalizableItemsExtractor extractor = new LocalizableItemsExtractor(sourceDirectory, destinationDirectory);
             extractor.ExtractVsix(cultures);
             extractor.ExtractProjectTemplates(cultures);
-            // extractor.ExtractCommandTemplates(cultures); // Not implemented
+            extractor.ExtractCommandTemplates(cultures);
             extractor.ExtractTemplateEngineTemplates(cultures);
             extractor.ExtractWtsTemplates(cultures);
             extractor.ExtractResourceFiles(cultures);

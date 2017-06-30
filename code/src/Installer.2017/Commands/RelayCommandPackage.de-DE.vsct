@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <!--This is the file that defines the IDs for all the commands exposed by VisualStudio. -->
+  <Extern href="stdidcmd.h"/>
+
+  <!--This header contains the command ids for the menus provided by the shell. -->
+  <Extern href="vsshlids.h"/>
+
+  <Commands package="guidRelayCommandPackage">
+    <Groups>
+      <Group guid="guidRelayCommandPackageCmdSet" id="AddItemContextGroup" priority="0x0200"/>
+      <Group guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenuGroup" priority="0x0200"/>
+    </Groups>
+    
+    <Menus>
+      <Menu guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenu" type="Context" priority="0x0100">
+        <Strings>
+          <CommandName>Windows Template Studio DE</CommandName>
+          <ButtonText>Windows Template Studio DE</ButtonText>
+          <MenuText>Windows Template Studio DE</MenuText>
+          <ToolTipText>Windows Template Studio DE</ToolTipText>
+        </Strings>
+      </Menu>
+    </Menus>
+    
+    <Buttons>
+      <Button guid="guidRelayCommandPackageCmdSet" id="AddPageCommand" priority="0x0100" type="Button">
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Icon guid="guidImages" id="bmpPage1" />
+        <Strings>
+          <ButtonText>Neue Seite hinzufügen...</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidRelayCommandPackageCmdSet" id="AddFeatureCommand" priority="0x0200" type="Button">
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Icon guid="guidImages" id="bmpFeature1" />
+        <Strings>
+          <ButtonText>Neue Funktion hinzufügen...</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+
+    <Bitmaps>
+      <Bitmap guid="guidImages" href="Resources\RelayCommand.png" usedList="bmpFeature1, bmpFeature2, bmpFeature3, bmpFeature4, bmpPage1, bmpCSharp, bmpPage2"/>
+    </Bitmaps>
+  </Commands>
+
+  <CommandPlacements>
+    <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="AddItemContextGroup" priority="0x0200">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_PROJNODE" />
+    </CommandPlacement>
+    
+    <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenu" priority="0x0100">
+      <Parent guid="guidRelayCommandPackageCmdSet" id="AddItemContextGroup" />
+    </CommandPlacement>
+
+    <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenuGroup" priority="0x0100">
+      <Parent guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenu" />
+    </CommandPlacement>
+
+    <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="AddPageCommand" priority="0x0100">
+      <Parent guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenuGroup" />
+    </CommandPlacement>
+
+    <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="AddFeatureCommand" priority="0x0200">
+      <Parent guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenuGroup" />
+    </CommandPlacement>
+  </CommandPlacements>
+  
+  <Symbols>
+    <GuidSymbol name="guidRelayCommandPackage" value="{995f080c-9f70-4550-8a21-b3ffeeff17eb}" />
+
+    <GuidSymbol name="guidRelayCommandPackageCmdSet" value="{dec1ebd7-fb6b-49e7-b562-b46af0d419d1}">
+      <IDSymbol name="AddItemContextGroup" value="0x0100" />
+      <IDSymbol name="AddItemContextMenu" value="0x0200" />
+      <IDSymbol name="AddItemContextMenuGroup" value="0x0300" />
+      <IDSymbol name="AddPageCommand" value="0x0400"/>
+      <IDSymbol name="AddFeatureCommand" value="0x0500"/>
+    </GuidSymbol>
+
+    <GuidSymbol name="guidImages" value="{2be1a05a-8b56-4036-9f02-8bfee4cf74c7}" >
+      <IDSymbol name="bmpFeature1" value="1" />
+      <IDSymbol name="bmpFeature2" value="2" />
+      <IDSymbol name="bmpFeature3" value="3" />
+      <IDSymbol name="bmpFeature4" value="4" />
+      <IDSymbol name="bmpPage1" value="5" />
+      <IDSymbol name="bmpCSharp" value="6" />
+      <IDSymbol name="bmpPage2" value="7" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>

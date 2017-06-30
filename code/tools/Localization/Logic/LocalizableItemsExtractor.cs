@@ -16,8 +16,7 @@ namespace Localization
         private const string projectTemplateDirNamePattern = "CSharp.UWP.2017.Solution";
         private const string projectTemplateRootDirPath = "code\\src\\ProjectTemplates";
 
-        private const string commandTemplateFileNamePattern = "command{0}.vsct";
-        private const string commandTemplateRootDirPath = "code\\src\\CommandTemplates";
+        private const string commandTemplateRootDirPath = "code\\src\\Installer.2017\\Commands";
 
         private const string rightClickMdsRootDirPath = "code\\src\\RightClick";
 
@@ -130,14 +129,19 @@ namespace Localization
             DirectoryInfo templateSrcDirectory = new DirectoryInfo(Path.Combine(this.sourceDir.FullName, commandTemplateRootDirPath));
             if (!templateSrcDirectory.Exists)
                 throw new DirectoryNotFoundException($"Source directory \"{templateSrcDirectory.FullName}\" not found.");
-            FileInfo file = new FileInfo(Path.Combine(templateSrcDirectory.FullName, string.Format(commandTemplateFileNamePattern, string.Empty)));
-            if (!file.Exists)
-                throw new FileNotFoundException($"File \"{file.FullName}\" not found.");
-            foreach (string culture in cultures)
+            this.LocalizeFileType(templateSrcDirectory, templateDesDirectory, $"*.vsct", cultures);
+            this.LocalizeFileType(templateSrcDirectory, templateDesDirectory, $"*.resx", cultures);
+        }
+
+        private void LocalizeFileType(DirectoryInfo srcDirectory, DirectoryInfo desDirectory, string searchPattern, List<string> cultures)
+        {
+            foreach (FileInfo file in srcDirectory.GetFiles(searchPattern))
             {
-                file.CopyTo(Path.Combine(templateDesDirectory.FullName, string.Format(commandTemplateFileNamePattern, "." + culture)));
+                foreach (string culture in cultures)
+                {
+                    file.CopyTo(Path.Combine(desDirectory.FullName, $"{Path.GetFileNameWithoutExtension(file.Name)}.{culture}{file.Extension}"));
+                }
             }
-            throw new NotImplementedException("TODO :: Implementarlo despues de Merge.");
         }
 
         internal void ExtractTemplateEngineTemplates(List<string> cultures)
