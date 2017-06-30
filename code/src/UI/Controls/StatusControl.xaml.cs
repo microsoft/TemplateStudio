@@ -16,7 +16,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
 
-using Microsoft.Templates.UI.ViewModels;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.Controls
 {
@@ -33,20 +33,6 @@ namespace Microsoft.Templates.UI.Controls
         }
         public static readonly DependencyProperty StatusProperty = DependencyProperty.Register("Status", typeof(StatusViewModel), typeof(StatusControl), new PropertyMetadata(new StatusViewModel(StatusType.Empty, string.Empty), OnStatusPropertyChanged));
 
-        public string WizardVersion
-        {
-            get => (string)GetValue(WizardVersionProperty);
-            set => SetValue(WizardVersionProperty, value);
-        }
-        public static readonly DependencyProperty WizardVersionProperty = DependencyProperty.Register("WizardVersion", typeof(string), typeof(StatusControl), new PropertyMetadata(string.Empty, OnVersionInfoChanged));
-
-        public string TemplatesVersion
-        {
-            get => (string)GetValue(TemplatesVersionProperty);
-            set => SetValue(TemplatesVersionProperty, value);
-        }
-        public static readonly DependencyProperty TemplatesVersionProperty = DependencyProperty.Register("TemplatesVersion", typeof(string), typeof(StatusControl), new PropertyMetadata(string.Empty, OnVersionInfoChanged));
-
         private static void OnStatusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as StatusControl;
@@ -54,12 +40,12 @@ namespace Microsoft.Templates.UI.Controls
             control.UpdateStatus(e.NewValue as StatusViewModel);
         }
 
-        private static void OnVersionInfoChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        public Brush InformationStatusBackground
         {
-            var control = d as StatusControl;
-
-            control.UpdateVersionInfo();
+            get => (Brush)GetValue(InformationStatusBackgroundProperty);
+            set => SetValue(InformationStatusBackgroundProperty, value);
         }
+        public static readonly DependencyProperty InformationStatusBackgroundProperty = DependencyProperty.Register("InformationStatusBackground", typeof(Brush), typeof(StatusControl), new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
 
         public StatusControl()
         {
@@ -82,43 +68,40 @@ namespace Microsoft.Templates.UI.Controls
 
         private void UpdateStatus(StatusViewModel status)
         {
-            versionInfoPane.Visibility = Visibility.Collapsed;
-
             switch (status.Status)
             {
                 case StatusType.Information:
                     txtStatus.Text = status.Message;
                     txtIcon.Text = ConvertToChar(SymbolFonts.Completed);
                     txtIcon.Foreground = FindResource("UIBlack") as SolidColorBrush;
-                    Background = new SolidColorBrush(Colors.Transparent);
+                    backBackground.Opacity = 1.0;
+                    shapeBackground.Background = InformationStatusBackground;
                     break;
                 case StatusType.Warning:
                     txtStatus.Text = status.Message;
                     txtIcon.Text = ConvertToChar(SymbolFonts.ErrorBadge);
                     txtIcon.Foreground = FindResource("UIDarkYellow") as SolidColorBrush;
-                    // Color yellow = (Color)FindResource("UIYellowColor");
-                    // Background = new LinearGradientBrush(yellow, Colors.Transparent, 0);
-                    Background = FindResource("UIYellow") as SolidColorBrush;
+                    shapeBackground.Background = FindResource("UIYellow") as SolidColorBrush;
+                    backBackground.Opacity = 1.0;
                     break;
                 case StatusType.Error:
                     txtStatus.Text = status.Message;
                     txtIcon.Text = ConvertToChar(SymbolFonts.StatusErrorFull);
                     txtIcon.Foreground = FindResource("UIDarkRed") as SolidColorBrush;
-                    // Color red = (Color)FindResource("UIRedColor");
-                    // var brush = new LinearGradientBrush(red, Colors.Transparent, 0);
                     var brush = FindResource("UIRed") as SolidColorBrush;
                     brush.Opacity = 0.4;
-                    Background = brush;
+                    backBackground.Opacity = 1.0;
+                    shapeBackground.Background = brush;
                     break;
                 default:
 
                     txtStatus.Text = " ";
                     txtIcon.Text = " ";
-
-                    Background = new SolidColorBrush(Colors.Transparent);
+                    backBackground.Opacity = 0.0;
+                    shapeBackground.Background = new SolidColorBrush(Colors.Transparent);
                     break;
             }
-            UpdateVersionInfo();
+            backBackground.Background = InformationStatusBackground;
             if (status.AutoHide == true)
             {
                 _hideTimer.Start();
@@ -133,9 +116,5 @@ namespace Microsoft.Templates.UI.Controls
         {
             return char.ConvertFromUtf32((int)font);
         }
-
-        private void UpdateVersionInfo() => versionInfoPane.Visibility = HasVersionInfo() && (Status.Status == StatusType.Empty) ? Visibility.Visible : Visibility.Collapsed;
-
-        private bool HasVersionInfo() => !string.IsNullOrEmpty(WizardVersion) && !string.IsNullOrEmpty(TemplatesVersion);
     }
 }
