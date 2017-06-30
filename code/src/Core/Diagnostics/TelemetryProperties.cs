@@ -14,7 +14,6 @@ namespace Microsoft.Templates.Core.Diagnostics
 {
     public class TelemetryProperties
     {
-
         public static string WizardFileVersion { get; private set; } = TelemetryEvents.Prefix + "WizardFileVersion";
         public static string WizardContentVersion { get; private set; } = TelemetryEvents.Prefix + "TemplatesVersion";
         public static string RoleInstanceName { get; private set; } = TelemetryEvents.Prefix + "WizardClient";

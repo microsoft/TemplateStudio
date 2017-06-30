@@ -116,8 +116,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var folder = Path.GetDirectoryName(_config.FilePath);
             var extension = Path.GetExtension(_config.FilePath);
 
-            var validator = new List<Validator>()
-
+            var validator = new List<Validator>
             {
                 new FileExistsValidator(Path.GetDirectoryName(_config.FilePath))
             };

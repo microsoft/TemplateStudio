@@ -38,7 +38,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
 
                 if (StripTrailingCharacter)
                 {
-                    ns = ns.Substring(0, ns.Length -1);
+                    ns = ns.Substring(0, ns.Length - 1);
                 }
 
                 return ns;
