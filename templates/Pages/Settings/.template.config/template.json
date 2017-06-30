@@ -17,7 +17,8 @@
     "wts.order": "1",
     "wts.dependencies":"wts.Feat.SettingsStorage",
     "wts.multipleInstance": "false",
-    "wts.genGroup": "1"
+    "wts.genGroup": "1",
+    "wts.rightClickEnabled":"true" 
   },
   "sourceName": "SettingsPage",
   "preferNameDirectory": true,

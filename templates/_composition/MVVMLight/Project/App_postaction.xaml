@@ -1,10 +1,14 @@
 <Application
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    <!--{[{-->
     xmlns:vms="using:Param_RootNamespace.ViewModels"
+    <!--}]}-->
     RequestedTheme="Light">
     <Application.Resources>
         <ResourceDictionary>
+            <!--{[{-->
             <vms:ViewModelLocator x:Key="Locator" />
+            <!--}]}-->
         </ResourceDictionary>
     </Application.Resources>
 </Application>

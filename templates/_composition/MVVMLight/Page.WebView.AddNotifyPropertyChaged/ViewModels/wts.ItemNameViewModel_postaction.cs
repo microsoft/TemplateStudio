@@ -1,4 +1,6 @@
+//{[{
 using GalaSoft.MvvmLight.Command;
+//}]}
 namespace Param_ItemNamespace.ViewModels
 {
     public class wts.ItemNameViewModel : ViewModelBase
@@ -6,8 +8,10 @@ namespace Param_ItemNamespace.ViewModels
         private void NavCompleted(WebViewNavigationCompletedEventArgs e)
         {
             IsLoading = false;
+            //{[{
             RaisePropertyChanged(nameof(BrowserBackCommand));
             RaisePropertyChanged(nameof(BrowserForwardCommand));
+            //}]}
         }
     }
 }

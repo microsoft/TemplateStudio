@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+//{[{
 using System.Linq;
+//}]}
 
 namespace Param_ItemNamespace.Services
 {

@@ -1,5 +1,7 @@
+//{[{
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
+//}]}
 namespace Param_ItemNamespace.Views
 {
     public sealed partial class wts.ItemNameDetailPage : Page, INotifyPropertyChanged
