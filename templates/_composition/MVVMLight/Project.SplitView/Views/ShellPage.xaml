@@ -24,12 +24,10 @@
                         VerticalAlignment="Center"
                         Fill="{ThemeResource SystemControlForegroundAccentBrush}"
                         Visibility="{x:Bind SelectedVis, Mode=OneWay}" />
-                <FontIcon
-                        VerticalAlignment="Center"
+                <Viewbox
+                        Child="{x:Bind Icon}"
                         Margin="16,12"
-                        FontSize="16"
-                        Foreground="{x:Bind SelectedForeground, Mode=OneWay}"
-                        Glyph="{x:Bind SymbolAsChar}" />
+                        VerticalAlignment="Center" />
                 <TextBlock
                         Grid.Column="1"
                         Margin="0,9,0,11"
