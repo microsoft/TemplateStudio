@@ -38,7 +38,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public ObservableCollection<SummaryLicenseViewModel> SummaryLicenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
 
-        public MainViewModel(MainView mainView) : base(mainView)
+        public MainViewModel(MainView mainView, string language) : base(mainView)
         {
             MainView = mainView;
             Current = this;
@@ -52,6 +52,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             await BaseInitializeAsync();
             SummaryLicenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryLicenses)); };
         }
+
         public void AlertProjectSetupChanged()
         {
             if (CheckProjectSetupChanged())
@@ -63,6 +64,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 CleanStatus();
             }
         }
+
         public void RebuildLicenses()
         {
             var userSelection = CreateUserSelection();

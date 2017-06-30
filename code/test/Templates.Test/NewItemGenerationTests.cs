@@ -47,11 +47,9 @@ namespace Microsoft.Templates.Test
         public NewItemGenerationTests(GenerationFixture fixture)
         {
             _fixture = fixture;
-            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
+            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(), "C#");
             GenContext.Current = this;
-
         }
-
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "NewItemGeneration")]
         public async void GenerateEmptyProject(string projectType, string framework)

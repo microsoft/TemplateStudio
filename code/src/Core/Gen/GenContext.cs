@@ -35,8 +35,10 @@ namespace Microsoft.Templates.Core.Gen
                 {
                     throw new InvalidOperationException("There is no context for the current gen execution, call Current_set first");
                 }
+
                 return _currentContext;
             }
+
             set
             {
                 _currentContext = value;
@@ -60,11 +62,9 @@ namespace Microsoft.Templates.Core.Gen
 
             ToolBox = new GenToolBox(repository, shell);
 
-            InitializedLanguage = language;
-
             PurgeTempGenerations(Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath), Configuration.Current.DaysToKeepTempGenerations);
 
-            IsInitialized = true;
+            InitializedLanguage = language;
         }
 
         private static void PurgeTempGenerations(string tempGenerationFolder, int daysToKeep)

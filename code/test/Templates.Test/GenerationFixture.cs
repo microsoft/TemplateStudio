@@ -44,7 +44,7 @@ namespace Microsoft.Templates.Test
         {
             var source = new LocalTemplatesSource();
 
-            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
+            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(), "C#");
             GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
 
             return GenContext.ToolBox.Repo;

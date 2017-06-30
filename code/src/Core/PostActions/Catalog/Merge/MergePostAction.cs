@@ -77,7 +77,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
                 // REFRESH PROJECT TO UN-DIRTY IT
                 if (Path.GetExtension(_config.FilePath).Equals(".csproj", StringComparison.OrdinalIgnoreCase)
-                 || Path.GetExtension(_config).Equals(".vbproj", StringComparison.OrdinalIgnoreCase))
+                 || Path.GetExtension(_config.FilePath).Equals(".vbproj", StringComparison.OrdinalIgnoreCase))
                 {
                     Gen.GenContext.ToolBox.Shell.RefreshProject();
                 }
@@ -132,6 +132,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 return File.ReadAllText(postActionIntentFilePath);
             }
+
             return string.Empty;
         }
 

@@ -26,14 +26,19 @@ namespace Microsoft.Templates.Core.Locations
         private static readonly string FolderName = Configuration.Current.RepositoryFolderName;
 
         private readonly Lazy<string> _workingFolder = new Lazy<string>(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), FolderName));
+
         private readonly TemplatesSource _source;
+
         private readonly TemplatesContent _content;
 
         public string WorkingFolder => _workingFolder.Value;
 
         public string CurrentTemplatesFolder { get => _content?.TemplatesFolder; }
+
         public string CurrentContentFolder { get; private set; }
+
         public Version CurrentContentVersion { get => GetCurrentContentVersion(); }
+
         public Version CurrentWizardVersion { get; private set; }
 
         public TemplatesSynchronization(TemplatesSource source, Version wizardVersion)
@@ -228,6 +233,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             return CurrentContentVersion.IsNull() || CurrentContentVersion < _source.GetVersionFromMstx(GetInstalledTemplatesPath());
         }
+
         private Version GetCurrentContentVersion()
         {
             return _content?.GetVersionFromFolder(CurrentContentFolder);

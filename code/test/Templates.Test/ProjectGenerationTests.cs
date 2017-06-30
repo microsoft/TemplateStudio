@@ -52,7 +52,7 @@ namespace Microsoft.Templates.Test
         public ProjectGenerationTests(GenerationFixture fixture)
         {
             _fixture = fixture;
-            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
+            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(), "C#");
             GenContext.Current = this;
 
         }

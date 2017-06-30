@@ -16,7 +16,7 @@ using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
-using Microsoft.Templates.Core.PostActions.Catalog.SortUsings;
+using Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces;
 
 namespace Microsoft.Templates.Core.PostActions
 {

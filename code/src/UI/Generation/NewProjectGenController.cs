@@ -21,6 +21,8 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions;
+using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Views.Common;
 using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.UI
@@ -40,7 +42,7 @@ namespace Microsoft.Templates.UI
             _postactionFactory = postactionFactory;
         }
 
-        public static UserSelection GetUserSelection(string language)
+        public UserSelection GetUserSelection(string language)
         {
             var mainView = new Views.NewProject.MainView(language);
 
@@ -97,57 +99,6 @@ namespace Microsoft.Templates.UI
             chrono.Stop();
 
             TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework, userSelection.Language);
-        }
-
-        private static void ExecuteGlobalPostActions(List<GenInfo> genItems)
-        {
-            var postActions = PostActionFactory.FindGlobal(genItems);
-
-            foreach (var postAction in postActions)
-            {
-                postAction.Execute();
-            }
-        }
-
-        private static void ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult)
-        {
-            // Get post actions from template
-            var postActions = PostActionFactory.Find(genInfo, generationResult);
-
-            foreach (var postAction in postActions)
-            {
-                postAction.Execute();
-            }
-        }
-
-        private static string GetStatusText(GenInfo genInfo)
-        {
-            switch (genInfo.Template.GetTemplateType())
-            {
-                case TemplateType.Project:
-                    return string.Format(StringRes.GeneratingProjectMessage, genInfo.Name);
-                case TemplateType.Page:
-                    return string.Format(StringRes.GeneratingPageMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
-                case TemplateType.Feature:
-                    return string.Format(StringRes.GeneratingFeatureMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
-                default:
-                    return null;
-            }
-        }
-
-        private static void ShowError(Exception ex, UserSelection userSelection = null)
-        {
-            AppHealth.Current.Error.TrackAsync(ex.ToString()).FireAndForget();
-            AppHealth.Current.Exception.TrackAsync(ex, userSelection?.ToString()).FireAndForget();
-
-            var error = new ErrorDialog(ex);
-
-            GenContext.ToolBox.Shell.ShowModal(error);
-        }
-
-        private static void CleanStatusBar()
-        {
-            GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Empty);
         }
 
         private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appProjectType, string appFx, string language)
