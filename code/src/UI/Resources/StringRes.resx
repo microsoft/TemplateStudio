@@ -483,7 +483,7 @@
   </data>
   <data name="ChangesSummaryDetailTitleUnchangedFiles" xml:space="preserve">
     <value>Unchanged file</value>
-  </data>  
+  </data>
   <data name="NewItemAddFeatureCancelled" xml:space="preserve">
     <value>Add new feature cancelled</value>
   </data>
@@ -502,7 +502,7 @@
   <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
     <value>Do not merge changes (generate in a temp folder)</value>
   </data>
-  <data name="HasNotChangesToApply" xml:space="preserve">
-    <value>Has not changes to apply</value>
+  <data name="NoProjectChanges" xml:space="preserve">
+    <value>There are no changes to apply to your project. Everything already exisits.</value>
   </data>
 </root>
