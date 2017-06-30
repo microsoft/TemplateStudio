@@ -21,17 +21,28 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions;
-using Microsoft.Templates.UI.Views;
-using Microsoft.Templates.UI.Resources;
 using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.UI
 {
-    public class GenController
+    public class NewProjectGenController : GenController
     {
+        private static Lazy<NewProjectGenController> _instance = new Lazy<NewProjectGenController>(Initialize);
+        public static NewProjectGenController Instance => _instance.Value;
+
+        private static NewProjectGenController Initialize()
+        {
+            return new NewProjectGenController(new NewProjectPostActionFactory());
+        }
+
+        private NewProjectGenController(PostActionFactory postactionFactory)
+        {
+            _postactionFactory = postactionFactory;
+        }
+
         public static UserSelection GetUserSelection(string language)
         {
-            var mainView = new MainView(language);
+            var mainView = new Views.NewProject.MainView(language);
 
             try
             {
@@ -40,14 +51,12 @@ namespace Microsoft.Templates.UI
                 GenContext.ToolBox.Shell.ShowModal(mainView);
                 if (mainView.Result != null)
                 {
-                    // TODO: Review when right-click-actions available to track Project or Page completed.
                     AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject).FireAndForget();
 
                     return mainView.Result;
                 }
                 else
                 {
-                    // TODO: Review when right-click-actions available to track Project or Page cancelled.
                     AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewProject).FireAndForget();
                 }
             }
@@ -62,11 +71,11 @@ namespace Microsoft.Templates.UI
             return null;
         }
 
-        public static async Task GenerateAsync(UserSelection userSelection)
+        public async Task GenerateProjectAsync(UserSelection userSelection)
         {
             try
             {
-                await UnsafeGenerateAsync(userSelection);
+                await UnsafeGenerateProjectAsync(userSelection);
             }
             catch (Exception ex)
             {
@@ -78,41 +87,12 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        public static async Task UnsafeGenerateAsync(UserSelection userSelection)
+        public async Task UnsafeGenerateProjectAsync(UserSelection userSelection)
         {
             var genItems = GenComposer.Compose(userSelection).ToList();
             var chrono = Stopwatch.StartNew();
-            var genResults = new Dictionary<string, TemplateCreationResult>();
 
-            foreach (var genInfo in genItems)
-            {
-                if (genInfo.Template == null)
-                {
-                    continue;
-                }
-
-                var statusText = GetStatusText(genInfo);
-
-                if (!string.IsNullOrEmpty(statusText))
-                {
-                    GenContext.ToolBox.Shell.ShowStatusBarMessage(statusText);
-                }
-
-                AppHealth.Current.Info.TrackAsync($"Generating the template {genInfo.Template.Name} to {GenContext.Current.OutputPath}.").FireAndForget();
-
-                var result = await CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, GenContext.Current.OutputPath, genInfo.Parameters, false, false, null);
-
-                genResults.Add($"{genInfo.Template.Identity}_{genInfo.Name}", result);
-
-                if (result.Status != CreationResultStatus.Success)
-                {
-                    throw new GenException(genInfo.Name, genInfo.Template.Name, result.Message);
-                }
-
-                ExecutePostActions(genInfo, result);
-            }
-
-            ExecuteGlobalPostActions(genItems);
+            var genResults = await GenerateItemsAsync(genItems);
 
             chrono.Stop();
 
@@ -176,6 +156,8 @@ namespace Microsoft.Templates.UI
             {
                 int pagesAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Count();
                 int featuresAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Count();
+                var pageIdentities = string.Join(",", genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Select(t => t.Template.Identity));
+                var featureIdentities = string.Join(",", genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Select(t => t.Template.Identity));
 
                 foreach (var genInfo in genItems)
                 {
@@ -189,11 +171,12 @@ namespace Microsoft.Templates.UI
                     if (genInfo.Template.GetTemplateType() == TemplateType.Project)
                     {
                         AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template,
-                            appProjectType, appFx, genResults[resultsKey], GenContext.ToolBox.Shell.GetVsProjectId(), language, pagesAdded, featuresAdded, timeSpent).FireAndForget();
+
+                            appProjectType, appFx, genResults[resultsKey], GenContext.ToolBox.Shell.GetVsProjectId(), language, pagesAdded, featuresAdded, pageIdentities, featureIdentities, timeSpent).FireAndForget();
                     }
                     else
                     {
-                        AppHealth.Current.Telemetry.TrackItemGenAsync(genInfo.Template, appProjectType, appFx, genResults[resultsKey]).FireAndForget();
+                        AppHealth.Current.Telemetry.TrackItemGenAsync(genInfo.Template, GenSourceEnum.NewProject, appProjectType, appFx, genResults[resultsKey]).FireAndForget();
                     }
                 }
             }
