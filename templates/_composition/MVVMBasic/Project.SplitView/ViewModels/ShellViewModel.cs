@@ -15,6 +15,8 @@ namespace wts.ItemName.ViewModels
         private const string PanoramicStateName = "PanoramicState";
         private const string WideStateName = "WideState";
         private const string NarrowStateName = "NarrowState";
+        private const double WideStateMinWindowWidth = 640;
+        private const double PanoramicStateMinWindowWidth = 1024;
 
         private bool _isPaneOpen;
 
@@ -95,6 +97,22 @@ namespace wts.ItemName.ViewModels
             }
         }
 
+        private void InitializeState(double windowWith)
+        {
+            if (windowWith < WideStateMinWindowWidth)
+            {
+                GoToState(NarrowStateName);
+            }
+            else if (windowWith < PanoramicStateMinWindowWidth)
+            {
+                GoToState(WideStateName);
+            }
+            else
+            {
+                GoToState(PanoramicStateName);
+            }
+        }
+
         private void GoToState(string stateName)
         {
             switch (stateName)
@@ -121,10 +139,7 @@ namespace wts.ItemName.ViewModels
             NavigationService.Frame.Navigated += NavigationService_Navigated;
             PopulateNavItems();
 
-            if (Window.Current.Bounds.Width < 640)
-            {
-                GoToState(NarrowStateName);
-            }
+            InitializeState(Window.Current.Bounds.Width);
         }
 
         private void PopulateNavItems()

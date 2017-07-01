@@ -6,8 +6,9 @@ namespace Param_ItemNamespace.Services
         {
             var backgroundTasks = new List<BackgroundTask>();
 //^^
+//{[{
             backgroundTasks.Add(new BackgroundTaskFeature());
-
+//}]}
             return backgroundTasks;
         }
     }

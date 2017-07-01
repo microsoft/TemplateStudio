@@ -1,6 +1,8 @@
 using System;
 
+//{[{
 using Windows.ApplicationModel;
+//}]}
 
 namespace Param_RootNamespace
 {
@@ -10,7 +12,9 @@ namespace Param_RootNamespace
         {
             InitializeComponent();
 
+//{[{
             EnteredBackground += App_EnteredBackground;
+//}]}
         }
 //^^
 //{[{

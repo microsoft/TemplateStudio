@@ -52,7 +52,7 @@
                                                                 Grid.Column="1"
                                                                 ContentStringFormat="{TemplateBinding ContentStringFormat}" 
                                                                 HorizontalAlignment="Left"                                                                                                                                
-                                                                Margin="{StaticResource SmallLeftMargin}"
+                                                                Margin="{StaticResource Margin_S_Left}"
                                                                 RecognizesAccessKey="True" 
                                                                 SnapsToDevicePixels="True"                                                                
                                                                 VerticalAlignment="Top" />

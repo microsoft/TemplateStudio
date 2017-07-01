@@ -20,6 +20,7 @@ namespace Param_RootNamespace.ViewModels
             where VM : class
         {
             SimpleIoc.Default.Register<VM>();
+            
             _navigationService.Configure(typeof(VM).FullName, typeof(V));
         }
     }

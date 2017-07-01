@@ -243,6 +243,24 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Fact]
+        public void GetRightClickEnabled()
+        {
+            var target = GetTarget("RightClickTemplate");
+            var result = target.GetRightClickEnabled();
+
+            Assert.Equal(true, result);
+        }
+
+        [Fact]
+        public void GetRightClickEnabledFalse()
+        {
+            var target = GetTarget("FeatureTemplate");
+            var result = target.GetRightClickEnabled();
+
+            Assert.Equal(false, result);
+        }
+
+        [Fact]
         public void GetDefaultName_unspecified()
         {
             var target = GetTarget("UnspecifiedTemplate");

@@ -3,11 +3,11 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Azure Notification Hub",
+  "name": "Azure Notifications",
   "groupIdentity": "wts.Feat.HubNotifications",
   "identity": "wts.Feat.HubNotifications",
-  "shortName": "Hub Notifications",
-  "description": "Azure Notification Hubs provide an easy-to-use, multi-platform, scaled-out push engine.",
+  "shortName": "Azure Notifications",
+  "description": "Azure Notification Hubs provide an easy-to-use, multi-platform, notification-based engagement engine.",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -19,7 +19,8 @@
     "wts.licenses": "[WindowsAzure.Messaging.Managed](http://go.microsoft.com/fwlink/?LinkId=218949)",
     "wts.defaultInstance": "HubNotifications",
     "wts.multipleInstance": "false",
-    "wts.genGroup": "0"
+    "wts.genGroup": "0",    
+    "wts.rightClickEnabled":"true"
   },
   "sourceName": "HubNotificationsFeature",
   "preferNameDirectory": true,

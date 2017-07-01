@@ -7,7 +7,7 @@
   "groupIdentity": "wts.Feat.LiveTile",
   "identity": "wts.Feat.LiveTile",
   "shortName": "Live Tile",
-  "description": "A tile is an app's representation on the Start menu. Every app has a tile which can be used to display rich information.",
+  "description": "A tile is an app's representation on the Start menu. This tile can be dynamically updated.",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -19,7 +19,8 @@
     "wts.dependencies":"wts.Feat.SettingsStorage",
     "wts.defaultInstance": "LiveTile",
     "wts.multipleInstance": "false",
-    "wts.genGroup": "0"
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true"    
   },
   "sourceName": "LiveTileFeature",
   "preferNameDirectory": true,
