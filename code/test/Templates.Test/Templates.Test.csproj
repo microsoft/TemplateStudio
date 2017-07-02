@@ -109,8 +109,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseTestContextProvider.cs" />
     <Compile Include="StyleCopGenerationTestsFixture.cs" />
-    <Compile Include="StyleCopGenerationTests.cs" />
+    <Compile Include="StyleCopProjectGenerationTests.cs" />
     <Compile Include="GenerationCollection.cs" />
     <Compile Include="NewItemGenerationTests.cs" />
     <Compile Include="ProjectGenerationTests.cs" />

@@ -28,7 +28,8 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
-    public class StyleCopGenerationTests : IClassFixture<StyleCopGenerationTestsFixture>, IContextProvider
+    [Collection("Generation collection")]
+    public class StyleCopProjectGenerationTests : BaseTestContextProvider
     {
         private const string Platform = "x86";
         private const string Configuration = "Debug";
@@ -36,10 +37,7 @@ namespace Microsoft.Templates.Test
         private StyleCopGenerationTestsFixture _fixture;
         private List<string> _usedNames = new List<string>();
 
-        public string ProjectName { get; set; }
-        public string OutputPath { get; set; }
-
-        public StyleCopGenerationTests(StyleCopGenerationTestsFixture fixture)
+        public StyleCopProjectGenerationTests(StyleCopGenerationTestsFixture fixture)
         {
             _fixture = fixture;
             GenContext.Bootstrap(new StyleCopPlusLocalTemplatesSource(), new FakeGenShell());
@@ -57,7 +55,7 @@ namespace Microsoft.Templates.Test
             var projectName = $"{projectType}{framework}AllStyleCop";
 
             ProjectName = projectName;
-            OutputPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
 
             var userSelection = new UserSelection
             {
@@ -75,11 +73,11 @@ namespace Microsoft.Templates.Test
 
              AddItem(userSelection, "StyleCopTesting", x);
 
-            await GenController.UnsafeGenerateAsync(userSelection);
+            await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
             //Build solution
             var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
-            var result = BuildSolution(projectName, outputPath);
+            var result = GenerationFixture.BuildSolution(projectName, outputPath);
 
             //Assert
             Assert.True(result.exitCode.Equals(0), $"Solution {targetProjectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");

@@ -39,7 +39,7 @@ namespace Microsoft.Templates.Test
 
             var repos = new TemplatesRepository(source, Version.Parse("0.0.0.0"));
 
-            repos.SynchronizeAsync(true).Wait();
+            repos.SynchronizeAsync().Wait();
 
             return repos;
         }

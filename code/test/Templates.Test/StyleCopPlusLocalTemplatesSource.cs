@@ -11,6 +11,7 @@
 // ******************************************************************
 
 using System.IO;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Locations;
 
 namespace Microsoft.Templates.Test
