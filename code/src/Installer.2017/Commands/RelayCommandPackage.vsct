@@ -11,10 +11,12 @@
     <Groups>
       <Group guid="guidRelayCommandPackageCmdSet" id="AddItemContextGroup" priority="0x0200"/>
       <Group guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenuGroup" priority="0x0200"/>
+      <Group guid="guidRelayCommandPackageCmdSet" id="ToolsContextMenuGroup" priority="0x0200"/>
     </Groups>
     
     <Menus>
       <Menu guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenu" type="Context" priority="0x0100">
+        <Icon guid="guidImages" id="bmpFeature1" />  
         <Strings>
           <CommandName>Windows Template Studio</CommandName>
           <ButtonText>Windows Template Studio</ButtonText>
@@ -29,20 +31,27 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Icon guid="guidImages" id="bmpPage1" />
         <Strings>
-          <ButtonText>Add new page...</ButtonText>
+          <ButtonText>New page...</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidRelayCommandPackageCmdSet" id="AddFeatureCommand" priority="0x0200" type="Button">
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Icon guid="guidImages" id="bmpFeature1" />
         <Strings>
-          <ButtonText>Add new feature...</ButtonText>
+          <ButtonText>New feature...</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidRelayCommandPackageCmdSet" id="OpenTempFolder" priority="0x0300" type="Button">
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Icon guid="guidImages" id="bmpOpenTemp" />
+        <Strings>
+          <ButtonText>Open generation folder</ButtonText>
         </Strings>
       </Button>
     </Buttons>
 
     <Bitmaps>
-      <Bitmap guid="guidImages" href="Resources\RelayCommand.png" usedList="bmpFeature1, bmpFeature2, bmpFeature3, bmpFeature4, bmpPage1, bmpCSharp, bmpPage2"/>
+      <Bitmap guid="guidImages" href="Resources\RelayCommand.png" usedList="bmpFeature1, bmpFeature2, bmpFeature3, bmpFeature4, bmpPage1, bmpWTS, bmpOpenTemp"/>
     </Bitmaps>
   </Commands>
 
@@ -59,12 +68,21 @@
       <Parent guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenu" />
     </CommandPlacement>
 
+    
+    <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="ToolsContextMenuGroup" priority="0x0100">
+      <Parent guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenu" />
+    </CommandPlacement>
+    
     <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="AddPageCommand" priority="0x0100">
       <Parent guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenuGroup" />
     </CommandPlacement>
 
     <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="AddFeatureCommand" priority="0x0200">
       <Parent guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenuGroup" />
+    </CommandPlacement>
+    
+    <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="OpenTempFolder" priority="0x0300">
+      <Parent guid="guidRelayCommandPackageCmdSet" id="ToolsContextMenuGroup" />
     </CommandPlacement>
   </CommandPlacements>
   
@@ -75,8 +93,10 @@
       <IDSymbol name="AddItemContextGroup" value="0x0100" />
       <IDSymbol name="AddItemContextMenu" value="0x0200" />
       <IDSymbol name="AddItemContextMenuGroup" value="0x0300" />
+       <IDSymbol name="ToolsContextMenuGroup" value="0x0350" />
       <IDSymbol name="AddPageCommand" value="0x0400"/>
       <IDSymbol name="AddFeatureCommand" value="0x0500"/>
+      <IDSymbol name="OpenTempFolder" value="0x0600"/>
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{2be1a05a-8b56-4036-9f02-8bfee4cf74c7}" >

@@ -50,11 +50,14 @@ namespace Microsoft.Templates.Extension.Commands
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     public sealed class RelayCommandPackage : Package
     {
-        private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions());
-        private RightClickActions RightClickActions => _rightClickActions.Value;
+        //private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions());
+        //private RightClickActions RightClickActions => _rightClickActions.Value;
+
+        private RightClickActions RightClickActions => new RightClickActions();
 
         private RelayCommand addPageCommand;
         private RelayCommand addFeatureCommand;
+        private RelayCommand openTempFolderCommand;
 
         public RelayCommandPackage()
         {
@@ -66,13 +69,20 @@ namespace Microsoft.Templates.Extension.Commands
                  PackageIds.AddPageCommand,
                  PackageGuids.GuidRelayCommandPackageCmdSet,
                  AddPage,
-                 RightClickEnabled);
+                 RightClickAvailable);
 
             addFeatureCommand = new RelayCommand(this,
                 PackageIds.AddFeatureCommand,
                 PackageGuids.GuidRelayCommandPackageCmdSet,
                 AddFeature,
-                RightClickEnabled);
+                RightClickAvailable);
+
+            openTempFolderCommand = new RelayCommand(this,
+                PackageIds.OpenTempFolder,
+                PackageGuids.GuidRelayCommandPackageCmdSet,
+                OpenTempFolder,
+                TempFolderAvailable);
+
 
             base.Initialize();
         }
@@ -87,10 +97,21 @@ namespace Microsoft.Templates.Extension.Commands
             RightClickActions.AddNewFeature();
         }
 
-        void RightClickEnabled(object sender, EventArgs e)
+        void OpenTempFolder(object sender, EventArgs e)
+        {
+            RightClickActions.OpenTempFolder();
+        }
+
+        void RightClickAvailable(object sender, EventArgs e)
         {
             var cmd = (OleMenuCommand)sender;
             cmd.Visible = RightClickActions.Enabled();
+        }
+
+        void TempFolderAvailable(object sender, EventArgs e)
+        {
+            var cmd = (OleMenuCommand)sender;
+            cmd.Visible = RightClickActions.TempFolderAvailable();
         }
     }
 }
