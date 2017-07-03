@@ -40,13 +40,6 @@ namespace Microsoft.Templates.UI.Controls
             control.UpdateStatus(e.NewValue as StatusViewModel);
         }
 
-        public Brush InformationStatusBackground
-        {
-            get => (Brush)GetValue(InformationStatusBackgroundProperty);
-            set => SetValue(InformationStatusBackgroundProperty, value);
-        }
-        public static readonly DependencyProperty InformationStatusBackgroundProperty = DependencyProperty.Register("InformationStatusBackground", typeof(Brush), typeof(StatusControl), new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
-
         public StatusControl()
         {
             InitializeComponent();
@@ -73,24 +66,32 @@ namespace Microsoft.Templates.UI.Controls
                 case StatusType.Information:
                     txtStatus.Text = status.Message;
                     txtIcon.Text = ConvertToChar(SymbolFonts.Completed);
-                    txtIcon.Foreground = FindResource("UIBlack") as SolidColorBrush;
+                    txtIcon.Foreground = FindResource("UIMiddleDarkBlue") as SolidColorBrush;
+                    txtIcon.FontSize = 25;
                     backBackground.Opacity = 1.0;
-                    shapeBackground.Background = InformationStatusBackground;
+                    var brush = FindResource("UIBlue") as SolidColorBrush;
+                    brush.Opacity = 0.1;
+                    shapeBackground.Background = brush;
+                    verticalGrid.Background = FindResource("UIMiddleDarkBlue") as SolidColorBrush;
                     break;
                 case StatusType.Warning:
                     txtStatus.Text = status.Message;
                     txtIcon.Text = ConvertToChar(SymbolFonts.ErrorBadge);
                     txtIcon.Foreground = FindResource("UIDarkYellow") as SolidColorBrush;
+                    txtIcon.FontSize = 26;
                     shapeBackground.Background = FindResource("UIYellow") as SolidColorBrush;
                     backBackground.Opacity = 1.0;
+                    verticalGrid.Background = FindResource("UIDarkYellow") as SolidColorBrush;
                     break;
                 case StatusType.Error:
                     txtStatus.Text = status.Message;
                     txtIcon.Text = ConvertToChar(SymbolFonts.StatusErrorFull);
                     txtIcon.Foreground = FindResource("UIDarkRed") as SolidColorBrush;
-                    var brush = FindResource("UIRed") as SolidColorBrush;
+                    txtIcon.FontSize = 25;
+                    brush = FindResource("UIRed") as SolidColorBrush;
                     brush.Opacity = 0.4;
                     backBackground.Opacity = 1.0;
+                    verticalGrid.Background = FindResource("UIRed") as SolidColorBrush;
                     shapeBackground.Background = brush;
                     break;
                 default:
@@ -99,9 +100,9 @@ namespace Microsoft.Templates.UI.Controls
                     txtIcon.Text = " ";
                     backBackground.Opacity = 0.0;
                     shapeBackground.Background = new SolidColorBrush(Colors.Transparent);
+                    verticalGrid.Background = new SolidColorBrush(Colors.Transparent);
                     break;
             }
-            backBackground.Background = InformationStatusBackground;
             if (status.AutoHide == true)
             {
                 _hideTimer.Start();

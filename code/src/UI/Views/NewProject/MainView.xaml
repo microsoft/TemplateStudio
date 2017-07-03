@@ -235,8 +235,7 @@
             <controls:StatusControl
                     Grid.Row="1"
                     VerticalAlignment="Top"
-                    InformationStatusBackground="{StaticResource UIWhite}"
-                    Status="{Binding Status}"/>
+                    Status="{Binding Status}" />
             <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
                 <Grid>
                     <Grid.ColumnDefinitions>

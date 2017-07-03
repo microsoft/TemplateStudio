@@ -16,7 +16,7 @@ namespace Microsoft.Templates.UI.Controls
     public enum SymbolFonts
     {
         Completed = 0xE930,
-        StatusErrorFull = 0xEB90,
-        ErrorBadge = 0xEA39
+        StatusErrorFull = 0xEA39,
+        ErrorBadge = 0xE946
     }
 }
