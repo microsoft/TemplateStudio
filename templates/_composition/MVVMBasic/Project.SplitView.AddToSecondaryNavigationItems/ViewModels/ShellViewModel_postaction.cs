@@ -1,4 +1,8 @@
-﻿using Param_ItemNamespace.Views;
+﻿//{**
+//This code block adds the wts.ItemNamePage to the _secondaryItems of the ShellViewModel.
+//**}
+
+using Param_ItemNamespace.Views;
 namespace Param_ItemNamespace.ViewModels
 {
     public class ShellViewModel : Observable

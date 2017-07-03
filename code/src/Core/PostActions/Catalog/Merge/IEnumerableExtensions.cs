@@ -23,6 +23,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         internal const string MacroBeforeMode = "^^";
         internal const string MacroStartGroup = "{[{";
         internal const string MarcoEndGroup = "}]}";
+        internal const string MacroStartDocumentation = "{**";
+        internal const string MacroEndDocumentation = "**}";
         private const string MacroStartDelete = "//{--{";
         private const string MacroEndDelete = "//}--}";
 
@@ -59,6 +61,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             bool beforeMode = false;
             bool isInBlock = false;
+            bool isInDocumentation = false;
 
             var diffTrivia = FindDiffLeadingTrivia(source, merge);
             var result = source.ToList();
@@ -66,7 +69,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             foreach (var mergeLine in merge)
             {
-                if (!isInBlock)
+                if (!isInBlock && !isInDocumentation)
                 {
                     currentLineIndex = result.SafeIndexOf(mergeLine.WithLeadingTrivia(diffTrivia), lastLineIndex);
                 }
@@ -97,11 +100,19 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                     {
                         isInBlock = false;
                     }
-                    else if (isInBlock || mergeLine == string.Empty)
+                    else if (!isInDocumentation && (isInBlock || mergeLine == string.Empty))
                     {
                         insertionBuffer.Add(mergeLine.WithLeadingTrivia(diffTrivia));
                     }
-                    else
+                    else if (mergeLine.Contains(MacroStartDocumentation))
+                    {
+                        isInDocumentation = true;
+                    }
+                    else if (mergeLine.Contains(MacroEndDocumentation))
+                    {
+                        isInDocumentation = false;
+                    }
+                    else if (!isInDocumentation)
                     {
                         errorLine = mergeLine;
                         return source;
@@ -202,7 +213,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 return 0;
             }
 
-            var firstMerge = merge.First();
+            var documentactionEnd = merge.FirstOrDefault(m => m.Contains(MacroEndDocumentation));
+            var documentationEndIndex = merge.SafeIndexOf(documentactionEnd, 0);
+            var firstMerge = merge.Skip(documentationEndIndex + 1).First(m => !string.IsNullOrEmpty(m));
             var firstTarget = target.FirstOrDefault(t => t.Trim().Equals(firstMerge.Trim(), StringComparison.OrdinalIgnoreCase));
 
             if (firstTarget == null)
