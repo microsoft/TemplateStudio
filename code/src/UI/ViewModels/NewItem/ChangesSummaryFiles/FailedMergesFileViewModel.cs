@@ -31,10 +31,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 sb.AppendLine(warning.Description);
             }
-            if (!string.IsNullOrEmpty(warning.ExtendedInfo))
-            {
-                sb.AppendLine(warning.ExtendedInfo);
-            }
 
             DetailDescription = sb.ToString();
             Subject = warning.FileName;
