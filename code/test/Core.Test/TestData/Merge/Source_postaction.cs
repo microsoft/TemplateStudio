@@ -1,4 +1,8 @@
-﻿using Windows.UI.Xaml.Navigation;
+﻿//{**
+//Test documentation
+//**}
+
+using Windows.UI.Xaml.Navigation;
 //{[{
 //USING
 //}]}

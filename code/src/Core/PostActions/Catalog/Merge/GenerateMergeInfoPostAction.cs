@@ -9,13 +9,11 @@
 // TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
-using System;
-using System.Collections.Generic;
+
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+
 using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
@@ -28,8 +26,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         public const string Extension = "_" + Suffix + ".";
         public const string PostactionRegex = @"(\$\S*)?(_" + Suffix + "|_g" + Suffix + @")\.";
 
-        public const string PostActionIntentExtension = ".md";
-
         public GenerateMergeInfoPostAction(string config) : base(config)
         {
         }
@@ -38,7 +34,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
             var fileName = _config;
             var postAction = File.ReadAllText(_config).AsUserFriendlyPostAction();
-            var intent = GetPostActionIntent();
             var sourceFile = GetFilePath();
             var mergeType = GetMergeType();
             var relFilePath = sourceFile.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
@@ -47,7 +42,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 var mergeFile = GenContext.Current.MergeFilesFromProject[relFilePath];
 
-                mergeFile.Add(new MergeInfo() { Intent = intent, Format = mergeType, PostActionCode = postAction });
+                mergeFile.Add(new MergeInfo() { Format = mergeType, PostActionCode = postAction });
             }
         }
 
@@ -63,16 +58,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 default:
                     return string.Empty;
             }
-        }
-
-        private string GetPostActionIntent()
-        {
-            var intentFile = _config.Replace(Path.GetExtension(_config), PostActionIntentExtension);
-            if (File.Exists(intentFile))
-            {
-                return File.ReadAllText(intentFile);
-            }
-            return string.Empty;
         }
 
         private string GetFilePath()

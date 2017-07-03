@@ -1,1 +1,0 @@
-﻿This code block adds the OnBackgroundActivated event handler to the App class of your project.

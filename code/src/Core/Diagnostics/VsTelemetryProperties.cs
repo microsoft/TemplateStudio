@@ -10,18 +10,12 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
+namespace Microsoft.Templates.Core.Diagnostics
 {
-    public class MergeInfo
+    public class VsTelemetryProperties
     {
-        public string Format { get; set; }
-
-        public string PostActionCode { get; set; }
+        public const string Prefix = "Wts.";
+        public static string Pages { get; private set; } = TelemetryEvents.Prefix + "Pages";
+        public static string Features { get; private set; } = TelemetryEvents.Prefix + "Features";
     }
 }

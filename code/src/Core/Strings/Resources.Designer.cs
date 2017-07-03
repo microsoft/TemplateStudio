@@ -143,7 +143,7 @@ namespace Microsoft.Templates.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please follow the indicated steps to include the new item into you project:.
+        ///   Looks up a localized string similar to Please follow the indications to include the new item into you project:.
         /// </summary>
         internal static string SyncInstructionsDescription {
             get {
@@ -410,24 +410,6 @@ namespace Microsoft.Templates.Core.Strings {
         internal static string SyncSummaryTempGenerationFile {
             get {
                 return ResourceManager.GetString("SyncSummaryTempGenerationFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to End of block.
-        /// </summary>
-        internal static string UserFriendlyPostActionMacroEndGroup {
-            get {
-                return ResourceManager.GetString("UserFriendlyPostActionMacroEndGroup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Block to be included.
-        /// </summary>
-        internal static string UserFriendlyPostActionMacroStartGroup {
-            get {
-                return ResourceManager.GetString("UserFriendlyPostActionMacroStartGroup", resourceCulture);
             }
         }
     }

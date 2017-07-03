@@ -682,7 +682,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is new content available, click refresh to get the latest updates (current selection will be reseted)..
+        ///   Looks up a localized string similar to Click refresh to get the latest updates (current selection will be reseted)..
         /// </summary>
         public static string NewVersionAvailable {
             get {
@@ -1213,7 +1213,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt..
+        ///   Looks up a localized string similar to Windows Template Studio quickly builds a UWP app, using a wizard-based UI to turn your needs into a foundation of Windows 10 patterns and best practices..
         /// </summary>
         public static string WTSDescription {
             get {

@@ -57,7 +57,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             if (CheckProjectSetupChanged())
             {
-                Status = new StatusViewModel(StatusType.Warning, string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName));
+                SetStatus(new StatusViewModel(StatusType.Warning, string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName)));
             }
             else
             {

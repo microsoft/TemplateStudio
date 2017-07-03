@@ -1,4 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿//{**
+// This code block adds the method `GetChartSampleData()` to the SampleDataService of your project.
+//**}
+
+using System.Collections.ObjectModel;
 //{[{
 using System.Linq;
 //}]}

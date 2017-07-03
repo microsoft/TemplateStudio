@@ -39,11 +39,4 @@ namespace Microsoft.Templates.Core.Diagnostics
         public static string NewItemType { get; private set; } = TelemetryEvents.Prefix + "NewItemType";
         public static string GenSource { get; private set; } = TelemetryEvents.Prefix + "GenSource";
     }
-
-    public class VsTelemetryProperties
-    {
-        public const string Prefix = "Wts.";
-        public static string Pages { get; private set; } = TelemetryEvents.Prefix + "Pages";
-        public static string Features { get; private set; } = TelemetryEvents.Prefix + "Features";
-    }
 }
