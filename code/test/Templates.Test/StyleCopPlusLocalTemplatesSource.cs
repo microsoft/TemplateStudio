@@ -28,10 +28,12 @@ namespace Microsoft.Templates.Test
 
         public StyleCopPlusLocalTemplatesSource() : this("0.0.0.0", "0.0.0.0")
         {
+            base.ForcedAcquisition = true;
         }
 
-        public StyleCopPlusLocalTemplatesSource(string wizardVersion, string templatesVersion)
+        public StyleCopPlusLocalTemplatesSource(string wizardVersion, string templatesVersion, bool forcedAdquisition = true)
         {
+            base.ForcedAcquisition = forcedAdquisition;
             LocalTemplatesVersion = templatesVersion;
             LocalWizardVersion = wizardVersion;
         }

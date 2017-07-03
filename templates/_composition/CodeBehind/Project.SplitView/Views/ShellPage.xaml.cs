@@ -67,7 +67,7 @@ namespace wts.ItemName.Views
 
             InitializeState(Window.Current.Bounds.Width);
         }
-        
+
         private void InitializeState(double windowWith)
         {
             if (windowWith < WideStateMinWindowWidth)

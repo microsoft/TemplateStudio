@@ -14,8 +14,8 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
-    [CollectionDefinition("Generation collection")]
-    public class DatabaseCollection : ICollectionFixture<GenerationFixture>
+    [CollectionDefinition("StyleCop collection")]
+    public class StyleCopCollection : ICollectionFixture<StyleCopGenerationTestsFixture>
     {
     }
 }

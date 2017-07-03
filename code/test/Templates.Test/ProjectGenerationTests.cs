@@ -162,11 +162,9 @@ namespace Microsoft.Templates.Test
             Directory.Delete(outputPath, true);
         }
 
-
         public static IEnumerable<object[]> GetProjectTemplates()
         {
             return GenerationFixture.GetProjectTemplates();
-
         }
 
         public static IEnumerable<object[]> GetPageAndFeatureTemplates()

@@ -28,14 +28,10 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
-    [Collection("Generation collection")]
+    [Collection("StyleCop collection")]
     public class StyleCopProjectGenerationTests : BaseTestContextProvider
     {
-        private const string Platform = "x86";
-        private const string Configuration = "Debug";
-
-        private StyleCopGenerationTestsFixture _fixture;
-        private List<string> _usedNames = new List<string>();
+        private readonly StyleCopGenerationTestsFixture _fixture;
 
         public StyleCopProjectGenerationTests(StyleCopGenerationTestsFixture fixture)
         {
@@ -56,6 +52,7 @@ namespace Microsoft.Templates.Test
 
             ProjectName = projectName;
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            OutputPath = ProjectPath;
 
             var userSelection = new UserSelection
             {
@@ -65,95 +62,25 @@ namespace Microsoft.Templates.Test
             };
 
             AddLayoutItems(userSelection, targetProjectTemplate);
-            AddItems(userSelection, GetTemplates(framework, TemplateType.Page), GetDefaultName);
-            AddItems(userSelection, GetTemplates(framework, TemplateType.Feature), GetDefaultName);
+            _fixture.AddItems(userSelection, GetTemplates(framework, TemplateType.Page), _fixture.GetDefaultName);
+            _fixture.AddItems(userSelection, GetTemplates(framework, TemplateType.Feature), _fixture.GetDefaultName);
 
             var x = StyleCopGenerationTestsFixture.Templates
                 .First(t => t.Name == "Feature.Testing.StyleCop");
 
-             AddItem(userSelection, "StyleCopTesting", x);
+            _fixture.AddItem(userSelection, "StyleCopTesting", x);
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
             //Build solution
             var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
-            var result = GenerationFixture.BuildSolution(projectName, outputPath);
+            var result = _fixture.BuildSolution(projectName, outputPath);
 
             //Assert
-            Assert.True(result.exitCode.Equals(0), $"Solution {targetProjectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
+            Assert.True(result.exitCode.Equals(0), $"Solution {targetProjectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
             //Clean
             Directory.Delete(outputPath, true);
-        }
-
-        private IEnumerable<ITemplateInfo> GetTemplates(string framework, TemplateType templateType)
-        {
-            return StyleCopGenerationTestsFixture.Templates
-                                         .Where(t => t.GetFrameworkList().Contains(framework)
-                                                  && t.GetTemplateType() == templateType);
-        }
-
-        private void AddLayoutItems(UserSelection userSelection, ITemplateInfo projectTemplate)
-        {
-            var layouts = GenComposer.GetLayoutTemplates(userSelection.ProjectType, userSelection.Framework);
-
-            foreach (var item in layouts)
-            {
-                AddItem(userSelection, item.Layout.name, item.Template);
-            }
-        }
-
-        private void AddItems(UserSelection userSelection, IEnumerable<ITemplateInfo> templates, Func<ITemplateInfo, string> getName)
-        {
-            foreach (var template in templates)
-            {
-                if (template.GetMultipleInstance() || !AlreadyAdded(userSelection, template))
-                {
-                    var itemName = getName(template);
-
-                    var validators = new List<Validator>()
-                    {
-                        new ExistingNamesValidator(_usedNames),
-                        new ReservedNamesValidator(),
-                    };
-                    if (template.GetItemNameEditable())
-                    {
-                        validators.Add(new DefaultNamesValidator());  
-                    }
-                    itemName = Naming.Infer(itemName, validators);
-                    AddItem(userSelection, itemName, template);
-                }
-            }
-        }
-
-        private void AddItem(UserSelection userSelection, string itemName, ITemplateInfo template)
-        {
-            switch (template.GetTemplateType())
-            {
-                case TemplateType.Page:
-                    userSelection.Pages.Add((itemName, template));
-                    break;
-                case TemplateType.Feature:
-                    userSelection.Features.Add((itemName, template));
-                    break;
-            }
-
-            _usedNames.Add(itemName);
-
-            var dependencies = GenComposer.GetAllDependencies(template, userSelection.Framework);
-
-            foreach (var item in dependencies)
-            {
-                if (!AlreadyAdded(userSelection, item))
-                {
-                    AddItem(userSelection, item.GetDefaultName(), item);
-                }
-            }
-        }
-
-        private static bool AlreadyAdded(UserSelection userSelection, ITemplateInfo item)
-        {
-            return (userSelection.Pages.Any(p => p.template.Identity == item.Identity) || userSelection.Features.Any(f => f.template.Identity == item.Identity));
         }
 
         public static IEnumerable<object[]> GetProjectTemplatesForStyleCop()
@@ -175,59 +102,21 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        private static (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath)
+        private IEnumerable<ITemplateInfo> GetTemplates(string framework, TemplateType templateType)
         {
-            var outputFile = Path.Combine(outputPath, $"_buildOutput_{solutionName}.txt");
-
-            //Build
-            var solutionFile = Path.GetFullPath(outputPath + @"\" + solutionName + ".sln");
-            var startInfo = new ProcessStartInfo(GetPath("RestoreAndBuild.bat"))
-            {
-                Arguments = $"\"{solutionFile}\" {Platform} {Configuration}",
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-                CreateNoWindow = false,
-                WorkingDirectory = outputPath
-            };
-
-            var process = Process.Start(startInfo);
-
-            File.WriteAllText(outputFile, process.StandardOutput.ReadToEnd());
-
-            process.WaitForExit();
-
-            return (process.ExitCode, outputFile);
+            return StyleCopGenerationTestsFixture.Templates
+                                         .Where(t => t.GetFrameworkList().Contains(framework)
+                                                  && t.GetTemplateType() == templateType);
         }
 
-        private string GetDefaultName(ITemplateInfo template)
+        private void AddLayoutItems(UserSelection userSelection, ITemplateInfo projectTemplate)
         {
-            return template.GetDefaultName();
-        }
+            var layouts = GenComposer.GetLayoutTemplates(userSelection.ProjectType, userSelection.Framework);
 
-        internal static string GetPath(string fileName)
-        {
-            string path = Path.Combine(new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName, fileName);
-
-            if (!File.Exists(path))
+            foreach (var item in layouts)
             {
-                path = Path.GetFullPath($@".\{fileName}");
-
-                if (!File.Exists(path))
-                {
-                    throw new ApplicationException($"Can not find {fileName}");
-                }
+                _fixture.AddItem(userSelection, item.Layout.name, item.Template);
             }
-
-            return path;
-        }
-
-        private string GetErrorLines(string filePath)
-        {
-            Regex re = new Regex(@"^.*error .*$", RegexOptions.Multiline & RegexOptions.IgnoreCase);
-            var outputLines = File.ReadAllLines(filePath);
-            var errorLines = outputLines.Where(l => re.IsMatch(l));
-
-            return errorLines.Count() > 0 ? errorLines.Aggregate((i, j) => i + Environment.NewLine + j) : String.Empty;
         }
     }
 }
