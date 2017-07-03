@@ -62,12 +62,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 ProjectConfigurationWindow projectConfig = new ProjectConfigurationWindow();
                 if (projectConfig.ShowDialog().Value)
                 {
-                    configInfo.Framework = projectConfig.ViewModel.SelectedFramework;
-                    configInfo.ProjectType = projectConfig.ViewModel.SelectedProjectType;
+                    configInfo.Framework = projectConfig.ViewModel.SelectedFramework.Name;
+                    configInfo.ProjectType = projectConfig.ViewModel.SelectedProjectType.Name;
                 }
                 else
                 {
-                    // TODO: Cancel --> Show Message can't continue
+                    Cancel();
                 }
             }
 
@@ -90,6 +90,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
 
         protected override void OnCancel()
+        {
+            Cancel();
+        }
+
+        private void Cancel()
         {
             MainView.DialogResult = false;
             MainView.Result = null;
