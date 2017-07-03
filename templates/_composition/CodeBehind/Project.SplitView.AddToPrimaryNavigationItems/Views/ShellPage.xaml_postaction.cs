@@ -1,4 +1,9 @@
-﻿namespace Param_ItemNamespace.Views
+﻿//{**
+//This code block adds the wts.ItemNamePage to the _primaryItems of the ShellPage.
+//**}
+
+
+namespace Param_ItemNamespace.Views
 {
     public sealed partial class ShellPage : Page, INotifyPropertyChanged
     {

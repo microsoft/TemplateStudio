@@ -146,7 +146,7 @@
 Please compare and make sure everything is in the right place.</value>
   </data>
   <data name="SyncInstructionsDescription" xml:space="preserve">
-    <value>Please follow the indicated steps to include the new item into you project:</value>
+    <value>Please follow the indications to include the new item into you project:</value>
   </data>
   <data name="SyncInstructionsFileName" xml:space="preserve">
     <value>Steps to include new item generation.md</value>
@@ -235,11 +235,5 @@ Please compare and make sure everything is in the right place.</value>
   </data>
   <data name="SyncSummaryTempGenerationFile" xml:space="preserve">
     <value>Temp</value>
-  </data>
-  <data name="UserFriendlyPostActionMacroEndGroup" xml:space="preserve">
-    <value>End of block</value>
-  </data>
-  <data name="UserFriendlyPostActionMacroStartGroup" xml:space="preserve">
-    <value>Block to be included</value>
   </data>
 </root>

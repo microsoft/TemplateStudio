@@ -41,7 +41,7 @@ namespace Microsoft.Templates.Core.PostActions
         {
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, "*.*", SearchOption.AllDirectories)
-                .Where(f => Regex.IsMatch(f, MergePostAction.PostactionRegex) && Path.GetExtension(f) != MergePostAction.PostActionIntentExtension)
+                .Where(f => Regex.IsMatch(f, MergePostAction.PostactionRegex))
                 .ToList()
                 .ForEach(f => postActions.Add(new GetMergeFilesFromProjectPostAction(f)));
         }
@@ -50,7 +50,7 @@ namespace Microsoft.Templates.Core.PostActions
         {
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, "*.*", SearchOption.AllDirectories)
-                .Where(f => Regex.IsMatch(f, MergePostAction.PostactionRegex) && Path.GetExtension(f) != MergePostAction.PostActionIntentExtension)
+                .Where(f => Regex.IsMatch(f, MergePostAction.PostactionRegex))
                 .ToList()
                 .ForEach(f => postActions.Add(new GenerateMergeInfoPostAction(f)));
         }
@@ -77,7 +77,6 @@ namespace Microsoft.Templates.Core.PostActions
         {
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
-                .Where(f => Path.GetExtension(f) != MergePostAction.PostActionIntentExtension)
                 .ToList()
                 .ForEach(f => postActions.Add(new MergePostAction(new MergeConfiguration(f, failOnError))));
         }
@@ -86,7 +85,6 @@ namespace Microsoft.Templates.Core.PostActions
         {
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
-                .Where(f => Path.GetExtension(f) != MergePostAction.PostActionIntentExtension)
                 .ToList()
                 .ForEach(f => postActions.Add(new MergePostAction(new MergeConfiguration(f, failOnError))));
         }
