@@ -165,10 +165,12 @@
     </Style>
 
     <Style TargetType="TextBlock" x:Key="TextOverlayBoxDescriptionStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}"/>
     </Style>
 
     <Style TargetType="TextBlock" x:Key="TextOverlayBoxImportantInformationStyle" BasedOn="{StaticResource UIBaseText}">
         <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}"/>
     </Style>
 
 

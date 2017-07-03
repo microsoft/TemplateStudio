@@ -173,6 +173,7 @@
             TemplatesVersion="{Binding TemplatesVersion}"
             Visible="{Binding IsOverlayBoxVisible}"
             RefreshCommand="{Binding RefreshTemplatesCommand}"
-            CheckForUpdatesCommand="{Binding CheckUpdatesCommand}" />
+            CheckForUpdatesCommand="{Binding CheckUpdatesCommand}"
+            Status="{Binding OverlayStatus}" />
     </Grid>
 </Window>

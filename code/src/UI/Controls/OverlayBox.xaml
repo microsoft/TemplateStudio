@@ -8,14 +8,15 @@
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <converters:StringVisibilityConverter x:Key="StringVisibilityConverter" />
 
     <Style TargetType="{x:Type controls:OverlayBox}">
         <Setter Property="Focusable" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:OverlayBox}">
-                    <Grid Width="420" Height="285">
+                    <Grid Width="480" Height="315">
                         <Polygon
                             Fill="{StaticResource UIMiddleDarkGray}"                            
                             Points="0,8 20,8 10,0"
@@ -70,13 +71,15 @@
                                     <Grid Grid.Row="2" Margin="{StaticResource Margin_M_Top}">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
-                                        <TextBlock Grid.Row="1" Text="{x:Static res:StringRes.NewVersionAvailable}" Margin="{StaticResource Margin_M_Top}" Style="{StaticResource TextOverlayBoxImportantInformationStyle}" Visibility="{TemplateBinding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}}" />
                                         <Grid Grid.Row="0">
                                             <Button Style="{StaticResource ButtonRefreshTemplatesStyle}" Focusable="{TemplateBinding Visible}" Command="{TemplateBinding RefreshCommand}" Content="{x:Static res:StringRes.ButtonRefreshTemplates}" Visibility="{TemplateBinding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}}"/>
                                             <Button Style="{StaticResource ButtonRefreshTemplatesStyle}" Focusable="{TemplateBinding Visible}" Command="{TemplateBinding CheckForUpdatesCommand}" Content="{x:Static res:StringRes.CheckForUpdates}" Visibility="{TemplateBinding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}"/>
                                         </Grid>
+                                        <TextBlock Grid.Row="1" Text="{x:Static res:StringRes.NewVersionAvailable}" Margin="{StaticResource Margin_M_Top}" Style="{StaticResource TextOverlayBoxImportantInformationStyle}" Visibility="{TemplateBinding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                        <TextBlock Grid.Row="2" Text="{TemplateBinding StatusText}" Margin="{StaticResource Margin_M_Top}" Style="{StaticResource TextOverlayBoxImportantInformationStyle}" Visibility="{TemplateBinding StatusText, Converter={StaticResource StringVisibilityConverter}}" VerticalAlignment="Bottom"/>
                                     </Grid>
 
                                     <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="{StaticResource Margin_M_Top}">

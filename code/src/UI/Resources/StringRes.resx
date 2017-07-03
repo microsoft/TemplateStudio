@@ -389,13 +389,13 @@
     <value>Finish</value>
   </data>
   <data name="WTSDescription" xml:space="preserve">
-    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</value>
+    <value>Windows Template Studio quickly builds a UWP app, using a wizard-based UI to turn your needs into a foundation of Windows 10 patterns and best practices.</value>
   </data>
   <data name="ButtonRefreshTemplates" xml:space="preserve">
     <value>Refresh templates</value>
   </data>
   <data name="NewVersionAvailable" xml:space="preserve">
-    <value>There is new content available, click refresh to get the latest updates (current selection will be reseted).</value>
+    <value>Click refresh to get the latest updates (current selection will be reseted).</value>
   </data>
   <data name="CheckForUpdates" xml:space="preserve">
     <value>Check for new templates</value>
