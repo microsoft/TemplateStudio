@@ -338,7 +338,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (dependencyItem != null)
             {
                 string message = string.Format(StringRes.ValidationError_CanNotRemoveTemplate_SF, item.TemplateName, dependencyItem.TemplateName, dependencyItem.TemplateType);
-                MainViewModel.Current.Status = new StatusViewModel(Controls.StatusType.Warning, message, true);
+                MainViewModel.Current.SetStatus(new StatusViewModel(Controls.StatusType.Warning, message, true));
                 return;
             }
             if (SavedPages[item.GenGroup].Contains(item))

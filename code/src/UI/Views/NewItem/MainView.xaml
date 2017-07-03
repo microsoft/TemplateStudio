@@ -86,8 +86,7 @@
                 Grid.Row="1"
                 Grid.RowSpan="2"
                 VerticalAlignment="Top"
-                Status="{Binding Status}"
-                InformationStatusBackground="{StaticResource UIWhite}" />
+                Status="{Binding Status}" />
             <Grid Grid.Row="3" Style="{StaticResource GridBottomBarStyle}">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -174,6 +173,7 @@
             TemplatesVersion="{Binding TemplatesVersion}"
             Visible="{Binding IsOverlayBoxVisible}"
             RefreshCommand="{Binding RefreshTemplatesCommand}"
-            CheckForUpdatesCommand="{Binding CheckUpdatesCommand}" />
+            CheckForUpdatesCommand="{Binding CheckUpdatesCommand}"
+            Status="{Binding OverlayStatus}" />
     </Grid>
 </Window>
