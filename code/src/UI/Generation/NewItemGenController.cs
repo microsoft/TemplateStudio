@@ -139,7 +139,7 @@ namespace Microsoft.Templates.UI
             var result = new TempGenerationResult();
             var files = Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, "*", SearchOption.AllDirectories)
-                .Where(f => !Regex.IsMatch(f, MergePostAction.PostactionRegex) && !Regex.IsMatch(f, MergePostAction.FailedPostactionRegex) && (Path.GetExtension(f) != MergePostAction.PostActionIntentExtension))
+                .Where(f => !Regex.IsMatch(f, MergePostAction.PostactionRegex) && !Regex.IsMatch(f, MergePostAction.FailedPostactionRegex))
                 .ToList();
 
             foreach (var file in files)

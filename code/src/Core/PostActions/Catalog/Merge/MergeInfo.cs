@@ -22,8 +22,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
     {
         public string Format { get; set; }
 
-        public string Intent { get; set; }
-
         public string PostActionCode { get; set; }
     }
 }

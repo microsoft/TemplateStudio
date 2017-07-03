@@ -1,4 +1,8 @@
-﻿//{[{
+﻿//{**
+// This code block adds the method `GetSampleModelDataAsync()` to the SampleDataService of your project.
+//**}
+
+//{[{
 using System.Threading.Tasks;
 //}]}
 namespace Param_ItemNamespace.Services

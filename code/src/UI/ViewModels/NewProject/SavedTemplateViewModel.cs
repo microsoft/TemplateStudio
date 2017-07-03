@@ -222,7 +222,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             set => SetProperty(ref _authorForeground, value);
         }
 
-        public string DisplayText => CanChooseItemName ? ItemName : $"{ItemName} [{TemplateName}]";
+        public string DisplayText => CanChooseItemName ? $"{ItemName} [{TemplateName}]" : ItemName;
 
         public ICommand OpenCommand { get; set; }
 

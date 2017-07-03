@@ -24,15 +24,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         public string Description { get; private set; }
 
-        public string ExtendedInfo { get; private set; }
-
-        public FailedMergePostAction(string fileName, string filePath, string failedFileName, string description, string extendedInfo, MergeFailureType mergeFailureType)
+        public FailedMergePostAction(string fileName, string filePath, string failedFileName, string description, MergeFailureType mergeFailureType)
         {
             FileName = fileName;
             FilePath = filePath;
             FailedFileName = failedFileName;
             Description = description;
-            ExtendedInfo = extendedInfo;
             MergeFailureType = mergeFailureType;
         }
     }
