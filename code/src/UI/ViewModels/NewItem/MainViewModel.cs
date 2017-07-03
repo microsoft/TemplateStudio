@@ -44,17 +44,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public async Task InitializeAsync(TemplateType templateType)
         {
-            var configInfo = GetProjectConfig();
-
             ConfigTemplateType = templateType;
-            ConfigProjectType = configInfo.ProjectType;
-            ConfigFramework = configInfo.Framework;
             SetNewItemSetupTitle();
             await BaseInitializeAsync();
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1008:Opening parenthesis must be spaced correctly", Justification = "Using tuples must allow to have preceding whitespace", Scope = "member")]
-        private (string ProjectType, string Framework) GetProjectConfig()
+        private void SetProjectConfigInfo()
         {
             var configInfo = ProjectConfigInfo.ReadProjectConfiguration();
             if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework))
@@ -62,16 +58,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 ProjectConfigurationWindow projectConfig = new ProjectConfigurationWindow();
                 if (projectConfig.ShowDialog().Value)
                 {
-                    configInfo.Framework = projectConfig.ViewModel.SelectedFramework;
-                    configInfo.ProjectType = projectConfig.ViewModel.SelectedProjectType;
+                    configInfo.ProjectType = projectConfig.ViewModel.SelectedProjectType.Name;
+                    configInfo.Framework = projectConfig.ViewModel.SelectedFramework.Name;
                 }
                 else
                 {
-                    // TODO: Cancel --> Show Message can't continue
+                    Cancel();
                 }
             }
-
-            return configInfo;
+            ConfigFramework = configInfo.Framework;
+            ConfigProjectType = configInfo.ProjectType;
         }
 
         public void SetNewItemSetupTitle() => Title = string.Format(StringRes.NewItemTitle_SF, ConfigTemplateType.ToString().ToLower());
@@ -90,6 +86,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
 
         protected override void OnCancel()
+        {
+            Cancel();
+        }
+
+        private void Cancel()
         {
             MainView.DialogResult = false;
             MainView.Result = null;
@@ -140,7 +141,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             return null;
         }
 
-        protected override void OnTemplatesAvailable() => NewItemSetup.Initialize(true);
+        protected override void OnTemplatesAvailable()
+        {
+            SetProjectConfigInfo();
+            NewItemSetup.Initialize(true);
+        }
+
         protected override void OnNewTemplatesAvailable()
         {
             _canGoBack = false;

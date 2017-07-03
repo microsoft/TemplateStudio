@@ -5,12 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"    
         mc:Ignorable="d"
-        Title="ProjectConfigurationWindow" Height="300" Width="450">
+        Title="ProjectConfigurationWindow" Height="325" Width="450">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate x:Key="MetadataDisplayNameTemplate">
+                <TextBlock Text="{Binding DisplayName}"/>
+            </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
@@ -37,11 +41,14 @@
                     Text="Project configuration" />
         </Grid>
         <StackPanel Margin="{StaticResource Margin_M_All}" Grid.Row="1">
+            <TextBlock Text="We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?." FontSize="{StaticResource UI_S_FontSize}"  Margin="{StaticResource Margin_S_Top}"/>
             <TextBlock Text="Select project type" FontSize="{StaticResource UI_S_FontSize}"/>
-            <ComboBox ItemsSource="{Binding ProjectTypes}" SelectedItem="{Binding SelectedProjectType, Mode=TwoWay}" Margin="{StaticResource Margin_S_Top}"/>
-            
-            <TextBlock Text="Select project type" FontSize="{StaticResource UI_S_FontSize}" Margin="{StaticResource Margin_M_Top}"/>
-            <ComboBox Text="Framework:" ItemsSource="{Binding Frameworks}" SelectedItem="{Binding SelectedFramework, Mode=TwoWay}" Margin="{StaticResource Margin_S_Top}"/>
+            <ComboBox ItemsSource="{Binding ProjectTypes}" SelectedItem="{Binding SelectedProjectType, Mode=TwoWay}" Margin="{StaticResource Margin_S_Top}" ItemTemplate="{StaticResource MetadataDisplayNameTemplate}"/>
+            <TextBlock Text="{Binding SelectedProjectType.Summary}" Margin="{StaticResource Margin_S_Top}"/>
+
+            <TextBlock Text="Select framework type" FontSize="{StaticResource UI_S_FontSize}" Margin="{StaticResource Margin_M_Top}"/>
+            <ComboBox Text="Framework:" ItemsSource="{Binding Frameworks}" SelectedItem="{Binding SelectedFramework, Mode=TwoWay}" Margin="{StaticResource Margin_S_Top}" ItemTemplate="{StaticResource MetadataDisplayNameTemplate}"/>
+            <TextBlock Text="{Binding SelectedFramework.Summary}" Margin="{StaticResource Margin_S_Top}"/>
         </StackPanel>
         <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
