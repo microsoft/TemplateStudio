@@ -26,3 +26,17 @@ private ShellNavigationItem(string name, Symbol symbol, Type pageType)
     Services.ThemeSelectorService.OnThemeChanged += (s, e) => { if (!IsSelected) SelectedForeground = GetStandardTextColorBrush(); };
     //}]}
 }
+
+private ShellNavigationItem(string name, IconElement icon, Type pageType)
+{
+    this.Label = name;
+    this._iconElement = icon;
+    this.PageType = pageType;
+
+    //^^
+    //{[{
+    Services.ThemeSelectorService.OnThemeChanged += (s, e) => { if (!IsSelected) SelectedForeground = GetStandardTextColorBrush(); };
+    //}]}
+}
+
+
