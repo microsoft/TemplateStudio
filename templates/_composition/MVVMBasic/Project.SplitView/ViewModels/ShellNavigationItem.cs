@@ -39,6 +39,7 @@ namespace wts.ItemName.ViewModels
         public Type PageType { get; set; }
 
         private IconElement _iconElement = null;
+
         public IconElement Icon
         {
             get

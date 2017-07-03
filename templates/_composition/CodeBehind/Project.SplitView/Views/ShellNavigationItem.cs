@@ -32,6 +32,7 @@ namespace wts.ItemName.Views
         public Type PageType { get; set; }
 
         private IconElement _iconElement = null;
+
         public IconElement Icon
         {
             get

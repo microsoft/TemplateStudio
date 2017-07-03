@@ -1,7 +1,7 @@
 ﻿//{**
 //This code block add code to the ShellNavigationItem to apply the correct color based on the selected theme.
 //**}
-﻿        private SolidColorBrush GetStandardTextColorBrush()
+        private SolidColorBrush GetStandardTextColorBrush()
         {
             var brush = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
 

@@ -38,6 +38,7 @@ namespace wts.ItemName.ViewModels
         public string ViewModelName { get; set; }
 
         private IconElement _iconElement = null;
+
         public IconElement Icon
         {
             get
