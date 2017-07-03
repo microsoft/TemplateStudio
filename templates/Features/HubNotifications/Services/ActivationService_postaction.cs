@@ -1,3 +1,8 @@
+//{**
+// These code blocks include the HubNotificationsFeatureService Instance in the method `GetActivationHandlers()`
+// in the ActivationService of your project and add documentation about how to use the HubNotificationsFeatureService.
+//**}
+
 using System;
 //{[{
 using Param_RootNamespace.Helpers;
@@ -22,7 +27,7 @@ namespace Param_ItemNamespace.Services
         {
 //{[{
             yield return Singleton<HubNotificationsFeatureService>.Instance;
-///}]}
+//}]}
 //{--{
             yield break;//}--}
         }

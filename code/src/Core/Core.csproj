@@ -156,6 +156,7 @@
     <Compile Include="Diagnostics\ExceptionTracker.cs" />
     <Compile Include="Diagnostics\NewItemType.cs" />
     <Compile Include="Diagnostics\TelemetryMetrics.cs" />
+    <Compile Include="Diagnostics\VsTelemetryProperties.cs" />
     <Compile Include="Diagnostics\TelemetryProperties.cs" />
     <Compile Include="Diagnostics\TraceTracker.cs" />
     <Compile Include="Diagnostics\FileHealthWriter.cs" />

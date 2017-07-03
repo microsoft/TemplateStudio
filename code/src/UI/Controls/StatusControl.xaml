@@ -16,18 +16,23 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid>
-        <Grid x:Name="backBackground" Opacity="0.0"/>
-        <Grid x:Name="shapeBackground" Background="Transparent" />
-        <Grid Margin="{StaticResource Margin_S_All}">
+    <Grid Height="55">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="backBackground" Grid.ColumnSpan="2" Opacity="0.0" Background="{StaticResource UIWhite}"/>
+        <Grid x:Name="shapeBackground" Grid.ColumnSpan="2" Background="Transparent" />
+        <Grid x:Name="verticalGrid"/>
+        <Grid Grid.Column="1" Margin="{StaticResource Margin_S_All}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Style="{StaticResource TextWizardStatusStyle}" Margin="{StaticResource Margin_M_Left}">
-                <Run x:Name="txtIcon" FontFamily="Segoe MDL2 Assets" FontSize="18" BaselineAlignment="Center" Text=" " />
+            <TextBlock Grid.Column="0" Style="{StaticResource TextWizardStatusStyle}" Margin="{StaticResource Margin_S_Left}">
+                <Run x:Name="txtIcon" FontFamily="Segoe MDL2 Assets" BaselineAlignment="Center" Text=" " />
             </TextBlock>
-            <TextBlock Margin="{StaticResource Margin_M_Left}" Style="{StaticResource TextWizardStatusStyle}" Grid.Column="1">
+            <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Style="{StaticResource TextWizardStatusStyle}">
                 <Run x:Name="txtStatus" />
             </TextBlock>
         </Grid>

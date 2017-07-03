@@ -1,6 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -29,6 +30,34 @@ namespace wts.ItemName.Views
         }
 
         public Type PageType { get; set; }
+
+        private IconElement _iconElement = null;
+        public IconElement Icon
+        {
+            get
+            {
+                var foregroundBinding = new Binding
+                {
+                    Source = this,
+                    Path = new PropertyPath("SelectedForeground"),
+                    Mode = BindingMode.OneWay,
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                };
+
+                if (_iconElement != null)
+                {
+                    BindingOperations.SetBinding(_iconElement, IconElement.ForegroundProperty, foregroundBinding);
+
+                    return _iconElement;
+                }
+
+                var fontIcon = new FontIcon { FontSize = 16, Glyph = SymbolAsChar.ToString() };
+
+                BindingOperations.SetBinding(fontIcon, FontIcon.ForegroundProperty, foregroundBinding);
+
+                return fontIcon;
+            }
+        }
 
         public bool IsSelected
         {
@@ -73,6 +102,19 @@ namespace wts.ItemName.Views
             where T : Page
         {
             return new ShellNavigationItem(name, symbol, typeof(T));
+        }
+
+        private ShellNavigationItem(string name, IconElement icon, Type pageType)
+        {
+            this.Label = name;
+            this._iconElement = icon;
+            this.PageType = pageType;
+        }
+
+        public static ShellNavigationItem FromType<T>(string name, IconElement icon)
+            where T : Page
+        {
+            return new ShellNavigationItem(name, icon, typeof(T));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
