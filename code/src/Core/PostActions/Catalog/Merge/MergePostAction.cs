@@ -135,7 +135,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetIntentFilePath()
         {
-            return _config.FilePath.Replace(Path.GetExtension(_config.FilePath), PostActionIntentExtension);
+            return Path.ChangeExtension(_config.FilePath, PostActionIntentExtension);
         }
 
         private string GetFilePath()
