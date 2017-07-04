@@ -11,7 +11,7 @@
     PreviewLostKeyboardFocus="OnPreviewLostKeyboardFocus"
     PreviewMouseDown="OnPreviewMouseDown"
     Title="{x:Static res:StringRes.Title}"
-    Width="1294"
+    Width="1298"
     Height="727"
     MinWidth="800"
     MinHeight="600"

@@ -21,9 +21,9 @@
 
             <DataTemplate x:Key="NewItemSetupItemTemplate">
                 <Grid>
-                    <Rectangle Style="{StaticResource RectangleDropShadowStyle}" />
                     <Border Width="205" Height="180" Background="{StaticResource UIWhite}">
                         <Grid Margin="{StaticResource Margin_M_All}">
+                            <Grid Margin="5,0,0,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="60" />
                                 <RowDefinition Height="*" />
@@ -46,6 +46,7 @@
                             </Grid>
 
                             <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding Summary}" Foreground="{StaticResource UIBlack}"/>
+                            </Grid>
                         </Grid>
                     </Border>
                 </Grid>
