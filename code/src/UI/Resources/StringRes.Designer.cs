@@ -710,7 +710,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is new content available, click refresh to get the latest updates (current selection will be reseted)..
+        ///   Looks up a localized string similar to Click refresh to get the latest updates (current selection will be reseted)..
         /// </summary>
         public static string NewVersionAvailable {
             get {
@@ -760,6 +760,33 @@ namespace Microsoft.Templates.UI.Resources {
         public static string PrivacyTermns {
             get {
                 return ResourceManager.GetString("PrivacyTermns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?..
+        /// </summary>
+        public static string ProjectConfigurationDescriptionText {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationDescriptionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select framework.
+        /// </summary>
+        public static string ProjectConfigurationSelectFramework {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationSelectFramework", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select project type.
+        /// </summary>
+        public static string ProjectConfigurationSelectProjectType {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationSelectProjectType", resourceCulture);
             }
         }
         
@@ -845,7 +872,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wizard incompatible with templates content.
+        ///   Looks up a localized string similar to Wizard incompatible with templates content..
         /// </summary>
         public static string StatusLowerVersionTitle {
             get {
@@ -854,7 +881,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is new templates content available.
+        ///   Looks up a localized string similar to There is new templates content available..
         /// </summary>
         public static string StatusNewVersionAvailable {
             get {
@@ -881,7 +908,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wizard update available.
+        ///   Looks up a localized string similar to Wizard update available..
         /// </summary>
         public static string StatusOverVersionTitle {
             get {
@@ -890,7 +917,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Templates ready.
+        ///   Looks up a localized string similar to Templates ready..
         /// </summary>
         public static string StatusPrepared {
             get {
@@ -908,7 +935,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Templates updated.
+        ///   Looks up a localized string similar to Templates updated..
         /// </summary>
         public static string StatusUpdated {
             get {
@@ -1295,7 +1322,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt..
+        ///   Looks up a localized string similar to Windows Template Studio quickly builds a UWP app, using a wizard-based UI to turn your needs into a foundation of Windows 10 patterns and best practices..
         /// </summary>
         public static string WTSDescription {
             get {

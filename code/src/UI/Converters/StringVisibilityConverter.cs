@@ -21,13 +21,27 @@ namespace Microsoft.Templates.UI.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null || string.IsNullOrEmpty(value.ToString()))
+            if (parameter == null)
             {
-                return Visibility.Collapsed;
+                if (value == null || string.IsNullOrEmpty(value.ToString()))
+                {
+                    return Visibility.Collapsed;
+                }
+                else
+                {
+                    return Visibility.Visible;
+                }
             }
             else
             {
-                return Visibility.Visible;
+                if (value == null || string.IsNullOrEmpty(value.ToString()))
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
+                }
             }
         }
 

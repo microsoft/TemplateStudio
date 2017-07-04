@@ -22,6 +22,7 @@ using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Generation;
 using Microsoft.Templates.UI.Views.NewItem;
+using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -31,11 +32,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public ICommand OkCommand => new RelayCommand(OnOkCommand);
         public ICommand CancelCommand => new RelayCommand(Cancel);
 
-        public ObservableCollection<string> ProjectTypes { get; } = new ObservableCollection<string>();
-        public ObservableCollection<string> Frameworks { get; } = new ObservableCollection<string>();
+        public ObservableCollection<MetadataInfo> ProjectTypes { get; } = new ObservableCollection<MetadataInfo>();
+        public ObservableCollection<MetadataInfo> Frameworks { get; } = new ObservableCollection<MetadataInfo>();
 
-        private string _selectedProjectType;
-        public string SelectedProjectType
+        private MetadataInfo _selectedProjectType;
+        public MetadataInfo SelectedProjectType
         {
             get => _selectedProjectType;
             set
@@ -45,8 +46,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        private string _selectedFramework;
-        public string SelectedFramework
+        private MetadataInfo _selectedFramework;
+        public MetadataInfo SelectedFramework
         {
             get => _selectedFramework;
             set => SetProperty(ref _selectedFramework, value);
@@ -59,16 +60,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public void Initialize()
         {
-            ProjectTypes.AddRange(GenContext.ToolBox.Repo.GetProjectTypes().Select(f => f.DisplayName));
+            ProjectTypes.AddRange(GenContext.ToolBox.Repo.GetProjectTypes());
             SelectedProjectType = ProjectTypes.FirstOrDefault();
         }
 
         private void LoadFrameworks()
         {
-            var projectFrameworks = GenComposer.GetSupportedFx(SelectedProjectType);
+            var projectFrameworks = GenComposer.GetSupportedFx(SelectedProjectType.Name);
             var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks()
-                                                                .Where(m => projectFrameworks.Contains(m.Name))
-                                                                .Select(f => f.DisplayName)
+                                                                .Where(tf => projectFrameworks.Contains(tf.Name))
                                                                 .ToList();
             Frameworks.Clear();
             Frameworks.AddRange(targetFrameworks);
@@ -80,7 +80,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void OnOkCommand()
         {
-            ProjectConfigInfo.SaveProjectConfiguration(SelectedProjectType, SelectedFramework);
+            ProjectConfigInfo.SaveProjectConfiguration(SelectedProjectType.Name, SelectedFramework.Name);
             _window.DialogResult = true;
             _window.Close();
         }

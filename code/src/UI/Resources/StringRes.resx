@@ -214,7 +214,7 @@
     <value>Restoring packages...</value>
   </data>
   <data name="StatusAcquired" xml:space="preserve">
-    <value>Done</value>
+    <value>Done.</value>
   </data>
   <data name="StatusAcquiring" xml:space="preserve">
     <value>Checking for template updates...</value>
@@ -223,7 +223,7 @@
     <value>There is no templates content available for the current wizard version. Please ensure you have connectivity and restart the wizard again.</value>
   </data>
   <data name="StatusLowerVersionTitle" xml:space="preserve">
-    <value>Wizard incompatible with templates content</value>
+    <value>Wizard incompatible with templates content.</value>
   </data>
   <data name="StatusOverVersionContent" xml:space="preserve">
     <value>An update to the templates is available but not compatible with the wizard version. Update the extension to access the latest content.</value>
@@ -232,10 +232,10 @@
     <value>There is no content available for this extension version. Update the extension to access to the latest content.</value>
   </data>
   <data name="StatusOverVersionTitle" xml:space="preserve">
-    <value>Wizard update available</value>
+    <value>Wizard update available.</value>
   </data>
   <data name="StatusUpdated" xml:space="preserve">
-    <value>Templates updated</value>
+    <value>Templates updated.</value>
   </data>
   <data name="StatusUpdating" xml:space="preserve">
     <value>Updating templates...</value>
@@ -344,7 +344,7 @@
     <value>None Selected</value>
   </data>
   <data name="StatusPrepared" xml:space="preserve">
-    <value>Templates ready</value>
+    <value>Templates ready.</value>
   </data>
   <data name="StatusPreparing" xml:space="preserve">
     <value>Preparing templates for first use...</value>
@@ -416,13 +416,13 @@
     <value>Finish</value>
   </data>
   <data name="WTSDescription" xml:space="preserve">
-    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</value>
+    <value>Windows Template Studio quickly builds a UWP app, using a wizard-based UI to turn your needs into a foundation of Windows 10 patterns and best practices.</value>
   </data>
   <data name="ButtonRefreshTemplates" xml:space="preserve">
     <value>Refresh templates</value>
   </data>
   <data name="NewVersionAvailable" xml:space="preserve">
-    <value>There is new content available, click refresh to get the latest updates (current selection will be reseted).</value>
+    <value>Click refresh to get the latest updates (current selection will be reseted).</value>
   </data>
   <data name="CheckForUpdates" xml:space="preserve">
     <value>Check for new templates</value>
@@ -470,7 +470,7 @@
     <value>Unchanged files</value>
   </data>
   <data name="StatusNewVersionAvailable" xml:space="preserve">
-    <value>There is new templates content available</value>
+    <value>There is new templates content available.</value>
   </data>
   <data name="ErrorSyncCheckNewVersion" xml:space="preserve">
     <value>Error checking for updates. See output for more details.</value>
@@ -531,5 +531,14 @@
   </data>
   <data name="NoProjectChanges" xml:space="preserve">
     <value>There are no changes to apply to your project. Everything already exisits.</value>
+  </data>
+  <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
+    <value>We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?.</value>
+  </data>
+  <data name="ProjectConfigurationSelectFramework" xml:space="preserve">
+    <value>Select framework</value>
+  </data>
+  <data name="ProjectConfigurationSelectProjectType" xml:space="preserve">
+    <value>Select project type</value>
   </data>
 </root>

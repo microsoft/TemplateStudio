@@ -79,12 +79,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
                             foreach (var mergeInfo in mergeFile.Value)
                             {
-                                if (!string.IsNullOrEmpty(mergeInfo.Intent))
-                                {
-                                    sb.AppendLine(mergeInfo.Intent);
-                                    sb.AppendLine();
-                                }
-
                                 sb.AppendLine($"```{mergeInfo.Format}");
                                 sb.AppendLine(mergeInfo.PostActionCode);
                                 sb.AppendLine("```");
@@ -118,12 +112,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
                     foreach (var mergeInfo in failedMergeFile.Value)
                     {
-                        if (!string.IsNullOrEmpty(mergeInfo.Intent))
-                        {
-                            sb.AppendLine(mergeInfo.Intent);
-                            sb.AppendLine();
-                        }
-
                         sb.AppendLine($"```{mergeInfo.Format}");
                         sb.AppendLine(mergeInfo.PostActionCode);
                         sb.AppendLine("```");

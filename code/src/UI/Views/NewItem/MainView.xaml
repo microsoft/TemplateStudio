@@ -86,8 +86,7 @@
                 Grid.Row="1"
                 Grid.RowSpan="2"
                 VerticalAlignment="Top"
-                Status="{Binding Status}"
-                InformationStatusBackground="{StaticResource UIWhite}" />
+                Status="{Binding Status}" />
             <Grid Grid.Row="3" Style="{StaticResource GridBottomBarStyle}">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -157,7 +156,7 @@
             </Grid>
             <Grid
                 Grid.Row="0"
-                Grid.RowSpan="3"
+                Grid.RowSpan="4"
                 Visibility="{Binding InfoShapeVisibility, FallbackValue=Collapsed}">
                 <Grid.Background>
                     <SolidColorBrush Opacity="0.4" Color="Black" />
@@ -174,6 +173,7 @@
             TemplatesVersion="{Binding TemplatesVersion}"
             Visible="{Binding IsOverlayBoxVisible}"
             RefreshCommand="{Binding RefreshTemplatesCommand}"
-            CheckForUpdatesCommand="{Binding CheckUpdatesCommand}" />
+            CheckForUpdatesCommand="{Binding CheckUpdatesCommand}"
+            Status="{Binding OverlayStatus}" />
     </Grid>
 </Window>

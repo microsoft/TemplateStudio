@@ -15,13 +15,32 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Extensions;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.Controls
 {
     public sealed class OverlayBox : Control
     {
+        private DispatcherTimer _hideTimer;
+        private DispatcherTimer HideTimer
+        {
+            get
+            {
+                if (_hideTimer == null)
+                {
+                    _hideTimer = new DispatcherTimer()
+                    {
+                        Interval = TimeSpan.FromSeconds(5)
+                    };
+                    _hideTimer.Tick += OnHideTimerTick;
+                }
+                return _hideTimer;
+            }
+        }
+
         public bool Visible
         {
             get => (bool)GetValue(VisibleProperty);
@@ -56,6 +75,29 @@ namespace Microsoft.Templates.UI.Controls
         }
         public static readonly DependencyProperty OpenUrlCommandProperty = DependencyProperty.Register("OpenUrlCommand", typeof(ICommand), typeof(OverlayBox), new PropertyMetadata(new RelayCommand<string>(OpenUrl)));
 
+        public string StatusText
+        {
+            get => (string)GetValue(StatusTextProperty);
+            set => SetValue(StatusTextProperty, value);
+        }
+        public static readonly DependencyProperty StatusTextProperty = DependencyProperty.Register("StatusText", typeof(string), typeof(OverlayBox), new PropertyMetadata(string.Empty));
+
+        public StatusViewModel Status
+        {
+            get => (StatusViewModel)GetValue(StatusProperty);
+            set => SetValue(StatusProperty, value);
+        }
+        public static readonly DependencyProperty StatusProperty = DependencyProperty.Register("Status", typeof(StatusViewModel), typeof(OverlayBox), new PropertyMetadata(null, OnStatusPropertyChanged));
+
+        private static void OnStatusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as OverlayBox;
+            if (control != null && control.Status != null)
+            {
+                control.UpdateStatus(control.Status);
+            }
+        }
+
         public ICommand CheckForUpdatesCommand
         {
             get => (ICommand)GetValue(CheckForUpdatesCommandProperty);
@@ -89,6 +131,15 @@ namespace Microsoft.Templates.UI.Controls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(OverlayBox), new FrameworkPropertyMetadata(typeof(OverlayBox)));
         }
 
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            if (Status != null)
+            {
+                UpdateStatus(Status);
+            }
+        }
+
         private async void UpdateVisible(bool visible)
         {
             if (visible)
@@ -98,9 +149,28 @@ namespace Microsoft.Templates.UI.Controls
             }
             else
             {
-                Panel.SetZIndex(this, 0);
                 await this.FadeOutAsync();
+                Panel.SetZIndex(this, 0);
             }
+        }
+
+        private void UpdateStatus(StatusViewModel status)
+        {
+            StatusText = status.Message;
+            if (status.AutoHide)
+            {
+                HideTimer.Start();
+            }
+            else
+            {
+                HideTimer.Stop();
+            }
+        }
+
+        private void OnHideTimerTick(object sender, EventArgs e)
+        {
+            StatusText = string.Empty;
+            HideTimer.Stop();
         }
     }
 }

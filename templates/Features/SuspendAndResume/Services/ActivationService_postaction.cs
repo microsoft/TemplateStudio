@@ -1,3 +1,8 @@
+//{**
+//This code block includes the SuspendAndResumeService Instance in the method 
+//`GetActivationHandlers()` in the ActivationService of your project.
+//**}
+
 using System;
 //{[{
 using Param_RootNamespace.Helpers;

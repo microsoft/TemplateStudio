@@ -63,12 +63,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                     sb.AppendLine(string.Format(StringRes.SyncInstructionsMergeFile, mergeFile.Key));
                     foreach (var mergeInfo in mergeFile.Value)
                     {
-                        if (!string.IsNullOrEmpty(mergeInfo.Intent))
-                        {
-                            sb.AppendLine(mergeInfo.Intent);
-                        }
-                        sb.AppendLine();
-
                         sb.AppendLine($"```{mergeInfo.Format}");
                         sb.AppendLine(mergeInfo.PostActionCode);
                         sb.AppendLine("```");

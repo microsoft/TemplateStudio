@@ -3,6 +3,7 @@
   "CdnUrl": "###CdnUrl###",
   "RemoteTelemetryKey": "###RemoteTelemetryKey###",
   "LogFileFolderPath": "WindowsTemplateStudio\\Logs",
+  "CustomTelemetryEndpoint": "###CustomTelemetryEndpoint###",
   "RepositoryFolderName": "WindowsTemplateStudio",
   "BackupFolderPath": "WindowsTemplateStudio\\Backups",
   "TempGenerationFolderPath": "WTSTempGeneration",

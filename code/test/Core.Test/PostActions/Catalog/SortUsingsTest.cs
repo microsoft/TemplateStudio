@@ -25,6 +25,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         {
             var factData = new List<string>
             {
+                "",
+                "",
                 "using XUnit;",
                 "using System.Text;",
                 "using Microsoft.Templates;",
@@ -69,7 +71,6 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         {
             var factData = new List<string>
             {
-                "",
                 "namespace Microsoft.Templates",
                 "{",
                 "}"
@@ -77,7 +78,6 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             var expected = new List<string>
             {
-                "",
                 "namespace Microsoft.Templates",
                 "{",
                 "}"
@@ -93,6 +93,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         {
             var factData = new List<string>
             {
+                "",
                 "using XUnit;",
                 "using System.Text;",
                 "using Microsoft.Templates;",
@@ -182,6 +183,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "// comment",
                 "// comment",
                 "// comment",
+                "",
                 "",
                 "using System.Text;",
                 "using Microsoft.Templates;",

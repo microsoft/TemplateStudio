@@ -62,7 +62,7 @@
                         <templateSelectors:SummaryItemTemplateSelector>
                             <templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
                                 <DataTemplate>
-                                    <Grid Height="30" Focusable="False" Margin="{StaticResource Margin_M_Left}">
+                                    <Grid Height="30" Focusable="False" Margin="{StaticResource Margin_S_Left}">
                                         <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
                                         <controls:TextBoxEx Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}">
                                             <controls:TextBoxEx.InputBindings>
@@ -75,7 +75,7 @@
                             </templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
                             <templateSelectors:SummaryItemTemplateSelector.CommunityTemplate>
                                 <DataTemplate>
-                                    <Grid Height="40" Margin="{StaticResource Margin_M_Left}">
+                                    <Grid Height="40" Margin="{StaticResource Margin_S_Left}">
                                         <Grid VerticalAlignment="Center">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto" />
@@ -122,7 +122,7 @@
                 <Grid>
                     <TextBlock>
                         <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
-                            <TextBlock Text="{Binding Text}" Style="{StaticResource TextSumaryLicenseStyle}"/>
+                            <TextBlock Text="{Binding Text}" Style="{StaticResource TextSummaryLicenseStyle}" Margin="{StaticResource Margin_S_LeftTop}"/>
                         </Hyperlink>
                     </TextBlock>
                 </Grid>
@@ -134,6 +134,7 @@
         <Grid Panel.ZIndex="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
+                <RowDefinition Height="17" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
@@ -166,25 +167,24 @@
                     </Button>
                 </Grid>
             </Grid>
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" Background="{StaticResource UILightGray}"/>
+            <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="17" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="300" />
                 </Grid.ColumnDefinitions>
-                <Grid
-                    Width="17"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Stretch"
-                    Background="{StaticResource UILightGray}" />
-                <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False"/>
-                <Grid Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Grid Grid.Column="0" Background="{StaticResource UILightGray}" />
+                <Grid Grid.Column="1" Width="17" HorizontalAlignment="Right" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}" />
+                <Frame Grid.Column="1" x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False"/>
+                <Grid Grid.Column="1" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}">
                     <TextBlock Style="{StaticResource TextMainLoadingStyle}" Text="{x:Static res:StringRes.LoadingTemplatesText}" />
                 </Grid>
-                <Grid Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
+                <Grid Grid.Column="1" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
                     <TextBlock Style="{StaticResource TextMainLoadingStyle}" Text="{x:Static res:StringRes.NoContentText}" Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}"/>
                 </Grid>
 
-                <Grid Grid.Column="1" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
+                <Grid Grid.Column="2" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
                     <ScrollViewer Padding="0,40,0,65" Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}}">
                         <StackPanel Margin="{StaticResource Margin_M_Left}">
 
@@ -234,10 +234,10 @@
             </Grid>
             <controls:StatusControl
                     Grid.Row="1"
+                    Grid.RowSpan="2"
                     VerticalAlignment="Top"
-                    InformationStatusBackground="{StaticResource UIWhite}"
-                    Status="{Binding Status}"/>
-            <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
+                    Status="{Binding Status}" />
+            <Grid Grid.Row="3" Style="{StaticResource GridBottomBarStyle}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -278,16 +278,13 @@
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid
-                Grid.Row="0"
-                Grid.RowSpan="3"
-                Visibility="{Binding InfoShapeVisibility, FallbackValue=Collapsed}">
+            <Grid Grid.Row="0" Grid.RowSpan="4" Visibility="{Binding InfoShapeVisibility, FallbackValue=Collapsed}">
                 <Grid.Background>
                     <SolidColorBrush Opacity="0.4" Color="Black" />
                 </Grid.Background>
             </Grid>
         </Grid>
-        <controls:OverlayBox            
+        <controls:OverlayBox
             Opacity="0"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
@@ -297,6 +294,7 @@
             TemplatesVersion="{Binding TemplatesVersion}"
             Visible="{Binding IsOverlayBoxVisible}"
             RefreshCommand="{Binding RefreshTemplatesCommand}"
-            CheckForUpdatesCommand="{Binding CheckUpdatesCommand}"/>
+            CheckForUpdatesCommand="{Binding CheckUpdatesCommand}"
+            Status="{Binding OverlayStatus}" />
     </Grid>
 </Window>
