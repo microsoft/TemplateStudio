@@ -225,7 +225,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 TemplatesVersion = GenContext.ToolBox.TemplatesVersion;
                 OnNewTemplatesAvailable();
                 NewVersionAvailable = false;
-                IsOverlayBoxVisible = false;
+                SetStatus(new StatusViewModel(StatusType.Information, StringRes.StatusUpdated, true));
             }
             catch (Exception ex)
             {
@@ -303,8 +303,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                     return string.Empty;
             }
         }
-
-
         public void SetStatus(StatusViewModel status)
         {
             if (status.Status == StatusType.Empty)

@@ -35,10 +35,11 @@ namespace Microsoft.Templates.UI.Views.NewItem
     {
         public ProjectConfigurationViewModel ViewModel { get; }
 
-        public ProjectConfigurationWindow()
+        public ProjectConfigurationWindow(Window mainWindow)
         {
             ViewModel = new ProjectConfigurationViewModel(this);
             DataContext = ViewModel;
+            Owner = mainWindow;
             Loaded += ProjectConfigurationWindow_Loaded;
 
             InitializeComponent();

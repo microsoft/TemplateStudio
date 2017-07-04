@@ -3,9 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
         xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"    
         mc:Ignorable="d"
-        Title="ProjectConfigurationWindow" Height="325" Width="450">
+        Title="ProjectConfigurationWindow" Height="360" Width="500"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        ShowActivated="True"
+        WindowState="Normal"
+        WindowStyle="None" WindowStartupLocation="CenterOwner">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -13,7 +19,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate x:Key="MetadataDisplayNameTemplate">
-                <TextBlock Text="{Binding DisplayName}"/>
+                <TextBlock Text="{Binding DisplayName}" Style="{StaticResource ProjectConfigurationDescriptionStyle}"/>
             </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
@@ -41,14 +47,14 @@
                     Text="Project configuration" />
         </Grid>
         <StackPanel Margin="{StaticResource Margin_M_All}" Grid.Row="1">
-            <TextBlock Text="We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?." FontSize="{StaticResource UI_S_FontSize}"  Margin="{StaticResource Margin_S_Top}"/>
-            <TextBlock Text="Select project type" FontSize="{StaticResource UI_S_FontSize}"/>
+            <TextBlock Text="{x:Static res:StringRes.ProjectConfigurationDescriptionText}" Style="{StaticResource ProjectConfigurationDescriptionStyle}"/>
+            <TextBlock Text="{x:Static res:StringRes.ProjectConfigurationSelectProjectType}" Margin="{StaticResource Margin_L_Top}" Style="{StaticResource ProjectConfigurationComboBoxHeaderStyle}" />
             <ComboBox ItemsSource="{Binding ProjectTypes}" SelectedItem="{Binding SelectedProjectType, Mode=TwoWay}" Margin="{StaticResource Margin_S_Top}" ItemTemplate="{StaticResource MetadataDisplayNameTemplate}"/>
             <TextBlock Text="{Binding SelectedProjectType.Summary}" Margin="{StaticResource Margin_S_Top}"/>
 
-            <TextBlock Text="Select framework type" FontSize="{StaticResource UI_S_FontSize}" Margin="{StaticResource Margin_M_Top}"/>
-            <ComboBox Text="Framework:" ItemsSource="{Binding Frameworks}" SelectedItem="{Binding SelectedFramework, Mode=TwoWay}" Margin="{StaticResource Margin_S_Top}" ItemTemplate="{StaticResource MetadataDisplayNameTemplate}"/>
-            <TextBlock Text="{Binding SelectedFramework.Summary}" Margin="{StaticResource Margin_S_Top}"/>
+            <TextBlock Text="{x:Static res:StringRes.ProjectConfigurationSelectFramework}" FontSize="{StaticResource UI_S_FontSize}" Margin="{StaticResource Margin_L_Top}" Style="{StaticResource ProjectConfigurationComboBoxHeaderStyle}"/>
+            <ComboBox ItemsSource="{Binding Frameworks}" SelectedItem="{Binding SelectedFramework, Mode=TwoWay}" Margin="{StaticResource Margin_S_Top}" ItemTemplate="{StaticResource MetadataDisplayNameTemplate}" />
+            <TextBlock Text="{Binding SelectedFramework.Summary}" Margin="{StaticResource Margin_S_Top}" Style="{StaticResource ProjectConfigurationDescriptionStyle}"/>
         </StackPanel>
         <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

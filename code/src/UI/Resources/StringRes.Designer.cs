@@ -736,6 +736,33 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?..
+        /// </summary>
+        public static string ProjectConfigurationDescriptionText {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationDescriptionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select framework.
+        /// </summary>
+        public static string ProjectConfigurationSelectFramework {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationSelectFramework", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select project type.
+        /// </summary>
+        public static string ProjectConfigurationSelectProjectType {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationSelectProjectType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select project type and framework.
         /// </summary>
         public static string ProjectSetupTitle {
@@ -781,7 +808,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done.
+        ///   Looks up a localized string similar to Done..
         /// </summary>
         public static string StatusAcquired {
             get {
@@ -808,7 +835,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wizard incompatible with templates content.
+        ///   Looks up a localized string similar to Wizard incompatible with templates content..
         /// </summary>
         public static string StatusLowerVersionTitle {
             get {
@@ -817,7 +844,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is new templates content available.
+        ///   Looks up a localized string similar to There is new templates content available..
         /// </summary>
         public static string StatusNewVersionAvailable {
             get {
@@ -844,7 +871,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wizard update available.
+        ///   Looks up a localized string similar to Wizard update available..
         /// </summary>
         public static string StatusOverVersionTitle {
             get {
@@ -853,7 +880,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Templates ready.
+        ///   Looks up a localized string similar to Templates ready..
         /// </summary>
         public static string StatusPrepared {
             get {
@@ -871,7 +898,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Templates updated.
+        ///   Looks up a localized string similar to Templates updated..
         /// </summary>
         public static string StatusUpdated {
             get {

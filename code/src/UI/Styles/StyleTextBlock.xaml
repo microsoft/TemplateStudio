@@ -110,7 +110,7 @@
         <Setter Property="FontSize" Value="{StaticResource UI_XS_FontSize}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="TextSumaryLicenseStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="TextSummaryLicenseStyle" BasedOn="{StaticResource UIBaseText}">
         <Setter Property="FontSize" Value="{StaticResource UI_M_FontSize}" />
         <Setter Property="VerticalAlignment" Value="Bottom" />
         <Setter Property="Foreground" Value="{StaticResource UIBlue}" />
@@ -201,6 +201,15 @@
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
     <Style TargetType="TextBlock" x:Key="ChangesSummaryDetailDescriptionStyle" BasedOn="{StaticResource UIBaseText}">
+    </Style>
+    
+    <!--Project Configuration-->
+    <Style TargetType="TextBlock" x:Key="ProjectConfigurationDescriptionStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="ProjectConfigurationComboBoxHeaderStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>
     
 </ResourceDictionary>
