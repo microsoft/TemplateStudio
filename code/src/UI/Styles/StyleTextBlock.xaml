@@ -203,4 +203,13 @@
     <Style TargetType="TextBlock" x:Key="ChangesSummaryDetailDescriptionStyle" BasedOn="{StaticResource UIBaseText}">
     </Style>
     
+    <!--Project Configuration-->
+    <Style TargetType="TextBlock" x:Key="ProjectConfigurationDescriptionStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="ProjectConfigurationComboBoxHeaderStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+    </Style>
+    
 </ResourceDictionary>
