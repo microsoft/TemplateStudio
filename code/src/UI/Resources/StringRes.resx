@@ -505,4 +505,13 @@
   <data name="NoProjectChanges" xml:space="preserve">
     <value>There are no changes to apply to your project. Everything already exisits.</value>
   </data>
+  <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
+    <value>We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?.</value>
+  </data>
+  <data name="ProjectConfigurationSelectFramework" xml:space="preserve">
+    <value>Select framework</value>
+  </data>
+  <data name="ProjectConfigurationSelectProjectType" xml:space="preserve">
+    <value>Select project type</value>
+  </data>
 </root>
