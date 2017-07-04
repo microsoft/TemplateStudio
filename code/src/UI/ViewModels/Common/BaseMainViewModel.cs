@@ -303,8 +303,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                     return string.Empty;
             }
         }
-
-
         public void SetStatus(StatusViewModel status)
         {
             if (status.Status == StatusType.Empty)
