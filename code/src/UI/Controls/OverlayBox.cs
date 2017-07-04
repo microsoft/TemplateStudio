@@ -149,8 +149,8 @@ namespace Microsoft.Templates.UI.Controls
             }
             else
             {
-                Panel.SetZIndex(this, 0);
                 await this.FadeOutAsync();
+                Panel.SetZIndex(this, 0);
             }
         }
 
