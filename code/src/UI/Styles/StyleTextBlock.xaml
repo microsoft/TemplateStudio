@@ -110,7 +110,7 @@
         <Setter Property="FontSize" Value="{StaticResource UI_XS_FontSize}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="TextSumaryLicenseStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="TextSummaryLicenseStyle" BasedOn="{StaticResource UIBaseText}">
         <Setter Property="FontSize" Value="{StaticResource UI_M_FontSize}" />
         <Setter Property="VerticalAlignment" Value="Bottom" />
         <Setter Property="Foreground" Value="{StaticResource UIBlue}" />
