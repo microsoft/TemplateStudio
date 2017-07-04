@@ -86,7 +86,7 @@ namespace Microsoft.Templates.Test.Artifacts
             return GenContext.Current.ProjectName;
         }
 
-        public override void SaveSolution(string solutionFullPath)
+        public override void SaveSolution()
         {
         }
 
