@@ -38,6 +38,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 if (Path.GetExtension(file).Equals(".csproj", StringComparison.OrdinalIgnoreCase))
                 {
                     Gen.GenContext.ToolBox.Shell.RefreshProject();
+                    GenContext.ToolBox.Shell.SaveSolution();
                 }
             }
 
