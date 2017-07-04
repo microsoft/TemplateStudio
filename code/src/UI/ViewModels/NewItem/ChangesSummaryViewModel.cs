@@ -19,6 +19,8 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.ViewModels.Common;
+using System.Collections.Generic;
+using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -66,7 +68,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             var output = NewItemGenController.Instance.CompareOutputAndProject();
             var warnings = GenContext.Current.FailedMergePostActions.Select(w => new FailedMergesFileViewModel(w));
-            var licenses = MainViewModel.Current.GetActiveTemplate().LicenseTerms;
             HasChangesToApply = output.HasChangesToApply;
 
             FileGroups.Clear();
@@ -76,15 +77,19 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             FileGroups.Add(new ItemsGroupViewModel<BaseFileViewModel>(StringRes.ChangesSummaryCategoryNewFiles, output.NewFiles.Select(nf => new NewFileViewModel(nf)), OnItemChanged));
             FileGroups.Add(new ItemsGroupViewModel<BaseFileViewModel>(StringRes.ChangesSummaryCategoryUnchangedFiles, output.UnchangedFiles.Select(nf => new UnchangedFileViewModel(nf)), OnItemChanged));
 
-            var group = FileGroups.FirstOrDefault(gr => gr.Templates.Any());
-            if (group != null)
-            {
-                group.SelectedItem = group.Templates.First();
-            }
+            var licenses = new List<TemplateLicense>();
+            MainViewModel.Current.MainView.Result.Pages.ForEach(f => licenses.AddRange(f.template.GetLicenses()));
+            MainViewModel.Current.MainView.Result.Features.ForEach(f => licenses.AddRange(f.template.GetLicenses()));
             HasLicenses = licenses != null && licenses.Any();
             if (HasLicenses)
             {
                 Licenses.AddRange(licenses.Select(l => new SummaryLicenseViewModel(l)));
+            }
+
+            var group = FileGroups.FirstOrDefault(gr => gr.Templates.Any());
+            if (group != null)
+            {
+                group.SelectedItem = group.Templates.First();
             }
 
             if (!HasChangesToApply)

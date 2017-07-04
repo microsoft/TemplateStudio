@@ -40,7 +40,7 @@
             <DataTemplate x:Key="ListLicenseTemplate">
                 <TextBlock Margin="{StaticResource Margin_M_LeftTopRight}" VerticalAlignment="Center">
                     <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
-                        <TextBlock Text="{Binding Text}" Style="{StaticResource TextSumaryLicenseStyle}" VerticalAlignment="Center" Margin="{StaticResource Margin_L_Left}"/>
+                        <TextBlock Text="{Binding Text}" Style="{StaticResource TextSummaryLicenseStyle}" VerticalAlignment="Center" Margin="{StaticResource Margin_L_Left}"/>
                     </Hyperlink>
                 </TextBlock>
             </DataTemplate>

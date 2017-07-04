@@ -87,7 +87,7 @@
                                         
                                         <TextBlock Grid.Row="4" Margin="{StaticResource Margin_M_Top}">
                                             <Hyperlink Command="{TemplateBinding OpenUrlCommand}" CommandParameter="https://github.com/Microsoft/WindowsTemplateStudio" Style="{StaticResource LicenseHyperlinkStyle}" Focusable="{TemplateBinding Visible}">
-                                                <TextBlock Text="{x:Static res:StringRes.VisitProjectWebSite}" Style="{StaticResource TextSumaryLicenseStyle}" VerticalAlignment="Center" FontSize="{StaticResource UI_S_FontSize}"/>
+                                                <TextBlock Text="{x:Static res:StringRes.VisitProjectWebSite}" Style="{StaticResource TextSummaryLicenseStyle}" VerticalAlignment="Center" FontSize="{StaticResource UI_S_FontSize}"/>
                                             </Hyperlink>
                                         </TextBlock>
                                     </Grid>
