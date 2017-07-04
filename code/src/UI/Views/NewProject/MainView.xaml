@@ -62,7 +62,7 @@
                         <templateSelectors:SummaryItemTemplateSelector>
                             <templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
                                 <DataTemplate>
-                                    <Grid Height="30" Focusable="False" Margin="{StaticResource Margin_M_Left}">
+                                    <Grid Height="30" Focusable="False" Margin="{StaticResource Margin_S_Left}">
                                         <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
                                         <controls:TextBoxEx Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}">
                                             <controls:TextBoxEx.InputBindings>
@@ -75,7 +75,7 @@
                             </templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
                             <templateSelectors:SummaryItemTemplateSelector.CommunityTemplate>
                                 <DataTemplate>
-                                    <Grid Height="40" Margin="{StaticResource Margin_M_Left}">
+                                    <Grid Height="40" Margin="{StaticResource Margin_S_Left}">
                                         <Grid VerticalAlignment="Center">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto" />
@@ -122,7 +122,7 @@
                 <Grid>
                     <TextBlock>
                         <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
-                            <TextBlock Text="{Binding Text}" Style="{StaticResource TextSumaryLicenseStyle}"/>
+                            <TextBlock Text="{Binding Text}" Style="{StaticResource TextSumaryLicenseStyle}" Margin="{StaticResource Margin_S_Left}"/>
                         </Hyperlink>
                     </TextBlock>
                 </Grid>
