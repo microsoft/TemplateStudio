@@ -150,9 +150,9 @@ namespace Microsoft.Templates.UI.VisualStudio
             return null;
         }
 
-        public override void SaveSolution(string solutionFullPath)
+        public override void SaveSolution()
         {
-            Dte.Solution.SaveAs(solutionFullPath);
+            Dte.Solution.SaveAs(Dte.Solution.FullName);
         }
 
         public override void ShowStatusBarMessage(string message)
