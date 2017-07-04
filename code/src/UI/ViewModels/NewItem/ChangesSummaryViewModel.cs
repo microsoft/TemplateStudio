@@ -14,12 +14,12 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
+using System.Collections.Generic;
 
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.ViewModels.Common;
-using System.Collections.Generic;
 using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem

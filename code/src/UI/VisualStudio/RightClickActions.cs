@@ -135,7 +135,5 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             return !string.IsNullOrEmpty(tempPath) && Directory.Exists(tempPath) && Directory.EnumerateDirectories(tempPath).Count() > 0;
         }
-
- 
     }
 }
