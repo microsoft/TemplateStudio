@@ -1,1 +1,0 @@
-This xml block adds a reference to Newtonsoft.Json to your project.

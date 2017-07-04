@@ -1,1 +1,0 @@
-This xml block adds a reference to WindowsAzure.Messaging.Managed to your project.

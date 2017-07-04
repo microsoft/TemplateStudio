@@ -1,1 +1,0 @@
-These code blocks include the StoreNotificationsFeatureService Instance in the method `GetActivationHandlers()` and initializes it in the method `InitializeAsync()` in the ActivationService of your project.

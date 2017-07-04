@@ -53,7 +53,7 @@ namespace Localization
             extractor.ExtractTemplateEngineTemplates(cultures);
             extractor.ExtractWtsTemplates(cultures);
             extractor.ExtractResourceFiles(cultures);
-            extractor.ExtractRightClickMds(cultures); // Not implemented
+            //extractor.ExtractRightClickMds(cultures); // Not implemented
         }
     }
 }

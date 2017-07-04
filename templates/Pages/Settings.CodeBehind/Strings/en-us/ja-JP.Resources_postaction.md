@@ -1,1 +1,0 @@
-This xml blocks include string resources for the SettingsPagePage to your project.

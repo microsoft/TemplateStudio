@@ -1,1 +1,0 @@
-This xml block adds a reference to Microsoft.Toolkit.Uwp.Notifications to your project.

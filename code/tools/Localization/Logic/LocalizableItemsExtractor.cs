@@ -275,43 +275,43 @@ namespace Localization
             }
         }
 
-        internal void ExtractRightClickMds(List<string> cultures)
-        {
-            DirectoryInfo mdsDesDirectory = new DirectoryInfo(Path.Combine(this.destinationDir.FullName, templatesRootDirPath));
-            if (!mdsDesDirectory.Exists)
-                mdsDesDirectory.Create();
-            DirectoryInfo mdsSrcDirectory = new DirectoryInfo(Path.Combine(this.sourceDir.FullName, templatesRootDirPath));
-            if (!mdsSrcDirectory.Exists)
-                throw new DirectoryNotFoundException($"Source directory \"{mdsSrcDirectory.FullName}\" not found.");
-            DirectoryInfo tmpMdsDesDirectory, tmpMdsSrcDirectory;
-            foreach (string folder in this.rightClickMdsFolders)
-            {
-                tmpMdsDesDirectory = new DirectoryInfo(Path.Combine(mdsDesDirectory.FullName, folder));
-                if (!tmpMdsDesDirectory.Exists)
-                    tmpMdsDesDirectory.Create();
-                tmpMdsSrcDirectory = new DirectoryInfo(Path.Combine(mdsSrcDirectory.FullName, folder));
-                if (!tmpMdsSrcDirectory.Exists)
-                    throw new DirectoryNotFoundException($"Source directory \"{tmpMdsSrcDirectory.FullName}\" not found.");
-                DirectorySearch(tmpMdsSrcDirectory, tmpMdsDesDirectory, cultures);
-            }
-        }
+        //internal void ExtractRightClickMds(List<string> cultures)
+        //{
+        //    DirectoryInfo mdsDesDirectory = new DirectoryInfo(Path.Combine(this.destinationDir.FullName, templatesRootDirPath));
+        //    if (!mdsDesDirectory.Exists)
+        //        mdsDesDirectory.Create();
+        //    DirectoryInfo mdsSrcDirectory = new DirectoryInfo(Path.Combine(this.sourceDir.FullName, templatesRootDirPath));
+        //    if (!mdsSrcDirectory.Exists)
+        //        throw new DirectoryNotFoundException($"Source directory \"{mdsSrcDirectory.FullName}\" not found.");
+        //    DirectoryInfo tmpMdsDesDirectory, tmpMdsSrcDirectory;
+        //    foreach (string folder in this.rightClickMdsFolders)
+        //    {
+        //        tmpMdsDesDirectory = new DirectoryInfo(Path.Combine(mdsDesDirectory.FullName, folder));
+        //        if (!tmpMdsDesDirectory.Exists)
+        //            tmpMdsDesDirectory.Create();
+        //        tmpMdsSrcDirectory = new DirectoryInfo(Path.Combine(mdsSrcDirectory.FullName, folder));
+        //        if (!tmpMdsSrcDirectory.Exists)
+        //            throw new DirectoryNotFoundException($"Source directory \"{tmpMdsSrcDirectory.FullName}\" not found.");
+        //        DirectorySearch(tmpMdsSrcDirectory, tmpMdsDesDirectory, cultures);
+        //    }
+        //}
 
-        private void DirectorySearch(DirectoryInfo srcDirectory, DirectoryInfo desDirectory, List<string> cultures)
-        {
-            foreach (FileInfo file in srcDirectory.GetFiles(rightClickFileSearchPattern))
-            {
-                if (!desDirectory.Exists)
-                    desDirectory.Create();
-                foreach (string culture in cultures)
-                {
-                    file.CopyTo(Path.Combine(desDirectory.FullName, $"{culture}.{file.Name}"));
-                }
-            }
-            foreach (DirectoryInfo directory in srcDirectory.GetDirectories())
-            {
-                DirectoryInfo newDesDirectory = new DirectoryInfo(Path.Combine(desDirectory.FullName, directory.Name));
-                this.DirectorySearch(directory, newDesDirectory, cultures);
-            }
-        }
+        //private void DirectorySearch(DirectoryInfo srcDirectory, DirectoryInfo desDirectory, List<string> cultures)
+        //{
+        //    foreach (FileInfo file in srcDirectory.GetFiles(rightClickFileSearchPattern))
+        //    {
+        //        if (!desDirectory.Exists)
+        //            desDirectory.Create();
+        //        foreach (string culture in cultures)
+        //        {
+        //            file.CopyTo(Path.Combine(desDirectory.FullName, $"{culture}.{file.Name}"));
+        //        }
+        //    }
+        //    foreach (DirectoryInfo directory in srcDirectory.GetDirectories())
+        //    {
+        //        DirectoryInfo newDesDirectory = new DirectoryInfo(Path.Combine(desDirectory.FullName, directory.Name));
+        //        this.DirectorySearch(directory, newDesDirectory, cultures);
+        //    }
+        //}
     }
 }
