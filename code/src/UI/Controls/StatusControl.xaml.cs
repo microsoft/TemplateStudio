@@ -79,6 +79,7 @@ namespace Microsoft.Templates.UI.Controls
                     shapeBackground.Background = brush;
                     verticalGrid.Background = FindResource("UIMiddleDarkBlue") as SolidColorBrush;
                     iconClose.Foreground = FindResource("UIMiddleDarkGray") as SolidColorBrush;
+                    Panel.SetZIndex(this, 2);
                     break;
                 case StatusType.Warning:
                     txtStatus.Text = status.Message;
@@ -89,6 +90,7 @@ namespace Microsoft.Templates.UI.Controls
                     backBackground.Opacity = 1.0;
                     verticalGrid.Background = FindResource("UIDarkYellow") as SolidColorBrush;
                     iconClose.Foreground = FindResource("UIDarkYellow") as SolidColorBrush;
+                    Panel.SetZIndex(this, 2);
                     break;
                 case StatusType.Error:
                     txtStatus.Text = status.Message;
@@ -101,6 +103,7 @@ namespace Microsoft.Templates.UI.Controls
                     verticalGrid.Background = FindResource("UIRed") as SolidColorBrush;
                     iconClose.Foreground = FindResource("UIDarkRed") as SolidColorBrush;
                     shapeBackground.Background = brush;
+                    Panel.SetZIndex(this, 2);
                     break;
                 default:
                     txtStatus.Text = " ";
@@ -109,6 +112,7 @@ namespace Microsoft.Templates.UI.Controls
                     shapeBackground.Background = new SolidColorBrush(Colors.Transparent);
                     verticalGrid.Background = new SolidColorBrush(Colors.Transparent);
                     iconClose.Foreground = new SolidColorBrush(Colors.Transparent);
+                    Panel.SetZIndex(this, 0);
                     break;
             }
             if (status.AutoHide == true)
