@@ -9,9 +9,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Colors.xaml" />
-                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Thickness.xaml" />
-                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleTextBlock.xaml" />
+                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -28,6 +26,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Style="{StaticResource TextWizardStatusStyle}" Margin="{StaticResource Margin_S_Left}">
                 <Run x:Name="txtIcon" FontFamily="Segoe MDL2 Assets" BaselineAlignment="Center" Text=" " />
@@ -35,6 +34,13 @@
             <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Style="{StaticResource TextWizardStatusStyle}">
                 <Run x:Name="txtStatus" />
             </TextBlock>
+            <Grid Grid.Column="2" Margin="0,0,12,0">
+                <Button Style="{StaticResource AddTemplateInfoButtonStyle}" Click="OnCloseClicked" Margin="{StaticResource Margin_XS_All}" HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <Button.Content>
+                        <TextBlock x:Name="iconClose" Text="&#xE894;" Margin="1,1,0,0" FontSize="10" Style="{StaticResource IconButtonTextStyle}"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

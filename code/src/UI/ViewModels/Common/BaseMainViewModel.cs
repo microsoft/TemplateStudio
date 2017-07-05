@@ -30,7 +30,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     public abstract class BaseMainViewModel : Observable
     {
         private Window _mainView;
-        protected bool _templatesReady;
+        protected bool _canFinish;
         protected bool _canGoBack;
         protected bool _canGoForward;
         protected bool _hasValidationErrors;
@@ -166,9 +166,9 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             FinishCommand.OnCanExecuteChanged();
         }
 
-        public void SetTemplatesReadyForProjectCreation()
+        public void UpdateCanFinish(bool canFinish)
         {
-            _templatesReady = true;
+            _canFinish = canFinish;
             FinishCommand.OnCanExecuteChanged();
         }
 
@@ -197,14 +197,14 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             NavigationService.GoBack();
             _canGoBack = false;
-            _templatesReady = false;
+            _canFinish = false;
             BackCommand.OnCanExecuteChanged();
 
             ShowFinishButton = false;
         }
         protected virtual bool CanFinish(string parameter)
         {
-            if (_hasValidationErrors || !_templatesReady)
+            if (_hasValidationErrors || !_canFinish)
             {
                 return false;
             }

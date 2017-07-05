@@ -10,17 +10,17 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
 using System.Linq;
 using System.Threading.Tasks;
-
+using System.Windows;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.UI.Controls;
+using Microsoft.Templates.UI.Generation;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views.NewItem;
-using Microsoft.Templates.UI.Generation;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -118,14 +118,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
         protected override async void OnNext()
         {
+            HasOverlayBox = false;
             base.OnNext();
-            NewItemSetup.EditionVisibility = System.Windows.Visibility.Collapsed;
+            NewItemSetup.EditionVisibility = Visibility.Collapsed;
+            SetStatus(new StatusViewModel(StatusType.Information, StringRes.GenerationFeedbackMessage));
             MainView.Result = CreateUserSelection();
             NewItemGenController.Instance.CleanupTempGeneration();
             await NewItemGenController.Instance.GenerateNewItemAsync(ConfigTemplateType, MainView.Result);
             NavigationService.Navigate(new ChangesSummaryView());
             SetChangesSummaryTitle();
-            HasOverlayBox = false;
         }
         protected override void OnFinish(string parameter)
         {
@@ -151,9 +152,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         protected override void OnNewTemplatesAvailable()
         {
+            UpdateCanFinish(false);
             _canGoBack = false;
-            _templatesReady = false;
-            FinishCommand.OnCanExecuteChanged();
             BackCommand.OnCanExecuteChanged();
             ShowFinishButton = false;
             EnableGoForward();
