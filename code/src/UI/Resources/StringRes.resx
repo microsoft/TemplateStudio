@@ -399,12 +399,12 @@
   </data>
   <data name="CheckForUpdates" xml:space="preserve">
     <value>Check for new templates</value>
-  </data>  
+  </data>
   <data name="VisitProjectWebSite" xml:space="preserve">
     <value>Visit project web site</value>
   </data>
   <data name="ChangesSummaryTitle_SF" xml:space="preserve">
-    <value>Changes summary: add {0} {1}</value>
+    <value>Changes summary: Add {0} {1}</value>
   </data>
   <data name="ChangesSummaryCategoryFailedMerges" xml:space="preserve">
     <value>Failed merges</value>
@@ -425,7 +425,7 @@
     <value>Generate &amp; Merge</value>
   </data>
   <data name="ConflictingDetailDescription_SF" xml:space="preserve">
-    <value>The file {0} already exist. By countinuing this file will be replaced.</value>
+    <value>The file {0} already exists. By continuing this file will be replaced.</value>
   </data>
   <data name="ConflictingDetailTitle" xml:space="preserve">
     <value>Destination file exist</value>
@@ -452,28 +452,28 @@
     <value>By refreshing templates current selection will be reset.</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionFailedMerges" xml:space="preserve">
-    <value>The changes could not be integrated.</value>
+    <value>We are not able to introduce the modifications required. If needed, you can access to the generated file after finishing.</value>
   </data>
   <data name="ChangesSummaryDetailTitleFailedMerges" xml:space="preserve">
     <value>Failed merges</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionNewFiles" xml:space="preserve">
-    <value>The fille {0} will be added as new file.</value>
+    <value>The file '{0}' will be added as new file to your project.</value>
   </data>
   <data name="ChangesSummaryDetailTitleNewFiles" xml:space="preserve">
     <value>New file</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionModifiedFiles" xml:space="preserve">
-    <value>The file {0} has been modified.</value>
+    <value>The file '{0}' will be modified to include required content. Below you can check the modifications introduced.</value>
   </data>
   <data name="ChangesSummaryDetailTitleModifiedFiles" xml:space="preserve">
     <value>Modified file</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionConflictingFiles" xml:space="preserve">
-    <value>The file {0} already exist in your project and was also generated as part of the new item. Please compare and make sure everything is the right place.</value>
+    <value>The file '{0}' already exist in your project and was generated as part of the new item. Your current project file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing.</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionUnchangedFiles" xml:space="preserve">
-    <value>The file {0} already exist in your project, no action is necessary.</value>
+    <value>The file '{0}' already exists in your project and no further action is necessary. The file will remain unchanged after finishing.</value>
   </data>
   <data name="ChangesSummaryDetailTitleConflictingFiles" xml:space="preserve">
     <value>Conflicting file</value>
@@ -497,7 +497,7 @@
     <value>Licenses</value>
   </data>
   <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
-    <value>Do not merge changes (generate in a temp folder)</value>
+    <value>Do not merge changes (generate in a temp folder).</value>
   </data>
   <data name="NoProjectChanges" xml:space="preserve">
     <value>There are no changes to apply to your project. Everything already exisits.</value>
