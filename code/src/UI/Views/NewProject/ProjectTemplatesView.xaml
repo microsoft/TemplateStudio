@@ -40,9 +40,9 @@
                             <controls:ImageEx Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Focusable="False" MaxWidth="50" SourcePath="{Binding Icon}" FallbackImage="/Microsoft.Templates.UI;component/Assets/DefaultIcon.png" />
                             <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding Name}" Margin="{StaticResource Margin_M_LeftRight}" Foreground="{Binding TitleForeground, FallbackValue={StaticResource UIBlack}}" />
                             <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateItemAuthorStyle}" MaxHeight="40" Margin="{StaticResource Margin_M_Left}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}" Text="{Binding Author}"/>
-                            <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" Command="{Binding ShowItemInfoCommand}">
+                            <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource RoundButtonStyle}" Command="{Binding ShowItemInfoCommand}">
                                 <Button.Content>
-                                    <TextBlock Text="&#xE946;" FontSize="18" Style="{StaticResource IconButtonTextStyle}" />
+                                    <TextBlock Text="&#xE946;" FontSize="25" Style="{StaticResource IconButtonTextStyle}" FontWeight="Bold"/>
                                 </Button.Content>
                             </Button>
 
@@ -88,19 +88,19 @@
                             </Grid>
 
                             <Grid Grid.Column="1" Visibility="{Binding AddingVisibility}">
-                                <Button Style="{StaticResource AddTemplateInfoButtonStyle}" Command="{Binding AddItemCommand}" CommandParameter="{Binding}" Visibility="{Binding NoEditingContentVisibility}">
+                                <Button Style="{StaticResource RoundButtonStyle}" Command="{Binding AddItemCommand}" CommandParameter="{Binding}" Visibility="{Binding NoEditingContentVisibility}">
                                     <Button.Content>
                                         <Grid>
-                                            <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource IconButtonTextStyle}" />
-                                            <TextBlock Text="&#xE948;" Margin="1,1,0,0" FontSize="12" Style="{StaticResource IconButtonTextStyle}" />
+                                            <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource IconButtonTextStyle}" FontWeight="Bold"/>
+                                            <TextBlock Text="&#xE948;" Margin="1,1,0,0" FontSize="12" Style="{StaticResource IconButtonTextStyle}" FontWeight="Bold"/>
                                         </Grid>
                                     </Button.Content>
                                 </Button>
-                                <Button Style="{StaticResource SaveTemplateInfoButtonStyle}" Command="{Binding SaveItemCommand}" CommandParameter="{Binding}" IsEnabled="{Binding IsValidName}" Visibility="{Binding EditingContentVisibility}" Tag="Save">
+                                <Button Style="{StaticResource RoundButtonStyle}" Command="{Binding SaveItemCommand}" CommandParameter="{Binding}" IsEnabled="{Binding IsValidName}" Visibility="{Binding EditingContentVisibility}" Tag="Save">
                                     <Button.Content>
                                         <Grid>
-                                            <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource IconButtonTextStyle}" />
-                                            <TextBlock Text="&#xE8FB;" Margin="0,1,0,0" FontSize="12" Style="{StaticResource IconButtonTextStyle}" />
+                                            <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource IconButtonTextStyle}" FontWeight="Bold"/>
+                                            <TextBlock Text="&#xE8FB;" Margin="0,1,0,0" FontSize="12" Style="{StaticResource IconButtonTextStyle}" FontWeight="Bold"/>
                                         </Grid>
                                     </Button.Content>
                                 </Button>

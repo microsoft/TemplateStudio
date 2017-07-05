@@ -9,6 +9,47 @@
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleTextBlock.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+    <Style x:Key="RoundButtonFocusVisualStyle">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Ellipse.Fill>
+                            <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.4"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BlueButtonFocusVisualStyle">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Grid.Background>
+                            <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
+                        </Grid.Background>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="WhiteButtonFocusVisualStyle">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Grid.Background>
+                            <SolidColorBrush Color="{StaticResource UIWhiteColor}" Opacity="0.2"/>
+                        </Grid.Background>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style TargetType="Button" x:Key="ButtonNavigationStyle">
         <Setter Property="Margin" Value="{StaticResource Margin_M_Left}" />
@@ -18,97 +59,16 @@
         <Setter Property="BorderBrush" Value="{StaticResource UIBlack}" />
         <Setter Property="Background" Value="{StaticResource UIMiddleLightGray}" />
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="FocusVisualStyle">
-            <Setter.Value>
-                <Style>
-                    <Setter Property="Control.Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <Grid>
-                                    <Grid.Background>
-                                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
-                                    </Grid.Background>
-                                </Grid>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource BlueButtonFocusVisualStyle}"/>
     </Style>
 
     <Style TargetType="Button" x:Key="ButtonFinishStyle" BasedOn="{StaticResource ButtonNavigationStyle}">
         <Setter Property="Foreground" Value="{StaticResource UIWhite}" />
         <Setter Property="Background" Value="{StaticResource UIBlue}" />
-        <Setter Property="FocusVisualStyle">
-            <Setter.Value>
-                <Style>
-                    <Setter Property="Control.Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <Grid>
-                                    <Grid.Background>
-                                        <SolidColorBrush Color="{StaticResource UIWhiteColor}" Opacity="0.2"/>
-                                    </Grid.Background>
-                                </Grid>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource WhiteButtonFocusVisualStyle}"/>
     </Style>
 
-    <Style TargetType="Button" x:Key="BlueBaseTemplateInfoButtonStyle">
-        <Setter Property="Foreground" Value="{StaticResource UIBlue}"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Margin" Value="0"/>
-        <Setter Property="Padding" Value="0"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
-                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsPressed" Value="True">
-                <Trigger.Setters>
-                    <Setter Property="FontWeight" Value="Bold"/>
-                </Trigger.Setters>
-            </Trigger>
-            <Trigger Property="IsEnabled" Value="False">
-                <Trigger.Setters>
-                    <Setter Property="Foreground" Value="{StaticResource UILightGray}"/>
-                </Trigger.Setters>
-            </Trigger>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Trigger.Setters>
-                    <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkBlue}"/>
-                </Trigger.Setters>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <Style x:Key="InfoButtonFocusStyle">
-        <Setter Property="Control.Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Ellipse.Fill>
-                            <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style TargetType="Button" x:Key="BlackBaseTemplateInfoButtonStyle">
+    <Style TargetType="Button" x:Key="RoundButtonStyle">
         <Setter Property="Foreground" Value="{StaticResource UIBlack}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
@@ -116,7 +76,9 @@
         <Setter Property="Margin" Value="0"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="Focusable" Value="True"/>
-        <Setter Property="FocusVisualStyle" Value="{StaticResource InfoButtonFocusStyle}"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource RoundButtonFocusVisualStyle}"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -143,23 +105,6 @@
                 </Trigger.Setters>
             </Trigger>
         </Style.Triggers>
-    </Style>
-
-    <Style TargetType="Button" x:Key="InfoTemplateInfoButtonStyle" BasedOn="{StaticResource BlackBaseTemplateInfoButtonStyle}">
-        <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="VerticalAlignment" Value="Top"/>
-    </Style>
-
-    <Style TargetType="Button" x:Key="MoreInfoButtonStyle" BasedOn="{StaticResource BlackBaseTemplateInfoButtonStyle}">
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Content">
-            <Setter.Value>
-                <Grid>
-                    <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource IconButtonTextStyle}"/>
-                    <TextBlock Text="{Binding ToggleButtonIcon}" FontSize="12" Style="{StaticResource IconButtonTextStyle}" />
-                </Grid>
-            </Setter.Value>
-        </Setter>
     </Style>
 
     <Style TargetType="Button" x:Key="SettingsButtonStyle">
@@ -197,66 +142,12 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="FocusVisualStyle">
-            <Setter.Value>
-                <Style>
-                    <Setter Property="Control.Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <Grid Background="{StaticResource UIBlue}" Opacity="0.2" />
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style x:Key="AddButtonFocusStyle">
-        <Setter Property="Control.Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,2,2,2">
-                        <Ellipse.Fill>
-                            <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style TargetType="Button" x:Key="AddTemplateInfoButtonStyle" BasedOn="{StaticResource BlueBaseTemplateInfoButtonStyle}">
-        <Setter Property="HorizontalContentAlignment" Value="Right"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="FocusVisualStyle" Value="{StaticResource AddButtonFocusStyle}"/>
-    </Style>
-
-    <Style TargetType="Button" x:Key="SaveTemplateInfoButtonStyle" BasedOn="{StaticResource BlueBaseTemplateInfoButtonStyle}">
-        <Setter Property="HorizontalContentAlignment" Value="Right"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="FocusVisualStyle" Value="{StaticResource AddButtonFocusStyle}"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource BlueButtonFocusVisualStyle}"/>
     </Style>
 
     <Style TargetType="Button" x:Key="ButtonImageStyle">
         <Setter Property="Focusable" Value="True"/>
-        <Setter Property="FocusVisualStyle">
-            <Setter.Value>
-                <Style>
-                    <Setter Property="Control.Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <Grid>
-                                    <Grid.Background>
-                                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
-                                    </Grid.Background>
-                                </Grid>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource BlueButtonFocusVisualStyle}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -324,23 +215,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="FocusVisualStyle">
-            <Setter.Value>
-                <Style>
-                    <Setter Property="Control.Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <Grid>
-                                    <Grid.Background>
-                                        <SolidColorBrush Color="{StaticResource UIWhiteColor}" Opacity="0.4"/>
-                                    </Grid.Background>
-                                </Grid>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource WhiteButtonFocusVisualStyle}"/>
     </Style>
 
     <Style TargetType="Button" x:Key="ButtonRefreshTemplatesStyle">
@@ -351,23 +226,7 @@
         <Setter Property="BorderBrush" Value="{StaticResource UIBlack}" />
         <Setter Property="Background" Value="{StaticResource UIMiddleLightGray}" />
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="FocusVisualStyle">
-            <Setter.Value>
-                <Style>
-                    <Setter Property="Control.Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <Grid>
-                                    <Grid.Background>
-                                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
-                                    </Grid.Background>
-                                </Grid>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource BlueButtonFocusVisualStyle}"/>
     </Style>
 
     <Style TargetType="Button" x:Key="ButtonUpdateFontSizeStyle">
@@ -388,23 +247,7 @@
             </Setter.Value>
         </Setter>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="FocusVisualStyle">
-            <Setter.Value>
-                <Style>
-                    <Setter Property="Control.Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <Grid>
-                                    <Grid.Background>
-                                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
-                                    </Grid.Background>
-                                </Grid>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource BlueButtonFocusVisualStyle}"/>
     </Style>
 
 </ResourceDictionary>
