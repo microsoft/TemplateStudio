@@ -24,7 +24,14 @@
                             VerticalAlignment="Top"
                             HorizontalAlignment="Right"/>
                         <Grid Margin="{StaticResource Margin_M_Top}">
-                            <Rectangle Style="{StaticResource RectangleDropShadowStyle}" />
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="5"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="5"/>
+                            </Grid.ColumnDefinitions>
                             <Border BorderThickness="1,0,1,1" BorderBrush="{StaticResource UIMiddleDarkGray}" Background="{StaticResource UIWhite}">
                                 <Grid>
                                     <Grid.RowDefinitions>
@@ -93,6 +100,8 @@
                                     </Grid>
                                 </Grid>
                             </Border>
+                            <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="{StaticResource Margin_S_Left}" Background="{StaticResource UIGray}" />
+                            <Grid Grid.Column="1" Grid.RowSpan="2" Margin="{StaticResource Margin_S_Top}" Background="{StaticResource UIGray}" />
                         </Grid>
                     </Grid>
                 </ControlTemplate>
