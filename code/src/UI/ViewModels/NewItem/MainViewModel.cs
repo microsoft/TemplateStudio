@@ -72,7 +72,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             ConfigProjectType = configInfo.ProjectType;
         }
 
-        public void SetNewItemSetupTitle() => Title = string.Format(StringRes.NewItemTitle_SF, ConfigTemplateType.ToString().ToLower());
+        public void SetNewItemSetupTitle()
+        {
+            Title = string.Format(StringRes.NewItemTitle_SF, ConfigTemplateType.ToString().ToLower());
+            MainViewModel.Current.Step = "(1/2)";
+        }
 
         public void SetChangesSummaryTitle()
         {
@@ -85,6 +89,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 Title = string.Format(StringRes.ChangesSummaryTitle_SF, template.Name, template.TemplateType.ToString().ToLower());
             }
+            MainViewModel.Current.Step = "(2/2)";
         }
 
         protected override void OnCancel()

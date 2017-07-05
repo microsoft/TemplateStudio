@@ -28,6 +28,9 @@
         <Setter Property="Foreground" Value="{StaticResource UIWhite}"/>
         <Setter Property="FontSize" Value="{StaticResource UI_XXL_FontSize}"/>
     </Style>
+    <Style TargetType="TextBlock" x:Key="TextStepStyle" BasedOn="{StaticResource TextTitleStyle}">
+        <Setter Property="Foreground" Value="{StaticResource UILightBlue}"/>
+    </Style>
     <Style TargetType="TextBlock" x:Key="TextMainLoadingStyle" BasedOn="{StaticResource UIBaseText}">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>

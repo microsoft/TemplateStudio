@@ -85,6 +85,13 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             set => SetProperty(ref _title, value);
         }
 
+        protected string _step;
+        public string Step
+        {
+            get => _step;
+            set => SetProperty(ref _step, value);
+        }
+
         protected bool _newVersionAvailable;
         public bool NewVersionAvailable
         {

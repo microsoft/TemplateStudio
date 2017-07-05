@@ -304,7 +304,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Changes summary: add {0} {1} (2/2).
+        ///   Looks up a localized string similar to Changes summary: add {0} {1}.
         /// </summary>
         public static string ChangesSummaryTitle_SF {
             get {
@@ -673,7 +673,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add new {0} (1/2).
+        ///   Looks up a localized string similar to Add new {0}.
         /// </summary>
         public static string NewItemTitle_SF {
             get {
@@ -754,7 +754,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select project type and framework (1/2).
+        ///   Looks up a localized string similar to Select project type and framework.
         /// </summary>
         public static string ProjectSetupTitle {
             get {
@@ -763,7 +763,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select pages and features (2/2).
+        ///   Looks up a localized string similar to Select pages and features.
         /// </summary>
         public static string ProjectTemplatesTitle {
             get {

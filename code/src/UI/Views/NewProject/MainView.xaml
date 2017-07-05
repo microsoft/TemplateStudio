@@ -141,6 +141,7 @@
             <Grid Grid.Row="0" Style="{StaticResource GridTitleStyle}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
@@ -155,7 +156,13 @@
                     VerticalAlignment="Center"
                     Style="{StaticResource TextTitleStyle}"
                     Text="{Binding Title}" />
-                <Grid Grid.Column="2" Visibility="{Binding HasOverlayBox, Converter={StaticResource BoolToVisibilityConverter}}">
+                <TextBlock
+                    Grid.Column="2"
+                    Margin="{StaticResource Margin_M_Left}"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource TextStepStyle}"
+                    Text="{Binding Step}" />
+                <Grid Grid.Column="3" Visibility="{Binding HasOverlayBox, Converter={StaticResource BoolToVisibilityConverter}}">
                     <Grid Background="{StaticResource UIDarkGray}" Visibility="{Binding IsOverlayBoxVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
                     <Button Style="{StaticResource TopBarMenuStyle}" Command="{Binding ShowOverlayMenuCommand}">
                         <Button.Content>

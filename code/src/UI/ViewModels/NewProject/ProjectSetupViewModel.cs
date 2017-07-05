@@ -87,6 +87,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public async Task InitializeAsync(bool force = false)
         {
             MainViewModel.Current.Title = StringRes.ProjectSetupTitle;
+            MainViewModel.Current.Step = "(1/2)";
 
             if (SelectedProjectType == null || force)
             {

@@ -169,6 +169,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public async Task InitializeAsync()
         {
             MainViewModel.Current.Title = StringRes.ProjectTemplatesTitle;
+            MainViewModel.Current.Step = "(2/2)";
             ContextProjectType = MainViewModel.Current.ProjectSetup.SelectedProjectType;
             ContextFramework = MainViewModel.Current.ProjectSetup.SelectedFramework;
 
