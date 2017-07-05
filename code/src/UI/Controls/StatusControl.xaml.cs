@@ -55,6 +55,11 @@ namespace Microsoft.Templates.UI.Controls
         private void OnHideTick(object sender, EventArgs e)
         {
             _hideTimer.Stop();
+            Hide();
+        }
+
+        private void Hide()
+        {
             Status.Status = StatusType.Empty;
             UpdateStatus(EmptyStatus);
         }
@@ -73,6 +78,8 @@ namespace Microsoft.Templates.UI.Controls
                     brush.Opacity = 0.1;
                     shapeBackground.Background = brush;
                     verticalGrid.Background = FindResource("UIMiddleDarkBlue") as SolidColorBrush;
+                    iconClose.Foreground = FindResource("UIMiddleDarkGray") as SolidColorBrush;
+                    Panel.SetZIndex(this, 2);
                     break;
                 case StatusType.Warning:
                     txtStatus.Text = status.Message;
@@ -82,6 +89,8 @@ namespace Microsoft.Templates.UI.Controls
                     shapeBackground.Background = FindResource("UIYellow") as SolidColorBrush;
                     backBackground.Opacity = 1.0;
                     verticalGrid.Background = FindResource("UIDarkYellow") as SolidColorBrush;
+                    iconClose.Foreground = FindResource("UIDarkYellow") as SolidColorBrush;
+                    Panel.SetZIndex(this, 2);
                     break;
                 case StatusType.Error:
                     txtStatus.Text = status.Message;
@@ -92,15 +101,18 @@ namespace Microsoft.Templates.UI.Controls
                     brush.Opacity = 0.4;
                     backBackground.Opacity = 1.0;
                     verticalGrid.Background = FindResource("UIRed") as SolidColorBrush;
+                    iconClose.Foreground = FindResource("UIDarkRed") as SolidColorBrush;
                     shapeBackground.Background = brush;
+                    Panel.SetZIndex(this, 2);
                     break;
                 default:
-
                     txtStatus.Text = " ";
                     txtIcon.Text = " ";
                     backBackground.Opacity = 0.0;
                     shapeBackground.Background = new SolidColorBrush(Colors.Transparent);
                     verticalGrid.Background = new SolidColorBrush(Colors.Transparent);
+                    iconClose.Foreground = new SolidColorBrush(Colors.Transparent);
+                    Panel.SetZIndex(this, 0);
                     break;
             }
             if (status.AutoHide == true)
@@ -116,6 +128,11 @@ namespace Microsoft.Templates.UI.Controls
         private string ConvertToChar(SymbolFonts font)
         {
             return char.ConvertFromUtf32((int)font);
+        }
+
+        private void OnCloseClicked(object sender, RoutedEventArgs e)
+        {
+            Hide();
         }
     }
 }

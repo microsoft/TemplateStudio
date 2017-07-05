@@ -82,11 +82,6 @@
                     <TextBlock Style="{StaticResource TextMainLoadingStyle}" Text="{x:Static res:StringRes.NoContentText}"  Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}"/>
                 </Grid>
             </Grid>
-            <controls:StatusControl
-                Grid.Row="1"
-                Grid.RowSpan="2"
-                VerticalAlignment="Top"
-                Status="{Binding Status}" />
             <Grid Grid.Row="3" Style="{StaticResource GridBottomBarStyle}">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -163,6 +158,10 @@
                 </Grid.Background>
             </Grid>
         </Grid>
+        <controls:StatusControl
+                Margin="0,50,0,0"
+                VerticalAlignment="Top"
+                Status="{Binding Status}" />
         <controls:OverlayBox
             Opacity="0"
             HorizontalAlignment="Right"

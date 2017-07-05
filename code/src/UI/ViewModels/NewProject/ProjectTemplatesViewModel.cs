@@ -199,7 +199,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 SetupTemplatesFromLayout(ContextProjectType.Name, ContextFramework.Name);
                 MainViewModel.Current.RebuildLicenses();
             }
-            MainViewModel.Current.SetTemplatesReadyForProjectCreation();
+            MainViewModel.Current.UpdateCanFinish(true);
             CloseTemplatesEdition();
             await Task.CompletedTask;
         }

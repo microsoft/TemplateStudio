@@ -75,7 +75,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 Fs.EnsureFileEditable(originalFilePath);
                 File.WriteAllLines(originalFilePath, result);
                 // REFRESH PROJECT TO UN-DIRTY IT
-                if (Path.GetExtension(_config.FilePath).Equals(".csproj", StringComparison.OrdinalIgnoreCase))
+                if (Path.GetExtension(_config.FilePath).Equals(".csproj", StringComparison.OrdinalIgnoreCase) && (GenContext.Current.OutputPath == GenContext.Current.ProjectPath))
                 {
                     Gen.GenContext.ToolBox.Shell.RefreshProject();
                 }

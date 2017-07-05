@@ -109,9 +109,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         protected override async void OnTemplatesAvailable() => await ProjectSetup.InitializeAsync();
         protected override async void OnNewTemplatesAvailable()
         {
+            UpdateCanFinish(false);
             _canGoBack = false;
-            _templatesReady = false;
-            FinishCommand.OnCanExecuteChanged();
             BackCommand.OnCanExecuteChanged();
             ShowFinishButton = false;
             EnableGoForward();

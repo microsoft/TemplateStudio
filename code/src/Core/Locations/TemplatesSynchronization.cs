@@ -48,11 +48,14 @@ namespace Microsoft.Templates.Core.Locations
         {
             await CheckInstallDeployedContent();
 
-            await CheckMandatoryAcquireContentAsync();
+            var acquireCalled = await CheckMandatoryAcquireContentAsync();
 
             await UpdateTemplatesCacheAsync();
 
-            await AcquireContentAsync();
+            if (!acquireCalled)
+            {
+                await AcquireContentAsync();
+            }
 
             await CheckContentStatusAsync();
 
@@ -86,21 +89,26 @@ namespace Microsoft.Templates.Core.Locations
                 await ExtractInstalledContentAsync();
             }
         }
-        private async Task CheckMandatoryAcquireContentAsync()
+        private async Task<bool> CheckMandatoryAcquireContentAsync()
         {
-            await AcquireContentAsync(_source.ForcedAcquisition || _content.ExistUnderVersion());
+            return await AcquireContentAsync(_source.ForcedAcquisition || _content.ExistUnderVersion());
         }
 
-        private async Task AcquireContentAsync(bool force = false)
+        private async Task<bool> AcquireContentAsync(bool force = false)
         {
+            bool acquireContentCalled = false;
             if (force || _content.IsExpired(CurrentContentFolder))
             {
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring });
 
-                await Task.Run(() => AcquireContent());
-
+                await Task.Run(() =>
+                {
+                    AcquireContent();
+                });
+                acquireContentCalled = true;
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquired });
             }
+            return await Task.FromResult<bool>(acquireContentCalled);
         }
 
         private async Task ExtractInstalledContentAsync()

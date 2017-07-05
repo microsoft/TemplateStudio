@@ -205,7 +205,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not merge changes (generate in a temp folder).
+        ///   Looks up a localized string similar to Do not merge changes (generate in a temp folder)..
         /// </summary>
         public static string ChangesSummaryCheckBoxText {
             get {
@@ -214,7 +214,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file {0} already exist in your project and was also generated as part of the new item. Please compare and make sure everything is the right place..
+        ///   Looks up a localized string similar to The file &apos;{0}&apos; already exist in your project and was generated as part of the new item. Your current project file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionConflictingFiles {
             get {
@@ -223,7 +223,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The changes could not be integrated..
+        ///   Looks up a localized string similar to We are not able to introduce the modifications required. If needed, you can access to the generated file after finishing..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionFailedMerges {
             get {
@@ -232,7 +232,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file {0} has been modified..
+        ///   Looks up a localized string similar to The file &apos;{0}&apos; will be modified to include required content. Below you can check the modifications introduced..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionModifiedFiles {
             get {
@@ -241,7 +241,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The fille {0} will be added as new file..
+        ///   Looks up a localized string similar to The file &apos;{0}&apos; will be added as new file to your project..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionNewFiles {
             get {
@@ -250,7 +250,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file {0} already exist in your project, no action is necessary..
+        ///   Looks up a localized string similar to The file &apos;{0}&apos; already exists in your project and no further action is necessary. The file will remain unchanged after finishing..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionUnchangedFiles {
             get {
@@ -304,7 +304,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Changes summary: add {0} {1}.
+        ///   Looks up a localized string similar to Changes summary: Add {0} {1}.
         /// </summary>
         public static string ChangesSummaryTitle_SF {
             get {
@@ -322,7 +322,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file {0} already exist. By countinuing this file will be replaced..
+        ///   Looks up a localized string similar to The file {0} already exists. By continuing this file will be replaced..
         /// </summary>
         public static string ConflictingDetailDescription_SF {
             get {
@@ -508,6 +508,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string GeneratingProjectMessage {
             get {
                 return ResourceManager.GetString("GeneratingProjectMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generating template....
+        /// </summary>
+        public static string GenerationFeedbackMessage {
+            get {
+                return ResourceManager.GetString("GenerationFeedbackMessage", resourceCulture);
             }
         }
         
@@ -751,15 +760,6 @@ namespace Microsoft.Templates.UI.Resources {
         public static string NoProjectChanges {
             get {
                 return ResourceManager.GetString("NoProjectChanges", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Privacy termns.
-        /// </summary>
-        public static string PrivacyTermns {
-            get {
-                return ResourceManager.GetString("PrivacyTermns", resourceCulture);
             }
         }
         
