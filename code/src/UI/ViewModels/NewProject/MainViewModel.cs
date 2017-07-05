@@ -101,6 +101,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
             NavigationService.Navigate(new ProjectTemplatesView());
         }
+        protected override void OnGoBack()
+        {
+            base.OnGoBack();
+            Title = StringRes.ProjectSetupTitle;
+            Step = "(1/2)";
+        }
         protected override void OnFinish(string parameter)
         {
             MainView.Result = CreateUserSelection();

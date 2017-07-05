@@ -229,6 +229,7 @@
     <Compile Include="Services\DragAndDropService\DragAndDropEventArgs.cs" />
     <Compile Include="TemplateSelectors\SummaryItemTemplateSelector.cs" />
     <Compile Include="ViewModels\Common\BaseMainViewModel.cs" />
+    <Compile Include="ViewModels\Common\GroupHeaderViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\UnchangedFileViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\BaseFileViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\NewFileViewModel.cs" />
@@ -364,10 +365,6 @@
     <Page Include="Styles\StyleImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Styles\StyleShape.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\StyleTogglePane.xaml">
       <SubType>Designer</SubType>

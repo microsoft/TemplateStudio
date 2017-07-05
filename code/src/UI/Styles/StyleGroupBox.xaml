@@ -13,7 +13,10 @@
         <Setter Property="HeaderTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <TextBlock Text="{Binding}" Style="{StaticResource TextGroupTemplateItemsHeaderStyle}" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Title}" Style="{StaticResource TextGroupTemplateItemsHeaderStyle}" />
+                        <TextBlock Margin="{StaticResource Margin_M_Left}" Text="{Binding SubTitle}" Style="{StaticResource TextGroupTemplateItemsHeaderStyle}" Foreground="{StaticResource UIGray}"/>
+                    </StackPanel>
                 </DataTemplate>
             </Setter.Value>
         </Setter>

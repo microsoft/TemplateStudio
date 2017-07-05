@@ -46,10 +46,20 @@
         </Setter>
     </Style>
 
-    <Style TargetType="Border" x:Key="ListViewItemBorderStyle">
-        <Setter Property="BorderThickness" Value="5,1,1,1"/>
-        <Setter Property="BorderBrush" Value="{StaticResource UIGray}"/>
-        <Setter Property="Margin" Value="{StaticResource Margin_XL_RightBottom}"/>
+    <Style x:Key="ListViewItemFocusVisualStyle">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid Margin="0,0,5,5">
+                        <Grid Margin="{StaticResource Margin_XL_RightBottom}">
+                            <Grid.Background>
+                                <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
+                            </Grid.Background>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="ListViewProjectSetupStyle" TargetType="ListView" BasedOn="{StaticResource ListViewBaseStyle}">
@@ -57,30 +67,36 @@
             <Setter.Value>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="Foreground" Value="{StaticResource UIBlack}"/>
-                    <Setter Property="FocusVisualStyle">
-                        <Setter.Value>
-                            <Style>
-                                <Setter Property="Control.Template">
-                                    <Setter.Value>
-                                        <ControlTemplate>
-                                            <Grid Margin="{StaticResource Margin_XL_RightBottom}">
-                                                <Grid.Background>
-                                                    <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
-                                                </Grid.Background>
-                                            </Grid>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </Setter.Value>
-                    </Setter>
+                    <Setter Property="FocusVisualStyle" Value="{StaticResource ListViewItemFocusVisualStyle}"/>
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">
-                                <Border x:Name="ContentBorder" Style="{StaticResource ListViewItemBorderStyle}" HorizontalAlignment="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UniformGrid}}, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}" BorderBrush="{StaticResource UIGray}">
-                                    <ContentPresenter/>
+                                <Border x:Name="ContentBorder" Margin="{StaticResource Margin_XL_RightBottom}" HorizontalAlignment="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UniformGrid}}, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="5"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="5"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid>
+                                            <Border BorderThickness="1" BorderBrush="{StaticResource UIGray}">
+                                                <ContentPresenter/>
+                                            </Border>
+                                            <Grid x:Name="selectedIndicator" Background="{StaticResource UIBlue}" Visibility="Collapsed" Width="5" HorizontalAlignment="Left" VerticalAlignment="Stretch"/>
+                                        </Grid>
+                                        <Grid Grid.Column="1" Grid.RowSpan="2" Background="{StaticResource UIGray}" Margin="{StaticResource Margin_S_Top}"/>
+                                        <Grid Grid.Row="1" Grid.ColumnSpan="2" Background="{StaticResource UIGray}" Margin="{StaticResource Margin_S_Left}"/>
+                                    </Grid>
                                 </Border>
                                 <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Trigger.Setters>
+                                            <Setter TargetName="selectedIndicator" Property="Visibility" Value="Visible"/>
+                                        </Trigger.Setters>
+                                    </Trigger>
                                     <MultiTrigger>
                                         <MultiTrigger.Conditions>
                                             <Condition Property="IsSelected" Value="True"/>
@@ -124,28 +140,29 @@
             <Setter.Value>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="Foreground" Value="{StaticResource UIBlack}"/>
-                    <Setter Property="FocusVisualStyle">
-                        <Setter.Value>
-                            <Style>
-                                <Setter Property="Control.Template">
-                                    <Setter.Value>
-                                        <ControlTemplate>
-                                            <Grid Margin="{StaticResource Margin_XL_RightBottom}">
-                                                <Grid.Background>
-                                                    <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
-                                                </Grid.Background>
-                                            </Grid>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </Setter.Value>
-                    </Setter>
+                    <Setter Property="FocusVisualStyle" Value="{StaticResource ListViewItemFocusVisualStyle}"/>
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">
-                                <Border x:Name="ContentBorder" Style="{StaticResource ListViewItemBorderStyle}">
-                                    <ContentPresenter/>
+                                <Border x:Name="ContentBorder" Margin="{StaticResource Margin_XL_RightBottom}" HorizontalAlignment="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UniformGrid}}, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="5"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="5"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid>
+                                            <Border BorderThickness="1" BorderBrush="{StaticResource UIGray}">
+                                                <ContentPresenter/>
+                                            </Border>
+                                            <Grid x:Name="selectedIndicator" Background="{StaticResource UIBlue}" Visibility="Collapsed" Width="5" HorizontalAlignment="Left" VerticalAlignment="Stretch"/>
+                                        </Grid>
+                                        <Grid Grid.Column="1" Grid.RowSpan="2" Background="{StaticResource UIGray}" Margin="{StaticResource Margin_S_Top}"/>
+                                        <Grid Grid.Row="1" Grid.ColumnSpan="2" Background="{StaticResource UIGray}" Margin="{StaticResource Margin_S_Left}"/>
+                                    </Grid>
                                 </Border>
                             </ControlTemplate>
                         </Setter.Value>
@@ -192,7 +209,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 
     <Style TargetType="ListView" x:Key="ListViewChangesSummaryFiles">
         <Setter Property="Margin" Value="0"/>

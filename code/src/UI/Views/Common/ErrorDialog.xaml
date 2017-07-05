@@ -55,7 +55,14 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                        <Button Style="{StaticResource MoreInfoButtonStyle}" Command="{Binding ToggleDetailVisibleCommand}" />
+                        <Button Style="{StaticResource RoundButtonStyle}" Command="{Binding ToggleDetailVisibleCommand}" VerticalAlignment="Center">
+                            <Button.Content>
+                                <Grid>
+                                    <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource IconButtonTextStyle}"/>
+                                    <TextBlock Text="{Binding ToggleButtonIcon}" FontSize="12" Style="{StaticResource IconButtonTextStyle}" />
+                                </Grid>
+                            </Button.Content>
+                        </Button>
                         <TextBlock Text="{x:Static res:StringRes.ErrorViewProblemDetails}" Margin="{StaticResource Margin_M_Left}" VerticalAlignment="Center"/>
                     </StackPanel>
                     <Button Grid.Column="1" Content="{x:Static res:StringRes.ButtonOk}" Command="{Binding CloseCommand}" Style="{StaticResource ButtonNavigationStyle}"/>

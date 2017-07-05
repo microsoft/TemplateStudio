@@ -28,6 +28,9 @@
         <Setter Property="Foreground" Value="{StaticResource UIWhite}"/>
         <Setter Property="FontSize" Value="{StaticResource UI_XXL_FontSize}"/>
     </Style>
+    <Style TargetType="TextBlock" x:Key="TextStepStyle" BasedOn="{StaticResource TextTitleStyle}">
+        <Setter Property="Foreground" Value="{StaticResource UILightBlue}"/>
+    </Style>
     <Style TargetType="TextBlock" x:Key="TextMainLoadingStyle" BasedOn="{StaticResource UIBaseText}">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -47,7 +50,7 @@
     <Style TargetType="TextBlock" x:Key="TextSubGroupTemplateItemsHeaderStyle" BasedOn="{StaticResource UIBaseText}">
         <Setter Property="Foreground" Value="{StaticResource UIDarkGray}" />
         <Setter Property="FontSize" Value="{StaticResource UI_M_FontSize}" />
-        <Setter Property="Margin" Value="{StaticResource Margin_M_LeftTop}" />
+        <Setter Property="Margin" Value="{StaticResource Margin_M_Top}" />
     </Style>
 
     <Style TargetType="TextBlock" x:Key="TextTemplateItemTitleStyle" BasedOn="{StaticResource UIBase}">
