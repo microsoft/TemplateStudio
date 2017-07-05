@@ -118,30 +118,34 @@
     </Page.Resources>
     <ScrollViewer>
         <StackPanel>
-            <GroupBox Header="{Binding PagesHeader}" Margin="{StaticResource Margin_M_LeftTopRight}">
-                <ItemsControl ItemsSource="{Binding PagesGroups}" Focusable="False">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding Title}" Style="{StaticResource TextSubGroupTemplateItemsHeaderStyle}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
-                                <ListView KeyboardNavigation.TabNavigation="Local" ItemsSource="{Binding Templates}" Style="{StaticResource ListViewProjectTemplatesStyle}" ItemTemplate="{StaticResource ProjectTemplatesItemTemplate}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </GroupBox>
-            <GroupBox Header="{Binding FeaturesHeader}" Margin="{StaticResource Margin_M_LeftTopRight}">
-                <ItemsControl ItemsSource="{Binding FeatureGroups}" Margin="{StaticResource Margin_M_Top}" Focusable="False">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding Title}" Style="{StaticResource TextSubGroupTemplateItemsHeaderStyle}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
-                                <ListView KeyboardNavigation.TabNavigation="Local" Margin="{StaticResource Margin_M_All}" ItemsSource="{Binding Templates}" Style="{StaticResource ListViewProjectTemplatesStyle}" ItemTemplate="{StaticResource ProjectTemplatesItemTemplate}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </GroupBox>
+            <Grid>
+                <GroupBox Header="{Binding PagesHeader}" Margin="{StaticResource Margin_M_LeftTopRight}">
+                    <ItemsControl ItemsSource="{Binding PagesGroups}" Focusable="False">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Title}" Style="{StaticResource TextSubGroupTemplateItemsHeaderStyle}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
+                                    <ListView KeyboardNavigation.TabNavigation="Local" ItemsSource="{Binding Templates}" Style="{StaticResource ListViewProjectTemplatesStyle}" ItemTemplate="{StaticResource ProjectTemplatesItemTemplate}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </GroupBox>
+            </Grid>
+            <Grid Margin="{StaticResource Margin_M_Top}">
+                <GroupBox Header="{Binding FeaturesHeader}" Margin="{StaticResource Margin_M_LeftTopRight}">
+                    <ItemsControl ItemsSource="{Binding FeatureGroups}" Focusable="False">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Title}" Style="{StaticResource TextSubGroupTemplateItemsHeaderStyle}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
+                                    <ListView KeyboardNavigation.TabNavigation="Local" ItemsSource="{Binding Templates}" Style="{StaticResource ListViewProjectTemplatesStyle}" ItemTemplate="{StaticResource ProjectTemplatesItemTemplate}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </GroupBox>
+            </Grid>
         </StackPanel>
     </ScrollViewer>
 </Page>

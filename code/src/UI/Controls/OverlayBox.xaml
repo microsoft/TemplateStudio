@@ -39,7 +39,16 @@
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
                                     <Grid Background="{StaticResource UIMiddleDarkGray}" Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
                                         <TextBlock Text="{x:Static res:StringRes.Title}" Style="{StaticResource TextOverlayBoxTitleStyle}" Margin="{StaticResource Margin_M_All}"/>
+                                        <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_All}" VerticalAlignment="Center">
+                                            <Hyperlink Command="{TemplateBinding OpenUrlCommand}" CommandParameter="https://github.com/Microsoft/WindowsTemplateStudio" Style="{StaticResource LicenseHyperlinkStyle}" Focusable="{TemplateBinding Visible}">
+                                                <TextBlock Text="{x:Static res:StringRes.VisitProjectWebSite}" Style="{StaticResource TextSummaryLicenseStyle}" VerticalAlignment="Center" FontSize="{StaticResource UI_S_FontSize}" TextAlignment="Right" Foreground="{StaticResource UIWhite}"/>
+                                            </Hyperlink>
+                                        </TextBlock>
                                     </Grid>
                                     <Grid Grid.Row="1" Margin="{StaticResource Margin_L_All}">
                                         <Grid.RowDefinitions>
@@ -52,7 +61,7 @@
                                             <!--Templates and Wizard versions-->
                                             <RowDefinition Height="Auto"/>
                                             <!--Project site-->
-                                            <RowDefinition Height="Auto"/>
+                                            <!--<RowDefinition Height="Auto"/>-->
                                         </Grid.RowDefinitions>
 
                                         <TextBlock Grid.Row="0" Text="{x:Static res:StringRes.WTSDescription}" Style="{StaticResource TextOverlayBoxDescriptionStyle}"/>
@@ -62,7 +71,7 @@
                                             <Button Style="{StaticResource ButtonRefreshTemplatesStyle}" Focusable="{TemplateBinding Visible}" Command="{TemplateBinding CheckForUpdatesCommand}" Content="{x:Static res:StringRes.CheckForUpdates}" Visibility="{TemplateBinding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}"/>
                                         </Grid>
 
-                                        <!--<Grid Grid.Row="2" Margin="{StaticResource Margin_S_Top}">
+                                        <Grid Grid.Row="3" Margin="{StaticResource Margin_S_Top}">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="*"/>
@@ -77,13 +86,13 @@
 
                                             <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static res:StringRes.TemplatesVersion}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" Margin="{StaticResource Margin_M_Right}"/>
                                             <TextBlock Grid.Row="2" Grid.Column="1" Text="{TemplateBinding TemplatesVersion}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" />
-                                        </Grid>-->
-                                        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="{StaticResource Margin_S_Top}">
+                                        </Grid>
+                                        <!--<StackPanel Grid.Row="3" Orientation="Horizontal" Margin="{StaticResource Margin_S_Top}">
                                             <TextBlock Text="{x:Static res:StringRes.WizardVersion}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" />
                                             <TextBlock Text="{TemplateBinding WizardVersion}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" Margin="{StaticResource Margin_S_Left}"/>
                                             <TextBlock Text="{x:Static res:StringRes.TemplatesVersion}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" Margin="{StaticResource Margin_M_Left}"/>
                                             <TextBlock Text="{TemplateBinding TemplatesVersion}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" Margin="{StaticResource Margin_S_Left}"/>
-                                        </StackPanel>
+                                        </StackPanel>-->
 
                                         <Grid Grid.Row="2" Margin="{StaticResource Margin_M_Top}">
                                             <Grid Visibility="{TemplateBinding StatusText, Converter={StaticResource StringVisibilityConverter}, ConverterParameter=reverse}">
@@ -92,11 +101,11 @@
                                             <TextBlock Style="{StaticResource TextOverlayBoxDescriptionStyle}" Text="{TemplateBinding StatusText}" Visibility="{TemplateBinding StatusText, Converter={StaticResource StringVisibilityConverter}}" />
                                         </Grid>
                                         
-                                        <TextBlock Grid.Row="4" Margin="{StaticResource Margin_M_Top}">
+                                        <!--<TextBlock Grid.Row="4" Margin="{StaticResource Margin_M_Top}">
                                             <Hyperlink Command="{TemplateBinding OpenUrlCommand}" CommandParameter="https://github.com/Microsoft/WindowsTemplateStudio" Style="{StaticResource LicenseHyperlinkStyle}" Focusable="{TemplateBinding Visible}">
                                                 <TextBlock Text="{x:Static res:StringRes.VisitProjectWebSite}" Style="{StaticResource TextSummaryLicenseStyle}" VerticalAlignment="Center" FontSize="{StaticResource UI_S_FontSize}"/>
                                             </Hyperlink>
-                                        </TextBlock>
+                                        </TextBlock>-->
                                     </Grid>
                                 </Grid>
                             </Border>
