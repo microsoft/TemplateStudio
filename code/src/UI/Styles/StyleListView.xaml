@@ -193,7 +193,7 @@
         </Setter>
     </Style>
 
-    
+
     <Style TargetType="ListView" x:Key="ListViewChangesSummaryFiles">
         <Setter Property="Margin" Value="0"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -240,6 +240,15 @@
                         </Setter.Value>
                     </Setter>
                 </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListView}">
+                    <Border Background="{TemplateBinding Background}" Margin="{TemplateBinding Margin}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <ItemsPresenter />
+                    </Border>
+                </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
