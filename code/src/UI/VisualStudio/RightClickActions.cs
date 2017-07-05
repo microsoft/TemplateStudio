@@ -55,21 +55,24 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public void AddNewPage()
         {
-            SetContext();
-
-            try
+            if (GenContext.ToolBox.Shell.GetActiveProjectIsWts())
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage();
+                SetContext();
 
-                if (userSelection != null)
+                try
                 {
-                    NewItemGenController.Instance.FinishGeneration(userSelection);
-                    GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.NewItemAddPageSuccessStatusMsg, userSelection.Pages[0].name));
+                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage();
+
+                    if (userSelection != null)
+                    {
+                        NewItemGenController.Instance.FinishGeneration(userSelection);
+                        GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.NewItemAddPageSuccessStatusMsg, userSelection.Pages[0].name));
+                    }
                 }
-            }
-            catch (WizardBackoutException)
-            {
-                GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.NewItemAddPageCancelled);
+                catch (WizardBackoutException)
+                {
+                    GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.NewItemAddPageCancelled);
+                }
             }
         }
 
@@ -91,20 +94,23 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public void AddNewFeature()
         {
-            SetContext();
-            try
+            if (GenContext.ToolBox.Shell.GetActiveProjectIsWts())
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature();
-
-                if (userSelection != null)
+                SetContext();
+                try
                 {
-                    NewItemGenController.Instance.FinishGeneration(userSelection);
-                    GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.NewItemAddFeatureSuccessStatusMsg, userSelection.Features[0].name));
+                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature();
+
+                    if (userSelection != null)
+                    {
+                        NewItemGenController.Instance.FinishGeneration(userSelection);
+                        GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.NewItemAddFeatureSuccessStatusMsg, userSelection.Features[0].name));
+                    }
                 }
-            }
-            catch (WizardBackoutException)
-            {
-                GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.NewItemAddFeatureCancelled);
+                catch (WizardBackoutException)
+                {
+                    GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.NewItemAddFeatureCancelled);
+                }
             }
         }
 

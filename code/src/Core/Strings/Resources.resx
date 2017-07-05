@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>Could not find file '{0}' to include the following changes. Please review the code blocks to include the changes manually where required in your project. </value>
+    <value>Could not find file '{0}' to include the following changes. Review the code blocks to manually introduce the changes. </value>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>Could not find the expected line `{0}` in file '{1}'. Please merge the content from the postaction file manually.</value>
+    <value>Could not find the expected line `{0}` in file '{1}'. Review the code blocks to manually introduce the changes.</value>
   </data>
   <data name="MarkdownHeader" xml:space="preserve">
     <value>*This is a markdown file, to improve visualization you can install a Visual Studio extension for markdown files, for example: [Markdown Editor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
