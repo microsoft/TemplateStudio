@@ -112,5 +112,28 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             return GenContext.ToolBox.Shell.GetActiveProjectIsWts();
         }
+
+        public void OpenTempFolder()
+        {
+            var tempPath = GetTempGenerationFolder();
+            if (HasContent(tempPath))
+            {
+                System.Diagnostics.Process.Start(tempPath);
+            }
+        }
+        public bool TempFolderAvailable()
+        {
+            return HasContent(GetTempGenerationFolder());
+        }
+
+        private static string GetTempGenerationFolder()
+        {
+            return Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
+        }
+
+        private static bool HasContent(string tempPath)
+        {
+            return !string.IsNullOrEmpty(tempPath) && Directory.Exists(tempPath) && Directory.EnumerateDirectories(tempPath).Count() > 0;
+        }
     }
 }
