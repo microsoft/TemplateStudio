@@ -101,17 +101,26 @@ namespace Microsoft.Templates.Extension.Commands
 
         private void AddPage(object sender, EventArgs e)
         {
-            RightClickActions.AddNewPage();
+            if (RightClickActions.Enabled())
+            {
+                RightClickActions.AddNewPage();
+            }
         }
 
         private void AddFeature(object sender, EventArgs e)
         {
-            RightClickActions.AddNewFeature();
+            if (RightClickActions.Enabled())
+            {
+                RightClickActions.AddNewFeature();
+            }
         }
 
         private void OpenTempFolder(object sender, EventArgs e)
         {
-            RightClickActions.OpenTempFolder();
+            if (RightClickActions.Enabled())
+            {
+                RightClickActions.OpenTempFolder();
+            }
         }
 
         private void RightClickAvailable(object sender, EventArgs e)

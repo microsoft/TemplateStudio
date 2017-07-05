@@ -30,7 +30,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 }
                 else
                 {
-                    return $"NOT_FOUND_PROPERTY";
+                    return string.Empty;
                 }
             }
             else
