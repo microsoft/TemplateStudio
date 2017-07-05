@@ -199,10 +199,10 @@
     <value>No data</value>
   </data>
   <data name="ProjectSetupTitle" xml:space="preserve">
-    <value>Select project type and framework</value>
+    <value>Select project type and framework (1/2)</value>
   </data>
   <data name="ProjectTemplatesTitle" xml:space="preserve">
-    <value>Select pages and features</value>
+    <value>Select pages and features (2/2)</value>
   </data>
   <data name="ResetSelection" xml:space="preserve">
     <value>You have changed your project type or framework selection. If you continue you will lose all pages and features added previously. To conserve pages and features, you can go back to your original selection ({0}, {1}).</value>
@@ -374,7 +374,7 @@
     <value>Close</value>
   </data>
   <data name="NewItemTitle_SF" xml:space="preserve">
-    <value>Add new {0}</value>
+    <value>Add new {0} (1/2)</value>
   </data>
   <data name="GroupFeatureHeader_SF" xml:space="preserve">
     <value>Features ({0}) - Pick one</value>
@@ -407,7 +407,7 @@
     <value>Visit project web site</value>
   </data>
   <data name="ChangesSummaryTitle_SF" xml:space="preserve">
-    <value>Changes summary: add {0} {1}</value>
+    <value>Changes summary: add {0} {1} (2/2)</value>
   </data>
   <data name="ChangesSummaryCategoryFailedMerges" xml:space="preserve">
     <value>Failed merges</value>
