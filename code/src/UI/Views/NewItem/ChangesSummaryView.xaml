@@ -134,8 +134,9 @@
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+            <Grid Grid.RowSpan="2" HorizontalAlignment="Right" Width="17" Background="{StaticResource UILightGray}"/>
             <ScrollViewer>
                 <StackPanel>
                     <ItemsControl ItemsSource="{Binding ChangesSummary.FileGroups}">
@@ -159,20 +160,22 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                     <Expander
-                    Margin="{StaticResource Margin_M_Top}"
-                    Header="{x:Static res:StringRes.ChangesSummaryCategoryLicenses}"
-                    HeaderTemplate="{StaticResource ChangesSummaryExpanderHeaderTemplate}"
-                    IsExpanded="True"
-                    BorderThickness="0"
-                    Visibility="{Binding ChangesSummary.HasLicenses, Converter={StaticResource BoolToVisibilityConverter}}">
+                        Margin="{StaticResource Margin_M_Top}"
+                        Header="{x:Static res:StringRes.ChangesSummaryCategoryLicenses}"
+                        HeaderTemplate="{StaticResource ChangesSummaryExpanderHeaderTemplate}"
+                        IsExpanded="True"
+                        BorderThickness="0"
+                        Visibility="{Binding ChangesSummary.HasLicenses, Converter={StaticResource BoolToVisibilityConverter}}">
                         <ItemsControl
-                        Focusable="False"
-                        ItemTemplate="{StaticResource ListLicenseTemplate}"                                
-                        ItemsSource="{Binding ChangesSummary.Licenses}" />
+                            Focusable="False"
+                            ItemTemplate="{StaticResource ListLicenseTemplate}"                                
+                            ItemsSource="{Binding ChangesSummary.Licenses}" />
                     </Expander>
                 </StackPanel>
             </ScrollViewer>
-            <Grid HorizontalAlignment="Right" Background="{StaticResource UILightGray}" Width="17" Grid.RowSpan="2"/>
+            <Grid Grid.Row="1" Margin="0,0,17,0">
+                <TextBlock Margin="{StaticResource Margin_M_All}" Style="{StaticResource TextSummaryTermsStyle}" Text="{x:Static res:StringRes.SummaryTerms}" />
+            </Grid>
         </Grid>
         <Grid Grid.Column="2">
             <Grid.ColumnDefinitions>
@@ -218,6 +221,6 @@
             </Grid>
 
             <Grid Grid.Column="1" Background="{StaticResource UILightGray}"/>
-        </Grid>        
+        </Grid>
     </Grid>
 </Page>

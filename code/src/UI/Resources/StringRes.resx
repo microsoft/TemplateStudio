@@ -399,10 +399,7 @@
   </data>
   <data name="CheckForUpdates" xml:space="preserve">
     <value>Check for new templates</value>
-  </data>
-  <data name="PrivacyTermns" xml:space="preserve">
-    <value>Privacy termns</value>
-  </data>
+  </data>  
   <data name="VisitProjectWebSite" xml:space="preserve">
     <value>Visit project web site</value>
   </data>

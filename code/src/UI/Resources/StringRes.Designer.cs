@@ -727,15 +727,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Privacy termns.
-        /// </summary>
-        public static string PrivacyTermns {
-            get {
-                return ResourceManager.GetString("PrivacyTermns", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?..
         /// </summary>
         public static string ProjectConfigurationDescriptionText {
