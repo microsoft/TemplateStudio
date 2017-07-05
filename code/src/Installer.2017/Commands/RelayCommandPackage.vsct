@@ -16,7 +16,6 @@
     
     <Menus>
       <Menu guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenu" type="Context" priority="0x0100">
-        <Icon guid="guidImages" id="bmpFeature1" />  
         <Strings>
           <CommandName>Windows Template Studio</CommandName>
           <ButtonText>Windows Template Studio</ButtonText>
@@ -54,7 +53,11 @@
       <Bitmap guid="guidImages" href="Resources\RelayCommand.png" usedList="bmpFeature1, bmpFeature2, bmpFeature3, bmpFeature4, bmpPage1, bmpWTS, bmpOpenTemp"/>
     </Bitmaps>
   </Commands>
-
+  <KeyBindings>
+    <KeyBinding guid="guidRelayCommandPackageCmdSet" id="AddPageCommand" editor="guidVSStd97" mod1="CONTROL ALT" key1="W" key2="P" />
+    <KeyBinding guid="guidRelayCommandPackageCmdSet" id="AddFeatureCommand" editor="guidVSStd97" mod1="CONTROL ALT" key1="W" key2="F" />
+    <KeyBinding guid="guidRelayCommandPackageCmdSet" id="OpenTempFolder" editor="guidVSStd97" mod1="CONTROL ALT" key1="W" key2="O" />
+  </KeyBindings>
   <CommandPlacements>
     <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="AddItemContextGroup" priority="0x0200">
       <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_PROJNODE" />
