@@ -18,20 +18,21 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class ProjectSetupViewModel : Observable
     {
-        private string _projectTypesHeader;
-        public string ProjectTypesHeader
+        private GroupHeaderViewModel _projectTypesHeader;
+        public GroupHeaderViewModel ProjectTypesHeader
         {
             get => _projectTypesHeader;
             set => SetProperty(ref _projectTypesHeader, value);
         }
 
-        private string _frameworkHeader;
-        public string FrameworkHeader
+        private GroupHeaderViewModel _frameworkHeader;
+        public GroupHeaderViewModel FrameworkHeader
         {
             get => _frameworkHeader;
             set => SetProperty(ref _frameworkHeader, value);
@@ -112,9 +113,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     MainViewModel.Current.HasContent = false;
                 }
 
-                ProjectTypesHeader = string.Format(StringRes.GroupProjectTypeHeader_SF, ProjectTypes.Count);
+                ProjectTypesHeader = new GroupHeaderViewModel()
+                {
+                    Title = string.Format(StringRes.GroupProjectTypeHeader_SF, ProjectTypes.Count),
+                    SubTitle = StringRes.GroupHeaderPickOne
+                };
 
-                await Task.CompletedTask;
+            await Task.CompletedTask;
             }
         }
 
@@ -140,8 +145,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 SelectedFramework = Frameworks.FirstOrDefault();
             }
 
-            FrameworkHeader = string.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
-            MainViewModel.Current.EnableGoForward();
+            FrameworkHeader = new GroupHeaderViewModel()
+            {
+                Title = string.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count),
+                SubTitle = StringRes.GroupHeaderPickOne
+            };
+        MainViewModel.Current.EnableGoForward();
         }
     }
 }

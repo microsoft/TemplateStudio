@@ -169,19 +169,19 @@
     <value>Creating project '{0}'...</value>
   </data>
   <data name="GroupFeaturesHeader_SF" xml:space="preserve">
-    <value>Features ({0}) - Add multiple</value>
+    <value>Features ({0})</value>
   </data>
   <data name="GroupFrameworkHeader_SF" xml:space="preserve">
-    <value>Framework ({0}) - Pick one</value>
+    <value>Framework ({0})</value>
   </data>
   <data name="GroupPagesHeader_SF" xml:space="preserve">
-    <value>Pages ({0}) - Add multiple</value>
+    <value>Pages ({0})</value>
   </data>
   <data name="GroupProjectType" xml:space="preserve">
     <value>Project Type</value>
   </data>
   <data name="GroupProjectTypeHeader_SF" xml:space="preserve">
-    <value>Project Type ({0}) - Pick one</value>
+    <value>Project Type ({0})</value>
   </data>
   <data name="LessDetail" xml:space="preserve">
     <value>Less detail</value>
@@ -376,12 +376,6 @@
   <data name="NewItemTitle_SF" xml:space="preserve">
     <value>Add new {0}</value>
   </data>
-  <data name="GroupFeatureHeader_SF" xml:space="preserve">
-    <value>Features ({0}) - Pick one</value>
-  </data>
-  <data name="GroupPageHeader_SF" xml:space="preserve">
-    <value>Pages ({0}) - Pick one</value>
-  </data>
   <data name="NewItemName" xml:space="preserve">
     <value>Name:</value>
   </data>
@@ -399,7 +393,7 @@
   </data>
   <data name="CheckForUpdates" xml:space="preserve">
     <value>Check for new templates</value>
-  </data>  
+  </data>
   <data name="VisitProjectWebSite" xml:space="preserve">
     <value>Visit project web site</value>
   </data>
@@ -510,5 +504,11 @@
   </data>
   <data name="ProjectConfigurationSelectProjectType" xml:space="preserve">
     <value>Select project type</value>
+  </data>
+  <data name="GroupHeaderAddMultiple" xml:space="preserve">
+    <value>- Add multiple</value>
+  </data>
+  <data name="GroupHeaderPickOne" xml:space="preserve">
+    <value>- Pick one</value>
   </data>
 </root>

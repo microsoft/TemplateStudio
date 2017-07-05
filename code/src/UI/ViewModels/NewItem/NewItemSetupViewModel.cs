@@ -26,8 +26,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class NewItemSetupViewModel : Observable
     {
-        private string _header;
-        public string Header
+        private GroupHeaderViewModel _header;
+        public GroupHeaderViewModel Header
         {
             get => _header;
             set => SetProperty(ref _header, value);
@@ -143,11 +143,19 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             if (MainViewModel.Current.ConfigTemplateType == TemplateType.Page)
             {
-                Header = string.Format(StringRes.GroupPageHeader_SF, templatesCount);
+                Header = new GroupHeaderViewModel()
+                {
+                    Title = string.Format(StringRes.GroupPagesHeader_SF, templatesCount),
+                    SubTitle = StringRes.GroupHeaderPickOne
+                };
             }
             else if (MainViewModel.Current.ConfigTemplateType == TemplateType.Feature)
             {
-                Header = string.Format(StringRes.GroupFeatureHeader_SF, templatesCount);
+                Header = new GroupHeaderViewModel()
+                {
+                    Title = string.Format(StringRes.GroupFeaturesHeader_SF, templatesCount),
+                    SubTitle = StringRes.GroupHeaderPickOne
+                };
             }
         }
 

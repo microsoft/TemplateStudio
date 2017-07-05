@@ -502,16 +502,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Features ({0}) - Pick one.
-        /// </summary>
-        public static string GroupFeatureHeader_SF {
-            get {
-                return ResourceManager.GetString("GroupFeatureHeader_SF", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Features ({0}) - Add multiple.
+        ///   Looks up a localized string similar to Features ({0}).
         /// </summary>
         public static string GroupFeaturesHeader_SF {
             get {
@@ -520,7 +511,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Framework ({0}) - Pick one.
+        ///   Looks up a localized string similar to Framework ({0}).
         /// </summary>
         public static string GroupFrameworkHeader_SF {
             get {
@@ -529,16 +520,25 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pages ({0}) - Pick one.
+        ///   Looks up a localized string similar to - Add multiple.
         /// </summary>
-        public static string GroupPageHeader_SF {
+        public static string GroupHeaderAddMultiple {
             get {
-                return ResourceManager.GetString("GroupPageHeader_SF", resourceCulture);
+                return ResourceManager.GetString("GroupHeaderAddMultiple", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pages ({0}) - Add multiple.
+        ///   Looks up a localized string similar to - Pick one.
+        /// </summary>
+        public static string GroupHeaderPickOne {
+            get {
+                return ResourceManager.GetString("GroupHeaderPickOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pages ({0}).
         /// </summary>
         public static string GroupPagesHeader_SF {
             get {
@@ -556,7 +556,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Project Type ({0}) - Pick one.
+        ///   Looks up a localized string similar to Project Type ({0}).
         /// </summary>
         public static string GroupProjectTypeHeader_SF {
             get {

@@ -33,15 +33,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public MetadataInfoViewModel ContextFramework { get; set; }
         public MetadataInfoViewModel ContextProjectType { get; set; }
 
-        private string _pagesHeader;
-        public string PagesHeader
+        private GroupHeaderViewModel _pagesHeader;
+        public GroupHeaderViewModel PagesHeader
         {
             get => _pagesHeader;
             set => SetProperty(ref _pagesHeader, value);
         }
 
-        private string _featuresHeader;
-        public string FeaturesHeader
+        private GroupHeaderViewModel _featuresHeader;
+        public GroupHeaderViewModel FeaturesHeader
         {
             get => _featuresHeader;
             set => SetProperty(ref _featuresHeader, value);
@@ -181,7 +181,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 var groups = pages.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order))).OrderBy(gr => gr.Title);
 
                 PagesGroups.AddRange(groups);
-                PagesHeader = string.Format(StringRes.GroupPagesHeader_SF, pages.Count());
+                PagesHeader = new GroupHeaderViewModel()
+                {
+                    Title = string.Format(StringRes.GroupPagesHeader_SF, pages.Count()),
+                    SubTitle = StringRes.GroupHeaderAddMultiple
+                };
             }
 
             if (FeatureGroups.Count == 0)
@@ -192,7 +196,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 var groups = features.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order))).OrderBy(gr => gr.Title);
 
                 FeatureGroups.AddRange(groups);
-                FeaturesHeader = string.Format(StringRes.GroupFeaturesHeader_SF, features.Count());
+                FeaturesHeader = new GroupHeaderViewModel()
+                {
+                    Title = string.Format(StringRes.GroupFeaturesHeader_SF, features.Count()),
+                    SubTitle = StringRes.GroupHeaderAddMultiple
+                };
             }
 
             if (SavedPages.Count == 0 && SavedFeatures.Count == 0)
