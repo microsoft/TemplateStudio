@@ -74,6 +74,7 @@
     <Compile Include="ClientInterface\ToolCommandHandler.cs" />
     <Compile Include="Logic\LocalizableItemsExtractor.cs" />
     <Compile Include="Logic\LocalizationTool.cs" />
+    <Compile Include="Logic\RightClickCommandGenerator.cs" />
     <Compile Include="Logic\XmlUtility.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Logic\ProjectTemplateGenerator.cs" />

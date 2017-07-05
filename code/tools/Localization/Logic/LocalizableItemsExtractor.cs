@@ -17,6 +17,8 @@ namespace Localization
         private const string projectTemplateRootDirPath = "code\\src\\ProjectTemplates";
 
         private const string commandTemplateRootDirPath = "code\\src\\Installer.2017\\Commands";
+        private const string relayCommandFileNamePattern = "RelayCommandPackage.{0}.vsct";
+        private const string vspackageFileNamePattern = "VSPackage.{0}.resx";
 
         private string[] rightClickMdsFolders = new string[] { "_composition", "Features", "Pages" };
         private const string rightClickFileSearchPattern = "*postaction.md";
@@ -130,18 +132,19 @@ namespace Localization
             DirectoryInfo templateSrcDirectory = new DirectoryInfo(Path.Combine(this.sourceDir.FullName, commandTemplateRootDirPath));
             if (!templateSrcDirectory.Exists)
                 throw new DirectoryNotFoundException($"Source directory \"{templateSrcDirectory.FullName}\" not found.");
-            this.LocalizeFileType(templateSrcDirectory, templateDesDirectory, $"*.vsct", cultures);
-            this.LocalizeFileType(templateSrcDirectory, templateDesDirectory, $"*.resx", cultures);
+
+            this.LocalizeFileType(templateSrcDirectory, templateDesDirectory, relayCommandFileNamePattern, cultures);
+            this.LocalizeFileType(templateSrcDirectory, templateDesDirectory, vspackageFileNamePattern, cultures);
         }
 
         private void LocalizeFileType(DirectoryInfo srcDirectory, DirectoryInfo desDirectory, string searchPattern, List<string> cultures)
         {
-            foreach (FileInfo file in srcDirectory.GetFiles(searchPattern))
+            foreach (string culture in cultures)
             {
-                foreach (string culture in cultures)
-                {
-                    file.CopyTo(Path.Combine(desDirectory.FullName, $"{Path.GetFileNameWithoutExtension(file.Name)}.{culture}{file.Extension}"));
-                }
+                FileInfo file = new FileInfo(Path.Combine(srcDirectory.FullName, string.Format(searchPattern, culture)));
+                if (!file.Exists)
+                    throw new FileNotFoundException($"File \"{file.FullName}\" not found.");
+                file.CopyTo(Path.Combine(desDirectory.FullName, string.Format(searchPattern, culture)));
             }
         }
 
@@ -264,54 +267,11 @@ namespace Localization
                 FileInfo resourceFile = new FileInfo(Path.Combine(resourceSrcDirectory.FullName, string.Format(resourcesFilePathPattern, "resx")));
                 if (!resourceFile.Exists)
                     throw new FileNotFoundException($"File \"{resourceFile.FullName}\" not found.");
-                //FileInfo designerFile = new FileInfo(Path.Combine(resourceSrcDirectory.FullName, string.Format(resourcesFilePathPattern, "Designer.cs")));
-                //if (!designerFile.Exists)
-                //    throw new FileNotFoundException($"File \"{designerFile.FullName}\" not found.");
                 foreach (string culture in cultures)
                 {
                     resourceFile.CopyTo(Path.Combine(resourceDesDirectory.FullName, string.Format(resourcesFilePathPattern, culture + ".resx")));
-                    //designerFile.CopyTo(Path.Combine(resourceDesDirectory.FullName, string.Format(resourcesFilePathPattern, culture + ".Designer.cs")));
                 }
             }
         }
-
-        //internal void ExtractRightClickMds(List<string> cultures)
-        //{
-        //    DirectoryInfo mdsDesDirectory = new DirectoryInfo(Path.Combine(this.destinationDir.FullName, templatesRootDirPath));
-        //    if (!mdsDesDirectory.Exists)
-        //        mdsDesDirectory.Create();
-        //    DirectoryInfo mdsSrcDirectory = new DirectoryInfo(Path.Combine(this.sourceDir.FullName, templatesRootDirPath));
-        //    if (!mdsSrcDirectory.Exists)
-        //        throw new DirectoryNotFoundException($"Source directory \"{mdsSrcDirectory.FullName}\" not found.");
-        //    DirectoryInfo tmpMdsDesDirectory, tmpMdsSrcDirectory;
-        //    foreach (string folder in this.rightClickMdsFolders)
-        //    {
-        //        tmpMdsDesDirectory = new DirectoryInfo(Path.Combine(mdsDesDirectory.FullName, folder));
-        //        if (!tmpMdsDesDirectory.Exists)
-        //            tmpMdsDesDirectory.Create();
-        //        tmpMdsSrcDirectory = new DirectoryInfo(Path.Combine(mdsSrcDirectory.FullName, folder));
-        //        if (!tmpMdsSrcDirectory.Exists)
-        //            throw new DirectoryNotFoundException($"Source directory \"{tmpMdsSrcDirectory.FullName}\" not found.");
-        //        DirectorySearch(tmpMdsSrcDirectory, tmpMdsDesDirectory, cultures);
-        //    }
-        //}
-
-        //private void DirectorySearch(DirectoryInfo srcDirectory, DirectoryInfo desDirectory, List<string> cultures)
-        //{
-        //    foreach (FileInfo file in srcDirectory.GetFiles(rightClickFileSearchPattern))
-        //    {
-        //        if (!desDirectory.Exists)
-        //            desDirectory.Create();
-        //        foreach (string culture in cultures)
-        //        {
-        //            file.CopyTo(Path.Combine(desDirectory.FullName, $"{culture}.{file.Name}"));
-        //        }
-        //    }
-        //    foreach (DirectoryInfo directory in srcDirectory.GetDirectories())
-        //    {
-        //        DirectoryInfo newDesDirectory = new DirectoryInfo(Path.Combine(desDirectory.FullName, directory.Name));
-        //        this.DirectorySearch(directory, newDesDirectory, cultures);
-        //    }
-        //}
     }
 }

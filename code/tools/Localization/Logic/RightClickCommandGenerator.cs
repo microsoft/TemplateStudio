@@ -21,17 +21,19 @@ using System.Xml;
 
 namespace Localization
 {
-    internal class ProjectTemplateGenerator
+    internal class RightClickCommandGenerator
     {
         private DirectoryInfo sourceDir;
         private DirectoryInfo destinationDir;
-        private const string sourceDirRelPath = @"\code\src\ProjectTemplates\CSharp.UWP.2017.Solution";
-        private const string sourceDirNamePattern = "CSharp.UWP.2017.Solution";
-        private const string sourceFileNamePattern = "CSharp.UWP.VS2017.Solution.vstemplate";
-        private const string destinationDirNamePattern = "CSharp.UWP.2017.Solution";
-        private const string destinationFileNamePattern = "CSharp.UWP.VS2017.Solution.{0}.vstemplate";
+        private const string sourceDirNamePattern = "Commands";
+        private const string sourceDirRelPath = @"\code\src\Installer.2017\Commands";
+        private const string sourceFileRelayCommandPattern = "RelayCommandPackage.en-US.vsct";
+        private const string sourceFileVSPackagePattern = "VSPackage.resx";
+        private const string destinationDirNamePattern = "Commands";
+        private const string destinationFileRelayCommandPattern = "RelayCommandPackage.{0}.vsct";
+        private const string destinationFileVSPackagePattern = "VSPackage.{0}.resx";
 
-        internal ProjectTemplateGenerator(string sourceDirPath, string destinationDirPath)
+        internal RightClickCommandGenerator(string sourceDirPath, string destinationDirPath)
         {
             sourceDirPath = Path.Combine(sourceDirPath + sourceDirRelPath);
             this.sourceDir = new DirectoryInfo(sourceDirPath);
@@ -44,19 +46,25 @@ namespace Localization
                 this.destinationDir.Create();
         }
 
-        internal void GenerateProjectTemplates(List<string> cultures)
+        internal void GenerateRightClickCommands(List<string> cultures)
         {
             DirectoryInfo templateDirectory = new DirectoryInfo(Path.Combine(this.destinationDir.FullName, destinationDirNamePattern));
             if (templateDirectory.Exists)
                 return;
             templateDirectory.Create();
-            string vstemplateFilePath = Path.Combine(sourceDir.FullName, sourceFileNamePattern);
+            CreateLocalizedFiles(templateDirectory, sourceFileRelayCommandPattern, destinationFileRelayCommandPattern, cultures);
+            CreateLocalizedFiles(templateDirectory, sourceFileVSPackagePattern, destinationFileVSPackagePattern, cultures);
+        }
+
+        private void CreateLocalizedFiles(DirectoryInfo templateDirectory, string sourceFilePattern, string destFilePattern, List<string> cultures)
+        {
+            string vstemplateFilePath = Path.Combine(sourceDir.FullName, sourceFilePattern);
             FileInfo vstemplateFile = new FileInfo(vstemplateFilePath);
             if (!vstemplateFile.Exists)
                 throw new FileNotFoundException($"File \"{vstemplateFilePath}\" not found.");
             foreach (string culture in cultures)
             {
-                vstemplateFile.CopyTo(Path.Combine(templateDirectory.FullName, string.Format(destinationFileNamePattern, culture)), false);
+                vstemplateFile.CopyTo(Path.Combine(templateDirectory.FullName, string.Format(destFilePattern, culture)), false);
             }
         }
     }

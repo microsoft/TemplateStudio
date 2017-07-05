@@ -24,7 +24,7 @@ namespace Localization
         {
         }
 
-        public void GenerateProjectTemplatesHandler(ToolCommandInfo commandInfo)
+        public void GenerateProjectTemplatesAndCommandsHandler(ToolCommandInfo commandInfo)
         {
             if (commandInfo.Arguments == null || commandInfo.Arguments.Length < 3)
             {
@@ -35,6 +35,8 @@ namespace Localization
             List<string> cultures = new List<string>(commandInfo.Arguments[2].Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries));
             ProjectTemplateGenerator projectTemplateGenerator = new ProjectTemplateGenerator(sourceDirectory, destinationDirectory);
             projectTemplateGenerator.GenerateProjectTemplates(cultures);
+            RightClickCommandGenerator rightClickCommandGenerator = new RightClickCommandGenerator(sourceDirectory, destinationDirectory);
+            rightClickCommandGenerator.GenerateRightClickCommands(cultures);
         }
 
         public void ExtractLocalizableItems(ToolCommandInfo commandInfo)
@@ -53,7 +55,6 @@ namespace Localization
             extractor.ExtractTemplateEngineTemplates(cultures);
             extractor.ExtractWtsTemplates(cultures);
             extractor.ExtractResourceFiles(cultures);
-            //extractor.ExtractRightClickMds(cultures); // Not implemented
         }
     }
 }

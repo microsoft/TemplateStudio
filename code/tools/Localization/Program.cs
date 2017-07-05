@@ -31,7 +31,7 @@ namespace Localization
                 LocalizationTool tool = new LocalizationTool();
                 ToolCommandHandler commandHandler = new ToolCommandHandler();
                 commandHandler.SubscribeOnCommand("help", PrintHelp);
-                commandHandler.SubscribeOnCommand("gen", tool.GenerateProjectTemplatesHandler);
+                commandHandler.SubscribeOnCommand("gen", tool.GenerateProjectTemplatesAndCommandsHandler);
                 commandHandler.SubscribeOnCommand("ext", tool.ExtractLocalizableItems);
                 commandHandler.Listen();
             }
