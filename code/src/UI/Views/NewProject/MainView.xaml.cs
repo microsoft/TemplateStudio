@@ -69,27 +69,25 @@ namespace Microsoft.Templates.UI.Views.NewProject
 
         private void OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            var element = e.Source as FrameworkElement;
-            if (element == null || element.Tag == null || element.Tag.ToString() != "AllowClick")
+            ViewModel.ProjectTemplates.SavedPages.ToList().ForEach(spg => spg.ToList().ForEach(p =>
             {
-                ViewModel.ProjectTemplates.SavedPages.ToList().ForEach(spg => spg.ToList().ForEach(p =>
+                if (p.IsEditionEnabled)
                 {
-                    if (p.IsEditionEnabled)
-                    {
-                        p.ConfirmRenameCommand.Execute(p);
-                        p.TryClose();
-                    }
-                }));
+                    p.ConfirmRenameCommand.Execute(p);
+                    p.TryClose();
+                }
+            }));
 
-                ViewModel?.ProjectTemplates?.SavedFeatures?.ToList()?.ForEach(f =>
+            ViewModel?.ProjectTemplates?.SavedFeatures?.ToList()?.ForEach(f =>
+            {
+                if (f.IsEditionEnabled)
                 {
-                    if (f.IsEditionEnabled)
-                    {
-                        f.ConfirmRenameCommand.Execute(f);
-                        f.TryClose();
-                    }
-                });
-            }
+                    f.ConfirmRenameCommand.Execute(f);
+                    f.TryClose();
+                }
+            });
+            var element = e.Source as FrameworkElement;
+            ViewModel.TryHideOverlayBox(element);
         }
     }
 }

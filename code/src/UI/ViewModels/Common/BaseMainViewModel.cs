@@ -54,7 +54,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public bool IsOverlayBoxVisible
         {
             get => _isOverlayBoxVisible;
-            private set => SetProperty(ref _isOverlayBoxVisible, value);
+            set => SetProperty(ref _isOverlayBoxVisible, value);
         }
 
         protected bool _hasOverlayBox = true;
@@ -193,6 +193,19 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged -= SyncSyncStatusChanged;
         }
 
+        public void TryHideOverlayBox(FrameworkElement element)
+        {
+            if (element != null && element.GetType() == typeof(OverlayBox))
+            {
+                return;
+            }
+            else if (element != null && element.Tag != null && element.Tag.ToString() == "AllowOverlay")
+            {
+                return;
+            }
+            IsOverlayBoxVisible = false;
+        }
+
         protected virtual void OnGoBack()
         {
             NavigationService.GoBack();
@@ -208,7 +221,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 return false;
             }
-            CleanStatus();
             return true;
         }
         protected virtual void OnFinish(string parameter)
@@ -368,6 +380,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 NewVersionAvailable = true;
             }
-        }
+        }        
     }
 }
