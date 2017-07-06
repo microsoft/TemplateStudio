@@ -34,7 +34,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <controls:LogoDisplay
+            <controls:LogoControl
                     Grid.Column="0"
                     Width="40"
                     Margin="{StaticResource Margin_M_Left}"

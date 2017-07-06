@@ -183,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\CodeViewer.cs" />
+    <Compile Include="Controls\LogoControl.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Extensions\ListViewExtensions.cs" />
     <Compile Include="Generation\NewItemGenerationFileInfo.cs" />
@@ -195,9 +196,6 @@
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
     <Compile Include="Controls\ImageEx.cs" />
-    <Compile Include="Controls\LogoDisplay.xaml.cs">
-      <DependentUpon>LogoDisplay.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\Markdown.cs" />
     <Compile Include="Controls\MarkdownBlock.xaml.cs">
       <DependentUpon>MarkdownBlock.xaml</DependentUpon>
@@ -337,9 +335,9 @@
     <Resource Include="Assets\IconUp.png" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\LogoDisplay.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Controls\LogoControl.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\CodeViewer.xaml">
       <Generator>MSBuild:Compile</Generator>
