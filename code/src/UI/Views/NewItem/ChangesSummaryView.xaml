@@ -53,7 +53,7 @@
             </DataTemplate>
 
             <DataTemplate x:Key="CodeFileTemplate">
-                <controls:CodeViewer Item="{Binding}"/>
+                <controls:CodeViewer Item="{Binding}" Margin="{StaticResource Margin_L_LeftRight}"/>
             </DataTemplate>
 
             <DataTemplate x:Key="CodeModifiedFileTemplate">
@@ -62,10 +62,10 @@
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Grid Background="{StaticResource UILightGray}">
+                    <Grid Background="{StaticResource UILightGray}" Margin="{StaticResource Margin_L_LeftRight}">
                         <TextBlock Text="Resulting file" Margin="40,0,0,0" VerticalAlignment="Center"/>
                     </Grid>
-                    <controls:CodeViewer Grid.Row="1" Item="{Binding}" />
+                    <controls:CodeViewer Grid.Row="1" Item="{Binding}" Margin="{StaticResource Margin_L_LeftRight}"/>
                 </Grid>
             </DataTemplate>
 
@@ -83,7 +83,7 @@
                         <TextBlock Text="Exisiting file" Margin="40,0,0,0" VerticalAlignment="Center"/>
                         <TextBlock Grid.Column="1" Text="Generated file" Margin="30,0,0,0" VerticalAlignment="Center"/>
                     </Grid>
-                    <controls:CodeViewer Grid.Row="1" Item="{Binding}"/>
+                    <controls:CodeViewer Grid.Row="1" Item="{Binding}" Margin="{StaticResource Margin_L_LeftRight}"/>
                 </Grid>
             </DataTemplate>
 
@@ -193,7 +193,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <StackPanel Margin="{StaticResource Margin_XL_LeftTopRight}">
+                <StackPanel Margin="{StaticResource Margin_L_LeftTopRight}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -209,10 +209,10 @@
                             </Hyperlink>
                         </TextBlock>
                     </Grid>
-                    <TextBlock Margin="{StaticResource Margin_M_Top}" Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}"/>
+                    <TextBlock Margin="{StaticResource Margin_S_Top}" Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}"/>
                 </StackPanel>
 
-                <Grid Grid.Row="1" Background="{StaticResource UIGray}" Margin="{StaticResource Margin_M_LeftTopRight}" Height="30">
+                <Grid Grid.Row="1" Background="{StaticResource UIGray}" Margin="{StaticResource Margin_L_LeftTopRight}" Height="30">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="30"/>
                         <ColumnDefinition Width="*"/>
