@@ -120,7 +120,7 @@
 
             <DataTemplate x:Key="LicenseSummaryItemTemplate">
                 <Grid>
-                    <TextBlock>
+                    <TextBlock Margin="0,4">
                         <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
                             <TextBlock Text="{Binding Text}" Style="{StaticResource TextSummaryLicenseStyle}" Margin="{StaticResource Margin_S_LeftTop}"/>
                         </Hyperlink>
@@ -192,7 +192,7 @@
                                 <TextBlock Style="{StaticResource TextSummaryIconPoint}" />
                                 <StackPanel Margin="{StaticResource Margin_M_Left}" DataContext="{Binding ProjectSetup.SelectedProjectType}">
                                     <TextBlock Style="{StaticResource TextSummaryGroupHeader}" Text="{x:Static res:StringRes.SummaryProjectTypeTitle}" />
-                                    <TextBlock Style="{StaticResource TextSummaryItemStyle}" Text="{Binding DisplayName}" />
+                                    <TextBlock Style="{StaticResource TextSummaryItemStyle}" Text="{Binding DisplayName}" Margin="{StaticResource Margin_M_Top}" />
                                     <TextBlock Style="{StaticResource TextSummaryAuthorStyle}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}" Text="{Binding Author}"/>
                                 </StackPanel>
                             </StackPanel>
@@ -201,7 +201,7 @@
                                     <TextBlock Style="{StaticResource TextSummaryIconPoint}" />
                                     <StackPanel Margin="{StaticResource Margin_M_Left}" DataContext="{Binding ProjectSetup.SelectedFramework}">
                                         <TextBlock Style="{StaticResource TextSummaryGroupHeader}" Text="{x:Static res:StringRes.SummaryFrameworkTitle}" />
-                                        <TextBlock Style="{StaticResource TextSummaryItemStyle}" Text="{Binding DisplayName}" />
+                                        <TextBlock Style="{StaticResource TextSummaryItemStyle}" Text="{Binding DisplayName}" Margin="{StaticResource Margin_M_Top}" />
                                         <TextBlock Style="{StaticResource TextSummaryAuthorStyle}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}" Text="{Binding Author}"/>
                                     </StackPanel>
                                 </StackPanel>
@@ -209,19 +209,19 @@
                             <Expander Margin="{StaticResource Margin_M_Top}" Header="{x:Static res:StringRes.SummaryLicenseTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
                                 <Grid>
                                     <ItemsControl Focusable="False" Margin="{StaticResource Margin_XL_Left}" ItemTemplate="{StaticResource LicenseSummaryItemTemplate}" ItemsSource="{Binding SummaryLicenses}" />
-                                    <TextBlock Margin="27,0,0,0" Text="{x:Static res:StringRes.SummaryNoLicenses}" Visibility="{Binding SummaryLicenses, Converter={StaticResource EmptyCollectionConverter}}" />
+                                    <TextBlock Margin="27,7,0,0" Text="{x:Static res:StringRes.SummaryNoLicenses}" Visibility="{Binding SummaryLicenses, Converter={StaticResource EmptyCollectionConverter}}" />
                                 </Grid>
                             </Expander>
                             <Expander Margin="{StaticResource Margin_M_Top}" Header="{x:Static res:StringRes.SummaryPagesTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
                                 <Grid>
                                     <StackPanel x:Name="summaryPageGroups"/>
-                                    <TextBlock Margin="27,0,0,0" Text="{x:Static res:StringRes.SummaryNoPages}" Visibility="{Binding ProjectTemplates.SavedPages, Converter={StaticResource EmptyCollectionConverter}}" />
+                                    <TextBlock Margin="27,7,0,0" Text="{x:Static res:StringRes.SummaryNoPages}" Visibility="{Binding ProjectTemplates.SavedPages, Converter={StaticResource EmptyCollectionConverter}}" />
                                 </Grid>
                             </Expander>
                             <Expander Margin="{StaticResource Margin_M_Top}" Header="{x:Static res:StringRes.SummaryFeaturesTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
                                 <Grid>
                                     <ItemsControl KeyboardNavigation.TabNavigation="Local" Focusable="False" ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}" ItemsSource="{Binding ProjectTemplates.SavedFeatures}" Tag="AllowClick" />
-                                    <TextBlock Margin="27,0,0,0" Text="{x:Static res:StringRes.SummaryNoFeatures}" Visibility="{Binding ProjectTemplates.SavedFeatures, Converter={StaticResource EmptyCollectionConverter}}" />
+                                    <TextBlock Margin="27,7,0,0" Text="{x:Static res:StringRes.SummaryNoFeatures}" Visibility="{Binding ProjectTemplates.SavedFeatures, Converter={StaticResource EmptyCollectionConverter}}" />
                                 </Grid>
                             </Expander>
                         </StackPanel>

@@ -111,26 +111,9 @@
     </Style>
 
     <Style TargetType="TextBlock" x:Key="TextSummaryLicenseStyle" BasedOn="{StaticResource UIBaseText}">
-        <Setter Property="FontSize" Value="{StaticResource UI_M_FontSize}" />
+        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
         <Setter Property="VerticalAlignment" Value="Bottom" />
         <Setter Property="Foreground" Value="{StaticResource UIBlue}" />
-        <!--<Setter Property="FocusVisualStyle">
-            <Setter.Value>
-                <Style>
-                    <Setter Property="Control.Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <Grid>
-                                    <Grid.Background>
-                                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
-                                    </Grid.Background>
-                                </Grid>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Setter.Value>
-        </Setter>-->
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkBlue}" />
