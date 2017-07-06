@@ -73,11 +73,6 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\RelayCommandPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\StringRes.cs-CZ1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StringRes.cs-CZ.resx</DependentUpon>
-    </Compile>
     <Compile Include="Resources\StringRes.de-DE.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -113,6 +108,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StringRes.ko-KR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.cs-CZ.Designer.cs">
+      <DependentUpon>StringRes.cs-CZ.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Resources\StringRes.pl-PL.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -152,40 +152,40 @@
     <VSCTCompile Include="Commands\RelayCommandPackage.ru-RU.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
-    <VSCTCompile Include="Commands\RelayCommandPackage.cs-CZ.vsct" >
+    <VSCTCompile Include="Commands\RelayCommandPackage.cs-CZ.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
-    <VSCTCompile Include="Commands\RelayCommandPackage.de-DE.vsct" >
+    <VSCTCompile Include="Commands\RelayCommandPackage.de-DE.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
-    <VSCTCompile Include="Commands\RelayCommandPackage.es-ES.vsct" >
+    <VSCTCompile Include="Commands\RelayCommandPackage.es-ES.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
-    <VSCTCompile Include="Commands\RelayCommandPackage.fr-FR.vsct" >
+    <VSCTCompile Include="Commands\RelayCommandPackage.fr-FR.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
-    <VSCTCompile Include="Commands\RelayCommandPackage.it-IT.vsct" >
+    <VSCTCompile Include="Commands\RelayCommandPackage.it-IT.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
-    <VSCTCompile Include="Commands\RelayCommandPackage.ja-JP.vsct" >
+    <VSCTCompile Include="Commands\RelayCommandPackage.ja-JP.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
-    <VSCTCompile Include="Commands\RelayCommandPackage.ko-KR.vsct" >
+    <VSCTCompile Include="Commands\RelayCommandPackage.ko-KR.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
-    <VSCTCompile Include="Commands\RelayCommandPackage.pl-PL.vsct" >
+    <VSCTCompile Include="Commands\RelayCommandPackage.pl-PL.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
-    <VSCTCompile Include="Commands\RelayCommandPackage.pt-BR.vsct" >
+    <VSCTCompile Include="Commands\RelayCommandPackage.pt-BR.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
-    <VSCTCompile Include="Commands\RelayCommandPackage.tr-TR.vsct" >
+    <VSCTCompile Include="Commands\RelayCommandPackage.tr-TR.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
-    <VSCTCompile Include="Commands\RelayCommandPackage.zh-CN.vsct" >
+    <VSCTCompile Include="Commands\RelayCommandPackage.zh-CN.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
-    <VSCTCompile Include="Commands\RelayCommandPackage.zh-TW.vsct" >
+    <VSCTCompile Include="Commands\RelayCommandPackage.zh-TW.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
     <Content Include="zh-CN\Extension.vsixlangpack">
@@ -493,10 +493,6 @@
       <MergeWithCTO>true</MergeWithCTO>
       <LogicalName>VSPackage.zh-TW.Resources</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\StringRes.cs-CZ.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.cs-CZ1.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.de-DE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.de-DE.Designer.cs</LastGenOutput>
@@ -520,6 +516,10 @@
     <EmbeddedResource Include="Resources\StringRes.ko-KR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.ko-KR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.cs-CZ.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.cs-CZ.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.pl-PL.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
