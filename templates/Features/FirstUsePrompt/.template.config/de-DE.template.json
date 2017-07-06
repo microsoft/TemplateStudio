@@ -1,6 +1,6 @@
 {
     "author": "Microsoft Community Contribution",
-    "name": "Erste Eingabeaufforderung",
-    "description": "Zeigen Sie eine Aufforderung an, wenn die App zum ersten Mal verwendet wird.",
+    "name": "First Run Prompt",
+    "description": "Display a prompt when the app is used for the first time.",
     "identity": "wts.Feat.FirstRunPrompt"
 }

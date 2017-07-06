@@ -1,6 +1,6 @@
 {
     "author": "Microsoft Community Contribution",
-    "name": "Сообщение о первом запуске",
-    "description": "Отображение подсказки, когда приложение используется в первый раз.",
+    "name": "First Run Prompt",
+    "description": "Display a prompt when the app is used for the first time.",
     "identity": "wts.Feat.FirstRunPrompt"
 }

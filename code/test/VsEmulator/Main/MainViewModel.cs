@@ -194,7 +194,8 @@ namespace Microsoft.Templates.VsEmulator.Main
         private void AddNewFeature()
         {
             ConfigureGenContext(ForceLocalTemplatesRefresh);
-            OutputPath = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath, Path.GetRandomFileName());
+
+            OutputPath = GetTempGenerationPath();
             ClearContext();
 
             try
@@ -219,6 +220,14 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         }
 
+        private static string GetTempGenerationPath()
+        {
+            var tempGenerationPath = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
+            var inferredName = Naming.Infer(GenContext.Current.ProjectName, new List<Validator>() { new DirectoryExistsValidator(tempGenerationPath) }, "_");
+
+            return Path.Combine(tempGenerationPath, inferredName);
+        }
+
         private void ClearContext()
         {
             ProjectItems.Clear();
@@ -230,7 +239,8 @@ namespace Microsoft.Templates.VsEmulator.Main
         private void AddNewPage()
         {
             ConfigureGenContext(ForceLocalTemplatesRefresh);
-            OutputPath = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath, Path.GetRandomFileName());
+
+            OutputPath = GetTempGenerationPath();
             ClearContext();
             try
             {

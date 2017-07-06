@@ -180,6 +180,7 @@
     <Compile Include="Gen\GenContext.cs" />
     <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Gen\IContextProvider.cs" />
+    <Compile Include="Naming\DirectoryExistsValidator.cs" />
     <Compile Include="PostActions\Catalog\Merge\FailedMergePostAction.cs" />
     <Compile Include="Fs.cs" />
     <Compile Include="Gen\TempGenerationResult.cs" />
