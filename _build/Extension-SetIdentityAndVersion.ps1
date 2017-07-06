@@ -44,8 +44,9 @@ if($vsixIdentity){
     $manifestContent.PackageManifest.Metadata.Identity.Id = $vsixIdentity
     $manifestContent.PackageManifest.Metadata.Identity.Version = $versionNumber
     $manifestContent.PackageManifest.Metadata.DisplayName = $vsixDisplayName
-    $manifestContent.Save($vsixManifestFile) 
-    Write-Host "$vsixManifestFile - Version, Identity & DisplayName applied ($versionNumber, $vsixIdentity, $vsixDisplayName)"
+    $resolvedPath = Resolve-Path($vsixManifestFile)
+    $manifestContent.Save($resolvedPath) 
+    Write-Host "$resolvedPath - Version, Identity & DisplayName applied ($versionNumber, $vsixIdentity, $vsixDisplayName)"
   }
   else{
     throw "No VSIX manifest file found."
@@ -80,25 +81,26 @@ else
 ## APPLY VERSION TO PROJECT TEMPLATE WIZARD REFERENCE
 if($publicKeyToken){
   Write-Host "Setting Wizard Extension configuration in Project Template"
-  $projectTemplate = Get-ChildItem -include "*.vstemplate" -recurse |  Where-Object{ 
+  $projectTemplates = Get-ChildItem -include "*.vstemplate" -recurse |  Where-Object{ 
         $_.FullName -notmatch "\\Templates\\" -and 
         $_.FullName -notmatch "\\debug\\" -and
         $_.FullName -notmatch "\\obj\\" -and
         $_.FullName -match "\\ProjectTemplates\\"
     }
-  if($projectTemplate){
+  if($projectTemplates){
   
+    foreach( $projectTemplate in $projectTemplates){
+      [xml]$projectTemplateContent = Get-Content $projectTemplate
 
-    [xml]$projectTemplateContent = Get-Content $projectTemplate
+      $wizardAssemblyStrongName = $projectTemplateContent.VSTemplate.WizardExtension.Assembly -replace $VersionRegEx, $versionNumber 
+      $wizardAssemblyStrongName = $wizardAssemblyStrongName -replace "PublicKeyToken=.*", "PublicKeyToken=$publicKeyToken"
 
-    $wizardAssemblyStrongName = $projectTemplateContent.VSTemplate.WizardExtension.Assembly -replace $VersionRegEx, $versionNumber 
-    $wizardAssemblyStrongName = $wizardAssemblyStrongName -replace "PublicKeyToken=.*", "PublicKeyToken=$publicKeyToken"
+      $projectTemplateContent.VSTemplate.WizardExtension.Assembly = $wizardAssemblyStrongName
+      
+      $projectTemplateContent.Save($projectTemplate)
 
-    $projectTemplateContent.VSTemplate.WizardExtension.Assembly = $wizardAssemblyStrongName
-    
-    $projectTemplateContent.Save($projectTemplate)
-
-    Write-Host "$projectTemplate - Wizard Assembly Strong Name updated ($wizardAssemblyStrongName)"
+      Write-Host "$projectTemplate - Wizard Assembly Strong Name updated ($wizardAssemblyStrongName)"
+    }
   }
   else{
     throw "No Project Template manifest file found!"
