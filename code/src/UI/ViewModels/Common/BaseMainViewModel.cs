@@ -35,6 +35,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         protected bool _canGoForward;
         protected bool _hasValidationErrors;
         protected bool _templatesAvailable;
+        protected bool _canCheckingUpdates;
 
         protected StatusViewModel _status = StatusControl.EmptyStatus;
         public StatusViewModel Status
@@ -137,7 +138,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && !_hasValidationErrors && _canGoForward));
         public RelayCommand ShowOverlayMenuCommand => _showOverlayMenuCommand ?? (_showOverlayMenuCommand = new RelayCommand(() => IsOverlayBoxVisible = !IsOverlayBoxVisible));
         public RelayCommand<string> FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand<string>(OnFinish, CanFinish));
-        public RelayCommand CheckUpdatesCommand => _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand(OnCheckUpdates));
+        public RelayCommand CheckUpdatesCommand => _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand(OnCheckUpdates, CanCheckUpdates));
         public RelayCommand RefreshTemplatesCommand => _refreshTemplatesCommand ?? (_refreshTemplatesCommand = new RelayCommand(OnRefreshTemplates));
         #endregion
 
@@ -223,6 +224,17 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
             return true;
         }
+
+        private bool CanCheckUpdates()
+        {
+            return _canCheckingUpdates;
+        }
+
+        private void SetCanCheckingUpdates(bool value)
+        {
+            _canCheckingUpdates = value;
+            CheckUpdatesCommand.OnCanExecuteChanged();
+        }
         protected virtual void OnFinish(string parameter)
         {
             _mainView.DialogResult = true;
@@ -256,6 +268,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             try
             {
+                SetCanCheckingUpdates(false);
                 await GenContext.ToolBox.Repo.CheckForUpdatesAsync();
             }
             catch (Exception ex)
@@ -267,6 +280,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             finally
             {
                 IsLoading = false;
+                SetCanCheckingUpdates(true);
             }
         }
 
@@ -290,6 +304,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             finally
             {
                 IsLoading = false;
+                SetCanCheckingUpdates(true);
             }
         }
 
