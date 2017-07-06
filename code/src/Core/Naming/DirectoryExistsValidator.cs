@@ -10,17 +10,16 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Templates.Core;
 using System.IO;
 using System.Linq;
+using Microsoft.Templates.Core;
 
-namespace Microsoft.Templates.VsEmulator
+namespace Microsoft.Templates.Core
 {
     public class DirectoryExistsValidator : Validator<string>
     {
         public DirectoryExistsValidator(string config) : base(config)
         {
-
         }
 
         public override ValidationResult Validate(string suggestedName)
@@ -29,7 +28,6 @@ namespace Microsoft.Templates.VsEmulator
                                             .Select(d => new DirectoryInfo(d).Name)
                                             .ToList();
 
-            
             if (existing.Contains(suggestedName))
             {
                 return new ValidationResult()

@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Core
         private const string ValidationPattern = @"^((?!\d)\w+)$";
         private const string InferInvalidPattern = @"[^\d\w\-]";
 
-        public static string Infer(string suggestedName, IEnumerable<Validator> validators)
+        public static string Infer(string suggestedName, IEnumerable<Validator> validators, string inferWith = "")
         {
             suggestedName = Regex.Replace(ToTitleCase(suggestedName), InferInvalidPattern, string.Empty);
 
@@ -36,7 +36,7 @@ namespace Microsoft.Templates.Core
 
             for (int i = 1; i < 1000; i++)
             {
-                var newName = $"{suggestedName}{i}";
+                var newName = $"{suggestedName}{inferWith}{i}";
 
                 if (validators.All(v => v.Validate(newName).IsValid))
                 {
