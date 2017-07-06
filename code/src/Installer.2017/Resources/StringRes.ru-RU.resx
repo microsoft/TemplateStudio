@@ -118,21 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddFeatureAction" xml:space="preserve">
-    <value>Добавить функцию</value>
+    <value>Add Feature</value>
   </data>
   <data name="AddPageAction" xml:space="preserve">
-    <value>Добавить страницу</value>
+    <value>Add Page</value>
   </data>
   <data name="AddProjectAction" xml:space="preserve">
-    <value>Добавить проект</value>
+    <value>Add Project</value>
   </data>
   <data name="UIMessageBoxTitlePattern" xml:space="preserve">
-    <value>Windows Template Studio RU: {0}</value>
+    <value>Windows Template Studio: {0}</value>
+    <comment>Generic MessageBox Title</comment>
   </data>
   <data name="UIStatusMsgPattern" xml:space="preserve">
-    <value>Windows Template Studio RU: {0}</value>
+    <value>Windows Template Studio: {0}</value>
   </data>
   <data name="UnexpectedExPattern" xml:space="preserve">
-    <value>Неожиданное исключение. \n{0}</value>
+    <value>Unexpected Exception.\n{0}</value>
   </data>
 </root>

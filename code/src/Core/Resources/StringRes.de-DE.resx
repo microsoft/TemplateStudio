@@ -118,240 +118,269 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AdditionalMessageString" xml:space="preserve">
-    <value>Zusätzliche Nachricht</value>
+    <value>Additional Message</value>
   </data>
   <data name="AddtionalExceptionInfoString" xml:space="preserve">
-    <value>Zusätzliche Ausnahmeinformationen</value>
+    <value>Addtional Exception Info</value>
   </data>
   <data name="AssemblyFileVersionString" xml:space="preserve">
-    <value>Versionsdatei Version</value>
+    <value>Assembly File Version</value>
   </data>
   <data name="CompositionQueryParseMessage" xml:space="preserve">
-    <value>Die Abfrage "{0}" ist nicht gültig. Zulässige Operatoren sind '==' oder '! ='. Mehrere Bedingungen werden durch '&amp;' getrennt.</value>
+    <value>The query "{0}" is not valid. Allowed operators are '==' or '!='. Multiple conditions are separated by '&amp;'.</value>
   </data>
   <data name="ConfigurationFileLoadedString" xml:space="preserve">
-    <value>Konfigurationsdatei geladen</value>
+    <value>Configuration file loaded</value>
   </data>
   <data name="CurrentContentExpirationString" xml:space="preserve">
-    <value>Ablauf des laufenden Inhaltes</value>
+    <value>Current content expiration</value>
   </data>
   <data name="ExceptionInfoString" xml:space="preserve">
-    <value>Ausnahmeinformationen</value>
+    <value>Exception Info</value>
   </data>
   <data name="ExceptionString" xml:space="preserve">
-    <value>Ausnahme</value>
+    <value>Exception</value>
   </data>
   <data name="ExceptionTrackedString" xml:space="preserve">
-    <value>Ausnahme verfolgt</value>
+    <value>Exception Tracked</value>
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>Die Datei '{0}' konnte nicht gefunden werden, um die folgenden Änderungen hinzuzufügen. Bitte überprüfen Sie die Codeblöcke, um die Änderungen manuell einzugeben, wenn dies in Ihrem Projekt erforderlich ist.</value>
+    <value>Could not find file '{0}' to include the following changes. Please review the code blocks to include the changes manually where required in your project. </value>
+    <comment>s</comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>Konnte die erwartete Zeile `{0}` in der Datei '{1}' nicht finden. Bitte fügen Sie den Inhalt aus der Postaktionsdatei manuell zusammen.</value>
+    <value>Could not find the expected line `{0}` in file '{1}'. Please merge the content from the postaction file manually.</value>
+    <comment>s</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>Der Ordner {0} kann nicht auf {1} kopiert werden. Fehler: {2}</value>
+    <value>The folder {0} can't be copied to {1}. Error: {2}</value>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
-    <value>Der Ordner {0} kann nicht gelöscht werden. Fehler: {1}</value>
+    <value>The folder {0} can't be delete. Error: {1}</value>
   </data>
   <data name="FsSafeDeleteFileMessage" xml:space="preserve">
-    <value>Die Datei {0} kann nicht gelöscht werden. Fehler: {1}</value>
+    <value>The file {0} can't be delete. Error: {1}</value>
   </data>
   <data name="FsSafeMoveDirectoryMessage" xml:space="preserve">
-    <value>Der Ordner {0} kann nicht auf {1} verschoben werden. Fehler: {2}</value>
+    <value>The folder {0} can't be moved to {1}. Error: {2}</value>
   </data>
   <data name="GenContextCurrentInvalidOperationMessage" xml:space="preserve">
-    <value>Es gibt keinen Kontext für die aktuelle gen-Ausführung, rufen Sie Current_set zuerst an</value>
+    <value>There is no context for the current gen execution, call Current_set first</value>
   </data>
   <data name="GenerateTestCertificatePostActionExecute" xml:space="preserve">
-    <value>Fehler beim Erzeugen des Zertifikats</value>
+    <value>Error generating certificate.</value>
   </data>
   <data name="LogStartedString" xml:space="preserve">
-    <value>Log begonnen</value>
+    <value>Log started</value>
   </data>
   <data name="MarkdownHeader" xml:space="preserve">
-    <value>* Dies ist eine Markdown-Datei, um die Visualisierung zu verbessern, können Sie eine Visual Studio-Erweiterung für Markdown-Dateien installieren, zum Beispiel: [Markdown Editor] (https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor) *</value>
+    <value>*This is a markdown file, to improve visualization you can install a Visual Studio extension for markdown files, for example: [Markdown Editor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
+    <comment>s</comment>
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
-    <value>Es gibt kein Zusammenführungsziel für die Datei '{0}'</value>
+    <value>There is no merge target for file '{0}'</value>
+    <comment>s</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
-    <value>Zeile {0} nicht in der Datei '{1}' gefunden</value>
+    <value>Line {0} not found in file '{1}'</value>
+    <comment>s</comment>
   </data>
   <data name="MergePostActionExecuteMessage" xml:space="preserve">
-    <value>Es gibt kein Zusammenführungsziel für die Datei '{0}'</value>
+    <value>There is no merge target for file '{0}'</value>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
-    <value>Kann keinen Namen ableiten. Zu viel Iterationen</value>
+    <value>Unable to infer a name. Too much iterations</value>
   </data>
   <data name="PackageCertificateString" xml:space="preserve">
-    <value>Paketzertifikat</value>
+    <value>Package certificate</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoErrorMessage" xml:space="preserve">
-    <value>Fehler beim Herunterladen von {0}. Internet-Verbindung ist erforderlich, um Vorlagen-Updates herunterzuladen.</value>
+    <value>Error downloading from {0}. Internet connection is required to download template updates.</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoInfoMessage" xml:space="preserve">
-    <value>Vorlageninhalte können momentan nicht heruntergeladen werden, wir werden es später versuchen.</value>
+    <value>Templates content can't be downloaded right now, we will try it later.</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentOkMessage" xml:space="preserve">
-    <value>Vorlageninhalt, der auf {0} von {1} heruntergeladen wurde.</value>
+    <value>Templates content downloaded to {0} from {1}.</value>
   </data>
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
-    <value>Fehler beim Synchronisieren von Vorlagen. Status:</value>
+    <value>Error syncing templates. Status:</value>
   </data>
   <data name="StatusAddingItems" xml:space="preserve">
-    <value>Hinzufügen von Elementen zum Projekt ...</value>
+    <value>Adding items to project ...</value>
+    <comment>s</comment>
   </data>
   <data name="StatusOpeningItems" xml:space="preserve">
-    <value>Eröffnete generierte Dateien ...</value>
-  </data>
-  <data name="String" xml:space="preserve">
-    <value>Bitte vergleichen und sicherstellen, dass alles an der richtigen Stelle ist.</value>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value>Bitte vergleichen und sicherstellen, dass alles an der richtigen Stelle ist.</value>
+    <value>Opening generated files ...</value>
+    <comment>s</comment>
   </data>
   <data name="SyncInstructionsConflictingFiles" xml:space="preserve">
-    <value>## Konfliktdateien:</value>
+    <value>## Conflicting files:</value>
+    <comment>s</comment>
   </data>
   <data name="SyncInstructionsConflictingFilesDescription" xml:space="preserve">
-    <value>Diese Dateien existieren bereits in deinem Projekt und wurden auch als Teil des neuen Artikels generiert.</value>
+    <value>These files already exist in your project and were also generated as part of the new item.
+Please compare and make sure everything is in the right place.</value>
+    <comment>s</comment>
   </data>
   <data name="SyncInstructionsDescription" xml:space="preserve">
-    <value>Bitte folgen Sie den angezeigten Schritten, um das neue Element in das Projekt aufzunehmen:</value>
+    <value>Please follow the indications to include the new item into you project:</value>
+    <comment>s</comment>
   </data>
   <data name="SyncInstructionsFileName" xml:space="preserve">
-    <value>Schritte, um neue Element generation.md enthalten</value>
+    <value>Steps to include new item generation.md</value>
+    <comment>s</comment>
   </data>
   <data name="SyncInstructionsHeader" xml:space="preserve">
-    <value># Schritte zur neuen Elementgenerierung</value>
+    <value># Steps to include new item generation</value>
+    <comment>s</comment>
   </data>
   <data name="SyncInstructionsMergeFile" xml:space="preserve">
-    <value>### Änderungen in der Datei '{0}' erforderlich:</value>
+    <value>### Changes required in file '{0}':</value>
+    <comment>s</comment>
   </data>
   <data name="SyncInstructionsMergeFileError" xml:space="preserve">
-    <value>Es konnte keine Vorschau-Datei erstellt werden, die folgenden Änderungen konnten nicht integriert werden:</value>
+    <value>No preview file could be generated, the following changes could not be integrated: </value>
+    <comment>s</comment>
   </data>
   <data name="SyncInstructionsMergeFilePreview" xml:space="preserve">
-    <value>Vorschau der Änderungen in: [{0}] ({0})</value>
+    <value>Preview the changes in: [{0}]({0})</value>
+    <comment>s</comment>
   </data>
   <data name="SyncInstructionsModifiedFiles" xml:space="preserve">
-    <value>## Geänderte Dateien:</value>
+    <value>## Modified files:</value>
+    <comment>s</comment>
   </data>
   <data name="SyncInstructionsModifiedFilesDescription" xml:space="preserve">
-    <value>Um Ihr neues Element mit dem vorhandenen Projekt zu integrieren, gelten folgende Änderungen:</value>
+    <value>To integrate your new item with the existing project apply the following changes: </value>
+    <comment>s</comment>
   </data>
   <data name="SyncInstructionsNewFiles" xml:space="preserve">
-    <value>## Neue Dateien:</value>
+    <value>## New files:</value>
+    <comment>s</comment>
   </data>
   <data name="SyncInstructionsNewFilesDescription" xml:space="preserve">
-    <value>Kopiere und füge folgende Dateien zu deinem Projekt hinzu:</value>
+    <value>Copy and add the following files to your project:</value>
+    <comment>s</comment>
   </data>
   <data name="SyncInstructionsTempFolder" xml:space="preserve">
-    <value>Sie finden alle referenzierten Dateien im Ordner der temporären Generation: {0}</value>
+    <value>You can find all referenced files in the temporary generation folder: {0}</value>
+    <comment>s</comment>
   </data>
   <data name="SyncInstructionsUnchangedFiles" xml:space="preserve">
-    <value>## Unveränderte Dateien:</value>
+    <value>## Unchanged files:</value>
+    <comment>s</comment>
   </data>
   <data name="SyncInstructionsUnchangedFilesDescription" xml:space="preserve">
-    <value>Diese Dateien existieren bereits in deinem Projekt, keine Aktion ist notwendig:</value>
+    <value>These files already exist in your project, no action is necessary:</value>
+    <comment>s</comment>
   </data>
   <data name="SyncSummaryConflictingFiles" xml:space="preserve">
-    <value>## Konfliktdateien:</value>
+    <value>## Conflicting files:</value>
+    <comment>s</comment>
   </data>
   <data name="SyncSummaryConflictingFilesDescription" xml:space="preserve">
-    <value>Diese Dateien existieren bereits in deinem Projekt und wurden auch als Teil des neuen Artikels generiert.</value>
+    <value>These files already exist in your project and were also generated as part of the new item.
+Please compare and make sure everything is in the right place.</value>
+    <comment>s</comment>
   </data>
   <data name="SyncSummaryDescription" xml:space="preserve">
-    <value>Folgende Änderungen wurden in Ihr Projekt aufgenommen:</value>
+    <value>The following changes have been incorporated into your project:</value>
+    <comment>s</comment>
   </data>
   <data name="SyncSummaryFailedMerges" xml:space="preserve">
-    <value>## Fehler beim Ändern von Dateien:</value>
+    <value>## Failed changes in files:</value>
+    <comment>s</comment>
   </data>
   <data name="SyncSummaryFailedMergesDescription" xml:space="preserve">
-    <value>Zusammenfassen in den folgenden Dateien fehlgeschlagen:</value>
+    <value>Merges in the following files failed:</value>
+    <comment>s</comment>
   </data>
   <data name="SyncSummaryFileName" xml:space="preserve">
     <value>GenerationSummary.md</value>
+    <comment>s</comment>
   </data>
   <data name="SyncSummaryHeader" xml:space="preserve">
-    <value># Generationszusammenfassung</value>
+    <value># Generation summary</value>
+    <comment>s</comment>
   </data>
   <data name="SyncSummaryMergeFile" xml:space="preserve">
-    <value>### Änderungen in der Datei '{0}':</value>
+    <value>### Changes in file '{0}':</value>
+    <comment>s</comment>
   </data>
   <data name="SyncSummaryMergeFileError" xml:space="preserve">
-    <value>Folgende Änderungen konnten nicht integriert werden:</value>
+    <value>The following changes could not be integrated:</value>
+    <comment>s</comment>
   </data>
   <data name="SyncSummaryMergeFilePreview" xml:space="preserve">
-    <value>Siehe das Endergebnis: [{0}] ({1})</value>
+    <value>See the final result: [{0}]({1})</value>
+    <comment>s</comment>
   </data>
   <data name="SyncSummaryModifiedFiles" xml:space="preserve">
-    <value>## Geänderte Dateien:</value>
+    <value>## Modified files:</value>
+    <comment>s</comment>
   </data>
   <data name="SyncSummaryModifiedFilesDescription" xml:space="preserve">
-    <value>Folgende Änderungen wurden vorgenommen:</value>
+    <value>The following changes have been applied:</value>
+    <comment>s</comment>
   </data>
   <data name="SyncSummaryNewFiles" xml:space="preserve">
-    <value>## Neue Dateien:</value>
+    <value>## New files:</value>
+    <comment>s</comment>
   </data>
   <data name="SyncSummaryNewFilesDescription" xml:space="preserve">
-    <value>Diese Dateien wurden zu Ihrem Projekt hinzugefügt.</value>
+    <value>These files have been added to your project.</value>
+    <comment>s</comment>
   </data>
   <data name="SyncSummaryProjectFile" xml:space="preserve">
     <value>ProjectFile</value>
+    <comment>s</comment>
   </data>
   <data name="SyncSummaryTempFolder" xml:space="preserve">
-    <value>Sie finden die Dateien aus der Generation im Ordner der temporären Generation: {0}</value>
+    <value>You can find the files from the generation in the temporary generation folder: {0}</value>
+    <comment>s</comment>
   </data>
   <data name="SyncSummaryTempGenerationFile" xml:space="preserve">
     <value>Temp</value>
+    <comment>s</comment>
   </data>
   <data name="TemplatesContentExtractedToString" xml:space="preserve">
-    <value>Vorlageninhalt extrahiert</value>
+    <value>Templates content extracted to</value>
   </data>
   <data name="TemplatesSourceExtractContentMessage" xml:space="preserve">
-    <value>Der Vorlageninhalt kann nicht extrahiert werden.</value>
+    <value>The templates content can't be extracted.</value>
   </data>
   <data name="TemplatesSynchronizationPurgeContentAsyncMessage" xml:space="preserve">
-    <value>Der Inhalt kann nicht gelöscht werden.</value>
+    <value>Unable to purge old content.</value>
   </data>
   <data name="TemplatexExtractMessage" xml:space="preserve">
-    <value>Ungültige digitale Signaturen in '{0}'. Der Inhalt wurde manipuliert oder das Zertifikat ist nicht vorhanden, nicht gültig oder nicht erlaubt. Kann nicht fortfahren</value>
+    <value>Invalid digital signatures in '{0}'. The content has been tampered or the certificate is not present, not valid or not allowed.  Unable to continue.</value>
   </data>
   <data name="TemplatexFindCertificateFoundMessage" xml:space="preserve">
-    <value>Gefundene {0} Zertifikate, die mit dem thumbprint {1} im Speicher {2} übereinstimmen,</value>
+    <value>Found {0} certificates matching the thumbprint {1} in the store {2}</value>
   </data>
   <data name="TemplatexFindCertificateNoPkMessage" xml:space="preserve">
-    <value>Das Zertifikat hat keinen privaten Schlüssel.</value>
+    <value>The certificate found does not have private key.</value>
   </data>
   <data name="TemplatexFindCertificateNotOneMessage" xml:space="preserve">
-    <value>Mehr als ein Zertifikat, das mit dem Thumbrint übereinstimmt. Das erste zurückgeben.</value>
+    <value>More than one certificate found matching the thumbrint. Returning the first one.</value>
   </data>
   <data name="TemplatexGetSourceFilesMessage" xml:space="preserve">
-    <value>Die angegebene Quelle '{0}' ist ungültig. Oder die Datei existiert nicht oder der Ordner ist leer.</value>
+    <value>The specified source '{0}' is invalid. Or the file does not exists or the folder is empty.</value>
   </data>
   <data name="TemplatexLoadCertMessage" xml:space="preserve">
-    <value>Kein Zertifikat gefunden mit dem Thumbrint {0}. Gesucht auf CurrentUser/My und LocalMachine/Meine Shops.</value>
+    <value>No certificate found matching the thumbrint {0}. Searched on CurrentUser/My and LocalMachine/My stores.</value>
   </data>
   <data name="TemplatexPackAndSignMessage" xml:space="preserve">
-    <value>Das Zertifikat mit thumbprint {0} kann nicht in CurrentUser/My oder LocalMachine/My gefunden werden.</value>
+    <value>The certificate with thumbprint {0} can't be found in CurrentUser/My or LocalMachine/My.</value>
   </data>
   <data name="TemplatexSignAllPartsMessage" xml:space="preserve">
-    <value>Fehler sigingn Paket.</value>
+    <value>Error sigingn package.</value>
   </data>
   <data name="TemplatexValidatePackageCertificatesMessage" xml:space="preserve">
-    <value>Paket-Signatur-Zertifikat-Validierung nicht bestanden.</value>
+    <value>Package signature certificate validation not passed.</value>
   </data>
   <data name="TemplatexVerifyCertificateMessage" xml:space="preserve">
-    <value>Zertifikat '{0}' Bestätigung beendet mit Status '{1}'</value>
-  </data>
-  <data name="UserFriendlyPostActionMacroEndGroup" xml:space="preserve">
-    <value>Ende des Blocks</value>
-  </data>
-  <data name="UserFriendlyPostActionMacroStartGroup" xml:space="preserve">
-    <value>Block, um aufgenommen zu werden</value>
+    <value>Certificate '{0}' verification finished with status '{1}'</value>
   </data>
 </root>

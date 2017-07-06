@@ -1,5 +1,5 @@
-Dieses Projekt enthält einen Navigationsbereich (oder 'Hamburgermenü') an der Seite des Bildschirms, für die Navigation zwischen Seiten.
+This project includes a navigation pane (or 'hamburger menu') at the side of the screen, for navigation between pages.
 
-Dieser Stil ist in mobilen Apps beliebt, funktioniert aber auch auf größeren Bildschirmen. Das Menü kann ausgeblendet werden, wenn Platz begrenzt ist oder es nicht benötigt wird.
+This style is popular in mobile apps but also works well on larger screens. The menu can be hidden when space is limited, or it isn't needed.
 
-Das Menü zeigt Elemente mit einem Symbol und Text an. Das Menü kann ganz ausgeblendet werden, zeige nur das Symbol oder zeige das Icon und den Text. Der Benutzer kann wählen, um das vollständige Menü auf Knopfdruck anzuzeigen. Das Menü passt sich auch automatisch an die Größe des Bildschirms an.
+The menu shows items with an icon and text. The menu can be entirely hidden, show just the icon, or show the icon and text. The user can choose to display the full menu at the touch of a button. The menu also adapts automatically to the size of the screen.

@@ -1,3 +1,3 @@
-Tabs über die Oberseite erlauben schnelles Navigieren zwischen Seiten.
+Tabs across the top allow for quickly navigating between pages.
 
-Die Pivot-Steuerung ist nützlich für das Navigieren zwischen verwandten oder häufig zugegriffenen Seiten. Der Benutzer kann zwischen den Pivot-Fenstern (Seiten) navigieren, indem er aus den Text-Headern, die immer angezeigt werden, ausgewählt wird.
+The Pivot control is useful for navigating between related or frequently accessed pages. The user can navigate between pivot panes (pages) by selecting from the text headers which are always displayed.

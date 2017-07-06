@@ -225,6 +225,7 @@ Please compare and make sure everything is in the right place.</value>
   </data>
   <data name="SyncInstructionsDescription" xml:space="preserve">
     <value>Please follow the indications to include the new item into you project:</value>
+    <comment>s</comment>
   </data>
   <data name="SyncInstructionsFileName" xml:space="preserve">
     <value>Steps to include new item generation.md</value>

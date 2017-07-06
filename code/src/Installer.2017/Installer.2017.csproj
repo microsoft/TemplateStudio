@@ -79,9 +79,14 @@
       <DependentUpon>StringRes.de-DE.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\StringRes.Designer.cs">
+      <DependentUpon>StringRes.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StringRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.en-US.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.en-US.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ResourcesExtensions.cs" />
     <Compile Include="Resources\StringRes.es-ES.Designer.cs">
@@ -497,6 +502,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.de-DE.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.es-ES.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.es-ES.Designer.cs</LastGenOutput>
@@ -529,13 +539,15 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.pt-BR.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\VSPackage.resx">
+    <EmbeddedResource Include="Commands\VSPackage.en-US.resx">
       <MergeWithCTO>true</MergeWithCTO>
-      <LogicalName>VSPackage.Resources</LogicalName>
+      <LogicalName>VSPackage.en-US.Resources</LogicalName>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\StringRes.resx">
+    <EmbeddedResource Include="Resources\StringRes.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.Designer.cs</LastGenOutput>
+      <LastGenOutput>StringRes.en-US.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.ru-RU.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
