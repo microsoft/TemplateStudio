@@ -224,7 +224,7 @@ Please compare and make sure everything is in the right place.</value>
     <comment>s</comment>
   </data>
   <data name="SyncInstructionsDescription" xml:space="preserve">
-    <value>Please follow the indicated steps to include the new item into you project:</value>
+    <value>Please follow the indications to include the new item into you project:</value>
     <comment>s</comment>
   </data>
   <data name="SyncInstructionsFileName" xml:space="preserve">
@@ -382,13 +382,5 @@ Please compare and make sure everything is in the right place.</value>
   </data>
   <data name="TemplatexVerifyCertificateMessage" xml:space="preserve">
     <value>Certificate '{0}' verification finished with status '{1}'</value>
-  </data>
-  <data name="UserFriendlyPostActionMacroEndGroup" xml:space="preserve">
-    <value>End of block</value>
-    <comment>s</comment>
-  </data>
-  <data name="UserFriendlyPostActionMacroStartGroup" xml:space="preserve">
-    <value>Block to be included</value>
-    <comment>s</comment>
   </data>
 </root>

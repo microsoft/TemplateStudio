@@ -1,3 +1,3 @@
-Dieses Grundprojekt ist eine leere Leinwand, auf der Sie Ihre App aufbauen können.
+This basic project is a blank canvas upon which to build your app.
 
-Es gibt kein Gerüst und lässt alles bis zu Ihnen.
+It provides no scaffolding and leaves everything up to you.

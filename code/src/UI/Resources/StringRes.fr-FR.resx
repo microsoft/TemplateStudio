@@ -214,7 +214,7 @@
     <value>Restoring packages...</value>
   </data>
   <data name="StatusAcquired" xml:space="preserve">
-    <value>Done</value>
+    <value>Done.</value>
   </data>
   <data name="StatusAcquiring" xml:space="preserve">
     <value>Checking for template updates...</value>
@@ -223,7 +223,7 @@
     <value>There is no templates content available for the current wizard version. Please ensure you have connectivity and restart the wizard again.</value>
   </data>
   <data name="StatusLowerVersionTitle" xml:space="preserve">
-    <value>Wizard incompatible with templates content</value>
+    <value>Wizard incompatible with templates content.</value>
   </data>
   <data name="StatusOverVersionContent" xml:space="preserve">
     <value>An update to the templates is available but not compatible with the wizard version. Update the extension to access the latest content.</value>
@@ -232,10 +232,10 @@
     <value>There is no content available for this extension version. Update the extension to access to the latest content.</value>
   </data>
   <data name="StatusOverVersionTitle" xml:space="preserve">
-    <value>Wizard update available</value>
+    <value>Wizard update available.</value>
   </data>
   <data name="StatusUpdated" xml:space="preserve">
-    <value>Templates updated</value>
+    <value>Templates updated.</value>
   </data>
   <data name="StatusUpdating" xml:space="preserve">
     <value>Updating templates...</value>
@@ -344,7 +344,7 @@
     <value>None Selected</value>
   </data>
   <data name="StatusPrepared" xml:space="preserve">
-    <value>Templates ready</value>
+    <value>Templates ready.</value>
   </data>
   <data name="StatusPreparing" xml:space="preserve">
     <value>Preparing templates for first use...</value>
@@ -416,25 +416,22 @@
     <value>Finish</value>
   </data>
   <data name="WTSDescription" xml:space="preserve">
-    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</value>
+    <value>Windows Template Studio quickly builds a UWP app, using a wizard-based UI to turn your needs into a foundation of Windows 10 patterns and best practices.</value>
   </data>
   <data name="ButtonRefreshTemplates" xml:space="preserve">
     <value>Refresh templates</value>
   </data>
   <data name="NewVersionAvailable" xml:space="preserve">
-    <value>There is new content available, click refresh to get the latest updates (current selection will be reseted).</value>
+    <value>Click refresh to get the latest updates (current selection will be reseted).</value>
   </data>
   <data name="CheckForUpdates" xml:space="preserve">
     <value>Check for new templates</value>
-  </data>
-  <data name="PrivacyTermns" xml:space="preserve">
-    <value>Privacy termns</value>
   </data>
   <data name="VisitProjectWebSite" xml:space="preserve">
     <value>Visit project web site</value>
   </data>
   <data name="ChangesSummaryTitle_SF" xml:space="preserve">
-    <value>Changes summary: add {0} {1}</value>
+    <value>Changes summary: Add {0} {1}</value>
   </data>
   <data name="ChangesSummaryCategoryFailedMerges" xml:space="preserve">
     <value>Failed merges</value>
@@ -455,7 +452,7 @@
     <value>Generate &amp; Merge</value>
   </data>
   <data name="ConflictingDetailDescription_SF" xml:space="preserve">
-    <value>The file {0} already exist. By countinuing this file will be replaced.</value>
+    <value>The file {0} already exists. By continuing this file will be replaced.</value>
   </data>
   <data name="ConflictingDetailTitle" xml:space="preserve">
     <value>Destination file exist</value>
@@ -470,7 +467,7 @@
     <value>Unchanged files</value>
   </data>
   <data name="StatusNewVersionAvailable" xml:space="preserve">
-    <value>There is new templates content available</value>
+    <value>There is new templates content available.</value>
   </data>
   <data name="ErrorSyncCheckNewVersion" xml:space="preserve">
     <value>Error checking for updates. See output for more details.</value>
@@ -482,28 +479,28 @@
     <value>By refreshing templates current selection will be reset.</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionFailedMerges" xml:space="preserve">
-    <value>The changes could not be integrated.</value>
+    <value>We are not able to introduce the modifications required. If needed, you can access to the generated file after finishing.</value>
   </data>
   <data name="ChangesSummaryDetailTitleFailedMerges" xml:space="preserve">
     <value>Failed merges</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionNewFiles" xml:space="preserve">
-    <value>The fille {0} will be added as new file.</value>
+    <value>The file '{0}' will be added as new file to your project.</value>
   </data>
   <data name="ChangesSummaryDetailTitleNewFiles" xml:space="preserve">
     <value>New file</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionModifiedFiles" xml:space="preserve">
-    <value>The file {0} has been modified.</value>
+    <value>The file '{0}' will be modified to include required content. Below you can check the modifications introduced.</value>
   </data>
   <data name="ChangesSummaryDetailTitleModifiedFiles" xml:space="preserve">
     <value>Modified file</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionConflictingFiles" xml:space="preserve">
-    <value>The file {0} already exist in your project and was also generated as part of the new item. Please compare and make sure everything is the right place.</value>
+    <value>The file '{0}' already exist in your project and was generated as part of the new item. Your current project file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing.</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionUnchangedFiles" xml:space="preserve">
-    <value>The file {0} already exist in your project, no action is necessary.</value>
+    <value>The file '{0}' already exists in your project and no further action is necessary. The file will remain unchanged after finishing.</value>
   </data>
   <data name="ChangesSummaryDetailTitleConflictingFiles" xml:space="preserve">
     <value>Conflicting file</value>
@@ -527,9 +524,21 @@
     <value>Licenses</value>
   </data>
   <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
-    <value>Do not merge changes (generate in a temp folder)</value>
+    <value>Do not merge changes (generate in a temp folder).</value>
   </data>
   <data name="NoProjectChanges" xml:space="preserve">
     <value>There are no changes to apply to your project. Everything already exisits.</value>
+  </data>
+  <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
+    <value>We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?.</value>
+  </data>
+  <data name="ProjectConfigurationSelectFramework" xml:space="preserve">
+    <value>Select framework</value>
+  </data>
+  <data name="ProjectConfigurationSelectProjectType" xml:space="preserve">
+    <value>Select project type</value>
+  </data>
+  <data name="GenerationFeedbackMessage" xml:space="preserve">
+    <value>Generating template...</value>
   </data>
 </root>

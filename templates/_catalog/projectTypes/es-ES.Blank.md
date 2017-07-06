@@ -1,3 +1,3 @@
-Este proyecto básico es un lienzo en blanco sobre el que construir su aplicación.
+This basic project is a blank canvas upon which to build your app.
 
-No proporciona ningún andamio y deja todo a usted.
+It provides no scaffolding and leaves everything up to you.

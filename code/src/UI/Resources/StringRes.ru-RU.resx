@@ -118,417 +118,427 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ButtonBack" xml:space="preserve">
-    <value>Назад</value>
+    <value>Back</value>
   </data>
   <data name="ButtonCancel" xml:space="preserve">
-    <value>Отмена</value>
+    <value>Cancel</value>
   </data>
   <data name="ButtonClose" xml:space="preserve">
-    <value>Закрыть</value>
+    <value>Close</value>
   </data>
   <data name="ButtonCreate" xml:space="preserve">
-    <value>Создать</value>
-  </data>
-  <data name="ButtonFinish" xml:space="preserve">
-    <value>Конец</value>
-  </data>
-  <data name="ButtonGenerate" xml:space="preserve">
-    <value>генерировать</value>
-  </data>
-  <data name="ButtonGenerateAndMerge" xml:space="preserve">
-    <value>Создать и объединить</value>
+    <value>Create</value>
   </data>
   <data name="ButtonNext" xml:space="preserve">
-    <value>следующий</value>
+    <value>Next</value>
   </data>
   <data name="ButtonOk" xml:space="preserve">
-    <value>ОК</value>
-  </data>
-  <data name="ButtonRefreshTemplates" xml:space="preserve">
-    <value>Обновить шаблоны</value>
-  </data>
-  <data name="ChangesSummaryCategoryConflictingFiles" xml:space="preserve">
-    <value>Конфликтующие файлы</value>
-  </data>
-  <data name="ChangesSummaryCategoryFailedMerges" xml:space="preserve">
-    <value>Неудачные слияния</value>
-  </data>
-  <data name="ChangesSummaryCategoryLicenses" xml:space="preserve">
-    <value>Лицензии</value>
-  </data>
-  <data name="ChangesSummaryCategoryNewFiles" xml:space="preserve">
-    <value>Новые файлы</value>
-  </data>
-  <data name="ChangesSummaryCategoryUnchangedFiles" xml:space="preserve">
-    <value>Неизменные файлы</value>
-  </data>
-  <data name="ChangesSummaryCategotyModifiedFiles" xml:space="preserve">
-    <value>Модифицированные файлы</value>
-  </data>
-  <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
-    <value>Не объединять изменения (сгенерировать во временной папке)</value>
-  </data>
-  <data name="ChangesSummaryDetailDescriptionConflictingFiles" xml:space="preserve">
-    <value>Файл {0} уже существует в вашем проекте и также был сгенерирован как часть нового элемента. Пожалуйста, сравните и убедитесь, что все в нужном месте.</value>
-  </data>
-  <data name="ChangesSummaryDetailDescriptionFailedMerges" xml:space="preserve">
-    <value>Изменения не могут быть интегрированы.</value>
-  </data>
-  <data name="ChangesSummaryDetailDescriptionModifiedFiles" xml:space="preserve">
-    <value>Файл {0} был изменен.</value>
-  </data>
-  <data name="ChangesSummaryDetailDescriptionNewFiles" xml:space="preserve">
-    <value>Филе {0} будет добавлено в качестве нового файла.</value>
-  </data>
-  <data name="ChangesSummaryDetailDescriptionUnchangedFiles" xml:space="preserve">
-    <value>Файл {0} уже существует в вашем проекте, никаких действий не требуется.</value>
-  </data>
-  <data name="ChangesSummaryDetailTitleConflictingFiles" xml:space="preserve">
-    <value>Конфликтный файл</value>
-  </data>
-  <data name="ChangesSummaryDetailTitleFailedMerges" xml:space="preserve">
-    <value>Неудачные слияния</value>
-  </data>
-  <data name="ChangesSummaryDetailTitleModifiedFiles" xml:space="preserve">
-    <value>Модифицированный файл</value>
-  </data>
-  <data name="ChangesSummaryDetailTitleNewFiles" xml:space="preserve">
-    <value>Новый файл</value>
-  </data>
-  <data name="ChangesSummaryDetailTitleUnchangedFiles" xml:space="preserve">
-    <value>Неизменный файл</value>
-  </data>
-  <data name="ChangesSummaryTitle_SF" xml:space="preserve">
-    <value>Сводка изменений: add {0} {1}</value>
-  </data>
-  <data name="CheckForUpdates" xml:space="preserve">
-    <value>Проверка новых шаблонов</value>
-  </data>
-  <data name="ConflictingDetailDescription_SF" xml:space="preserve">
-    <value>Файл {0} уже существует. По счету этот файл будет заменен.</value>
-  </data>
-  <data name="ConflictingDetailExistingFile" xml:space="preserve">
-    <value>Существующий файл</value>
-  </data>
-  <data name="ConflictingDetailNewFile" xml:space="preserve">
-    <value>Новый файл</value>
-  </data>
-  <data name="ConflictingDetailTitle" xml:space="preserve">
-    <value>Файл назначения существует</value>
-  </data>
-  <data name="EditTemplateDescription" xml:space="preserve">
-    <value>Введите имя</value>
-  </data>
-  <data name="ErrorDialogTitle" xml:space="preserve">
-    <value>Что-то пошло не так :-(</value>
+    <value>OK</value>
   </data>
   <data name="ErrorSync" xml:space="preserve">
-    <value>Ошибка синхронизации шаблонов. См. Вывод для получения более подробной информации.</value>
-  </data>
-  <data name="ErrorSyncCheckNewVersion" xml:space="preserve">
-    <value>Ошибка проверки обновлений. См. Вывод для получения более подробной информации.</value>
-  </data>
-  <data name="ErrorSyncRefresh" xml:space="preserve">
-    <value>Ошибка обновления шаблонов. См. Вывод для получения более подробной информации.</value>
-  </data>
-  <data name="ErrorViewProblemDetails" xml:space="preserve">
-    <value>Просмотреть сведения о проблемах</value>
+    <value>Error syncing templates. See output for more details.</value>
   </data>
   <data name="ExceptionDependencyCircularReference" xml:space="preserve">
-    <value>Круговая зависимость, обнаруженная на шаблоне {0} с {1}.</value>
+    <value>Circular dependency detected on template {0} with {1}.</value>
   </data>
   <data name="ExceptionDependencyMultipleInstance" xml:space="preserve">
-    <value>Неверный элемент зависимостей {0}. Зависимости должны быть настроены как multpleInstance = false.</value>
+    <value>Invalid dependency item {0}. Dependencies have to be configured as multpleInstance = false.</value>
   </data>
   <data name="ExceptionDependencyNotFound" xml:space="preserve">
-    <value>Шаблон зависимостей {0} не найден для структуры {1}.</value>
+    <value>Dependency template {0} not found for framework {1}.</value>
   </data>
   <data name="ExceptionDependencyType" xml:space="preserve">
-    <value>Неверный элемент зависимостей {0}. Элементы зависимостей должны быть типа Page или Feature.</value>
+    <value>Invalid dependency item {0}. Dependency items must be of type Page or Feature.</value>
   </data>
   <data name="ExceptionGenerating" xml:space="preserve">
-    <value>Шаблон '{0}', name: '{1}', reason: '{2}'</value>
+    <value>Template '{0}', name: '{1}', reason: '{2}'</value>
   </data>
   <data name="ExceptionLayoutNotFound" xml:space="preserve">
-    <value>Макет шаблона {0} не найден для структуры {1}.</value>
+    <value>Layout template {0} not found for framework {1}.</value>
   </data>
   <data name="ExceptionLayoutType" xml:space="preserve">
-    <value>Недопустимый элемент макета {0}. Элементы макета должны иметь тип страницы или функцию.</value>
-  </data>
-  <data name="GenControllerUnsafeGenerateAsyncMessage" xml:space="preserve">
-    <value>Создание шаблона {0} до {1}.</value>
+    <value>Invalid layout item {0}. Layout items must be of type Page or Feature.</value>
   </data>
   <data name="GeneratingFeatureMessage" xml:space="preserve">
-    <value>Создание функции '{0}' ...</value>
+    <value>Creating '{0}' feature ...</value>
   </data>
   <data name="GeneratingPageMessage" xml:space="preserve">
-    <value>Создание страницы '{0}' ...</value>
+    <value>Creating '{0}' page ...</value>
   </data>
   <data name="GeneratingProjectMessage" xml:space="preserve">
-    <value>Создание проекта '{0}' ...</value>
-  </data>
-  <data name="GenerationFinishedString" xml:space="preserve">
-    <value>Поколение завершено</value>
-  </data>
-  <data name="GroupFeatureHeader_SF" xml:space="preserve">
-    <value>Особенности ({0}) - выберите один</value>
+    <value>Creating project '{0}'...</value>
   </data>
   <data name="GroupFeaturesHeader_SF" xml:space="preserve">
-    <value>Особенности ({0}) - добавление нескольких</value>
+    <value>Features ({0}) - Add multiple</value>
   </data>
   <data name="GroupFrameworkHeader_SF" xml:space="preserve">
-    <value>Framework ({0}) - выберите один</value>
-  </data>
-  <data name="GroupPageHeader_SF" xml:space="preserve">
-    <value>Страницы ({0}) - выберите один</value>
+    <value>Framework ({0}) - Pick one</value>
   </data>
   <data name="GroupPagesHeader_SF" xml:space="preserve">
-    <value>Страницы ({0}) - добавьте несколько</value>
+    <value>Pages ({0}) - Add multiple</value>
   </data>
   <data name="GroupProjectType" xml:space="preserve">
-    <value>Тип проекта</value>
+    <value>Project Type</value>
   </data>
   <data name="GroupProjectTypeHeader_SF" xml:space="preserve">
-    <value>Тип проекта ({0}) - выберите один</value>
-  </data>
-  <data name="InfoModalAuthor" xml:space="preserve">
-    <value>Автор:</value>
-  </data>
-  <data name="InfoModalDependencies" xml:space="preserve">
-    <value>зависимости:</value>
-  </data>
-  <data name="InfoModalLicenses" xml:space="preserve">
-    <value>Лицензии:</value>
-  </data>
-  <data name="InfoModalVersion" xml:space="preserve">
-    <value>Версия:</value>
-  </data>
-  <data name="InformationWindowIntilizeViewModelMessage" xml:space="preserve">
-    <value>{0} не ожидается как допустимый тип для информационного окна'.</value>
+    <value>Project Type ({0}) - Pick one</value>
   </data>
   <data name="LessDetail" xml:space="preserve">
-    <value>Меньше деталей</value>
+    <value>Less detail</value>
   </data>
   <data name="LoadingTemplatesText" xml:space="preserve">
-    <value>Загрузка доступных шаблонов ...</value>
+    <value>Loading available templates...</value>
   </data>
   <data name="MoreDetail" xml:space="preserve">
-    <value>Более детально</value>
-  </data>
-  <data name="NewItemAddFeatureCancelled" xml:space="preserve">
-    <value>Добавить отмененную функцию</value>
-  </data>
-  <data name="NewItemAddFeatureSuccessStatusMsg" xml:space="preserve">
-    <value>Добавлена ​​функция {0}</value>
-  </data>
-  <data name="NewItemAddPageCancelled" xml:space="preserve">
-    <value>Добавить новую страницу отменена</value>
-  </data>
-  <data name="NewItemAddPageSuccessStatusMsg" xml:space="preserve">
-    <value>Страница {0} успешно добавлена</value>
-  </data>
-  <data name="NewItemName" xml:space="preserve">
-    <value>Имя:</value>
-  </data>
-  <data name="NewItemTitle_SF" xml:space="preserve">
-    <value>Добавить {0}</value>
-  </data>
-  <data name="NewVersionAvailable" xml:space="preserve">
-    <value>Доступен новый контент, нажмите 'Обновить', чтобы получить последние обновления (текущий выбор будет сброшен).</value>
-  </data>
-  <data name="NewVersionInstructions" xml:space="preserve">
-    <value>При обновлении шаблонов текущий выбор будет сброшен.</value>
+    <value>More detail</value>
   </data>
   <data name="NoContentText" xml:space="preserve">
-    <value>Нет доступных материалов</value>
+    <value>No content available</value>
   </data>
   <data name="NoData" xml:space="preserve">
-    <value>Нет данных</value>
-  </data>
-  <data name="NoProjectChanges" xml:space="preserve">
-    <value>Для вашего проекта нет изменений. Все уже существует.</value>
-  </data>
-  <data name="PrivacyTermns" xml:space="preserve">
-    <value>Конфиденциальность</value>
+    <value>No data</value>
   </data>
   <data name="ProjectSetupTitle" xml:space="preserve">
-    <value>Выберите тип проекта и структуру</value>
+    <value>Select project type and framework</value>
   </data>
   <data name="ProjectTemplatesTitle" xml:space="preserve">
-    <value>Выбор страниц и функций</value>
+    <value>Select pages and features</value>
   </data>
   <data name="ResetSelection" xml:space="preserve">
-    <value>Вы изменили свой тип проекта или выбор рамки. Если вы продолжите, вы потеряете все страницы и функции, добавленные ранее. Чтобы сохранить страницы и функции, вы можете вернуться к исходному выбору ({0}, {1}).</value>
+    <value>You have changed your project type or framework selection. If you continue you will lose all pages and features added previously. To conserve pages and features, you can go back to your original selection ({0}, {1}).</value>
   </data>
   <data name="ResetSelectionTitle" xml:space="preserve">
-    <value>Сброс выбора</value>
+    <value>Reset selection</value>
   </data>
   <data name="RestoringMessage" xml:space="preserve">
-    <value>Восстановление пакетов ...</value>
-  </data>
-  <data name="SolutionWizardRunFinishedMessage" xml:space="preserve">
-    <value>Создание проекта Windows Template Studio ...</value>
+    <value>Restoring packages...</value>
   </data>
   <data name="StatusAcquired" xml:space="preserve">
-    <value>Готово</value>
+    <value>Done.</value>
   </data>
   <data name="StatusAcquiring" xml:space="preserve">
-    <value>Проверка обновлений шаблонов ...</value>
+    <value>Checking for template updates...</value>
   </data>
   <data name="StatusLowerVersionContent" xml:space="preserve">
-    <value>Для текущей версии мастера нет содержимого шаблонов. Убедитесь, что у вас есть возможность подключения и снова перезапустите мастер.</value>
+    <value>There is no templates content available for the current wizard version. Please ensure you have connectivity and restart the wizard again.</value>
   </data>
   <data name="StatusLowerVersionTitle" xml:space="preserve">
-    <value>Мастер несовместим с содержимым шаблонов</value>
-  </data>
-  <data name="StatusNewVersionAvailable" xml:space="preserve">
-    <value>Доступен новый контент шаблонов</value>
+    <value>Wizard incompatible with templates content.</value>
   </data>
   <data name="StatusOverVersionContent" xml:space="preserve">
-    <value>Обновление шаблонов доступно, но несовместимо с версией мастера. Обновите расширение, чтобы получить доступ к последнему контенту.</value>
+    <value>An update to the templates is available but not compatible with the wizard version. Update the extension to access the latest content.</value>
   </data>
   <data name="StatusOverVersionNoContent" xml:space="preserve">
-    <value>Для этой версии расширения нет содержимого. Обновите расширение, чтобы получить доступ к последнему контенту.</value>
+    <value>There is no content available for this extension version. Update the extension to access to the latest content.</value>
   </data>
   <data name="StatusOverVersionTitle" xml:space="preserve">
-    <value>Доступно обновление мастера</value>
-  </data>
-  <data name="StatusPrepared" xml:space="preserve">
-    <value>Готовые шаблоны</value>
-  </data>
-  <data name="StatusPreparing" xml:space="preserve">
-    <value>Подготовка шаблонов для первого использования ...</value>
+    <value>Wizard update available.</value>
   </data>
   <data name="StatusUpdated" xml:space="preserve">
-    <value>Обновлены шаблоны</value>
+    <value>Templates updated.</value>
   </data>
   <data name="StatusUpdating" xml:space="preserve">
-    <value>Обновление шаблонов ...</value>
-  </data>
-  <data name="SummaryDragAndDrop" xml:space="preserve">
-    <value>Изменить порядок (Ctrl + стрелки)</value>
+    <value>Updating templates...</value>
   </data>
   <data name="SummaryFeaturesTitle" xml:space="preserve">
-    <value>Особенности</value>
+    <value>Features</value>
   </data>
   <data name="SummaryFrameworkTitle" xml:space="preserve">
-    <value>Фреймворк</value>
+    <value>Framework</value>
   </data>
   <data name="SummaryLicenseTitle" xml:space="preserve">
-    <value>Лицензии</value>
-  </data>
-  <data name="SummaryNoFeatures" xml:space="preserve">
-    <value>Не выбрано, ничего не выбрано</value>
-  </data>
-  <data name="SummaryNoLicenses" xml:space="preserve">
-    <value>Никто</value>
-  </data>
-  <data name="SummaryNoPages" xml:space="preserve">
-    <value>Не выбрано, ничего не выбрано</value>
-  </data>
-  <data name="SummaryOpenMenu" xml:space="preserve">
-    <value>Меню опций</value>
-  </data>
-  <data name="SummaryOpenMenuClose" xml:space="preserve">
-    <value>Закрыть</value>
-  </data>
-  <data name="SummaryOptionDelete" xml:space="preserve">
-    <value>Удалить</value>
-  </data>
-  <data name="SummaryOptionRename" xml:space="preserve">
-    <value>переименовывать</value>
+    <value>Licenses</value>
   </data>
   <data name="SummaryPagesTitle" xml:space="preserve">
-    <value>страницы</value>
+    <value>Pages</value>
   </data>
   <data name="SummaryProjectTypeTitle" xml:space="preserve">
-    <value>Тип проекта</value>
+    <value>Project Type</value>
   </data>
   <data name="SummaryTerms" xml:space="preserve">
-    <value>Продолжая, вы соглашаетесь с условиями всех лицензий в разделе лицензирования выше.</value>
+    <value>By continuing, you agree to the terms of all the licenses in the licensing section above.</value>
   </data>
   <data name="SummaryTitle" xml:space="preserve">
-    <value>Резюме</value>
+    <value>Summary</value>
   </data>
   <data name="TemplateGroup_ApplicationLifecycle" xml:space="preserve">
-    <value>Жизненный цикл приложения</value>
+    <value>Application Lifecycle</value>
   </data>
   <data name="TemplateGroup_BackgroundWork" xml:space="preserve">
-    <value>Справочная работа</value>
+    <value>Background Work</value>
   </data>
   <data name="TemplateGroup_UserInteraction" xml:space="preserve">
-    <value>Взаимодействие с пользователем</value>
+    <value>User Interaction</value>
   </data>
   <data name="TemplatesVersion" xml:space="preserve">
-    <value>Версия шаблонов:</value>
+    <value>Templates version:</value>
   </data>
   <data name="TemplateTypeFeature" xml:space="preserve">
-    <value>Особенность</value>
+    <value>Feature</value>
   </data>
   <data name="TemplateTypeFramework" xml:space="preserve">
-    <value>Фреймворк</value>
+    <value>Framework</value>
   </data>
   <data name="TemplateTypePage" xml:space="preserve">
-    <value>страница</value>
+    <value>Page</value>
   </data>
   <data name="TemplateTypeProjectType" xml:space="preserve">
-    <value>Тип проекта</value>
+    <value>Project type</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Студия Windows Template Studio</value>
+    <value>Windows Template Studio</value>
   </data>
   <data name="UIMessageBoxTitlePattern" xml:space="preserve">
-    <value>Студия шаблонов Windows: {0}</value>
+    <value>Windows Template Studio: {0}</value>
+    <comment>Generic Message Box Title</comment>
+  </data>
+  <data name="ValidationError_AlreadyExists" xml:space="preserve">
+    <value>Name already exists</value>
+  </data>
+  <data name="ValidationError_BadFormat" xml:space="preserve">
+    <value>Only alphanumeric and '_' characters are allowed</value>
+  </data>
+  <data name="ValidationError_CanNotRemoveTemplate_SF" xml:space="preserve">
+    <value>You can not remove {0} because {1} {2} depends on it.</value>
+  </data>
+  <data name="ValidationError_Empty" xml:space="preserve">
+    <value>Name cannot be empty</value>
+  </data>
+  <data name="ValidationError_RenameNotAllowed" xml:space="preserve">
+    <value>Cannot set a custom name</value>
+  </data>
+  <data name="ValidationError_ReservedName" xml:space="preserve">
+    <value>Name is reserved</value>
+  </data>
+  <data name="WizardVersion" xml:space="preserve">
+    <value>Wizard version:</value>
+  </data>
+  <data name="ErrorDialogTitle" xml:space="preserve">
+    <value>Something went wrong :-(</value>
+  </data>
+  <data name="ErrorViewProblemDetails" xml:space="preserve">
+    <value>View problem details</value>
+  </data>
+  <data name="EditTemplateDescription" xml:space="preserve">
+    <value>Enter a name</value>
+  </data>
+  <data name="InfoModalAuthor" xml:space="preserve">
+    <value>Author:</value>
+  </data>
+  <data name="InfoModalDependencies" xml:space="preserve">
+    <value>Dependencies:</value>
+  </data>
+  <data name="InfoModalLicenses" xml:space="preserve">
+    <value>Licenses:</value>
+  </data>
+  <data name="InfoModalVersion" xml:space="preserve">
+    <value>Version:</value>
+  </data>
+  <data name="SummaryNoFeatures" xml:space="preserve">
+    <value>None Selected</value>
+  </data>
+  <data name="SummaryNoLicenses" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="SummaryNoPages" xml:space="preserve">
+    <value>None Selected</value>
+  </data>
+  <data name="StatusPrepared" xml:space="preserve">
+    <value>Templates ready.</value>
+  </data>
+  <data name="StatusPreparing" xml:space="preserve">
+    <value>Preparing templates for first use...</value>
   </data>
   <data name="UnableAddItemsToProject" xml:space="preserve">
-    <value>Невозможно добавить элементы проекта. Убедитесь, что у вас есть необходимый SDK.</value>
+    <value>Unable add project items. Ensure you have the required SDK.</value>
   </data>
   <data name="UnableAddProjectToSolution" xml:space="preserve">
-    <value>Невозможно добавить проект в решение, потому что он не готов. Убедитесь, что у вас установлен ожидаемый SDK.</value>
+    <value>Unable to add the project to the solution because is not ready. Ensure you have the expected SDK installed.</value>
+  </data>
+  <data name="SummaryOptionDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="SummaryOptionRename" xml:space="preserve">
+    <value>Rename</value>
   </data>
   <data name="UnableToRefreshProject" xml:space="preserve">
-    <value>Не удалось обновить проект. Попробуйте обновить его вручную.</value>
+    <value>Unable to refresh the project. Try to refresh it manually.</value>
+  </data>
+  <data name="GenControllerUnsafeGenerateAsyncMessage" xml:space="preserve">
+    <value>Generating the template {0} to {1}.</value>
+  </data>
+  <data name="InformationWindowIntilizeViewModelMessage" xml:space="preserve">
+    <value>"{0} is not expected as valid type for the Information Window."</value>
   </data>
   <data name="UndefinedErrorString" xml:space="preserve">
     <value>UndefinedError</value>
   </data>
-  <data name="ValidationError_AlreadyExists" xml:space="preserve">
-    <value>Имя уже существует</value>
+  <data name="GenerationFinishedString" xml:space="preserve">
+    <value>Generation finished</value>
   </data>
-  <data name="ValidationError_BadFormat" xml:space="preserve">
-    <value>Разрешены только буквенно-цифровые и '_' символы</value>
-  </data>
-  <data name="ValidationError_CanNotRemoveTemplate_SF" xml:space="preserve">
-    <value>Вы не можете удалить {0}, потому что {1} {2} зависит от него.</value>
-  </data>
-  <data name="ValidationError_Empty" xml:space="preserve">
-    <value>Имя не может быть пустым</value>
-  </data>
-  <data name="ValidationError_RenameNotAllowed" xml:space="preserve">
-    <value>Невозможно установить собственное имя</value>
-  </data>
-  <data name="ValidationError_ReservedName" xml:space="preserve">
-    <value>Имя зарезервировано</value>
-  </data>
-  <data name="VisitProjectWebSite" xml:space="preserve">
-    <value>Посетите веб-сайт проекта</value>
+  <data name="SolutionWizardRunFinishedMessage" xml:space="preserve">
+    <value>Creating Windows Template Studio project...</value>
   </data>
   <data name="VsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
-    <value>Произошла ошибка, разрушающая дерево решений. Пример:</value>
+    <value>There was an error collapsing the solution tree. Ex:</value>
   </data>
   <data name="VsGenShellRestorePackagesErrorMessage" xml:space="preserve">
-    <value>При восстановлении пакетов произошла ошибка. Пример:</value>
+    <value>There was an error restoring the packages. Ex:</value>
   </data>
   <data name="VsGenShellRestorePackagesWarningMessage" xml:space="preserve">
-    <value>Невозможно автоматически выполнить восстановление пакетов NuGet для решения. Попробуйте вручную восстановить пакеты NuGet.</value>
+    <value>Unable to automatically perform Restore NuGet Packages for the solution. Please, try to manually restore the NuGet packages.</value>
   </data>
   <data name="VsGenShellShowStatusBarMessageMessage" xml:space="preserve">
-    <value>Произошла ошибка с сообщением о статусе. Пример:</value>
+    <value>There was an error showing status message. Ex:</value>
   </data>
-  <data name="WizardVersion" xml:space="preserve">
-    <value>Версия мастера:</value>
+  <data name="SummaryDragAndDrop" xml:space="preserve">
+    <value>Reorder (Ctrl + arrows)</value>
+  </data>
+  <data name="SummaryOpenMenu" xml:space="preserve">
+    <value>Options menu</value>
+  </data>
+  <data name="SummaryOpenMenuClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="NewItemTitle_SF" xml:space="preserve">
+    <value>Add new {0}</value>
+  </data>
+  <data name="GroupFeatureHeader_SF" xml:space="preserve">
+    <value>Features ({0}) - Pick one</value>
+  </data>
+  <data name="GroupPageHeader_SF" xml:space="preserve">
+    <value>Pages ({0}) - Pick one</value>
+  </data>
+  <data name="NewItemName" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="ButtonFinish" xml:space="preserve">
+    <value>Finish</value>
   </data>
   <data name="WTSDescription" xml:space="preserve">
-    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem incididunt.</value>
+    <value>Windows Template Studio quickly builds a UWP app, using a wizard-based UI to turn your needs into a foundation of Windows 10 patterns and best practices.</value>
+  </data>
+  <data name="ButtonRefreshTemplates" xml:space="preserve">
+    <value>Refresh templates</value>
+  </data>
+  <data name="NewVersionAvailable" xml:space="preserve">
+    <value>Click refresh to get the latest updates (current selection will be reseted).</value>
+  </data>
+  <data name="CheckForUpdates" xml:space="preserve">
+    <value>Check for new templates</value>
+  </data>
+  <data name="VisitProjectWebSite" xml:space="preserve">
+    <value>Visit project web site</value>
+  </data>
+  <data name="ChangesSummaryTitle_SF" xml:space="preserve">
+    <value>Changes summary: Add {0} {1}</value>
+  </data>
+  <data name="ChangesSummaryCategoryFailedMerges" xml:space="preserve">
+    <value>Failed merges</value>
+  </data>
+  <data name="ChangesSummaryCategoryConflictingFiles" xml:space="preserve">
+    <value>Conflicting files</value>
+  </data>
+  <data name="ChangesSummaryCategotyModifiedFiles" xml:space="preserve">
+    <value>Modified files</value>
+  </data>
+  <data name="ChangesSummaryCategoryNewFiles" xml:space="preserve">
+    <value>New files</value>
+  </data>
+  <data name="ButtonGenerate" xml:space="preserve">
+    <value>Generate</value>
+  </data>
+  <data name="ButtonGenerateAndMerge" xml:space="preserve">
+    <value>Generate &amp; Merge</value>
+  </data>
+  <data name="ConflictingDetailDescription_SF" xml:space="preserve">
+    <value>The file {0} already exists. By continuing this file will be replaced.</value>
+  </data>
+  <data name="ConflictingDetailTitle" xml:space="preserve">
+    <value>Destination file exist</value>
+  </data>
+  <data name="ConflictingDetailExistingFile" xml:space="preserve">
+    <value>Existing file</value>
+  </data>
+  <data name="ConflictingDetailNewFile" xml:space="preserve">
+    <value>New file</value>
+  </data>
+  <data name="ChangesSummaryCategoryUnchangedFiles" xml:space="preserve">
+    <value>Unchanged files</value>
+  </data>
+  <data name="StatusNewVersionAvailable" xml:space="preserve">
+    <value>There is new templates content available.</value>
+  </data>
+  <data name="ErrorSyncCheckNewVersion" xml:space="preserve">
+    <value>Error checking for updates. See output for more details.</value>
+  </data>
+  <data name="ErrorSyncRefresh" xml:space="preserve">
+    <value>Error refreshing templates. See output for more details.</value>
+  </data>
+  <data name="NewVersionInstructions" xml:space="preserve">
+    <value>By refreshing templates current selection will be reset.</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionFailedMerges" xml:space="preserve">
+    <value>We are not able to introduce the modifications required. If needed, you can access to the generated file after finishing.</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleFailedMerges" xml:space="preserve">
+    <value>Failed merges</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionNewFiles" xml:space="preserve">
+    <value>The file '{0}' will be added as new file to your project.</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleNewFiles" xml:space="preserve">
+    <value>New file</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionModifiedFiles" xml:space="preserve">
+    <value>The file '{0}' will be modified to include required content. Below you can check the modifications introduced.</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleModifiedFiles" xml:space="preserve">
+    <value>Modified file</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionConflictingFiles" xml:space="preserve">
+    <value>The file '{0}' already exist in your project and was generated as part of the new item. Your current project file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing.</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionUnchangedFiles" xml:space="preserve">
+    <value>The file '{0}' already exists in your project and no further action is necessary. The file will remain unchanged after finishing.</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleConflictingFiles" xml:space="preserve">
+    <value>Conflicting file</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleUnchangedFiles" xml:space="preserve">
+    <value>Unchanged file</value>
+  </data>
+  <data name="NewItemAddFeatureCancelled" xml:space="preserve">
+    <value>Add new feature cancelled</value>
+  </data>
+  <data name="NewItemAddFeatureSuccessStatusMsg" xml:space="preserve">
+    <value>Feature {0} successfully added</value>
+  </data>
+  <data name="NewItemAddPageCancelled" xml:space="preserve">
+    <value>Add new page cancelled</value>
+  </data>
+  <data name="NewItemAddPageSuccessStatusMsg" xml:space="preserve">
+    <value>Page {0} successfully added</value>
+  </data>
+  <data name="ChangesSummaryCategoryLicenses" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
+  <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
+    <value>Do not merge changes (generate in a temp folder).</value>
+  </data>
+  <data name="NoProjectChanges" xml:space="preserve">
+    <value>There are no changes to apply to your project. Everything already exisits.</value>
+  </data>
+  <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
+    <value>We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?.</value>
+  </data>
+  <data name="ProjectConfigurationSelectFramework" xml:space="preserve">
+    <value>Select framework</value>
+  </data>
+  <data name="ProjectConfigurationSelectProjectType" xml:space="preserve">
+    <value>Select project type</value>
+  </data>
+  <data name="GenerationFeedbackMessage" xml:space="preserve">
+    <value>Generating template...</value>
   </data>
 </root>
