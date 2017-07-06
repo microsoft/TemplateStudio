@@ -12,13 +12,12 @@
 
 using System;
 using System.Diagnostics;
-using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
-using System.Runtime.Remoting.Messaging;
-
-using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Resources;
+using Microsoft.Templates.Core.Locations;
 
 namespace Microsoft.Templates.Core.Gen
 {
@@ -35,7 +34,7 @@ namespace Microsoft.Templates.Core.Gen
             {
                 if (_currentContext == null)
                 {
-                    throw new InvalidOperationException("There is no context for the current gen execution, call Current_set first");
+                    throw new InvalidOperationException(StringRes.GenContextCurrentInvalidOperationMessage);
                 }
                 return _currentContext;
             }
@@ -53,7 +52,7 @@ namespace Microsoft.Templates.Core.Gen
         public static void Bootstrap(TemplatesSource source, GenShell shell, Version wizardVersion)
         {
             AppHealth.Current.AddWriter(new ShellHealthWriter());
-            AppHealth.Current.Info.TrackAsync($"Configuration file loaded: {Configuration.LoadedConfigFile}").FireAndForget();
+            AppHealth.Current.Info.TrackAsync($"{StringRes.ConfigurationFileLoadedString}: {Configuration.LoadedConfigFile}").FireAndForget();
 
             string hostVersion = $"{wizardVersion.Major}.{wizardVersion.Minor}";
 
@@ -62,7 +61,31 @@ namespace Microsoft.Templates.Core.Gen
 
             ToolBox = new GenToolBox(repository, shell);
 
+            PurgeTempGenerations(Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath), Configuration.Current.DaysToKeepTempGenerations);
+
             IsInitialized = true;
+        }
+
+        private static void PurgeTempGenerations(string tempGenerationFolder, int daysToKeep)
+        {
+            if (Directory.Exists(tempGenerationFolder))
+            {
+                var di = new DirectoryInfo(tempGenerationFolder);
+                var toBeDeleted = di.GetDirectories().Where(d => d.CreationTimeUtc.AddDays(daysToKeep) < DateTime.UtcNow);
+
+                foreach (var d in toBeDeleted)
+                {
+                    try
+                    {
+                        d.Delete(true);
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"Error removing old temp generation directory '{d.FullName}'. Skipped. Exception:\n\r{ex.ToString()}");
+                        Trace.TraceError($"Error removing old temp generation directory '{d.FullName}'. Skipped. Exception:\n\r{ex.ToString()}");
+                    }
+                }
+            }
         }
 
         private static Version GetWizardVersionFromAssembly()

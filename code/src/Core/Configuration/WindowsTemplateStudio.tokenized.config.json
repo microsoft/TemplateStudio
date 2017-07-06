@@ -3,8 +3,12 @@
   "CdnUrl": "###CdnUrl###",
   "RemoteTelemetryKey": "###RemoteTelemetryKey###",
   "LogFileFolderPath": "WindowsTemplateStudio\\Logs",
+  "CustomTelemetryEndpoint": "###CustomTelemetryEndpoint###",
   "RepositoryFolderName": "WindowsTemplateStudio",
+  "BackupFolderPath": "WindowsTemplateStudio\\Backups",
+  "TempGenerationFolderPath": "WTSTempGeneration",
   "DiagnosticsTraceLevel": "###DiagnosticsTraceLevel###",
+  "DaysToKeepTempGenerations": 5,
   "DaysToKeepDiagnosticsLogs": 5,
   "VersionCheckingExpirationMinutes": 120,
   "AllowedPublicKeysPins": [

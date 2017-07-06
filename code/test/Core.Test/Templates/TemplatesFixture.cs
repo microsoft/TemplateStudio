@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Core.Test
 
             GenContext.Bootstrap(source, new FakeGenShell());
 
-            GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
+            GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
 
             Repository = GenContext.ToolBox.Repo;
         }

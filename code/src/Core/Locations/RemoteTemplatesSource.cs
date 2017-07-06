@@ -15,11 +15,13 @@ using System.IO;
 using System.Net;
 
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
 {
-    public class RemoteTemplatesSource : TemplatesSource
+    public sealed class RemoteTemplatesSource : TemplatesSource
     {
+        public override bool ForcedAcquisition => false;
         private readonly string _cdnUrl = Configuration.Current.CdnUrl;
         private const string TemplatesPackageFileName = "Templates.mstx";
 
@@ -44,13 +46,12 @@ namespace Microsoft.Templates.Core.Locations
                 var wc = new WebClient();
 
                 wc.DownloadFile(sourceUrl, file);
-                AppHealth.Current.Verbose.TrackAsync($"Templates content downloaded to {file} from {sourceUrl}.").FireAndForget();
+                AppHealth.Current.Verbose.TrackAsync(string.Format(StringRes.RemoteTemplatesSourceDownloadContentOkMessage, file, sourceUrl)).FireAndForget();
             }
             catch (Exception ex)
             {
-                string msg = $"Templates content can't be downloaded right now, we will try it later.";
-                AppHealth.Current.Info.TrackAsync(msg).FireAndForget();
-                AppHealth.Current.Error.TrackAsync($"Error downloading from {sourceUrl}. Internet connection is required to download template updates.", ex).FireAndForget();
+                AppHealth.Current.Info.TrackAsync(StringRes.RemoteTemplatesSourceDownloadContentKoInfoMessage).FireAndForget();
+                AppHealth.Current.Error.TrackAsync(string.Format(StringRes.RemoteTemplatesSourceDownloadContentKoErrorMessage, sourceUrl), ex).FireAndForget();
             }
         }
     }

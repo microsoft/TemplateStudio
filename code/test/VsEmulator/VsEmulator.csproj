@@ -132,8 +132,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="LoadProject\LoadProjectView.xaml.cs">
+      <DependentUpon>LoadProjectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadProject\LoadProjectViewModel.cs" />
     <Compile Include="Main\MainViewModel.cs" />
-    <Compile Include="Naming\DirectoryExistsValidator.cs" />
     <Compile Include="TemplatesContent\TemplatesContentView.xaml.cs">
       <DependentUpon>TemplatesContentView.xaml</DependentUpon>
     </Compile>
@@ -142,6 +146,10 @@
       <DependentUpon>NewProjectView.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewProject\NewProjectViewModel.cs" />
+    <Page Include="LoadProject\LoadProjectView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Main\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -223,6 +231,7 @@
   <ItemGroup>
     <Resource Include="Assets\vscode.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

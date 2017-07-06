@@ -22,3 +22,15 @@
             Services.ThemeSelectorService.OnThemeChanged += (s, e) => { if (!IsSelected) SelectedForeground = GetStandardTextColorBrush(); };
             //}]}
         }
+
+        public ShellNavigationItem(string label, IconElement icon, string viewModelName)
+        {
+            this.Label = label;
+            this._iconElement = icon;
+            this.ViewModelName = viewModelName;
+
+            //^^
+            //{[{
+            Services.ThemeSelectorService.OnThemeChanged += (s, e) => { if (!IsSelected) SelectedForeground = GetStandardTextColorBrush(); };
+            //}]}
+        }

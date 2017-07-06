@@ -3,40 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
              x:Name="root"             
              mc:Ignorable="d">
     <!-- This control is at the bottom and gives status updates -->
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Colors.xaml" />
-                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Thickness.xaml" />
-                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleTextBlock.xaml" />
+                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid>
-        <StackPanel x:Name="versionInfoPane">
-            <TextBlock Style="{StaticResource TextWizardInformationStyle}">
-                <Run Text="{x:Static res:StringRes.WizardVersion}" /> <Run Text="{Binding WizardVersion, ElementName=root}" />
-            </TextBlock>
-            <TextBlock Style="{StaticResource TextWizardInformationStyle}">
-                <Run Text="{x:Static res:StringRes.TemplatesVersion}" /> <Run Text="{Binding TemplatesVersion, ElementName=root}" />
-            </TextBlock>
-        </StackPanel>
-        <Grid Margin="{StaticResource SmallMargin}">
+    <Grid Height="55">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="backBackground" Grid.ColumnSpan="2" Opacity="0.0" Background="{StaticResource UIWhite}"/>
+        <Grid x:Name="shapeBackground" Grid.ColumnSpan="2" Background="Transparent" />
+        <Grid x:Name="verticalGrid"/>
+        <Grid Grid.Column="1" Margin="{StaticResource Margin_S_All}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Style="{StaticResource TextWizardStatusStyle}">
-            <Run x:Name="txtIcon" FontFamily="Segoe MDL2 Assets" FontSize="18" BaselineAlignment="Center" Text=" " />
+            <TextBlock Grid.Column="0" Style="{StaticResource TextWizardStatusStyle}" Margin="{StaticResource Margin_S_Left}">
+                <Run x:Name="txtIcon" FontFamily="Segoe MDL2 Assets" BaselineAlignment="Center" Text=" " />
             </TextBlock>
-            <TextBlock Margin="{StaticResource MediumLeftMargin}" Style="{StaticResource TextWizardStatusStyle}" Grid.Column="1">
-            <Run x:Name="txtStatus" />
+            <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Style="{StaticResource TextWizardStatusStyle}">
+                <Run x:Name="txtStatus" />
             </TextBlock>
+            <Grid Grid.Column="2" Margin="0,0,5,0">
+                <Button Style="{StaticResource AddTemplateInfoButtonStyle}" Click="OnCloseClicked" Margin="{StaticResource Margin_XS_All}" HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <Button.Content>
+                        <TextBlock x:Name="iconClose" Text="&#xE894;" FontSize="8" Style="{StaticResource IconButtonTextStyle}" FontWeight="ExtraBold"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

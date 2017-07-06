@@ -1,0 +1,6 @@
+{
+    "author": "Microsoft",
+    "name": "Live Tile",
+    "description": "A tile is an app's representation on the Start menu. This tile can be dynamically updated.",
+    "identity": "wts.Feat.LiveTile"
+}

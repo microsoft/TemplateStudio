@@ -25,10 +25,10 @@ using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
-using Microsoft.Templates.UI.Resources;
 
 using NuGet.VisualStudio;
 using Microsoft.VisualStudio;
+using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -39,6 +39,9 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private Lazy<IVsUIShell> _uiShell = new Lazy<IVsUIShell>(() => ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell)) as IVsUIShell, true);
         private IVsUIShell UIShell => _uiShell.Value;
+
+        private Lazy<IVsSolution> _vssolution = new Lazy<IVsSolution>(() => ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution, true);
+        private IVsSolution VSSolution => _vssolution.Value;
 
         private Lazy<VsOutputPane> _outputPane = new Lazy<VsOutputPane>(() => new VsOutputPane());
         private VsOutputPane OutputPane => _outputPane.Value;
@@ -147,9 +150,9 @@ namespace Microsoft.Templates.UI.VisualStudio
             return null;
         }
 
-        public override void SaveSolution(string solutionFullPath)
+        public override void SaveSolution()
         {
-            Dte.Solution.SaveAs(solutionFullPath);
+            Dte.Solution.SaveAs(Dte.Solution.FullName);
         }
 
         public override void ShowStatusBarMessage(string message)
@@ -160,7 +163,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"There was an error showing status message. Ex: {ex.ToString()}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"{StringRes.VsGenShellShowStatusBarMessageMessage} {ex.ToString()}").FireAndForget();
             }
         }
 
@@ -201,6 +204,27 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
+        public override string GetActiveProjectGuid()
+        {
+            var p = GetActiveProject();
+
+            if (p != null)
+            {
+                VSSolution.GetProjectOfUniqueName(p.FullName, out IVsHierarchy hierarchy);
+                if (hierarchy != null)
+                {
+                    hierarchy.GetGuidProperty(VSConstants.VSITEMID_ROOT, (int)__VSHPROPID.VSHPROPID_ProjectIDGuid, out Guid projectGuid);
+
+                    if (projectGuid != null)
+                    {
+                        return projectGuid.ToString();
+                    }
+                }
+            }
+
+            return string.Empty;
+        }
+
         protected override string GetSelectedItemPath()
         {
             if (Dte.SelectedItems.Count > 0)
@@ -222,14 +246,14 @@ namespace Microsoft.Templates.UI.VisualStudio
             return GetActiveProjectPath();
         }
 
-        protected override string GetActiveProjectName()
+        public override string GetActiveProjectName()
         {
             var p = GetActiveProject();
 
             return p?.Name;
         }
 
-        protected override string GetActiveProjectPath()
+        public override string GetActiveProjectPath()
         {
             var p = GetActiveProject();
 
@@ -312,12 +336,12 @@ namespace Microsoft.Templates.UI.VisualStudio
                 }
                 else
                 {
-                    AppHealth.Current.Warning.TrackAsync("Unable to automatically perform Restore NuGet Packages for the solution. Please, try to manually restore the NuGet packages.").FireAndForget();
+                    AppHealth.Current.Warning.TrackAsync(StringRes.VsGenShellRestorePackagesWarningMessage).FireAndForget();
                 }
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"There was an error restoring the packages. Ex: {ex.ToString()}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"{StringRes.VsGenShellRestorePackagesErrorMessage} {ex.ToString()}").FireAndForget();
             }
         }
 
@@ -335,7 +359,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"There was an error collapsing the solution tree. Ex: {ex.ToString()}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"{StringRes.VsGenShellCollapseSolutionItemsMessage} {ex.ToString()}").FireAndForget();
             }
         }
 
@@ -398,6 +422,31 @@ namespace Microsoft.Templates.UI.VisualStudio
                 }
             }
             return internet;
+        }
+
+        public override void OpenItems(params string[] itemsFullPath)
+        {
+            if (itemsFullPath == null || itemsFullPath.Length == 0)
+            {
+                return;
+            }
+
+            foreach (var item in itemsFullPath)
+            {
+                switch (Path.GetExtension(item).ToLowerInvariant())
+                {
+                    case ".xaml":
+                        Dte.ItemOperations.OpenFile(item, EnvDTE.Constants.vsViewKindDesigner);
+                        break;
+
+                    default:
+                        if (!item.EndsWith(".xaml.cs"))
+                        {
+                            Dte.ItemOperations.OpenFile(item, EnvDTE.Constants.vsViewKindPrimary);
+                        }
+                        break;
+                }
+            }
         }
     }
 }

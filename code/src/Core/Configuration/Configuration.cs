@@ -20,6 +20,7 @@ using System.Text;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core
 {
@@ -31,10 +32,14 @@ namespace Microsoft.Templates.Core
         public string RemoteTelemetryKey { get; set; } = "<SET_YOUR_OWN_KEY>";
         public string LogFileFolderPath { get; set; } = @"WindowsTemplateStudio\Logs";
         public string RepositoryFolderName { get; set; } = @"WindowsTemplateStudio";
+        public string BackupFolderPath { get; set; } = @"WindowsTemplateStudio\Backups";
+        public string TempGenerationFolderPath { get; set; } = "WTSTempGeneration";
         public TraceEventType DiagnosticsTraceLevel { get; set; } = TraceEventType.Verbose;
+        public int DaysToKeepTempGenerations { get; set; } = 5;
         public int DaysToKeepDiagnosticsLogs { get; set; } = 5;
         public int VersionCheckingExpirationMinutes { get; set; } = 0;
         public List<string> AllowedPublicKeysPins { get; set; } = new List<string>() { };
+        public string CustomTelemetryEndpoint { get; set; } = string.Empty;
 
         public static string LoadedConfigFile { get; private set; }
 

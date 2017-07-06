@@ -10,10 +10,9 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-﻿using System.Windows;
+using System.Windows;
 using System.Windows.Controls;
-
-using Microsoft.Templates.UI.ViewModels;
+using Microsoft.Templates.UI.ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.TemplateSelectors
 {

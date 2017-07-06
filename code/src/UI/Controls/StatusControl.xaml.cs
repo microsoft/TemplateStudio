@@ -16,7 +16,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
 
-using Microsoft.Templates.UI.ViewModels;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.Controls
 {
@@ -33,32 +33,11 @@ namespace Microsoft.Templates.UI.Controls
         }
         public static readonly DependencyProperty StatusProperty = DependencyProperty.Register("Status", typeof(StatusViewModel), typeof(StatusControl), new PropertyMetadata(new StatusViewModel(StatusType.Empty, string.Empty), OnStatusPropertyChanged));
 
-        public string WizardVersion
-        {
-            get => (string)GetValue(WizardVersionProperty);
-            set => SetValue(WizardVersionProperty, value);
-        }
-        public static readonly DependencyProperty WizardVersionProperty = DependencyProperty.Register("WizardVersion", typeof(string), typeof(StatusControl), new PropertyMetadata(string.Empty, OnVersionInfoChanged));
-
-        public string TemplatesVersion
-        {
-            get => (string)GetValue(TemplatesVersionProperty);
-            set => SetValue(TemplatesVersionProperty, value);
-        }
-        public static readonly DependencyProperty TemplatesVersionProperty = DependencyProperty.Register("TemplatesVersion", typeof(string), typeof(StatusControl), new PropertyMetadata(string.Empty, OnVersionInfoChanged));
-
         private static void OnStatusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as StatusControl;
 
             control.UpdateStatus(e.NewValue as StatusViewModel);
-        }
-
-        private static void OnVersionInfoChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var control = d as StatusControl;
-
-            control.UpdateVersionInfo();
         }
 
         public StatusControl()
@@ -76,49 +55,66 @@ namespace Microsoft.Templates.UI.Controls
         private void OnHideTick(object sender, EventArgs e)
         {
             _hideTimer.Stop();
+            Hide();
+        }
+
+        private void Hide()
+        {
             Status.Status = StatusType.Empty;
             UpdateStatus(EmptyStatus);
         }
 
         private void UpdateStatus(StatusViewModel status)
         {
-            versionInfoPane.Visibility = Visibility.Collapsed;
-
             switch (status.Status)
             {
                 case StatusType.Information:
                     txtStatus.Text = status.Message;
                     txtIcon.Text = ConvertToChar(SymbolFonts.Completed);
-                    txtIcon.Foreground = FindResource("UIBlack") as SolidColorBrush;
-                    Background = new SolidColorBrush(Colors.Transparent);
+                    txtIcon.Foreground = FindResource("UIMiddleDarkBlue") as SolidColorBrush;
+                    txtIcon.FontSize = 25;
+                    backBackground.Opacity = 1.0;
+                    var brush = FindResource("UIBlue") as SolidColorBrush;
+                    brush.Opacity = 0.1;
+                    shapeBackground.Background = brush;
+                    verticalGrid.Background = FindResource("UIMiddleDarkBlue") as SolidColorBrush;
+                    iconClose.Foreground = FindResource("UIMiddleDarkGray") as SolidColorBrush;
+                    Panel.SetZIndex(this, 2);
                     break;
                 case StatusType.Warning:
                     txtStatus.Text = status.Message;
                     txtIcon.Text = ConvertToChar(SymbolFonts.ErrorBadge);
                     txtIcon.Foreground = FindResource("UIDarkYellow") as SolidColorBrush;
-                    // Color yellow = (Color)FindResource("UIYellowColor");
-                    // Background = new LinearGradientBrush(yellow, Colors.Transparent, 0);
-                    Background = FindResource("UIYellow") as SolidColorBrush;
+                    txtIcon.FontSize = 26;
+                    shapeBackground.Background = FindResource("UIYellow") as SolidColorBrush;
+                    backBackground.Opacity = 1.0;
+                    verticalGrid.Background = FindResource("UIDarkYellow") as SolidColorBrush;
+                    iconClose.Foreground = FindResource("UIDarkYellow") as SolidColorBrush;
+                    Panel.SetZIndex(this, 2);
                     break;
                 case StatusType.Error:
                     txtStatus.Text = status.Message;
                     txtIcon.Text = ConvertToChar(SymbolFonts.StatusErrorFull);
                     txtIcon.Foreground = FindResource("UIDarkRed") as SolidColorBrush;
-                    // Color red = (Color)FindResource("UIRedColor");
-                    // var brush = new LinearGradientBrush(red, Colors.Transparent, 0);
-                    var brush = FindResource("UIRed") as SolidColorBrush;
+                    txtIcon.FontSize = 25;
+                    brush = FindResource("UIRed") as SolidColorBrush;
                     brush.Opacity = 0.4;
-                    Background = brush;
+                    backBackground.Opacity = 1.0;
+                    verticalGrid.Background = FindResource("UIRed") as SolidColorBrush;
+                    iconClose.Foreground = FindResource("UIDarkRed") as SolidColorBrush;
+                    shapeBackground.Background = brush;
+                    Panel.SetZIndex(this, 2);
                     break;
                 default:
-
                     txtStatus.Text = " ";
                     txtIcon.Text = " ";
-
-                    Background = new SolidColorBrush(Colors.Transparent);
+                    backBackground.Opacity = 0.0;
+                    shapeBackground.Background = new SolidColorBrush(Colors.Transparent);
+                    verticalGrid.Background = new SolidColorBrush(Colors.Transparent);
+                    iconClose.Foreground = new SolidColorBrush(Colors.Transparent);
+                    Panel.SetZIndex(this, 0);
                     break;
             }
-            UpdateVersionInfo();
             if (status.AutoHide == true)
             {
                 _hideTimer.Start();
@@ -134,8 +130,9 @@ namespace Microsoft.Templates.UI.Controls
             return char.ConvertFromUtf32((int)font);
         }
 
-        private void UpdateVersionInfo() => versionInfoPane.Visibility = HasVersionInfo() && (Status.Status == StatusType.Empty) ? Visibility.Visible : Visibility.Collapsed;
-
-        private bool HasVersionInfo() => !string.IsNullOrEmpty(WizardVersion) && !string.IsNullOrEmpty(TemplatesVersion);
+        private void OnCloseClicked(object sender, RoutedEventArgs e)
+        {
+            Hide();
+        }
     }
 }

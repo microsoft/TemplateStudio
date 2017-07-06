@@ -15,6 +15,7 @@ using System.Diagnostics;
 using SystemTasks = System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
@@ -26,12 +27,12 @@ namespace Microsoft.Templates.Core.Diagnostics
             {
                 await SafeTrackAsync(() =>
                 {
-                    string header = $"========== Tracked Exception [{DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}] ==========\n";
+                    string header = $"========== {StringRes.ExceptionTrackedString} [{DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}] ==========\n";
                     GenContext.ToolBox.Shell.WriteOutput(header);
 
                     if (message != null)
                     {
-                        GenContext.ToolBox.Shell.WriteOutput($"AdditionalMessage: {message}\n");
+                        GenContext.ToolBox.Shell.WriteOutput($"{StringRes.AdditionalMessageString}: {message}\n");
                     }
 
                     GenContext.ToolBox.Shell.WriteOutput($"{ex.ToString()}\n");
@@ -53,7 +54,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
                     if (ex != null)
                     {
-                        string header = $"----------- Addtional Exception Info -----------\n";
+                        string header = $"----------- {StringRes.AddtionalExceptionInfoString} -----------\n";
                         string footer = $"{new string('-', header.Length - 2)}\n";
                         string exceptionInfo = header + $"{ex.ToString()}\n" + footer;
                         GenContext.ToolBox.Shell.WriteOutput(exceptionInfo);

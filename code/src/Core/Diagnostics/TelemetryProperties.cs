@@ -25,6 +25,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         public static string GenEngineMessage { get; private set; } = TelemetryEvents.Prefix + "GenEngineMessage";
         public static string WizardType { get; private set; } = TelemetryEvents.Prefix + "WizardType";
         public static string WizardStatus { get; private set; } = TelemetryEvents.Prefix + "WizardStatus";
+        public static string WizardAction { get; private set; } = TelemetryEvents.Prefix + "WizardAction";
         public static string LastStep { get; private set; } = TelemetryEvents.Prefix + "LastStep";
         public static string EventName { get; private set; } = TelemetryEvents.Prefix + "EventName";
         public static string VisualStudioVersion { get; private set; } = TelemetryEvents.Prefix + "VsVersion";
@@ -34,5 +35,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         public static string VisualStudioActiveProjectGuid { get; private set; } = TelemetryEvents.Prefix + "VsActiveProjectGuid";
         public static string SummaryItemEditAction { get; private set; } = TelemetryEvents.Prefix + "ItemEditAction";
         public static string VsProjectCategory { get; private set; } = TelemetryEvents.Prefix + "Category";
+        public static string NewItemType { get; private set; } = TelemetryEvents.Prefix + "NewItemType";
+        public static string GenSource { get; private set; } = TelemetryEvents.Prefix + "GenSource";
     }
 }

@@ -1,0 +1,229 @@
+﻿<Page x:Class="Microsoft.Templates.UI.Views.NewItem.ChangesSummaryView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
+      xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
+      xmlns:templateSelector="clr-namespace:Microsoft.Templates.UI.TemplateSelectors"
+      xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <converters:StringVisibilityConverter x:Key="StringVisibilityConverter" />
+
+            <DataTemplate x:Key="ChangesSummaryExpanderHeaderTemplate">
+                <TextBlock Text="{Binding}" Style="{StaticResource TextSummaryGroupHeader}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="ListItemTemplate">
+                <Grid Width="281" ToolTip="{Binding Subject}" Height="30">
+                    <Grid Margin="{StaticResource Margin_S_All}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1" Text="&#xE91F;" Style="{StaticResource IconButtonTextStyle}" Foreground="{Binding CircleColor, FallbackValue=Red}" FontSize="7" VerticalAlignment="Center"/>
+                        <Image Grid.Column="2" Source="{Binding Icon}" Margin="{StaticResource Margin_M_Left}" VerticalAlignment="Center" Stretch="None"/>
+                        <TextBlock Grid.Column="3" Text="{Binding Subject}" Style="{StaticResource ChangesSummaryListFileNameStyle}" Margin="{StaticResource Margin_S_Left}"/>
+                    </Grid>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent"/>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="ListLicenseTemplate">
+                <Grid Margin="{StaticResource Margin_S_Top}">
+                    <TextBlock Margin="{StaticResource Margin_M_LeftRight}" VerticalAlignment="Center">
+                        <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
+                            <TextBlock Text="{Binding Text}" Style="{StaticResource TextSummaryLicenseStyle}" VerticalAlignment="Center" Margin="{StaticResource Margin_L_Left}"/>
+                        </Hyperlink>
+                    </TextBlock>
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="ImageFileTemplate">
+                <Image Source="{Binding TempFile}" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </DataTemplate>
+
+            <DataTemplate x:Key="CodeFileTemplate">
+                <controls:CodeViewer Item="{Binding}" Margin="{StaticResource Margin_L_LeftRight}"/>
+            </DataTemplate>
+
+            <DataTemplate x:Key="CodeModifiedFileTemplate">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Background="{StaticResource UILightGray}" Margin="{StaticResource Margin_L_LeftRight}">
+                        <TextBlock Text="Resulting file" Margin="40,0,0,0" VerticalAlignment="Center"/>
+                    </Grid>
+                    <controls:CodeViewer Grid.Row="1" Item="{Binding}" Margin="{StaticResource Margin_L_LeftRight}"/>
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="CodeConflictingFileTemplate">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Background="{StaticResource UILightGray}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Exisiting file" Margin="40,0,0,0" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Text="Generated file" Margin="30,0,0,0" VerticalAlignment="Center"/>
+                    </Grid>
+                    <controls:CodeViewer Grid.Row="1" Item="{Binding}" Margin="{StaticResource Margin_L_LeftRight}"/>
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="SimpleDetailTemplate">
+                <ContentPresenter Content="{Binding}">
+                    <ContentPresenter.ContentTemplateSelector>
+                        <templateSelector:FileExtensionTemplateSelector
+                            ImageFileTemplate="{StaticResource ImageFileTemplate}"
+                            CodeFileTemplate="{StaticResource CodeFileTemplate}"/>
+                    </ContentPresenter.ContentTemplateSelector>
+                </ContentPresenter>
+            </DataTemplate>
+            <DataTemplate x:Key="ModifiedDetailTemplate">
+                <ContentPresenter Grid.Row="1" Content="{Binding}">
+                    <ContentPresenter.ContentTemplateSelector>
+                        <templateSelector:FileExtensionTemplateSelector
+                            ImageFileTemplate="{StaticResource ImageFileTemplate}"
+                            CodeFileTemplate="{StaticResource CodeModifiedFileTemplate}"/>
+                    </ContentPresenter.ContentTemplateSelector>
+                </ContentPresenter>
+            </DataTemplate>
+            <DataTemplate x:Key="ConflictingDetailTemplate">
+                <ContentPresenter Content="{Binding}">
+                    <ContentPresenter.ContentTemplateSelector>
+                        <templateSelector:FileExtensionTemplateSelector
+                            ImageFileTemplate="{StaticResource ImageFileTemplate}"
+                            CodeFileTemplate="{StaticResource CodeConflictingFileTemplate}"/>
+                    </ContentPresenter.ContentTemplateSelector>
+                </ContentPresenter>
+            </DataTemplate>
+
+            <templateSelector:FileStatusTemplateSelector
+                x:Key="DetailTemplateSelector"
+                NewFileTemplate="{StaticResource SimpleDetailTemplate}"
+                ModifiedFileTemplate="{StaticResource ModifiedDetailTemplate}"
+                ConflictingFileTemplate="{StaticResource ConflictingDetailTemplate}"
+                WarningFileTemplate="{StaticResource SimpleDetailTemplate}"
+                UnchangedFileTemplate="{StaticResource SimpleDetailTemplate}"/>
+
+
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="17"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Background="{StaticResource UILightGray}" />
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.RowSpan="2" HorizontalAlignment="Right" Width="17" Background="{StaticResource UILightGray}"/>
+            <ScrollViewer>
+                <StackPanel>
+                    <ItemsControl ItemsSource="{Binding ChangesSummary.FileGroups}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Expander
+                                    Margin="{StaticResource Margin_M_Top}"
+                                    Header="{Binding Name}"
+                                    HeaderTemplate="{StaticResource ChangesSummaryExpanderHeaderTemplate}"
+                                    IsExpanded="True"
+                                    BorderThickness="0"
+                                    Visibility="{Binding HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <ListView
+                                        Focusable="False"
+                                        Style="{StaticResource ListViewChangesSummaryFiles}"
+                                        ItemTemplate="{StaticResource ListItemTemplate}"                                
+                                        ItemsSource="{Binding Templates}"
+                                        SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
+                                </Expander>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Expander
+                        Margin="{StaticResource Margin_M_Top}"
+                        Header="{x:Static res:StringRes.ChangesSummaryCategoryLicenses}"
+                        HeaderTemplate="{StaticResource ChangesSummaryExpanderHeaderTemplate}"
+                        IsExpanded="True"
+                        BorderThickness="0"
+                        Visibility="{Binding ChangesSummary.HasLicenses, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <ItemsControl
+                            Focusable="False"
+                            ItemTemplate="{StaticResource ListLicenseTemplate}"                                
+                            ItemsSource="{Binding ChangesSummary.Licenses}" />
+                    </Expander>
+                </StackPanel>
+            </ScrollViewer>
+            <Grid Grid.Row="1" Margin="0,0,17,0">
+                <TextBlock Margin="{StaticResource Margin_M_All}" Style="{StaticResource TextSummaryTermsStyle}" Text="{x:Static res:StringRes.SummaryTerms}" />
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="17"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackPanel Margin="{StaticResource Margin_L_LeftTopRight}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Foreground="{Binding ChangesSummary.SelectedFile.CircleColor}" Text="{Binding ChangesSummary.SelectedFile.DetailTitle}" Style="{StaticResource ChangesSummaryDetailTitleStyle}" />
+                        <TextBlock Grid.Column="1" VerticalAlignment="Bottom">
+                            <Hyperlink Command="{Binding ChangesSummary.MoreDetailsCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
+                                <Grid>
+                                    <TextBlock Text="&#xECCA;" FontSize="16" Style="{StaticResource IconButtonTextStyle}" />
+                                    <TextBlock Text="&#xE11B;" FontSize="9" Style="{StaticResource IconButtonTextStyle}" FontWeight="Bold"/>
+                                </Grid>
+                            </Hyperlink>
+                        </TextBlock>
+                    </Grid>
+                    <TextBlock Margin="{StaticResource Margin_S_Top}" Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}"/>
+                </StackPanel>
+
+                <Grid Grid.Row="1" Background="{StaticResource UIGray}" Margin="{StaticResource Margin_L_LeftTopRight}" Height="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="{Binding ChangesSummary.SelectedFile.Icon}" Margin="{StaticResource Margin_M_Left}" Stretch="None" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Text="{Binding ChangesSummary.SelectedFile.Subject}" Margin="{StaticResource Margin_M_Left}" VerticalAlignment="Center"/>
+                </Grid>
+                <ContentPresenter Grid.Row="2" Content="{Binding ChangesSummary.SelectedFile}" ContentTemplateSelector="{StaticResource DetailTemplateSelector}" />
+            </Grid>
+
+            <Grid Grid.Column="1" Background="{StaticResource UILightGray}"/>
+        </Grid>
+    </Grid>
+</Page>
