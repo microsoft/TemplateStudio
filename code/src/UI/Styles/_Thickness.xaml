@@ -23,6 +23,8 @@
     <Thickness x:Key="Margin_L_All">15</Thickness>
     <Thickness x:Key="Margin_L_Left">15,0,0,0</Thickness>
     <Thickness x:Key="Margin_L_Top">0,15,0,0</Thickness>
+    <Thickness x:Key="Margin_L_LeftRight">15,0</Thickness>
+    <Thickness x:Key="Margin_L_LeftTopRight">15,15,15,0</Thickness>
 
     <Thickness x:Key="Margin_XL_Left">20,0,0,0</Thickness>
     <Thickness x:Key="Margin_XL_LeftRight">20,0</Thickness>
