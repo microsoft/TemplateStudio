@@ -395,6 +395,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 NewVersionAvailable = true;
             }
-        }        
+        }
     }
 }
