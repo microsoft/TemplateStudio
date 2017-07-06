@@ -11,6 +11,7 @@
 // ******************************************************************
 
 using System;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {

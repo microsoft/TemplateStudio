@@ -296,7 +296,7 @@
     <value>Name already exists</value>
   </data>
   <data name="ValidationError_BadFormat" xml:space="preserve">
-    <value>Only alphanumeric and '-' characters are allowed</value>
+    <value>Only alphanumeric and '_' characters are allowed</value>
   </data>
   <data name="ValidationError_CanNotRemoveTemplate_SF" xml:space="preserve">
     <value>You can not remove {0} because {1} {2} depends on it.</value>
@@ -363,6 +363,33 @@
   </data>
   <data name="UnableToRefreshProject" xml:space="preserve">
     <value>Unable to refresh the project. Try to refresh it manually.</value>
+  </data>
+  <data name="GenControllerUnsafeGenerateAsyncMessage" xml:space="preserve">
+    <value>Generating the template {0} to {1}.</value>
+  </data>
+  <data name="InformationWindowIntilizeViewModelMessage" xml:space="preserve">
+    <value>"{0} is not expected as valid type for the Information Window."</value>
+  </data>
+  <data name="UndefinedErrorString" xml:space="preserve">
+    <value>UndefinedError</value>
+  </data>
+  <data name="GenerationFinishedString" xml:space="preserve">
+    <value>Generation finished</value>
+  </data>
+  <data name="SolutionWizardRunFinishedMessage" xml:space="preserve">
+    <value>Creating Windows Template Studio project...</value>
+  </data>
+  <data name="VsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
+    <value>There was an error collapsing the solution tree. Ex:</value>
+  </data>
+  <data name="VsGenShellRestorePackagesErrorMessage" xml:space="preserve">
+    <value>There was an error restoring the packages. Ex:</value>
+  </data>
+  <data name="VsGenShellRestorePackagesWarningMessage" xml:space="preserve">
+    <value>Unable to automatically perform Restore NuGet Packages for the solution. Please, try to manually restore the NuGet packages.</value>
+  </data>
+  <data name="VsGenShellShowStatusBarMessageMessage" xml:space="preserve">
+    <value>There was an error showing status message. Ex:</value>
   </data>
   <data name="SummaryDragAndDrop" xml:space="preserve">
     <value>Reorder (Ctrl + arrows)</value>

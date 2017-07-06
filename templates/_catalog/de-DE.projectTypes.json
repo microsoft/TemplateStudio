@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Blank",
+        "displayName": "Leer",
+        "summary": "Dieses Grundprojekt ist eine leere Leinwand, auf der Sie Ihre App aufbauen können."
+    },
+    {
+        "name": "SplitView",
+        "displayName": "Navigationsbereich",
+        "summary": "Für die Navigation zwischen den Seiten ist ein Navigationsbereich (oder 'Hamburgermenü') enthalten."
+    },
+    {
+        "name": "TabbedPivot",
+        "displayName": "Pivot und Tabs",
+        "summary": "Tabs über die Oberseite erlauben schnelles Navigieren zwischen Seiten."
+    }
+]

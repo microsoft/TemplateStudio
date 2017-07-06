@@ -12,6 +12,7 @@
 
 using System.Windows;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.Views.NewProject
 {
@@ -75,7 +76,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
             }
             else
             {
-                throw new System.Exception($"{info.GetType().ToString()} is not expected as valid type for the Information Window.");
+                throw new System.Exception(string.Format(StringRes.InformationWindowIntilizeViewModelMessage, info.GetType().ToString()));
             }
 
             ViewModel.InformationVisibility = Visibility.Visible;

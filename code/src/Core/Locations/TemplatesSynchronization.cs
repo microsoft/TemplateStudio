@@ -12,10 +12,11 @@
 
 using System;
 using System.IO;
-using System.Reflection;
 using System.Threading.Tasks;
+using System.Reflection;
 
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -228,7 +229,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             catch (Exception ex)
             {
-                await AppHealth.Current.Warning.TrackAsync("Unable to purge old content.", ex);
+                await AppHealth.Current.Warning.TrackAsync(StringRes.TemplatesSynchronizationPurgeContentAsyncMessage, ex);
             }
         }
 

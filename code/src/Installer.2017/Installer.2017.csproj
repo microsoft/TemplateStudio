@@ -73,17 +73,127 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\RelayCommandPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\StringRes.de-DE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.de-DE.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\StringRes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StringRes.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ResourcesExtensions.cs" />
+    <Compile Include="Resources\StringRes.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.fr-FR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.fr-FR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.it-IT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.it-IT.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.ja-JP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.ja-JP.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.ko-KR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.ko-KR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.cs-CZ.Designer.cs">
+      <DependentUpon>StringRes.cs-CZ.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\StringRes.pl-PL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.pl-PL.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.pt-BR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.pt-BR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.ru-RU.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.ru-RU.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.tr-TR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.tr-TR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.zh-CN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.zh-CN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.zh-TW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.zh-TW.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\StyleCop.json">
       <Link>StyleCop.json</Link>
     </AdditionalFiles>
+    <VSCTCompile Include="Commands\RelayCommandPackage.ru-RU.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
+    <VSCTCompile Include="Commands\RelayCommandPackage.cs-CZ.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
+    <VSCTCompile Include="Commands\RelayCommandPackage.de-DE.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
+    <VSCTCompile Include="Commands\RelayCommandPackage.es-ES.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
+    <VSCTCompile Include="Commands\RelayCommandPackage.fr-FR.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
+    <VSCTCompile Include="Commands\RelayCommandPackage.it-IT.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
+    <VSCTCompile Include="Commands\RelayCommandPackage.ja-JP.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
+    <VSCTCompile Include="Commands\RelayCommandPackage.ko-KR.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
+    <VSCTCompile Include="Commands\RelayCommandPackage.pl-PL.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
+    <VSCTCompile Include="Commands\RelayCommandPackage.pt-BR.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
+    <VSCTCompile Include="Commands\RelayCommandPackage.tr-TR.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
+    <VSCTCompile Include="Commands\RelayCommandPackage.zh-CN.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
+    <VSCTCompile Include="Commands\RelayCommandPackage.zh-TW.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
+    <Content Include="zh-CN\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="zh-TW\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="..\..\TestKey.snk">
       <Link>TestKey.snk</Link>
     </None>
@@ -91,9 +201,9 @@
       <Link>README.md</Link>
     </None>
     <None Include="app.config" />
-    <VSCTCompile Include="Commands\RelayCommandPackage.vsct">
+    <VSCTCompile Include="Commands\RelayCommandPackage.en-US.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
-      <Generator>VsctGenerator</Generator>
+      <SubType>Designer</SubType>
     </VSCTCompile>
     <Content Include="Commands\Resources\RelayCommand.png" />
     <Content Include="Commands\Resources\RelayCommandPackage.ico" />
@@ -105,18 +215,90 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <VSIXSubPath>InstalledTemplates</VSIXSubPath>
     </Content>
+    <Content Include="Content\EULA.cs-CZ.rtf">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Content\EULA.de-DE.rtf">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Content\EULA.es-ES.rtf">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Content\EULA.fr-FR.rtf">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Content\EULA.it-IT.rtf">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Content\EULA.ja-JP.rtf">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Content\EULA.ko-KR.rtf">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Content\EULA.pl-PL.rtf">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Content\EULA.pt-BR.rtf">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Content\EULA.ru-RU.rtf">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Content\EULA.tr-TR.rtf">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Content\EULA.zh-CN.rtf">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Content\EULA.zh-TW.rtf">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="cs-CZ\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="de-DE\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="es-ES\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="fr-FR\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="it-IT\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ja-JP\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ko-KR\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="pl-PL\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="pt-BR\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Resources\windowsTemplateStudio_Logo_200x200.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Resources\windowsTemplateStudio_Logo_32x32.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="ru-RU\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="tr-TR\Extension.vsixlangpack">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="WindowsTemplateStudio.config.json">
@@ -259,13 +441,117 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Commands\VSPackage.cs-CZ.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <LogicalName>VSPackage.cs-CZ.Resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\VSPackage.de-DE.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <LogicalName>VSPackage.de-DE.Resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\VSPackage.es-ES.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <LogicalName>VSPackage.es-ES.Resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\VSPackage.fr-FR.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <LogicalName>VSPackage.fr-FR.Resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\VSPackage.it-IT.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <LogicalName>VSPackage.it-IT.Resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\VSPackage.ja-JP.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <LogicalName>VSPackage.ja-JP.Resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\VSPackage.ko-KR.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <LogicalName>VSPackage.ko-KR.Resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\VSPackage.pl-PL.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <LogicalName>VSPackage.pl-PL.Resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\VSPackage.pt-BR.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <LogicalName>VSPackage.pt-BR.Resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\VSPackage.ru-RU.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <LogicalName>VSPackage.ru-RU.Resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\VSPackage.tr-TR.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <LogicalName>VSPackage.tr-TR.Resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\VSPackage.zh-CN.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <LogicalName>VSPackage.zh-CN.Resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\VSPackage.zh-TW.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <LogicalName>VSPackage.zh-TW.Resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.de-DE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.de-DE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.es-ES.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.fr-FR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.fr-FR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.it-IT.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.it-IT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.ja-JP.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.ja-JP.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.ko-KR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.ko-KR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.cs-CZ.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.cs-CZ.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.pl-PL.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.pl-PL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.pt-BR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.pt-BR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Commands\VSPackage.resx">
       <MergeWithCTO>true</MergeWithCTO>
-      <ManifestResourceName>VSPackage</ManifestResourceName>
+      <LogicalName>VSPackage.Resources</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.ru-RU.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.ru-RU.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.tr-TR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.tr-TR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.zh-TW.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.zh-TW.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

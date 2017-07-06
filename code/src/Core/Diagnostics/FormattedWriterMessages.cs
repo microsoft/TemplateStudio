@@ -13,11 +13,17 @@
 using System;
 using System.Diagnostics;
 
+using Microsoft.Templates.Core.Resources;
+
 namespace Microsoft.Templates.Core.Diagnostics
 {
     public class FormattedWriterMessages
     {
-        public const string ExHeader = "===================== Exception Info =====================";
+        private static string exHeader = $"===================== {StringRes.ExceptionInfoString} =====================";
+        public static string ExHeader
+        {
+            get { return exHeader; }
+        }
         public const string ExFooter = "----------------------------------------------------------";
         public static string LogEntryStart
         {

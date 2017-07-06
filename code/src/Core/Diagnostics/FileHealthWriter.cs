@@ -19,6 +19,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Microsoft.Templates.Core.Resources;
+
 namespace Microsoft.Templates.Core.Diagnostics
 {
     public class FileHealthWriter : IHealthWriter
@@ -71,7 +73,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
 
             var sb = new StringBuilder();
-            sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{TraceEventType.Critical.ToString():11}\tException Tracked. {(message ?? "")}");
+            sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{TraceEventType.Critical.ToString():11}\t{StringRes.ExceptionTrackedString}. {(message ?? "")}");
 
             if (ex != null)
             {
@@ -143,8 +145,8 @@ namespace Microsoft.Templates.Core.Diagnostics
 
             var sb = new StringBuilder();
 
-            sb.AppendLine($"\r\n>>>>>>>>>>>>>> Log started {DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}");
-            sb.AppendLine($">>>>>>>>>>>>>> Assembly File Version: {GetVersion()}");
+            sb.AppendLine($"\r\n>>>>>>>>>>>>>> {StringRes.LogStartedString} {DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}");
+            sb.AppendLine($">>>>>>>>>>>>>> {StringRes.AssemblyFileVersionString}: {GetVersion()}");
 
             File.AppendAllText(LogFileName, sb.ToString());
         }

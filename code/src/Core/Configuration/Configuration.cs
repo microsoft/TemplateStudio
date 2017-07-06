@@ -20,6 +20,7 @@ using System.Text;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core
 {

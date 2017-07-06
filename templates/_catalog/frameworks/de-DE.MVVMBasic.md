@@ -1,0 +1,3 @@
+Dies ist eine generische Version eines MVVM-Musters. Das [Model-View-ViewModel-Muster] (https://de.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) kann auf allen XAML-Plattformen verwendet werden. Sein Ziel ist es, eine saubere Trennung von Bedenken zwischen den Bedienoberflächen-Steuerelementen und deren Logik zu schaffen.
+
+Es gibt drei Kernkomponenten im MVVM-Muster: das Modell, die Ansicht und das Sichtmodell. Jeder dient einer deutlichen und getrennten Rolle.

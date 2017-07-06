@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Blank",
+        "displayName": "Blanko",
+        "summary": "Este proyecto básico es un lienzo en blanco sobre el que construir su aplicación."
+    },
+    {
+        "name": "SplitView",
+        "displayName": "Panel de navegación",
+        "summary": "Se incluye un panel de navegación (o 'menú de hamburguesas') para navegar entre páginas."
+    },
+    {
+        "name": "TabbedPivot",
+        "displayName": "Pivot y pestañas",
+        "summary": "Las pestañas en la parte superior permiten navegar rápidamente entre las páginas."
+    }
+]

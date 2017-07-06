@@ -83,6 +83,15 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Fact]
+        public void Infer_Clean2()
+        {
+            var existing = new string[] { };
+            var result = Naming.Infer("ÑäöÜ!Page", new List<Validator>());
+
+            Assert.Equal("ÑäöÜPage", result);
+        }
+
+        [Fact]
         public void Infer_TitleCase()
         {
             var existing = new string[] { };

@@ -127,7 +127,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
                     if (string.IsNullOrWhiteSpace(item.ErrorMessage))
                     {
-                        item.ErrorMessage = "UndefinedError";
+                        item.ErrorMessage = StringRes.UndefinedErrorString;
                     }
                     MainViewModel.Current.SetValidationErrors(item.ErrorMessage);
                     throw new Exception(item.ErrorMessage);
@@ -158,7 +158,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
                 if (string.IsNullOrWhiteSpace(template.ErrorMessage))
                 {
-                    template.ErrorMessage = "UndefinedError";
+                    template.ErrorMessage = StringRes.UndefinedErrorString;
                 }
                 MainViewModel.Current.SetValidationErrors(template.ErrorMessage);
                 throw new Exception(template.ErrorMessage);

@@ -16,6 +16,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.Core.Locations;
 
 namespace Microsoft.Templates.Core.Gen
@@ -33,7 +34,7 @@ namespace Microsoft.Templates.Core.Gen
             {
                 if (_currentContext == null)
                 {
-                    throw new InvalidOperationException("There is no context for the current gen execution, call Current_set first");
+                    throw new InvalidOperationException(StringRes.GenContextCurrentInvalidOperationMessage);
                 }
                 return _currentContext;
             }
@@ -51,7 +52,7 @@ namespace Microsoft.Templates.Core.Gen
         public static void Bootstrap(TemplatesSource source, GenShell shell, Version wizardVersion)
         {
             AppHealth.Current.AddWriter(new ShellHealthWriter());
-            AppHealth.Current.Info.TrackAsync($"Configuration file loaded: {Configuration.LoadedConfigFile}").FireAndForget();
+            AppHealth.Current.Info.TrackAsync($"{StringRes.ConfigurationFileLoadedString}: {Configuration.LoadedConfigFile}").FireAndForget();
 
             string hostVersion = $"{wizardVersion.Major}.{wizardVersion.Minor}";
 

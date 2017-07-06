@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AdditionalMessageString" xml:space="preserve">
+    <value>Дополнительное сообщение</value>
+  </data>
+  <data name="AddtionalExceptionInfoString" xml:space="preserve">
+    <value>Дополнительная информация об исключении</value>
+  </data>
+  <data name="AssemblyFileVersionString" xml:space="preserve">
+    <value>Версия файла сборки</value>
+  </data>
+  <data name="CompositionQueryParseMessage" xml:space="preserve">
+    <value>Запрос "{0}" недействителен. Допустимыми операторами являются «==» или «! =». Несколько условий разделяются символом «&amp;».</value>
+  </data>
+  <data name="ConfigurationFileLoadedString" xml:space="preserve">
+    <value>Загружен файл конфигурации</value>
+  </data>
+  <data name="CurrentContentExpirationString" xml:space="preserve">
+    <value>Окончание срока действия</value>
+  </data>
+  <data name="ExceptionInfoString" xml:space="preserve">
+    <value>Информация об исключении</value>
+  </data>
+  <data name="ExceptionString" xml:space="preserve">
+    <value>исключение</value>
+  </data>
+  <data name="ExceptionTrackedString" xml:space="preserve">
+    <value>Исключение отслеживается</value>
+  </data>
+  <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
+    <value>Не удалось найти файл '{0}', чтобы включить следующие изменения. Ознакомьтесь с блоками кода, чтобы включить изменения вручную, если это необходимо в вашем проекте.</value>
+  </data>
+  <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
+    <value>Не удалось найти ожидаемую строку `{0}` в файле '{1}'. Слизируйте содержимое из файла postaction вручную.</value>
+  </data>
+  <data name="FsSafeCopyFileMessage" xml:space="preserve">
+    <value>Папка {0} не может быть скопирована в {1}. Ошибка: {2}</value>
+  </data>
+  <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
+    <value>Невозможно удалить папку {0}. Ошибка: {1}</value>
+  </data>
+  <data name="FsSafeDeleteFileMessage" xml:space="preserve">
+    <value>Файл {0} не может быть удален. Ошибка: {1}</value>
+  </data>
+  <data name="FsSafeMoveDirectoryMessage" xml:space="preserve">
+    <value>Папку {0} нельзя перенести в {1}. Ошибка: {2}</value>
+  </data>
+  <data name="GenContextCurrentInvalidOperationMessage" xml:space="preserve">
+    <value>Нет контекста для текущего исполнения генератора, сначала вызовите Current_set</value>
+  </data>
+  <data name="GenerateTestCertificatePostActionExecute" xml:space="preserve">
+    <value>Ошибка создания сертификата.</value>
+  </data>
+  <data name="LogStartedString" xml:space="preserve">
+    <value>Запуск журнала</value>
+  </data>
+  <data name="MarkdownHeader" xml:space="preserve">
+    <value>* Это файл разметки, чтобы улучшить визуализацию, вы можете установить расширение Visual Studio для файлов разметки, например: [Markdown Editor] (https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor) *</value>
+  </data>
+  <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
+    <value>Нет цели слияния для файла '{0}'</value>
+  </data>
+  <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
+    <value>Строка {0} не найдена в файле '{1}'</value>
+  </data>
+  <data name="MergePostActionExecuteMessage" xml:space="preserve">
+    <value>Нет цели слияния для файла '{0}'</value>
+  </data>
+  <data name="NamingInferMessage" xml:space="preserve">
+    <value>Не удалось вывести имя. Слишком много итераций</value>
+  </data>
+  <data name="PackageCertificateString" xml:space="preserve">
+    <value>Сертификат пакета</value>
+  </data>
+  <data name="RemoteTemplatesSourceDownloadContentKoErrorMessage" xml:space="preserve">
+    <value>Ошибка загрузки из {0}. Для загрузки обновлений шаблона требуется подключение к Интернету.</value>
+  </data>
+  <data name="RemoteTemplatesSourceDownloadContentKoInfoMessage" xml:space="preserve">
+    <value>Содержимое шаблонов не может быть загружено прямо сейчас, мы попробуем его позже.</value>
+  </data>
+  <data name="RemoteTemplatesSourceDownloadContentOkMessage" xml:space="preserve">
+    <value>Содержимое шаблонов загружено в {0} из {1}.</value>
+  </data>
+  <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
+    <value>Ошибка синхронизации шаблонов. Положение дел:</value>
+  </data>
+  <data name="StatusAddingItems" xml:space="preserve">
+    <value>Добавление элементов в проект ...</value>
+  </data>
+  <data name="StatusOpeningItems" xml:space="preserve">
+    <value>Открытие сгенерированных файлов ...</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>Пожалуйста, сравните и убедитесь, что все в нужном месте.</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Пожалуйста, сравните и убедитесь, что все в нужном месте.</value>
+  </data>
+  <data name="SyncInstructionsConflictingFiles" xml:space="preserve">
+    <value>## Конфликтующие файлы:</value>
+  </data>
+  <data name="SyncInstructionsConflictingFilesDescription" xml:space="preserve">
+    <value>Эти файлы уже существуют в вашем проекте и также были сгенерированы как часть нового элемента.</value>
+  </data>
+  <data name="SyncInstructionsDescription" xml:space="preserve">
+    <value>Следуйте указанным шагам, чтобы включить в проект новый элемент:</value>
+  </data>
+  <data name="SyncInstructionsFileName" xml:space="preserve">
+    <value>Шаги по включению нового элемента generation.md</value>
+  </data>
+  <data name="SyncInstructionsHeader" xml:space="preserve">
+    <value># Шаги по включению нового поколения элементов</value>
+  </data>
+  <data name="SyncInstructionsMergeFile" xml:space="preserve">
+    <value>### Необходимые изменения в файле '{0}':</value>
+  </data>
+  <data name="SyncInstructionsMergeFileError" xml:space="preserve">
+    <value>Никакой файл предварительного просмотра не может быть сгенерирован, следующие изменения не могут быть интегрированы:</value>
+  </data>
+  <data name="SyncInstructionsMergeFilePreview" xml:space="preserve">
+    <value>Предварительный просмотр изменений в: [{0}] ({0})</value>
+  </data>
+  <data name="SyncInstructionsModifiedFiles" xml:space="preserve">
+    <value>## Измененные файлы:</value>
+  </data>
+  <data name="SyncInstructionsModifiedFilesDescription" xml:space="preserve">
+    <value>Чтобы интегрировать ваш новый элемент с существующим проектом, примените следующие изменения:</value>
+  </data>
+  <data name="SyncInstructionsNewFiles" xml:space="preserve">
+    <value>## Новые файлы:</value>
+  </data>
+  <data name="SyncInstructionsNewFilesDescription" xml:space="preserve">
+    <value>Скопируйте и добавьте в проект следующие файлы:</value>
+  </data>
+  <data name="SyncInstructionsTempFolder" xml:space="preserve">
+    <value>Вы можете найти все указанные файлы во временной папке: {0}</value>
+  </data>
+  <data name="SyncInstructionsUnchangedFiles" xml:space="preserve">
+    <value>## Без изменений:</value>
+  </data>
+  <data name="SyncInstructionsUnchangedFilesDescription" xml:space="preserve">
+    <value>Эти файлы уже существуют в вашем проекте, никаких действий не требуется:</value>
+  </data>
+  <data name="SyncSummaryConflictingFiles" xml:space="preserve">
+    <value>## Конфликтующие файлы:</value>
+  </data>
+  <data name="SyncSummaryConflictingFilesDescription" xml:space="preserve">
+    <value>Эти файлы уже существуют в вашем проекте и также были сгенерированы как часть нового элемента.</value>
+  </data>
+  <data name="SyncSummaryDescription" xml:space="preserve">
+    <value>В ваш проект были внесены следующие изменения:</value>
+  </data>
+  <data name="SyncSummaryFailedMerges" xml:space="preserve">
+    <value>## Не удалось изменить файлы:</value>
+  </data>
+  <data name="SyncSummaryFailedMergesDescription" xml:space="preserve">
+    <value>Не удалось слить следующие файлы:</value>
+  </data>
+  <data name="SyncSummaryFileName" xml:space="preserve">
+    <value>GenerationSummary.md</value>
+  </data>
+  <data name="SyncSummaryHeader" xml:space="preserve">
+    <value># Сводка резюме</value>
+  </data>
+  <data name="SyncSummaryMergeFile" xml:space="preserve">
+    <value>### Изменения в файле '{0}':</value>
+  </data>
+  <data name="SyncSummaryMergeFileError" xml:space="preserve">
+    <value>Следующие изменения не могут быть интегрированы:</value>
+  </data>
+  <data name="SyncSummaryMergeFilePreview" xml:space="preserve">
+    <value>См. Окончательный результат: [{0}] ({1})</value>
+  </data>
+  <data name="SyncSummaryModifiedFiles" xml:space="preserve">
+    <value>## Измененные файлы:</value>
+  </data>
+  <data name="SyncSummaryModifiedFilesDescription" xml:space="preserve">
+    <value>Были внесены следующие изменения:</value>
+  </data>
+  <data name="SyncSummaryNewFiles" xml:space="preserve">
+    <value>## Новые файлы:</value>
+  </data>
+  <data name="SyncSummaryNewFilesDescription" xml:space="preserve">
+    <value>Эти файлы были добавлены в ваш проект.</value>
+  </data>
+  <data name="SyncSummaryProjectFile" xml:space="preserve">
+    <value>ProjectFile</value>
+  </data>
+  <data name="SyncSummaryTempFolder" xml:space="preserve">
+    <value>Файлы из поколения во временной папке можно найти: {0}</value>
+  </data>
+  <data name="SyncSummaryTempGenerationFile" xml:space="preserve">
+    <value>температура</value>
+  </data>
+  <data name="TemplatesContentExtractedToString" xml:space="preserve">
+    <value>Содержимое шаблонов, извлеченное в</value>
+  </data>
+  <data name="TemplatesSourceExtractContentMessage" xml:space="preserve">
+    <value>Содержимое шаблонов невозможно извлечь.</value>
+  </data>
+  <data name="TemplatesSynchronizationPurgeContentAsyncMessage" xml:space="preserve">
+    <value>Не удалось очистить старый контент.</value>
+  </data>
+  <data name="TemplatexExtractMessage" xml:space="preserve">
+    <value>Недопустимые цифровые подписи в '{0}'. Содержимое было изменено или сертификат отсутствует, недействителен или не разрешен. Не удалось продолжить.</value>
+  </data>
+  <data name="TemplatexFindCertificateFoundMessage" xml:space="preserve">
+    <value>Найдено {0} сертификаты, соответствующие отпечатку {1} ​​в магазине {2}</value>
+  </data>
+  <data name="TemplatexFindCertificateNoPkMessage" xml:space="preserve">
+    <value>Полученный сертификат не имеет закрытого ключа.</value>
+  </data>
+  <data name="TemplatexFindCertificateNotOneMessage" xml:space="preserve">
+    <value>Более одного сертификата найдено совпадающим с thumbrint. Возврат первого.</value>
+  </data>
+  <data name="TemplatexGetSourceFilesMessage" xml:space="preserve">
+    <value>Указанный источник '{0}' недействителен. Или файл не существует или папка пуста.</value>
+  </data>
+  <data name="TemplatexLoadCertMessage" xml:space="preserve">
+    <value>Не найдено совпадений с соглашением thumbrint {0}. Поиск в CurrentUser/My и LocalMachine/Мои магазины.</value>
+  </data>
+  <data name="TemplatexPackAndSignMessage" xml:space="preserve">
+    <value>Сертификат с отпечатком пальца {0} не может быть найден в CurrentUser/My или LocalMachine/My.</value>
+  </data>
+  <data name="TemplatexSignAllPartsMessage" xml:space="preserve">
+    <value>Ошибка пакета sigingn.</value>
+  </data>
+  <data name="TemplatexValidatePackageCertificatesMessage" xml:space="preserve">
+    <value>Проверка сертификата подписи пакета не прошла.</value>
+  </data>
+  <data name="TemplatexVerifyCertificateMessage" xml:space="preserve">
+    <value>Сертификат '{0}' завершен с статусом '{1}'</value>
+  </data>
+  <data name="UserFriendlyPostActionMacroEndGroup" xml:space="preserve">
+    <value>Конец блока</value>
+  </data>
+  <data name="UserFriendlyPostActionMacroStartGroup" xml:space="preserve">
+    <value>Включить блок</value>
+  </data>
+</root>

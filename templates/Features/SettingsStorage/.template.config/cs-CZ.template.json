@@ -1,0 +1,6 @@
+{
+    "author": "Microsoft",
+    "name": "Settings Storage",
+    "description": "Setting storage is a class to simplify storing your application data.",
+    "identity": "wts.Feat.SettingsStorage"
+}

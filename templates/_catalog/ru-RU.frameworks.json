@@ -1,0 +1,17 @@
+[
+    {
+        "name": "MVVMBasic",
+        "displayName": "MVVM Базовый",
+        "summary": "Это общая версия шаблона MVVM. Шаблон Model-View-ViewModel может использоваться на всех платформах XAML."
+    },
+    {
+        "name": "MVVMLight",
+        "displayName": "MVVM Облегченный",
+        "summary": "MVVM Light - популярная сторонняя структура, основанная на шаблоне Model-View-ViewModel."
+    },
+    {
+        "name": "CodeBehind",
+        "displayName": "Код сзади",
+        "summary": "Это традиционная модель приложения, в котором логика обрабатывается в коде. Для быстрого применения это отличный вариант."
+    }
+]

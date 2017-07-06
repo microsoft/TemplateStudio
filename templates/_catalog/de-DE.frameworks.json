@@ -1,0 +1,17 @@
+[
+    {
+        "name": "MVVMBasic",
+        "displayName": "MVVM Basisch",
+        "summary": "Dies ist eine generische Version eines MVVM-Musters. Das Model-View-ViewModel-Muster kann auf allen XAML-Plattformen verwendet werden."
+    },
+    {
+        "name": "MVVMLight",
+        "displayName": "MVVM Licht",
+        "summary": "MVVM Light ist ein populäres Drittanbieter-Framework, das auf dem Model-View-ViewModel-Muster basiert."
+    },
+    {
+        "name": "CodeBehind",
+        "displayName": "Code hinter",
+        "summary": "Dies ist das traditionelle Modell für eine Anwendung, bei der die Logik im Code-behind behandelt wird. Für eine schnelle Anwendung ist dies eine gute Option."
+    }
+]

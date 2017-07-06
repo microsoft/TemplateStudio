@@ -72,7 +72,22 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             ConfigProjectType = configInfo.ProjectType;
         }
 
-        public void SetNewItemSetupTitle() => Title = string.Format(StringRes.NewItemTitle_SF, ConfigTemplateType.ToString().ToLower());
+        public void SetNewItemSetupTitle() => Title = string.Format(StringRes.NewItemTitle_SF, this.GetLocalizedTemplateTypeName(ConfigTemplateType).ToLower());
+
+        private string GetLocalizedTemplateTypeName(TemplateType templateType)
+        {
+            switch (templateType)
+            {
+                case TemplateType.Feature:
+                    return StringRes.TemplateTypeFeature;
+                case TemplateType.Page:
+                    return StringRes.TemplateTypePage;
+                case TemplateType.Project:
+                    return StringRes.TemplateTypeProjectType;
+                default:
+                    return templateType.ToString();
+            }
+        }
 
         public void SetChangesSummaryTitle()
         {
