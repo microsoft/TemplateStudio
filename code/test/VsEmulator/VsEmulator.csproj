@@ -138,7 +138,6 @@
     </Compile>
     <Compile Include="LoadProject\LoadProjectViewModel.cs" />
     <Compile Include="Main\MainViewModel.cs" />
-    <Compile Include="Naming\DirectoryExistsValidator.cs" />
     <Compile Include="TemplatesContent\TemplatesContentView.xaml.cs">
       <DependentUpon>TemplatesContentView.xaml</DependentUpon>
     </Compile>
@@ -231,6 +230,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\vscode.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Naming\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
