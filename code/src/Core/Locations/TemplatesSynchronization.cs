@@ -14,6 +14,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Reflection;
+using System.Threading;
 
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Resources;
@@ -37,6 +38,9 @@ namespace Microsoft.Templates.Core.Locations
         public Version CurrentContentVersion { get => GetCurrentContentVersion(); }
         public Version CurrentWizardVersion { get; private set; }
 
+        private static object syncLock = new object();
+        private static bool syncInProgress = false;
+
         public TemplatesSynchronization(TemplatesSource source, Version wizardVersion)
         {
             _source = source ?? throw new ArgumentNullException("location");
@@ -46,22 +50,27 @@ namespace Microsoft.Templates.Core.Locations
 
         public async Task Do()
         {
-            await CheckInstallDeployedContent();
-
-            var acquireCalled = await CheckMandatoryAcquireContentAsync();
-
-            await UpdateTemplatesCacheAsync();
-
-            if (!acquireCalled)
+            if (LockSync())
             {
-                await AcquireContentAsync();
+                await CheckInstallDeployedContent();
+
+                var acquireCalled = await CheckMandatoryAcquireContentAsync();
+
+                await UpdateTemplatesCacheAsync();
+
+                if (!acquireCalled)
+                {
+                    await AcquireContentAsync();
+                }
+
+                await CheckContentStatusAsync();
+
+                PurgeContentAsync().FireAndForget();
+
+                TelemetryService.Current.SetContentVersionToContext(CurrentContentVersion);
+
+                UnlockSync();
             }
-
-            await CheckContentStatusAsync();
-
-            PurgeContentAsync().FireAndForget();
-
-            TelemetryService.Current.SetContentVersionToContext(CurrentContentVersion);
         }
 
         public async Task RefreshAsync()
@@ -71,8 +80,12 @@ namespace Microsoft.Templates.Core.Locations
 
         public async Task CheckForNewContentAsync()
         {
-            await AcquireContentAsync(true);
-            await CheckContentStatusAsync();
+            if (LockSync())
+            {
+                await AcquireContentAsync(true);
+                await CheckContentStatusAsync();
+                UnlockSync();
+            }
         }
 
         private async Task CheckContentStatusAsync()
@@ -240,6 +253,27 @@ namespace Microsoft.Templates.Core.Locations
         private Version GetCurrentContentVersion()
         {
             return _content?.GetVersionFromFolder(CurrentContentFolder);
+        }
+
+        private bool LockSync()
+        {
+            lock (syncLock)
+            {
+                if (syncInProgress)
+                {
+                    return false;
+                }
+                syncInProgress = true;
+                return true;
+            }
+        }
+
+        private void UnlockSync()
+        {
+            lock (syncLock)
+            {
+                syncInProgress = false;
+            }
         }
     }
 }
