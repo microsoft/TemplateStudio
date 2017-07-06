@@ -230,7 +230,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             return _canCheckingUpdates;
         }
 
-        private void SetCanCheckingUpdates(bool value)
+        private void SetCanCheckUpdates(bool value)
         {
             _canCheckingUpdates = value;
             CheckUpdatesCommand.OnCanExecuteChanged();
@@ -260,7 +260,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
             finally
             {
-                IsLoading = false;
+                IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
             }
         }
 
@@ -268,7 +268,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             try
             {
-                SetCanCheckingUpdates(false);
+                SetCanCheckUpdates(false);
                 await GenContext.ToolBox.Repo.CheckForUpdatesAsync();
             }
             catch (Exception ex)
@@ -279,8 +279,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
             finally
             {
-                IsLoading = false;
-                SetCanCheckingUpdates(true);
+                IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
+                SetCanCheckUpdates(!GenContext.ToolBox.Repo.SyncInProgress);
             }
         }
 
@@ -303,8 +303,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
             finally
             {
-                IsLoading = false;
-                SetCanCheckingUpdates(true);
+                IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
+                SetCanCheckUpdates(!GenContext.ToolBox.Repo.SyncInProgress);
             }
         }
 
@@ -362,6 +362,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 _templatesAvailable = true;
                 OnTemplatesAvailable();
                 NextCommand.OnCanExecuteChanged();
+                IsLoading = false;
+                SetCanCheckUpdates(true);
             }
             if (status.Status == SyncStatus.OverVersion)
             {

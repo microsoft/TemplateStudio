@@ -39,7 +39,7 @@ namespace Microsoft.Templates.Core.Locations
         public Version CurrentWizardVersion { get; private set; }
 
         private static object syncLock = new object();
-        private static bool syncInProgress = false;
+        public static bool SyncInProgress { get; private set; }
 
         public TemplatesSynchronization(TemplatesSource source, Version wizardVersion)
         {
@@ -52,24 +52,29 @@ namespace Microsoft.Templates.Core.Locations
         {
             if (LockSync())
             {
-                await CheckInstallDeployedContent();
-
-                var acquireCalled = await CheckMandatoryAcquireContentAsync();
-
-                await UpdateTemplatesCacheAsync();
-
-                if (!acquireCalled)
+                try
                 {
-                    await AcquireContentAsync();
+                    await CheckInstallDeployedContent();
+
+                    var acquireCalled = await CheckMandatoryAcquireContentAsync();
+
+                    await UpdateTemplatesCacheAsync();
+
+                    if (!acquireCalled)
+                    {
+                        await AcquireContentAsync();
+                    }
+
+                    await CheckContentStatusAsync();
+
+                    PurgeContentAsync().FireAndForget();
+
+                    TelemetryService.Current.SetContentVersionToContext(CurrentContentVersion);
                 }
-
-                await CheckContentStatusAsync();
-
-                PurgeContentAsync().FireAndForget();
-
-                TelemetryService.Current.SetContentVersionToContext(CurrentContentVersion);
-
-                UnlockSync();
+                finally
+                {
+                    UnlockSync();
+                }
             }
         }
 
@@ -82,9 +87,15 @@ namespace Microsoft.Templates.Core.Locations
         {
             if (LockSync())
             {
-                await AcquireContentAsync(true);
-                await CheckContentStatusAsync();
-                UnlockSync();
+                try
+                {
+                    await AcquireContentAsync(true);
+                    await CheckContentStatusAsync();
+                }
+                finally
+                {
+                    UnlockSync();
+                }
             }
         }
 
@@ -259,11 +270,11 @@ namespace Microsoft.Templates.Core.Locations
         {
             lock (syncLock)
             {
-                if (syncInProgress)
+                if (SyncInProgress)
                 {
                     return false;
                 }
-                syncInProgress = true;
+                SyncInProgress = true;
                 return true;
             }
         }
@@ -272,7 +283,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             lock (syncLock)
             {
-                syncInProgress = false;
+                SyncInProgress = false;
             }
         }
     }
