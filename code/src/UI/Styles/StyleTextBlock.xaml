@@ -143,7 +143,7 @@
     </Style>
     
     <!--OverlayBox-->
-    <Style TargetType="TextBlock" x:Key="TextOverlayBoxTitleStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="TextOverlayBoxTitleStyle" BasedOn="{StaticResource TextSummaryLicenseStyle}">
         <Setter Property="Foreground" Value="{StaticResource UIWhite}"/>
     </Style>
 

@@ -160,7 +160,7 @@
                     <Button Style="{StaticResource TopBarMenuStyle}" Command="{Binding ShowOverlayMenuCommand}">
                         <Button.Content>
                             <Grid>
-                                <TextBlock Text="&#xEC42;" Style="{StaticResource IconButtonTextStyle}" Foreground="{StaticResource UIWhite}" FontSize="24" Margin="{StaticResource Margin_M_All}" />
+                                <TextBlock Text="&#xEC42;" Style="{StaticResource IconButtonTextStyle}" Foreground="{StaticResource UIWhite}" FontSize="24" Margin="{StaticResource Margin_M_All}" Tag="AllowOverlay" />
                                 <Ellipse Width="12" Height="12" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,5,0" Visibility="{Binding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}}" Fill="{StaticResource UIDarkYellow}" />
                             </Grid>
                         </Button.Content>
@@ -220,8 +220,8 @@
                             </Expander>
                             <Expander Margin="{StaticResource Margin_M_Top}" Header="{x:Static res:StringRes.SummaryFeaturesTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
                                 <Grid>
-                                    <ItemsControl KeyboardNavigation.TabNavigation="Local" Focusable="False" ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}" ItemsSource="{Binding ProjectTemplates.SavedFeatures}" Tag="AllowClick" />
-                                    <TextBlock Margin="27,7,0,0" Text="{x:Static res:StringRes.SummaryNoFeatures}" Visibility="{Binding ProjectTemplates.SavedFeatures, Converter={StaticResource EmptyCollectionConverter}}" />
+                                    <ItemsControl KeyboardNavigation.TabNavigation="Local" Focusable="False" ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}" ItemsSource="{Binding ProjectTemplates.SavedFeatures}" />
+                                    <TextBlock Margin="27,0,0,0" Text="{x:Static res:StringRes.SummaryNoFeatures}" Visibility="{Binding ProjectTemplates.SavedFeatures, Converter={StaticResource EmptyCollectionConverter}}" />
                                 </Grid>
                             </Expander>
                         </StackPanel>

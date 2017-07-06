@@ -96,7 +96,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 MainViewModel.Current.SetStatus(new StatusViewModel(Controls.StatusType.Warning, StringRes.NoProjectChanges, true));
             }
-            MainViewModel.Current.CleanStatus();
+            else
+            {
+                MainViewModel.Current.CleanStatus();
+            }
             MainViewModel.Current.UpdateCanFinish(true);
         }
 
