@@ -53,11 +53,8 @@ namespace Microsoft.Templates.Core.Locations
 
         private void Copy(string sourceFolder, string targetFolder)
         {
-            lock (lockObject)
-            {
-                Fs.SafeDeleteDirectory(targetFolder);
-                Fs.CopyRecursive(sourceFolder, targetFolder);
-            }
+            Fs.SafeDeleteDirectory(targetFolder);
+            Fs.CopyRecursive(sourceFolder, targetFolder);
         }
     }
 }

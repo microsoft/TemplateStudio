@@ -46,7 +46,7 @@ namespace Microsoft.Templates.Core.Locations
 
             SetContent(extractedContent, targetFolder);
 
-            // CleanUpTemps();
+            CleanUpTemps();
         }
 
         protected abstract string AcquireMstx();
@@ -166,9 +166,15 @@ namespace Microsoft.Templates.Core.Locations
 
         private void CleanUpTemps()
         {
+            List<string> removedFolders = new List<string>();
             foreach (string tempFolder in _tempFoldersUsed)
             {
                 Fs.SafeDeleteDirectory(tempFolder);
+                removedFolders.Add(tempFolder);
+            }
+            foreach (string folder in removedFolders)
+            {
+                _tempFoldersUsed.Remove(folder);
             }
         }
     }
