@@ -35,6 +35,7 @@
                         <Image Grid.Column="2" Source="{Binding Icon}" Margin="{StaticResource Margin_M_Left}" VerticalAlignment="Center" Stretch="None"/>
                         <TextBlock Grid.Column="3" Text="{Binding Subject}" Style="{StaticResource ChangesSummaryListFileNameStyle}" Margin="{StaticResource Margin_S_Left}"/>
                     </Grid>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent"/>
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="ListLicenseTemplate">
