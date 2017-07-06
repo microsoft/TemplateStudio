@@ -33,7 +33,7 @@ namespace Microsoft.Templates.UI.Controls
                 {
                     _hideTimer = new DispatcherTimer()
                     {
-                        Interval = TimeSpan.FromSeconds(5)
+                        Interval = TimeSpan.FromSeconds(7)
                     };
                     _hideTimer.Tick += OnHideTimerTick;
                 }
