@@ -95,6 +95,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         private static string GetTempGenerationPath(string projectName)
         {
             var tempGenerationPath = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
+            Fs.EnsureFolder(tempGenerationPath);
             var inferredName = Naming.Infer(projectName, new List<Validator>() { new DirectoryExistsValidator(tempGenerationPath) }, "_");
 
             return Path.Combine(tempGenerationPath, inferredName);
