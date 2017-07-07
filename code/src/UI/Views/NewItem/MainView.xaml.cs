@@ -15,6 +15,7 @@ using System.Windows;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.NewItem;
+using Microsoft.Templates.UI.Controls;
 
 namespace Microsoft.Templates.UI.Views.NewItem
 {
@@ -44,6 +45,12 @@ namespace Microsoft.Templates.UI.Views.NewItem
             };
 
             InitializeComponent();
+        }
+
+        private void OnPreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var element = e.Source as FrameworkElement;
+            ViewModel.TryHideOverlayBox(element);
         }
     }
 }

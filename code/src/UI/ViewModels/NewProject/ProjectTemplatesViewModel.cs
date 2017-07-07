@@ -127,7 +127,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
                     if (string.IsNullOrWhiteSpace(item.ErrorMessage))
                     {
-                        item.ErrorMessage = "UndefinedError";
+                        item.ErrorMessage = StringRes.UndefinedErrorString;
                     }
                     MainViewModel.Current.SetValidationErrors(item.ErrorMessage);
                     throw new Exception(item.ErrorMessage);
@@ -158,7 +158,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
                 if (string.IsNullOrWhiteSpace(template.ErrorMessage))
                 {
-                    template.ErrorMessage = "UndefinedError";
+                    template.ErrorMessage = StringRes.UndefinedErrorString;
                 }
                 MainViewModel.Current.SetValidationErrors(template.ErrorMessage);
                 throw new Exception(template.ErrorMessage);
@@ -330,7 +330,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void OnRemoveTemplate(SavedTemplateViewModel item)
         {
-            var dependencyItem = SavedPages[item.GenGroup].FirstOrDefault(st => st.DependencyList.Any(d => d == item.Identity));
+            SavedTemplateViewModel dependencyItem = null;
+            foreach (var group in SavedPages)
+            {
+                dependencyItem = group.FirstOrDefault(st => st.DependencyList.Any(d => d == item.Identity));
+                if (dependencyItem != null)
+                {
+                    break;
+                }
+            }
             if (dependencyItem == null)
             {
                 dependencyItem = SavedFeatures.FirstOrDefault(st => st.DependencyList.Any(d => d == item.Identity));

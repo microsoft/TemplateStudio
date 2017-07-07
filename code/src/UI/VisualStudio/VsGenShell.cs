@@ -163,7 +163,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"There was an error showing status message. Ex: {ex.ToString()}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"{StringRes.VsGenShellShowStatusBarMessageMessage} {ex.ToString()}").FireAndForget();
             }
         }
 
@@ -336,12 +336,12 @@ namespace Microsoft.Templates.UI.VisualStudio
                 }
                 else
                 {
-                    AppHealth.Current.Warning.TrackAsync("Unable to automatically perform Restore NuGet Packages for the solution. Please, try to manually restore the NuGet packages.").FireAndForget();
+                    AppHealth.Current.Warning.TrackAsync(StringRes.VsGenShellRestorePackagesWarningMessage).FireAndForget();
                 }
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"There was an error restoring the packages. Ex: {ex.ToString()}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"{StringRes.VsGenShellRestorePackagesErrorMessage} {ex.ToString()}").FireAndForget();
             }
         }
 
@@ -359,7 +359,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"There was an error collapsing the solution tree. Ex: {ex.ToString()}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"{StringRes.VsGenShellCollapseSolutionItemsMessage} {ex.ToString()}").FireAndForget();
             }
         }
 

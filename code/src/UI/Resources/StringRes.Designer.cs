@@ -20,7 +20,7 @@ namespace Microsoft.Templates.UI.Resources {
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    //[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class StringRes {
         
@@ -476,6 +476,16 @@ namespace Microsoft.Templates.UI.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to Creating &apos;{0}&apos; feature ....
+        ///   Looks up a localized string similar to Generating the template {0} to {1}..
+        /// </summary>
+        public static string GenControllerUnsafeGenerateAsyncMessage {
+            get {
+                return ResourceManager.GetString("GenControllerUnsafeGenerateAsyncMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding &apos;{0}&apos; feature to project....
         /// </summary>
         public static string GeneratingFeatureMessage {
             get {
@@ -516,6 +526,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string GroupFeatureHeader_SF {
             get {
                 return ResourceManager.GetString("GroupFeatureHeader_SF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generation finished.
+        /// </summary>
+        public static string GenerationFinishedString {
+            get {
+                return ResourceManager.GetString("GenerationFinishedString", resourceCulture);
             }
         }
         
@@ -606,6 +625,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string InfoModalVersion {
             get {
                 return ResourceManager.GetString("InfoModalVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;{0} is not expected as valid type for the Information Window.&quot;.
+        /// </summary>
+        public static string InformationWindowIntilizeViewModelMessage {
+            get {
+                return ResourceManager.GetString("InformationWindowIntilizeViewModelMessage", resourceCulture);
             }
         }
         
@@ -808,7 +836,16 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done..
+        ///   Looks up a localized string similar to Creating Windows Template Studio project....
+        /// </summary>
+        public static string SolutionWizardRunFinishedMessage {
+            get {
+                return ResourceManager.GetString("SolutionWizardRunFinishedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Done.
         /// </summary>
         public static string StatusAcquired {
             get {
@@ -1168,6 +1205,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to UndefinedError.
+        /// </summary>
+        public static string UndefinedErrorString {
+            get {
+                return ResourceManager.GetString("UndefinedErrorString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name already exists.
         /// </summary>
         public static string ValidationError_AlreadyExists {
@@ -1177,7 +1223,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Only alphanumeric and &apos;-&apos; characters are allowed.
+        ///   Looks up a localized string similar to Only alphanumeric and &apos;_&apos; characters are allowed.
         /// </summary>
         public static string ValidationError_BadFormat {
             get {
@@ -1218,6 +1264,42 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ValidationError_ReservedName {
             get {
                 return ResourceManager.GetString("ValidationError_ReservedName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error collapsing the solution tree. Ex:.
+        /// </summary>
+        public static string VsGenShellCollapseSolutionItemsMessage {
+            get {
+                return ResourceManager.GetString("VsGenShellCollapseSolutionItemsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error restoring the packages. Ex:.
+        /// </summary>
+        public static string VsGenShellRestorePackagesErrorMessage {
+            get {
+                return ResourceManager.GetString("VsGenShellRestorePackagesErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to automatically perform Restore NuGet Packages for the solution. Please, try to manually restore the NuGet packages..
+        /// </summary>
+        public static string VsGenShellRestorePackagesWarningMessage {
+            get {
+                return ResourceManager.GetString("VsGenShellRestorePackagesWarningMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error showing status message. Ex:.
+        /// </summary>
+        public static string VsGenShellShowStatusBarMessageMessage {
+            get {
+                return ResourceManager.GetString("VsGenShellShowStatusBarMessageMessage", resourceCulture);
             }
         }
         

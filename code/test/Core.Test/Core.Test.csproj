@@ -135,6 +135,7 @@
     <Compile Include="Diagnostics\TelemetryFixture.cs" />
     <Compile Include="Diagnostics\TelemetryServiceTest.cs" />
     <Compile Include="Diagnostics\TestHealthWriter.cs" />
+    <Compile Include="Localization\LocalizationTest.cs" />
     <Compile Include="PostActions\Catalog\HandleRemovalsTest.cs" />
     <Compile Include="PostActions\Catalog\SortUsingsTest.cs" />
     <Compile Include="Templates\ITemplateInfoExtensionsTest.cs" />
@@ -167,6 +168,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Templates\TemplatesFixture.cs" />
+    <Content Include="TestData\Templates\_catalog\en-US.frameworks.json" />
+    <Content Include="TestData\Templates\_catalog\es-ES.frameworks.json" />
+    <Content Include="TestData\Templates\_catalog\frameworks.json" />
+    <Content Include="TestData\Templates\_catalog\frameworks\en-US.TestFramework.md" />
+    <Content Include="TestData\Templates\_catalog\frameworks\es-ES.TestFramework.md" />
+    <Content Include="TestData\Templates\_catalog\frameworks\TestFramework.md" />
+    <Content Include="TestData\Templates\_catalog\en-US.projectTypes.json" />
+    <Content Include="TestData\Templates\_catalog\es-ES.projectTypes.json" />
+    <Content Include="TestData\Templates\_catalog\projectTypes.json" />
+    <Content Include="TestData\Templates\_catalog\projectTypes\en-US.TestProjectType.md" />
+    <Content Include="TestData\Templates\_catalog\projectTypes\es-ES.TestProjectType.md" />
+    <Content Include="TestData\Templates\_catalog\projectTypes\TestProjectType.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Core\Core.csproj">
@@ -186,6 +199,16 @@
     <Content Include="TestData\Templates\FeatureTemplate\.template.config\template.json" />
     <Content Include="TestData\Templates\PageTemplate\.template.config\template.json" />
     <Content Include="TestData\Templates\Naming.DefaultNameTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\PageTemplate\.template.config\description.md" />
+    <Content Include="TestData\Templates\FeatureTemplate\.template.config\description.md" />
+    <Content Include="TestData\Templates\FeatureTemplate\.template.config\en-US.description.md" />
+    <None Include="TestData\Templates\FeatureTemplate\.template.config\en-US.template.json" />
+    <Content Include="TestData\Templates\FeatureTemplate\.template.config\es-ES.description.md" />
+    <None Include="TestData\Templates\FeatureTemplate\.template.config\es-ES.template.json" />
+    <None Include="TestData\Templates\PageTemplate\.template.config\en-US.template.json" />
+    <Content Include="TestData\Templates\PageTemplate\.template.config\en-US.description.md" />
+    <None Include="TestData\Templates\PageTemplate\.template.config\es-ES.template.json" />
+    <Content Include="TestData\Templates\PageTemplate\.template.config\es-ES.description.md" />
     <Content Include="TestData\Templates\RightClick.FeatureTemplate\.template.config\template.json" />
     <None Include="TestData\Templates\ProjectTemplate\.template.config\description.md" />
     <Content Include="TestData\Templates\ProjectTemplate\.template.config\icon.png" />

@@ -22,27 +22,30 @@
             <DataTemplate x:Key="ChangesSummaryExpanderHeaderTemplate">
                 <TextBlock Text="{Binding}" Style="{StaticResource TextSummaryGroupHeader}"/>
             </DataTemplate>
-            <DataTemplate x:Key="ListItemTemplate">
-                <Grid Width="281" ToolTip="{Binding Subject}" Height="30">
-                    <Grid Margin="{StaticResource Margin_S_All}">
+
+            <DataTemplate x:Key="FileListItemTemplate">
+                <Border Width="281" ToolTip="{Binding Subject}" Height="30" Padding="{StaticResource Margin_S_All}">
+                    <Grid Background="Transparent">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="5"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1" Text="&#xE91F;" Style="{StaticResource IconButtonTextStyle}" Foreground="{Binding CircleColor, FallbackValue=Red}" FontSize="7" VerticalAlignment="Center"/>
-                        <Image Grid.Column="2" Source="{Binding Icon}" Margin="{StaticResource Margin_M_Left}" VerticalAlignment="Center" Stretch="None"/>
-                        <TextBlock Grid.Column="3" Text="{Binding Subject}" Style="{StaticResource ChangesSummaryListFileNameStyle}" Margin="{StaticResource Margin_S_Left}"/>
+                        <TextBlock Grid.Column="0" Margin="{StaticResource Margin_S_Left}" Text="&#xE91F;" Style="{StaticResource IconButtonTextStyle}" Foreground="{Binding CircleColor, FallbackValue=Red}" FontSize="7" VerticalAlignment="Center"/>
+                        <Image Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Source="{Binding Icon}" VerticalAlignment="Center" Stretch="None"/>
+                        <TextBlock Grid.Column="2" Margin="{StaticResource Margin_S_Left}" Text="{Binding Subject}" Style="{StaticResource ChangesSummaryListFileNameStyle}" />
                     </Grid>
-                </Grid>
+                </Border>
             </DataTemplate>
+            
             <DataTemplate x:Key="ListLicenseTemplate">
-                <TextBlock Margin="{StaticResource Margin_M_LeftTopRight}" VerticalAlignment="Center">
-                    <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
-                        <TextBlock Text="{Binding Text}" Style="{StaticResource TextSummaryLicenseStyle}" VerticalAlignment="Center" Margin="{StaticResource Margin_L_Left}"/>
-                    </Hyperlink>
-                </TextBlock>
+                <Grid Margin="{StaticResource Margin_S_Top}">
+                    <TextBlock Margin="{StaticResource Margin_M_LeftRight}" VerticalAlignment="Center">
+                        <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
+                            <TextBlock Text="{Binding Text}" Style="{StaticResource TextSummaryLicenseStyle}" VerticalAlignment="Center" Margin="{StaticResource Margin_L_Left}"/>
+                        </Hyperlink>
+                    </TextBlock>
+                </Grid>
             </DataTemplate>
 
             <DataTemplate x:Key="ImageFileTemplate">
@@ -50,7 +53,7 @@
             </DataTemplate>
 
             <DataTemplate x:Key="CodeFileTemplate">
-                <controls:CodeViewer Item="{Binding}"/>
+                <controls:CodeViewer Item="{Binding}" Margin="{StaticResource Margin_L_LeftRight}"/>
             </DataTemplate>
 
             <DataTemplate x:Key="CodeModifiedFileTemplate">
@@ -59,10 +62,10 @@
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Grid Background="{StaticResource UILightGray}">
+                    <Grid Background="{StaticResource UILightGray}" Margin="{StaticResource Margin_L_LeftRight}">
                         <TextBlock Text="Resulting file" Margin="40,0,0,0" VerticalAlignment="Center"/>
                     </Grid>
-                    <controls:CodeViewer Grid.Row="1" Item="{Binding}" />
+                    <controls:CodeViewer Grid.Row="1" Item="{Binding}" Margin="{StaticResource Margin_L_LeftRight}"/>
                 </Grid>
             </DataTemplate>
 
@@ -80,7 +83,7 @@
                         <TextBlock Text="Exisiting file" Margin="40,0,0,0" VerticalAlignment="Center"/>
                         <TextBlock Grid.Column="1" Text="Generated file" Margin="30,0,0,0" VerticalAlignment="Center"/>
                     </Grid>
-                    <controls:CodeViewer Grid.Row="1" Item="{Binding}"/>
+                    <controls:CodeViewer Grid.Row="1" Item="{Binding}" Margin="{StaticResource Margin_L_LeftRight}"/>
                 </Grid>
             </DataTemplate>
 
@@ -139,7 +142,7 @@
             <Grid Grid.RowSpan="2" HorizontalAlignment="Right" Width="17" Background="{StaticResource UILightGray}"/>
             <ScrollViewer>
                 <StackPanel>
-                    <ItemsControl ItemsSource="{Binding ChangesSummary.FileGroups}">
+                    <ItemsControl ItemsSource="{Binding ChangesSummary.FileGroups}" Focusable="False">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Expander
@@ -148,11 +151,12 @@
                                     HeaderTemplate="{StaticResource ChangesSummaryExpanderHeaderTemplate}"
                                     IsExpanded="True"
                                     BorderThickness="0"
+                                    Focusable="False"
                                     Visibility="{Binding HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
                                     <ListView
                                         Focusable="False"
                                         Style="{StaticResource ListViewChangesSummaryFiles}"
-                                        ItemTemplate="{StaticResource ListItemTemplate}"                                
+                                        ItemTemplate="{StaticResource FileListItemTemplate}"                                
                                         ItemsSource="{Binding Templates}"
                                         SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
                                 </Expander>
@@ -190,7 +194,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <StackPanel Margin="{StaticResource Margin_XL_LeftTopRight}">
+                <StackPanel Margin="{StaticResource Margin_L_LeftTopRight}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -206,10 +210,10 @@
                             </Hyperlink>
                         </TextBlock>
                     </Grid>
-                    <TextBlock Margin="{StaticResource Margin_M_Top}" Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}"/>
+                    <TextBlock Margin="{StaticResource Margin_S_Top}" Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}"/>
                 </StackPanel>
 
-                <Grid Grid.Row="1" Background="{StaticResource UIGray}" Margin="{StaticResource Margin_M_LeftTopRight}" Height="30">
+                <Grid Grid.Row="1" Background="{StaticResource UIGray}" Margin="{StaticResource Margin_L_LeftTopRight}" Height="30">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="30"/>
                         <ColumnDefinition Width="*"/>

@@ -17,6 +17,7 @@ using System.Linq;
 using System.Collections.Generic;
 
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -102,12 +103,11 @@ namespace Microsoft.Templates.Core.Locations
             try
             {
                 Templatex.Extract(file, tempFolder, VerifyPackageSignatures);
-                AppHealth.Current.Verbose.TrackAsync($"Templates content extracted to {tempFolder}.").FireAndForget();
+                AppHealth.Current.Verbose.TrackAsync($"{StringRes.TemplatesContentExtractedToString} {tempFolder}.").FireAndForget();
             }
             catch (Exception ex)
             {
-                var msg = "The templates content can't be extracted.";
-                AppHealth.Current.Exception.TrackAsync(ex, msg).FireAndForget();
+                AppHealth.Current.Exception.TrackAsync(ex, StringRes.TemplatesSourceExtractContentMessage).FireAndForget();
                 throw;
             }
         }

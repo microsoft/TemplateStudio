@@ -35,6 +35,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         protected bool _canGoForward;
         protected bool _hasValidationErrors;
         protected bool _templatesAvailable;
+        protected bool _canCheckingUpdates;
 
         protected StatusViewModel _status = StatusControl.EmptyStatus;
         public StatusViewModel Status
@@ -54,7 +55,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public bool IsOverlayBoxVisible
         {
             get => _isOverlayBoxVisible;
-            private set => SetProperty(ref _isOverlayBoxVisible, value);
+            set => SetProperty(ref _isOverlayBoxVisible, value);
         }
 
         protected bool _hasOverlayBox = true;
@@ -137,7 +138,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && !_hasValidationErrors && _canGoForward));
         public RelayCommand ShowOverlayMenuCommand => _showOverlayMenuCommand ?? (_showOverlayMenuCommand = new RelayCommand(() => IsOverlayBoxVisible = !IsOverlayBoxVisible));
         public RelayCommand<string> FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand<string>(OnFinish, CanFinish));
-        public RelayCommand CheckUpdatesCommand => _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand(OnCheckUpdates));
+        public RelayCommand CheckUpdatesCommand => _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand(OnCheckUpdates, CanCheckUpdates));
         public RelayCommand RefreshTemplatesCommand => _refreshTemplatesCommand ?? (_refreshTemplatesCommand = new RelayCommand(OnRefreshTemplates));
         #endregion
 
@@ -193,6 +194,19 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged -= SyncSyncStatusChanged;
         }
 
+        public void TryHideOverlayBox(FrameworkElement element)
+        {
+            if (element != null && element.GetType() == typeof(OverlayBox))
+            {
+                return;
+            }
+            else if (element != null && element.Tag != null && element.Tag.ToString() == "AllowOverlay")
+            {
+                return;
+            }
+            IsOverlayBoxVisible = false;
+        }
+
         protected virtual void OnGoBack()
         {
             NavigationService.GoBack();
@@ -208,8 +222,18 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 return false;
             }
-            CleanStatus();
             return true;
+        }
+
+        private bool CanCheckUpdates()
+        {
+            return _canCheckingUpdates;
+        }
+
+        private void SetCanCheckUpdates(bool value)
+        {
+            _canCheckingUpdates = value;
+            CheckUpdatesCommand.OnCanExecuteChanged();
         }
         protected virtual void OnFinish(string parameter)
         {
@@ -236,7 +260,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
             finally
             {
-                IsLoading = false;
+                IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
             }
         }
 
@@ -244,6 +268,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             try
             {
+                SetCanCheckUpdates(false);
                 await GenContext.ToolBox.Repo.CheckForUpdatesAsync();
             }
             catch (Exception ex)
@@ -254,7 +279,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
             finally
             {
-                IsLoading = false;
+                IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
+                SetCanCheckUpdates(!GenContext.ToolBox.Repo.SyncInProgress);
             }
         }
 
@@ -277,7 +303,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
             finally
             {
-                IsLoading = false;
+                IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
+                SetCanCheckUpdates(!GenContext.ToolBox.Repo.SyncInProgress);
             }
         }
 
@@ -335,6 +362,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 _templatesAvailable = true;
                 OnTemplatesAvailable();
                 NextCommand.OnCanExecuteChanged();
+                IsLoading = false;
+                SetCanCheckUpdates(true);
             }
             if (status.Status == SyncStatus.OverVersion)
             {

@@ -48,48 +48,16 @@ namespace Microsoft.Templates.UI.Views.NewProject
 
         private void OnPreviewLostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            var control = e.OldFocus as TextBoxEx;
+            var textBox = e.OldFocus as TextBoxEx;
             var button = e.NewFocus as Button;
-            string name = (button != null && button.Tag != null) ? button.Tag.ToString() : string.Empty;
-
-            if (control != null && string.IsNullOrEmpty(name))
-            {
-                var templateInfo = control.Tag as TemplateInfoViewModel;
-                if (templateInfo != null)
-                {
-                    templateInfo.CloseEdition();
-                }
-                var summaryItem = control.Tag as SavedTemplateViewModel;
-                if (summaryItem != null)
-                {
-                    summaryItem.OnCancelRename();
-                }
-            }
+            ViewModel.TryCloseEdition(textBox, button);
         }
 
         private void OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             var element = e.Source as FrameworkElement;
-            if (element == null || element.Tag == null || element.Tag.ToString() != "AllowClick")
-            {
-                ViewModel.ProjectTemplates.SavedPages.ToList().ForEach(spg => spg.ToList().ForEach(p =>
-                {
-                    if (p.IsEditionEnabled)
-                    {
-                        p.ConfirmRenameCommand.Execute(p);
-                        p.TryClose();
-                    }
-                }));
-
-                ViewModel?.ProjectTemplates?.SavedFeatures?.ToList()?.ForEach(f =>
-                {
-                    if (f.IsEditionEnabled)
-                    {
-                        f.ConfirmRenameCommand.Execute(f);
-                        f.TryClose();
-                    }
-                });
-            }
+            ViewModel.TryRename(element);
+            ViewModel.TryHideOverlayBox(element);
         }
     }
 }

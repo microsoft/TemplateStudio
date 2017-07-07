@@ -117,7 +117,7 @@ namespace Microsoft.Templates.Extension.Commands
 
         private void OpenTempFolder(object sender, EventArgs e)
         {
-            if (RightClickActions.Enabled())
+            if (RightClickActions.TempFolderAvailable() && RightClickActions.Enabled())
             {
                 RightClickActions.OpenTempFolder();
             }
@@ -132,7 +132,7 @@ namespace Microsoft.Templates.Extension.Commands
         private void TempFolderAvailable(object sender, EventArgs e)
         {
             var cmd = (OleMenuCommand)sender;
-            cmd.Visible = RightClickActions.TempFolderAvailable();
+            cmd.Visible = RightClickActions.TempFolderAvailable() && RightClickActions.Enabled();
         }
     }
 }

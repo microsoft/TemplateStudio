@@ -16,14 +16,16 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
+using Microsoft.Templates.Core.Resources;
+
 namespace Microsoft.Templates.Core
 {
     public class Naming
     {
-        private const string ValidationPattern = @"^([a-zA-Z])([\w\-])*$";
-        private const string InferInvalidPattern = @"[^a-zA-Z\d_\-]";
+        private const string ValidationPattern = @"^((?!\d)\w+)$";
+        private const string InferInvalidPattern = @"[^\d\w\-]";
 
-        public static string Infer(string suggestedName, IEnumerable<Validator> validators)
+        public static string Infer(string suggestedName, IEnumerable<Validator> validators, string inferWith = "")
         {
             suggestedName = Regex.Replace(ToTitleCase(suggestedName), InferInvalidPattern, string.Empty);
 
@@ -34,7 +36,7 @@ namespace Microsoft.Templates.Core
 
             for (int i = 1; i < 1000; i++)
             {
-                var newName = $"{suggestedName}{i}";
+                var newName = $"{suggestedName}{inferWith}{i}";
 
                 if (validators.All(v => v.Validate(newName).IsValid))
                 {
@@ -42,7 +44,7 @@ namespace Microsoft.Templates.Core
                 }
             }
 
-            throw new Exception("Unable to infer a name. Too much iterations");
+            throw new Exception(StringRes.NamingInferMessage);
         }
 
         public static ValidationResult Validate(string value, IEnumerable<Validator> validators)

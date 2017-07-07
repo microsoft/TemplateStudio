@@ -96,13 +96,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 MainViewModel.Current.SetStatus(new StatusViewModel(Controls.StatusType.Warning, StringRes.NoProjectChanges, true));
             }
-            MainViewModel.Current.CleanStatus();
+            else
+            {
+                MainViewModel.Current.CleanStatus();
+            }
             MainViewModel.Current.UpdateCanFinish(true);
         }
 
         private void OnMoreDetails()
         {
-            Process.Start("https://github.com/Microsoft/WindowsTemplateStudio/blob/issue267-rightclick/docs/newitem.md");
+            Process.Start("https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/newitem.md");
         }
 
         private void OnItemChanged(ItemsGroupViewModel<BaseFileViewModel> group)

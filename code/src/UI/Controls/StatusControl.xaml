@@ -34,10 +34,10 @@
             <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Style="{StaticResource TextWizardStatusStyle}">
                 <Run x:Name="txtStatus" />
             </TextBlock>
-            <Grid Grid.Column="2" Margin="0,0,12,0">
+            <Grid Grid.Column="2" Margin="0,0,5,0">
                 <Button Style="{StaticResource AddTemplateInfoButtonStyle}" Click="OnCloseClicked" Margin="{StaticResource Margin_XS_All}" HorizontalAlignment="Right" VerticalAlignment="Top">
                     <Button.Content>
-                        <TextBlock x:Name="iconClose" Text="&#xE894;" Margin="1,1,0,0" FontSize="10" Style="{StaticResource IconButtonTextStyle}"/>
+                        <TextBlock x:Name="iconClose" Text="&#xE894;" FontSize="8" Style="{StaticResource IconButtonTextStyle}" FontWeight="ExtraBold"/>
                     </Button.Content>
                 </Button>
             </Grid>

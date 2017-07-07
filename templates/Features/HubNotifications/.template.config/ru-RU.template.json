@@ -1,0 +1,6 @@
+{
+    "author": "Microsoft",
+    "name": "Azure Notifications",
+    "description": "Azure Notification Hubs provide an easy-to-use, multi-platform, notification-based engagement engine.",
+    "identity": "wts.Feat.HubNotifications"
+}

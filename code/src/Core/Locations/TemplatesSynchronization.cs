@@ -12,10 +12,12 @@
 
 using System;
 using System.IO;
-using System.Reflection;
 using System.Threading.Tasks;
+using System.Reflection;
+using System.Threading;
 
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -36,6 +38,9 @@ namespace Microsoft.Templates.Core.Locations
         public Version CurrentContentVersion { get => GetCurrentContentVersion(); }
         public Version CurrentWizardVersion { get; private set; }
 
+        private static object syncLock = new object();
+        public static bool SyncInProgress { get; private set; }
+
         public TemplatesSynchronization(TemplatesSource source, Version wizardVersion)
         {
             _source = source ?? throw new ArgumentNullException("location");
@@ -45,22 +50,32 @@ namespace Microsoft.Templates.Core.Locations
 
         public async Task Do()
         {
-            await CheckInstallDeployedContent();
-
-            var acquireCalled = await CheckMandatoryAcquireContentAsync();
-
-            await UpdateTemplatesCacheAsync();
-
-            if (!acquireCalled)
+            if (LockSync())
             {
-                await AcquireContentAsync();
+                try
+                {
+                    await CheckInstallDeployedContent();
+
+                    var acquireCalled = await CheckMandatoryAcquireContentAsync();
+
+                    await UpdateTemplatesCacheAsync();
+
+                    if (!acquireCalled)
+                    {
+                        await AcquireContentAsync();
+                    }
+
+                    await CheckContentStatusAsync();
+
+                    PurgeContentAsync().FireAndForget();
+
+                    TelemetryService.Current.SetContentVersionToContext(CurrentContentVersion);
+                }
+                finally
+                {
+                    UnlockSync();
+                }
             }
-
-            await CheckContentStatusAsync();
-
-            PurgeContentAsync().FireAndForget();
-
-            TelemetryService.Current.SetContentVersionToContext(CurrentContentVersion);
         }
 
         public async Task RefreshAsync()
@@ -70,8 +85,18 @@ namespace Microsoft.Templates.Core.Locations
 
         public async Task CheckForNewContentAsync()
         {
-            await AcquireContentAsync(true);
-            await CheckContentStatusAsync();
+            if (LockSync())
+            {
+                try
+                {
+                    await AcquireContentAsync(true);
+                    await CheckContentStatusAsync();
+                }
+                finally
+                {
+                    UnlockSync();
+                }
+            }
         }
 
         private async Task CheckContentStatusAsync()
@@ -228,7 +253,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             catch (Exception ex)
             {
-                await AppHealth.Current.Warning.TrackAsync("Unable to purge old content.", ex);
+                await AppHealth.Current.Warning.TrackAsync(StringRes.TemplatesSynchronizationPurgeContentAsyncMessage, ex);
             }
         }
 
@@ -239,6 +264,27 @@ namespace Microsoft.Templates.Core.Locations
         private Version GetCurrentContentVersion()
         {
             return _content?.GetVersionFromFolder(CurrentContentFolder);
+        }
+
+        private bool LockSync()
+        {
+            lock (syncLock)
+            {
+                if (SyncInProgress)
+                {
+                    return false;
+                }
+                SyncInProgress = true;
+                return true;
+            }
+        }
+
+        private void UnlockSync()
+        {
+            lock (syncLock)
+            {
+                SyncInProgress = false;
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ using System.IO;
 using System.Linq;
 
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -112,7 +113,7 @@ namespace Microsoft.Templates.Core.Locations
             var expired = expiration <= DateTime.Now;
             if (!expired)
             {
-                AppHealth.Current.Verbose.TrackAsync($"Next automatic content verification at {expiration.ToString()}").FireAndForget();
+                AppHealth.Current.Verbose.TrackAsync($"{StringRes.CurrentContentExpirationString}: {expiration.ToString()}").FireAndForget();
             }
             return expired;
         }

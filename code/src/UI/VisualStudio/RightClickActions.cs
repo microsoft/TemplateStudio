@@ -82,7 +82,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 ProjectPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
                 ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
-                OutputPath = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath, Path.GetRandomFileName());
+                OutputPath = GetTempGenerationPath(ProjectName);
                 ProjectItems = new List<string>();
                 FilesToOpen = new List<string>();
                 FailedMergePostActions = new List<FailedMergePostAction>();
@@ -90,6 +90,17 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                 GenContext.Current = this;
             }
+        }
+
+        private static string GetTempGenerationPath(string projectName)
+        {
+            var tempGenerationPath = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
+            Fs.EnsureFolder(tempGenerationPath);
+
+            var tempGenerationName = $"{projectName}_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}";
+            var inferredName = Naming.Infer(tempGenerationName, new List<Validator>() { new DirectoryExistsValidator(tempGenerationPath) }, "_");
+
+            return Path.Combine(tempGenerationPath, inferredName);
         }
 
         public void AddNewFeature()
