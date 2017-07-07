@@ -223,6 +223,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private static string GetTempGenerationPath()
         {
             var tempGenerationPath = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
+            Fs.EnsureFolder(tempGenerationPath);
             var inferredName = Naming.Infer(GenContext.Current.ProjectName, new List<Validator>() { new DirectoryExistsValidator(tempGenerationPath) }, "_");
 
             return Path.Combine(tempGenerationPath, inferredName);
