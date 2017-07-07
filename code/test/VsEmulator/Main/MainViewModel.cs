@@ -96,11 +96,19 @@ namespace Microsoft.Templates.VsEmulator.Main
             set => SetProperty(ref _isProjectLoaded, value);
         }
 
-        private Visibility _tempFolderAvailable;
+        private Visibility _isWtsProject;
+        public Visibility IsWtsProject
+        {
+            get => _isWtsProject;
+            set => SetProperty(ref _isWtsProject, value);
+        }
+
         public Visibility TempFolderAvailable
         {
-            get => _tempFolderAvailable;
-            set => SetProperty(ref _tempFolderAvailable, value);
+            get
+            {
+                return HasContent(GetTempGenerationFolder()) ? Visibility.Visible : Visibility.Hidden;
+            }
         }
 
         private string _wizardVersion;
@@ -132,7 +140,6 @@ namespace Microsoft.Templates.VsEmulator.Main
                 else
                 {
                     IsProjectLoaded = Visibility.Visible;
-                    TempFolderAvailable = Visibility.Hidden;
                 }
             }
         }
@@ -205,7 +212,6 @@ namespace Microsoft.Templates.VsEmulator.Main
                 if (userSelection != null)
                 {
                     NewItemGenController.Instance.FinishGeneration(userSelection);
-                    TempFolderAvailable = Visibility.Visible;
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
             }
@@ -253,7 +259,6 @@ namespace Microsoft.Templates.VsEmulator.Main
                 {
 
                     NewItemGenController.Instance.FinishGeneration(userSelection);
-                    TempFolderAvailable = Visibility.Visible;
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
             }
@@ -269,6 +274,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void LoadProject()
         {
+            ConfigureGenContext(ForceLocalTemplatesRefresh);
             var loadProjectInfo = ShowLoadProjectDialog();
 
             if (!string.IsNullOrEmpty(loadProjectInfo))
@@ -283,6 +289,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 ProjectName = Path.GetFileNameWithoutExtension(projFile);
                 ProjectPath = Path.GetDirectoryName(projFile);
                 OutputPath = ProjectPath;
+                IsWtsProject = GenContext.ToolBox.Shell.GetActiveProjectIsWts() ? Visibility.Visible : Visibility.Collapsed;
                 ClearContext();
             }
         }
@@ -331,10 +338,22 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void OpenTempInExplorer()
         {
-            if (!string.IsNullOrEmpty(GenContext.Current.OutputPath))
+            var tempGenerationPath = GetTempGenerationFolder();
+            if (HasContent(tempGenerationPath))
             {
-                System.Diagnostics.Process.Start(GenContext.Current.OutputPath);
+                System.Diagnostics.Process.Start(tempGenerationPath);
             }
+
+        }
+
+        private static string GetTempGenerationFolder()
+        {
+            return Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
+        }
+
+        private static bool HasContent(string tempPath)
+        {
+            return !string.IsNullOrEmpty(tempPath) && Directory.Exists(tempPath) && Directory.EnumerateDirectories(tempPath).Count() > 0;
         }
 
         private (string name, string solutionName, string location) ShowNewProjectDialog()

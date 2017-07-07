@@ -115,7 +115,7 @@ namespace Microsoft.Templates.Test.Artifacts
 
         public override string GetActiveProjectPath()
         {
-            return string.Empty;
+            return (GenContext.Current != null) ? GenContext.Current.ProjectPath : string.Empty;
         }
 
         
