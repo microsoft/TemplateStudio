@@ -98,7 +98,7 @@
                                             </Grid>
                                         </Button.Content>
                                     </Button>
-                                    <Button Style="{StaticResource SaveTemplateInfoButtonStyle}" Command="{Binding SaveItemCommand}" CommandParameter="{Binding}" IsEnabled="{Binding IsValidName}" Visibility="{Binding EditingContentVisibility}" Tag="Save">
+                                    <Button Style="{StaticResource SaveTemplateInfoButtonStyle}" Command="{Binding SaveItemCommand}" CommandParameter="{Binding}" IsEnabled="{Binding IsValidName}" Visibility="{Binding EditingContentVisibility}" Tag="AllowCloseEdition">
                                         <Button.Content>
                                             <Grid>
                                                 <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource IconButtonTextStyle}" />
