@@ -77,31 +77,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             SyncLicenses(genLicenses);
         }
 
-        public void TryRename(FrameworkElement element)
-        {
-            if (element != null && element.Tag != null && element.Tag.ToString() == "AllowRename")
-            {
-                return;
-            }
-            ProjectTemplates.SavedPages.ToList().ForEach(spg => spg.ToList().ForEach(p =>
-            {
-                if (p.IsEditionEnabled)
-                {
-                    p.ConfirmRenameCommand.Execute(p);
-                    p.TryClose();
-                }
-            }));
-
-            ProjectTemplates?.SavedFeatures?.ToList()?.ForEach(f =>
-            {
-                if (f.IsEditionEnabled)
-                {
-                    f.ConfirmRenameCommand.Execute(f);
-                    f.TryClose();
-                }
-            });
-        }
-
         public void TryCloseEdition(TextBoxEx textBox, Button button)
         {
             if (textBox == null)
@@ -122,7 +97,23 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             var summaryItem = textBox.Tag as SavedTemplateViewModel;
             if (summaryItem != null)
             {
-                summaryItem.OnCancelRename();
+                ProjectTemplates.SavedPages.ToList().ForEach(spg => spg.ToList().ForEach(p =>
+                {
+                    if (p.IsEditionEnabled)
+                    {
+                        p.ConfirmRenameCommand.Execute(p);
+                        p.TryClose();
+                    }
+                }));
+
+                ProjectTemplates?.SavedFeatures?.ToList()?.ForEach(f =>
+                {
+                    if (f.IsEditionEnabled)
+                    {
+                        f.ConfirmRenameCommand.Execute(f);
+                        f.TryClose();
+                    }
+                });
             }
         }
 

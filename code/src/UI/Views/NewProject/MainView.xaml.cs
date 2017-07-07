@@ -56,7 +56,6 @@ namespace Microsoft.Templates.UI.Views.NewProject
         private void OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             var element = e.Source as FrameworkElement;
-            ViewModel.TryRename(element);
             ViewModel.TryHideOverlayBox(element);
         }
     }
