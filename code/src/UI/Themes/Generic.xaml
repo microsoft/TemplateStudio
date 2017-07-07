@@ -3,8 +3,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Controls/TogglePane.xaml" />
-        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Controls/OverlayBox.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Controls/CodeViewer.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Controls/OverlayBox.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Controls/StatusBox.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Controls/TogglePane.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
