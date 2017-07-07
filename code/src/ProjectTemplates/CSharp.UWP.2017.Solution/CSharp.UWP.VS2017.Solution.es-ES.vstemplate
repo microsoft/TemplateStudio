@@ -3,8 +3,8 @@
             Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" 
             xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name>Windows Template Studio (Universal Windows; España)</Name>
-    <Description>Windows Template Studio rápidamente crea una aplicación UWP, utilizando una interfaz de usuario basada en asistentes para convertir sus necesidades en una base de patrones y prácticas recomendadas de Windows 10.</Description>
+    <Name>Windows Template Studio (Universal Windows; local)</Name>
+    <Description>Windows Template Studio quickly builds a UWP app, using a wizard-based UI to turn your needs into a foundation of Windows 10 patterns and best practices.</Description>
     <Icon>windowsTemplateStudio_Logo_256x256.ico</Icon>
     <ProjectType>CSharp</ProjectType>
     <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
