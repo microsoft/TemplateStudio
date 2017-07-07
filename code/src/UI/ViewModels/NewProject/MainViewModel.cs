@@ -24,6 +24,7 @@ using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views.NewProject;
+using System.Windows.Input;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -74,6 +75,55 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                                 .ToList();
 
             SyncLicenses(genLicenses);
+        }
+
+        public void TryRename(FrameworkElement element)
+        {
+            if (element != null && element.Tag != null && element.Tag.ToString() == "AllowRename")
+            {
+                return;
+            }
+            ProjectTemplates.SavedPages.ToList().ForEach(spg => spg.ToList().ForEach(p =>
+            {
+                if (p.IsEditionEnabled)
+                {
+                    p.ConfirmRenameCommand.Execute(p);
+                    p.TryClose();
+                }
+            }));
+
+            ProjectTemplates?.SavedFeatures?.ToList()?.ForEach(f =>
+            {
+                if (f.IsEditionEnabled)
+                {
+                    f.ConfirmRenameCommand.Execute(f);
+                    f.TryClose();
+                }
+            });
+        }
+
+        public void TryCloseEdition(TextBoxEx textBox, Button button)
+        {
+            if (textBox == null)
+            {
+                return;
+            }
+            if (button != null && button.Tag != null && button.Tag.ToString() == "AllowCloseEdition")
+            {
+                return;
+            }
+
+            var templateInfo = textBox.Tag as TemplateInfoViewModel;
+            if (templateInfo != null)
+            {
+                templateInfo.CloseEdition();
+            }
+
+            var summaryItem = textBox.Tag as SavedTemplateViewModel;
+            if (summaryItem != null)
+            {
+                summaryItem.OnCancelRename();
+            }
         }
 
         protected override void OnCancel()
@@ -177,6 +227,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 ItemsSource = items,
                 Style = MainView.FindResource("SummaryListViewStyle") as Style,
+                Tag = "AllowRename",
                 ItemTemplate = MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate
             };
             if (allowDragAndDrop)
