@@ -22,22 +22,22 @@
             <DataTemplate x:Key="ChangesSummaryExpanderHeaderTemplate">
                 <TextBlock Text="{Binding}" Style="{StaticResource TextSummaryGroupHeader}"/>
             </DataTemplate>
-            <DataTemplate x:Key="ListItemTemplate">
-                <Grid Width="281" ToolTip="{Binding Subject}" Height="30">
-                    <Grid Margin="{StaticResource Margin_S_All}">
+
+            <DataTemplate x:Key="FileListItemTemplate">
+                <Border Width="281" ToolTip="{Binding Subject}" Height="30" Padding="{StaticResource Margin_S_All}">
+                    <Grid Background="Transparent">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="5"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1" Text="&#xE91F;" Style="{StaticResource IconButtonTextStyle}" Foreground="{Binding CircleColor, FallbackValue=Red}" FontSize="7" VerticalAlignment="Center"/>
-                        <Image Grid.Column="2" Source="{Binding Icon}" Margin="{StaticResource Margin_M_Left}" VerticalAlignment="Center" Stretch="None"/>
-                        <TextBlock Grid.Column="3" Text="{Binding Subject}" Style="{StaticResource ChangesSummaryListFileNameStyle}" Margin="{StaticResource Margin_S_Left}"/>
+                        <TextBlock Grid.Column="0" Margin="{StaticResource Margin_S_Left}" Text="&#xE91F;" Style="{StaticResource IconButtonTextStyle}" Foreground="{Binding CircleColor, FallbackValue=Red}" FontSize="7" VerticalAlignment="Center"/>
+                        <Image Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Source="{Binding Icon}" VerticalAlignment="Center" Stretch="None"/>
+                        <TextBlock Grid.Column="2" Margin="{StaticResource Margin_S_Left}" Text="{Binding Subject}" Style="{StaticResource ChangesSummaryListFileNameStyle}" />
                     </Grid>
-                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent"/>
-                </Grid>
+                </Border>
             </DataTemplate>
+            
             <DataTemplate x:Key="ListLicenseTemplate">
                 <Grid Margin="{StaticResource Margin_S_Top}">
                     <TextBlock Margin="{StaticResource Margin_M_LeftRight}" VerticalAlignment="Center">
@@ -142,7 +142,7 @@
             <Grid Grid.RowSpan="2" HorizontalAlignment="Right" Width="17" Background="{StaticResource UILightGray}"/>
             <ScrollViewer>
                 <StackPanel>
-                    <ItemsControl ItemsSource="{Binding ChangesSummary.FileGroups}">
+                    <ItemsControl ItemsSource="{Binding ChangesSummary.FileGroups}" Focusable="False">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Expander
@@ -151,11 +151,12 @@
                                     HeaderTemplate="{StaticResource ChangesSummaryExpanderHeaderTemplate}"
                                     IsExpanded="True"
                                     BorderThickness="0"
+                                    Focusable="False"
                                     Visibility="{Binding HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
                                     <ListView
                                         Focusable="False"
                                         Style="{StaticResource ListViewChangesSummaryFiles}"
-                                        ItemTemplate="{StaticResource ListItemTemplate}"                                
+                                        ItemTemplate="{StaticResource FileListItemTemplate}"                                
                                         ItemsSource="{Binding Templates}"
                                         SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
                                 </Expander>
