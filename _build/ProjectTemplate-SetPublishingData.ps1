@@ -1,8 +1,5 @@
 [CmdletBinding()]
 Param(
-  [Parameter(Mandatory=$True,Position=1)]
-  [string]$vsTemplatesPath,
-
   [Parameter(Mandatory=$True,Position=2)]
   [string]$name,
 
@@ -32,7 +29,7 @@ else{
 if($name){
   Write-Host "Setting data in vs project template files"
 
-  $projectTemplates = Get-ChildItem -include "$vsTemplatesPath\*.vstemplate" -recurse |  Where-Object{ 
+  $projectTemplates = Get-ChildItem -include "*.vstemplate" -recurse |  Where-Object{ 
         $_.FullName -notmatch "\\Templates\\" -and 
         $_.FullName -notmatch "\\debug\\" -and
         $_.FullName -notmatch "\\obj\\" -and
