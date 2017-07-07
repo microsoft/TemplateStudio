@@ -14,6 +14,9 @@
         <Image x:Key="VsImage" Source="/VsEmulator;component/Assets/vs.jpg"/>
         <Image x:Key="VsCodeImage" Source="/VsEmulator;component/Assets/vscode.jpg"/>
         <Image x:Key="FolderImage" Source="/VsEmulator;component/Assets/folder.png"/>
+        <Image x:Key="NewFeatureImage" Source="/VsEmulator;component/Assets/newfeature.png"/>
+        <Image x:Key="NewPageImage" Source="/VsEmulator;component/Assets/newpage.png"/>
+        <Image x:Key="OpenFolderImage" Source="/VsEmulator;component/Assets/openfolder.png"/>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
     </Window.Resources>
 
@@ -76,9 +79,9 @@
                     <Button Command="{Binding OpenInVsCommand}" Content="{StaticResource VsImage}" Style="{StaticResource IconButton}" />
                     <Button Command="{Binding OpenInVsCodeCommand}" Content="{StaticResource VsCodeImage}" Style="{StaticResource IconButton}" />
                     <Button Command="{Binding OpenInExplorerCommand}" Content="{StaticResource FolderImage}" Style="{StaticResource IconButton}"  />
-                    <Button Command="{Binding AddNewFeatureCommand}" Content="+" Style="{StaticResource IconButton}"  />
-                    <Button Command="{Binding AddNewPageCommand}" Content="+" Style="{StaticResource IconButton}"  />
-                    <Button Command="{Binding OpenTempInExplorerCommand}" Content="Temp" Style="{StaticResource IconButton}" Visibility="{Binding TempFolderAvailable}"  />
+                    <Button Command="{Binding AddNewFeatureCommand}" Content="{StaticResource NewFeatureImage}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}"/>
+                    <Button Command="{Binding AddNewPageCommand}" Content="{StaticResource NewPageImage}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}"/>
+                    <Button Command="{Binding OpenTempInExplorerCommand}" Content="{StaticResource OpenFolderImage}" Style="{StaticResource IconButton}" Visibility="{Binding TempFolderAvailable}"  />
                 </StackPanel>
                 <Grid Grid.Row="1" Style="{StaticResource HorizontalSeparator}" />
                 <TextBlock Grid.Row="2" Text="{Binding SolutionName}" Style="{StaticResource Header2}" />
