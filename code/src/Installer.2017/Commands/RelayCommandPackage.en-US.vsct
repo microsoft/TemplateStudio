@@ -15,7 +15,7 @@
     </Groups>
 
     <Menus>
-      <Menu guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenu" type="Context" priority="0x0100">
+      <Menu guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenu" type="MenuController" priority="0x0100">
         <Strings>
           <CommandName>Windows Template Studio</CommandName>
           <ButtonText>Windows Template Studio</ButtonText>
@@ -26,6 +26,14 @@
     </Menus>
 
     <Buttons>
+      <Button guid="guidRelayCommandPackageCmdSet" id="HiddenCommand" priority="0x050" type="Button">
+        <CommandFlag>FixMenuController</CommandFlag>
+        <CommandFlag>NoShowOnMenuController</CommandFlag>
+        <Icon guid="guidImages" id="bmpWTS" />
+        <Strings>
+          <ButtonText>Windows Template Studio</ButtonText>
+        </Strings>
+      </Button>
       <Button guid="guidRelayCommandPackageCmdSet" id="AddPageCommand" priority="0x0100" type="Button">
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Icon guid="guidImages" id="bmpPage1" />
@@ -76,10 +84,14 @@
       <Parent guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenu" />
     </CommandPlacement>
 
-    <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="AddPageCommand" priority="0x0100">
+    <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="HiddenCommand" priority="0x0050">
       <Parent guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenuGroup" />
     </CommandPlacement>
 
+    <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="AddPageCommand" priority="0x0100">
+      <Parent guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenuGroup" />
+    </CommandPlacement>
+        
     <CommandPlacement guid="guidRelayCommandPackageCmdSet" id="AddFeatureCommand" priority="0x0200">
       <Parent guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenuGroup" />
     </CommandPlacement>
@@ -97,6 +109,7 @@
       <IDSymbol name="AddItemContextMenu" value="0x0200" />
       <IDSymbol name="AddItemContextMenuGroup" value="0x0300" />
       <IDSymbol name="ToolsContextMenuGroup" value="0x0350" />
+      <IDSymbol name="HiddenCommand" value="0x0375"/>
       <IDSymbol name="AddPageCommand" value="0x0400"/>
       <IDSymbol name="AddFeatureCommand" value="0x0500"/>
       <IDSymbol name="OpenTempFolder" value="0x0600"/>
