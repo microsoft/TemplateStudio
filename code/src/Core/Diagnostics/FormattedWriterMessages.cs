@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             get
             {
-                return $"[{DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}]\t{Environment.UserName}\t{Process.GetCurrentProcess().Id.ToString()}({System.Threading.Thread.CurrentThread.ManagedThreadId})\t";
+                return $"[{DateTime.Now.ToString("yyyyMMdd HH:mm:ss.fff")}]\t{Environment.UserName}\t{Process.GetCurrentProcess().Id}({System.Threading.Thread.CurrentThread.ManagedThreadId})\t";
             }
         }
     }
