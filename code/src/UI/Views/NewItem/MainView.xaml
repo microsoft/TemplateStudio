@@ -52,6 +52,7 @@
                     Grid.Column="0"
                     Width="40"
                     Margin="{StaticResource Margin_M_Left}"
+                    Fill="{StaticResource UIWhite}"
                     HorizontalAlignment="Left" />
                 <TextBlock
                     Grid.Column="1"
@@ -73,9 +74,7 @@
             </Grid>
             <Grid Grid.Row="1" Background="{StaticResource UILightGray}"/>
             <Grid Grid.Row="2">
-                <Grid Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <TextBlock Style="{StaticResource TextMainLoadingStyle}" Text="{x:Static res:StringRes.LoadingTemplatesText}" />
-                </Grid>
+                <controls:LogoDisplay Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}" Width="150" Fill="{StaticResource UILightGray}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Grid Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
                     <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}}"/>
                 </Grid>

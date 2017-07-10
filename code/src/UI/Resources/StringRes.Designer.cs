@@ -20,7 +20,7 @@ namespace Microsoft.Templates.UI.Resources {
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
-    //[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class StringRes {
         
@@ -475,7 +475,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Creating &apos;{0}&apos; feature ....
         ///   Looks up a localized string similar to Generating the template {0} to {1}..
         /// </summary>
         public static string GenControllerUnsafeGenerateAsyncMessage {
@@ -485,7 +484,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adding &apos;{0}&apos; feature to project....
+        ///   Looks up a localized string similar to Creating &apos;{0}&apos; feature ....
         /// </summary>
         public static string GeneratingFeatureMessage {
             get {
@@ -521,20 +520,20 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Features ({0}) - Pick one.
-        /// </summary>
-        public static string GroupFeatureHeader_SF {
-            get {
-                return ResourceManager.GetString("GroupFeatureHeader_SF", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Generation finished.
         /// </summary>
         public static string GenerationFinishedString {
             get {
                 return ResourceManager.GetString("GenerationFinishedString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Features ({0}) - Pick one.
+        /// </summary>
+        public static string GroupFeatureHeader_SF {
+            get {
+                return ResourceManager.GetString("GroupFeatureHeader_SF", resourceCulture);
             }
         }
         
@@ -643,15 +642,6 @@ namespace Microsoft.Templates.UI.Resources {
         public static string LessDetail {
             get {
                 return ResourceManager.GetString("LessDetail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Loading available templates....
-        /// </summary>
-        public static string LoadingTemplatesText {
-            get {
-                return ResourceManager.GetString("LoadingTemplatesText", resourceCulture);
             }
         }
         
@@ -845,7 +835,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done.
+        ///   Looks up a localized string similar to Done..
         /// </summary>
         public static string StatusAcquired {
             get {
@@ -1268,6 +1258,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Visit project web site.
+        /// </summary>
+        public static string VisitProjectWebSite {
+            get {
+                return ResourceManager.GetString("VisitProjectWebSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There was an error collapsing the solution tree. Ex:.
         /// </summary>
         public static string VsGenShellCollapseSolutionItemsMessage {
@@ -1300,15 +1299,6 @@ namespace Microsoft.Templates.UI.Resources {
         public static string VsGenShellShowStatusBarMessageMessage {
             get {
                 return ResourceManager.GetString("VsGenShellShowStatusBarMessageMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Visit project web site.
-        /// </summary>
-        public static string VisitProjectWebSite {
-            get {
-                return ResourceManager.GetString("VisitProjectWebSite", resourceCulture);
             }
         }
         

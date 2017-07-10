@@ -186,9 +186,6 @@
   <data name="LessDetail" xml:space="preserve">
     <value>Less detail</value>
   </data>
-  <data name="LoadingTemplatesText" xml:space="preserve">
-    <value>Loading available templates...</value>
-  </data>
   <data name="MoreDetail" xml:space="preserve">
     <value>More detail</value>
   </data>
