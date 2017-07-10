@@ -1,0 +1,158 @@
+﻿<UserControl x:Class="Microsoft.Templates.UI.Controls.StatusBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Microsoft.Templates.UI.Controls"
+             xmlns:templateSelectors="clr-namespace:Microsoft.Templates.UI.TemplateSelectors"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Colors.xaml" />
+                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleTextBlock.xaml" />
+                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleButton.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            
+            <Style x:Key="FocusVisual">
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Grid>
+                                <Grid.Background>
+                                    <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.4" />
+                                </Grid.Background>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="CloseButtonStyle" TargetType="{x:Type Button}">
+                <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <DataTemplate x:Key="EmptyStatusTemplate">
+            </DataTemplate>
+            <DataTemplate x:Key="InformationStatusTemplate">
+                <Grid>
+                    <Grid.Background>
+                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.1"/>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Background="{StaticResource UIMiddleDarkBlue}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Text="&#xE946;" FontSize="25" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource UIMiddleDarkBlue}" VerticalAlignment="Center" />
+                    <TextBlock Grid.Column="2" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" Style="{StaticResource TextWizardStatusStyle}" />
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="WarningStatusTemplate">
+                <Grid>
+                    <Grid.Background>
+                        <SolidColorBrush Color="{StaticResource UIYellowColor}" Opacity="1.0"/>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Background="{StaticResource UIDarkYellow}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Text="&#xE7BA;" FontSize="25" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource UIDarkYellow}" VerticalAlignment="Center" />
+                    <TextBlock Grid.Column="2" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" Style="{StaticResource TextWizardStatusStyle}" />
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="ErrorStatusTemplate">
+                <Grid>
+                    <Grid.Background>
+                        <SolidColorBrush Color="{StaticResource UIRedColor}" Opacity="0.4"/>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Background="{StaticResource UIRed}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Text="&#xEA39;" FontSize="25" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource UIDarkRed}" VerticalAlignment="Center" />
+                    <TextBlock Grid.Column="2" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" Style="{StaticResource TextWizardStatusStyle}" />
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="InformationButtonCloseTemplate">
+                <Grid>
+                    <Grid.Background>
+                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.1"/>
+                    </Grid.Background>
+                    <TextBlock Text="&#xE894;" FontSize="8" Style="{StaticResource IconButtonTextStyle}" FontWeight="ExtraBold" Margin="{StaticResource Margin_M_All}" Foreground="{StaticResource UIMiddleDarkBlue}"/>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="WarningButtonCloseTemplate">
+                <Grid>
+                    <Grid.Background>
+                        <SolidColorBrush Color="{StaticResource UIYellowColor}" Opacity="1.0"/>
+                    </Grid.Background>
+                    <TextBlock Text="&#xE894;" FontSize="8" Style="{StaticResource IconButtonTextStyle}" FontWeight="ExtraBold" Margin="{StaticResource Margin_M_All}" Foreground="{StaticResource UIDarkYellow}"/>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="ErrorButtonCloseTemplate">
+                <Grid>
+                    <Grid.Background>
+                        <SolidColorBrush Color="{StaticResource UIRedColor}" Opacity="0.4"/>
+                    </Grid.Background>
+                    <TextBlock Text="&#xE894;" FontSize="8" Style="{StaticResource IconButtonTextStyle}" FontWeight="ExtraBold" Margin="{StaticResource Margin_M_All}" Foreground="{StaticResource UIDarkRed}"/>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ContentPresenter Content="{Binding Status, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:StatusBox}}}">
+                <ContentPresenter.ContentTemplateSelector>
+                    <templateSelectors:StatusBoxTemplateSelector
+                        EmptyStatusTemplate="{StaticResource InformationStatusTemplate}"
+                        InformationStatusTemplate="{StaticResource InformationStatusTemplate}"
+                        WarningStatusTemplate="{StaticResource WarningStatusTemplate}"
+                        ErrorStatusTemplate="{StaticResource ErrorStatusTemplate}">
+                    </templateSelectors:StatusBoxTemplateSelector>
+                </ContentPresenter.ContentTemplateSelector>
+            </ContentPresenter>
+            <Button x:Name="closeButton" Grid.Column="1" Command="{Binding CloseCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:StatusBox}}}" Style="{StaticResource CloseButtonStyle}">
+                <Button.Content>
+                    <ContentPresenter Content="{Binding Status, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:StatusBox}}}">
+                        <ContentPresenter.ContentTemplateSelector>
+                            <templateSelectors:StatusBoxTemplateSelector
+                                EmptyStatusTemplate="{StaticResource EmptyStatusTemplate}"
+                                InformationStatusTemplate="{StaticResource InformationButtonCloseTemplate}"
+                                WarningStatusTemplate="{StaticResource WarningButtonCloseTemplate}"
+                                ErrorStatusTemplate="{StaticResource ErrorButtonCloseTemplate}">
+                            </templateSelectors:StatusBoxTemplateSelector>
+                        </ContentPresenter.ContentTemplateSelector>
+                    </ContentPresenter>
+                </Button.Content>
+            </Button>
+        </Grid>
+    </Border>
+</UserControl>

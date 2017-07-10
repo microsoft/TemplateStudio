@@ -279,10 +279,7 @@
                 </Grid.Background>
             </Grid>
         </Grid>
-        <controls:StatusControl
-                    Margin="0,50,0,0"
-                    VerticalAlignment="Top"
-                    Status="{Binding Status}" />
+        <controls:StatusBox Margin="0,50,0,0" Height="55" VerticalAlignment="Top" Status="{Binding Status}" Background="{StaticResource UIWhite}"/>
         <controls:OverlayBox
             Opacity="0"
             HorizontalAlignment="Right"

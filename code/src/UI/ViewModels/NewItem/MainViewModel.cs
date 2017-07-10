@@ -136,7 +136,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             HasOverlayBox = false;
             base.OnNext();
             NewItemSetup.EditionVisibility = Visibility.Collapsed;
-            SetStatus(new StatusViewModel(StatusType.Information, StringRes.GenerationFeedbackMessage));
+            SetStatus(StatusViewModel.Information(StringRes.GenerationFeedbackMessage));
             MainView.Result = CreateUserSelection();
             NewItemGenController.Instance.CleanupTempGeneration();
             await NewItemGenController.Instance.GenerateNewItemAsync(ConfigTemplateType, MainView.Result);
