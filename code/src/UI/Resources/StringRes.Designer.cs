@@ -745,15 +745,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are no changes to apply to your project. Everything already exisits..
-        /// </summary>
-        public static string NoProjectChanges {
-            get {
-                return ResourceManager.GetString("NoProjectChanges", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?..
         /// </summary>
         public static string ProjectConfigurationDescriptionText {
