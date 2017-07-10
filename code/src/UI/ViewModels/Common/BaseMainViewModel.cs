@@ -249,7 +249,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 TemplatesVersion = GenContext.ToolBox.TemplatesVersion;
                 OnNewTemplatesAvailable();
                 NewVersionAvailable = false;
-                SetStatus(StatusViewModel.Information( StringRes.StatusUpdated, 5));
+                SetStatus(StatusViewModel.Information(StringRes.StatusUpdated, 5));
             }
             catch (Exception ex)
             {
