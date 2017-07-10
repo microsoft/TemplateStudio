@@ -140,16 +140,16 @@ namespace Microsoft.Templates.UI.Controls
             }
         }
 
-        private async void UpdateVisible(bool visible)
+        private void UpdateVisible(bool visible)
         {
             if (visible)
             {
                 Panel.SetZIndex(this, 2);
-                await this.FadeInAsync();
+                this.FadeIn();
             }
             else
             {
-                await this.FadeOutAsync();
+                this.FadeOut(0);
                 Panel.SetZIndex(this, 0);
             }
         }
