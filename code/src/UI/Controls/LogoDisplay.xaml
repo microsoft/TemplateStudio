@@ -3,19 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Microsoft.Templates.UI.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-        <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
-            <Canvas Name="Layer_1" Width="48" Height="48">
-                <Canvas.RenderTransform>
-                    <TranslateTransform X="0" Y="0"/>
-                </Canvas.RenderTransform>
-                <Path Fill="#fff">
-                    <Path.Data>
-                        <PathGeometry Figures="M39 30 24 37.5 19 35V26l-4-2v9l-3-1.5V16.556L24 22.5l15.034-7.447L24 3.831 9 15.027V30L0 34.5l24 12 24-12ZM24 7.575V19.152l-9.323-4.618Z" FillRule="NonZero"/>
-                    </Path.Data>
-                </Path>
-
+    <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+        <Canvas Name="Layer_1" Width="48" Height="48">
+            <Canvas.RenderTransform>
+                <TranslateTransform X="0" Y="0"/>
+            </Canvas.RenderTransform>
+            <Path Fill="{Binding Fill, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:LogoDisplay}}}">
+                <Path.Data>
+                    <PathGeometry Figures="M39 30 24 37.5 19 35V26l-4-2v9l-3-1.5V16.556L24 22.5l15.034-7.447L24 3.831 9 15.027V30L0 34.5l24 12 24-12ZM24 7.575V19.152l-9.323-4.618Z" FillRule="NonZero"/>
+                </Path.Data>
+            </Path>
         </Canvas>
-        </Viewbox>
+    </Viewbox>
 </UserControl>

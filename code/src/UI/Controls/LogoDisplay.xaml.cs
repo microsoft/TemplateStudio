@@ -10,7 +10,9 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Microsoft.Templates.UI.Controls
 {
@@ -19,6 +21,13 @@ namespace Microsoft.Templates.UI.Controls
     /// </summary>
     public partial class LogoDisplay : UserControl
     {
+        public Brush Fill
+        {
+            get => (Brush)GetValue(FillProperty);
+            set => SetValue(FillProperty, value);
+        }
+        public static readonly DependencyProperty FillProperty = DependencyProperty.Register("Fill", typeof(Brush), typeof(LogoDisplay), new PropertyMetadata(new SolidColorBrush(Colors.White)));
+
         public LogoDisplay()
         {
             InitializeComponent();
