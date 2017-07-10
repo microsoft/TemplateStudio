@@ -44,12 +44,12 @@ namespace Microsoft.Templates.UI.Controls
         }
         public static readonly DependencyProperty CloseCommandProperty = DependencyProperty.Register("CloseCommand", typeof(ICommand), typeof(StatusBox), new PropertyMetadata(null));
 
-        private static async void OnStatusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnStatusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as StatusBox;
             if (control != null)
             {
-                await control.UpdateStatusAsync(e.NewValue as StatusViewModel);
+                control.UpdateStatus(e.NewValue as StatusViewModel);
             }
         }
 
@@ -61,21 +61,21 @@ namespace Microsoft.Templates.UI.Controls
             InitializeComponent();
         }
 
-        private async void OnClose() => await UpdateVisibilityAsync(false);
+        private void OnClose() => UpdateVisibility(false);
 
-        private async void OnHideTimerTick(object sender, EventArgs e)
+        private void OnHideTimerTick(object sender, EventArgs e)
         {
-            await this.FadeOutAsync();
+            this.FadeOut();
             _hideTimer.Stop();
         }
 
-        private async Task UpdateStatusAsync(StatusViewModel status)
+        private void UpdateStatus(StatusViewModel status)
         {
             var isVisible = status != null && status.Status != StatusType.Empty;
-            await UpdateVisibilityAsync(isVisible, status.AutoHideSeconds);
+            UpdateVisibility(isVisible, status.AutoHideSeconds);
         }
 
-        private async Task UpdateVisibilityAsync(bool isVisible, int autoHideSeconds = 0)
+        private void UpdateVisibility(bool isVisible, int autoHideSeconds = 0)
         {
             if (isVisible)
             {
@@ -86,13 +86,13 @@ namespace Microsoft.Templates.UI.Controls
                     _hideTimer.Interval = TimeSpan.FromSeconds(5);
                     _hideTimer.Start();
                 }
-                await this.FadeInAsync();
+                this.FadeIn();
             }
             else
             {
-                await this.FadeOutAsync();
                 Panel.SetZIndex(this, 0);
                 closeButton.Focusable = false;
+                this.FadeOut(0);
             }
         }
     }
