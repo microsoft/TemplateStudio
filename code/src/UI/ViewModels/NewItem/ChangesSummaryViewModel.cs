@@ -92,14 +92,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 group.SelectedItem = group.Templates.First();
             }
 
-            if (!HasChangesToApply)
-            {
-                MainViewModel.Current.SetStatus(StatusViewModel.Warning(StringRes.NoProjectChanges, 5));
-            }
-            else
-            {
-                MainViewModel.Current.CleanStatus();
-            }
             MainViewModel.Current.UpdateCanFinish(true);
         }
 
