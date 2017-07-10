@@ -177,7 +177,7 @@
                                 x:Name="HamburgerButton"
                                 Width="{TemplateBinding HamburgerWidth}"
                                 Height="{TemplateBinding HamburgerHeight}"
-                                Margin="0,8"
+                                Margin="0"
                                 Padding="0"
                                 VerticalAlignment="Top"
                                 Background="Transparent"
