@@ -26,7 +26,7 @@ namespace Microsoft.Templates.UI.Views.NewItem
             DataContext = ViewModel;
             InitializeComponent();
 
-            Loaded += (sender, args) => { ViewModel.ChangesSummary.Initialize(); };
+            Loaded += (sender, args) => { ViewModel.ChangesSummary.InitializeAsync(); };
         }
     }
 }

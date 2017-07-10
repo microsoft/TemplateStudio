@@ -159,7 +159,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             await ProjectSetup.InitializeAsync(true);
         }
 
-        protected override UserSelection CreateUserSelection()
+        public override UserSelection CreateUserSelection()
         {
             var userSelection = new UserSelection()
             {

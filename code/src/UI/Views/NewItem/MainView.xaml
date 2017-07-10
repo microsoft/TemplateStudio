@@ -74,7 +74,7 @@
             </Grid>
             <Grid Grid.Row="1" Background="{StaticResource UILightGray}"/>
             <Grid Grid.Row="2">
-                <controls:LogoDisplay Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}" Width="150" Fill="{StaticResource UILightGray}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <controls:LogoDisplay IsBusy="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}" Width="150" Fill="{StaticResource UILightGray}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Grid Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
                     <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}}"/>
                 </Grid>

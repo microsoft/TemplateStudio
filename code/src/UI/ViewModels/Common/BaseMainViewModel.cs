@@ -158,7 +158,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
         protected abstract void OnTemplatesAvailable();
         protected abstract void OnNewTemplatesAvailable();
-        protected abstract UserSelection CreateUserSelection();
+        public abstract UserSelection CreateUserSelection();
 
         public void SetValidationErrors(string errorMessage, StatusType statusType = StatusType.Error)
         {
@@ -330,6 +330,30 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                     return string.Empty;
             }
         }
+
+        private int GetStatusHideSeconds(SyncStatus status)
+        {
+            switch (status)
+            {
+                case SyncStatus.Updating:
+                    return 5;
+                case SyncStatus.Updated:
+                    return 5;
+                case SyncStatus.Acquiring:
+                    return 0;
+                case SyncStatus.Acquired:
+                    return 5;
+                case SyncStatus.Preparing:
+                    return 5;
+                case SyncStatus.Prepared:
+                    return 5;
+                case SyncStatus.NewVersionAvailable:
+                    return 5;
+                default:
+                    return 5;
+            }
+        }
+
         public void SetStatus(StatusViewModel status)
         {
             if (status.Status == StatusType.Empty)
@@ -352,7 +376,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         private void SyncSyncStatusChanged(object sender, SyncStatusEventArgs status)
         {
-            SetStatus(StatusViewModel.Information(GetStatusText(status.Status), 5));
+            SetStatus(StatusViewModel.Information(GetStatusText(status.Status), GetStatusHideSeconds(status.Status)));
 
             if (status.Status == SyncStatus.Updated)
             {
