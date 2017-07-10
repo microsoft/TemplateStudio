@@ -96,7 +96,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void OnMoreDetails()
         {
-            Process.Start("https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/newitem.md");
+            Process.Start("https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/newitem.md");
         }
 
         private void OnItemChanged(ItemsGroupViewModel<BaseFileViewModel> group)
