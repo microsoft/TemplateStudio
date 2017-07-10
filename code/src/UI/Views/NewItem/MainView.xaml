@@ -48,7 +48,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <controls:LogoDisplay
+                <controls:LogoControl
                     Grid.Column="0"
                     Width="40"
                     Margin="{StaticResource Margin_M_Left}"
@@ -74,7 +74,7 @@
             <Grid Grid.Row="1" Background="{StaticResource UILightGray}"/>
             <Grid Grid.Row="2">
                 <Grid Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <TextBlock Style="{StaticResource TextMainLoadingStyle}" Text="{x:Static res:StringRes.LoadingTemplatesText}" />
+                    <controls:LogoControl Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{StaticResource UILightGray}"/>
                 </Grid>
                 <Grid Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
                     <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}}"/>
@@ -107,7 +107,6 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
-                            <!--<ColumnDefinition Width="Auto" />-->
                         </Grid.ColumnDefinitions>
                         <Button
                             Grid.Column="0"
