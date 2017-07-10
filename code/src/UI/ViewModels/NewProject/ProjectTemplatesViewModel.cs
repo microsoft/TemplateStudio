@@ -280,7 +280,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (validationResult.IsValid)
             {
                 item.ItemName = item.NewItemName;
-                item.IsEditionEnabled = false;
 
                 if (item.IsHome)
                 {
@@ -289,6 +288,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
                 AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.Rename).FireAndForget();
             }
+            else
+            {
+                item.NewItemName = item.ItemName;
+            }
+            item.IsEditionEnabled = false;
+            MainViewModel.Current.CleanStatus(true);
         }
 
         private void OnOpenSummaryItem(SavedTemplateViewModel item)
