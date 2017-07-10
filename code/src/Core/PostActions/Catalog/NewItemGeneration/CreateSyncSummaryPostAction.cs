@@ -74,7 +74,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
                         if (!GenContext.Current.FailedMergePostActions.Any(w => w.FileName == mergeFile.Key))
                         {
-                            sb.AppendLine(string.Format(StringRes.SyncSummaryMergeFilePreview, mergeFile.Key, Uri.EscapeUriString(modifiedFilePath)));
+                            sb.AppendLine(string.Format(StringRes.SyncSummaryMergeFilePreview, mergeFile.Key, FormatFilePath(modifiedFilePath)));
                             sb.AppendLine();
 
                             foreach (var mergeInfo in mergeFile.Value)
@@ -143,12 +143,17 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private static string GetLinkToProjectFile(string fileName, string filePath)
         {
-            return $"* [{fileName}]({Uri.EscapeUriString(filePath)})";
+            return $"* [{fileName}]({FormatFilePath(filePath)})";
         }
 
         private static string GetCompareLink(string fileName, string filePath)
         {
-            return $"* {StringRes.SyncSummaryTempGenerationFile}: [{fileName}]({fileName}), {StringRes.SyncSummaryProjectFile}: [{fileName}]({Uri.EscapeUriString(filePath)})";
+            return $"* {StringRes.SyncSummaryTempGenerationFile}: [{fileName}]({fileName}), {StringRes.SyncSummaryProjectFile}: [{fileName}]({FormatFilePath(filePath)})";
+        }
+
+        private static string FormatFilePath(string filePath)
+        {
+            return $"about:/{filePath.Replace(" ", "%20").Replace(@"\", "/")}";
         }
     }
 }
