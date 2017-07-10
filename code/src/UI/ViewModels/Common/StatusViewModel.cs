@@ -18,11 +18,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     {
         public StatusType Status { get; set; }
         public string Message { get; set; }
-        public bool AutoHide { get; set; }
+        public int AutoHideSeconds { get; set; }
 
-        public StatusViewModel(StatusType status, string message, bool autoHide = false)
+        public StatusViewModel(StatusType status, string message, int autoHide = 5)
         {
-            AutoHide = autoHide;
+            AutoHideSeconds = autoHide;
             Message = message;
             Status = status;
         }

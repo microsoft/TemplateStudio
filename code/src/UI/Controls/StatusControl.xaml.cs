@@ -115,7 +115,7 @@ namespace Microsoft.Templates.UI.Controls
                     Panel.SetZIndex(this, 0);
                     break;
             }
-            if (status.AutoHide == true)
+            if (status.AutoHideSeconds > 0)
             {
                 _hideTimer.Start();
             }

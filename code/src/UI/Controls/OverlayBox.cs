@@ -157,7 +157,7 @@ namespace Microsoft.Templates.UI.Controls
         private void UpdateStatus(StatusViewModel status)
         {
             StatusText = status.Message;
-            if (status.AutoHide)
+            if (status.AutoHideSeconds > 0)
             {
                 HideTimer.Start();
             }

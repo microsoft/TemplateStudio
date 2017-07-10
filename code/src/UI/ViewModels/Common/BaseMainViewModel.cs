@@ -249,7 +249,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 TemplatesVersion = GenContext.ToolBox.TemplatesVersion;
                 OnNewTemplatesAvailable();
                 NewVersionAvailable = false;
-                SetStatus(new StatusViewModel(StatusType.Information, StringRes.StatusUpdated, true));
+                SetStatus(new StatusViewModel(StatusType.Information, StringRes.StatusUpdated, 5));
             }
             catch (Exception ex)
             {
@@ -352,7 +352,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         private void SyncSyncStatusChanged(object sender, SyncStatusEventArgs status)
         {
-            SetStatus(new StatusViewModel(StatusType.Information, GetStatusText(status.Status), true));
+            SetStatus(new StatusViewModel(StatusType.Information, GetStatusText(status.Status), 5));
 
             if (status.Status == SyncStatus.Updated)
             {

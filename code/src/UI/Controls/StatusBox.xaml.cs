@@ -1,15 +1,23 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
+
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.Controls
 {
-    public class StatusBox : Control
+    /// <summary>
+    /// Interaction logic for StatusBox.xaml
+    /// </summary>
+    public partial class StatusBox : UserControl
     {
+        private DispatcherTimer _hideTimer;
+
         public StatusViewModel Status
         {
             get { return (StatusViewModel)GetValue(StatusProperty); }
@@ -35,32 +43,44 @@ namespace Microsoft.Templates.UI.Controls
 
         public StatusBox()
         {
-            DefaultStyleKey = typeof(StatusBox);
+            _hideTimer = new DispatcherTimer();
+            _hideTimer.Tick += OnHideTimerTick;
             CloseCommand = new RelayCommand(OnClose);
+            InitializeComponent();
         }
 
-        private async void OnClose()
+        private async void OnClose() => await UpdateVisibilityAsync(false);
+
+        private async void OnHideTimerTick(object sender, EventArgs e)
         {
-            await UpdateVisibilityAsync(false);
+            await this.FadeOutAsync();
+            _hideTimer.Stop();
         }
 
         private async Task UpdateStatusAsync(StatusViewModel statusViewModel)
         {
             var isVisible = statusViewModel != null && statusViewModel.Status != StatusType.Empty;
-            await UpdateVisibilityAsync(isVisible);
+            await UpdateVisibilityAsync(isVisible, statusViewModel.AutoHideSeconds);
         }
 
-        private async Task UpdateVisibilityAsync(bool isVisible)
+        private async Task UpdateVisibilityAsync(bool isVisible, int autoHideSeconds = 0)
         {
             if (isVisible)
             {
                 Panel.SetZIndex(this, 2);
                 await this.FadeInAsync();
+                closeButton.Focusable = true;
+                if (autoHideSeconds > 0)
+                {
+                    _hideTimer.Interval = TimeSpan.FromSeconds(5);
+                    _hideTimer.Start();
+                }
             }
             else
             {
                 await this.FadeOutAsync();
                 Panel.SetZIndex(this, 0);
+                closeButton.Focusable = false;
             }
         }
     }
