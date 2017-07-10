@@ -37,14 +37,14 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         protected bool _templatesAvailable;
         protected bool _canCheckingUpdates;
 
-        protected StatusViewModel _status = StatusControl.EmptyStatus;
+        protected StatusViewModel _status = StatusViewModel.EmptyStatus;
         public StatusViewModel Status
         {
             get => _status;
             private set => SetProperty(ref _status, value);
         }
 
-        protected StatusViewModel _overlayStatus = StatusControl.EmptyStatus;
+        protected StatusViewModel _overlayStatus = StatusViewModel.EmptyStatus;
         public StatusViewModel OverlayStatus
         {
             get => _overlayStatus;
@@ -175,7 +175,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public void CleanStatus(bool cleanValidationError = false)
         {
-            SetStatus(StatusControl.EmptyStatus);
+            SetStatus(StatusViewModel.EmptyStatus);
             if (cleanValidationError)
             {
                 _hasValidationErrors = false;
@@ -249,11 +249,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 TemplatesVersion = GenContext.ToolBox.TemplatesVersion;
                 OnNewTemplatesAvailable();
                 NewVersionAvailable = false;
-                SetStatus(new StatusViewModel(StatusType.Information, StringRes.StatusUpdated, 5));
+                SetStatus(StatusViewModel.Information( StringRes.StatusUpdated, 5));
             }
             catch (Exception ex)
             {
-                SetStatus(new StatusViewModel(StatusType.Information, StringRes.ErrorSyncRefresh));
+                SetStatus(StatusViewModel.Information(StringRes.ErrorSyncRefresh));
 
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);
@@ -273,7 +273,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
             catch (Exception ex)
             {
-                SetStatus(new StatusViewModel(StatusType.Information, StringRes.ErrorSyncRefresh));
+                SetStatus(StatusViewModel.Information(StringRes.ErrorSyncRefresh));
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);
             }
@@ -296,7 +296,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
             catch (Exception ex)
             {
-                SetStatus(new StatusViewModel(StatusType.Information, StringRes.ErrorSync));
+                SetStatus(StatusViewModel.Information(StringRes.ErrorSync));
 
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);
@@ -352,7 +352,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         private void SyncSyncStatusChanged(object sender, SyncStatusEventArgs status)
         {
-            SetStatus(new StatusViewModel(StatusType.Information, GetStatusText(status.Status), 5));
+            SetStatus(StatusViewModel.Information(GetStatusText(status.Status), 5));
 
             if (status.Status == SyncStatus.Updated)
             {
@@ -369,7 +369,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 _mainView.Dispatcher.Invoke(() =>
                 {
-                    SetStatus(new StatusViewModel(StatusType.Warning, StringRes.StatusOverVersionContent));
+                    SetStatus(StatusViewModel.Warning(StringRes.StatusOverVersionContent));
                 });
             }
 
@@ -377,7 +377,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 _mainView.Dispatcher.Invoke(() =>
                 {
-                    SetStatus(new StatusViewModel(StatusType.Error, StringRes.StatusOverVersionNoContent));
+                    SetStatus(StatusViewModel.Error(StringRes.StatusOverVersionNoContent));
                     _templatesAvailable = false;
                     NextCommand.OnCanExecuteChanged();
                 });
@@ -387,7 +387,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 _mainView.Dispatcher.Invoke(() =>
                 {
-                    SetStatus(new StatusViewModel(StatusType.Error, StringRes.StatusLowerVersionContent));
+                    SetStatus(StatusViewModel.Error(StringRes.StatusLowerVersionContent));
                     _templatesAvailable = false;
                     NextCommand.OnCanExecuteChanged();
                 });

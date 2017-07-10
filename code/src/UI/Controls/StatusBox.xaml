@@ -129,25 +129,25 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <ContentPresenter Content="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:StatusBox}}, Path=Status}">
+            <ContentPresenter Content="{Binding Status, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:StatusBox}}}">
                 <ContentPresenter.ContentTemplateSelector>
                     <templateSelectors:StatusBoxTemplateSelector
-                                        EmptyStatusTemplate="{StaticResource InformationStatusTemplate}"
-                                        InformationStatusTemplate="{StaticResource InformationStatusTemplate}"
-                                        WarningStatusTemplate="{StaticResource WarningStatusTemplate}"
-                                        ErrorStatusTemplate="{StaticResource ErrorStatusTemplate}">
+                        EmptyStatusTemplate="{StaticResource InformationStatusTemplate}"
+                        InformationStatusTemplate="{StaticResource InformationStatusTemplate}"
+                        WarningStatusTemplate="{StaticResource WarningStatusTemplate}"
+                        ErrorStatusTemplate="{StaticResource ErrorStatusTemplate}">
                     </templateSelectors:StatusBoxTemplateSelector>
                 </ContentPresenter.ContentTemplateSelector>
             </ContentPresenter>
-            <Button x:Name="closeButton" Grid.Column="1" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:StatusBox}}, Path=CloseCommand}" Style="{StaticResource CloseButtonStyle}">
+            <Button x:Name="closeButton" Grid.Column="1" Command="{Binding CloseCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:StatusBox}}}" Style="{StaticResource CloseButtonStyle}">
                 <Button.Content>
-                    <ContentPresenter Content="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:StatusBox}}, Path=Status}">
+                    <ContentPresenter Content="{Binding Status, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:StatusBox}}}">
                         <ContentPresenter.ContentTemplateSelector>
                             <templateSelectors:StatusBoxTemplateSelector
-                                                EmptyStatusTemplate="{StaticResource EmptyStatusTemplate}"
-                                                InformationStatusTemplate="{StaticResource InformationButtonCloseTemplate}"
-                                                WarningStatusTemplate="{StaticResource WarningButtonCloseTemplate}"
-                                                ErrorStatusTemplate="{StaticResource ErrorButtonCloseTemplate}">
+                                EmptyStatusTemplate="{StaticResource EmptyStatusTemplate}"
+                                InformationStatusTemplate="{StaticResource InformationButtonCloseTemplate}"
+                                WarningStatusTemplate="{StaticResource WarningButtonCloseTemplate}"
+                                ErrorStatusTemplate="{StaticResource ErrorButtonCloseTemplate}">
                             </templateSelectors:StatusBoxTemplateSelector>
                         </ContentPresenter.ContentTemplateSelector>
                     </ContentPresenter>

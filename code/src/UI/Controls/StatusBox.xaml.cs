@@ -28,7 +28,7 @@ namespace Microsoft.Templates.UI.Controls
         public ICommand CloseCommand
         {
             get { return (ICommand)GetValue(CloseCommandProperty); }
-            set { SetValue(CloseCommandProperty, value); }
+            private set { SetValue(CloseCommandProperty, value); }
         }
         public static readonly DependencyProperty CloseCommandProperty = DependencyProperty.Register("CloseCommand", typeof(ICommand), typeof(StatusBox), new PropertyMetadata(null));
 
@@ -57,10 +57,10 @@ namespace Microsoft.Templates.UI.Controls
             _hideTimer.Stop();
         }
 
-        private async Task UpdateStatusAsync(StatusViewModel statusViewModel)
+        private async Task UpdateStatusAsync(StatusViewModel status)
         {
-            var isVisible = statusViewModel != null && statusViewModel.Status != StatusType.Empty;
-            await UpdateVisibilityAsync(isVisible, statusViewModel.AutoHideSeconds);
+            var isVisible = status != null && status.Status != StatusType.Empty;
+            await UpdateVisibilityAsync(isVisible, status.AutoHideSeconds);
         }
 
         private async Task UpdateVisibilityAsync(bool isVisible, int autoHideSeconds = 0)
@@ -68,13 +68,13 @@ namespace Microsoft.Templates.UI.Controls
             if (isVisible)
             {
                 Panel.SetZIndex(this, 2);
-                await this.FadeInAsync();
                 closeButton.Focusable = true;
                 if (autoHideSeconds > 0)
                 {
                     _hideTimer.Interval = TimeSpan.FromSeconds(5);
                     _hideTimer.Start();
                 }
+                await this.FadeInAsync();
             }
             else
             {
