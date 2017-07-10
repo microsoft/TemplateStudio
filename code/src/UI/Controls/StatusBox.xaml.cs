@@ -83,7 +83,7 @@ namespace Microsoft.Templates.UI.Controls
                 closeButton.Focusable = true;
                 if (autoHideSeconds > 0)
                 {
-                    _hideTimer.Interval = TimeSpan.FromSeconds(5);
+                    _hideTimer.Interval = TimeSpan.FromSeconds(autoHideSeconds);
                     _hideTimer.Start();
                 }
                 this.FadeIn();

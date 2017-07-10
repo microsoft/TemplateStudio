@@ -103,14 +103,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 group.SelectedItem = group.Templates.First();
             }
-
             MainViewModel.Current.UpdateCanFinish(true);
             IsLoading = false;
         }
 
         private void OnMoreDetails()
         {
-            Process.Start("https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/newitem.md");
+            Process.Start("https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/newitem.md");
         }
 
         private void OnItemChanged(ItemsGroupViewModel<BaseFileViewModel> group)
