@@ -178,7 +178,7 @@
                 <Grid Grid.Column="0" Background="{StaticResource UILightGray}" />
                 <Grid Grid.Column="1" Width="17" HorizontalAlignment="Right" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}" />
                 <Frame Grid.Column="1" x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False"/>
-                <controls:LogoDisplay Grid.Column="1" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}" Width="150" Fill="{StaticResource UILightGray}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <controls:LogoDisplay Grid.Column="1" IsBusy="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}" Width="150" Fill="{StaticResource UILightGray}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Grid Grid.Column="1" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
                     <TextBlock Style="{StaticResource TextMainLoadingStyle}" Text="{x:Static res:StringRes.NoContentText}" Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}"/>
                 </Grid>

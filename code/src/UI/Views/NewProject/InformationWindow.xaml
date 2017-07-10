@@ -24,7 +24,7 @@
                 <Grid>
                     <TextBlock>
                         <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
-                            <TextBlock Text="{Binding Text}" Style="{StaticResource TextSummaryLicenseStyle}" />
+                            <TextBlock Text="{Binding Text}" Style="{StaticResource TextSummaryLicenseStyle}" FontSize="{StaticResource UI_M_FontSize}"/>
                         </Hyperlink>
                     </TextBlock>
                 </Grid>
@@ -34,7 +34,7 @@
                 <Grid>
                     <TextBlock>
                         <Hyperlink Command="{Binding ShowInfoCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
-                          <TextBlock Text="{Binding Name}" Style="{StaticResource TextSummaryLicenseStyle}" />
+                          <TextBlock Text="{Binding Name}" Style="{StaticResource TextSummaryLicenseStyle}" FontSize="{StaticResource UI_M_FontSize}"/>
                         </Hyperlink>
                     </TextBlock>
                 </Grid>
@@ -85,16 +85,16 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalLicenses}" Style="{StaticResource TextInformationPropertyTitle}" />
-                    <ItemsControl Grid.Column="1" ItemsSource="{Binding LicenseTerms}" Margin="{StaticResource Margin_M_Left}" ItemTemplate="{StaticResource LicenseInfoModalItemTemplate}" Focusable="False"/>
+                    <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalLicenses}" Style="{StaticResource TextInformationPropertyTitle}" VerticalAlignment="Bottom" />
+                    <ItemsControl Grid.Column="1" ItemsSource="{Binding LicenseTerms}" Margin="10,3,0,0" ItemTemplate="{StaticResource LicenseInfoModalItemTemplate}" Focusable="False"/>
                 </Grid>
                 <Grid Margin="{StaticResource Margin_M_Top}" Visibility="{Binding DependenciesVisibility, FallbackValue=Collapsed}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalDependencies}" Style="{StaticResource TextInformationPropertyTitle}" />
-                    <ItemsControl Grid.Column="1" ItemsSource="{Binding DependencyItems}" Margin="{StaticResource Margin_M_Left}" ItemTemplate="{StaticResource DependencyInfoModalTemplate}" Focusable="False"/>
+                    <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalDependencies}" Style="{StaticResource TextInformationPropertyTitle}" VerticalAlignment="Bottom" />
+                    <ItemsControl Grid.Column="1" ItemsSource="{Binding DependencyItems}" Margin="10,3,0,0" ItemTemplate="{StaticResource DependencyInfoModalTemplate}" Focusable="False"/>
                 </Grid>
             </StackPanel>
             <controls:MarkdownBlock Grid.Row="1" Margin="{StaticResource Margin_XL_TopRightBottom}" Text="{Binding InformationMD}" />
