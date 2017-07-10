@@ -91,7 +91,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 group.SelectedItem = group.Templates.First();
             }
-
             MainViewModel.Current.UpdateCanFinish(true);
         }
 
