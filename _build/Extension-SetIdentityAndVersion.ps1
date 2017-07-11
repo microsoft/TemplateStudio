@@ -47,6 +47,22 @@ if($vsixIdentity){
     $resolvedPath = Resolve-Path($vsixManifestFile)
     $manifestContent.Save($resolvedPath) 
     Write-Host "$resolvedPath - Version, Identity & DisplayName applied ($versionNumber, $vsixIdentity, $vsixDisplayName)"
+
+    $vsixLangPacks = Get-ChildItem -include "Extension.vsixlangpack" -recurse |  Where-Object{ 
+        $_.FullName -notmatch "\\Templates\\" -and 
+        $_.FullName -notmatch "\\debug\\" -and
+        $_.FullName -notmatch "\\obj\\" -and
+        $_.FullName -match "\\Installer.2017\\"
+    }
+    if($vsixLangPacks){ 
+      Write-Host "Applying Display Name to vsixlangpack files"
+      foreach ($langPack in $vsixLangPacks) {
+        [xml]$langContent = Get-Content $langPack
+        $langContent.VsixLanguagePack.LocalizedName = $vsixDisplayName
+        $manifestContent.Save($langPack) 
+        Write-Host "$langPack - LocalizedName applied ($vsixDisplayName)"        
+      }
+    }
   }
   else{
     throw "No VSIX manifest file found."

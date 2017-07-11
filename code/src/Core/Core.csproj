@@ -71,8 +71,8 @@
     <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.28\lib\net46\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.TemplateEngine.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Abstractions.1.0.0-beta2-20170515-223\lib\net45\Microsoft.TemplateEngine.Abstractions.dll</HintPath>
+    <Reference Include="Microsoft.TemplateEngine.Abstractions, Version=1.0.0.234, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Abstractions.1.0.0-beta2-20170518-234\lib\net45\Microsoft.TemplateEngine.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TemplateEngine.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.1.0.0-beta2-20170515-223\lib\net45\Microsoft.TemplateEngine.Core.dll</HintPath>

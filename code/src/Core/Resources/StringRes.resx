@@ -164,6 +164,9 @@
   <data name="FsSafeMoveDirectoryMessage" xml:space="preserve">
     <value>The folder {0} can't be moved to {1}. Error: {2}</value>
   </data>
+  <data name="GenContextBootstrapError" xml:space="preserve">
+    <value>Critical error initializating GenContext.</value>
+  </data>
   <data name="GenContextCurrentInvalidOperationMessage" xml:space="preserve">
     <value>There is no context for the current gen execution, call Current_set first</value>
   </data>
