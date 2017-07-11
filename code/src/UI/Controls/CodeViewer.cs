@@ -86,7 +86,6 @@ namespace Microsoft.Templates.UI.Controls
                 patternText = patternText.Replace("##ExecutingDirectory##", executingDirectory).Replace("##renderSideBySide##", (renderSideBySide.ToString().ToLower()));
                 if (_currentHtml != patternText)
                 {
-
                     _webBrowser.NavigateToString(patternText);
                     _currentHtml = patternText;
                 }
