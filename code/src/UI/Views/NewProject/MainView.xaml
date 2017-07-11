@@ -281,7 +281,7 @@
                 </Grid.Background>
             </Grid>
         </Grid>
-        <controls:StatusBox Margin="0,50,0,0" Height="55" VerticalAlignment="Top" Status="{Binding Status}" Background="{StaticResource UIWhite}"/>
+        <controls:StatusBox Margin="0,50,0,0" Height="55" VerticalAlignment="Top" Status="{Binding Status}" Background="{StaticResource UIWhite}" Visibility="{Binding HasStatus, Converter={StaticResource BoolToVisibilityConverter}}"/>
         <controls:OverlayBox
             Opacity="0"
             HorizontalAlignment="Right"
