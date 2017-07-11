@@ -145,7 +145,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
             var sb = new StringBuilder();
 
-            sb.AppendLine($"\r\n>>>>>>>>>>>>>> {StringRes.LogStartedString} {DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}");
+            sb.AppendLine($"\r\n>>>>>>>>>>>>>> {StringRes.LogStartedString} {DateTime.Now.ToString("yyyyMMdd HH:mm:ss.fff")}");
             sb.AppendLine($">>>>>>>>>>>>>> {StringRes.AssemblyFileVersionString}: {GetVersion()}");
 
             File.AppendAllText(LogFileName, sb.ToString());

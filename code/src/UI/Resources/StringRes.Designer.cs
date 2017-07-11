@@ -20,7 +20,7 @@ namespace Microsoft.Templates.UI.Resources {
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
-    //[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class StringRes {
         
@@ -214,7 +214,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file &apos;{0}&apos; already exist in your project and was generated as part of the new item. Your current project file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing..
+        ///   Looks up a localized string similar to The file &apos;{0}&apos; already exists in your project but was also generated as part of the new item. Your current file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionConflictingFiles {
             get {
@@ -223,7 +223,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We are not able to introduce the modifications required. If needed, you can access to the generated file after finishing..
+        ///   Looks up a localized string similar to We are not able to introduce the modifications required. If needed, you can access the generated file after finishing..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionFailedMerges {
             get {
@@ -232,7 +232,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file &apos;{0}&apos; will be modified to include required content. Below you can check the modifications introduced..
+        ///   Looks up a localized string similar to The file &apos;{0}&apos; will be modified to include required content. Below you can check the modifications..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionModifiedFiles {
             get {
@@ -250,7 +250,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file &apos;{0}&apos; already exists in your project and no further action is necessary. The file will remain unchanged after finishing..
+        ///   Looks up a localized string similar to The file &apos;{0}&apos; already exists in your project and no further action is necessary. The file will remain unchanged..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionUnchangedFiles {
             get {
@@ -475,7 +475,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Creating &apos;{0}&apos; feature ....
         ///   Looks up a localized string similar to Generating the template {0} to {1}..
         /// </summary>
         public static string GenControllerUnsafeGenerateAsyncMessage {
@@ -485,7 +484,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adding &apos;{0}&apos; feature to project....
+        ///   Looks up a localized string similar to Creating &apos;{0}&apos; feature ....
         /// </summary>
         public static string GeneratingFeatureMessage {
             get {
@@ -521,20 +520,20 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Features ({0}) - Pick one.
-        /// </summary>
-        public static string GroupFeatureHeader_SF {
-            get {
-                return ResourceManager.GetString("GroupFeatureHeader_SF", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Generation finished.
         /// </summary>
         public static string GenerationFinishedString {
             get {
                 return ResourceManager.GetString("GenerationFinishedString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Features ({0}) - Pick one.
+        /// </summary>
+        public static string GroupFeatureHeader_SF {
+            get {
+                return ResourceManager.GetString("GroupFeatureHeader_SF", resourceCulture);
             }
         }
         
@@ -647,15 +646,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loading available templates....
-        /// </summary>
-        public static string LoadingTemplatesText {
-            get {
-                return ResourceManager.GetString("LoadingTemplatesText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to More detail.
         /// </summary>
         public static string MoreDetail {
@@ -755,15 +745,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are no changes to apply to your project. Everything already exisits..
-        /// </summary>
-        public static string NoProjectChanges {
-            get {
-                return ResourceManager.GetString("NoProjectChanges", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?..
         /// </summary>
         public static string ProjectConfigurationDescriptionText {
@@ -845,7 +826,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done.
+        ///   Looks up a localized string similar to Done..
         /// </summary>
         public static string StatusAcquired {
             get {
@@ -863,7 +844,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is no templates content available for the current wizard version. Please ensure you have connectivity and restart the wizard again..
+        ///   Looks up a localized string similar to There is no template content available for the current wizard version. Please ensure you have connectivity and restart the wizard..
         /// </summary>
         public static string StatusLowerVersionContent {
             get {
@@ -881,7 +862,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is new templates content available..
+        ///   Looks up a localized string similar to There is new template content available..
         /// </summary>
         public static string StatusNewVersionAvailable {
             get {
@@ -890,7 +871,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An update to the templates is available but not compatible with the wizard version. Update the extension to access the latest content..
+        ///   Looks up a localized string similar to An update to the templates is available but not compatible with this wizard version. Update the extension to access the latest templates..
         /// </summary>
         public static string StatusOverVersionContent {
             get {
@@ -1268,6 +1249,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Visit project web site.
+        /// </summary>
+        public static string VisitProjectWebSite {
+            get {
+                return ResourceManager.GetString("VisitProjectWebSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There was an error collapsing the solution tree. Ex:.
         /// </summary>
         public static string VsGenShellCollapseSolutionItemsMessage {
@@ -1286,7 +1276,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to automatically perform Restore NuGet Packages for the solution. Please, try to manually restore the NuGet packages..
+        ///   Looks up a localized string similar to Unable to automatically Restore NuGet Packages for the solution. Please, try to manually restore the NuGet packages..
         /// </summary>
         public static string VsGenShellRestorePackagesWarningMessage {
             get {
@@ -1300,15 +1290,6 @@ namespace Microsoft.Templates.UI.Resources {
         public static string VsGenShellShowStatusBarMessageMessage {
             get {
                 return ResourceManager.GetString("VsGenShellShowStatusBarMessageMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Visit project web site.
-        /// </summary>
-        public static string VisitProjectWebSite {
-            get {
-                return ResourceManager.GetString("VisitProjectWebSite", resourceCulture);
             }
         }
         

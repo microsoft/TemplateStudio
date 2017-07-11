@@ -21,6 +21,7 @@ using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.Core;
+using System.Threading.Tasks;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -57,6 +58,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             set => SetProperty(ref _hasChangesToApply, value);
         }
 
+        private bool _isLoading =true;
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set => SetProperty(ref _isLoading, value);
+        }
+
         public ICommand MoreDetailsCommand { get; }
 
         public ChangesSummaryViewModel()
@@ -64,8 +72,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             MoreDetailsCommand = new RelayCommand(OnMoreDetails);
         }
 
-        public void Initialize()
+        public async Task InitializeAsync()
         {
+            MainViewModel.Current.MainView.Result = MainViewModel.Current.CreateUserSelection();
+            NewItemGenController.Instance.CleanupTempGeneration();
+            await NewItemGenController.Instance.GenerateNewItemAsync(MainViewModel.Current.ConfigTemplateType, MainViewModel.Current.MainView.Result);
+
             var output = NewItemGenController.Instance.CompareOutputAndProject();
             var warnings = GenContext.Current.FailedMergePostActions.Select(w => new FailedMergesFileViewModel(w));
             HasChangesToApply = output.HasChangesToApply;
@@ -91,21 +103,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 group.SelectedItem = group.Templates.First();
             }
-
-            if (!HasChangesToApply)
-            {
-                MainViewModel.Current.SetStatus(new StatusViewModel(Controls.StatusType.Warning, StringRes.NoProjectChanges, true));
-            }
-            else
-            {
-                MainViewModel.Current.CleanStatus();
-            }
             MainViewModel.Current.UpdateCanFinish(true);
+            IsLoading = false;
         }
 
         private void OnMoreDetails()
         {
-            Process.Start("https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/newitem.md");
+            Process.Start("https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/newitem.md");
         }
 
         private void OnItemChanged(ItemsGroupViewModel<BaseFileViewModel> group)

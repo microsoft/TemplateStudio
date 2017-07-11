@@ -186,9 +186,6 @@
   <data name="LessDetail" xml:space="preserve">
     <value>Less detail</value>
   </data>
-  <data name="LoadingTemplatesText" xml:space="preserve">
-    <value>Loading available templates...</value>
-  </data>
   <data name="MoreDetail" xml:space="preserve">
     <value>More detail</value>
   </data>
@@ -220,13 +217,13 @@
     <value>Checking for template updates...</value>
   </data>
   <data name="StatusLowerVersionContent" xml:space="preserve">
-    <value>There is no templates content available for the current wizard version. Please ensure you have connectivity and restart the wizard again.</value>
+    <value>There is no template content available for the current wizard version. Please ensure you have connectivity and restart the wizard.</value>
   </data>
   <data name="StatusLowerVersionTitle" xml:space="preserve">
     <value>Wizard incompatible with templates content.</value>
   </data>
   <data name="StatusOverVersionContent" xml:space="preserve">
-    <value>An update to the templates is available but not compatible with the wizard version. Update the extension to access the latest content.</value>
+    <value>An update to the templates is available but not compatible with this wizard version. Update the extension to access the latest templates.</value>
   </data>
   <data name="StatusOverVersionNoContent" xml:space="preserve">
     <value>There is no content available for this extension version. Update the extension to access to the latest content.</value>
@@ -386,7 +383,7 @@
     <value>There was an error restoring the packages. Ex:</value>
   </data>
   <data name="VsGenShellRestorePackagesWarningMessage" xml:space="preserve">
-    <value>Unable to automatically perform Restore NuGet Packages for the solution. Please, try to manually restore the NuGet packages.</value>
+    <value>Unable to automatically Restore NuGet Packages for the solution. Please, try to manually restore the NuGet packages.</value>
   </data>
   <data name="VsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>There was an error showing status message. Ex:</value>
@@ -467,7 +464,7 @@
     <value>Unchanged files</value>
   </data>
   <data name="StatusNewVersionAvailable" xml:space="preserve">
-    <value>There is new templates content available.</value>
+    <value>There is new template content available.</value>
   </data>
   <data name="ErrorSyncCheckNewVersion" xml:space="preserve">
     <value>Error checking for updates. See output for more details.</value>
@@ -479,7 +476,7 @@
     <value>By refreshing templates current selection will be reset.</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionFailedMerges" xml:space="preserve">
-    <value>We are not able to introduce the modifications required. If needed, you can access to the generated file after finishing.</value>
+    <value>We are not able to introduce the modifications required. If needed, you can access the generated file after finishing.</value>
   </data>
   <data name="ChangesSummaryDetailTitleFailedMerges" xml:space="preserve">
     <value>Failed merges</value>
@@ -491,16 +488,16 @@
     <value>New file</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionModifiedFiles" xml:space="preserve">
-    <value>The file '{0}' will be modified to include required content. Below you can check the modifications introduced.</value>
+    <value>The file '{0}' will be modified to include required content. Below you can check the modifications.</value>
   </data>
   <data name="ChangesSummaryDetailTitleModifiedFiles" xml:space="preserve">
     <value>Modified file</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionConflictingFiles" xml:space="preserve">
-    <value>The file '{0}' already exist in your project and was generated as part of the new item. Your current project file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing.</value>
+    <value>The file '{0}' already exists in your project but was also generated as part of the new item. Your current file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing.</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionUnchangedFiles" xml:space="preserve">
-    <value>The file '{0}' already exists in your project and no further action is necessary. The file will remain unchanged after finishing.</value>
+    <value>The file '{0}' already exists in your project and no further action is necessary. The file will remain unchanged.</value>
   </data>
   <data name="ChangesSummaryDetailTitleConflictingFiles" xml:space="preserve">
     <value>Conflicting file</value>
@@ -525,9 +522,6 @@
   </data>
   <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
     <value>Do not merge changes (generate in a temp folder).</value>
-  </data>
-  <data name="NoProjectChanges" xml:space="preserve">
-    <value>There are no changes to apply to your project. Everything already exisits.</value>
   </data>
   <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
     <value>We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?.</value>

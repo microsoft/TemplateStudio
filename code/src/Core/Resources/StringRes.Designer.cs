@@ -268,7 +268,7 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to infer a name. Too much iterations.
+        ///   Looks up a localized string similar to Unable to infer a name. Too many iterations.
         /// </summary>
         internal static string NamingInferMessage {
             get {
@@ -630,7 +630,7 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Templates content extracted to.
+        ///   Looks up a localized string similar to Templates extracted to.
         /// </summary>
         internal static string TemplatesContentExtractedToString {
             get {
@@ -639,7 +639,7 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The templates content can&apos;t be extracted..
+        ///   Looks up a localized string similar to The templates can&apos;t be extracted..
         /// </summary>
         internal static string TemplatesSourceExtractContentMessage {
             get {
@@ -693,7 +693,7 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The specified source &apos;{0}&apos; is invalid. Or the file does not exists or the folder is empty..
+        ///   Looks up a localized string similar to The specified source &apos;{0}&apos; is invalid, the file does not exist, or the folder is empty..
         /// </summary>
         internal static string TemplatexGetSourceFilesMessage {
             get {
@@ -720,7 +720,7 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error sigingn package..
+        ///   Looks up a localized string similar to Error signing package..
         /// </summary>
         internal static string TemplatexSignAllPartsMessage {
             get {

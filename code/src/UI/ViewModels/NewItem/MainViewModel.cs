@@ -10,6 +10,7 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -131,18 +132,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             SetNewItemSetupTitle();
             CleanStatus();
         }
-        protected override async void OnNext()
+        protected override void OnNext()
         {
             HasOverlayBox = false;
             base.OnNext();
             NewItemSetup.EditionVisibility = Visibility.Collapsed;
-            SetStatus(new StatusViewModel(StatusType.Information, StringRes.GenerationFeedbackMessage));
-            MainView.Result = CreateUserSelection();
-            NewItemGenController.Instance.CleanupTempGeneration();
-            await NewItemGenController.Instance.GenerateNewItemAsync(ConfigTemplateType, MainView.Result);
-            NavigationService.Navigate(new ChangesSummaryView());
             SetChangesSummaryTitle();
+            NavigationService.Navigate(new ChangesSummaryView());
         }
+
         protected override void OnFinish(string parameter)
         {
             MainView.Result.ItemGenerationType = ChangesSummary.DoNotMerge ? ItemGenerationType.Generate : ItemGenerationType.GenerateAndMerge;
@@ -175,7 +173,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             NavigationService.Navigate(new NewItemSetupView());
             NewItemSetup.Initialize(true);
         }
-        protected override UserSelection CreateUserSelection()
+        public override UserSelection CreateUserSelection()
         {
             var userSelection = new UserSelection()
             {

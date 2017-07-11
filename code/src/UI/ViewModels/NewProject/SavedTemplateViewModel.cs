@@ -57,10 +57,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             get
             {
-                if (string.IsNullOrEmpty(_newItemName))
-                {
-                    _newItemName = ItemName;
-                }
                 return _newItemName;
             }
             set
@@ -245,6 +241,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             _template = item.template;
             colorTimer.Tick += OnColorTimerTick;
             ItemName = item.name;
+            NewItemName = item.name;
             Author = item.template.Author;
             GenGroup = item.template.GetGenGroup();
             TemplateType = item.template.GetTemplateType();

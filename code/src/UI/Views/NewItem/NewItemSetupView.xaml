@@ -76,12 +76,10 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="17" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="300" />
         </Grid.ColumnDefinitions>
-        <Grid Background="{StaticResource UILightGray}"/>
-        <ScrollViewer Grid.Column="1">
+        <ScrollViewer Grid.Column="0">
             <StackPanel>
                 <GroupBox Header="{Binding NewItemSetup.Header}" Margin="{StaticResource Margin_M_LeftTopRight}">
                     <ItemsControl ItemsSource="{Binding NewItemSetup.TemplateGroups}" Focusable="False">
@@ -103,7 +101,7 @@
                 </GroupBox>
             </StackPanel>
         </ScrollViewer>
-        <ScrollViewer Grid.Column="2">
+        <ScrollViewer Grid.Column="1">
             <Grid Margin="{StaticResource Margin_XL_Left}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>

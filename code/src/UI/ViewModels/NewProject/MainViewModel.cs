@@ -10,7 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -24,7 +23,6 @@ using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views.NewProject;
-using System.Windows.Input;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -57,7 +55,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             if (CheckProjectSetupChanged())
             {
-                SetStatus(new StatusViewModel(StatusType.Warning, string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName)));
+                SetStatus(StatusViewModel.Warning(string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName)));
             }
             else
             {
@@ -75,31 +73,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                                 .ToList();
 
             SyncLicenses(genLicenses);
-        }
-
-        public void TryRename(FrameworkElement element)
-        {
-            if (element != null && element.Tag != null && element.Tag.ToString() == "AllowRename")
-            {
-                return;
-            }
-            ProjectTemplates.SavedPages.ToList().ForEach(spg => spg.ToList().ForEach(p =>
-            {
-                if (p.IsEditionEnabled)
-                {
-                    p.ConfirmRenameCommand.Execute(p);
-                    p.TryClose();
-                }
-            }));
-
-            ProjectTemplates?.SavedFeatures?.ToList()?.ForEach(f =>
-            {
-                if (f.IsEditionEnabled)
-                {
-                    f.ConfirmRenameCommand.Execute(f);
-                    f.TryClose();
-                }
-            });
         }
 
         public void TryCloseEdition(TextBoxEx textBox, Button button)
@@ -122,7 +95,23 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             var summaryItem = textBox.Tag as SavedTemplateViewModel;
             if (summaryItem != null)
             {
-                summaryItem.OnCancelRename();
+                ProjectTemplates.SavedPages.ToList().ForEach(spg => spg.ToList().ForEach(p =>
+                {
+                    if (p.IsEditionEnabled)
+                    {
+                        p.ConfirmRenameCommand.Execute(p);
+                        p.TryClose();
+                    }
+                }));
+
+                ProjectTemplates?.SavedFeatures?.ToList()?.ForEach(f =>
+                {
+                    if (f.IsEditionEnabled)
+                    {
+                        f.ConfirmRenameCommand.Execute(f);
+                        f.TryClose();
+                    }
+                });
             }
         }
 
@@ -170,7 +159,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             await ProjectSetup.InitializeAsync(true);
         }
 
-        protected override UserSelection CreateUserSelection()
+        public override UserSelection CreateUserSelection()
         {
             var userSelection = new UserSelection()
             {
