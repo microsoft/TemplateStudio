@@ -303,8 +303,8 @@ namespace Microsoft.Templates.Core.Diagnostics
                     e.Properties[renamedKey] = properties[key];
                 }
             }
-            properties.Add(VsTelemetryProperties.Pages, pageIdentities);
-            properties.Add(VsTelemetryProperties.Features, featureIdentities);
+            e.Properties.Add(VsTelemetryProperties.Pages, pageIdentities);
+            e.Properties.Add(VsTelemetryProperties.Features, featureIdentities);
 
             foreach (var key in metrics.Keys)
             {
