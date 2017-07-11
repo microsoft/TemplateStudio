@@ -56,13 +56,11 @@
                         <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.1"/>
                     </Grid.Background>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Grid Background="{StaticResource UIMiddleDarkBlue}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                    <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Text="&#xE946;" FontSize="25" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource UIMiddleDarkBlue}" VerticalAlignment="Center" />
-                    <TextBlock Grid.Column="2" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" Style="{StaticResource TextWizardStatusStyle}" />
+                    <TextBlock Grid.Column="0" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="&#xE946;" FontSize="25" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource UIMiddleDarkBlue}" VerticalAlignment="Center" />
+                    <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" Style="{StaticResource TextWizardStatusStyle}" />
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="WarningStatusTemplate">
@@ -71,13 +69,11 @@
                         <SolidColorBrush Color="{StaticResource UIYellowColor}" Opacity="1.0"/>
                     </Grid.Background>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Grid Background="{StaticResource UIDarkYellow}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                    <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Text="&#xE7BA;" FontSize="25" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource UIDarkYellow}" VerticalAlignment="Center" />
-                    <TextBlock Grid.Column="2" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" Style="{StaticResource TextWizardStatusStyle}" />
+                    <TextBlock Grid.Column="0" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="&#xE7BA;" FontSize="25" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource UIDarkYellow}" VerticalAlignment="Center" />
+                    <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" Style="{StaticResource TextWizardStatusStyle}" />
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="ErrorStatusTemplate">
@@ -86,13 +82,11 @@
                         <SolidColorBrush Color="{StaticResource UIRedColor}" Opacity="0.4"/>
                     </Grid.Background>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Grid Background="{StaticResource UIRed}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                    <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Text="&#xEA39;" FontSize="25" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource UIDarkRed}" VerticalAlignment="Center" />
-                    <TextBlock Grid.Column="2" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" Style="{StaticResource TextWizardStatusStyle}" />
+                    <TextBlock Grid.Column="0" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="&#xEA39;" FontSize="25" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource UIDarkRed}" VerticalAlignment="Center" />
+                    <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" Style="{StaticResource TextWizardStatusStyle}" />
                 </Grid>
             </DataTemplate>
 
