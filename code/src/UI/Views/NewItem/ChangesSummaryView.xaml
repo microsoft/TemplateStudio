@@ -191,7 +191,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <StackPanel Margin="{StaticResource Margin_L_LeftTopRight}">
+                <StackPanel Margin="15,11,15,0">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -207,7 +207,7 @@
                             </Hyperlink>
                         </TextBlock>
                     </Grid>
-                    <TextBlock Margin="{StaticResource Margin_S_Top}" Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}"/>
+                    <TextBlock Margin="0,7,0,0" Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}"/>
                 </StackPanel>
                 <Grid Grid.Row="1" Background="{StaticResource UIGray}" Margin="{StaticResource Margin_L_Top}" Height="30">
                     <Grid.ColumnDefinitions>
