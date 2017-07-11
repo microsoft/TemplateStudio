@@ -123,23 +123,8 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public override string GetActiveNamespace()
+        public override string GetActiveProjectNamespace()
         {
-            if (Dte.SelectedItems.Count > 0)
-            {
-                var selectedItem = Dte.SelectedItems.Item(1);
-
-                if (selectedItem.Project != null)
-                {
-                    return selectedItem.Project.Properties.GetSafeValue("DefaultNamespace");
-                }
-
-                if (selectedItem.ProjectItem != null)
-                {
-                    return $"{selectedItem.ProjectItem.Properties.GetSafeValue("DefaultNamespace")}";
-                }
-            }
-
             var p = GetActiveProject();
 
             if (p != null)

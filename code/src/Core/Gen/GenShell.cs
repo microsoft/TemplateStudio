@@ -27,7 +27,7 @@ namespace Microsoft.Templates.Core.Gen
         public abstract void AddProjectToSolution(string projectFullPath);
         public abstract void AddItems(params string[] itemsFullPath);
         public abstract void SaveSolution();
-        public abstract string GetActiveNamespace();
+        public abstract string GetActiveProjectNamespace();
         public abstract void ShowTaskList();
         public abstract void ShowModal(Window dialog);
         public abstract void CancelWizard(bool back = true);
