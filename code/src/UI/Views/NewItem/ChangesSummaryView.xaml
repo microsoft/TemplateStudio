@@ -209,7 +209,10 @@
                     </Grid>
                     <TextBlock Margin="{StaticResource Margin_S_Top}" Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}"/>
                 </StackPanel>
-                <Grid Grid.Row="1" Background="{StaticResource UIGray}" Margin="{StaticResource Margin_L_Top}" Height="30">
+                <Grid Grid.Row="1" Margin="{StaticResource Margin_L_Top}" Height="30">
+                    <Grid.Background>
+                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.3"/>
+                    </Grid.Background>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="30"/>
                         <ColumnDefinition Width="*"/>
