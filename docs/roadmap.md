@@ -29,6 +29,9 @@
 [1.2 - July 2017](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.2)
 
 **Goals:** Right click add, Localization work, accessibilty work
+* Updated documentation: 
+  * Added [New Page/New Feature](newitem.md) documentation
+  * Updated [Understanding the Templates](templates.md) documentation (Added rightclickenabled tag, changed postaction documentation)
 
 [1.3 - August 2017](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.3)
 
