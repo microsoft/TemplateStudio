@@ -535,4 +535,7 @@
   <data name="GenerationFeedbackMessage" xml:space="preserve">
     <value>Generating template...</value>
   </data>
+  <data name="LearnMore" xml:space="preserve">
+    <value>Learn more</value>
+  </data>
 </root>
