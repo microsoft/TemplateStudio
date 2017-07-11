@@ -59,7 +59,7 @@ if($vsixIdentity){
       foreach ($langPack in $vsixLangPacks) {
         [xml]$langContent = Get-Content $langPack
         $langContent.VsixLanguagePack.LocalizedName = $vsixDisplayName
-        $manifestContent.Save($langPack) 
+        $langContent.Save($langPack) 
         Write-Host "$langPack - LocalizedName applied ($vsixDisplayName)"        
       }
     }
