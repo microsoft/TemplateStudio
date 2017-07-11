@@ -2,7 +2,7 @@
 
 ## 1.1 Release
 
-[1.1 - June 2017](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue%20milestone%3A1.1%20)
+**[1.1 - June 2017](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue%20milestone%3A1.1%20)**
 
 * Improvements to the Wizard:
   * Page Reordering
@@ -26,20 +26,21 @@
 
 ## Upcoming releases
 
-[1.2 - July 2017](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.2)
+**[1.2 - July 2017](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.2)**
 
 **Goals:** Right click add, Localization work, accessibilty work
 * Updated documentation: 
   * Added [New Page/New Feature](newitem.md) documentation
   * Updated [Understanding the Templates](templates.md) documentation (Added rightclickenabled tag, changed postaction documentation)
 
-[1.3 - August 2017](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.3)
+**[1.3 - August 2017](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.3)**
 
 **Goals:** Localization work, accessibilty work
 
 ## Future Release [Backlog]
 
-[Features without assigned releases](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3ABacklog)
+* **[Features without assigned releases](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3ABacklog)**
+* **[Pending work thoughts and lists](https://github.com/Microsoft/WindowsTemplateStudio/wiki)**
 
 ## Old releases
 
