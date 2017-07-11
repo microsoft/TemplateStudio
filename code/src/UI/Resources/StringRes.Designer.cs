@@ -718,7 +718,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to By refreshing templates current selection will be reset..
+        ///   Looks up a localized string similar to Refreshing templates will reset current selection.
         /// </summary>
         public static string NewVersionInstructions {
             get {
@@ -790,7 +790,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have changed your project type or framework selection. If you continue you will lose all pages and features added previously. To conserve pages and features, you can go back to your original selection ({0}, {1})..
+        ///   Looks up a localized string similar to You have changed your project type or framework selection. Pages and feature selections will be lost if you continue. Your prior selections were: {0} and {1}..
         /// </summary>
         public static string ResetSelection {
             get {
@@ -1096,7 +1096,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Templates version:.
+        ///   Looks up a localized string similar to Templates:.
         /// </summary>
         public static string TemplatesVersion {
             get {
@@ -1168,7 +1168,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to add the project to the solution because is not ready. Ensure you have the expected SDK installed..
+        ///   Looks up a localized string similar to Unable to add the project to the solution. Make sure you have the expected SDK installed..
         /// </summary>
         public static string UnableAddProjectToSolution {
             get {
@@ -1276,7 +1276,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to automatically Restore NuGet Packages for the solution. Please, try to manually restore the NuGet packages..
+        ///   Looks up a localized string similar to Unable to automatically Restore NuGet Packages for the solution. Manually restore the NuGet packages..
         /// </summary>
         public static string VsGenShellRestorePackagesWarningMessage {
             get {
@@ -1294,7 +1294,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wizard version:.
+        ///   Looks up a localized string similar to Wizard:.
         /// </summary>
         public static string WizardVersion {
             get {
@@ -1303,7 +1303,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Windows Template Studio quickly builds a UWP app, using a wizard-based UI to turn your needs into a foundation of Windows 10 patterns and best practices..
+        ///   Looks up a localized string similar to An easy to use wizard to build a strong foundation for your UWP app..
         /// </summary>
         public static string WTSDescription {
             get {
