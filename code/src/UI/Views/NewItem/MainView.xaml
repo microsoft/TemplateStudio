@@ -60,7 +60,12 @@
                     Style="{StaticResource TextTitleStyle}"
                     Text="{Binding Title}" />
                 <Grid Grid.Column="2" Visibility="{Binding HasOverlayBox, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <Grid Background="{StaticResource UIDarkGray}" Visibility="{Binding IsOverlayBoxVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    <Grid>
+                        <Grid.Background>
+                            <SolidColorBrush Color="{StaticResource UIWhiteColor}" Opacity="0.2"/>
+                        </Grid.Background>
+                    </Grid>
+                    <Grid Background="{StaticResource UIMiddleDarkGray}" Visibility="{Binding IsOverlayBoxVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
                     <Button Style="{StaticResource TopBarMenuStyle}" Command="{Binding ShowOverlayMenuCommand}">
                         <Button.Content>
                             <Grid>
@@ -158,7 +163,7 @@
             Opacity="0"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
-            Margin="0,62,10,0"
+            Margin="0,50,10,0"
             NewVersionAvailable="{Binding NewVersionAvailable}"
             WizardVersion="{Binding WizardVersion}"
             TemplatesVersion="{Binding TemplatesVersion}"
