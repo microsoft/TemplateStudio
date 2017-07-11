@@ -440,7 +440,7 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can find all referenced files in the temporary generation folder: {0}.
+        ///   Looks up a localized string similar to You can find all referenced files: {0}.
         /// </summary>
         internal static string SyncInstructionsTempFolder {
             get {
@@ -549,7 +549,7 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to See the final result: [{0}]({1}).
+        ///   Looks up a localized string similar to See the final result: [{0}]({0}).
         /// </summary>
         internal static string SyncSummaryMergeFilePreview {
             get {
@@ -603,7 +603,7 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can find the files from the generation in the temporary generation folder: {0}.
+        ///   Looks up a localized string similar to You can find all referenced files: {0}.
         /// </summary>
         internal static string SyncSummaryTempFolder {
             get {
