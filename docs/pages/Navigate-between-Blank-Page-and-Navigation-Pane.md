@@ -1,4 +1,4 @@
-#Navigate between Blank Page and Navigation Pane
+# Navigate between Blank Page and Navigation Pane
 
 This document will help you create a new way to navigate between Blank Pages and a Navigation Pane. 
 This however only implies on a MVMM Light project.
@@ -114,6 +114,6 @@ Once you're in the Navigation Pane, you can call the old method like:
 
 Don't forget to Register all your pages in the ViewModelLocator!
 
-##Conclusion
+## Conclusion
 We've created a method in 'NavigationService' to navigate between pages without an own defined Frame.
 This gives you the possibility to navigate between a Navigation Pane and a Blank Page.
