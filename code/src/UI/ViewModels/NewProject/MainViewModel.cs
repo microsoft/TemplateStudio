@@ -37,6 +37,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public ObservableCollection<SummaryLicenseViewModel> SummaryLicenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
 
+        private bool _hasSummaryLicenses;
+        public bool HasSummaryLicenses
+        {
+            get => _hasSummaryLicenses;
+            private set => SetProperty(ref _hasSummaryLicenses, value);
+        }
+
         public MainViewModel(MainView mainView) : base(mainView)
         {
             MainView = mainView;
@@ -198,6 +205,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     SummaryLicenses.Add(new SummaryLicenseViewModel(license));
                 }
             }
+
+            HasSummaryLicenses = SummaryLicenses.Any();
         }
         private bool CheckProjectSetupChanged()
         {
