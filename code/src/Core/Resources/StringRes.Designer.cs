@@ -223,7 +223,7 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to *This is a markdown file, to improve visualization you can install a Visual Studio extension for markdown files, for example: [Markdown Editor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*.
+        ///   Looks up a localized string similar to *Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*.
         /// </summary>
         internal static string MarkdownHeader {
             get {
