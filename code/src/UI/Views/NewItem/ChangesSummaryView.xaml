@@ -151,19 +151,20 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Expander
-                                    Margin="{StaticResource Margin_M_Top}"
-                                    Header="{Binding Name}"
-                                    HeaderTemplate="{StaticResource ChangesSummaryExpanderHeaderTemplate}"
-                                    IsExpanded="True"
-                                    BorderThickness="0"
-                                    Focusable="False"
-                                    Visibility="{Binding HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
-                                        <ListView
+                                        Margin="{StaticResource Margin_M_Top}"
+                                        Header="{Binding Name}"
+                                        HeaderTemplate="{StaticResource ChangesSummaryExpanderHeaderTemplate}"
+                                        IsExpanded="True"
+                                        BorderThickness="0"
                                         Focusable="False"
-                                        Style="{StaticResource ListViewChangesSummaryFiles}"
-                                        ItemTemplate="{StaticResource FileListItemTemplate}"                                
-                                        ItemsSource="{Binding Templates}"
-                                        SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
+                                        Visibility="{Binding HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
+                                        <ListView
+                                            Focusable="False"
+                                            Style="{StaticResource ListViewChangesSummaryFiles}"
+                                            ItemTemplate="{StaticResource FileListItemTemplate}"                                
+                                            ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                                            ItemsSource="{Binding Templates}"
+                                            SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
                                     </Expander>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
