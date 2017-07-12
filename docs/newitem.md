@@ -13,12 +13,16 @@ See the following documentation to understand the different files shown on the c
 
 Files that were generated as part of the new feature/page but are already part of your project but are different.
 
-This can happen for example if you already added a settings storage feature and then add it another time. The files will not be copied from the temporary generation folder to your project folder, but you have to review them, to see if everything is in the right place.
+This can happen for example if you add a settings storage feature, but already have a json.cs file in your project which is also generated as part of the feature.
+The files will not be copied from the temporary generation folder to your project folder, but you have to review both files
+(comparing the file from the temp generation folder to the file in your project), to see if everything is in the right place and adjust where necessary.
 
 ## Failed merges
 
 To include the new feature/page WTS tried to modify files from your project, but could not do so.
-There are two possible reasons for this:
+For example when you add a new page to a project with navigation pane, there is a postaction that will add this page to the ShellViewModel. 
+
+There are two possible reasons that could make this fail:
 
 * The file was not found. Maybe you renamed it, or moved it to another folder. If this is the case, please locate the file and include the shown code blocks manually.
 * The file was found, but has changed. In this case, please study the shown code blocks and see how to integrate them in your file.
