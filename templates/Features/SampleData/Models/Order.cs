@@ -2,7 +2,7 @@
 
 namespace Param_ItemNamespace.Models
 {
-    // TODO UWPTemplates: This is used by the Sample Grid Data. Remove this once your grid page is displaying real data
+    // TODO WTS: This is used by the Sample Grid Data. Remove this once your grid page is displaying real data
     public class Order
     {
         public long OrderId { get; set; }

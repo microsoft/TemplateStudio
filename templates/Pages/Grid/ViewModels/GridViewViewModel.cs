@@ -10,7 +10,7 @@ namespace Param_ItemNamespace.ViewModels
         {
             get
             {
-                // TODO UWPTemplates: Replace this with your actual data
+                // TODO WTS: Replace this with your actual data
                 return SampleDataService.GetGridSampleData();
             }
         }
