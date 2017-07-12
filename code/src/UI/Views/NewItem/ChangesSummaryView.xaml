@@ -31,9 +31,12 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="{StaticResource Margin_S_Left}" Text="&#xE91F;" Style="{StaticResource IconButtonTextStyle}" Foreground="{Binding CircleColor, FallbackValue=Red}" FontSize="7" VerticalAlignment="Center"/>
+                        <Grid Grid.Column="0" Margin="{StaticResource Margin_S_Left}">
+                            <Ellipse Width="10" Height="10" VerticalAlignment="Center" HorizontalAlignment="Center" Fill="{StaticResource UIWhite}"/>
+                            <TextBlock Text="&#xE91F;" Style="{StaticResource IconButtonTextStyle}" Foreground="{Binding CircleColor, FallbackValue=Red}" FontSize="7" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Grid>
                         <Image Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Source="{Binding Icon}" VerticalAlignment="Center" Stretch="None"/>
-                        <TextBlock Grid.Column="2" Margin="{StaticResource Margin_S_Left}" Text="{Binding Subject}" Style="{StaticResource ChangesSummaryListFileNameStyle}" />
+                        <TextBlock Grid.Column="2" Margin="{StaticResource Margin_S_Left}" Text="{Binding Subject}" Style="{StaticResource ChangesSummaryListFileNameStyle}"/>
                     </Grid>
                 </Border>
             </DataTemplate>
@@ -159,11 +162,11 @@
                                     Focusable="False"
                                     Visibility="{Binding HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
                                         <ListView
-                                        Focusable="False"
-                                        Style="{StaticResource ListViewChangesSummaryFiles}"
-                                        ItemTemplate="{StaticResource FileListItemTemplate}"                                
-                                        ItemsSource="{Binding Templates}"
-                                        SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
+                                            Focusable="False"
+                                            Style="{StaticResource ListViewChangesSummaryFiles}"
+                                            ItemTemplate="{StaticResource FileListItemTemplate}"
+                                            ItemsSource="{Binding Templates}"
+                                            SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
                                     </Expander>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
