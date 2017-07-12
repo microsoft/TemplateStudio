@@ -2,6 +2,6 @@
 <VsixLanguagePack Version = "1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema-lp/2010" >  
   <LocalizedName>WTS (vs2017 local)</LocalizedName>  
   <LocalizedDescription>Windows Template Studio</LocalizedDescription>  
-  <License>Content\EULA.pl-PL.rtf</License>
+  <License>..\Content\EULA.pl-PL.rtf</License>
   <MoreInfoUrl>https://github.com/Microsoft/WindowsTemplateStudio/</MoreInfoUrl>  
 </VsixLanguagePack> 
