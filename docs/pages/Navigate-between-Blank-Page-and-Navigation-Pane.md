@@ -8,10 +8,10 @@ This however only implies on a MVMM Light project.
 After the creating the project, you'll probably notice that the wizard has created a few classes.
 
 We only need to change the following files:
--> Services/ActivationService.cs
--> Services/NavigationService.cs
--> Views/MainPage.xaml.cs (The page with the Frame for 'Navigation Page')
--> ViewModels/MainViewModel.cs (The ViewModel of MainPage)
+* Services/ActivationService.cs
+* Services/NavigationService.cs
+* Views/MainPage.xaml.cs (The page with the Frame for 'Navigation Page')
+* ViewModels/MainViewModel.cs (The ViewModel of MainPage)
 
 
 ## Add the NavigationToFrame method 
