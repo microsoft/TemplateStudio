@@ -55,7 +55,7 @@
                 <Grid>
                     <TextBlock>
                         <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
-                            <TextBlock Text="{Binding Text}" Style="{StaticResource TextSummaryLicenseStyle}" />
+                            <TextBlock Text="{Binding Text}" Style="{StaticResource TextSummaryLicenseStyle}" FontSize="{StaticResource UI_M_FontSize}"/>
                         </Hyperlink>
                     </TextBlock>
                 </Grid>
@@ -65,7 +65,7 @@
                 <Grid>
                     <TextBlock>
                         <Hyperlink Command="{Binding ShowInfoCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
-                          <TextBlock Text="{Binding Name}" Style="{StaticResource TextSummaryLicenseStyle}" />
+                          <TextBlock Text="{Binding Name}" Style="{StaticResource TextSummaryLicenseStyle}" FontSize="{StaticResource UI_M_FontSize}"/>
                         </Hyperlink>
                     </TextBlock>
                 </Grid>

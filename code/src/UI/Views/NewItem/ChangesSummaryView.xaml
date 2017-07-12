@@ -151,17 +151,18 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Expander
-                                    Margin="{StaticResource Margin_M_Top}"
-                                    Header="{Binding Name}"
-                                    HeaderTemplate="{StaticResource ChangesSummaryExpanderHeaderTemplate}"
-                                    IsExpanded="True"
-                                    BorderThickness="0"
-                                    Focusable="False"
-                                    Visibility="{Binding HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
+                                        Margin="{StaticResource Margin_M_Top}"
+                                        Header="{Binding Name}"
+                                        HeaderTemplate="{StaticResource ChangesSummaryExpanderHeaderTemplate}"
+                                        IsExpanded="True"
+                                        BorderThickness="0"
+                                        Focusable="False"
+                                        Visibility="{Binding HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
                                         <ListView
                                             Focusable="False"
                                             Style="{StaticResource ListViewChangesSummaryFiles}"
-                                            ItemTemplate="{StaticResource FileListItemTemplate}"
+                                            ItemTemplate="{StaticResource FileListItemTemplate}"                                
+                                            ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                                             ItemsSource="{Binding Templates}"
                                             SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
                                     </Expander>
