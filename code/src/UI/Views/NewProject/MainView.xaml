@@ -281,18 +281,7 @@
                 </Grid.Background>
             </Grid>
         </Grid>
-        <controls:StatusBox Margin="0,50,0,0" Height="55" VerticalAlignment="Top" Status="{Binding Status}" Background="{StaticResource UIWhite}" Visibility="{Binding HasStatus, Converter={StaticResource BoolToVisibilityConverter}}"/>
-        <controls:OverlayBox
-            Opacity="0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
-            Margin="0,50,10,0"
-            NewVersionAvailable="{Binding NewVersionAvailable}"
-            WizardVersion="{Binding WizardVersion}"
-            TemplatesVersion="{Binding TemplatesVersion}"
-            Visible="{Binding IsOverlayBoxVisible}"
-            RefreshCommand="{Binding RefreshTemplatesCommand}"
-            CheckForUpdatesCommand="{Binding CheckUpdatesCommand}"
-            Status="{Binding OverlayStatus}" />
+        <controls:StatusBox Style="{StaticResource StatusBoxStyle}" Status="{Binding Status}" Visibility="{Binding HasStatus, Converter={StaticResource BoolToVisibilityConverter}}" />
+        <controls:OverlayBox Style="{StaticResource OverlayBoxStyle}" NewVersionAvailable="{Binding NewVersionAvailable}" WizardVersion="{Binding WizardVersion}" TemplatesVersion="{Binding TemplatesVersion}" Visible="{Binding IsOverlayBoxVisible}" RefreshCommand="{Binding RefreshTemplatesCommand}" CheckForUpdatesCommand="{Binding CheckUpdatesCommand}" Status="{Binding OverlayStatus}" />
     </Grid>
 </Window>
