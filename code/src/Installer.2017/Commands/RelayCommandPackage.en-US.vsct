@@ -29,6 +29,7 @@
       <Button guid="guidRelayCommandPackageCmdSet" id="HiddenCommand" priority="0x050" type="Button">
         <CommandFlag>FixMenuController</CommandFlag>
         <CommandFlag>NoShowOnMenuController</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
         <Icon guid="guidImages" id="bmpWTS" />
         <Strings>
           <ButtonText>Windows Template Studio</ButtonText>

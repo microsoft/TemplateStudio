@@ -63,13 +63,15 @@
                             <templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
                                 <DataTemplate>
                                     <Grid Height="30" Focusable="False" Margin="{StaticResource Margin_S_Left}">
-                                        <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
-                                        <controls:TextBoxEx Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}">
-                                            <controls:TextBoxEx.InputBindings>
-                                                <KeyBinding Command="{Binding ConfirmRenameCommand}" CommandParameter="{Binding}" Key="Enter" />
-                                                <KeyBinding Command="{Binding CancelRenameCommand}" Key="Esc"  />
-                                            </controls:TextBoxEx.InputBindings>
-                                        </controls:TextBoxEx>
+                                        <Grid VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
+                                            <controls:TextBoxEx Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}" Height="30">
+                                                <controls:TextBoxEx.InputBindings>
+                                                    <KeyBinding Command="{Binding ConfirmRenameCommand}" CommandParameter="{Binding}" Key="Enter" />
+                                                    <KeyBinding Command="{Binding CancelRenameCommand}" Key="Esc"  />
+                                                </controls:TextBoxEx.InputBindings>
+                                            </controls:TextBoxEx>
+                                        </Grid>
                                     </Grid>
                                 </DataTemplate>
                             </templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
@@ -83,7 +85,7 @@
                                             </Grid.RowDefinitions>
                                             <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
                                             <TextBlock Grid.Row="1" Style="{StaticResource TextSummaryAuthorStyle}" Foreground="{Binding AuthorForeground}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}" Text="{Binding Author}" Margin="0,-2,0,0"/>
-                                            <controls:TextBoxEx Grid.Row="0" Grid.RowSpan="2" Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}">
+                                            <controls:TextBoxEx Grid.Row="0" Grid.RowSpan="2" Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}" Height="30">
                                                 <controls:TextBoxEx.InputBindings>
                                                     <KeyBinding Command="{Binding ConfirmRenameCommand}" CommandParameter="{Binding}" Key="Enter" />
                                                     <KeyBinding Command="{Binding CancelRenameCommand}" Key="Esc"  />
@@ -156,7 +158,12 @@
                     Style="{StaticResource TextTitleStyle}"
                     Text="{Binding Title}" />
                 <Grid Grid.Column="2" Visibility="{Binding HasOverlayBox, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <Grid Background="{StaticResource UIDarkGray}" Visibility="{Binding IsOverlayBoxVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    <Grid>
+                        <Grid.Background>
+                            <SolidColorBrush Color="{StaticResource UIWhiteColor}" Opacity="0.2"/>
+                        </Grid.Background>
+                    </Grid>
+                    <Grid Background="{StaticResource UIMiddleDarkGray}" Visibility="{Binding IsOverlayBoxVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
                     <Button Style="{StaticResource TopBarMenuStyle}" Command="{Binding ShowOverlayMenuCommand}">
                         <Button.Content>
                             <Grid>
@@ -274,18 +281,7 @@
                 </Grid.Background>
             </Grid>
         </Grid>
-        <controls:StatusBox Margin="0,50,0,0" Height="55" VerticalAlignment="Top" Status="{Binding Status}" Background="{StaticResource UIWhite}"/>
-        <controls:OverlayBox
-            Opacity="0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
-            Margin="0,62,10,0"
-            NewVersionAvailable="{Binding NewVersionAvailable}"
-            WizardVersion="{Binding WizardVersion}"
-            TemplatesVersion="{Binding TemplatesVersion}"
-            Visible="{Binding IsOverlayBoxVisible}"
-            RefreshCommand="{Binding RefreshTemplatesCommand}"
-            CheckForUpdatesCommand="{Binding CheckUpdatesCommand}"
-            Status="{Binding OverlayStatus}" />
+        <controls:StatusBox Style="{StaticResource StatusBoxStyle}" Status="{Binding Status}" Visibility="{Binding HasStatus, Converter={StaticResource BoolToVisibilityConverter}}" />
+        <controls:OverlayBox Style="{StaticResource OverlayBoxStyle}" NewVersionAvailable="{Binding NewVersionAvailable}" WizardVersion="{Binding WizardVersion}" TemplatesVersion="{Binding TemplatesVersion}" Visible="{Binding IsOverlayBoxVisible}" RefreshCommand="{Binding RefreshTemplatesCommand}" CheckForUpdatesCommand="{Binding CheckUpdatesCommand}" Status="{Binding OverlayStatus}" />
     </Grid>
 </Window>

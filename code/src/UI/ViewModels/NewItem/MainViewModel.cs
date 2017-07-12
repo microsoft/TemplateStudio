@@ -110,6 +110,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void Cancel()
         {
+            NewItemGenController.Instance.CleanupTempGeneration();
             MainView.DialogResult = false;
             MainView.Result = null;
             MainView.Close();

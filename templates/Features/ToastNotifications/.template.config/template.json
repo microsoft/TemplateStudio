@@ -7,7 +7,7 @@
   "groupIdentity": "wts.Feat.ToastNotifications",
   "identity": "wts.Feat.ToastNotifications",
   "shortName": "Toast Notifications",
-  "description": "Adaptive and interactive toast notifications let you create flexible pop-up notifications with rich content.",
+  "description": "Adds code to show displaying a toast and handling it being used to launch the app.",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -69,7 +69,7 @@ namespace Param_RootNamespace.Services
         private bool LaunchFromLiveTileUpdate(LaunchActivatedEventArgs args)
         {
             // If app is launched from a LiveTile notification update, TileContent arguments property is contained in args.TileActivatedInfo.RecentlyShownNotifications
-            // TODO UWPTemplates: Implement your own logic to determine if you can handle the LiveTile nptification update activation
+            // TODO UWPTemplates: Implement your own logic to determine if you can handle the LiveTile notification update activation
             return false;
         }
     }

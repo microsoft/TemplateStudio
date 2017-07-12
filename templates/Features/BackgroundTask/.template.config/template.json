@@ -5,7 +5,7 @@
   "groupIdentity": "wts.Feat.BackgroundTask",
   "identity": "wts.Feat.BackgroundTask",
   "shortName": "Background task",
-  "description": "This creates an in-process background task.  This will allow you to run code even while the app is not in the foreground.",
+  "description": "Add an in-process background task ready to run code even while the app is not in the foreground.",
   "tags": {
     "language": "C#",
     "type": "item",

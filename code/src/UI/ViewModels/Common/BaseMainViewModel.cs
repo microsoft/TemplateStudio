@@ -41,7 +41,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public StatusViewModel Status
         {
             get => _status;
-            private set => SetProperty(ref _status, value);
+            private set
+            {
+                SetProperty(ref _status, value);
+                HasStatus = value != null && value.Status != StatusType.Empty;
+            }
         }
 
         protected StatusViewModel _overlayStatus = StatusViewModel.EmptyStatus;
@@ -49,6 +53,13 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             get => _overlayStatus;
             private set => SetProperty(ref _overlayStatus, value);
+        }
+
+        protected bool _hasStatus;
+        public bool HasStatus
+        {
+            get => _hasStatus;
+            private set => SetProperty(ref _hasStatus, value);
         }
 
         protected bool _isOverlayBoxVisible;
