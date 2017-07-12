@@ -198,14 +198,16 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Foreground="{Binding ChangesSummary.SelectedFile.CircleColor}" Text="{Binding ChangesSummary.SelectedFile.DetailTitle}" Style="{StaticResource ChangesSummaryDetailTitleStyle}" />
-                        <TextBlock Grid.Column="1" VerticalAlignment="Bottom">
-                            <Hyperlink Command="{Binding ChangesSummary.MoreDetailsCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
-                                <Grid>
-                                    <TextBlock Text="&#xECCA;" FontSize="16" Style="{StaticResource IconButtonTextStyle}" />
-                                    <TextBlock Text="&#xE11B;" FontSize="9" Style="{StaticResource IconButtonTextStyle}" FontWeight="Bold"/>
-                                </Grid>
-                            </Hyperlink>
-                        </TextBlock>
+
+                        <Button 
+                            Grid.Column="1" VerticalAlignment="Bottom"
+                            Style="{StaticResource SettingsButtonStyle}" 
+                            Command="{Binding ChangesSummary.MoreDetailsCommand}" Focusable="True" 
+                            ToolTip="{x:Static res:StringRes.LearnMore}">
+                            <Button.Content>
+                                <TextBlock Text="&#xE946;" FontSize="18" Style="{StaticResource IconButtonTextStyle}"/>
+                            </Button.Content>
+                        </Button>
                     </Grid>
                     <TextBlock Margin="0,7,0,0" Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}"/>
                 </StackPanel>

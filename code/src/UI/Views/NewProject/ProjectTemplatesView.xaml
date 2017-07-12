@@ -42,7 +42,7 @@
                                 <controls:ImageEx Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Focusable="False" MaxWidth="50" SourcePath="{Binding Icon}" FallbackImage="/Microsoft.Templates.UI;component/Assets/DefaultIcon.png" />
                                 <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding Name}" Margin="{StaticResource Margin_M_LeftRight}" Foreground="{Binding TitleForeground, FallbackValue={StaticResource UIBlack}}" />
                                 <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateItemAuthorStyle}" MaxHeight="40" Margin="{StaticResource Margin_M_Left}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}" Text="{Binding Author}"/>
-                                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" Command="{Binding ShowItemInfoCommand}">
+                                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" Command="{Binding ShowItemInfoCommand}" ToolTip="{x:Static res:StringRes.LearnMore}">
                                     <Button.Content>
                                         <TextBlock Text="&#xE946;" FontSize="18" Style="{StaticResource IconButtonTextStyle}" />
                                     </Button.Content>
