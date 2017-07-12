@@ -488,7 +488,7 @@
     <value>New file</value>
   </data>
   <data name="ChangesSummaryDetailDescriptionModifiedFiles" xml:space="preserve">
-    <value>The file '{0}' will be modified to include required content. Below you can check the modifications.</value>
+    <value>The file '{0}' will be modified to include required content.</value>
   </data>
   <data name="ChangesSummaryDetailTitleModifiedFiles" xml:space="preserve">
     <value>Modified file</value>
@@ -537,5 +537,11 @@
   </data>
   <data name="LearnMore" xml:space="preserve">
     <value>Learn more</value>
+  </data>
+  <data name="ChangesSummaryConflictExistingFile" xml:space="preserve">
+    <value>Exisiting file</value>
+  </data>
+  <data name="ChangesSummaryConflictGeneratedFile" xml:space="preserve">
+    <value>Generated file</value>
   </data>
 </root>
