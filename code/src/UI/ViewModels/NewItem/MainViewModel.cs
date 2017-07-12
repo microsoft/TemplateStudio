@@ -128,8 +128,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             base.OnGoBack();
             NewItemSetup.Initialize(false);
             HasOverlayBox = true;
-            ChangesSummary.HasLicenses = false;
-            ChangesSummary.Licenses.Clear();
+            ChangesSummary.ResetSelection();
             SetNewItemSetupTitle();
             CleanStatus();
         }

@@ -10,6 +10,7 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -122,6 +123,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 }
             }
             SelectedFile = group.SelectedItem;
+        }
+
+        public void ResetSelection()
+        {
+            FileGroups.Clear();
+            Licenses.Clear();
+            HasLicenses = false;
+            SelectedFile = null;
         }
     }
 }
