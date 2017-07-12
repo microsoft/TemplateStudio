@@ -161,7 +161,8 @@
                                         <ListView
                                             Focusable="False"
                                             Style="{StaticResource ListViewChangesSummaryFiles}"
-                                            ItemTemplate="{StaticResource FileListItemTemplate}"                                
+                                            ItemTemplate="{StaticResource FileListItemTemplate}"
+                                            SelectionMode="Single"
                                             ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                                             ItemsSource="{Binding Templates}"
                                             SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
@@ -170,16 +171,16 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                         <Expander
-                        Margin="{StaticResource Margin_M_Top}"
-                        Header="{x:Static res:StringRes.ChangesSummaryCategoryLicenses}"
-                        HeaderTemplate="{StaticResource ChangesSummaryExpanderHeaderTemplate}"
-                        IsExpanded="True"
-                        BorderThickness="0"
-                        Visibility="{Binding ChangesSummary.HasLicenses, Converter={StaticResource BoolToVisibilityConverter}}">
+                            Margin="{StaticResource Margin_M_Top}"
+                            Header="{x:Static res:StringRes.ChangesSummaryCategoryLicenses}"
+                            HeaderTemplate="{StaticResource ChangesSummaryExpanderHeaderTemplate}"
+                            IsExpanded="True"
+                            BorderThickness="0"
+                            Visibility="{Binding ChangesSummary.HasLicenses, Converter={StaticResource BoolToVisibilityConverter}}">
                             <ItemsControl
-                            Focusable="False"
-                            ItemTemplate="{StaticResource ListLicenseTemplate}"                                
-                            ItemsSource="{Binding ChangesSummary.Licenses}" />
+                                Focusable="False"
+                                ItemTemplate="{StaticResource ListLicenseTemplate}"
+                                ItemsSource="{Binding ChangesSummary.Licenses}" />
                         </Expander>
                     </StackPanel>
                 </ScrollViewer>
