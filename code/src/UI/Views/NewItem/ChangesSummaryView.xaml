@@ -56,22 +56,6 @@
                 <controls:CodeViewer Item="{Binding}" />
             </DataTemplate>
 
-            <DataTemplate x:Key="CodeModifiedFileTemplate">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid>
-                        <Grid.Background>
-                            <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.1"/>
-                        </Grid.Background>
-                        <TextBlock Text="Resulting file" Margin="40,0,0,0" VerticalAlignment="Center"/>
-                    </Grid>
-                    <controls:CodeViewer Grid.Row="1" Item="{Binding}" />
-                </Grid>
-            </DataTemplate>
-
             <DataTemplate x:Key="CodeConflictingFileTemplate">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -86,8 +70,8 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Exisiting file" Margin="40,0,0,0" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Column="1" Text="Generated file" Margin="30,0,0,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="{x:Static res:StringRes.ChangesSummaryConflictExistingFile}" Margin="40,0,0,0" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Text="{x:Static res:StringRes.ChangesSummaryConflictGeneratedFile}" Margin="30,0,0,0" VerticalAlignment="Center"/>
                     </Grid>
                     <controls:CodeViewer Grid.Row="1" Item="{Binding}" />
                 </Grid>
@@ -99,15 +83,6 @@
                         <templateSelector:FileExtensionTemplateSelector
                             ImageFileTemplate="{StaticResource ImageFileTemplate}"
                             CodeFileTemplate="{StaticResource CodeFileTemplate}"/>
-                    </ContentPresenter.ContentTemplateSelector>
-                </ContentPresenter>
-            </DataTemplate>
-            <DataTemplate x:Key="ModifiedDetailTemplate">
-                <ContentPresenter Content="{Binding}">
-                    <ContentPresenter.ContentTemplateSelector>
-                        <templateSelector:FileExtensionTemplateSelector
-                            ImageFileTemplate="{StaticResource ImageFileTemplate}"
-                            CodeFileTemplate="{StaticResource CodeModifiedFileTemplate}"/>
                     </ContentPresenter.ContentTemplateSelector>
                 </ContentPresenter>
             </DataTemplate>
@@ -124,7 +99,7 @@
             <templateSelector:FileStatusTemplateSelector
                 x:Key="DetailTemplateSelector"
                 NewFileTemplate="{StaticResource SimpleDetailTemplate}"
-                ModifiedFileTemplate="{StaticResource ModifiedDetailTemplate}"
+                ModifiedFileTemplate="{StaticResource SimpleDetailTemplate}"
                 ConflictingFileTemplate="{StaticResource ConflictingDetailTemplate}"
                 WarningFileTemplate="{StaticResource SimpleDetailTemplate}"
                 UnchangedFileTemplate="{StaticResource SimpleDetailTemplate}"/>

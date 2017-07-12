@@ -214,6 +214,24 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exisiting file.
+        /// </summary>
+        public static string ChangesSummaryConflictExistingFile {
+            get {
+                return ResourceManager.GetString("ChangesSummaryConflictExistingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generated file.
+        /// </summary>
+        public static string ChangesSummaryConflictGeneratedFile {
+            get {
+                return ResourceManager.GetString("ChangesSummaryConflictGeneratedFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The file &apos;{0}&apos; already exists in your project but was also generated as part of the new item. Your current file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionConflictingFiles {
@@ -232,7 +250,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file &apos;{0}&apos; will be modified to include required content. Below you can check the modifications..
+        ///   Looks up a localized string similar to The file &apos;{0}&apos; will be modified to include required content..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionModifiedFiles {
             get {
