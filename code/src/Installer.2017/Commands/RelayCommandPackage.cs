@@ -43,7 +43,6 @@ namespace Microsoft.Templates.Extension.Commands
         private RelayCommand addPageCommand;
         private RelayCommand addFeatureCommand;
         private RelayCommand openTempFolderCommand;
-        private RelayCommand hiddenCommand;
 
         public RelayCommandPackage()
         {
@@ -81,12 +80,6 @@ namespace Microsoft.Templates.Extension.Commands
 
         private void InitializeCommands()
         {
-            hiddenCommand = new RelayCommand(this,
-                PackageIds.HiddenCommand,
-                PackageGuids.GuidRelayCommandPackageCmdSet,
-                HiddenCommand,
-                RightClickAvailable);
-
             addPageCommand = new RelayCommand(this,
                  PackageIds.AddPageCommand,
                  PackageGuids.GuidRelayCommandPackageCmdSet,
@@ -128,11 +121,6 @@ namespace Microsoft.Templates.Extension.Commands
             {
                 RightClickActions.OpenTempFolder();
             }
-        }
-
-        private void HiddenCommand(object sender, EventArgs e)
-        {
-            return;
         }
 
         private void RightClickAvailable(object sender, EventArgs e)
