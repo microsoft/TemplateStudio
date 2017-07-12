@@ -10,6 +10,7 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using Microsoft.VisualStudio.Shell;
 using System.Reflection;
 using System.Resources;
 using System.Runtime.CompilerServices;
@@ -45,3 +46,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("0.0.0.0")]
 [assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
+[assembly: ProvideBindingRedirection(AssemblyName = "Microsoft.TemplateEngine.Abstractions", Culture = "neutral", OldVersionLowerBound = "1.0.0.0", OldVersionUpperBound = "1.0.0.234", NewVersion = "1.0.0.234")]
+[assembly: ProvideBindingRedirection(AssemblyName = "Microsoft.TemplateEngine.Edge", Culture = "neutral", OldVersionLowerBound = "1.0.0.0", OldVersionUpperBound = "1.0.0.234", NewVersion = "1.0.0.234")]
+[assembly: ProvideBindingRedirection(AssemblyName = "Microsoft.TemplateEngine.Utils", Culture = "neutral", OldVersionLowerBound = "1.0.0.0", OldVersionUpperBound = "1.0.0.234", NewVersion = "1.0.0.234")]
+[assembly: ProvideBindingRedirection(AssemblyName = "Microsoft.TemplateEngine.Orchestrator.RunnableProjects", Culture = "neutral", OldVersionLowerBound = "1.0.0.0", OldVersionUpperBound = "1.0.0.234", NewVersion = "1.0.0.234")]
+[assembly: ProvideBindingRedirection(AssemblyName = "Microsoft.TemplateEngine.Core", Culture = "neutral", OldVersionLowerBound = "1.0.0.0", OldVersionUpperBound = "1.0.0.234", NewVersion = "1.0.0.234")]
+[assembly: ProvideBindingRedirection(AssemblyName = "Microsoft.TemplateEngine.Core.Contracts", Culture = "neutral", OldVersionLowerBound = "1.0.0.0", OldVersionUpperBound = "1.0.0.234", NewVersion = "1.0.0.234")]
