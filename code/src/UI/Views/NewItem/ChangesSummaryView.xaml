@@ -24,16 +24,24 @@
             </DataTemplate>
 
             <DataTemplate x:Key="FileListItemTemplate">
-                <Border Width="281" ToolTip="{Binding Subject}" Height="30" Padding="{StaticResource Margin_S_All}">
+                <Border ToolTip="{Binding Subject}" Height="30" Padding="{StaticResource Margin_S_All}">
                     <Grid Background="Transparent">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="5"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Ellipse Grid.Column="0" Fill="{Binding CircleColor, FallbackValue=Red}" Stroke="White" Width="10" Height="10" StrokeThickness="1"/>
-                        <Image Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Source="{Binding Icon}" VerticalAlignment="Center" Stretch="None"/>
-                        <TextBlock Grid.Column="2" Margin="{StaticResource Margin_S_Left}" Text="{Binding Subject}" Style="{StaticResource ChangesSummaryListFileNameStyle}"/>
+                        <Image 
+                            Grid.Column="2" 
+                            Source="{Binding Icon}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" 
+                            Stretch="None" 
+                            RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                        <TextBlock Grid.Column="4" Text="{Binding Subject}" Style="{StaticResource ChangesSummaryListFileNameStyle}"/>
                     </Grid>
                 </Border>
             </DataTemplate>
@@ -49,7 +57,7 @@
             </DataTemplate>
 
             <DataTemplate x:Key="ImageFileTemplate">
-                <Image Source="{Binding TempFile}" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Image Source="{Binding TempFile}" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center" RenderOptions.BitmapScalingMode="NearestNeighbor" />
             </DataTemplate>
 
             <DataTemplate x:Key="CodeFileTemplate">
@@ -196,7 +204,7 @@
                         <ColumnDefinition Width="30"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="{Binding ChangesSummary.SelectedFile.Icon}" Margin="{StaticResource Margin_M_Left}" Stretch="None" VerticalAlignment="Center"/>
+                    <Image Grid.Column="0" Source="{Binding ChangesSummary.SelectedFile.Icon}" Margin="{StaticResource Margin_M_Left}" Stretch="None" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="NearestNeighbor" SnapsToDevicePixels="True" />
                     <TextBlock Grid.Column="1" Text="{Binding ChangesSummary.SelectedFile.Subject}" Margin="{StaticResource Margin_M_Left}" VerticalAlignment="Center"/>
                 </Grid>
                 <ContentPresenter Grid.Row="2" Content="{Binding ChangesSummary.SelectedFile}" ContentTemplateSelector="{StaticResource DetailTemplateSelector}" />
