@@ -31,10 +31,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0" Margin="{StaticResource Margin_S_Left}">
-                            <Ellipse Width="10" Height="10" VerticalAlignment="Center" HorizontalAlignment="Center" Fill="{StaticResource UIWhite}"/>
-                            <TextBlock Text="&#xE91F;" Style="{StaticResource IconButtonTextStyle}" Foreground="{Binding CircleColor, FallbackValue=Red}" FontSize="7" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        </Grid>
+                        <Ellipse Grid.Column="0" Margin="{StaticResource Margin_S_Left}" Fill="{Binding CircleColor, FallbackValue=Red}" Stroke="White" Width="10" Height="10" StrokeThickness="1"/>
                         <Image Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Source="{Binding Icon}" VerticalAlignment="Center" Stretch="None"/>
                         <TextBlock Grid.Column="2" Margin="{StaticResource Margin_S_Left}" Text="{Binding Subject}" Style="{StaticResource ChangesSummaryListFileNameStyle}"/>
                     </Grid>
