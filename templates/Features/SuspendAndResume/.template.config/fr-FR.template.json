@@ -1,6 +1,6 @@
 {
     "author": "Microsoft",
     "name": "Suspend and Resume",
-    "description": "A user can suspend your app at any time so let's be ready for it.  We have a nifty suspend and resume service you can hook into.",
+    "description": "A simple service you can hook into to handle when a user leaves and returns to the app.",
     "identity": "wts.Feat.SuspendAndResume"
 }

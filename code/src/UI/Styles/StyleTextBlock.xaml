@@ -172,7 +172,7 @@
     </Style>
 
     <!--Changes summary-->
-    <Style TargetType="TextBlock" x:Key="ChangesSummaryListFileNameStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="ChangesSummaryListFileNameStyle">
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
