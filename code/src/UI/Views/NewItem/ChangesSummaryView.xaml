@@ -197,7 +197,7 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Foreground="{Binding ChangesSummary.SelectedFile.CircleColor}" Text="{Binding ChangesSummary.SelectedFile.DetailTitle}" Style="{StaticResource ChangesSummaryDetailTitleStyle}" />
+                        <TextBlock Grid.Column="0" Foreground="{Binding ChangesSummary.SelectedFile.CircleColor}" Text="{Binding ChangesSummary.SelectedFile.DetailTitle}" Style="{StaticResource TextSummaryTitle}" />
                         <TextBlock Grid.Column="1" VerticalAlignment="Bottom">
                             <Hyperlink Command="{Binding ChangesSummary.MoreDetailsCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
                                 <Grid>
