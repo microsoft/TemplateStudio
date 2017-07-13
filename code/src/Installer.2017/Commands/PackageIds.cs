@@ -20,7 +20,6 @@ namespace Microsoft.Templates.Extension.Commands
 {
     internal class PackageIds
     {
-        public const int HiddenCommand = 0x0375;
         public const int AddPageCommand = 0x0400;
         public const int AddFeatureCommand = 0x500;
         public const int OpenTempFolder = 0x600;

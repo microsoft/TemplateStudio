@@ -6,7 +6,7 @@ namespace Param_ItemNamespace.Views
     {
         public WhatsNewDialog()
         {
-            // TODO UWPTemplates: Update the contents of this dialog every time you release a new version of the app
+            // TODO WTS: Update the contents of this dialog every time you release a new version of the app
             this.InitializeComponent();
         }
     }

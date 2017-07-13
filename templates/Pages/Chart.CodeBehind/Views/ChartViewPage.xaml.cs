@@ -18,7 +18,7 @@ namespace Param_ItemNamespace.Views
         {
             get
             {
-                // TODO UWPTemplates: Replace this with your actual data
+                // TODO WTS: Replace this with your actual data
                 return SampleDataService.GetChartSampleData();
             }
         }

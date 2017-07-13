@@ -62,14 +62,14 @@ namespace Param_RootNamespace.Services
         private bool LaunchFromSecondaryTile(LaunchActivatedEventArgs args)
         {
             // If app is launched from a SecondaryTile, tile arguments property is contained in args.Arguments
-            // TODO UWPTemplates: Implement your own logic to determine if you can handle the SecondaryTile activation
+            // TODO WTS: Implement your own logic to determine if you can handle the SecondaryTile activation
             return false;
         }
 
         private bool LaunchFromLiveTileUpdate(LaunchActivatedEventArgs args)
         {
             // If app is launched from a LiveTile notification update, TileContent arguments property is contained in args.TileActivatedInfo.RecentlyShownNotifications
-            // TODO UWPTemplates: Implement your own logic to determine if you can handle the LiveTile notification update activation
+            // TODO WTS: Implement your own logic to determine if you can handle the LiveTile notification update activation
             return false;
         }
     }

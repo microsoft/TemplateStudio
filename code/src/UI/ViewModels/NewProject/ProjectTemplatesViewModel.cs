@@ -55,6 +55,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public ObservableCollection<ObservableCollection<SavedTemplateViewModel>> SavedPages { get; } = new ObservableCollection<ObservableCollection<SavedTemplateViewModel>>();
         public ObservableCollection<SavedTemplateViewModel> SavedFeatures { get; } = new ObservableCollection<SavedTemplateViewModel>();
 
+        private bool _hasSavedPages;
+        public bool HasSavedPages
+        {
+            get => _hasSavedPages;
+            private set => SetProperty(ref _hasSavedPages, value);
+        }
+
+        private bool _hasSavedFeatures;
+        public bool HasSavedFeatures
+        {
+            get => _hasSavedFeatures;
+            private set => SetProperty(ref _hasSavedFeatures, value);
+        }
+
         private RelayCommand<SavedTemplateViewModel> _removeTemplateCommand;
         public RelayCommand<SavedTemplateViewModel> RemoveTemplateCommand => _removeTemplateCommand ?? (_removeTemplateCommand = new RelayCommand<SavedTemplateViewModel>(OnRemoveTemplate));
 
@@ -357,10 +371,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (SavedPages[item.GenGroup].Contains(item))
             {
                 SavedPages[item.GenGroup].Remove(item);
+                HasSavedPages = SavedPages.Any(g => g.Any());
             }
             else if (SavedFeatures.Contains(item))
             {
                 SavedFeatures.Remove(item);
+                HasSavedFeatures = SavedFeatures.Any();
             }
             MainViewModel.Current.FinishCommand.OnCanExecuteChanged();
             UpdateTemplatesAvailability();
@@ -473,10 +489,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     MainViewModel.Current.DefineDragAndDrop(items, SavedPages.Count == 1);
                 }
                 SavedPages[newItem.GenGroup].Add(newItem);
+                HasSavedPages = true;
             }
             else if (item.template.GetTemplateType() == TemplateType.Feature)
             {
                 SavedFeatures.Add(newItem);
+                HasSavedFeatures = true;
             }
             UpdateTemplatesAvailability();
             UpdateSummaryTemplates();

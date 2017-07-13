@@ -13,7 +13,7 @@
         "summary": "A navigation pane (or 'hamburger menu') is included for navigation between pages.",
         "author": "Microsoft",
         "order": "1",
-        "licenses": ""
+        "licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)"
     },
     {
         "name": "TabbedPivot",

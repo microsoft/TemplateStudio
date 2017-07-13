@@ -32,7 +32,6 @@
             </ResourceDictionary.MergedDictionaries>
 
             <converter:MicrosoftTemplatesAuthorConverter x:Key="MicrosoftTemplatesAuthorConverter" />
-            <converter:EmptyCollectionVisibilityConverter x:Key="EmptyCollectionConverter" />
             <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
             <DataTemplate x:Key="SummaryExpanderHeaderTemplate">
                 <TextBlock Text="{Binding}" Style="{StaticResource TextSummaryGroupHeader}"/>
@@ -211,19 +210,19 @@
                             <Expander Margin="{StaticResource Margin_M_Top}" Header="{x:Static res:StringRes.SummaryLicenseTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
                                 <Grid>
                                     <ItemsControl Focusable="False" Margin="{StaticResource Margin_XL_Left}" ItemTemplate="{StaticResource LicenseSummaryItemTemplate}" ItemsSource="{Binding SummaryLicenses}" />
-                                    <TextBlock Margin="27,7,0,0" Text="{x:Static res:StringRes.SummaryNoLicenses}" Visibility="{Binding SummaryLicenses, Converter={StaticResource EmptyCollectionConverter}}" />
+                                    <TextBlock Margin="27,7,0,0" Text="{x:Static res:StringRes.SummaryNoLicenses}" Visibility="{Binding HasSummaryLicenses, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
                                 </Grid>
                             </Expander>
                             <Expander Margin="{StaticResource Margin_M_Top}" Header="{x:Static res:StringRes.SummaryPagesTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
                                 <Grid>
                                     <StackPanel x:Name="summaryPageGroups"/>
-                                    <TextBlock Margin="27,7,0,0" Text="{x:Static res:StringRes.SummaryNoPages}" Visibility="{Binding ProjectTemplates.SavedPages, Converter={StaticResource EmptyCollectionConverter}}" />
+                                    <TextBlock Margin="27,7,0,0" Text="{x:Static res:StringRes.SummaryNoPages}" Visibility="{Binding ProjectTemplates.HasSavedPages, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
                                 </Grid>
                             </Expander>
                             <Expander Margin="{StaticResource Margin_M_Top}" Header="{x:Static res:StringRes.SummaryFeaturesTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
                                 <Grid>
                                     <ItemsControl KeyboardNavigation.TabNavigation="Local" Focusable="False" ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}" ItemsSource="{Binding ProjectTemplates.SavedFeatures}" />
-                                    <TextBlock Margin="27,0,0,0" Text="{x:Static res:StringRes.SummaryNoFeatures}" Visibility="{Binding ProjectTemplates.SavedFeatures, Converter={StaticResource EmptyCollectionConverter}}" />
+                                    <TextBlock Margin="27,0,0,0" Text="{x:Static res:StringRes.SummaryNoFeatures}" Visibility="{Binding ProjectTemplates.HasSavedFeatures, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
                                 </Grid>
                             </Expander>
                         </StackPanel>
