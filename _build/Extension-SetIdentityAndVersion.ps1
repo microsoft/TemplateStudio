@@ -26,10 +26,10 @@ Param(
   [string]$targetVsixCommandMenuName = "Windows Template Studio (local)",
 
   [Parameter(Mandatory=$False,Position=9)]
-  [string]$targetPackageGuid = "995f080c-9f70-4550-8a21-b3ffeeff17eb",
+  [string]$targetPackageGuid = "ae1b4c32-9c93-45b8-a36b-8734f4b120dd",
 
   [Parameter(Mandatory=$False,Position=8)]
-  [string]$targetCmdSetGuid = "dec1ebd7-fb6b-49e7-b562-b46af0d419d1",
+  [string]$targetCmdSetGuid = "caa4fb82-0dca-40fe-bae0-081e0f96226f",
   
   [Parameter(Mandatory=$False,Position=10)]
   [string]$publicKeyToken = "e4ef4cc7a47ae0c5" #TestKey.snk

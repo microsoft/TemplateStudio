@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Extension.Commands
         /// <summary>
         /// RelayCommandPackage GUID string.
         /// </summary>
-        public const string PackageGuidString = "995f080c-9f70-4550-8a21-b3ffeeff17eb";
-        public static Guid GuidRelayCommandPackageCmdSet = Guid.Parse("dec1ebd7-fb6b-49e7-b562-b46af0d419d1");
+        public const string PackageGuidString = "ae1b4c32-9c93-45b8-a36b-8734f4b120dd";
+        public static Guid GuidRelayCommandPackageCmdSet = Guid.Parse("caa4fb82-0dca-40fe-bae0-081e0f96226f");
     }
 }
