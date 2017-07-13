@@ -50,7 +50,7 @@
     </Buttons>
 
     <Bitmaps>
-      <Bitmap guid="guidImages" href="Resources\RelayCommand.png" usedList="bmpFeature1, bmpFeature2, bmpFeature3, bmpFeature4, bmpPage1, bmpOpenTemp"/>
+      <Bitmap guid="guidImages" href="Resources\RelayCommand.png" usedList="bmpFeature1, bmpFeature2, bmpFeature3, bmpFeature4, bmpPage1, bmpWTS, bmpOpenTemp"/>
     </Bitmaps>
   </Commands>
   <KeyBindings>
@@ -108,6 +108,7 @@
       <IDSymbol name="bmpFeature3" value="3" />
       <IDSymbol name="bmpFeature4" value="4" />
       <IDSymbol name="bmpPage1" value="5" />
+      <IDSymbol name="bmpWTS" value="6" />
       <IDSymbol name="bmpOpenTemp" value="7" />
     </GuidSymbol>
   </Symbols>
