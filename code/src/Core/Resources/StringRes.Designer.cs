@@ -196,6 +196,15 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Critical error initializating GenContext..
+        /// </summary>
+        internal static string GenContextBootstrapError {
+            get {
+                return ResourceManager.GetString("GenContextBootstrapError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is no context for the current gen execution, call Current_set first.
         /// </summary>
         internal static string GenContextCurrentInvalidOperationMessage {
@@ -350,7 +359,7 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please follow the instructions to include the new item into you project:.
+        ///   Looks up a localized string similar to Please follow the indications to include the new item into you project:.
         /// </summary>
         internal static string SyncInstructionsDescription {
             get {

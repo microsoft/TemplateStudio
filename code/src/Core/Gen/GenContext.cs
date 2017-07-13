@@ -53,19 +53,30 @@ namespace Microsoft.Templates.Core.Gen
 
         public static void Bootstrap(TemplatesSource source, GenShell shell, Version wizardVersion, string language)
         {
-            AppHealth.Current.AddWriter(new ShellHealthWriter());
-            AppHealth.Current.Info.TrackAsync($"{StringRes.ConfigurationFileLoadedString}: {Configuration.LoadedConfigFile}").FireAndForget();
+            try
+            {
+                AppHealth.Current.AddWriter(new ShellHealthWriter(shell));
+                AppHealth.Current.Info.TrackAsync($"{StringRes.ConfigurationFileLoadedString}: {Configuration.LoadedConfigFile}").FireAndForget();
 
-            string hostVersion = $"{wizardVersion.Major}.{wizardVersion.Minor}";
+                string hostVersion = $"{wizardVersion.Major}.{wizardVersion.Minor}";
 
-            CodeGen.Initialize(source.Id, hostVersion);
-            var repository = new TemplatesRepository(source, wizardVersion, language);
+                CodeGen.Initialize(source.Id, hostVersion);
+                var repository = new TemplatesRepository(source, wizardVersion, language);
 
-            ToolBox = new GenToolBox(repository, shell);
+                ToolBox = new GenToolBox(repository, shell);
 
-            PurgeTempGenerations(Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath), Configuration.Current.DaysToKeepTempGenerations);
+                PurgeTempGenerations(Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath), Configuration.Current.DaysToKeepTempGenerations);
 
-            InitializedLanguage = language;
+                CodeGen.Initialize(source.Id, hostVersion);
+
+                InitializedLanguage = language;
+            }
+            catch (Exception ex)
+            {
+                AppHealth.Current.Exception.TrackAsync(ex, StringRes.GenContextBootstrapError).FireAndForget();
+                Trace.TraceError($"{StringRes.GenContextBootstrapError} Exception:\n\r{ex}");
+                throw;
+            }
         }
 
         private static void PurgeTempGenerations(string tempGenerationFolder, int daysToKeep)

@@ -21,9 +21,14 @@ namespace Microsoft.Templates.Core.Diagnostics
 {
     public class ShellHealthWriter : IHealthWriter
     {
+        GenShell shell;
+        public ShellHealthWriter(GenShell shell)
+        {
+            this.shell = shell;
+        }
         public async SystemTasks.Task WriteExceptionAsync(Exception ex, string message = null)
         {
-            if (GenContext.ToolBox.Shell != null)
+            if (shell != null)
             {
                 await SafeTrackAsync(() =>
                 {
@@ -45,7 +50,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async SystemTasks.Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
         {
-            if (GenContext.ToolBox?.Shell != null)
+            if (shell != null)
             {
                 await SafeTrackAsync(() =>
                 {
