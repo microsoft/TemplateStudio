@@ -20,6 +20,7 @@ namespace Microsoft.Templates.Core.Gen
     {
         public abstract string GetActiveProjectName();
         public abstract string GetActiveProjectPath();
+        public abstract string GetActiveProjectLanguage();
         protected abstract string GetSelectedItemPath();
 
         public abstract bool SetActiveConfigurationAndPlatform(string configurationName, string platformName);
@@ -58,7 +59,7 @@ namespace Microsoft.Templates.Core.Gen
             var activeProjectPath = GetActiveProjectPath();
             if (!string.IsNullOrEmpty(activeProjectPath))
             {
-                var appManifestFilePath = Path.Combine(GetActiveProjectPath(), "Package.appxmanifest");
+                var appManifestFilePath = Path.Combine(activeProjectPath, "Package.appxmanifest");
                 if (File.Exists(appManifestFilePath))
                 {
                     var fileContent = File.ReadAllText(appManifestFilePath);

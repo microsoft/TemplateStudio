@@ -267,7 +267,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StringRes.zh-TW.resx</DependentUpon>
     </Compile>
-    <Compile Include="PostActions\Catalog\NewItemGeneration\CopyFilesToProjectPostAction.cs" />
     <Compile Include="PostActions\NewItemPostActionFactory.cs" />
     <Compile Include="PostActions\NewProjectPostActionFactory.cs" />
     <Compile Include="Templates\ITemplateInfoExtensions.cs" />

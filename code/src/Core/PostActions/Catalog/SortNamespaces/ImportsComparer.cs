@@ -14,9 +14,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
 {
     public class ImportsComparer : NamespaceComparer
     {
-        public override string UsingKeyword => @"Imports";
+        public override string Keyword => ImportsComparer.ImportsKeyword;
 
-        protected override string UsingPattern => UsingKeyword + @"\s(?<Ns>.*?)";
+        public static string ImportsKeyword => @"Imports";
+
+        protected override string Pattern => Keyword + @"\s(?<Ns>.*?)";
 
         protected override bool StripTrailingCharacter => false;
     }

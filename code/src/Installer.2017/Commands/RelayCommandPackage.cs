@@ -18,7 +18,7 @@ using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.Templates.Core.Gen;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
@@ -53,7 +53,10 @@ namespace Microsoft.Templates.Extension.Commands
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             IGenContextBootstrapService bootstrapsvc = await PrepareBootstrapSvc();
-            await bootstrapsvc.GenContextInit();
+
+            var language = GenContext.ToolBox.Shell.GetActiveProjectLanguage();
+
+            await bootstrapsvc.GenContextInit(language);
 
             InitializeCommands();
 

@@ -78,7 +78,7 @@ namespace Microsoft.Templates.Test.Artifacts
             var msbuildProj = MsBuildProject.Load(projectFullPath);
             var solutionFile = MSBuildSolution.Create(SolutionPath);
 
-            solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid, projectFullPath.EndsWith(".csproj"));
+            solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid, projectFullPath.EndsWith(".csproj", StringComparison.InvariantCultureIgnoreCase));
         }
 
         public override string GetActiveProjectNamespace()
@@ -118,7 +118,11 @@ namespace Microsoft.Templates.Test.Artifacts
             return (GenContext.Current != null) ? GenContext.Current.ProjectPath : string.Empty;
         }
 
-        
+        public override string GetActiveProjectLanguage()
+        {
+            // TODO: [ML] Need to work out how to return the correct language here. If needed at all.
+            return "C#";
+        }
 
         protected override string GetSelectedItemPath()
         {

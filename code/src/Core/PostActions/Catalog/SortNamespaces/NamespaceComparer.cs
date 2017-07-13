@@ -10,15 +10,16 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
 using System.Collections.Generic;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
 {
     public abstract class NamespaceComparer : IComparer<string>
     {
-        public abstract string UsingKeyword { get; }
+        public abstract string Keyword { get; }
 
-        protected abstract string UsingPattern { get; }
+        protected abstract string Pattern { get; }
 
         protected abstract bool StripTrailingCharacter { get; }
 
@@ -27,14 +28,14 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
             var xNs = ExtractNs(x);
             var yNs = ExtractNs(y);
 
-            return xNs.CompareTo(yNs);
+            return string.Compare(xNs, yNs, StringComparison.InvariantCultureIgnoreCase);
         }
 
         public string ExtractNs(string rawValue)
         {
-            if (rawValue.StartsWith(UsingKeyword))
+            if (rawValue.StartsWith(Keyword, StringComparison.InvariantCultureIgnoreCase))
             {
-                var ns = rawValue.Substring(UsingKeyword.Length + 1);
+                var ns = rawValue.Substring(Keyword.Length + 1);
 
                 if (StripTrailingCharacter)
                 {

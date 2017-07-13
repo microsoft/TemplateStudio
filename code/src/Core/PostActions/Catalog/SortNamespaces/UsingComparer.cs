@@ -14,9 +14,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
 {
     public class UsingComparer : NamespaceComparer
     {
-        public override string UsingKeyword => @"using";
+        public override string Keyword => UsingComparer.UsingKeyword;
 
-        protected override string UsingPattern => UsingKeyword + @"\s(?<Ns>.*?);";
+        public static string UsingKeyword => @"using";
+
+        protected override string Pattern => Keyword + @"\s(?<Ns>.*?);";
 
         protected override bool StripTrailingCharacter => true;
     }
