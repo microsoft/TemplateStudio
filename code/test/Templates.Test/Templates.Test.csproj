@@ -109,6 +109,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileEncodingTests.cs" />
     <Compile Include="GenerationCollection.cs" />
     <Compile Include="NewItemGenerationTests.cs" />
     <Compile Include="ProjectGenerationTests.cs" />
