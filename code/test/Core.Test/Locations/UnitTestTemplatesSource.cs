@@ -16,6 +16,7 @@ using System.IO;
 using Microsoft.Templates.Core.Locations;
 using System.Security;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
 namespace Microsoft.Templates.Core.Test.Locations
 {
@@ -35,7 +36,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             Copy(sourcePath, tempFolder);
 
-            File.WriteAllText(Path.Combine(tempFolder, "version.txt"), LocalVersion);
+            File.WriteAllText(Path.Combine(tempFolder, "version.txt"), LocalVersion, Encoding.UTF8);
 
             return Templatex.Pack(tempFolder);
         }

@@ -16,6 +16,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 
 using Microsoft.TemplateEngine.Abstractions;
@@ -179,7 +180,7 @@ namespace Microsoft.Templates.Test
 
             var process = Process.Start(startInfo);
 
-            File.WriteAllText(outputFile, process.StandardOutput.ReadToEnd());
+            File.WriteAllText(outputFile, process.StandardOutput.ReadToEnd(), Encoding.UTF8);
 
             process.WaitForExit();
 

@@ -12,6 +12,7 @@
 
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.SortUsings
 {
@@ -30,7 +31,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortUsings
 
                 if (sortResult)
                 {
-                    File.WriteAllLines(classFile, fileContent);
+                    File.WriteAllLines(classFile, fileContent, Encoding.UTF8);
                 }
             }
         }
