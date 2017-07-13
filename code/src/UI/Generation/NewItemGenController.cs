@@ -362,11 +362,11 @@ namespace Microsoft.Templates.UI
             switch (generationType)
             {
                 case ItemGenerationType.Generate:
-                    AppHealth.Current.Telemetry.TrackWizardCompletedAsync(wizardType, WizardActionEnum.Generate).FireAndForget();
+                    AppHealth.Current.Telemetry.TrackWizardCompletedAsync(wizardType, WizardActionEnum.GenerateItem).FireAndForget();
 
                     break;
                 case ItemGenerationType.GenerateAndMerge:
-                    AppHealth.Current.Telemetry.TrackWizardCompletedAsync(wizardType, WizardActionEnum.GenerateAndMerge).FireAndForget();
+                    AppHealth.Current.Telemetry.TrackWizardCompletedAsync(wizardType, WizardActionEnum.GenerateAndMergeItem).FireAndForget();
                     break;
                 default:
                     break;
