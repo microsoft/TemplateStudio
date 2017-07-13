@@ -55,6 +55,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public ObservableCollection<ObservableCollection<SavedTemplateViewModel>> SavedPages { get; } = new ObservableCollection<ObservableCollection<SavedTemplateViewModel>>();
         public ObservableCollection<SavedTemplateViewModel> SavedFeatures { get; } = new ObservableCollection<SavedTemplateViewModel>();
 
+        private bool _hasSavedPages;
+        public bool HasSavedPages
+        {
+            get => _hasSavedPages;
+            private set => SetProperty(ref _hasSavedPages, value);
+        }
+
+        private bool _hasSavedFeatures;
+        public bool HasSavedFeatures
+        {
+            get => _hasSavedFeatures;
+            private set => SetProperty(ref _hasSavedFeatures, value);
+        }
+
         private RelayCommand<SavedTemplateViewModel> _removeTemplateCommand;
         public RelayCommand<SavedTemplateViewModel> RemoveTemplateCommand => _removeTemplateCommand ?? (_removeTemplateCommand = new RelayCommand<SavedTemplateViewModel>(OnRemoveTemplate));
 
@@ -127,7 +141,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
                     if (string.IsNullOrWhiteSpace(item.ErrorMessage))
                     {
-                        item.ErrorMessage = "UndefinedError";
+                        item.ErrorMessage = StringRes.UndefinedErrorString;
                     }
                     MainViewModel.Current.SetValidationErrors(item.ErrorMessage);
                     throw new Exception(item.ErrorMessage);
@@ -158,7 +172,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
                 if (string.IsNullOrWhiteSpace(template.ErrorMessage))
                 {
-                    template.ErrorMessage = "UndefinedError";
+                    template.ErrorMessage = StringRes.UndefinedErrorString;
                 }
                 MainViewModel.Current.SetValidationErrors(template.ErrorMessage);
                 throw new Exception(template.ErrorMessage);
@@ -199,7 +213,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 SetupTemplatesFromLayout(ContextProjectType.Name, ContextFramework.Name);
                 MainViewModel.Current.RebuildLicenses();
             }
-            MainViewModel.Current.SetTemplatesReadyForProjectCreation();
+            MainViewModel.Current.UpdateCanFinish(true);
             CloseTemplatesEdition();
             await Task.CompletedTask;
         }
@@ -280,7 +294,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (validationResult.IsValid)
             {
                 item.ItemName = item.NewItemName;
-                item.IsEditionEnabled = false;
 
                 if (item.IsHome)
                 {
@@ -289,6 +302,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
                 AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.Rename).FireAndForget();
             }
+            else
+            {
+                item.NewItemName = item.ItemName;
+            }
+            item.IsEditionEnabled = false;
+            MainViewModel.Current.CleanStatus(true);
         }
 
         private void OnOpenSummaryItem(SavedTemplateViewModel item)
@@ -330,7 +349,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void OnRemoveTemplate(SavedTemplateViewModel item)
         {
-            var dependencyItem = SavedPages[item.GenGroup].FirstOrDefault(st => st.DependencyList.Any(d => d == item.Identity));
+            SavedTemplateViewModel dependencyItem = null;
+            foreach (var group in SavedPages)
+            {
+                dependencyItem = group.FirstOrDefault(st => st.DependencyList.Any(d => d == item.Identity));
+                if (dependencyItem != null)
+                {
+                    break;
+                }
+            }
             if (dependencyItem == null)
             {
                 dependencyItem = SavedFeatures.FirstOrDefault(st => st.DependencyList.Any(d => d == item.Identity));
@@ -338,16 +365,18 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (dependencyItem != null)
             {
                 string message = string.Format(StringRes.ValidationError_CanNotRemoveTemplate_SF, item.TemplateName, dependencyItem.TemplateName, dependencyItem.TemplateType);
-                MainViewModel.Current.SetStatus(new StatusViewModel(Controls.StatusType.Warning, message, true));
+                MainViewModel.Current.SetStatus(StatusViewModel.Warning(message, 5));
                 return;
             }
             if (SavedPages[item.GenGroup].Contains(item))
             {
                 SavedPages[item.GenGroup].Remove(item);
+                HasSavedPages = SavedPages.Any(g => g.Any());
             }
             else if (SavedFeatures.Contains(item))
             {
                 SavedFeatures.Remove(item);
+                HasSavedFeatures = SavedFeatures.Any();
             }
             MainViewModel.Current.FinishCommand.OnCanExecuteChanged();
             UpdateTemplatesAvailability();
@@ -460,10 +489,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     MainViewModel.Current.DefineDragAndDrop(items, SavedPages.Count == 1);
                 }
                 SavedPages[newItem.GenGroup].Add(newItem);
+                HasSavedPages = true;
             }
             else if (item.template.GetTemplateType() == TemplateType.Feature)
             {
                 SavedFeatures.Add(newItem);
+                HasSavedFeatures = true;
             }
             UpdateTemplatesAvailability();
             UpdateSummaryTemplates();

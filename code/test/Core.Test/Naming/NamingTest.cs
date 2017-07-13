@@ -89,6 +89,17 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Theory, MemberData("GetAllLanguages"), Trait("Type", "ProjectGeneration")]
+        public void Infer_Clean2(string language)
+        {
+            SetUpFixtureForTesting(language);
+
+            var existing = new string[] { };
+            var result = Naming.Infer("ÑäöÜ!Page", new List<Validator>());
+
+            Assert.Equal("ÑäöÜPage", result);
+        }
+
+        [Theory, MemberData("GetAllLanguages"), Trait("Type", "ProjectGeneration")]
         public void Infer_TitleCase(string language)
         {
             SetUpFixtureForTesting(language);

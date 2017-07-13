@@ -59,21 +59,24 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public void AddNewPage()
         {
-            SetContext();
-
-            try
+            if (GenContext.ToolBox.Shell.GetActiveProjectIsWts())
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage();
+                SetContext();
 
-                if (userSelection != null)
+                try
                 {
-                    NewItemGenController.Instance.FinishGeneration(userSelection);
-                    GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.NewItemAddPageSuccessStatusMsg, userSelection.Pages[0].name));
+                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage();
+
+                    if (userSelection != null)
+                    {
+                        NewItemGenController.Instance.FinishGeneration(userSelection);
+                        GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.NewItemAddPageSuccessStatusMsg, userSelection.Pages[0].name));
+                    }
                 }
-            }
-            catch (WizardBackoutException)
-            {
-                GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.NewItemAddPageCancelled);
+                catch (WizardBackoutException)
+                {
+                    GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.NewItemAddPageCancelled);
+                }
             }
         }
 
@@ -83,7 +86,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 ProjectPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
                 ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
-                OutputPath = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath, Path.GetRandomFileName());
+                OutputPath = GetTempGenerationPath(ProjectName);
                 ProjectItems = new List<string>();
                 FilesToOpen = new List<string>();
                 FailedMergePostActions = new List<FailedMergePostAction>();
@@ -93,28 +96,65 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
+        private static string GetTempGenerationPath(string projectName)
+        {
+            var tempGenerationPath = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
+            Fs.EnsureFolder(tempGenerationPath);
+
+            var tempGenerationName = $"{projectName}_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}";
+            var inferredName = Naming.Infer(tempGenerationName, new List<Validator>() { new DirectoryExistsValidator(tempGenerationPath) }, "_");
+
+            return Path.Combine(tempGenerationPath, inferredName);
+        }
+
         public void AddNewFeature()
         {
-            SetContext();
-            try
+            if (GenContext.ToolBox.Shell.GetActiveProjectIsWts())
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature();
-
-                if (userSelection != null)
+                SetContext();
+                try
                 {
-                    NewItemGenController.Instance.FinishGeneration(userSelection);
-                    GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.NewItemAddFeatureSuccessStatusMsg, userSelection.Features[0].name));
+                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature();
+
+                    if (userSelection != null)
+                    {
+                        NewItemGenController.Instance.FinishGeneration(userSelection);
+                        GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.NewItemAddFeatureSuccessStatusMsg, userSelection.Features[0].name));
+                    }
                 }
-            }
-            catch (WizardBackoutException)
-            {
-                GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.NewItemAddFeatureCancelled);
+                catch (WizardBackoutException)
+                {
+                    GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.NewItemAddFeatureCancelled);
+                }
             }
         }
 
         public bool Enabled()
         {
             return GenContext.ToolBox.Shell.GetActiveProjectIsWts();
+        }
+
+        public void OpenTempFolder()
+        {
+            var tempPath = GetTempGenerationFolder();
+            if (HasContent(tempPath))
+            {
+                System.Diagnostics.Process.Start(tempPath);
+            }
+        }
+        public bool TempFolderAvailable()
+        {
+            return HasContent(GetTempGenerationFolder());
+        }
+
+        private static string GetTempGenerationFolder()
+        {
+            return Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
+        }
+
+        private static bool HasContent(string tempPath)
+        {
+            return !string.IsNullOrEmpty(tempPath) && Directory.Exists(tempPath) && Directory.EnumerateDirectories(tempPath).Count() > 0;
         }
     }
 }

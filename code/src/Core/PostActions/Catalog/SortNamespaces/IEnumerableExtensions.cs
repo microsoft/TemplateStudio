@@ -38,8 +38,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
                 return false;
             }
 
-            var startUsingIndex = classContent.IndexOf(l => l.TrimStart().StartsWith(comparer.UsingKeyword));
-            var endUsingIndex = classContent.LastIndexOfWhile(startUsingIndex, l => l.TrimStart().StartsWith(comparer.UsingKeyword) || string.IsNullOrWhiteSpace(l));
+            var startUsingIndex = classContent.IndexOf(l => l.TrimStart().StartsWith(UsingComparer.UsingKeyword) || string.IsNullOrWhiteSpace(l));
+            var endUsingIndex = classContent.LastIndexOfWhile(startUsingIndex, l => l.TrimStart().StartsWith(UsingComparer.UsingKeyword) || string.IsNullOrWhiteSpace(l));
 
             if (startUsingIndex == -1 || endUsingIndex == -1)
             {
@@ -60,6 +60,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
             classContent.RemoveRange(startUsingIndex, usingsLinesCount);
 
             var orderedUsings = new List<string>();
+            if (startUsingIndex > 0)
+            {
+                orderedUsings.Add(string.Empty);
+            }
             var orderedKeys = GetOrderedNs(usings.Select(u => u.Key)).ToList();
 
             foreach (var key in orderedKeys)

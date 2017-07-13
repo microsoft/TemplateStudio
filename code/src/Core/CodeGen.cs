@@ -21,12 +21,14 @@ using Microsoft.TemplateEngine.Edge.Settings;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.TemplateEngine.Orchestrator.RunnableProjects;
 using Microsoft.TemplateEngine.Utils;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core
 {
     public class CodeGen
     {
-        public const string BaseName = "WindowsTemplateStudio";
+        public const string BaseName = "BaseName";
+
         public static CodeGen Instance { get; private set; }
 
         public TemplateCreator Creator { get; }
@@ -49,7 +51,6 @@ namespace Microsoft.Templates.Core
         public static void Initialize(string locationId, string hostVersion)
         {
             Instance = new CodeGen(locationId, hostVersion);
-
             Instance.Init();
         }
 
@@ -104,7 +105,7 @@ namespace Microsoft.Templates.Core
 
         private static ITemplateEngineHost CreateHost(string locationId, string hostVersion)
         {
-            return new DefaultTemplateEngineHost($"{BaseName}_{locationId}", hostVersion, CultureInfo.CurrentCulture.Name, new Dictionary<string, string>());
+            return new DefaultTemplateEngineHost($"{BaseName}_{locationId}", hostVersion, CultureInfo.CurrentUICulture.Name, new Dictionary<string, string>());
         }
 
         ////private static string GetHostVersion()

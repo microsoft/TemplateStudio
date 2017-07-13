@@ -11,6 +11,7 @@
 // ******************************************************************
 
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
@@ -18,7 +19,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
     {
         public override void Execute()
         {
-            GenContext.ToolBox.Shell.ShowStatusBarMessage(Strings.Resources.StatusAddingItems);
+            GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.StatusAddingItems);
             GenContext.ToolBox.Shell.AddItems(GenContext.Current.ProjectItems.ToArray());
             GenContext.Current.ProjectItems.Clear();
         }

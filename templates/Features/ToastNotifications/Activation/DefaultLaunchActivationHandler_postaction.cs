@@ -14,7 +14,7 @@ namespace Param_RootNamespace.Activation
         {
             //^^
             //{[{
-            // TODO UWPTemplates: This is a sample on how to show a toast notification.
+            // TODO WTS: This is a sample on how to show a toast notification.
             // You can use this sample to create toast notifications where needed in your app.
             Singleton<ToastNotificationsFeatureService>.Instance.ShowToastNotificationSample();
             //}]}

@@ -30,18 +30,6 @@ namespace Microsoft.Templates.Core.Diagnostics
             TelemetryService.SetConfiguration(config);
         }
 
-        public async Task TrackWizardCompletedAsync(WizardTypeEnum wizardType)
-        {
-            var properties = new Dictionary<string, string>()
-            {
-                { TelemetryProperties.WizardStatus, WizardStatusEnum.Completed.ToString() },
-                { TelemetryProperties.WizardType, wizardType.ToString() },
-                { TelemetryProperties.EventName, TelemetryEvents.Wizard }
-            };
-
-            await TelemetryService.Current.TrackEventAsync(TelemetryEvents.Wizard, properties).ConfigureAwait(false);
-        }
-
         public async Task TrackWizardCompletedAsync(WizardTypeEnum wizardType, WizardActionEnum wizardAction)
         {
             var properties = new Dictionary<string, string>()

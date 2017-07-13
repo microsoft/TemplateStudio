@@ -53,7 +53,7 @@ namespace Microsoft.Templates.UI
                 GenContext.ToolBox.Shell.ShowModal(mainView);
                 if (mainView.Result != null)
                 {
-                    AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject).FireAndForget();
+                    AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject, WizardActionEnum.GenerateProject).FireAndForget();
 
                     return mainView.Result;
                 }

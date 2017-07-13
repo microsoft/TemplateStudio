@@ -10,7 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -38,6 +37,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public ObservableCollection<SummaryLicenseViewModel> SummaryLicenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
 
+        private bool _hasSummaryLicenses;
+        public bool HasSummaryLicenses
+        {
+            get => _hasSummaryLicenses;
+            private set => SetProperty(ref _hasSummaryLicenses, value);
+        }
+
         public MainViewModel(MainView mainView, string language) : base(mainView)
         {
             MainView = mainView;
@@ -57,7 +63,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             if (CheckProjectSetupChanged())
             {
-                SetStatus(new StatusViewModel(StatusType.Warning, string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName)));
+                SetStatus(StatusViewModel.Warning(string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName)));
             }
             else
             {
@@ -76,6 +82,46 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                                 .ToList();
 
             SyncLicenses(genLicenses);
+        }
+
+        public void TryCloseEdition(TextBoxEx textBox, Button button)
+        {
+            if (textBox == null)
+            {
+                return;
+            }
+            if (button != null && button.Tag != null && button.Tag.ToString() == "AllowCloseEdition")
+            {
+                return;
+            }
+
+            var templateInfo = textBox.Tag as TemplateInfoViewModel;
+            if (templateInfo != null)
+            {
+                templateInfo.CloseEdition();
+            }
+
+            var summaryItem = textBox.Tag as SavedTemplateViewModel;
+            if (summaryItem != null)
+            {
+                ProjectTemplates.SavedPages.ToList().ForEach(spg => spg.ToList().ForEach(p =>
+                {
+                    if (p.IsEditionEnabled)
+                    {
+                        p.ConfirmRenameCommand.Execute(p);
+                        p.TryClose();
+                    }
+                }));
+
+                ProjectTemplates?.SavedFeatures?.ToList()?.ForEach(f =>
+                {
+                    if (f.IsEditionEnabled)
+                    {
+                        f.ConfirmRenameCommand.Execute(f);
+                        f.TryClose();
+                    }
+                });
+            }
         }
 
         protected override void OnCancel()
@@ -111,9 +157,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         protected override async void OnTemplatesAvailable() => await ProjectSetup.InitializeAsync();
         protected override async void OnNewTemplatesAvailable()
         {
+            UpdateCanFinish(false);
             _canGoBack = false;
-            _templatesReady = false;
-            FinishCommand.OnCanExecuteChanged();
             BackCommand.OnCanExecuteChanged();
             ShowFinishButton = false;
             EnableGoForward();
@@ -123,7 +168,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             await ProjectSetup.InitializeAsync(true);
         }
 
-        protected override UserSelection CreateUserSelection()
+        public override UserSelection CreateUserSelection()
         {
             var userSelection = new UserSelection()
             {
@@ -162,6 +207,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     SummaryLicenses.Add(new SummaryLicenseViewModel(license));
                 }
             }
+
+            HasSummaryLicenses = SummaryLicenses.Any();
         }
         private bool CheckProjectSetupChanged()
         {
@@ -180,7 +227,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 ItemsSource = items,
                 Style = MainView.FindResource("SummaryListViewStyle") as Style,
-                Tag = "AllowClick",
+                Tag = "AllowRename",
                 ItemTemplate = MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate
             };
             if (allowDragAndDrop)

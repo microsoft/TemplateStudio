@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft España",
+  "name": "Feature de prueba",
+  "description": "Está en Español (Feature)...",
+  "identity": "Microsoft.UWPTemplates.Test.FeatureTemplate.CSharp"
+}

@@ -33,7 +33,7 @@ namespace Microsoft.Templates.UI.Controls
                 {
                     _hideTimer = new DispatcherTimer()
                     {
-                        Interval = TimeSpan.FromSeconds(5)
+                        Interval = TimeSpan.FromSeconds(7)
                     };
                     _hideTimer.Tick += OnHideTimerTick;
                 }
@@ -140,24 +140,24 @@ namespace Microsoft.Templates.UI.Controls
             }
         }
 
-        private async void UpdateVisible(bool visible)
+        private void UpdateVisible(bool visible)
         {
             if (visible)
             {
                 Panel.SetZIndex(this, 2);
-                await this.FadeInAsync();
+                this.FadeIn();
             }
             else
             {
+                this.FadeOut(0);
                 Panel.SetZIndex(this, 0);
-                await this.FadeOutAsync();
             }
         }
 
         private void UpdateStatus(StatusViewModel status)
         {
             StatusText = status.Message;
-            if (status.AutoHide)
+            if (status.AutoHideSeconds > 0)
             {
                 HideTimer.Start();
             }

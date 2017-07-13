@@ -26,8 +26,9 @@ namespace Microsoft.Templates.Core.Locations
         protected override bool VerifyPackageSignatures => false;
 
         public override bool ForcedAcquisition { get => base.ForcedAcquisition; protected set => base.ForcedAcquisition = value; }
-
         public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
+
+        private object lockObject = new object();
 
         public LocalTemplatesSource() : this("0.0.0.0", "0.0.0.0")
         {
@@ -53,7 +54,7 @@ namespace Microsoft.Templates.Core.Locations
             return Templatex.Pack(tempFolder);
         }
 
-        private static void Copy(string sourceFolder, string targetFolder)
+        private void Copy(string sourceFolder, string targetFolder)
         {
             Fs.SafeDeleteDirectory(targetFolder);
             Fs.CopyRecursive(sourceFolder, targetFolder);

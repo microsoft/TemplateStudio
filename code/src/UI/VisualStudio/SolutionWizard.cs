@@ -70,9 +70,9 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public async void RunFinished()
         {
-            AppHealth.Current.Info.TrackAsync("Creating Windows Template Studio project...").FireAndForget();
+            AppHealth.Current.Info.TrackAsync(StringRes.SolutionWizardRunFinishedMessage).FireAndForget();
             await NewProjectGenController.Instance.GenerateProjectAsync(_userSelection);
-            AppHealth.Current.Info.TrackAsync("Generation finished").FireAndForget();
+            AppHealth.Current.Info.TrackAsync(StringRes.GenerationFinishedString).FireAndForget();
 
             PostGenerationActions();
         }

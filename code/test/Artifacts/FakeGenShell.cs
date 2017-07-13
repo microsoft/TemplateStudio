@@ -81,12 +81,12 @@ namespace Microsoft.Templates.Test.Artifacts
             solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid, projectFullPath.EndsWith(".csproj"));
         }
 
-        public override string GetActiveNamespace()
+        public override string GetActiveProjectNamespace()
         {
             return GenContext.Current.ProjectName;
         }
 
-        public override void SaveSolution(string solutionFullPath)
+        public override void SaveSolution()
         {
         }
 
@@ -115,7 +115,7 @@ namespace Microsoft.Templates.Test.Artifacts
 
         public override string GetActiveProjectPath()
         {
-            return string.Empty;
+            return (GenContext.Current != null) ? GenContext.Current.ProjectPath : string.Empty;
         }
 
         

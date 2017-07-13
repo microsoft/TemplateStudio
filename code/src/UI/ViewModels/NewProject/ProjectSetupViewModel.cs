@@ -112,7 +112,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 }
 
                 ProjectTypesHeader = string.Format(StringRes.GroupProjectTypeHeader_SF, ProjectTypes.Count);
-
                 await Task.CompletedTask;
             }
         }

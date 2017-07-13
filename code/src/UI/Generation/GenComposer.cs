@@ -245,7 +245,7 @@ namespace Microsoft.Templates.UI
 
         private static void AddDefaultParams(GenInfo genInfo)
         {
-            var ns = GenContext.ToolBox.Shell.GetActiveNamespace();
+            var ns = GenContext.ToolBox.Shell.GetActiveProjectNamespace();
 
             if (string.IsNullOrEmpty(ns))
             {

@@ -11,7 +11,7 @@
     PreviewLostKeyboardFocus="OnPreviewLostKeyboardFocus"
     PreviewMouseDown="OnPreviewMouseDown"
     Title="{x:Static res:StringRes.Title}"
-    Width="1294"
+    Width="1277"
     Height="727"
     MinWidth="800"
     MinHeight="600"
@@ -32,7 +32,6 @@
             </ResourceDictionary.MergedDictionaries>
 
             <converter:MicrosoftTemplatesAuthorConverter x:Key="MicrosoftTemplatesAuthorConverter" />
-            <converter:EmptyCollectionVisibilityConverter x:Key="EmptyCollectionConverter" />
             <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
             <DataTemplate x:Key="SummaryExpanderHeaderTemplate">
                 <TextBlock Text="{Binding}" Style="{StaticResource TextSummaryGroupHeader}"/>
@@ -62,20 +61,22 @@
                         <templateSelectors:SummaryItemTemplateSelector>
                             <templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
                                 <DataTemplate>
-                                    <Grid Height="30" Focusable="False" Margin="{StaticResource Margin_M_Left}">
-                                        <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
-                                        <controls:TextBoxEx Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}">
-                                            <controls:TextBoxEx.InputBindings>
-                                                <KeyBinding Command="{Binding ConfirmRenameCommand}" CommandParameter="{Binding}" Key="Enter" />
-                                                <KeyBinding Command="{Binding CancelRenameCommand}" Key="Esc"  />
-                                            </controls:TextBoxEx.InputBindings>
-                                        </controls:TextBoxEx>
+                                    <Grid Height="30" Focusable="False" Margin="{StaticResource Margin_S_Left}">
+                                        <Grid VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
+                                            <controls:TextBoxEx Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}" Height="30">
+                                                <controls:TextBoxEx.InputBindings>
+                                                    <KeyBinding Command="{Binding ConfirmRenameCommand}" CommandParameter="{Binding}" Key="Enter" />
+                                                    <KeyBinding Command="{Binding CancelRenameCommand}" Key="Esc"  />
+                                                </controls:TextBoxEx.InputBindings>
+                                            </controls:TextBoxEx>
+                                        </Grid>
                                     </Grid>
                                 </DataTemplate>
                             </templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
                             <templateSelectors:SummaryItemTemplateSelector.CommunityTemplate>
                                 <DataTemplate>
-                                    <Grid Height="40" Margin="{StaticResource Margin_M_Left}">
+                                    <Grid Height="40" Margin="{StaticResource Margin_S_Left}">
                                         <Grid VerticalAlignment="Center">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto" />
@@ -83,7 +84,7 @@
                                             </Grid.RowDefinitions>
                                             <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
                                             <TextBlock Grid.Row="1" Style="{StaticResource TextSummaryAuthorStyle}" Foreground="{Binding AuthorForeground}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}" Text="{Binding Author}" Margin="0,-2,0,0"/>
-                                            <controls:TextBoxEx Grid.Row="0" Grid.RowSpan="2" Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}">
+                                            <controls:TextBoxEx Grid.Row="0" Grid.RowSpan="2" Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}" Height="30">
                                                 <controls:TextBoxEx.InputBindings>
                                                     <KeyBinding Command="{Binding ConfirmRenameCommand}" CommandParameter="{Binding}" Key="Enter" />
                                                     <KeyBinding Command="{Binding CancelRenameCommand}" Key="Esc"  />
@@ -120,9 +121,9 @@
 
             <DataTemplate x:Key="LicenseSummaryItemTemplate">
                 <Grid>
-                    <TextBlock>
+                    <TextBlock Margin="0,4">
                         <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
-                            <TextBlock Text="{Binding Text}" Style="{StaticResource TextSumaryLicenseStyle}"/>
+                            <TextBlock Text="{Binding Text}" Style="{StaticResource TextSummaryLicenseStyle}" Margin="{StaticResource Margin_S_LeftTop}"/>
                         </Hyperlink>
                     </TextBlock>
                 </Grid>
@@ -134,7 +135,6 @@
         <Grid Panel.ZIndex="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
-                <RowDefinition Height="17" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
@@ -148,6 +148,7 @@
                     Grid.Column="0"
                     Width="40"
                     Margin="{StaticResource Margin_M_Left}"
+                    Fill="{StaticResource UIWhite}"
                     HorizontalAlignment="Left" />
                 <TextBlock
                     Grid.Column="1"
@@ -156,35 +157,35 @@
                     Style="{StaticResource TextTitleStyle}"
                     Text="{Binding Title}" />
                 <Grid Grid.Column="2" Visibility="{Binding HasOverlayBox, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <Grid Background="{StaticResource UIDarkGray}" Visibility="{Binding IsOverlayBoxVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    <Grid>
+                        <Grid.Background>
+                            <SolidColorBrush Color="{StaticResource UIWhiteColor}" Opacity="0.2"/>
+                        </Grid.Background>
+                    </Grid>
+                    <Grid Background="{StaticResource UIMiddleDarkGray}" Visibility="{Binding IsOverlayBoxVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
                     <Button Style="{StaticResource TopBarMenuStyle}" Command="{Binding ShowOverlayMenuCommand}">
                         <Button.Content>
                             <Grid>
-                                <TextBlock Text="&#xEC42;" Style="{StaticResource IconButtonTextStyle}" Foreground="{StaticResource UIWhite}" FontSize="24" Margin="{StaticResource Margin_M_All}" />
+                                <TextBlock Text="&#xEC42;" Style="{StaticResource IconButtonTextStyle}" Foreground="{StaticResource UIWhite}" FontSize="24" Margin="{StaticResource Margin_M_All}" Tag="AllowOverlay" />
                                 <Ellipse Width="12" Height="12" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,5,0" Visibility="{Binding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}}" Fill="{StaticResource UIDarkYellow}" />
                             </Grid>
                         </Button.Content>
                     </Button>
                 </Grid>
             </Grid>
-            <Grid Grid.Row="1" Background="{StaticResource UILightGray}"/>
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="17" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="300" />
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0" Background="{StaticResource UILightGray}" />
-                <Grid Grid.Column="1" Width="17" HorizontalAlignment="Right" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}" />
-                <Frame Grid.Column="1" x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False"/>
-                <Grid Grid.Column="1" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <TextBlock Style="{StaticResource TextMainLoadingStyle}" Text="{x:Static res:StringRes.LoadingTemplatesText}" />
-                </Grid>
-                <Grid Grid.Column="1" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
+                <Grid Grid.Column="0" Width="17" HorizontalAlignment="Right" VerticalAlignment="Stretch" Background="{StaticResource UILightGray}" />
+                <Frame Grid.Column="0" x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False"/>
+                <controls:LogoDisplay Grid.Column="0" IsBusy="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}" Width="150" Fill="{StaticResource UILightGray}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Grid Grid.Column="0" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
                     <TextBlock Style="{StaticResource TextMainLoadingStyle}" Text="{x:Static res:StringRes.NoContentText}" Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}"/>
                 </Grid>
 
-                <Grid Grid.Column="2" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
+                <Grid Grid.Column="1" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
                     <ScrollViewer Padding="0,40,0,65" Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}}">
                         <StackPanel Margin="{StaticResource Margin_M_Left}">
 
@@ -192,7 +193,7 @@
                                 <TextBlock Style="{StaticResource TextSummaryIconPoint}" />
                                 <StackPanel Margin="{StaticResource Margin_M_Left}" DataContext="{Binding ProjectSetup.SelectedProjectType}">
                                     <TextBlock Style="{StaticResource TextSummaryGroupHeader}" Text="{x:Static res:StringRes.SummaryProjectTypeTitle}" />
-                                    <TextBlock Style="{StaticResource TextSummaryItemStyle}" Text="{Binding DisplayName}" />
+                                    <TextBlock Style="{StaticResource TextSummaryItemStyle}" Text="{Binding DisplayName}" Margin="{StaticResource Margin_M_Top}" />
                                     <TextBlock Style="{StaticResource TextSummaryAuthorStyle}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}" Text="{Binding Author}"/>
                                 </StackPanel>
                             </StackPanel>
@@ -201,7 +202,7 @@
                                     <TextBlock Style="{StaticResource TextSummaryIconPoint}" />
                                     <StackPanel Margin="{StaticResource Margin_M_Left}" DataContext="{Binding ProjectSetup.SelectedFramework}">
                                         <TextBlock Style="{StaticResource TextSummaryGroupHeader}" Text="{x:Static res:StringRes.SummaryFrameworkTitle}" />
-                                        <TextBlock Style="{StaticResource TextSummaryItemStyle}" Text="{Binding DisplayName}" />
+                                        <TextBlock Style="{StaticResource TextSummaryItemStyle}" Text="{Binding DisplayName}" Margin="{StaticResource Margin_M_Top}" />
                                         <TextBlock Style="{StaticResource TextSummaryAuthorStyle}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}" Text="{Binding Author}"/>
                                     </StackPanel>
                                 </StackPanel>
@@ -209,19 +210,19 @@
                             <Expander Margin="{StaticResource Margin_M_Top}" Header="{x:Static res:StringRes.SummaryLicenseTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
                                 <Grid>
                                     <ItemsControl Focusable="False" Margin="{StaticResource Margin_XL_Left}" ItemTemplate="{StaticResource LicenseSummaryItemTemplate}" ItemsSource="{Binding SummaryLicenses}" />
-                                    <TextBlock Margin="27,0,0,0" Text="{x:Static res:StringRes.SummaryNoLicenses}" Visibility="{Binding SummaryLicenses, Converter={StaticResource EmptyCollectionConverter}}" />
+                                    <TextBlock Margin="27,7,0,0" Text="{x:Static res:StringRes.SummaryNoLicenses}" Visibility="{Binding HasSummaryLicenses, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
                                 </Grid>
                             </Expander>
                             <Expander Margin="{StaticResource Margin_M_Top}" Header="{x:Static res:StringRes.SummaryPagesTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
                                 <Grid>
                                     <StackPanel x:Name="summaryPageGroups"/>
-                                    <TextBlock Margin="27,0,0,0" Text="{x:Static res:StringRes.SummaryNoPages}" Visibility="{Binding ProjectTemplates.SavedPages, Converter={StaticResource EmptyCollectionConverter}}" />
+                                    <TextBlock Margin="27,7,0,0" Text="{x:Static res:StringRes.SummaryNoPages}" Visibility="{Binding ProjectTemplates.HasSavedPages, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
                                 </Grid>
                             </Expander>
                             <Expander Margin="{StaticResource Margin_M_Top}" Header="{x:Static res:StringRes.SummaryFeaturesTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
                                 <Grid>
-                                    <ItemsControl KeyboardNavigation.TabNavigation="Local" Focusable="False" ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}" ItemsSource="{Binding ProjectTemplates.SavedFeatures}" Tag="AllowClick" />
-                                    <TextBlock Margin="27,0,0,0" Text="{x:Static res:StringRes.SummaryNoFeatures}" Visibility="{Binding ProjectTemplates.SavedFeatures, Converter={StaticResource EmptyCollectionConverter}}" />
+                                    <ItemsControl KeyboardNavigation.TabNavigation="Local" Focusable="False" ItemTemplate="{StaticResource ProjectTemplatesSummaryItemTemplate}" ItemsSource="{Binding ProjectTemplates.SavedFeatures}" />
+                                    <TextBlock Margin="27,0,0,0" Text="{x:Static res:StringRes.SummaryNoFeatures}" Visibility="{Binding ProjectTemplates.HasSavedFeatures, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
                                 </Grid>
                             </Expander>
                         </StackPanel>
@@ -232,12 +233,7 @@
                     </Grid>
                 </Grid>
             </Grid>
-            <controls:StatusControl
-                    Grid.Row="1"
-                    Grid.RowSpan="2"
-                    VerticalAlignment="Top"
-                    Status="{Binding Status}" />
-            <Grid Grid.Row="3" Style="{StaticResource GridBottomBarStyle}">
+            <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -278,23 +274,13 @@
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid Grid.Row="0" Grid.RowSpan="4" Visibility="{Binding InfoShapeVisibility, FallbackValue=Collapsed}">
+            <Grid Grid.Row="0" Grid.RowSpan="3" Visibility="{Binding InfoShapeVisibility, FallbackValue=Collapsed}">
                 <Grid.Background>
                     <SolidColorBrush Opacity="0.4" Color="Black" />
                 </Grid.Background>
             </Grid>
         </Grid>
-        <controls:OverlayBox
-            Opacity="0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
-            Margin="0,62,10,0"
-            NewVersionAvailable="{Binding NewVersionAvailable}"
-            WizardVersion="{Binding WizardVersion}"
-            TemplatesVersion="{Binding TemplatesVersion}"
-            Visible="{Binding IsOverlayBoxVisible}"
-            RefreshCommand="{Binding RefreshTemplatesCommand}"
-            CheckForUpdatesCommand="{Binding CheckUpdatesCommand}"
-            Status="{Binding OverlayStatus}" />
+        <controls:StatusBox Style="{StaticResource StatusBoxStyle}" Status="{Binding Status}" Visibility="{Binding HasStatus, Converter={StaticResource BoolToVisibilityConverter}}" />
+        <controls:OverlayBox Style="{StaticResource OverlayBoxStyle}" NewVersionAvailable="{Binding NewVersionAvailable}" WizardVersion="{Binding WizardVersion}" TemplatesVersion="{Binding TemplatesVersion}" Visible="{Binding IsOverlayBoxVisible}" RefreshCommand="{Binding RefreshTemplatesCommand}" CheckForUpdatesCommand="{Binding CheckUpdatesCommand}" Status="{Binding OverlayStatus}" />
     </Grid>
 </Window>

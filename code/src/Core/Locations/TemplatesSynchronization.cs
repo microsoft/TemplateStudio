@@ -12,10 +12,12 @@
 
 using System;
 using System.IO;
-using System.Reflection;
 using System.Threading.Tasks;
+using System.Reflection;
+using System.Threading;
 
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -41,6 +43,9 @@ namespace Microsoft.Templates.Core.Locations
 
         public Version CurrentWizardVersion { get; private set; }
 
+        private static object syncLock = new object();
+        public static bool SyncInProgress { get; private set; }
+
         public TemplatesSynchronization(TemplatesSource source, Version wizardVersion)
         {
             _source = source ?? throw new ArgumentNullException("location");
@@ -50,19 +55,32 @@ namespace Microsoft.Templates.Core.Locations
 
         public async Task Do()
         {
-            await CheckInstallDeployedContent();
+            if (LockSync())
+            {
+                try
+                {
+                    await CheckInstallDeployedContent();
 
-            await CheckMandatoryAcquireContentAsync();
+                    var acquireCalled = await CheckMandatoryAcquireContentAsync();
 
-            await UpdateTemplatesCacheAsync();
+                    await UpdateTemplatesCacheAsync();
 
-            await AcquireContentAsync();
+                    if (!acquireCalled)
+                    {
+                        await AcquireContentAsync();
+                    }
 
-            await CheckContentStatusAsync();
+                    await CheckContentStatusAsync();
 
-            PurgeContentAsync().FireAndForget();
+                    PurgeContentAsync().FireAndForget();
 
-            TelemetryService.Current.SetContentVersionToContext(CurrentContentVersion);
+                    TelemetryService.Current.SetContentVersionToContext(CurrentContentVersion);
+                }
+                finally
+                {
+                    UnlockSync();
+                }
+            }
         }
 
         public async Task RefreshAsync()
@@ -72,8 +90,18 @@ namespace Microsoft.Templates.Core.Locations
 
         public async Task CheckForNewContentAsync()
         {
-            await AcquireContentAsync(true);
-            await CheckContentStatusAsync();
+            if (LockSync())
+            {
+                try
+                {
+                    await AcquireContentAsync(true);
+                    await CheckContentStatusAsync();
+                }
+                finally
+                {
+                    UnlockSync();
+                }
+            }
         }
 
         private async Task CheckContentStatusAsync()
@@ -90,21 +118,26 @@ namespace Microsoft.Templates.Core.Locations
                 await ExtractInstalledContentAsync();
             }
         }
-        private async Task CheckMandatoryAcquireContentAsync()
+        private async Task<bool> CheckMandatoryAcquireContentAsync()
         {
-            await AcquireContentAsync(_source.ForcedAcquisition || _content.ExistUnderVersion());
+            return await AcquireContentAsync(_source.ForcedAcquisition || _content.ExistUnderVersion());
         }
 
-        private async Task AcquireContentAsync(bool force = false)
+        private async Task<bool> AcquireContentAsync(bool force = false)
         {
+            bool acquireContentCalled = false;
             if (force || _content.IsExpired(CurrentContentFolder))
             {
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring });
 
-                await Task.Run(() => AcquireContent());
-
+                await Task.Run(() =>
+                {
+                    AcquireContent();
+                });
+                acquireContentCalled = true;
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquired });
             }
+            return await Task.FromResult<bool>(acquireContentCalled);
         }
 
         private async Task ExtractInstalledContentAsync()
@@ -225,7 +258,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             catch (Exception ex)
             {
-                await AppHealth.Current.Warning.TrackAsync("Unable to purge old content.", ex);
+                await AppHealth.Current.Warning.TrackAsync(StringRes.TemplatesSynchronizationPurgeContentAsyncMessage, ex);
             }
         }
 
@@ -237,6 +270,27 @@ namespace Microsoft.Templates.Core.Locations
         private Version GetCurrentContentVersion()
         {
             return _content?.GetVersionFromFolder(CurrentContentFolder);
+        }
+
+        private bool LockSync()
+        {
+            lock (syncLock)
+            {
+                if (SyncInProgress)
+                {
+                    return false;
+                }
+                SyncInProgress = true;
+                return true;
+            }
+        }
+
+        private void UnlockSync()
+        {
+            lock (syncLock)
+            {
+                SyncInProgress = false;
+            }
         }
     }
 }

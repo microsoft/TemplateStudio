@@ -22,9 +22,7 @@
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <WrapPanel
-                        Width="{Binding (FrameworkElement.ActualWidth), RelativeSource={RelativeSource AncestorType=ScrollContentPresenter}}"
-                        Orientation="Horizontal"/>
+                    <WrapPanel Width="{Binding (FrameworkElement.ActualWidth), RelativeSource={RelativeSource AncestorType=StackPanel}}" Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
@@ -195,7 +193,7 @@
         </Setter>
     </Style>
 
-    
+
     <Style TargetType="ListView" x:Key="ListViewChangesSummaryFiles">
         <Setter Property="Margin" Value="0"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -203,6 +201,23 @@
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
                 <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="FocusVisualStyle">
+                        <Setter.Value>
+                            <Style>
+                                <Setter Property="Control.Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <Grid>
+                                                <Grid.Background>
+                                                    <SolidColorBrush Color="{StaticResource UILightGrayColor}" Opacity="0.3"/>
+                                                </Grid.Background>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Setter.Value>
+                    </Setter>
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">
@@ -213,28 +228,10 @@
                                     <MultiTrigger>
                                         <MultiTrigger.Conditions>
                                             <Condition Property="IsSelected" Value="True"/>
-                                            <Condition Property="IsMouseOver" Value="True"/>
                                         </MultiTrigger.Conditions>
                                         <MultiTrigger.Setters>
-                                            <Setter Property="Background" TargetName="ContentBorder" Value="{StaticResource UIGray}"/>
-                                        </MultiTrigger.Setters>
-                                    </MultiTrigger>
-                                    <MultiTrigger>
-                                        <MultiTrigger.Conditions>
-                                            <Condition Property="IsSelected" Value="True"/>
-                                            <Condition Property="IsMouseOver" Value="False"/>
-                                        </MultiTrigger.Conditions>
-                                        <MultiTrigger.Setters>
-                                            <Setter Property="Background" TargetName="ContentBorder" Value="{StaticResource UIMiddleLightGray}"/>
-                                        </MultiTrigger.Setters>
-                                    </MultiTrigger>
-                                    <MultiTrigger>
-                                        <MultiTrigger.Conditions>
-                                            <Condition Property="IsSelected" Value="False"/>
-                                            <Condition Property="IsMouseOver" Value="True"/>
-                                        </MultiTrigger.Conditions>
-                                        <MultiTrigger.Setters>
-                                            <Setter Property="Background" TargetName="ContentBorder" Value="{StaticResource UIGray}"/>
+                                            <Setter Property="Background" TargetName="ContentBorder" Value="{StaticResource UIBlue}"/>
+                                            <Setter Property="Foreground" Value="{StaticResource UIWhite}"/>
                                         </MultiTrigger.Setters>
                                     </MultiTrigger>
                                 </ControlTemplate.Triggers>
