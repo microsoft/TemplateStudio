@@ -17,10 +17,10 @@
     <Menus>
       <Menu guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenu" type="Context" priority="0x0100">
         <Strings>
-          <CommandName>Windows Template Studio</CommandName>
-          <ButtonText>Windows Template Studio</ButtonText>
-          <MenuText>Windows Template Studio</MenuText>
-          <ToolTipText>Windows Template Studio</ToolTipText>
+          <CommandName>Windows Template Studio (local)</CommandName>
+          <ButtonText>Windows Template Studio (local)</ButtonText>
+          <MenuText>Windows Template Studio (local)</MenuText>
+          <ToolTipText>Windows Template Studio (local)</ToolTipText>
         </Strings>
       </Menu>
     </Menus>
@@ -90,9 +90,9 @@
   </CommandPlacements>
 
   <Symbols>
-    <GuidSymbol name="guidRelayCommandPackage" value="{995f080c-9f70-4550-8a21-b3ffeeff17eb}" />
+    <GuidSymbol name="guidRelayCommandPackage" value="{ae1b4c32-9c93-45b8-a36b-8734f4b120dd}" />
 
-    <GuidSymbol name="guidRelayCommandPackageCmdSet" value="{dec1ebd7-fb6b-49e7-b562-b46af0d419d1}">
+    <GuidSymbol name="guidRelayCommandPackageCmdSet" value="{caa4fb82-0dca-40fe-bae0-081e0f96226f}">
       <IDSymbol name="AddItemContextGroup" value="0x0100" />
       <IDSymbol name="AddItemContextMenu" value="0x0200" />
       <IDSymbol name="AddItemContextMenuGroup" value="0x0300" />
