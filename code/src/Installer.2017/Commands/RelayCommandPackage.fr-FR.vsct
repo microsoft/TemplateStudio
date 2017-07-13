@@ -17,10 +17,10 @@
     <Menus>
       <Menu guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenu" type="Context" priority="0x0100">
         <Strings>
-          <CommandName>Windows Template Studio</CommandName>
-          <ButtonText>Windows Template Studio</ButtonText>
-          <MenuText>Windows Template Studio</MenuText>
-          <ToolTipText>Windows Template Studio</ToolTipText>
+          <CommandName>Windows Template Studio (local)</CommandName>
+          <ButtonText>Windows Template Studio (local)</ButtonText>
+          <MenuText>Windows Template Studio (local)</MenuText>
+          <ToolTipText>Windows Template Studio (local)</ToolTipText>
         </Strings>
       </Menu>
     </Menus>
