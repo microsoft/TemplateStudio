@@ -12,7 +12,19 @@ Param(
   [Parameter(Mandatory=$True,Position=4)]
   [string]$buildNumber,
 
-  [Parameter(Mandatory=$False,Position=5)]
+  [Parameter(Mandatory=$True,Position=5)]
+  [string]$packageGuid,
+
+  [Parameter(Mandatory=$True,Position=6)]
+  [string]$cmdSetGuid,
+
+  [Parameter(Mandatory=$False,Position=7)]
+  [string]$targetPackageGuid = "995f080c-9f70-4550-8a21-b3ffeeff17eb",
+
+  [Parameter(Mandatory=$False,Position=8)]
+  [string]$targetCmdSetGuid = "dec1ebd7-fb6b-49e7-b562-b46af0d419d1",
+  
+  [Parameter(Mandatory=$False,Position=9)]
   [string]$publicKeyToken = "e4ef4cc7a47ae0c5" #TestKey.snk
 )
 
@@ -71,6 +83,47 @@ if($vsixIdentity){
 else{
   throw "Identity is mandatory."
 }
+
+## REPLACE Command Guids
+if($cmdSetGuid -and $packageGuid){
+  Write-Host "Setting PackageGuid and CmdSetGuid in VSCT Files"
+  $vsctFiles = Get-ChildItem -include "*.vsct" -recurse |  Where-Object{ 
+      $_.FullName -notmatch "\\Templates\\" -and 
+      $_.FullName -notmatch "\\debug\\" -and
+      $_.FullName -notmatch "\\obj\\" -and
+      $_.FullName -match "\\Installer.2017\\Commands"
+  }
+  if($vsctFiles){ 
+    Write-Host "Applying guid $cmdSetGuid to VSCT Files"
+    foreach ($vsctFile in $vsctFiles) {
+      $vsctFileContent = Get-Content $vsctFile
+      attrib $vsctFile -r
+      $replacedVsctContent = $vsctFileContent.Replace($targetPackageGuid, $packageGuid).Replace($targetCmdSetGuid, $cmdSetGuid)
+      $replacedVsctContent | Out-File $vsctFileContent utf8 
+      Write-Host "$vsctFile - Guids applied (PackageGuid:$packageGuid, CmdGuid:$cmdSetGuid)"        
+    }
+  }
+  else{
+    throw "No VSCT files found."
+  }
+
+  $installerPath = Resolve-Path($vsixManifestFile)
+  $constFile = Join-Path  $installerPath "Commands\PackageIds.cs"
+  if($constFile){
+    $constFileContent = Get-Content $constFile
+    attrib $constFile -r
+    $replacedConstContent = $constFileContent.Replace($targetPackageGuid, $packageGuid).Replace($targetCmdSetGuid, $cmdSetGuid)
+    $replacedConstContent | Out-File $constFile utf8 
+    Write-Host "$constFile - Guids applied (PackageGuid:$packageGuid, CmdGuid:$cmdSetGuid)"
+  }
+  else{
+     throw "PackageIds.cs constants file not found"
+  }
+}
+else{
+  throw "PackageGuid and CmdSetGuid are mandatory"
+}
+
 
 ## APPLY VERSION TO ASSEMBLY FILES (AssemblyVersion and AssemblyFileVersion)
 Write-Host "Applying version to AssemblyInfo Files in matching the path pattern '$codePathPattern'" 
