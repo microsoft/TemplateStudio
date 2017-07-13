@@ -35,10 +35,11 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <controls:LogoDisplay
-                    Grid.Column="0"
-                    Width="40"
-                    Margin="{StaticResource Margin_M_Left}"
-                    HorizontalAlignment="Left" />
+                Grid.Column="0"
+                Width="40"
+                Margin="{StaticResource Margin_M_Left}"
+                Fill="{StaticResource UIWhite}"
+                HorizontalAlignment="Left" />
             <TextBlock
                     Grid.Column="1"
                     Margin="{StaticResource Margin_M_Left}"

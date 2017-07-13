@@ -16,6 +16,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Globalization;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Template;
@@ -36,7 +37,7 @@ namespace Microsoft.Templates.Core
         public string WizardVersion { get; private set; }
         public string CurrentContentFolder { get => Sync?.CurrentContentFolder; }
         public string TemplatesVersion { get => Sync.CurrentContentVersion?.ToString() ?? string.Empty; }
-
+        public bool SyncInProgress { get => TemplatesSynchronization.SyncInProgress; }
         public TemplatesRepository(TemplatesSource source, Version wizardVersion)
         {
             WizardVersion = wizardVersion.ToString();
@@ -106,8 +107,21 @@ namespace Microsoft.Templates.Core
             }
 
             var metadataFile = Path.Combine(folderName, $"{type}.json");
+            var metadataFileLocalized = Path.Combine(folderName, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.{type}.json");
             var metadata = JsonConvert.DeserializeObject<List<MetadataInfo>>(File.ReadAllText(metadataFile));
-
+            if (File.Exists(metadataFileLocalized))
+            {
+                var metadataLocalized = JsonConvert.DeserializeObject<List<MetadataLocalizedInfo>>(File.ReadAllText(metadataFileLocalized));
+                metadataLocalized.ForEach(ml =>
+                {
+                    MetadataInfo cm = metadata.Where(m => m.Name == ml.Name).FirstOrDefault();
+                    if (cm != null)
+                    {
+                        cm.DisplayName = ml.DisplayName;
+                        cm.Summary = ml.Summary;
+                    }
+                });
+            }
             metadata.ForEach(m => SetMetadataDescription(m, folderName, type));
             metadata.ForEach(m => SetMetadataIcon(m, folderName, type));
             metadata.ForEach(m => m.MetadataType = type);
@@ -143,7 +157,9 @@ namespace Microsoft.Templates.Core
 
         private static void SetMetadataDescription(MetadataInfo mInfo, string folderName, string type)
         {
-            var descriptionFile = Path.Combine(folderName, type, $"{mInfo.Name}.md");
+            var descriptionFile = Path.Combine(folderName, type, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.{mInfo.Name}.md");
+            if (!File.Exists(descriptionFile))
+                descriptionFile = Path.Combine(folderName, type, $"{mInfo.Name}.md");
             if (File.Exists(descriptionFile))
             {
                 mInfo.Description = File.ReadAllText(descriptionFile);

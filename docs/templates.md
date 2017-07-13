@@ -110,6 +110,7 @@ The replacements are done based on the configuration established in the `templat
     "wts.framework": "MVVMBasic|MVVMLight",       //Frameworks where this template can be used.
     "wts.version": "1.0.0",
     "wts.order": "1",
+    "wts.rightClickEnabled":"true",               //If set to 'true' then this feature or page is available from right click on an existing project.
     "wts.isHidden": "false"                       //If set to 'true' then not shown in the wizard. Used for dependencies that can't be selected on their own.
   },
   "sourceName": "BlankView",                      //The generation engine will replace any occurrence of "BlankView" by the parameter provided in the source file name.

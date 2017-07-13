@@ -26,10 +26,9 @@ namespace Param_ItemNamespace.BackgroundTasks
                     Name = taskName
                 };
 
-                //// TODO UWPTemplates: Define your trigger here and set your conditions
-                //// Note conditions are optional
-                //// Documentation: https://docs.microsoft.com/windows/uwp/launch-resume/create-and-register-an-inproc-background-task
-
+                // TODO WTS: Define your trigger here and set your conditions
+                // Note conditions are optional
+                // Documentation: https://docs.microsoft.com/windows/uwp/launch-resume/create-and-register-an-inproc-background-task
                 builder.SetTrigger(new TimeTrigger(15, false));
                 builder.AddCondition(new SystemCondition(SystemConditionType.UserPresent));
 
@@ -48,7 +47,7 @@ namespace Param_ItemNamespace.BackgroundTasks
 
             return Task.Run(() =>
             {
-                //// TODO UWPTemplates: Insert the code that should be executed in the background task here.
+                //// TODO WTS: Insert the code that should be executed in the background task here.
                 //// This sample initializes a timer that counts to 100 in steps of 10.  It updates Message each time.
 
                 //// Documentation:
@@ -67,7 +66,7 @@ namespace Param_ItemNamespace.BackgroundTasks
 
         public override void OnCanceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason)
         {
-           // TODO UWPTemplates: Insert code to handle the cancelation request here.
+           // TODO WTS: Insert code to handle the cancelation request here.
            // Documentation: https://docs.microsoft.com/windows/uwp/launch-resume/handle-a-cancelled-background-task
         }
 

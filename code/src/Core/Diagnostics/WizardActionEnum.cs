@@ -14,7 +14,8 @@ namespace Microsoft.Templates.Core.Diagnostics
 {
     public enum WizardActionEnum
     {
-        Generate = 0,
-        GenerateAndMerge = 1
+        GenerateItem = 0,
+        GenerateAndMergeItem = 1,
+        GenerateProject = 2
     }
 }

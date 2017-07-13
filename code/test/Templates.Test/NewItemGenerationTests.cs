@@ -57,7 +57,7 @@ namespace Microsoft.Templates.Test
 
             foreach (var item in rightClickTemplates)
             {
-                OutputPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                OutputPath = GetTempGenerationPath(projectName);
 
                 var newUserSelection = new UserSelection()
                 {
@@ -83,7 +83,16 @@ namespace Microsoft.Templates.Test
             Directory.Delete(outputPath, true);
         }
 
-      
+        private static string GetTempGenerationPath(string projectName)
+        {
+            var tempGenerationName = $"{projectName}_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}";
+            var tempGenerationPath = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
+            var inferredName = Naming.Infer(tempGenerationName, new List<Validator>() { new DirectoryExistsValidator(tempGenerationPath) }, "_");
+
+            return Path.Combine(tempGenerationPath, inferredName);
+        }
+
+
         public static IEnumerable<object[]> GetProjectTemplates()
         {
             return GenerationFixture.GetProjectTemplates();

@@ -84,7 +84,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 MainViewModel.Current.HasContent = true;
                 MainViewModel.Current.EnableGoForward();
-                MainViewModel.Current.SetTemplatesReadyForProjectCreation();
                 var activeTemplate = MainViewModel.Current.GetActiveTemplate();
                 if (activeTemplate == null)
                 {

@@ -299,11 +299,11 @@
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Width" Value="50" />
-        <Setter Property="Background">
+        <!--<Setter Property="Background">
             <Setter.Value>
                 <SolidColorBrush Color="{StaticResource UIWhiteColor}" Opacity="0.2"/>
             </Setter.Value>
-        </Setter>
+        </Setter>-->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -368,43 +368,13 @@
                 </Style>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Trigger.Setters>
+                    <Setter Property="Foreground" Value="{StaticResource UILightGray}"/>
+                </Trigger.Setters>
+            </Trigger>
+        </Style.Triggers>
     </Style>
-
-    <Style TargetType="Button" x:Key="ButtonUpdateFontSizeStyle">
-        <Setter Property="Margin" Value="{StaticResource Margin_S_Left}" />
-        <Setter Property="Height" Value="60" />
-        <Setter Property="Width" Value="60" />
-        <Setter Property="FontSize" Value="25" />
-        <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="Foreground" Value="{StaticResource UIBlack}" />
-        <Setter Property="BorderBrush">
-            <Setter.Value>
-                <SolidColorBrush Color="{StaticResource UIGrayColor}" Opacity="0.5"/>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Background">
-            <Setter.Value>
-                <SolidColorBrush Color="{StaticResource UIGrayColor}" Opacity="0.3"/>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="FocusVisualStyle">
-            <Setter.Value>
-                <Style>
-                    <Setter Property="Control.Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <Grid>
-                                    <Grid.Background>
-                                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
-                                    </Grid.Background>
-                                </Grid>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
+    
 </ResourceDictionary>

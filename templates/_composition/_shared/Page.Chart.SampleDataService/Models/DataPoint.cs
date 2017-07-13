@@ -2,7 +2,7 @@
 
 namespace Param_ItemNamespace.Models
 {
-    // TODO UWPTemplates: This is used by the Sample Chart Data. Remove this once your chart page is displaying real data
+    // TODO WTS: This is used by the Sample Chart Data. Remove this once your chart page is displaying real data
     public class DataPoint
     {
         public double Value { get; set; }

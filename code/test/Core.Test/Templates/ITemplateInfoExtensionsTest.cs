@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetTemplateType_project()
         {
-            var target = GetTarget("ProjectTemplate");
+            var target = GetTargetByName("ProjectTemplate");
             var result = target.GetTemplateType();
 
             Assert.Equal(TemplateType.Project, result);
@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetTemplateType_page()
         {
-            var target = GetTarget("PageTemplate");
+            var target = GetTargetByIdentity("Microsoft.UWPTemplates.Test.PageTemplate.CSharp");
 
             var result = target.GetTemplateType();
             Assert.Equal(TemplateType.Page, result);
@@ -51,7 +51,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetTemplateType_unspecified()
         {
-            var target = GetTarget("UnspecifiedTemplate");
+            var target = GetTargetByName("UnspecifiedTemplate");
 
             var result = target.GetTemplateType();
             Assert.Equal(TemplateType.Unspecified, result);
@@ -60,7 +60,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetIcon()
         {
-            var target = GetTarget("ProjectTemplate");
+            var target = GetTargetByName("ProjectTemplate");
 
             var result = target.GetIcon();
             var expected = Path.Combine(_fixture.Repository.CurrentContentFolder, @"ProjectTemplate", ".template.config",
@@ -71,7 +71,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetIcon_unspecified()
         {
-            var target = GetTarget("UnspecifiedTemplate");
+            var target = GetTargetByName("UnspecifiedTemplate");
 
             var result = target.GetIcon();
             Assert.Null(result);
@@ -80,7 +80,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetRichDescription()
         {
-            var target = GetTarget("ProjectTemplate");
+            var target = GetTargetByName("ProjectTemplate");
 
             var result = target.GetRichDescription();
             Assert.NotNull(result);
@@ -89,7 +89,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetRichDescription_unspecified()
         {
-            var target = GetTarget("UnspecifiedTemplate");
+            var target = GetTargetByName("UnspecifiedTemplate");
 
             var result = target.GetRichDescription();
             Assert.Null(result);
@@ -98,7 +98,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetFramework()
         {
-            var target = GetTarget("ProjectTemplate");
+            var target = GetTargetByName("ProjectTemplate");
 
             var result = target.GetFrameworkList();
             Assert.Collection(result,
@@ -111,7 +111,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetFramework_unspecified()
         {
-            var target = GetTarget("UnspecifiedTemplate");
+            var target = GetTargetByName("UnspecifiedTemplate");
 
             var result = target.GetFrameworkList();
             Assert.Collection(result);
@@ -120,7 +120,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetVersion()
         {
-            var target = GetTarget("ProjectTemplate");
+            var target = GetTargetByName("ProjectTemplate");
 
             var result = target.GetVersion();
             Assert.Equal("1.0.0", result);
@@ -129,7 +129,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetVersion_unspecified()
         {
-            var target = GetTarget("UnspecifiedTemplate");
+            var target = GetTargetByName("UnspecifiedTemplate");
 
             var result = target.GetVersion();
             Assert.Null(result);
@@ -138,7 +138,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetGroup()
         {
-            var target = GetTarget("ProjectTemplate");
+            var target = GetTargetByName("ProjectTemplate");
 
             var result = target.GetGroup();
             Assert.Equal("group1", result);
@@ -147,7 +147,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetGroup_unspecified()
         {
-            var target = GetTarget("UnspecifiedTemplate");
+            var target = GetTargetByName("UnspecifiedTemplate");
 
             var result = target.GetGroup();
             Assert.Null(result);
@@ -156,7 +156,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetOrder()
         {
-            var target = GetTarget("ProjectTemplate");
+            var target = GetTargetByName("ProjectTemplate");
 
             var result = target.GetOrder();
             Assert.Equal(1, result);
@@ -165,7 +165,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetOrder_unspecified()
         {
-            var target = GetTarget("UnspecifiedTemplate");
+            var target = GetTargetByName("UnspecifiedTemplate");
 
             var result = target.GetOrder();
             Assert.Equal(int.MaxValue, result);
@@ -174,7 +174,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetLicenses()
         {
-            var target = GetTarget("ProjectTemplate");
+            var target = GetTargetByName("ProjectTemplate");
 
             var result = target.GetLicenses().ToList();
             Assert.NotNull(result);
@@ -196,7 +196,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetLicenses_unspecified()
         {
-            var target = GetTarget("UnspecifiedTemplate");
+            var target = GetTargetByName("UnspecifiedTemplate");
 
             var result = target.GetLicenses().ToList();
             Assert.Collection(result);
@@ -205,7 +205,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetLayout()
         {
-            var target = GetTarget("ProjectTemplate");
+            var target = GetTargetByName("ProjectTemplate");
 
             var result = target.GetLayout().ToList();
             Assert.Collection(result,
@@ -227,7 +227,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetLayout_NoLayout()
         {
-            var target = GetTarget("UnspecifiedTemplate");
+            var target = GetTargetByName("UnspecifiedTemplate");
 
             var result = target.GetLayout().ToList();
             Assert.Collection(result);
@@ -236,7 +236,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetDefaultName()
         {
-            var target = GetTarget("ProjectTemplate");
+            var target = GetTargetByName("ProjectTemplate");
             var result = target.GetDefaultName();
 
             Assert.Equal("DefaultName", result);
@@ -245,7 +245,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetRightClickEnabled()
         {
-            var target = GetTarget("RightClickTemplate");
+            var target = GetTargetByName("RightClickTemplate");
             var result = target.GetRightClickEnabled();
 
             Assert.Equal(true, result);
@@ -254,7 +254,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetRightClickEnabledFalse()
         {
-            var target = GetTarget("FeatureTemplate");
+            var target = GetTargetByIdentity("Microsoft.UWPTemplates.Test.FeatureTemplate.CSharp");
             var result = target.GetRightClickEnabled();
 
             Assert.Equal(false, result);
@@ -263,19 +263,30 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetDefaultName_unspecified()
         {
-            var target = GetTarget("UnspecifiedTemplate");
+            var target = GetTargetByName("UnspecifiedTemplate");
             var result = target.GetDefaultName();
 
             Assert.Equal("UnspecifiedTemplate", result);
         }
 
-        private ITemplateInfo GetTarget(string templateName)
+        private ITemplateInfo GetTargetByName(string templateName)
         {
             var allTemplates = _fixture.Repository.GetAll();
             var target = allTemplates.FirstOrDefault(t => t.Name == templateName);
             if (target == null)
             {
                 throw new ArgumentException($"There is no template with name '{templateName}'. Number of templates: '{allTemplates.Count()}'");
+            }
+            return target;
+        }
+
+        private ITemplateInfo GetTargetByIdentity(string templateIdentity)
+        {
+            var allTemplates = _fixture.Repository.GetAll();
+            var target = allTemplates.FirstOrDefault(t => t.Identity == templateIdentity);
+            if (target == null)
+            {
+                throw new ArgumentException($"There is no template with identity '{templateIdentity}'. Number of templates: '{allTemplates.Count()}'");
             }
             return target;
         }

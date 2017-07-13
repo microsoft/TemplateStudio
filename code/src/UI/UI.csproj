@@ -105,10 +105,7 @@
       <HintPath>..\..\packages\Microsoft.VisualStudio.Shell.Immutable.12.0.12.0.21003\lib\net45\Microsoft.VisualStudio.Shell.Immutable.12.0.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.Shell.Immutable.14.0, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.VisualStudio.Shell.Immutable.14.0.14.3.25407\lib\net45\Microsoft.VisualStudio.Shell.Immutable.14.0.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Shell.Immutable.14.0, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Shell.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <HintPath>..\..\packages\Microsoft.VisualStudio.Shell.Interop.7.10.6071\lib\Microsoft.VisualStudio.Shell.Interop.dll</HintPath>
       <Private>True</Private>
@@ -186,11 +183,79 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\CodeViewer.cs" />
+    <Compile Include="Controls\StatusBox.xaml.cs">
+      <DependentUpon>StatusBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Extensions\ListViewExtensions.cs" />
     <Compile Include="Generation\NewItemGenerationFileInfo.cs" />
     <Compile Include="Generation\NewItemGenerationResult.cs" />
     <Compile Include="Generation\ProjectConfigInfo.cs" />
+    <Compile Include="Resources\StringRes.cs-CZ.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.cs-CZ.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.de-DE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.de-DE.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.fr-FR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.fr-FR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.it-IT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.it-IT.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.ja-JP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.ja-JP.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.ko-KR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.ko-KR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.pl-PL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.pl-PL.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.pt-BR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.pt-BR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.ru-RU.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.ru-RU.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.tr-TR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.tr-TR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.zh-CN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.zh-CN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.zh-TW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.zh-TW.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\DragAndDropService\DragAndDropService.Members.cs" />
     <Compile Include="Services\DragAndDropService\DragAdornerLayer.cs" />
     <Compile Include="Services\DragAndDropService\DragAndDropService.cs" />
@@ -209,14 +274,9 @@
     <Compile Include="Services\DragAndDropService\NativeMethods.cs" />
     <Compile Include="Services\DragAndDropService\MouseUtilities.cs" />
     <Compile Include="Controls\OverlayBox.cs" />
-    <Compile Include="Controls\StatusControl.xaml.cs">
-      <DependentUpon>StatusControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\StatusType.cs" />
     <Compile Include="Controls\SymbolFonts.cs" />
     <Compile Include="Controls\TextBoxEx.cs" />
     <Compile Include="Converters\ColumnCountConverter.cs" />
-    <Compile Include="Converters\EmptyCollectionVisibilityConverter.cs" />
     <Compile Include="Converters\FixedWidthConverter.cs" />
     <Compile Include="Converters\ItemAlignmentConverter.cs" />
     <Compile Include="Converters\MicrosoftTemplatesAuthorConverter.cs" />
@@ -228,6 +288,7 @@
     <Compile Include="Generation\NewItemGenController.cs" />
     <Compile Include="TemplateSelectors\FileExtensionTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\FileStatusTemplateSelector.cs" />
+    <Compile Include="TemplateSelectors\StatusBoxTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\SummaryItemOptionsTemplateSelector.cs" />
     <Compile Include="Services\DragAndDropService\DragAndDropEventArgs.cs" />
     <Compile Include="TemplateSelectors\SummaryItemTemplateSelector.cs" />
@@ -352,13 +413,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\StatusControl.xaml">
+    <Page Include="Controls\StatusBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\TogglePane.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\StyleCustomControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\StyleHyperlink.xaml">
       <SubType>Designer</SubType>
@@ -470,10 +535,63 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\StringRes.cs-CZ.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.cs-CZ.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.de-DE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.de-DE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.es-ES.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.fr-FR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.fr-FR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.it-IT.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.it-IT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.ja-JP.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.ja-JP.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.ko-KR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.ko-KR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.pl-PL.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.pl-PL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.pt-BR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.pt-BR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.ru-RU.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.ru-RU.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.tr-TR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.tr-TR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.zh-TW.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.zh-TW.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

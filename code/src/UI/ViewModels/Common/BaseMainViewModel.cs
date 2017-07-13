@@ -30,31 +30,43 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     public abstract class BaseMainViewModel : Observable
     {
         private Window _mainView;
-        protected bool _templatesReady;
+        protected bool _canFinish;
         protected bool _canGoBack;
         protected bool _canGoForward;
         protected bool _hasValidationErrors;
         protected bool _templatesAvailable;
+        protected bool _canCheckingUpdates;
 
-        protected StatusViewModel _status = StatusControl.EmptyStatus;
+        protected StatusViewModel _status = StatusViewModel.EmptyStatus;
         public StatusViewModel Status
         {
             get => _status;
-            private set => SetProperty(ref _status, value);
+            private set
+            {
+                SetProperty(ref _status, value);
+                HasStatus = value != null && value.Status != StatusType.Empty;
+            }
         }
 
-        protected StatusViewModel _overlayStatus = StatusControl.EmptyStatus;
+        protected StatusViewModel _overlayStatus = StatusViewModel.EmptyStatus;
         public StatusViewModel OverlayStatus
         {
             get => _overlayStatus;
             private set => SetProperty(ref _overlayStatus, value);
         }
 
+        protected bool _hasStatus;
+        public bool HasStatus
+        {
+            get => _hasStatus;
+            private set => SetProperty(ref _hasStatus, value);
+        }
+
         protected bool _isOverlayBoxVisible;
         public bool IsOverlayBoxVisible
         {
             get => _isOverlayBoxVisible;
-            private set => SetProperty(ref _isOverlayBoxVisible, value);
+            set => SetProperty(ref _isOverlayBoxVisible, value);
         }
 
         protected bool _hasOverlayBox = true;
@@ -137,7 +149,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && !_hasValidationErrors && _canGoForward));
         public RelayCommand ShowOverlayMenuCommand => _showOverlayMenuCommand ?? (_showOverlayMenuCommand = new RelayCommand(() => IsOverlayBoxVisible = !IsOverlayBoxVisible));
         public RelayCommand<string> FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand<string>(OnFinish, CanFinish));
-        public RelayCommand CheckUpdatesCommand => _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand(OnCheckUpdates));
+        public RelayCommand CheckUpdatesCommand => _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand(OnCheckUpdates, CanCheckUpdates));
         public RelayCommand RefreshTemplatesCommand => _refreshTemplatesCommand ?? (_refreshTemplatesCommand = new RelayCommand(OnRefreshTemplates));
         #endregion
 
@@ -157,7 +169,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
         protected abstract void OnTemplatesAvailable();
         protected abstract void OnNewTemplatesAvailable();
-        protected abstract UserSelection CreateUserSelection();
+        public abstract UserSelection CreateUserSelection();
 
         public void SetValidationErrors(string errorMessage, StatusType statusType = StatusType.Error)
         {
@@ -166,15 +178,15 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             FinishCommand.OnCanExecuteChanged();
         }
 
-        public void SetTemplatesReadyForProjectCreation()
+        public void UpdateCanFinish(bool canFinish)
         {
-            _templatesReady = true;
+            _canFinish = canFinish;
             FinishCommand.OnCanExecuteChanged();
         }
 
         public void CleanStatus(bool cleanValidationError = false)
         {
-            SetStatus(StatusControl.EmptyStatus);
+            SetStatus(StatusViewModel.EmptyStatus);
             if (cleanValidationError)
             {
                 _hasValidationErrors = false;
@@ -193,23 +205,46 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged -= SyncSyncStatusChanged;
         }
 
+        public void TryHideOverlayBox(FrameworkElement element)
+        {
+            if (element != null && element.GetType() == typeof(OverlayBox))
+            {
+                return;
+            }
+            else if (element != null && element.Tag != null && element.Tag.ToString() == "AllowOverlay")
+            {
+                return;
+            }
+            IsOverlayBoxVisible = false;
+        }
+
         protected virtual void OnGoBack()
         {
             NavigationService.GoBack();
             _canGoBack = false;
-            _templatesReady = false;
+            _canFinish = false;
             BackCommand.OnCanExecuteChanged();
 
             ShowFinishButton = false;
         }
         protected virtual bool CanFinish(string parameter)
         {
-            if (_hasValidationErrors || !_templatesReady)
+            if (_hasValidationErrors || !_canFinish)
             {
                 return false;
             }
-            CleanStatus();
             return true;
+        }
+
+        private bool CanCheckUpdates()
+        {
+            return _canCheckingUpdates;
+        }
+
+        private void SetCanCheckUpdates(bool value)
+        {
+            _canCheckingUpdates = value;
+            CheckUpdatesCommand.OnCanExecuteChanged();
         }
         protected virtual void OnFinish(string parameter)
         {
@@ -225,18 +260,18 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 TemplatesVersion = GenContext.ToolBox.TemplatesVersion;
                 OnNewTemplatesAvailable();
                 NewVersionAvailable = false;
-                SetStatus(new StatusViewModel(StatusType.Information, StringRes.StatusUpdated, true));
+                SetStatus(StatusViewModel.Information(StringRes.StatusUpdated, 5));
             }
             catch (Exception ex)
             {
-                SetStatus(new StatusViewModel(StatusType.Information, StringRes.ErrorSyncRefresh));
+                SetStatus(StatusViewModel.Information(StringRes.ErrorSyncRefresh));
 
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);
             }
             finally
             {
-                IsLoading = false;
+                IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
             }
         }
 
@@ -244,17 +279,19 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             try
             {
+                SetCanCheckUpdates(false);
                 await GenContext.ToolBox.Repo.CheckForUpdatesAsync();
             }
             catch (Exception ex)
             {
-                SetStatus(new StatusViewModel(StatusType.Information, StringRes.ErrorSyncRefresh));
+                SetStatus(StatusViewModel.Information(StringRes.ErrorSyncRefresh));
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);
             }
             finally
             {
-                IsLoading = false;
+                IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
+                SetCanCheckUpdates(!GenContext.ToolBox.Repo.SyncInProgress);
             }
         }
 
@@ -270,14 +307,15 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
             catch (Exception ex)
             {
-                SetStatus(new StatusViewModel(StatusType.Information, StringRes.ErrorSync));
+                SetStatus(StatusViewModel.Information(StringRes.ErrorSync));
 
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);
             }
             finally
             {
-                IsLoading = false;
+                IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
+                SetCanCheckUpdates(!GenContext.ToolBox.Repo.SyncInProgress);
             }
         }
 
@@ -303,6 +341,30 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                     return string.Empty;
             }
         }
+
+        private int GetStatusHideSeconds(SyncStatus status)
+        {
+            switch (status)
+            {
+                case SyncStatus.Updating:
+                    return 5;
+                case SyncStatus.Updated:
+                    return 5;
+                case SyncStatus.Acquiring:
+                    return 0;
+                case SyncStatus.Acquired:
+                    return 5;
+                case SyncStatus.Preparing:
+                    return 5;
+                case SyncStatus.Prepared:
+                    return 5;
+                case SyncStatus.NewVersionAvailable:
+                    return 5;
+                default:
+                    return 5;
+            }
+        }
+
         public void SetStatus(StatusViewModel status)
         {
             if (status.Status == StatusType.Empty)
@@ -325,7 +387,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         private void SyncSyncStatusChanged(object sender, SyncStatusEventArgs status)
         {
-            SetStatus(new StatusViewModel(StatusType.Information, GetStatusText(status.Status), true));
+            SetStatus(StatusViewModel.Information(GetStatusText(status.Status), GetStatusHideSeconds(status.Status)));
 
             if (status.Status == SyncStatus.Updated)
             {
@@ -335,12 +397,14 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 _templatesAvailable = true;
                 OnTemplatesAvailable();
                 NextCommand.OnCanExecuteChanged();
+                IsLoading = false;
+                SetCanCheckUpdates(true);
             }
             if (status.Status == SyncStatus.OverVersion)
             {
                 _mainView.Dispatcher.Invoke(() =>
                 {
-                    SetStatus(new StatusViewModel(StatusType.Warning, StringRes.StatusOverVersionContent));
+                    SetStatus(StatusViewModel.Warning(StringRes.StatusOverVersionContent));
                 });
             }
 
@@ -348,7 +412,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 _mainView.Dispatcher.Invoke(() =>
                 {
-                    SetStatus(new StatusViewModel(StatusType.Error, StringRes.StatusOverVersionNoContent));
+                    SetStatus(StatusViewModel.Error(StringRes.StatusOverVersionNoContent));
                     _templatesAvailable = false;
                     NextCommand.OnCanExecuteChanged();
                 });
@@ -358,7 +422,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 _mainView.Dispatcher.Invoke(() =>
                 {
-                    SetStatus(new StatusViewModel(StatusType.Error, StringRes.StatusLowerVersionContent));
+                    SetStatus(StatusViewModel.Error(StringRes.StatusLowerVersionContent));
                     _templatesAvailable = false;
                     NextCommand.OnCanExecuteChanged();
                 });

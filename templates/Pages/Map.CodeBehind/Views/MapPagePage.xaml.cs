@@ -12,12 +12,12 @@ namespace Param_ItemNamespace.Views
 {
     public sealed partial class MapPagePage : Page, System.ComponentModel.INotifyPropertyChanged
     {
-        // TODO UWPTemplates: Set your preferred default zoom level
+        // TODO WTS: Set your preferred default zoom level
         private const double DefaultZoomLevel = 17;
 
         private readonly LocationService locationService;
 
-        // TODO UWPTemplates: Set your preferred default location if a geolock can't be found.
+        // TODO WTS: Set your preferred default location if a geolock can't be found.
         private readonly BasicGeoposition defaultPosition = new BasicGeoposition()
         {
             Latitude = 47.609425,
@@ -73,7 +73,7 @@ namespace Param_ItemNamespace.Views
 
             if (mapControl != null)
             {
-                // TODO UWPTemplates: Set your map service token. If you don't have one, request at https://www.bingmapsportal.com/
+                // TODO WTS: Set your map service token. If you don't have one, request at https://www.bingmapsportal.com/
                 mapControl.MapServiceToken = string.Empty;
 
                 AddMapIcon(Center, "Map_YourLocation".GetLocalized());

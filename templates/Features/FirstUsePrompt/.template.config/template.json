@@ -12,7 +12,7 @@
     "wts.type": "feature",
     "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
     "wts.version": "1.0.0",
-    "wts.order": "1",
+    "wts.order": "5",
     "wts.group": "UserInteraction",
     "wts.dependencies":"wts.Feat.SettingsStorage",
     "wts.multipleInstance": "false",
