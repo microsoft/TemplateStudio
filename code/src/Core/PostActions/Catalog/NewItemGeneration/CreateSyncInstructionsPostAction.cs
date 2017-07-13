@@ -10,12 +10,10 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Resources;
 
@@ -47,7 +45,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 sb.AppendLine(StringRes.SyncInstructionsNewFilesDescription);
                 foreach (var newFile in _config.NewFiles)
                 {
-                    sb.AppendLine(GetLinkToLocalFile(newFile));
+                    sb.AppendLine(GetMarkDownLinkToLocalFile(newFile));
                 }
                 sb.AppendLine();
             }
@@ -98,7 +96,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
                 foreach (var conflictFile in _config.ConflictingFiles)
                 {
-                    sb.AppendLine(GetLinkToLocalFile(conflictFile));
+                    sb.AppendLine(GetMarkDownLinkToLocalFile(conflictFile));
                 }
                 sb.AppendLine();
             }
@@ -109,7 +107,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 sb.AppendLine(StringRes.SyncInstructionsUnchangedFilesDescription);
                 foreach (var unchangedFile in _config.UnchangedFiles)
                 {
-                    sb.AppendLine(GetLinkToLocalFile(unchangedFile));
+                    sb.AppendLine(GetMarkDownLinkToLocalFile(unchangedFile));
                 }
             }
 
@@ -121,7 +119,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             GenContext.Current.MergeFilesFromProject.Clear();
         }
 
-        private static string GetLinkToLocalFile(string fileName)
+        private static string GetMarkDownLinkToLocalFile(string fileName)
         {
             return $"* [{fileName}]({fileName})";
         }

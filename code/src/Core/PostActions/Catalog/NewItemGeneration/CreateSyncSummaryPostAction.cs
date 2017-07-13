@@ -10,14 +10,11 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
@@ -39,7 +36,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             sb.AppendLine(StringRes.SyncSummaryHeader);
             sb.AppendLine(StringRes.SyncSummaryDescription);
             sb.AppendLine();
-            sb.AppendLine(string.Format(StringRes.SyncSummaryTempFolder, GenContext.Current.OutputPath));
+            sb.AppendLine(string.Format(StringRes.SyncInstructionsTempFolder, GenContext.Current.OutputPath));
             sb.AppendLine();
 
             if (_config.NewFiles.Any())
@@ -49,9 +46,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
                 foreach (var newFile in _config.NewFiles)
                 {
-                    var newFilePath = Path.Combine(GenContext.Current.ProjectPath, newFile);
-
-                    sb.AppendLine(GetLinkToProjectFile(newFile, newFilePath));
+                    sb.AppendLine(GetMarkDownLinkToLocalFile(newFile));
                 }
                 sb.AppendLine();
             }
@@ -68,13 +63,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
                     if (mergeFile.Value != null)
                     {
-                        var modifiedFilePath = Path.Combine(GenContext.Current.ProjectPath, mergeFile.Key);
-
                         sb.AppendLine(string.Format(StringRes.SyncSummaryMergeFile, mergeFile.Key));
 
                         if (!GenContext.Current.FailedMergePostActions.Any(w => w.FileName == mergeFile.Key))
                         {
-                            sb.AppendLine(string.Format(StringRes.SyncSummaryMergeFilePreview, mergeFile.Key, FormatFilePath(modifiedFilePath)));
+                            sb.AppendLine(string.Format(StringRes.SyncSummaryMergeFilePreview, mergeFile.Key));
                             sb.AppendLine();
 
                             foreach (var mergeInfo in mergeFile.Value)
@@ -141,19 +134,14 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             GenContext.Current.MergeFilesFromProject.Clear();
         }
 
-        private static string GetLinkToProjectFile(string fileName, string filePath)
-        {
-            return $"* [{fileName}]({FormatFilePath(filePath)})";
-        }
-
         private static string GetCompareLink(string fileName, string filePath)
         {
-            return $"* {StringRes.SyncSummaryTempGenerationFile}: [{fileName}]({fileName}), {StringRes.SyncSummaryProjectFile}: [{fileName}]({FormatFilePath(filePath)})";
+            return $"* {StringRes.SyncSummaryTempGenerationFile}: [{fileName}]({fileName}), {StringRes.SyncSummaryProjectFile}: {GetMarkDownLinkToLocalFile(filePath)}";
         }
 
-        private static string FormatFilePath(string filePath)
+        private static string GetMarkDownLinkToLocalFile(string fileName)
         {
-            return $"about:/{filePath.Replace(" ", "%20").Replace(@"\", "/")}";
+            return $"* [{fileName}]({fileName})";
         }
     }
 }

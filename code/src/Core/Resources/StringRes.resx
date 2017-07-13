@@ -267,7 +267,7 @@ Please compare and make sure everything is in the right place.</value>
     <comment>s</comment>
   </data>
   <data name="SyncInstructionsTempFolder" xml:space="preserve">
-    <value>You can find all referenced files in the temporary generation folder: {0}</value>
+    <value>You can find all referenced files: {0}</value>
     <comment>s</comment>
   </data>
   <data name="SyncInstructionsUnchangedFiles" xml:space="preserve">
@@ -316,7 +316,7 @@ Please compare and make sure everything is in the right place.</value>
     <comment>s</comment>
   </data>
   <data name="SyncSummaryMergeFilePreview" xml:space="preserve">
-    <value>See the final result: [{0}]({1})</value>
+    <value>See the final result: [{0}]({0})</value>
     <comment>s</comment>
   </data>
   <data name="SyncSummaryModifiedFiles" xml:space="preserve">
@@ -340,7 +340,7 @@ Please compare and make sure everything is in the right place.</value>
     <comment>s</comment>
   </data>
   <data name="SyncSummaryTempFolder" xml:space="preserve">
-    <value>You can find the files from the generation in the temporary generation folder: {0}</value>
+    <value>You can find all referenced files: {0}</value>
     <comment>s</comment>
   </data>
   <data name="SyncSummaryTempGenerationFile" xml:space="preserve">
