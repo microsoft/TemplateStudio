@@ -15,23 +15,29 @@ using System.Diagnostics;
 using SystemTasks = System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
     public class ShellHealthWriter : IHealthWriter
     {
+        GenShell shell;
+        public ShellHealthWriter(GenShell shell)
+        {
+            this.shell = shell;
+        }
         public async SystemTasks.Task WriteExceptionAsync(Exception ex, string message = null)
         {
-            if (GenContext.ToolBox.Shell != null)
+            if (shell != null)
             {
                 await SafeTrackAsync(() =>
                 {
-                    string header = $"========== Tracked Exception [{DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}] ==========\n";
+                    string header = $"========== {StringRes.ExceptionTrackedString} [{DateTime.Now.ToString("yyyyMMdd HH:mm:ss.fff")}] ==========\n";
                     GenContext.ToolBox.Shell.WriteOutput(header);
 
                     if (message != null)
                     {
-                        GenContext.ToolBox.Shell.WriteOutput($"AdditionalMessage: {message}\n");
+                        GenContext.ToolBox.Shell.WriteOutput($"{StringRes.AdditionalMessageString}: {message}\n");
                     }
 
                     GenContext.ToolBox.Shell.WriteOutput($"{ex.ToString()}\n");
@@ -44,18 +50,18 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async SystemTasks.Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
         {
-            if (GenContext.ToolBox.Shell != null)
+            if (shell != null)
             {
                 await SafeTrackAsync(() =>
                 {
-                    string eventMessage = $"[{DateTime.Now.ToString("hh:mm:ss.fff")} - {eventType.ToString()}]::{message}\n";
+                    string eventMessage = $"[{DateTime.Now.ToString("HH:mm:ss.fff")} - {eventType}]::{message}\n";
                     GenContext.ToolBox.Shell.WriteOutput(eventMessage);
 
                     if (ex != null)
                     {
-                        string header = $"----------- Addtional Exception Info -----------\n";
+                        string header = $"----------- {StringRes.AddtionalExceptionInfoString} -----------\n";
                         string footer = $"{new string('-', header.Length - 2)}\n";
-                        string exceptionInfo = header + $"{ex.ToString()}\n" + footer;
+                        string exceptionInfo = header + $"{ex}\n" + footer;
                         GenContext.ToolBox.Shell.WriteOutput(exceptionInfo);
                     }
                 });

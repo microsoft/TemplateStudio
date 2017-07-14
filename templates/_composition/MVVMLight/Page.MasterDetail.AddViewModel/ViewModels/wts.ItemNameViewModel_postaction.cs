@@ -1,4 +1,6 @@
+//{[{
 using GalaSoft.MvvmLight.Command;
+//}]}
 using Param_ItemNamespace.Services;
 namespace Param_ItemNamespace.ViewModels
 {
@@ -16,6 +18,7 @@ namespace Param_ItemNamespace.ViewModels
 
         private void OnItemClick(ItemClickEventArgs args)
         {
+            //{[{
             Order item = args?.ClickedItem as Order;
             if (item != null)
             {
@@ -28,6 +31,7 @@ namespace Param_ItemNamespace.ViewModels
                     Selected = item;
                 }
             }
+            //}]}
         }
     }
 }

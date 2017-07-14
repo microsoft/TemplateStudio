@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Test.Artifacts
             {
                 if (GenContext.Current != null)
                 {
-                    return Path.Combine(Path.GetDirectoryName(GenContext.Current.OutputPath), $"{GenContext.Current.ProjectName}.sln");
+                    return Path.Combine(Path.GetDirectoryName(GenContext.Current.ProjectPath), $"{GenContext.Current.ProjectName}.sln");
                 }
                 return null;
             }
@@ -53,11 +53,11 @@ namespace Microsoft.Templates.Test.Artifacts
                 return;
             }
 
-            var projectFileName = FindProject(GenContext.Current.OutputPath);
+            var projectFileName = FindProject(GenContext.Current.ProjectPath);
 
             if (string.IsNullOrEmpty(projectFileName))
             {
-                throw new Exception($"There is not project file in {GenContext.Current.OutputPath}");
+                throw new Exception($"There is not project file in {GenContext.Current.ProjectPath}");
             }
 
             var msbuildProj = MsBuildProject.Load(projectFileName);
@@ -81,12 +81,12 @@ namespace Microsoft.Templates.Test.Artifacts
             solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid);
         }
 
-        public override string GetActiveNamespace()
+        public override string GetActiveProjectNamespace()
         {
             return GenContext.Current.ProjectName;
         }
 
-        public override void SaveSolution(string solutionFullPath)
+        public override void SaveSolution()
         {
         }
 
@@ -95,15 +95,30 @@ namespace Microsoft.Templates.Test.Artifacts
             _changeStatus?.Invoke(message);
         }
 
-        protected override string GetActiveProjectName()
+        public override string GetActiveProjectGuid()
+        {
+            var projectFileName = FindProject(GenContext.Current.ProjectPath);
+
+            if (string.IsNullOrEmpty(projectFileName))
+            {
+                throw new Exception($"There is not project file in {GenContext.Current.ProjectPath}");
+            }
+
+            var msbuildProj = MsBuildProject.Load(projectFileName);
+            return msbuildProj.Guid;
+        }
+
+        public override string GetActiveProjectName()
         {
             return GenContext.Current.ProjectName;
         }
 
-        protected override string GetActiveProjectPath()
+        public override string GetActiveProjectPath()
         {
-            return string.Empty;
+            return (GenContext.Current != null) ? GenContext.Current.ProjectPath : string.Empty;
         }
+
+        
 
         protected override string GetSelectedItemPath()
         {
@@ -154,6 +169,10 @@ namespace Microsoft.Templates.Test.Artifacts
         public override Guid GetVsProjectId()
         {
             return Guid.Empty;
+        }
+
+        public override void OpenItems(params string[] itemsFullPath)
+        {
         }
     }
 }

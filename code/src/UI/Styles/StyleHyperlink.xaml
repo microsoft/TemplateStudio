@@ -9,6 +9,7 @@
     
     <Style x:Key="LicenseHyperlinkStyle" TargetType="Hyperlink">
         <Setter Property="Focusable" Value="True" />
+        <Setter Property="TextDecorations" Value="None"/>
         <Setter Property="FocusVisualStyle">
             <Setter.Value>
                 <Style>

@@ -15,6 +15,7 @@ using System.IO;
 using System.Linq;
 
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -54,6 +55,22 @@ namespace Microsoft.Templates.Core.Locations
                 return false;
             }
         }
+
+        public bool IsNewVersionAvailable(string currentContentFolder)
+        {
+            if (ExistsContent(LatestContentFolder))
+            {
+                Version currentVersion = GetVersionFromFolder(currentContentFolder);
+                Version latestVersion = GetVersionFromFolder(LatestContentFolder);
+
+                return !currentVersion.IsNull() && currentVersion < latestVersion && IsWizardAligned(latestVersion);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public bool ExistOverVersion()
         {
             string targetFolder = GetLatestContentFolder(false);
@@ -93,9 +110,12 @@ namespace Microsoft.Templates.Core.Locations
 
             var directory = new DirectoryInfo(currentContent);
             var expiration = directory.LastWriteTime.AddMinutes(Configuration.Current.VersionCheckingExpirationMinutes);
-            AppHealth.Current.Verbose.TrackAsync($"Current content expiration: {expiration.ToString()}").FireAndForget();
-
-            return expiration <= DateTime.Now;
+            var expired = expiration <= DateTime.Now;
+            if (!expired)
+            {
+                AppHealth.Current.Verbose.TrackAsync($"{StringRes.CurrentContentExpirationString}: {expiration.ToString()}").FireAndForget();
+            }
+            return expired;
         }
 
         public void Purge(string currentContent)

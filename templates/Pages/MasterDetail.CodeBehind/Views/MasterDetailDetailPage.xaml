@@ -11,10 +11,10 @@
 
     <Grid
         x:Name="ContentArea"
-        Background="{ThemeResource SystemControlBackgroundAltHighBrush}"
-        Margin="{StaticResource MediumLeftRightMargin}">
+        Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
 
         <views:MasterDetailDetailControl
+            Margin="{StaticResource MediumLeftRightMargin}"
             MasterMenuItem="{x:Bind Item}"/>
 
         <!--  Adaptive triggers  -->

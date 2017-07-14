@@ -10,8 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
-
 namespace Microsoft.Templates.Core.Locations
 {
     public enum SyncStatus
@@ -19,17 +17,13 @@ namespace Microsoft.Templates.Core.Locations
         None = 0,
         Updating = 1,
         Updated = 2,
-        Adquiring = 3,
-        Adquired = 4,
+        Acquiring = 3,
+        Acquired = 4,
         Preparing = 5,
         Prepared = 6,
         OverVersion = 7,
         OverVersionNoContent = 8,
-        UnderVersion = 9
-    }
-
-    public sealed class SyncStatusEventArgs : EventArgs
-    {
-        public SyncStatus Status { get; set; }
+        UnderVersion = 9,
+        NewVersionAvailable
     }
 }

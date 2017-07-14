@@ -71,23 +71,23 @@
     <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.28\lib\net46\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.TemplateEngine.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Abstractions.1.0.0-beta2-20170515-223\lib\net45\Microsoft.TemplateEngine.Abstractions.dll</HintPath>
+    <Reference Include="Microsoft.TemplateEngine.Abstractions, Version=1.0.0.234, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Abstractions.1.0.0-beta2-20170518-234\lib\net45\Microsoft.TemplateEngine.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.TemplateEngine.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.1.0.0-beta2-20170515-223\lib\net45\Microsoft.TemplateEngine.Core.dll</HintPath>
+    <Reference Include="Microsoft.TemplateEngine.Core, Version=1.0.0.234, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.1.0.0-beta2-20170518-234\lib\net45\Microsoft.TemplateEngine.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.TemplateEngine.Core.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.Contracts.1.0.0-beta2-20170515-223\lib\net45\Microsoft.TemplateEngine.Core.Contracts.dll</HintPath>
+    <Reference Include="Microsoft.TemplateEngine.Core.Contracts, Version=1.0.0.234, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Core.Contracts.1.0.0-beta2-20170518-234\lib\net45\Microsoft.TemplateEngine.Core.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.TemplateEngine.Edge, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Edge.1.0.0-beta2-20170515-223\lib\net45\Microsoft.TemplateEngine.Edge.dll</HintPath>
+    <Reference Include="Microsoft.TemplateEngine.Edge, Version=1.0.0.234, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Edge.1.0.0-beta2-20170518-234\lib\net45\Microsoft.TemplateEngine.Edge.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.1.0.0-beta2-20170515-223\lib\net45\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.dll</HintPath>
+    <Reference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=1.0.0.234, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.1.0.0-beta2-20170518-234\lib\net45\Microsoft.TemplateEngine.Orchestrator.RunnableProjects.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.TemplateEngine.Utils, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.TemplateEngine.Utils.1.0.0-beta2-20170515-223\lib\net45\Microsoft.TemplateEngine.Utils.dll</HintPath>
+    <Reference Include="Microsoft.TemplateEngine.Utils, Version=1.0.0.234, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.TemplateEngine.Utils.1.0.0-beta2-20170518-234\lib\net45\Microsoft.TemplateEngine.Utils.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Telemetry, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.VisualStudio.Telemetry.15.3.789-masterCC863119\lib\net45\Microsoft.VisualStudio.Telemetry.dll</HintPath>
@@ -150,10 +150,13 @@
     <Compile Include="Configuration\Configuration.cs" />
     <Compile Include="Diagnostics\EditItemActionEnum.cs" />
     <Compile Include="Diagnostics\FormattedWriterMessages.cs" />
+    <Compile Include="Diagnostics\GenSourceEnum.cs" />
     <Compile Include="Diagnostics\GenStatusEnum.cs" />
     <Compile Include="Diagnostics\HealthWriters.cs" />
     <Compile Include="Diagnostics\ExceptionTracker.cs" />
+    <Compile Include="Diagnostics\NewItemType.cs" />
     <Compile Include="Diagnostics\TelemetryMetrics.cs" />
+    <Compile Include="Diagnostics\VsTelemetryProperties.cs" />
     <Compile Include="Diagnostics\TelemetryProperties.cs" />
     <Compile Include="Diagnostics\TraceTracker.cs" />
     <Compile Include="Diagnostics\FileHealthWriter.cs" />
@@ -164,6 +167,7 @@
     <Compile Include="Diagnostics\TelemetryTracker.cs" />
     <Compile Include="Diagnostics\TraceHealthWriter.cs" />
     <Compile Include="Diagnostics\ShellHealthWriter.cs" />
+    <Compile Include="Diagnostics\WizardActionEnum.cs" />
     <Compile Include="Diagnostics\WizardStatusEnum.cs" />
     <Compile Include="Diagnostics\WizardTypeEnum.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
@@ -176,18 +180,107 @@
     <Compile Include="Gen\GenContext.cs" />
     <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Gen\IContextProvider.cs" />
-    <Compile Include="Locations\Fs.cs" />
+    <Compile Include="Naming\DirectoryExistsValidator.cs" />
+    <Compile Include="PostActions\Catalog\Merge\FailedMergePostAction.cs" />
+    <Compile Include="Fs.cs" />
+    <Compile Include="Gen\TempGenerationResult.cs" />
     <Compile Include="Locations\InvalidSignatureException.cs" />
     <Compile Include="Locations\LocalTemplatesSource.cs" />
     <Compile Include="Composition\CompositionQuery.cs" />
+    <Compile Include="Locations\SyncStatusEventArgs.cs" />
     <Compile Include="Locations\SyncStatus.cs" />
+    <Compile Include="MetadataLocalizedInfo.cs" />
     <Compile Include="Naming\DefaultNameValidator.cs" />
     <Compile Include="Naming\ExistingNamesValidator.cs" />
+    <Compile Include="Naming\FileExistsValidator.cs" />
     <Compile Include="Naming\ReservedNameValidator.cs" />
     <Compile Include="Naming\Validator.cs" />
+    <Compile Include="PostActions\Catalog\AddContextItemsToProjectPostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\MergeFailureType.cs" />
+    <Compile Include="PostActions\Catalog\Merge\PostActionFormatter.cs" />
+    <Compile Include="PostActions\Catalog\NewItemGeneration\CreateSyncInstructionsPostAction.cs" />
+    <Compile Include="PostActions\Catalog\NewItemGeneration\CreateSyncSummaryPostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\GenerateMergeInfoPostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\GetMergeFilesFromProjectPostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\MergeConfiguration.cs" />
+    <Compile Include="PostActions\Catalog\Merge\MergeInfo.cs" />
+    <Compile Include="PostActions\Catalog\NewItemGeneration\OpenFilesPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\SortUsingsPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\IEnumerableExtensions.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\UsingComparer.cs" />
+    <Compile Include="Resources\StringRes.cs-CZ.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.cs-CZ.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.de-DE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.de-DE.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.fr-FR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.fr-FR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.it-IT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.it-IT.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.ja-JP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.ja-JP.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.ko-KR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.ko-KR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.pl-PL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.pl-PL.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.pt-BR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.pt-BR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.ru-RU.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.ru-RU.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.tr-TR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.tr-TR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.zh-CN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.zh-CN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StringRes.zh-TW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.zh-TW.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PostActions\Catalog\NewItemGeneration\CopyFilesToProjectPostAction.cs" />
+    <Compile Include="PostActions\NewItemPostActionFactory.cs" />
+    <Compile Include="PostActions\NewProjectPostActionFactory.cs" />
     <Compile Include="Templates\ITemplateInfoExtensions.cs" />
     <Compile Include="Locations\RemoteTemplatesSource.cs" />
     <Compile Include="Locations\TemplatesSynchronization.cs" />
@@ -200,7 +293,7 @@
     <Compile Include="Mvvm\RelayCommand.cs" />
     <Compile Include="Naming\Naming.cs" />
     <Compile Include="Templates\LayoutItem.cs" />
-    <Compile Include="PostActions\Catalog\AddItemToProjectPostAction.cs" />
+    <Compile Include="PostActions\Catalog\AddItemToContextPostAction.cs" />
     <Compile Include="PostActions\Catalog\AddProjectToSolutionPostAction.cs" />
     <Compile Include="PostActions\Catalog\GenerateTestCertificatePostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\IEnumerableExtensions.cs" />
@@ -253,6 +346,64 @@
   <ItemGroup>
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\StringRes.cs-CZ.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.cs-CZ.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.de-DE.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.de-DE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.es-ES.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.es-ES.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.fr-FR.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.fr-FR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.it-IT.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.it-IT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.ja-JP.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.ja-JP.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.ko-KR.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.ko-KR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.pl-PL.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.pl-PL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.pt-BR.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.pt-BR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.ru-RU.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.ru-RU.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.tr-TR.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.tr-TR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.zh-TW.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.zh-TW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

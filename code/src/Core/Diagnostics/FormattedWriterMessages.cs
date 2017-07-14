@@ -13,17 +13,23 @@
 using System;
 using System.Diagnostics;
 
+using Microsoft.Templates.Core.Resources;
+
 namespace Microsoft.Templates.Core.Diagnostics
 {
     public class FormattedWriterMessages
     {
-        public const string ExHeader = "===================== Exception Info =====================";
+        private static string exHeader = $"===================== {StringRes.ExceptionInfoString} =====================";
+        public static string ExHeader
+        {
+            get { return exHeader; }
+        }
         public const string ExFooter = "----------------------------------------------------------";
         public static string LogEntryStart
         {
             get
             {
-                return $"[{DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}]\t{Environment.UserName}\t{Process.GetCurrentProcess().Id.ToString()}({System.Threading.Thread.CurrentThread.ManagedThreadId})\t";
+                return $"[{DateTime.Now.ToString("yyyyMMdd HH:mm:ss.fff")}]\t{Environment.UserName}\t{Process.GetCurrentProcess().Id}({System.Threading.Thread.CurrentThread.ManagedThreadId})\t";
             }
         }
     }
