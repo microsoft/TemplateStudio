@@ -6,6 +6,46 @@ Imports Windows.UI.Xaml.Media
 Namespace ViewModels
     Public Class ShellNavigationItem
         Inherits ViewModelBase
+        
+        Public Property Label As String
+
+        Public Property PageType As Type
+
+        Public Property Symbol As Symbol
+
+        Public ReadOnly Property SymbolAsChar() As Char
+            Get
+                Return Convert.ToChar(Symbol)
+            End Get
+        End Property
+
+        Private _iconElement As IconElement = Nothing
+        Public ReadOnly Property Icon() As IconElement
+            Get
+                Dim foregroundBinding = New Binding() With {
+                    .Source = Me,
+                    .Path = New PropertyPath("SelectedForeground"),
+                    .Mode = BindingMode.OneWay,
+                    .UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                }
+
+                If _iconElement IsNot Nothing Then
+                    BindingOperations.SetBinding(_iconElement, IconElement.ForegroundProperty, foregroundBinding)
+
+                    Return _iconElement
+                End If
+
+                Dim fontIcon = New FontIcon() With {
+                    .FontSize = 16,
+                    .Glyph = SymbolAsChar.ToString()
+                }
+
+                BindingOperations.SetBinding(fontIcon, FontIcon.ForegroundProperty, foregroundBinding)
+
+                Return fontIcon
+            End Get
+        End Property
+
         Private _isSelected As Boolean
 
         Private _selectedVis As Visibility = Visibility.Collapsed
@@ -26,32 +66,6 @@ Namespace ViewModels
             Set
                 [Set](_selectedForeground, value)
             End Set
-        End Property
-
-        Private m_Label As String
-        Public Property Label() As String
-            Get
-                Return m_Label
-            End Get
-            Set
-                m_Label = Value
-            End Set
-        End Property
-
-        Private m_Symbol As Symbol
-        Public Property Symbol() As Symbol
-            Get
-                Return m_Symbol
-            End Get
-            Set
-                m_Symbol = Value
-            End Set
-        End Property
-
-        Public ReadOnly Property SymbolAsChar() As Char
-            Get
-                Return Convert.ToChar(Symbol)
-            End Get
         End Property
 
         Public Property ViewModelName() As String
@@ -86,6 +100,12 @@ Namespace ViewModels
             Me.Label = label
             Me.Symbol = symbol
             Me.ViewModelName = viewModelName
+        End Sub
+
+        Private Sub New(name As String, icon As IconElement, pageType As Type)
+            Me.Label = name
+            Me._iconElement = icon
+            Me.PageType = pageType
         End Sub
 
         Private Shared Function InlineAssignHelper(Of T)(ByRef target As T, value As T) As T

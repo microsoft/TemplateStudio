@@ -1,39 +1,12 @@
 ﻿Namespace Views
     Public Class ShellNavigationItem
         Implements INotifyPropertyChanged
-        Private _isSelected As Boolean
 
-        Private _selectedVis As Visibility = Visibility.Collapsed
-        Public Property SelectedVis() As Visibility
-            Get
-                Return _selectedVis
-            End Get
-            Set
-                [Set](_selectedVis, value)
-            End Set
-        End Property
+        Public Property Label As String
 
-        Public Property Label() As String
-            Get
-                Return m_Label
-            End Get
-            Set
-                m_Label = Value
-            End Set
-        End Property
+        Public Property PageType As Type
 
-        Private m_Label As String
-
-        Public Property Symbol() As Symbol
-            Get
-                Return m_Symbol
-            End Get
-            Set
-                m_Symbol = Value
-            End Set
-        End Property
-
-        Private m_Symbol As Symbol
+        Public Property Symbol As Symbol
 
         Public ReadOnly Property SymbolAsChar() As Char
             Get
@@ -41,25 +14,54 @@
             End Get
         End Property
 
-        Public Property PageType() As Type
+        Private _iconElement As IconElement = Nothing
+        Public ReadOnly Property Icon() As IconElement
             Get
-                Return m_PageType
+                Dim foregroundBinding = New Binding() With {
+                    .Source = Me,
+                    .Path = New PropertyPath("SelectedForeground"),
+                    .Mode = BindingMode.OneWay,
+                    .UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                }
+
+                If _iconElement IsNot Nothing Then
+                    BindingOperations.SetBinding(_iconElement, IconElement.ForegroundProperty, foregroundBinding)
+
+                    Return _iconElement
+                End If
+
+                Dim fontIcon = New FontIcon() With {
+                    .FontSize = 16,
+                    .Glyph = SymbolAsChar.ToString()
+                }
+
+                BindingOperations.SetBinding(fontIcon, FontIcon.ForegroundProperty, foregroundBinding)
+
+                Return fontIcon
+            End Get
+        End Property
+
+        Private _selectedVis As Visibility = Visibility.Collapsed
+        Public Property SelectedVis() As Visibility
+            Get
+                Return _selectedVis
             End Get
             Set
-                m_PageType = Value
+                [Set](_selectedVis, Value)
             End Set
         End Property
 
-        Private m_PageType As Type
+
+        Private _isSelected As Boolean
 
         Public Property IsSelected() As Boolean
             Get
                 Return _isSelected
             End Get
             Set
-                [Set](_isSelected, value)
-                SelectedVis = If(value, Visibility.Visible, Visibility.Collapsed)
-                SelectedForeground = If(value, TryCast(Application.Current.Resources("SystemControlForegroundAccentBrush"), SolidColorBrush), GetStandardTextColorBrush())
+                [Set](_isSelected, Value)
+                SelectedVis = If(Value, Visibility.Visible, Visibility.Collapsed)
+                SelectedForeground = If(Value, TryCast(Application.Current.Resources("SystemControlForegroundAccentBrush"), SolidColorBrush), GetStandardTextColorBrush())
             End Set
         End Property
 
@@ -75,13 +77,19 @@
                 Return If(_selectedForeground, (InlineAssignHelper(_selectedForeground, GetStandardTextColorBrush())))
             End Get
             Set
-                [Set](_selectedForeground, value)
+                [Set](_selectedForeground, Value)
             End Set
         End Property
 
         Private Sub New(name As String, symbol As Symbol, pageType As Type)
             Me.Label = name
             Me.Symbol = symbol
+            Me.PageType = pageType
+        End Sub
+
+        Private Sub New(name As String, icon As IconElement, pageType As Type)
+            Me.Label = name
+            Me._iconElement = icon
             Me.PageType = pageType
         End Sub
 
@@ -93,7 +101,7 @@
 
         Private Sub [Set](Of T)(ByRef storage As T, value As T, <CallerMemberName> Optional propertyName As String = Nothing)
             If Equals(storage, value) Then
-              Return
+                Return
             End If
 
             storage = value
