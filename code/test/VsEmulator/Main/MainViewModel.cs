@@ -287,6 +287,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 SolutionPath = loadProjectInfo;
                 SolutionName = Path.GetFileNameWithoutExtension(SolutionPath);
 
+                // TODO: [ML] need to handle vbproj here too
                 var projFile = Directory.EnumerateFiles(Path.GetDirectoryName(SolutionPath), "*.csproj", SearchOption.AllDirectories).FirstOrDefault();
 
                 GenContext.Current = this;

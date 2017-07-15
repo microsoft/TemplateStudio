@@ -91,6 +91,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private FileExtension GetFileExtension()
         {
+            // TODO: [ML] handle VB here
             switch (Path.GetExtension(TempFile))
             {
                 case ".cs":
@@ -120,6 +121,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private string GetIcon()
         {
+            // TODO: [ML] handle VB & vbproj here
             switch (FileExtension)
             {
                 case FileExtension.CSharp:
