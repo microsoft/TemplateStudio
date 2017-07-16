@@ -48,11 +48,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetMergeType()
         {
+            // TODO: [ML] handle VB here too
             switch (Path.GetExtension(_config).ToLowerInvariant())
             {
                 case ".cs":
                     return "csharp";
                 case ".csproj":
+                case ".vbproj":
                 case ".xaml":
                     return "xml";
                 default:
