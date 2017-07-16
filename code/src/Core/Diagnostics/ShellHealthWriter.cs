@@ -55,7 +55,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 await SafeTrackAsync(() =>
                 {
                     string eventMessage = $"[{DateTime.Now.ToString("HH:mm:ss.fff")} - {eventType}]::{message}\n";
-                    GenContext.ToolBox.Shell.WriteOutput(eventMessage);
+                    GenContext.ToolBox?.Shell.WriteOutput(eventMessage);
 
                     if (ex != null)
                     {
