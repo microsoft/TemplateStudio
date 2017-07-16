@@ -165,7 +165,7 @@ namespace Microsoft.Templates.UI.Generation
 
         private static bool IsMVVMBasic()
         {
-            return ExistsFileInProjectPath("Services", "ActivationServiHace.cs")
+            return ExistsFileInProjectPath("Services", "ActivationService.cs")
                 && ExistsFileInProjectPath("Helpers", "Observable.cs");
         }
 
