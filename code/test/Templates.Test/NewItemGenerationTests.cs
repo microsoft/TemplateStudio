@@ -52,7 +52,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "NewItemGeneration")]
-        public async void GenerateEmptyProject(string projectType, string framework)
+        public async void GenerateEmptyProject(string projectType, string framework, string language)
         {
             var projectName = $"{projectType}{framework}";
 
@@ -60,7 +60,7 @@ namespace Microsoft.Templates.Test
             ProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName, projectName);
             OutputPath = ProjectPath;
 
-            var userSelection = GenerationFixture.SetupProject(projectType, framework);
+            var userSelection = GenerationFixture.SetupProject(projectType, framework, language);
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
             //Add new item
@@ -111,7 +111,6 @@ namespace Microsoft.Templates.Test
         public static IEnumerable<object[]> GetProjectTemplates()
         {
             return GenerationFixture.GetProjectTemplates();
-           
         }
     }
 }

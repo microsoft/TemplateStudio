@@ -44,6 +44,7 @@ namespace Microsoft.Templates.Test
         {
             var source = new LocalTemplatesSource();
 
+            // TODO: [ML] check language use here
             GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(), "C#");
             GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
 
@@ -52,6 +53,15 @@ namespace Microsoft.Templates.Test
 
         public GenerationFixture()
         {
+        }
+
+        public void InitializeFixture(string language, IContextProvider contextProvider)
+        {
+            var source = new LocalTemplatesSource();
+
+            GenContext.Bootstrap(source, new FakeGenShell(), language);
+            GenContext.Current = contextProvider;
+            GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
         }
 
         public void Dispose()
@@ -78,7 +88,10 @@ namespace Microsoft.Templates.Test
                     var frameworks = GenComposer.GetSupportedFx(projectType);
                     foreach (var framework in frameworks)
                     {
-                        yield return new object[] { projectType, framework };
+                        foreach (var language in GetAllLanguages())
+                        {
+                            yield return new object[] { projectType, framework, language };
+                        }
                     }
                 }
             }
@@ -97,11 +110,18 @@ namespace Microsoft.Templates.Test
 
                     foreach (var framework in frameworks)
                     {
-                        var itemTemplates = GenerationFixture.Templates.Where(t => t.GetFrameworkList().Contains(framework) && t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature && !t.GetIsHidden());
+                        var itemTemplates = GenerationFixture.Templates.Where(t => t.GetFrameworkList().Contains(framework)
+                                                                                && t.GetTemplateType() == TemplateType.Page
+                                                                                || t.GetTemplateType() == TemplateType.Feature
+                                                                                && !t.GetIsHidden());
 
                         foreach (var itemTemplate in itemTemplates)
                         {
-                            yield return new object[] { itemTemplate.Name, projectType, framework, itemTemplate.Identity };
+                            foreach (var language in GetAllLanguages())
+                            {
+                                yield return new object[]
+                                    { itemTemplate.Name, projectType, framework, itemTemplate.Identity, language };
+                            }
                         }
                     }
                 }
@@ -110,18 +130,27 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<ITemplateInfo> GetTemplates(string framework)
         {
-            return Templates
-                    .Where(t => t.GetFrameworkList().Contains(framework));
+            return Templates.Where(t => t.GetFrameworkList().Contains(framework));
         }
 
-        public static UserSelection SetupProject(string projectType, string framework)
+        public static IEnumerable<string> GetAllLanguages()
         {
-            var projectTemplate = Templates.Where(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework)).FirstOrDefault();
+            yield return "C#";
+            yield return "VisualBasic";
+        }
+
+        public static UserSelection SetupProject(string projectType, string framework, string language)
+        {
+            var projectTemplate = Templates.FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project
+                                                             && t.GetProjectTypeList().Contains(projectType)
+                                                             && t.GetFrameworkList().Contains(framework)
+                                                             && t.GetLanguage() == language);
 
             var userSelection = new UserSelection
             {
                 Framework = framework,
                 ProjectType = projectType,
+                Language = language,
                 HomeName = "Main"
             };
 
@@ -131,6 +160,7 @@ namespace Microsoft.Templates.Test
             {
                 AddItem(userSelection, item.Layout.name, item.Template);
             }
+
             return userSelection;
         }
 
@@ -250,6 +280,6 @@ namespace Microsoft.Templates.Test
             return path;
         }
 
-        
+
     }
 }
