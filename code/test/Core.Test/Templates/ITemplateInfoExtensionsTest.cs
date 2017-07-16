@@ -20,6 +20,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Test.Locations;
 using Microsoft.Templates.Test.Artifacts;
 using Xunit;
+using Xunit.Sdk;
 
 namespace Microsoft.Templates.Core.Test
 {
@@ -44,10 +45,10 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal(TemplateType.Project, result);
         }
 
-        [Theory, MemberData("GetAllLanguages"), Trait("Type", "ProjectGeneration")]
-        public void GetTemplateType_page(string language)
+        [Fact]
+        public void GetTemplateType_page()
         {
-            SetUpFixtureForTesting(language);
+            SetUpFixtureForTesting("C#");
 
             var target = GetTargetByIdentity("Microsoft.UWPTemplates.Test.PageTemplate.CSharp");
 
@@ -296,6 +297,8 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetRightClickEnabled()
         {
+            SetUpFixtureForTesting("C#");
+
             var target = GetTargetByName("RightClickTemplate");
             var result = target.GetRightClickEnabled();
 
@@ -305,6 +308,8 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetRightClickEnabledFalse()
         {
+            SetUpFixtureForTesting("C#");
+
             var target = GetTargetByIdentity("Microsoft.UWPTemplates.Test.FeatureTemplate.CSharp");
             var result = target.GetRightClickEnabled();
 

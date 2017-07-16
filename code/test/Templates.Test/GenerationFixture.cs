@@ -27,7 +27,6 @@ using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.Test
 {
-
     public sealed class GenerationFixture : IDisposable
     {
         private const string Platform = "x86";
@@ -68,8 +67,8 @@ namespace Microsoft.Templates.Test
         {
             if (Directory.Exists(TestRunPath))
             {
-                if ((!Directory.Exists(TestProjectsPath) || Directory.EnumerateDirectories(TestProjectsPath).Count() == 0)
-                    && (!Directory.Exists(TestNewItemPath) || Directory.EnumerateDirectories(TestNewItemPath).Count() == 0))
+                if ((!Directory.Exists(TestProjectsPath) || !Directory.EnumerateDirectories(TestProjectsPath).Any())
+                 && (!Directory.Exists(TestNewItemPath) || !Directory.EnumerateDirectories(TestNewItemPath).Any()))
                 {
                     Directory.Delete(TestRunPath, true);
                 }
@@ -78,17 +77,20 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetProjectTemplates()
         {
-            var projectTemplates = Templates.Where(t => t.GetTemplateType() == TemplateType.Project);
-
-            foreach (var projectTemplate in projectTemplates)
+            foreach (var language in GetAllLanguages())
             {
-                var projectTypeList = projectTemplate.GetProjectTypeList();
-                foreach (var projectType in projectTypeList)
+                var projectTemplates = Templates.Where(t => t.GetTemplateType() == TemplateType.Project
+                                                         && t.GetLanguage() == language);
+
+                foreach (var projectTemplate in projectTemplates)
                 {
-                    var frameworks = GenComposer.GetSupportedFx(projectType);
-                    foreach (var framework in frameworks)
+                    var projectTypeList = projectTemplate.GetProjectTypeList();
+
+                    foreach (var projectType in projectTypeList)
                     {
-                        foreach (var language in GetAllLanguages())
+                        var frameworks = GenComposer.GetSupportedFx(projectType);
+
+                        foreach (var framework in frameworks)
                         {
                             yield return new object[] { projectType, framework, language };
                         }
@@ -99,25 +101,27 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetPageAndFeatureTemplates()
         {
-            var projectTemplates = Templates.Where(t => t.GetTemplateType() == TemplateType.Project);
-
-            foreach (var projectTemplate in projectTemplates)
+            foreach (var language in GetAllLanguages())
             {
-                var projectTypeList = projectTemplate.GetProjectTypeList();
-                foreach (var projectType in projectTypeList)
+                var projectTemplates = Templates.Where(t => t.GetTemplateType() == TemplateType.Project
+                                                         && t.GetLanguage() == language);
+
+                foreach (var projectTemplate in projectTemplates)
                 {
-                    var frameworks = GenComposer.GetSupportedFx(projectType);
+                    var projectTypeList = projectTemplate.GetProjectTypeList();
 
-                    foreach (var framework in frameworks)
+                    foreach (var projectType in projectTypeList)
                     {
-                        var itemTemplates = GenerationFixture.Templates.Where(t => t.GetFrameworkList().Contains(framework)
-                                                                                && t.GetTemplateType() == TemplateType.Page
-                                                                                || t.GetTemplateType() == TemplateType.Feature
-                                                                                && !t.GetIsHidden());
+                        var frameworks = GenComposer.GetSupportedFx(projectType);
 
-                        foreach (var itemTemplate in itemTemplates)
+                        foreach (var framework in frameworks)
                         {
-                            foreach (var language in GetAllLanguages())
+                            var itemTemplates = GenerationFixture.Templates.Where(t => t.GetFrameworkList().Contains(framework)
+                                                                                    && (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                                                                                    && t.GetLanguage() == language
+                                                                                    && !t.GetIsHidden());
+
+                            foreach (var itemTemplate in itemTemplates)
                             {
                                 yield return new object[]
                                     { itemTemplate.Name, projectType, framework, itemTemplate.Identity, language };
@@ -279,7 +283,5 @@ namespace Microsoft.Templates.Test
 
             return path;
         }
-
-
     }
 }

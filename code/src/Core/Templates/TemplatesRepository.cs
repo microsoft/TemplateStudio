@@ -114,14 +114,18 @@ namespace Microsoft.Templates.Core
             var metadataFileLocalized = Path.Combine(folderName, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.{type}.json");
             var metadata = JsonConvert.DeserializeObject<List<MetadataInfo>>(File.ReadAllText(metadataFile));
 
-            metadata.RemoveAll(m => !m.Languages.Contains(_language));
+            if (metadata.Any(m => m.Languages != null))
+            {
+                metadata.RemoveAll(m => !m.Languages.Contains(_language));
+            }
 
             if (File.Exists(metadataFileLocalized))
             {
                 var metadataLocalized = JsonConvert.DeserializeObject<List<MetadataLocalizedInfo>>(File.ReadAllText(metadataFileLocalized));
                 metadataLocalized.ForEach(ml =>
                 {
-                    MetadataInfo cm = metadata.Where(m => m.Name == ml.Name).FirstOrDefault();
+                    MetadataInfo cm = metadata.FirstOrDefault(m => m.Name == ml.Name);
+
                     if (cm != null)
                     {
                         cm.DisplayName = ml.DisplayName;
@@ -166,8 +170,12 @@ namespace Microsoft.Templates.Core
         private static void SetMetadataDescription(MetadataInfo mInfo, string folderName, string type)
         {
             var descriptionFile = Path.Combine(folderName, type, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.{mInfo.Name}.md");
+
             if (!File.Exists(descriptionFile))
+            {
                 descriptionFile = Path.Combine(folderName, type, $"{mInfo.Name}.md");
+            }
+
             if (File.Exists(descriptionFile))
             {
                 mInfo.Description = File.ReadAllText(descriptionFile);
