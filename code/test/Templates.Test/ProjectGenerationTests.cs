@@ -36,6 +36,7 @@ namespace Microsoft.Templates.Test
         private List<string> _usedNames = new List<string>();
 
         public string ProjectName { get; set; }
+
         public string OutputPath { get; set; }
 
         public string ProjectPath { get; set; }
@@ -48,7 +49,6 @@ namespace Microsoft.Templates.Test
 
         public List<string> FilesToOpen { get; } = new List<string>();
 
-
         public ProjectGenerationTests(GenerationFixture fixture)
         {
             // TODO: [ML] Set language here for VB or C#
@@ -56,7 +56,6 @@ namespace Microsoft.Templates.Test
             GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(), "C#");
             GenContext.Current = this;
         }
-
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
         public async void GenerateEmptyProject(string projectType, string framework)
@@ -82,7 +81,6 @@ namespace Microsoft.Templates.Test
             //Clean
             Directory.Delete(outputPath, true);
         }
-
 
         [Theory, MemberData("GetPageAndFeatureTemplates"), Trait("Type", "OneByOneItemGeneration")]
         public async void GenerateProjectWithIsolatedItems(string itemName, string projectType, string framework, string itemId)

@@ -67,23 +67,22 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         {
             var factData = new List<string>
             {
-                "",
                 "Namespace Microsoft.Templates",
-                "",
+                "    ' some content",
                 "End Namespace"
             };
 
             var expected = new List<string>
             {
-                "",
                 "Namespace Microsoft.Templates",
-                "",
+                "    ' some content",
                 "End Namespace"
             };
 
-            var result = factData.SortUsings();
+            var result = factData.SortImports();
 
             Assert.False(result);
+            Assert.Equal(expected, factData);
         }
 
         [Fact]
@@ -118,6 +117,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var result = factData.SortImports();
 
             Assert.False(result);
+            Assert.Equal(expected, factData);
         }
 
         [Fact]
@@ -156,6 +156,58 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "Imports Microsoft.Templates.Core",
                 "",
                 "Imports XUnit",
+                "",
+                "Namespace Microsoft.Templates",
+                "",
+                "End Namespace"
+            };
+
+            var result = factData.SortImports();
+
+            Assert.True(result);
+            Assert.Equal(expected, factData);
+        }
+
+        [Fact]
+        public void Sort_ImportsNotAtTopOfFile()
+        {
+            var factData = new List<string>
+            {
+                "' comment",
+                "' comment",
+                "' comment",
+                "' comment",
+                "' comment",
+                "' comment",
+                "' comment",
+                "",
+                "",
+                "Imports System.Text",
+                "Imports Microsoft.Templates",
+                "",
+                "Imports System",
+                "Imports Microsoft.Templates.Core",
+                "",
+                "Namespace Microsoft.Templates",
+                "",
+                "End Namespace"
+            };
+
+            var expected = new List<string>
+            {
+                "' comment",
+                "' comment",
+                "' comment",
+                "' comment",
+                "' comment",
+                "' comment",
+                "' comment",
+                "",
+                "Imports System",
+                "Imports System.Text",
+                "",
+                "Imports Microsoft.Templates",
+                "Imports Microsoft.Templates.Core",
                 "",
                 "Namespace Microsoft.Templates",
                 "",
