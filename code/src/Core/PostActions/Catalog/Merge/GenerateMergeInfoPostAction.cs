@@ -42,17 +42,18 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 var mergeFile = GenContext.Current.MergeFilesFromProject[relFilePath];
 
-                mergeFile.Add(new MergeInfo() { Format = mergeType, PostActionCode = postAction });
+                mergeFile.Add(new MergeInfo { Format = mergeType, PostActionCode = postAction });
             }
         }
 
         private string GetMergeType()
         {
-            // TODO: [ML] handle VB here too
             switch (Path.GetExtension(_config).ToLowerInvariant())
             {
                 case ".cs":
                     return "csharp";
+                case ".vb":
+                    return "vb.net";
                 case ".csproj":
                 case ".vbproj":
                 case ".xaml":

@@ -7,7 +7,6 @@ Namespace Views
         Inherits Page
         Implements INotifyPropertyChanged
 //^^
-
 //{[{
         Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
 

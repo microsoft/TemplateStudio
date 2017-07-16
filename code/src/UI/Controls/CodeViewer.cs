@@ -94,7 +94,6 @@ namespace Microsoft.Templates.UI.Controls
 
         private string GetLanguage(string filePath)
         {
-            // TODO: [ML] handle vb here too
             string extension = Path.GetExtension(filePath);
             if (extension == ".xaml" || extension == ".csproj" || extension == ".vbproj" || extension == ".appxmanifest" || extension == ".resw" || extension == ".xml")
             {
@@ -103,6 +102,10 @@ namespace Microsoft.Templates.UI.Controls
             else if (extension == ".cs")
             {
                 return "csharp";
+            }
+            else if (extension == ".vb")
+            {
+                return "vb.net";
             }
             else if (extension == ".json")
             {
