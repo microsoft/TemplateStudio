@@ -20,6 +20,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
     public static class IEnumerableExtensions
     {
+        // TODO: [ML] ensure these work with VB & C# comments
         internal const string MacroBeforeMode = "^^";
         internal const string MacroStartGroup = "{[{";
         internal const string MarcoEndGroup = "}]}";
