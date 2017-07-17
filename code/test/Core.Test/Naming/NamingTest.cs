@@ -218,8 +218,8 @@ namespace Microsoft.Templates.Core.Test
 
         public static IEnumerable<object[]> GetAllLanguages()
         {
-            yield return new object[] { "C#" };
-            yield return new object[] { "VisualBasic" };
+            yield return new object[] { Language.CSharp };
+            yield return new object[] { Language.VisualBasic };
         }
     }
 }

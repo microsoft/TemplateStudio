@@ -29,6 +29,7 @@ using Microsoft.VisualStudio.TemplateWizard;
 using NuGet.VisualStudio;
 using Microsoft.VisualStudio;
 using Microsoft.Templates.UI.Resources;
+using Language = Microsoft.Templates.Core.Language;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -258,10 +259,10 @@ namespace Microsoft.Templates.UI.VisualStudio
                 switch (Path.GetExtension(p.FileName))
                 {
                     case ".csproj":
-                        return "C#";
+                        return Language.CSharp;
 
                     case ".vbproj":
-                        return "VisualBasic";
+                        return Language.VisualBasic;
 
                     default:
                         return string.Empty;

@@ -154,7 +154,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void NewCSharpProject()
         {
-            NewProject("C#");
+            NewProject(Language.CSharp);
         }
 
         private void NewVisualBasicProject()

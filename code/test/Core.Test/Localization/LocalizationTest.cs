@@ -36,7 +36,7 @@ namespace Microsoft.Templates.Core.Test
         public void Load_ProjectTemplates_en()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("en-US");
-            SetUpFixtureForTesting("C#");
+            SetUpFixtureForTesting(Language.CSharp);
 
             var projectTemplates = GenContext.ToolBox.Repo.GetProjectTypes().ToList();
             var template = projectTemplates.Count > 0 ? projectTemplates[0] : null;
@@ -50,7 +50,7 @@ namespace Microsoft.Templates.Core.Test
         public void Load_ProjectTemplates_es()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("es-ES");
-            SetUpFixtureForTesting("C#");
+            SetUpFixtureForTesting(Language.CSharp);
 
             var projectTemplates = GenContext.ToolBox.Repo.GetProjectTypes().ToList();
             var template = projectTemplates.Count > 0 ? projectTemplates[0] : null;
@@ -64,7 +64,7 @@ namespace Microsoft.Templates.Core.Test
         public void Load_ProjectTemplates_fr()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("fr-FR");
-            SetUpFixtureForTesting("C#");
+            SetUpFixtureForTesting(Language.CSharp);
 
             var projectTemplates = GenContext.ToolBox.Repo.GetProjectTypes().ToList();
             var template = projectTemplates.Count > 0 ? projectTemplates[0] : null;
@@ -78,7 +78,7 @@ namespace Microsoft.Templates.Core.Test
         public void Load_ProjectTemplates_unknown()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("xx-XX");
-            SetUpFixtureForTesting("C#");
+            SetUpFixtureForTesting(Language.CSharp);
 
             var projectTemplates = GenContext.ToolBox.Repo.GetProjectTypes().ToList();
             var template = projectTemplates.Count > 0 ? projectTemplates[0] : null;
@@ -92,7 +92,7 @@ namespace Microsoft.Templates.Core.Test
         public void Load_FrameworkTempletes_en()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("en-US");
-            SetUpFixtureForTesting("C#");
+            SetUpFixtureForTesting(Language.CSharp);
 
             var frameworkTemplates = GenContext.ToolBox.Repo.GetFrameworks().ToList();
             var template = frameworkTemplates.Count > 0 ? frameworkTemplates[0] : null;
@@ -106,7 +106,7 @@ namespace Microsoft.Templates.Core.Test
         public void Load_FrameworkTempletes_es()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("es-ES");
-            SetUpFixtureForTesting("C#");
+            SetUpFixtureForTesting(Language.CSharp);
 
             var frameworkTemplates = GenContext.ToolBox.Repo.GetFrameworks().ToList();
             var template = frameworkTemplates.Count > 0 ? frameworkTemplates[0] : null;
@@ -120,7 +120,7 @@ namespace Microsoft.Templates.Core.Test
         public void Load_FrameworkTempletes_fr()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("fr-FR");
-            SetUpFixtureForTesting("C#");
+            SetUpFixtureForTesting(Language.CSharp);
 
             var frameworkTemplates = GenContext.ToolBox.Repo.GetFrameworks().ToList();
             var template = frameworkTemplates != null && frameworkTemplates.Count > 0 ? frameworkTemplates[0] : null;
@@ -134,7 +134,7 @@ namespace Microsoft.Templates.Core.Test
         public void Load_FrameworkTempletes_unknown()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("xx-XX");
-            SetUpFixtureForTesting("C#");
+            SetUpFixtureForTesting(Language.CSharp);
 
             var frameworkTemplates = GenContext.ToolBox.Repo.GetFrameworks().ToList();
             var template = frameworkTemplates.Count > 0 ? frameworkTemplates[0] : null;
@@ -148,7 +148,7 @@ namespace Microsoft.Templates.Core.Test
         public void Load_PageTempletes_es()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("es-ES");
-            SetUpFixtureForTesting("C#");
+            SetUpFixtureForTesting(Language.CSharp);
 
             var template = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == "Microsoft.UWPTemplates.Test.PageTemplate.CSharp");
             Assert.NotNull(template);
@@ -162,7 +162,7 @@ namespace Microsoft.Templates.Core.Test
         public void Load_PageTempletes_en()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("en-US");
-            SetUpFixtureForTesting("C#");
+            SetUpFixtureForTesting(Language.CSharp);
 
             var template = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == "Microsoft.UWPTemplates.Test.PageTemplate.CSharp");
             Assert.NotNull(template);
@@ -176,7 +176,7 @@ namespace Microsoft.Templates.Core.Test
         public void Load_PageTempletes_fr()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("fr-FR");
-            SetUpFixtureForTesting("C#");
+            SetUpFixtureForTesting(Language.CSharp);
 
             var template = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == "Microsoft.UWPTemplates.Test.PageTemplate.CSharp");
             Assert.NotNull(template);
@@ -190,7 +190,7 @@ namespace Microsoft.Templates.Core.Test
         public void Load_PageTempletes_unknown()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("xx-XX");
-            SetUpFixtureForTesting("C#");
+            SetUpFixtureForTesting(Language.CSharp);
 
             var template = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == "Microsoft.UWPTemplates.Test.PageTemplate.CSharp");
             Assert.NotNull(template);
@@ -204,7 +204,7 @@ namespace Microsoft.Templates.Core.Test
         public void Load_FeatureTempletes_es()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("es-ES");
-            SetUpFixtureForTesting("C#");
+            SetUpFixtureForTesting(Language.CSharp);
 
             var template = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == "Microsoft.UWPTemplates.Test.FeatureTemplate.CSharp");
             Assert.NotNull(template);
@@ -218,7 +218,7 @@ namespace Microsoft.Templates.Core.Test
         public void Load_FeatureTempletes_en()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("en-US");
-            SetUpFixtureForTesting("C#");
+            SetUpFixtureForTesting(Language.CSharp);
 
             var template = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == "Microsoft.UWPTemplates.Test.FeatureTemplate.CSharp");
             Assert.NotNull(template);
@@ -232,7 +232,7 @@ namespace Microsoft.Templates.Core.Test
         public void Load_FeatureTempletes_fr()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("fr-FR");
-            SetUpFixtureForTesting("C#");
+            SetUpFixtureForTesting(Language.CSharp);
 
             var template = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == "Microsoft.UWPTemplates.Test.FeatureTemplate.CSharp");
             Assert.NotNull(template);
@@ -246,7 +246,7 @@ namespace Microsoft.Templates.Core.Test
         public void Load_FeatureTempletes_unknown()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("xx-XX");
-            SetUpFixtureForTesting("C#");
+            SetUpFixtureForTesting(Language.CSharp);
 
             var template = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == "Microsoft.UWPTemplates.Test.FeatureTemplate.CSharp");
             Assert.NotNull(template);

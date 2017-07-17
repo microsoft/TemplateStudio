@@ -48,7 +48,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetTemplateType_page()
         {
-            SetUpFixtureForTesting("C#");
+            SetUpFixtureForTesting(Language.CSharp);
 
             var target = GetTargetByIdentity("Microsoft.UWPTemplates.Test.PageTemplate.CSharp");
 
@@ -296,7 +296,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetRightClickEnabled()
         {
-            SetUpFixtureForTesting("C#");
+            SetUpFixtureForTesting(Language.CSharp);
 
             var target = GetTargetByName("RightClickTemplate");
             var result = target.GetRightClickEnabled();
@@ -307,7 +307,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetRightClickEnabledFalse()
         {
-            SetUpFixtureForTesting("C#");
+            SetUpFixtureForTesting(Language.CSharp);
 
             var target = GetTargetByIdentity("Microsoft.UWPTemplates.Test.FeatureTemplate.CSharp");
             var result = target.GetRightClickEnabled();
