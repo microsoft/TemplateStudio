@@ -41,9 +41,7 @@ namespace Microsoft.Templates.Test
 
         private static TemplatesRepository CreateNewRepos()
         {
-            var source = new LocalTemplatesSource();
-
-            // TODO: [ML] check language use here
+            // TODO: [ML] check language use here - Can remove these if InitializeFixture is called before accessing Templates
             GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(), "C#");
             GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
 
@@ -139,8 +137,8 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<string> GetAllLanguages()
         {
-            yield return "C#";
-            yield return "VisualBasic";
+            yield return Language.CSharp;
+            yield return Language.VisualBasic;
         }
 
         public static UserSelection SetupProject(string projectType, string framework, string language)

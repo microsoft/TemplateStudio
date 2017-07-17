@@ -76,14 +76,13 @@ namespace Microsoft.Templates.Core.Test
 
             var folderName = "ProjectTemplate";
 
-            if (language == "VisualBasic")
+            if (language == Language.VisualBasic)
             {
                 folderName += "VB";
             }
 
             var result = target.GetIcon();
-            var expected = Path.Combine(_fixture.Repository.CurrentContentFolder, folderName, ".template.config",
-                "icon.png");
+            var expected = Path.Combine(_fixture.Repository.CurrentContentFolder, folderName, ".template.config", "icon.png");
             Assert.Equal(expected, result);
         }
 
@@ -346,8 +345,8 @@ namespace Microsoft.Templates.Core.Test
 
         public static IEnumerable<object[]> GetAllLanguages()
         {
-            yield return new object[] { "C#" };
-            yield return new object[] { "VisualBasic" };
+            yield return new object[] { Language.CSharp };
+            yield return new object[] { Language.VisualBasic };
         }
 
         private ITemplateInfo GetTargetByIdentity(string templateIdentity)

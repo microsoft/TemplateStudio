@@ -46,6 +46,7 @@ namespace Microsoft.Templates.Test
 
         public NewItemGenerationTests(GenerationFixture fixture)
         {
+            // TODO: [ML] handle VB & C#
             _fixture = fixture;
             GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(), "C#");
             GenContext.Current = this;

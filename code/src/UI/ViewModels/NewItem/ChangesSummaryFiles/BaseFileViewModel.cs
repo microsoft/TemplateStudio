@@ -24,7 +24,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
     }
     public enum FileExtension
     {
-        Default, CSharp, Resw, Xaml, Xml, Csproj, Appxmanifest, Json, Jpg, Png, Jpeg
+        Default, CSharp, Resw, Xaml, Xml, Csproj, Appxmanifest, Json, Jpg, Png, Jpeg, Vb, Vbproj
     }
     public abstract class BaseFileViewModel : Observable
     {
@@ -91,7 +91,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private FileExtension GetFileExtension()
         {
-            // TODO: [ML] handle VB here
             switch (Path.GetExtension(TempFile))
             {
                 case ".cs":
@@ -114,6 +113,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     return FileExtension.Jpeg;
                 case ".png":
                     return FileExtension.Png;
+                case ".vb":
+                    return FileExtension.Vb;
+                case ".vbproj":
+                    return FileExtension.Vbproj;
                 default:
                     return FileExtension.Default;
             }

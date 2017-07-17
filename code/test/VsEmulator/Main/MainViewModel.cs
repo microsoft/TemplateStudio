@@ -159,7 +159,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void NewVisualBasicProject()
         {
-            NewProject("VisualBasic");
+            NewProject(Language.VisualBasic);
         }
 
         private async void NewProject(string language)
@@ -296,7 +296,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var projFile = Directory.EnumerateFiles(solutionDirectory, "*.csproj", SearchOption.AllDirectories)
                         .Union(Directory.EnumerateFiles(solutionDirectory, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
 
-                _language = Path.GetExtension(projFile) == ".vbproj" ? "VisualBasic" : "C#";
+                _language = Path.GetExtension(projFile) == ".vbproj" ? Language.VisualBasic : Language.CSharp;
 
                 ConfigureGenContext(ForceLocalTemplatesRefresh);
 

@@ -10,13 +10,15 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using Microsoft.Templates.Core;
+
 namespace Microsoft.Templates.UI.VisualStudio
 {
     public class SolutionWizardCS : SolutionWizard
     {
         public SolutionWizardCS()
         {
-            Initialize("C#");
+            Initialize(Language.CSharp);
         }
     }
 }
