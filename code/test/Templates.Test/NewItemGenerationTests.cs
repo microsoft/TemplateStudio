@@ -68,7 +68,7 @@ namespace Microsoft.Templates.Test
             var rightClickTemplates = GenerationFixture.Templates.Where
                                             (t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
                                                 && t.GetFrameworkList().Contains(framework)
-                                                && (!t.GetIsHidden())
+                                                && !t.GetIsHidden()
                                                 && t.GetRightClickEnabled());
 
             foreach (var item in rightClickTemplates)
@@ -107,7 +107,6 @@ namespace Microsoft.Templates.Test
 
             return Path.Combine(tempGenerationPath, inferredName);
         }
-
 
         public static IEnumerable<object[]> GetProjectTemplates()
         {

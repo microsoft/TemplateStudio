@@ -90,6 +90,8 @@ namespace Microsoft.Templates.Test
         [Theory, MemberData("GetPageAndFeatureTemplates"), Trait("Type", "OneByOneItemGeneration")]
         public async void GenerateProjectWithIsolatedItems(string itemName, string projectType, string framework, string itemId, string language)
         {
+            SetUpFixtureForTesting(language);
+
             var projectTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
             var itemTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.Identity == itemId);
             var finalName = itemTemplate.GetDefaultName();
@@ -132,7 +134,10 @@ namespace Microsoft.Templates.Test
         {
             SetUpFixtureForTesting(language);
 
-            var targetProjectTemplate = GenerationFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework)).FirstOrDefault();
+            var targetProjectTemplate = GenerationFixture.Templates
+                                                         .FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project
+                                                                           && t.GetProjectTypeList().Contains(projectType)
+                                                                           && t.GetFrameworkList().Contains(framework));
 
             var projectName = $"{projectType}{framework}All";
 
@@ -162,7 +167,11 @@ namespace Microsoft.Templates.Test
         {
             SetUpFixtureForTesting(language);
 
-            var targetProjectTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework) && !t.GetIsHidden());
+            var targetProjectTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project
+                                                                                     && t.GetProjectTypeList().Contains(projectType)
+                                                                                     && t.GetFrameworkList().Contains(framework)
+                                                                                     && !t.GetIsHidden()
+                                                                                     && t.GetLanguage() == language);
             var projectName = $"{projectType}{framework}AllRandom";
 
             ProjectName = projectName;

@@ -36,16 +36,21 @@ namespace Microsoft.Templates.Test
         internal string TestProjectsPath => Path.GetFullPath(Path.Combine(TestRunPath, "Proj"));
         internal string TestNewItemPath => Path.GetFullPath(Path.Combine(TestRunPath, "RightClick"));
 
-        private static readonly Lazy<TemplatesRepository> _repos = new Lazy<TemplatesRepository>(() => CreateNewRepos(), true);
+        private static Lazy<TemplatesRepository> _repos = new Lazy<TemplatesRepository>(CreateNewRepos, true);
+
         public static IEnumerable<ITemplateInfo> Templates => _repos.Value.GetAll();
 
         private static TemplatesRepository CreateNewRepos()
         {
-            // TODO: [ML] check language use here - Can remove these if InitializeFixture is called before accessing Templates
-            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(), "C#");
+            return GenContext.ToolBox.Repo;
+        }
+
+        private static void InitializeTemplatesForLanguage(TemplatesSource source, string language)
+        {
+            GenContext.Bootstrap(source, new FakeGenShell(), language);
             GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
 
-            return GenContext.ToolBox.Repo;
+            _repos = new Lazy<TemplatesRepository>(CreateNewRepos, true);
         }
 
         public GenerationFixture()
@@ -55,10 +60,9 @@ namespace Microsoft.Templates.Test
         public void InitializeFixture(string language, IContextProvider contextProvider)
         {
             var source = new LocalTemplatesSource();
-
-            GenContext.Bootstrap(source, new FakeGenShell(), language);
             GenContext.Current = contextProvider;
-            GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
+
+            InitializeTemplatesForLanguage(source, language);
         }
 
         public void Dispose()
@@ -77,6 +81,8 @@ namespace Microsoft.Templates.Test
         {
             foreach (var language in GetAllLanguages())
             {
+                InitializeTemplatesForLanguage(new LocalTemplatesSource(), language);
+
                 var projectTemplates = Templates.Where(t => t.GetTemplateType() == TemplateType.Project
                                                          && t.GetLanguage() == language);
 
@@ -101,6 +107,8 @@ namespace Microsoft.Templates.Test
         {
             foreach (var language in GetAllLanguages())
             {
+                InitializeTemplatesForLanguage(new LocalTemplatesSource(), language);
+
                 var projectTemplates = Templates.Where(t => t.GetTemplateType() == TemplateType.Project
                                                          && t.GetLanguage() == language);
 
@@ -114,10 +122,10 @@ namespace Microsoft.Templates.Test
 
                         foreach (var framework in frameworks)
                         {
-                            var itemTemplates = GenerationFixture.Templates.Where(t => t.GetFrameworkList().Contains(framework)
-                                                                                    && (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                                                                                    && t.GetLanguage() == language
-                                                                                    && !t.GetIsHidden());
+                            var itemTemplates = Templates.Where(t => t.GetFrameworkList().Contains(framework)
+                                                                  && (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                                                                  && t.GetLanguage() == language
+                                                                  && !t.GetIsHidden());
 
                             foreach (var itemTemplate in itemTemplates)
                             {
@@ -143,10 +151,7 @@ namespace Microsoft.Templates.Test
 
         public static UserSelection SetupProject(string projectType, string framework, string language)
         {
-            var projectTemplate = Templates.FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project
-                                                             && t.GetProjectTypeList().Contains(projectType)
-                                                             && t.GetFrameworkList().Contains(framework)
-                                                             && t.GetLanguage() == language);
+            InitializeTemplatesForLanguage(new LocalTemplatesSource(), language);
 
             var userSelection = new UserSelection
             {
