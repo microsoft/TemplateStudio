@@ -93,7 +93,7 @@ namespace Microsoft.Templates.Test
             var projectTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
             var itemTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.Identity == itemId);
             var finalName = itemTemplate.GetDefaultName();
-            var validators = new List<Validator>()
+            var validators = new List<Validator>
             {
                 new ReservedNamesValidator(),
             };
