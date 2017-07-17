@@ -61,6 +61,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string ButtonAddTemplate {
+            get {
+                return ResourceManager.GetString("ButtonAddTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         public static string ButtonBack {
@@ -84,6 +93,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ButtonClose {
             get {
                 return ResourceManager.GetString("ButtonClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string ButtonConfirmTemplate {
+            get {
+                return ResourceManager.GetString("ButtonConfirmTemplate", resourceCulture);
             }
         }
         
@@ -147,6 +165,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ButtonRefreshTemplates {
             get {
                 return ResourceManager.GetString("ButtonRefreshTemplates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View info.
+        /// </summary>
+        public static string ButtonViewInfo {
+            get {
+                return ResourceManager.GetString("ButtonViewInfo", resourceCulture);
             }
         }
         
