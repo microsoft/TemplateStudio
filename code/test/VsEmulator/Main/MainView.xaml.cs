@@ -21,9 +21,9 @@ namespace Microsoft.Templates.VsEmulator.Main
     {
         public MainViewModel ViewModel { get; set; }
 
-        public MainView(string language)
+        public MainView()
         {
-            ViewModel = new MainViewModel(this, language);
+            ViewModel = new MainViewModel(this);
             InitializeComponent();
 
             DataContext = ViewModel;

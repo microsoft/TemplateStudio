@@ -10,13 +10,12 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Generation;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
@@ -132,6 +131,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             SetNewItemSetupTitle();
             CleanStatus();
         }
+
         protected override void OnNext()
         {
             HasOverlayBox = false;
@@ -173,6 +173,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             NavigationService.Navigate(new NewItemSetupView());
             NewItemSetup.Initialize(true);
         }
+
         public override UserSelection CreateUserSelection()
         {
             var userSelection = new UserSelection()

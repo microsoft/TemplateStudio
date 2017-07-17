@@ -11,37 +11,36 @@
 // ******************************************************************
 
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
 
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Test.Artifacts;
+using Microsoft.Templates.UI;
+using Microsoft.Templates.VsEmulator.LoadProject;
 using Microsoft.Templates.VsEmulator.NewProject;
 using Microsoft.Templates.VsEmulator.TemplatesContent;
 using Microsoft.VisualStudio.TemplateWizard;
-using Microsoft.Templates.UI;
-using Microsoft.Templates.VsEmulator.LoadProject;
-using System.Linq;
-using System.Collections.Generic;
-using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.PostActions.Catalog.Merge;
-using System.Diagnostics;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
     public class MainViewModel : Observable, IContextProvider
     {
         private readonly MainView _host;
-        private readonly string _language;
 
-        public MainViewModel(MainView host, string language)
+        private string _language;
+
+        public MainViewModel(MainView host)
         {
             _host = host;
-            _language = language;
             _wizardVersion = "0.0.0.0";
             _templatesVersion = "0.0.0.0";
         }
@@ -65,7 +64,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public List<string> FilesToOpen { get; } = new List<string>();
 
-        public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
+        public RelayCommand NewCSharpProjectCommand => new RelayCommand(NewCSharpProject);
+        public RelayCommand NewVisualBasicProjectCommand => new RelayCommand(NewVisualBasicProject);
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
         public RelayCommand OpenInVsCodeCommand => new RelayCommand(OpenInVsCode);
@@ -75,7 +75,6 @@ namespace Microsoft.Templates.VsEmulator.Main
         public RelayCommand AddNewFeatureCommand => new RelayCommand(AddNewFeature);
 
         public RelayCommand AddNewPageCommand => new RelayCommand(AddNewPage);
-       
 
         private string _state;
         public string State
@@ -148,15 +147,24 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string SolutionPath { get; set; }
 
-        
-
         public void Initialize()
         {
             SolutionName = null;
         }
 
-        private async void NewProject()
+        private void NewCSharpProject()
         {
+            NewProject("C#");
+        }
+
+        private void NewVisualBasicProject()
+        {
+            NewProject("VisualBasic");
+        }
+
+        private async void NewProject(string language)
+        {
+            _language = language;
             ConfigureGenContext(ForceLocalTemplatesRefresh);
 
             try
@@ -193,12 +201,10 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
             catch (WizardBackoutException)
             {
-
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)
             {
-                
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
             }
         }
@@ -279,7 +285,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void LoadProject()
         {
-            ConfigureGenContext(ForceLocalTemplatesRefresh);
             var loadProjectInfo = ShowLoadProjectDialog();
 
             if (!string.IsNullOrEmpty(loadProjectInfo))
@@ -287,8 +292,13 @@ namespace Microsoft.Templates.VsEmulator.Main
                 SolutionPath = loadProjectInfo;
                 SolutionName = Path.GetFileNameWithoutExtension(SolutionPath);
 
-                // TODO: [ML] need to handle vbproj here too
-                var projFile = Directory.EnumerateFiles(Path.GetDirectoryName(SolutionPath), "*.csproj", SearchOption.AllDirectories).FirstOrDefault();
+                var solutionDirectory = Path.GetDirectoryName(SolutionPath);
+                var projFile = Directory.EnumerateFiles(solutionDirectory, "*.csproj", SearchOption.AllDirectories)
+                        .Union(Directory.EnumerateFiles(solutionDirectory, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
+
+                _language = Path.GetExtension(projFile) == ".vbproj" ? "VisualBasic" : "C#";
+
+                ConfigureGenContext(ForceLocalTemplatesRefresh);
 
                 GenContext.Current = this;
 
@@ -316,7 +326,6 @@ namespace Microsoft.Templates.VsEmulator.Main
                 ConfigureGenContext(ForceLocalTemplatesRefresh);
             }
         }
-
 
         private void OpenInVs()
         {
@@ -414,10 +423,11 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void ConfigureGenContext(bool forceLocalTemplatesRefresh)
         {
-            GenContext.Bootstrap(new LocalTemplatesSource(WizardVersion, TemplatesVersion, forceLocalTemplatesRefresh)
-                , new FakeGenShell(msg => SetState(msg), l => AddLog(l), _host)
-                , new Version(WizardVersion)
-                , _language);
+            GenContext.Bootstrap(
+                new LocalTemplatesSource(WizardVersion, TemplatesVersion, forceLocalTemplatesRefresh),
+                new FakeGenShell(msg => SetState(msg), l => AddLog(l), _host),
+                new Version(WizardVersion),
+                _language);
 
             CleanUpNotUsedContentVersions();
         }
@@ -454,6 +464,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 }
             }
         }
+
         private string GetTemplatesFolder()
         {
             var _templatesSource = new LocalTemplatesSource(_wizardVersion, _templatesVersion);
@@ -462,6 +473,5 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             return currentTemplatesFolder;
         }
-
     }
 }
