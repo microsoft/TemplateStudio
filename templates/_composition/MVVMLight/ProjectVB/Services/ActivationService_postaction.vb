@@ -1,6 +1,6 @@
 Friend Class ActivationService
     Private ReadOnly _defaultNavItem As Type
-//{[{
+'{[{
 
     Private ReadOnly Property NavigationService() As NavigationServiceEx
         Get
@@ -8,5 +8,5 @@ Friend Class ActivationService
         End Get
     End Property
 
-//}]}
+'}]}
 End Class

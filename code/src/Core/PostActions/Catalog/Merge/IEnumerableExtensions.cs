@@ -20,12 +20,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
     public static class IEnumerableExtensions
     {
-        // TODO: [ML] ensure these work with VB & C# comments
         internal const string MacroBeforeMode = "^^";
         internal const string MacroStartGroup = "{[{";
         internal const string MarcoEndGroup = "}]}";
         internal const string MacroStartDocumentation = "{**";
         internal const string MacroEndDocumentation = "**}";
+
+        // TODO: [ML] ensure these work with VB & C# comments
         private const string MacroStartDelete = "//{--{";
         private const string MacroEndDelete = "//}--}";
 

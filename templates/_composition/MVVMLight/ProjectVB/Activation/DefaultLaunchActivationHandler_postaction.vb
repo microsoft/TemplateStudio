@@ -1,6 +1,6 @@
 Friend Class DefaultLaunchActivationHandler
     Inherits ActivationHandler(Of LaunchActivatedEventArgs)
-//{[{
+'{[{
     Private ReadOnly _navElement As string
 
     Private ReadOnly Property NavigationService() As NavigationServiceEx
@@ -13,5 +13,5 @@ Friend Class DefaultLaunchActivationHandler
         _navElement = navElement.FullName
     End Sub
 
-//}]}
+'}]}
 End Class
