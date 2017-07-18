@@ -17,10 +17,9 @@ using System.Linq;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
-using Microsoft.Templates.Test.Artifacts;
 using Microsoft.Templates.UI;
+
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -46,15 +45,19 @@ namespace Microsoft.Templates.Test
 
         public NewItemGenerationTests(GenerationFixture fixture)
         {
-            // TODO: [ML] handle VB & C#
             _fixture = fixture;
-            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(), "C#");
-            GenContext.Current = this;
+        }
+
+        private void SetUpFixtureForTesting(string language)
+        {
+            _fixture.InitializeFixture(language, this);
         }
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "NewItemGeneration")]
-        public async void GenerateEmptyProject(string projectType, string framework, string language)
+        public async void GenerateProjectWithAllRightClickItems(string projectType, string framework, string language)
         {
+            SetUpFixtureForTesting(language);
+
             var projectName = $"{projectType}{framework}";
 
             ProjectName = projectName;
@@ -75,11 +78,12 @@ namespace Microsoft.Templates.Test
             {
                 OutputPath = GetTempGenerationPath(projectName);
 
-                var newUserSelection = new UserSelection()
+                var newUserSelection = new UserSelection
                 {
                     ProjectType = projectType,
                     Framework = framework,
                     HomeName = "",
+                    Language = language,
                     ItemGenerationType = ItemGenerationType.GenerateAndMerge
                 };
 
