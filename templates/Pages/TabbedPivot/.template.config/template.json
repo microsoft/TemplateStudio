@@ -6,7 +6,6 @@
   "name": "Tabbed",
   "groupIdentity": "wts.Page.TabbedPivot",
   "identity": "wts.Page.TabbedPivot",
-  "shortName": "Tabbed Page",
   "description": "The tabbed page is used for navigating frequently accessed, distinct content categories.",
   "tags": {
     "language": "C#",

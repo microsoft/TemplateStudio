@@ -98,10 +98,9 @@ The replacements are done based on the configuration established in the `templat
   "classifications": [
     "Universal"
   ],
-  "name": "Blank",
+  "name": "Blank",                                //This is the displayed name in the wizard.
   "groupIdentity": "wts.Page.Blank",              //Used for filtering and grouping in the wizard
   "identity": "wts.Page.Blank",
-  "shortName": "Blank Page",                      //This is the displayed name in the wizard.
   "description": "This is the most basic page.",  //This is the short description displayed in the wizard.
   "tags": {                                       //Tags are used to filter and handled the composition
     "language": "C#",
