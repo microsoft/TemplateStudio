@@ -68,5 +68,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             Name = metadataInfo.Name;
             Summary = metadataInfo.Summary;
         }
+
+        public override string ToString()
+        {
+            return DisplayName;
+        }
     }
 }

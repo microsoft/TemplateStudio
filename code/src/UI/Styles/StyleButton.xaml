@@ -147,9 +147,16 @@
         </Style.Triggers>
     </Style>
 
+    <Style TargetType="Button" x:Key="InfoProjectInfoButtonStyle" BasedOn="{StaticResource BlackBaseTemplateInfoButtonStyle}">
+        <Setter Property="ToolTip" Value="{x:Static res:StringRes.LearnMore}"/>
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.LearnMore}"/>
+    </Style>
+
     <Style TargetType="Button" x:Key="InfoTemplateInfoButtonStyle" BasedOn="{StaticResource BlackBaseTemplateInfoButtonStyle}">
         <Setter Property="HorizontalAlignment" Value="Right"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="ToolTip" Value="{x:Static res:StringRes.LearnMore}"/>
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.LearnMore}"/>
     </Style>
 
     <Style TargetType="Button" x:Key="MoreInfoButtonStyle" BasedOn="{StaticResource BlackBaseTemplateInfoButtonStyle}">
@@ -233,6 +240,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="FocusVisualStyle" Value="{StaticResource AddButtonFocusStyle}"/>
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonAddTemplate}" />
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonAddTemplate}" />
     </Style>
 
     <Style TargetType="Button" x:Key="SaveTemplateInfoButtonStyle" BasedOn="{StaticResource BlueBaseTemplateInfoButtonStyle}">
@@ -240,6 +248,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="FocusVisualStyle" Value="{StaticResource AddButtonFocusStyle}"/>
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonConfirmTemplate}" />
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonConfirmTemplate}" />
     </Style>
 
     <Style TargetType="Button" x:Key="ButtonImageStyle">
@@ -304,6 +313,7 @@
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Width" Value="50" />
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonViewInfo}" />
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonViewInfo}" />
         <!--<Setter Property="Background">
             <Setter.Value>
                 <SolidColorBrush Color="{StaticResource UIWhiteColor}" Opacity="0.2"/>

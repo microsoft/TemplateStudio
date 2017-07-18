@@ -223,5 +223,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             infoView.ShowDialog();
             MainViewModel.Current.InfoShapeVisibility = Visibility.Collapsed;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
