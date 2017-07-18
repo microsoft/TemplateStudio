@@ -89,7 +89,6 @@
                                     <TextBlock Text="{Binding Title}" Style="{StaticResource TextSubGroupTemplateItemsHeaderStyle}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
                                     <ListView
                                         SelectionMode="Single"
-                                        KeyboardNavigation.TabNavigation="Local"
                                         ItemsSource="{Binding Templates}"
                                         SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                                         Style="{StaticResource ListViewProjectSetupStyle}"
