@@ -11,6 +11,7 @@
 // ******************************************************************
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace Microsoft.Templates.Core.Gen
     public class GenContext
     {
         private static IContextProvider _currentContext;
+        private static string _tempGenerationFolder = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
 
         public static GenToolBox ToolBox { get; private set; }
         public static string InitializedLanguage { get; private set; }
@@ -65,7 +67,7 @@ namespace Microsoft.Templates.Core.Gen
 
                 ToolBox = new GenToolBox(repository, shell);
 
-                PurgeTempGenerations(Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath), Configuration.Current.DaysToKeepTempGenerations);
+                PurgeTempGenerations(Configuration.Current.DaysToKeepTempGenerations);
 
                 CodeGen.Initialize(source.Id, hostVersion);
 
@@ -79,11 +81,21 @@ namespace Microsoft.Templates.Core.Gen
             }
         }
 
-        private static void PurgeTempGenerations(string tempGenerationFolder, int daysToKeep)
+        public static string GetTempGenerationPath(string projectName)
         {
-            if (Directory.Exists(tempGenerationFolder))
+            Fs.EnsureFolder(_tempGenerationFolder);
+
+            var tempGenerationName = $"{projectName}_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}";
+            var inferredName = Naming.Infer(tempGenerationName, new List<Validator>() { new DirectoryExistsValidator(_tempGenerationFolder) }, "_");
+
+            return Path.Combine(_tempGenerationFolder, inferredName);
+        }
+
+        private static void PurgeTempGenerations(int daysToKeep)
+        {
+            if (Directory.Exists(_tempGenerationFolder))
             {
-                var di = new DirectoryInfo(tempGenerationFolder);
+                var di = new DirectoryInfo(_tempGenerationFolder);
                 var toBeDeleted = di.GetDirectories().Where(d => d.CreationTimeUtc.AddDays(daysToKeep) < DateTime.UtcNow);
 
                 foreach (var d in toBeDeleted)

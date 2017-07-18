@@ -18,6 +18,8 @@ using System.Linq;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Test.Artifacts;
 using Microsoft.Templates.UI;
 
 using Xunit;
@@ -25,23 +27,9 @@ using Xunit;
 namespace Microsoft.Templates.Test
 {
     [Collection("Generation collection")]
-    public class NewItemGenerationTests : IContextProvider
+    public class NewItemGenerationTests : BaseTestContextProvider
     {
         private GenerationFixture _fixture;
-        private List<string> _usedNames = new List<string>();
-
-        public string ProjectName { get; set; }
-        public string OutputPath { get; set; }
-
-        public string ProjectPath { get; set; }
-
-        public List<string> ProjectItems { get; } = new List<string>();
-
-        public List<FailedMergePostAction> FailedMergePostActions { get; } = new List<FailedMergePostAction>();
-
-        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
-
-        public List<string> FilesToOpen { get; } = new List<string>();
 
         public NewItemGenerationTests(GenerationFixture fixture)
         {
@@ -76,7 +64,7 @@ namespace Microsoft.Templates.Test
 
             foreach (var item in rightClickTemplates)
             {
-                OutputPath = GetTempGenerationPath(projectName);
+                OutputPath = GenContext.GetTempGenerationPath(projectName);
 
                 var newUserSelection = new UserSelection
                 {

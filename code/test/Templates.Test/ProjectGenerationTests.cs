@@ -25,24 +25,9 @@ using Xunit;
 namespace Microsoft.Templates.Test
 {
     [Collection("Generation collection")]
-    public class ProjectGenerationTests : IContextProvider
+    public class ProjectGenerationTests : BaseTestContextProvider
     {
         private GenerationFixture _fixture;
-        private List<string> _usedNames = new List<string>();
-
-        public string ProjectName { get; set; }
-
-        public string OutputPath { get; set; }
-
-        public string ProjectPath { get; set; }
-
-        public List<string> ProjectItems { get; } = new List<string>();
-
-        public List<FailedMergePostAction> FailedMergePostActions { get; } = new List<FailedMergePostAction>();
-
-        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
-
-        public List<string> FilesToOpen { get; } = new List<string>();
 
         public ProjectGenerationTests(GenerationFixture fixture)
         {
@@ -53,7 +38,7 @@ namespace Microsoft.Templates.Test
         {
             _fixture.InitializeFixture(language, this);
         }
-        
+
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
         public async void GenerateEmptyProject(string projectType, string framework, string language)
         {

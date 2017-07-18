@@ -6,7 +6,6 @@ namespace Param_ItemNamespace.Helpers
     {
         public static void FireAndForget(this Task task)
         {
-
         }
     }
 }

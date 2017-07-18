@@ -187,6 +187,7 @@
     <Compile Include="PostActions\Catalog\SortNamespaces\SortUsingsPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortNamespaces\IEnumerableExtensions.cs" />
     <Compile Include="PostActions\Catalog\SortNamespaces\UsingComparer.cs" />
+    <Compile Include="PostActions\Catalog\SearchAndReplacePostAction.cs" />
     <Compile Include="PostActions\Catalog\AddContextItemsToProjectPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeFailureType.cs" />
     <Compile Include="PostActions\Catalog\Merge\PostActionFormatter.cs" />

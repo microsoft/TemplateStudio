@@ -89,5 +89,13 @@ namespace Microsoft.Templates.Core.PostActions
                 .ToList()
                 .ForEach(f => postActions.Add(new MergePostAction(new MergeConfiguration(f, failOnError))));
         }
+
+        internal void AddSearchAndReplaceActions(List<PostAction> postActions, string searchPattern)
+        {
+            Directory
+                .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
+                .ToList()
+                .ForEach(f => postActions.Add(new SearchAndReplacePostAction(f)));
+        }
     }
 }

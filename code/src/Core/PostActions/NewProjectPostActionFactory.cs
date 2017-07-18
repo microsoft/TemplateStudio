@@ -28,6 +28,7 @@ namespace Microsoft.Templates.Core.PostActions
 
             AddPredefinedActions(genInfo, genResult, postActions);
             AddMergeActions(postActions, $"*{MergePostAction.Extension}*", true);
+            AddSearchAndReplaceActions(postActions, $"*{SearchAndReplacePostAction.Extension}*");
 
             return postActions;
         }

@@ -4,7 +4,6 @@
   "name": "ProjectTemplate",
   "groupIdentity": "Microsoft.UWPTemplates.Test.ProjectTemplate",
   "identity": "Microsoft.UWPTemplates.Test.ProjectTemplate.CSharp",
-  "shortName": "project-test",
   "tags": {
     "language": "C#",
     "type": "project",

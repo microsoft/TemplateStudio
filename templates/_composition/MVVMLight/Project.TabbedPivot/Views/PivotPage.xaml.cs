@@ -6,7 +6,10 @@ namespace wts.ItemName.Views
 {
     public sealed partial class PivotPage : Page
     {
-        private PivotViewModel ViewModel { get { return DataContext as PivotViewModel; } }
+        private PivotViewModel ViewModel
+        {
+            get { return DataContext as PivotViewModel; }
+        }
 
         public PivotPage()
         {

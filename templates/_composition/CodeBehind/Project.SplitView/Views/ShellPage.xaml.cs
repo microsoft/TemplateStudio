@@ -19,6 +19,7 @@ namespace wts.ItemName.Views
         private const double PanoramicStateMinWindowWidth = 1024;
 
         private bool _isPaneOpen;
+
         public bool IsPaneOpen
         {
             get { return _isPaneOpen; }
@@ -26,6 +27,7 @@ namespace wts.ItemName.Views
         }
 
         private SplitViewDisplayMode _displayMode = SplitViewDisplayMode.CompactInline;
+
         public SplitViewDisplayMode DisplayMode
         {
             get { return _displayMode; }
@@ -35,6 +37,7 @@ namespace wts.ItemName.Views
         private object _lastSelectedItem;
 
         private ObservableCollection<ShellNavigationItem> _primaryItems = new ObservableCollection<ShellNavigationItem>();
+
         public ObservableCollection<ShellNavigationItem> PrimaryItems
         {
             get { return _primaryItems; }
@@ -42,6 +45,7 @@ namespace wts.ItemName.Views
         }
 
         private ObservableCollection<ShellNavigationItem> _secondaryItems = new ObservableCollection<ShellNavigationItem>();
+
         public ObservableCollection<ShellNavigationItem> SecondaryItems
         {
             get { return _secondaryItems; }
@@ -63,7 +67,7 @@ namespace wts.ItemName.Views
 
             InitializeState(Window.Current.Bounds.Width);
         }
-        
+
         private void InitializeState(double windowWith)
         {
             if (windowWith < WideStateMinWindowWidth)
@@ -112,6 +116,7 @@ namespace wts.ItemName.Views
             {
                 (oldValue as ShellNavigationItem).IsSelected = false;
             }
+
             if (newValue != null)
             {
                 (newValue as ShellNavigationItem).IsSelected = true;
@@ -133,6 +138,7 @@ namespace wts.ItemName.Views
             {
                 IsPaneOpen = false;
             }
+
             Navigate(e.ClickedItem);
         }
 
@@ -142,7 +148,7 @@ namespace wts.ItemName.Views
         }
 
         private void WindowStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e) => GoToState(e.NewState.Name);
-        
+
         private void GoToState(string stateName)
         {
             switch (stateName)
