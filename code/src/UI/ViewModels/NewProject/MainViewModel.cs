@@ -228,6 +228,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 ItemsSource = items,
                 Style = MainView.FindResource("SummaryListViewStyle") as Style,
                 Tag = "AllowRename",
+                Focusable = false,
                 ItemTemplate = MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate
             };
             if (allowDragAndDrop)

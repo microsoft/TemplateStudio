@@ -54,6 +54,17 @@
                                 <Button.Content>
                                     <TextBlock Text="&#xE761;" FontSize="18" Style="{StaticResource IconButtonTextStyle}"/>
                                 </Button.Content>
+                                <Button.FocusVisualStyle>
+                                    <Style>
+                                        <Setter Property="Control.Template">
+                                            <Setter.Value>
+                                                <ControlTemplate>
+                                                    <Grid Background="{StaticResource UIWhite}" Opacity="0.2" />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Button.FocusVisualStyle>
                             </Button>
                         </DataTemplate>
                     </controls:TogglePane.CloseButtonTemplate>
@@ -185,8 +196,8 @@
                     <TextBlock Style="{StaticResource TextMainLoadingStyle}" Text="{x:Static res:StringRes.NoContentText}" Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}"/>
                 </Grid>
 
-                <Grid Grid.Column="1" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
-                    <ScrollViewer Padding="0,40,0,65" Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Grid Grid.Column="1" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" Focusable="False">
+                    <ScrollViewer Padding="0,40,0,65" Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}}" Focusable="False">
                         <StackPanel Margin="{StaticResource Margin_M_Left}">
 
                             <StackPanel Margin="7,0,0,0" Orientation="Horizontal">
