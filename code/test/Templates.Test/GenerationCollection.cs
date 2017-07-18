@@ -17,6 +17,5 @@ namespace Microsoft.Templates.Test
     [CollectionDefinition("Generation collection")]
     public class DatabaseCollection : ICollectionFixture<GenerationFixture>
     {
-        
     }
 }

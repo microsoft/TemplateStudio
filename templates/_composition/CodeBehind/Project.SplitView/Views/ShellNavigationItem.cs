@@ -13,6 +13,7 @@ namespace wts.ItemName.Views
         private bool _isSelected;
 
         private Visibility _selectedVis = Visibility.Collapsed;
+
         public Visibility SelectedVis
         {
             get { return _selectedVis; }
@@ -20,11 +21,18 @@ namespace wts.ItemName.Views
         }
 
         public string Label { get; set; }
+
         public Symbol Symbol { get; set; }
-        public char SymbolAsChar { get { return (char)Symbol; } }
+
+        public char SymbolAsChar
+        {
+            get { return (char)Symbol; }
+        }
+
         public Type PageType { get; set; }
 
         private IconElement _iconElement = null;
+
         public IconElement Icon
         {
             get
@@ -54,7 +62,11 @@ namespace wts.ItemName.Views
 
         public bool IsSelected
         {
-            get { return _isSelected; }
+            get
+            {
+                return _isSelected;
+            }
+
             set
             {
                 Set(ref _isSelected, value);
@@ -73,12 +85,10 @@ namespace wts.ItemName.Views
         }
 
         private SolidColorBrush _selectedForeground = null;
+
         public SolidColorBrush SelectedForeground
         {
-            get
-            {
-                return _selectedForeground ?? (_selectedForeground = GetStandardTextColorBrush());
-            }
+            get { return _selectedForeground ?? (_selectedForeground = GetStandardTextColorBrush()); }
             set { Set(ref _selectedForeground, value); }
         }
 
@@ -89,6 +99,12 @@ namespace wts.ItemName.Views
             this.PageType = pageType;
         }
 
+        public static ShellNavigationItem FromType<T>(string name, Symbol symbol)
+            where T : Page
+        {
+            return new ShellNavigationItem(name, symbol, typeof(T));
+        }
+
         private ShellNavigationItem(string name, IconElement icon, Type pageType)
         {
             this.Label = name;
@@ -96,12 +112,8 @@ namespace wts.ItemName.Views
             this.PageType = pageType;
         }
 
-        public static ShellNavigationItem FromType<T>(string name, Symbol symbol) where T : Page
-        {
-            return new ShellNavigationItem(name, symbol, typeof(T));
-        }
-
-        public static ShellNavigationItem FromType<T>(string name, IconElement icon) where T : Page
+        public static ShellNavigationItem FromType<T>(string name, IconElement icon)
+            where T : Page
         {
             return new ShellNavigationItem(name, icon, typeof(T));
         }

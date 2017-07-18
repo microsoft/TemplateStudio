@@ -8,11 +8,13 @@ namespace Param_ItemNamespace.ViewModels
     public class MediaPlayerViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         // TODO WTS: Set your video default and image here
-        private const string defaultSource = "https://sec.ch9.ms/ch9/db15/43c9fbed-535e-4013-8a4a-a74cc00adb15/C9L12WinTemplateStudio_high.mp4";
+        private const string DefaultSource = "https://sec.ch9.ms/ch9/db15/43c9fbed-535e-4013-8a4a-a74cc00adb15/C9L12WinTemplateStudio_high.mp4";
+
         // The poster image is displayed until the video is started
-        private const string defaultPoster = "https://sec.ch9.ms/ch9/db15/43c9fbed-535e-4013-8a4a-a74cc00adb15/C9L12WinTemplateStudio_960.jpg";
+        private const string DefaultPoster = "https://sec.ch9.ms/ch9/db15/43c9fbed-535e-4013-8a4a-a74cc00adb15/C9L12WinTemplateStudio_960.jpg";
 
         private IMediaPlaybackSource _source;
+
         public IMediaPlaybackSource Source
         {
             get { return _source; }
@@ -20,6 +22,7 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         private string _posterSource;
+
         public string PosterSource
         {
             get { return _posterSource; }
@@ -28,8 +31,8 @@ namespace Param_ItemNamespace.ViewModels
 
         public MediaPlayerViewViewModel()
         {
-            Source = MediaSource.CreateFromUri(new Uri(defaultSource));
-            PosterSource = defaultPoster;
+            Source = MediaSource.CreateFromUri(new Uri(DefaultSource));
+            PosterSource = DefaultPoster;
         }
     }
 }

@@ -10,6 +10,7 @@ namespace Param_ItemNamespace.Views
     public sealed partial class MasterDetailPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
         private Order _selected;
+
         public Order Selected
         {
             get { return _selected; }
@@ -33,6 +34,7 @@ namespace Param_ItemNamespace.Views
             {
                 SampleItems.Add(item);
             }
+
             Selected = SampleItems.First();
         }
 
