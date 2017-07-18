@@ -1,0 +1,33 @@
+﻿<Window x:Class="HighContrastPoC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
+        xmlns:helpers="clr-namespace:HighContrastPoC.Helpers"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+
+    <Window.Resources>
+        <Style x:Key="mainGridStyle" TargetType="Grid">
+            <Setter Property="Background" Value="LightSalmon"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static helpers:SystemHelper.Instance}}" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="titleStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Blue"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static helpers:SystemHelper.Instance}}" Value="True">
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
+    <Grid Style="{StaticResource mainGridStyle}">
+        <TextBlock Style="{StaticResource titleStyle}" Text="Hello world!"/>
+    </Grid>
+</Window>
