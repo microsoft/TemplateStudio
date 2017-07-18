@@ -29,6 +29,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         public override void Execute()
         {
+
             var fileName = Path.Combine(GenContext.Current.OutputPath, StringRes.SyncInstructionsFileName);
 
             var sb = new StringBuilder();
@@ -117,8 +118,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             GenContext.Current.FilesToOpen.Add(fileName);
 
-            GenContext.Current.FailedMergePostActions.Clear();
-            GenContext.Current.MergeFilesFromProject.Clear();
+            //GenContext.Current.FailedMergePostActions.Clear();
+            //GenContext.Current.MergeFilesFromProject.Clear();
         }
 
         private static string GetLinkToLocalFile(string fileName)

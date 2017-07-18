@@ -359,7 +359,7 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please follow the indications to include the new item into you project:.
+        ///   Looks up a localized string similar to Please follow the instructions to include the new item into you project:.
         /// </summary>
         internal static string SyncInstructionsDescription {
             get {
@@ -431,6 +431,19 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ### Changes required in file &apos;{0}&apos;:
+        ///
+        ///{1}
+        ///
+        ///Preview the changes in: {2}.
+        /// </summary>
+        internal static string SyncInstructionsModifiedFilesTemplate {
+            get {
+                return ResourceManager.GetString("SyncInstructionsModifiedFilesTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ## New files:.
         /// </summary>
         internal static string SyncInstructionsNewFiles {
@@ -454,6 +467,27 @@ namespace Microsoft.Templates.Core.Resources {
         internal static string SyncInstructionsTempFolder {
             get {
                 return ResourceManager.GetString("SyncInstructionsTempFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to *Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+        ///
+        ///# Steps to include new item generation
+        ///Please follow the instructions to include the new item into you project:
+        ///
+        ///You can find all referenced files in the temporary generation folder: {0}
+        ///
+        ///## New files:
+        ///Copy and add the following files to your project:
+        ///{1}
+        ///
+        ///## Modified files:
+        ///To integrate your new item with the existing project apply the following chang [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string SyncInstructionsTemplate {
+            get {
+                return ResourceManager.GetString("SyncInstructionsTemplate", resourceCulture);
             }
         }
         
@@ -585,6 +619,19 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ### Changes in file &apos;{0}&apos;:
+        ///
+        ///{1}
+        ///
+        ///See the final result: {2}.
+        /// </summary>
+        internal static string SyncSummaryModifiedFilesTemplate {
+            get {
+                return ResourceManager.GetString("SyncSummaryModifiedFilesTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ## New files:.
         /// </summary>
         internal static string SyncSummaryNewFiles {
@@ -626,6 +673,31 @@ namespace Microsoft.Templates.Core.Resources {
         internal static string SyncSummaryTempGenerationFile {
             get {
                 return ResourceManager.GetString("SyncSummaryTempGenerationFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to *Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+        ///
+        ///# Generation summary
+        ///The following changes have been incorporated into your project:
+        ///
+        ///You can find the files from the generation in the temporary generation folder: {0}
+        ///
+        ///## New files:
+        ///These files have been added to your project.
+        ///{1}
+        ///
+        ///## Modified files:
+        ///The following changes have been applied:
+        ///{2}
+        ///
+        ///## Conflicting files:
+        ///These files already exist in  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string SyncSummaryTemplate {
+            get {
+                return ResourceManager.GetString("SyncSummaryTemplate", resourceCulture);
             }
         }
         

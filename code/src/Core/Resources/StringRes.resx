@@ -258,6 +258,14 @@ Please compare and make sure everything is in the right place.</value>
     <value>To integrate your new item with the existing project apply the following changes: </value>
     <comment>s</comment>
   </data>
+  <data name="SyncInstructionsModifiedFilesTemplate" xml:space="preserve">
+    <value>### Changes required in file '{0}':
+
+{1}
+
+Preview the changes in: {2}</value>
+    <comment>{0}:FileName, {1}: Postaction Code, {2}:Preview</comment>
+  </data>
   <data name="SyncInstructionsNewFiles" xml:space="preserve">
     <value>## New files:</value>
     <comment>s</comment>
@@ -269,6 +277,32 @@ Please compare and make sure everything is in the right place.</value>
   <data name="SyncInstructionsTempFolder" xml:space="preserve">
     <value>You can find all referenced files in the temporary generation folder: {0}</value>
     <comment>s</comment>
+  </data>
+  <data name="SyncInstructionsTemplate" xml:space="preserve">
+    <value>*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+
+# Steps to include new item generation
+Please follow the instructions to include the new item into you project:
+
+You can find all referenced files in the temporary generation folder: {0}
+
+## New files:
+Copy and add the following files to your project:
+{1}
+
+## Modified files:
+To integrate your new item with the existing project apply the following changes: 
+{2}
+
+## Conflicting files:
+These files already exist in your project and were also generated as part of the new item.
+Please compare and make sure everything is in the right place:
+{3}
+
+## Unchanged files:
+These files already exist in your project, no action is necessary:
+{4}</value>
+    <comment>{0}: Temp Generation Folder, {1}:New Files, {2}: Modified Files, {3}: Conflicting Files, {4}: Unchanged files</comment>
   </data>
   <data name="SyncInstructionsUnchangedFiles" xml:space="preserve">
     <value>## Unchanged files:</value>
@@ -327,6 +361,14 @@ Please compare and make sure everything is in the right place.</value>
     <value>The following changes have been applied:</value>
     <comment>s</comment>
   </data>
+  <data name="SyncSummaryModifiedFilesTemplate" xml:space="preserve">
+    <value>### Changes in file '{0}':
+
+{1}
+
+See the final result: {2}</value>
+    <comment>{0}:FileName, {1}: Postaction Code, {2}:MergeResult</comment>
+  </data>
   <data name="SyncSummaryNewFiles" xml:space="preserve">
     <value>## New files:</value>
     <comment>s</comment>
@@ -346,6 +388,28 @@ Please compare and make sure everything is in the right place.</value>
   <data name="SyncSummaryTempGenerationFile" xml:space="preserve">
     <value>Temp</value>
     <comment>s</comment>
+  </data>
+  <data name="SyncSummaryTemplate" xml:space="preserve">
+    <value>*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+
+# Generation summary
+The following changes have been incorporated into your project:
+
+You can find the files from the generation in the temporary generation folder: {0}
+
+## New files:
+These files have been added to your project.
+{1}
+
+## Modified files:
+The following changes have been applied:
+{2}
+
+## Conflicting files:
+These files already exist in your project and were also generated as part of the new item.
+Please compare and make sure everything is in the right place.
+{3}</value>
+    <comment>{0}: Temp Generation Folder, {1}:New Files, {2}: Modified Files, {3}: Conflicting Files</comment>
   </data>
   <data name="TemplatesContentExtractedToString" xml:space="preserve">
     <value>Templates extracted to</value>

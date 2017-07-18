@@ -198,13 +198,26 @@
     <Compile Include="PostActions\Catalog\AddContextItemsToProjectPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeFailureType.cs" />
     <Compile Include="PostActions\Catalog\Merge\PostActionFormatter.cs" />
+    <Compile Include="PostActions\Catalog\NewItemGeneration\CreateTTSummaryPostAction.cs" />
+    <Compile Include="PostActions\Catalog\NewItemGeneration\CreateSummaryPostAction.cs" />
     <Compile Include="PostActions\Catalog\NewItemGeneration\CreateSyncInstructionsPostAction.cs" />
     <Compile Include="PostActions\Catalog\NewItemGeneration\CreateSyncSummaryPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\GenerateMergeInfoPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\GetMergeFilesFromProjectPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeConfiguration.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeInfo.cs" />
+    <Compile Include="PostActions\Catalog\NewItemGeneration\T4\MyLanguageTT.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyLanguageTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PostActions\Catalog\NewItemGeneration\T4\SyncSummaryTemplateCode.cs" />
     <Compile Include="PostActions\Catalog\NewItemGeneration\OpenFilesPostAction.cs" />
+    <Compile Include="PostActions\Catalog\NewItemGeneration\T4\SyncSummaryTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SyncSummaryTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Include="PostActions\Catalog\SortUsings\SortUsingsPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\IEnumerableExtensions.cs" />
     <Compile Include="PostActions\Catalog\SortUsings\UsingComparer.cs" />
@@ -404,6 +417,19 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.zh-TW.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PostActions\Catalog\NewItemGeneration\T4\MyLanguageTT.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>MyLanguageTT.cs</LastGenOutput>
+    </Content>
+    <Content Include="PostActions\Catalog\NewItemGeneration\T4\SyncSummaryTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>SyncSummaryTemplate.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

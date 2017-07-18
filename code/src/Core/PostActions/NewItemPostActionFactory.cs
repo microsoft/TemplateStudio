@@ -49,7 +49,9 @@ namespace Microsoft.Templates.Core.PostActions
 
             postActions.Add(new CopyFilesToProjectPostAction(result));
             postActions.Add(new AddContextItemsToProjectPostAction());
+            postActions.Add(new CreateTTSummaryPostAction(result));
             postActions.Add(new CreateSyncSummaryPostAction(result));
+            postActions.Add(new CreateSummaryPostAction(result));
             postActions.Add(new OpenFilesPostAction());
 
             return postActions;
@@ -60,6 +62,7 @@ namespace Microsoft.Templates.Core.PostActions
             var postActions = new List<PostAction>();
 
             postActions.Add(new CreateSyncStepsInstructionsPostAction(result));
+            postActions.Add(new CreateSummaryPostAction(result));
             postActions.Add(new OpenFilesPostAction());
 
             return postActions;
