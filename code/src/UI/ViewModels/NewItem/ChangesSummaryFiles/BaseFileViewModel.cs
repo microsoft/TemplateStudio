@@ -124,7 +124,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private string GetIcon()
         {
-            // TODO: [ML] handle VB & vbproj here
             switch (FileExtension)
             {
                 case FileExtension.CSharp:
@@ -141,6 +140,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     return "/Microsoft.Templates.UI;component/Assets/FileExtensions/Csproj.png";
                 case FileExtension.Json:
                     return "/Microsoft.Templates.UI;component/Assets/FileExtensions/Json.png";
+                case FileExtension.Vb:
+                    return "/Microsoft.Templates.UI;component/Assets/FileExtensions/VisualBasic.png";
+                case FileExtension.Vbproj:
+                    return "/Microsoft.Templates.UI;component/Assets/FileExtensions/VBProj.png";
                 default:
                     return "/Microsoft.Templates.UI;component/Assets/FileExtensions/DefaultFile.png";
             }
