@@ -42,10 +42,9 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         public List<string> FilesToOpen { get; } = new List<string>();
 
 
-        [Theory, MemberData("GetAllLanguages"), Trait("Type", "ProjectGeneration")]
-        public void Execute_Ok(string language)
+        [Fact, Trait("Type", "ProjectGeneration")]
+        public void Execute_Ok()
         {
-            // [ML] GenContext.Bootstrap(new UnitTestsTemplatesSource(), new FakeGenShell(), language);
             var projectName = "test";
 
             ProjectName = projectName;
@@ -65,12 +64,6 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Assert.True(File.Exists(certFilePath));
 
             File.Delete(certFilePath);
-        }
-
-        public static IEnumerable<object[]> GetAllLanguages()
-        {
-            yield return new object[] { Language.CSharp };
-            yield return new object[] { Language.VisualBasic };
         }
     }
 }
