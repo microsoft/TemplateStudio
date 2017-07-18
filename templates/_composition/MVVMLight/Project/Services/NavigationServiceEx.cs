@@ -12,6 +12,7 @@ namespace Param_RootNamespace.Services
         private readonly Dictionary<string, Type> _pages = new Dictionary<string, Type>();
 
         private Frame _frame;
+
         public Frame Frame
         {
             get
@@ -23,6 +24,7 @@ namespace Param_RootNamespace.Services
 
                 return _frame;
             }
+
             set
             {
                 _frame = value;
@@ -30,9 +32,11 @@ namespace Param_RootNamespace.Services
         }
 
         public bool CanGoBack => Frame.CanGoBack;
+
         public bool CanGoForward => Frame.CanGoForward;
 
         public void GoBack() => Frame.GoBack();
+
         public void GoForward() => Frame.GoForward();
 
         public bool Navigate(string pageKey, object parameter = null, NavigationTransitionInfo infoOverride = null)
@@ -43,6 +47,7 @@ namespace Param_RootNamespace.Services
                 {
                     throw new ArgumentException($"Page not found: {pageKey}. Did you forget to call NavigationService.Configure?", "pageKey");
                 }
+
                 var navigationResult = Frame.Navigate(_pages[pageKey], parameter, infoOverride);
                 return navigationResult;
             }

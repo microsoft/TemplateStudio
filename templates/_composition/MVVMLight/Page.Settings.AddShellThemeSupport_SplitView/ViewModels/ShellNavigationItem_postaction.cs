@@ -19,7 +19,13 @@
 
             //^^
             //{[{
-            Services.ThemeSelectorService.OnThemeChanged += (s, e) => { if (!IsSelected) SelectedForeground = GetStandardTextColorBrush(); };
+            Services.ThemeSelectorService.OnThemeChanged += (s, e) =>
+            {
+                if (!IsSelected)
+                {
+                    SelectedForeground = GetStandardTextColorBrush();
+                }
+            };
             //}]}
         }
 
@@ -31,6 +37,12 @@
 
             //^^
             //{[{
-            Services.ThemeSelectorService.OnThemeChanged += (s, e) => { if (!IsSelected) SelectedForeground = GetStandardTextColorBrush(); };
+            Services.ThemeSelectorService.OnThemeChanged += (s, e) =>
+            {
+                if (!IsSelected)
+                {
+                    SelectedForeground = GetStandardTextColorBrush();
+                }
+            };
             //}]}
         }

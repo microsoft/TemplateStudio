@@ -3,7 +3,8 @@ using System.Collections.Concurrent;
 
 namespace wts.DefaultProject.Helpers
 {
-    internal static class Singleton<T> where T : new()
+    internal static class Singleton<T>
+        where T : new()
     {
         private static ConcurrentDictionary<Type, T> _instances = new ConcurrentDictionary<Type, T>();
 
