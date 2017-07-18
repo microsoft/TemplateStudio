@@ -4,7 +4,6 @@
   "name": "RightClickTemplate",
   "groupIdentity": "Microsoft.UWPTemplates.Test.RightClickTemplate",
   "identity": "Microsoft.UWPTemplates.Test.RightClickTemplate.CSharp",
-  "shortName": "feature-test",
   "tags": {
     "language": "C#",
     "type": "item",
