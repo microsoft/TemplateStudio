@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:services="clr-namespace:Microsoft.Templates.UI.Services">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Colors.xaml" />
@@ -18,34 +19,58 @@
         <Setter Property="FontWeight" Value="Regular"/>
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="UIBaseText" BasedOn="{StaticResource UIBase}">
+    <Style TargetType="TextBlock" x:Key="UIBaseBlack" BasedOn="{StaticResource UIBase}">
         <Setter Property="Foreground" Value="{StaticResource UIBlack}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="UIBaseWhite" BasedOn="{StaticResource UIBase}">
+        <Setter Property="Foreground" Value="{StaticResource UIWhite}"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="UIBaseMiddleDarkGray" BasedOn="{StaticResource UIBase}">
+        <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkGray}"/>
+    </Style>
+    
+    <Style TargetType="TextBlock" x:Key="UIBaseDarkGray" BasedOn="{StaticResource UIBase}">
+        <Setter Property="Foreground" Value="{StaticResource UIDarkGray}"/>
+    </Style>
+    
+    <Style TargetType="TextBlock" x:Key="UIBaseGray" BasedOn="{StaticResource UIBase}">
+        <Setter Property="Foreground" Value="{StaticResource UIGray}"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="UIBaseRed" BasedOn="{StaticResource UIBase}">
+        <Setter Property="Foreground" Value="{StaticResource UIRed}"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="UIBaseBlue" BasedOn="{StaticResource UIBase}">
+        <Setter Property="Foreground" Value="{StaticResource UIBlue}"/>
     </Style>
 
     <!--Global Text Styles-->
-    <Style TargetType="TextBlock" x:Key="TextTitleStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="TextTitleStyle" BasedOn="{StaticResource UIBaseWhite}">
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Foreground" Value="{StaticResource UIWhite}"/>
         <Setter Property="FontSize" Value="{StaticResource UI_XXL_FontSize}"/>
     </Style>
-    <Style TargetType="TextBlock" x:Key="TextMainLoadingStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="TextMainLoadingStyle" BasedOn="{StaticResource UIBaseMiddleDarkGray}">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="{StaticResource UI_XL_FontSize}" />
-        <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkGray}" />
     </Style>
-    <Style TargetType="TextBlock" x:Key="TextBottomBarStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="TextBottomBarStyle" BasedOn="{StaticResource UIBaseBlack}">
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
     <!--Project Setup and Project Templates Text Styles-->
-    <Style TargetType="TextBlock" x:Key="TextGroupTemplateItemsHeaderStyle" BasedOn="{StaticResource UIBaseText}">
-        <Setter Property="Foreground" Value="{StaticResource UIDarkGray}" />
+    <Style TargetType="TextBlock" x:Key="TextGroupTemplateItemsHeaderStyle" BasedOn="{StaticResource UIBaseDarkGray}">
         <Setter Property="FontSize" Value="{StaticResource UI_L_FontSize}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="TextSubGroupTemplateItemsHeaderStyle" BasedOn="{StaticResource UIBaseText}">
-        <Setter Property="Foreground" Value="{StaticResource UIDarkGray}" />
+    <Style TargetType="TextBlock" x:Key="TextSubGroupTemplateItemsHeaderStyle" BasedOn="{StaticResource UIBaseDarkGray}">
         <Setter Property="FontSize" Value="{StaticResource UI_M_FontSize}" />
         <Setter Property="Margin" Value="{StaticResource Margin_M_Top}" />
     </Style>
@@ -54,37 +79,32 @@
         <Setter Property="FontWeight" Value="SemiBold" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="TextTemplateItemSubtitleStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="TextTemplateItemSubtitleStyle" BasedOn="{StaticResource UIBaseBlack}">
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="TextTemplateItemAuthorStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="TextTemplateItemAuthorStyle" BasedOn="{StaticResource UIBaseMiddleDarkGray}">
         <Setter Property="FontSize" Value="{StaticResource UI_XS_FontSize}" />
-        <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkGray}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="TextEditTemplateErrorStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="TextEditTemplateErrorStyle" BasedOn="{StaticResource UIBaseRed}">
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
-        <Setter Property="Foreground" Value="{StaticResource UIRed}" />
     </Style>
-    
-    <Style TargetType="TextBlock" x:Key="TextEditTemplateDescriptionStyle" BasedOn="{StaticResource UIBaseText}">
+
+    <Style TargetType="TextBlock" x:Key="TextEditTemplateDescriptionStyle" BasedOn="{StaticResource UIBaseBlack}">
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
     </Style>
 
     <!--Summary Text Styles-->
-    <Style TargetType="TextBlock" x:Key="TextSummaryTitle" BasedOn="{StaticResource UIBaseText}">
-        <Setter Property="Foreground" Value="{StaticResource UIBlue}" />
+    <Style TargetType="TextBlock" x:Key="TextSummaryTitle" BasedOn="{StaticResource UIBaseBlue}">
         <Setter Property="FontSize" Value="{StaticResource UI_L_FontSize}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="TextSummaryGroupHeader" BasedOn="{StaticResource UIBaseText}">
-        <Setter Property="Foreground" Value="{StaticResource UIDarkGray}" />
+    <Style TargetType="TextBlock" x:Key="TextSummaryGroupHeader" BasedOn="{StaticResource UIBaseDarkGray}">
         <Setter Property="FontSize" Value="{StaticResource UI_L_FontSize}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="TextSummaryIconPoint" BasedOn="{StaticResource UIBaseText}">
-        <Setter Property="Foreground" Value="{StaticResource UIBlack}" />
+    <Style TargetType="TextBlock" x:Key="TextSummaryIconPoint" BasedOn="{StaticResource UIBaseBlack}">
         <Setter Property="FontSize" Value="{StaticResource UI_XS_FontSize}" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="TextAlignment" Value="Center" />
@@ -93,27 +113,22 @@
         <Setter Property="Text" Value="&#xE1F5;"/>
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="TextSummaryItemStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="TextSummaryItemStyle" BasedOn="{StaticResource UIBaseBlack}">
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
-        <Setter Property="Foreground" Value="{StaticResource UIBlack}" />
-        <!--Foreground is changed from ViewModel changing from UIBlue to UIBlack-->
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="TextSummaryAuthorStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="TextSummaryAuthorStyle" BasedOn="{StaticResource UIBaseGray}">
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
-        <Setter Property="Foreground" Value="{StaticResource UIGray}" />
-        <!--Foreground is changed from ViewModel changing from UIBlue to UIGray-->
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="TextSummaryTermsStyle" BasedOn="{StaticResource UIBaseText}">        
+    <Style TargetType="TextBlock" x:Key="TextSummaryTermsStyle" BasedOn="{StaticResource UIBaseBlack}">        
         <Setter Property="FontSize" Value="{StaticResource UI_XS_FontSize}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="TextSummaryLicenseStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="TextSummaryLicenseStyle" BasedOn="{StaticResource UIBaseBlue}">
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
         <Setter Property="VerticalAlignment" Value="Bottom" />
-        <Setter Property="Foreground" Value="{StaticResource UIBlue}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkBlue}" />
@@ -124,41 +139,40 @@
 
 
     <!--Information Window-->
-    <Style TargetType="TextBlock" x:Key="TextInformationPropertyTitle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="TextInformationPropertyTitle" BasedOn="{StaticResource UIBaseBlack}">
         <Setter Property="FontWeight" Value="SemiBold" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="TextInformationPropertyValue" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="TextInformationPropertyValue" BasedOn="{StaticResource UIBaseBlack}">
         <Setter Property="MaxHeight" Value="20" />
     </Style>
 
     <!--Wizard Status-->
-    <Style TargetType="TextBlock" x:Key="TextWizardInformationStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="TextWizardInformationStyle" BasedOn="{StaticResource UIBaseMiddleDarkGray}">
         <Setter Property="FontSize" Value="{StaticResource UI_XS_FontSize}" />
-        <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkGray}" />
     </Style>
-    <Style TargetType="TextBlock" x:Key="TextWizardStatusStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="TextWizardStatusStyle" BasedOn="{StaticResource UIBaseBlack}">
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
     
     <!--OverlayBox-->
-    <Style TargetType="TextBlock" x:Key="TextOverlayBoxTitleStyle" BasedOn="{StaticResource TextSummaryLicenseStyle}">
-        <Setter Property="Foreground" Value="{StaticResource UIWhite}"/>
+    <Style TargetType="TextBlock" x:Key="TextOverlayBoxTitleStyle" BasedOn="{StaticResource UIBaseWhite}">
+        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="TextOverlayBoxDescriptionStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="TextOverlayBoxDescriptionStyle" BasedOn="{StaticResource UIBaseBlack}">
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}"/>
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="TextOverlayBoxImportantInformationStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="TextOverlayBoxImportantInformationStyle" BasedOn="{StaticResource UIBaseBlack}">
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}"/>
     </Style>
 
 
     <!--Error-->
-    <Style TargetType="TextBlock" x:Key="TextErrorTitleStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="TextErrorTitleStyle" BasedOn="{StaticResource UIBaseBlack}">
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
         <Setter Property="FontWeight" Value="SemiBold" />
     </Style>
@@ -176,21 +190,21 @@
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
-    <Style TargetType="TextBlock" x:Key="ChangesSummaryCodeLineStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="ChangesSummaryCodeLineStyle" BasedOn="{StaticResource UIBaseBlack}">
         <Setter Property="FontFamily" Value="Consolas"/>
     </Style>
-    <Style TargetType="TextBlock" x:Key="ChangesSummaryDetailTitleStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="ChangesSummaryDetailTitleStyle" BasedOn="{StaticResource UIBaseBlack}">
         <Setter Property="FontSize" Value="{StaticResource UI_L_FontSize}"/>
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
-    <Style TargetType="TextBlock" x:Key="ChangesSummaryDetailDescriptionStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="ChangesSummaryDetailDescriptionStyle" BasedOn="{StaticResource UIBaseBlack}">
     </Style>
     
     <!--Project Configuration-->
-    <Style TargetType="TextBlock" x:Key="ProjectConfigurationDescriptionStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="ProjectConfigurationDescriptionStyle" BasedOn="{StaticResource UIBaseBlack}">
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}"/>
     </Style>
-    <Style TargetType="TextBlock" x:Key="ProjectConfigurationComboBoxHeaderStyle" BasedOn="{StaticResource UIBaseText}">
+    <Style TargetType="TextBlock" x:Key="ProjectConfigurationComboBoxHeaderStyle" BasedOn="{StaticResource UIBaseBlack}">
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>

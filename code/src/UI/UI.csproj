@@ -288,6 +288,7 @@
     <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="Generation\NewProjectGenController.cs" />
     <Compile Include="Generation\NewItemGenController.cs" />
+    <Compile Include="Services\SystemService.cs" />
     <Compile Include="TemplateSelectors\FileExtensionTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\FileStatusTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\StatusBoxTemplateSelector.cs" />

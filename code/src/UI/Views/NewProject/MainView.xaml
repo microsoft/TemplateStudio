@@ -142,7 +142,7 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid>
+    <Grid Style="{StaticResource MainGrid}">
         <Grid Panel.ZIndex="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
