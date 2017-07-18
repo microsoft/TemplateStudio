@@ -23,6 +23,7 @@ namespace Microsoft.Templates.Test.Artifacts
 {
     public class FakeGenShell : GenShell
     {
+        private readonly string _language;
         private readonly Action<string> _changeStatus;
         private readonly Action<string> _addLog;
         private readonly Window _owner;
@@ -39,8 +40,9 @@ namespace Microsoft.Templates.Test.Artifacts
             }
         }
 
-        public FakeGenShell(Action<string> changeStatus = null, Action<string> addLog = null, Window owner = null)
+        public FakeGenShell(string language, Action<string> changeStatus = null, Action<string> addLog = null, Window owner = null)
         {
+            _language = language;
             _changeStatus = changeStatus;
             _addLog = addLog;
             _owner = owner;
@@ -120,8 +122,7 @@ namespace Microsoft.Templates.Test.Artifacts
 
         public override string GetActiveProjectLanguage()
         {
-            // TODO: [ML] Need to work out how to return the correct language here. If needed at all.
-            return "C#";
+            return _language;
         }
 
         protected override string GetSelectedItemPath()

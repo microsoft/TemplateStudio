@@ -27,7 +27,7 @@ namespace Microsoft.Templates.Core.Test
         {
             var source = new UnitTestsTemplatesSource();
 
-            GenContext.Bootstrap(source, new FakeGenShell(), language);
+            GenContext.Bootstrap(source, new FakeGenShell(language), language);
 
             // [ML] Repository = new TemplatesRepository(source, Version.Parse("0.0.0.0"), language);
             GenContext.ToolBox.Repo.SynchronizeAsync().Wait();

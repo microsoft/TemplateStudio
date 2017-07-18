@@ -425,7 +425,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             GenContext.Bootstrap(
                 new LocalTemplatesSource(WizardVersion, TemplatesVersion, forceLocalTemplatesRefresh),
-                new FakeGenShell(msg => SetState(msg), l => AddLog(l), _host),
+                new FakeGenShell(_language, msg => SetState(msg), l => AddLog(l), _host),
                 new Version(WizardVersion),
                 _language);
 

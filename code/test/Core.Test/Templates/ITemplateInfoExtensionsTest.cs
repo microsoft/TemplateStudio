@@ -340,7 +340,7 @@ namespace Microsoft.Templates.Core.Test
         private void SetUpFixtureForTesting(string language)
         {
             _fixture.InitializeFixture(language);
-            GenContext.Bootstrap(new UnitTestsTemplatesSource(), new FakeGenShell(), language);
+            GenContext.Bootstrap(new UnitTestsTemplatesSource(), new FakeGenShell(language), language);
         }
 
         public static IEnumerable<object[]> GetAllLanguages()
