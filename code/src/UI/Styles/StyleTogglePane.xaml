@@ -11,17 +11,6 @@
     <Style x:Key="TogglePaneStyle" TargetType="controls:TogglePane">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
-        <Setter Property="Focusable" Value="True" />
-        <Setter Property="FocusVisualStyle">
-            <Setter.Value>
-                <Style>
-                    <Setter Property="Control.Template">
-                        <Setter.Value>
-                            <ControlTemplate/>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Focusable" Value="False" />
     </Style>
 </ResourceDictionary>

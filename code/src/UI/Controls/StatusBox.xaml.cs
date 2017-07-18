@@ -66,6 +66,8 @@ namespace Microsoft.Templates.UI.Controls
         private void OnHideTimerTick(object sender, EventArgs e)
         {
             this.FadeOut();
+            Panel.SetZIndex(this, 0);
+            closeButton.Focusable = false;
             _hideTimer.Stop();
         }
 
