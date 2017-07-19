@@ -43,7 +43,7 @@ Namespace Services
 
         Public Shared Function Navigate(pageType As Type, Optional parameter As Object = Nothing, Optional infoOverride As NavigationTransitionInfo = Nothing) As Boolean
             ' Don't open the same page multiple times
-            If Frame.Content Is Nothing OrElse Not Frame.Content.GetType().Equals(pageType.GetType()) Then
+            If Frame.Content Is Nothing OrElse Not Frame.Content.GetType() Is pageType Then
                 Return Frame.Navigate(pageType, parameter, infoOverride)
             Else
                 Return False
