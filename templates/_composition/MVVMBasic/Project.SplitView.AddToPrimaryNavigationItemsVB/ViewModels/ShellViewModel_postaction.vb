@@ -1,4 +1,8 @@
-﻿'{[{
+﻿'{**
+'This code block adds the wts.ItemNamePage to the _primaryItems of the ShellViewModel.
+'**}
+
+'{[{
 Imports Param_ItemNamespace.Views
 '}]}
 Namespace ViewModels

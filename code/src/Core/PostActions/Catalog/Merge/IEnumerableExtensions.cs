@@ -24,7 +24,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         internal const string MacroStartGroup = "{[{";
         internal const string MarcoEndGroup = "}]}";
 
-        // TODO: [ML] need to add comments to existing VB merge files
         internal const string MacroStartDocumentation = "{**";
         internal const string MacroEndDocumentation = "**}";
 

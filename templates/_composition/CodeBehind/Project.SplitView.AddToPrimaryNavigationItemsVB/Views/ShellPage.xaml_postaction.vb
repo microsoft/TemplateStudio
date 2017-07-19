@@ -1,4 +1,8 @@
-﻿Namespace Views
+﻿'{**
+'This code block adds the wts.ItemNamePage to the _primaryItems of the ShellPage.
+'**}
+
+Namespace Views
     Public NotInheritable Partial Class ShellPage
         Inherits Page
         Implements INotifyPropertyChanged
