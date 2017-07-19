@@ -45,7 +45,7 @@ namespace Microsoft.Templates.VsEmulator.LoadProject
 
         public void Initialize(string solutionPath)
         {
-            if (!String.IsNullOrEmpty(solutionPath))
+            if (!string.IsNullOrEmpty(solutionPath))
             {
                 SolutionPath = solutionPath;
             }

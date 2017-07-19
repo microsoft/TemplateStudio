@@ -16,8 +16,6 @@ using System.IO;
 using System.Linq;
 
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI;
 
 using Xunit;

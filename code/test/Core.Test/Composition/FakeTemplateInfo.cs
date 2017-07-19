@@ -33,25 +33,25 @@ namespace Microsoft.Templates.Core.Test.Composition
             _tags.Add(key, cacheTag);
         }
 
-        public string Author => String.Empty;
+        public string Author => string.Empty;
 
-        public string Description => String.Empty;
+        public string Description => string.Empty;
 
         public IReadOnlyList<string> Classifications => null;
 
-        public string DefaultName => String.Empty;
+        public string DefaultName => string.Empty;
 
         public Guid GeneratorId => Guid.Empty;
 
-        public string ShortName => String.Empty;
+        public string ShortName => string.Empty;
 
         public Guid ConfigMountPointId => Guid.Empty;
 
-        public string ConfigPlace => String.Empty;
+        public string ConfigPlace => string.Empty;
 
         public Guid LocaleConfigMountPointId => Guid.Empty;
 
-        public string LocaleConfigPlace => String.Empty;
+        public string LocaleConfigPlace => string.Empty;
 
         public int Precedence => -1;
             
@@ -61,9 +61,9 @@ namespace Microsoft.Templates.Core.Test.Composition
 
         public Guid HostConfigMountPointId => Guid.Empty;
 
-        public string HostConfigPlace => String.Empty;
+        public string HostConfigPlace => string.Empty;
 
-        public string ThirdPartyNotices => String.Empty;
+        public string ThirdPartyNotices => string.Empty;
 
         public IReadOnlyDictionary<string, IBaselineInfo> BaselineInfo => null;
     }

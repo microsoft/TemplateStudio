@@ -10,6 +10,8 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System.Collections.Generic;
+
 namespace Microsoft.Templates.Core
 {
     public static class Language
@@ -17,5 +19,11 @@ namespace Microsoft.Templates.Core
         public const string CSharp = "C#";
 
         public const string VisualBasic = "VisualBasic";
+
+        public static IEnumerable<string> GetAllLanguages()
+        {
+            yield return Language.CSharp;
+            yield return Language.VisualBasic;
+        }
     }
 }

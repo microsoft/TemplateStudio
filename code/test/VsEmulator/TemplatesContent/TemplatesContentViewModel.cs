@@ -56,15 +56,15 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
             set => SetProperty(ref _templatesLocation, value);
         }
 
-        private String _useWizardVersion;
-        public String UseWizardVersion
+        private string _useWizardVersion;
+        public string UseWizardVersion
         {
             get => _useWizardVersion;
             set => SetProperty(ref _useWizardVersion, value);
         }
 
-        private String _useTemplatesVersion;
-        public String UseTemplatesVersion
+        private string _useTemplatesVersion;
+        public string UseTemplatesVersion
         {
             get => _useTemplatesVersion;
             set => SetProperty(ref _useTemplatesVersion, value);

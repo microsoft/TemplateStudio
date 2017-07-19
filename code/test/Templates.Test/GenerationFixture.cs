@@ -81,7 +81,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetProjectTemplates()
         {
-            foreach (var language in GetAllLanguages())
+            foreach (var language in Language.GetAllLanguages())
             {
                 InitializeTemplatesForLanguage(new LocalTemplatesSource(), language);
 
@@ -107,7 +107,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetPageAndFeatureTemplates()
         {
-            foreach (var language in GetAllLanguages())
+            foreach (var language in Language.GetAllLanguages())
             {
                 InitializeTemplatesForLanguage(new LocalTemplatesSource(), language);
 
@@ -143,12 +143,6 @@ namespace Microsoft.Templates.Test
         public static IEnumerable<ITemplateInfo> GetTemplates(string framework)
         {
             return Templates.Where(t => t.GetFrameworkList().Contains(framework));
-        }
-
-        public static IEnumerable<string> GetAllLanguages()
-        {
-            yield return Language.CSharp;
-            yield return Language.VisualBasic;
         }
 
         public static UserSelection SetupProject(string projectType, string framework, string language)
@@ -231,7 +225,7 @@ namespace Microsoft.Templates.Test
             var outputLines = File.ReadAllLines(filePath);
             var errorLines = outputLines.Where(l => re.IsMatch(l));
 
-            return errorLines.Count() > 0 ? errorLines.Aggregate((i, j) => i + Environment.NewLine + j) : String.Empty;
+            return errorLines.Any() ? errorLines.Aggregate((i, j) => i + Environment.NewLine + j) : string.Empty;
         }
 
         public static string GetDefaultName(ITemplateInfo template)
