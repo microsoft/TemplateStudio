@@ -12,6 +12,11 @@
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="Background" Value="{StaticResource UIBlue}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="Grid" x:Key="ErrorGridTitleStyle">

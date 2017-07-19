@@ -183,10 +183,9 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Foreground="{Binding ChangesSummary.SelectedFile.CircleColor}" Text="{Binding ChangesSummary.SelectedFile.DetailTitle}" Style="{StaticResource TextSummaryTitle}" />
-
+                        <!--MVEGACA-->
                         <Button 
-                            Grid.Column="1" VerticalAlignment="Bottom"
-                            Style="{StaticResource SettingsButtonStyle}" 
+                            Grid.Column="1" VerticalAlignment="Bottom"                            
                             Command="{Binding ChangesSummary.MoreDetailsCommand}" Focusable="True" 
                             ToolTip="{x:Static res:StringRes.LearnMore}">
                             <Button.Content>

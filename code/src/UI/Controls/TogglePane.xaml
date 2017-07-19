@@ -50,7 +50,7 @@
                                 <ColumnDefinition Width="16"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Button x:Name="dragAndDropButton" Margin="{StaticResource Margin_M_Left}" Style="{StaticResource SettingsButtonStyle}" Focusable="True" Visibility="{TemplateBinding AllowDragAndDrop, Converter={StaticResource BoolToVisibilityConverter}}" Opacity="0" ToolTip="{x:Static res:StringRes.SummaryDragAndDrop}">
+                            <Button x:Name="dragAndDropButton" Margin="{StaticResource Margin_M_Left}" Style="{StaticResource DragAndDropTogglePaneButtonStyle}" Visibility="{TemplateBinding AllowDragAndDrop, Converter={StaticResource BoolToVisibilityConverter}}" Opacity="0" ToolTip="{x:Static res:StringRes.SummaryDragAndDrop}">
                                 <Button.Content>
                                     <TextBlock Text="&#xE700;" FontSize="12" Style="{StaticResource IconButtonTextStyle}" />
                                 </Button.Content>

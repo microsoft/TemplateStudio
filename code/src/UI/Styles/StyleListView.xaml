@@ -86,35 +86,60 @@
                                     <ContentPresenter/>
                                 </Border>
                                 <ControlTemplate.Triggers>
-                                    <MultiTrigger>
-                                        <MultiTrigger.Conditions>
-                                            <Condition Property="IsSelected" Value="True"/>
-                                            <Condition Property="IsMouseOver" Value="True"/>
-                                        </MultiTrigger.Conditions>
-                                        <MultiTrigger.Setters>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True"/>
+                                            <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
+                                            <Condition Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="False"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <MultiDataTrigger.Setters>
                                             <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkBlue}"/>
                                             <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{StaticResource UIMiddleDarkBlue}"/>
-                                        </MultiTrigger.Setters>
-                                    </MultiTrigger>
-                                    <MultiTrigger>
-                                        <MultiTrigger.Conditions>
-                                            <Condition Property="IsSelected" Value="True"/>
-                                            <Condition Property="IsMouseOver" Value="False"/>
-                                        </MultiTrigger.Conditions>
-                                        <MultiTrigger.Setters>
+                                        </MultiDataTrigger.Setters>
+                                    </MultiDataTrigger>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True"/>
+                                            <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="False"/>
+                                            <Condition Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="False"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <MultiDataTrigger.Setters>
                                             <Setter Property="Foreground" Value="{StaticResource UIBlue}"/>
                                             <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{StaticResource UIBlue}"/>
-                                        </MultiTrigger.Setters>
-                                    </MultiTrigger>
-                                    <MultiTrigger>
-                                        <MultiTrigger.Conditions>
-                                            <Condition Property="IsSelected" Value="False"/>
-                                            <Condition Property="IsMouseOver" Value="True"/>
-                                        </MultiTrigger.Conditions>
-                                        <MultiTrigger.Setters>
+                                        </MultiDataTrigger.Setters>
+                                    </MultiDataTrigger>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="False"/>
+                                            <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
+                                            <Condition Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="False"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <MultiDataTrigger.Setters>
                                             <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{StaticResource UIMiddleDarkGray}"/>
-                                        </MultiTrigger.Setters>
-                                    </MultiTrigger>
+                                        </MultiDataTrigger.Setters>
+                                    </MultiDataTrigger>
+
+                                    <!--IsHighContrast-->
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True"/>
+                                            <Condition Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <MultiDataTrigger.Setters>
+                                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.InfoTextBrushKey}}"/>
+                                            <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{DynamicResource {x:Static SystemColors.InfoTextBrushKey}}"/>
+                                        </MultiDataTrigger.Setters>
+                                    </MultiDataTrigger>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="False"/>
+                                            <Condition Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <MultiDataTrigger.Setters>
+                                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                                            <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                                        </MultiDataTrigger.Setters>
+                                    </MultiDataTrigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
                         </Setter.Value>

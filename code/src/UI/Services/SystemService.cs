@@ -33,7 +33,7 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        public static readonly DependencyProperty IsHighContrastProperty = DependencyProperty.Register("IsHighContrast", typeof(bool), typeof(SystemService), new PropertyMetadata(false));
+        public static readonly DependencyProperty IsHighContrastProperty = DependencyProperty.Register("IsHighContrast", typeof(bool), typeof(SystemService), new PropertyMetadata(SystemParameters.HighContrast));
         public bool IsHighContrast
         {
             get => (bool)GetValue(IsHighContrastProperty);

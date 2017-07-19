@@ -30,18 +30,38 @@
 
     <Style TargetType="TextBlock" x:Key="UIBaseWhite" BasedOn="{StaticResource UIBase}">
         <Setter Property="Foreground" Value="{StaticResource UIWhite}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="TextBlock" x:Key="UIBaseMiddleDarkGray" BasedOn="{StaticResource UIBase}">
         <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkGray}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
     
     <Style TargetType="TextBlock" x:Key="UIBaseDarkGray" BasedOn="{StaticResource UIBase}">
         <Setter Property="Foreground" Value="{StaticResource UIDarkGray}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
     
     <Style TargetType="TextBlock" x:Key="UIBaseGray" BasedOn="{StaticResource UIBase}">
         <Setter Property="Foreground" Value="{StaticResource UIGray}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="TextBlock" x:Key="UIBaseRed" BasedOn="{StaticResource UIBase}">
@@ -49,6 +69,11 @@
     </Style>
     <Style TargetType="TextBlock" x:Key="UIBaseBlue" BasedOn="{StaticResource UIBase}">
         <Setter Property="Foreground" Value="{StaticResource UIBlue}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.InfoTextBrushKey}}" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <!--Global Text Styles-->
@@ -131,7 +156,6 @@
         <Setter Property="VerticalAlignment" Value="Bottom" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkBlue}" />
                 <Setter Property="TextDecorations" Value="Underline"/>
             </Trigger>
         </Style.Triggers>

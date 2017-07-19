@@ -90,7 +90,7 @@
                                 </Grid>
 
                                 <Grid Grid.Column="1" Visibility="{Binding AddingVisibility}">
-                                    <Button Style="{StaticResource AddTemplateInfoButtonStyle}" Command="{Binding AddItemCommand}" CommandParameter="{Binding}" Visibility="{Binding NoEditingContentVisibility}">
+                                    <Button Style="{StaticResource AddTemplateInfoButtonStyle}" Command="{Binding AddItemCommand}" CommandParameter="{Binding}" Visibility="{Binding NoEditingContentVisibility}" VerticalAlignment="Center" HorizontalAlignment="Right">
                                         <Button.Content>
                                             <Grid>
                                                 <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource IconButtonTextStyle}" />
@@ -98,7 +98,7 @@
                                             </Grid>
                                         </Button.Content>
                                     </Button>
-                                    <Button Style="{StaticResource SaveTemplateInfoButtonStyle}" Command="{Binding SaveItemCommand}" CommandParameter="{Binding}" IsEnabled="{Binding IsValidName}" Visibility="{Binding EditingContentVisibility}" Tag="AllowCloseEdition">
+                                    <Button Style="{StaticResource SaveTemplateInfoButtonStyle}" Command="{Binding SaveItemCommand}" CommandParameter="{Binding}" IsEnabled="{Binding IsValidName}" Visibility="{Binding EditingContentVisibility}" Tag="AllowCloseEdition" VerticalAlignment="Center" HorizontalAlignment="Right">
                                         <Button.Content>
                                             <Grid>
                                                 <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource IconButtonTextStyle}" />
