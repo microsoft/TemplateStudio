@@ -28,9 +28,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         internal const string MacroStartDocumentation = "{**";
         internal const string MacroEndDocumentation = "**}";
 
-        // TODO: [ML] ensure these work with VB & C# comments
-        private const string MacroStartDelete = "//{--{";
-        private const string MacroEndDelete = "//}--}";
+        private const string MacroStartDelete = "{--{";
+        private const string MacroEndDelete = "}--}";
 
         public static int SafeIndexOf(this IEnumerable<string> source, string item, int skip)
         {
@@ -142,8 +141,21 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             if (startIndex > 0 && endIndex > startIndex)
             {
-                var toRemove = mergeString.Substring(startIndex + MacroStartDelete.Length,
-                    endIndex - startIndex - MacroStartDelete.Length);
+                int commentIndicatorLength;
+
+                if (mergeString[startIndex - 1] == '\'')
+                {
+                    // VB Code so account for single comment indicator character
+                    commentIndicatorLength = 1;
+                }
+                else
+                {
+                    // C# Code so account for two character comment indicator
+                    commentIndicatorLength = 2;
+                }
+
+                var toRemove = mergeString.Substring((startIndex - commentIndicatorLength) + (MacroStartDelete.Length + commentIndicatorLength),
+                    (endIndex - commentIndicatorLength) - (startIndex - commentIndicatorLength) - (MacroStartDelete.Length + commentIndicatorLength));
 
                 sourceString = sourceString.Replace(toRemove, string.Empty);
             }
@@ -163,14 +175,27 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             if (startIndex > 0 && endIndex > startIndex)
             {
-                var lengthOfDeletion = endIndex - startIndex + MacroStartDelete.Length;
+                int commentIndicatorLength;
 
+                if (mergeString[startIndex - 1] == '\'')
+                {
+                    // VB Code so account for single comment indicator character
+                    commentIndicatorLength = 1;
+                }
+                else
+                {
+                    // C# Code so account for two character comment indicator
+                    commentIndicatorLength = 2;
+                }
+
+                var lengthOfDeletion = endIndex - startIndex + MacroStartDelete.Length + commentIndicatorLength;
+            
                 if (mergeString.Substring(startIndex + lengthOfDeletion).StartsWith(Environment.NewLine))
                 {
                     lengthOfDeletion += Environment.NewLine.Length;
                 }
 
-                mergeString = mergeString.Remove(startIndex, lengthOfDeletion);
+                mergeString = mergeString.Remove(startIndex - commentIndicatorLength, lengthOfDeletion);
             }
 
             return mergeString.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
