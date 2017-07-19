@@ -215,6 +215,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
+        public override string ToString()
+        {
+            return $"{Name} - {Description}";
+        }
+
         private void ShowItemInfo()
         {
             MainViewModel.Current.InfoShapeVisibility = Visibility.Visible;
@@ -222,11 +227,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
             infoView.ShowDialog();
             MainViewModel.Current.InfoShapeVisibility = Visibility.Collapsed;
-        }
-
-        public override string ToString()
-        {
-            return Name;
         }
     }
 }

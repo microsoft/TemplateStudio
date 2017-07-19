@@ -133,7 +133,7 @@
             <DataTemplate x:Key="LicenseSummaryItemTemplate">
                 <Grid>
                     <TextBlock Margin="0,4">
-                        <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
+                        <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}" AutomationProperties.Name="{Binding Text}">
                             <TextBlock Text="{Binding Text}" Style="{StaticResource TextSummaryLicenseStyle}" Margin="{StaticResource Margin_S_LeftTop}"/>
                         </Hyperlink>
                     </TextBlock>
