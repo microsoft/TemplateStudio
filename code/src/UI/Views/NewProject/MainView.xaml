@@ -41,7 +41,7 @@
                 <controls:TogglePane TogglePaneContent="{Binding}" IsOpen="{Binding IsOpen}" AllowDragAndDrop="{Binding AllowDragAndDrop}" Style="{StaticResource TogglePaneStyle}" Width="263">
                     <controls:TogglePane.OpenButtonTemplate>
                         <DataTemplate>
-                            <Button Style="{StaticResource SettingsButtonStyle}" Command="{Binding OpenCommand}" CommandParameter="{Binding}" Focusable="True" ToolTip="{x:Static res:StringRes.SummaryOpenMenu}">
+                            <Button Style="{StaticResource SettingsButtonStyle}" Command="{Binding OpenCommand}" CommandParameter="{Binding}" Focusable="True" ToolTip="{x:Static res:StringRes.SummaryOpenMenu}" AutomationProperties.Name="{x:Static res:StringRes.SummaryOpenMenu}">
                                 <Button.Content>
                                     <TextBlock Text="&#xE713;" FontSize="18" Style="{StaticResource IconButtonTextStyle}"/>
                                 </Button.Content>
@@ -50,7 +50,7 @@
                     </controls:TogglePane.OpenButtonTemplate>
                     <controls:TogglePane.CloseButtonTemplate>
                         <DataTemplate>
-                            <Button Style="{StaticResource SettingsButtonStyle}" Command="{Binding OpenCommand}" CommandParameter="{Binding}" Focusable="True" Background="{StaticResource UIBlue}" Foreground="{StaticResource UIWhite}" Margin="1,1,0,1" ToolTip="{x:Static res:StringRes.SummaryOpenMenuClose}">
+                            <Button Style="{StaticResource SettingsButtonStyle}" Command="{Binding OpenCommand}" CommandParameter="{Binding}" Focusable="True" Background="{StaticResource UIBlue}" Foreground="{StaticResource UIWhite}" Margin="1,1,0,1" ToolTip="{x:Static res:StringRes.SummaryOpenMenuClose}"  AutomationProperties.Name="{x:Static res:StringRes.SummaryOpenMenuClose}">
                                 <Button.Content>
                                     <TextBlock Text="&#xE761;" FontSize="18" Style="{StaticResource IconButtonTextStyle}"/>
                                 </Button.Content>
@@ -114,12 +114,12 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Button Grid.Column="0" Style="{StaticResource ButtonImageStyle}" Command="{Binding RenameCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanChooseItemName}" ToolTip="{x:Static res:StringRes.SummaryOptionRename}" Focusable="{Binding IsOpen}">
+                                <Button Grid.Column="0" Style="{StaticResource ButtonImageStyle}" Command="{Binding RenameCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanChooseItemName}" ToolTip="{x:Static res:StringRes.SummaryOptionRename}" Focusable="{Binding IsOpen}" AutomationProperties.Name="{x:Static res:StringRes.SummaryOptionRename}">
                                     <Button.Content>
                                         <TextBlock Text="&#xE70F;" Style="{StaticResource IconButtonTextStyle}" FontSize="16"/>
                                     </Button.Content>
                                 </Button>
-                                <Button Grid.Column="1" Style="{StaticResource ButtonImageStyle}" Command="{Binding RemoveCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanSetHome}" ToolTip="{x:Static res:StringRes.SummaryOptionDelete}" Focusable="{Binding IsOpen}">
+                                <Button Grid.Column="1" Style="{StaticResource ButtonImageStyle}" Command="{Binding RemoveCommand}" CommandParameter="{Binding}" IsEnabled="{Binding CanSetHome}" ToolTip="{x:Static res:StringRes.SummaryOptionDelete}" Focusable="{Binding IsOpen}" AutomationProperties.Name="{x:Static res:StringRes.SummaryOptionDelete}">
                                     <Button.Content>
                                         <TextBlock Text="&#xE74D;" Style="{StaticResource IconButtonTextStyle}" FontSize="15"/>
                                     </Button.Content>

@@ -217,7 +217,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public override string ToString()
         {
-            return $"{Name} - {Description}";
+            return $"{Name} - {Summary}";
         }
 
         private void ShowItemInfo()

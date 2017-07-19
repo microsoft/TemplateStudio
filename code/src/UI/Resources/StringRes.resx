@@ -553,4 +553,7 @@
   <data name="ButtonViewInfo" xml:space="preserve">
     <value>View info</value>
   </data>
+  <data name="ButtonCloseStatusButton" xml:space="preserve">
+    <value>Close status box</value>
+  </data>
 </root>
