@@ -83,7 +83,7 @@ namespace Localization
                         Console.WriteLine();
                         Console.WriteLine($"\tdestinationDirectoryPath - path to the folder in which will be{argumentNewLine}saved all extracted items.");
                         Console.WriteLine();
-                        Console.WriteLine($"\tcultures\t\t - list of cultures, to extract{argumentNewLine}localizable items for. It's case{argumentNewLine}sensitive (es-us != en-US).");
+                        Console.WriteLine($"\tcultures\t\t - list of cultures, to extract{argumentNewLine}localizable items for. It's case{argumentNewLine}sensitive (en-us != en-US).{argumentNewLine}Or use \"ALL\" to create for all languages.");
                         Console.WriteLine();
                         Console.WriteLine("Example:");
                         Console.WriteLine();
@@ -95,15 +95,15 @@ namespace Localization
                         Console.WriteLine();
                         Console.WriteLine("GEN \"sourceDirectoryPath\" \"destinationDirectoryPath\" \"cultures\"");
                         Console.WriteLine();
-                        Console.WriteLine($"\tsourceDirectoryPath\t - path to the folder that contains{argumentNewLine}source files for Project Templates{argumentNewLine}(it's name is CSharp.UWP.2017.{argumentNewLine}Solution).");
+                        Console.WriteLine($"\tsourceDirectoryPath\t - path to the folder that contains{argumentNewLine}source files for Project Templates{argumentNewLine}(it's root project folder).");
                         Console.WriteLine();
                         Console.WriteLine($"\tdestinationDirectoryPath - path to the folder in which will be{argumentNewLine}saved all localized Project{argumentNewLine}Templates (parent for CSharp.UWP.{argumentNewLine}2017.Solution directory).");
                         Console.WriteLine();
-                        Console.WriteLine($"\tcultures\t\t - list of cultures, to generate{argumentNewLine}Project Templates for. It's case{argumentNewLine}sensitive (es-us != en-US).");
+                        Console.WriteLine($"\tcultures\t\t - list of cultures, to generate{argumentNewLine}Project Templates for. It's case{argumentNewLine}sensitive (en-us != en-US).{argumentNewLine}Or use \"ALL\" to create for all languages.");
                         Console.WriteLine();
                         Console.WriteLine("Example:");
                         Console.WriteLine();
-                        Console.WriteLine("\tGEN \"C:\\MyFolder\\ProjectTemplates\\CSharp.UWP.2017.Solution\" \"C:\\MyFolder\\Generated\\ProjectTemplates\" \"de-DE;es-ES;fr-FR\"");
+                        Console.WriteLine("\tGEN \"C:\\MyFolder\\wts\" \"C:\\MyFolder\\Generated\\ProjectTemplates\" \"de-DE;es-ES;fr-FR\"");
                         Console.WriteLine();
                         break;
                     case "HELP":
@@ -124,12 +124,17 @@ namespace Localization
         private static string PrintArray(string[] array)
         {
             if (array == null || array.Length == 0)
+            {
                 return "\t\tEmpty or Null...";
+            }
+
             StringBuilder writer = new StringBuilder();
+
             foreach (string item in array)
             {
                 writer.AppendLine("\t\t" + item);
             }
+
             return writer.ToString();
         }
     }

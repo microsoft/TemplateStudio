@@ -120,7 +120,7 @@
     <None Include="windowsTemplateStudio_Logo_256x256.png" />
   </ItemGroup>
   <ItemGroup>
-    <VSTemplate Include="VBNet.UWP.VS2017.Solution.cs-CZ.vstemplate">
+    <VSTemplate Include="CSharp.UWP.VS2017.Solution.cs-CZ.vstemplate">
       <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1029</Culture>
     </VSTemplate>
