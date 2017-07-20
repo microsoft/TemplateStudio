@@ -8,6 +8,7 @@
   "BackupFolderPath": "WindowsTemplateStudio\\Backups",
   "TempGenerationFolderPath": "WTSTempGeneration",
   "DiagnosticsTraceLevel": "###DiagnosticsTraceLevel###",
+  "GitHubDocsUrl": "###GitHubBaseUrl###",
   "DaysToKeepTempGenerations": 5,
   "DaysToKeepDiagnosticsLogs": 5,
   "VersionCheckingExpirationMinutes": 1440,
