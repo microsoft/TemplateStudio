@@ -49,5 +49,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             DependencyItems.AddRange(dependencies.Select(d => new DependencyInfoViewModel(new TemplateInfoViewModel(d, GenComposer.GetAllDependencies(d, MainViewModel.Current.ConfigFramework)))));
             LicenseTerms = template.GetLicenses();
         }
+
+        public override string ToString()
+        {
+            return $"{Name} - {Summary}";
+        }
     }
 }

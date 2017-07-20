@@ -10,15 +10,12 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-namespace Microsoft.Templates.Test.Artifacts.MSBuild
+using Xunit;
+
+namespace Microsoft.Templates.Test
 {
-    public enum VsItemType
+    [CollectionDefinition("StyleCop collection")]
+    public class StyleCopCollection : ICollectionFixture<StyleCopGenerationTestsFixture>
     {
-        Compiled,
-        CompiledWithDependant,
-        XamlPage,
-        Resource,
-        Content
     }
 }
-

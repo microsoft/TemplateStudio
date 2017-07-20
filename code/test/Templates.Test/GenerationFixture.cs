@@ -23,22 +23,24 @@ using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Test.Artifacts;
+using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.Test
 {
-
     public sealed class GenerationFixture : IDisposable
     {
         private const string Platform = "x86";
         private const string Configuration = "Debug";
 
         internal string TestRunPath = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\{DateTime.Now.ToString("dd_HHmm")}\\";
+
         internal string TestProjectsPath => Path.GetFullPath(Path.Combine(TestRunPath, "Proj"));
+
         internal string TestNewItemPath => Path.GetFullPath(Path.Combine(TestRunPath, "RightClick"));
 
         private static readonly Lazy<TemplatesRepository> _repos = new Lazy<TemplatesRepository>(() => CreateNewRepos(), true);
+
         public static IEnumerable<ITemplateInfo> Templates => _repos.Value.GetAll();
 
         private static TemplatesRepository CreateNewRepos()
@@ -250,7 +252,5 @@ namespace Microsoft.Templates.Test
 
             return path;
         }
-
-        
     }
 }

@@ -18,45 +18,26 @@ using System.Linq;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Core.PostActions.Catalog.Merge;
-using Microsoft.Templates.Test.Artifacts;
+using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
-
 using Xunit;
 
 namespace Microsoft.Templates.Test
 {
     [Collection("Generation collection")]
-    public class ProjectGenerationTests : IContextProvider
+    public class ProjectGenerationTests : BaseTestContextProvider
     {
         private const string Platform = "x86";
         private const string Configuration = "Debug";
 
         private GenerationFixture _fixture;
-        private List<string> _usedNames = new List<string>();
-
-        public string ProjectName { get; set; }
-        public string OutputPath { get; set; }
-
-        public string ProjectPath { get; set; }
-
-        public List<string> ProjectItems  { get; } = new List<string>();
-
-        public List<FailedMergePostAction> FailedMergePostActions { get; } = new List<FailedMergePostAction>();
-
-        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
-
-        public List<string> FilesToOpen { get; } = new List<string>();
-
 
         public ProjectGenerationTests(GenerationFixture fixture)
         {
             _fixture = fixture;
             GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
             GenContext.Current = this;
-
         }
-
 
         [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
         public async void GenerateEmptyProject(string projectType, string framework)
@@ -179,11 +160,9 @@ namespace Microsoft.Templates.Test
             Directory.Delete(outputPath, true);
         }
 
-
         public static IEnumerable<object[]> GetProjectTemplates()
         {
             return GenerationFixture.GetProjectTemplates();
-
         }
 
         public static IEnumerable<object[]> GetPageAndFeatureTemplates()

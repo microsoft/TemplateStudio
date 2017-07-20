@@ -11,6 +11,7 @@
 // ******************************************************************
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace Microsoft.Templates.Core.Gen
     public class GenContext
     {
         private static IContextProvider _currentContext;
+        private static string _tempGenerationFolder = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
 
         public static GenToolBox ToolBox { get; private set; }
         public static bool IsInitialized { get; private set; }
@@ -51,26 +53,47 @@ namespace Microsoft.Templates.Core.Gen
 
         public static void Bootstrap(TemplatesSource source, GenShell shell, Version wizardVersion)
         {
-            AppHealth.Current.AddWriter(new ShellHealthWriter());
-            AppHealth.Current.Info.TrackAsync($"{StringRes.ConfigurationFileLoadedString}: {Configuration.LoadedConfigFile}").FireAndForget();
+            try
+            {
+                AppHealth.Current.AddWriter(new ShellHealthWriter(shell));
+                AppHealth.Current.Info.TrackAsync($"{StringRes.ConfigurationFileLoadedString}: {Configuration.LoadedConfigFile}").FireAndForget();
 
-            string hostVersion = $"{wizardVersion.Major}.{wizardVersion.Minor}";
+                string hostVersion = $"{wizardVersion.Major}.{wizardVersion.Minor}";
 
-            CodeGen.Initialize(source.Id, hostVersion);
-            var repository = new TemplatesRepository(source, wizardVersion);
+                var repository = new TemplatesRepository(source, wizardVersion);
 
-            ToolBox = new GenToolBox(repository, shell);
+                ToolBox = new GenToolBox(repository, shell);
 
-            PurgeTempGenerations(Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath), Configuration.Current.DaysToKeepTempGenerations);
+                PurgeTempGenerations(Configuration.Current.DaysToKeepTempGenerations);
 
-            IsInitialized = true;
+                CodeGen.Initialize(source.Id, hostVersion);
+
+                IsInitialized = true;
+            }
+            catch (Exception ex)
+            {
+                IsInitialized = false;
+                AppHealth.Current.Exception.TrackAsync(ex, StringRes.GenContextBootstrapError).FireAndForget();
+                Trace.TraceError($"{StringRes.GenContextBootstrapError} Exception:\n\r{ex}");
+                throw;
+            }
         }
 
-        private static void PurgeTempGenerations(string tempGenerationFolder, int daysToKeep)
+        public static string GetTempGenerationPath(string projectName)
         {
-            if (Directory.Exists(tempGenerationFolder))
+            Fs.EnsureFolder(_tempGenerationFolder);
+
+            var tempGenerationName = $"{projectName}_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}";
+            var inferredName = Naming.Infer(tempGenerationName, new List<Validator>() { new DirectoryExistsValidator(_tempGenerationFolder) }, "_");
+
+            return Path.Combine(_tempGenerationFolder, inferredName);
+        }
+
+        private static void PurgeTempGenerations(int daysToKeep)
+        {
+            if (Directory.Exists(_tempGenerationFolder))
             {
-                var di = new DirectoryInfo(tempGenerationFolder);
+                var di = new DirectoryInfo(_tempGenerationFolder);
                 var toBeDeleted = di.GetDirectories().Where(d => d.CreationTimeUtc.AddDays(daysToKeep) < DateTime.UtcNow);
 
                 foreach (var d in toBeDeleted)

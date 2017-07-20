@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Microsoft.Templates.UI.Controls"
              xmlns:templateSelectors="clr-namespace:Microsoft.Templates.UI.TemplateSelectors"
-             mc:Ignorable="d" 
+             xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
+             mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
 
     <UserControl.Resources>
@@ -36,6 +37,8 @@
                 <Setter Property="BorderThickness" Value="0"/>
                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                 <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonClose}"/>
+                <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonCloseStatusButton}"/>
                 <Setter Property="Padding" Value="0"/>
                 <Setter Property="Template">
                     <Setter.Value>

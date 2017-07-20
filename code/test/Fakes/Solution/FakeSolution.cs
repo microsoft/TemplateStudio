@@ -14,9 +14,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Microsoft.Templates.Test.Artifacts.MSBuild
+namespace Microsoft.Templates.Fakes
 {
-    public class MSBuildSolution
+    public class FakeSolution
     {
         private const string GlobalSectionText = "GlobalSection(ProjectConfigurationPlatforms) = postSolution";
 
@@ -46,17 +46,17 @@ EndProject
 
         private readonly string _path;
 
-        private MSBuildSolution(string path)
+        private FakeSolution(string path)
         {
             _path = path;
         }
 
-        public static MSBuildSolution Create(string path)
+        public static FakeSolution Create(string path)
         {
             var solutionTemplate = ReadTemplate();
             File.WriteAllText(path, solutionTemplate, Encoding.UTF8);
 
-            return new MSBuildSolution(path);
+            return new FakeSolution(path);
         }
 
         public void AddProjectToSolution(string projectName, string projectGuid)
@@ -84,7 +84,7 @@ EndProject
 
         private static string ReadTemplate()
         {
-            return File.ReadAllText(@"MSBuild\SolutionTemplate.txt");
+            return File.ReadAllText(@"Solution\SolutionTemplate.txt");
         }
     }
 }

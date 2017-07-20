@@ -4,7 +4,6 @@
   "name": "Default",
   "groupIdentity": "wts.Proj.Default",
   "identity": "wts.Proj.Default",
-  "shortName": "default",
   "description": "",
   "tags": {
     "language": "C#",

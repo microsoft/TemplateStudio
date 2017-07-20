@@ -544,4 +544,13 @@
   <data name="ChangesSummaryConflictGeneratedFile" xml:space="preserve">
     <value>Generated file</value>
   </data>
+  <data name="ButtonViewInfo" xml:space="preserve">
+    <value>View info</value>
+  </data>
+  <data name="ButtonAddTemplate" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="ButtonConfirmTemplate" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
 </root>
