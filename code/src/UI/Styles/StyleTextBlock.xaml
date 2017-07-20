@@ -171,15 +171,6 @@
         <Setter Property="MaxHeight" Value="20" />
     </Style>
 
-    <!--Wizard Status-->
-    <Style TargetType="TextBlock" x:Key="TextWizardInformationStyle" BasedOn="{StaticResource UIBaseMiddleDarkGray}">
-        <Setter Property="FontSize" Value="{StaticResource UI_XS_FontSize}" />
-    </Style>
-    <Style TargetType="TextBlock" x:Key="TextWizardStatusStyle" BasedOn="{StaticResource UIBaseBlack}">
-        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-    </Style>
-
     <!--OverlayBox-->
     <Style TargetType="TextBlock" x:Key="TextOverlayBoxTitleStyle" BasedOn="{StaticResource UIBaseWhite}">
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
