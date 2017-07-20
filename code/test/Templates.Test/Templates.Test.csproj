@@ -146,7 +146,7 @@
       <Project>{dcfd282d-d91c-49b5-8dbf-d943bafef5aa}</Project>
       <Name>UI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Artifacts\Fakes.csproj">
+    <ProjectReference Include="..\Fakes\Fakes.csproj">
       <Project>{fb3c81ad-823e-409c-bf6d-27534b84a8af}</Project>
       <Name>Fakes</Name>
     </ProjectReference>
