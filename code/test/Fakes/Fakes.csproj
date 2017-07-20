@@ -7,8 +7,8 @@
     <ProjectGuid>{FB3C81AD-823E-409C-BF6D-27534B84A8AF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Artifacts</RootNamespace>
-    <AssemblyName>Artifacts</AssemblyName>
+    <RootNamespace>Microsoft.Templates.Fakes</RootNamespace>
+    <AssemblyName>Microsoft.Templates.Fakes</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -60,10 +60,10 @@
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
     <Compile Include="FakeGenShell.cs" />
-    <Compile Include="MSBuild\MSBuildProject.cs" />
+    <Compile Include="MSBuild\FakeMsBuildProject.cs" />
     <Compile Include="MSBuild\VsItemTypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MSBuild\MSBuildSolution.cs" />
+    <Compile Include="Solution\FakeSolution.cs" />
     <Compile Include="MSBuild\VsItemType.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -76,7 +76,7 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MSBuild\SolutionTemplate.txt">
+    <Content Include="Solution\SolutionTemplate.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

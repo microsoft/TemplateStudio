@@ -11,17 +11,15 @@
 // ******************************************************************
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Microsoft.Templates.Test.Artifacts.MSBuild
+namespace Microsoft.Templates.Fakes
 {
 
-    public class MsBuildProject
+    public class FakeMsBuildProject
     {
         private const string MsBuildNs = "http://schemas.microsoft.com/developer/msbuild/2003";
         private string _path;
@@ -46,16 +44,16 @@ namespace Microsoft.Templates.Test.Artifacts.MSBuild
             }
         }
 
-        private MsBuildProject(string path)
+        private FakeMsBuildProject(string path)
         {
             _path = path;
             Name = Path.GetFileNameWithoutExtension(path);
             _root = XElement.Load(path);
         }
 
-        public static MsBuildProject Load(string path)
+        public static FakeMsBuildProject Load(string path)
         {
-            return new MsBuildProject(path);
+            return new FakeMsBuildProject(path);
         }
 
         public void AddItem(string itemPath)

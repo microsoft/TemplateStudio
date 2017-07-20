@@ -14,7 +14,7 @@ using System.IO;
 using System.Text;
 using System.Xml.Linq;
 
-namespace Microsoft.Templates.Test.Artifacts.MSBuild
+namespace Microsoft.Templates.Fakes
 {
     public static class VsItemTypeExtensions
     {
