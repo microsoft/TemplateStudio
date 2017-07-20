@@ -1,4 +1,4 @@
-using Microsoft.Toolkit.Uwp.Notifications;
+﻿using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Threading.Tasks;
 using Windows.UI.Notifications;

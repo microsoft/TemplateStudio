@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows.Input;
 using Windows.UI.Xaml;
 using Param_ItemNamespace.Models;

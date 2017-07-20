@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows.Input;
 using Windows.ApplicationModel;
 using Param_RootNamespace.Services;
