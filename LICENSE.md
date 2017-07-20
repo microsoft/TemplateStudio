@@ -1,6 +1,6 @@
 # Windows Template Studio
 
-Copyright (c) Microsoft and Contributors
+Copyright (c) .NET Foundation and Contributors.
 
 All rights reserved.
 
