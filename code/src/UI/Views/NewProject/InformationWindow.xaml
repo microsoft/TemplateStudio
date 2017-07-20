@@ -10,7 +10,8 @@
         ResizeMode="NoResize"
         ShowInTaskbar="False"
         ShowActivated="True"
-        WindowState="Normal" Title="{Binding ElementName=TextTitle, Path=Text, StringFormat='{}{0} information'}"
+        WindowState="Normal" 
+        Title="{Binding ElementName=TextTitle, Path=Text, StringFormat='{}{0} information'}"
         WindowStyle="None" WindowStartupLocation="CenterOwner">
     <Window.Resources>
         <ResourceDictionary>
