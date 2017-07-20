@@ -12,18 +12,14 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text.RegularExpressions;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
-using Microsoft.Templates.Test.Artifacts;
-
 using Xunit;
 
 namespace Microsoft.Templates.Test

@@ -11,16 +11,13 @@
 // ******************************************************************
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
-using Microsoft.Templates.Core.Test.Locations;
-using Microsoft.Templates.Test.Artifacts;
-
-using Xunit;
-using System.Collections.Generic;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 {
