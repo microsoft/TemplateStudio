@@ -14,9 +14,9 @@ namespace Param_ItemNamespace.Services
 {
     internal class BackgroundTaskService : ActivationHandler<BackgroundActivatedEventArgs>
     {
-        public static IEnumerable<BackgroundTask> BackgroundTasks => backgroundTasks.Value;
+        public static IEnumerable<BackgroundTask> BackgroundTasks => BackgroundTaskInstances.Value;
 
-        private static readonly Lazy<IEnumerable<BackgroundTask>> backgroundTasks = 
+        private static readonly Lazy<IEnumerable<BackgroundTask>> BackgroundTaskInstances =
             new Lazy<IEnumerable<BackgroundTask>>(() => CreateInstances());
 
         public void RegisterBackgroundTasks()
@@ -27,7 +27,8 @@ namespace Param_ItemNamespace.Services
             }
         }
 
-        public static BackgroundTaskRegistration GetBackgroundTasksRegistration<T>() where T : BackgroundTask
+        public static BackgroundTaskRegistration GetBackgroundTasksRegistration<T>()
+            where T : BackgroundTask
         {
             if (!BackgroundTaskRegistration.AllTasks.Any(t => t.Value.Name == typeof(T).Name))
             {
@@ -35,6 +36,7 @@ namespace Param_ItemNamespace.Services
                 // Please check CreateInstances to see if the background task was properly added to the BackgroundTasks property.
                 return null;
             }
+
             return (BackgroundTaskRegistration)BackgroundTaskRegistration.AllTasks.FirstOrDefault(t => t.Value.Name == typeof(T).Name).Value;
         }
 
@@ -44,7 +46,7 @@ namespace Param_ItemNamespace.Services
 
             if (task == null)
             {
-                // This condition should not be met, if so it means the background task to start was not found in the background tasks managed by this service. 
+                // This condition should not be met, if so it means the background task to start was not found in the background tasks managed by this service.
                 // Please check CreateInstances to see if the background task was properly added to the BackgroundTasks property.
                 return;
             }

@@ -30,6 +30,7 @@
                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                 <Setter Property="VerticalContentAlignment" Value="Stretch"/>
                 <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonClose}"/>
+                <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonCloseStatusButton}"/>
                 <Setter Property="Padding" Value="0"/>
                 <Setter Property="Template">
                     <Setter.Value>

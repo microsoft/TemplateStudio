@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!--<Color x:Key="UIBlueColor">#3399ff</Color>
+    <Color x:Key="UIBlueColor">#3399ff</Color>
     <Color x:Key="UIMiddleDarkBlueColor">#017af3</Color>
     <Color x:Key="UIDarkBlueColor">#004f9e</Color>
 
@@ -23,9 +23,9 @@
     <Color x:Key="UIDarkRedColor">#990000</Color>
     
     <Color x:Key="UIYellowColor">#FDFBAC</Color>
-    <Color x:Key="UIDarkYellowColor">#FFB900</Color>-->
+    <Color x:Key="UIDarkYellowColor">#FFB900</Color>
 
-    <Color x:Key="UIBlueColor">#fabada</Color>
+    <!--<Color x:Key="UIBlueColor">#fabada</Color>
     <Color x:Key="UIMiddleDarkBlueColor">#fabada</Color>
     <Color x:Key="UIDarkBlueColor">#fabada</Color>
 
@@ -47,7 +47,7 @@
     <Color x:Key="UIDarkRedColor">#fabada</Color>
 
     <Color x:Key="UIYellowColor">#fabada</Color>
-    <Color x:Key="UIDarkYellowColor">#fabada</Color>
+    <Color x:Key="UIDarkYellowColor">#fabada</Color>-->
 
     <SolidColorBrush x:Key="UIBlue" Color="{StaticResource UIBlueColor}"/>
     <SolidColorBrush x:Key="UIMiddleDarkBlue" Color="{StaticResource UIMiddleDarkBlueColor}"/>

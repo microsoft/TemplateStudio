@@ -75,7 +75,7 @@ namespace Param_RootNamespace.Services
                 }
             };
 
-            // Then create the tile notification            
+            // Then create the tile notification
             var notification = new TileNotification(content.GetXml());
             UpdateTile(notification);
         }

@@ -119,6 +119,7 @@
 
     <Style TargetType="Button" x:Key="SaveTemplateInfoButtonStyle" BasedOn="{StaticResource BlueBaseTemplateInfoButtonStyle}">
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonConfirmTemplate}" />
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonConfirmTemplate}" />
     </Style>
 
 
@@ -177,6 +178,8 @@
     <Style TargetType="Button" x:Key="InfoTemplateInfoButtonStyle" BasedOn="{StaticResource BlackBaseTemplateInfoButtonStyle}">
         <Setter Property="HorizontalAlignment" Value="Right"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="ToolTip" Value="{x:Static res:StringRes.LearnMore}"/>
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.LearnMore}"/>
     </Style>
 
     <Style TargetType="Button" x:Key="MoreInfoButtonStyle" BasedOn="{StaticResource BlackBaseTemplateInfoButtonStyle}">
@@ -189,6 +192,8 @@
                 </Grid>
             </Setter.Value>
         </Setter>
+        <Setter Property="ToolTip" Value="{x:Static res:StringRes.LearnMore}"/>
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.LearnMore}"/>
     </Style>
 
 

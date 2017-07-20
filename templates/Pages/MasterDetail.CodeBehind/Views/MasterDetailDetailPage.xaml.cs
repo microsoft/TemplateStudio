@@ -9,6 +9,7 @@ namespace Param_ItemNamespace.Views
     public sealed partial class MasterDetailDetailPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
         private Order _item;
+
         public Order Item
         {
             get { return _item; }

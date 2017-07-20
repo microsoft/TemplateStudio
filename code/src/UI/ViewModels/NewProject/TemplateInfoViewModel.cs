@@ -217,6 +217,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
+        public override string ToString()
+        {
+            return $"{Name} - {Summary}";
+        }
+
         private void ShowItemInfo()
         {
             MainViewModel.Current.InfoShapeVisibility = Visibility.Visible;
