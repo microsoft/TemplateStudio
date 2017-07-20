@@ -36,6 +36,7 @@ Once you select the attributes you want your new UWP app to have, you can quickl
 ## Known issues
 
 * [Project creation failing with VS 15.2 and VS Preview side by side](https://github.com/Microsoft/WindowsTemplateStudio/issues/668) - We believe right now there is a side by side issue.
+* [Chart page in x86 mode design-time error](https://github.com/Microsoft/WindowsTemplateStudio/issues/818) - Waiting for a fix
 
 ## Feedback, Requests and Roadmap
 
