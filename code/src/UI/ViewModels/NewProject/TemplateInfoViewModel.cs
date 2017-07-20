@@ -23,6 +23,7 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Views.NewProject;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -144,7 +145,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             set => SetProperty(ref _isValidName, value);
         }
 
-        private Brush _titleForeground = new SolidColorBrush(Colors.Black);
+        private Brush _titleForeground;
         public Brush TitleForeground
         {
             get => _titleForeground;
@@ -180,6 +181,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             Template = template;
             Version = template.GetVersion();
 
+            TitleForeground = GetTitleForeground(true);
             AddItemCommand = addItemCommand;
             SaveItemCommand = saveItemCommand;
             _validateTemplateName = validateTemplateName;
@@ -206,12 +208,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (MultipleInstances == false && isAlreadyDefined)
             {
                 AddingVisibility = Visibility.Collapsed;
-                TitleForeground = MainViewModel.Current.MainView.FindResource("UIMiddleLightGray") as SolidColorBrush;
+                TitleForeground = GetTitleForeground(false);
             }
             else
             {
                 AddingVisibility = Visibility.Visible;
-                TitleForeground = MainViewModel.Current.MainView.FindResource("UIBlack") as SolidColorBrush;
+                TitleForeground = GetTitleForeground(true);
             }
         }
 
@@ -222,6 +224,32 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
             infoView.ShowDialog();
             MainViewModel.Current.InfoShapeVisibility = Visibility.Collapsed;
+        }
+
+        private SolidColorBrush GetTitleForeground(bool isEnabled)
+        {
+            if (SystemService.Instance.IsHighContrast)
+            {
+                if (isEnabled)
+                {
+                    return SystemColors.ControlTextBrush;
+                }
+                else
+                {
+                    return SystemColors.ControlLightBrush;
+                }
+            }
+            else
+            {
+                if (isEnabled)
+                {
+                    return MainViewModel.Current.MainView.FindResource("UIBlack") as SolidColorBrush;
+                }
+                else
+                {
+                    return MainViewModel.Current.MainView.FindResource("UIMiddleLightGray") as SolidColorBrush;
+                }
+            }
         }
     }
 }

@@ -76,9 +76,15 @@
                                                                 <Setter Property="Foreground" TargetName="arrow" Value="{StaticResource UIBlue}"/>
                                                             </MultiDataTrigger.Setters>
                                                         </MultiDataTrigger>
-                                                        <Trigger Property="IsPressed" Value="True">
-                                                            <Setter Property="FontWeight" TargetName="arrow" Value="Bold"/>
-                                                        </Trigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsPressed}" Value="True"/>
+                                                                <Condition Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="False"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.Setters>
+                                                                <Setter Property="FontWeight" TargetName="arrow" Value="Bold"/>
+                                                            </MultiDataTrigger.Setters>
+                                                        </MultiDataTrigger>
                                                     </ControlTemplate.Triggers>
                                                 </ControlTemplate>
                                             </Setter.Value>
@@ -92,9 +98,6 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsExpanded" Value="True">
                             <Setter Property="Visibility" TargetName="ExpandSite" Value="Visible"/>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

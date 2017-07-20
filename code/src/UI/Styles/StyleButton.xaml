@@ -17,15 +17,17 @@
         <Setter Property="BorderBrush" Value="{StaticResource UIBlack}" />
         <Setter Property="Background" Value="{StaticResource UIMiddleLightGray}" />
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleBlueGrid}"/>
         <Style.Triggers>
-            <Trigger Property="IsEnabled" Value="False">
-                <Trigger.Setters>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="False"/>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
                     <Setter Property="Foreground" Value="{StaticResource UILightGray}"/>
-                </Trigger.Setters>
-            </Trigger>
-            <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="False">
-                <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleBlueGrid}"/>
-            </DataTrigger>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
             <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
                 <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
@@ -43,10 +45,8 @@
     <Style TargetType="Button" x:Key="ButtonFinishStyle" BasedOn="{StaticResource ButtonNavigationStyle}">
         <Setter Property="Foreground" Value="{StaticResource UIWhite}" />
         <Setter Property="Background" Value="{StaticResource UIBlue}" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleWhiteGrid}"/>
         <Style.Triggers>
-            <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="False">
-                <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleWhiteGrid}"/>
-            </DataTrigger>
             <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True">
                 <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.InfoTextBrushKey}}" />
                 <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.InfoTextBrushKey}}" />
@@ -69,6 +69,7 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Margin" Value="0"/>
         <Setter Property="Padding" Value="0"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleBlueEllipse}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -97,9 +98,6 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="False">
-                <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleBlueEllipse}"/>
-            </DataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="False"/>
@@ -132,6 +130,7 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Margin" Value="0"/>
         <Setter Property="Padding" Value="0"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleBlueEllipse}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -160,9 +159,6 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="False">
-                <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleBlueEllipse}"/>
-            </DataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="False"/>
@@ -224,10 +220,8 @@
         <Setter Property="Foreground" Value="{StaticResource UIBlack}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0,1,0,1"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleBlueGrid}"/>
         <Style.Triggers>
-            <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="False">
-                <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleBlueGrid}"/>
-            </DataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="False"/>
@@ -264,10 +258,8 @@
         <Setter Property="Foreground" Value="{StaticResource UIWhite}"/>
         <Setter Property="Background" Value="{StaticResource UIBlue}"/>
         <Setter Property="BorderThickness" Value="1,1,0,1"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleWhiteGrid}"/>
         <Style.Triggers>
-            <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="False">
-                <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleWhiteGrid}"/>
-            </DataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="False"/>
@@ -312,6 +304,7 @@
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Width" Value="50" />
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonViewInfo}" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleWhiteGrid}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -340,9 +333,6 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="False">
-                <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleWhiteGrid}"/>
-            </DataTrigger>
             <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True">
                 <DataTrigger.Setters>
                     <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />

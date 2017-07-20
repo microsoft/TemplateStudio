@@ -71,7 +71,7 @@
         <Setter Property="Foreground" Value="{StaticResource UIBlue}"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.InfoTextBrushKey}}" />
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HotTrackBrush}}" />
             </DataTrigger>
         </Style.Triggers>
     </Style>
@@ -100,7 +100,7 @@
         <Setter Property="Margin" Value="{StaticResource Margin_M_Top}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="TextTemplateItemTitleStyle" BasedOn="{StaticResource UIBase}">
+    <Style TargetType="TextBlock" x:Key="TextTemplateItemTitleStyle" BasedOn="{StaticResource UIBaseBlack}">
         <Setter Property="FontWeight" Value="SemiBold" />
     </Style>
 
@@ -179,7 +179,7 @@
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
-    
+
     <!--OverlayBox-->
     <Style TargetType="TextBlock" x:Key="TextOverlayBoxTitleStyle" BasedOn="{StaticResource UIBaseWhite}">
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
