@@ -17,11 +17,12 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Test.Artifacts;
+using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.Test

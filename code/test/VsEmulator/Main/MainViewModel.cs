@@ -23,7 +23,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
-using Microsoft.Templates.Test.Artifacts;
+using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
 using Microsoft.Templates.VsEmulator.LoadProject;
 using Microsoft.Templates.VsEmulator.NewProject;

@@ -40,6 +40,7 @@ namespace Microsoft.Templates.Core
         public int VersionCheckingExpirationMinutes { get; set; } = 0;
         public List<string> AllowedPublicKeysPins { get; set; } = new List<string>() { };
         public string CustomTelemetryEndpoint { get; set; } = string.Empty;
+        public string GitHubDocsUrl { get; set; } = "https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/";
 
         public static string LoadedConfigFile { get; private set; }
 

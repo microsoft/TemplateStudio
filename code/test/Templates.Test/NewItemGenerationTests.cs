@@ -19,7 +19,7 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Test.Artifacts;
+using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
 
 using Xunit;

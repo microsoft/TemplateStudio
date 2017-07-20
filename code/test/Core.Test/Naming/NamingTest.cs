@@ -10,15 +10,14 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Test.Locations;
-using Microsoft.Templates.Core.Test;
-using Microsoft.Templates.Test.Artifacts;
-using System;
-using System.Linq;
+
 using Xunit;
-using System.Collections.Generic;
 
 namespace Microsoft.Templates.Core.Test
 {

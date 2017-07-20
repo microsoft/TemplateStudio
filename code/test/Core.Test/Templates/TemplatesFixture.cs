@@ -10,11 +10,9 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
-
-using Microsoft.Templates.Core.Test.Locations;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Test.Artifacts;
+using Microsoft.Templates.Core.Test.Locations;
+using Microsoft.Templates.Fakes;
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test

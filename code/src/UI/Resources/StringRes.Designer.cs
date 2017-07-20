@@ -97,6 +97,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close status box.
+        /// </summary>
+        public static string ButtonCloseStatusButton {
+            get {
+                return ResourceManager.GetString("ButtonCloseStatusButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm.
         /// </summary>
         public static string ButtonConfirmTemplate {

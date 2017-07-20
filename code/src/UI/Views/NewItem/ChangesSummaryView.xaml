@@ -49,7 +49,7 @@
             <DataTemplate x:Key="ListLicenseTemplate">
                 <Grid Margin="{StaticResource Margin_S_Top}">
                     <TextBlock Margin="{StaticResource Margin_M_LeftRight}" VerticalAlignment="Center">
-                        <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
+                        <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}" AutomationProperties.Name="{Binding Text}">
                             <TextBlock Text="{Binding Text}" Style="{StaticResource TextSummaryLicenseStyle}" VerticalAlignment="Center" Margin="{StaticResource Margin_L_Left}"/>
                         </Hyperlink>
                     </TextBlock>

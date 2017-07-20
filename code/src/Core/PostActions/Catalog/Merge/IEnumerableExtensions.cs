@@ -169,7 +169,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
                 var lengthOfDeletion = endIndex - startIndex + MacroStartDelete.Length + commentIndicatorLength;
 
-                if (mergeString.Substring(startIndex + lengthOfDeletion -commentIndicatorLength).StartsWith(Environment.NewLine))
+                if (mergeString.Substring(startIndex + lengthOfDeletion - commentIndicatorLength).StartsWith(Environment.NewLine))
                 {
                     lengthOfDeletion += Environment.NewLine.Length;
                 }

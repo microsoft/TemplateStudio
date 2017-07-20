@@ -16,10 +16,10 @@ using System.Linq;
 using System.Windows;
 
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Test.Artifacts.MSBuild;
+
 using Microsoft.VisualStudio.TemplateWizard;
 
-namespace Microsoft.Templates.Test.Artifacts
+namespace Microsoft.Templates.Fakes
 {
     public class FakeGenShell : GenShell
     {
@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Test.Artifacts
                 throw new Exception($"There is not project file in {GenContext.Current.ProjectPath}");
             }
 
-            var msbuildProj = MsBuildProject.Load(projectFileName);
+            var msbuildProj = FakeMsBuildProject.Load(projectFileName);
 
             if (msbuildProj != null)
             {
@@ -77,8 +77,8 @@ namespace Microsoft.Templates.Test.Artifacts
 
         public override void AddProjectToSolution(string projectFullPath)
         {
-            var msbuildProj = MsBuildProject.Load(projectFullPath);
-            var solutionFile = MSBuildSolution.Create(SolutionPath);
+            var msbuildProj = FakeMsBuildProject.Load(projectFullPath);
+            var solutionFile = FakeSolution.Create(SolutionPath);
 
             solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid, projectFullPath.EndsWith(".csproj", StringComparison.InvariantCultureIgnoreCase));
         }
@@ -106,7 +106,7 @@ namespace Microsoft.Templates.Test.Artifacts
                 throw new Exception($"There is not project file in {GenContext.Current.ProjectPath}");
             }
 
-            var msbuildProj = MsBuildProject.Load(projectFileName);
+            var msbuildProj = FakeMsBuildProject.Load(projectFileName);
             return msbuildProj.Guid;
         }
 

@@ -18,9 +18,9 @@ using System.Linq;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Test.Locations;
-using Microsoft.Templates.Test.Artifacts;
+using Microsoft.Templates.Fakes;
+
 using Xunit;
-using Xunit.Sdk;
 
 namespace Microsoft.Templates.Core.Test
 {
