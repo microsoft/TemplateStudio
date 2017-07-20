@@ -110,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseTestContextProvider.cs" />
+    <Compile Include="CodeStyleEnforcementTests.cs" />
     <Compile Include="StyleCopCollection.cs" />
     <Compile Include="StyleCopGenerationTestsFixture.cs" />
     <Compile Include="StyleCopProjectGenerationTests.cs" />
