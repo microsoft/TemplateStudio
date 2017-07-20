@@ -140,18 +140,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             if (startIndex > 0 && endIndex > startIndex)
             {
-                int commentIndicatorLength;
-
-                if (mergeString[startIndex - 1] == '\'')
-                {
-                    // VB Code so account for single comment indicator character
-                    commentIndicatorLength = 1;
-                }
-                else
-                {
-                    // C# Code so account for two character comment indicator
-                    commentIndicatorLength = 2;
-                }
+                // VB uses a single character (') to start the comment, C# uses two (//)
+                int commentIndicatorLength = mergeString[startIndex - 1] == '\'' ? 1 : 2;
 
                 var toRemove = mergeString.Substring((startIndex - commentIndicatorLength) + (MacroStartDelete.Length + commentIndicatorLength),
                     (endIndex - commentIndicatorLength) - (startIndex - commentIndicatorLength) - (MacroStartDelete.Length + commentIndicatorLength));
@@ -174,22 +164,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             if (startIndex > 0 && endIndex > startIndex)
             {
-                int commentIndicatorLength;
-
-                if (mergeString[startIndex - 1] == '\'')
-                {
-                    // VB Code so account for single comment indicator character
-                    commentIndicatorLength = 1;
-                }
-                else
-                {
-                    // C# Code so account for two character comment indicator
-                    commentIndicatorLength = 2;
-                }
+                // VB uses a single character (') to start the comment, C# uses two (//)
+                int commentIndicatorLength = mergeString[startIndex - 1] == '\'' ? 1 : 2;
 
                 var lengthOfDeletion = endIndex - startIndex + MacroStartDelete.Length + commentIndicatorLength;
-            
-                if (mergeString.Substring(startIndex + lengthOfDeletion).StartsWith(Environment.NewLine))
+
+                if (mergeString.Substring(startIndex + lengthOfDeletion -commentIndicatorLength).StartsWith(Environment.NewLine))
                 {
                     lengthOfDeletion += Environment.NewLine.Length;
                 }
