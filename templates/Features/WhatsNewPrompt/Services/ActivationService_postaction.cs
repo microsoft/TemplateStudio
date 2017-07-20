@@ -11,7 +11,7 @@ namespace Param_ItemNamespace.Services
         private async Task StartupAsync()
         {
             //{[{
-            await WhatsNewDisplayService.ShowIfAppropriate();
+            await WhatsNewDisplayService.ShowIfAppropriateAsync();
             //}]}
         }
     }
