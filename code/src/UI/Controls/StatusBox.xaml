@@ -55,7 +55,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="&#xE946;" FontSize="25" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource UIMiddleDarkBlue}" VerticalAlignment="Center" />
-                    <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" VerticalAlignment="Center" FontSize="{StaticResource UI_S_FontSize}" Focusable="True" Foreground="{StaticResource UIBlack}"/>
+                    <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" VerticalAlignment="Center" FontSize="{StaticResource UI_S_FontSize}" Foreground="{StaticResource UIBlack}"/>
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="WarningStatusTemplate">
@@ -68,7 +68,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="&#xE7BA;" FontSize="25" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource UIDarkYellow}" VerticalAlignment="Center" />
-                    <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" VerticalAlignment="Center" FontSize="{StaticResource UI_S_FontSize}"  Focusable="True" Foreground="{StaticResource UIBlack}"/>
+                    <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" VerticalAlignment="Center" FontSize="{StaticResource UI_S_FontSize}"  Foreground="{StaticResource UIBlack}"/>
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="ErrorStatusTemplate">
@@ -81,7 +81,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="&#xEA39;" FontSize="25" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource UIDarkRed}" VerticalAlignment="Center" />
-                    <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" VerticalAlignment="Center" FontSize="{StaticResource UI_S_FontSize}"  Focusable="True" Foreground="{StaticResource UIBlack}"/>
+                    <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" VerticalAlignment="Center" FontSize="{StaticResource UI_S_FontSize}"  Foreground="{StaticResource UIBlack}"/>
                 </Grid>
             </DataTemplate>
             
@@ -120,7 +120,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="&#xE946;" FontSize="25" FontFamily="Segoe MDL2 Assets" Foreground="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" VerticalAlignment="Center" />
-                        <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" Foreground="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" Focusable="True"/>
+                        <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" Foreground="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
                     </Grid>
                 </Border>
             </DataTemplate>
@@ -132,7 +132,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="&#xE7BA;" FontSize="25" FontFamily="Segoe MDL2 Assets" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" VerticalAlignment="Center" />
-                        <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" VerticalAlignment="Center" FontSize="{StaticResource UI_S_FontSize}" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Focusable="True"/>
+                        <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" VerticalAlignment="Center" FontSize="{StaticResource UI_S_FontSize}" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
                     </Grid>
                 </Border>
             </DataTemplate>
@@ -144,7 +144,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="&#xEA39;" FontSize="25" FontFamily="Segoe MDL2 Assets" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" VerticalAlignment="Center" />
-                        <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" VerticalAlignment="Center" FontSize="{StaticResource UI_S_FontSize}" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"  Focusable="True"/>
+                        <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" VerticalAlignment="Center" FontSize="{StaticResource UI_S_FontSize}" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
                     </Grid>
                 </Border>
             </DataTemplate>
