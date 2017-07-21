@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
@@ -20,10 +12,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
     public static class IEnumerableExtensions
     {
-        // TODO [ML]: add prioritized merging (e.g. for setting start page)
-        private const string MacroBeforeMode = "^^";
-        private const string MacroStartGroup = "{[{";
-        private const string MarcoEndGroup = "}]}";
+        internal const string MacroBeforeMode = "^^";
+        internal const string MacroStartGroup = "{[{";
+        internal const string MarcoEndGroup = "}]}";
+        internal const string MacroStartDocumentation = "{**";
+        internal const string MacroEndDocumentation = "**}";
         private const string MacroStartDelete = "//{--{";
         private const string MacroEndDelete = "//}--}";
 
@@ -52,35 +45,37 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             return -1;
         }
 
-        public static IEnumerable<string> Merge(this IEnumerable<string> source, IEnumerable<string> merge)
+        public static IEnumerable<string> Merge(this IEnumerable<string> source, IEnumerable<string> merge, out string errorLine)
         {
+            errorLine = string.Empty;
             int lastLineIndex = -1;
             var insertionBuffer = new List<string>();
 
             bool beforeMode = false;
             bool isInBlock = false;
+            bool isInDocumentation = false;
 
-            var _diffTrivia = FindDiffLeadingTrivia(source, merge);
+            var diffTrivia = FindDiffLeadingTrivia(source, merge);
             var result = source.ToList();
             var currentLineIndex = -1;
 
             foreach (var mergeLine in merge)
             {
-                if (!isInBlock)
+                if (!isInBlock && !isInDocumentation)
                 {
-                    currentLineIndex = result.SafeIndexOf(mergeLine.WithLeadingTrivia(_diffTrivia), lastLineIndex);
+                    currentLineIndex = result.SafeIndexOf(mergeLine.WithLeadingTrivia(diffTrivia), lastLineIndex);
                 }
 
                 if (currentLineIndex > -1)
                 {
-                    TryAddBufferContent(insertionBuffer, result, lastLineIndex, currentLineIndex, beforeMode);
+                    var linesAdded = TryAddBufferContent(insertionBuffer, result, lastLineIndex, currentLineIndex, beforeMode);
 
                     if (beforeMode)
                     {
                         beforeMode = false;
                     }
 
-                    lastLineIndex = currentLineIndex + insertionBuffer.Count;
+                    lastLineIndex = currentLineIndex + linesAdded;
                     insertionBuffer.Clear();
                 }
                 else
@@ -97,9 +92,22 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                     {
                         isInBlock = false;
                     }
-                    else
+                    else if (!isInDocumentation && (isInBlock || mergeLine == string.Empty))
                     {
-                        insertionBuffer.Add(mergeLine.WithLeadingTrivia(_diffTrivia));
+                        insertionBuffer.Add(mergeLine.WithLeadingTrivia(diffTrivia));
+                    }
+                    else if (mergeLine.Contains(MacroStartDocumentation))
+                    {
+                        isInDocumentation = true;
+                    }
+                    else if (mergeLine.Contains(MacroEndDocumentation))
+                    {
+                        isInDocumentation = false;
+                    }
+                    else if (!isInDocumentation)
+                    {
+                        errorLine = mergeLine;
+                        return source;
                     }
                 }
             }
@@ -109,6 +117,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             return result;
         }
 
+<<<<<<< HEAD
+=======
+        /// <summary>
+        /// Removes anything from the target file that should be deleted.
+        /// </summary>
+>>>>>>> refs/remotes/origin/dev
         public static List<string> HandleRemovals(this IEnumerable<string> source, IEnumerable<string> merge)
         {
             var mergeString = string.Join(Environment.NewLine, merge);
@@ -128,6 +142,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             return sourceString.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
         }
 
+<<<<<<< HEAD
+=======
+        /// <summary>
+        /// Remove any comments from the merged file that indicate something should be removed.
+        /// </summary>
+>>>>>>> refs/remotes/origin/dev
         public static List<string> RemoveRemovals(this IEnumerable<string> merge)
         {
             var mergeString = string.Join(Environment.NewLine, merge);
@@ -150,7 +170,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             return mergeString.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
         }
 
+<<<<<<< HEAD
         private static void TryAddBufferContent(List<string> insertionBuffer, List<string> result, int lastLineIndex, int currentLineIndex = 0, bool beforeMode = false)
+=======
+        private static int TryAddBufferContent(List<string> insertionBuffer, List<string> result, int lastLineIndex, int currentLineIndex = 0, bool beforeMode = false)
+>>>>>>> refs/remotes/origin/dev
         {
             if (insertionBuffer.Any() && !BlockExists(insertionBuffer, result, lastLineIndex) && currentLineIndex > -1)
             {
@@ -159,8 +183,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 if (insertIndex < result.Count)
                 {
                     result.InsertRange(insertIndex, insertionBuffer);
+                    return insertionBuffer.Count;
                 }
             }
+            return 0;
         }
 
         private static bool BlockExists(IEnumerable<string> blockBuffer, IEnumerable<string> target, int skip)
@@ -189,7 +215,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 return 0;
             }
 
-            var firstMerge = merge.First();
+            var documentactionEnd = merge.FirstOrDefault(m => m.Contains(MacroEndDocumentation));
+            var documentationEndIndex = merge.SafeIndexOf(documentactionEnd, 0);
+            var firstMerge = merge.Skip(documentationEndIndex + 1).First(m => !string.IsNullOrEmpty(m));
             var firstTarget = target.FirstOrDefault(t => t.Trim().Equals(firstMerge.Trim(), StringComparison.OrdinalIgnoreCase));
 
             if (firstTarget == null)

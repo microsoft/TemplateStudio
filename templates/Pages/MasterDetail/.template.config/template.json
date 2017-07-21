@@ -1,4 +1,4 @@
-{
+﻿{
   "author": "Microsoft",
   "classifications": [
     "Universal"
@@ -6,7 +6,6 @@
   "name": "Master/Detail",
   "groupIdentity": "wts.Page.MasterDetail",
   "identity": "wts.Page.MasterDetail",
-  "shortName": "Master/Detail Page",
   "description": "The master-detail page has a master pane and a details pane for content.",
   "tags": {
     "language": "C#",
@@ -14,7 +13,10 @@
     "wts.type": "page",
     "wts.framework": "MVVMBasic|MVVMLight",
     "wts.version": "1.0.0",
-    "wts.order": "1"
+    "wts.order": "5",
+    "wts.dependencies": "wts.Feat.SampleDataService",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true" 
   },
   "sourceName": "MasterDetail",
   "preferNameDirectory": true,
@@ -42,13 +44,7 @@
     },
     {
       "path": ".\\ViewModels\\MasterDetailDetailViewModel.cs"
-    },
-    {
-      "path": ".\\Models\\SampleModel.cs"
-    },
-    {
-      "path": ".\\Services\\SampleModelService.cs"
-    }    
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {

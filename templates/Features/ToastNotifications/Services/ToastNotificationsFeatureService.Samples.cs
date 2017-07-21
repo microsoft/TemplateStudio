@@ -1,4 +1,4 @@
-using Microsoft.Toolkit.Uwp.Notifications;
+﻿using Microsoft.Toolkit.Uwp.Notifications;
 using Windows.UI.Notifications;
 
 namespace Param_RootNamespace.Services
@@ -10,8 +10,8 @@ namespace Param_RootNamespace.Services
             // Create the toast content
             var content = new ToastContent()
             {
-                // TODO UWPTemplates: Check this documentation to know more about the Launch property
-                // Documentation: https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastcontent                
+                // TODO WTS: Check this documentation to know more about the Launch property
+                // Documentation: https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastcontent
                 Launch = "ToastContentActivationParams",
 
                 Visual = new ToastVisual()
@@ -22,12 +22,12 @@ namespace Param_RootNamespace.Services
                         {
                             new AdaptiveText()
                             {
-                                Text = "Action - text"
+                                Text = "Sample Toast Notification"
                             },
 
                             new AdaptiveText()
                             {
-                                Text = @"Make sure the left button on the toast has the text ""Ok"" on it, and the right button has the text ""Cancel"" on it."
+                                 Text = @"Click OK to see how activation from a toast notification can be handled in the ToastNotificationService."
                             }
                         }
                     }
@@ -37,9 +37,9 @@ namespace Param_RootNamespace.Services
                 {
                     Buttons =
                     {
-                        // TODO UWPTemplates: Check this documentation to know more about Toast Buttons
+                        // TODO WTS: Check this documentation to know more about Toast Buttons
                         // Documentation: https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastbutton
-                        new ToastButton("Ok", "ToastButtonActivationArguments")
+                        new ToastButton("OK", "ToastButtonActivationArguments")
                         {
                             ActivationType = ToastActivationType.Foreground
                         },
@@ -52,7 +52,7 @@ namespace Param_RootNamespace.Services
             // Create the toast
             var toast = new ToastNotification(content.GetXml())
             {
-                // TODO UWPTemplates: Gets or sets the unique identifier of this notification within the notification Group. Max length 16 characters.
+                // TODO WTS: Gets or sets the unique identifier of this notification within the notification Group. Max length 16 characters.
                 // Documentation: https://docs.microsoft.com/uwp/api/windows.ui.notifications.toastnotification
                 Tag = "ToastTag"
             };

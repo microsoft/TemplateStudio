@@ -34,6 +34,9 @@
         <Setter Property="FontSize" Value="{StaticResource UI_XL_FontSize}" />
         <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkGray}" />
     </Style>
+    <Style TargetType="TextBlock" x:Key="TextBottomBarStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
 
     <!--Project Setup and Project Templates Text Styles-->
     <Style TargetType="TextBlock" x:Key="TextGroupTemplateItemsHeaderStyle" BasedOn="{StaticResource UIBaseText}">
@@ -44,7 +47,7 @@
     <Style TargetType="TextBlock" x:Key="TextSubGroupTemplateItemsHeaderStyle" BasedOn="{StaticResource UIBaseText}">
         <Setter Property="Foreground" Value="{StaticResource UIDarkGray}" />
         <Setter Property="FontSize" Value="{StaticResource UI_M_FontSize}" />
-        <Setter Property="Margin" Value="{StaticResource MediumLeftTopMargin}" />
+        <Setter Property="Margin" Value="{StaticResource Margin_M_Top}" />
     </Style>
 
     <Style TargetType="TextBlock" x:Key="TextTemplateItemTitleStyle" BasedOn="{StaticResource UIBase}">
@@ -56,7 +59,7 @@
     </Style>
 
     <Style TargetType="TextBlock" x:Key="TextTemplateItemAuthorStyle" BasedOn="{StaticResource UIBaseText}">
-        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
+        <Setter Property="FontSize" Value="{StaticResource UI_XS_FontSize}" />
         <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkGray}" />
     </Style>
 
@@ -107,30 +110,14 @@
         <Setter Property="FontSize" Value="{StaticResource UI_XS_FontSize}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="TextSumaryLicenseStyle" BasedOn="{StaticResource UIBaseText}">
-        <Setter Property="FontSize" Value="{StaticResource UI_M_FontSize}" />
+    <Style TargetType="TextBlock" x:Key="TextSummaryLicenseStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
         <Setter Property="VerticalAlignment" Value="Bottom" />
         <Setter Property="Foreground" Value="{StaticResource UIBlue}" />
-        <!--<Setter Property="FocusVisualStyle">
-            <Setter.Value>
-                <Style>
-                    <Setter Property="Control.Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <Grid>
-                                    <Grid.Background>
-                                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
-                                    </Grid.Background>
-                                </Grid>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Setter.Value>
-        </Setter>-->
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{StaticResource UIDarkBlue}" />
+                <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkBlue}" />
+                <Setter Property="TextDecorations" Value="Underline"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -153,8 +140,24 @@
     <Style TargetType="TextBlock" x:Key="TextWizardStatusStyle" BasedOn="{StaticResource UIBaseText}">
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
         <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Focusable" Value="True" />
     </Style>
     
+    <!--OverlayBox-->
+    <Style TargetType="TextBlock" x:Key="TextOverlayBoxTitleStyle" BasedOn="{StaticResource TextSummaryLicenseStyle}">
+        <Setter Property="Foreground" Value="{StaticResource UIWhite}"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="TextOverlayBoxDescriptionStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="TextOverlayBoxImportantInformationStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}"/>
+    </Style>
+
+
     <!--Error-->
     <Style TargetType="TextBlock" x:Key="TextErrorTitleStyle" BasedOn="{StaticResource UIBaseText}">
         <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}" />
@@ -162,11 +165,35 @@
     </Style>
 
     <!--Buttons-->
-    <Style TargetType="TextBlock" x:Key="RoundButtonTextStyle">
+    <Style TargetType="TextBlock" x:Key="IconButtonTextStyle">
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="TextAlignment" Value="Center" />
         <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
     </Style>
 
+    <!--Changes summary-->
+    <Style TargetType="TextBlock" x:Key="ChangesSummaryListFileNameStyle">
+        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="ChangesSummaryCodeLineStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="FontFamily" Value="Consolas"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="ChangesSummaryDetailTitleStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="FontSize" Value="{StaticResource UI_L_FontSize}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="ChangesSummaryDetailDescriptionStyle" BasedOn="{StaticResource UIBaseText}">
+    </Style>
+    
+    <!--Project Configuration-->
+    <Style TargetType="TextBlock" x:Key="ProjectConfigurationDescriptionStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="ProjectConfigurationComboBoxHeaderStyle" BasedOn="{StaticResource UIBaseText}">
+        <Setter Property="FontSize" Value="{StaticResource UI_S_FontSize}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+    </Style>
+    
 </ResourceDictionary>

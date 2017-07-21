@@ -12,12 +12,12 @@ namespace Param_ItemNamespace.Services
 {
     internal class SuspendAndResumeService : ActivationHandler<LaunchActivatedEventArgs>
     {
-        // TODO UWPTEMPLATES: For more information regarding the application lifecycle and how to handle suspend and resume, please see:
-        // Documentation: https://docs.microsoft.com/windows/uwp/launch-resume/app-lifecycle
+        //// TODO WTS: For more information regarding the application lifecycle and how to handle suspend and resume, please see:
+        //// Documentation: https://docs.microsoft.com/windows/uwp/launch-resume/app-lifecycle
 
-        private const string stateFilename = "suspensionState";
+        private const string StateFilename = "suspensionState";
 
-        // TODO UWPTEMPLATES: This event is fired just before the app enters in background. Subscribe to this event if you want to save your current state.
+        // TODO WTS: This event is fired just before the app enters in background. Subscribe to this event if you want to save your current state.
         public event EventHandler<OnBackgroundEnteringEventArgs> OnBackgroundEntering;
 
         public async Task SaveStateAsync()
@@ -32,7 +32,7 @@ namespace Param_ItemNamespace.Services
 
             OnBackgroundEntering?.Invoke(this, onBackgroundEnteringArgs);
 
-            await ApplicationData.Current.LocalFolder.SaveAsync(stateFilename, onBackgroundEnteringArgs);
+            await ApplicationData.Current.LocalFolder.SaveAsync(StateFilename, onBackgroundEnteringArgs);
         }
 
         protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
@@ -47,7 +47,7 @@ namespace Param_ItemNamespace.Services
 
         private async Task RestoreStateAsync()
         {
-            var saveState = await ApplicationData.Current.LocalFolder.ReadAsync<OnBackgroundEnteringEventArgs>(stateFilename);
+            var saveState = await ApplicationData.Current.LocalFolder.ReadAsync<OnBackgroundEnteringEventArgs>(StateFilename);
         }
     }
 }

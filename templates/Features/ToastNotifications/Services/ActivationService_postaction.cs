@@ -1,18 +1,22 @@
+﻿//{**
+// This code block include the ToastNotificationsFeatureService Instance in the method 
+// `GetActivationHandlers()` in the ActivationService of your project.
+//**}
+
 using System;
+//{[{
 using Param_RootNamespace.Helpers;
+//}]}
 
 namespace Param_ItemNamespace.Services
 {
     internal class ActivationService
     {
-        private async Task StartupAsync()
-        {
-            Singleton<ToastNotificationsFeatureService>.Instance.ShowToastNotificationSample();
-        }
-
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
+            //{[{
             yield return Singleton<ToastNotificationsFeatureService>.Instance;
+            //}]}
 //{--{
 
             yield break;//}--}

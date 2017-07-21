@@ -1,33 +1,30 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
 
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.Test.Artifacts;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.Fakes;
+using Microsoft.Templates.UI;
+using Microsoft.Templates.VsEmulator.LoadProject;
 using Microsoft.Templates.VsEmulator.NewProject;
 using Microsoft.Templates.VsEmulator.TemplatesContent;
 using Microsoft.VisualStudio.TemplateWizard;
-using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
-    public class MainViewModel : Observable
+    public class MainViewModel : Observable, IContextProvider
     {
         private readonly MainView _host;
 
@@ -38,12 +35,36 @@ namespace Microsoft.Templates.VsEmulator.Main
             _templatesVersion = "0.0.0.0";
         }
 
+        public string ProjectName { get; private set; }
+        public string OutputPath { get; private set; }
+        public string ProjectPath { get; private set; }
+
+        private bool _forceLocalTemplatesRefresh = true;
+        public bool ForceLocalTemplatesRefresh
+        {
+            get => _forceLocalTemplatesRefresh;
+            set => SetProperty(ref _forceLocalTemplatesRefresh, value);
+        }
+
+        public List<string> ProjectItems { get; } = new List<string>();
+
+        public List<FailedMergePostAction> FailedMergePostActions { get; } = new List<FailedMergePostAction>();
+
+        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
+
+        public List<string> FilesToOpen { get; } = new List<string>();
+
         public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
+        public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
         public RelayCommand OpenInVsCodeCommand => new RelayCommand(OpenInVsCode);
         public RelayCommand OpenInExplorerCommand => new RelayCommand(OpenInExplorer);
+        public RelayCommand OpenTempInExplorerCommand => new RelayCommand(OpenTempInExplorer);
         public RelayCommand ConfigureVersionsCommand => new RelayCommand(ConfigureVersions);
+        public RelayCommand AddNewFeatureCommand => new RelayCommand(AddNewFeature);
 
+        public RelayCommand AddNewPageCommand => new RelayCommand(AddNewPage);
+       
 
         private string _state;
         public string State
@@ -64,6 +85,21 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             get => _isProjectLoaded;
             set => SetProperty(ref _isProjectLoaded, value);
+        }
+
+        private Visibility _isWtsProject;
+        public Visibility IsWtsProject
+        {
+            get => _isWtsProject;
+            set => SetProperty(ref _isWtsProject, value);
+        }
+
+        public Visibility TempFolderAvailable
+        {
+            get
+            {
+                return HasContent(GetTempGenerationFolder()) ? Visibility.Visible : Visibility.Hidden;
+            }
         }
 
         private string _wizardVersion;
@@ -101,6 +137,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string SolutionPath { get; set; }
 
+        
+
         public void Initialize()
         {
             SolutionName = null;
@@ -108,7 +146,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private async void NewProject()
         {
-            ConfigureGenContext();
+            ConfigureGenContext(ForceLocalTemplatesRefresh);
 
             try
             {
@@ -116,23 +154,56 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 if (!string.IsNullOrEmpty(newProjectInfo.name))
                 {
-                    var outputPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
+                    var projectPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
+                    
+                    GenContext.Current = this;
 
-                    using (var context = GenContext.CreateNew(newProjectInfo.name, outputPath))
+                    var userSelection = NewProjectGenController.Instance.GetUserSelection();
+                    if (userSelection != null)
                     {
-                        var userSelection = GenController.GetUserSelection();
-                        if (userSelection != null)
-                        {
-                            SolutionName = null;
+                        ProjectName = newProjectInfo.name;
+                        ProjectPath = projectPath;
+                        OutputPath = projectPath;
 
-                            await GenController.GenerateAsync(userSelection);
+                        ClearContext();
+                        SolutionName = null;
 
-                            GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
+                        await NewProjectGenController.Instance.GenerateProjectAsync(userSelection);
 
-                            SolutionName = newProjectInfo.name;
-                            SolutionPath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
-                        }
+                        GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
+
+                        SolutionName = newProjectInfo.name;
+                        SolutionPath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
                     }
+                }
+            }
+            catch (WizardBackoutException)
+            {
+
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
+            }
+            catch (WizardCancelledException)
+            {
+                
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
+            }
+        }
+
+        private void AddNewFeature()
+        {
+            ConfigureGenContext(ForceLocalTemplatesRefresh);
+
+            OutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
+            ClearContext();
+
+            try
+            {
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature();
+
+                if (userSelection != null)
+                {
+                    NewItemGenController.Instance.FinishGeneration(userSelection);
+                    GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
             }
             catch (WizardBackoutException)
@@ -142,6 +213,66 @@ namespace Microsoft.Templates.VsEmulator.Main
             catch (WizardCancelledException)
             {
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
+            }
+
+        }
+
+
+
+        private void ClearContext()
+        {
+            ProjectItems.Clear();
+            MergeFilesFromProject.Clear();
+            FailedMergePostActions.Clear();
+            FilesToOpen.Clear();
+        }
+
+        private void AddNewPage()
+        {
+            ConfigureGenContext(ForceLocalTemplatesRefresh);
+
+            OutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
+            ClearContext();
+            try
+            {
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage();
+
+                if (userSelection != null)
+                {
+
+                    NewItemGenController.Instance.FinishGeneration(userSelection);
+                    GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
+                }
+            }
+            catch (WizardBackoutException)
+            {
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
+            }
+            catch (WizardCancelledException)
+            {
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
+            }
+        }
+
+        private void LoadProject()
+        {
+            ConfigureGenContext(ForceLocalTemplatesRefresh);
+            var loadProjectInfo = ShowLoadProjectDialog();
+
+            if (!string.IsNullOrEmpty(loadProjectInfo))
+            {
+                SolutionPath = loadProjectInfo;
+                SolutionName = Path.GetFileNameWithoutExtension(SolutionPath);
+
+                var projFile = Directory.EnumerateFiles(Path.GetDirectoryName(SolutionPath), "*.csproj", SearchOption.AllDirectories).FirstOrDefault();
+
+                GenContext.Current = this;
+
+                ProjectName = Path.GetFileNameWithoutExtension(projFile);
+                ProjectPath = Path.GetDirectoryName(projFile);
+                OutputPath = ProjectPath;
+                IsWtsProject = GenContext.ToolBox.Shell.GetActiveProjectIsWts() ? Visibility.Visible : Visibility.Collapsed;
+                ClearContext();
             }
         }
 
@@ -158,7 +289,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 WizardVersion = dialog.ViewModel.Result.WizardVersion;
                 TemplatesVersion = dialog.ViewModel.Result.TemplatesVersion;
-                ConfigureGenContext();
+                ConfigureGenContext(ForceLocalTemplatesRefresh);
             }
         }
 
@@ -187,6 +318,26 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
+        private void OpenTempInExplorer()
+        {
+            var tempGenerationPath = GetTempGenerationFolder();
+            if (HasContent(tempGenerationPath))
+            {
+                System.Diagnostics.Process.Start(tempGenerationPath);
+            }
+
+        }
+
+        private static string GetTempGenerationFolder()
+        {
+            return Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
+        }
+
+        private static bool HasContent(string tempPath)
+        {
+            return !string.IsNullOrEmpty(tempPath) && Directory.Exists(tempPath) && Directory.EnumerateDirectories(tempPath).Count() > 0;
+        }
+
         private (string name, string solutionName, string location) ShowNewProjectDialog()
         {
             var dialog = new NewProjectView()
@@ -202,6 +353,23 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
 
             return (null, null, null);
+        }
+
+        private string ShowLoadProjectDialog()
+        {
+            var dialog = new LoadProjectView(SolutionPath)
+            {
+                Owner = _host
+            };
+
+            var result = dialog.ShowDialog();
+
+            if (result.HasValue && result.Value)
+            {
+                return dialog.ViewModel.SolutionPath;
+            }
+
+            return string.Empty;
         }
 
         private void SetState(string message)
@@ -220,38 +388,13 @@ namespace Microsoft.Templates.VsEmulator.Main
             });
         }
 
-        private void ConfigureGenContext()
+        private void ConfigureGenContext(bool forceLocalTemplatesRefresh)
         {
-            if (TemplatesVersion == "0.0.0.0")
-            {
-                CleanUpContent();
-            }
-
-            GenContext.Bootstrap(new LocalTemplatesSource(TemplatesVersion)
+            GenContext.Bootstrap(new LocalTemplatesSource(WizardVersion, TemplatesVersion, forceLocalTemplatesRefresh)
                 , new FakeGenShell(msg => SetState(msg), l => AddLog(l), _host)
                 , new Version(WizardVersion));
-        }
 
-        private void CleanUpContent()
-        {
-            DirectoryInfo di = new DirectoryInfo(GetTemplatesFolder());
-
-            if (di.Exists)
-            {
-                foreach (var sdi in di.EnumerateDirectories())
-                {
-                    Fs.SafeDeleteDirectory(sdi.FullName);
-                }
-            }
-        }
-        private string GetTemplatesFolder()
-        {
-            //TODO: Think in having a way to get the target TemplatesFolder to avoid instantiating all this staff
-            LocalTemplatesSource _templatesSource = new LocalTemplatesSource(TemplatesVersion);
-            TemplatesSynchronization _templatesSync = new TemplatesSynchronization(_templatesSource, new Version(WizardVersion));
-            string currentTemplatesFolder = _templatesSync.CurrentTemplatesFolder;
-
-            return currentTemplatesFolder;
+            CleanUpNotUsedContentVersions();
         }
 
         public void DoEvents()
@@ -267,5 +410,33 @@ namespace Microsoft.Templates.VsEmulator.Main
             Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Background, method, frame);
             Dispatcher.PushFrame(frame);
         }
+
+        private void CleanUpNotUsedContentVersions()
+        {
+            if (_wizardVersion == "0.0.0.0" && _templatesVersion == "0.0.0.0")
+            {
+                var templatesFolder = GetTemplatesFolder();
+                if (Directory.Exists(templatesFolder))
+                {
+                    var dirs = Directory.EnumerateDirectories(templatesFolder);
+                    foreach (var dir in dirs)
+                    {
+                        if (!dir.EndsWith("0.0.0.0"))
+                        {
+                            Fs.SafeDeleteDirectory(dir);
+                        }
+                    }
+                }
+            }
+        }
+        private string GetTemplatesFolder()
+        {
+            var _templatesSource = new LocalTemplatesSource(_wizardVersion, _templatesVersion);
+            var _templatesSync = new TemplatesSynchronization(_templatesSource, new Version(_wizardVersion));
+            string currentTemplatesFolder = _templatesSync.CurrentTemplatesFolder;
+
+            return currentTemplatesFolder;
+        }
+
     }
 }

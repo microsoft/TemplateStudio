@@ -1,0 +1,16 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "LiveTile",
+  "groupIdentity": "Microsoft.UWPTemplates.Test.Naming.DefaultName",
+  "identity": "Microsoft.UWPTemplates.Test.Naming.DefaultName.CSharp",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.multipleInstance": "false",
+    "wts.defaultInstance":  "LiveTile"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

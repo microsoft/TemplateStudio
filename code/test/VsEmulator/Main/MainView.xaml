@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converters="clr-namespace:Microsoft.Templates.VsEmulator.Converters"
         mc:Ignorable="d"
         Title="Visual Studio Emulator" 
         Height="480" Width="800" 
@@ -13,6 +14,10 @@
         <Image x:Key="VsImage" Source="/VsEmulator;component/Assets/vs.jpg"/>
         <Image x:Key="VsCodeImage" Source="/VsEmulator;component/Assets/vscode.jpg"/>
         <Image x:Key="FolderImage" Source="/VsEmulator;component/Assets/folder.png"/>
+        <Image x:Key="NewFeatureImage" Source="/VsEmulator;component/Assets/newfeature.png"/>
+        <Image x:Key="NewPageImage" Source="/VsEmulator;component/Assets/newpage.png"/>
+        <Image x:Key="OpenFolderImage" Source="/VsEmulator;component/Assets/openfolder.png"/>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
     </Window.Resources>
 
     <Grid>
@@ -38,11 +43,19 @@
                         </Hyperlink>
                     </TextBlock>
                     <TextBlock>
+                        <Hyperlink Command="{Binding LoadProjectCommand}">
+                            <TextBlock Text="Load project..."/>
+                        </Hyperlink>
+                    </TextBlock>
+                    <TextBlock>
                         <Hyperlink Command="{Binding ConfigureVersionsCommand}">
                             <TextBlock Text="Configure versions..."/>
                         </Hyperlink>
                     </TextBlock>
-                    
+
+                    <CheckBox Content="Refesh Local Templates" IsChecked="{Binding ForceLocalTemplatesRefresh, Mode=TwoWay}" Margin="0,12,0,0"/>
+                    <TextBlock Text="To avoid refresh Local Templates every time you will need to modify the value for setting VersionCheckingExpirationMinutes, which is Zero by default." FontStyle="Italic" TextWrapping="Wrap" Margin="0,8,0,0"
+                               Visibility="{Binding ForceLocalTemplatesRefresh, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}"/>
                 </StackPanel>
                 
                 <ScrollViewer x:Name="logScroll" Grid.Row="1" VerticalAlignment="Bottom" VerticalScrollBarVisibility="Auto" Height="200">
@@ -63,9 +76,12 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal">
-                    <Button Command="{Binding OpenInVsCommand}" Content="{StaticResource VsImage}" Style="{StaticResource IconButton}" />
-                    <Button Command="{Binding OpenInVsCodeCommand}" Content="{StaticResource VsCodeImage}" Style="{StaticResource IconButton}" />
-                    <Button Command="{Binding OpenInExplorerCommand}" Content="{StaticResource FolderImage}" Style="{StaticResource IconButton}"  />
+                    <Button Command="{Binding OpenInVsCommand}" Content="{StaticResource VsImage}" Style="{StaticResource IconButton}" ToolTip="Open in Visual Studio"/>
+                    <Button Command="{Binding OpenInVsCodeCommand}" Content="{StaticResource VsCodeImage}" Style="{StaticResource IconButton}" ToolTip="Open in Visual Studio Code" />
+                    <Button Command="{Binding OpenInExplorerCommand}" Content="{StaticResource FolderImage}" Style="{StaticResource IconButton}" ToolTip="Open in explorer" />
+                    <Button Command="{Binding AddNewFeatureCommand}" Content="{StaticResource NewFeatureImage}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}" ToolTip="Add new feature"/>
+                    <Button Command="{Binding AddNewPageCommand}" Content="{StaticResource NewPageImage}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}" ToolTip="Add new page"/>
+                    <Button Command="{Binding OpenTempInExplorerCommand}" Content="{StaticResource OpenFolderImage}" Style="{StaticResource IconButton}" Visibility="{Binding TempFolderAvailable}"  ToolTip="Open temp folder in explorer"/>
                 </StackPanel>
                 <Grid Grid.Row="1" Style="{StaticResource HorizontalSeparator}" />
                 <TextBlock Grid.Row="2" Text="{Binding SolutionName}" Style="{StaticResource Header2}" />

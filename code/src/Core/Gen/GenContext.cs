@@ -1,37 +1,42 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
-using System.Diagnostics;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
-using System.Runtime.Remoting.Messaging;
-
-using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Resources;
+using Microsoft.Templates.Core.Locations;
 
 namespace Microsoft.Templates.Core.Gen
 {
-    public class GenContext : IDisposable
+    public class GenContext
     {
-        private const string DataSlotKey = "GenContext_Ids";
+        private static IContextProvider _currentContext;
+        private static string _tempGenerationFolder = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
 
-        private static Dictionary<string, GenContext> _genContextTable = new Dictionary<string, GenContext>();
         public static GenToolBox ToolBox { get; private set; }
         public static bool IsInitialized { get; private set; }
 
-        public string ProjectName { get; }
-        public string OutputPath { get; }
+        public static IContextProvider Current
+        {
+            get
+            {
+                if (_currentContext == null)
+                {
+                    throw new InvalidOperationException(StringRes.GenContextCurrentInvalidOperationMessage);
+                }
+                return _currentContext;
+            }
+            set
+            {
+                _currentContext = value;
+            }
+        }
 
         public static void Bootstrap(TemplatesSource source, GenShell shell)
         {
@@ -40,110 +45,62 @@ namespace Microsoft.Templates.Core.Gen
 
         public static void Bootstrap(TemplatesSource source, GenShell shell, Version wizardVersion)
         {
-            AppHealth.Current.AddWriter(new ShellHealthWriter());
-            AppHealth.Current.Info.TrackAsync($"Configuration file loaded: {Configuration.LoadedConfigFile}").FireAndForget();
-
-            string hostVersion = $"{wizardVersion.Major}.{wizardVersion.Minor}";
-
-            CodeGen.Initialize(source.Id, hostVersion);
-            TemplatesRepository repository = new TemplatesRepository(source, wizardVersion);
-
-            ToolBox = new GenToolBox(repository, shell);
-
-            IsInitialized = true;
-        }
-
-        private GenContext(string projectName, string outputPath)
-        {
-            ProjectName = projectName;
-            OutputPath = outputPath;
-        }
-
-        public static GenContext CreateNew(Dictionary<string, string> replacements)
-        {
-            var destinationDirectory = new DirectoryInfo(replacements["$destinationdirectory$"]);
-
-            return CreateNew(replacements["$safeprojectname$"], destinationDirectory.FullName);
-        }
-
-        public static GenContext CreateNew(string name, string outputPath, string solutionName = null)
-        {
-            var id = Guid.NewGuid().ToString();
-
-            if (!IsInitialized)
+            try
             {
-                throw new Exception("Class GenContext is not initialized. Call 'Bootstrap' method first.");
+                AppHealth.Current.AddWriter(new ShellHealthWriter(shell));
+                AppHealth.Current.Info.TrackAsync($"{StringRes.ConfigurationFileLoadedString}: {Configuration.LoadedConfigFile}").FireAndForget();
+
+                string hostVersion = $"{wizardVersion.Major}.{wizardVersion.Minor}";
+
+                var repository = new TemplatesRepository(source, wizardVersion);
+
+                ToolBox = new GenToolBox(repository, shell);
+
+                PurgeTempGenerations(Configuration.Current.DaysToKeepTempGenerations);
+
+                CodeGen.Initialize(source.Id, hostVersion);
+
+                IsInitialized = true;
             }
-
-            lock (_genContextTable)
+            catch (Exception ex)
             {
-                SetCurrentGenId(id);
-
-                var context = new GenContext(name, outputPath);
-
-                if (!_genContextTable.ContainsKey(id))
-                {
-                    _genContextTable.Add(id, context);
-                }
-                else
-                {
-                    throw new Exception($"The generation '{id}' is currently being processed.");
-                }
-
-                return context;
+                IsInitialized = false;
+                AppHealth.Current.Exception.TrackAsync(ex, StringRes.GenContextBootstrapError).FireAndForget();
+                Trace.TraceError($"{StringRes.GenContextBootstrapError} Exception:\n\r{ex}");
+                throw;
             }
         }
 
-        public static GenContext Current
+        public static string GetTempGenerationPath(string projectName)
         {
-            get
+            Fs.EnsureFolder(_tempGenerationFolder);
+
+            var tempGenerationName = $"{projectName}_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}";
+            var inferredName = Naming.Infer(tempGenerationName, new List<Validator>() { new DirectoryExistsValidator(_tempGenerationFolder) }, "_");
+
+            return Path.Combine(_tempGenerationFolder, inferredName);
+        }
+
+        private static void PurgeTempGenerations(int daysToKeep)
+        {
+            if (Directory.Exists(_tempGenerationFolder))
             {
-                lock (_genContextTable)
+                var di = new DirectoryInfo(_tempGenerationFolder);
+                var toBeDeleted = di.GetDirectories().Where(d => d.CreationTimeUtc.AddDays(daysToKeep) < DateTime.UtcNow);
+
+                foreach (var d in toBeDeleted)
                 {
-                    var id = GetCurrentGenId();
-                    
-                    if (string.IsNullOrEmpty(id) || !_genContextTable.ContainsKey(id))
+                    try
                     {
-                        throw new InvalidOperationException("There is no context for the current gen execution");
+                        d.Delete(true);
                     }
-                    return _genContextTable[id];
-                }
-            }
-        }
-
-        public void Dispose()
-        {
-            lock (_genContextTable)
-            {
-                var ticket = GetCurrentGenId();
-
-                if (!string.IsNullOrEmpty(ticket))
-                {
-                    if (_genContextTable.ContainsKey(ticket))
+                    catch (Exception ex)
                     {
-                        _genContextTable.Remove(ticket);
+                        Debug.WriteLine($"Error removing old temp generation directory '{d.FullName}'. Skipped. Exception:\n\r{ex.ToString()}");
+                        Trace.TraceError($"Error removing old temp generation directory '{d.FullName}'. Skipped. Exception:\n\r{ex.ToString()}");
                     }
                 }
-
-                CallContext.FreeNamedDataSlot(DataSlotKey);
             }
-        }
-
-        private static void SetCurrentGenId(string id)
-        {
-            CallContext.LogicalSetData(DataSlotKey, id);
-        }
-
-        private static string GetCurrentGenId()
-        {
-            var id = CallContext.LogicalGetData(DataSlotKey);
-
-            if (id != null)
-            {
-                return id.ToString();
-            }
-
-            return null;
         }
 
         private static Version GetWizardVersionFromAssembly()

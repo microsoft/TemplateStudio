@@ -1,0 +1,15 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "RightClickTemplate",
+  "groupIdentity": "Microsoft.UWPTemplates.Test.RightClickTemplate",
+  "identity": "Microsoft.UWPTemplates.Test.RightClickTemplate.CSharp",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.rightClickEnabled": "true"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

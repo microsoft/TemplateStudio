@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.IO;
@@ -32,7 +24,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (string.IsNullOrWhiteSpace(SourcePath))
             {
-                return;
+                Content = CreateFromBitmap();
             }
 
             var sourceExtension = Path.GetExtension(SourcePath);
@@ -107,20 +99,20 @@ namespace Microsoft.Templates.UI.Controls
             set => SetValue(SourcePathProperty, value);
         }
 
-        public static readonly DependencyProperty FallbackImageProperty = DependencyProperty.Register("FallbackImage", typeof(string), typeof(ImageEx), new PropertyMetadata(null));
-        public string FallbackImage
+        public static readonly DependencyProperty FallbackImageProperty = DependencyProperty.Register("FallbackImage", typeof(ImageSource), typeof(ImageEx), new PropertyMetadata(null));
+        public ImageSource FallbackImage
         {
-            get => (string)GetValue(FallbackImageProperty);
+            get => (ImageSource)GetValue(FallbackImageProperty);
             set => SetValue(FallbackImageProperty, value);
         }
 
-        public BitmapImage CreateIcon(string path)
+        public ImageSource CreateIcon(string path)
         {
             try
             {
                 if (string.IsNullOrWhiteSpace(path) || !File.Exists(path))
                 {
-                    return CreateFallback();
+                    return FallbackImage;
                 }
                 else
                 {
@@ -129,8 +121,8 @@ namespace Microsoft.Templates.UI.Controls
             }
             catch (IOException)
             {
-                //SYNC AT SAME TIME IS LOADING THE ICON OR ICON IS LOCKED
-                return CreateFallback();
+                // SYNC AT SAME TIME IS LOADING THE ICON OR ICON IS LOCKED
+                return FallbackImage;
             }
         }
 
@@ -147,16 +139,6 @@ namespace Microsoft.Templates.UI.Controls
             image.EndInit();
 
             return image;
-        }
-
-        private BitmapImage CreateFallback()
-        {
-            if (string.IsNullOrEmpty(FallbackImage))
-            {
-                return null;
-            }
-
-            return CreateBitMap(new Uri(FallbackImage));
         }
 
         protected static Binding CreateBinding(object source, string path)

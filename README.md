@@ -1,17 +1,11 @@
 # Windows Template Studio
 
-Windows Template Studio goal is to help developers with their File->New experience in Visual Studio. It will generate a strong, generic foundation with the pages you need, but also integrate game changing features from the start. Once the template is generated for the developer, it can provide base sample data and will be able to compile then run without issue. Sprinkled throughout the generated code we have links Docs, Stack Overflow and blogs to provide useful insights.
+Windows Template Studio is a Visual Studio 2017 Extension that accelerates the creation of new Universal Windows Platform (UWP) apps using a wizard-based experience. The resulting UWP project is well-formed, readable code that incorporates the latest Windows 10 features while implementing proven patterns and best practices. Sprinkled throughout the generated code we have links Docs, Stack Overflow and blogs to provide useful insights.
 
 **Example scenario:**
 I need an app that uses MVVM Light, uses master detail, can suspend and resume, settings, maps on one of the pages and will need Azure hub notifications.   It will need a background service that does a query every 5 minutes.
 
-## Table of Contents
-
-* [Installing / Using the extension](docs/getting-started-extension.md)
-* [Using and extending your file->new](docs/getting-started-endusers.md)
-* [Concepts of Windows Template Studio](docs/readme.md)
-* [Getting started with the generator codebase](docs/getting-started-developers.md)
-* [Authoring Templates](docs/templates.md)
+![Windows Template Studio screenshot](docs/resources/getting-started/WPT%20-%20Project%20Type%20and%20Framework.png)
 
 ## Build Status
 
@@ -22,39 +16,30 @@ I need an app that uses MVVM Light, uses master detail, can suspend and resume, 
 
 ## Features
 
-### Supported Project Types
+Windows Template Studio approaches UWP app creation using the following four attribute sets:
 
-* Basic
-* Navigation Pane
-* Pivot and tabs
+* **Project type**: First, how do you want your app's UI navigation to behave? We currently support three project types: *basic*, *[navigation pane](docs/projectTypes/navigationpane.md)*, and *pivot and tabs*
+* **App framework**: Next, what coding pattern do you want to use in your project, we currently support three common patterns: *code behind*, *basic MVVM*, and *[MVVM Light](http://www.mvvmlight.net/)*
+* **App pages**: To accelerate app creation, we provide a number of app page templates that you can use to add common UI pages into your new app. We currently include page templates from the *blank page* to the common layouts (*e.g., master/detail, tabbed, web view*) to pages that implement common patterns (*e.g., [app settings](docs/pages/settings.md), map control*). Using the wizard, add as many of the pages as you need, providing a name for each one, and we'll generate them for you.
+* **Windows 10 features**: Lastly, you specify which UWP capabilities you want to use in your app, and we'll build out the framework for the features into your app, tagging 'TODO' items. Currently supported features cover application lifecycle (*settings storage, suspend and resume*), background tasks, and user interaction (*app notifications, Live tiles, and Azure Notification Hub*).
 
-### Supported Frameworks
+Once you select the attributes you want your new UWP app to have, you can quickly [extend the generated code](docs/getting-started-endusers.md).
 
-* MVVM Basic
-* [MVVM Light](http://www.mvvmlight.net/)
-* Code behind
+## Documentation
 
-### Supported Pages
+* [Installing / Using the extension](docs/getting-started-extension.md)
+* [Using and extending your generated project](docs/getting-started-endusers.md)
+* [Concepts of Windows Template Studio](docs/readme.md)
+* [Getting started with the generator codebase](docs/getting-started-developers.md)
+* [Authoring Templates](docs/templates.md)
 
-* Blank page
-* Map page
-* Master/Detail page
-* [Settings page](docs/pages/settings.md)
-* Tabbed page
-* Web view page
+## Known issues
 
-### Supported Features
+* [Project creation failing with VS 15.2 and VS Preview side by side](https://github.com/Microsoft/WindowsTemplateStudio/issues/668) - We believe right now there is a side by side issue.
 
-* Background tasks
-* Setting storage
-* Suspend and resume
-* Azure-based Notifications (Azure Notification Hub)
-* Live Tiles
-* Toast Notifications
+## Feedback, Requests and Roadmap
 
-## Feedback, Requests and Roadmp
-
-Please use [GitHub issues](https://github.com/Microsoft/WindowsTemplateStudio/issues) for feedback, questions or comments.  
+Please use [GitHub issues](https://github.com/Microsoft/WindowsTemplateStudio/issues) for feedback, questions or comments.
 
 If you have specific feature requests or would like to vote on what others are recommending, please go to the [GitHub issues](https://github.com/Microsoft/WindowsTemplateStudio/issues) section as well.  We would love to see what you are thinking.
 

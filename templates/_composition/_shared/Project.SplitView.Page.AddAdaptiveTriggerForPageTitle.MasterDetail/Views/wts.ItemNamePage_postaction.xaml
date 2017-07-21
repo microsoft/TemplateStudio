@@ -1,6 +1,5 @@
-<Page
+﻿<Page
     mc:Ignorable="d">
-    
         <!--  Adaptive triggers  -->
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WindowStates">
@@ -11,10 +10,12 @@
                 </VisualState>
                 <VisualState x:Name="NarrowState">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
+                        <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <!--{[{-->
                         <Setter Target="TitlePage.Margin" Value="48,0,12,7"/>
+                        <!--}]}-->
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

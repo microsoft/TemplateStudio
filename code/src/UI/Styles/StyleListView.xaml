@@ -4,6 +4,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Colors.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_FontSizes.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Thickness.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
@@ -14,16 +15,14 @@
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Focusable" Value="False"/>
-        <Setter Property="Margin" Value="{StaticResource MediumTopRightMargin}"/>
+        <Setter Property="Margin" Value="{StaticResource Margin_M_TopRight}"/>
         <Setter Property="Foreground" Value="{StaticResource UIBlack}"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <WrapPanel
-                        Width="{Binding (FrameworkElement.ActualWidth), RelativeSource={RelativeSource AncestorType=ScrollContentPresenter}}"
-                        Orientation="Horizontal"/>
+                    <WrapPanel Width="{Binding (FrameworkElement.ActualWidth), RelativeSource={RelativeSource AncestorType=StackPanel}}" Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
@@ -50,7 +49,7 @@
     <Style TargetType="Border" x:Key="ListViewItemBorderStyle">
         <Setter Property="BorderThickness" Value="5,1,1,1"/>
         <Setter Property="BorderBrush" Value="{StaticResource UIGray}"/>
-        <Setter Property="Margin" Value="{StaticResource BigRightBottomMargin}"/>
+        <Setter Property="Margin" Value="{StaticResource Margin_XL_RightBottom}"/>
     </Style>
 
     <Style x:Key="ListViewProjectSetupStyle" TargetType="ListView" BasedOn="{StaticResource ListViewBaseStyle}">
@@ -64,7 +63,7 @@
                                 <Setter Property="Control.Template">
                                     <Setter.Value>
                                         <ControlTemplate>
-                                            <Grid Margin="{StaticResource BigRightBottomMargin}">
+                                            <Grid Margin="{StaticResource Margin_XL_RightBottom}">
                                                 <Grid.Background>
                                                     <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
                                                 </Grid.Background>
@@ -88,8 +87,8 @@
                                             <Condition Property="IsMouseOver" Value="True"/>
                                         </MultiTrigger.Conditions>
                                         <MultiTrigger.Setters>
-                                            <Setter Property="Foreground" Value="{StaticResource UIDarkBlue}"/>
-                                            <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{StaticResource UIDarkBlue}"/>
+                                            <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkBlue}"/>
+                                            <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{StaticResource UIMiddleDarkBlue}"/>
                                         </MultiTrigger.Setters>
                                     </MultiTrigger>
                                     <MultiTrigger>
@@ -131,7 +130,7 @@
                                 <Setter Property="Control.Template">
                                     <Setter.Value>
                                         <ControlTemplate>
-                                            <Grid Margin="{StaticResource BigRightBottomMargin}">
+                                            <Grid Margin="{StaticResource Margin_XL_RightBottom}">
                                                 <Grid.Background>
                                                     <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
                                                 </Grid.Background>
@@ -156,4 +155,109 @@
         </Setter>
     </Style>
 
+
+    <Style x:Key="SummaryListViewStyle" TargetType="ListView">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="Local"/>
+        <Setter Property="AllowDrop" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListView}">
+                    <Border Background="{TemplateBinding Background}" Margin="{TemplateBinding Margin}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Focusable="False">
+                        <ItemsPresenter Focusable="False"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Focusable" Value="False"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <Border x:Name="ContentBorder" Margin="0" BorderThickness="0" BorderBrush="Transparent" Focusable="False">
+                                    <ContentPresenter Focusable="False"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="FocusVisualStyle">
+                        <Setter.Value>
+                            <Style>
+                                <Setter Property="Control.Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <Grid>
+                                                <Grid.Background>
+                                                    <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
+                                                </Grid.Background>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="ListView" x:Key="ListViewChangesSummaryFiles">
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="FocusVisualStyle">
+                        <Setter.Value>
+                            <Style>
+                                <Setter Property="Control.Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <Grid>
+                                                <Grid.Background>
+                                                    <SolidColorBrush Color="{StaticResource UILightGrayColor}" Opacity="0.3"/>
+                                                </Grid.Background>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <Border x:Name="ContentBorder">
+                                    <ContentPresenter/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsSelected" Value="True"/>
+                                        </MultiTrigger.Conditions>
+                                        <MultiTrigger.Setters>
+                                            <Setter Property="Background" TargetName="ContentBorder" Value="{StaticResource UIBlue}"/>
+                                            <Setter Property="Foreground" Value="{StaticResource UIWhite}"/>
+                                        </MultiTrigger.Setters>
+                                    </MultiTrigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

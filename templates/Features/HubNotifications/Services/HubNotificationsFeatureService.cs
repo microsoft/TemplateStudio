@@ -1,4 +1,4 @@
-using Microsoft.WindowsAzure.Messaging;
+﻿using Microsoft.WindowsAzure.Messaging;
 using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
@@ -12,13 +12,14 @@ namespace Param_RootNamespace.Services
     {
         public async void InitializeAsync()
         {
-            // See more about adding push notifications to your Windows app
-            // Documentation: https://docs.microsoft.com/azure/app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push
+            //// See more about adding push notifications to your Windows app at
+            //// https://docs.microsoft.com/azure/app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push
 
             // Use your Hub Name here
-            var hubName = "";
+            var hubName = string.Empty;
+
             // Use your DefaultListenSharedAccessSignature here
-            var accessSignature = "";
+            var accessSignature = string.Empty;
 
             var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
 
@@ -35,9 +36,9 @@ namespace Param_RootNamespace.Services
 
         protected override async Task HandleInternalAsync(ToastNotificationActivatedEventArgs args)
         {
-            // TODO UWPTemplates: Handle activation from toast notification,
-            // for more info handling activation see
-            // Documentation: https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/
+            //// TODO WTS: Handle activation from toast notification,
+            //// For more info handling activation see documentation at
+            //// https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/
 
             await Task.CompletedTask;
         }

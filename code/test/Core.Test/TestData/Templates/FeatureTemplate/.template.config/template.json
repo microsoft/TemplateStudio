@@ -1,10 +1,10 @@
 {
   "author": "Microsoft",
-  "classifications": ["Test"],
+  "classifications": [ "Test" ],
   "name": "FeatureTemplate",
+  "description": "Generic Feature description...",
   "groupIdentity": "Microsoft.UWPTemplates.Test.FeatureTemplate",
   "identity": "Microsoft.UWPTemplates.Test.FeatureTemplate.CSharp",
-  "shortName": "feature-test",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -1,4 +1,6 @@
+﻿//{[{
 using Windows.UI.Xaml;
+//}]}
 namespace Param_ItemNamespace.Views
 {
 {
@@ -6,8 +8,10 @@ namespace Param_ItemNamespace.Views
     {
         public wts.ItemNamePage()
         {
+            //{[{
             Loaded += OnLoaded;
             Unloaded += OnUnLoaded;
+            //}]}
             InitializeComponent();
         }
 

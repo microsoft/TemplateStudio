@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.IO;
@@ -18,6 +10,7 @@ using System.Windows.Forms;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
+using System.Collections.Generic;
 
 namespace Microsoft.Templates.VsEmulator.NewProject
 {
@@ -89,11 +82,13 @@ namespace Microsoft.Templates.VsEmulator.NewProject
 
         private static string GetSuggestedSolution(string path)
         {
-            var existing = Directory.EnumerateDirectories(path)
-                                            .Select(d => new DirectoryInfo(d).Name)
-                                            .ToList();
+            
+            var validator = new List<Validator>()
+            {
+                new DirectoryExistsValidator(path)
+            };
 
-            return Naming.Infer(existing, DefaultName);
+            return Naming.Infer(DefaultName, validator);
         }
 
         private void ShowFileDialog()

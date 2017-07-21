@@ -1,4 +1,6 @@
+﻿//{[{
 using Microsoft.Practices.ServiceLocation;
+//}]}
 namespace Param_ItemNamespace.Services
 {
     internal class SuspendAndResumeService : ActivationHandler<LaunchActivatedEventArgs>
@@ -6,8 +8,13 @@ namespace Param_ItemNamespace.Services
         private async Task RestoreStateAsync()
         {
             //^^
-            var navigationService = ServiceLocator.Current.GetInstance<NavigationServiceEx>();
-            navigationService.Navigate(saveState.Target.FullName, saveState.SuspensionState);
+            //{[{
+            if (saveState?.Target != null)
+            {
+                var navigationService = ServiceLocator.Current.GetInstance<NavigationServiceEx>();
+                navigationService.Navigate(saveState.Target.FullName, saveState.SuspensionState);
+            }
+            //}]}
         }
     }
 }

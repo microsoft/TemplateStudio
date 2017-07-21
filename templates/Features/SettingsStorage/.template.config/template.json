@@ -1,11 +1,10 @@
-{
+﻿{
   "author": "Microsoft",
   "classifications": ["Universal"],
   "name": "Settings Storage",
   "groupIdentity": "wts.Feat.SettingsStorage",
   "identity": "wts.Feat.SettingsStorage",
-  "shortName": "Settings Storage",
-  "description": "Setting storage is a class to simplify storing your application data.",
+  "description": "Setting storage helps simplify storing data inside your application data folder.",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -16,7 +15,9 @@
     "wts.group": "ApplicationLifecycle",
     "wts.licenses": "[Newtonsoft.Json](https://raw.githubusercontent.com/JamesNK/Newtonsoft.Json/master/LICENSE.md)",
     "wts.defaultInstance": "SettingsStorage",
-    "wts.multipleInstance": "false"
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true"
   },
   "sourceName": "SettingsStorageFeature",
   "preferNameDirectory": true,

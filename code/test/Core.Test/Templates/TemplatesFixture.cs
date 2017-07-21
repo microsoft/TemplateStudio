@@ -1,18 +1,11 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
-using System;
-
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Test.Locations;
+using Microsoft.Templates.Fakes;
+using Xunit;
 
 namespace Microsoft.Templates.Core.Test
 {
@@ -24,11 +17,16 @@ namespace Microsoft.Templates.Core.Test
         {
             var source = new UnitTestsTemplatesSource();
 
-            CodeGen.Initialize(source.Id, "0.0");
+            GenContext.Bootstrap(source, new FakeGenShell());
 
-            Repository = new TemplatesRepository(source, Version.Parse("0.0.0.0"));
-            
-            Repository.SynchronizeAsync(true).Wait();
+            GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
+
+            Repository = GenContext.ToolBox.Repo;
         }
+    }
+
+    [CollectionDefinition("Unit Test Templates")]
+    public class TemplatesCollection : ICollectionFixture<TemplatesFixture>
+    {
     }
 }

@@ -1,18 +1,11 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
 
 using EnvDTE;
 
@@ -26,7 +19,8 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
 
 using NuGet.VisualStudio;
-
+using Microsoft.VisualStudio;
+using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -37,6 +31,9 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private Lazy<IVsUIShell> _uiShell = new Lazy<IVsUIShell>(() => ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell)) as IVsUIShell, true);
         private IVsUIShell UIShell => _uiShell.Value;
+
+        private Lazy<IVsSolution> _vssolution = new Lazy<IVsSolution>(() => ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution, true);
+        private IVsSolution VSSolution => _vssolution.Value;
 
         private Lazy<VsOutputPane> _outputPane = new Lazy<VsOutputPane>(() => new VsOutputPane());
         private VsOutputPane OutputPane => _outputPane.Value;
@@ -49,23 +46,40 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             var proj = GetActiveProject();
-
-            foreach (var item in itemsFullPath)
+            if (proj != null && proj.ProjectItems != null)
             {
-                proj.ProjectItems.AddFromFile(item);
-            }
+                foreach (var item in itemsFullPath)
+                {
+                    proj.ProjectItems.AddFromFile(item);
+                }
 
-            proj.Save();
+                proj.Save();
+            }
+            else
+            {
+                AppHealth.Current.Error.TrackAsync(StringRes.UnableAddItemsToProject).FireAndForget();
+            }
         }
 
         public override void RefreshProject()
         {
-            var proj = GetActiveProject();
+            try
+            {
+                var proj = GetActiveProject();
 
-            var path = proj.FullName;
+                if (proj != null)
+                {
+                    var path = proj.FullName;
 
-            Dte.Solution.Remove(proj);
-            Dte.Solution.AddFromFile(path);
+                    Dte.Solution.Remove(proj);
+                    Dte.Solution.AddFromFile(path);
+                }
+            }
+            catch (Exception)
+            {
+                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+                AppHealth.Current.Info.TrackAsync(StringRes.UnableToRefreshProject).FireAndForget();
+            }
         }
 
         public override bool SetActiveConfigurationAndPlatform(string configurationName, string platformName)
@@ -90,26 +104,19 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void AddProjectToSolution(string projectFullPath)
         {
-            Dte.Solution.AddFromFile(projectFullPath);
+            try
+            {
+                Dte.Solution.AddFromFile(projectFullPath);
+            }
+            catch (Exception)
+            {
+                // WE GET AN EXCEPTION WHEN THERE ISN'T A SOLUTION LOADED
+                AppHealth.Current.Info.TrackAsync(StringRes.UnableAddProjectToSolution).FireAndForget();
+            }
         }
 
-        public override string GetActiveNamespace()
+        public override string GetActiveProjectNamespace()
         {
-            if (Dte.SelectedItems.Count > 0)
-            {
-                var selectedItem = Dte.SelectedItems.Item(1);
-
-                if (selectedItem.Project != null)
-                {
-                    return selectedItem.Project.Properties.GetSafeValue("DefaultNamespace");
-                }
-
-                if (selectedItem.ProjectItem != null)
-                {
-                    return $"{selectedItem.ProjectItem.Properties.GetSafeValue("DefaultNamespace")}";
-                }
-            }
-
             var p = GetActiveProject();
 
             if (p != null)
@@ -120,9 +127,9 @@ namespace Microsoft.Templates.UI.VisualStudio
             return null;
         }
 
-        public override void SaveSolution(string solutionFullPath)
+        public override void SaveSolution()
         {
-            Dte.Solution.SaveAs(solutionFullPath);
+            Dte.Solution.SaveAs(Dte.Solution.FullName);
         }
 
         public override void ShowStatusBarMessage(string message)
@@ -133,7 +140,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"There was an error showing status message. Ex: {ex.ToString()}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"{StringRes.VsGenShellShowStatusBarMessageMessage} {ex.ToString()}").FireAndForget();
             }
         }
 
@@ -144,10 +151,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void ShowModal(System.Windows.Window dialog)
         {
-            //get the owner of this dialog
-            IntPtr hwnd;
-
-            UIShell.GetDialogOwnerHwnd(out hwnd);
+            // get the owner of this dialog
+            UIShell.GetDialogOwnerHwnd(out IntPtr hwnd);
 
             dialog.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
 
@@ -176,6 +181,27 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
+        public override string GetActiveProjectGuid()
+        {
+            var p = GetActiveProject();
+
+            if (p != null)
+            {
+                VSSolution.GetProjectOfUniqueName(p.FullName, out IVsHierarchy hierarchy);
+                if (hierarchy != null)
+                {
+                    hierarchy.GetGuidProperty(VSConstants.VSITEMID_ROOT, (int)__VSHPROPID.VSHPROPID_ProjectIDGuid, out Guid projectGuid);
+
+                    if (projectGuid != null)
+                    {
+                        return projectGuid.ToString();
+                    }
+                }
+            }
+
+            return string.Empty;
+        }
+
         protected override string GetSelectedItemPath()
         {
             if (Dte.SelectedItems.Count > 0)
@@ -197,14 +223,14 @@ namespace Microsoft.Templates.UI.VisualStudio
             return GetActiveProjectPath();
         }
 
-        protected override string GetActiveProjectName()
+        public override string GetActiveProjectName()
         {
             var p = GetActiveProject();
 
             return p?.Name;
         }
 
-        protected override string GetActiveProjectPath()
+        public override string GetActiveProjectPath()
         {
             var p = GetActiveProject();
 
@@ -236,7 +262,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception)
             {
-                //WE GE AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
             }
 
             return p;
@@ -244,7 +270,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private async System.Threading.Tasks.Task ShowTaskListAsync()
         {
-            //JAVIERS: DELAY THIS EXECUTION TO OPEN THE WINDOW AFTER EVERYTHING IS LOADED
+            // JAVIERS: DELAY THIS EXECUTION TO OPEN THE WINDOW AFTER EVERYTHING IS LOADED
             await System.Threading.Tasks.Task.Delay(1000);
 
             var window = Dte.Windows.Item(EnvDTE.Constants.vsWindowKindTaskList);
@@ -266,26 +292,33 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             try
             {
-                var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
-
-                var installer = componentModel.GetService<IVsPackageInstaller>();
-                var uninstaller = componentModel.GetService<IVsPackageUninstaller>();
-                var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
-
-                var installedPackages = installerServices.GetInstalledPackages().ToList();
-                var activeProject = GetActiveProject();
-
-                var p = installedPackages.FirstOrDefault();
-
-                if (p != null)
+                if (IsInternetAvailable())
                 {
-                    uninstaller.UninstallPackage(activeProject, p.Id, false);
-                    installer.InstallPackage("All", activeProject, p.Id, p.VersionString, true);
+                    var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
+
+                    var installer = componentModel.GetService<IVsPackageInstaller>();
+                    var uninstaller = componentModel.GetService<IVsPackageUninstaller>();
+                    var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
+
+                    var installedPackages = installerServices.GetInstalledPackages().ToList();
+                    var activeProject = GetActiveProject();
+
+                    var p = installedPackages.FirstOrDefault();
+
+                    if (p != null)
+                    {
+                        uninstaller.UninstallPackage(activeProject, p.Id, false);
+                        installer.InstallPackage("All", activeProject, p.Id, p.VersionString, true);
+                    }
+                }
+                else
+                {
+                    AppHealth.Current.Warning.TrackAsync(StringRes.VsGenShellRestorePackagesWarningMessage).FireAndForget();
                 }
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"There was an error restoring the packages. Ex: {ex.ToString()}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"{StringRes.VsGenShellRestorePackagesErrorMessage} {ex.ToString()}").FireAndForget();
             }
         }
 
@@ -303,8 +336,37 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"There was an error collapsing the solution tree. Ex: {ex.ToString()}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"{StringRes.VsGenShellCollapseSolutionItemsMessage} {ex.ToString()}").FireAndForget();
             }
+        }
+
+        public override Guid GetVsProjectId()
+        {
+            var project = GetActiveProject();
+            Guid projectGuid = Guid.Empty;
+            try
+            {
+                if (project != null)
+                {
+                    var solution = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution;
+                    IVsHierarchy hierarchy;
+
+                    solution.GetProjectOfUniqueName(project.FullName, out hierarchy);
+
+                    if (hierarchy != null)
+                    {
+                        hierarchy.GetGuidProperty(
+                                    VSConstants.VSITEMID_ROOT,
+                                    (int)__VSHPROPID.VSHPROPID_ProjectIDGuid,
+                                    out projectGuid);
+                    }
+                }
+            }
+            catch
+            {
+                projectGuid = Guid.Empty;
+            }
+            return projectGuid;
         }
 
         private void Collapse(UIHierarchyItem item)
@@ -315,6 +377,53 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             item.UIHierarchyItems.Expanded = false;
+        }
+
+        private static bool IsInternetAvailable()
+        {
+            bool internet = NetworkInterface.GetIsNetworkAvailable();
+            if (internet)
+            {
+                try
+                {
+                    // Based on https://technet.microsoft.com/en-us/library/cc766017(v=ws.10).aspx
+                    using (var client = new System.Net.WebClient())
+                    {
+                        var ncsi = client.DownloadString("http://www.msftncsi.com/ncsi.txt");
+                        internet = (ncsi == "Microsoft NCSI");
+                    }
+                }
+                catch
+                {
+                    internet = false;
+                }
+            }
+            return internet;
+        }
+
+        public override void OpenItems(params string[] itemsFullPath)
+        {
+            if (itemsFullPath == null || itemsFullPath.Length == 0)
+            {
+                return;
+            }
+
+            foreach (var item in itemsFullPath)
+            {
+                switch (Path.GetExtension(item).ToLowerInvariant())
+                {
+                    case ".xaml":
+                        Dte.ItemOperations.OpenFile(item, EnvDTE.Constants.vsViewKindDesigner);
+                        break;
+
+                    default:
+                        if (!item.EndsWith(".xaml.cs"))
+                        {
+                            Dte.ItemOperations.OpenFile(item, EnvDTE.Constants.vsViewKindPrimary);
+                        }
+                        break;
+                }
+            }
         }
     }
 }

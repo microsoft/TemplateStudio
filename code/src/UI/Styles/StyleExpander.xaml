@@ -3,23 +3,30 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Colors.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_FontSizes.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Thickness.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <Style TargetType="Expander">
+        <Setter Property="Focusable" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Expander}">
-                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="3" SnapsToDevicePixels="True">
+                    <Border BorderBrush="Transparent" BorderThickness="0" Background="{TemplateBinding Background}" CornerRadius="3" SnapsToDevicePixels="True">
                         <DockPanel>
-                            <ToggleButton x:Name="HeaderSite" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" DockPanel.Dock="Top" Foreground="{TemplateBinding Foreground}" FontWeight="{TemplateBinding FontWeight}" FontStyle="{TemplateBinding FontStyle}" FontStretch="{TemplateBinding FontStretch}" FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" MinWidth="0" MinHeight="0" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Focusable="False">
+                            <ToggleButton x:Name="HeaderSite" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" DockPanel.Dock="Top" Foreground="{TemplateBinding Foreground}" FontWeight="{TemplateBinding FontWeight}" FontStyle="{TemplateBinding FontStyle}" FontStretch="{TemplateBinding FontStretch}" FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" MinWidth="0" MinHeight="0" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Focusable="True">
                                 <ToggleButton.FocusVisualStyle>
                                     <Style>
                                         <Setter Property="Control.Template">
                                             <Setter.Value>
                                                 <ControlTemplate>
-                                                    <Border>
+                                                    <Grid>
+                                                        <Grid.Background>
+                                                            <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
+                                                        </Grid.Background>
+                                                    </Grid>
+                                                    <!--<Border>
                                                         <Rectangle Margin="0" SnapsToDevicePixels="True" Stroke="{StaticResource UIBlack}" StrokeThickness="1" StrokeDashArray="1 2"/>
-                                                    </Border>
+                                                    </Border>-->
                                                 </ControlTemplate>
                                             </Setter.Value>
                                         </Setter>
@@ -51,7 +58,7 @@
                                                                 Grid.Column="1"
                                                                 ContentStringFormat="{TemplateBinding ContentStringFormat}" 
                                                                 HorizontalAlignment="Left"                                                                                                                                
-                                                                Margin="{StaticResource SmallLeftMargin}"
+                                                                Margin="{StaticResource Margin_S_Left}"
                                                                 RecognizesAccessKey="True" 
                                                                 SnapsToDevicePixels="True"                                                                
                                                                 VerticalAlignment="Top" />

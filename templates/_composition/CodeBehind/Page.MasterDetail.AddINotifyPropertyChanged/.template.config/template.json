@@ -1,4 +1,4 @@
-{
+﻿{
   "author": "Microsoft",
   "classifications": [
     "Universal"
@@ -8,7 +8,6 @@
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
-    "wts.framework": "CodeBehind",
     "wts.version": "1.0.0",
     "wts.compositionFilter": "identity == wts.Page.MasterDetail.CodeBehind"
   },

@@ -1,11 +1,17 @@
-﻿sealed partial class App : Application
+﻿//{**
+// This code block adds the OnBackgroundActivated event handler to the App class of your project.
+//**}
+namespace Param_RootNamespace
 {
-    //^^
-    //{[{
-
-    protected override async void OnBackgroundActivated(BackgroundActivatedEventArgs args)
+    public sealed partial class App : Application
     {
-        await ActivationService.ActivateAsync(args);
+//^^
+//{[{
+
+        protected override async void OnBackgroundActivated(BackgroundActivatedEventArgs args)
+        {
+            await ActivationService.ActivateAsync(args);
+        }
+//}]}
     }
-    //}]}
 }

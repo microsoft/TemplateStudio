@@ -13,7 +13,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/MarkdownStyles.xaml" />
+                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleMarkdown.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <local:Markdown x:Key="Markdown"
@@ -32,6 +32,6 @@
     </UserControl.Resources>
 
     <Grid>
-        <FlowDocumentScrollViewer Document="{Binding Text, ElementName=root, Converter={StaticResource TextToFlowDocumentConverter}}" VerticalScrollBarVisibility="Auto" Focusable="False"/>
+        <FlowDocumentScrollViewer Document="{Binding Text, ElementName=root, Converter={StaticResource TextToFlowDocumentConverter}}" VerticalScrollBarVisibility="Auto" Focusable="True"  AutomationProperties.Name="{Binding Text, ElementName=root}"/>
     </Grid>
 </UserControl>

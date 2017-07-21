@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
@@ -21,12 +13,14 @@ using Microsoft.TemplateEngine.Edge.Settings;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.TemplateEngine.Orchestrator.RunnableProjects;
 using Microsoft.TemplateEngine.Utils;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core
 {
     public class CodeGen
     {
-        public const string BaseName = "WindowsTemplateStudio";
+        public const string BaseName = "BaseName";
+
         public static CodeGen Instance { get; private set; }
 
         public TemplateCreator Creator { get; }
@@ -49,20 +43,19 @@ namespace Microsoft.Templates.Core
         public static void Initialize(string locationId, string hostVersion)
         {
             Instance = new CodeGen(locationId, hostVersion);
-
             Instance.Init();
         }
 
-        //public static void Initialize(string locationId)
-        //{
-        //    Initialize(locationId, GetHostVersion());
-        //}
+        ////public static void Initialize(string locationId)
+        ////{
+        ////    Initialize(locationId, GetHostVersion());
+        ////}
 
         public string GetCurrentContentSource(string workingFolder)
         {
-            string result = String.Empty;
+            string result = string.Empty;
 
-            foreach(var mp in Instance?.Settings.SettingsLoader.MountPoints)
+            foreach (var mp in Instance?.Settings.SettingsLoader.MountPoints)
             {
                 if (Directory.Exists(mp.Place) && IsHigherVersion(result, mp.Place))
                 {
@@ -75,10 +68,10 @@ namespace Microsoft.Templates.Core
 
         private bool IsHigherVersion(string currentPlace, string newPlace)
         {
-            Version.TryParse(currentPlace, out Version current);
+            Version.TryParse(Path.GetFileName(currentPlace), out Version current);
             Version.TryParse(Path.GetFileName(newPlace), out Version newp);
 
-            if(newp == null)
+            if (newp == null)
             {
                 return false;
             }
@@ -104,16 +97,16 @@ namespace Microsoft.Templates.Core
 
         private static ITemplateEngineHost CreateHost(string locationId, string hostVersion)
         {
-            return new DefaultTemplateEngineHost($"{BaseName}_{locationId}", hostVersion, CultureInfo.CurrentCulture.Name, new Dictionary<string, string>());
+            return new DefaultTemplateEngineHost($"{BaseName}_{locationId}", hostVersion, CultureInfo.CurrentUICulture.Name, new Dictionary<string, string>());
         }
 
-        //private static string GetHostVersion()
-        //{
-        //    string assemblyLocation = Assembly.GetExecutingAssembly().Location;
-        //    var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
-        //    Version.TryParse(versionInfo.FileVersion, out Version v);
+        ////private static string GetHostVersion()
+        ////{
+        ////    string assemblyLocation = Assembly.GetExecutingAssembly().Location;
+        ////    var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
+        ////    Version.TryParse(versionInfo.FileVersion, out Version v);
 
-        //    return $"{v.Major}.{v.Minor}";
-        //}
+        ////    return $"{v.Major}.{v.Minor}";
+        ////}
     }
 }

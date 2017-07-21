@@ -133,10 +133,10 @@
     <value>Next</value>
   </data>
   <data name="ButtonOk" xml:space="preserve">
-    <value>Ok</value>
+    <value>OK</value>
   </data>
   <data name="ErrorSync" xml:space="preserve">
-    <value>Error updating templates. See output for more details.</value>
+    <value>Error syncing templates. See output for more details.</value>
   </data>
   <data name="ExceptionDependencyCircularReference" xml:space="preserve">
     <value>Circular dependency detected on template {0} with {1}.</value>
@@ -160,10 +160,10 @@
     <value>Invalid layout item {0}. Layout items must be of type Page or Feature.</value>
   </data>
   <data name="GeneratingFeatureMessage" xml:space="preserve">
-    <value>Adding '{0}' feature to project...</value>
+    <value>Creating '{0}' feature ...</value>
   </data>
   <data name="GeneratingPageMessage" xml:space="preserve">
-    <value>Adding '{0}' page to project...</value>
+    <value>Creating '{0}' page ...</value>
   </data>
   <data name="GeneratingProjectMessage" xml:space="preserve">
     <value>Creating project '{0}'...</value>
@@ -186,12 +186,6 @@
   <data name="LessDetail" xml:space="preserve">
     <value>Less detail</value>
   </data>
-  <data name="LoadingTemplatesText" xml:space="preserve">
-    <value>Loading available templates...</value>
-  </data>
-  <data name="MadeBy" xml:space="preserve">
-    <value>Made by {0}</value>
-  </data>
   <data name="MoreDetail" xml:space="preserve">
     <value>More detail</value>
   </data>
@@ -208,7 +202,7 @@
     <value>Select pages and features</value>
   </data>
   <data name="ResetSelection" xml:space="preserve">
-    <value>You have changed your project type or framework selection. If you continue you will lose all pages and features added previously. To conserve pages and features, you can go back to your original selection ({0}, {1}).</value>
+    <value>You have changed your project type or framework selection. Pages and feature selections will be lost if you continue. Your prior selections were: {0} and {1}.</value>
   </data>
   <data name="ResetSelectionTitle" xml:space="preserve">
     <value>Reset selection</value>
@@ -216,29 +210,29 @@
   <data name="RestoringMessage" xml:space="preserve">
     <value>Restoring packages...</value>
   </data>
-  <data name="StatusAdquired" xml:space="preserve">
-    <value>Templates downloaded</value>
+  <data name="StatusAcquired" xml:space="preserve">
+    <value>Done.</value>
   </data>
-  <data name="StatusAdquiring" xml:space="preserve">
-    <value>Downloading templates...</value>
+  <data name="StatusAcquiring" xml:space="preserve">
+    <value>Checking for template updates...</value>
   </data>
   <data name="StatusLowerVersionContent" xml:space="preserve">
-    <value>There is no templates content available for the current wizard version. Please ensure you have connectivity and restart the wizard again.</value>
+    <value>There is no template content available for the current wizard version. Please ensure you have connectivity and restart the wizard.</value>
   </data>
   <data name="StatusLowerVersionTitle" xml:space="preserve">
-    <value>Wizard incompatible with templates content</value>
+    <value>Wizard incompatible with templates content.</value>
   </data>
   <data name="StatusOverVersionContent" xml:space="preserve">
-    <value>An update to the templates is available. Update the extension to get the latest content.</value>
+    <value>An update to the templates is available but not compatible with this wizard version. Update the extension to access the latest templates.</value>
   </data>
   <data name="StatusOverVersionNoContent" xml:space="preserve">
     <value>There is no content available for this extension version. Update the extension to access to the latest content.</value>
   </data>
   <data name="StatusOverVersionTitle" xml:space="preserve">
-    <value>Wizard update available</value>
+    <value>Wizard update available.</value>
   </data>
   <data name="StatusUpdated" xml:space="preserve">
-    <value>Templates updated</value>
+    <value>Templates updated.</value>
   </data>
   <data name="StatusUpdating" xml:space="preserve">
     <value>Updating templates...</value>
@@ -274,7 +268,7 @@
     <value>User Interaction</value>
   </data>
   <data name="TemplatesVersion" xml:space="preserve">
-    <value>Templates version:</value>
+    <value>Templates:</value>
   </data>
   <data name="TemplateTypeFeature" xml:space="preserve">
     <value>Feature</value>
@@ -299,7 +293,7 @@
     <value>Name already exists</value>
   </data>
   <data name="ValidationError_BadFormat" xml:space="preserve">
-    <value>Only alphanumeric and '-' characters are allowed</value>
+    <value>Only alphanumeric and '_' characters are allowed</value>
   </data>
   <data name="ValidationError_CanNotRemoveTemplate_SF" xml:space="preserve">
     <value>You can not remove {0} because {1} {2} depends on it.</value>
@@ -314,7 +308,7 @@
     <value>Name is reserved</value>
   </data>
   <data name="WizardVersion" xml:space="preserve">
-    <value>Wizard version:</value>
+    <value>Wizard:</value>
   </data>
   <data name="ErrorDialogTitle" xml:space="preserve">
     <value>Something went wrong :-(</value>
@@ -345,5 +339,221 @@
   </data>
   <data name="SummaryNoPages" xml:space="preserve">
     <value>None Selected</value>
+  </data>
+  <data name="StatusPrepared" xml:space="preserve">
+    <value>Templates ready.</value>
+  </data>
+  <data name="StatusPreparing" xml:space="preserve">
+    <value>Preparing templates for first use...</value>
+  </data>
+  <data name="UnableAddItemsToProject" xml:space="preserve">
+    <value>Unable add project items. Ensure you have the required SDK.</value>
+  </data>
+  <data name="UnableAddProjectToSolution" xml:space="preserve">
+    <value>Unable to add the project to the solution. Make sure you have the expected SDK installed.</value>
+  </data>
+  <data name="SummaryOptionDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="SummaryOptionRename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="UnableToRefreshProject" xml:space="preserve">
+    <value>Unable to refresh the project. Try to refresh it manually.</value>
+  </data>
+  <data name="GenControllerUnsafeGenerateAsyncMessage" xml:space="preserve">
+    <value>Generating the template {0} to {1}.</value>
+  </data>
+  <data name="InformationWindowIntilizeViewModelMessage" xml:space="preserve">
+    <value>"{0} is not expected as valid type for the Information Window."</value>
+  </data>
+  <data name="UndefinedErrorString" xml:space="preserve">
+    <value>UndefinedError</value>
+  </data>
+  <data name="GenerationFinishedString" xml:space="preserve">
+    <value>Generation finished</value>
+  </data>
+  <data name="SolutionWizardRunFinishedMessage" xml:space="preserve">
+    <value>Creating Windows Template Studio project...</value>
+  </data>
+  <data name="VsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
+    <value>There was an error collapsing the solution tree. Ex:</value>
+  </data>
+  <data name="VsGenShellRestorePackagesErrorMessage" xml:space="preserve">
+    <value>There was an error restoring the packages. Ex:</value>
+  </data>
+  <data name="VsGenShellRestorePackagesWarningMessage" xml:space="preserve">
+    <value>Unable to automatically Restore NuGet Packages for the solution. Manually restore the NuGet packages.</value>
+  </data>
+  <data name="VsGenShellShowStatusBarMessageMessage" xml:space="preserve">
+    <value>There was an error showing status message. Ex:</value>
+  </data>
+  <data name="SummaryDragAndDrop" xml:space="preserve">
+    <value>Reorder (Ctrl + arrows)</value>
+  </data>
+  <data name="SummaryOpenMenu" xml:space="preserve">
+    <value>Options menu</value>
+  </data>
+  <data name="SummaryOpenMenuClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="NewItemTitle_SF" xml:space="preserve">
+    <value>Add new {0}</value>
+  </data>
+  <data name="GroupFeatureHeader_SF" xml:space="preserve">
+    <value>Features ({0}) - Pick one</value>
+  </data>
+  <data name="GroupPageHeader_SF" xml:space="preserve">
+    <value>Pages ({0}) - Pick one</value>
+  </data>
+  <data name="NewItemName" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="ButtonFinish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="WTSDescription" xml:space="preserve">
+    <value>An easy to use wizard to build a strong foundation for your UWP app.</value>
+  </data>
+  <data name="ButtonRefreshTemplates" xml:space="preserve">
+    <value>Refresh templates</value>
+  </data>
+  <data name="NewVersionAvailable" xml:space="preserve">
+    <value>Click refresh to get the latest updates (current selection will be reseted).</value>
+  </data>
+  <data name="CheckForUpdates" xml:space="preserve">
+    <value>Check for new templates</value>
+  </data>
+  <data name="VisitProjectWebSite" xml:space="preserve">
+    <value>Visit project web site</value>
+  </data>
+  <data name="ChangesSummaryTitle_SF" xml:space="preserve">
+    <value>Changes summary: Add {0} {1}</value>
+  </data>
+  <data name="ChangesSummaryCategoryFailedMerges" xml:space="preserve">
+    <value>Failed merges</value>
+  </data>
+  <data name="ChangesSummaryCategoryConflictingFiles" xml:space="preserve">
+    <value>Conflicting files</value>
+  </data>
+  <data name="ChangesSummaryCategotyModifiedFiles" xml:space="preserve">
+    <value>Modified files</value>
+  </data>
+  <data name="ChangesSummaryCategoryNewFiles" xml:space="preserve">
+    <value>New files</value>
+  </data>
+  <data name="ButtonGenerate" xml:space="preserve">
+    <value>Generate</value>
+  </data>
+  <data name="ButtonGenerateAndMerge" xml:space="preserve">
+    <value>Generate &amp; Merge</value>
+  </data>
+  <data name="ConflictingDetailDescription_SF" xml:space="preserve">
+    <value>The file {0} already exists. By continuing this file will be replaced.</value>
+  </data>
+  <data name="ConflictingDetailTitle" xml:space="preserve">
+    <value>Destination file exist</value>
+  </data>
+  <data name="ConflictingDetailExistingFile" xml:space="preserve">
+    <value>Existing file</value>
+  </data>
+  <data name="ConflictingDetailNewFile" xml:space="preserve">
+    <value>New file</value>
+  </data>
+  <data name="ChangesSummaryCategoryUnchangedFiles" xml:space="preserve">
+    <value>Unchanged files</value>
+  </data>
+  <data name="StatusNewVersionAvailable" xml:space="preserve">
+    <value>There is new template content available.</value>
+  </data>
+  <data name="ErrorSyncCheckNewVersion" xml:space="preserve">
+    <value>Error checking for updates. See output for more details.</value>
+  </data>
+  <data name="ErrorSyncRefresh" xml:space="preserve">
+    <value>Error refreshing templates. See output for more details.</value>
+  </data>
+  <data name="NewVersionInstructions" xml:space="preserve">
+    <value>Refreshing templates will reset current selection</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionFailedMerges" xml:space="preserve">
+    <value>We are not able to introduce the modifications required. If needed, you can access the generated file after finishing.</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleFailedMerges" xml:space="preserve">
+    <value>Failed merges</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionNewFiles" xml:space="preserve">
+    <value>The file '{0}' will be added as new file to your project.</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleNewFiles" xml:space="preserve">
+    <value>New file</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionModifiedFiles" xml:space="preserve">
+    <value>The file '{0}' will be modified to include required content.</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleModifiedFiles" xml:space="preserve">
+    <value>Modified file</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionConflictingFiles" xml:space="preserve">
+    <value>The file '{0}' already exists in your project but was also generated as part of the new item. Your current file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing.</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionUnchangedFiles" xml:space="preserve">
+    <value>The file '{0}' already exists in your project and no further action is necessary. The file will remain unchanged.</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleConflictingFiles" xml:space="preserve">
+    <value>Conflicting file</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleUnchangedFiles" xml:space="preserve">
+    <value>Unchanged file</value>
+  </data>
+  <data name="NewItemAddFeatureCancelled" xml:space="preserve">
+    <value>Add new feature cancelled</value>
+  </data>
+  <data name="NewItemAddFeatureSuccessStatusMsg" xml:space="preserve">
+    <value>Feature {0} successfully added</value>
+  </data>
+  <data name="NewItemAddPageCancelled" xml:space="preserve">
+    <value>Add new page cancelled</value>
+  </data>
+  <data name="NewItemAddPageSuccessStatusMsg" xml:space="preserve">
+    <value>Page {0} successfully added</value>
+  </data>
+  <data name="ChangesSummaryCategoryLicenses" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
+  <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
+    <value>Do not merge changes (generate in a temp folder).</value>
+  </data>
+  <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
+    <value>We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?.</value>
+  </data>
+  <data name="ProjectConfigurationSelectFramework" xml:space="preserve">
+    <value>Select framework</value>
+  </data>
+  <data name="ProjectConfigurationSelectProjectType" xml:space="preserve">
+    <value>Select project type</value>
+  </data>
+  <data name="GenerationFeedbackMessage" xml:space="preserve">
+    <value>Generating template...</value>
+  </data>
+  <data name="LearnMore" xml:space="preserve">
+    <value>Learn more</value>
+  </data>
+  <data name="ChangesSummaryConflictExistingFile" xml:space="preserve">
+    <value>Exisiting file</value>
+  </data>
+  <data name="ChangesSummaryConflictGeneratedFile" xml:space="preserve">
+    <value>Generated file</value>
+  </data>
+  <data name="ButtonAddTemplate" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="ButtonConfirmTemplate" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="ButtonViewInfo" xml:space="preserve">
+    <value>View info</value>
+  </data>
+  <data name="ButtonCloseStatusButton" xml:space="preserve">
+    <value>Close status box</value>
   </data>
 </root>

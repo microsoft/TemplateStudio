@@ -193,6 +193,7 @@ ClientBin/
 *.dbmdl
 *.dbproj.schemaview
 *.pfx
+!TestCert.pfx
 *.publishsettings
 node_modules/
 orleans.codegen.cs
@@ -254,3 +255,5 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+templates/_composition/_shared/Page.Chart.SampleDataService/Services/SampleDataService_postaction.cs
+/myModel.vsdx

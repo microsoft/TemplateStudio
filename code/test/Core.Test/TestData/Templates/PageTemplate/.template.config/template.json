@@ -1,10 +1,10 @@
 {
   "author": "Microsoft",
-  "classifications": ["Test"],
+  "classifications": [ "Test" ],
   "name": "PageTemplate",
+  "description": "Generic description...",
   "groupIdentity": "Microsoft.UWPTemplates.Test.PageTemplate",
   "identity": "Microsoft.UWPTemplates.Test.PageTemplate.CSharp",
-  "shortName": "page-test",
   "tags": {
     "language": "C#",
     "type": "item",

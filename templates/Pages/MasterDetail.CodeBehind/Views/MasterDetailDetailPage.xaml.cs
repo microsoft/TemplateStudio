@@ -1,4 +1,4 @@
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Param_ItemNamespace.Models;
@@ -8,8 +8,9 @@ namespace Param_ItemNamespace.Views
 {
     public sealed partial class MasterDetailDetailPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
-        private SampleModel _item;
-        public SampleModel Item
+        private Order _item;
+
+        public Order Item
         {
             get { return _item; }
             set { Set(ref _item, value); }
@@ -22,7 +23,7 @@ namespace Param_ItemNamespace.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Item = e.Parameter as SampleModel;
+            Item = e.Parameter as Order;
         }
 
         private void WindowStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)

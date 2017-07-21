@@ -1,4 +1,6 @@
+﻿//{[{
 using Windows.UI.Xaml;
+//}]}
 namespace Param_ItemNamespace.Views
 {
     public sealed partial class wts.ItemNamePage : Page
@@ -6,7 +8,9 @@ namespace Param_ItemNamespace.Views
         public wts.ItemNamePage()
         {
             InitializeComponent();
+            //{[{
             ViewModel.Initialize();
+            //}]}
         }
     }
 }

@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
@@ -28,7 +20,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortUsings
                 return false;
             }
 
-            var startUsingIndex = classContent.IndexOf(l => l.TrimStart().StartsWith(UsingComparer.UsingKeyword));
+            var startUsingIndex = classContent.IndexOf(l => l.TrimStart().StartsWith(UsingComparer.UsingKeyword) || string.IsNullOrWhiteSpace(l));
             var endUsingIndex = classContent.LastIndexOfWhile(startUsingIndex, l => l.TrimStart().StartsWith(UsingComparer.UsingKeyword) || string.IsNullOrWhiteSpace(l));
 
             if (startUsingIndex == -1 || endUsingIndex == -1)
@@ -41,19 +33,26 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortUsings
                                 .Skip(startUsingIndex)
                                 .Take(usingsLinesCount)
                                 .Where(u => !string.IsNullOrWhiteSpace(u))
+#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
                                 .Select(u => (UsingComparer.ExtractNs(u), u))
+#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
                                 .GroupBy(s => ExtractRootNs(s.Item1), s => s.Item2)
                                 .ToList();
 
             classContent.RemoveRange(startUsingIndex, usingsLinesCount);
 
             var orderedUsings = new List<string>();
+            if (startUsingIndex > 0)
+            {
+                orderedUsings.Add(string.Empty);
+            }
             var orderedKeys = GetOrderedNs(usings.Select(u => u.Key)).ToList();
 
             foreach (var key in orderedKeys)
             {
                 var usingsGroup = usings
                                     .FirstOrDefault(u => u.Key.Equals(key))
+                                    .Distinct()
                                     .ToList();
 
                 usingsGroup.Sort(new UsingComparer());
@@ -90,7 +89,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortUsings
             {
                 if (!expression(skipContent[i]))
                 {
-                    return i;
+                    return i + startIndex;
                 }
             }
 

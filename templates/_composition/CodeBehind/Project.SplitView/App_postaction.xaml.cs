@@ -1,11 +1,14 @@
-sealed partial class App : Application
+﻿namespace Param_RootNamespace
 {
-    //^^
-    //{[{
-        
-    private ActivationService CreateActivationService()
+    public sealed partial class App : Application
     {
-        return new ActivationService(this, typeof(Views.MainPage), new Views.ShellPage()); //REP:LAUNCH|PRI:1
+//^^
+//{[{
+
+        private ActivationService CreateActivationService()
+        {
+            return new ActivationService(this, typeof(Views.Param_HomeNamePage), new Views.ShellPage());
+        }
+//}]}
     }
-    //}]}
 }
