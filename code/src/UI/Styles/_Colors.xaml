@@ -25,30 +25,6 @@
     <Color x:Key="UIYellowColor">#FDFBAC</Color>
     <Color x:Key="UIDarkYellowColor">#FFB900</Color>
 
-    <!--<Color x:Key="UIBlueColor">#fabada</Color>
-    <Color x:Key="UIMiddleDarkBlueColor">#fabada</Color>
-    <Color x:Key="UIDarkBlueColor">#fabada</Color>
-
-    <Color x:Key="UILightGreenColor">#fabada</Color>
-    <Color x:Key="UIGreenColor">#fabada</Color>
-
-    <Color x:Key="UIWhiteColor">#fabada</Color>
-
-    <Color x:Key="UIBlackColor">#fabada</Color>
-
-    <Color x:Key="UIDarkGrayColor">#fabada</Color>
-    <Color x:Key="UILightGrayColor">#fabada</Color>
-    <Color x:Key="UIMiddleLightGrayColor">#fabada</Color>
-    <Color x:Key="UIGrayColor">#fabada</Color>
-    <Color x:Key="UIMiddleDarkGrayColor">#fabada</Color>
-
-    <Color x:Key="UIRedColor">#fabada</Color>
-    <Color x:Key="UILightRedColor">#fabada</Color>
-    <Color x:Key="UIDarkRedColor">#fabada</Color>
-
-    <Color x:Key="UIYellowColor">#fabada</Color>
-    <Color x:Key="UIDarkYellowColor">#fabada</Color>-->
-
     <SolidColorBrush x:Key="UIBlue" Color="{StaticResource UIBlueColor}"/>
     <SolidColorBrush x:Key="UIMiddleDarkBlue" Color="{StaticResource UIMiddleDarkBlueColor}"/>
     <SolidColorBrush x:Key="UIDarkBlue" Color="{StaticResource UIDarkBlueColor}"/>

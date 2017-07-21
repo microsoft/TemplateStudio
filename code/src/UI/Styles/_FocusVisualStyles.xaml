@@ -9,8 +9,7 @@
 
     <Style TargetType="Border" x:Key="HighContrastFocusBorderStyle">
         <Setter Property="BorderThickness" Value="4"/>
-        <Setter Property="BorderBrush" Value="{x:Static SystemColors.HighlightBrush}"/>
-        <Setter Property="Margin" Value="-4"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
         <Setter Property="Visibility" Value="Collapsed"/>
     </Style>
 
@@ -22,6 +21,29 @@
                         <Ellipse x:Name="normalFocus" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <Ellipse.Fill>
                                 <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Border x:Name="highContrastFocus" Style="{StaticResource HighContrastFocusBorderStyle}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True">
+                            <Setter TargetName="normalFocus" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="highContrastFocus" Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="FocusVisualStyleBlackEllipse">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Ellipse x:Name="normalFocus" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Ellipse.Fill>
+                                <SolidColorBrush Color="{StaticResource UIBlackColor}" Opacity="0.15"/>
                             </Ellipse.Fill>
                         </Ellipse>
                         <Border x:Name="highContrastFocus" Style="{StaticResource HighContrastFocusBorderStyle}"/>

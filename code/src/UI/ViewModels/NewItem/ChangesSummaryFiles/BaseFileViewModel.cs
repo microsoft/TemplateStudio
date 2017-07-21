@@ -15,6 +15,7 @@ using System.Windows.Media;
 
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
+using System.Windows;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -72,6 +73,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private SolidColorBrush GetCircleColor()
         {
+            if (Services.SystemService.Instance.IsHighContrast)
+            {
+                return SystemColors.InfoTextBrush;
+            }
             switch (FileStatus)
             {
                 case FileStatus.NewFile:

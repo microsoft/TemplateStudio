@@ -71,7 +71,7 @@
         <Setter Property="Foreground" Value="{StaticResource UIBlue}"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HotTrackBrush}}" />
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}" />
             </DataTrigger>
         </Style.Triggers>
     </Style>

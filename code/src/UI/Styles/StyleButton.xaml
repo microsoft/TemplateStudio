@@ -19,15 +19,6 @@
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleBlueGrid}"/>
         <Style.Triggers>
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="False"/>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="True"/>
-                </MultiDataTrigger.Conditions>
-                <MultiDataTrigger.Setters>
-                    <Setter Property="Foreground" Value="{StaticResource UILightGray}"/>
-                </MultiDataTrigger.Setters>
-            </MultiDataTrigger>
             <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
                 <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
@@ -131,7 +122,7 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Margin" Value="0"/>
         <Setter Property="Padding" Value="0"/>
-        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleBlueEllipse}"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleBlackEllipse}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -139,7 +130,7 @@
                         <Grid>
                             <Ellipse x:Name="mouseOverBackground" Visibility="Collapsed">
                                 <Ellipse.Fill>
-                                    <SolidColorBrush Color="{StaticResource UIBlackColor}" Opacity="0.2"/>
+                                    <SolidColorBrush Color="{StaticResource UIBlackColor}" Opacity="0.15"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                             <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
