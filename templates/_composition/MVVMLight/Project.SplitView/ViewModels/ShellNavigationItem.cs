@@ -103,7 +103,7 @@ namespace wts.ItemName.ViewModels
             _iconElement = icon;
             ViewModelName = viewModelName;
         }
-        
+
         public override string ToString()
         {
             return Label;
