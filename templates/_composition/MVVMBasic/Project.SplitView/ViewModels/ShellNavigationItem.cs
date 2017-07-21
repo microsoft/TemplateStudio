@@ -116,5 +116,10 @@ namespace wts.ItemName.ViewModels
         {
             return new ShellNavigationItem(name, icon, typeof(T));
         }
+        
+        public override string ToString()
+        {
+            return Label;
+        }
     }
 }
