@@ -3,11 +3,11 @@
 // See the LICENSE file in the project root for more information.
 using System;
 using System.IO;
+using System.Windows;
 using System.Windows.Media;
 
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
-using System.Windows;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
