@@ -113,7 +113,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 }
             }
 
-            File.WriteAllText(fileName, sb.ToString());
+            File.WriteAllText(fileName, sb.ToString(), Encoding.UTF8);
 
             GenContext.Current.FilesToOpen.Add(fileName);
 

@@ -1,4 +1,4 @@
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Param_ItemNamespace.Models;
 

@@ -1,4 +1,4 @@
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 using System.Collections.ObjectModel;
 using Param_ItemNamespace.Models;
 using Param_ItemNamespace.Services;

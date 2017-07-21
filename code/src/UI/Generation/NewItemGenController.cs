@@ -16,6 +16,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -294,7 +295,7 @@ namespace Microsoft.Templates.UI
 
             Fs.EnsureFolder(backupFolder);
 
-            File.WriteAllText(fileName, JsonConvert.SerializeObject(result));
+            File.WriteAllText(fileName, JsonConvert.SerializeObject(result), Encoding.UTF8);
 
             var modifiedFiles = result.ConflictingFiles.Concat(result.ModifiedFiles);
 

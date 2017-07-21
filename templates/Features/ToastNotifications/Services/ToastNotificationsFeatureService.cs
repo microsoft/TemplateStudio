@@ -1,4 +1,4 @@
-using Windows.ApplicationModel.Activation;
+﻿using Windows.ApplicationModel.Activation;
 using Windows.UI.Notifications;
 
 using System.Threading.Tasks;

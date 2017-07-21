@@ -1,4 +1,4 @@
-        private void NavCompleted(WebViewNavigationCompletedEventArgs e)
+﻿        private void NavCompleted(WebViewNavigationCompletedEventArgs e)
         {
             IsLoading = false;
             //{[{
