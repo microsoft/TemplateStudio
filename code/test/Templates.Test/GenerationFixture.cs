@@ -92,7 +92,8 @@ namespace Microsoft.Templates.Test
 
                     foreach (var framework in frameworks)
                     {
-                        var itemTemplates = GenerationFixture.Templates.Where(t => t.GetFrameworkList().Contains(framework) && t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature && !t.GetIsHidden());
+                        var itemTemplates = Templates.Where(t => (t.GetFrameworkList().Contains(framework) && t.GetTemplateType() == TemplateType.Page)
+                                                                    || (t.GetTemplateType() == TemplateType.Feature && !t.GetIsHidden()));
 
                         foreach (var itemTemplate in itemTemplates)
                         {
