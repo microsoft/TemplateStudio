@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Web;
 
+using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.NewItem;
 
 namespace Microsoft.Templates.UI.Controls
@@ -71,11 +72,11 @@ namespace Microsoft.Templates.UI.Controls
             if (!string.IsNullOrEmpty(patternText))
             {
                 var language = GetLanguage(original);
-                if (!string.IsNullOrEmpty(language))
-                {
-                    patternText = patternText.Replace("##language##", language);
-                }
-                patternText = patternText.Replace("##ExecutingDirectory##", executingDirectory).Replace("##renderSideBySide##", (renderSideBySide.ToString().ToLower()));
+                patternText = patternText.Replace("##language##", language);
+                patternText = patternText
+                    .Replace("##ExecutingDirectory##", executingDirectory)
+                    .Replace("##renderSideBySide##", (renderSideBySide.ToString().ToLower()))
+                    .Replace("##theme##", SystemService.Instance.IsHighContrast ? "theme: 'hc-black'," : string.Empty);
                 if (_currentHtml != patternText)
                 {
                     _webBrowser.NavigateToString(patternText);

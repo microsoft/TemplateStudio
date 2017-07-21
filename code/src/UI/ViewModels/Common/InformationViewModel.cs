@@ -62,6 +62,13 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             set => SetProperty(ref _informationMD, value);
         }
 
+        private string _helpText;
+        public string HelpText
+        {
+            get => _helpText;
+            set => SetProperty(ref _helpText, value);
+        }
+
         public ObservableCollection<SummaryLicenseViewModel> LicenseTerms { get; } = new ObservableCollection<SummaryLicenseViewModel>();
 
         private Visibility _licensesVisibility = Visibility.Collapsed;
@@ -116,6 +123,32 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
         }
 
+        private void ComposeHelpText()
+        {
+            string text = $"{Name} {StringRes.InfoModalVersion}, {Version}";
+            if (Author.ToLower() != "microsoft")
+            {
+                text += $"{StringRes.InfoModalAuthor} {Author} ";
+            }
+            if (LicenseTerms.Any())
+            {
+                text += $"{StringRes.InfoModalLicenses} ";
+                foreach (var license in LicenseTerms)
+                {
+                    text += $"{license.Text} {license.Url} ";
+                }
+            }
+            if (DependencyItems != null && DependencyItems.Any())
+            {
+                text += $"{StringRes.InfoModalDependencies} ";
+                foreach (var dependency in DependencyItems)
+                {
+                    text += $"{dependency.Name} ";
+                }
+            }
+            HelpText = $"{text}, {InformationMD}";
+        }
+
         internal void Initialize(TemplateInfoViewModel template)
         {
             Author = template.Author;
@@ -136,6 +169,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 LicensesVisibility = Visibility.Collapsed;
             }
+            ComposeHelpText();
         }
 
         public void Initialize(NewProject.TemplateInfoViewModel template)
@@ -158,6 +192,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 LicensesVisibility = Visibility.Collapsed;
             }
+            ComposeHelpText();
         }
 
         public void Initialize(NewProject.MetadataInfoViewModel metadataInfo)
@@ -176,6 +211,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 LicensesVisibility = Visibility.Collapsed;
             }
+            ComposeHelpText();
         }
 
         public void UnsuscribeEventHandlers()

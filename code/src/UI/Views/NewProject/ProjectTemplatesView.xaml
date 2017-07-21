@@ -18,7 +18,7 @@
             <DataTemplate x:Key="ProjectTemplatesItemTemplate">
                 <Grid>
                     <Rectangle Style="{StaticResource RectangleDropShadowStyle}" />
-                    <Border Width="205" Height="180" Background="{StaticResource UIWhite}">
+                    <Border Width="205" Height="180" Background="Transparent">
                         <Grid Margin="{StaticResource Margin_M_All}">
 
                             <Grid.RowDefinitions>
@@ -49,7 +49,7 @@
                                 </Button>
 
                             </Grid>
-                            <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding Summary}" Visibility="{Binding NoEditingContentVisibility}" Foreground="{StaticResource UIBlack}"/>
+                            <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding Summary}" Visibility="{Binding NoEditingContentVisibility}" />
 
                             <Grid Grid.Row="1" VerticalAlignment="Bottom" Margin="{StaticResource Margin_S_Bottom}" Visibility="{Binding EditingContentVisibility}">
 
@@ -90,7 +90,7 @@
                                 </Grid>
 
                                 <Grid Grid.Column="1" Visibility="{Binding AddingVisibility}">
-                                    <Button Style="{StaticResource AddTemplateInfoButtonStyle}" Command="{Binding AddItemCommand}" CommandParameter="{Binding}" Visibility="{Binding NoEditingContentVisibility}">
+                                    <Button Style="{StaticResource AddTemplateInfoButtonStyle}" Command="{Binding AddItemCommand}" CommandParameter="{Binding}" Visibility="{Binding NoEditingContentVisibility}" VerticalAlignment="Center" HorizontalAlignment="Right">
                                         <Button.Content>
                                             <Grid>
                                                 <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource IconButtonTextStyle}" />
@@ -98,7 +98,7 @@
                                             </Grid>
                                         </Button.Content>
                                     </Button>
-                                    <Button Style="{StaticResource SaveTemplateInfoButtonStyle}" Command="{Binding SaveItemCommand}" CommandParameter="{Binding}" IsEnabled="{Binding IsValidName}" Visibility="{Binding EditingContentVisibility}" Tag="AllowCloseEdition">
+                                    <Button Style="{StaticResource SaveTemplateInfoButtonStyle}" Command="{Binding SaveItemCommand}" CommandParameter="{Binding}" IsEnabled="{Binding IsValidName}" Visibility="{Binding EditingContentVisibility}" Tag="AllowCloseEdition" VerticalAlignment="Center" HorizontalAlignment="Right">
                                         <Button.Content>
                                             <Grid>
                                                 <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource IconButtonTextStyle}" />
