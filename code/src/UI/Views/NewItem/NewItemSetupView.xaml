@@ -54,7 +54,7 @@
             <DataTemplate x:Key="LicenseInfoModalItemTemplate">
                 <Grid>
                     <TextBlock>
-                        <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
+                        <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}" AutomationProperties.Name="{Binding Text}">
                             <TextBlock Text="{Binding Text}" Style="{StaticResource TextSummaryLicenseStyle}" FontSize="{StaticResource UI_M_FontSize}"/>
                         </Hyperlink>
                     </TextBlock>
@@ -64,7 +64,7 @@
             <DataTemplate x:Key="DependencyInfoModalTemplate">
                 <Grid>
                     <TextBlock>
-                        <Hyperlink Command="{Binding ShowInfoCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
+                        <Hyperlink Command="{Binding ShowInfoCommand}" Style="{StaticResource LicenseHyperlinkStyle}" AutomationProperties.Name="{Binding Name}">
                           <TextBlock Text="{Binding Name}" Style="{StaticResource TextSummaryLicenseStyle}" FontSize="{StaticResource UI_M_FontSize}"/>
                         </Hyperlink>
                     </TextBlock>

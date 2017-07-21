@@ -1,10 +1,9 @@
-{
+﻿{
   "author": "Microsoft Community Contribution",
   "classifications": [ "Universal" ],
   "name": "First Run Prompt",
   "groupIdentity": "wts.Feat.FirstRunPrompt",
   "identity": "wts.Feat.FirstRunPrompt",
-  "shortName": "First Run Prompt",
   "description": "Display a prompt when the app is used for the first time.",
   "tags": {
     "language": "C#",

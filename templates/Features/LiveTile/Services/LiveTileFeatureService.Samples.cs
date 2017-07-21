@@ -1,4 +1,4 @@
-using Microsoft.Toolkit.Uwp.Notifications;
+﻿using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Threading.Tasks;
 using Windows.UI.Notifications;
@@ -75,12 +75,12 @@ namespace Param_RootNamespace.Services
                 }
             };
 
-            // Then create the tile notification            
+            // Then create the tile notification
             var notification = new TileNotification(content.GetXml());
             UpdateTile(notification);
         }
 
-        public async Task SamplePinSecondary(string pageName)
+        public async Task SamplePinSecondaryAsync(string pageName)
         {
             // TODO WTS: Call this method to Pin a Secondary Tile from a page.
             // You also must implement the navigation to this specific page in the OnLaunched event handler on App.xaml.cs

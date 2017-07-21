@@ -195,6 +195,7 @@
     <Compile Include="Naming\FileExistsValidator.cs" />
     <Compile Include="Naming\ReservedNameValidator.cs" />
     <Compile Include="Naming\Validator.cs" />
+    <Compile Include="PostActions\Catalog\SearchAndReplacePostAction.cs" />
     <Compile Include="PostActions\Catalog\AddContextItemsToProjectPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeFailureType.cs" />
     <Compile Include="PostActions\Catalog\Merge\PostActionFormatter.cs" />

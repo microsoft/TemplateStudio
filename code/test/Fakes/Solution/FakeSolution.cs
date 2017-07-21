@@ -1,21 +1,14 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System.IO;
 using System.Linq;
+using System.Text;
 
-namespace Microsoft.Templates.Test.Artifacts.MSBuild
+namespace Microsoft.Templates.Fakes
 {
-    public class MSBuildSolution
+    public class FakeSolution
     {
         private const string GlobalSectionText = "GlobalSection(ProjectConfigurationPlatforms) = postSolution";
 
@@ -45,17 +38,17 @@ EndProject
 
         private readonly string _path;
 
-        private MSBuildSolution(string path)
+        private FakeSolution(string path)
         {
             _path = path;
         }
 
-        public static MSBuildSolution Create(string path)
+        public static FakeSolution Create(string path)
         {
             var solutionTemplate = ReadTemplate();
-            File.WriteAllText(path, solutionTemplate);
+            File.WriteAllText(path, solutionTemplate, Encoding.UTF8);
 
-            return new MSBuildSolution(path);
+            return new FakeSolution(path);
         }
 
         public void AddProjectToSolution(string projectName, string projectGuid)
@@ -78,12 +71,12 @@ EndProject
 
             }
 
-            File.WriteAllText(_path, slnContent);
+            File.WriteAllText(_path, slnContent, Encoding.UTF8);
         }
 
         private static string ReadTemplate()
         {
-            return File.ReadAllText(@"MSBuild\SolutionTemplate.txt");
+            return File.ReadAllText(@"Solution\SolutionTemplate.txt");
         }
     }
 }

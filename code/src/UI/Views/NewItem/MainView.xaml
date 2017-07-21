@@ -150,6 +150,21 @@
                             <TextBlock Text="{Binding}" FontSize="{StaticResource UI_S_FontSize}" FontWeight="Normal"/>
                         </DataTemplate>
                     </CheckBox.ContentTemplate>
+                    <CheckBox.FocusVisualStyle>
+                        <Style>
+                            <Setter Property="Control.Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Grid Width="16" VerticalAlignment="Stretch" HorizontalAlignment="Left">
+                                            <Grid.Background>
+                                                <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
+                                            </Grid.Background>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </CheckBox.FocusVisualStyle>
                 </CheckBox>
             </Grid>
             <Grid Grid.Row="0" Grid.RowSpan="3" Visibility="{Binding InfoShapeVisibility, FallbackValue=Collapsed}">

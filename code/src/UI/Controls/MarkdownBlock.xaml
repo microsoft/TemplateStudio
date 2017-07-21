@@ -32,6 +32,6 @@
     </UserControl.Resources>
 
     <Grid>
-        <FlowDocumentScrollViewer Document="{Binding Text, ElementName=root, Converter={StaticResource TextToFlowDocumentConverter}}" VerticalScrollBarVisibility="Auto" Focusable="False"/>
+        <FlowDocumentScrollViewer Document="{Binding Text, ElementName=root, Converter={StaticResource TextToFlowDocumentConverter}}" VerticalScrollBarVisibility="Auto" Focusable="True"  AutomationProperties.Name="{Binding Text, ElementName=root}"/>
     </Grid>
 </UserControl>

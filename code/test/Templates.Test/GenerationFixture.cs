@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
@@ -16,28 +8,31 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Test.Artifacts;
+using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.Test
 {
-
     public sealed class GenerationFixture : IDisposable
     {
         private const string Platform = "x86";
         private const string Configuration = "Debug";
 
         internal string TestRunPath = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\{DateTime.Now.ToString("dd_HHmm")}\\";
+
         internal string TestProjectsPath => Path.GetFullPath(Path.Combine(TestRunPath, "Proj"));
+
         internal string TestNewItemPath => Path.GetFullPath(Path.Combine(TestRunPath, "RightClick"));
 
         private static readonly Lazy<TemplatesRepository> _repos = new Lazy<TemplatesRepository>(() => CreateNewRepos(), true);
+
         public static IEnumerable<ITemplateInfo> Templates => _repos.Value.GetAll();
 
         private static TemplatesRepository CreateNewRepos()
@@ -179,7 +174,7 @@ namespace Microsoft.Templates.Test
 
             var process = Process.Start(startInfo);
 
-            File.WriteAllText(outputFile, process.StandardOutput.ReadToEnd());
+            File.WriteAllText(outputFile, process.StandardOutput.ReadToEnd(), Encoding.UTF8);
 
             process.WaitForExit();
 
@@ -249,7 +244,5 @@ namespace Microsoft.Templates.Test
 
             return path;
         }
-
-        
     }
 }

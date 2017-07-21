@@ -5,6 +5,7 @@
   "LogFileFolderPath": "WindowsTemplateStudio\\Logs",
   "RepositoryFolderName": "WindowsTemplateStudio",
   "DiagnosticsTraceLevel": "Verbose",
+  "GitHubDocsUrl": "https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/",
   "DaysToKeepDiagnosticsLogs": 5,
   "VersionCheckingExpirationMinutes": 5,
   "AllowedPublicKeysPins": [

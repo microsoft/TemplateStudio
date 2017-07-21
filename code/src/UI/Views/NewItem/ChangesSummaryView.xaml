@@ -49,7 +49,7 @@
             <DataTemplate x:Key="ListLicenseTemplate">
                 <Grid Margin="{StaticResource Margin_S_Top}">
                     <TextBlock Margin="{StaticResource Margin_M_LeftRight}" VerticalAlignment="Center">
-                        <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
+                        <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}" AutomationProperties.Name="{Binding Text}">
                             <TextBlock Text="{Binding Text}" Style="{StaticResource TextSummaryLicenseStyle}" VerticalAlignment="Center" Margin="{StaticResource Margin_L_Left}"/>
                         </Hyperlink>
                     </TextBlock>
@@ -61,7 +61,7 @@
             </DataTemplate>
 
             <DataTemplate x:Key="CodeFileTemplate">
-                <controls:CodeViewer Item="{Binding}" />
+                <controls:CodeViewer Item="{Binding}" Focusable="False"/>
             </DataTemplate>
 
             <DataTemplate x:Key="CodeConflictingFileTemplate">
@@ -86,7 +86,7 @@
             </DataTemplate>
 
             <DataTemplate x:Key="SimpleDetailTemplate">
-                <ContentPresenter Content="{Binding}">
+                <ContentPresenter Content="{Binding}" Focusable="False">
                     <ContentPresenter.ContentTemplateSelector>
                         <templateSelector:FileExtensionTemplateSelector
                             ImageFileTemplate="{StaticResource ImageFileTemplate}"
@@ -95,7 +95,7 @@
                 </ContentPresenter>
             </DataTemplate>
             <DataTemplate x:Key="ConflictingDetailTemplate">
-                <ContentPresenter Content="{Binding}">
+                <ContentPresenter Content="{Binding}" Focusable="False">
                     <ContentPresenter.ContentTemplateSelector>
                         <templateSelector:FileExtensionTemplateSelector
                             ImageFileTemplate="{StaticResource ImageFileTemplate}"
@@ -192,6 +192,21 @@
                             <Button.Content>
                                 <TextBlock Text="&#xE946;" FontSize="18" Style="{StaticResource IconButtonTextStyle}"/>
                             </Button.Content>
+                            <Button.FocusVisualStyle>
+                                <Style>
+                                    <Setter Property="Control.Template">
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                    <Ellipse.Fill>
+                                                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
+                                                    </Ellipse.Fill>
+                                                </Ellipse>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Button.FocusVisualStyle>
                         </Button>
                     </Grid>
                     <TextBlock Margin="0,7,0,0" Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}"/>
@@ -207,7 +222,7 @@
                     <Image Grid.Column="0" Source="{Binding ChangesSummary.SelectedFile.Icon}" Margin="{StaticResource Margin_M_Left}" Stretch="None" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="NearestNeighbor" SnapsToDevicePixels="True" />
                     <TextBlock Grid.Column="1" Text="{Binding ChangesSummary.SelectedFile.Subject}" Margin="{StaticResource Margin_M_Left}" VerticalAlignment="Center"/>
                 </Grid>
-                <ContentPresenter Grid.Row="2" Content="{Binding ChangesSummary.SelectedFile}" ContentTemplateSelector="{StaticResource DetailTemplateSelector}" />
+                <ContentPresenter Grid.Row="2" Content="{Binding ChangesSummary.SelectedFile}" ContentTemplateSelector="{StaticResource DetailTemplateSelector}" Focusable="False"/>
             </Grid>
         </Grid>
         <controls:LogoDisplay Visibility="{Binding ChangesSummary.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Visible}" IsBusy="{Binding ChangesSummary.IsLoading}" Width="150" Fill="{StaticResource UILightGray}" HorizontalAlignment="Center" VerticalAlignment="Center" />
