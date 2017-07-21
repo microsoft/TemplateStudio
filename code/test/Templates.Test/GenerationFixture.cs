@@ -161,7 +161,7 @@ namespace Microsoft.Templates.Test
         {
             var outputFile = Path.Combine(outputPath, $"_buildOutput_{solutionName}.txt");
 
-            //Build
+            // Build
             var solutionFile = Path.GetFullPath(outputPath + @"\" + solutionName + ".sln");
             var startInfo = new ProcessStartInfo(GetPath("RestoreAndBuild.bat"))
             {
@@ -187,7 +187,7 @@ namespace Microsoft.Templates.Test
             var outputLines = File.ReadAllLines(filePath);
             var errorLines = outputLines.Where(l => re.IsMatch(l));
 
-            return errorLines.Count() > 0 ? errorLines.Aggregate((i, j) => i + Environment.NewLine + j) : String.Empty;
+            return errorLines.Count() > 0 ? errorLines.Aggregate((i, j) => i + Environment.NewLine + j) : string.Empty;
         }
 
         public static string GetDefaultName(ITemplateInfo template)

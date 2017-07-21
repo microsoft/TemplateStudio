@@ -28,7 +28,9 @@ namespace Microsoft.Templates.Test
             GenContext.Current = this;
         }
 
-        [Theory, MemberData("GetProjectTemplatesForStyleCop"), Trait("Type", "ProjectGeneration")]
+        [Theory]
+        [MemberData("GetProjectTemplatesForStyleCop")]
+        [Trait("Type", "ProjectGeneration")]
         public async void GenerateAllPagesAndFeaturesAndCheckWithStyleCop(string projectType, string framework)
         {
             var targetProjectTemplate = StyleCopGenerationTestsFixture.Templates
@@ -60,14 +62,14 @@ namespace Microsoft.Templates.Test
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
-            //Build solution
+            // Build solution
             var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
             var result = _fixture.BuildSolution(projectName, outputPath);
 
-            //Assert
+            // Assert
             Assert.True(result.exitCode.Equals(0), $"Solution {targetProjectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
-            //Clean
+            // Clean
             Directory.Delete(outputPath, true);
         }
 

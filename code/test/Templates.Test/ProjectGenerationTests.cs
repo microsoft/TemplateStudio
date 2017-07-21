@@ -31,7 +31,9 @@ namespace Microsoft.Templates.Test
             GenContext.Current = this;
         }
 
-        [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
+        [Theory]
+        [MemberData("GetProjectTemplates")]
+        [Trait("Type", "ProjectGeneration")]
         public async void GenerateEmptyProject(string projectType, string framework)
         {
             var projectTemplate = GenerationFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework)).FirstOrDefault();
@@ -45,19 +47,20 @@ namespace Microsoft.Templates.Test
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
-            //Build solution
+            // Build solution
             var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
             var result = GenerationFixture.BuildSolution(projectName, outputPath);
 
-            //Assert
+            // Assert
             Assert.True(result.exitCode.Equals(0), $"Solution {projectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GenerationFixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
-            //Clean
+            // Clean
             Directory.Delete(outputPath, true);
         }
 
-
-        [Theory, MemberData("GetPageAndFeatureTemplates"), Trait("Type", "OneByOneItemGeneration")]
+        [Theory]
+        [MemberData("GetPageAndFeatureTemplates")]
+        [Trait("Type", "OneByOneItemGeneration")]
         public async void GenerateProjectWithIsolatedItems(string itemName, string projectType, string framework, string itemId)
         {
             var projectTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
@@ -86,18 +89,20 @@ namespace Microsoft.Templates.Test
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
-            //Build solution
+            // Build solution
             var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
             var result = GenerationFixture.BuildSolution(projectName, outputPath);
 
-            //Assert
+            // Assert
             Assert.True(result.exitCode.Equals(0), $"Solution {projectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GenerationFixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
-            //Clean
+            // Clean
             Directory.Delete(outputPath, true);
         }
 
-        [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
+        [Theory]
+        [MemberData("GetProjectTemplates")]
+        [Trait("Type", "ProjectGeneration")]
         public async void GenerateAllPagesAndFeatures(string projectType, string framework)
         {
             var targetProjectTemplate = GenerationFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework)).FirstOrDefault();
@@ -114,18 +119,20 @@ namespace Microsoft.Templates.Test
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
-            //Build solution
+            // Build solution
             var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
             var result = GenerationFixture.BuildSolution(projectName, outputPath);
 
-            //Assert
+            // Assert
             Assert.True(result.exitCode.Equals(0), $"Solution {targetProjectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GenerationFixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
-            //Clean
+            // Clean
             Directory.Delete(outputPath, true);
         }
 
-        [Theory, MemberData("GetProjectTemplates"), Trait("Type", "ProjectGeneration")]
+        [Theory]
+        [MemberData("GetProjectTemplates")]
+        [Trait("Type", "ProjectGeneration")]
         public async void GenerateAllPagesAndFeaturesRandomNames(string projectType, string framework)
         {
             var targetProjectTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework) && !t.GetIsHidden());
@@ -141,14 +148,14 @@ namespace Microsoft.Templates.Test
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
-            //Build solution
+            // Build solution
             var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
             var result = GenerationFixture.BuildSolution(projectName, outputPath);
 
-            //Assert
+            // Assert
             Assert.True(result.exitCode.Equals(0), $"Solution {targetProjectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GenerationFixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
-            //Clean
+            // Clean
             Directory.Delete(outputPath, true);
         }
 

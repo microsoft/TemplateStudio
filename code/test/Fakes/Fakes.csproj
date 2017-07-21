@@ -73,6 +73,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <AdditionalFiles Include="..\..\StyleCop.json">
+      <Link>StyleCop.json</Link>
+    </AdditionalFiles>
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
