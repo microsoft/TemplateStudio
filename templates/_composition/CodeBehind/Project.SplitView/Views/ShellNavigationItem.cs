@@ -118,6 +118,11 @@ namespace wts.ItemName.Views
             return new ShellNavigationItem(name, icon, typeof(T));
         }
 
+        public override string ToString()
+        {
+            return Label;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)

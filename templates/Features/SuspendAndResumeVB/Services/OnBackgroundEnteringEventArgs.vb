@@ -1,4 +1,4 @@
-Namespace Services
+﻿Namespace Services
     Public Class OnBackgroundEnteringEventArgs
         Inherits EventArgs
 

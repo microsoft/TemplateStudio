@@ -1,4 +1,4 @@
-Imports System
+﻿Imports System
 
 Namespace Services
     Public Class SuspensionState

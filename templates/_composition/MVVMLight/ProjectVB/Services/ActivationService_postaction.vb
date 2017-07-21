@@ -1,4 +1,4 @@
-Friend Class ActivationService
+﻿Friend Class ActivationService
     Private ReadOnly _defaultNavItem As Type
 '{[{
 

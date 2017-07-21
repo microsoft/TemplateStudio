@@ -1,4 +1,4 @@
-Friend Class DefaultLaunchActivationHandler
+﻿Friend Class DefaultLaunchActivationHandler
     Inherits ActivationHandler(Of LaunchActivatedEventArgs)
 '{[{
     Private ReadOnly _navElement As string

@@ -1,4 +1,4 @@
-Imports Windows.ApplicationModel.Resources
+﻿Imports Windows.ApplicationModel.Resources
 
 Namespace Helpers
     Friend Module ResourceExtensions

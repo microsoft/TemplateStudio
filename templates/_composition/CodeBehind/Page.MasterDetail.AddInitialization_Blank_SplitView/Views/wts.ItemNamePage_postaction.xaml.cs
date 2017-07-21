@@ -1,4 +1,4 @@
-//{[{
+﻿//{[{
 using Windows.UI.Xaml.Navigation;
 //}]}
 namespace Param_ItemNamespace.Views

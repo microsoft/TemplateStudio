@@ -34,7 +34,7 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid>
+    <Grid Style="{StaticResource MainGrid}">
         <Grid Panel.ZIndex="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
@@ -47,12 +47,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <controls:LogoDisplay
-                    Grid.Column="0"
-                    Width="40"
-                    Margin="{StaticResource Margin_M_Left}"
-                    Fill="{StaticResource UIWhite}"
-                    HorizontalAlignment="Left" />
+                <controls:LogoDisplay Style="{StaticResource HeaderLogoDisplay}" />
                 <TextBlock
                     Grid.Column="1"
                     Margin="{StaticResource Margin_M_Left}"
@@ -69,7 +64,7 @@
                     <Button Style="{StaticResource TopBarMenuStyle}" Command="{Binding ShowOverlayMenuCommand}">
                         <Button.Content>
                             <Grid>
-                                <TextBlock Text="&#xEC42;" Style="{StaticResource IconButtonTextStyle}" Foreground="{StaticResource UIWhite}" FontSize="24" Margin="{StaticResource Margin_M_All}" Tag="AllowOverlay" />
+                                <TextBlock Text="&#xEC42;" Style="{StaticResource IconButtonTextStyle}" FontSize="24" Margin="{StaticResource Margin_M_All}" Tag="AllowOverlay" />
                                 <Ellipse Width="12" Height="12" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,5,0" Visibility="{Binding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}}" Fill="{StaticResource UIDarkYellow}" />
                             </Grid>
                         </Button.Content>
@@ -77,7 +72,7 @@
                 </Grid>
             </Grid>
             <Grid Grid.Row="1">
-                <controls:LogoDisplay IsBusy="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}" Width="150" Fill="{StaticResource UILightGray}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <controls:LogoDisplay Style="{StaticResource LoadingLogoDisplay}" IsBusy="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}" />
                 <Grid Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
                     <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}}"/>
                 </Grid>

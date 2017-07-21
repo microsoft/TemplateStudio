@@ -1,4 +1,4 @@
-Namespace ViewModels
+﻿Namespace ViewModels
     Public Class BlankViewViewModel
         Inherits System.ComponentModel.INotifyPropertyChanged
         Public Sub New()

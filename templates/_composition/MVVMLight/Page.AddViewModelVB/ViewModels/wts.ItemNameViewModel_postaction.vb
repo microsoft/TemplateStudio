@@ -1,4 +1,4 @@
-'{[{
+﻿'{[{
 Imports GalaSoft.MvvmLight
 '}]}
 Namespace ViewModels

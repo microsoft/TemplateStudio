@@ -1,4 +1,4 @@
-using Microsoft.WindowsAzure.Messaging;
+﻿using Microsoft.WindowsAzure.Messaging;
 using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;

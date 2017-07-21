@@ -1,4 +1,4 @@
-namespace Param_RootNamespace.Activation
+﻿namespace Param_RootNamespace.Activation
 {
     internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
     {

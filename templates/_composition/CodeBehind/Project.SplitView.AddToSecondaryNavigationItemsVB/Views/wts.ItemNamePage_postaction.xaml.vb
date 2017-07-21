@@ -1,4 +1,4 @@
-'{[{
+﻿'{[{
 Imports Windows.UI.Xaml.Navigation
 '}]}
 Namespace Views

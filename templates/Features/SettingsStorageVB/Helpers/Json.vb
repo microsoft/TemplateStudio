@@ -1,4 +1,4 @@
-Imports Newtonsoft.Json
+﻿Imports Newtonsoft.Json
 
 Namespace Helpers
     Public NotInheritable Class Json

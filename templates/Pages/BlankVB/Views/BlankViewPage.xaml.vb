@@ -1,4 +1,4 @@
-Namespace Views
+﻿Namespace Views
     Public NotInheritable Partial Class BlankViewPage
         Inherits Page
 

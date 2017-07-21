@@ -1,4 +1,4 @@
-NotInheritable Partial Class App
+﻿NotInheritable Partial Class App
     Inherits Application
 '^^
 '{[{

@@ -1,4 +1,4 @@
-'{[{
+﻿'{[{
 Imports Param_ItemNamespace.ViewModels
 '}]}
 Namespace Views
