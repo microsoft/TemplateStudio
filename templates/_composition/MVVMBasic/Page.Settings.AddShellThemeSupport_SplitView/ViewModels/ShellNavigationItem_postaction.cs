@@ -16,9 +16,9 @@
 
         private ShellNavigationItem(string name, Symbol symbol, Type pageType)
         {
-            this.Label = name;
-            this.Symbol = symbol;
-            this.PageType = pageType;
+            Label = name;
+            Symbol = symbol;
+            PageType = pageType;
 
             //^^
             //{[{
@@ -34,9 +34,9 @@
 
         private ShellNavigationItem(string name, IconElement icon, Type pageType)
         {
-            this.Label = name;
-            this._iconElement = icon;
-            this.PageType = pageType;
+            Label = name;
+            _iconElement = icon;
+            PageType = pageType;
 
             //^^
             //{[{

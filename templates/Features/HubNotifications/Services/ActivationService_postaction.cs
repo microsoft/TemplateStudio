@@ -1,4 +1,4 @@
-//{**
+﻿//{**
 // These code blocks include the HubNotificationsFeatureService Instance in the method `GetActivationHandlers()`
 // in the ActivationService of your project and add documentation about how to use the HubNotificationsFeatureService.
 //**}

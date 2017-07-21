@@ -1,4 +1,4 @@
-//{**
+﻿//{**
 // This code block adds the BackgroundTaskFeature to the method `CreateInstances()` of the BackgroundTaskService of your project.
 //**}
 namespace Param_ItemNamespace.Services

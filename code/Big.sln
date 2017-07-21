@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{481CC407-92E7-42A9-AD6E-AA157E5D40C3}"
 EndProject
@@ -20,8 +20,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_tools", "_tools", "{85F5D2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Templates.Test", "test\Templates.Test\Templates.Test.csproj", "{1EE12A16-FE11-43AD-B509-668CE5D0DB16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artifacts", "test\Artifacts\Artifacts.csproj", "{FB3C81AD-823E-409C-BF6D-27534B84A8AF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Installer.2017", "src\Installer.2017\Installer.2017.csproj", "{BB30852B-672A-4EBF-BE58-BC63F6D3C0DE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.UWP.VS2017.Solution", "src\ProjectTemplates\CSharp.UWP.2017.Solution\CSharp.UWP.VS2017.Solution.csproj", "{D5E1C23A-7547-412A-82F1-F00C34622C1E}"
@@ -35,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		StyleCop.json = StyleCop.json
 		TestCert.pfx = TestCert.pfx
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fakes", "test\Fakes\Fakes.csproj", "{FB3C81AD-823E-409C-BF6D-27534B84A8AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,12 +67,6 @@ Global
 		{1EE12A16-FE11-43AD-B509-668CE5D0DB16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EE12A16-FE11-43AD-B509-668CE5D0DB16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EE12A16-FE11-43AD-B509-668CE5D0DB16}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FB3C81AD-823E-409C-BF6D-27534B84A8AF}.Analyze|Any CPU.ActiveCfg = Analyze|Any CPU
-		{FB3C81AD-823E-409C-BF6D-27534B84A8AF}.Analyze|Any CPU.Build.0 = Analyze|Any CPU
-		{FB3C81AD-823E-409C-BF6D-27534B84A8AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FB3C81AD-823E-409C-BF6D-27534B84A8AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FB3C81AD-823E-409C-BF6D-27534B84A8AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB3C81AD-823E-409C-BF6D-27534B84A8AF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BB30852B-672A-4EBF-BE58-BC63F6D3C0DE}.Analyze|Any CPU.ActiveCfg = Analyze|Any CPU
 		{BB30852B-672A-4EBF-BE58-BC63F6D3C0DE}.Analyze|Any CPU.Build.0 = Analyze|Any CPU
 		{BB30852B-672A-4EBF-BE58-BC63F6D3C0DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -91,6 +85,12 @@ Global
 		{DCFD282D-D91C-49B5-8DBF-D943BAFEF5AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCFD282D-D91C-49B5-8DBF-D943BAFEF5AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCFD282D-D91C-49B5-8DBF-D943BAFEF5AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB3C81AD-823E-409C-BF6D-27534B84A8AF}.Analyze|Any CPU.ActiveCfg = Analyze|Any CPU
+		{FB3C81AD-823E-409C-BF6D-27534B84A8AF}.Analyze|Any CPU.Build.0 = Analyze|Any CPU
+		{FB3C81AD-823E-409C-BF6D-27534B84A8AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB3C81AD-823E-409C-BF6D-27534B84A8AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB3C81AD-823E-409C-BF6D-27534B84A8AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB3C81AD-823E-409C-BF6D-27534B84A8AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,7 +99,7 @@ Global
 		{8E03F5DD-ED89-4A68-9801-E1C1EC288DD7} = {481CC407-92E7-42A9-AD6E-AA157E5D40C3}
 		{272B516C-0D73-4BA6-A97E-5C82D5C02ABD} = {481CC407-92E7-42A9-AD6E-AA157E5D40C3}
 		{1EE12A16-FE11-43AD-B509-668CE5D0DB16} = {481CC407-92E7-42A9-AD6E-AA157E5D40C3}
-		{FB3C81AD-823E-409C-BF6D-27534B84A8AF} = {481CC407-92E7-42A9-AD6E-AA157E5D40C3}
 		{D5E1C23A-7547-412A-82F1-F00C34622C1E} = {428D8EC8-DF58-4921-B464-967086C924A4}
+		{FB3C81AD-823E-409C-BF6D-27534B84A8AF} = {481CC407-92E7-42A9-AD6E-AA157E5D40C3}
 	EndGlobalSection
 EndGlobal

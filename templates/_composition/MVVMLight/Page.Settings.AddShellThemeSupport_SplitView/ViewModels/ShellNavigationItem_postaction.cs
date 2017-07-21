@@ -13,9 +13,9 @@
 
         public ShellNavigationItem(string label, Symbol symbol, string viewModelName)
         {
-            this.Label = label;
-            this.Symbol = symbol;
-            this.ViewModelName = viewModelName;
+            Label = label;
+            Symbol = symbol;
+            ViewModelName = viewModelName;
 
             //^^
             //{[{
@@ -31,9 +31,9 @@
 
         public ShellNavigationItem(string label, IconElement icon, string viewModelName)
         {
-            this.Label = label;
-            this._iconElement = icon;
-            this.ViewModelName = viewModelName;
+            Label = label;
+            _iconElement = icon;
+            ViewModelName = viewModelName;
 
             //^^
             //{[{
