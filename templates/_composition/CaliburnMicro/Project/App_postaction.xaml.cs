@@ -1,14 +1,25 @@
-﻿using System.Collections.Generic;
+﻿ //{[{
+using System.Collections.Generic;
 using Caliburn.Micro;
+//}]}
 
 namespace Param_ItemNamespace
 {
-    sealed partial class App
+    public sealed partial class App
     {
-        private WinRTContainer _container;
+        public App()
+        {
+            InitializeComponent();
+             //^^
+            //{[{
+            Initialize();
+            //}]}
+        }
 
         //^^
         //{[{
+        private WinRTContainer _container;
+
         /// <summary>
         /// Configuration for Caliburn.Micro
         /// </summary>
