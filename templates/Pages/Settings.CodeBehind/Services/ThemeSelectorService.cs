@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Param_RootNamespace.Helpers;
