@@ -9,7 +9,7 @@ namespace Param_ItemNamespace.Services
     // For instructions on testing this service see https://github.com/Microsoft/WindowsTemplateStudio/tree/master/docs/features/whats-new-prompt.md
     public class WhatsNewDisplayService
     {
-        internal static async Task ShowIfAppropriate()
+        internal static async Task ShowIfAppropriateAsync()
         {
             var currentVersion = PackageVersionToReadableString(Package.Current.Id.Version);
 
