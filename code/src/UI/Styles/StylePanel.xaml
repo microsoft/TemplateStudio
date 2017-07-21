@@ -71,4 +71,17 @@
         </Style.Triggers>
     </Style>
 
+    <Style TargetType="Grid" x:Key="InformationShadowStyle">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Opacity="0.4" Color="{StaticResource UIBlackColor}" />
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>

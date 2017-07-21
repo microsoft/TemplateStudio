@@ -116,8 +116,8 @@
                                             <Condition Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True"/>
                                         </MultiDataTrigger.Conditions>
                                         <MultiDataTrigger.Setters>
-                                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.InfoTextBrushKey}}"/>
-                                            <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{DynamicResource {x:Static SystemColors.InfoTextBrushKey}}"/>
+                                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}"/>
+                                            <Setter Property="BorderBrush" TargetName="ContentBorder" Value="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}"/>
                                         </MultiDataTrigger.Setters>
                                     </MultiDataTrigger>
                                     <MultiDataTrigger>

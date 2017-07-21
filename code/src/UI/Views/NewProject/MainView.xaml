@@ -269,11 +269,7 @@
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid Grid.Row="0" Grid.RowSpan="3" Visibility="{Binding InfoShapeVisibility, FallbackValue=Collapsed}">
-                <Grid.Background>
-                    <SolidColorBrush Opacity="0.4" Color="Black" />
-                </Grid.Background>
-            </Grid>
+            <Grid Grid.Row="0" Grid.RowSpan="3" Visibility="{Binding InfoShapeVisibility, FallbackValue=Collapsed}" Style="{StaticResource InformationShadowStyle}"/>
         </Grid>
         <controls:StatusBox Style="{StaticResource StatusBoxStyle}" Status="{Binding Status}" Visibility="{Binding HasStatus, Converter={StaticResource BoolToVisibilityConverter}}" />
         <controls:OverlayBox Style="{StaticResource OverlayBoxStyle}" NewVersionAvailable="{Binding NewVersionAvailable}" WizardVersion="{Binding WizardVersion}" TemplatesVersion="{Binding TemplatesVersion}" Visible="{Binding IsOverlayBoxVisible}" RefreshCommand="{Binding RefreshTemplatesCommand}" CheckForUpdatesCommand="{Binding CheckUpdatesCommand}" Status="{Binding OverlayStatus}" />

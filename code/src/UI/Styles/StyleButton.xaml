@@ -39,8 +39,8 @@
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleWhiteGrid}"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True">
-                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.InfoTextBrushKey}}" />
-                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.InfoTextBrushKey}}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}" />
+                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}" />
             </DataTrigger>
         </Style.Triggers>
     </Style>
@@ -99,7 +99,7 @@
                 </MultiDataTrigger.Setters>
             </MultiDataTrigger>
             <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.InfoTextBrushKey}}"/>
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}"/>
             </DataTrigger>
         </Style.Triggers>
     </Style>
