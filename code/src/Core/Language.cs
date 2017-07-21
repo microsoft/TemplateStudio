@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Core
         public static IEnumerable<string> GetAllLanguages()
         {
             yield return Language.CSharp;
-            yield return Language.VisualBasic;
+           //// yield return Language.VisualBasic;  // This is currently disabled until full VB support is enabled
         }
     }
 }
