@@ -10,7 +10,6 @@ using System.Xml.Linq;
 
 namespace Microsoft.Templates.Fakes
 {
-
     public class FakeMsBuildProject
     {
         private const string MsBuildNs = "http://schemas.microsoft.com/developer/msbuild/2003";
@@ -138,7 +137,5 @@ namespace Microsoft.Templates.Fakes
                 return VsItemType.Content;
             }
         }
-
     }
 }
-
