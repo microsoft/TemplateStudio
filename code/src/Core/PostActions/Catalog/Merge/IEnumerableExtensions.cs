@@ -117,12 +117,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             return result;
         }
 
-<<<<<<< HEAD
-=======
         /// <summary>
         /// Removes anything from the target file that should be deleted.
         /// </summary>
->>>>>>> refs/remotes/origin/dev
         public static List<string> HandleRemovals(this IEnumerable<string> source, IEnumerable<string> merge)
         {
             var mergeString = string.Join(Environment.NewLine, merge);
@@ -142,12 +139,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             return sourceString.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
         }
 
-<<<<<<< HEAD
-=======
         /// <summary>
         /// Remove any comments from the merged file that indicate something should be removed.
         /// </summary>
->>>>>>> refs/remotes/origin/dev
         public static List<string> RemoveRemovals(this IEnumerable<string> merge)
         {
             var mergeString = string.Join(Environment.NewLine, merge);
@@ -170,11 +164,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             return mergeString.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
         }
 
-<<<<<<< HEAD
-        private static void TryAddBufferContent(List<string> insertionBuffer, List<string> result, int lastLineIndex, int currentLineIndex = 0, bool beforeMode = false)
-=======
         private static int TryAddBufferContent(List<string> insertionBuffer, List<string> result, int lastLineIndex, int currentLineIndex = 0, bool beforeMode = false)
->>>>>>> refs/remotes/origin/dev
         {
             if (insertionBuffer.Any() && !BlockExists(insertionBuffer, result, lastLineIndex) && currentLineIndex > -1)
             {

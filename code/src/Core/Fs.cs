@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Configuration;
 using System.IO;
 
 using Microsoft.Templates.Core.Diagnostics;
@@ -20,18 +21,18 @@ namespace Microsoft.Templates.Core
             }
         }
 
-        public static void CopyRecursive(string sourceDir, string targetDir)
+        public static void CopyRecursive(string sourceDir, string targetDir, bool overwrite = false)
         {
             Directory.CreateDirectory(targetDir);
 
             foreach (var file in Directory.GetFiles(sourceDir))
             {
-                File.Copy(file, Path.Combine(targetDir, Path.GetFileName(file)));
+                File.Copy(file, Path.Combine(targetDir, Path.GetFileName(file)), overwrite: overwrite);
             }
 
             foreach (var directory in Directory.GetDirectories(sourceDir))
             {
-                CopyRecursive(directory, Path.Combine(targetDir, Path.GetFileName(directory)));
+                CopyRecursive(directory, Path.Combine(targetDir, Path.GetFileName(directory)), overwrite);
             }
         }
 

@@ -475,6 +475,7 @@
   <ItemGroup>
     <EmbeddedResource Include="GeneralSettingsPageControl.resx">
       <DependentUpon>GeneralSettingsPageControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Commands\VSPackage.cs-CZ.resx">
       <MergeWithCTO>true</MergeWithCTO>
       <LogicalName>VSPackage.cs-CZ.Resources</LogicalName>

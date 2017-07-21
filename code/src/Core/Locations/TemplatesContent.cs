@@ -120,7 +120,7 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     Version.TryParse(sdi.Name, out Version v);
 
-                    if (!v.IsZero() && v < GetVersionFromFolder(currentContent))
+                    if (v != null && !v.IsZero() && v < GetVersionFromFolder(currentContent))
                     {
                         Fs.SafeDeleteDirectory(sdi.FullName);
                     }

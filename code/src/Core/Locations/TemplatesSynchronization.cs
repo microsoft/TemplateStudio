@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Reflection;
+using System.Text;
 using System.Threading;
 
 using Microsoft.Templates.Core.Diagnostics;
@@ -22,7 +23,6 @@ namespace Microsoft.Templates.Core.Locations
         private readonly Lazy<string> _workingFolder = new Lazy<string>(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), FolderName));
         private readonly TemplatesSource _source;
         private readonly TemplatesContent _content;
-        private readonly TemplatesSource _customSource = new CustomTemplatesSource();
 
         public string WorkingFolder => _workingFolder.Value;
 
@@ -155,11 +155,31 @@ namespace Microsoft.Templates.Core.Locations
             {
                  string installedTemplatesPath = GetInstalledTemplatesPath();
                 _source.Extract(installedTemplatesPath, _content.TemplatesFolder);
-                _customSource.Extract(_content.TemplatesFolder);
+
+                AddAnyCustomTemplates(_content.TemplatesFolder);
             }
             catch (Exception ex)
             {
                 throw new RepositorySynchronizationException(SyncStatus.Acquiring, ex);
+            }
+        }
+
+        private void AddAnyCustomTemplates(string targetFolder)
+        {
+            // Don't go through the overhead of zipping and copying around, just copy across for simplicity
+            var customPath = CustomSettings.CustomTemplatePath;
+
+            if (customPath != null && Directory.Exists(customPath))
+            {
+                AppHealth.Current.Info.TrackAsync($"Loading local templates from: {customPath}").FireAndForget();
+
+                // Not sure why everyone doesn't overwrite. (or why we need to here. Probably some)
+                // TODO: [ML] need to get proper version number here
+                Fs.CopyRecursive(customPath, Path.Combine(targetFolder, "0.0.0.0"), overwrite: true);
+            }
+            else
+            {
+                AppHealth.Current.Info.TrackAsync("No local templates loaded.").FireAndForget();
             }
         }
 

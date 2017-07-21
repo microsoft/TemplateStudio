@@ -116,6 +116,28 @@ namespace Microsoft.Templates.Core.Locations
                 Fs.SafeDeleteFile(verFile);
                 Fs.SafeMoveDirectory(sourcePath, finalDestination);
             }
+
+            AddAnyCustomTemplates(finalDestination);
+        }
+
+        // TODO: [ML] remove this duplication from TemplateSynchronization
+        private void AddAnyCustomTemplates(string targetFolder)
+        {
+            // Don't go through the overhead of zipping and copying around, just copy across for simplicity
+            var customPath = CustomSettings.CustomTemplatePath;
+
+            if (customPath != null && Directory.Exists(customPath))
+            {
+                AppHealth.Current.Info.TrackAsync($"Loading local templates from: {customPath}").FireAndForget();
+
+                // Not sure why everyone doesn't overwrite. (or why we need to here. Probably some)
+                // TODO: [ML] need to get proper version number here
+                Fs.CopyRecursive(customPath, targetFolder, overwrite: true);
+            }
+            else
+            {
+                AppHealth.Current.Info.TrackAsync("No local templates loaded.").FireAndForget();
+            }
         }
 
         private static string PrepareFinalDestination(string finalTargetFolder, Version ver)
