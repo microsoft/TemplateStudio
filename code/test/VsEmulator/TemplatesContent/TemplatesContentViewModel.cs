@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Windows;
 
@@ -70,6 +71,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
             set => SetProperty(ref _isWizardVersionReconfigurable, value);
         }
 
+        [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
         public (string WizardVersion, string TemplatesVersion) Result { get; private set; }
 
         private ObservableCollection<string> _availableContent;
@@ -112,6 +114,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
             LoadProperties();
         }
 
+        [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
         private void SetVersionAndClose()
         {
             Result = (_useWizardVersion, _useTemplatesVersion);
