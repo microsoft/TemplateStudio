@@ -2,10 +2,10 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -62,42 +62,52 @@ namespace Localization
 
         internal LocalizableItemsExtractor(string sourceDirPath, string destinationDirPath)
         {
-            this.sourceDir = new DirectoryInfo(sourceDirPath);
-            if (!this.sourceDir.Exists)
+            sourceDir = new DirectoryInfo(sourceDirPath);
+            if (!sourceDir.Exists)
                 throw new DirectoryNotFoundException($"Source directory \"{sourceDirPath}\" not found.");
-            this.destinationDir = new DirectoryInfo(destinationDirPath);
-            if (!this.destinationDir.Exists)
-                this.destinationDir.Create();
+
+            destinationDir = new DirectoryInfo(destinationDirPath);
+            if (!destinationDir.Exists)
+                destinationDir.Create();
         }
 
         internal void ExtractVsix(List<string> cultures)
         {
-            DirectoryInfo vsixDesDirectory = new DirectoryInfo(Path.Combine(this.destinationDir.FullName, vsixRootDirPath));
+            DirectoryInfo vsixDesDirectory = new DirectoryInfo(Path.Combine(destinationDir.FullName, vsixRootDirPath));
+
             if (vsixDesDirectory.Exists)
                 return;
+
             vsixDesDirectory.Create();
             vsixDesDirectory.CreateSubdirectory("Content");
-            DirectoryInfo vsixSrcDirectory = new DirectoryInfo(Path.Combine(this.sourceDir.FullName, vsixRootDirPath));
+            DirectoryInfo vsixSrcDirectory = new DirectoryInfo(Path.Combine(sourceDir.FullName, vsixRootDirPath));
+
             if (!vsixSrcDirectory.Exists)
                 throw new DirectoryNotFoundException($"Source directory \"{vsixSrcDirectory.FullName}\" not found.");
+
             FileInfo manifiestFile = new FileInfo(Path.Combine(vsixSrcDirectory.FullName, vsixManifestFile));
             if (!manifiestFile.Exists)
                 throw new FileNotFoundException($"File \"{manifiestFile.FullName}\" not found.");
+
             FileInfo eulaFile = new FileInfo(Path.Combine(vsixSrcDirectory.FullName, "Content\\EULA.rtf"));
             if (!eulaFile.Exists)
                 throw new FileNotFoundException($"File \"{eulaFile.FullName}\" not found.");
+
             XmlDocument xmlManifiestFile = XmlUtility.LoadXmlFile(manifiestFile.FullName);
             FileInfo langpackFile;
             DirectoryInfo vsixLocDesDirectory;
             string localizedName = XmlUtility.GetNode(xmlManifiestFile, "DisplayName").InnerText.Trim();
             string localizedDescription = XmlUtility.GetNode(xmlManifiestFile, "Description").InnerText.Trim();
+
             foreach (string culture in cultures)
             {
                 vsixLocDesDirectory = new DirectoryInfo(Path.Combine(vsixDesDirectory.FullName, culture));
                 if (vsixLocDesDirectory.Exists)
                     continue;
+
                 vsixLocDesDirectory.Create();
                 langpackFile = new FileInfo(Path.Combine(vsixLocDesDirectory.FullName, vsixLangpackFile));
+
                 if (!langpackFile.Exists)
                 {
                     using (TextWriter writer = langpackFile.CreateText())
@@ -260,7 +270,7 @@ namespace Localization
 
         internal void ExtractResourceFiles(List<string> cultures)
         {
-            foreach (string directory in this.resoureceDirectories)
+            foreach (string directory in resoureceDirectories)
             {
                 DirectoryInfo resourceDesDirectory = new DirectoryInfo(Path.Combine(this.destinationDir.FullName, "code\\src", directory, "Resources"));
                 if (!resourceDesDirectory.Exists)

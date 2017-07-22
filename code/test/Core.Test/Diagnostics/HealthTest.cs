@@ -12,23 +12,22 @@ using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Diagnostics
 {
-
     public class HealthTest
     {
-        TestHealthWriter testWriter=null;
+        TestHealthWriter _testWriter = null;
         public HealthTest()
         {
-            testWriter = new TestHealthWriter();
-            AppHealth.Current.AddWriter(testWriter);
+            _testWriter = new TestHealthWriter();
+            AppHealth.Current.AddWriter(_testWriter);
         }
 
         [Fact]
         public async Task UsageAsync()
         {
-            int initialEvents= testWriter.Events.Count;
-            int initialExceptions = testWriter.Exceptions.Count;
+            int initialEvents = _testWriter.Events.Count;
+            int initialExceptions = _testWriter.Exceptions.Count;
 
-            //Instance with default configuration
+            // Instance with default configuration
             await AppHealth.Current.Verbose.TrackAsync("VerboseMessage");
             await AppHealth.Current.Verbose.TrackAsync("VerboseMesssage with exception", new Exception("VerboseExceptionInfo"));
 
@@ -44,16 +43,16 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
             await AppHealth.Current.Exception.TrackAsync(new Exception("ExceptionTracked"));
             await AppHealth.Current.Exception.TrackAsync(new Exception("ExceptionTrackedWithAddtionalInfo"), "AddtionalInfo");
 
-            //Check events flow to the TestHealthWriter
-            Assert.True(initialEvents < testWriter.Events.Count);
-            Assert.True(initialExceptions < testWriter.Exceptions.Count);
+            // Check events flow to the TestHealthWriter
+            Assert.True(initialEvents < _testWriter.Events.Count);
+            Assert.True(initialExceptions < _testWriter.Exceptions.Count);
         }
 
         [Fact]
         public async Task AddAdditionalWriterAsync()
         {
             TestHealthWriter newWriter = new TestHealthWriter();
-            
+
             await AppHealth.Current.Error.TrackAsync("WillNotBeRegisteredYet");
 
             AppHealth.Current.AddWriter(newWriter);
@@ -82,15 +81,15 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
 
                 await AppHealth.Current.Exception.TrackAsync(exToTest);
 
-                Assert.DoesNotContain("Verbose;VerboseShouldNotBeRegistered;", testWriter.Events);
-                Assert.DoesNotContain("Info;InfoShouldNotBeRegistered;", testWriter.Events);
-                Assert.Contains("Warning;WarningMustBeRegistered;", testWriter.Events);
-                Assert.Contains("Error;ErrorMustBeRegistered;", testWriter.Events);
-                Assert.Contains<Exception>(exToTest, testWriter.Exceptions);
+                Assert.DoesNotContain("Verbose;VerboseShouldNotBeRegistered;", _testWriter.Events);
+                Assert.DoesNotContain("Info;InfoShouldNotBeRegistered;", _testWriter.Events);
+                Assert.Contains("Warning;WarningMustBeRegistered;", _testWriter.Events);
+                Assert.Contains("Error;ErrorMustBeRegistered;", _testWriter.Events);
+                Assert.Contains<Exception>(exToTest, _testWriter.Exceptions);
             }
             finally
             {
-                //Restore previous config
+                // Restore previous config
                 Configuration.Current.DiagnosticsTraceLevel = previousLevel;
             }
         }

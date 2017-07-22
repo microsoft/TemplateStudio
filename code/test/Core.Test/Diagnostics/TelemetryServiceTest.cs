@@ -57,7 +57,6 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
             props[TelemetryProperties.ProjectType] = "SplitView";
 
             await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.ProjectGen, props);
-
         }
 
         [Fact]

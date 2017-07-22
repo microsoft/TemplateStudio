@@ -85,14 +85,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 return;
             }
 
-            var templateInfo = textBox.Tag as TemplateInfoViewModel;
-            if (templateInfo != null)
+            if (textBox.Tag is TemplateInfoViewModel templateInfo)
             {
                 templateInfo.CloseEdition();
             }
 
-            var summaryItem = textBox.Tag as SavedTemplateViewModel;
-            if (summaryItem != null)
+            if (textBox.Tag is SavedTemplateViewModel summaryItem)
             {
                 ProjectTemplates.SavedPages.ToList().ForEach(spg => spg.ToList().ForEach(p =>
                 {

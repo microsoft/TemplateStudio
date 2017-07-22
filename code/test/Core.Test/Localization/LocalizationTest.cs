@@ -2,13 +2,11 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using Microsoft.Templates.Core.Gen;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using Microsoft.Templates.Core.Gen;
+
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test
@@ -16,7 +14,6 @@ namespace Microsoft.Templates.Core.Test
     [Collection("Unit Test Templates")]
     public class LocalizationTest
     {
-
         private TemplatesFixture _fixture;
 
         public LocalizationTest(TemplatesFixture fixture)
@@ -223,7 +220,5 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal<string>("Generic Feature description...", template.Description);
             Assert.Equal<string>("Generic Feature MD description", template.GetRichDescription());
         }
-
     }
-
 }

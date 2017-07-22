@@ -34,7 +34,6 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public List<string> FilesToOpen { get; } = new List<string>();
 
-
         [Fact]
         public void Execute_Ok()
         {
@@ -44,7 +43,6 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             ProjectPath = @".\TestData\tmp";
 
             GenContext.Current = this;
-
 
             Directory.CreateDirectory(GenContext.Current.ProjectPath);
             File.Copy(Path.Combine(Environment.CurrentDirectory, "TestData\\TestProject\\Test.csproj"), Path.Combine(GenContext.Current.ProjectPath, "Test.csproj"), true);

@@ -13,7 +13,7 @@ using Xunit;
 namespace Microsoft.Templates.Core.Test
 {
     [Collection("Unit Test Templates")]
-    public class ITemplateInfoExtensionsTest 
+    public class ITemplateInfoExtensionsTest
     {
         private readonly TemplatesFixture _fixture;
 
@@ -181,8 +181,7 @@ namespace Microsoft.Templates.Core.Test
                 {
                     Assert.Equal("text2", e2.Text);
                     Assert.Equal("url2", e2.Url);
-                }
-                );
+                });
         }
 
         [Fact]
@@ -212,8 +211,7 @@ namespace Microsoft.Templates.Core.Test
                     Assert.Equal("Item2", e2.name);
                     Assert.Equal("Microsoft.UWPTemplates.Test.PageTemplate", e2.templateGroupIdentity);
                     Assert.Equal(false, e2.@readonly);
-                }
-                );
+                });
         }
 
         [Fact]

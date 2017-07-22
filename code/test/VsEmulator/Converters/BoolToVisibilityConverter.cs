@@ -37,4 +37,3 @@ namespace Microsoft.Templates.VsEmulator.Converters
         }
     }
 }
-
