@@ -364,7 +364,7 @@
   <data name="GenControllerUnsafeGenerateAsyncMessage" xml:space="preserve">
     <value>Generating the template {0} to {1}.</value>
   </data>
-  <data name="InformationWindowIntilizeViewModelMessage" xml:space="preserve">
+  <data name="InformationWindowInitializeViewModelMessage" xml:space="preserve">
     <value>"{0} is not expected as valid type for the Information Window."</value>
   </data>
   <data name="UndefinedErrorString" xml:space="preserve">
