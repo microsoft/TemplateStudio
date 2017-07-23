@@ -1,11 +1,14 @@
-sealed partial class App
+﻿namespace Param_RootNamespace
 {
-    //^^
-    //{[{
-        
-    private ActivationService CreateActivationService()
-    {
-        return new ActivationService(this, typeof(ViewModels.PivotViewModel));
-    }
-    //}]}
+    public sealed partial class App
+	{
+//^^
+//{[{
+
+        private ActivationService CreateActivationService()
+        {
+            return new ActivationService(this, typeof(ViewModels.PivotViewModel));
+        }
+//}]}
+	}
 }

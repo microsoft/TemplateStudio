@@ -1,26 +1,34 @@
+﻿//{**
+//This code block adds the subscription to `App_EnteredBackground` to the App class of your project.
+//**}
+
 using System;
 
+//{[{
 using Windows.ApplicationModel;
+//}]}
 
 namespace Param_RootNamespace
 {
-    sealed partial class App
+    public sealed partial class App
     {
         public App()
         {
             InitializeComponent();
 
+//{[{
             EnteredBackground += App_EnteredBackground;
+//}]}
         }
-        //^^
-        //{[{
-            
+//^^
+//{[{
+
         private async void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e)
         {
             var deferral = e.GetDeferral();
             await Helpers.Singleton<SuspendAndResumeService>.Instance.SaveStateAsync();
             deferral.Complete();
         }
-        //}]}
+//}]}
     }
 }

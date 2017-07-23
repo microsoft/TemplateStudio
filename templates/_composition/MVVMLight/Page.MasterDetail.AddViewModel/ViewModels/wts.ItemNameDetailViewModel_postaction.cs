@@ -1,10 +1,11 @@
+﻿//{[{
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+//}]}
 namespace Param_ItemNamespace.ViewModels
 {
     public class wts.ItemNameDetailViewModel : ViewModelBase
     {
-
         //{[{
         public NavigationServiceEx NavigationService
         {
@@ -13,6 +14,7 @@ namespace Param_ItemNamespace.ViewModels
                 return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
             }
         }
+
         //}]}
     }
 }

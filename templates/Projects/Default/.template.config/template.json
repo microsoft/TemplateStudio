@@ -1,10 +1,9 @@
-{
+﻿{
   "author": "Microsoft",
   "classifications": ["Universal"],
   "name": "Default",
   "groupIdentity": "wts.Proj.Default",
   "identity": "wts.Proj.Default",
-  "shortName": "default",
   "description": "",
   "tags": {
     "language": "C#",
@@ -27,24 +26,37 @@
     "wts.userName":
     {
       "type": "parameter",
+      "dataType": "string",
       "replaces": "Param_UserName"
     },
     "wts.wizardVersion":
     {
       "type": "parameter",
+      "dataType": "string",
       "replaces": "Param_Wizard.Version"
     },
     "wts.templatesVersion":
     {
       "type": "parameter",
+      "dataType": "string",
       "replaces": "Param_Templates.Version"
-  },
-  "copyrightYear": {
-      "type": "generated",
-      "generator": "now",
-      "replaces": "1976",
-      "parameters": {
-        "format": "yyyy"
+    },
+    "wts.generationProjectType":
+    {
+      "type": "parameter",
+      "replaces": "Param_ProjectType"
+    },
+    "wts.generationFramework":
+    {
+      "type": "parameter",
+      "replaces": "Param_Framework"
+    },
+    "copyrightYear": {
+        "type": "generated",
+        "generator": "now",
+        "replaces": "1976",
+        "parameters": {
+          "format": "yyyy"
+      }
     }
-  }
-}}
+}}}

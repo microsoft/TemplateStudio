@@ -1,4 +1,4 @@
-{
+﻿{
   "author": "Microsoft",
   "classifications": [
     "Universal"
@@ -6,7 +6,6 @@
   "name": "Tabbed",
   "groupIdentity": "wts.Page.TabbedPivot",
   "identity": "wts.Page.TabbedPivot",
-  "shortName": "Tabbed Page",
   "description": "The tabbed page is used for navigating frequently accessed, distinct content categories.",
   "tags": {
     "language": "C#",
@@ -14,7 +13,9 @@
     "wts.type": "page",
     "wts.framework": "MVVMBasic|MVVMLight",
     "wts.version": "1.0.0",
-    "wts.order": "1"
+    "wts.order": "8",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true" 
   },
   "sourceName": "TabbedPivotPage",
   "preferNameDirectory": true,

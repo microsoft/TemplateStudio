@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
@@ -20,6 +12,7 @@ using System.Text;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core
 {
@@ -27,14 +20,19 @@ namespace Microsoft.Templates.Core
     {
         public string Environment { get; set; } = "Local";
         public string CdnUrl { get; set; } = "https://wtsrepository.blob.core.windows.net/dev/Latest";
-        //Set your Application Insights telemetry instrumentation key here (configure it in a WindowsTemplateStudio.config.json located in the working folder).
-        public string RemoteTelemetryKey { get; set; } = "<SET_YOUR_OWN_KEY>"; 
+        // Set your Application Insights telemetry instrumentation key here (configure it in a WindowsTemplateStudio.config.json located in the working folder).
+        public string RemoteTelemetryKey { get; set; } = "<SET_YOUR_OWN_KEY>";
         public string LogFileFolderPath { get; set; } = @"WindowsTemplateStudio\Logs";
         public string RepositoryFolderName { get; set; } = @"WindowsTemplateStudio";
+        public string BackupFolderPath { get; set; } = @"WindowsTemplateStudio\Backups";
+        public string TempGenerationFolderPath { get; set; } = "WTSTempGeneration";
         public TraceEventType DiagnosticsTraceLevel { get; set; } = TraceEventType.Verbose;
+        public int DaysToKeepTempGenerations { get; set; } = 5;
         public int DaysToKeepDiagnosticsLogs { get; set; } = 5;
         public int VersionCheckingExpirationMinutes { get; set; } = 0;
         public List<string> AllowedPublicKeysPins { get; set; } = new List<string>() { };
+        public string CustomTelemetryEndpoint { get; set; } = string.Empty;
+        public string GitHubDocsUrl { get; set; } = "https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/";
 
         public static string LoadedConfigFile { get; private set; }
 
@@ -63,8 +61,8 @@ namespace Microsoft.Templates.Core
 
                         TraceUsingDefault($"Tried to use the configuration file located at {currentConfigFile}, but not found. Using default configuration.");
                     }
-                }           
-                
+                }
+
                 return _current;
             }
         }
@@ -75,8 +73,8 @@ namespace Microsoft.Templates.Core
             TraceUsingDefault("1. Check 'JsonConfigFile' appSetting is defined");
 
             string jsonConfigFile = ConfigurationManager.AppSettings["JsonConfigFile"];
-        
-            if (String.IsNullOrWhiteSpace(jsonConfigFile) || !File.Exists(jsonConfigFile))
+
+            if (string.IsNullOrWhiteSpace(jsonConfigFile) || !File.Exists(jsonConfigFile))
             {
                 jsonConfigFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), DefaultJsonConfigFileName);
 
@@ -94,7 +92,7 @@ namespace Microsoft.Templates.Core
         {
             Configuration loadedConfig = null;
 
-            if (!String.IsNullOrWhiteSpace(jsonFilePath) && File.Exists(jsonFilePath))
+            if (!string.IsNullOrWhiteSpace(jsonFilePath) && File.Exists(jsonFilePath))
             {
                 loadedConfig = DeserializeConfiguration(jsonFilePath);
             }
@@ -121,10 +119,10 @@ namespace Microsoft.Templates.Core
                 var jsonData = File.ReadAllText(path, Encoding.UTF8);
                 return JsonConvert.DeserializeObject<Configuration>(jsonData);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TraceUsingDefault($"Error deserializing configuration from file '{path}'. Exception:\n\r{ex.ToString()}");
-                throw new ConfigurationErrorsException($"Error deserializing configuration data from file '{path}'.", ex);   
+                throw new ConfigurationErrorsException($"Error deserializing configuration data from file '{path}'.", ex);
             }
         }
 

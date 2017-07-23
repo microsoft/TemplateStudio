@@ -1,35 +1,33 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
     public class TelemetryProperties
     {
-        public static string WizardFileVersion { get; internal set; } = TelemetryTracker.PropertiesPrefix + "WizardFileVersion";
-        public static string WizardContentVersion { get; internal set; } = TelemetryTracker.PropertiesPrefix + "TemplatesVersion";
-        public static string RoleInstanceName { get; internal set; } = TelemetryTracker.PropertiesPrefix + "WizardClient";
-        public static string Status { get; private set; } = TelemetryTracker.PropertiesPrefix + "Status";
-        public static string ProjectType { get; private set; } = TelemetryTracker.PropertiesPrefix + "ProjectType";
-        public static string Framework { get; private set; } = TelemetryTracker.PropertiesPrefix + "Framework";
-        public static string TemplateName { get; private set; } = TelemetryTracker.PropertiesPrefix + "TemplateName";
-        public static string GenEngineStatus { get; private set; } = TelemetryTracker.PropertiesPrefix + "GenEngineStatus";
-        public static string GenEngineMessage { get; private set; } = TelemetryTracker.PropertiesPrefix + "GenEngineMessage";
-        public static string WizardType { get; private set; } = TelemetryTracker.PropertiesPrefix + "WizardType";
-        public static string WizardStatus { get; private set; } = TelemetryTracker.PropertiesPrefix + "WizardStatus";
-        public static string LastStep { get; private set; } = TelemetryTracker.PropertiesPrefix + "LastStep";
-        public static string EventName { get; internal set; } = TelemetryTracker.PropertiesPrefix + "EventName";
-        public static string VisualStudioVersion { get; internal set; } = TelemetryTracker.PropertiesPrefix + "VsVersion";
-        public static string VisualStudioEdition { get; internal set; } = TelemetryTracker.PropertiesPrefix + "VsEdition";
-        public static string VisualStudioCulture { get; internal set; } = TelemetryTracker.PropertiesPrefix + "VsCulture";
-        public static string SummaryItemEditAction { get; internal set; } = TelemetryTracker.PropertiesPrefix + "ItemEditAction";
+        public static string WizardFileVersion { get; private set; } = TelemetryEvents.Prefix + "WizardFileVersion";
+        public static string WizardContentVersion { get; private set; } = TelemetryEvents.Prefix + "TemplatesVersion";
+        public static string RoleInstanceName { get; private set; } = TelemetryEvents.Prefix + "WizardClient";
+        public static string Status { get; private set; } = TelemetryEvents.Prefix + "Status";
+        public static string ProjectType { get; private set; } = TelemetryEvents.Prefix + "ProjectType";
+        public static string Framework { get; private set; } = TelemetryEvents.Prefix + "Framework";
+        public static string TemplateName { get; private set; } = TelemetryEvents.Prefix + "TemplateName";
+        public static string GenEngineStatus { get; private set; } = TelemetryEvents.Prefix + "GenEngineStatus";
+        public static string GenEngineMessage { get; private set; } = TelemetryEvents.Prefix + "GenEngineMessage";
+        public static string WizardType { get; private set; } = TelemetryEvents.Prefix + "WizardType";
+        public static string WizardStatus { get; private set; } = TelemetryEvents.Prefix + "WizardStatus";
+        public static string WizardAction { get; private set; } = TelemetryEvents.Prefix + "WizardAction";
+        public static string LastStep { get; private set; } = TelemetryEvents.Prefix + "LastStep";
+        public static string EventName { get; private set; } = TelemetryEvents.Prefix + "EventName";
+        public static string VisualStudioVersion { get; private set; } = TelemetryEvents.Prefix + "VsVersion";
+        public static string VisualStudioEdition { get; private set; } = TelemetryEvents.Prefix + "VsEdition";
+        public static string VisualStudioCulture { get; private set; } = TelemetryEvents.Prefix + "VsCulture";
+        public static string VisualStudioManifestId { get; private set; } = TelemetryEvents.Prefix + "VsManifestId";
+        public static string VisualStudioActiveProjectGuid { get; private set; } = TelemetryEvents.Prefix + "VsActiveProjectGuid";
+        public static string SummaryItemEditAction { get; private set; } = TelemetryEvents.Prefix + "ItemEditAction";
+        public static string VsProjectCategory { get; private set; } = TelemetryEvents.Prefix + "Category";
+        public static string NewItemType { get; private set; } = TelemetryEvents.Prefix + "NewItemType";
+        public static string GenSource { get; private set; } = TelemetryEvents.Prefix + "GenSource";
     }
 }

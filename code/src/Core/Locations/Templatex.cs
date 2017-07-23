@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
@@ -22,6 +14,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
 
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -33,49 +26,68 @@ namespace Microsoft.Templates.Core.Locations
 
         public static string PackAndSign(string source, string certThumbprint, string mimeMediaType = MediaTypeNames.Text.Plain)
         {
-            string signedPack = source + DefaultExtension;
+            string outFile = source + DefaultExtension;
 
-            PackAndSign(source, signedPack, certThumbprint, mimeMediaType);
+            PackAndSign(source, outFile, certThumbprint, mimeMediaType);
 
-            return signedPack;
+            return outFile;
         }
+
         public static string PackAndSign(string source, X509Certificate signingCert, string mimeMediaType = MediaTypeNames.Text.Plain)
         {
-            string signedPack = source + DefaultExtension;
+            string outFile = source + DefaultExtension;
 
-            PackAndSign(source, signedPack, signingCert, mimeMediaType);
+            Pack(source, outFile, mimeMediaType);
 
-            return signedPack;
-        } 
-        public static void PackAndSign(string source, string signedFilePack, string certThumbprint, string mimeMediaType)
+            Sign(outFile, signingCert);
+
+            return outFile;
+        }
+
+        public static void PackAndSign(string source, string outFile, string certThumbprint, string mimeMediaType)
         {
             X509Certificate cert = LoadCert(certThumbprint);
 
             if (cert == null)
             {
-                throw new SignCertNotFoundException($"The certificate with thumbprint {certThumbprint} can't be found in CurrentUser/My or LocalMachine/My.");
+                throw new SignCertNotFoundException(string.Format(StringRes.TemplatexPackAndSignMessage, certThumbprint));
             }
 
-            PackAndSign(source, signedFilePack, cert, mimeMediaType);
+            Pack(source, outFile, mimeMediaType);
+
+            Sign(outFile, cert);
         }
-        public static void PackAndSign(string source, string signedPack, X509Certificate signingCert, string mimeMediaType)
+
+        public static void PackAndSign(string source, string outFile, X509Certificate cert, string mimeMediaType)
         {
-            if (String.IsNullOrWhiteSpace(source))
+            Pack(source, outFile, mimeMediaType);
+
+            Sign(outFile, cert);
+        }
+
+        public static string Pack(string source, string mimeMediaType = MediaTypeNames.Text.Plain)
+        {
+            string outFile = source + DefaultExtension;
+
+            Pack(source, outFile, mimeMediaType);
+
+            return outFile;
+        }
+        public static void Pack(string source, string outFile, string mimeMediaType)
+        {
+            if (string.IsNullOrWhiteSpace(source))
                 throw new ArgumentException("source");
 
-            if (String.IsNullOrWhiteSpace(signedPack))
-                throw new ArgumentException("signedPack");
-
-            if (signingCert == null)
-                throw new ArgumentException("signingCert");
+            if (string.IsNullOrWhiteSpace(outFile))
+                throw new ArgumentException("outFile");
 
             FileInfo[] files = GetSourceFiles(source);
 
             Uri rootUri = GetRootUri(source);
 
-            EnsureDirectory(Path.GetDirectoryName(signedPack)); 
+            EnsureDirectory(Path.GetDirectoryName(outFile));
 
-            using (Package package = Package.Open(signedPack, FileMode.Create))
+            using (Package package = Package.Open(outFile, FileMode.Create))
             {
                 foreach (var file in files)
                 {
@@ -89,13 +101,10 @@ namespace Microsoft.Templates.Core.Locations
                 }
 
                 package.Flush();
-
-                SignAllParts(package, signingCert);
             }
         }
 
-
-        public static void Extract(string signedFilePack, string targetDirectory)
+        public static void Extract(string signedFilePack, string targetDirectory, bool verifySignatures = true)
         {
             string currentDir = Environment.CurrentDirectory;
             string inFilePack = Path.IsPathRooted(signedFilePack) ? signedFilePack : Path.Combine(currentDir, signedFilePack);
@@ -105,23 +114,44 @@ namespace Microsoft.Templates.Core.Locations
 
             using (Package package = Package.Open(inFilePack, FileMode.Open, FileAccess.Read))
             {
-                if (ValidateSignatures(package))
+                bool isSignatureValid = false;
+                if (verifySignatures)
                 {
-                    PackagePart packagePartDocument = null;
-
-                    foreach (PackageRelationship relationship in package.GetRelationshipsByType(TemplatesContentRelationshipType))
-                    {
-                        // Open the Document part, write the contents to a file.
-                        packagePartDocument = package.GetPart(relationship.TargetUri);
-                        ExtractPart(packagePartDocument, outDir);
-                    }
+                    isSignatureValid = ValidateSignatures(package);
                 }
-                else
+
+                if (isSignatureValid || !verifySignatures)
                 {
-                    string msg = $"Invalid digital signatures in '{signedFilePack}'. The content has been tampered or the certificate is not present, not valid or not allowed.  Unable to continue.";
-
-                    throw new InvalidSignatureException(msg);
+                    ExtractContent(outDir, package);
                 }
+
+                if (!isSignatureValid && verifySignatures)
+                {
+                    throw new InvalidSignatureException(string.Format(StringRes.TemplatexExtractMessage, signedFilePack));
+                }
+            }
+        }
+
+        private static void Sign(string file, X509Certificate signingCert)
+        {
+            if (signingCert == null)
+                throw new ArgumentException("signingCert");
+
+            using (Package package = Package.Open(file, FileMode.Open))
+            {
+                SignAllParts(package, signingCert);
+            }
+        }
+
+        private static void ExtractContent(string outDir, Package package)
+        {
+            PackagePart packagePartDocument = null;
+
+            foreach (PackageRelationship relationship in package.GetRelationshipsByType(TemplatesContentRelationshipType))
+            {
+                // Open the Document part, write the contents to a file.
+                packagePartDocument = package.GetPart(relationship.TargetUri);
+                ExtractPart(packagePartDocument, outDir);
             }
         }
 
@@ -150,7 +180,7 @@ namespace Microsoft.Templates.Core.Locations
 
             if (certFound == null)
             {
-                AppHealth.Current.Warning.TrackAsync($"No certificate found matching the thumbrint {thumbprint}. Searched on CurrentUser/My and LocalMachine/My stores.").FireAndForget();
+                AppHealth.Current.Warning.TrackAsync(string.Format(StringRes.TemplatexLoadCertMessage, thumbprint)).FireAndForget();
             }
 
             return certFound;
@@ -166,7 +196,7 @@ namespace Microsoft.Templates.Core.Locations
 
                 var certs = store.Certificates.Find(X509FindType.FindByThumbprint, thumbprint, false);
 
-                AppHealth.Current.Info.TrackAsync($"Found {certs.Count} certificates matching the thumbprint {thumbprint} in the store {location.ToString()}").FireAndForget();
+                AppHealth.Current.Info.TrackAsync(string.Format(StringRes.TemplatexFindCertificateFoundMessage, certs.Count, thumbprint, location.ToString())).FireAndForget();
 
                 if (certs.Count >= 1)
                 {
@@ -174,16 +204,14 @@ namespace Microsoft.Templates.Core.Locations
 
                     if (certs.Count > 1)
                     {
-                        AppHealth.Current.Warning.TrackAsync($"More than one certificate found matching the thumbrint. Returning the first one.").FireAndForget();
+                        AppHealth.Current.Warning.TrackAsync(StringRes.TemplatexFindCertificateNotOneMessage).FireAndForget();
                     }
 
                     if (!certFound.HasPrivateKey)
                     {
-                        AppHealth.Current.Info.TrackAsync($"The certificate found does not have private key.").FireAndForget();
+                        AppHealth.Current.Info.TrackAsync(StringRes.TemplatexFindCertificateNoPkMessage).FireAndForget();
                     }
                 }
-
-                store.Close();
             }
 
             return certFound;
@@ -229,7 +257,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             Dictionary<string, X509Certificate> certs = GetPackageCertificates(dsm);
             bool certificatesOk = certs.Count > 0;
-            
+
             foreach (X509Certificate cert in certs.Values)
             {
                 if (CertificateChainVaidationRequired())
@@ -243,7 +271,7 @@ namespace Microsoft.Templates.Core.Locations
 
                 if (!certificatesOk)
                 {
-                    AppHealth.Current.Warning.TrackAsync("Package signature certificate validation not passed.").FireAndForget();
+                    AppHealth.Current.Warning.TrackAsync(StringRes.TemplatexValidatePackageCertificatesMessage).FireAndForget();
                     break;
                 }
             }
@@ -253,7 +281,7 @@ namespace Microsoft.Templates.Core.Locations
 
         private static bool CertificateChainVaidationRequired()
         {
-            return !Configuration.Current.AllowedPublicKeysPins.Where(pk => !String.IsNullOrWhiteSpace(pk)).Any();
+            return !Configuration.Current.AllowedPublicKeysPins.Where(pk => !string.IsNullOrWhiteSpace(pk)).Any();
         }
 
         private static Dictionary<string, X509Certificate> GetPackageCertificates(PackageDigitalSignatureManager dsm)
@@ -274,7 +302,7 @@ namespace Microsoft.Templates.Core.Locations
         private static bool VerifyCertificate(X509Certificate cert)
         {
             var status = PackageDigitalSignatureManager.VerifyCertificate(cert);
-            AppHealth.Current.Verbose.TrackAsync($"Certificate '{cert.Subject}' verification finished with status '{status.ToString()}'").FireAndForget();
+            AppHealth.Current.Verbose.TrackAsync(string.Format(StringRes.TemplatexVerifyCertificateMessage, cert.Subject, status.ToString())).FireAndForget();
 
             return (status == X509ChainStatusFlags.NoError);
         }
@@ -284,7 +312,7 @@ namespace Microsoft.Templates.Core.Locations
             var pubKeyCert = cert.GetPublicKeyString();
             var pubKeyPin = pubKeyCert.ObfuscateSHA();
 
-            AppHealth.Current.Verbose.TrackAsync($"Package certificate {cert.Subject}").FireAndForget();
+            AppHealth.Current.Verbose.TrackAsync($"{StringRes.PackageCertificateString} {cert.Subject}").FireAndForget();
 
             return Configuration.Current.AllowedPublicKeysPins.Where(allowedPin => allowedPin.Equals(pubKeyPin)).Any();
         }
@@ -320,8 +348,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             catch (CryptographicException ex)
             {
-                AppHealth.Current.Error.TrackAsync("Error sigingn package.", ex).FireAndForget();
-
+                AppHealth.Current.Error.TrackAsync(StringRes.TemplatexSignAllPartsMessage, ex).FireAndForget();
                 throw;
             }
         }
@@ -338,7 +365,7 @@ namespace Microsoft.Templates.Core.Locations
         }
         private static void EnsureDirectory(string dir)
         {
-            if (!String.IsNullOrEmpty(dir) && dir.ToLower() != Environment.CurrentDirectory.ToLower())
+            if (!string.IsNullOrEmpty(dir) && dir.ToLower() != Environment.CurrentDirectory.ToLower())
             {
                 if (!Directory.Exists(dir))
                 {
@@ -408,7 +435,7 @@ namespace Microsoft.Templates.Core.Locations
 
             if (files == null || files.Count() == 0)
             {
-                throw new FileNotFoundException($"The specified source '{source}' is invalid. Or the file does not exists or the folder is empty.");
+                throw new FileNotFoundException(string.Format(StringRes.TemplatexGetSourceFilesMessage, source));
             }
 
             return files;

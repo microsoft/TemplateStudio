@@ -1,4 +1,4 @@
-using Microsoft.Services.Store.Engagement;
+﻿using Microsoft.Services.Store.Engagement;
 
 using System;
 using System.Threading.Tasks;
@@ -24,8 +24,10 @@ namespace Param_RootNamespace.Services
             StoreServicesEngagementManager engagementManager = StoreServicesEngagementManager.GetDefault();
             string originalArgs = engagementManager.ParseArgumentsAndTrackAppLaunch(toastActivationArgs.Argument);
 
-            // Use the originalArgs variable to access the original arguments
-            // that were passed to the app.
+            //// Use the originalArgs variable to access the original arguments
+            //// that were passed to the app.
+
+            await Task.CompletedTask;
         }
     }
 }

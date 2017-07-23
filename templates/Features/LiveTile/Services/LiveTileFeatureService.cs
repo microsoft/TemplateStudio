@@ -1,4 +1,4 @@
-using Param_RootNamespace.Activation;
+﻿using Param_RootNamespace.Activation;
 using Param_RootNamespace.Helpers;
 using System;
 using System.Linq;
@@ -23,7 +23,7 @@ namespace Param_RootNamespace.Services
                 await ApplicationData.Current.LocalSettings.SaveAsync(QueueEnabledKey, true);
             }
         }
-        
+
         public void UpdateTile(TileNotification notification)
         {
             TileUpdateManager.CreateTileUpdaterForApplication().Update(notification);
@@ -35,6 +35,7 @@ namespace Param_RootNamespace.Services
             {
                 return await tile.RequestCreateAsync();
             }
+
             return false;
         }
 
@@ -62,14 +63,14 @@ namespace Param_RootNamespace.Services
         private bool LaunchFromSecondaryTile(LaunchActivatedEventArgs args)
         {
             // If app is launched from a SecondaryTile, tile arguments property is contained in args.Arguments
-            // TODO UWPTemplates: Implement your own logic to determine if you can handle the SecondaryTile activation
+            // TODO WTS: Implement your own logic to determine if you can handle the SecondaryTile activation
             return false;
         }
 
         private bool LaunchFromLiveTileUpdate(LaunchActivatedEventArgs args)
         {
             // If app is launched from a LiveTile notification update, TileContent arguments property is contained in args.TileActivatedInfo.RecentlyShownNotifications
-            // TODO UWPTemplates: Implement your own logic to determine if you can handle the LiveTile nptification update activation
+            // TODO WTS: Implement your own logic to determine if you can handle the LiveTile notification update activation
             return false;
         }
     }

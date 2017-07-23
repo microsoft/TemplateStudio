@@ -1,18 +1,12 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
@@ -20,11 +14,10 @@ namespace Microsoft.Templates.Core.Diagnostics
     {
         public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
         {
-
             string formattedMessage = FormattedWriterMessages.LogEntryStart + $"\t{eventType.ToString()}\t{message}";
-            if(ex != null)
+            if (ex != null)
             {
-                formattedMessage = formattedMessage + $"\tException:\n\r{ex.ToString()}";
+                formattedMessage = formattedMessage + $"\t{StringRes.ExceptionString}:\n\r{ex.ToString()}";
             }
 
             switch (eventType)
@@ -50,7 +43,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task WriteExceptionAsync(Exception ex, string message = null)
         {
-            await WriteTraceAsync(TraceEventType.Critical, "Exception Tracked", ex);
+            await WriteTraceAsync(TraceEventType.Critical, StringRes.ExceptionTrackedString, ex);
         }
 
         private async Task CallAsync(Action action)

@@ -1,24 +1,25 @@
-{
+﻿{
   "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
-  "name": "Store Notification",
+  "name": "Dev Center Notifications",
   "groupIdentity": "wts.Feat.StoreNotifications",
   "identity": "wts.Feat.StoreNotifications",
-  "shortName": "Store Notifications",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "description": "Register your app to receive notifications from the store and handle them being used to launch the app.",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "feature",
     "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
     "wts.version": "1.0.0",
-    "wts.order": "1",
+    "wts.order": "2",
     "wts.group": "UserInteraction",
     "wts.licenses": "[Microsoft.Services.Store.SDK](https://www.microsoft.com/legal/intellectualproperty/copyright/default.aspx)",
     "wts.defaultInstance": "StoreNotifications",
-    "wts.multipleInstance": "false"
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true"
   },
   "sourceName": "StoreNotificationsFeature",
   "preferNameDirectory": true,

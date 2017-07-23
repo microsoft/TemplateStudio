@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Animation;
@@ -13,10 +17,12 @@ namespace Microsoft.Templates.UI.Extensions
             {
                 throw new ArgumentNullException("element");
             }
+
             if (element.Opacity < 1.0)
             {
                 return AnimateDoubleProperty(element, "Opacity", element.Opacity, 1.0, duration, easingFunction);
             }
+
             return null;
         }
 

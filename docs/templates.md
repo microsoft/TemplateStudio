@@ -98,10 +98,9 @@ The replacements are done based on the configuration established in the `templat
   "classifications": [
     "Universal"
   ],
-  "name": "Blank",
+  "name": "Blank",                                //This is the displayed name in the wizard.
   "groupIdentity": "wts.Page.Blank",              //Used for filtering and grouping in the wizard
   "identity": "wts.Page.Blank",
-  "shortName": "Blank Page",                      //This is the displayed name in the wizard.
   "description": "This is the most basic page.",  //This is the short description displayed in the wizard.
   "tags": {                                       //Tags are used to filter and handled the composition
     "language": "C#",
@@ -110,6 +109,7 @@ The replacements are done based on the configuration established in the `templat
     "wts.framework": "MVVMBasic|MVVMLight",       //Frameworks where this template can be used.
     "wts.version": "1.0.0",
     "wts.order": "1",
+    "wts.rightClickEnabled":"true",               //If set to 'true' then this feature or page is available from right click on an existing project.
     "wts.isHidden": "false"                       //If set to 'true' then not shown in the wizard. Used for dependencies that can't be selected on their own.
   },
   "sourceName": "BlankView",                      //The generation engine will replace any occurrence of "BlankView" by the parameter provided in the source file name.
@@ -322,7 +322,9 @@ namespace ItemNamespace.ViewModels
         private void PopulateNavItems()
         {
             //^^
+            //{[{
             _secondaryItems.Add(ShellNavigationItem.FromType<wts.ItemNamePage>("Shell_wts.ItemName".GetLocalized(), Symbol.Document));
+            //}]}
         }
     }
 }
@@ -332,20 +334,31 @@ namespace ItemNamespace.ViewModels
 The merge post action will do the following:
 1. Locate a file called "ShellViewModel.cs" within the generated code.
 1. Using a basic source code matching, the post-action will locate content in the `_postaction` file that is not included in the `ShellViewModel.cs` file and will insert it in the correct place. In this case:
-    * Inserts the using *ItemNamespace.Views* as it is not in the ShellViewModel.cs file. Note that the token *ItemNamespace* has been replaced during the generation for the actual value.
     * Locate the namespace for the item (matching with the generated namespace for the item)
     * Then a class with the name ShellViewModel inhering from Observable
     * Then the private method called PopularNavItems
     * The symbols `//^^` indicates that the merge must be done at the end, just before the closing `}`, without this directive the line would be inserted just below the opening `{`.
-1. Once located the exactly place. The code is added in to the original source file.
+1. Once located the exactly place. The code contained between {[{ and }]} is added in to the original source file.
+2. If any of the above directives are not found the merge is aborted and an merge failure is reported as the file is not as expected. 
+
+### Global Merge Post-Action
+The global merge postactions work as the normal merge postaction, with the only difference that they are executed once the generation is finished. 
+You have to use global postactions whenever you need to include changes from various elements into one item generated in the same generation. 
+A sample would be the BackgroundTaskService.
+We use the same strategy to integrate methods from Chart and Grid Page into the SampleData Service from right click. 
+
+The format for global postactions is `<DestinationFileName>$<FeatureName>_gpostaction.<DestinationFileExtension>` (for example: BackgroundTaskService$BackgroundTaskFeature_gpostaction.cs).
+This allows generation of 1 gpostaction file per BackgroundTask selected and merge of all files once the generation has finished.
 
 #### Merges Directives
 
 There are different merge directives to drive the code merging. Currently:
 
 * MacroBeforeMode `//^^`: Insert before the next match, instead of after the last match
-* MacroStartGroup `//{[{` and MarcoEndGroup `}]}`: The content between `{[{` and `}]}` is considered as a block and inserted together.
+* MacroStartGroup `//{[{` and MarcoEndGroup `}]}`: The content between `{[{` and `}]}` is inserted.
 * MacroStartDelete `//{--{` and MacroEndDelete = `//}--}`: The content between the directives will be removed if it exists within the merge target. If the content does not exist (or has already been deleted as part of merging another file) this will be silently ignored. Note that the merge must be exact, including white space and line breaks. *This directive can be used with C# files only.*
+* MacroStartDocumentation `//{**` and MacroEndDocumentation `//**}`: The content between `{**` and `**}` is not inserted but shown in the _postaction file. This can be used give the user feedback about was the postaction intended to do when the postaction fails or when integrating right click output manually. 
+
 
 ## Table of Contents
 

@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.IO;
@@ -28,7 +20,45 @@ namespace Microsoft.Templates.Core.Test.Locations
     public class TemplatexTests
     {
         [Fact]
-        public void PackFolder()
+        public void Pack_Folder()
+        {
+            int filesInCurrentFolder = new DirectoryInfo(Environment.CurrentDirectory).GetFiles("*", SearchOption.AllDirectories).Count();
+            var inFolder = Environment.CurrentDirectory;
+            var outDir = @"C:\Temp\PackTests";
+            var outFile = Path.Combine(outDir, "JustPacked.mstx");
+            var extractDir = Path.Combine(outDir, "Extraction");
+
+            Templatex.Pack(inFolder, outFile, MediaTypeNames.Text.Plain);
+
+            Templatex.Extract(outFile, extractDir, false);
+
+            int filesInExtractionFolder = new DirectoryInfo(extractDir).GetFiles("*", SearchOption.AllDirectories).Count();
+            Assert.Equal(filesInCurrentFolder, filesInExtractionFolder);
+
+            Directory.Delete(outDir, true);
+        }
+
+        [Fact]
+        public void Pack_FolderWithDefaultNaming()
+        {
+            int filesInCurrentFolder = new DirectoryInfo(Environment.CurrentDirectory).GetFiles("*", SearchOption.AllDirectories).Count();
+            var inFolder = Environment.CurrentDirectory;
+            var outDir = @"C:\Temp\PackTests";
+            var extractDir = Path.Combine(outDir, "Extraction");
+
+            var outFile = Templatex.Pack(inFolder);
+
+            Templatex.Extract(outFile, extractDir, false);
+
+            int filesInExtractionFolder = new DirectoryInfo(extractDir).GetFiles("*", SearchOption.AllDirectories).Count();
+            Assert.Equal(filesInCurrentFolder, filesInExtractionFolder);
+
+            File.Delete(outFile);
+            Directory.Delete(outDir, true);
+        }
+
+        [Fact]
+        public void PackAndSign_Folder()
         {
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = Templatex.LoadCert(@"Locations\TestCert.pfx", certPass);
@@ -48,7 +78,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
         [Fact]
-        public void PackFolderExtractToAbsoluteDir()
+        public void PackAndSign_FolderExtractToAbsoluteDir()
         {
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = Templatex.LoadCert(@"Locations\TestCert.pfx", certPass);
@@ -68,7 +98,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
         [Fact]
-        public void PackAndSignCertNotFound()
+        public void PackAndSign_CertNotFound()
         {
             Exception ex = Assert.Throws<SignCertNotFoundException>(() => {
                 Templatex.PackAndSign(@"Locations\SampleContent.txt", "SignedContent.package", "CERT_NOT_FOUND", MediaTypeNames.Text.Plain);
@@ -133,7 +163,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
         [Fact]
-        public void PackAndSignWithThumbprint()
+        public void PackAndSign_WithThumbprint()
         {
             EnsureTestCertificateInStore();
 
@@ -296,9 +326,9 @@ namespace Microsoft.Templates.Core.Test.Locations
                 RemoteTemplatesSource rts = new RemoteTemplatesSource();
                 rts.Acquire(targetFolder);
 
-                string aquiredContentFolder = Directory.EnumerateDirectories(targetFolder).FirstOrDefault();
+                string acquiredContentFolder = Directory.EnumerateDirectories(targetFolder).FirstOrDefault();
 
-                Assert.NotNull(aquiredContentFolder);
+                Assert.NotNull(acquiredContentFolder);
 
                 //There is just one
                 Assert.True(Directory.EnumerateDirectories(targetFolder).Count() == 1);
@@ -307,8 +337,8 @@ namespace Microsoft.Templates.Core.Test.Locations
                 rts.Acquire(targetFolder);
                 Assert.True(Directory.EnumerateDirectories(targetFolder).Count() == 1);
 
-                //Change the previous adquired content and ensure it is adquired again
-                Directory.Move(aquiredContentFolder, aquiredContentFolder + "_old");
+                //Change the previous acquired content and ensure it is acquired again
+                Directory.Move(acquiredContentFolder, acquiredContentFolder + "_old");
 
                 rts.Acquire(targetFolder);
 

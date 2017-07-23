@@ -1,25 +1,39 @@
-﻿using Windows.UI.Xaml.Navigation;
+﻿//{**
+//Test documentation
+//**}
+
+using Windows.UI.Xaml.Navigation;
+//{[{
 //USING
+//}]}
 namespace TestData
 {
     sealed partial class App : Application
     {
+        //{[{
         //PROPERTY DEFINITION
+        //}]}
 
         public App()
         {
             this.InitializeComponent();
+            //{[{
             //AFTER INITIALIZE!!
+            //}]}
         }
 
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
+            //{[{
             //AFTER ONLAUNCHED!!
+            //}]}
             Settings.SettingsViewModel.InitAppTheme();
 
             //^^
+            //{[{
             //BEFORE END!!
             var s = "";
+            //}]}
         }
 
         //{[{
@@ -33,7 +47,9 @@ namespace TestData
         {
             if (args.Kind == ActivationKind.ToastNotification)
             {
+                //{[{
                 //INSIDE IF!!
+                //}]}
             }
         }
 

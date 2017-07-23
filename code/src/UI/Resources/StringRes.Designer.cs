@@ -61,6 +61,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string ButtonAddTemplate {
+            get {
+                return ResourceManager.GetString("ButtonAddTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         public static string ButtonBack {
@@ -88,11 +97,56 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close status box.
+        /// </summary>
+        public static string ButtonCloseStatusButton {
+            get {
+                return ResourceManager.GetString("ButtonCloseStatusButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string ButtonConfirmTemplate {
+            get {
+                return ResourceManager.GetString("ButtonConfirmTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         public static string ButtonCreate {
             get {
                 return ResourceManager.GetString("ButtonCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finish.
+        /// </summary>
+        public static string ButtonFinish {
+            get {
+                return ResourceManager.GetString("ButtonFinish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate.
+        /// </summary>
+        public static string ButtonGenerate {
+            get {
+                return ResourceManager.GetString("ButtonGenerate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate &amp; Merge.
+        /// </summary>
+        public static string ButtonGenerateAndMerge {
+            get {
+                return ResourceManager.GetString("ButtonGenerateAndMerge", resourceCulture);
             }
         }
         
@@ -115,6 +169,249 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh templates.
+        /// </summary>
+        public static string ButtonRefreshTemplates {
+            get {
+                return ResourceManager.GetString("ButtonRefreshTemplates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View info.
+        /// </summary>
+        public static string ButtonViewInfo {
+            get {
+                return ResourceManager.GetString("ButtonViewInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Conflicting files.
+        /// </summary>
+        public static string ChangesSummaryCategoryConflictingFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryCategoryConflictingFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed merges.
+        /// </summary>
+        public static string ChangesSummaryCategoryFailedMerges {
+            get {
+                return ResourceManager.GetString("ChangesSummaryCategoryFailedMerges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Licenses.
+        /// </summary>
+        public static string ChangesSummaryCategoryLicenses {
+            get {
+                return ResourceManager.GetString("ChangesSummaryCategoryLicenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New files.
+        /// </summary>
+        public static string ChangesSummaryCategoryNewFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryCategoryNewFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unchanged files.
+        /// </summary>
+        public static string ChangesSummaryCategoryUnchangedFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryCategoryUnchangedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modified files.
+        /// </summary>
+        public static string ChangesSummaryCategotyModifiedFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryCategotyModifiedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not merge changes (generate in a temp folder)..
+        /// </summary>
+        public static string ChangesSummaryCheckBoxText {
+            get {
+                return ResourceManager.GetString("ChangesSummaryCheckBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exisiting file.
+        /// </summary>
+        public static string ChangesSummaryConflictExistingFile {
+            get {
+                return ResourceManager.GetString("ChangesSummaryConflictExistingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generated file.
+        /// </summary>
+        public static string ChangesSummaryConflictGeneratedFile {
+            get {
+                return ResourceManager.GetString("ChangesSummaryConflictGeneratedFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file &apos;{0}&apos; already exists in your project but was also generated as part of the new item. Your current file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing..
+        /// </summary>
+        public static string ChangesSummaryDetailDescriptionConflictingFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailDescriptionConflictingFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We are not able to introduce the modifications required. If needed, you can access the generated file after finishing..
+        /// </summary>
+        public static string ChangesSummaryDetailDescriptionFailedMerges {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailDescriptionFailedMerges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file &apos;{0}&apos; will be modified to include required content..
+        /// </summary>
+        public static string ChangesSummaryDetailDescriptionModifiedFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailDescriptionModifiedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file &apos;{0}&apos; will be added as new file to your project..
+        /// </summary>
+        public static string ChangesSummaryDetailDescriptionNewFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailDescriptionNewFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file &apos;{0}&apos; already exists in your project and no further action is necessary. The file will remain unchanged..
+        /// </summary>
+        public static string ChangesSummaryDetailDescriptionUnchangedFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailDescriptionUnchangedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Conflicting file.
+        /// </summary>
+        public static string ChangesSummaryDetailTitleConflictingFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailTitleConflictingFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed merges.
+        /// </summary>
+        public static string ChangesSummaryDetailTitleFailedMerges {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailTitleFailedMerges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modified file.
+        /// </summary>
+        public static string ChangesSummaryDetailTitleModifiedFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailTitleModifiedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New file.
+        /// </summary>
+        public static string ChangesSummaryDetailTitleNewFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailTitleNewFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unchanged file.
+        /// </summary>
+        public static string ChangesSummaryDetailTitleUnchangedFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailTitleUnchangedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changes summary: Add {0} {1}.
+        /// </summary>
+        public static string ChangesSummaryTitle_SF {
+            get {
+                return ResourceManager.GetString("ChangesSummaryTitle_SF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check for new templates.
+        /// </summary>
+        public static string CheckForUpdates {
+            get {
+                return ResourceManager.GetString("CheckForUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file {0} already exists. By continuing this file will be replaced..
+        /// </summary>
+        public static string ConflictingDetailDescription_SF {
+            get {
+                return ResourceManager.GetString("ConflictingDetailDescription_SF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Existing file.
+        /// </summary>
+        public static string ConflictingDetailExistingFile {
+            get {
+                return ResourceManager.GetString("ConflictingDetailExistingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New file.
+        /// </summary>
+        public static string ConflictingDetailNewFile {
+            get {
+                return ResourceManager.GetString("ConflictingDetailNewFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Destination file exist.
+        /// </summary>
+        public static string ConflictingDetailTitle {
+            get {
+                return ResourceManager.GetString("ConflictingDetailTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter a name.
         /// </summary>
         public static string EditTemplateDescription {
@@ -133,20 +430,29 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to It&apos;s not possible to create a project without Home Page.
-        /// </summary>
-        public static string ErrorNoHomePage {
-            get {
-                return ResourceManager.GetString("ErrorNoHomePage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Error syncing templates. See output for more details..
         /// </summary>
         public static string ErrorSync {
             get {
                 return ResourceManager.GetString("ErrorSync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error checking for updates. See output for more details..
+        /// </summary>
+        public static string ErrorSyncCheckNewVersion {
+            get {
+                return ResourceManager.GetString("ErrorSyncCheckNewVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error refreshing templates. See output for more details..
+        /// </summary>
+        public static string ErrorSyncRefresh {
+            get {
+                return ResourceManager.GetString("ErrorSyncRefresh", resourceCulture);
             }
         }
         
@@ -223,7 +529,16 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adding &apos;{0}&apos; feature to project....
+        ///   Looks up a localized string similar to Generating the template {0} to {1}..
+        /// </summary>
+        public static string GenControllerUnsafeGenerateAsyncMessage {
+            get {
+                return ResourceManager.GetString("GenControllerUnsafeGenerateAsyncMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creating &apos;{0}&apos; feature ....
         /// </summary>
         public static string GeneratingFeatureMessage {
             get {
@@ -232,7 +547,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adding &apos;{0}&apos; page to project....
+        ///   Looks up a localized string similar to Creating &apos;{0}&apos; page ....
         /// </summary>
         public static string GeneratingPageMessage {
             get {
@@ -246,6 +561,33 @@ namespace Microsoft.Templates.UI.Resources {
         public static string GeneratingProjectMessage {
             get {
                 return ResourceManager.GetString("GeneratingProjectMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generating template....
+        /// </summary>
+        public static string GenerationFeedbackMessage {
+            get {
+                return ResourceManager.GetString("GenerationFeedbackMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generation finished.
+        /// </summary>
+        public static string GenerationFinishedString {
+            get {
+                return ResourceManager.GetString("GenerationFinishedString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Features ({0}) - Pick one.
+        /// </summary>
+        public static string GroupFeatureHeader_SF {
+            get {
+                return ResourceManager.GetString("GroupFeatureHeader_SF", resourceCulture);
             }
         }
         
@@ -264,6 +606,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string GroupFrameworkHeader_SF {
             get {
                 return ResourceManager.GetString("GroupFrameworkHeader_SF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pages ({0}) - Pick one.
+        /// </summary>
+        public static string GroupPageHeader_SF {
+            get {
+                return ResourceManager.GetString("GroupPageHeader_SF", resourceCulture);
             }
         }
         
@@ -331,6 +682,24 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;{0} is not expected as valid type for the Information Window.&quot;.
+        /// </summary>
+        public static string InformationWindowIntilizeViewModelMessage {
+            get {
+                return ResourceManager.GetString("InformationWindowIntilizeViewModelMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn more.
+        /// </summary>
+        public static string LearnMore {
+            get {
+                return ResourceManager.GetString("LearnMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Less detail.
         /// </summary>
         public static string LessDetail {
@@ -340,29 +709,83 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loading available templates....
-        /// </summary>
-        public static string LoadingTemplatesText {
-            get {
-                return ResourceManager.GetString("LoadingTemplatesText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Made by {0}.
-        /// </summary>
-        public static string MadeBy {
-            get {
-                return ResourceManager.GetString("MadeBy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to More detail.
         /// </summary>
         public static string MoreDetail {
             get {
                 return ResourceManager.GetString("MoreDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new feature cancelled.
+        /// </summary>
+        public static string NewItemAddFeatureCancelled {
+            get {
+                return ResourceManager.GetString("NewItemAddFeatureCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feature {0} successfully added.
+        /// </summary>
+        public static string NewItemAddFeatureSuccessStatusMsg {
+            get {
+                return ResourceManager.GetString("NewItemAddFeatureSuccessStatusMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new page cancelled.
+        /// </summary>
+        public static string NewItemAddPageCancelled {
+            get {
+                return ResourceManager.GetString("NewItemAddPageCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page {0} successfully added.
+        /// </summary>
+        public static string NewItemAddPageSuccessStatusMsg {
+            get {
+                return ResourceManager.GetString("NewItemAddPageSuccessStatusMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        public static string NewItemName {
+            get {
+                return ResourceManager.GetString("NewItemName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new {0}.
+        /// </summary>
+        public static string NewItemTitle_SF {
+            get {
+                return ResourceManager.GetString("NewItemTitle_SF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click refresh to get the latest updates (current selection will be reseted)..
+        /// </summary>
+        public static string NewVersionAvailable {
+            get {
+                return ResourceManager.GetString("NewVersionAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refreshing templates will reset current selection.
+        /// </summary>
+        public static string NewVersionInstructions {
+            get {
+                return ResourceManager.GetString("NewVersionInstructions", resourceCulture);
             }
         }
         
@@ -385,6 +808,33 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?..
+        /// </summary>
+        public static string ProjectConfigurationDescriptionText {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationDescriptionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select framework.
+        /// </summary>
+        public static string ProjectConfigurationSelectFramework {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationSelectFramework", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select project type.
+        /// </summary>
+        public static string ProjectConfigurationSelectProjectType {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationSelectProjectType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select project type and framework.
         /// </summary>
         public static string ProjectSetupTitle {
@@ -403,7 +853,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have changed your project type or framework selection. If you continue you will lose all pages and features added previously. To conserve pages and features, you can go back to your original selection ({0}, {1})..
+        ///   Looks up a localized string similar to You have changed your project type or framework selection. Pages and feature selections will be lost if you continue. Your prior selections were: {0} and {1}..
         /// </summary>
         public static string ResetSelection {
             get {
@@ -430,25 +880,34 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done.
+        ///   Looks up a localized string similar to Creating Windows Template Studio project....
         /// </summary>
-        public static string StatusAdquired {
+        public static string SolutionWizardRunFinishedMessage {
             get {
-                return ResourceManager.GetString("StatusAdquired", resourceCulture);
+                return ResourceManager.GetString("SolutionWizardRunFinishedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Done..
+        /// </summary>
+        public static string StatusAcquired {
+            get {
+                return ResourceManager.GetString("StatusAcquired", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Checking for template updates....
         /// </summary>
-        public static string StatusAdquiring {
+        public static string StatusAcquiring {
             get {
-                return ResourceManager.GetString("StatusAdquiring", resourceCulture);
+                return ResourceManager.GetString("StatusAcquiring", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is no templates content available for the current wizard version. Please ensure you have connectivity and restart the wizard again..
+        ///   Looks up a localized string similar to There is no template content available for the current wizard version. Please ensure you have connectivity and restart the wizard..
         /// </summary>
         public static string StatusLowerVersionContent {
             get {
@@ -457,7 +916,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wizard incompatible with templates content.
+        ///   Looks up a localized string similar to Wizard incompatible with templates content..
         /// </summary>
         public static string StatusLowerVersionTitle {
             get {
@@ -466,7 +925,16 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An update to the templates is available. Update the extension to get the latest content..
+        ///   Looks up a localized string similar to There is new template content available..
+        /// </summary>
+        public static string StatusNewVersionAvailable {
+            get {
+                return ResourceManager.GetString("StatusNewVersionAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An update to the templates is available but not compatible with this wizard version. Update the extension to access the latest templates..
         /// </summary>
         public static string StatusOverVersionContent {
             get {
@@ -484,7 +952,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wizard update available.
+        ///   Looks up a localized string similar to Wizard update available..
         /// </summary>
         public static string StatusOverVersionTitle {
             get {
@@ -493,7 +961,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Templates ready.
+        ///   Looks up a localized string similar to Templates ready..
         /// </summary>
         public static string StatusPrepared {
             get {
@@ -511,7 +979,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Templates updated.
+        ///   Looks up a localized string similar to Templates updated..
         /// </summary>
         public static string StatusUpdated {
             get {
@@ -525,6 +993,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string StatusUpdating {
             get {
                 return ResourceManager.GetString("StatusUpdating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reorder (Ctrl + arrows).
+        /// </summary>
+        public static string SummaryDragAndDrop {
+            get {
+                return ResourceManager.GetString("SummaryDragAndDrop", resourceCulture);
             }
         }
         
@@ -583,6 +1060,24 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Options menu.
+        /// </summary>
+        public static string SummaryOpenMenu {
+            get {
+                return ResourceManager.GetString("SummaryOpenMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string SummaryOpenMenuClose {
+            get {
+                return ResourceManager.GetString("SummaryOpenMenuClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string SummaryOptionDelete {
@@ -592,38 +1087,11 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Move down.
-        /// </summary>
-        public static string SummaryOptionMoveDown {
-            get {
-                return ResourceManager.GetString("SummaryOptionMoveDown", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Move up.
-        /// </summary>
-        public static string SummaryOptionMoveUp {
-            get {
-                return ResourceManager.GetString("SummaryOptionMoveUp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Rename.
         /// </summary>
         public static string SummaryOptionRename {
             get {
                 return ResourceManager.GetString("SummaryOptionRename", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Set as home.
-        /// </summary>
-        public static string SummaryOptionSetAsHome {
-            get {
-                return ResourceManager.GetString("SummaryOptionSetAsHome", resourceCulture);
             }
         }
         
@@ -691,7 +1159,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Templates version:.
+        ///   Looks up a localized string similar to Templates:.
         /// </summary>
         public static string TemplatesVersion {
             get {
@@ -763,7 +1231,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to add the project to the solution because is not ready. Ensure you have the expected SDK installed..
+        ///   Looks up a localized string similar to Unable to add the project to the solution. Make sure you have the expected SDK installed..
         /// </summary>
         public static string UnableAddProjectToSolution {
             get {
@@ -781,6 +1249,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to UndefinedError.
+        /// </summary>
+        public static string UndefinedErrorString {
+            get {
+                return ResourceManager.GetString("UndefinedErrorString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name already exists.
         /// </summary>
         public static string ValidationError_AlreadyExists {
@@ -790,7 +1267,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Only alphanumeric and &apos;-&apos; characters are allowed.
+        ///   Looks up a localized string similar to Only alphanumeric and &apos;_&apos; characters are allowed.
         /// </summary>
         public static string ValidationError_BadFormat {
             get {
@@ -835,11 +1312,65 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wizard version:.
+        ///   Looks up a localized string similar to Visit project web site.
+        /// </summary>
+        public static string VisitProjectWebSite {
+            get {
+                return ResourceManager.GetString("VisitProjectWebSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error collapsing the solution tree. Ex:.
+        /// </summary>
+        public static string VsGenShellCollapseSolutionItemsMessage {
+            get {
+                return ResourceManager.GetString("VsGenShellCollapseSolutionItemsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error restoring the packages. Ex:.
+        /// </summary>
+        public static string VsGenShellRestorePackagesErrorMessage {
+            get {
+                return ResourceManager.GetString("VsGenShellRestorePackagesErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to automatically Restore NuGet Packages for the solution. Manually restore the NuGet packages..
+        /// </summary>
+        public static string VsGenShellRestorePackagesWarningMessage {
+            get {
+                return ResourceManager.GetString("VsGenShellRestorePackagesWarningMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error showing status message. Ex:.
+        /// </summary>
+        public static string VsGenShellShowStatusBarMessageMessage {
+            get {
+                return ResourceManager.GetString("VsGenShellShowStatusBarMessageMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wizard:.
         /// </summary>
         public static string WizardVersion {
             get {
                 return ResourceManager.GetString("WizardVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An easy to use wizard to build a strong foundation for your UWP app..
+        /// </summary>
+        public static string WTSDescription {
+            get {
+                return ResourceManager.GetString("WTSDescription", resourceCulture);
             }
         }
     }

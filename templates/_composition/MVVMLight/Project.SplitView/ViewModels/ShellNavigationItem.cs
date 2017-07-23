@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 
 namespace wts.ItemName.ViewModels
@@ -10,6 +11,7 @@ namespace wts.ItemName.ViewModels
         private bool _isSelected;
 
         private Visibility _selectedVis = Visibility.Collapsed;
+
         public Visibility SelectedVis
         {
             get { return _selectedVis; }
@@ -17,23 +19,60 @@ namespace wts.ItemName.ViewModels
         }
 
         private SolidColorBrush _selectedForeground = null;
+
         public SolidColorBrush SelectedForeground
         {
-            get
-            {
-                return _selectedForeground ?? (_selectedForeground = GetStandardTextColorBrush());
-            }
+            get { return _selectedForeground ?? (_selectedForeground = GetStandardTextColorBrush()); }
             set { Set(ref _selectedForeground, value); }
         }
 
         public string Label { get; set; }
+
         public Symbol Symbol { get; set; }
-        public char SymbolAsChar { get { return (char)Symbol; } }
+
+        public char SymbolAsChar
+        {
+            get { return (char)Symbol; }
+        }
+
         public string ViewModelName { get; set; }
+
+        private IconElement _iconElement = null;
+
+        public IconElement Icon
+        {
+            get
+            {
+                var foregroundBinding = new Binding
+                {
+                    Source = this,
+                    Path = new PropertyPath("SelectedForeground"),
+                    Mode = BindingMode.OneWay,
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                };
+
+                if (_iconElement != null)
+                {
+                    BindingOperations.SetBinding(_iconElement, IconElement.ForegroundProperty, foregroundBinding);
+
+                    return _iconElement;
+                }
+
+                var fontIcon = new FontIcon { FontSize = 16, Glyph = SymbolAsChar.ToString() };
+
+                BindingOperations.SetBinding(fontIcon, FontIcon.ForegroundProperty, foregroundBinding);
+
+                return fontIcon;
+            }
+        }
 
         public bool IsSelected
         {
-            get { return _isSelected; }
+            get
+            {
+                return _isSelected;
+            }
+
             set
             {
                 Set(ref _isSelected, value);
@@ -53,9 +92,21 @@ namespace wts.ItemName.ViewModels
 
         public ShellNavigationItem(string label, Symbol symbol, string viewModelName)
         {
-            this.Label = label;
-            this.Symbol = symbol;
-            this.ViewModelName = viewModelName;
+            Label = label;
+            Symbol = symbol;
+            ViewModelName = viewModelName;
+        }
+
+        public ShellNavigationItem(string label, IconElement icon, string viewModelName)
+        {
+            Label = label;
+            _iconElement = icon;
+            ViewModelName = viewModelName;
+        }
+
+        public override string ToString()
+        {
+            return Label;
         }
     }
 }

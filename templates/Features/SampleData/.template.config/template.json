@@ -1,10 +1,9 @@
-{
+﻿{
   "author": "Microsoft Community Contribution",
   "classifications": ["Universal"],
   "name": "Sample Data",
   "groupIdentity": "wts.Feat.SampleDataService",
   "identity": "wts.Feat.SampleDataService",
-  "shortName": "Sample Data",
   "description": "SampleDataService holds sample data used by the generated version of some pages.",
   "tags": {
     "language": "C#",
@@ -15,7 +14,9 @@
     "wts.order": "1",
     "wts.defaultInstance": "SampleDataService",
     "wts.multipleInstance": "false",
-    "wts.isHidden": "true"
+    "wts.isHidden": "true",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true" 
   },
   "sourceName": "SampleDataServiceFeature",
   "preferNameDirectory": true,
@@ -23,6 +24,9 @@
   "PrimaryOutputs": [
     {
       "path": ".\\Services\\SampleDataService.cs"
+    },
+    {
+      "path": ".\\Models\\Order.cs"
     }
   ],
   "symbols": {

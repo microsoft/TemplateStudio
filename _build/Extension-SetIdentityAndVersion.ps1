@@ -1,3 +1,4 @@
+# THIS SCRITP WILL NEED TO BE SPLITED NEXT TIME, GETTING TO LONG.
 [CmdletBinding()]
 Param(
   [Parameter(Mandatory=$True,Position=1)]
@@ -12,7 +13,25 @@ Param(
   [Parameter(Mandatory=$True,Position=4)]
   [string]$buildNumber,
 
-  [Parameter(Mandatory=$False,Position=5)]
+  [Parameter(Mandatory=$True,Position=5)]
+  [string]$vsixCommandMenuName,
+
+  [Parameter(Mandatory=$True,Position=6)]
+  [string]$packageGuid,
+
+  [Parameter(Mandatory=$True,Position=7)]
+  [string]$cmdSetGuid,
+
+  [Parameter(Mandatory=$False,Position=8)]
+  [string]$targetVsixCommandMenuName = "Windows Template Studio (local)",
+
+  [Parameter(Mandatory=$False,Position=9)]
+  [string]$targetPackageGuid = "ae1b4c32-9c93-45b8-a36b-8734f4b120dd",
+
+  [Parameter(Mandatory=$False,Position=8)]
+  [string]$targetCmdSetGuid = "caa4fb82-0dca-40fe-bae0-081e0f96226f",
+  
+  [Parameter(Mandatory=$False,Position=10)]
   [string]$publicKeyToken = "e4ef4cc7a47ae0c5" #TestKey.snk
 )
 
@@ -38,14 +57,32 @@ else{
 
 ## SET IDENTITY AND VERSION IN VSIX Manifest
 if($vsixIdentity){
+  Write-Host
   Write-Host "Setting Identity in VSIX manifest"
   if(Test-Path($vsixManifestFile)){
     [xml]$manifestContent = Get-Content $vsixManifestFile
     $manifestContent.PackageManifest.Metadata.Identity.Id = $vsixIdentity
     $manifestContent.PackageManifest.Metadata.Identity.Version = $versionNumber
     $manifestContent.PackageManifest.Metadata.DisplayName = $vsixDisplayName
-    $manifestContent.Save($vsixManifestFile) 
-    Write-Host "$vsixManifestFile - Version, Identity & DisplayName applied ($versionNumber, $vsixIdentity, $vsixDisplayName)"
+    $resolvedPath = Resolve-Path($vsixManifestFile)
+    $manifestContent.Save($resolvedPath) 
+    Write-Host "$resolvedPath - Version, Identity & DisplayName applied ($versionNumber, $vsixIdentity, $vsixDisplayName)"
+
+    $vsixLangPacks = Get-ChildItem -include "Extension.vsixlangpack" -recurse |  Where-Object{ 
+        $_.FullName -notmatch "\\Templates\\" -and 
+        $_.FullName -notmatch "\\debug\\" -and
+        $_.FullName -notmatch "\\obj\\" -and
+        $_.FullName -match "\\Installer.2017\\"
+    }
+    if($vsixLangPacks){ 
+      Write-Host "Applying Display Name to vsixlangpack files"
+      foreach ($langPack in $vsixLangPacks) {
+        [xml]$langContent = Get-Content $langPack
+        $langContent.VsixLanguagePack.LocalizedName = $vsixDisplayName
+        $langContent.Save($langPack) 
+        Write-Host "$langPack - LocalizedName applied ($vsixDisplayName)"        
+      }
+    }
   }
   else{
     throw "No VSIX manifest file found."
@@ -55,7 +92,57 @@ else{
   throw "Identity is mandatory."
 }
 
+## REPLACE Command Guids
+if($cmdSetGuid -and $packageGuid){
+  Write-Host
+  Write-Host "Setting PackageGuid and CmdSetGuid in VSCT Files"
+  $vsctFiles = Get-ChildItem -include "*.vsct" -recurse |  Where-Object{ 
+      $_.FullName -notmatch "\\Templates\\" -and 
+      $_.FullName -notmatch "\\debug\\" -and
+      $_.FullName -notmatch "\\obj\\" -and
+      $_.FullName -match "\\Installer.2017\\Commands"
+  }
+  if($vsctFiles){ 
+    Write-Host
+    Write-Host "Applying guids $cmdSetGuid, $packageGuid and command name $vsixCommandMenuName to VSCT Files"
+    foreach ($vsctFile in $vsctFiles) {
+      $vsctFileContent = Get-Content $vsctFile
+      attrib $vsctFile -r
+      $replacedVsctContent = $vsctFileContent.Replace($targetPackageGuid, $packageGuid)
+      $replacedVsctContent = $replacedVsctContent.Replace($targetCmdSetGuid, $cmdSetGuid)
+      $replacedVsctContent = $replacedVsctContent.Replace($targetVsixCommandMenuName, $vsixCommandMenuName)
+      $replacedVsctContent | Out-File $vsctFile -Encoding utf8 -Force
+      Write-Host "$vsctFile - Guids applied (PackageGuid:$packageGuid, CmdGuid:$cmdSetGuid)"        
+    }
+  }
+  else{
+    throw "No VSCT files found."
+  }
+
+  Write-Host
+  Write-Host "Applying guids $cmdSetGuid, $packageGuid to PackageIds.cs"
+  $path = Resolve-Path $vsixManifestFile
+  $installerPath = Split-Path $path
+  $constFile = Join-Path  $installerPath "Commands\PackageIds.cs"
+  
+  if($constFile){
+    $constFileContent = Get-Content $constFile
+    attrib $constFile -r
+    $replacedConstContent = $constFileContent.Replace($targetPackageGuid, $packageGuid).Replace($targetCmdSetGuid, $cmdSetGuid)
+    $replacedConstContent | Out-File $constFile -Encoding utf8 -Force
+    Write-Host "$constFile - Guids applied (PackageGuid:$packageGuid, CmdGuid:$cmdSetGuid)"
+  }
+  else{
+     throw "PackageIds.cs constants file not found"
+  }
+}
+else{
+  throw "PackageGuid and CmdSetGuid are mandatory"
+}
+
+
 ## APPLY VERSION TO ASSEMBLY FILES (AssemblyVersion and AssemblyFileVersion)
+Write-Host
 Write-Host "Applying version to AssemblyInfo Files in matching the path pattern '$codePathPattern'" 
 $files = Get-ChildItem -include "*AssemblyInfo.cs" -Recurse |  Where-Object{ $_.FullName -notmatch "\\Templates\\" }
 if($files)
@@ -79,26 +166,28 @@ else
 
 ## APPLY VERSION TO PROJECT TEMPLATE WIZARD REFERENCE
 if($publicKeyToken){
+  Write-Host
   Write-Host "Setting Wizard Extension configuration in Project Template"
-  $projectTemplate = Get-ChildItem -include "*.vstemplate" -recurse |  Where-Object{ 
+  $projectTemplates = Get-ChildItem -include "*.vstemplate" -recurse |  Where-Object{ 
         $_.FullName -notmatch "\\Templates\\" -and 
         $_.FullName -notmatch "\\debug\\" -and
         $_.FullName -notmatch "\\obj\\" -and
         $_.FullName -match "\\ProjectTemplates\\"
     }
-  if($projectTemplate){
+  if($projectTemplates){
   
+    foreach( $projectTemplate in $projectTemplates){
+      [xml]$projectTemplateContent = Get-Content $projectTemplate
 
-    [xml]$projectTemplateContent = Get-Content $projectTemplate
+      $wizardAssemblyStrongName = $projectTemplateContent.VSTemplate.WizardExtension.Assembly -replace $VersionRegEx, $versionNumber 
+      $wizardAssemblyStrongName = $wizardAssemblyStrongName -replace "PublicKeyToken=.*", "PublicKeyToken=$publicKeyToken"
 
-    $wizardAssemblyStrongName = $projectTemplateContent.VSTemplate.WizardExtension.Assembly -replace $VersionRegEx, $versionNumber 
-    $wizardAssemblyStrongName = $wizardAssemblyStrongName -replace "PublicKeyToken=.*", "PublicKeyToken=$publicKeyToken"
+      $projectTemplateContent.VSTemplate.WizardExtension.Assembly = $wizardAssemblyStrongName
+      
+      $projectTemplateContent.Save($projectTemplate)
 
-    $projectTemplateContent.VSTemplate.WizardExtension.Assembly = $wizardAssemblyStrongName
-    
-    $projectTemplateContent.Save($projectTemplate)
-
-    Write-Host "$projectTemplate - Wizard Assembly Strong Name updated ($wizardAssemblyStrongName)"
+      Write-Host "$projectTemplate - Wizard Assembly Strong Name updated ($wizardAssemblyStrongName)"
+    }
   }
   else{
     throw "No Project Template manifest file found!"

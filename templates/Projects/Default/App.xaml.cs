@@ -9,20 +9,25 @@ namespace wts.DefaultProject
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App
+    public sealed partial class App
     {
         private Lazy<ActivationService> _activationService;
-        private ActivationService ActivationService { get { return _activationService.Value; } }
+
+        private ActivationService ActivationService
+        {
+            get { return _activationService.Value; }
+        }
 
         /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
+        /// Initializes a new instance of the <see cref="App"/> class.
+        /// This is the first line of authored code executed, and as such
+        /// is the logical equivalent of main() or WinMain().
         /// </summary>
         public App()
         {
             InitializeComponent();
 
-            //Deferred execution until used. Check https://msdn.microsoft.com/library/dd642331(v=vs.110).aspx for further info on Lazy<T> class.
+            // Deferred execution until used. Check https://msdn.microsoft.com/library/dd642331(v=vs.110).aspx for further info on Lazy<T> class.
             _activationService = new Lazy<ActivationService>(CreateActivationService);
         }
 
@@ -35,7 +40,7 @@ namespace wts.DefaultProject
         {
             if (!e.PrelaunchActivated)
             {
-                await ActivationService.ActivateAsync(e); 
+                await ActivationService.ActivateAsync(e);
             }
         }
 

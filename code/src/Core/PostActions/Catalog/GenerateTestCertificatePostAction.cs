@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.IO;
@@ -18,6 +10,7 @@ using CERTENROLLLib;
 
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
@@ -39,15 +32,15 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Warning.TrackAsync("Error generating certificate.", ex).FireAndForget();
+                AppHealth.Current.Warning.TrackAsync(StringRes.GenerateTestCertificatePostActionExecute, ex).FireAndForget();
             }
         }
 
         private void AddToProject(string base64Encoded)
         {
-            var filePath = Path.Combine(GenContext.Current.OutputPath, GenContext.Current.ProjectName) + "_TemporaryKey.pfx";
+            var filePath = Path.Combine(GenContext.Current.ProjectPath, GenContext.Current.ProjectName) + "_TemporaryKey.pfx";
             File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
-            
+
             GenContext.ToolBox.Shell.AddItems(filePath);
         }
 
@@ -69,7 +62,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             AddExtendedKeyUsage(cert);
             AddBasicConstraints(cert);
 
-            //Specify the hashing algorithm
+            // Specify the hashing algorithm
             var hashobj = new CObjectId();
 
             hashobj.InitializeFromAlgorithmName(ObjectIdGroupId.XCN_CRYPT_HASH_ALG_OID_GROUP_ID,
@@ -96,7 +89,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private void AddBasicConstraints(CX509CertificateRequestCertificate cert)
         {
-            //Add basic constraints
+            // Add basic constraints
             var bc = new CX509ExtensionBasicConstraints();
 
             bc.InitializeEncode(false, 0);
@@ -107,7 +100,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private void AddExtendedKeyUsage(CX509CertificateRequestCertificate cert)
         {
-            //Add extended key usage 
+            // Add extended key usage
             var eku = new CX509ExtensionEnhancedKeyUsage();
             var oid = new CObjectId();
 
@@ -121,7 +114,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private void AddKeyUsage(CX509CertificateRequestCertificate cert)
         {
-            //Add key usage
+            // Add key usage
             var ku = new CX509ExtensionKeyUsage();
             ku.InitializeEncode(CERTENROLLLib.X509KeyUsageFlags.XCN_CERT_DIGITAL_SIGNATURE_KEY_USAGE);
 

@@ -1,17 +1,10 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -55,11 +48,42 @@ namespace Microsoft.Templates.Core
             return Directory.EnumerateFiles(configDir, "icon.*").FirstOrDefault();
         }
 
+        /*public static string GetLocalizedName(this ITemplateInfo ti)
+        {
+            var configDir = GetConfigDir(ti);
+            var metadataFileLocalized = Path.Combine(configDir, $"template.{CultureInfo.CurrentUICulture.IetfLanguageTag}.json");
+            if (File.Exists(metadataFileLocalized))
+            {
+                var metadataLocalized = JsonConvert.DeserializeObject<MetadataLocalizedInfo>(File.ReadAllText(metadataFileLocalized));
+                if (metadataLocalized != null)
+                {
+                    return metadataLocalized.DisplayName;
+                }
+            }
+            return ti.Name;
+        }
+
+        public static string GetLocalizedSummary(this ITemplateInfo ti)
+        {
+            var configDir = GetConfigDir(ti);
+            var metadataFileLocalized = Path.Combine(configDir, $"template.{CultureInfo.CurrentUICulture.IetfLanguageTag}.json");
+            if (File.Exists(metadataFileLocalized))
+            {
+                var metadataLocalized = JsonConvert.DeserializeObject<MetadataLocalizedInfo>(File.ReadAllText(metadataFileLocalized));
+                if (metadataLocalized != null)
+                {
+                    return metadataLocalized.Summary;
+                }
+            }
+            return ti.Description;
+        }*/
+
         public static string GetRichDescription(this ITemplateInfo ti)
         {
             var configDir = GetConfigDir(ti);
-            var descriptionFile = Directory.EnumerateFiles(configDir, "description.md").FirstOrDefault();
-
+            var descriptionFile = Directory.EnumerateFiles(configDir, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.description.md").FirstOrDefault();
+            if (string.IsNullOrWhiteSpace(descriptionFile) || !File.Exists(descriptionFile))
+                descriptionFile = Directory.EnumerateFiles(configDir, "description.md").FirstOrDefault();
             if (!string.IsNullOrEmpty(descriptionFile))
             {
                 return File.ReadAllText(descriptionFile);
@@ -141,7 +165,9 @@ namespace Microsoft.Templates.Core
 
             return ti.Tags
                         .Where(t => t.Key.Contains(TagPrefix + "export."))
+#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
                         .Select(t => (t.Key.Replace(TagPrefix + "export.", string.Empty), t.Value.DefaultValue))
+#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
                         .ToList();
         }
 
@@ -187,9 +213,7 @@ namespace Microsoft.Templates.Core
 
             if (!string.IsNullOrEmpty(rawOrder))
             {
-                int order;
-
-                if (int.TryParse(rawOrder, out order))
+                if (int.TryParse(rawOrder, out int order))
                 {
                     return order;
                 }
@@ -261,13 +285,43 @@ namespace Microsoft.Templates.Core
 
             if (!string.IsNullOrEmpty(result))
             {
-                if (Boolean.TryParse(result, out bool boolResult))
+                if (bool.TryParse(result, out bool boolResult))
                 {
                     return boolResult;
                 }
             }
 
             return true;
+        }
+
+        public static int GetGenGroup(this ITemplateInfo ti)
+        {
+            var result = GetValueFromTag(ti, TagPrefix + "genGroup");
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                if (int.TryParse(result, out int intResult))
+                {
+                    return intResult;
+                }
+            }
+
+            return 0;
+        }
+
+        public static bool GetRightClickEnabled(this ITemplateInfo ti)
+        {
+            var result = GetValueFromTag(ti, TagPrefix + "rightClickEnabled");
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                if (bool.TryParse(result, out bool boolResult))
+                {
+                    return boolResult;
+                }
+            }
+
+            return false;
         }
 
         public static bool GetItemNameEditable(this ITemplateInfo ti)

@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
@@ -18,6 +10,7 @@ using System.Threading.Tasks;
 
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.Extensibility;
+using VsTelem = Microsoft.VisualStudio.Telemetry;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
@@ -27,13 +20,14 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         private Configuration _currentConfig;
         private TelemetryClient _client;
+        private bool vsTelemAvailable = false;
 
         public static TelemetryService _current;
         public static TelemetryService Current
         {
             get
             {
-                if(_current == null)
+                if (_current == null)
                 {
                     _current = new TelemetryService(Configuration.Current);
                 }
@@ -71,7 +65,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
         {
-            //Trace events will not be forwarded to the remote service
+            // Trace events will not be forwarded to the remote service
             await Task.Run(() => { });
         }
 
@@ -103,6 +97,11 @@ namespace Microsoft.Templates.Core.Diagnostics
 
                 if (VsTelemetryIsOptedIn() && RemoteKeyAvailable())
                 {
+                    if (!string.IsNullOrEmpty(_currentConfig.CustomTelemetryEndpoint))
+                    {
+                        TelemetryConfiguration.Active.TelemetryChannel.EndpointAddress = _currentConfig.CustomTelemetryEndpoint;
+                    }
+
                     SetSessionData();
 
                     _client.TrackEvent(TelemetryEvents.SessionStart);
@@ -132,44 +131,62 @@ namespace Microsoft.Templates.Core.Diagnostics
             try
             {
                 Assembly.Load(new AssemblyName("Microsoft.VisualStudio.Telemetry"));
+                vsTelemAvailable = true;
                 return SafeVsTelemetryIsOptedIn();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                //Not running in VS so we assume we are in the emulator => we allow telemetry
+                // Not running in VS so we assume we are in the emulator => we allow telemetry
                 Trace.TraceWarning($"Unable to load the assembly 'Microsoft.VisualStudio.Telemetry'. Visual Studio Telemetry OptIn/OptOut setting will not be considered. Details:\r\n{ex.ToString()}");
                 return true;
             }
         }
-        
+
         private bool SafeVsTelemetryIsOptedIn()
         {
+            bool result = false;
+            string vsEdition = string.Empty;
+            string vsVersion = string.Empty;
+            string vsCulture = string.Empty;
+            string vsManifestId = string.Empty;
             try
             {
-                if (Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession != null)
+                if (VsTelem.TelemetryService.DefaultSession != null)
                 {
-                    var isOptedIn = Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession.IsOptedIn;
+                    var isOptedIn = VsTelem.TelemetryService.DefaultSession.IsOptedIn;
                     Trace.TraceInformation($"Vs Telemetry IsOptedIn: {isOptedIn}");
+                    vsEdition = VsTelem.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.SkuName");
+                    vsVersion = VsTelem.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.ExeVersion");
+                    vsCulture = VsTelem.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.Locale.ProductLocaleName");
+                    vsManifestId = VsTelem.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.ManifestId");
+
                     return isOptedIn;
                 }
                 else
                 {
-                    //Not running in VS so we assume we are in the emulator => we allow telemetry
-                    Trace.TraceInformation($"Checking VsTelemetry IsOptedIn value Microsoft.VisualStudio.Telemetry.TelemetryService.DefaultSession is Null.");
-                    return true;
+                    // Not running in VS so we assume we are in the emulator => we allow telemetry
+                    Trace.TraceInformation($"Checking VsTelemetry IsOptedIn value VsTelem.TelemetryService.DefaultSession is Null.");
+                    result = true;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                //Not running in VS so we assume we are in the emulator => we allow telemetry
+                // Not running in VS so we assume we are in the emulator => we allow telemetry
                 Trace.TraceInformation($"Exception checking VsTelemetry IsOptedIn:\r\n" + ex.ToString());
-                return true;
+                result = true;
             }
+
+            _client.Context.Properties.Add(TelemetryProperties.VisualStudioEdition, vsEdition);
+            _client.Context.Properties.Add(TelemetryProperties.VisualStudioVersion, vsVersion);
+            _client.Context.Properties.Add(TelemetryProperties.VisualStudioCulture, vsCulture);
+            _client.Context.Properties.Add(TelemetryProperties.VisualStudioManifestId, vsManifestId);
+            return result;
         }
 
         private void SetSessionData()
         {
-            string userToTrack =  Guid.NewGuid().ToString();
+            // No PII tracked
+            string userToTrack = Guid.NewGuid().ToString();
             string machineToTrack = Guid.NewGuid().ToString();
 
             _client.Context.User.Id = userToTrack;
@@ -187,6 +204,12 @@ namespace Microsoft.Templates.Core.Diagnostics
             _client.Context.Properties.Add(TelemetryProperties.WizardFileVersion, GetFileVersion());
         }
 
+        private string GetVsProjectId()
+        {
+             var session = VsTelem.TelemetryService.DefaultSession;
+            return string.Empty;
+        }
+
         public void SetContentVersionToContext(Version wizardContentVersion)
         {
             if (wizardContentVersion != null && _client != null && _client.Context != null && _client.Context.Properties != null)
@@ -202,30 +225,93 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
 
-        public void SetVisualStudioInfoToContext(string version, string edition, string culture)
-        {
-            if (_client != null && _client.Context != null && _client.Context.Properties != null)
-            {
-                if (!string.IsNullOrEmpty(version))
-                {
-                    _client.Context.Properties[TelemetryProperties.VisualStudioVersion] = version;
-                }
-                if (!string.IsNullOrEmpty(edition))
-                {
-                    _client.Context.Properties[TelemetryProperties.VisualStudioEdition] = edition;
-                }
-                if (!string.IsNullOrEmpty(culture))
-                {
-                    _client.Context.Properties[TelemetryProperties.VisualStudioCulture] = culture;
-                }
-            }
-        }
-
-            private async Task SafeExecuteAsync(Action action)
+        public void SafeTrackProjectVsTelemetry(Dictionary<string, string> properties, string pageIdentities, string featureIdentities, Dictionary<string, double> metrics, bool success = true)
         {
             try
             {
-                var task = Task.Run(() => {
+                if (vsTelemAvailable)
+                {
+                    TrackProjectVsTelemetry(properties, pageIdentities, featureIdentities, metrics, success);
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceInformation($"Exception tracking Project Creation in VsTelemetry:\r\n" + ex.ToString());
+            }
+        }
+
+        private static void TrackProjectVsTelemetry(Dictionary<string, string> properties, string pageIdentities, string featureIdentities, Dictionary<string, double> metrics, bool success)
+        {
+            VsTelem.TelemetryResult result = success ? VsTelem.TelemetryResult.Success : VsTelem.TelemetryResult.Failure;
+
+            VsTelem.UserTaskEvent e = new VsTelem.UserTaskEvent(VsTelemetryEvents.WtsGen, result, "Project generated");
+
+            foreach (var key in properties.Keys)
+            {
+                string renamedKey = key.Replace(TelemetryEvents.Prefix, VsTelemetryEvents.Prefix);
+                if (!string.IsNullOrEmpty(properties[key]))
+                {
+                    e.Properties[renamedKey] = properties[key];
+                }
+            }
+
+            e.Properties.Add(VsTelemetryProperties.Pages, pageIdentities);
+            e.Properties.Add(VsTelemetryProperties.Features, featureIdentities);
+
+            foreach (var key in metrics.Keys)
+            {
+                string renamedKey = key.Replace(TelemetryEvents.Prefix, TelemetryEvents.Prefix.ToUpper() + ".");
+                e.Properties[renamedKey] = new VsTelem.TelemetryMetricProperty(metrics[key]);
+            }
+
+            VsTelem.TelemetryService.DefaultSession.PostEvent(e);
+        }
+
+        public void SafeTrackNewItemVsTelemetry(Dictionary<string, string> properties, string pageIdentities, string featureIdentities, Dictionary<string, double> metrics, bool success = true)
+        {
+            try
+            {
+                if (vsTelemAvailable)
+                {
+                    TrackNewItemVsTelemetry(properties, pageIdentities, featureIdentities, metrics, success);
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceInformation($"Exception tracking New Item Creation in VsTelemetry:\r\n" + ex.ToString());
+            }
+        }
+        private void TrackNewItemVsTelemetry(Dictionary<string, string> properties, string pageIdentities, string featureIdentities, Dictionary<string, double> metrics, bool success = true)
+        {
+            VsTelem.TelemetryResult result = success ? VsTelem.TelemetryResult.Success : VsTelem.TelemetryResult.Failure;
+
+            VsTelem.UserTaskEvent e = new VsTelem.UserTaskEvent(VsTelemetryEvents.WtsGen, result, "New Item generated");
+
+            foreach (var key in properties.Keys)
+            {
+                string renamedKey = key.Replace(TelemetryEvents.Prefix, VsTelemetryEvents.Prefix);
+                if (!string.IsNullOrEmpty(properties[key]))
+                {
+                    e.Properties[renamedKey] = properties[key];
+                }
+            }
+            e.Properties.Add(VsTelemetryProperties.Pages, pageIdentities);
+            e.Properties.Add(VsTelemetryProperties.Features, featureIdentities);
+
+            foreach (var key in metrics.Keys)
+            {
+                string renamedKey = key.Replace(TelemetryEvents.Prefix, TelemetryEvents.Prefix.ToUpper() + ".");
+                e.Properties[renamedKey] = new VsTelem.TelemetryMetricProperty(metrics[key]);
+            }
+
+            VsTelem.TelemetryService.DefaultSession.PostEvent(e);
+        }
+        private async Task SafeExecuteAsync(Action action)
+        {
+            try
+            {
+                var task = Task.Run(() =>
+                {
                     action();
                 });
 
@@ -246,7 +332,8 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task FlushAsync()
         {
-            await SafeExecuteAsync( async () => {
+            await SafeExecuteAsync(async () =>
+            {
                 if (_client != null)
                 {
                     _client.Flush();
@@ -277,14 +364,17 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         private bool RemoteKeyAvailable()
         {
-            return Guid.TryParse(_currentConfig.RemoteTelemetryKey, out var aux);
+            // Returns true if a valid AI key or tagged AI key exists
+            bool validGuid = Guid.TryParse(_currentConfig.RemoteTelemetryKey, out var auxA);
+            bool taggedGuid = Guid.TryParse(_currentConfig.RemoteTelemetryKey.Substring(4), out var auxB);
+            return validGuid || taggedGuid;
         }
 
         private static string GetVersion()
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
 
-            return assembly.GetName().Version.ToString(); 
+            return assembly.GetName().Version.ToString();
         }
 
         private static string GetFileVersion()
@@ -310,10 +400,10 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             if (disposing)
             {
-                // free managed resources 
+                // free managed resources
                 Flush();
             }
-            //free native resources if any.
+            // free native resources if any
         }
     }
 }

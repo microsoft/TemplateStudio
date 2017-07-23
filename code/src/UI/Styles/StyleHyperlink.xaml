@@ -3,29 +3,15 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Colors.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_FocusVisualStyles.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_FontSizes.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Thickness.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
     <Style x:Key="LicenseHyperlinkStyle" TargetType="Hyperlink">
         <Setter Property="Focusable" Value="True" />
-        <Setter Property="FocusVisualStyle">
-            <Setter.Value>
-                <Style>
-                    <Setter Property="Control.Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <Grid Margin="-4">
-                                    <Grid.Background>
-                                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
-                                    </Grid.Background>
-                                </Grid>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="TextDecorations" Value="None"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleBlueGrid}"/>
     </Style>
     
 </ResourceDictionary>

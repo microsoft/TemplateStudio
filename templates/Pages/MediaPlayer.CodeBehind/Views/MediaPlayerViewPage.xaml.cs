@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Windows.Media.Core;
 using Windows.Media.Playback;
 using Windows.System.Display;
@@ -11,12 +11,13 @@ namespace Param_ItemNamespace.Views
 {
     public sealed partial class MediaPlayerViewPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
-        // TODO UWPTemplates: Set your video default and image here
+        // TODO WTS: Set your video default and image here
         // For more on the MediaPlayer and adjusting controls and behavior see https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/media-playback
-        private const string defaultSource = "https://sec.ch9.ms/ch9/db15/43c9fbed-535e-4013-8a4a-a74cc00adb15/C9L12WinTemplateStudio_high.mp4";
+        private const string DefaultSource = "https://sec.ch9.ms/ch9/db15/43c9fbed-535e-4013-8a4a-a74cc00adb15/C9L12WinTemplateStudio_high.mp4";
+
         // The poster image is displayed until the video is started
-        private const string defaultPoster = "https://sec.ch9.ms/ch9/db15/43c9fbed-535e-4013-8a4a-a74cc00adb15/C9L12WinTemplateStudio_960.jpg";
-        
+        private const string DefaultPoster = "https://sec.ch9.ms/ch9/db15/43c9fbed-535e-4013-8a4a-a74cc00adb15/C9L12WinTemplateStudio_960.jpg";
+
         // The DisplayRequest is used to stop the screen dimming while watching for extended periods
         private DisplayRequest _displayRequest = new DisplayRequest();
         private bool _isRequestActive = false;
@@ -25,8 +26,8 @@ namespace Param_ItemNamespace.Views
         {
             InitializeComponent();
 
-            mpe.PosterSource = new BitmapImage(new Uri(defaultPoster));	
-            mpe.Source = MediaSource.CreateFromUri(new Uri(defaultSource));
+            mpe.PosterSource = new BitmapImage(new Uri(DefaultPoster));
+            mpe.Source = MediaSource.CreateFromUri(new Uri(DefaultSource));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

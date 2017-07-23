@@ -1,20 +1,13 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.IO;
 using System.Linq;
 
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -40,20 +33,36 @@ namespace Microsoft.Templates.Core.Locations
             return ExistsContent(LatestContentFolder);
         }
 
-        public bool ExitsNewerVersion(string currentContentFolder)
+        public bool RequiresUpdate(string currentContentFolder)
         {
             if (ExistsContent(LatestContentFolder))
             {
                 Version currentVersion = GetVersionFromFolder(currentContentFolder);
                 Version latestVersion = GetVersionFromFolder(LatestContentFolder);
 
-                return currentVersion==null || currentVersion < latestVersion || latestVersion.IsZero();
+                return currentVersion == null || currentVersion < latestVersion || latestVersion.IsZero();
             }
             else
             {
                 return false;
             }
         }
+
+        public bool IsNewVersionAvailable(string currentContentFolder)
+        {
+            if (ExistsContent(LatestContentFolder))
+            {
+                Version currentVersion = GetVersionFromFolder(currentContentFolder);
+                Version latestVersion = GetVersionFromFolder(LatestContentFolder);
+
+                return !currentVersion.IsNull() && currentVersion < latestVersion && IsWizardAligned(latestVersion);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public bool ExistOverVersion()
         {
             string targetFolder = GetLatestContentFolder(false);
@@ -93,9 +102,12 @@ namespace Microsoft.Templates.Core.Locations
 
             var directory = new DirectoryInfo(currentContent);
             var expiration = directory.LastWriteTime.AddMinutes(Configuration.Current.VersionCheckingExpirationMinutes);
-            AppHealth.Current.Verbose.TrackAsync($"Current content expiration: {expiration.ToString()}").FireAndForget();
-
-            return expiration <= DateTime.Now;
+            var expired = expiration <= DateTime.Now;
+            if (!expired)
+            {
+                AppHealth.Current.Verbose.TrackAsync($"{StringRes.CurrentContentExpirationString}: {expiration.ToString()}").FireAndForget();
+            }
+            return expired;
         }
 
         public void Purge(string currentContent)
@@ -115,7 +127,6 @@ namespace Microsoft.Templates.Core.Locations
                 }
             }
         }
-
 
         public Version GetVersionFromFolder(string contentFolder)
         {
@@ -147,7 +158,7 @@ namespace Microsoft.Templates.Core.Locations
 
         private string GetLatestContentFolder(bool ensureWizardAligmnent)
         {
-            var latestVersion = new Version(0,0,0,0);
+            var latestVersion = new Version(0, 0, 0, 0);
             string latestContent = _defaultContentFolder;
 
             if (Directory.Exists(TemplatesFolder))

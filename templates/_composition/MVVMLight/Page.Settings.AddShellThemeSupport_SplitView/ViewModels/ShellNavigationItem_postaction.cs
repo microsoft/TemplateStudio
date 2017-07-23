@@ -13,12 +13,36 @@
 
         public ShellNavigationItem(string label, Symbol symbol, string viewModelName)
         {
-            this.Label = label;
-            this.Symbol = symbol;
-            this.ViewModelName = viewModelName;
+            Label = label;
+            Symbol = symbol;
+            ViewModelName = viewModelName;
 
             //^^
             //{[{
-            Services.ThemeSelectorService.OnThemeChanged += (s, e) => { if (!IsSelected) SelectedForeground = GetStandardTextColorBrush(); };
+            Services.ThemeSelectorService.OnThemeChanged += (s, e) =>
+            {
+                if (!IsSelected)
+                {
+                    SelectedForeground = GetStandardTextColorBrush();
+                }
+            };
+            //}]}
+        }
+
+        public ShellNavigationItem(string label, IconElement icon, string viewModelName)
+        {
+            Label = label;
+            _iconElement = icon;
+            ViewModelName = viewModelName;
+
+            //^^
+            //{[{
+            Services.ThemeSelectorService.OnThemeChanged += (s, e) =>
+            {
+                if (!IsSelected)
+                {
+                    SelectedForeground = GetStandardTextColorBrush();
+                }
+            };
             //}]}
         }

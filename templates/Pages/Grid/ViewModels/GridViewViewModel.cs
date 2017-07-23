@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using Param_ItemNamespace.Models;
 using Param_ItemNamespace.Services;
 
@@ -10,7 +10,7 @@ namespace Param_ItemNamespace.ViewModels
         {
             get
             {
-                // TODO UWPTemplates: Replace this with your actual data
+                // TODO WTS: Replace this with your actual data
                 return SampleDataService.GetGridSampleData();
             }
         }

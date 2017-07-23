@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Diagnostics;
@@ -19,9 +11,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Microsoft.Templates.Core.Resources;
+
 namespace Microsoft.Templates.Core.Diagnostics
 {
-    public class FileHealthWriter: IHealthWriter
+    public class FileHealthWriter : IHealthWriter
     {
         private static SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1);
         private string _workingFolder;
@@ -33,7 +27,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             get
             {
-                if(_current == null)
+                if (_current == null)
                 {
                     _current = new FileHealthWriter();
                 }
@@ -42,14 +36,14 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
         }
         private FileHealthWriter()
-        {        
+        {
             _workingFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), Configuration.Current.LogFileFolderPath);
 
             InitializeLogFile();
             PurgeOldLogs(_workingFolder, Configuration.Current.DaysToKeepDiagnosticsLogs);
         }
 
-        public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex=null)
+        public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
         {
             var sb = new StringBuilder();
             sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{eventType.ToString()}\t{message}");
@@ -71,7 +65,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
 
             var sb = new StringBuilder();
-            sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{TraceEventType.Critical.ToString():11}\tException Tracked. {(message ?? "")}");
+            sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{TraceEventType.Critical.ToString():11}\t{StringRes.ExceptionTrackedString}. {(message ?? "")}");
 
             if (ex != null)
             {
@@ -143,8 +137,8 @@ namespace Microsoft.Templates.Core.Diagnostics
 
             var sb = new StringBuilder();
 
-            sb.AppendLine($"\r\n>>>>>>>>>>>>>> Log started {DateTime.Now.ToString("yyyyMMdd hh:mm:ss.fff")}");
-            sb.AppendLine($">>>>>>>>>>>>>> Assembly File Version: {GetVersion()}");
+            sb.AppendLine($"\r\n>>>>>>>>>>>>>> {StringRes.LogStartedString} {DateTime.Now.ToString("yyyyMMdd HH:mm:ss.fff")}");
+            sb.AppendLine($">>>>>>>>>>>>>> {StringRes.AssemblyFileVersionString}: {GetVersion()}");
 
             File.AppendAllText(LogFileName, sb.ToString());
         }
