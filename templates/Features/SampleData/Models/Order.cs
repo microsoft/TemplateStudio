@@ -2,7 +2,8 @@
 
 namespace Param_ItemNamespace.Models
 {
-    // TODO WTS: This is used by the Sample Grid Data. Remove this once your grid page is displaying real data
+    // TODO WTS: This is used by the SampleDataService. Remove this once your pages/features are using your data
+    // It is the model class we use to display data on pages like Grid, Chart, and Master Detail.
     public class Order
     {
         public long OrderId { get; set; }
