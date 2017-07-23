@@ -3,8 +3,8 @@
 //**}
 namespace Param_RootNamespace
 {
-	public sealed partial class App
-	{
+    public sealed partial class App
+    {
 //^^
 //{[{
 
@@ -13,5 +13,5 @@ namespace Param_RootNamespace
             await ActivationService.ActivateAsync(args);
         }
 //}]}
-	}
+    }
 }

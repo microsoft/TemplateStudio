@@ -1,7 +1,7 @@
 ﻿namespace Param_RootNamespace
 {
     public sealed partial class App
-	{
+    {
 //^^
 //{[{
 
@@ -10,5 +10,5 @@
             return new ActivationService(this, typeof(ViewModels.PivotViewModel));
         }
 //}]}
-	}
+    }
 }
