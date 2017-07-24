@@ -20,9 +20,15 @@
                     Style="{StaticResource ListTitleStyle}" />
 
                 <TextBlock
+                	Tag="{x:Bind HashIdentTitle}"
                     Grid.Row="1"
                     Text="{x:Bind Company}"
                     Style="{StaticResource ListSubTitleStyle}" />
+
+                <FontIcon 
+                    Tag="{x:Bind HashIdentIcon}"
+                    FontSize="16"
+                    Glyph="{x:Bind SymbolAsChar}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
