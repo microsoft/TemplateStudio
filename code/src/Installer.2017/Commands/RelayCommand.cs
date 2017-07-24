@@ -15,13 +15,14 @@ namespace Microsoft.Templates.Extension.Commands
     /// </summary>
     internal sealed class RelayCommand
     {
-        private readonly Package package;
+        private readonly Package _package;
 
         public RelayCommand(Package package, int commandId, Guid commandSet, Action<object, EventArgs> menuCallback, Action<object, EventArgs> beforeQueryStatus = null)
         {
-            this.package = package;
+            _package = package;
 
             OleMenuCommandService commandService = ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
+
             if (commandService != null)
             {
                 var menuCommandID = new CommandID(commandSet, commandId);
@@ -34,6 +35,6 @@ namespace Microsoft.Templates.Extension.Commands
             }
         }
 
-        private IServiceProvider ServiceProvider => this.package;
+        private IServiceProvider ServiceProvider => _package;
     }
 }
