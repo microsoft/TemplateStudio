@@ -28,7 +28,6 @@ namespace Microsoft.Templates.Core.Test.Composition
                 var result = CompositionQuery.Parse(query2);
             });
 
-
             var query3 = "wts.framework==framework&wts.type!Page&$name == Map";
 
             Assert.Throws<InvalidCompositionQueryException>(() =>
@@ -43,7 +42,6 @@ namespace Microsoft.Templates.Core.Test.Composition
                 var result = CompositionQuery.Parse(query4);
             });
         }
-
 
         [Fact]
         public void Parse()
@@ -78,7 +76,7 @@ namespace Microsoft.Templates.Core.Test.Composition
         [Fact]
         public void Parse_MultipleItems()
         {
-            var query = new string[] 
+            var query = new string[]
             {
                 "wts.framework == framework",
                 "wts.type != Page",
@@ -193,5 +191,4 @@ namespace Microsoft.Templates.Core.Test.Composition
             return templateInfo;
         }
     }
-
 }

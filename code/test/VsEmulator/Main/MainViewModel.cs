@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -64,7 +65,6 @@ namespace Microsoft.Templates.VsEmulator.Main
         public RelayCommand AddNewFeatureCommand => new RelayCommand(AddNewFeature);
 
         public RelayCommand AddNewPageCommand => new RelayCommand(AddNewPage);
-       
 
         private string _state;
         public string State
@@ -137,8 +137,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string SolutionPath { get; set; }
 
-        
-
         public void Initialize()
         {
             SolutionName = null;
@@ -155,7 +153,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 if (!string.IsNullOrEmpty(newProjectInfo.name))
                 {
                     var projectPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
-                    
+
                     GenContext.Current = this;
 
                     var userSelection = NewProjectGenController.Instance.GetUserSelection();
@@ -179,12 +177,10 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
             catch (WizardBackoutException)
             {
-
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)
             {
-                
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
             }
         }
@@ -214,10 +210,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
             }
-
         }
-
-
 
         private void ClearContext()
         {
@@ -239,7 +232,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 if (userSelection != null)
                 {
-
                     NewItemGenController.Instance.FinishGeneration(userSelection);
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
@@ -293,7 +285,6 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
-
         private void OpenInVs()
         {
             if (!string.IsNullOrEmpty(SolutionPath))
@@ -325,7 +316,6 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 System.Diagnostics.Process.Start(tempGenerationPath);
             }
-
         }
 
         private static string GetTempGenerationFolder()
@@ -338,6 +328,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             return !string.IsNullOrEmpty(tempPath) && Directory.Exists(tempPath) && Directory.EnumerateDirectories(tempPath).Count() > 0;
         }
 
+        [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
         private (string name, string solutionName, string location) ShowNewProjectDialog()
         {
             var dialog = new NewProjectView()
@@ -390,9 +381,9 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void ConfigureGenContext(bool forceLocalTemplatesRefresh)
         {
-            GenContext.Bootstrap(new LocalTemplatesSource(WizardVersion, TemplatesVersion, forceLocalTemplatesRefresh)
-                , new FakeGenShell(msg => SetState(msg), l => AddLog(l), _host)
-                , new Version(WizardVersion));
+            GenContext.Bootstrap(new LocalTemplatesSource(WizardVersion, TemplatesVersion, forceLocalTemplatesRefresh),
+                                    new FakeGenShell(msg => SetState(msg), l => AddLog(l), _host),
+                                    new Version(WizardVersion));
 
             CleanUpNotUsedContentVersions();
         }
@@ -401,7 +392,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             var frame = new DispatcherFrame(true);
 
-            var method = (SendOrPostCallback)delegate (object arg)
+            SendOrPostCallback method = (arg) =>
             {
                 var f = arg as DispatcherFrame;
                 f.Continue = false;
@@ -431,12 +422,11 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
         private string GetTemplatesFolder()
         {
-            var _templatesSource = new LocalTemplatesSource(_wizardVersion, _templatesVersion);
-            var _templatesSync = new TemplatesSynchronization(_templatesSource, new Version(_wizardVersion));
-            string currentTemplatesFolder = _templatesSync.CurrentTemplatesFolder;
+            var templatesSource = new LocalTemplatesSource(_wizardVersion, _templatesVersion);
+            var templatesSync = new TemplatesSynchronization(templatesSource, new Version(_wizardVersion));
+            string currentTemplatesFolder = templatesSync.CurrentTemplatesFolder;
 
             return currentTemplatesFolder;
         }
-
     }
 }

@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Test
                 if (File.ReadAllText(file).Contains(textThatShouldNotBeinTheFile))
                 {
                     // Throw an assertion failure here and stop checking other files.
-                    // We don't need to check every file if at least one fails as this should just be a final verification. 
+                    // We don't need to check every file if at least one fails as this should just be a final verification.
                     return new Tuple<bool, string>(false, $"The file '{file}' contains '{textThatShouldNotBeinTheFile}' but based on our style guidelines it shouldn't.");
                 }
             }

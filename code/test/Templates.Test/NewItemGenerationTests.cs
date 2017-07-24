@@ -28,7 +28,9 @@ namespace Microsoft.Templates.Test
             GenContext.Current = this;
         }
 
-        [Theory, MemberData("GetProjectTemplates"), Trait("Type", "NewItemGeneration")]
+        [Theory]
+        [MemberData("GetProjectTemplates")]
+        [Trait("Type", "NewItemGeneration")]
         public async void GenerateEmptyProject(string projectType, string framework)
         {
             var projectName = $"{projectType}{framework}";
@@ -40,9 +42,9 @@ namespace Microsoft.Templates.Test
             var userSelection = GenerationFixture.SetupProject(projectType, framework);
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
-            //Add new item
-            var rightClickTemplates = GenerationFixture.Templates.Where
-                                            (t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
+            // Add new item
+            var rightClickTemplates = GenerationFixture.Templates.Where(
+                                            t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
                                                 && t.GetFrameworkList().Contains(framework)
                                                 && (!t.GetIsHidden())
                                                 && t.GetRightClickEnabled());
@@ -64,21 +66,20 @@ namespace Microsoft.Templates.Test
                 NewItemGenController.Instance.UnsafeFinishGeneration(newUserSelection);
             }
 
-            //Build solution
+            // Build solution
             var outputPath = Path.Combine(_fixture.TestNewItemPath, projectName);
             var result = GenerationFixture.BuildSolution(projectName, outputPath);
 
-            //Assert
+            // Assert
             Assert.True(result.exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {GenerationFixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
-            //Clean
+            // Clean
             Directory.Delete(outputPath, true);
         }
 
         public static IEnumerable<object[]> GetProjectTemplates()
         {
             return GenerationFixture.GetProjectTemplates();
-           
         }
     }
 }

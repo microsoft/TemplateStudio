@@ -15,7 +15,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         public TelemetryFixture()
         {
             Telemetry = TelemetryService.Current;
-        } 
+        }
 
         public void Dispose()
         {

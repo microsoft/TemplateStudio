@@ -3,14 +3,13 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
-using System.Collections.Generic;
 
 namespace Microsoft.Templates.VsEmulator.NewProject
 {
@@ -82,7 +81,6 @@ namespace Microsoft.Templates.VsEmulator.NewProject
 
         private static string GetSuggestedSolution(string path)
         {
-            
             var validator = new List<Validator>()
             {
                 new DirectoryExistsValidator(path)

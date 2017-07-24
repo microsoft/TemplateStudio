@@ -128,6 +128,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\GlobalSuppressions.cs">
+      <Link>GlobalSuppressions.cs</Link>
+    </Compile>
     <Compile Include="Composition\FakeTemplateInfo.cs" />
     <Compile Include="Config\ConfigurationTests.cs" />
     <Compile Include="Diagnostics\HealthTest.cs" />
@@ -147,6 +150,9 @@
       <Link>Locations\TestCert.pfx</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <AdditionalFiles Include="..\..\StyleCop.json">
+      <Link>StyleCop.json</Link>
+    </AdditionalFiles>
     <None Include="Locations\MsSigned\Templates.mstx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -244,6 +250,10 @@
     <None Include="Config\Error.config.no.valid.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

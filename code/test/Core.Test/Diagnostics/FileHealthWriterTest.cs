@@ -15,7 +15,6 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
 {
     public class FileHealthWriterTest
     {
-     
         [Fact]
         public async Task LogInfoAsync()
         {
@@ -46,7 +45,6 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
             AssertMessageIsInLog(FileHealthWriter.Current.LogFileName, uniqueMsg);
         }
 
-
         [Fact]
         public async Task TwoManageThreadsAsync()
         {
@@ -70,7 +68,6 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
 
             await Task.WhenAll(t1, t2);
         }
-
 
         private void AssertMessageIsInLog(string logFileName, string uniqueMsg)
         {

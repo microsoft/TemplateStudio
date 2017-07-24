@@ -13,4 +13,3 @@ namespace Microsoft.Templates.Fakes
         Content
     }
 }
-

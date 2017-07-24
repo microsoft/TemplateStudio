@@ -110,8 +110,6 @@ namespace Microsoft.Templates.Fakes
             return (GenContext.Current != null) ? GenContext.Current.ProjectPath : string.Empty;
         }
 
-        
-
         protected override string GetSelectedItemPath()
         {
             return string.Empty;
@@ -168,4 +166,3 @@ namespace Microsoft.Templates.Fakes
         }
     }
 }
-

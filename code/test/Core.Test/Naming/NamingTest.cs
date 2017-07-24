@@ -16,7 +16,6 @@ namespace Microsoft.Templates.Core.Test
     [Collection("Unit Test Templates")]
     public class NamingTest
     {
-
         private TemplatesFixture _fixture;
 
         public NamingTest(TemplatesFixture fixture)
@@ -36,7 +35,6 @@ namespace Microsoft.Templates.Core.Test
 
             Assert.Equal("App1", result);
         }
-
 
         [Fact]
         public void Infer_Reserved()
@@ -160,7 +158,7 @@ namespace Microsoft.Templates.Core.Test
 
         [Fact]
         public void Validate_BadFormat_StartWithNumber()
-        {            
+        {
             var result = Naming.Validate("1Blank", new List<Validator>());
 
             Assert.False(result.IsValid);
@@ -178,5 +176,4 @@ namespace Microsoft.Templates.Core.Test
             return target;
         }
     }
-
 }

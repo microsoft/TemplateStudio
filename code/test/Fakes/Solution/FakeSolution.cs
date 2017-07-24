@@ -64,11 +64,10 @@ EndProject
 
                 slnContent = slnContent.Insert(globalIndex, projectContent);
 
-                var GlobalSectionIndex = slnContent.IndexOf(GlobalSectionText);
+                var globalSectionIndex = slnContent.IndexOf(GlobalSectionText);
                 var projectConfigContent = string.Format(ConfigurationTemplate, projectGuid);
 
-                slnContent = slnContent.Insert(GlobalSectionIndex + GlobalSectionText.Length + 1, projectConfigContent);
-
+                slnContent = slnContent.Insert(globalSectionIndex + GlobalSectionText.Length + 1, projectConfigContent);
             }
 
             File.WriteAllText(_path, slnContent, Encoding.UTF8);
