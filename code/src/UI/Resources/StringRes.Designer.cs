@@ -684,9 +684,9 @@ namespace Microsoft.Templates.UI.Resources {
         /// <summary>
         ///   Looks up a localized string similar to &quot;{0} is not expected as valid type for the Information Window.&quot;.
         /// </summary>
-        public static string InformationWindowIntilizeViewModelMessage {
+        public static string InformationWindowInitializeViewModelMessage {
             get {
-                return ResourceManager.GetString("InformationWindowIntilizeViewModelMessage", resourceCulture);
+                return ResourceManager.GetString("InformationWindowInitializeViewModelMessage", resourceCulture);
             }
         }
         
