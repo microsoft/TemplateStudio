@@ -54,14 +54,16 @@ namespace Microsoft.Templates.Extension.Commands
 
         private async Task<IGenContextBootstrapService> PrepareBootstrapSvc()
         {
-            this.AddService(typeof(ISGenContextBootstrapService), CreateService);
-            IGenContextBootstrapService bootstrapsvc = await this.GetServiceAsync(typeof(ISGenContextBootstrapService)) as IGenContextBootstrapService;
+            AddService(typeof(ISGenContextBootstrapService), CreateService);
+            IGenContextBootstrapService bootstrapsvc = await GetServiceAsync(typeof(ISGenContextBootstrapService)) as IGenContextBootstrapService;
+
             return bootstrapsvc;
         }
 
         private async Task<object> CreateService(IAsyncServiceContainer container, CancellationToken cancellationToken, Type serviceType)
         {
             ISGenContextBootstrapService service = null;
+
             await System.Threading.Tasks.Task.Run(() =>
             {
                 service = new GenContextBootstrapService(this);
