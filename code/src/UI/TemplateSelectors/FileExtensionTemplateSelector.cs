@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 
 using Microsoft.Templates.UI.ViewModels.NewItem;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.TemplateSelectors
 {
