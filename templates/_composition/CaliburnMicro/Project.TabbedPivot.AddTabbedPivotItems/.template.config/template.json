@@ -3,13 +3,13 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Project.TabbedPivot.AddTabbedPivotItems",
+  "name": "CaliburnMicro.Project.TabbedPivot.AddTabbedPivotItems",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind|MVVMBasic|MVVMLight & $projectType == TabbedPivot & wts.type==page"
+    "wts.compositionFilter": "$framework == CaliburnMicro & $projectType == TabbedPivot & wts.type==page"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
