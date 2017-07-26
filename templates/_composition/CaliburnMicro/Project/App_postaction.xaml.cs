@@ -33,7 +33,8 @@ namespace Param_ItemNamespace
             };
 
             ViewLocator.ConfigureTypeMappings(config);
-                
+            ViewModelLocator.ConfigureTypeMappings(config);
+            
             _container = new WinRTContainer();
             _container.RegisterWinRTServices();
 
