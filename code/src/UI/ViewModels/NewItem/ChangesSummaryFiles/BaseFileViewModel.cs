@@ -62,15 +62,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 return SystemColors.InfoTextBrush;
             }
+
             switch (FileStatus)
             {
-                case FileStatus.NewFile:
+                case FileStatus.New:
                     return MainViewModel.Current.MainView.FindResource("UIGreen") as SolidColorBrush;
-                case FileStatus.ModifiedFile:
+                case FileStatus.Modified:
                     return MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
-                case FileStatus.ConflictingFile:
+                case FileStatus.Conflicting:
                     return MainViewModel.Current.MainView.FindResource("UIRed") as SolidColorBrush;
-                case FileStatus.WarningFile:
+                case FileStatus.Warning:
                     return MainViewModel.Current.MainView.FindResource("UIDarkYellow") as SolidColorBrush;
                 case FileStatus.Unchanged:
                     return MainViewModel.Current.MainView.FindResource("UIDarkBlue") as SolidColorBrush;
@@ -94,7 +95,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 case ".csproj":
                     return FileExtension.Csproj;
                 case ".appxmanifest":
-                    return FileExtension.Appxmanifest;
+                    return FileExtension.AppXManifest;
                 case ".json":
                     return FileExtension.Json;
                 case ".jpg":

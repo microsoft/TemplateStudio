@@ -12,7 +12,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         Xaml,
         Xml,
         Csproj,
-        Appxmanifest,
+        AppXManifest,
         Json,
         Jpg,
         Png,

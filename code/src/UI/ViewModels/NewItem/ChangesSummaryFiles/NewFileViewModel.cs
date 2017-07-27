@@ -9,7 +9,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class NewFileViewModel : BaseFileViewModel
     {
-        public override FileStatus FileStatus => FileStatus.NewFile;
+        public override FileStatus FileStatus => FileStatus.New;
 
         public NewFileViewModel(NewItemGenerationFileInfo generationInfo) : base(generationInfo)
         {

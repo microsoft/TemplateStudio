@@ -129,15 +129,15 @@ namespace Microsoft.Templates.UI.Controls
         {
             switch (item.FileStatus)
             {
-                case FileStatus.NewFile:
-                case FileStatus.WarningFile:
+                case FileStatus.New:
+                case FileStatus.Warning:
                 case FileStatus.Unchanged:
                     UpdateCodeView(item.UpdateTextAction, item.TempFile);
                     break;
-                case FileStatus.ModifiedFile:
+                case FileStatus.Modified:
                     UpdateCodeView(item.UpdateTextAction, item.TempFile, item.ProjectFile);
                     break;
-                case FileStatus.ConflictingFile:
+                case FileStatus.Conflicting:
                     UpdateCodeView(item.UpdateTextAction, item.TempFile, item.ProjectFile, true);
                     break;
             }
