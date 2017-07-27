@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -117,7 +118,7 @@ namespace Microsoft.Templates.Fakes
             switch (Path.GetExtension(fileName).ToLower())
             {
                 case ".cs":
-                    if (fileName.ToLower().EndsWith(".xaml.cs"))
+                    if (fileName.EndsWith(".xaml.cs", true, CultureInfo.InvariantCulture))
                     {
                         returnType = VsItemType.CompiledWithDependant;
                     }
