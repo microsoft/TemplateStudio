@@ -1,0 +1,24 @@
+<Page
+    x:Class="Param_ItemNamespace.Views.CameraViewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+  <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+    <CaptureElement Name="PreviewControl"
+                    Stretch="UniformToFill"/>
+
+    <Button Content="Take a photo"
+            Click="Photo_Click"
+            Grid.Row="1"
+            Margin="20"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"/>
+
+    <Image x:Name="Photo"
+           Width="200"
+           HorizontalAlignment="Right"
+           VerticalAlignment="Bottom"/>
+  </Grid>
+</Page>
