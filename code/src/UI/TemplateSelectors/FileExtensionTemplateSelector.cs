@@ -16,8 +16,7 @@ namespace Microsoft.Templates.UI.TemplateSelectors
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            var file = item as BaseFileViewModel;
-            if (file != null)
+            if (item is BaseFileViewModel file)
             {
                 switch (file.FileExtension)
                 {
@@ -29,6 +28,7 @@ namespace Microsoft.Templates.UI.TemplateSelectors
                         return CodeFileTemplate;
                 }
             }
+
             return base.SelectTemplate(item, container);
         }
     }
