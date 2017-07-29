@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -112,30 +113,32 @@ namespace Microsoft.Templates.Fakes
 
         private VsItemType GetItemType(string fileName)
         {
-            string ext = Path.GetExtension(fileName).ToLower();
-            if (ext == ".cs")
+            VsItemType returnType = VsItemType.Content;
+
+            switch (Path.GetExtension(fileName).ToLower())
             {
-                if (fileName.ToLower().Contains(".xaml.cs"))
-                {
-                    return VsItemType.CompiledWithDependant;
-                }
-                else
-                {
-                    return VsItemType.Compiled;
-                }
+                case ".cs":
+                    if (fileName.EndsWith(".xaml.cs", true, CultureInfo.InvariantCulture))
+                    {
+                        returnType = VsItemType.CompiledWithDependant;
+                    }
+                    else
+                    {
+                        returnType = VsItemType.Compiled;
+                    }
+                    break;
+                case ".xaml":
+                    returnType = VsItemType.XamlPage;
+                    break;
+                case ".resw":
+                    returnType = VsItemType.Resource;
+                    break;
+                default:
+                    returnType = VsItemType.Content;
+                    break;
             }
-            else if (ext == ".xaml")
-            {
-                return VsItemType.XamlPage;
-            }
-            else if (ext == ".resw")
-            {
-                return VsItemType.Resource;
-            }
-            else
-            {
-                return VsItemType.Content;
-            }
+
+            return returnType;
         }
     }
 }
