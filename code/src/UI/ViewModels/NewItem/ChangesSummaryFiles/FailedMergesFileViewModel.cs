@@ -6,12 +6,13 @@ using System.Text;
 
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class FailedMergesFileViewModel : BaseFileViewModel
     {
-        public override FileStatus FileStatus => FileStatus.WarningFile;
+        public override FileStatus FileStatus => FileStatus.Warning;
 
         public FailedMergesFileViewModel(FailedMergePostAction warning) : base(warning.FailedFileName)
         {

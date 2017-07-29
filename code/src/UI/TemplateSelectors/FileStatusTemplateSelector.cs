@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 
 using Microsoft.Templates.UI.ViewModels.NewItem;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.TemplateSelectors
 {
@@ -23,13 +24,13 @@ namespace Microsoft.Templates.UI.TemplateSelectors
             {
                 switch (newItemFile.FileStatus)
                 {
-                    case FileStatus.NewFile:
+                    case FileStatus.New:
                         return NewFileTemplate;
-                    case FileStatus.ModifiedFile:
+                    case FileStatus.Modified:
                         return ModifiedFileTemplate;
-                    case FileStatus.ConflictingFile:
+                    case FileStatus.Conflicting:
                         return ConflictingFileTemplate;
-                    case FileStatus.WarningFile:
+                    case FileStatus.Warning:
                         return WarningFileTemplate;
                     case FileStatus.Unchanged:
                         return UnchangedFileTemplate;
