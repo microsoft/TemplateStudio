@@ -37,7 +37,6 @@ namespace Localization
             Console.Clear();
             Console.WriteLine(separator);
             Console.WriteLine("** Windows Template Studio Localization Tool");
-            Console.WriteLine("** Copyright (c) 2017 Microsoft Corporation");
             Console.WriteLine(separator);
             Console.WriteLine();
         }
