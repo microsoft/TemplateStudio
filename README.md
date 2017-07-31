@@ -36,6 +36,7 @@ Once you select the attributes you want your new UWP app to have, you can quickl
 ## Known issues
 
 * [Project creation failing with VS 15.2 and VS Preview side by side](https://github.com/Microsoft/WindowsTemplateStudio/issues/668) - We believe right now there is a side by side issue.
+* [Chart page in x86 mode design-time error](https://github.com/Microsoft/WindowsTemplateStudio/issues/818) - Waiting for a fix
 
 ## Feedback, Requests and Roadmap
 
@@ -47,7 +48,7 @@ Here is what we're currently thinking in our [roadmap](docs/roadmap.md)
 
 ## Contributing
 
-Do you want to contribute? Here are our [contribution guidelines](CONTRIBUTING.md).
+Do you want to contribute? We would love to have you help out.  Here are our [contribution guidelines](CONTRIBUTING.md).
 
 ## Principles
 
@@ -60,14 +61,17 @@ Do you want to contribute? Here are our [contribution guidelines](CONTRIBUTING.m
 1. Templates released in production will try to adhere to the design language used in the current release of Windows 10.
 1. Code should follow [.NET Core coding style](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md)
 
+This project has adopted the code of conduct defined by the Contributor Covenant to clarify expected behavior in our community.
+For more information see the [.NET Foundation Code of Conduct](https://dotnetfoundation.org/code-of-conduct).
+
 ## License
 
 This code is distributed under the terms and conditions of the [MIT license](LICENSE.md).
 
-## Code of Conduct
-
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
-
 ## Privacy Statement
 
 The extension does [log basic telemetry](docs/telemetry.md) for what is being selected. Please read the [Microsoft privacy statement](http://go.microsoft.com/fwlink/?LinkId=521839) for more information.
+
+## .NET Foundation
+
+This project is supported by the [.NET Foundation](https://dotnetfoundation.org).
