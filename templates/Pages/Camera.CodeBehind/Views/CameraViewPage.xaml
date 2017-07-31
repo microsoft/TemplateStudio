@@ -5,20 +5,38 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-  <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-    <CaptureElement Name="PreviewControl"
-                    Stretch="UniformToFill"/>
+  <Grid
+  x:Name="ContentArea"
+  Margin="{StaticResource MediumLeftRightMargin}">
 
-    <Button Content="Take a photo"
-            Click="Photo_Click"
-            Grid.Row="1"
-            Margin="20"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Bottom"/>
+    <Grid.RowDefinitions>
+      <RowDefinition x:Name="TitleRow" Height="48"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
 
-    <Image x:Name="Photo"
-           Width="200"
-           HorizontalAlignment="Right"
-           VerticalAlignment="Bottom"/>
+    <TextBlock
+        x:Name="TitlePage"
+        x:Uid="CameraView_Title"
+        Style="{StaticResource PageTitleStyle}" />
+
+    <Grid Grid.Row="1" Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+      <CaptureElement 
+        x:Name="PreviewControl"
+        Stretch="UniformToFill"/>
+
+      <Button 
+        x:Uid="CameraView_CaptureButton"
+        Content="Take a photo"
+        Click="Photo_Click"
+        Margin="20"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Bottom"/>
+
+      <Image 
+        x:Name="Photo"
+        Width="200"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"/>
+    </Grid>
   </Grid>
 </Page>
