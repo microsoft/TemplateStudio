@@ -14,7 +14,6 @@ using Param_RootNamespace.Activation;
 namespace Param_RootNamespace.Services
 {
     //For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
-    //For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
     internal class ActivationService
     {
         private readonly WinRTContainer _container;
