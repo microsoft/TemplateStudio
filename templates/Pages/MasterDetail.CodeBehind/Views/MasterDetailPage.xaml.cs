@@ -47,56 +47,47 @@ namespace Param_ItemNamespace.Views
             var item = e?.ClickedItem as Order;
             if (item != null)
             {
-                if (WindowStates.CurrentState.Name != "NarrowState")
-                {
-                	foreach (var fonticon in GetAllVisualChildrenOfType<FontIcon>(MasterListView))
-                    {
-                        var element = (UIElement)fonticon;
-                        bool foundIcon = (item.HashIdentIcon == (string)fonticon.Tag);
-                        if (foundIcon)
-                        {
-                            ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("companyIcon", element);
-                        }
-                    }
-
-                    foreach (var textblock in GetAllVisualChildrenOfType<TextBlock>(MasterListView))
-                    {
-                        var element = (UIElement)textblock;
-                        bool foundTitle = (item.HashIdentTitle == (string)textblock.Tag);
-                        if (foundTitle)
-                        {
-                            ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("companyTitle", element);
-                        }
-                    }
-                }
-
                 if (WindowStates.CurrentState == NarrowState)
                 {
                     NavigationService.Navigate<Views.MasterDetailDetailPage>(item);
                 }
                 else
                 {
+                	ProcessVisualTreeAndAnimateItem(MasterListView, item);
                     Selected = item;
                 }
             }
         }
 
-        private IEnumerable<T> GetAllVisualChildrenOfType<T>(DependencyObject obj) where T : DependencyObject
+        private void ProcessVisualTreeAndAnimateItem(DependencyObject root, Order item) 
         {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+            int childCount = VisualTreeHelper.GetChildrenCount(root);
+            for (int i = 0; i < childCount; i++)
             {
-                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
-                if (child != null && child is T)
-                    yield return (T)child;
+                DependencyObject child = VisualTreeHelper.GetChild(root, i);
+                if (child != null && child is FontIcon)
+                {
+                    FontIcon elem = (FontIcon)child;
+                    bool foundIcon = (item.HashIdentIcon == (string)elem.Tag);
+                    if (foundIcon)
+                    {
+                        ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("companyIcon", elem);
+                    }
+                }
+                else if (child != null && child is TextBlock)
+                {
+                    TextBlock elem = (TextBlock)child;
+                    bool foundTitle = (item.HashIdentTitle == (string)elem.Tag);
+                    if (foundTitle)
+                    {
+                        ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("companyTitle", elem);
+                    }
+                }
                 else
                 {
-                    for (int j = 0; j < VisualTreeHelper.GetChildrenCount(child); j++)
+                    for (int j = 0; j < childCount; j++)
                     {
-                        IEnumerable<T> childrenOfChild = GetAllVisualChildrenOfType<T>(child);
-                        foreach (T subChild in childrenOfChild)
-                        {
-                            yield return subChild;
-                        }
+                        ProcessVisualTreeAndAnimateItem(child, item);
                     }
                 }
             }

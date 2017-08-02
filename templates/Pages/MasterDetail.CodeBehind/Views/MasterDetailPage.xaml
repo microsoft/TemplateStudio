@@ -15,20 +15,28 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock 
-                    Text="{x:Bind OrderId}" 
-                    Style="{StaticResource ListTitleStyle}" />
-
-                <TextBlock
-                	Tag="{x:Bind HashIdentTitle}"
-                    Grid.Row="1"
-                    Text="{x:Bind Company}"
-                    Style="{StaticResource ListSubTitleStyle}" />
-
-                <FontIcon 
-                    Tag="{x:Bind HashIdentIcon}"
-                    FontSize="16"
-                    Glyph="{x:Bind SymbolAsChar}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <FontIcon
+	                        Tag="{x:Bind HashIdentIcon}"
+	                        FontSize="20"
+	                        Glyph="{x:Bind SymbolAsChar}" HorizontalAlignment="Left"/>
+                        <TextBlock 
+	                        Tag="{x:Bind HashIdentTitle}"
+	                        FontSize="20"
+	                        Text="{x:Bind Company}" 
+	                        Style="{StaticResource ListTitleStyle}" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock 
+                            Text="Status: " 
+                            Style="{StaticResource ListSubTitleStyle}" Padding="0,0,5,0" />
+                        <TextBlock
+                            Text="{x:Bind Status}"
+                            Style="{StaticResource ListSubTitleStyle}" />
+                    </StackPanel>
+                </StackPanel>
+                
             </Grid>
         </DataTemplate>
     </Page.Resources>

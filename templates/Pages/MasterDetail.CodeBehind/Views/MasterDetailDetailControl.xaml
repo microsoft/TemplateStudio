@@ -15,7 +15,7 @@
 
         <TextBlock
             x:Name="TitlePage"
-            Text="{x:Bind MasterMenuItem.OrderId, Mode=OneWay}"
+            Text="Orders"
             Style="{StaticResource PageTitleStyle}" />
 
         <ScrollViewer
