@@ -47,6 +47,16 @@ namespace Param_RootNamespace.Services
 
                         NavigationService = _container.RegisterNavigationService(frame);
                     }
+                    else
+                    {
+                        var viewModel = ViewModelLocator.LocateForView(_shell);
+
+                        ViewModelBinder.Bind(viewModel, _shell, null);
+
+                        ScreenExtensions.TryActivate(viewModel);
+
+                        NavigationService = _container.GetInstance<INavigationService>();
+                    }
 
                     Window.Current.Content = _shell;
 
