@@ -82,9 +82,9 @@
     <Compile Include="ClientInterface\ToolCommandInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\StyleCop.json">
+    <AdditionalFiles Include="..\..\StyleCop.json">
       <Link>StyleCop.json</Link>
-    </None>
+    </AdditionalFiles>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>

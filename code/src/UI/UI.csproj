@@ -288,6 +288,7 @@
     <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="Generation\NewProjectGenController.cs" />
     <Compile Include="Generation\NewItemGenController.cs" />
+    <Compile Include="Services\SystemService.cs" />
     <Compile Include="TemplateSelectors\FileExtensionTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\FileStatusTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\StatusBoxTemplateSelector.cs" />
@@ -295,6 +296,8 @@
     <Compile Include="Services\DragAndDropService\DragAndDropEventArgs.cs" />
     <Compile Include="TemplateSelectors\SummaryItemTemplateSelector.cs" />
     <Compile Include="ViewModels\Common\BaseMainViewModel.cs" />
+    <Compile Include="ViewModels\Common\FileExtension.cs" />
+    <Compile Include="ViewModels\Common\FileStatus.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\UnchangedFileViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\BaseFileViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\NewFileViewModel.cs" />
@@ -435,11 +438,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\StyleLogoDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\StyleShape.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\StyleTogglePane.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\_FocusVisualStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

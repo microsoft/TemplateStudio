@@ -1,4 +1,4 @@
-//{[{
+﻿//{[{
 using GalaSoft.MvvmLight.Command;
 //}]}
 using Param_ItemNamespace.Services;

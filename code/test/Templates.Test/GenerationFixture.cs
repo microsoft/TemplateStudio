@@ -1,43 +1,39 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Test.Artifacts;
+using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.Test
 {
-
     public sealed class GenerationFixture : IDisposable
     {
         private const string Platform = "x86";
         private const string Configuration = "Debug";
 
         internal string TestRunPath = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\{DateTime.Now.ToString("dd_HHmm")}\\";
+
         internal string TestProjectsPath => Path.GetFullPath(Path.Combine(TestRunPath, "Proj"));
+
         internal string TestNewItemPath => Path.GetFullPath(Path.Combine(TestRunPath, "RightClick"));
 
         private static readonly Lazy<TemplatesRepository> _repos = new Lazy<TemplatesRepository>(() => CreateNewRepos(), true);
+
         public static IEnumerable<ITemplateInfo> Templates => _repos.Value.GetAll();
 
         private static TemplatesRepository CreateNewRepos()
@@ -97,7 +93,8 @@ namespace Microsoft.Templates.Test
 
                     foreach (var framework in frameworks)
                     {
-                        var itemTemplates = GenerationFixture.Templates.Where(t => t.GetFrameworkList().Contains(framework) && t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature && !t.GetIsHidden());
+                        var itemTemplates = Templates.Where(t => (t.GetFrameworkList().Contains(framework) && t.GetTemplateType() == TemplateType.Page)
+                                                                    || (t.GetTemplateType() == TemplateType.Feature && !t.GetIsHidden()));
 
                         foreach (var itemTemplate in itemTemplates)
                         {
@@ -162,11 +159,12 @@ namespace Microsoft.Templates.Test
             }
         }
 
+        [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
         public static (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath)
         {
             var outputFile = Path.Combine(outputPath, $"_buildOutput_{solutionName}.txt");
 
-            //Build
+            // Build
             var solutionFile = Path.GetFullPath(outputPath + @"\" + solutionName + ".sln");
             var startInfo = new ProcessStartInfo(GetPath("RestoreAndBuild.bat"))
             {
@@ -179,7 +177,7 @@ namespace Microsoft.Templates.Test
 
             var process = Process.Start(startInfo);
 
-            File.WriteAllText(outputFile, process.StandardOutput.ReadToEnd());
+            File.WriteAllText(outputFile, process.StandardOutput.ReadToEnd(), Encoding.UTF8);
 
             process.WaitForExit();
 
@@ -192,7 +190,7 @@ namespace Microsoft.Templates.Test
             var outputLines = File.ReadAllLines(filePath);
             var errorLines = outputLines.Where(l => re.IsMatch(l));
 
-            return errorLines.Count() > 0 ? errorLines.Aggregate((i, j) => i + Environment.NewLine + j) : String.Empty;
+            return errorLines.Count() > 0 ? errorLines.Aggregate((i, j) => i + Environment.NewLine + j) : string.Empty;
         }
 
         public static string GetDefaultName(ITemplateInfo template)
@@ -249,7 +247,5 @@ namespace Microsoft.Templates.Test
 
             return path;
         }
-
-        
     }
 }

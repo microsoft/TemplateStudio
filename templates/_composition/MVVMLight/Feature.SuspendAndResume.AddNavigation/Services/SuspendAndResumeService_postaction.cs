@@ -1,4 +1,4 @@
-//{[{
+﻿//{[{
 using Microsoft.Practices.ServiceLocation;
 //}]}
 namespace Param_ItemNamespace.Services

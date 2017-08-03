@@ -1,4 +1,4 @@
-{
+﻿{
   "author": "Microsoft Community Contribution",
   "classifications": [
     "Universal"
@@ -6,7 +6,6 @@
   "name": "Chart",
   "groupIdentity": "wts.Page.Chart",
   "identity": "wts.Page.Chart",
-  "shortName": "Chart Page",
   "description": "A page displaying a simple chart, powered by Telerik UI controls for UWP.",
   "tags": {
     "language": "C#",

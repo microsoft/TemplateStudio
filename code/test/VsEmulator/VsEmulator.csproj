@@ -134,6 +134,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="..\..\GlobalSuppressions.cs">
+      <Link>GlobalSuppressions.cs</Link>
+    </Compile>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="LoadProject\LoadProjectView.xaml.cs">
       <DependentUpon>LoadProjectView.xaml</DependentUpon>
@@ -195,6 +198,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <AdditionalFiles Include="..\..\StyleCop.json">
+      <Link>StyleCop.json</Link>
+    </AdditionalFiles>
     <None Include="app.manifest" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -211,6 +217,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\src\Core\Core.csproj">
       <Project>{51DDB424-2DA2-4871-A042-4F4F9B622515}</Project>
       <Name>Core</Name>
@@ -219,9 +229,9 @@
       <Project>{dcfd282d-d91c-49b5-8dbf-d943bafef5aa}</Project>
       <Name>UI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Artifacts\Artifacts.csproj">
+    <ProjectReference Include="..\Fakes\Fakes.csproj">
       <Project>{fb3c81ad-823e-409c-bf6d-27534b84a8af}</Project>
-      <Name>Artifacts</Name>
+      <Name>Fakes</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

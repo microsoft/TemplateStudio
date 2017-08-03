@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED ?AS IS?, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System.Linq;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
@@ -28,17 +20,20 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    yield break;",
                 "}"
             };
-            var merge = new[] {
+            var merge = new[]
+            {
                 "public void SomeMethod()",
                 "{",
                 "//{--{",
                 "    yield break;//}--}",
                 "}"
             };
-            var expected = new[] {
+            var expected = new[]
+            {
                 "public void SomeMethod()",
                 "{",
-                "}" };
+                "}"
+            };
             var result = source.HandleRemovals(merge);
 
             Assert.Equal(expected, result);
@@ -54,7 +49,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    yield break;",
                 "}"
             };
-            var merge1 = new[] {
+            var merge1 = new[]
+            {
                 "public void SomeMethod()",
                 "{",
                 "    //{[{",
@@ -64,11 +60,13 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    yield break;//}--}",
                 "}"
             };
-            var expected = new[] {
+            var expected = new[]
+            {
                 "public void SomeMethod()",
                 "{",
                 "    // Merge1",
-                "}" };
+                "}"
+            };
             var result = source.HandleRemovals(merge1);
             result = result.Merge(merge1.RemoveRemovals(), out string errorLine).ToList();
 
@@ -85,7 +83,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    yield break;",
                 "}"
             };
-            var merge1 = new[] {
+            var merge1 = new[]
+            {
                 "public void SomeMethod()",
                 "{",
                 "    //{[{",
@@ -95,7 +94,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    yield break;//}--}",
                 "}"
             };
-            var merge2 = new[] {
+            var merge2 = new[]
+            {
                 "public void SomeMethod()",
                 "{",
                 "    //{[{",
@@ -105,12 +105,14 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    yield break;//}--}",
                 "}"
             };
-            var expected = new[] {
+            var expected = new[]
+            {
                 "public void SomeMethod()",
                 "{",
                 "    // Merge2",
                 "    // Merge1",
-                "}" };
+                "}"
+            };
             var result = source.HandleRemovals(merge1);
             result = result.Merge(merge1.RemoveRemovals(), out string errorLine).ToList();
             result = result.HandleRemovals(merge2);
@@ -129,17 +131,20 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    yield break;",
                 "}"
             };
-            var merge = new[] {
+            var merge = new[]
+            {
                 "public void SomeOtherMethod()",
                 "{",
                 "    // Something unrelated to deletion",
                 "}"
             };
-            var expected = new[] {
+            var expected = new[]
+            {
                 "public void SomeMethod()",
                 "{",
                 "    yield break;",
-                "}" };
+                "}"
+            };
             var result = source.HandleRemovals(merge);
 
             Assert.Equal(expected, result);
@@ -154,17 +159,20 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "{",
                 "}"
             };
-            var merge = new[] {
+            var merge = new[]
+            {
                 "public void SomeMethod()",
                 "{",
                 "//{--{",
                 "    yield break;//}--}",
                 "}"
             };
-            var expected = new[] {
+            var expected = new[]
+            {
                 "public void SomeMethod()",
                 "{",
-                "}" };
+                "}"
+            };
             var result = source.HandleRemovals(merge);
 
             Assert.Equal(expected, result);
