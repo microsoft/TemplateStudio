@@ -1,44 +1,33 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 
+using GalaSoft.MvvmLight;
+
 namespace wts.ItemName.ViewModels
 {
     public class ShellNavigationItem : ViewModelBase
     {
-        private bool _isSelected;
+        public string Label { get; set; }
+        public Symbol Symbol { get; set; }
+        public string ViewModelName { get; set; }
 
         private Visibility _selectedVis = Visibility.Collapsed;
-
         public Visibility SelectedVis
         {
             get { return _selectedVis; }
             set { Set(ref _selectedVis, value); }
         }
 
-        private SolidColorBrush _selectedForeground = null;
-
-        public SolidColorBrush SelectedForeground
-        {
-            get { return _selectedForeground ?? (_selectedForeground = GetStandardTextColorBrush()); }
-            set { Set(ref _selectedForeground, value); }
-        }
-
-        public string Label { get; set; }
-
-        public Symbol Symbol { get; set; }
-
         public char SymbolAsChar
         {
             get { return (char)Symbol; }
         }
 
-        public string ViewModelName { get; set; }
-
         private IconElement _iconElement = null;
-
         public IconElement Icon
         {
             get
@@ -66,6 +55,7 @@ namespace wts.ItemName.ViewModels
             }
         }
 
+        private bool _isSelected;
         public bool IsSelected
         {
             get
@@ -76,11 +66,36 @@ namespace wts.ItemName.ViewModels
             set
             {
                 Set(ref _isSelected, value);
+                
                 SelectedVis = value ? Visibility.Visible : Visibility.Collapsed;
-                SelectedForeground = value
+
+                SelectedForeground = IsSelected
                     ? Application.Current.Resources["SystemControlForegroundAccentBrush"] as SolidColorBrush
                     : GetStandardTextColorBrush();
             }
+        }
+
+        private SolidColorBrush _selectedForeground = null;
+        public SolidColorBrush SelectedForeground
+        {
+            get { return _selectedForeground ?? (_selectedForeground = GetStandardTextColorBrush()); }
+            set { Set(ref _selectedForeground, value); }
+        }
+
+        public ShellNavigationItem(string label, Symbol symbol, string viewModelName) : this(label, viewModelName)
+        {
+            Symbol = symbol;
+        }
+
+        public ShellNavigationItem(string label, IconElement icon, string viewModelName) : this(label, viewModelName)
+        {
+            _iconElement = icon;
+        }
+
+        public ShellNavigationItem(string label, string viewModelName)
+        {
+            Label = label;
+            ViewModelName = viewModelName;
         }
 
         private SolidColorBrush GetStandardTextColorBrush()
@@ -88,20 +103,6 @@ namespace wts.ItemName.ViewModels
             var brush = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
 
             return brush;
-        }
-
-        public ShellNavigationItem(string label, Symbol symbol, string viewModelName)
-        {
-            Label = label;
-            Symbol = symbol;
-            ViewModelName = viewModelName;
-        }
-
-        public ShellNavigationItem(string label, IconElement icon, string viewModelName)
-        {
-            Label = label;
-            _iconElement = icon;
-            ViewModelName = viewModelName;
         }
 
         public override string ToString()
