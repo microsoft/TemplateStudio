@@ -1,10 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace wts.ItemName.Views
 {
@@ -81,32 +82,32 @@ namespace wts.ItemName.Views
             set { Set(ref _selectedForeground, value); }
         }
 
-        private ShellNavigationItem(string name, Symbol symbol, Type pageType) : this(name, pageType)
+        private ShellNavigationItem(string label, Symbol symbol, Type pageType) : this(label, pageType)
         {
             Symbol = symbol;
         }
 
-        private ShellNavigationItem(string name, IconElement icon, Type pageType) : this(name, pageType)
+        private ShellNavigationItem(string label, IconElement icon, Type pageType) : this(label, pageType)
         {
             _iconElement = icon;
         }
 
-        private ShellNavigationItem(string name, Type pageType)
+        private ShellNavigationItem(string label, Type pageType)
         {
-            Label = name;
+            Label = label;
             PageType = pageType;
         }
 
-        public static ShellNavigationItem FromType<T>(string name, Symbol symbol)
+        public static ShellNavigationItem FromType<T>(string label, Symbol symbol)
             where T : Page
         {
-            return new ShellNavigationItem(name, symbol, typeof(T));
+            return new ShellNavigationItem(label, symbol, typeof(T));
         }
 
-        public static ShellNavigationItem FromType<T>(string name, IconElement icon)
+        public static ShellNavigationItem FromType<T>(string label, IconElement icon)
             where T : Page
         {
-            return new ShellNavigationItem(name, icon, typeof(T));
+            return new ShellNavigationItem(label, icon, typeof(T));
         }
 
         private SolidColorBrush GetStandardTextColorBrush()

@@ -7,9 +7,9 @@ using Param_RootNamespace.Services;
 
     public class ShellNavigationItem : INotifyPropertyChanged
     {
-        private ShellNavigationItem(string name, Type pageType)
+        private ShellNavigationItem(string label, Type pageType)
         {
-            Label = name;
+            Label = label;
             PageType = pageType;
 //^^
 //{[{
