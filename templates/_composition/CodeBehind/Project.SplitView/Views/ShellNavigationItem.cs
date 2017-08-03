@@ -109,16 +109,16 @@ namespace wts.ItemName.Views
             return new ShellNavigationItem(name, icon, typeof(T));
         }
 
-        public override string ToString()
-        {
-            return Label;
-        }
-
         private SolidColorBrush GetStandardTextColorBrush()
         {
             var brush = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
 
             return brush;
+        }
+
+        public override string ToString()
+        {
+            return Label;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
