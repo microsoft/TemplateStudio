@@ -8,8 +8,5 @@
   <data name="CameraView_Title.Text" xml:space="preserve">
     <value>CameraView</value>
   </data>
-  <data name="CameraView_CaptureButton.Content" xml:space="preserve">
-    <value>Capture a photo</value>
-  </data>
   <!--}]}-->
 </root>

@@ -1,8 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Windows.Media.Playback;
-using Windows.Media.Core;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace Param_ItemNamespace.ViewModels
