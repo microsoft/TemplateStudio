@@ -25,9 +25,8 @@
 
             <StackPanel Grid.Row="1">
                 <TextBlock
-                    Style="{StaticResource SubtitleTextBlockStyle}">
-                    Personalization
-                </TextBlock>
+                    x:Uid="Settings_Personalization"
+                    Style="{StaticResource SubtitleTextBlockStyle}" />
                 <StackPanel Margin="{StaticResource SettingsSubheaderMargin}">
                     <TextBlock
                         x:Uid="Settings_Theme"
