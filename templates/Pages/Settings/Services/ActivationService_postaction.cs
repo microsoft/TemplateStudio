@@ -12,6 +12,6 @@ private async Task InitializeAsync()
 private async Task StartupAsync()
 {
     //{[{
-    Services.ThemeSelectorService.SetRequestedTheme();
+    ThemeSelectorService.SetRequestedTheme();
     //}]}
 }
