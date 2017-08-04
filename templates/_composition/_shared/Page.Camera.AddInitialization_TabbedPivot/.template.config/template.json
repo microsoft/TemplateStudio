@@ -9,7 +9,7 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CodeBehind & $projectType == TabbedPivot & identity == wts.Page.Camera|wts.Page.Camera.CodeBehind"
+    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight & $projectType == TabbedPivot & identity == wts.Page.Camera"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

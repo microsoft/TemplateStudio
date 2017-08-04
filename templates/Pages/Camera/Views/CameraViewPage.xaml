@@ -98,11 +98,11 @@
             <Button
                 Content="&#xE114;"
                 FontFamily="Segoe MDL2 Assets" 
-                FontSize="30"
+                FontSize="25"
                 Click="Photo_Click"
                 Grid.Row="1"
                 Margin="20"
-                Padding="20"
+                Padding="15"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
                 BorderBrush="Black"

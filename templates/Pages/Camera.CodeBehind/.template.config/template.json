@@ -7,16 +7,16 @@
   "groupIdentity": "wts.Page.Camera",
   "identity": "wts.Page.Camera.CodeBehind",
   "shortName": "Camera Page",
-  "description": "A page for taking photo with a camera device.",
+  "description": "A page for capturing a photo from the camera device, include previewing, mirroring and orientation.",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "page",
     "wts.framework": "CodeBehind",
-    "wts.version": "1.0.0",    
-    "wts.genGroup": "0",
+    "wts.version": "1.0.0",
     "wts.order": "10",
-    "wts.rightClickEnabled":"true" 
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled": "true"
   },
   "sourceName": "CameraView",
   "preferNameDirectory": true,
@@ -26,6 +26,12 @@
     },
     {
       "path": ".\\Views\\CameraViewPage.xaml.cs"
+    },
+    {
+      "path": ".\\Views\\CameraControl.xaml"
+    },
+    {
+      "path": ".\\Views\\CameraControl.xaml.cs"
     }
   ],
   "symbols": {

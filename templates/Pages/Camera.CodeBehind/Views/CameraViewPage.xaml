@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="using:Param_ItemNamespace.Views"
     mc:Ignorable="d">
     <Page.Resources>
         <Style x:Key="CircleButtonStyle" TargetType="Button">
@@ -91,18 +92,17 @@
             Style="{StaticResource PageTitleStyle}" />
 
         <Grid Grid.Row="1" Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <CaptureElement
-              x:Name="PreviewControl"
-              Stretch="UniformToFill"/>
+          <views:CameraControl
+              x:Name="Camera"/>
 
           <Button
               Content="&#xE114;"
               FontFamily="Segoe MDL2 Assets"
-              FontSize="30"
+              FontSize="25"
               Click="Photo_Click"
               Grid.Row="1"
               Margin="20"
-              Padding="20"
+              Padding="15"
               HorizontalAlignment="Center"
               VerticalAlignment="Bottom"
               BorderBrush="Black"
