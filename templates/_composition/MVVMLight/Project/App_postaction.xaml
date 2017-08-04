@@ -3,7 +3,7 @@
     <!--{[{-->
     xmlns:vms="using:Param_RootNamespace.ViewModels"
     <!--}]}-->
-    RequestedTheme="Light">
+    >
     <Application.Resources>
         <ResourceDictionary>
             <!--{[{-->

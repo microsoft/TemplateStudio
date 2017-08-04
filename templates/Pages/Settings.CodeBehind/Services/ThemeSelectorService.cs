@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
+
 using Windows.Storage;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
+
 using Param_RootNamespace.Helpers;
-using System.Threading.Tasks;
 
 namespace Param_RootNamespace.Services
 {
@@ -12,39 +15,33 @@ namespace Param_RootNamespace.Services
 
         public static event EventHandler<ElementTheme> OnThemeChanged = (sender, args) => { };
 
-        public static bool IsLightThemeEnabled => Theme == ElementTheme.Light;
+        public static ElementTheme Theme { get; set; } = ElementTheme.Default;
 
-        public static ElementTheme Theme { get; set; }
+        private static readonly SolidColorBrush _baseBrush = Application.Current.Resources["ThemeControlForegroundBaseHighBrush"] as SolidColorBrush;
+
+        public static SolidColorBrush GetSystemControlForegroundForTheme()
+        {
+            return _baseBrush;
+        }
 
         public static async Task InitializeAsync()
         {
             Theme = await LoadThemeFromSettingsAsync();
         }
 
-        public static async Task SwitchThemeAsync()
-        {
-            if (Theme == ElementTheme.Dark)
-            {
-                await SetThemeAsync(ElementTheme.Light);
-            }
-            else
-            {
-                await SetThemeAsync(ElementTheme.Dark);
-            }
-        }
-
         public static async Task SetThemeAsync(ElementTheme theme)
         {
             Theme = theme;
+
             SetRequestedTheme();
             await SaveThemeInSettingsAsync(Theme);
+
             OnThemeChanged(null, Theme);
         }
 
         public static void SetRequestedTheme()
         {
-            var frameworkElement = Window.Current.Content as FrameworkElement;
-            if (frameworkElement != null)
+            if (Window.Current.Content is FrameworkElement frameworkElement)
             {
                 frameworkElement.RequestedTheme = Theme;
             }
@@ -52,15 +49,12 @@ namespace Param_RootNamespace.Services
 
         private static async Task<ElementTheme> LoadThemeFromSettingsAsync()
         {
-            ElementTheme cacheTheme = ElementTheme.Light;
+            ElementTheme cacheTheme = ElementTheme.Default;
             string themeName = await ApplicationData.Current.LocalSettings.ReadAsync<string>(SettingsKey);
-            if (string.IsNullOrEmpty(themeName))
+
+            if (!string.IsNullOrEmpty(themeName))
             {
-                cacheTheme = Application.Current.RequestedTheme == ApplicationTheme.Dark ? ElementTheme.Dark : ElementTheme.Light;
-            }
-            else
-            {
-                Enum.TryParse<ElementTheme>(themeName, out cacheTheme);
+                Enum.TryParse(themeName, out cacheTheme);
             }
 
             return cacheTheme;
@@ -68,7 +62,7 @@ namespace Param_RootNamespace.Services
 
         private static async Task SaveThemeInSettingsAsync(ElementTheme theme)
         {
-            await ApplicationData.Current.LocalSettings.SaveAsync<string>(SettingsKey, theme.ToString());
+            await ApplicationData.Current.LocalSettings.SaveAsync(SettingsKey, theme.ToString());
         }
     }
 }

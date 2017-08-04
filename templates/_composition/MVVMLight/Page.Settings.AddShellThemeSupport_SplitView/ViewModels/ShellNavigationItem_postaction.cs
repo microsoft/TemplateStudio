@@ -1,48 +1,35 @@
-﻿        private SolidColorBrush GetStandardTextColorBrush()
-        {
-            var brush = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
+﻿//{**
+// This code block add code to the ShellNavigationItem to apply the correct color based on the selected theme.
+//**}
+//{[{
+using Param_RootNamespace.Services;
+//}]}
 
-            //{[{
-            if (!Services.ThemeSelectorService.IsLightThemeEnabled)
-            {
-                brush = Application.Current.Resources["SystemControlForegroundAltHighBrush"] as SolidColorBrush;
-            }
-            //}]}
-            return brush;
-        }
-
-        public ShellNavigationItem(string label, Symbol symbol, string viewModelName)
+        public ShellNavigationItem(string label, string viewModelName)
         {
             Label = label;
-            Symbol = symbol;
             ViewModelName = viewModelName;
+//^^
+//{[{
 
-            //^^
-            //{[{
-            Services.ThemeSelectorService.OnThemeChanged += (s, e) =>
+            ThemeSelectorService.OnThemeChanged += (s, e) =>
             {
                 if (!IsSelected)
                 {
                     SelectedForeground = GetStandardTextColorBrush();
                 }
             };
-            //}]}
+//}]}
         }
 
-        public ShellNavigationItem(string label, IconElement icon, string viewModelName)
+        private SolidColorBrush GetStandardTextColorBrush()
         {
-            Label = label;
-            _iconElement = icon;
-            ViewModelName = viewModelName;
+//{--{
+            var brush = Application.Current.Resources["ThemeControlForegroundBaseHighBrush"] as SolidColorBrush;
 
-            //^^
+            return brush;//}--}
             //{[{
-            Services.ThemeSelectorService.OnThemeChanged += (s, e) =>
-            {
-                if (!IsSelected)
-                {
-                    SelectedForeground = GetStandardTextColorBrush();
-                }
-            };
+            return ThemeSelectorService.GetSystemControlForegroundForTheme();
             //}]}
         }
+    }
