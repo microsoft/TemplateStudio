@@ -10,16 +10,20 @@ namespace Param_ItemNamespace.ViewModels
     {
         // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
         private ElementTheme _elementTheme = ElementTheme.Default;
+
         public ElementTheme ElementTheme
         {
             get { return _elementTheme; }
+
             set { Set(ref _elementTheme, value); }
         }
 
         private string _versionDescription;
+
         public string VersionDescription
         {
             get { return _versionDescription; }
+
             set { Set(ref _versionDescription, value); }
         }
 

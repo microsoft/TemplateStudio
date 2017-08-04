@@ -12,13 +12,17 @@ namespace wts.ItemName.Views
     public class ShellNavigationItem : INotifyPropertyChanged
     {
         public string Label { get; set; }
+
         public Symbol Symbol { get; set; }
+
         public Type PageType { get; set; }
 
         private Visibility _selectedVis = Visibility.Collapsed;
+
         public Visibility SelectedVis
         {
             get { return _selectedVis; }
+
             set { Set(ref _selectedVis, value); }
         }
 
@@ -28,6 +32,7 @@ namespace wts.ItemName.Views
         }
 
         private IconElement _iconElement = null;
+
         public IconElement Icon
         {
             get
@@ -37,7 +42,7 @@ namespace wts.ItemName.Views
                     Source = this,
                     Path = new PropertyPath("SelectedForeground"),
                     Mode = BindingMode.OneWay,
-                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
                 };
 
                 if (_iconElement != null)
@@ -56,6 +61,7 @@ namespace wts.ItemName.Views
         }
 
         private bool _isSelected;
+
         public bool IsSelected
         {
             get
@@ -66,28 +72,31 @@ namespace wts.ItemName.Views
             set
             {
                 Set(ref _isSelected, value);
-                
+
                 SelectedVis = value ? Visibility.Visible : Visibility.Collapsed;
 
                 SelectedForeground = IsSelected
-                    ? Application.Current.Resources["SystemControlForegroundAccentBrush"] as SolidColorBrush
+                    ? Application.Current.Resources["ThemeControlForegroundBaseHighBrush"] as SolidColorBrush
                     : GetStandardTextColorBrush();
             }
         }
 
         private SolidColorBrush _selectedForeground = null;
+
         public SolidColorBrush SelectedForeground
         {
             get { return _selectedForeground ?? (_selectedForeground = GetStandardTextColorBrush()); }
             set { Set(ref _selectedForeground, value); }
         }
 
-        private ShellNavigationItem(string label, Symbol symbol, Type pageType) : this(label, pageType)
+        private ShellNavigationItem(string label, Symbol symbol, Type pageType)
+            : this(label, pageType)
         {
             Symbol = symbol;
         }
 
-        private ShellNavigationItem(string label, IconElement icon, Type pageType) : this(label, pageType)
+        private ShellNavigationItem(string label, IconElement icon, Type pageType)
+            : this(label, pageType)
         {
             _iconElement = icon;
         }
@@ -112,7 +121,7 @@ namespace wts.ItemName.Views
 
         private SolidColorBrush GetStandardTextColorBrush()
         {
-            var brush = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
+            var brush = Application.Current.Resources["ThemeControlForegroundBaseHighBrush"] as SolidColorBrush;
 
             return brush;
         }

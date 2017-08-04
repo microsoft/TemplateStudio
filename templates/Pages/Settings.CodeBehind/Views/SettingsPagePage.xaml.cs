@@ -11,16 +11,20 @@ namespace Param_ItemNamespace.Views
         //// TODO WTS: Setup your privacy web in your Resource File, currently set to https://YourPrivacyUrlGoesHere
 
         private ElementTheme _elementTheme = ElementTheme.Default;
+
         public ElementTheme ElementTheme
         {
             get { return _elementTheme; }
+
             set { Set(ref _elementTheme, value); }
         }
 
         private string _versionDescription;
+
         public string VersionDescription
         {
             get { return _versionDescription; }
+
             set { Set(ref _versionDescription, value); }
         }
 

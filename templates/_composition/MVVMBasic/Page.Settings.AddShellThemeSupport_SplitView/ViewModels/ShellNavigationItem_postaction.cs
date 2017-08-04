@@ -11,7 +11,7 @@ using Param_RootNamespace.Services;
             PageType = pageType;
 //^^
 //{[{
-    
+
             ThemeSelectorService.OnThemeChanged += (s, e) =>
             {
                 if (!IsSelected)
@@ -25,7 +25,7 @@ using Param_RootNamespace.Services;
         private SolidColorBrush GetStandardTextColorBrush()
         {
 //{--{
-            var brush = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
+            var brush = Application.Current.Resources["ThemeControlForegroundBaseHighBrush"] as SolidColorBrush;
 
             return brush;//}--}
             //{[{

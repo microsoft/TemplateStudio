@@ -13,9 +13,10 @@ namespace Param_RootNamespace.Services
     {
         private const string SettingsKey = "RequestedTheme";
 
-        public static event EventHandler<ElementTheme> OnThemeChanged = delegate { };
+        public static event EventHandler<ElementTheme> OnThemeChanged = (sender, args) => { };
 
         public static ElementTheme Theme { get; set; } = ElementTheme.Default;
+
         private static readonly SolidColorBrush _baseBrush = Application.Current.Resources["ThemeControlForegroundBaseHighBrush"] as SolidColorBrush;
 
         public static SolidColorBrush GetSystemControlForegroundForTheme()
@@ -27,7 +28,7 @@ namespace Param_RootNamespace.Services
         {
             Theme = await LoadThemeFromSettingsAsync();
         }
-        
+
         public static async Task SetThemeAsync(ElementTheme theme)
         {
             Theme = theme;
@@ -55,7 +56,7 @@ namespace Param_RootNamespace.Services
             {
                 Enum.TryParse(themeName, out cacheTheme);
             }
-            
+
             return cacheTheme;
         }
 
