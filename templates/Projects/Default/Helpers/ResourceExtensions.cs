@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 using Windows.ApplicationModel.Resources;
 
 namespace wts.DefaultProject.Helpers
