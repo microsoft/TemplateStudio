@@ -11,7 +11,7 @@ The Window Template Studio allow you to combine different templates at your own 
 
 ## Interested in contributing
 
-Do you want to contribute? Here are our [contribution guidelines](../contributing.md).
+Do you want to contribute? Here are our [contribution guidelines](../CONTRIBUTING.md).
 
 ## Template Authoring
 
