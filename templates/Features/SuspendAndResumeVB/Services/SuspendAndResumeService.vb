@@ -25,7 +25,12 @@ Namespace Services
                 .SuspensionDate = DateTime.Now
             }
 
-            Dim target = OnBackgroundEnteringEvent.Target.[GetType]()
+            Dim target As Type = Nothing
+            
+            if OnBackgroundEnteringEvent IsNot Nothing Then
+                target = OnBackgroundEnteringEvent.Target.GetType()
+            EndIf
+
             Dim onBackgroundEnteringArgs = New OnBackgroundEnteringEventArgs(suspensionState, target)
 
             RaiseEvent OnBackgroundEntering(Me, onBackgroundEnteringArgs)
