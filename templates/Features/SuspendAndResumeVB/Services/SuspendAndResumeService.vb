@@ -27,9 +27,9 @@ Namespace Services
 
             Dim target As Type = Nothing
             
-            if OnBackgroundEnteringEvent IsNot Nothing Then
+            If OnBackgroundEnteringEvent IsNot Nothing Then
                 target = OnBackgroundEnteringEvent.Target.GetType()
-            EndIf
+            End If
 
             Dim onBackgroundEnteringArgs = New OnBackgroundEnteringEventArgs(suspensionState, target)
 
