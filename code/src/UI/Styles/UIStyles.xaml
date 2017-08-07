@@ -13,6 +13,7 @@
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleHyperlink.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleImage.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleListView.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleLogoDisplay.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StylePanel.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleShape.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleTextBlock.xaml" />

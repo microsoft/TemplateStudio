@@ -1,42 +1,35 @@
 ﻿//{**
-//This code block add code to the ShellNavigationItem to apply the correct color based on the selected theme.
+// This code block add code to the ShellNavigationItem to apply the correct color based on the selected theme.
 //**}
+//{[{
+using Param_RootNamespace.Services;
+//}]}
 
-private SolidColorBrush GetStandardTextColorBrush()
-{
-    var brush = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
+        public ShellNavigationItem(string label, Type pageType)
+        {
+            Label = label;
+            PageType = pageType;
+//^^
+//{[{
 
-    //{[{
-    if (!Services.ThemeSelectorService.IsLightThemeEnabled)
-    {
-        brush = Application.Current.Resources["SystemControlForegroundAltHighBrush"] as SolidColorBrush;
+            ThemeSelectorService.OnThemeChanged += (s, e) =>
+            {
+                if (!IsSelected)
+                {
+                    SelectedForeground = GetStandardTextColorBrush();
+                }
+            };
+//}]}
+        }
+
+        private SolidColorBrush GetStandardTextColorBrush()
+        {
+//{--{
+            var brush = Application.Current.Resources["ThemeControlForegroundBaseHighBrush"] as SolidColorBrush;
+
+            return brush;//}--}
+            //{[{
+            return ThemeSelectorService.GetSystemControlForegroundForTheme();
+            //}]}
+        }
     }
-    //}]}
-    return brush;
-}
-
-private ShellNavigationItem(string name, Symbol symbol, Type pageType)
-{
-    this.Label = name;
-    this.Symbol = symbol;
-    this.PageType = pageType;
-
-    //^^
-    //{[{
-    Services.ThemeSelectorService.OnThemeChanged += (s, e) => { if (!IsSelected) SelectedForeground = GetStandardTextColorBrush(); };
-    //}]}
-}
-
-private ShellNavigationItem(string name, IconElement icon, Type pageType)
-{
-    this.Label = name;
-    this._iconElement = icon;
-    this.PageType = pageType;
-
-    //^^
-    //{[{
-    Services.ThemeSelectorService.OnThemeChanged += (s, e) => { if (!IsSelected) SelectedForeground = GetStandardTextColorBrush(); };
-    //}]}
-}
-
-

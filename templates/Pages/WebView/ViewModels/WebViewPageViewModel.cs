@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -8,9 +8,10 @@ namespace Param_ItemNamespace.ViewModels
     public class WebViewPageViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         // TODO WTS: Set your hyperlink default here
-        private const string defaultUrl = "https://developer.microsoft.com/en-us/windows/apps";
+        private const string DefaultUrl = "https://developer.microsoft.com/en-us/windows/apps";
 
         private Uri _source;
+
         public Uri Source
         {
             get { return _source; }
@@ -18,50 +19,65 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         private bool _isLoading;
+
         public bool IsLoading
         {
-            get { return _isLoading; }
+            get
+            {
+                return _isLoading;
+            }
+
             set
             {
-                if (value) IsShowingFailedMessage = false;
+                if (value)
+                {
+                    IsShowingFailedMessage = false;
+                }
+
                 Set(ref _isLoading, value);
                 IsLoadingVisibility = value ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
         private Visibility _isLoadingVisibility;
+
         public Visibility IsLoadingVisibility
         {
             get { return _isLoadingVisibility; }
-            set
-            {
-                Set(ref _isLoadingVisibility, value);
-            }
+            set { Set(ref _isLoadingVisibility, value); }
         }
 
         private bool _isShowingFailedMessage;
+
         public bool IsShowingFailedMessage
         {
-            get { return _isShowingFailedMessage; }
+            get
+            {
+                return _isShowingFailedMessage;
+            }
+
             set
             {
-                if (value) IsLoading = false;
+                if (value)
+                {
+                    IsLoading = false;
+                }
+
                 Set(ref _isShowingFailedMessage, value);
                 FailedMesageVisibility = value ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
         private Visibility _failedMesageVisibility;
+
         public Visibility FailedMesageVisibility
         {
             get { return _failedMesageVisibility; }
-            set
-            {
-                Set(ref _failedMesageVisibility, value);
-            }
+            set { Set(ref _failedMesageVisibility, value); }
         }
 
         private ICommand _navCompleted;
+
         public ICommand NavCompletedCommand
         {
             get
@@ -81,6 +97,7 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         private ICommand _navFailed;
+
         public ICommand NavFailedCommand
         {
             get
@@ -101,6 +118,7 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         private ICommand _retryCommand;
+
         public ICommand RetryCommand
         {
             get
@@ -123,6 +141,7 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         private ICommand _browserBackCommand;
+
         public ICommand BrowserBackCommand
         {
             get
@@ -137,6 +156,7 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         private ICommand _browserForwardCommand;
+
         public ICommand BrowserForwardCommand
         {
             get
@@ -151,6 +171,7 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         private ICommand _refreshCommand;
+
         public ICommand RefreshCommand
         {
             get
@@ -165,6 +186,7 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         private ICommand _openInBrowserCommand;
+
         public ICommand OpenInBrowserCommand
         {
             get
@@ -183,7 +205,7 @@ namespace Param_ItemNamespace.ViewModels
         public WebViewPageViewModel()
         {
             IsLoading = true;
-            Source = new Uri(defaultUrl);
+            Source = new Uri(DefaultUrl);
         }
 
         public void Initialize(WebView webView)

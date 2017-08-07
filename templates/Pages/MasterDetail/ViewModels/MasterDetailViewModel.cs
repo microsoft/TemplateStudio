@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,12 +12,13 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class MasterDetailViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        const string NarrowStateName = "NarrowState";
-        const string WideStateName = "WideState";
+        private const string NarrowStateName = "NarrowState";
+        private const string WideStateName = "WideState";
 
         private VisualState _currentState;
 
         private Order _selected;
+
         public Order Selected
         {
             get { return _selected; }
@@ -25,6 +26,7 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         public ICommand ItemClickCommand { get; private set; }
+
         public ICommand StateChangedCommand { get; private set; }
 
         public ObservableCollection<Order> SampleItems { get; private set; } = new ObservableCollection<Order>();
@@ -46,6 +48,7 @@ namespace Param_ItemNamespace.ViewModels
             {
                 SampleItems.Add(item);
             }
+
             Selected = SampleItems.First();
         }
 

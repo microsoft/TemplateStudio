@@ -1,10 +1,9 @@
-{
+﻿{
   "author": "Microsoft",
   "classifications": ["Universal"],
   "name": "Map",
   "groupIdentity": "wts.Page.Map",
   "identity": "wts.Page.Map.CodeBehind",
-  "shortName": "Map Page",
   "description": "The map page is based around the Map Control. Code includes adding a Map Icon and setting your location.",
   "tags":
   {

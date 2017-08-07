@@ -1,4 +1,4 @@
-{
+﻿{
   "author": "Microsoft",
   "classifications": [
     "Universal"
@@ -6,7 +6,6 @@
   "name": "Live Tile",
   "groupIdentity": "wts.Feat.LiveTile",
   "identity": "wts.Feat.LiveTile",
-  "shortName": "Live Tile",
   "description": "Adds a sample to show updating the tile as well as code for working with multiple tiles.",
   "tags": {
     "language": "C#",

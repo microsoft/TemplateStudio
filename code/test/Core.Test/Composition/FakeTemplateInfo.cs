@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
@@ -33,37 +25,37 @@ namespace Microsoft.Templates.Core.Test.Composition
             _tags.Add(key, cacheTag);
         }
 
-        public string Author => String.Empty;
+        public string Author => string.Empty;
 
-        public string Description => String.Empty;
+        public string Description => string.Empty;
 
         public IReadOnlyList<string> Classifications => null;
 
-        public string DefaultName => String.Empty;
+        public string DefaultName => string.Empty;
 
         public Guid GeneratorId => Guid.Empty;
 
-        public string ShortName => String.Empty;
+        public string ShortName => string.Empty;
 
         public Guid ConfigMountPointId => Guid.Empty;
 
-        public string ConfigPlace => String.Empty;
+        public string ConfigPlace => string.Empty;
 
         public Guid LocaleConfigMountPointId => Guid.Empty;
 
-        public string LocaleConfigPlace => String.Empty;
+        public string LocaleConfigPlace => string.Empty;
 
         public int Precedence => -1;
-            
+
         public IReadOnlyDictionary<string, ICacheParameter> CacheParameters => null;
 
         public IReadOnlyList<ITemplateParameter> Parameters => null;
 
         public Guid HostConfigMountPointId => Guid.Empty;
 
-        public string HostConfigPlace => String.Empty;
+        public string HostConfigPlace => string.Empty;
 
-        public string ThirdPartyNotices => String.Empty;
+        public string ThirdPartyNotices => string.Empty;
 
         public IReadOnlyDictionary<string, IBaselineInfo> BaselineInfo => null;
     }

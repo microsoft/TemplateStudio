@@ -364,7 +364,7 @@
   <data name="GenControllerUnsafeGenerateAsyncMessage" xml:space="preserve">
     <value>Generating the template {0} to {1}.</value>
   </data>
-  <data name="InformationWindowIntilizeViewModelMessage" xml:space="preserve">
+  <data name="InformationWindowInitializeViewModelMessage" xml:space="preserve">
     <value>"{0} is not expected as valid type for the Information Window."</value>
   </data>
   <data name="UndefinedErrorString" xml:space="preserve">
@@ -543,5 +543,17 @@
   </data>
   <data name="ChangesSummaryConflictGeneratedFile" xml:space="preserve">
     <value>Generated file</value>
+  </data>
+  <data name="ButtonAddTemplate" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="ButtonConfirmTemplate" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="ButtonViewInfo" xml:space="preserve">
+    <value>View info</value>
+  </data>
+  <data name="ButtonCloseStatusButton" xml:space="preserve">
+    <value>Close status box</value>
   </data>
 </root>
