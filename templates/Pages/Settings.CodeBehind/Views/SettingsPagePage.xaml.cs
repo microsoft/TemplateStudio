@@ -1,6 +1,7 @@
-﻿using Windows.UI.Xaml.Controls;
-using Param_ItemNamespace.Services;
+﻿using Param_ItemNamespace.Services;
 using Windows.ApplicationModel;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace Param_ItemNamespace.Views
 {
@@ -9,20 +10,22 @@ namespace Param_ItemNamespace.Views
         //// TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
         //// TODO WTS: Setup your privacy web in your Resource File, currently set to https://YourPrivacyUrlGoesHere
 
-        private bool _isLightThemeEnabled;
+        private ElementTheme _elementTheme = ElementTheme.Default;
 
-        public bool IsLightThemeEnabled
+        public ElementTheme ElementTheme
         {
-            get { return _isLightThemeEnabled; }
-            set { Set(ref _isLightThemeEnabled, value); }
+            get { return _elementTheme; }
+
+            set { Set(ref _elementTheme, value); }
         }
 
-        private string _appDescription;
+        private string _versionDescription;
 
-        public string AppDescription
+        public string VersionDescription
         {
-            get { return _appDescription; }
-            set { Set(ref _appDescription, value); }
+            get { return _versionDescription; }
+
+            set { Set(ref _versionDescription, value); }
         }
 
         public SettingsPagePage()
@@ -32,11 +35,12 @@ namespace Param_ItemNamespace.Views
 
         private void Initialize()
         {
-            IsLightThemeEnabled = ThemeSelectorService.IsLightThemeEnabled;
-            AppDescription = GetAppDescription();
+            ElementTheme = ThemeSelectorService.Theme;
+
+            VersionDescription = GetVersionDescription();
         }
 
-        private string GetAppDescription()
+        private string GetVersionDescription()
         {
             var package = Package.Current;
             var packageId = package.Id;
@@ -45,16 +49,13 @@ namespace Param_ItemNamespace.Views
             return $"{package.DisplayName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
         }
 
-        private async void ThemeToggle_Toggled(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void ThemeChanged_CheckedAsync(object sender, RoutedEventArgs e)
         {
-            // Only switch theme if value has changed (not on initialization)
-            var toggleSwitch = sender as ToggleSwitch;
-            if (toggleSwitch != null)
+            var param = (sender as RadioButton)?.CommandParameter;
+
+            if (param != null)
             {
-                if (toggleSwitch.IsOn != ThemeSelectorService.IsLightThemeEnabled)
-                {
-                    await ThemeSelectorService.SwitchThemeAsync();
-                }
+                await ThemeSelectorService.SetThemeAsync((ElementTheme)param);
             }
         }
     }

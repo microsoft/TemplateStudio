@@ -1,43 +1,51 @@
 ﻿using System;
 using System.Windows.Input;
-using Windows.ApplicationModel;
 using Param_RootNamespace.Services;
+using Windows.ApplicationModel;
+using Windows.UI.Xaml;
 
 namespace Param_ItemNamespace.ViewModels
 {
     public class SettingsPageViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
-        private bool _isLightThemeEnabled;
+        private ElementTheme _elementTheme = ElementTheme.Default;
 
-        public bool IsLightThemeEnabled
+        public ElementTheme ElementTheme
         {
-            get { return _isLightThemeEnabled; }
-            set { Set(ref _isLightThemeEnabled, value); }
+            get { return _elementTheme; }
+
+            set { Set(ref _elementTheme, value); }
         }
 
-        private string _appDescription;
+        private string _versionDescription;
 
-        public string AppDescription
+        public string VersionDescription
         {
-            get { return _appDescription; }
-            set { Set(ref _appDescription, value); }
+            get { return _versionDescription; }
+
+            set { Set(ref _versionDescription, value); }
         }
 
         public ICommand SwitchThemeCommand { get; private set; }
 
         public SettingsPageViewModel()
         {
-            SwitchThemeCommand = new RelayCommand(async () => { await ThemeSelectorService.SwitchThemeAsync(); });
+            SwitchThemeCommand = new RelayCommand<ElementTheme>(
+                async (param) =>
+                {
+                    await ThemeSelectorService.SetThemeAsync(param);
+                });
         }
 
         public void Initialize()
         {
-            IsLightThemeEnabled = ThemeSelectorService.IsLightThemeEnabled;
-            AppDescription = GetAppDescription();
+            ElementTheme = ThemeSelectorService.Theme;
+
+            VersionDescription = GetVersionDescription();
         }
 
-        private string GetAppDescription()
+        private string GetVersionDescription()
         {
             var package = Package.Current;
             var packageId = package.Id;
