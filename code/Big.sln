@@ -38,6 +38,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fakes", "test\Fakes\Fakes.csproj", "{FB3C81AD-823E-409C-BF6D-27534B84A8AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localization", "tools\Localization\Localization.csproj", "{84900DD1-8F31-4D6F-8C8A-0BAAC25829DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Analyze|Any CPU = Analyze|Any CPU
@@ -98,6 +100,12 @@ Global
 		{FB3C81AD-823E-409C-BF6D-27534B84A8AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB3C81AD-823E-409C-BF6D-27534B84A8AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB3C81AD-823E-409C-BF6D-27534B84A8AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84900DD1-8F31-4D6F-8C8A-0BAAC25829DA}.Analyze|Any CPU.ActiveCfg = Analyze|Any CPU
+		{84900DD1-8F31-4D6F-8C8A-0BAAC25829DA}.Analyze|Any CPU.Build.0 = Analyze|Any CPU
+		{84900DD1-8F31-4D6F-8C8A-0BAAC25829DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84900DD1-8F31-4D6F-8C8A-0BAAC25829DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84900DD1-8F31-4D6F-8C8A-0BAAC25829DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84900DD1-8F31-4D6F-8C8A-0BAAC25829DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,5 +117,6 @@ Global
 		{D5E1C23A-7547-412A-82F1-F00C34622C1E} = {428D8EC8-DF58-4921-B464-967086C924A4}
 		{2B997E0A-16C8-4B8E-810A-D1D7DAFBD760} = {428D8EC8-DF58-4921-B464-967086C924A4}
 		{FB3C81AD-823E-409C-BF6D-27534B84A8AF} = {481CC407-92E7-42A9-AD6E-AA157E5D40C3}
+		{84900DD1-8F31-4D6F-8C8A-0BAAC25829DA} = {85F5D200-F318-4B12-981F-8DECF8FA3078}
 	EndGlobalSection
 EndGlobal

@@ -15,5 +15,7 @@ namespace Microsoft.Templates.Core.Gen
         public List<string> ConflictingFiles { get; } = new List<string>();
 
         public List<string> UnchangedFiles { get; } = new List<string>();
+
+        public bool SyncGeneration { get; set; }
     }
 }

@@ -51,7 +51,7 @@ namespace Localization
 
             string sourceDirectory = commandInfo.Arguments[0];
             string destinationDirectory = commandInfo.Arguments[1];
-            List<string> cultures = new List<string>(commandInfo.Arguments[2].Split(new [] { ";" }, StringSplitOptions.RemoveEmptyEntries));
+            List<string> cultures = new List<string>(commandInfo.Arguments[2].Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries));
             LocalizableItemsExtractor extractor = new LocalizableItemsExtractor(sourceDirectory, destinationDirectory);
             extractor.ExtractVsix(cultures);
             extractor.ExtractProjectTemplates(cultures);

@@ -23,7 +23,9 @@ namespace Microsoft.Templates.Core.Test
             _fixture = fixture;
         }
 
-        [Theory, MemberData("GetAllLanguages"), Trait("Type", "ProjectGeneration")]
+        [Theory]
+        [MemberData("GetAllLanguages")]
+        [Trait("Type", "ProjectGeneration")]
         public void Infer_Existing(string language)
         {
             SetUpFixtureForTesting(language);
@@ -38,7 +40,8 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal("App1", result);
         }
 
-        [Theory, MemberData("GetAllLanguages"), Trait("Type", "ProjectGeneration")]
+        [Theory]
+        [MemberData("GetAllLanguages")]
         public void Infer_Reserved(string language)
         {
             SetUpFixtureForTesting(language);
@@ -53,7 +56,8 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal("Page1", result);
         }
 
-        [Theory, MemberData("GetAllLanguages"), Trait("Type", "ProjectGeneration")]
+        [Theory]
+        [MemberData("GetAllLanguages")]
         public void Infer_Default(string language)
         {
             SetUpFixtureForTesting(language);
@@ -68,7 +72,8 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal("LiveTile1", result);
         }
 
-        [Theory, MemberData("GetAllLanguages"), Trait("Type", "ProjectGeneration")]
+        [Theory]
+        [MemberData("GetAllLanguages")]
         public void Infer_Clean(string language)
         {
             SetUpFixtureForTesting(language);
@@ -79,7 +84,8 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal("BlankPage", result);
         }
 
-        [Theory, MemberData("GetAllLanguages"), Trait("Type", "ProjectGeneration")]
+        [Theory]
+        [MemberData("GetAllLanguages")]
         public void Infer_Clean2(string language)
         {
             SetUpFixtureForTesting(language);
@@ -90,7 +96,8 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal("ÑäöÜPage", result);
         }
 
-        [Theory, MemberData("GetAllLanguages"), Trait("Type", "ProjectGeneration")]
+        [Theory]
+        [MemberData("GetAllLanguages")]
         public void Infer_TitleCase(string language)
         {
             SetUpFixtureForTesting(language);
@@ -101,7 +108,8 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal("BlankPage", result);
         }
 
-        [Theory, MemberData("GetAllLanguages"), Trait("Type", "ProjectGeneration")]
+        [Theory]
+        [MemberData("GetAllLanguages")]
         public void Validate(string language)
         {
             SetUpFixtureForTesting(language);
@@ -111,7 +119,8 @@ namespace Microsoft.Templates.Core.Test
             Assert.True(result.IsValid);
         }
 
-        [Theory, MemberData("GetAllLanguages"), Trait("Type", "ProjectGeneration")]
+        [Theory]
+        [MemberData("GetAllLanguages")]
         public void Validate_Empty(string language)
         {
             SetUpFixtureForTesting(language);
@@ -122,7 +131,8 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal(ValidationErrorType.Empty, result.ErrorType);
         }
 
-        [Theory, MemberData("GetAllLanguages"), Trait("Type", "ProjectGeneration")]
+        [Theory]
+        [MemberData("GetAllLanguages")]
         public void Validate_Existing(string language)
         {
             SetUpFixtureForTesting(language);
@@ -138,7 +148,8 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal(ValidationErrorType.AlreadyExists, result.ErrorType);
         }
 
-        [Theory, MemberData("GetAllLanguages"), Trait("Type", "ProjectGeneration")]
+        [Theory]
+        [MemberData("GetAllLanguages")]
         public void Validate_Default(string language)
         {
             SetUpFixtureForTesting(language);
@@ -153,7 +164,8 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal(ValidationErrorType.ReservedName, result.ErrorType);
         }
 
-        [Theory, MemberData("GetAllLanguages"), Trait("Type", "ProjectGeneration")]
+        [Theory]
+        [MemberData("GetAllLanguages")]
         public void Validate_Reserved(string language)
         {
             SetUpFixtureForTesting(language);
@@ -168,7 +180,8 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal(ValidationErrorType.ReservedName, result.ErrorType);
         }
 
-        [Theory, MemberData("GetAllLanguages"), Trait("Type", "ProjectGeneration")]
+        [Theory]
+        [MemberData("GetAllLanguages")]
         public void Validate_BadFormat_InvalidChars(string language)
         {
             SetUpFixtureForTesting(language);
@@ -180,7 +193,8 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal(ValidationErrorType.BadFormat, result.ErrorType);
         }
 
-        [Theory, MemberData("GetAllLanguages"), Trait("Type", "ProjectGeneration")]
+        [Theory]
+        [MemberData("GetAllLanguages")]
         public void Validate_BadFormat_StartWithNumber(string language)
         {
             SetUpFixtureForTesting(language);

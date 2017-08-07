@@ -46,7 +46,7 @@ namespace Microsoft.Templates.Core.Test.Composition
         public string LocaleConfigPlace => string.Empty;
 
         public int Precedence => -1;
-            
+
         public IReadOnlyDictionary<string, ICacheParameter> CacheParameters => null;
 
         public IReadOnlyList<ITemplateParameter> Parameters => null;

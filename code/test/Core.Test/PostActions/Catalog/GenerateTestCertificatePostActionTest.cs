@@ -35,8 +35,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public List<string> FilesToOpen { get; } = new List<string>();
 
-
-        [Fact, Trait("Type", "ProjectGeneration")]
+        [Fact]
         public void Execute_Ok()
         {
             var projectName = "test";

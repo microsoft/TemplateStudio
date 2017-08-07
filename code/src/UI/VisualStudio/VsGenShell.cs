@@ -371,9 +371,8 @@ namespace Microsoft.Templates.UI.VisualStudio
                 if (project != null)
                 {
                     var solution = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution;
-                    IVsHierarchy hierarchy;
 
-                    solution.GetProjectOfUniqueName(project.FullName, out hierarchy);
+                    solution.GetProjectOfUniqueName(project.FullName, out IVsHierarchy hierarchy);
 
                     if (hierarchy != null)
                     {

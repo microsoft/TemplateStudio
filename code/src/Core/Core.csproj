@@ -191,8 +191,7 @@
     <Compile Include="PostActions\Catalog\AddContextItemsToProjectPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeFailureType.cs" />
     <Compile Include="PostActions\Catalog\Merge\PostActionFormatter.cs" />
-    <Compile Include="PostActions\Catalog\NewItemGeneration\CreateSyncInstructionsPostAction.cs" />
-    <Compile Include="PostActions\Catalog\NewItemGeneration\CreateSyncSummaryPostAction.cs" />
+    <Compile Include="PostActions\Catalog\NewItemGeneration\CreateSummaryPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\GenerateMergeInfoPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\GetMergeFilesFromProjectPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeConfiguration.cs" />
@@ -394,6 +393,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.zh-TW.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

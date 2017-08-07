@@ -173,4 +173,3 @@ namespace Microsoft.Templates.Fakes
         }
     }
 }
-

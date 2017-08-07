@@ -32,7 +32,6 @@ namespace Microsoft.Templates.Fakes
 		{0}.Release|x86.Deploy.0 = Release|x86
 ";
 
-
         private const string ProjectTemplateCS = @"Project(""{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"") = ""{name}"", ""{name}\{name}.csproj"", ""{id}""
 EndProject
 ";
@@ -68,11 +67,10 @@ EndProject
 
                 slnContent = slnContent.Insert(globalIndex, projectContent);
 
-                var GlobalSectionIndex = slnContent.IndexOf(GlobalSectionText);
+                var globalSectionIndex = slnContent.IndexOf(GlobalSectionText);
                 var projectConfigContent = string.Format(ConfigurationTemplate, projectGuid);
 
-                slnContent = slnContent.Insert(GlobalSectionIndex + GlobalSectionText.Length + 1, projectConfigContent);
-
+                slnContent = slnContent.Insert(globalSectionIndex + GlobalSectionText.Length + 1, projectConfigContent);
             }
 
             File.WriteAllText(_path, slnContent, Encoding.UTF8);

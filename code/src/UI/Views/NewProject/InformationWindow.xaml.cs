@@ -68,7 +68,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
             }
             else
             {
-                throw new System.Exception(string.Format(StringRes.InformationWindowIntilizeViewModelMessage, info.GetType().ToString()));
+                throw new System.Exception(string.Format(StringRes.InformationWindowInitializeViewModelMessage, info.GetType().ToString()));
             }
 
             ViewModel.InformationVisibility = Visibility.Visible;

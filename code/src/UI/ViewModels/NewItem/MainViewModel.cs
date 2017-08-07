@@ -64,7 +64,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             ConfigProjectType = configInfo.ProjectType;
         }
 
-        public void SetNewItemSetupTitle() => Title = string.Format(StringRes.NewItemTitle_SF, this.GetLocalizedTemplateTypeName(ConfigTemplateType).ToLower());
+        public void SetNewItemSetupTitle() => Title = string.Format(StringRes.NewItemTitle_SF, GetLocalizedTemplateTypeName(ConfigTemplateType).ToLower());
 
         private string GetLocalizedTemplateTypeName(TemplateType templateType)
         {

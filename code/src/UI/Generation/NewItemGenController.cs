@@ -236,10 +236,12 @@ namespace Microsoft.Templates.UI
             if (userSelection.ItemGenerationType == ItemGenerationType.GenerateAndMerge)
             {
                 // BackupProjectFiles
+                compareResult.SyncGeneration = true;
                 ExecuteSyncGenerationPostActions(compareResult);
             }
             else
             {
+                compareResult.SyncGeneration = false;
                 ExecuteOutputGenerationPostActions(compareResult);
             }
         }

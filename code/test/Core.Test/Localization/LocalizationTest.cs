@@ -2,9 +2,11 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using Microsoft.Templates.Core.Gen;
 using System.Globalization;
 using System.Linq;
+
+using Microsoft.Templates.Core.Gen;
+
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test
@@ -31,7 +33,9 @@ namespace Microsoft.Templates.Core.Test
             SetUpFixtureForTesting(Language.CSharp);
 
             var projectTemplates = GenContext.ToolBox.Repo.GetProjectTypes().ToList();
-            var template = projectTemplates.Count > 0 ? projectTemplates[0] : null;
+
+            MetadataInfo template = projectTemplates != null && projectTemplates.Count > 0 ? projectTemplates[0] : null;
+
             Assert.NotNull(template);
             Assert.Equal<string>("Test Project Type", template.DisplayName);
             Assert.Equal<string>("Test Project Type Summary", template.Summary);
@@ -45,7 +49,8 @@ namespace Microsoft.Templates.Core.Test
             SetUpFixtureForTesting(Language.CSharp);
 
             var projectTemplates = GenContext.ToolBox.Repo.GetProjectTypes().ToList();
-            var template = projectTemplates.Count > 0 ? projectTemplates[0] : null;
+            MetadataInfo template = projectTemplates != null && projectTemplates.Count > 0 ? projectTemplates[0] : null;
+
             Assert.NotNull(template);
             Assert.Equal<string>("Proyecto de prueba", template.DisplayName);
             Assert.Equal<string>("Resumen del proyecto de prueba", template.Summary);
@@ -59,7 +64,8 @@ namespace Microsoft.Templates.Core.Test
             SetUpFixtureForTesting(Language.CSharp);
 
             var projectTemplates = GenContext.ToolBox.Repo.GetProjectTypes().ToList();
-            var template = projectTemplates.Count > 0 ? projectTemplates[0] : null;
+            MetadataInfo template = projectTemplates != null && projectTemplates.Count > 0 ? projectTemplates[0] : null;
+
             Assert.NotNull(template);
             Assert.Equal<string>("Test Project Type Base", template.DisplayName);
             Assert.Equal<string>("Test Project Type Base Summary", template.Summary);
@@ -73,7 +79,8 @@ namespace Microsoft.Templates.Core.Test
             SetUpFixtureForTesting(Language.CSharp);
 
             var projectTemplates = GenContext.ToolBox.Repo.GetProjectTypes().ToList();
-            var template = projectTemplates.Count > 0 ? projectTemplates[0] : null;
+            MetadataInfo template = projectTemplates != null && projectTemplates.Count > 0 ? projectTemplates[0] : null;
+
             Assert.NotNull(template);
             Assert.Equal<string>("Test Project Type Base", template.DisplayName);
             Assert.Equal<string>("Test Project Type Base Summary", template.Summary);
@@ -87,7 +94,8 @@ namespace Microsoft.Templates.Core.Test
             SetUpFixtureForTesting(Language.CSharp);
 
             var frameworkTemplates = GenContext.ToolBox.Repo.GetFrameworks().ToList();
-            var template = frameworkTemplates.Count > 0 ? frameworkTemplates[0] : null;
+            MetadataInfo template = frameworkTemplates != null && frameworkTemplates.Count > 0 ? frameworkTemplates[0] : null;
+
             Assert.NotNull(template);
             Assert.Equal<string>("Test Framework", template.DisplayName);
             Assert.Equal<string>("Test Framework Summary", template.Summary);
@@ -101,7 +109,8 @@ namespace Microsoft.Templates.Core.Test
             SetUpFixtureForTesting(Language.CSharp);
 
             var frameworkTemplates = GenContext.ToolBox.Repo.GetFrameworks().ToList();
-            var template = frameworkTemplates.Count > 0 ? frameworkTemplates[0] : null;
+            MetadataInfo template = frameworkTemplates != null && frameworkTemplates.Count > 0 ? frameworkTemplates[0] : null;
+
             Assert.NotNull(template);
             Assert.Equal<string>("Framework de prueba", template.DisplayName);
             Assert.Equal<string>("Resumen de Framework de prueba", template.Summary);
@@ -115,7 +124,8 @@ namespace Microsoft.Templates.Core.Test
             SetUpFixtureForTesting(Language.CSharp);
 
             var frameworkTemplates = GenContext.ToolBox.Repo.GetFrameworks().ToList();
-            var template = frameworkTemplates != null && frameworkTemplates.Count > 0 ? frameworkTemplates[0] : null;
+            MetadataInfo template = frameworkTemplates != null && frameworkTemplates.Count > 0 ? frameworkTemplates[0] : null;
+
             Assert.NotNull(template);
             Assert.Equal<string>("Test Framework Base", template.DisplayName);
             Assert.Equal<string>("Test Framework Base Summary", template.Summary);
@@ -129,7 +139,8 @@ namespace Microsoft.Templates.Core.Test
             SetUpFixtureForTesting(Language.CSharp);
 
             var frameworkTemplates = GenContext.ToolBox.Repo.GetFrameworks().ToList();
-            var template = frameworkTemplates.Count > 0 ? frameworkTemplates[0] : null;
+            MetadataInfo template = frameworkTemplates != null && frameworkTemplates.Count > 0 ? frameworkTemplates[0] : null;
+
             Assert.NotNull(template);
             Assert.Equal<string>("Test Framework Base", template.DisplayName);
             Assert.Equal<string>("Test Framework Base Summary", template.Summary);
@@ -143,6 +154,7 @@ namespace Microsoft.Templates.Core.Test
             SetUpFixtureForTesting(Language.CSharp);
 
             var template = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == "Microsoft.UWPTemplates.Test.PageTemplate.CSharp");
+
             Assert.NotNull(template);
             Assert.Equal<string>("Microsoft España", template.Author);
             Assert.Equal<string>("Página en Blanco", template.Name);
@@ -157,6 +169,7 @@ namespace Microsoft.Templates.Core.Test
             SetUpFixtureForTesting(Language.CSharp);
 
             var template = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == "Microsoft.UWPTemplates.Test.PageTemplate.CSharp");
+
             Assert.NotNull(template);
             Assert.Equal<string>("Microsoft USA", template.Author);
             Assert.Equal<string>("Blank US", template.Name);
@@ -171,6 +184,7 @@ namespace Microsoft.Templates.Core.Test
             SetUpFixtureForTesting(Language.CSharp);
 
             var template = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == "Microsoft.UWPTemplates.Test.PageTemplate.CSharp");
+
             Assert.NotNull(template);
             Assert.Equal<string>("Microsoft", template.Author);
             Assert.Equal<string>("PageTemplate", template.Name);
@@ -185,6 +199,7 @@ namespace Microsoft.Templates.Core.Test
             SetUpFixtureForTesting(Language.CSharp);
 
             var template = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == "Microsoft.UWPTemplates.Test.PageTemplate.CSharp");
+
             Assert.NotNull(template);
             Assert.Equal<string>("Microsoft", template.Author);
             Assert.Equal<string>("PageTemplate", template.Name);
@@ -199,6 +214,7 @@ namespace Microsoft.Templates.Core.Test
             SetUpFixtureForTesting(Language.CSharp);
 
             var template = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == "Microsoft.UWPTemplates.Test.FeatureTemplate.CSharp");
+
             Assert.NotNull(template);
             Assert.Equal<string>("Microsoft España", template.Author);
             Assert.Equal<string>("Feature de prueba", template.Name);
@@ -213,6 +229,7 @@ namespace Microsoft.Templates.Core.Test
             SetUpFixtureForTesting(Language.CSharp);
 
             var template = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == "Microsoft.UWPTemplates.Test.FeatureTemplate.CSharp");
+
             Assert.NotNull(template);
             Assert.Equal<string>("Microsoft USA", template.Author);
             Assert.Equal<string>("Feature US", template.Name);
@@ -227,6 +244,7 @@ namespace Microsoft.Templates.Core.Test
             SetUpFixtureForTesting(Language.CSharp);
 
             var template = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == "Microsoft.UWPTemplates.Test.FeatureTemplate.CSharp");
+
             Assert.NotNull(template);
             Assert.Equal<string>("Microsoft", template.Author);
             Assert.Equal<string>("FeatureTemplate", template.Name);
@@ -241,6 +259,7 @@ namespace Microsoft.Templates.Core.Test
             SetUpFixtureForTesting(Language.CSharp);
 
             var template = GenContext.ToolBox.Repo.GetAll().FirstOrDefault(t => t.Identity == "Microsoft.UWPTemplates.Test.FeatureTemplate.CSharp");
+
             Assert.NotNull(template);
             Assert.Equal<string>("Microsoft", template.Author);
             Assert.Equal<string>("FeatureTemplate", template.Name);

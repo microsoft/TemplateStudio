@@ -2,19 +2,15 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using Microsoft.Templates.Core.Mvvm;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 
+using Microsoft.Templates.Core.Mvvm;
+
 namespace Microsoft.Templates.VsEmulator.LoadProject
 {
-    public class LoadProjectViewModel: Observable
+    public class LoadProjectViewModel : Observable
     {
         private readonly Window _host;
 
@@ -26,7 +22,6 @@ namespace Microsoft.Templates.VsEmulator.LoadProject
         public RelayCommand CloseCommand => new RelayCommand(_host.Close);
         public RelayCommand OkCommand => new RelayCommand(SetSelection, CanSelect);
         public RelayCommand BrowseCommand => new RelayCommand(ShowFileDialog);
-
 
         private string _solutionpath;
         public string SolutionPath

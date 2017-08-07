@@ -214,6 +214,5 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Assert.True(result);
             Assert.Equal(expected, factData);
         }
-
     }
 }

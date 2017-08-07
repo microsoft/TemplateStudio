@@ -10,41 +10,41 @@ namespace Localization
 {
     abstract class ProjectTemplateGeneratorBase
     {
-        private DirectoryInfo sourceDir;
-        private DirectoryInfo destinationDir;
+        private DirectoryInfo _sourceDir;
+        private DirectoryInfo _destinationDir;
 
-        protected virtual string sourceDirRelPath { get; }
-        protected virtual string sourceDirNamePattern { get; }
-        protected virtual string sourceFileNamePattern { get; }
-        protected virtual string destinationDirNamePattern { get; }
-        protected virtual string destinationFileNamePattern { get; }
+        protected virtual string SourceDirRelPath { get; }
+        protected virtual string SourceDirNamePattern { get; }
+        protected virtual string SourceFileNamePattern { get; }
+        protected virtual string DestinationDirNamePattern { get; }
+        protected virtual string DestinationFileNamePattern { get; }
 
         internal ProjectTemplateGeneratorBase(string sourceDirPath, string destinationDirPath)
         {
-            sourceDirPath = Path.Combine(sourceDirPath + sourceDirRelPath);
-            this.sourceDir = new DirectoryInfo(sourceDirPath);
+            sourceDirPath = Path.Combine(sourceDirPath + SourceDirRelPath);
+            _sourceDir = new DirectoryInfo(sourceDirPath);
 
-            if (!this.sourceDir.Exists)
+            if (!_sourceDir.Exists)
             {
                 throw new DirectoryNotFoundException($"Source directory \"{sourceDirPath}\" not found.");
             }
 
-            if (this.sourceDir.Name.ToLower() != sourceDirNamePattern.ToLower())
+            if (_sourceDir.Name.ToLower() != SourceDirNamePattern.ToLower())
             {
-                throw new Exception($"Source directory \"{this.sourceDir.Name}\" is not valid. Directory name should be \"{sourceDirNamePattern}\".");
+                throw new Exception($"Source directory \"{_sourceDir.Name}\" is not valid. Directory name should be \"{SourceDirNamePattern}\".");
             }
 
-            this.destinationDir = new DirectoryInfo(destinationDirPath);
+            _destinationDir = new DirectoryInfo(destinationDirPath);
 
-            if (!this.destinationDir.Exists)
+            if (!_destinationDir.Exists)
             {
-                this.destinationDir.Create();
+                _destinationDir.Create();
             }
         }
 
         internal void GenerateProjectTemplates(List<string> cultures)
         {
-            DirectoryInfo templateDirectory = new DirectoryInfo(Path.Combine(this.destinationDir.FullName, destinationDirNamePattern));
+            DirectoryInfo templateDirectory = new DirectoryInfo(Path.Combine(_destinationDir.FullName, DestinationDirNamePattern));
 
             if (templateDirectory.Exists)
             {
@@ -52,8 +52,9 @@ namespace Localization
             }
 
             templateDirectory.Create();
-            var vstemplateFilePath = Path.Combine(sourceDir.FullName, sourceFileNamePattern);
-            var vstemplateFile = new FileInfo(vstemplateFilePath);
+
+            string vstemplateFilePath = Path.Combine(_sourceDir.FullName, SourceFileNamePattern);
+            FileInfo vstemplateFile = new FileInfo(vstemplateFilePath);
 
             if (!vstemplateFile.Exists)
             {
@@ -62,7 +63,7 @@ namespace Localization
 
             foreach (string culture in cultures)
             {
-                vstemplateFile.CopyTo(Path.Combine(templateDirectory.FullName, string.Format(destinationFileNamePattern, culture)), false);
+                vstemplateFile.CopyTo(Path.Combine(templateDirectory.FullName, string.Format(DestinationFileNamePattern, culture)), false);
             }
         }
     }

@@ -4,10 +4,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Localization
 {
@@ -15,8 +12,8 @@ namespace Localization
 
     internal class ToolCommandHandler
     {
-        private const string splitPattern = @"(""[a-zA-Z0-9\s_@:.;\-^!#$%&+={}\(\)\[\]\\\/]*?"")|([a-zA-Z0-9]+)";
-        private Dictionary<string, List<OnCommand>> handlers;
+        private const string SplitPattern = @"(""[a-zA-Z0-9\s_@:.;\-^!#$%&+={}\(\)\[\]\\\/]*?"")|([a-zA-Z0-9]+)";
+        private Dictionary<string, List<OnCommand>> _handlers;
 
         internal void Listen()
         {
@@ -28,7 +25,7 @@ namespace Localization
             {
                 Console.Write(">> ");
                 commandLine = Console.ReadLine().Trim();
-                MatchCollection matches = Regex.Matches(commandLine, splitPattern);
+                MatchCollection matches = Regex.Matches(commandLine, SplitPattern);
                 commandParts = new string[matches.Count];
                 int i = 0;
 
@@ -40,6 +37,7 @@ namespace Localization
                 if (commandParts.Length > 0)
                 {
                     string[] arguments = commandParts.Length > 1 ? new string[commandParts.Length - 1] : new string[] { };
+
                     if (commandParts.Length > 1)
                     {
                         Array.ConstrainedCopy(commandParts, 1, arguments, 0, arguments.Length);
@@ -52,9 +50,9 @@ namespace Localization
                         break;
                     }
 
-                    if (this.handlers != null && this.handlers.ContainsKey(commandInfo.Command) && this.handlers[commandInfo.Command].Count > 0)
+                    if (_handlers != null && _handlers.ContainsKey(commandInfo.Command) && _handlers[commandInfo.Command].Count > 0)
                     {
-                        foreach (OnCommand handler in this.handlers[commandInfo.Command])
+                        foreach (OnCommand handler in _handlers[commandInfo.Command])
                         {
                             try
                             {
@@ -79,17 +77,17 @@ namespace Localization
         {
             command = command.ToLower();
 
-            if (this.handlers == null)
+            if (_handlers == null)
             {
-                this.handlers = new Dictionary<string, List<OnCommand>>();
+                _handlers = new Dictionary<string, List<OnCommand>>();
             }
 
-            if (!this.handlers.ContainsKey(command))
+            if (!_handlers.ContainsKey(command))
             {
-                this.handlers.Add(command, new List<OnCommand>());
+                _handlers.Add(command, new List<OnCommand>());
             }
 
-            this.handlers[command].Add(handler);
+            _handlers[command].Add(handler);
         }
     }
 }

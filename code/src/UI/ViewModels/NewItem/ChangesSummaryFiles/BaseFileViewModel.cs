@@ -8,17 +8,10 @@ using System.Windows.Media;
 
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
-    public enum FileStatus
-    {
-        NewFile, ModifiedFile, ConflictingFile, WarningFile, Unchanged
-    }
-    public enum FileExtension
-    {
-        Default, CSharp, Resw, Xaml, Xml, Csproj, Appxmanifest, Json, Jpg, Png, Jpeg, Vb, Vbproj
-    }
     public abstract class BaseFileViewModel : Observable
     {
         public string DetailTitle { get; protected set; }
@@ -69,6 +62,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 return SystemColors.InfoTextBrush;
             }
+
             switch (FileStatus)
             {
                 case FileStatus.NewFile:
@@ -101,7 +95,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 case ".csproj":
                     return FileExtension.Csproj;
                 case ".appxmanifest":
-                    return FileExtension.Appxmanifest;
+                    return FileExtension.AppXManifest;
                 case ".json":
                     return FileExtension.Json;
                 case ".jpg":

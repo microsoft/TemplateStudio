@@ -3,10 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Localization
 {
@@ -40,7 +37,6 @@ namespace Localization
             Console.Clear();
             Console.WriteLine(separator);
             Console.WriteLine("** Windows Template Studio Localization Tool");
-            Console.WriteLine("** Copyright (c) 2017 Microsoft Corporation");
             Console.WriteLine(separator);
             Console.WriteLine();
         }

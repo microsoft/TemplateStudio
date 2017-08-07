@@ -2,10 +2,14 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
+namespace Microsoft.Templates.UI.ViewModels.Common
 {
-    public class SortImportsPostAction : SortNamespacesPostAction
+    public enum FileStatus
     {
-        public override string FilesToSearch => "*.vb";
+        NewFile,
+        ModifiedFile,
+        ConflictingFile,
+        WarningFile,
+        Unchanged,
     }
 }
