@@ -47,6 +47,10 @@ With this knowledge we can now add the new property for accessing our stored set
 Add the following to **SettingsViewModel.cs**
 
 ```csharp
+using {YourAppName}.Helpers;
+using System.Threading.Tasks;
+
+
 private bool? _isAutomaticErrorReportingEnabled;
 
 public bool? IsAutoErrorReportingEnabled
@@ -94,7 +98,7 @@ public SettingsViewModel ViewModel { get; } = Singleton<SettingsViewModel>.Insta
 
 so it uses the single instance.
 
-You may also need to add the follwoing using statement to the top of the file.
+You may also need to add the following using statement to the top of the file.
 
 ```csharp
 using {YourAppName}.Helpers;
@@ -114,7 +118,7 @@ It now awaits the call to the new Initializer like this:
 ```csharp
 protected override async void OnNavigatedTo(NavigationEventArgs e)
 {
-    await Singleton<SettingsViewModel>.Instance.EnsureInstanceInitializedAsync();
+    await ViewModel.EnsureInstanceInitializedAsync();
 }
 ```
 
@@ -185,6 +189,10 @@ With this knowledge we can now add the new property for accessing our stored set
 Add the following to **SettingsViewModel.cs**
 
 ```csharp
+using {YourAppName}.Helpers;
+using System.Threading.Tasks;
+
+
 private bool? _isAutomaticErrorReportingEnabled;
 
 public bool? IsAutoErrorReportingEnabled
@@ -232,7 +240,7 @@ It now awaits the call to the new Initializer like this:
 ```csharp
 protected override async void OnNavigatedTo(NavigationEventArgs e)
 {
-    await Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<SettingsViewModel>().EnsureInstanceInitializedAsync();
+    await ViewModel.EnsureInstanceInitializedAsync();
 }
 ```
 
@@ -298,6 +306,9 @@ protected override async void OnNavigatedTo(NavigationEventArgs e)
 also add the following to **SettingsPage.xaml.cs**.
 
 ```csharp
+using {YourAppName}.Helpers;
+
+
 private bool _isAutoErrorReportingEnabled;
 public bool IsAutoErrorReportingEnabled
 {
