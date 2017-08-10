@@ -1,6 +1,6 @@
 # Getting started with the generator codebase
 
-If you are authoring templates for Windows Template Studio, or interested in [contributing](../contributing.md) to this repo, then you are likely interested in how to use the latest version of this code. The required steps are outlined below.
+If you are authoring templates for Windows Template Studio, or interested in [contributing](../CONTRIBUTING.md) to this repo, then you are likely interested in how to use the latest version of this code. The required steps are outlined below.
 
 If you just want to take advantage from Windows Template Studio extension, check the [Getting Started with the Extension](getting-started-extension.md) page.
 
