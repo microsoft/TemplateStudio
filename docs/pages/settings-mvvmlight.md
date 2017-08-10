@@ -1,4 +1,4 @@
-# Settings Page
+# Settings Page (MVVM Light)
 
 By default the settings page contains a single boolean setting to track whether the app should be displayed with the Light or Dark theme.
 
