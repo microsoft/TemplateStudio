@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetTemplateType_page()
         {
-            SetUpFixtureForTesting(Language.CSharp);
+            SetUpFixtureForTesting(ProgrammingLanguages.CSharp);
 
             var target = GetTargetByIdentity("Microsoft.UWPTemplates.Test.PageTemplate.CSharp");
 
@@ -74,7 +74,7 @@ namespace Microsoft.Templates.Core.Test
 
             var folderName = "ProjectTemplate";
 
-            if (language == Language.VisualBasic)
+            if (language == ProgrammingLanguages.VisualBasic)
             {
                 folderName += "VB";
             }
@@ -324,7 +324,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetRightClickEnabled()
         {
-            SetUpFixtureForTesting(Language.CSharp);
+            SetUpFixtureForTesting(ProgrammingLanguages.CSharp);
 
             var target = GetTargetByName("RightClickTemplate");
             var result = target.GetRightClickEnabled();
@@ -335,7 +335,7 @@ namespace Microsoft.Templates.Core.Test
         [Fact]
         public void GetRightClickEnabledFalse()
         {
-            SetUpFixtureForTesting(Language.CSharp);
+            SetUpFixtureForTesting(ProgrammingLanguages.CSharp);
 
             var target = GetTargetByIdentity("Microsoft.UWPTemplates.Test.FeatureTemplate.CSharp");
             var result = target.GetRightClickEnabled();
@@ -375,7 +375,7 @@ namespace Microsoft.Templates.Core.Test
 
         public static IEnumerable<object[]> GetAllLanguages()
         {
-            foreach (var language in Language.GetAllLanguages())
+            foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
                 yield return new object[] { language };
             }

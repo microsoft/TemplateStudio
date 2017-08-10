@@ -223,7 +223,7 @@ namespace Microsoft.Templates.Core.Test
 
         public static IEnumerable<object[]> GetAllLanguages()
         {
-            foreach (var language in Language.GetAllLanguages())
+            foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
                 yield return new object[] { language };
             }

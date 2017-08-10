@@ -53,7 +53,7 @@ namespace Microsoft.Templates.Test
             {
                 Framework = framework,
                 ProjectType = projectType,
-                Language = Language.CSharp,
+                Language = ProgrammingLanguages.CSharp,
                 HomeName = "Main"
             };
 

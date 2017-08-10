@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Microsoft.Templates.Core
 {
-    public static class Language
+    public static class ProgrammingLanguages
     {
         public const string CSharp = "C#";
 
@@ -14,8 +14,8 @@ namespace Microsoft.Templates.Core
 
         public static IEnumerable<string> GetAllLanguages()
         {
-            yield return Language.CSharp;
-           //// yield return Language.VisualBasic;  // This is currently disabled until full VB support is enabled
+            yield return ProgrammingLanguages.CSharp;
+            //// yield return ProgrammingLanguages.VisualBasic;  // This is currently disabled until full VB support is enabled
         }
     }
 }

@@ -75,7 +75,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetProjectTemplates()
         {
-            foreach (var language in Language.GetAllLanguages())
+            foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
                 InitializeTemplatesForLanguage(new LocalTemplatesSource(), language);
 
@@ -101,7 +101,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetPageAndFeatureTemplates()
         {
-            foreach (var language in Language.GetAllLanguages())
+            foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
                 InitializeTemplatesForLanguage(new LocalTemplatesSource(), language);
 
