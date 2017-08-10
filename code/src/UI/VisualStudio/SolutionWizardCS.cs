@@ -10,7 +10,7 @@ namespace Microsoft.Templates.UI.VisualStudio
     {
         public SolutionWizardCS()
         {
-            Initialize(Language.CSharp);
+            Initialize(ProgrammingLanguages.CSharp);
         }
     }
 }
