@@ -2,7 +2,7 @@
 
 By default the settings page contains a single boolean setting to track whether the app should be displayed with the Light or Dark theme.
 
-## Add another boolean setting 
+## Add another boolean setting
 
 Add the following below the `ToggleSwitch` inside the `StackPanel` in **SettingsView.xaml**
 
