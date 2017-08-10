@@ -72,12 +72,14 @@
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
     <Compile Include="ClientInterface\ToolCommandHandler.cs" />
+    <Compile Include="Logic\CSharpProjectTemplateGenerator.cs" />
     <Compile Include="Logic\LocalizableItemsExtractor.cs" />
     <Compile Include="Logic\LocalizationTool.cs" />
     <Compile Include="Logic\RightClickCommandGenerator.cs" />
+    <Compile Include="Logic\VisualBasicProjectTemplateGenerator.cs" />
     <Compile Include="Logic\XmlUtility.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Logic\ProjectTemplateGenerator.cs" />
+    <Compile Include="Logic\ProjectTemplateGeneratorBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ClientInterface\ToolCommandInfo.cs" />
   </ItemGroup>

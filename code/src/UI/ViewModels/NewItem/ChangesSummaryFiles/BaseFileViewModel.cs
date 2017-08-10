@@ -65,13 +65,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
             switch (FileStatus)
             {
-                case FileStatus.New:
+                case FileStatus.NewFile:
                     return MainViewModel.Current.MainView.FindResource("UIGreen") as SolidColorBrush;
-                case FileStatus.Modified:
+                case FileStatus.ModifiedFile:
                     return MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
-                case FileStatus.Conflicting:
+                case FileStatus.ConflictingFile:
                     return MainViewModel.Current.MainView.FindResource("UIRed") as SolidColorBrush;
-                case FileStatus.Warning:
+                case FileStatus.WarningFile:
                     return MainViewModel.Current.MainView.FindResource("UIDarkYellow") as SolidColorBrush;
                 case FileStatus.Unchanged:
                     return MainViewModel.Current.MainView.FindResource("UIDarkBlue") as SolidColorBrush;
@@ -104,6 +104,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     return FileExtension.Jpeg;
                 case ".png":
                     return FileExtension.Png;
+                case ".vb":
+                    return FileExtension.Vb;
+                case ".vbproj":
+                    return FileExtension.Vbproj;
                 default:
                     return FileExtension.Default;
             }
@@ -127,6 +131,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     return "/Microsoft.Templates.UI;component/Assets/FileExtensions/Csproj.png";
                 case FileExtension.Json:
                     return "/Microsoft.Templates.UI;component/Assets/FileExtensions/Json.png";
+                case FileExtension.Vb:
+                    return "/Microsoft.Templates.UI;component/Assets/FileExtensions/VisualBasic.png";
+                case FileExtension.Vbproj:
+                    return "/Microsoft.Templates.UI;component/Assets/FileExtensions/VBProj.png";
                 default:
                     return "/Microsoft.Templates.UI;component/Assets/FileExtensions/DefaultFile.png";
             }

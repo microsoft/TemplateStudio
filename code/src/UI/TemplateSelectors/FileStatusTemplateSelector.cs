@@ -24,13 +24,13 @@ namespace Microsoft.Templates.UI.TemplateSelectors
             {
                 switch (newItemFile.FileStatus)
                 {
-                    case FileStatus.New:
+                    case FileStatus.NewFile:
                         return NewFileTemplate;
-                    case FileStatus.Modified:
+                    case FileStatus.ModifiedFile:
                         return ModifiedFileTemplate;
-                    case FileStatus.Conflicting:
+                    case FileStatus.ConflictingFile:
                         return ConflictingFileTemplate;
-                    case FileStatus.Warning:
+                    case FileStatus.WarningFile:
                         return WarningFileTemplate;
                     case FileStatus.Unchanged:
                         return UnchangedFileTemplate;

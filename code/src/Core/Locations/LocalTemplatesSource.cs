@@ -13,8 +13,11 @@ namespace Microsoft.Templates.Core.Locations
     public sealed class LocalTemplatesSource : TemplatesSource
     {
         public string LocalTemplatesVersion { get; private set; }
+
         public string LocalWizardVersion { get; private set; }
+
         protected override bool VerifyPackageSignatures => false;
+
         public override bool ForcedAcquisition { get => base.ForcedAcquisition; protected set => base.ForcedAcquisition = value; }
         public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
 

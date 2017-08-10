@@ -36,7 +36,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             private set => SetProperty(ref _hasSummaryLicenses, value);
         }
 
-        public MainViewModel(MainView mainView) : base(mainView)
+        public MainViewModel(MainView mainView, string language) : base(mainView)
         {
             MainView = mainView;
             Current = this;
@@ -50,6 +50,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             await BaseInitializeAsync();
             SummaryLicenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryLicenses)); };
         }
+
         public void AlertProjectSetupChanged()
         {
             if (CheckProjectSetupChanged())
@@ -61,6 +62,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 CleanStatus();
             }
         }
+
         public void RebuildLicenses()
         {
             var userSelection = CreateUserSelection();

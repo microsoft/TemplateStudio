@@ -29,6 +29,8 @@ namespace Microsoft.Templates.VsEmulator.Main
     {
         private readonly MainView _host;
 
+        private string _language;
+
         public MainViewModel(MainView host)
         {
             _host = host;
@@ -55,7 +57,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public List<string> FilesToOpen { get; } = new List<string>();
 
-        public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
+        public RelayCommand NewCSharpProjectCommand => new RelayCommand(NewCSharpProject);
+        public RelayCommand NewVisualBasicProjectCommand => new RelayCommand(NewVisualBasicProject);
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
         public RelayCommand OpenInVsCodeCommand => new RelayCommand(OpenInVsCode);
@@ -142,8 +145,19 @@ namespace Microsoft.Templates.VsEmulator.Main
             SolutionName = null;
         }
 
-        private async void NewProject()
+        private void NewCSharpProject()
         {
+            NewProject(ProgrammingLanguages.CSharp);
+        }
+
+        private void NewVisualBasicProject()
+        {
+            NewProject(ProgrammingLanguages.VisualBasic);
+        }
+
+        private async void NewProject(string language)
+        {
+            _language = language;
             ConfigureGenContext(ForceLocalTemplatesRefresh);
 
             try
@@ -156,7 +170,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                     GenContext.Current = this;
 
-                    var userSelection = NewProjectGenController.Instance.GetUserSelection();
+                    var userSelection = NewProjectGenController.Instance.GetUserSelection(_language);
+
                     if (userSelection != null)
                     {
                         ProjectName = newProjectInfo.name;
@@ -165,6 +180,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                         ClearContext();
                         SolutionName = null;
+
+                        userSelection.Language = _language;
 
                         await NewProjectGenController.Instance.GenerateProjectAsync(userSelection);
 
@@ -248,7 +265,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void LoadProject()
         {
-            ConfigureGenContext(ForceLocalTemplatesRefresh);
             var loadProjectInfo = ShowLoadProjectDialog();
 
             if (!string.IsNullOrEmpty(loadProjectInfo))
@@ -256,7 +272,13 @@ namespace Microsoft.Templates.VsEmulator.Main
                 SolutionPath = loadProjectInfo;
                 SolutionName = Path.GetFileNameWithoutExtension(SolutionPath);
 
-                var projFile = Directory.EnumerateFiles(Path.GetDirectoryName(SolutionPath), "*.csproj", SearchOption.AllDirectories).FirstOrDefault();
+                var solutionDirectory = Path.GetDirectoryName(SolutionPath);
+                var projFile = Directory.EnumerateFiles(solutionDirectory, "*.csproj", SearchOption.AllDirectories)
+                        .Union(Directory.EnumerateFiles(solutionDirectory, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
+
+                _language = Path.GetExtension(projFile) == ".vbproj" ? ProgrammingLanguages.VisualBasic : ProgrammingLanguages.CSharp;
+
+                ConfigureGenContext(ForceLocalTemplatesRefresh);
 
                 GenContext.Current = this;
 
@@ -381,9 +403,11 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void ConfigureGenContext(bool forceLocalTemplatesRefresh)
         {
-            GenContext.Bootstrap(new LocalTemplatesSource(WizardVersion, TemplatesVersion, forceLocalTemplatesRefresh),
-                                    new FakeGenShell(msg => SetState(msg), l => AddLog(l), _host),
-                                    new Version(WizardVersion));
+            GenContext.Bootstrap(
+                new LocalTemplatesSource(WizardVersion, TemplatesVersion, forceLocalTemplatesRefresh),
+                new FakeGenShell(_language, msg => SetState(msg), l => AddLog(l), _host),
+                new Version(WizardVersion),
+                _language);
 
             CleanUpNotUsedContentVersions();
         }
@@ -420,6 +444,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 }
             }
         }
+
         private string GetTemplatesFolder()
         {
             var templatesSource = new LocalTemplatesSource(_wizardVersion, _templatesVersion);

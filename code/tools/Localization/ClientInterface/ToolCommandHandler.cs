@@ -21,28 +21,34 @@ namespace Localization
             string commandLine;
             string[] commandParts;
 
-            while (1 == 1)
+            while (true)
             {
                 Console.Write(">> ");
                 commandLine = Console.ReadLine().Trim();
                 MatchCollection matches = Regex.Matches(commandLine, SplitPattern);
                 commandParts = new string[matches.Count];
                 int i = 0;
+
                 foreach (Match match in matches)
                 {
                     commandParts[i++] = match.Value.Trim("\"".ToCharArray());
                 }
+
                 if (commandParts.Length > 0)
                 {
                     string[] arguments = commandParts.Length > 1 ? new string[commandParts.Length - 1] : new string[] { };
 
                     if (commandParts.Length > 1)
+                    {
                         Array.ConstrainedCopy(commandParts, 1, arguments, 0, arguments.Length);
+                    }
 
                     commandInfo = new ToolCommandInfo(commandParts[0].Trim().ToLower(), arguments);
 
                     if (commandInfo.Command == "exit")
+                    {
                         break;
+                    }
 
                     if (_handlers != null && _handlers.ContainsKey(commandInfo.Command) && _handlers[commandInfo.Command].Count > 0)
                     {
@@ -70,11 +76,16 @@ namespace Localization
         internal void SubscribeOnCommand(string command, OnCommand handler)
         {
             command = command.ToLower();
+
             if (_handlers == null)
+            {
                 _handlers = new Dictionary<string, List<OnCommand>>();
+            }
 
             if (!_handlers.ContainsKey(command))
+            {
                 _handlers.Add(command, new List<OnCommand>());
+            }
 
             _handlers[command].Add(handler);
         }
