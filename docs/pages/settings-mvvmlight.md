@@ -122,7 +122,7 @@ protected override async void OnNavigatedTo(NavigationEventArgs e)
 
 ### If your app is using the 'Pivot and Tabs' structure
 
-In **SettingsView.xaml.cs** change the constructor so that it handles the `OnLoaded` event and add the following even handler, like this:
+In **SettingsView.xaml.cs** change the constructor so that it handles the `OnLoaded` event and add the following event handler, like this:
 
 ```csharp
 public SettingsPage()
