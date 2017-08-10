@@ -17,6 +17,7 @@ Add the following below the `ToggleSwitch` inside the `StackPanel` in **Settings
 Add an entry to **Strings/en-us/Resources.resw**
 
 Name: Settings_EnableAutoErrorReporting.Content
+
 Value: Automatically report errors
 
 When run it will now look like this:
@@ -26,6 +27,8 @@ When run it will now look like this:
 But if you try and run it now you will get build errors as the code behind file hasn't been updated to add the new property and event handlers.
 
 ### Update the code behind file
+
+If using the Blank or NavigationView project types.
 
 In **SettingsPage.xaml.cs**, change the `OnNavigatedTo` method to be like this
 
@@ -37,17 +40,35 @@ protected override async void OnNavigatedTo(NavigationEventArgs e)
 }
 ```
 
-also add the following to **SettingsPage.xaml.cs**.
+If using the Pivot&Tabs project type.
+
+In **SettingsPage.xaml.cs**, change the `OnLoaded` and `Initialize` methods to be like this
+
+```csharp
+private async void OnLoaded(object sender, RoutedEventArgs e)
+{
+    await InitializeAsync();
+}
+
+private async Task InitializeAsync()
+{
+    IsLightThemeEnabled = ThemeSelectorService.IsLightThemeEnabled;
+    AppDescription = GetAppDescription();
+    IsAutoErrorReportingEnabled = await Windows.Storage.ApplicationData.Current.LocalSettings.ReadAsync<bool>(nameof(IsAutoErrorReportingEnabled));
+}
+```
+
+For all project types, also add the following to **SettingsPage.xaml.cs**.
 
 ```csharp
 using {YourAppName}.Helpers;
 
 
 private bool _isAutoErrorReportingEnabled;
-public bool IsAutoErrorReportingEnabled
+public bool? IsAutoErrorReportingEnabled
 {
     get { return _isAutoErrorReportingEnabled; }
-    set { Set(ref _isAutoErrorReportingEnabled, value); }
+    set { Set(ref _isAutoErrorReportingEnabled, (bool)value); }
 }
 
 private async void CheckBoxChecked(object sender, Windows.UI.Xaml.RoutedEventArgs e)

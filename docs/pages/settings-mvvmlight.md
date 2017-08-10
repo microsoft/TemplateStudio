@@ -24,7 +24,8 @@ Add the following below the `ToggleSwitch` inside the `StackPanel` in **Settings
 
 Add an entry to **Strings/en-us/Resources.resw**
 
-Name: Settings_EnableAutoErrorReporting.Content  
+Name: Settings_EnableAutoErrorReporting.Content
+
 Value: Automatically report errors
 
 When run it will now look like this:
@@ -87,17 +88,21 @@ Then change the constructor to match this:
 ```csharp
 public SettingsViewModel()
 {
-    SwitchThemeCommand = new RelayCommand(async () =>
+    SwitchThemeCommand = new RelayCommand<ElementTheme>(async (param) =>
     {
         if (_hasInstanceBeenInitialized)
         {
-            await ThemeSelectorService.SwitchThemeAsync();
+            await ThemeSelectorService.SetThemeAsync(param);
         }
     });
 }
 ```
 
-We must now update our uses of the ViewModel. In **SettingsView.xaml.cs** change the `OnNavigatedTo()` method so that instead of calling the old Initialize method, like this:
+We must now update our uses of the ViewModel.
+
+### If your app is using the Blank or NavigationView structure
+
+In **SettingsView.xaml.cs** change the `OnNavigatedTo()` method so that instead of calling the old Initialize method, like this:
 
 ```csharp
 protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -111,6 +116,26 @@ It now awaits the call to the new Initializer like this:
 ```csharp
 protected override async void OnNavigatedTo(NavigationEventArgs e)
 {
+    await ViewModel.EnsureInstanceInitializedAsync();
+}
+```
+
+### If your app is using the 'Pivot and Tabs' structure
+
+In **SettingsView.xaml.cs** change the constructor so that it handles the `OnLoaded` event and add the follwoing even handler, like this:
+
+```csharp
+public SettingsPage()
+{
+    InitializeComponent();
+    ViewModel.Initialize();
+
+    this.Loaded += SettingsPage_Loaded;
+}
+
+private async void SettingsPage_Loaded(object sender, RoutedEventArgs e)
+{
+    this.Loaded -= SettingsPage_Loaded;
     await ViewModel.EnsureInstanceInitializedAsync();
 }
 ```
