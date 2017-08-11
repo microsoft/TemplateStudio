@@ -4,7 +4,6 @@
   "name": "UnspecifiedTemplate",
   "groupIdentity": "Microsoft.UWPTemplates.Test.UnspecifiedTemplate",
   "identity": "Microsoft.UWPTemplates.Test.UnspecifiedTemplate.CSharp",
-  "shortName": "unspecified-test",
   "tags": {
     "language": "C#",
     "type": "project"

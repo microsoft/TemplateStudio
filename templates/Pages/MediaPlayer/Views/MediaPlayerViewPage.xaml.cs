@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Windows.Media.Playback;
 using Windows.System.Display;
 using Windows.UI.Xaml.Controls;

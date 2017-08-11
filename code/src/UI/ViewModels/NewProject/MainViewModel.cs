@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -44,7 +36,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             private set => SetProperty(ref _hasSummaryLicenses, value);
         }
 
-        public MainViewModel(MainView mainView) : base(mainView)
+        public MainViewModel(MainView mainView, string language) : base(mainView)
         {
             MainView = mainView;
             Current = this;
@@ -58,6 +50,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             await BaseInitializeAsync();
             SummaryLicenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryLicenses)); };
         }
+
         public void AlertProjectSetupChanged()
         {
             if (CheckProjectSetupChanged())
@@ -69,6 +62,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 CleanStatus();
             }
         }
+
         public void RebuildLicenses()
         {
             var userSelection = CreateUserSelection();
@@ -93,14 +87,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 return;
             }
 
-            var templateInfo = textBox.Tag as TemplateInfoViewModel;
-            if (templateInfo != null)
+            if (textBox.Tag is TemplateInfoViewModel templateInfo)
             {
                 templateInfo.CloseEdition();
             }
 
-            var summaryItem = textBox.Tag as SavedTemplateViewModel;
-            if (summaryItem != null)
+            if (textBox.Tag is SavedTemplateViewModel summaryItem)
             {
                 ProjectTemplates.SavedPages.ToList().ForEach(spg => spg.ToList().ForEach(p =>
                 {
@@ -226,6 +218,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 ItemsSource = items,
                 Style = MainView.FindResource("SummaryListViewStyle") as Style,
                 Tag = "AllowRename",
+                Focusable = false,
                 ItemTemplate = MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate
             };
             if (allowDragAndDrop)

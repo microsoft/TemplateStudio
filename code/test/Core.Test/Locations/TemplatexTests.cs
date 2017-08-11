@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.IO;
@@ -21,7 +13,6 @@ using System.Security.Cryptography.X509Certificates;
 using Microsoft.Templates.Core.Locations;
 
 using Xunit;
-using System.Reflection;
 
 namespace Microsoft.Templates.Core.Test.Locations
 {
@@ -108,11 +99,11 @@ namespace Microsoft.Templates.Core.Test.Locations
         [Fact]
         public void PackAndSign_CertNotFound()
         {
-            Exception ex = Assert.Throws<SignCertNotFoundException>(() => {
+            Exception ex = Assert.Throws<SignCertNotFoundException>(() =>
+            {
                 Templatex.PackAndSign(@"Locations\SampleContent.txt", "SignedContent.package", "CERT_NOT_FOUND", MediaTypeNames.Text.Plain);
             });
         }
-
 
         [Fact]
         public void PackAndSign_CertFromFile_RelativeInOutPath()
@@ -205,8 +196,6 @@ namespace Microsoft.Templates.Core.Test.Locations
             Directory.Delete(extractionDir, true);
         }
 
-
-
         [Fact]
         public void ExtractAbsoluteDirs()
         {
@@ -234,7 +223,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = Templatex.LoadCert(@"Locations\TestCert.pfx", certPass);
 
-            File.Copy(@"Locations\SampleContent.txt", Path.Combine(Environment.CurrentDirectory, "NewFile.txt"),true);
+            File.Copy(@"Locations\SampleContent.txt", Path.Combine(Environment.CurrentDirectory, "NewFile.txt"), true);
             var inFile = "NewFile.txt";
             var outFile = @"ToExtract.package";
             var extractionDir = Environment.CurrentDirectory;
@@ -282,7 +271,8 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             ModifyContent(outFile, "SampleContent.txt");
 
-            Exception ex = Assert.Throws<InvalidSignatureException>(() => {
+            Exception ex = Assert.Throws<InvalidSignatureException>(() =>
+            {
                 Templatex.Extract(outFile, extractionDir);
             });
 
@@ -315,17 +305,17 @@ namespace Microsoft.Templates.Core.Test.Locations
             Assert.True(Templatex.ValidateSignatures(msSignedFile));
         }
 
-        //TODO: Refactor this methods to other class
+        // TODO: Refactor this methods to other class
         [Fact]
         public void TestRemoteSource()
         {
-            // Bug #333 
+            // Bug #333
             // Location will give access to temp location.
             // code base won't if they are on diff drives
             //
             // If someone has a temp dir that is different than their extention
             // move will fail, you need to copy / delete
-            //string drive = Path.GetPathRoot(Assembly.GetExecutingAssembly().Location);
+            // string drive = Path.GetPathRoot(Assembly.GetExecutingAssembly().Location);
             string drive = Path.GetPathRoot(new Uri(typeof(TemplatexTests).Assembly.CodeBase).LocalPath);
             string targetFolder = Path.Combine(drive, @"Temp\TestRts");
 
@@ -338,14 +328,14 @@ namespace Microsoft.Templates.Core.Test.Locations
 
                 Assert.NotNull(acquiredContentFolder);
 
-                //There is just one
+                // There is just one
                 Assert.True(Directory.EnumerateDirectories(targetFolder).Count() == 1);
 
-                //Ensure even downloaded, if there is coincident content, it is not duplicated.
+                // Ensure even downloaded, if there is coincident content, it is not duplicated.
                 rts.Acquire(targetFolder);
                 Assert.True(Directory.EnumerateDirectories(targetFolder).Count() == 1);
 
-                //Change the previous acquired content and ensure it is acquired again
+                // Change the previous acquired content and ensure it is acquired again
                 Directory.Move(acquiredContentFolder, acquiredContentFolder + "_old");
 
                 rts.Acquire(targetFolder);

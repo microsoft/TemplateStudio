@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.ComponentModel.Design;
@@ -18,7 +10,7 @@ using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.Templates.Core.Gen;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
@@ -37,7 +29,7 @@ namespace Microsoft.Templates.Extension.Commands
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     public sealed class RelayCommandPackage : AsyncPackage
     {
-        private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions());
+        private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions(GenContext.ToolBox.Shell.GetActiveProjectLanguage()));
         private RightClickActions RightClickActions => _rightClickActions.Value;
 
         private RelayCommand addPageCommand;
@@ -53,7 +45,10 @@ namespace Microsoft.Templates.Extension.Commands
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             IGenContextBootstrapService bootstrapsvc = await PrepareBootstrapSvc();
-            await bootstrapsvc.GenContextInit();
+
+            var language = GenContext.ToolBox.Shell.GetActiveProjectLanguage();
+
+            await bootstrapsvc.GenContextInit(language);
 
             InitializeCommands();
 
@@ -62,14 +57,16 @@ namespace Microsoft.Templates.Extension.Commands
 
         private async Task<IGenContextBootstrapService> PrepareBootstrapSvc()
         {
-            this.AddService(typeof(ISGenContextBootstrapService), CreateService);
-            IGenContextBootstrapService bootstrapsvc = await this.GetServiceAsync(typeof(ISGenContextBootstrapService)) as IGenContextBootstrapService;
+            AddService(typeof(ISGenContextBootstrapService), CreateService);
+            IGenContextBootstrapService bootstrapsvc = await GetServiceAsync(typeof(ISGenContextBootstrapService)) as IGenContextBootstrapService;
+
             return bootstrapsvc;
         }
 
         private async Task<object> CreateService(IAsyncServiceContainer container, CancellationToken cancellationToken, Type serviceType)
         {
             ISGenContextBootstrapService service = null;
+
             await System.Threading.Tasks.Task.Run(() =>
             {
                 service = new GenContextBootstrapService(this);

@@ -1,4 +1,4 @@
-{
+﻿{
   "author": "Microsoft Community Contribution",
   "classifications": [
     "Universal"
@@ -6,7 +6,6 @@
   "name": "Grid",
   "groupIdentity": "wts.Page.Grid",
   "identity": "wts.Page.Grid.CodeBehind",
-  "shortName": "Grid Page",
   "description": "A page displaying a simple grid, powered by Telerik UI controls for UWP.",
   "tags": {
     "language": "C#",

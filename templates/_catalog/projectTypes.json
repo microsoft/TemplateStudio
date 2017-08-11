@@ -1,11 +1,12 @@
-[
+﻿[
     {
         "name": "Blank",
         "displayName": "Blank",
         "summary": "This basic project is a blank canvas upon which to build your app.",
         "author": "Microsoft",
         "order": "2",
-        "licenses": ""
+        "licenses": "",
+        "languages": [ "C#", "VisualBasic" ]
     },
     {
         "name": "SplitView",
@@ -13,7 +14,8 @@
         "summary": "A navigation pane (or 'hamburger menu') is included for navigation between pages.",
         "author": "Microsoft",
         "order": "1",
-        "licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)"
+        "licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)",
+        "languages": [ "C#", "VisualBasic" ]
     },
     {
         "name": "TabbedPivot",
@@ -21,6 +23,7 @@
         "summary": "Tabs across the top allow for quickly navigating between pages.",
         "author": "Microsoft",
         "order": "3",
-        "licenses": ""
+        "licenses": "",
+        "languages": [ "C#", "VisualBasic" ]
     }
 ]
