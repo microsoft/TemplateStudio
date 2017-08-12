@@ -90,23 +90,31 @@ namespace Microsoft.Templates.UI.Controls
         private string GetLanguage(string filePath)
         {
             string extension = Path.GetExtension(filePath);
-            if (extension == ".xaml" || extension == ".csproj" || extension == ".vbproj" || extension == ".appxmanifest" || extension == ".resw" || extension == ".xml")
+
+            var language = string.Empty;
+
+            switch (extension)
             {
-                return "xml";
+                case ".xaml":
+                case ".csproj":
+                case ".vbproj":
+                case ".appxmanifest":
+                case ".resw":
+                case ".xml":
+                    language = "xml";
+                    break;
+                case ".cs":
+                    language = "csharp";
+                    break;
+                case ".vb":
+                    language = "vb.net";
+                    break;
+                case ".json":
+                    language = "json";
+                    break;
             }
-            else if (extension == ".cs")
-            {
-                return "csharp";
-            }
-            else if (extension == ".vb")
-            {
-                return "vb.net";
-            }
-            else if (extension == ".json")
-            {
-                return "json";
-            }
-            return string.Empty;
+
+            return language;
         }
 
         private string LoadFile(string filePath, Func<string, string> updateTextAction)
