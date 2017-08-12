@@ -9,9 +9,9 @@ namespace Param_ItemNamespace.Views
 {
     public sealed partial class MasterDetailDetailPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
-        private Order _item;
+        private SampleOrder _item;
 
-        public Order Item
+        public SampleOrder Item
         {
             get { return _item; }
             set { Set(ref _item, value); }
@@ -24,7 +24,7 @@ namespace Param_ItemNamespace.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Item = e.Parameter as Order;
+            Item = e.Parameter as SampleOrder;
         }
 
         private void WindowStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)

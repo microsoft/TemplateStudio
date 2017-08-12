@@ -14,9 +14,9 @@ namespace Param_ItemNamespace.ViewModels
 
         public ICommand StateChangedCommand { get; private set; }
 
-        private Order _item;
+        private SampleOrder _item;
 
-        public Order Item
+        public SampleOrder Item
         {
             get { return _item; }
             set { Set(ref _item, value); }

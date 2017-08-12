@@ -7,7 +7,7 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class GridViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        public ObservableCollection<Order> Source
+        public ObservableCollection<SampleOrder> Source
         {
             get
             {

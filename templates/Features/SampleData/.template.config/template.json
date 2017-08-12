@@ -26,7 +26,7 @@
       "path": ".\\Services\\SampleDataService.cs"
     },
     {
-      "path": ".\\Models\\Order.cs"
+      "path": ".\\Models\\SampleOrder.cs"
     }
   ],
   "symbols": {

@@ -16,7 +16,7 @@ namespace Param_ItemNamespace.Views
             InitializeComponent();
         }
 
-        public ObservableCollection<Order> Source
+        public ObservableCollection<SampleOrder> Source
         {
             get
             {
