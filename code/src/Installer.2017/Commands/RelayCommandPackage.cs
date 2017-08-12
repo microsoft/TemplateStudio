@@ -46,9 +46,11 @@ namespace Microsoft.Templates.Extension.Commands
 
             IGenContextBootstrapService bootstrapsvc = await PrepareBootstrapSvc();
 
-            var language = GenContext.ToolBox.Shell.GetActiveProjectLanguage();
+            var shell = new VsGenShell();
 
-            await bootstrapsvc.GenContextInit(language);
+            var language = shell.GetActiveProjectLanguage();
+
+            await bootstrapsvc.GenContextInit(shell, language);
 
             InitializeCommands();
 
