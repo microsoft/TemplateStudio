@@ -11,7 +11,7 @@ namespace Param_ItemNamespace.Views
         //// TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
         //// TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
 
-        private ElementTheme _elementTheme = ElementTheme.Default;
+        private ElementTheme _elementTheme = ThemeSelectorService.Theme;
 
         public ElementTheme ElementTheme
         {
@@ -36,8 +36,6 @@ namespace Param_ItemNamespace.Views
 
         private void Initialize()
         {
-            ElementTheme = ThemeSelectorService.Theme;
-
             VersionDescription = GetVersionDescription();
         }
 
