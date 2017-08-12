@@ -14,7 +14,7 @@ Foreach ($t in $allTemplates)
             if ($u -match "VB\\")
             {
                 # See if it matches the CS one we're looking for
-                $without = $u -replace "VB\\", "\\";
+                $without = $u -replace "VB\\", "\";
 
                 if ($t -eq $without)
                 {
