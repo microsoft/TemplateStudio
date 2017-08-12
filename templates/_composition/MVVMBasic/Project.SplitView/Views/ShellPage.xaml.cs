@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System;
+using Windows.UI.Xaml.Controls;
 using wts.ItemName.ViewModels;
 
 namespace wts.ItemName.Views

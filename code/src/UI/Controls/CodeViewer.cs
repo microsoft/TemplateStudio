@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Web;
 
 using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.ViewModels.NewItem;
 
 namespace Microsoft.Templates.UI.Controls
@@ -35,10 +36,11 @@ namespace Microsoft.Templates.UI.Controls
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+
             _webBrowser = GetTemplateChild("webBrowser") as WebBrowser;
             _isInitialized = true;
-            var item = Item as BaseFileViewModel;
-            if (item != null)
+
+            if (Item is BaseFileViewModel item)
             {
                 UpdateCodeView(item);
             }
@@ -88,19 +90,31 @@ namespace Microsoft.Templates.UI.Controls
         private string GetLanguage(string filePath)
         {
             string extension = Path.GetExtension(filePath);
-            if (extension == ".xaml" || extension == ".csproj" || extension == ".appxmanifest" || extension == ".resw" || extension == ".xml")
+
+            var language = string.Empty;
+
+            switch (extension)
             {
-                return "xml";
+                case ".xaml":
+                case ".csproj":
+                case ".vbproj":
+                case ".appxmanifest":
+                case ".resw":
+                case ".xml":
+                    language = "xml";
+                    break;
+                case ".cs":
+                    language = "csharp";
+                    break;
+                case ".vb":
+                    language = "vb.net";
+                    break;
+                case ".json":
+                    language = "json";
+                    break;
             }
-            else if (extension == ".cs")
-            {
-                return "csharp";
-            }
-            else if (extension == ".json")
-            {
-                return "json";
-            }
-            return string.Empty;
+
+            return language;
         }
 
         private string LoadFile(string filePath, Func<string, string> updateTextAction)

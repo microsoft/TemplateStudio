@@ -10,7 +10,7 @@ using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.Templates.Core.Gen;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Extension.Commands
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     public sealed class RelayCommandPackage : AsyncPackage
     {
-        private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions());
+        private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions(GenContext.ToolBox.Shell.GetActiveProjectLanguage()));
         private RightClickActions RightClickActions => _rightClickActions.Value;
 
         private RelayCommand addPageCommand;
@@ -45,7 +45,10 @@ namespace Microsoft.Templates.Extension.Commands
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             IGenContextBootstrapService bootstrapsvc = await PrepareBootstrapSvc();
-            await bootstrapsvc.GenContextInit();
+
+            var language = GenContext.ToolBox.Shell.GetActiveProjectLanguage();
+
+            await bootstrapsvc.GenContextInit(language);
 
             InitializeCommands();
 

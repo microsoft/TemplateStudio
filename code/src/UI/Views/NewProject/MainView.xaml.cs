@@ -19,9 +19,9 @@ namespace Microsoft.Templates.UI.Views.NewProject
         public MainViewModel ViewModel { get; private set; }
         public UserSelection Result { get; set; }
 
-        public MainView()
+        public MainView(string language)
         {
-            ViewModel = new MainViewModel(this);
+            ViewModel = new MainViewModel(this, language);
 
             DataContext = ViewModel;
 

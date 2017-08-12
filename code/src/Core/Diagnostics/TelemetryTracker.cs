@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.Wizard, properties).ConfigureAwait(false);
         }
 
-        public async Task TrackProjectGenAsync(ITemplateInfo template, string appProjectType, string appFx, TemplateCreationResult result, Guid vsProjectId, int? pagesCount = null, int? featuresCount = null, string pageIdentities = "", string featureIdentitites = "",  double? timeSpent = null)
+        public async Task TrackProjectGenAsync(ITemplateInfo template, string appProjectType, string appFx, TemplateCreationResult result, Guid vsProjectId, string language, int? pagesCount = null, int? featuresCount = null, string pageIdentities = "", string featureIdentitites = "",  double? timeSpent = null)
         {
             if (template == null)
                 throw new ArgumentNullException("template");
@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
             GenStatusEnum telemetryStatus = result.Status == CreationResultStatus.Success ? GenStatusEnum.Completed : GenStatusEnum.Error;
 
-            await TrackProjectAsync(telemetryStatus, template.Name, appProjectType, appFx, vsProjectId, pagesCount, featuresCount, pageIdentities, featureIdentitites, timeSpent, result.Status, result.Message);
+            await TrackProjectAsync(telemetryStatus, template.Name, appProjectType, appFx, vsProjectId, language, pagesCount, featuresCount, pageIdentities, featureIdentitites, timeSpent, result.Status, result.Message);
         }
 
         public async Task TrackItemGenAsync(ITemplateInfo template, GenSourceEnum genSource, string appProjectType, string appFx, TemplateCreationResult result)
@@ -138,7 +138,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.EditSummaryItem, properties).ConfigureAwait(false);
         }
 
-        private async Task TrackProjectAsync(GenStatusEnum status, string templateName, string appType, string appFx, Guid vsProjectId, int? pagesCount = null, int? featuresCount = null, string pageIdentities = "", string featureIdentites = "", double? timeSpent = null, CreationResultStatus genStatus = CreationResultStatus.Success, string message = "")
+        private async Task TrackProjectAsync(GenStatusEnum status, string templateName, string appType, string appFx, Guid vsProjectId, string language, int? pagesCount = null, int? featuresCount = null, string pageIdentities = "", string featureIdentites = "", double? timeSpent = null, CreationResultStatus genStatus = CreationResultStatus.Success, string message = "")
         {
             var properties = new Dictionary<string, string>()
             {
@@ -149,8 +149,9 @@ namespace Microsoft.Templates.Core.Diagnostics
                 { TelemetryProperties.GenEngineStatus, genStatus.ToString() },
                 { TelemetryProperties.GenEngineMessage, message },
                 { TelemetryProperties.EventName, TelemetryEvents.ProjectGen },
+                { TelemetryProperties.Language, language },
                 { TelemetryProperties.VisualStudioActiveProjectGuid, vsProjectId.ToString() },
-                { TelemetryProperties.VsProjectCategory, "Uwp" }
+                { TelemetryProperties.VsProjectCategory, "Uwp" },
             };
 
             var metrics = new Dictionary<string, double>();

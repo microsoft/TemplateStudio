@@ -99,8 +99,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 if (gr.Name == group.Name)
                 {
-                    var template = gr.SelectedItem as TemplateInfoViewModel;
-                    if (template != null)
+                    if (gr.SelectedItem is TemplateInfoViewModel template)
                     {
                         UpdateItemName(template);
                         Information = new InformationViewModel(template);

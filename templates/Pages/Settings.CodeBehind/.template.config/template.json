@@ -23,6 +23,9 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
+      "path": ".\\Helpers\\EnumToBooleanConverter.cs"
+    },
+    {
       "path": ".\\Views\\SettingsPagePage.xaml"
     },
     {

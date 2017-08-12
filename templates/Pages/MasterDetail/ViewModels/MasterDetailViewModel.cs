@@ -17,9 +17,9 @@ namespace Param_ItemNamespace.ViewModels
 
         private VisualState _currentState;
 
-        private Order _selected;
+        private SampleOrder _selected;
 
-        public Order Selected
+        public SampleOrder Selected
         {
             get { return _selected; }
             set { Set(ref _selected, value); }
@@ -29,7 +29,7 @@ namespace Param_ItemNamespace.ViewModels
 
         public ICommand StateChangedCommand { get; private set; }
 
-        public ObservableCollection<Order> SampleItems { get; private set; } = new ObservableCollection<Order>();
+        public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
 
         public MasterDetailViewModel()
         {

@@ -34,7 +34,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 var mergeFile = GenContext.Current.MergeFilesFromProject[relFilePath];
 
-                mergeFile.Add(new MergeInfo() { Format = mergeType, PostActionCode = postAction });
+                mergeFile.Add(new MergeInfo { Format = mergeType, PostActionCode = postAction });
             }
         }
 
@@ -44,7 +44,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 case ".cs":
                     return "csharp";
+                case ".vb":
+                    return "vb.net";
                 case ".csproj":
+                case ".vbproj":
                 case ".xaml":
                     return "xml";
                 default:

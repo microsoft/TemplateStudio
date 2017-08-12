@@ -12,8 +12,6 @@
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,17 +35,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\..\TestKey.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Analyze|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Analyze\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -183,6 +170,7 @@
     <Compile Include="Gen\GenContext.cs" />
     <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Gen\IContextProvider.cs" />
+    <Compile Include="ProgrammingLanguages.cs" />
     <Compile Include="Naming\DirectoryExistsValidator.cs" />
     <Compile Include="PostActions\Catalog\Merge\FailedMergePostAction.cs" />
     <Compile Include="Fs.cs" />
@@ -198,6 +186,13 @@
     <Compile Include="Naming\FileExistsValidator.cs" />
     <Compile Include="Naming\ReservedNameValidator.cs" />
     <Compile Include="Naming\Validator.cs" />
+    <Compile Include="PostActions\Catalog\SortNamespaces\ImportsComparer.cs" />
+    <Compile Include="PostActions\Catalog\SortNamespaces\NamespaceComparer.cs" />
+    <Compile Include="PostActions\Catalog\SortNamespaces\SortImportsPostAction.cs" />
+    <Compile Include="PostActions\Catalog\SortNamespaces\SortNamespacesPostAction.cs" />
+    <Compile Include="PostActions\Catalog\SortNamespaces\SortUsingsPostAction.cs" />
+    <Compile Include="PostActions\Catalog\SortNamespaces\IEnumerableExtensions.cs" />
+    <Compile Include="PostActions\Catalog\SortNamespaces\UsingComparer.cs" />
     <Compile Include="PostActions\Catalog\SearchAndReplacePostAction.cs" />
     <Compile Include="PostActions\Catalog\AddContextItemsToProjectPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeFailureType.cs" />
@@ -208,9 +203,7 @@
     <Compile Include="PostActions\Catalog\Merge\MergeConfiguration.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeInfo.cs" />
     <Compile Include="PostActions\Catalog\NewItemGeneration\OpenFilesPostAction.cs" />
-    <Compile Include="PostActions\Catalog\SortUsings\SortUsingsPostAction.cs" />
-    <Compile Include="PostActions\Catalog\SortUsings\IEnumerableExtensions.cs" />
-    <Compile Include="PostActions\Catalog\SortUsings\UsingComparer.cs" />
+    <Compile Include="PostActions\Catalog\NewItemGeneration\CopyFilesToProjectPostAction.cs" />
     <Compile Include="Resources\StringRes.cs-CZ.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -281,7 +274,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StringRes.zh-TW.resx</DependentUpon>
     </Compile>
-    <Compile Include="PostActions\Catalog\NewItemGeneration\CopyFilesToProjectPostAction.cs" />
     <Compile Include="PostActions\NewItemPostActionFactory.cs" />
     <Compile Include="PostActions\NewProjectPostActionFactory.cs" />
     <Compile Include="Templates\ITemplateInfoExtensions.cs" />

@@ -9,12 +9,12 @@ namespace Param_ItemNamespace.Services
     // TODO WTS: Delete this file once your app is using real data.
     public static class SampleDataService
     {
-        private static IEnumerable<Order> AllOrders()
+        private static IEnumerable<SampleOrder> AllOrders()
         {
             // The following is order summary data
-            var data = new ObservableCollection<Order>
+            var data = new ObservableCollection<SampleOrder>
             {
-                new Order
+                new SampleOrder
                 {
                     OrderId = 70,
                     OrderDate = new DateTime(2017, 05, 24),
@@ -23,7 +23,7 @@ namespace Param_ItemNamespace.Services
                     OrderTotal = 2490.00,
                     Status = "Closed"
                 },
-                new Order
+                new SampleOrder
                 {
                     OrderId = 71,
                     OrderDate = new DateTime(2017, 05, 24),
@@ -32,7 +32,7 @@ namespace Param_ItemNamespace.Services
                     OrderTotal = 1760.00,
                     Status = "Closed"
                 },
-                new Order
+                new SampleOrder
                 {
                     OrderId = 72,
                     OrderDate = new DateTime(2017, 06, 03),
@@ -41,7 +41,7 @@ namespace Param_ItemNamespace.Services
                     OrderTotal = 2310.00,
                     Status = "Closed"
                 },
-                new Order
+                new SampleOrder
                 {
                     OrderId = 73,
                     OrderDate = new DateTime(2017, 06, 05),
@@ -50,7 +50,7 @@ namespace Param_ItemNamespace.Services
                     OrderTotal = 665.00,
                     Status = "Closed"
                 },
-                new Order
+                new SampleOrder
                 {
                     OrderId = 74,
                     OrderDate = new DateTime(2017, 06, 07),
@@ -59,7 +59,7 @@ namespace Param_ItemNamespace.Services
                     OrderTotal = 560.00,
                     Status = "Shipped"
                 },
-                new Order
+                new SampleOrder
                 {
                     OrderId = 75,
                     OrderDate = new DateTime(2017, 06, 07),
@@ -68,7 +68,7 @@ namespace Param_ItemNamespace.Services
                     OrderTotal = 810.00,
                     Status = "Shipped"
                 },
-                new Order
+                new SampleOrder
                 {
                     OrderId = 76,
                     OrderDate = new DateTime(2017, 06, 11),
@@ -77,7 +77,7 @@ namespace Param_ItemNamespace.Services
                     OrderTotal = 196.50,
                     Status = "Shipped"
                 },
-                new Order
+                new SampleOrder
                 {
                     OrderId = 77,
                     OrderDate = new DateTime(2017, 06, 14),
@@ -86,7 +86,7 @@ namespace Param_ItemNamespace.Services
                     OrderTotal = 270.00,
                     Status = "New"
                 },
-                new Order
+                new SampleOrder
                 {
                     OrderId = 78,
                     OrderDate = new DateTime(2017, 06, 14),
@@ -95,7 +95,7 @@ namespace Param_ItemNamespace.Services
                     OrderTotal = 736.00,
                     Status = "New"
                 },
-                new Order
+                new SampleOrder
                 {
                     OrderId = 79,
                     OrderDate = new DateTime(2017, 06, 18),
