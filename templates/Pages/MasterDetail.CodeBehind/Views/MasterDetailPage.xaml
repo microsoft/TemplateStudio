@@ -7,41 +7,42 @@
     xmlns:model="using:Param_ItemNamespace.Models"
     xmlns:views="using:Param_ItemNamespace.Views"
     mc:Ignorable="d">
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition />
+        </TransitionCollection>
+    </Page.Transitions>
     <Page.Resources>
         <DataTemplate x:Key="MasterListViewItemTemplate" x:DataType="model:Order">
-            <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
+            <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}"
+                  >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <FontIcon
-	                        Tag="{x:Bind HashIdentIcon}"
-	                        FontSize="20"
-	                        Glyph="{x:Bind SymbolAsChar}" HorizontalAlignment="Left"/>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <FontIcon
+                        Tag="{x:Bind HashIdentIcon}"
+                        FontSize="35"
+                        Glyph="{x:Bind SymbolAsChar}" VerticalAlignment="Top" />
+                    <StackPanel Orientation="Vertical" Padding="24,0,0,0">
                         <TextBlock 
-	                        Tag="{x:Bind HashIdentTitle}"
-	                        FontSize="20"
-	                        Text="{x:Bind Company}" 
-	                        Style="{StaticResource ListTitleStyle}" HorizontalAlignment="Left" Margin="20,0,0,0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock 
-                            Text="Status: " 
-                            Style="{StaticResource ListSubTitleStyle}" Padding="0,0,5,0" />
+                        Tag="{x:Bind HashIdentTitle}"
+                        FontSize="24"
+                        Text="{x:Bind Company}" FontWeight="SemiLight"
+                        Style="{StaticResource ListTitleStyle}"/>
                         <TextBlock
-                            Text="{x:Bind Status}"
-                            Style="{StaticResource ListSubTitleStyle}" />
+                        Text="{x:Bind Status}"
+                        FontSize="18" FontWeight="Light"
+                        Style="{StaticResource ListSubTitleStyle}" />
                     </StackPanel>
                 </StackPanel>
-                
             </Grid>
         </DataTemplate>
     </Page.Resources>
 
-    <Grid
+    <Grid 
         x:Name="ContentArea"
         Padding="12,0,12,0">
 
@@ -82,10 +83,10 @@
                 Grid.Row="1"
                 ItemsSource="{x:Bind SampleItems, Mode=OneWay}"
                 SelectedItem="{x:Bind Selected, Mode=OneWay}"
+                Loaded="ListView_Loaded"
                 ItemContainerTransitions="{x:Null}"
                 ItemTemplate="{StaticResource MasterListViewItemTemplate}"
                 IsItemClickEnabled="True"
-                Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
                 ItemClick="MasterListView_ItemClick">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
@@ -124,6 +125,7 @@
                         <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="TitlePage.Margin" Value="48,0,12,7"/>
                         <Setter Target="TitleRow.Height" Value="48"/>
                         <Setter Target="MasterRow.Height" Value="Auto"/>
                         <Setter Target="TitlePage.Visibility" Value="Visible"/>

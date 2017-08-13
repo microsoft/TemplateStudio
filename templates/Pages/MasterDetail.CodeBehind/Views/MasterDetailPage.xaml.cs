@@ -14,6 +14,7 @@ namespace Param_ItemNamespace.Views
     public sealed partial class MasterDetailPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
         private Order _selected;
+        private Dictionary<string, UIElement> dict = new Dictionary<string, UIElement>();
 
         public Order Selected
         {
@@ -44,22 +45,29 @@ namespace Param_ItemNamespace.Views
 
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
+            
             var item = e?.ClickedItem as Order;
             if (item != null)
             {
+                if (WindowStates.CurrentState.Name != "NarrowState")
+                {
+                    ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("companyIcon", dict[item.HashIdentIcon]);
+                    ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("companyTitle", dict[item.HashIdentTitle]);
+
+                }
+
                 if (WindowStates.CurrentState == NarrowState)
                 {
                     NavigationService.Navigate<Views.MasterDetailDetailPage>(item);
                 }
                 else
                 {
-                	ProcessVisualTreeAndAnimateItem(MasterListView, item);
                     Selected = item;
                 }
             }
         }
 
-        private void ProcessVisualTreeAndAnimateItem(DependencyObject root, Order item) 
+        private void registerAllElemens(DependencyObject root)
         {
             int childCount = VisualTreeHelper.GetChildrenCount(root);
             for (int i = 0; i < childCount; i++)
@@ -68,29 +76,32 @@ namespace Param_ItemNamespace.Views
                 if (child != null && child is FontIcon)
                 {
                     FontIcon elem = (FontIcon)child;
-                    bool foundIcon = (item.HashIdentIcon == (string)elem.Tag);
-                    if (foundIcon)
+                    if (elem.Tag != null && !dict.ContainsKey((string)elem.Tag))
                     {
-                        ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("companyIcon", elem);
+                        dict.Add((string)elem.Tag, elem);
                     }
                 }
                 else if (child != null && child is TextBlock)
                 {
                     TextBlock elem = (TextBlock)child;
-                    bool foundTitle = (item.HashIdentTitle == (string)elem.Tag);
-                    if (foundTitle)
+                    if (elem.Tag != null && !dict.ContainsKey((string)elem.Tag))
                     {
-                        ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("companyTitle", elem);
+                        dict.Add((string)elem.Tag, elem);
                     }
                 }
                 else
                 {
                     for (int j = 0; j < childCount; j++)
                     {
-                        ProcessVisualTreeAndAnimateItem(child, item);
+                        registerAllElemens(child);
                     }
                 }
             }
+        }
+
+        private void ListView_Loaded(object sender, RoutedEventArgs e)
+        {
+            registerAllElemens(MasterListView);
         }
     }
 }
