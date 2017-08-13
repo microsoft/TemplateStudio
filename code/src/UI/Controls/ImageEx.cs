@@ -68,16 +68,17 @@ namespace Microsoft.Templates.UI.Controls
                                 .ChildrenOfType<Shapes.Path>()
                                 .ToList();
 
-                if (paths.Count > 0)
+                if (paths.Any())
                 {
                     paths.ForEach(p => BindingOperations.SetBinding(p, Shapes.Path.FillProperty, CreateBinding(this, nameof(Foreground))));
                 }
-                else
-                {
-                    var shapes = element
-                                    .ChildrenOfType<Shapes.Shape>(true)
-                                    .ToList();
 
+                var shapes = element
+                                .ChildrenOfType<Shapes.Shape>(true)
+                                .ToList();
+
+                if (shapes.Any())
+                {
                     shapes.ForEach(s => BindingOperations.SetBinding(s, Shapes.Shape.StrokeProperty, CreateBinding(this, nameof(Foreground))));
                 }
 
