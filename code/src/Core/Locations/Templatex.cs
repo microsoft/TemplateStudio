@@ -18,15 +18,21 @@ using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
 {
-    public class Templatex
+    public static class Templatex
     {
-        const int bufSize = 0x1000;
         public const string DefaultExtension = ".mstx";
-        const string TemplatesContentRelationshipType = "http://schemas.microsoft.com/opc/2006/06/templates/securecontent";
+
+        private const int bufSize = 0x1000;
+        private const string TemplatesContentRelationshipType = "http://schemas.microsoft.com/opc/2006/06/templates/securecontent";
+
+        private static string CreateSourcePath(string source)
+        {
+            return source + DefaultExtension;
+        }
 
         public static string PackAndSign(string source, string certThumbprint, string mimeMediaType = MediaTypeNames.Text.Plain)
         {
-            string outFile = source + DefaultExtension;
+            string outFile = CreateSourcePath(source);
 
             PackAndSign(source, outFile, certThumbprint, mimeMediaType);
 
@@ -35,11 +41,9 @@ namespace Microsoft.Templates.Core.Locations
 
         public static string PackAndSign(string source, X509Certificate signingCert, string mimeMediaType = MediaTypeNames.Text.Plain)
         {
-            string outFile = source + DefaultExtension;
+            string outFile = CreateSourcePath(source);
 
-            Pack(source, outFile, mimeMediaType);
-
-            Sign(outFile, signingCert);
+            PackAndSign(source, outFile, signingCert, mimeMediaType);
 
             return outFile;
         }
@@ -53,16 +57,13 @@ namespace Microsoft.Templates.Core.Locations
                 throw new SignCertNotFoundException(string.Format(StringRes.TemplatexPackAndSignMessage, certThumbprint));
             }
 
-            Pack(source, outFile, mimeMediaType);
-
-            Sign(outFile, cert);
+            PackAndSign(source, outFile, cert, mimeMediaType);
         }
 
-        public static void PackAndSign(string source, string outFile, X509Certificate cert, string mimeMediaType)
+        public static void PackAndSign(string source, string outFile, X509Certificate signingCert, string mimeMediaType)
         {
             Pack(source, outFile, mimeMediaType);
-
-            Sign(outFile, cert);
+            Sign(outFile, signingCert);
         }
 
         public static string Pack(string source, string mimeMediaType = MediaTypeNames.Text.Plain)
@@ -76,13 +77,16 @@ namespace Microsoft.Templates.Core.Locations
         public static void Pack(string source, string outFile, string mimeMediaType)
         {
             if (string.IsNullOrWhiteSpace(source))
+            {
                 throw new ArgumentException("source");
+            }
 
             if (string.IsNullOrWhiteSpace(outFile))
+            {
                 throw new ArgumentException("outFile");
+            }
 
             FileInfo[] files = GetSourceFiles(source);
-
             Uri rootUri = GetRootUri(source);
 
             EnsureDirectory(Path.GetDirectoryName(outFile));
@@ -92,7 +96,6 @@ namespace Microsoft.Templates.Core.Locations
                 foreach (var file in files)
                 {
                     Uri partUriFile = GetPartUriFile(rootUri, file);
-
                     PackagePart packagePart = package.CreatePart(partUriFile, mimeMediaType, CompressionOption.Maximum);
 
                     AddContentToPackagePart(file, packagePart);
@@ -115,6 +118,7 @@ namespace Microsoft.Templates.Core.Locations
             using (Package package = Package.Open(inFilePack, FileMode.Open, FileAccess.Read))
             {
                 bool isSignatureValid = false;
+
                 if (verifySignatures)
                 {
                     isSignatureValid = ValidateSignatures(package);
@@ -135,7 +139,9 @@ namespace Microsoft.Templates.Core.Locations
         private static void Sign(string file, X509Certificate signingCert)
         {
             if (signingCert == null)
+            {
                 throw new ArgumentException("signingCert");
+            }
 
             using (Package package = Package.Open(file, FileMode.Open))
             {
@@ -155,17 +161,11 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public static bool ValidateSignatures(string signedPackageFilename)
-        {
-            using (Package package = Package.Open(signedPackageFilename, FileMode.Open, FileAccess.Read))
-            {
-                return ValidateSignatures(package);
-            }
-        }
         public static X509Certificate2 LoadCert(string filePath, SecureString password)
         {
             var cert = new X509Certificate2();
             cert.Import(filePath, password, X509KeyStorageFlags.DefaultKeySet);
+
             return cert;
         }
 
@@ -216,6 +216,7 @@ namespace Microsoft.Templates.Core.Locations
 
             return certFound;
         }
+
         private static void ExtractPart(PackagePart packagePart, string targetDirectory)
         {
             string stringPart = packagePart.Uri.ToString().TrimStart('/');
@@ -230,6 +231,14 @@ namespace Microsoft.Templates.Core.Locations
             using (var fileStream = new FileStream(System.Net.WebUtility.UrlDecode(uriFullPartPath.LocalPath), FileMode.Create))
             {
                 CopyStream(packagePart.GetStream(), fileStream);
+            }
+        }
+
+        public static bool ValidateSignatures(string signedPackageFilename)
+        {
+            using (Package package = Package.Open(signedPackageFilename, FileMode.Open, FileAccess.Read))
+            {
+                return ValidateSignatures(package);
             }
         }
 
