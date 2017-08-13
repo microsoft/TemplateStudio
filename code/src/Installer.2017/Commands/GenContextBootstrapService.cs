@@ -22,14 +22,14 @@ namespace Microsoft.Templates.Extension.Commands
         {
             serviceProvider = provider;
         }
-        public async System.Threading.Tasks.Task GenContextInit(string language)
+        public async System.Threading.Tasks.Task GenContextInit(GenShell shell, string language)
         {
             if (GenContext.InitializedLanguage != language)
             {
 #if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell(), language);
+                GenContext.Bootstrap(new LocalTemplatesSource(), shell, language);
 #else
-                GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell());
+                GenContext.Bootstrap(new RemoteTemplatesSource(), shell, language);
 #endif
                 await GenContext.ToolBox.Repo.SynchronizeAsync();
             }
@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Extension.Commands
 
     public interface IGenContextBootstrapService
     {
-        System.Threading.Tasks.Task GenContextInit(string language);
+        System.Threading.Tasks.Task GenContextInit(GenShell shell, string language);
         TaskAwaiter GetAwaiter();
     }
 }
