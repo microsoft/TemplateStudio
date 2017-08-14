@@ -5,45 +5,40 @@ using Windows.ApplicationModel.Activation;
 
 namespace Param_ItemNamespace
 {
+    // TODO WTS: Open package.appxmanifest and change the declaration for the scheme (from the default of 'wtsapp') to what you want for your app.
+    // More details about this functionality can be found at https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/uri-scheme.md
+    // TODO WTS: Change the image in Assets/Logo.png to one for display if the OS asks the user which app to launch.
     internal class SchemeActivationHandler : ActivationHandler<ProtocolActivatedEventArgs>
     {
+        // This handler expects URIs of the format 'wtsapp:sample?secret={value}'
         protected override async Task HandleInternalAsync(ProtocolActivatedEventArgs args)
         {
-            // args.Uri.
-            //  var file = args.Files.FirstOrDefault();
+            // The following will extract the secret value and pass it to the page. Alternatively, you could pass all or some of the Uri.
+            var decoder = new Windows.Foundation.WwwFormUrlDecoder(args.Uri.Query);
 
+            var secret = "<<I-HAVE-NO-SECRETS>>";
 
-            /*
-             * 
-            FOR GITHUB
-
-Having thought about how to implement this, I'm looking for feedback on plans to implement the following:
-
-- The value for the protocol will be asked for in the wizard in the same way the name of a page can be specified. (New functionality for the validation rules and failure error message for this will be added to the template config)
-- This feature will add another page (called ProtocolExample) to show passing information from a URI to a page within the app. This page is purely for demonstration and will include comments syaing that it is for sample purposes only and should be removed
-- For NavPanel and Tabs&Pivot projects the activation handler will navigate to the example page within the shell/tab pages and have comments for how to navigate to a page not within the shell
-- The example page will display parameters passed to it (if any)
-- Comments in the top of the activation handler will list supported protocol content formats
-- The activation handler will show a basic example of querying the arguments for valid content in the CanHandleInternal method
-- The current activation document will be extended with more information about protocol launching
-
-            */
-
-            // TODO[ML]: add documentation about how to test protocol launching (Project Properties > Debug > do not launch but attach)
-            // TODO[ML]: does this need any extra docs? or extend the activation docs?
-            // TODO[ML]: also need to consider going to a page within the shell (or tab) - is this currently supported?
-            // TODO[ML]: Add docs or examples for going to different pages or querying params
-            // TODO[ML]: Need to consider if should include a special page accessing the passed params
-            NavigationService.Navigate(typeof(Views.ExamplePage), "file");
+            try 
+            {
+                decoder.GetFirstValueByName("secret");
+            }
+            catch (ArgumentException)
+            {
+                // This will happen if the URI doens't contain a param called 'secret'
+            }
+ 
+            // It's also possible to have logic here to navigate to different pages. e.g. if you have logic based on the specific URI used to launch
+            NavigationService.Navigate(typeof(Views.ExamplePage), secret);
 
             await Task.CompletedTask;
         }
 
         protected override bool CanHandleInternal(ProtocolActivatedEventArgs args)
         {
-            // TODO[ML]: Add comment about also querying args to see if can handle this ok. (e.g. valid paths or required params)
-            // TODO[ML]: Add comment that if this returns false the app will open normally
-            return args.Kind == ActivationKind.Protocol;
+            // For this sample we only want to handle the URI if the path is set to the sample page.
+            // If this check returns false the default handler will still be called and the app will be launched like normal.
+            // TODO WTS: Update the logic here as appropraite to your app
+            return args.Kind == ActivationKind.Protocol && args.Uri.Path.ToLowerInvariant().Equals("sample");
         }
     }
 }

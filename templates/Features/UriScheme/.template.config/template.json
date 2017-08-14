@@ -31,6 +31,9 @@
     {
       "path": ".\\Views\\UriSchemeExample.xaml.cs"
     },
+    {
+      "path": ".\\Assets\\Logo.png"
+    },
   ],
   "symbols": {
     "wts.rootNamespace": {

@@ -16,7 +16,7 @@
 
         <TextBlock
             x:Name="TitlePage"
-            x:Uid="BlankView_Title"
+            x:Uid="UriSchemeExample_Title"
             Style="{StaticResource PageTitleStyle}" />
 
         <Grid 

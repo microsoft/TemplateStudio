@@ -1,0 +1,12 @@
+<!--{**-->
+<!--This xml blocks include string resources for adding the UriSchemeExamplePage to your project.-->
+<!--**}-->
+
+<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="UriSchemeExample_Title.Text" xml:space="preserve">
+    <value>URI Scheme Example</value>
+  </data>
+  <!--}]}-->
+</root>

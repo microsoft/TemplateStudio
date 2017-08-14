@@ -1,3 +1,3 @@
-Adaptive and interactive toast notifications let you create flexible pop-up notifications with more content, optional inline images, and optional user interaction.  You can use pictures, buttons, text inputs, actions, and more!
+Handle the launch of your app with a custom URI Scheme. The generated code also shows how to handle different values being passed to the app this way.
 
-To find out more about toasts, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-adaptive-interactive-toasts). In addition, the notification team has a [visualization app](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-notifications-visualizer) to help design adaptive live tiles and notifications.
+To find out more about handling the launch of an app from a URI, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/handle-uri-activation). 

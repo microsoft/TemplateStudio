@@ -15,7 +15,7 @@
       <!--{[{-->
       <Extensions>
         <uap:Extension Category="windows.protocol">
-          <uap:Protocol Name="UriSchemeFeature">
+          <uap:Protocol Name="wtsapp">
             <uap:Logo>Assets\Icon.png</uap:Logo>
             <uap:DisplayName>Param_RootNamespace</uap:DisplayName>
           </uap:Protocol>
