@@ -88,11 +88,11 @@ Then change the constructor to match this:
 ```csharp
 public SettingsViewModel()
 {
-    SwitchThemeCommand = new RelayCommand<ElementTheme>(async (param) =>
+    SwitchThemeCommand = new RelayCommand(async () =>
     {
         if (_hasInstanceBeenInitialized)
         {
-            await ThemeSelectorService.SetThemeAsync(param);
+            await ThemeSelectorService.SwitchThemeAsync();
         }
     });
 }
