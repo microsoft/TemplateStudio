@@ -1,4 +1,4 @@
-{
+﻿{
   "author": "Microsoft",
   "classifications": [
     "Universal"
@@ -6,7 +6,6 @@
   "name": "Settings",
   "groupIdentity": "wts.Page.Settings",
   "identity": "wts.Page.Settings.CodeBehind",
-  "shortName": "Settings Page",
   "description": "The settings page is the page where we recommend putting the configuration settings for your app.",
   "tags": {
     "language": "C#",
@@ -23,6 +22,9 @@
   "sourceName": "SettingsPage",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": ".\\Helpers\\EnumToBooleanConverter.cs"
+    },
     {
       "path": ".\\Views\\SettingsPagePage.xaml"
     },

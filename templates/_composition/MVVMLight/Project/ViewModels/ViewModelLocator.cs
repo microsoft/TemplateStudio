@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Ioc;
+﻿using System;
+using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using Param_RootNamespace.Services;
 using Param_RootNamespace.Views;
@@ -7,7 +8,7 @@ namespace Param_RootNamespace.ViewModels
 {
     public class ViewModelLocator
     {
-        NavigationServiceEx _navigationService = new NavigationServiceEx();
+        private NavigationServiceEx _navigationService = new NavigationServiceEx();
 
         public ViewModelLocator()
         {
@@ -16,10 +17,11 @@ namespace Param_RootNamespace.ViewModels
             SimpleIoc.Default.Register(() => _navigationService);
         }
 
-        public void Register<VM, V>() where VM : class
+        public void Register<VM, V>()
+            where VM : class
         {
             SimpleIoc.Default.Register<VM>();
-            
+
             _navigationService.Configure(typeof(VM).FullName, typeof(V));
         }
     }

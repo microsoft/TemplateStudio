@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows.Input;
 using Windows.UI.Xaml;
 using Param_ItemNamespace.Models;
@@ -8,13 +8,15 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class MasterDetailDetailViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        const string NarrowStateName = "NarrowState";
-        const string WideStateName = "WideState";
+        private const string NarrowStateName = "NarrowState";
+
+        private const string WideStateName = "WideState";
 
         public ICommand StateChangedCommand { get; private set; }
 
-        private Order _item;
-        public Order Item
+        private SampleOrder _item;
+
+        public SampleOrder Item
         {
             get { return _item; }
             set { Set(ref _item, value); }
@@ -24,7 +26,7 @@ namespace Param_ItemNamespace.ViewModels
         {
             StateChangedCommand = new RelayCommand<VisualStateChangedEventArgs>(OnStateChanged);
         }
-        
+
         private void OnStateChanged(VisualStateChangedEventArgs args)
         {
             if (args.OldState.Name == NarrowStateName && args.NewState.Name == WideStateName)

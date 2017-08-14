@@ -1,28 +1,16 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
-using Microsoft.Templates.Core.Mvvm;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 
+using Microsoft.Templates.Core.Mvvm;
+
 namespace Microsoft.Templates.VsEmulator.LoadProject
 {
-    public class LoadProjectViewModel: Observable
+    public class LoadProjectViewModel : Observable
     {
         private readonly Window _host;
 
@@ -35,7 +23,6 @@ namespace Microsoft.Templates.VsEmulator.LoadProject
         public RelayCommand OkCommand => new RelayCommand(SetSelection, CanSelect);
         public RelayCommand BrowseCommand => new RelayCommand(ShowFileDialog);
 
-
         private string _solutionpath;
         public string SolutionPath
         {
@@ -45,7 +32,7 @@ namespace Microsoft.Templates.VsEmulator.LoadProject
 
         public void Initialize(string solutionPath)
         {
-            if (!String.IsNullOrEmpty(solutionPath))
+            if (!string.IsNullOrEmpty(solutionPath))
             {
                 SolutionPath = solutionPath;
             }

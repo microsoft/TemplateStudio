@@ -1,4 +1,4 @@
-using Param_RootNamespace.Activation;
+﻿using Param_RootNamespace.Activation;
 using Param_RootNamespace.Helpers;
 using System;
 using System.Linq;
@@ -23,7 +23,7 @@ namespace Param_RootNamespace.Services
                 await ApplicationData.Current.LocalSettings.SaveAsync(QueueEnabledKey, true);
             }
         }
-        
+
         public void UpdateTile(TileNotification notification)
         {
             TileUpdateManager.CreateTileUpdaterForApplication().Update(notification);
@@ -35,6 +35,7 @@ namespace Param_RootNamespace.Services
             {
                 return await tile.RequestCreateAsync();
             }
+
             return false;
         }
 

@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.IO;
@@ -28,14 +20,19 @@ namespace Microsoft.Templates.Core.Locations
         private static readonly string FolderName = Configuration.Current.RepositoryFolderName;
 
         private readonly Lazy<string> _workingFolder = new Lazy<string>(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), FolderName));
+
         private readonly TemplatesSource _source;
+
         private readonly TemplatesContent _content;
 
         public string WorkingFolder => _workingFolder.Value;
 
         public string CurrentTemplatesFolder { get => _content?.TemplatesFolder; }
+
         public string CurrentContentFolder { get; private set; }
+
         public Version CurrentContentVersion { get => GetCurrentContentVersion(); }
+
         public Version CurrentWizardVersion { get; private set; }
 
         private static object syncLock = new object();
@@ -261,6 +258,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             return CurrentContentVersion.IsNull() || CurrentContentVersion < _source.GetVersionFromMstx(GetInstalledTemplatesPath());
         }
+
         private Version GetCurrentContentVersion()
         {
             return _content?.GetVersionFromFolder(CurrentContentFolder);

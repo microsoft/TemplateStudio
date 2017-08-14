@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.IO;
@@ -17,6 +9,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Web;
 
+using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.ViewModels.NewItem;
 
 namespace Microsoft.Templates.UI.Controls
@@ -42,10 +36,11 @@ namespace Microsoft.Templates.UI.Controls
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+
             _webBrowser = GetTemplateChild("webBrowser") as WebBrowser;
             _isInitialized = true;
-            var item = Item as BaseFileViewModel;
-            if (item != null)
+
+            if (Item is BaseFileViewModel item)
             {
                 UpdateCodeView(item);
             }
@@ -79,11 +74,11 @@ namespace Microsoft.Templates.UI.Controls
             if (!string.IsNullOrEmpty(patternText))
             {
                 var language = GetLanguage(original);
-                if (!string.IsNullOrEmpty(language))
-                {
-                    patternText = patternText.Replace("##language##", language);
-                }
-                patternText = patternText.Replace("##ExecutingDirectory##", executingDirectory).Replace("##renderSideBySide##", (renderSideBySide.ToString().ToLower()));
+                patternText = patternText.Replace("##language##", language);
+                patternText = patternText
+                    .Replace("##ExecutingDirectory##", executingDirectory)
+                    .Replace("##renderSideBySide##", (renderSideBySide.ToString().ToLower()))
+                    .Replace("##theme##", SystemService.Instance.IsHighContrast ? "theme: 'hc-black'," : string.Empty);
                 if (_currentHtml != patternText)
                 {
                     _webBrowser.NavigateToString(patternText);
@@ -95,19 +90,31 @@ namespace Microsoft.Templates.UI.Controls
         private string GetLanguage(string filePath)
         {
             string extension = Path.GetExtension(filePath);
-            if (extension == ".xaml" || extension == ".csproj" || extension == ".appxmanifest" || extension == ".resw" || extension == ".xml")
+
+            var language = string.Empty;
+
+            switch (extension)
             {
-                return "xml";
+                case ".xaml":
+                case ".csproj":
+                case ".vbproj":
+                case ".appxmanifest":
+                case ".resw":
+                case ".xml":
+                    language = "xml";
+                    break;
+                case ".cs":
+                    language = "csharp";
+                    break;
+                case ".vb":
+                    language = "vb.net";
+                    break;
+                case ".json":
+                    language = "json";
+                    break;
             }
-            else if (extension == ".cs")
-            {
-                return "csharp";
-            }
-            else if (extension == ".json")
-            {
-                return "json";
-            }
-            return string.Empty;
+
+            return language;
         }
 
         private string LoadFile(string filePath, Func<string, string> updateTextAction)

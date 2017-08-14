@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
@@ -20,6 +12,7 @@ using System.Windows.Threading;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Core;
 using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -47,8 +40,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 SetProperty(ref _itemName, value);
                 OnPropertyChanged("DisplayText");
-                ItemForeground = MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
-                AuthorForeground = MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
+                ItemForeground = GetItemForeground(true);
+                AuthorForeground = GetAuthorForeground(true);
                 colorTimer.Start();
             }
         }
@@ -204,14 +197,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             set => SetProperty(ref _isOpen, value);
         }
 
-        private Brush _itemForeground = MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
+        private Brush _itemForeground;
         public Brush ItemForeground
         {
             get => _itemForeground;
             set => SetProperty(ref _itemForeground, value);
         }
 
-        private Brush _authorForeground = MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
+        private Brush _authorForeground;
         public Brush AuthorForeground
         {
             get => _authorForeground;
@@ -250,6 +243,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             TemplateName = item.template.Name;
             DependencyList = item.template.GetDependencyList();
             IsRemoveEnabled = isRemoveEnabled;
+            ItemForeground = GetItemForeground(true);
+            AuthorForeground = GetAuthorForeground(true);
             OpenCommand = openCommand;
             RemoveCommand = removeTemplateCommand;
             RenameCommand = renameItemCommand;
@@ -260,8 +255,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void OnColorTimerTick(object sender, EventArgs e)
         {
-            ItemForeground = MainViewModel.Current.MainView.FindResource("UIBlack") as SolidColorBrush;
-            AuthorForeground = MainViewModel.Current.MainView.FindResource("UIGray") as SolidColorBrush;
+            ItemForeground = GetItemForeground(false);
+            AuthorForeground = GetAuthorForeground(false);
 
             colorTimer.Stop();
         }
@@ -295,6 +290,44 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 _newItemName = string.Empty;
                 OnPropertyChanged("NewItemName");
                 MainViewModel.Current.CleanStatus(true);
+            }
+        }
+
+        private SolidColorBrush GetItemForeground(bool isNewAdded)
+        {
+            if (SystemService.Instance.IsHighContrast)
+            {
+                return SystemColors.ControlTextBrush;
+            }
+            else
+            {
+                if (isNewAdded)
+                {
+                    return MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
+                }
+                else
+                {
+                    return MainViewModel.Current.MainView.FindResource("UIBlack") as SolidColorBrush;
+                }
+            }
+        }
+
+        private SolidColorBrush GetAuthorForeground(bool isNewAdded)
+        {
+            if (SystemService.Instance.IsHighContrast)
+            {
+                return SystemColors.ControlTextBrush;
+            }
+            else
+            {
+                if (isNewAdded)
+                {
+                    return MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
+                }
+                else
+                {
+                    return MainViewModel.Current.MainView.FindResource("UIGray") as SolidColorBrush;
+                }
             }
         }
     }

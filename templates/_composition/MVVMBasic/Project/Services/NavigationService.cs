@@ -8,6 +8,7 @@ namespace Param_RootNamespace.Services
     public static class NavigationService
     {
         private static Frame _frame;
+
         public static Frame Frame
         {
             get
@@ -19,6 +20,7 @@ namespace Param_RootNamespace.Services
 
                 return _frame;
             }
+
             set
             {
                 _frame = value;
@@ -26,9 +28,11 @@ namespace Param_RootNamespace.Services
         }
 
         public static bool CanGoBack => Frame.CanGoBack;
+
         public static bool CanGoForward => Frame.CanGoForward;
 
         public static void GoBack() => Frame.GoBack();
+
         public static void GoForward() => Frame.GoForward();
 
         public static bool Navigate(Type pageType, object parameter = null, NavigationTransitionInfo infoOverride = null)
@@ -44,6 +48,8 @@ namespace Param_RootNamespace.Services
             }
         }
 
-        public static bool Navigate<T>(object parameter = null, NavigationTransitionInfo infoOverride = null) where T : Page => Navigate(typeof(T), parameter, infoOverride);
+        public static bool Navigate<T>(object parameter = null, NavigationTransitionInfo infoOverride = null)
+            where T : Page
+            => Navigate(typeof(T), parameter, infoOverride);
     }
 }
