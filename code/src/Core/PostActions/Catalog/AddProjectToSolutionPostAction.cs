@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             {
                 if (!string.IsNullOrWhiteSpace(output.Path))
                 {
-                    var projectPath = Path.GetFullPath(Path.Combine(GenContext.Current.OutputPath, output.Path));
+                    var projectPath = Path.GetFullPath(Path.Combine(GenContext.Current.ProjectPath, output.Path));
                     GenContext.ToolBox.Shell.AddProjectToSolution(projectPath);
                 }
             }

@@ -1,8 +1,11 @@
 # Installing / Using the extension
 
 ## Installing the Visual Studio Extension
+
 ### Prerequisites
+
 Windows Template Studio installs into your existing Windows 10 app development environment. If you're missing any of the below, you can get everything from the [Windows Dev Center Download page](https://developer.microsoft.com/en-us/windows/downloads).
+
 * Visual Studio 2017 Update 1 or higher (any edition)
 * Windows 10 Creators Update SDK (version 10.0.15063.0 or later)
 
@@ -14,9 +17,8 @@ Windows Template Studio installs into your existing Windows 10 app development e
 
 ## Public Release instructions
 
-1.	Install the Visual Studio Extension for Windows Template Studio by downloading the VSIX from the [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio). 
-1.	Once installed, open Visual Studio 2017 and select File→ New Project→ C# → Windows Universal and you should see Windows Template Studio as an option. 
-
+1. Install the Visual Studio Extension for Windows Template Studio by downloading the VSIX from the [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio).
+1. Once installed, open Visual Studio 2017 and select File→ New Project→ C# → Windows Universal and you should see Windows Template Studio as an option.
 
 ## Nightly / Pre-release instructions
 
@@ -36,7 +38,7 @@ Once installed, you will see a new Project Template which allows you to access t
 
 ![File New Project](resources/vsix/fileNew.PNG)
 
-You can start working with Windows Template Studio by cloning [our repo](https://github.com/Microsoft/WindowsTemplateStudio) and working locally with the code and the available templates.  If you plan to contribute, please follow the [contribution guidelines](../contributing.md)
+You can start working with Windows Template Studio by cloning [our repo](https://github.com/Microsoft/WindowsTemplateStudio) and working locally with the code and the available templates.  If you plan to contribute, please follow the [contribution guidelines](../CONTRIBUTING.md)
 
 ## Nightly Dev-release
 

@@ -14,6 +14,8 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
+using Microsoft.Templates.Core.Resources;
+
 namespace Microsoft.Templates.Core.Diagnostics
 {
     public class TraceHealthWriter : IHealthWriter
@@ -23,7 +25,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             string formattedMessage = FormattedWriterMessages.LogEntryStart + $"\t{eventType.ToString()}\t{message}";
             if (ex != null)
             {
-                formattedMessage = formattedMessage + $"\tException:\n\r{ex.ToString()}";
+                formattedMessage = formattedMessage + $"\t{StringRes.ExceptionString}:\n\r{ex.ToString()}";
             }
 
             switch (eventType)
@@ -49,7 +51,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task WriteExceptionAsync(Exception ex, string message = null)
         {
-            await WriteTraceAsync(TraceEventType.Critical, "Exception Tracked", ex);
+            await WriteTraceAsync(TraceEventType.Critical, StringRes.ExceptionTrackedString, ex);
         }
 
         private async Task CallAsync(Action action)

@@ -11,7 +11,7 @@
 
 
     <Style TargetType="Button" x:Key="ButtonNavigationStyle">
-        <Setter Property="Margin" Value="{StaticResource MediumLeftMargin}" />
+        <Setter Property="Margin" Value="{StaticResource Margin_M_Left}" />
         <Setter Property="Width" Value="75" />
         <Setter Property="Height" Value="27" />
         <Setter Property="Foreground" Value="{StaticResource UIBlack}" />
@@ -88,7 +88,7 @@
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Trigger.Setters>
-                    <Setter Property="Foreground" Value="{StaticResource UIDarkBlue}"/>
+                    <Setter Property="Foreground" Value="{StaticResource UIMiddleDarkBlue}"/>
                 </Trigger.Setters>
             </Trigger>
         </Style.Triggers>
@@ -155,8 +155,8 @@
         <Setter Property="Content">
             <Setter.Value>
                 <Grid>
-                    <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource RoundButtonTextStyle}"/>
-                    <TextBlock Text="{Binding ToggleButtonIcon}" FontSize="12" Style="{StaticResource RoundButtonTextStyle}" />
+                    <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource IconButtonTextStyle}"/>
+                    <TextBlock Text="{Binding ToggleButtonIcon}" FontSize="12" Style="{StaticResource IconButtonTextStyle}" />
                 </Grid>
             </Setter.Value>
         </Setter>
@@ -293,4 +293,88 @@
         </Setter>
     </Style>
 
+    <Style TargetType="Button" x:Key="TopBarMenuStyle">
+        <Setter Property="Foreground" Value="{StaticResource UIWhite}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Width" Value="50" />
+        <!--<Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="{StaticResource UIWhiteColor}" Opacity="0.2"/>
+            </Setter.Value>
+        </Setter>-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.Setters>
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="{StaticResource UIWhiteColor}" Opacity="0.4"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger.Setters>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FocusVisualStyle">
+            <Setter.Value>
+                <Style>
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Grid>
+                                    <Grid.Background>
+                                        <SolidColorBrush Color="{StaticResource UIWhiteColor}" Opacity="0.4"/>
+                                    </Grid.Background>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="ButtonRefreshTemplatesStyle">
+        <Setter Property="Height" Value="35" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="Foreground" Value="{StaticResource UIBlack}" />
+        <Setter Property="BorderBrush" Value="{StaticResource UIBlack}" />
+        <Setter Property="Background" Value="{StaticResource UIMiddleLightGray}" />
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="FocusVisualStyle">
+            <Setter.Value>
+                <Style>
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Grid>
+                                    <Grid.Background>
+                                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
+                                    </Grid.Background>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Trigger.Setters>
+                    <Setter Property="Foreground" Value="{StaticResource UILightGray}"/>
+                </Trigger.Setters>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
 </ResourceDictionary>

@@ -18,6 +18,7 @@ using CERTENROLLLib;
 
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
@@ -39,13 +40,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Warning.TrackAsync("Error generating certificate.", ex).FireAndForget();
+                AppHealth.Current.Warning.TrackAsync(StringRes.GenerateTestCertificatePostActionExecute, ex).FireAndForget();
             }
         }
 
         private void AddToProject(string base64Encoded)
         {
-            var filePath = Path.Combine(GenContext.Current.OutputPath, GenContext.Current.ProjectName) + "_TemporaryKey.pfx";
+            var filePath = Path.Combine(GenContext.Current.ProjectPath, GenContext.Current.ProjectName) + "_TemporaryKey.pfx";
             File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
 
             GenContext.ToolBox.Shell.AddItems(filePath);

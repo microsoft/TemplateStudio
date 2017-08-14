@@ -10,11 +10,20 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
+using System.Collections.Generic;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+
 namespace Microsoft.Templates.Core.Gen
 {
     public interface IContextProvider
     {
         string ProjectName { get; }
         string OutputPath { get; }
+        string ProjectPath { get; }
+        List<string> ProjectItems { get; }
+        List<string> FilesToOpen { get; }
+
+        List<FailedMergePostAction> FailedMergePostActions { get; }
+        Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; }
     }
 }
