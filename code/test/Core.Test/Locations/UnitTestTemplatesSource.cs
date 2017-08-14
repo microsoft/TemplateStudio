@@ -21,9 +21,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         {
             var tempFolder = Path.Combine(GetTempFolder(), SourceFolderName);
 
-            var sourcePath = $@"..\..\TestData\{SourceFolderName}";
-
-            Copy(sourcePath, tempFolder);
+            Copy($@"..\..\TestData\{SourceFolderName}", tempFolder);
 
             File.WriteAllText(Path.Combine(tempFolder, "version.txt"), _localVersion, Encoding.UTF8);
 

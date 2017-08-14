@@ -13,6 +13,9 @@ using System.Text.RegularExpressions;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.Test
@@ -27,25 +30,29 @@ namespace Microsoft.Templates.Test
 
         internal string TestProjectsPath => Path.GetFullPath(Path.Combine(TestRunPath, "Proj"));
 
-        private static readonly Lazy<TemplatesRepository> _repos = new Lazy<TemplatesRepository>(() => CreateNewRepos(), true);
+        private static Lazy<TemplatesRepository> _repos = new Lazy<TemplatesRepository>(CreateNewRepos, true);
 
         public static IEnumerable<ITemplateInfo> Templates => _repos.Value.GetAll();
 
         private static TemplatesRepository CreateNewRepos()
         {
-            var source = new StyleCopPlusLocalTemplatesSource();
-
-            CodeGen.Initialize(source.Id, "0.0");
-
-            var repos = new TemplatesRepository(source, Version.Parse("0.0.0.0"));
-
-            repos.SynchronizeAsync().Wait();
-
-            return repos;
+            return GenContext.ToolBox.Repo;
         }
 
-        public StyleCopGenerationTestsFixture()
+        private static void InitializeTemplatesForLanguage(TemplatesSource source)
         {
+            GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
+            GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
+
+            _repos = new Lazy<TemplatesRepository>(CreateNewRepos, true);
+        }
+
+        public void InitializeFixture(IContextProvider contextProvider)
+        {
+            var source = new StyleCopPlusLocalTemplatesSource();
+            GenContext.Current = contextProvider;
+
+            InitializeTemplatesForLanguage(source);
         }
 
         public void Dispose()
@@ -56,6 +63,29 @@ namespace Microsoft.Templates.Test
                  || !Directory.EnumerateDirectories(TestProjectsPath).Any())
                 {
                     Directory.Delete(TestRunPath, true);
+                }
+            }
+        }
+
+        public static IEnumerable<object[]> GetProjectTemplatesForStyleCop()
+        {
+            InitializeTemplatesForLanguage(new LocalTemplatesSource());
+
+            var projectTemplates =
+                StyleCopGenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project);
+
+            foreach (var projectTemplate in projectTemplates)
+            {
+                var projectTypeList = projectTemplate.GetProjectTypeList();
+
+                foreach (var projectType in projectTypeList)
+                {
+                    var frameworks = GenComposer.GetSupportedFx(projectType);
+
+                    foreach (var framework in frameworks)
+                    {
+                        yield return new object[] { projectType, framework };
+                    }
                 }
             }
         }
@@ -135,11 +165,11 @@ namespace Microsoft.Templates.Test
 
         public string GetErrorLines(string filePath)
         {
-            Regex re = new Regex(@"^.*error .*$", RegexOptions.Multiline & RegexOptions.IgnoreCase);
+            var re = new Regex(@"^.*error .*$", RegexOptions.Multiline & RegexOptions.IgnoreCase);
             var outputLines = File.ReadAllLines(filePath);
             var errorLines = outputLines.Where(l => re.IsMatch(l));
 
-            return errorLines.Count() > 0 ? errorLines.Aggregate((i, j) => i + Environment.NewLine + j) : string.Empty;
+            return errorLines.Any() ? errorLines.Aggregate((i, j) => i + Environment.NewLine + j) : string.Empty;
         }
 
         public string GetDefaultName(ITemplateInfo template)

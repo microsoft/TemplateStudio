@@ -140,6 +140,7 @@
     <Compile Include="Diagnostics\TestHealthWriter.cs" />
     <Compile Include="Localization\LocalizationTest.cs" />
     <Compile Include="PostActions\Catalog\HandleRemovalsTest.cs" />
+    <Compile Include="PostActions\Catalog\SortImportsTest.cs" />
     <Compile Include="PostActions\Catalog\SortUsingsTest.cs" />
     <Compile Include="Templates\ITemplateInfoExtensionsTest.cs" />
     <Compile Include="Locations\TemplatexTests.cs" />
@@ -174,6 +175,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Templates\TemplatesFixture.cs" />
+    <Content Include="TestData\Templates\UnspecifiedTemplateVB\.template.config\template.json" />
     <Content Include="TestData\Templates\_catalog\en-US.frameworks.json" />
     <Content Include="TestData\Templates\_catalog\es-ES.frameworks.json" />
     <Content Include="TestData\Templates\_catalog\frameworks.json" />
@@ -205,6 +207,11 @@
     <Content Include="TestData\Templates\FeatureTemplate\.template.config\template.json" />
     <Content Include="TestData\Templates\PageTemplate\.template.config\template.json" />
     <Content Include="TestData\Templates\Naming.DefaultNameTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\PageTemplateVB\.template.config\template.json" />
+    <Content Include="TestData\Templates\Naming.DefaultNameTemplateVB\.template.config\template.json" />
+    <None Include="TestData\Templates\ProjectTemplateVB\.template.config\description.md" />
+    <Content Include="TestData\Templates\ProjectTemplateVB\.template.config\Layout.json" />
+    <Content Include="TestData\Templates\ProjectTemplateVB\.template.config\template.json" />
     <Content Include="TestData\Templates\PageTemplate\.template.config\description.md" />
     <Content Include="TestData\Templates\FeatureTemplate\.template.config\description.md" />
     <Content Include="TestData\Templates\FeatureTemplate\.template.config\en-US.description.md" />
@@ -217,6 +224,7 @@
     <Content Include="TestData\Templates\PageTemplate\.template.config\es-ES.description.md" />
     <Content Include="TestData\Templates\RightClick.FeatureTemplate\.template.config\template.json" />
     <None Include="TestData\Templates\ProjectTemplate\.template.config\description.md" />
+    <Content Include="TestData\Templates\ProjectTemplateVB\.template.config\icon.png" />
     <Content Include="TestData\Templates\ProjectTemplate\.template.config\icon.png" />
     <Content Include="TestData\Templates\ProjectTemplate\.template.config\template.json" />
     <Content Include="TestData\Templates\UnspecifiedTemplate\.template.config\template.json" />

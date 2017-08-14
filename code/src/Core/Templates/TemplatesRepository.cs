@@ -12,6 +12,7 @@ using System.Globalization;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Template;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 
 using Newtonsoft.Json;
@@ -20,6 +21,7 @@ namespace Microsoft.Templates.Core
 {
     public class TemplatesRepository
     {
+        private readonly string _language;
         private const string Separator = "|";
         private const string LicensesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
         private const string Catalog = "_catalog";
@@ -30,8 +32,10 @@ namespace Microsoft.Templates.Core
         public string CurrentContentFolder { get => Sync?.CurrentContentFolder; }
         public string TemplatesVersion { get => Sync.CurrentContentVersion?.ToString() ?? string.Empty; }
         public bool SyncInProgress { get => TemplatesSynchronization.SyncInProgress; }
-        public TemplatesRepository(TemplatesSource source, Version wizardVersion)
+
+        public TemplatesRepository(TemplatesSource source, Version wizardVersion, string language)
         {
+            _language = language;
             WizardVersion = wizardVersion.ToString();
             Sync = new TemplatesSynchronization(source, wizardVersion);
         }
@@ -53,7 +57,7 @@ namespace Microsoft.Templates.Core
 
         public IEnumerable<ITemplateInfo> GetAll()
         {
-            var queryResult = CodeGen.Instance.Cache.List(false, WellKnownSearchFilters.LanguageFilter("C#"));
+            var queryResult = CodeGen.Instance.Cache.List(false, WellKnownSearchFilters.LanguageFilter(_language));
 
             return queryResult
                         .Where(r => r.IsMatch)
@@ -101,12 +105,19 @@ namespace Microsoft.Templates.Core
             var metadataFile = Path.Combine(folderName, $"{type}.json");
             var metadataFileLocalized = Path.Combine(folderName, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.{type}.json");
             var metadata = JsonConvert.DeserializeObject<List<MetadataInfo>>(File.ReadAllText(metadataFile));
+
+            if (metadata.Any(m => m.Languages != null))
+            {
+                metadata.RemoveAll(m => !m.Languages.Contains(_language));
+            }
+
             if (File.Exists(metadataFileLocalized))
             {
                 var metadataLocalized = JsonConvert.DeserializeObject<List<MetadataLocalizedInfo>>(File.ReadAllText(metadataFileLocalized));
                 metadataLocalized.ForEach(ml =>
                 {
-                    MetadataInfo cm = metadata.Where(m => m.Name == ml.Name).FirstOrDefault();
+                    MetadataInfo cm = metadata.FirstOrDefault(m => m.Name == ml.Name);
+
                     if (cm != null)
                     {
                         cm.DisplayName = ml.DisplayName;
@@ -114,6 +125,7 @@ namespace Microsoft.Templates.Core
                     }
                 });
             }
+
             metadata.ForEach(m => SetMetadataDescription(m, folderName, type));
             metadata.ForEach(m => SetMetadataIcon(m, folderName, type));
             metadata.ForEach(m => m.MetadataType = type);
@@ -150,8 +162,12 @@ namespace Microsoft.Templates.Core
         private static void SetMetadataDescription(MetadataInfo mInfo, string folderName, string type)
         {
             var descriptionFile = Path.Combine(folderName, type, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.{mInfo.Name}.md");
+
             if (!File.Exists(descriptionFile))
+            {
                 descriptionFile = Path.Combine(folderName, type, $"{mInfo.Name}.md");
+            }
+
             if (File.Exists(descriptionFile))
             {
                 mInfo.Description = File.ReadAllText(descriptionFile);

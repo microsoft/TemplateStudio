@@ -9,7 +9,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class ConflictingFileViewModel : BaseFileViewModel
     {
-        public override FileStatus FileStatus => FileStatus.Conflicting;
+        public override FileStatus FileStatus => FileStatus.ConflictingFile;
 
         public string ConflictingDetailDescription => string.Format(StringRes.ConflictingDetailDescription_SF, Subject);
 

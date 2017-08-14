@@ -15,10 +15,11 @@ using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
-    public class SolutionWizard : IWizard, IContextProvider
+    public abstract class SolutionWizard : IWizard, IContextProvider
     {
         private UserSelection _userSelection;
         private Dictionary<string, string> _replacementsDictionary;
+        private string _language;
 
         public string ProjectName => _replacementsDictionary["$safeprojectname$"];
 
@@ -33,14 +34,16 @@ namespace Microsoft.Templates.UI.VisualStudio
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
         public List<string> FilesToOpen { get; } = new List<string>();
 
-        public SolutionWizard()
+        protected void Initialize(string language)
         {
-            if (!GenContext.IsInitialized)
+            _language = language;
+
+            if (GenContext.InitializedLanguage != language)
             {
 #if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell());
+                GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell(), language);
 #else
-                GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell());
+                GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell(), language);
 #endif
                 }
         }
@@ -86,7 +89,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     GenContext.Current = this;
 
-                    _userSelection = NewProjectGenController.Instance.GetUserSelection();
+                    _userSelection = NewProjectGenController.Instance.GetUserSelection(_language);
                 }
             }
             catch (WizardBackoutException)

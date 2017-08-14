@@ -13,6 +13,8 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions;
+using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Views.Common;
 using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.UI
@@ -32,9 +34,9 @@ namespace Microsoft.Templates.UI
             _postactionFactory = postactionFactory;
         }
 
-        public UserSelection GetUserSelection()
+        public UserSelection GetUserSelection(string language)
         {
-            var mainView = new Views.NewProject.MainView();
+            var mainView = new Views.NewProject.MainView(language);
 
             try
             {
@@ -88,10 +90,10 @@ namespace Microsoft.Templates.UI
 
             chrono.Stop();
 
-            TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework);
+            TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework, userSelection.Language);
         }
 
-        private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appProjectType, string appFx)
+        private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appProjectType, string appFx, string language)
         {
             try
             {
@@ -111,8 +113,7 @@ namespace Microsoft.Templates.UI
 
                     if (genInfo.Template.GetTemplateType() == TemplateType.Project)
                     {
-                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template,
-                            appProjectType, appFx, genResults[resultsKey], GenContext.ToolBox.Shell.GetVsProjectId(), pagesAdded, featuresAdded, pageIdentities, featureIdentities, timeSpent).FireAndForget();
+                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, appProjectType, appFx, genResults[resultsKey], GenContext.ToolBox.Shell.GetVsProjectId(), language, pagesAdded, featuresAdded, pageIdentities, featureIdentities, timeSpent).FireAndForget();
                     }
                     else
                     {

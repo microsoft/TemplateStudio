@@ -66,6 +66,7 @@
                 <TextBlock
                         x:Uid="Settings_About"
                         Style="{StaticResource SubtitleTextBlockStyle}"/>
+
                 <StackPanel Margin="{StaticResource EightTopMargin}">
                     <TextBlock
                         Text="{x:Bind VersionDescription, Mode=OneWay}" />

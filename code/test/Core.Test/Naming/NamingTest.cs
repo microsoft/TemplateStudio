@@ -23,9 +23,13 @@ namespace Microsoft.Templates.Core.Test
             _fixture = fixture;
         }
 
-        [Fact]
-        public void Infer_Existing()
+        [Theory]
+        [MemberData("GetAllLanguages")]
+        [Trait("Type", "ProjectGeneration")]
+        public void Infer_Existing(string language)
         {
+            SetUpFixtureForTesting(language);
+
             var existing = new string[] { "App" };
             var validators = new List<Validator>()
             {
@@ -36,9 +40,12 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal("App1", result);
         }
 
-        [Fact]
-        public void Infer_Reserved()
+        [Theory]
+        [MemberData("GetAllLanguages")]
+        public void Infer_Reserved(string language)
         {
+            SetUpFixtureForTesting(language);
+
             var existing = new string[] { };
             var validators = new List<Validator>()
             {
@@ -49,9 +56,12 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal("Page1", result);
         }
 
-        [Fact]
-        public void Infer_Default()
+        [Theory]
+        [MemberData("GetAllLanguages")]
+        public void Infer_Default(string language)
         {
+            SetUpFixtureForTesting(language);
+
             var existing = new string[] { };
             var validators = new List<Validator>()
             {
@@ -62,53 +72,71 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal("LiveTile1", result);
         }
 
-        [Fact]
-        public void Infer_Clean()
+        [Theory]
+        [MemberData("GetAllLanguages")]
+        public void Infer_Clean(string language)
         {
+            SetUpFixtureForTesting(language);
+
             var existing = new string[] { };
             var result = Naming.Infer("Blank$Page", new List<Validator>());
 
             Assert.Equal("BlankPage", result);
         }
 
-        [Fact]
-        public void Infer_Clean2()
+        [Theory]
+        [MemberData("GetAllLanguages")]
+        public void Infer_Clean2(string language)
         {
+            SetUpFixtureForTesting(language);
+
             var existing = new string[] { };
             var result = Naming.Infer("ÑäöÜ!Page", new List<Validator>());
 
             Assert.Equal("ÑäöÜPage", result);
         }
 
-        [Fact]
-        public void Infer_TitleCase()
+        [Theory]
+        [MemberData("GetAllLanguages")]
+        public void Infer_TitleCase(string language)
         {
+            SetUpFixtureForTesting(language);
+
             var existing = new string[] { };
             var result = Naming.Infer("blank page", new List<Validator>());
 
             Assert.Equal("BlankPage", result);
         }
 
-        [Fact]
-        public void Validate()
+        [Theory]
+        [MemberData("GetAllLanguages")]
+        public void Validate(string language)
         {
+            SetUpFixtureForTesting(language);
+
             var result = Naming.Validate("Blank1", new List<Validator>());
 
             Assert.True(result.IsValid);
         }
 
-        [Fact]
-        public void Validate_Empty()
+        [Theory]
+        [MemberData("GetAllLanguages")]
+        public void Validate_Empty(string language)
         {
+            SetUpFixtureForTesting(language);
+
             var result = Naming.Validate("", new List<Validator>());
 
             Assert.False(result.IsValid);
             Assert.Equal(ValidationErrorType.Empty, result.ErrorType);
         }
 
-        [Fact]
-        public void Validate_Existing()
+        [Theory]
+        [MemberData("GetAllLanguages")]
+        public void Validate_Existing(string language)
         {
+            SetUpFixtureForTesting(language);
+
             var existing = new string[] { "Blank" };
             var validators = new List<Validator>()
             {
@@ -120,10 +148,13 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal(ValidationErrorType.AlreadyExists, result.ErrorType);
         }
 
-        [Fact]
-        public void Validate_Default()
+        [Theory]
+        [MemberData("GetAllLanguages")]
+        public void Validate_Default(string language)
         {
-            var validators = new List<Validator>()
+            SetUpFixtureForTesting(language);
+
+            var validators = new List<Validator>
             {
                 new DefaultNamesValidator()
             };
@@ -133,9 +164,12 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal(ValidationErrorType.ReservedName, result.ErrorType);
         }
 
-        [Fact]
-        public void Validate_Reserved()
+        [Theory]
+        [MemberData("GetAllLanguages")]
+        public void Validate_Reserved(string language)
         {
+            SetUpFixtureForTesting(language);
+
             var validators = new List<Validator>()
             {
                 new ReservedNamesValidator()
@@ -146,9 +180,12 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal(ValidationErrorType.ReservedName, result.ErrorType);
         }
 
-        [Fact]
-        public void Validate_BadFormat_InvalidChars()
+        [Theory]
+        [MemberData("GetAllLanguages")]
+        public void Validate_BadFormat_InvalidChars(string language)
         {
+            SetUpFixtureForTesting(language);
+
             var existing = new string[] { };
             var result = Naming.Validate("Blank;", new List<Validator>());
 
@@ -156,9 +193,12 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal(ValidationErrorType.BadFormat, result.ErrorType);
         }
 
-        [Fact]
-        public void Validate_BadFormat_StartWithNumber()
+        [Theory]
+        [MemberData("GetAllLanguages")]
+        public void Validate_BadFormat_StartWithNumber(string language)
         {
+            SetUpFixtureForTesting(language);
+
             var result = Naming.Validate("1Blank", new List<Validator>());
 
             Assert.False(result.IsValid);
@@ -174,6 +214,19 @@ namespace Microsoft.Templates.Core.Test
                 throw new ArgumentException($"There is no template with name '{templateName}'. Number of templates: '{allTemplates.Count()}'");
             }
             return target;
+        }
+
+        private void SetUpFixtureForTesting(string language)
+        {
+            _fixture.InitializeFixture(language);
+        }
+
+        public static IEnumerable<object[]> GetAllLanguages()
+        {
+            foreach (var language in ProgrammingLanguages.GetAllLanguages())
+            {
+                yield return new object[] { language };
+            }
         }
     }
 }

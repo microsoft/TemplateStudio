@@ -17,5 +17,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         Jpg,
         Png,
         Jpeg,
+        Vb,
+        Vbproj,
     }
 }

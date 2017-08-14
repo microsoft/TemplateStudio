@@ -10,8 +10,8 @@ using System.Windows.Controls;
 using System.Web;
 
 using Microsoft.Templates.UI.Services;
-using Microsoft.Templates.UI.ViewModels.NewItem;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.ViewModels.NewItem;
 
 namespace Microsoft.Templates.UI.Controls
 {
@@ -90,19 +90,31 @@ namespace Microsoft.Templates.UI.Controls
         private string GetLanguage(string filePath)
         {
             string extension = Path.GetExtension(filePath);
-            if (extension == ".xaml" || extension == ".csproj" || extension == ".appxmanifest" || extension == ".resw" || extension == ".xml")
+
+            var language = string.Empty;
+
+            switch (extension)
             {
-                return "xml";
+                case ".xaml":
+                case ".csproj":
+                case ".vbproj":
+                case ".appxmanifest":
+                case ".resw":
+                case ".xml":
+                    language = "xml";
+                    break;
+                case ".cs":
+                    language = "csharp";
+                    break;
+                case ".vb":
+                    language = "vb.net";
+                    break;
+                case ".json":
+                    language = "json";
+                    break;
             }
-            else if (extension == ".cs")
-            {
-                return "csharp";
-            }
-            else if (extension == ".json")
-            {
-                return "json";
-            }
-            return string.Empty;
+
+            return language;
         }
 
         private string LoadFile(string filePath, Func<string, string> updateTextAction)
@@ -130,15 +142,15 @@ namespace Microsoft.Templates.UI.Controls
         {
             switch (item.FileStatus)
             {
-                case FileStatus.New:
-                case FileStatus.Warning:
+                case FileStatus.NewFile:
+                case FileStatus.WarningFile:
                 case FileStatus.Unchanged:
                     UpdateCodeView(item.UpdateTextAction, item.TempFile);
                     break;
-                case FileStatus.Modified:
+                case FileStatus.ModifiedFile:
                     UpdateCodeView(item.UpdateTextAction, item.TempFile, item.ProjectFile);
                     break;
-                case FileStatus.Conflicting:
+                case FileStatus.ConflictingFile:
                     UpdateCodeView(item.UpdateTextAction, item.TempFile, item.ProjectFile, true);
                     break;
             }

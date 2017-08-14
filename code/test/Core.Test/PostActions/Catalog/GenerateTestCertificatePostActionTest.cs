@@ -9,6 +9,7 @@ using System.IO;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
