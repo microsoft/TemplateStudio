@@ -22,6 +22,7 @@
         <Grid 
             Grid.Row="1" 
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+            <TextBlock Text="{x:Bind Secret}" Style="{StaticResource SubheaderTextBlockStyle}" />
         </Grid>
     </Grid>
 </Page>

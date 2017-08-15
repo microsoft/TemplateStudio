@@ -1,9 +1,9 @@
-﻿using Param_RootNamespace.Services;
+﻿using System;
 using System.Threading.Tasks;
-
+using Param_RootNamespace.Services;
 using Windows.ApplicationModel.Activation;
 
-namespace Param_ItemNamespace
+namespace Param_ItemNamespace.Activation
 {
     // TODO WTS: Open package.appxmanifest and change the declaration for the scheme (from the default of 'wtsapp') to what you want for your app.
     // More details about this functionality can be found at https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/uri-scheme.md
@@ -24,21 +24,20 @@ namespace Param_ItemNamespace
             }
             catch (ArgumentException)
             {
-                // This will happen if the URI doens't contain a param called 'secret'
+                // This will happen if the URI Query doesn't contain a param called 'secret'
             }
  
             // It's also possible to have logic here to navigate to different pages. e.g. if you have logic based on the specific URI used to launch
-            NavigationService.Navigate(typeof(Views.ExamplePage), secret);
+            NavigationService.Navigate(typeof(Views.UriSchemeExamplePage), secret);
 
             await Task.CompletedTask;
         }
 
         protected override bool CanHandleInternal(ProtocolActivatedEventArgs args)
         {
-            // For this sample we only want to handle the URI if the path is set to the sample page.
-            // If this check returns false the default handler will still be called and the app will be launched like normal.
-            // TODO WTS: Update the logic here as appropraite to your app
-            return args.Kind == ActivationKind.Protocol && args.Uri.Path.ToLowerInvariant().Equals("sample");
+            // If your app has multiple handlers of ProtocolActivationEventArgs
+            // use this method to determine which to use. (possibly checking args.Uri.Scheme)
+            return true;
         }
     }
 }
