@@ -17,12 +17,12 @@ namespace Param_ItemNamespace.Views
         //{[{
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
-            await Camera.InitializeAsync();
+            await InitializeAsync();
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            Camera.Cleanup();
+            Cleanup();
         }
         //}]}
     }

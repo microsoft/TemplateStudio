@@ -21,6 +21,9 @@
   "sourceName": "CameraView",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+	{
+      "path": ".\\Styles\\Button.xaml"
+    },
     {
       "path": ".\\Views\\CameraViewPage.xaml"
     },

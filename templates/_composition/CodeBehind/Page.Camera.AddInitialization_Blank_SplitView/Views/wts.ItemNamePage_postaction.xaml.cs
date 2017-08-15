@@ -10,12 +10,12 @@ namespace Param_ItemNamespace.Views
         //{[{
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            await Camera.InitializeAsync();
+            await InitializeAsync();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            Camera.Cleanup();
+            Cleanup();
         }
         //}]}
     }

@@ -1,0 +1,26 @@
+﻿{
+  "author": "Microsoft Community Contrbution",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Page.Camera.AddResource",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CodeBehind & identity == wts.Page.Camera|wts.Page.Camera.CodeBehind"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    }
+  }
+}

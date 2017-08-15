@@ -1,4 +1,3 @@
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace Param_ItemNamespace.Views
@@ -8,11 +7,6 @@ namespace Param_ItemNamespace.Views
         public CameraViewPage()
         {
             InitializeComponent();
-        }
-
-        private async void Photo_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.CapturedCommand.Execute(await Camera.TakePhotoAsync());
         }
     }
 }

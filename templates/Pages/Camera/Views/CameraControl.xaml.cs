@@ -1,5 +1,5 @@
 using System;
-using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Devices.Enumeration;
@@ -14,100 +14,132 @@ using Windows.Storage.FileProperties;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using Panel = Windows.Devices.Enumeration.Panel;
 
 namespace Param_ItemNamespace.Views
 {
     public sealed partial class CameraControl
     {
-        #region Variables
-        private MediaCapture _mediaCapture;
-        private bool _isInitialized;
-        private bool _isPreviewing;
+        public static readonly DependencyProperty PanelProperty =
+           DependencyProperty.Register("Panel", typeof(Panel), typeof(CameraControl), new PropertyMetadata(Panel.Front, OnPanelChanged));
 
-        // Information about the camera device
-        private bool _mirroringPreview;
-        private string _cameraId;
+        public static readonly DependencyProperty IsInitializedProperty =
+            DependencyProperty.Register("IsInitialized", typeof(bool), typeof(CameraControl), new PropertyMetadata(false));
 
-        // Receive notifications about rotation of the device and UI and apply any necessary rotation to the preview stream and UI controls       
-        private DisplayInformation _displayInformation;
+        // Rotation metadata to apply to the preview stream and recorded videos (MF_MT_VIDEO_ROTATION)
+        // Reference: http://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh868174.aspx
+        private readonly Guid _rotationKey = new Guid("C380465D-2271-428C-9B83-ECEA3B4A85C1");
+        private readonly DisplayInformation _displayInformation = DisplayInformation.GetForCurrentView();
         private readonly SimpleOrientationSensor _orientationSensor = SimpleOrientationSensor.GetDefault();
+        private MediaCapture _mediaCapture;
+        private bool _isPreviewing;
+        private bool _mirroringPreview;
         private SimpleOrientation _deviceOrientation = SimpleOrientation.NotRotated;
         private DisplayOrientations _displayOrientation = DisplayOrientations.Portrait;
-        #endregion
+        private DeviceInformationCollection _cameraDevices;
 
         public CameraControl()
         {
             InitializeComponent();
         }
 
+        public bool CanSwitch => _cameraDevices?.Count > 1;
+
+        public Panel Panel
+        {
+            get { return (Panel)GetValue(PanelProperty); }
+            set { SetValue(PanelProperty, value); }
+        }
+
+        public bool IsInitialized
+        {
+            get { return (bool)GetValue(IsInitializedProperty); }
+            private set { SetValue(IsInitializedProperty, value); }
+        }
+
         public async Task InitializeAsync()
         {
-            _displayInformation = DisplayInformation.GetForCurrentView();
             await InitializeCameraAsync();
+        }
+
+        /// <summary>
+        /// Takes a photo to a StorageFile and adds rotation metadata to it
+        /// </summary>
+        /// <returns>Photo path</returns>
+        public async Task<string> TakePhotoAsync()
+        {
+            using (var stream = new InMemoryRandomAccessStream())
+            {
+                await _mediaCapture.CapturePhotoToStreamAsync(ImageEncodingProperties.CreateJpeg(), stream);
+
+                var photoOrientation = ConvertOrientationToPhotoOrientation(GetCameraOrientation(_displayInformation, _deviceOrientation));
+
+                return await ReencodeAndSavePhotoAsync(stream, photoOrientation);
+            }
+        }
+
+        public void Cleanup()
+        {
+            Task.Run(async () => await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                await CleanupCameraAsync();
+            }));
+        }
+
+        public void CleanAndInitialize()
+        {
+            Task.Run(async () => await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                await CleanupCameraAsync();
+                await InitializeAsync();
+            }));
+        }
+
+        private static void OnPanelChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((CameraControl)d).CleanAndInitialize();
         }
 
         /// <summary>
         /// Initializes the MediaCapture, registers events, gets camera device information for mirroring and rotating, starts preview and unlocks the UI
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Task</returns>
         private async Task InitializeCameraAsync()
         {
-            Debug.WriteLine("InitializeCameraAsync");
-
             if (_mediaCapture == null)
             {
-                // Create MediaCapture and its settings
                 _mediaCapture = new MediaCapture();
                 _mediaCapture.Failed += MediaCapture_Failed;
 
-                // Initialize MediaCapture
+                _cameraDevices = await DeviceInformation.FindAllAsync(DeviceClass.VideoCapture);
+                if (_cameraDevices == null)
+                {
+                    throw new NotSupportedException();
+                }
+
                 try
                 {
-                    var cameraDevices = await DeviceInformation.FindAllAsync(DeviceClass.VideoCapture);
-                    if (cameraDevices == null)
+                    var device = _cameraDevices.FirstOrDefault(camera => camera.EnclosureLocation?.Panel == Panel);
+
+                    var cameraId = device != null ? device.Id : _cameraDevices.First().Id;
+
+                    await _mediaCapture.InitializeAsync(new MediaCaptureInitializationSettings { VideoDeviceId = cameraId });
+
+                    if (Panel == Panel.Back)
                     {
-                        Debug.WriteLine("No camera device found!");
-                        return;
+                        _mediaCapture.SetRecordRotation(VideoRotation.Clockwise90Degrees);
+                        _mediaCapture.SetPreviewRotation(VideoRotation.Clockwise90Degrees);
                     }
 
-                    foreach (var device in cameraDevices)
-                    {
-                        if (device.EnclosureLocation == null)
-                        {
-                            _cameraId = device.Id;
-                            break;
-                        }
-
-                        switch (device.EnclosureLocation.Panel)
-                        {
-                            default:
-                                _cameraId = device.Id;
-                                break;
-                            case Panel.Back:
-                                break;
-                        }
-                    }
-
-                    await _mediaCapture.InitializeAsync(new MediaCaptureInitializationSettings { VideoDeviceId = _cameraId });
-
-                    _isInitialized = true;
+                    IsInitialized = true;
                 }
-                catch (UnauthorizedAccessException)
+                catch (UnauthorizedAccessException ex)
                 {
-                    Debug.WriteLine("The app was denied access to the camera");
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine("Exception when initializing MediaCapture with {0}: {1}", _cameraId, ex);
+                    throw ex;
                 }
 
-                // If initialization succeeded, start the preview
-                if (_isInitialized)
+                if (IsInitialized)
                 {
-                    // Only mirror the preview if the camera is on the front panel
                     _mirroringPreview = true;
-
                     PreviewControl.Source = _mediaCapture;
                     RegisterOrientationEventHandlers();
                     await StartPreviewAsync();
@@ -117,40 +149,24 @@ namespace Param_ItemNamespace.Views
 
         private void MediaCapture_Failed(MediaCapture sender, MediaCaptureFailedEventArgs errorEventArgs)
         {
-            Debug.WriteLine("MediaCapture_Failed: (0x{0:X}) {1}", errorEventArgs.Code, errorEventArgs.Message);
             Cleanup();
-        }
-
-        public void Cleanup()
-        {
-            // Use the dispatcher because this method is sometimes called from non-UI threads
-            Task.Run(async () => await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-            {
-                await CleanupCameraAsync();
-            }));
         }
 
         /// <summary>
         /// Cleans up the camera resources (after stopping any video recording and/or preview if necessary) and unregisters from MediaCapture events
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Task</returns>
         private async Task CleanupCameraAsync()
         {
-            Debug.WriteLine("CleanupCameraAsync");
-
-            if (_isInitialized)
+            if (IsInitialized)
             {
                 if (_isPreviewing)
                 {
-                    // The call to stop the preview is included here for completeness, but can be
-                    // safely removed if a call to MediaCapture.Dispose() is being made later,
-                    // as the preview will be automatically stopped at that point
                     await StopPreviewAsync();
-
                     UnregisterOrientationEventHandlers();
                 }
 
-                _isInitialized = false;
+                IsInitialized = false;
             }
 
             if (_mediaCapture != null)
@@ -161,29 +177,18 @@ namespace Param_ItemNamespace.Views
             }
         }
 
-        #region Methods used to display camera preview
         /// <summary>
         /// Starts the preview and adjusts it for for rotation and mirroring after making a request to keep the screen on
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Task</returns>
         private async Task StartPreviewAsync()
         {
-            // Set the preview source in the UI and mirror it if necessary
             PreviewControl.Source = _mediaCapture;
             PreviewControl.FlowDirection = _mirroringPreview ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
 
-            // Start the preview
-            try
-            {
-                await _mediaCapture.StartPreviewAsync();
-                _isPreviewing = true;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Exception when starting the preview: {0}", ex.ToString());
-            }
+            await _mediaCapture.StartPreviewAsync();
+            _isPreviewing = true;
 
-            // Initialize the preview to the current orientation
             if (_isPreviewing)
             {
                 await SetPreviewRotationAsync();
@@ -192,68 +197,28 @@ namespace Param_ItemNamespace.Views
 
         private async Task SetPreviewRotationAsync()
         {
-            // Populate orientation variables with the current state
             _displayOrientation = _displayInformation.CurrentOrientation;
-
-            // Calculate which way and how far to rotate the preview
             int rotationDegrees = ConvertDisplayOrientationToDegrees(_displayOrientation);
 
-            // The rotation direction needs to be inverted if the preview is being mirrored
             if (_mirroringPreview)
             {
                 rotationDegrees = (360 - rotationDegrees) % 360;
             }
 
-            // Add rotation metadata to the preview stream to make sure the aspect ratio / dimensions match when rendering and getting preview frames
             var props = _mediaCapture.VideoDeviceController.GetMediaStreamProperties(MediaStreamType.VideoPreview);
-            props.Properties.Add(new Guid("C380465D-2271-428C-9B83-ECEA3B4A85C1"), rotationDegrees);
+            props.Properties.Add(_rotationKey, rotationDegrees);
             await _mediaCapture.SetEncodingPropertiesAsync(MediaStreamType.VideoPreview, props, null);
         }
 
         /// <summary>
         /// Stops the preview and deactivates a display request, to allow the screen to go into power saving modes
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Task</returns>
         private async Task StopPreviewAsync()
         {
-            // Stop the preview
-            try
-            {
-                _isPreviewing = false;
-                await _mediaCapture.StopPreviewAsync();
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Exception when stopping the preview: {0}", ex.ToString());
-            }
-
-            // Cleanup the UI
+            _isPreviewing = false;
+            await _mediaCapture.StopPreviewAsync();
             PreviewControl.Source = null;
-        }
-        #endregion
-
-        /// <summary>
-        /// Takes a photo to a StorageFile and adds rotation metadata to it
-        /// </summary>
-        /// <returns></returns>
-        public async Task<string> TakePhotoAsync()
-        {
-            try
-            {
-                using (var stream = new InMemoryRandomAccessStream())
-                {
-                    await _mediaCapture.CapturePhotoToStreamAsync(ImageEncodingProperties.CreateJpeg(), stream);
-
-                    var photoOrientation = ConvertOrientationToPhotoOrientation(GetCameraOrientation(_displayInformation, _deviceOrientation));
-
-                    return await ReencodeAndSavePhotoAsync(stream, photoOrientation);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Exception when taking a photo: {ex.Message}");
-            }
-            return null;
         }
 
         /// <summary>
@@ -261,22 +226,21 @@ namespace Param_ItemNamespace.Views
         /// </summary>
         /// <param name="stream">The photo stream</param>
         /// <param name="photoOrientation">The orientation metadata to apply to the photo</param>
-        /// <returns></returns>
+        /// <returns>File path</returns>
         private async Task<string> ReencodeAndSavePhotoAsync(IRandomAccessStream stream, PhotoOrientation photoOrientation)
         {
             using (var inputStream = stream)
             {
                 var decoder = await BitmapDecoder.CreateAsync(inputStream);
+                
+                // TODO WTS: Set the file path and the name of the photo
                 var file = await Package.Current.InstalledLocation.CreateFileAsync("photo.jpeg", CreationCollisionOption.GenerateUniqueName);
 
                 using (var outputStream = await file.OpenAsync(FileAccessMode.ReadWrite))
                 {
                     var encoder = await BitmapEncoder.CreateForTranscodingAsync(outputStream, decoder);
 
-                    var properties = new BitmapPropertySet {
-                    {
-                        "System.Photo.Orientation", new BitmapTypedValue(photoOrientation, PropertyType.UInt16)
-                    }};
+                    var properties = new BitmapPropertySet { { "System.Photo.Orientation", new BitmapTypedValue(photoOrientation, PropertyType.UInt16) } };
 
                     await encoder.BitmapProperties.SetPropertiesAsync(properties);
                     await encoder.FlushAsync();
@@ -286,10 +250,8 @@ namespace Param_ItemNamespace.Views
             }
         }
 
-        #region Orientation
         private void RegisterOrientationEventHandlers()
         {
-            // If there is an orientation sensor present on the device, register for notifications
             if (_orientationSensor != null)
             {
                 _orientationSensor.OrientationChanged += OrientationSensor_OrientationChanged;
@@ -327,15 +289,8 @@ namespace Param_ItemNamespace.Views
                 await SetPreviewRotationAsync();
             }
         }
-        #endregion
 
-        #region Rotation helpers
-
-        /// <summary>
-        /// Calculates the current camera orientation from the device orientation by taking into account whether the camera is external or facing the user
-        /// </summary>
-        /// <returns>The camera orientation in space, with an inverted rotation in the case the camera is mounted on the device and is facing the user</returns>
-        public static SimpleOrientation GetCameraOrientation(DisplayInformation displayInformation, SimpleOrientation deviceOrientation)
+        private SimpleOrientation GetCameraOrientation(DisplayInformation displayInformation, SimpleOrientation deviceOrientation)
         {
             var result = deviceOrientation;
 
@@ -360,7 +315,7 @@ namespace Param_ItemNamespace.Views
             }
 
             // If the preview is being mirrored for a front-facing camera, then the rotation should be inverted
-            if (true)//_mirroringPreview)
+            if (_mirroringPreview)
             {
                 // This only affects the 90 and 270 degree cases, because rotating 0 and 180 degrees is the same clockwise and counter-clockwise
                 switch (result)
@@ -375,33 +330,7 @@ namespace Param_ItemNamespace.Views
             return result;
         }
 
-        /// <summary>
-        /// Converts the given orientation of the device in space to the corresponding rotation in degrees
-        /// </summary>
-        /// <param name="orientation">The orientation of the device in space</param>
-        /// <returns>An orientation in degrees</returns>
-        public static int ConvertDeviceOrientationToDegrees(SimpleOrientation orientation)
-        {
-            switch (orientation)
-            {
-                case SimpleOrientation.Rotated90DegreesCounterclockwise:
-                    return 90;
-                case SimpleOrientation.Rotated180DegreesCounterclockwise:
-                    return 180;
-                case SimpleOrientation.Rotated270DegreesCounterclockwise:
-                    return 270;
-                case SimpleOrientation.NotRotated:
-                default:
-                    return 0;
-            }
-        }
-
-        /// <summary>
-        /// Converts the given orientation of the app on the screen to the corresponding rotation in degrees
-        /// </summary>
-        /// <param name="orientation">The orientation of the app on the screen</param>
-        /// <returns>An orientation in degrees</returns>
-        public static int ConvertDisplayOrientationToDegrees(DisplayOrientations orientation)
+        private int ConvertDisplayOrientationToDegrees(DisplayOrientations orientation)
         {
             switch (orientation)
             {
@@ -417,12 +346,7 @@ namespace Param_ItemNamespace.Views
             }
         }
 
-        /// <summary>
-        /// Converts the given orientation of the device in space to the metadata that can be added to captured photos
-        /// </summary>
-        /// <param name="orientation">The orientation of the device in space</param>
-        /// <returns></returns>
-        public static PhotoOrientation ConvertOrientationToPhotoOrientation(SimpleOrientation orientation)
+        private PhotoOrientation ConvertOrientationToPhotoOrientation(SimpleOrientation orientation)
         {
             switch (orientation)
             {
@@ -437,7 +361,5 @@ namespace Param_ItemNamespace.Views
                     return PhotoOrientation.Normal;
             }
         }
-
-        #endregion Rotation helpers
     }
 }
