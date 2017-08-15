@@ -77,7 +77,7 @@ namespace Microsoft.Templates.Core.Gen
         {
             Fs.EnsureFolder(_tempGenerationFolder);
 
-            var tempGenerationName = $"{projectName}_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}";
+            var tempGenerationName = $"{projectName}_{DateTime.Now.FormatAsShortDateTime()}";
             var inferredName = Naming.Infer(tempGenerationName, new List<Validator>() { new DirectoryExistsValidator(_tempGenerationFolder) }, "_");
 
             return Path.Combine(_tempGenerationFolder, inferredName);
