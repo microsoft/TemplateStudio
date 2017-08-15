@@ -32,117 +32,117 @@ namespace Microsoft.Templates.Test
             _fixture.InitializeFixture(language, this);
         }
     /*
-            [Theory]
-            [MemberData("GetProjectTemplates")]
-            [Trait("Type", "ProjectGeneration")]
-            public async void GenerateEmptyProject(string projectType, string framework, string language)
+        [Theory]
+        [MemberData("GetProjectTemplates")]
+        [Trait("Type", "ProjectGeneration")]
+        public async void GenerateEmptyProject(string projectType, string framework, string language)
+        {
+            SetUpFixtureForTesting(language);
+
+            var projectTemplate =
+                GenerationFixture.Templates.FirstOrDefault(
+                    t => t.GetTemplateType() == TemplateType.Project
+                        && t.GetProjectTypeList().Contains(projectType)
+                        && t.GetFrameworkList().Contains(framework));
+            var projectName = $"{projectType}{framework}";
+
+            ProjectName = projectName;
+            ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            OutputPath = ProjectPath;
+
+            var userSelection = GenerationFixture.SetupProject(projectType, framework, language);
+
+            await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
+
+            // Build solution
+            var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+            var result = GenerationFixture.BuildSolution(projectName, outputPath);
+
+            // Assert
+            Assert.True(result.exitCode.Equals(0), $"Solution {projectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GenerationFixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
+
+            // Clean
+            Directory.Delete(outputPath, true);
+        }
+
+        [Theory]
+        [MemberData("GetPageAndFeatureTemplates")]
+        [Trait("Type", "OneByOneItemGeneration")]
+        public async void GenerateProjectWithIsolatedItems(string itemName, string projectType, string framework, string itemId, string language)
+        {
+            SetUpFixtureForTesting(language);
+
+            var projectTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
+            var itemTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.Identity == itemId);
+            var finalName = itemTemplate.GetDefaultName();
+            var validators = new List<Validator>
             {
-                SetUpFixtureForTesting(language);
-
-                var projectTemplate =
-                    GenerationFixture.Templates.FirstOrDefault(
-                        t => t.GetTemplateType() == TemplateType.Project
-                            && t.GetProjectTypeList().Contains(projectType)
-                            && t.GetFrameworkList().Contains(framework));
-                var projectName = $"{projectType}{framework}";
-
-                ProjectName = projectName;
-                ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-                OutputPath = ProjectPath;
-
-                var userSelection = GenerationFixture.SetupProject(projectType, framework, language);
-
-                await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
-
-                // Build solution
-                var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
-                var result = GenerationFixture.BuildSolution(projectName, outputPath);
-
-                // Assert
-                Assert.True(result.exitCode.Equals(0), $"Solution {projectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GenerationFixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
-
-                // Clean
-                Directory.Delete(outputPath, true);
+                new ReservedNamesValidator(),
+            };
+            if (itemTemplate.GetItemNameEditable())
+            {
+                validators.Add(new DefaultNamesValidator());
             }
 
-            [Theory]
-            [MemberData("GetPageAndFeatureTemplates")]
-            [Trait("Type", "OneByOneItemGeneration")]
-            public async void GenerateProjectWithIsolatedItems(string itemName, string projectType, string framework, string itemId, string language)
-            {
-                SetUpFixtureForTesting(language);
+            finalName = Naming.Infer(finalName, validators);
 
-                var projectTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
-                var itemTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.Identity == itemId);
-                var finalName = itemTemplate.GetDefaultName();
-                var validators = new List<Validator>
-                {
-                    new ReservedNamesValidator(),
-                };
-                if (itemTemplate.GetItemNameEditable())
-                {
-                    validators.Add(new DefaultNamesValidator());
-                }
+            var projectName = $"{projectType}{framework}{finalName}";
 
-                finalName = Naming.Infer(finalName, validators);
+            ProjectName = projectName;
+            ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            OutputPath = ProjectPath;
 
-                var projectName = $"{projectType}{framework}{finalName}";
+            var userSelection = GenerationFixture.SetupProject(projectType, framework, language);
 
-                ProjectName = projectName;
-                ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-                OutputPath = ProjectPath;
+            GenerationFixture.AddItem(userSelection, itemTemplate, GenerationFixture.GetDefaultName);
 
-                var userSelection = GenerationFixture.SetupProject(projectType, framework, language);
+            await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
-                GenerationFixture.AddItem(userSelection, itemTemplate, GenerationFixture.GetDefaultName);
+            // Build solution
+            var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+            var result = GenerationFixture.BuildSolution(projectName, outputPath);
 
-                await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
+            // Assert
+            Assert.True(result.exitCode.Equals(0), $"Solution {projectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GenerationFixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
-                // Build solution
-                var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
-                var result = GenerationFixture.BuildSolution(projectName, outputPath);
+            // Clean
+            Directory.Delete(outputPath, true);
+        }
 
-                // Assert
-                Assert.True(result.exitCode.Equals(0), $"Solution {projectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GenerationFixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
+        [Theory]
+        [MemberData("GetProjectTemplates")]
+        [Trait("Type", "ProjectGeneration")]
+        public async void GenerateAllPagesAndFeatures(string projectType, string framework, string language)
+        {
+            SetUpFixtureForTesting(language);
 
-                // Clean
-                Directory.Delete(outputPath, true);
-            }
+            var targetProjectTemplate = GenerationFixture.Templates
+                                                            .FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project
+                                                                            && t.GetProjectTypeList().Contains(projectType)
+                                                                            && t.GetFrameworkList().Contains(framework));
 
-            [Theory]
-            [MemberData("GetProjectTemplates")]
-            [Trait("Type", "ProjectGeneration")]
-            public async void GenerateAllPagesAndFeatures(string projectType, string framework, string language)
-            {
-                SetUpFixtureForTesting(language);
+            var projectName = $"{projectType}{framework}All";
 
-                var targetProjectTemplate = GenerationFixture.Templates
-                                                                .FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project
-                                                                                && t.GetProjectTypeList().Contains(projectType)
-                                                                                && t.GetFrameworkList().Contains(framework));
+            ProjectName = projectName;
+            ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            OutputPath = ProjectPath;
 
-                var projectName = $"{projectType}{framework}All";
+            var userSelection = GenerationFixture.SetupProject(projectType, framework, language);
 
-                ProjectName = projectName;
-                ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-                OutputPath = ProjectPath;
+            GenerationFixture.AddItems(userSelection, GenerationFixture.GetTemplates(framework), GenerationFixture.GetDefaultName);
 
-                var userSelection = GenerationFixture.SetupProject(projectType, framework, language);
+            await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
-                GenerationFixture.AddItems(userSelection, GenerationFixture.GetTemplates(framework), GenerationFixture.GetDefaultName);
+            // Build solution
+            var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+            var result = GenerationFixture.BuildSolution(projectName, outputPath);
 
-                await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
+            // Assert
+            Assert.True(result.exitCode.Equals(0), $"Solution {targetProjectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GenerationFixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
-                // Build solution
-                var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
-                var result = GenerationFixture.BuildSolution(projectName, outputPath);
-
-                // Assert
-                Assert.True(result.exitCode.Equals(0), $"Solution {targetProjectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {GenerationFixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
-
-                // Clean
-                Directory.Delete(outputPath, true);
-            }
+            // Clean
+            Directory.Delete(outputPath, true);
+        }
 */
         [Theory]
         [MemberData("GetProjectTemplates")]
