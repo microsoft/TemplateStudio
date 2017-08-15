@@ -87,7 +87,7 @@ namespace Microsoft.Templates.Test
 
         private static string GetTempGenerationPath(string projectName)
         {
-            var tempGenerationName = $"{projectName}_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}";
+            var tempGenerationName = $"{projectName}_{DateTime.Now.FormatAsShortDateTime()}";
             var tempGenerationPath = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
             var inferredName = Naming.Infer(tempGenerationName, new List<Validator>() { new DirectoryExistsValidator(tempGenerationPath) }, "_");
 
