@@ -12,29 +12,28 @@ When every item has the same icon it is hard to differentiate between them when 
 
 ![](../resources/modifications/NavMenu_Different_Symbols.png)
 
-Navigate to `ViewModel/ShellViewModel.cs` and change the `PopulateNavItems` method.
+Navigate to `ViewModel/ShellViewModel.cs` (or `Views/ShellPage.xaml.cs` if using Code Behind) and change the `PopulateNavItems` method.
 
 The code below shows the symbols used to create the app shown in the image above.
 
 ```csharp
-
 private void PopulateNavItems()
 {
-    _navigationItems.Clear();
+    _primaryItems.Clear();
+    _secondaryItems.Clear();
 
-    _navigationItems.Add(ShellNavigationItem.FromType<MainView>("Shell_Main".GetLocalized(), Symbol.Home));
-    _navigationItems.Add(ShellNavigationItem.FromType<MapView>("Shell_Map".GetLocalized(), Symbol.Map));
-    _navigationItems.Add(ShellNavigationItem.FromType<MasterDetailView>("Shell_MasterDetail".GetLocalized(), Symbol.DockLeft));
-    _navigationItems.Add(ShellNavigationItem.FromType<SettingsView>("Shell_Settings".GetLocalized(), Symbol.Setting));
-    _navigationItems.Add(ShellNavigationItem.FromType<TabbedView>("Shell_Tabbed".GetLocalized(), Symbol.Document)); // This is still the default
-    _navigationItems.Add(ShellNavigationItem.FromType<WebView1View>("Shell_WebView1".GetLocalized(), Symbol.Globe));
+    _primaryItems.Add(ShellNavigationItem.FromType<MainPage>("Shell_Main".GetLocalized(), Symbol.Home));
+    _primaryItems.Add(ShellNavigationItem.FromType<MapPage>("Shell_Map".GetLocalized(), Symbol.Map));
+    _primaryItems.Add(ShellNavigationItem.FromType<MasterDetailPage>("Shell_MasterDetail".GetLocalized(), Symbol.DockLeft));
+    _primaryItems.Add(ShellNavigationItem.FromType<TabbedPage>("Shell_Tabbed".GetLocalized(), Symbol.Document)); // This is still the default
+    _primaryItems.Add(ShellNavigationItem.FromType<WebViewPage>("Shell_WebView".GetLocalized(), Symbol.Globe));
+    _secondaryItems.Add(ShellNavigationItem.FromType<SettingsPage>("Shell_Settings".GetLocalized(), Symbol.Setting));
 }
-
 ```
 
 The icons are created using the `Windows.UI.Xaml.Controls.Symbol` enumeration. You can view all the symbols available at <https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.symbol>
 
-You can also set the menuitem to use an `IconElement` directly. Like this:
+You can also set the menu item to use an `IconElement` directly. Like this:
 
 ```csharp
 _navigationItems.Add(ShellNavigationItem.FromType<MainView>("Shell_Main".GetLocalized(), new FontIcon { Glyph = "\uED5A" }));

@@ -26,7 +26,7 @@ namespace Microsoft.Templates.Test
         private const string Platform = "x86";
         private const string Configuration = "Debug";
 
-        internal string TestRunPath = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\{DateTime.Now.ToString("dd_HHmm")}\\";
+        internal string TestRunPath = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\{DateTime.Now.FormatAsDateHoursMinutes()}\\";
 
         internal string TestProjectsPath => Path.GetFullPath(Path.Combine(TestRunPath, "Proj"));
 

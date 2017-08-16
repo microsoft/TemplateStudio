@@ -21,7 +21,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             get
             {
-                return $"[{DateTime.Now.ToString("yyyyMMdd HH:mm:ss.fff")}]\t{Environment.UserName}\t{Process.GetCurrentProcess().Id}({System.Threading.Thread.CurrentThread.ManagedThreadId})\t";
+                return $"[{DateTime.Now.FormatAsFullDateTime()}]\t{Environment.UserName}\t{Process.GetCurrentProcess().Id}({System.Threading.Thread.CurrentThread.ManagedThreadId})\t";
             }
         }
     }

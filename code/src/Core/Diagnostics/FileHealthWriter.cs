@@ -106,7 +106,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
             try
             {
-                LogFileName = Path.Combine(_workingFolder, $"WTS_{Configuration.Current.Environment}_{DateTime.Now.ToString("yyyyMMdd")}.log");
+                LogFileName = Path.Combine(_workingFolder, $"WTS_{Configuration.Current.Environment}_{DateTime.Now.FormatAsDateForFilePath()}.log");
 
                 if (!Directory.Exists(_workingFolder))
                 {
@@ -137,7 +137,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
             var sb = new StringBuilder();
 
-            sb.AppendLine($"\r\n>>>>>>>>>>>>>> {StringRes.LogStartedString} {DateTime.Now.ToString("yyyyMMdd HH:mm:ss.fff")}");
+            sb.AppendLine($"\r\n>>>>>>>>>>>>>> {StringRes.LogStartedString} {DateTime.Now.FormatAsFullDateTime()}");
             sb.AppendLine($">>>>>>>>>>>>>> {StringRes.AssemblyFileVersionString}: {GetVersion()}");
 
             File.AppendAllText(LogFileName, sb.ToString());
