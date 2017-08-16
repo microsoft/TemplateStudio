@@ -47,6 +47,10 @@
     "baseclass": {
       "type": "parameter",
       "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "wts.homePageName": {
+      "type":"parameter",
+      "replaces":"Param_HomeName"
     }
   }
 }
