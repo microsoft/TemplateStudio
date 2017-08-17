@@ -61,7 +61,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             if (ex == null)
             {
-                throw new ArgumentNullException("ex");
+                throw new ArgumentNullException(nameof(ex));
             }
 
             var sb = new StringBuilder();
