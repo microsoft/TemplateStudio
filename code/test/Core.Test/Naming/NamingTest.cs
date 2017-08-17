@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 using Microsoft.TemplateEngine.Abstractions;
@@ -203,6 +204,28 @@ namespace Microsoft.Templates.Core.Test
 
             Assert.False(result.IsValid);
             Assert.Equal(ValidationErrorType.BadFormat, result.ErrorType);
+        }
+
+
+        [Fact]
+        public void DirectoryExistsValidator()
+        {
+            var directoryValidator = new DirectoryExistsValidator(Environment.CurrentDirectory);
+            var invalidDirectoryValidator = new DirectoryExistsValidator(Path.Combine(Environment.CurrentDirectory, Guid.NewGuid().ToString()));
+            var existingDir = Directory.CreateDirectory(Guid.NewGuid().ToString());
+
+            // invalid dir
+            var invalidDirectory = invalidDirectoryValidator.Validate(Guid.NewGuid().ToString());
+
+            var badDirectory = directoryValidator.Validate(Guid.NewGuid().ToString());
+            var existsDirectory = directoryValidator.Validate(existingDir.Name);
+
+            Assert.Equal(invalidDirectory.IsValid, true);
+            Assert.Equal(badDirectory.IsValid, true);
+            Assert.Equal(existsDirectory.IsValid, false);
+
+            // Clean
+            Directory.Delete(existingDir.FullName, true);
         }
 
         private ITemplateInfo GetTarget(string templateName)
