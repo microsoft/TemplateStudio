@@ -27,7 +27,7 @@ namespace Param_ItemNamespace.ViewModels
             set { Set(ref _versionDescription, value); }
         }
 
-        private ICommand _switchThemeCommand
+        private ICommand _switchThemeCommand;
 
         public ICommand SwitchThemeCommand 
         {

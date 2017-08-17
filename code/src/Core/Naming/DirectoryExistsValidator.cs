@@ -4,6 +4,7 @@
 
 using System.IO;
 using System.Linq;
+
 using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.Core
@@ -16,11 +17,18 @@ namespace Microsoft.Templates.Core
 
         public override ValidationResult Validate(string suggestedName)
         {
-            var existing = Directory.EnumerateDirectories(_config)
+            var hasExistingItem = Directory.Exists(_config);
+
+            if (hasExistingItem)
+            {
+                var existing = Directory.EnumerateDirectories(_config)
                                             .Select(d => new DirectoryInfo(d).Name)
                                             .ToList();
 
-            if (existing.Contains(suggestedName))
+                hasExistingItem = existing.Contains(suggestedName);
+            }
+
+            if (hasExistingItem)
             {
                 return new ValidationResult()
                 {
