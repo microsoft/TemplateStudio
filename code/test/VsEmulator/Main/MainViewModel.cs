@@ -347,7 +347,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private static bool HasContent(string tempPath)
         {
-            return !string.IsNullOrEmpty(tempPath) && Directory.Exists(tempPath) && Directory.EnumerateDirectories(tempPath).Count() > 0;
+            return !string.IsNullOrEmpty(tempPath) && Directory.Exists(tempPath) && Directory.EnumerateDirectories(tempPath).Any();
         }
 
         [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
@@ -436,7 +436,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     var dirs = Directory.EnumerateDirectories(templatesFolder);
                     foreach (var dir in dirs)
                     {
-                        if (!dir.EndsWith("0.0.0.0"))
+                        if (!dir.EndsWith("0.0.0.0", StringComparison.InvariantCultureIgnoreCase))
                         {
                             Fs.SafeDeleteDirectory(dir);
                         }

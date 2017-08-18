@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Core
 
         public async Task SynchronizeAsync()
         {
-            await Sync.Do();
+            await Sync.DoAsync();
         }
 
         public async Task CheckForUpdatesAsync()

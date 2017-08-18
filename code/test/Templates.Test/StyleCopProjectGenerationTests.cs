@@ -34,7 +34,9 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplatesForStyleCop")]
         [Trait("Type", "ProjectGeneration")]
+#pragma warning disable RECS0165 // Asynchronous methods should return a Task instead of void - void return required by test framework
         public async void GenerateAllPagesAndFeaturesAndCheckWithStyleCop(string projectType, string framework)
+#pragma warning restore RECS0165 // Asynchronous methods should return a Task instead of void
         {
             SetUpFixtureForTesting();
 
@@ -77,6 +79,7 @@ namespace Microsoft.Templates.Test
             // Clean
             Directory.Delete(outputPath, true);
         }
+#pragma warning restore RECS0165
 
         public static IEnumerable<object[]> GetProjectTemplatesForStyleCop()
         {

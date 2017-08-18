@@ -199,14 +199,15 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public void TryHideOverlayBox(FrameworkElement element)
         {
-            if (element != null && element.GetType() == typeof(OverlayBox))
+            if (element is OverlayBox)
             {
                 return;
             }
-            else if (element != null && element.Tag != null && element.Tag.ToString() == "AllowOverlay")
+            else if (element?.Tag != null && element.Tag.ToString() == "AllowOverlay")
             {
                 return;
             }
+
             IsOverlayBoxVisible = false;
         }
 
