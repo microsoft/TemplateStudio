@@ -25,16 +25,40 @@ namespace Param_ItemNamespace.ViewModels
             set { Set(ref _selected, value); }
         }
 
-        public ICommand ItemClickCommand { get; private set; }
+        private ICommand _itemClickCommand;
 
-        public ICommand StateChangedCommand { get; private set; }
+        public ICommand ItemClickCommand 
+        {
+            get
+            {
+                if (_itemClickCommand == null)
+                {
+                    _itemClickCommand = new RelayCommand<ItemClickEventArgs>(OnItemClick);
+                }
+
+                return _itemClickCommand;
+            }
+        }
+
+        private ICommand _stateChangedCommand;
+
+        public ICommand StateChangedCommand 
+        {
+            get
+            {
+                if (_stateChangedCommand == null)
+                {
+                    _stateChangedCommand = new RelayCommand<VisualStateChangedEventArgs>(OnStateChanged);
+                }
+
+                return _stateChangedCommand;
+            }
+        }
 
         public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
 
         public MasterDetailViewModel()
         {
-            ItemClickCommand = new RelayCommand<ItemClickEventArgs>(OnItemClick);
-            StateChangedCommand = new RelayCommand<VisualStateChangedEventArgs>(OnStateChanged);
         }
 
         public async Task LoadDataAsync(VisualState currentState)
