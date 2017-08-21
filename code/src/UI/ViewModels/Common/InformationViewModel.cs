@@ -125,11 +125,10 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         private void ComposeHelpText()
         {
-            string text = $"{Name} {StringRes.InfoModalVersion}, {Version}";
-            if (Author.ToLower() != "microsoft")
-            {
-                text += $"{StringRes.InfoModalAuthor} {Author} ";
-            }
+            string text = $"{Name}. ";
+            text += !string.IsNullOrEmpty(Version) ? $"{StringRes.InfoModalVersion} {Version}. " : string.Empty;
+            text += !string.IsNullOrEmpty(Author) ? $"{StringRes.InfoModalAuthor} {Author}. " : string.Empty;
+
             if (LicenseTerms.Any())
             {
                 text += $"{StringRes.InfoModalLicenses} ";
