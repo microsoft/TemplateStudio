@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Windows.UI.Xaml.Controls;
 
 namespace Param_ItemNamespace.Services
 {
@@ -21,7 +22,8 @@ namespace Param_ItemNamespace.Services
                     Company = "Company F",
                     ShipTo = "Francisco Pérez-Olaeta",
                     OrderTotal = 2490.00,
-                    Status = "Closed"
+                    Status = "Closed",
+                    Symbol = Symbol.Globe
                 },
                 new Order
                 {
@@ -30,7 +32,8 @@ namespace Param_ItemNamespace.Services
                     Company = "Company CC",
                     ShipTo = "Soo Jung Lee",
                     OrderTotal = 1760.00,
-                    Status = "Closed"
+                    Status = "Closed",
+                    Symbol = Symbol.Audio
                 },
                 new Order
                 {
@@ -39,7 +42,8 @@ namespace Param_ItemNamespace.Services
                     Company = "Company Z",
                     ShipTo = "Run Liu",
                     OrderTotal = 2310.00,
-                    Status = "Closed"
+                    Status = "Closed",
+                    Symbol = Symbol.Calendar
                 },
                 new Order
                 {
@@ -48,7 +52,8 @@ namespace Param_ItemNamespace.Services
                     Company = "Company Y",
                     ShipTo = "John Rodman",
                     OrderTotal = 665.00,
-                    Status = "Closed"
+                    Status = "Closed",
+                    Symbol = Symbol.Camera
                 },
                 new Order
                 {
@@ -57,7 +62,8 @@ namespace Param_ItemNamespace.Services
                     Company = "Company H",
                     ShipTo = "Elizabeth Andersen",
                     OrderTotal = 560.00,
-                    Status = "Shipped"
+                    Status = "Shipped",
+                    Symbol = Symbol.Clock
                 },
                 new Order
                 {
@@ -66,7 +72,8 @@ namespace Param_ItemNamespace.Services
                     Company = "Company F",
                     ShipTo = "Francisco Pérez-Olaeta",
                     OrderTotal = 810.00,
-                    Status = "Shipped"
+                    Status = "Shipped",
+                    Symbol = Symbol.Contact
                 },
                 new Order
                 {
@@ -75,7 +82,8 @@ namespace Param_ItemNamespace.Services
                     Company = "Company I",
                     ShipTo = "Sven Mortensen",
                     OrderTotal = 196.50,
-                    Status = "Shipped"
+                    Status = "Shipped",
+                    Symbol = Symbol.Favorite
                 },
                 new Order
                 {
@@ -84,7 +92,8 @@ namespace Param_ItemNamespace.Services
                     Company = "Company BB",
                     ShipTo = "Amritansh Raghav",
                     OrderTotal = 270.00,
-                    Status = "New"
+                    Status = "New",
+                    Symbol = Symbol.Home
                 },
                 new Order
                 {
@@ -93,7 +102,8 @@ namespace Param_ItemNamespace.Services
                     Company = "Company A",
                     ShipTo = "Anna Bedecs",
                     OrderTotal = 736.00,
-                    Status = "New"
+                    Status = "New",
+                    Symbol = Symbol.Mail
                 },
                 new Order
                 {
@@ -102,7 +112,8 @@ namespace Param_ItemNamespace.Services
                     Company = "Company K",
                     ShipTo = "Peter Krschne",
                     OrderTotal = 800.00,
-                    Status = "New"
+                    Status = "New",
+                    Symbol = Symbol.OutlineStar
                 },
             };
 

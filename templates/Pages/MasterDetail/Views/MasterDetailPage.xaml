@@ -23,8 +23,14 @@
 
                 <TextBlock
                     Grid.Row="1"
+                    Tag="{x:Bind HashIdentTitle}"
                     Text="{x:Bind Company}"
                     Style="{StaticResource ListSubTitleStyle}" />
+
+                <FontIcon 
+                    Tag="{x:Bind HashIdentIcon}"
+                    FontSize="16"
+                    Glyph="{x:Bind SymbolAsChar}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -73,6 +79,7 @@
                 ItemContainerTransitions="{x:Null}"
                 ItemTemplate="{StaticResource MasterListViewItemTemplate}"
                 IsItemClickEnabled="True"
+                ItemClick="MasterListView_ItemClick"
                 Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
                 <i:Interaction.Behaviors>
                     <ic:EventTriggerBehavior EventName="ItemClick">

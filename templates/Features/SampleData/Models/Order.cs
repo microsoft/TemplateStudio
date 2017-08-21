@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.UI.Xaml.Controls;
 
 namespace Param_ItemNamespace.Models
 {
@@ -16,5 +17,22 @@ namespace Param_ItemNamespace.Models
         public double OrderTotal { get; set; }
 
         public string Status { get; set; }
+
+        public Symbol Symbol { get; set; }
+
+        public char SymbolAsChar
+        {
+            get { return (char)Symbol; }
+        }
+
+        public string HashIdentIcon
+        {
+            get { return GetHashCode().ToString() + "-icon"; }
+        }
+        
+        public string HashIdentTitle
+        {
+            get { return GetHashCode().ToString() + "-title"; }
+        }
     }
 }

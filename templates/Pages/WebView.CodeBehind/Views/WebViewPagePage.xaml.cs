@@ -1,6 +1,8 @@
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Param_ItemNamespace.Views
 {
@@ -75,11 +77,13 @@ namespace Param_ItemNamespace.Views
             set { Set(ref _failedMesageVisibility, value); }
         }
 
-        private void OnNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
+        private async void OnNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
         {
             IsLoading = false;
             OnPropertyChanged(nameof(IsBackEnabled));
             OnPropertyChanged(nameof(IsForwardEnabled));
+            string insertBreakString = String.Format("document.body.appendChild(document.createElement(\"BR\"));");
+            String s = await sender.InvokeScriptAsync("eval", new string[] { insertBreakString, insertBreakString });
         }
 
         private void OnNavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
