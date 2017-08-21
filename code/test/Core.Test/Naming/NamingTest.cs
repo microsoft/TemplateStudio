@@ -207,18 +207,18 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Fact]
-        public void Validate_DirectoryExistsValidator_NonExistantFolderDirectory()
+        public void IsValid_DirectoryExistsValidator_NonExistantFolderDirectory()
         {
             var nonExistantFolderDirectoryValidator = new DirectoryExistsValidator(Path.Combine(Environment.CurrentDirectory, Guid.NewGuid().ToString()));
 
             // invalid dir
-            var invalidDirectory = nonExistantFolderDirectoryValidator.Validate(Guid.NewGuid().ToString());
+            var nonExistantFolderDirectory = nonExistantFolderDirectoryValidator.Validate(Guid.NewGuid().ToString());
 
-            Assert.Equal(invalidDirectory.IsValid, true);
+            Assert.Equal(nonExistantFolderDirectory.IsValid, true);
         }
 
         [Fact]
-        public void Validate_DirectoryExistsValidator_ValidDirectory()
+        public void IsValid_DirectoryExistsValidator_ValidDirectory()
         {
             var directoryValidator = new DirectoryExistsValidator(Environment.CurrentDirectory);
             var randomValidFolderDirectory = directoryValidator.Validate(Guid.NewGuid().ToString());
@@ -227,7 +227,7 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Fact]
-        public void Validate_DirectoryExistsValidator_CollisionDirectory()
+        public void IsNotValid_DirectoryExistsValidator_CollisionDirectory()
         {
             var directoryValidator = new DirectoryExistsValidator(Environment.CurrentDirectory);
             var existingDir = Directory.CreateDirectory(Path.Combine(Environment.CurrentDirectory, Guid.NewGuid().ToString()));
