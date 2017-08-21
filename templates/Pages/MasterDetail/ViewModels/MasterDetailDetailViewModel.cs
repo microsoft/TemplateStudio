@@ -14,7 +14,7 @@ namespace Param_ItemNamespace.ViewModels
 
         private ICommand _stateChangedCommand;
 
-        public ICommand StateChangedCommand 
+        public ICommand StateChangedCommand
         {
             get
             {
