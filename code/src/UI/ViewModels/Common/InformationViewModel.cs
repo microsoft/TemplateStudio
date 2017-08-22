@@ -5,9 +5,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Input;
-
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
@@ -125,27 +125,37 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         private void ComposeHelpText()
         {
-            string text = $"{Name}. ";
-            text += !string.IsNullOrEmpty(Version) ? $"{StringRes.InfoModalVersion} {Version}. " : string.Empty;
-            text += !string.IsNullOrEmpty(Author) ? $"{StringRes.InfoModalAuthor} {Author}. " : string.Empty;
+            var stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine($"{Name}");
+
+            if (!string.IsNullOrEmpty(Version))
+            {
+                stringBuilder.AppendLine($"{StringRes.InfoModalVersion} {Version}");
+            }
+
+            if (!string.IsNullOrEmpty(Author))
+            {
+                stringBuilder.AppendLine($"{StringRes.InfoModalAuthor} {Author}");
+            }
 
             if (LicenseTerms.Any())
             {
-                text += $"{StringRes.InfoModalLicenses} ";
+                stringBuilder.AppendLine($"{StringRes.InfoModalLicenses}");
                 foreach (var license in LicenseTerms)
                 {
-                    text += $"{license.Text} {license.Url} ";
+                    stringBuilder.AppendLine($"{license.Text} {license.Url}");
                 }
             }
             if (DependencyItems != null && DependencyItems.Any())
             {
-                text += $"{StringRes.InfoModalDependencies} ";
+                stringBuilder.AppendLine($"{StringRes.InfoModalDependencies}");
                 foreach (var dependency in DependencyItems)
                 {
-                    text += $"{dependency.Name} ";
+                    stringBuilder.AppendLine($"{dependency.Name}");
                 }
             }
-            HelpText = $"{text}, {InformationMD}";
+            stringBuilder.AppendLine($"{InformationMD}");
+            HelpText = stringBuilder.ToString();
         }
 
         internal void Initialize(TemplateInfoViewModel template)
