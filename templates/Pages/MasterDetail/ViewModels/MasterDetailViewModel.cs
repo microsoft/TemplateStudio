@@ -27,7 +27,7 @@ namespace Param_ItemNamespace.ViewModels
 
         private ICommand _itemClickCommand;
 
-        public ICommand ItemClickCommand 
+        public ICommand ItemClickCommand
         {
             get
             {
@@ -42,7 +42,7 @@ namespace Param_ItemNamespace.ViewModels
 
         private ICommand _stateChangedCommand;
 
-        public ICommand StateChangedCommand 
+        public ICommand StateChangedCommand
         {
             get
             {
