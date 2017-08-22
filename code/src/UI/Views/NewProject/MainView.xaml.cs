@@ -50,5 +50,16 @@ namespace Microsoft.Templates.UI.Views.NewProject
             var element = e.Source as FrameworkElement;
             ViewModel.TryHideOverlayBox(element);
         }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                if (ViewModel.ProjectTemplates.CloseTemplatesEdition() == false)
+                {
+                    Close();
+                }
+            }
+        }
     }
 }
