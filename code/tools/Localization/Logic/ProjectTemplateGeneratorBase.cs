@@ -19,6 +19,7 @@ namespace Localization
         protected virtual string DestinationDirNamePattern { get; }
         protected virtual string DestinationFileNamePattern { get; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         internal ProjectTemplateGeneratorBase(string sourceDirPath, string destinationDirPath)
         {
             sourceDirPath = Path.Combine(sourceDirPath + SourceDirRelPath);
