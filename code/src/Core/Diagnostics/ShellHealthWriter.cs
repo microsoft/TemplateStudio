@@ -12,18 +12,18 @@ namespace Microsoft.Templates.Core.Diagnostics
 {
     public class ShellHealthWriter : IHealthWriter
     {
-        GenShell shell;
+        GenShell _shell;
         public ShellHealthWriter(GenShell shell)
         {
-            this.shell = shell;
+            _shell = shell;
         }
         public async SystemTasks.Task WriteExceptionAsync(Exception ex, string message = null)
         {
-            if (shell != null)
+            if (_shell != null)
             {
                 await SafeTrackAsync(() =>
                 {
-                    string header = $"========== {StringRes.ExceptionTrackedString} [{DateTime.Now.ToString("yyyyMMdd HH:mm:ss.fff")}] ==========\n";
+                    string header = $"========== {StringRes.ExceptionTrackedString} [{DateTime.Now.FormatAsFullDateTime()}] ==========\n";
                     GenContext.ToolBox.Shell.WriteOutput(header);
 
                     if (message != null)
@@ -41,12 +41,12 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async SystemTasks.Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
         {
-            if (shell != null)
+            if (_shell != null)
             {
                 await SafeTrackAsync(() =>
                 {
-                    string eventMessage = $"[{DateTime.Now.ToString("HH:mm:ss.fff")} - {eventType}]::{message}\n";
-                    GenContext.ToolBox.Shell.WriteOutput(eventMessage);
+                    string eventMessage = $"[{DateTime.Now.FormatAsTime()} - {eventType}]::{message}\n";
+                    GenContext.ToolBox?.Shell.WriteOutput(eventMessage);
 
                     if (ex != null)
                     {

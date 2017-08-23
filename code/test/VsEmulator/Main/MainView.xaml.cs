@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Windows;
+using System.Windows.Input;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
@@ -24,6 +25,14 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 ViewModel.Initialize();
             };
+        }
+
+        private void OnKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                Close();
+            }
         }
     }
 }

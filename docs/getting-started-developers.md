@@ -1,6 +1,6 @@
 # Getting started with the generator codebase
 
-If you are authoring templates for Windows Template Studio, or interested in [contributing](../contributing.md) to this repo, then you are likely interested in how to use the latest version of this code. The required steps are outlined below.
+If you are authoring templates for Windows Template Studio, or interested in [contributing](../CONTRIBUTING.md) to this repo, then you are likely interested in how to use the latest version of this code. The required steps are outlined below.
 
 If you just want to take advantage from Windows Template Studio extension, check the [Getting Started with the Extension](getting-started-extension.md) page.
 
@@ -59,7 +59,7 @@ Following are described the contents for each folder:
 * [src](../code/src): solution source code
   * [Core](../code/src/core): Core VS Project for the solution Core classes, i.e.: enable the generation of code wrapping the "Template Engine generator", deals with templates source location and synchronization, provide the diagnostics infrastructure, etc .
   * [Installer.2017](../code/src/Installer.2017): This is the Visual Studio Extension project. Enables the installation of the extension to enable the access to the Windows Template Studio Project Template and ensures that all required assets are deployed with it.
-  * [ProjectTemplates](../code/src/ProjectTemplates): This folder contains the [Visual Studio Project Templates](https://msdn.microsoft.com/library/ms247121.aspx) deployed with the extension to enable the "File --> New Project..." experience (currently just one).
+  * [ProjectTemplates](../code/src/ProjectTemplates): This folder contains the [Visual Studio Project Templates](https://msdn.microsoft.com/library/ms247121.aspx) deployed with the extension to enable the "File --> New Project..." experience. There are separate templates for the C# and Visual basic versions of the template.
   * [Wizard](../code/src/Wizard): This project handles the generation as well as the UI dialogs required by the generation workflow.
 * [test](../code/test)
   * [Artifacts](../code/test/Artifacts): Common test elements.

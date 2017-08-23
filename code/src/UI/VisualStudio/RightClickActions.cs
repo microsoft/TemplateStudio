@@ -19,6 +19,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 {
     public class RightClickActions : IContextProvider
     {
+        private string _language;
+
         public string ProjectName { get; private set; }
 
         public string OutputPath { get; private set; }
@@ -33,14 +35,16 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; private set; }
 
-        public RightClickActions()
+        public RightClickActions(string language)
         {
-            if (!GenContext.IsInitialized)
+            _language = language;
+
+            if (GenContext.InitializedLanguage != language)
             {
 #if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell());
+                GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell(), _language);
 #else
-                GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell());
+                GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell(), _language);
 #endif
             }
         }
@@ -70,7 +74,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private void SetContext()
         {
-            if (GenContext.IsInitialized)
+            if (GenContext.InitializedLanguage == _language)
             {
                 ProjectPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
                 ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();

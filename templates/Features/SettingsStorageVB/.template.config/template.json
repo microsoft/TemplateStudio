@@ -1,0 +1,43 @@
+﻿{
+  "author": "Microsoft Community Contribution",
+  "classifications": ["Universal"],
+  "name": "Settings Storage",
+  "groupIdentity": "wts.Feat.SettingsStorage.VB",
+  "identity": "wts.Feat.SettingsStorage.VB",
+  "description": "Setting storage helps simplify storing data inside your application data folder.",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.version": "1.0.0",
+    "wts.order": "1",
+    "wts.group": "ApplicationLifecycle",
+    "wts.licenses": "[Newtonsoft.Json](https://raw.githubusercontent.com/JamesNK/Newtonsoft.Json/master/LICENSE.md)",
+    "wts.defaultInstance": "SettingsStorage",
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true"
+  },
+  "sourceName": "SettingsStorageFeature",
+  "preferNameDirectory": true,
+  "guids": [ "5b9d2eee-b648-4ca1-837e-9abb8f3dffdd" ],
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Helpers\\SettingsStorageExtensions.vb"
+    },
+    {
+      "path": ".\\Helpers\\Json.vb"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    }
+  }
+}

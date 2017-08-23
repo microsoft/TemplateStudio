@@ -18,14 +18,16 @@ namespace Microsoft.Templates.Test
 
         public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public StyleCopPlusLocalTemplatesSource() : this("0.0.0.0", "0.0.0.0")
         {
-            base.ForcedAcquisition = true;
+            ForcedAcquisition = true;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public StyleCopPlusLocalTemplatesSource(string wizardVersion, string templatesVersion, bool forcedAdquisition = true)
         {
-            base.ForcedAcquisition = forcedAdquisition;
+            ForcedAcquisition = forcedAdquisition;
             LocalTemplatesVersion = templatesVersion;
             LocalWizardVersion = wizardVersion;
         }

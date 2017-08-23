@@ -2,33 +2,28 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using System.IO;
+using System.Text;
 
 using Microsoft.Templates.Core.Locations;
-using System.Security;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 
 namespace Microsoft.Templates.Core.Test.Locations
 {
     public sealed class UnitTestsTemplatesSource : TemplatesSource
     {
-        private string LocalVersion = "0.0.0.0";
+        private string _localVersion = "0.0.0.0";
 
-        public override string Id => "UnitTest"; 
+        public override string Id => "UnitTest";
         protected override bool VerifyPackageSignatures => false;
-        public override bool ForcedAcquisition => true; 
+        public override bool ForcedAcquisition => true;
 
         protected override string AcquireMstx()
         {
             var tempFolder = Path.Combine(GetTempFolder(), SourceFolderName);
 
-            var sourcePath = $@"..\..\TestData\{SourceFolderName}";
+            Copy($@"..\..\TestData\{SourceFolderName}", tempFolder);
 
-            Copy(sourcePath, tempFolder);
-
-            File.WriteAllText(Path.Combine(tempFolder, "version.txt"), LocalVersion, Encoding.UTF8);
+            File.WriteAllText(Path.Combine(tempFolder, "version.txt"), _localVersion, Encoding.UTF8);
 
             return Templatex.Pack(tempFolder);
         }

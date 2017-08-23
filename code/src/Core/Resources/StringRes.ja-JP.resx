@@ -146,11 +146,9 @@
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
     <value>Could not find file '{0}' to include the following changes. Please review the code blocks to include the changes manually where required in your project. </value>
-    <comment>s</comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
     <value>Could not find the expected line `{0}` in file '{1}'. Please merge the content from the postaction file manually.</value>
-    <comment>s</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
     <value>The folder {0} can't be copied to {1}. Error: {2}</value>
@@ -164,6 +162,9 @@
   <data name="FsSafeMoveDirectoryMessage" xml:space="preserve">
     <value>The folder {0} can't be moved to {1}. Error: {2}</value>
   </data>
+  <data name="GenContextBootstrapError" xml:space="preserve">
+    <value>Critical error initializating GenContext.</value>
+  </data>
   <data name="GenContextCurrentInvalidOperationMessage" xml:space="preserve">
     <value>There is no context for the current gen execution, call Current_set first</value>
   </data>
@@ -175,15 +176,12 @@
   </data>
   <data name="MarkdownHeader" xml:space="preserve">
     <value>*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
-    <comment>s</comment>
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
     <value>There is no merge target for file '{0}'</value>
-    <comment>s</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>Line {0} not found in file '{1}'</value>
-    <comment>s</comment>
   </data>
   <data name="MergePostActionExecuteMessage" xml:space="preserve">
     <value>There is no merge target for file '{0}'</value>
@@ -208,141 +206,115 @@
   </data>
   <data name="StatusAddingItems" xml:space="preserve">
     <value>Adding items to project ...</value>
-    <comment>s</comment>
   </data>
   <data name="StatusOpeningItems" xml:space="preserve">
     <value>Opening generated files ...</value>
-    <comment>s</comment>
-  </data>
-  <data name="SyncInstructionsConflictingFiles" xml:space="preserve">
-    <value>## Conflicting files:</value>
-    <comment>s</comment>
-  </data>
-  <data name="SyncInstructionsConflictingFilesDescription" xml:space="preserve">
-    <value>These files already exist in your project and were also generated as part of the new item.
-Please compare and make sure everything is in the right place.</value>
-    <comment>s</comment>
-  </data>
-  <data name="SyncInstructionsDescription" xml:space="preserve">
-    <value>Please follow the instructions to include the new item into you project:</value>
-    <comment>s</comment>
   </data>
   <data name="SyncInstructionsFileName" xml:space="preserve">
     <value>Steps to include new item generation.md</value>
-    <comment>s</comment>
   </data>
-  <data name="SyncInstructionsHeader" xml:space="preserve">
-    <value># Steps to include new item generation</value>
-    <comment>s</comment>
+  <data name="SyncInstructionsSectionConflictingFiles" xml:space="preserve">
+    <value>## Conflicting files:
+These files already exist in your project and were also generated as part of the new item.
+Please compare and make sure everything is in the right place:
+{0}</value>
+    <comment>{0}: List of conflicting files</comment>
   </data>
-  <data name="SyncInstructionsMergeFile" xml:space="preserve">
-    <value>### Changes required in file '{0}':</value>
-    <comment>s</comment>
+  <data name="SyncInstructionsSectionModifiedFiles" xml:space="preserve">
+    <value>## Modified files:
+To integrate your new item with the existing project apply the following changes:
+{0}</value>
+    <comment>{0}: List of modified files (applying SyncInstructionsTemplateModifiedFiles)</comment>
   </data>
-  <data name="SyncInstructionsMergeFileError" xml:space="preserve">
-    <value>No preview file could be generated, the following changes could not be integrated: </value>
-    <comment>s</comment>
+  <data name="SyncInstructionsSectionNewFiles" xml:space="preserve">
+    <value>## New files:
+Copy and add the following files to your project:
+{0}</value>
+    <comment>{0}: List of new files</comment>
   </data>
-  <data name="SyncInstructionsMergeFilePreview" xml:space="preserve">
-    <value>Preview the changes in: [{0}]({0})</value>
-    <comment>s</comment>
+  <data name="SyncInstructionsSectionUnchangedFiles" xml:space="preserve">
+    <value>## Unchanged files:
+These files already exist in your project, no action is necessary:
+{0}</value>
+    <comment>{0}: List of unchanged files</comment>
   </data>
-  <data name="SyncInstructionsModifiedFiles" xml:space="preserve">
-    <value>## Modified files:</value>
-    <comment>s</comment>
+  <data name="SyncInstructionsTemplate" xml:space="preserve">
+    <value>*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+
+# Steps to include new item generation
+Please follow the instructions to include the new item into you project:
+
+You can find all referenced files in the temporary generation folder: {0}
+
+{1}
+{2}
+{3}
+{4}</value>
+    <comment>{0}: Temp Generation Folder, 
+{1}: New Files (SyncInstructionsSectionNewFiles), 
+{2}: Modified Files (SyncInstructionsSectionModifiedFiles), 
+{3}: Conflicting Files (SyncInstructionsSectionConflictingFiles), 
+{4}: Unchanged files (SyncInstructionsSectionUnchangedFiles)</comment>
   </data>
-  <data name="SyncInstructionsModifiedFilesDescription" xml:space="preserve">
-    <value>To integrate your new item with the existing project apply the following changes: </value>
-    <comment>s</comment>
+  <data name="SyncInstructionsTemplateModifiedFile" xml:space="preserve">
+    <value>
+### Changes required in file '{0}':
+{1}
+Preview the changes in: {2}</value>
+    <comment>{0}:FileName, {1}: Postaction Code, {2}:Preview</comment>
   </data>
-  <data name="SyncInstructionsNewFiles" xml:space="preserve">
-    <value>## New files:</value>
-    <comment>s</comment>
-  </data>
-  <data name="SyncInstructionsNewFilesDescription" xml:space="preserve">
-    <value>Copy and add the following files to your project:</value>
-    <comment>s</comment>
-  </data>
-  <data name="SyncInstructionsTempFolder" xml:space="preserve">
-    <value>You can find all referenced files in the temporary generation folder: {0}</value>
-    <comment>s</comment>
-  </data>
-  <data name="SyncInstructionsUnchangedFiles" xml:space="preserve">
-    <value>## Unchanged files:</value>
-    <comment>s</comment>
-  </data>
-  <data name="SyncInstructionsUnchangedFilesDescription" xml:space="preserve">
-    <value>These files already exist in your project, no action is necessary:</value>
-    <comment>s</comment>
-  </data>
-  <data name="SyncSummaryConflictingFiles" xml:space="preserve">
-    <value>## Conflicting files:</value>
-    <comment>s</comment>
-  </data>
-  <data name="SyncSummaryConflictingFilesDescription" xml:space="preserve">
-    <value>These files already exist in your project and were also generated as part of the new item.
-Please compare and make sure everything is in the right place.</value>
-    <comment>s</comment>
-  </data>
-  <data name="SyncSummaryDescription" xml:space="preserve">
-    <value>The following changes have been incorporated into your project:</value>
-    <comment>s</comment>
-  </data>
-  <data name="SyncSummaryFailedMerges" xml:space="preserve">
-    <value>## Failed changes in files:</value>
-    <comment>s</comment>
-  </data>
-  <data name="SyncSummaryFailedMergesDescription" xml:space="preserve">
-    <value>Merges in the following files failed:</value>
-    <comment>s</comment>
+  <data name="SyncSummarySectionConflictingFiles" xml:space="preserve">
+    <value>## Conflicting files:
+These files already exist in your project and were also generated as part of the new item.
+Please compare and make sure everything is in the right place.
+{0}</value>
+    <comment>{0}: List of conflicting files</comment>
   </data>
   <data name="SyncSummaryFileName" xml:space="preserve">
     <value>GenerationSummary.md</value>
-    <comment>s</comment>
   </data>
-  <data name="SyncSummaryHeader" xml:space="preserve">
-    <value># Generation summary</value>
-    <comment>s</comment>
+  <data name="SyncSummarySectionModifiedFiles" xml:space="preserve">
+    <value>## Modified files:
+The following changes have been applied:
+{0}</value>
+    <comment>{0}: List of modified files (applying SyncSummaryTemplateModifiedFiles)</comment>
   </data>
-  <data name="SyncSummaryMergeFile" xml:space="preserve">
-    <value>### Changes in file '{0}':</value>
-    <comment>s</comment>
+  <data name="SyncSummaryTemplateModifiedFile" xml:space="preserve">
+    <value>
+### Changes in file '{0}':
+See the final result: {2}
+
+{1}</value>
+    <comment>{0}:FileName, 
+{1}: Postaction Code,
+{2}:MergeResult,</comment>
   </data>
-  <data name="SyncSummaryMergeFileError" xml:space="preserve">
-    <value>The following changes could not be integrated:</value>
-    <comment>s</comment>
-  </data>
-  <data name="SyncSummaryMergeFilePreview" xml:space="preserve">
-    <value>See the final result: [{0}]({1})</value>
-    <comment>s</comment>
-  </data>
-  <data name="SyncSummaryModifiedFiles" xml:space="preserve">
-    <value>## Modified files:</value>
-    <comment>s</comment>
-  </data>
-  <data name="SyncSummaryModifiedFilesDescription" xml:space="preserve">
-    <value>The following changes have been applied:</value>
-    <comment>s</comment>
-  </data>
-  <data name="SyncSummaryNewFiles" xml:space="preserve">
-    <value>## New files:</value>
-    <comment>s</comment>
-  </data>
-  <data name="SyncSummaryNewFilesDescription" xml:space="preserve">
-    <value>These files have been added to your project.</value>
-    <comment>s</comment>
-  </data>
-  <data name="SyncSummaryProjectFile" xml:space="preserve">
-    <value>ProjectFile</value>
-    <comment>s</comment>
-  </data>
-  <data name="SyncSummaryTempFolder" xml:space="preserve">
-    <value>You can find the files from the generation in the temporary generation folder: {0}</value>
-    <comment>s</comment>
+  <data name="SyncSummarySectionNewFiles" xml:space="preserve">
+    <value>## New files:
+These files have been added to your project.
+{0}</value>
+    <comment>{0}: List of new files</comment>
   </data>
   <data name="SyncSummaryTempGenerationFile" xml:space="preserve">
     <value>Temp</value>
-    <comment>s</comment>
+  </data>
+  <data name="SyncSummaryTemplate" xml:space="preserve">
+    <value>*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+
+# Generation summary
+The following changes have been incorporated into your project:
+
+You can find the files from the generation in the temporary generation folder: {0}
+
+{1}
+{2}
+{3}
+{4}</value>
+    <comment>{0}: Temp Generation Folder, 
+{1}: New Files, 
+{2}: Modified Files, 
+{3}: Failed Merge Files, 
+{4}: Conflicting Files</comment>
   </data>
   <data name="TemplatesContentExtractedToString" xml:space="preserve">
     <value>Templates extracted to</value>
@@ -382,5 +354,22 @@ Please compare and make sure everything is in the right place.</value>
   </data>
   <data name="TemplatexVerifyCertificateMessage" xml:space="preserve">
     <value>Certificate '{0}' verification finished with status '{1}'</value>
+  </data>
+  <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
+    <value>## Failed changes in files:
+Merges in the following files failed:
+{0}</value>
+  </data>
+  <data name="SyncSummaryTemplateFailedMerges" xml:space="preserve">
+    <value>
+### Changes in file '{0}':
+The following changes could not be integrated: {2}
+{1}</value>
+    <comment>{0}:FileName, 
+{1}: Postaction Code,
+{2}:MergeResult,</comment>
+  </data>
+  <data name="SyncSummaryProjectFile" xml:space="preserve">
+    <value>ProjectFile</value>
   </data>
 </root>

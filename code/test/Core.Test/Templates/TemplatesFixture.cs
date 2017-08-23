@@ -11,13 +11,13 @@ namespace Microsoft.Templates.Core.Test
 {
     public class TemplatesFixture
     {
-        public TemplatesRepository Repository { get; }
+        public TemplatesRepository Repository { get; private set; }
 
-        public TemplatesFixture()
+        public void InitializeFixture(string language)
         {
             var source = new UnitTestsTemplatesSource();
 
-            GenContext.Bootstrap(source, new FakeGenShell());
+            GenContext.Bootstrap(source, new FakeGenShell(language), language);
 
             GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
 

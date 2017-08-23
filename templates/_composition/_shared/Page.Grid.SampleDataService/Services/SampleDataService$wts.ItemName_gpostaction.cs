@@ -10,9 +10,9 @@ namespace Param_ItemNamespace.Services
 //{[{
 
         // TODO WTS: Remove this once your grid page is displaying real data
-        public static ObservableCollection<Order> GetGridSampleData()
+        public static ObservableCollection<SampleOrder> GetGridSampleData()
         {
-            return new ObservableCollection<Order>(AllOrders());
+            return new ObservableCollection<SampleOrder>(AllOrders());
         }
 //}]}
     }

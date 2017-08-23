@@ -8,7 +8,7 @@ using System.Reflection;
 
 using EnvDTE;
 using EnvDTE80;
-
+using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Shell;
@@ -70,7 +70,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 Convert.ToInt32(clearWithSolution));
 
             output.GetPane(ref paneGuid, out var pane);
-            pane.OutputString($"Windows Template Studio {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}\n");
+            pane.OutputString($"Windows Template Studio {DateTime.Now.FormatAsFullDateTime()}\n");
             pane.OutputString($"Version: {GetVersion()}\n");
             pane.OutputString($">\n");
         }

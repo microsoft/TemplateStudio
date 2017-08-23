@@ -192,10 +192,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 {
                     hierarchy.GetGuidProperty(VSConstants.VSITEMID_ROOT, (int)__VSHPROPID.VSHPROPID_ProjectIDGuid, out Guid projectGuid);
 
-                    if (projectGuid != null)
-                    {
-                        return projectGuid.ToString();
-                    }
+                    return projectGuid.ToString();
                 }
             }
 
@@ -237,6 +234,30 @@ namespace Microsoft.Templates.UI.VisualStudio
             if (p != null)
             {
                 return Path.GetDirectoryName(p.FileName);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public override string GetActiveProjectLanguage()
+        {
+            var p = GetActiveProject();
+
+            if (p != null)
+            {
+                switch (Path.GetExtension(p.FileName))
+                {
+                    case ".csproj":
+                        return ProgrammingLanguages.CSharp;
+
+                    case ".vbproj":
+                        return ProgrammingLanguages.VisualBasic;
+
+                    default:
+                        return string.Empty;
+                }
             }
             else
             {
@@ -349,9 +370,8 @@ namespace Microsoft.Templates.UI.VisualStudio
                 if (project != null)
                 {
                     var solution = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution;
-                    IVsHierarchy hierarchy;
 
-                    solution.GetProjectOfUniqueName(project.FullName, out hierarchy);
+                    solution.GetProjectOfUniqueName(project.FullName, out IVsHierarchy hierarchy);
 
                     if (hierarchy != null)
                     {
@@ -417,7 +437,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                         break;
 
                     default:
-                        if (!item.EndsWith(".xaml.cs"))
+                        if (!item.EndsWith(".xaml.cs", StringComparison.InvariantCultureIgnoreCase))
                         {
                             Dte.ItemOperations.OpenFile(item, EnvDTE.Constants.vsViewKindPrimary);
                         }

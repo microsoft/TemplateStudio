@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.Core.Locations;
@@ -20,7 +21,7 @@ namespace Microsoft.Templates.Core.Gen
         private static string _tempGenerationFolder = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
 
         public static GenToolBox ToolBox { get; private set; }
-        public static bool IsInitialized { get; private set; }
+        public static string InitializedLanguage { get; private set; }
 
         public static IContextProvider Current
         {
@@ -30,20 +31,22 @@ namespace Microsoft.Templates.Core.Gen
                 {
                     throw new InvalidOperationException(StringRes.GenContextCurrentInvalidOperationMessage);
                 }
+
                 return _currentContext;
             }
+
             set
             {
                 _currentContext = value;
             }
         }
 
-        public static void Bootstrap(TemplatesSource source, GenShell shell)
+        public static void Bootstrap(TemplatesSource source, GenShell shell, string language)
         {
-            Bootstrap(source, shell, GetWizardVersionFromAssembly());
+            Bootstrap(source, shell, GetWizardVersionFromAssembly(), language);
         }
 
-        public static void Bootstrap(TemplatesSource source, GenShell shell, Version wizardVersion)
+        public static void Bootstrap(TemplatesSource source, GenShell shell, Version wizardVersion, string language)
         {
             try
             {
@@ -52,7 +55,8 @@ namespace Microsoft.Templates.Core.Gen
 
                 string hostVersion = $"{wizardVersion.Major}.{wizardVersion.Minor}";
 
-                var repository = new TemplatesRepository(source, wizardVersion);
+                CodeGen.Initialize(source.Id, hostVersion);
+                var repository = new TemplatesRepository(source, wizardVersion, language);
 
                 ToolBox = new GenToolBox(repository, shell);
 
@@ -60,11 +64,10 @@ namespace Microsoft.Templates.Core.Gen
 
                 CodeGen.Initialize(source.Id, hostVersion);
 
-                IsInitialized = true;
+                InitializedLanguage = language;
             }
             catch (Exception ex)
             {
-                IsInitialized = false;
                 AppHealth.Current.Exception.TrackAsync(ex, StringRes.GenContextBootstrapError).FireAndForget();
                 Trace.TraceError($"{StringRes.GenContextBootstrapError} Exception:\n\r{ex}");
                 throw;
@@ -75,7 +78,7 @@ namespace Microsoft.Templates.Core.Gen
         {
             Fs.EnsureFolder(_tempGenerationFolder);
 
-            var tempGenerationName = $"{projectName}_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}";
+            var tempGenerationName = $"{projectName}_{DateTime.Now.FormatAsShortDateTime()}";
             var inferredName = Naming.Infer(tempGenerationName, new List<Validator>() { new DirectoryExistsValidator(_tempGenerationFolder) }, "_");
 
             return Path.Combine(_tempGenerationFolder, inferredName);

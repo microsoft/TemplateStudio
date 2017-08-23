@@ -10,7 +10,7 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
     <Page.Resources>
-        <DataTemplate x:Key="MasterListViewItemTemplate" x:DataType="model:Order">
+        <DataTemplate x:Key="MasterListViewItemTemplate" x:DataType="model:SampleOrder">
             <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />

@@ -10,6 +10,7 @@
     xmlns:templateSelectors="clr-namespace:Microsoft.Templates.UI.TemplateSelectors"
     PreviewLostKeyboardFocus="OnPreviewLostKeyboardFocus"
     PreviewMouseDown="OnPreviewMouseDown"
+    KeyDown="OnKeyDown"
     Title="{x:Static res:StringRes.Title}"
     Width="1277"
     Height="727"
@@ -244,8 +245,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <Button
-                            Grid.Column="0"
-                            IsCancel="True"
+                            Grid.Column="0"                            
                             Command="{Binding CancelCommand}"
                             Content="{x:Static res:StringRes.ButtonCancel}"
                             Style="{StaticResource ButtonNavigationStyle}" />

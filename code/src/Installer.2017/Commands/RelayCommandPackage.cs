@@ -10,7 +10,7 @@ using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.Templates.Core.Gen;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Extension.Commands
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     public sealed class RelayCommandPackage : AsyncPackage
     {
-        private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions());
+        private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions(GenContext.ToolBox.Shell.GetActiveProjectLanguage()));
         private RightClickActions RightClickActions => _rightClickActions.Value;
 
         private RelayCommand addPageCommand;
@@ -45,7 +45,12 @@ namespace Microsoft.Templates.Extension.Commands
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             IGenContextBootstrapService bootstrapsvc = await PrepareBootstrapSvc();
-            await bootstrapsvc.GenContextInit();
+
+            var shell = new VsGenShell();
+
+            var language = shell.GetActiveProjectLanguage();
+
+            await bootstrapsvc.GenContextInit(shell, language);
 
             InitializeCommands();
 
@@ -54,14 +59,16 @@ namespace Microsoft.Templates.Extension.Commands
 
         private async Task<IGenContextBootstrapService> PrepareBootstrapSvc()
         {
-            this.AddService(typeof(ISGenContextBootstrapService), CreateService);
-            IGenContextBootstrapService bootstrapsvc = await this.GetServiceAsync(typeof(ISGenContextBootstrapService)) as IGenContextBootstrapService;
+            AddService(typeof(ISGenContextBootstrapService), CreateService);
+            IGenContextBootstrapService bootstrapsvc = await GetServiceAsync(typeof(ISGenContextBootstrapService)) as IGenContextBootstrapService;
+
             return bootstrapsvc;
         }
 
         private async Task<object> CreateService(IAsyncServiceContainer container, CancellationToken cancellationToken, Type serviceType)
         {
             ISGenContextBootstrapService service = null;
+
             await System.Threading.Tasks.Task.Run(() =>
             {
                 service = new GenContextBootstrapService(this);

@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -25,36 +26,47 @@ namespace Microsoft.Templates.Test
         private const string Platform = "x86";
         private const string Configuration = "Debug";
 
-        internal string TestRunPath = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\{DateTime.Now.ToString("dd_HHmm")}\\";
+        internal string TestRunPath = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\{DateTime.Now.FormatAsDateHoursMinutes()}\\";
 
         internal string TestProjectsPath => Path.GetFullPath(Path.Combine(TestRunPath, "Proj"));
 
         internal string TestNewItemPath => Path.GetFullPath(Path.Combine(TestRunPath, "RightClick"));
 
-        private static readonly Lazy<TemplatesRepository> _repos = new Lazy<TemplatesRepository>(() => CreateNewRepos(), true);
+        private static Lazy<TemplatesRepository> _repos = new Lazy<TemplatesRepository>(CreateNewRepos, true);
 
         public static IEnumerable<ITemplateInfo> Templates => _repos.Value.GetAll();
 
         private static TemplatesRepository CreateNewRepos()
         {
-            var source = new LocalTemplatesSource();
+            return GenContext.ToolBox.Repo;
+        }
 
-            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell());
+        private static void InitializeTemplatesForLanguage(TemplatesSource source, string language)
+        {
+            GenContext.Bootstrap(source, new FakeGenShell(language), language);
             GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
 
-            return GenContext.ToolBox.Repo;
+            _repos = new Lazy<TemplatesRepository>(CreateNewRepos, true);
         }
 
         public GenerationFixture()
         {
         }
 
+        public void InitializeFixture(string language, IContextProvider contextProvider)
+        {
+            var source = new LocalTemplatesSource();
+            GenContext.Current = contextProvider;
+
+            InitializeTemplatesForLanguage(source, language);
+        }
+
         public void Dispose()
         {
             if (Directory.Exists(TestRunPath))
             {
-                if ((!Directory.Exists(TestProjectsPath) || Directory.EnumerateDirectories(TestProjectsPath).Count() == 0)
-                    && (!Directory.Exists(TestNewItemPath) || Directory.EnumerateDirectories(TestNewItemPath).Count() == 0))
+                if ((!Directory.Exists(TestProjectsPath) || !Directory.EnumerateDirectories(TestProjectsPath).Any())
+                 && (!Directory.Exists(TestNewItemPath) || !Directory.EnumerateDirectories(TestNewItemPath).Any()))
                 {
                     Directory.Delete(TestRunPath, true);
                 }
@@ -63,17 +75,25 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetProjectTemplates()
         {
-            var projectTemplates = Templates.Where(t => t.GetTemplateType() == TemplateType.Project);
-
-            foreach (var projectTemplate in projectTemplates)
+            foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
-                var projectTypeList = projectTemplate.GetProjectTypeList();
-                foreach (var projectType in projectTypeList)
+                InitializeTemplatesForLanguage(new LocalTemplatesSource(), language);
+
+                var projectTemplates = Templates.Where(t => t.GetTemplateType() == TemplateType.Project
+                                                         && t.GetLanguage() == language);
+
+                foreach (var projectTemplate in projectTemplates)
                 {
-                    var frameworks = GenComposer.GetSupportedFx(projectType);
-                    foreach (var framework in frameworks)
+                    var projectTypeList = projectTemplate.GetProjectTypeList();
+
+                    foreach (var projectType in projectTypeList)
                     {
-                        yield return new object[] { projectType, framework };
+                        var frameworks = GenComposer.GetSupportedFx(projectType);
+
+                        foreach (var framework in frameworks)
+                        {
+                            yield return new object[] { projectType, framework, language };
+                        }
                     }
                 }
             }
@@ -81,22 +101,33 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetPageAndFeatureTemplates()
         {
-            var projectTemplates = Templates.Where(t => t.GetTemplateType() == TemplateType.Project);
-
-            foreach (var projectTemplate in projectTemplates)
+            foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
-                var projectTypeList = projectTemplate.GetProjectTypeList();
-                foreach (var projectType in projectTypeList)
+                InitializeTemplatesForLanguage(new LocalTemplatesSource(), language);
+
+                var projectTemplates = Templates.Where(t => t.GetTemplateType() == TemplateType.Project
+                                                         && t.GetLanguage() == language);
+
+                foreach (var projectTemplate in projectTemplates)
                 {
-                    var frameworks = GenComposer.GetSupportedFx(projectType);
+                    var projectTypeList = projectTemplate.GetProjectTypeList();
 
-                    foreach (var framework in frameworks)
+                    foreach (var projectType in projectTypeList)
                     {
-                        var itemTemplates = GenerationFixture.Templates.Where(t => t.GetFrameworkList().Contains(framework) && t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature && !t.GetIsHidden());
+                        var frameworks = GenComposer.GetSupportedFx(projectType);
 
-                        foreach (var itemTemplate in itemTemplates)
+                        foreach (var framework in frameworks)
                         {
-                            yield return new object[] { itemTemplate.Name, projectType, framework, itemTemplate.Identity };
+                            var itemTemplates = Templates.Where(t => t.GetFrameworkList().Contains(framework)
+                                                                  && (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                                                                  && t.GetLanguage() == language
+                                                                  && !t.GetIsHidden());
+
+                            foreach (var itemTemplate in itemTemplates)
+                            {
+                                yield return new object[]
+                                    { itemTemplate.Name, projectType, framework, itemTemplate.Identity, language };
+                            }
                         }
                     }
                 }
@@ -105,18 +136,18 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<ITemplateInfo> GetTemplates(string framework)
         {
-            return Templates
-                    .Where(t => t.GetFrameworkList().Contains(framework));
+            return Templates.Where(t => t.GetFrameworkList().Contains(framework));
         }
 
-        public static UserSelection SetupProject(string projectType, string framework)
+        public static UserSelection SetupProject(string projectType, string framework, string language)
         {
-            var projectTemplate = Templates.Where(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework)).FirstOrDefault();
+            InitializeTemplatesForLanguage(new LocalTemplatesSource(), language);
 
             var userSelection = new UserSelection
             {
                 Framework = framework,
                 ProjectType = projectType,
+                Language = language,
                 HomeName = "Main"
             };
 
@@ -126,6 +157,7 @@ namespace Microsoft.Templates.Test
             {
                 AddItem(userSelection, item.Layout.name, item.Template);
             }
+
             return userSelection;
         }
 
@@ -157,11 +189,12 @@ namespace Microsoft.Templates.Test
             }
         }
 
+        [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
         public static (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath)
         {
             var outputFile = Path.Combine(outputPath, $"_buildOutput_{solutionName}.txt");
 
-            //Build
+            // Build
             var solutionFile = Path.GetFullPath(outputPath + @"\" + solutionName + ".sln");
             var startInfo = new ProcessStartInfo(GetPath("RestoreAndBuild.bat"))
             {
@@ -187,7 +220,7 @@ namespace Microsoft.Templates.Test
             var outputLines = File.ReadAllLines(filePath);
             var errorLines = outputLines.Where(l => re.IsMatch(l));
 
-            return errorLines.Count() > 0 ? errorLines.Aggregate((i, j) => i + Environment.NewLine + j) : String.Empty;
+            return errorLines.Any() ? errorLines.Aggregate((i, j) => i + Environment.NewLine + j) : string.Empty;
         }
 
         public static string GetDefaultName(ITemplateInfo template)

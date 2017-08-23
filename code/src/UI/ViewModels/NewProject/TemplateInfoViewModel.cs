@@ -148,7 +148,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public RelayCommand<TemplateInfoViewModel> SaveItemCommand { get; private set; }
 
         private ICommand _closeEditionCommand;
-        public ICommand CloseEditionCommand => _closeEditionCommand ?? (_closeEditionCommand = new RelayCommand(CloseEdition));
+        public ICommand CloseEditionCommand => _closeEditionCommand ?? (_closeEditionCommand = new RelayCommand(() => CloseEdition()));
 
         private ICommand _showItemInfoCommand;
         public ICommand ShowItemInfoCommand => _showItemInfoCommand ?? (_showItemInfoCommand = new RelayCommand(ShowItemInfo));
@@ -186,13 +186,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        public void CloseEdition()
+        public bool CloseEdition()
         {
             if (IsEditionEnabled)
             {
                 IsEditionEnabled = false;
                 MainViewModel.Current.CleanStatus(true);
+                return true;
             }
+            return false;
         }
 
         public void UpdateTemplateAvailability(bool isAlreadyDefined)

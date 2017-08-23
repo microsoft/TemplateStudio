@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -27,6 +28,8 @@ namespace Microsoft.Templates.VsEmulator.Main
     public class MainViewModel : Observable, IContextProvider
     {
         private readonly MainView _host;
+
+        private string _language;
 
         public MainViewModel(MainView host)
         {
@@ -54,7 +57,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public List<string> FilesToOpen { get; } = new List<string>();
 
-        public RelayCommand NewProjectCommand => new RelayCommand(NewProject);
+        public RelayCommand NewCSharpProjectCommand => new RelayCommand(NewCSharpProject);
+        public RelayCommand NewVisualBasicProjectCommand => new RelayCommand(NewVisualBasicProject);
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
         public RelayCommand OpenInVsCodeCommand => new RelayCommand(OpenInVsCode);
@@ -64,7 +68,6 @@ namespace Microsoft.Templates.VsEmulator.Main
         public RelayCommand AddNewFeatureCommand => new RelayCommand(AddNewFeature);
 
         public RelayCommand AddNewPageCommand => new RelayCommand(AddNewPage);
-       
 
         private string _state;
         public string State
@@ -137,15 +140,24 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string SolutionPath { get; set; }
 
-        
-
         public void Initialize()
         {
             SolutionName = null;
         }
 
-        private async void NewProject()
+        private void NewCSharpProject()
         {
+            NewProject(ProgrammingLanguages.CSharp);
+        }
+
+        private void NewVisualBasicProject()
+        {
+            NewProject(ProgrammingLanguages.VisualBasic);
+        }
+
+        private async void NewProject(string language)
+        {
+            _language = language;
             ConfigureGenContext(ForceLocalTemplatesRefresh);
 
             try
@@ -155,10 +167,11 @@ namespace Microsoft.Templates.VsEmulator.Main
                 if (!string.IsNullOrEmpty(newProjectInfo.name))
                 {
                     var projectPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
-                    
+
                     GenContext.Current = this;
 
-                    var userSelection = NewProjectGenController.Instance.GetUserSelection();
+                    var userSelection = NewProjectGenController.Instance.GetUserSelection(_language);
+
                     if (userSelection != null)
                     {
                         ProjectName = newProjectInfo.name;
@@ -167,6 +180,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                         ClearContext();
                         SolutionName = null;
+
+                        userSelection.Language = _language;
 
                         await NewProjectGenController.Instance.GenerateProjectAsync(userSelection);
 
@@ -179,12 +194,10 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
             catch (WizardBackoutException)
             {
-
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)
             {
-                
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
             }
         }
@@ -214,10 +227,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
             }
-
         }
-
-
 
         private void ClearContext()
         {
@@ -239,7 +249,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 if (userSelection != null)
                 {
-
                     NewItemGenController.Instance.FinishGeneration(userSelection);
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
@@ -256,7 +265,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void LoadProject()
         {
-            ConfigureGenContext(ForceLocalTemplatesRefresh);
             var loadProjectInfo = ShowLoadProjectDialog();
 
             if (!string.IsNullOrEmpty(loadProjectInfo))
@@ -264,7 +272,13 @@ namespace Microsoft.Templates.VsEmulator.Main
                 SolutionPath = loadProjectInfo;
                 SolutionName = Path.GetFileNameWithoutExtension(SolutionPath);
 
-                var projFile = Directory.EnumerateFiles(Path.GetDirectoryName(SolutionPath), "*.csproj", SearchOption.AllDirectories).FirstOrDefault();
+                var solutionDirectory = Path.GetDirectoryName(SolutionPath);
+                var projFile = Directory.EnumerateFiles(solutionDirectory, "*.csproj", SearchOption.AllDirectories)
+                        .Union(Directory.EnumerateFiles(solutionDirectory, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
+
+                _language = Path.GetExtension(projFile) == ".vbproj" ? ProgrammingLanguages.VisualBasic : ProgrammingLanguages.CSharp;
+
+                ConfigureGenContext(ForceLocalTemplatesRefresh);
 
                 GenContext.Current = this;
 
@@ -292,7 +306,6 @@ namespace Microsoft.Templates.VsEmulator.Main
                 ConfigureGenContext(ForceLocalTemplatesRefresh);
             }
         }
-
 
         private void OpenInVs()
         {
@@ -325,7 +338,6 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 System.Diagnostics.Process.Start(tempGenerationPath);
             }
-
         }
 
         private static string GetTempGenerationFolder()
@@ -338,6 +350,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             return !string.IsNullOrEmpty(tempPath) && Directory.Exists(tempPath) && Directory.EnumerateDirectories(tempPath).Count() > 0;
         }
 
+        [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
         private (string name, string solutionName, string location) ShowNewProjectDialog()
         {
             var dialog = new NewProjectView()
@@ -390,9 +403,11 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void ConfigureGenContext(bool forceLocalTemplatesRefresh)
         {
-            GenContext.Bootstrap(new LocalTemplatesSource(WizardVersion, TemplatesVersion, forceLocalTemplatesRefresh)
-                , new FakeGenShell(msg => SetState(msg), l => AddLog(l), _host)
-                , new Version(WizardVersion));
+            GenContext.Bootstrap(
+                new LocalTemplatesSource(WizardVersion, TemplatesVersion, forceLocalTemplatesRefresh),
+                new FakeGenShell(_language, msg => SetState(msg), l => AddLog(l), _host),
+                new Version(WizardVersion),
+                _language);
 
             CleanUpNotUsedContentVersions();
         }
@@ -401,7 +416,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             var frame = new DispatcherFrame(true);
 
-            var method = (SendOrPostCallback)delegate (object arg)
+            SendOrPostCallback method = (arg) =>
             {
                 var f = arg as DispatcherFrame;
                 f.Continue = false;
@@ -429,14 +444,14 @@ namespace Microsoft.Templates.VsEmulator.Main
                 }
             }
         }
+
         private string GetTemplatesFolder()
         {
-            var _templatesSource = new LocalTemplatesSource(_wizardVersion, _templatesVersion);
-            var _templatesSync = new TemplatesSynchronization(_templatesSource, new Version(_wizardVersion));
-            string currentTemplatesFolder = _templatesSync.CurrentTemplatesFolder;
+            var templatesSource = new LocalTemplatesSource(_wizardVersion, _templatesVersion);
+            var templatesSync = new TemplatesSynchronization(templatesSource, new Version(_wizardVersion));
+            string currentTemplatesFolder = templatesSync.CurrentTemplatesFolder;
 
             return currentTemplatesFolder;
         }
-
     }
 }

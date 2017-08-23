@@ -53,7 +53,7 @@ namespace Microsoft.Templates.Core
 
         public string GetCurrentContentSource(string workingFolder)
         {
-            string result = string.Empty;
+            var result = string.Empty;
 
             foreach (var mp in Instance?.Settings.SettingsLoader.MountPoints)
             {

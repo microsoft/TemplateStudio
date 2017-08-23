@@ -1,0 +1,10 @@
+﻿        <Pivot x:Uid="PivotPage">
+            <!--^^-->
+            <!--{[{-->
+            <PivotItem x:Uid="PivotItem_wts.ItemName">
+                <Frame>
+                    <views:wts.ItemNamePage/>
+                </Frame>
+            </PivotItem>
+            <!--}]}-->
+        </Pivot>

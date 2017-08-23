@@ -108,6 +108,11 @@ namespace Microsoft.Templates.Core
             return GetValueFromTag(ti, TagPrefix + "compositionFilter");
         }
 
+        public static string GetLanguage(this ITemplateInfo ti)
+        {
+            return GetValueFromTag(ti, "language");
+        }
+
         public static IEnumerable<TemplateLicense> GetLicenses(this ITemplateInfo ti)
         {
             var licenses = GetValueFromTag(ti, TagPrefix + "licenses");

@@ -19,9 +19,9 @@ namespace Microsoft.Templates.UI.Views.NewProject
         public MainViewModel ViewModel { get; private set; }
         public UserSelection Result { get; set; }
 
-        public MainView()
+        public MainView(string language)
         {
-            ViewModel = new MainViewModel(this);
+            ViewModel = new MainViewModel(this, language);
 
             DataContext = ViewModel;
 
@@ -49,6 +49,17 @@ namespace Microsoft.Templates.UI.Views.NewProject
         {
             var element = e.Source as FrameworkElement;
             ViewModel.TryHideOverlayBox(element);
+        }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                if (ViewModel.ProjectTemplates.CloseTemplatesEdition() == false)
+                {
+                    Close();
+                }
+            }
         }
     }
 }

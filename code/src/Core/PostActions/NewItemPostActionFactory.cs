@@ -8,7 +8,7 @@ using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
-using Microsoft.Templates.Core.PostActions.Catalog.SortUsings;
+using Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces;
 
 namespace Microsoft.Templates.Core.PostActions
 {
@@ -31,6 +31,7 @@ namespace Microsoft.Templates.Core.PostActions
 
             AddGlobalMergeActions(postActions, $"*{MergePostAction.GlobalExtension}*", false);
             postActions.Add(new SortUsingsPostAction());
+            postActions.Add(new SortImportsPostAction());
 
             return postActions;
         }
@@ -41,7 +42,7 @@ namespace Microsoft.Templates.Core.PostActions
 
             postActions.Add(new CopyFilesToProjectPostAction(result));
             postActions.Add(new AddContextItemsToProjectPostAction());
-            postActions.Add(new CreateSyncSummaryPostAction(result));
+            postActions.Add(new CreateSummaryPostAction(result));
             postActions.Add(new OpenFilesPostAction());
 
             return postActions;
@@ -51,7 +52,7 @@ namespace Microsoft.Templates.Core.PostActions
         {
             var postActions = new List<PostAction>();
 
-            postActions.Add(new CreateSyncStepsInstructionsPostAction(result));
+            postActions.Add(new CreateSummaryPostAction(result));
             postActions.Add(new OpenFilesPostAction());
 
             return postActions;
