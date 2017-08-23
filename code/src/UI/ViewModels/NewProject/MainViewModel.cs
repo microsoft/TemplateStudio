@@ -228,5 +228,47 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
             _summaryPageGroups.Children.Add(listView);
         }
+
+        private SavedTemplateViewModel _currentDragginTemplate;
+        private SavedTemplateViewModel _dropTargetTemplate;
+
+        public void SavedTemplateGotFocus(SavedTemplateViewModel savedTemplate)
+        {
+            _dropTargetTemplate = savedTemplate;
+        }
+
+        public bool SavedTemplateSetDrag(SavedTemplateViewModel savedTemplate)
+        {
+            if (_currentDragginTemplate == null)
+            {
+                _currentDragginTemplate = savedTemplate;
+                return true;
+            }
+            return false;
+        }
+
+        public bool SavedTemplateSetDrop(SavedTemplateViewModel savedTemplate)
+        {
+            if (_currentDragginTemplate != null && _currentDragginTemplate.ItemName != _dropTargetTemplate.ItemName)
+            {
+                var newIndex = ProjectTemplates.SavedPages.First().IndexOf(_dropTargetTemplate);
+                var oldIndex = ProjectTemplates.SavedPages.First().IndexOf(_currentDragginTemplate);
+                ProjectTemplates.DropTemplate(null, new DragAndDropEventArgs<SavedTemplateViewModel>(null, _dropTargetTemplate, oldIndex, newIndex));
+                _currentDragginTemplate = null;
+                _dropTargetTemplate = null;
+            }
+            return false;
+        }
+
+        public bool ClearCurrentDragginTemplate()
+        {
+            if (_currentDragginTemplate != null)
+            {
+                _currentDragginTemplate = null;
+                _dropTargetTemplate = null;
+                return true;
+            }
+            return false;
+        }
     }
 }
