@@ -29,7 +29,7 @@ namespace Param_ItemNamespace.ViewModels
 
         private ICommand _switchThemeCommand;
 
-        public ICommand SwitchThemeCommand 
+        public ICommand SwitchThemeCommand
         {
             get
             {

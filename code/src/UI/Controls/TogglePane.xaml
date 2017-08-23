@@ -34,6 +34,16 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+    <Style TargetType="Border" x:Key="dragAndDropShadowBorderStyle">
+        <Setter Property="Background" Value="{StaticResource UIYellow}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
     <Style TargetType="Border" x:Key="lightShadowBorder">
         <Setter Property="Background" Value="{StaticResource UIWhite}"/>
         <Setter Property="BorderBrush" Value="{StaticResource UIBlack}"/>
@@ -45,12 +55,14 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+    <Style TargetType="Grid" x:Key="MainGridStyle">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleBlueGrid}"/>
+    </Style>
     <Style TargetType="{x:Type controls:TogglePane}">
-        <Setter Property="Focusable" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:TogglePane}">
-                    <Grid Width="{TemplateBinding Width}" Focusable="False">
+                    <Grid Width="{TemplateBinding Width}" Style="{StaticResource MainGridStyle}" x:Name="mainGrid" Focusable="{TemplateBinding AllowDragAndDrop}">
                         <Grid.Triggers>
                             <EventTrigger RoutedEvent="Control.MouseEnter">
                                 <BeginStoryboard Storyboard="{StaticResource FadeIn}"/>
@@ -66,6 +78,7 @@
                             </EventTrigger>
                         </Grid.Triggers>
                         <Border x:Name="mouseOvershadowGrid" Style="{StaticResource shadowBorderStyle}" Opacity="0" Focusable="False"/>
+                        <Border x:Name="dragAndDropShadowBorder" Style="{StaticResource dragAndDropShadowBorderStyle}" Opacity="0" Focusable="False"/>
                         <Border Style="{StaticResource shadowBorderStyle}" Focusable="False" Visibility="{TemplateBinding IsOpen, Converter={StaticResource BoolToVisibilityConverter}}"/>
                         <Grid Focusable="False">
                             <Grid.ColumnDefinitions>
