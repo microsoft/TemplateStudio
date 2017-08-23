@@ -33,7 +33,7 @@
                             <ColumnDefinition Width="5"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Ellipse Grid.Column="0" Fill="{Binding CircleColor, FallbackValue=Red}" Stroke="White" Width="10" Height="10" StrokeThickness="1"/>
+                        <Ellipse Grid.Column="0" Fill="{Binding CircleColor, FallbackValue=Red}" Stroke="White" Width="10" Height="10" StrokeThickness="1" Margin="{StaticResource Margin_M_Left}"/>
                         <Image 
                             Grid.Column="2" 
                             Source="{Binding Icon}"
@@ -137,6 +137,7 @@
                                         IsExpanded="True"
                                         BorderThickness="0"
                                         Focusable="False"
+                                        Style="{StaticResource ChangesSummaryFilesExpander}"
                                         Visibility="{Binding HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
                                         <ListView
                                             Focusable="False"
