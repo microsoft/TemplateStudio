@@ -25,6 +25,7 @@
                         Visibility="{x:Bind SelectedVis, Mode=OneWay}" />
                 <Viewbox
                         Child="{x:Bind Icon}"
+                        ToolTipService.ToolTip="{x:Bind Label}"
                         Margin="16,12"
                         VerticalAlignment="Center" />
                 <TextBlock
