@@ -66,7 +66,7 @@
                                             </Style>
                                         </Grid.Style>
                                         <TextBlock Margin="{StaticResource Margin_M_All}">
-                                            <Hyperlink Command="{TemplateBinding OpenUrlCommand}" CommandParameter="https://github.com/Microsoft/WindowsTemplateStudio" Style="{StaticResource LicenseHyperlinkStyle}" Focusable="{TemplateBinding Visible}">
+                                            <Hyperlink Command="{TemplateBinding OpenUrlCommand}" CommandParameter="https://github.com/Microsoft/WindowsTemplateStudio" Style="{StaticResource LicenseHyperlinkStyle}" Focusable="{TemplateBinding Visible}" AutomationProperties.Name="{x:Static res:StringRes.Title}">
                                                 <TextBlock Text="{x:Static res:StringRes.Title}" Style="{StaticResource TextOverlayBoxTitleStyle}" VerticalAlignment="Center" FontSize="{StaticResource UI_M_FontSize}"/>
                                             </Hyperlink>
                                         </TextBlock>

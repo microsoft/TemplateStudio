@@ -185,7 +185,8 @@
                             Grid.Column="1" VerticalAlignment="Bottom"                            
                             Command="{Binding ChangesSummary.MoreDetailsCommand}" Focusable="True" 
                             Style="{StaticResource BlueBaseTemplateInfoButtonStyle}"
-                            ToolTip="{x:Static res:StringRes.LearnMore}">
+                            ToolTip="{x:Static res:StringRes.LearnMore}"
+                            AutomationProperties.Name="{x:Static res:StringRes.LearnMore}">
                             <Button.Content>
                                 <TextBlock Text="&#xE946;" FontSize="18" Style="{StaticResource IconButtonTextStyle}"/>
                             </Button.Content>
