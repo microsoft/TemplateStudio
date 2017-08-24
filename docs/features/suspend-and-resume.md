@@ -105,10 +105,10 @@ protected override void OnNavigatedTo(NavigationEventArgs e)
 ### Modify Project Debug Properties
 To debug this project in order to test the suspend and resume feature we just implemented, we need to modify the project's properties. In the Start Action section of the Debug properties we will check "Do not launch, but debug my code when it starts".
 
-![](resources/ProjectDebugProperties.png) 
+![](../resources/suspend-and-resume/ProjectDebugProperties.png)
 
 ### Debug Project
 To debug the project and verify whether the suspend and resume feature works, we will need to manually force the suspension state in the application while debugging. To do so, we will have to debug the project first, and manually open the application from the Windows Menu (remember that we changed the debug properties of the project). Afterwards, we will have to Suspend and Shutdown the application using the Debug Location toolbox. The next step will be to manually reopen the application from the Windows Menu, and we will check that the video playback resumes at the same point that it was before we forced the suspension.
 
-![](resources/SuspendAndShutdown.png) 
+![](../resources/suspend-and-resume/SuspendAndShutdown.png) 
 

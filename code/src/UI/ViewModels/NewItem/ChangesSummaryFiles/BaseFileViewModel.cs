@@ -56,6 +56,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             CircleColor = GetCircleColor();
         }
 
+        public override string ToString()
+        {
+            return Subject ?? base.ToString();
+        }
+
         private SolidColorBrush GetCircleColor()
         {
             if (Services.SystemService.Instance.IsHighContrast)

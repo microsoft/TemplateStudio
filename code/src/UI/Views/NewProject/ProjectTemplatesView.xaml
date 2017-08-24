@@ -64,6 +64,8 @@
                                 <Grid Visibility="{Binding EditingContentVisibility}">
                                     <controls:TextBoxEx
                                         Text="{Binding NewTemplateName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"
+                                        AutomationProperties.Name="{x:Static res:StringRes.EditTemplateDescription}"
+                                        
                                         MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"                                        
                                         ForceSetFocus="{Binding IsEditionEnabled}"
                                         Tag="{Binding}">
