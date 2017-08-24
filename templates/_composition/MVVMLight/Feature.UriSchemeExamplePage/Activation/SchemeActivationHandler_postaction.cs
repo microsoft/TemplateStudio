@@ -31,17 +31,18 @@ namespace Param_ItemNamespace.Activation
                         secret = decoder.GetFirstValueByName("secret");
                     }
                 }
-                catch (ArgumentException)
+                catch (Exception)
                 {
-                    // This will happen if the URI doens't contain a param called 'secret'
+                    // NullReferenceException if the URI doesn't contain a query
+                    // ArgumentException if the query doesn't contain a param called 'secret'
                 }
 
                 // It's also possible to have logic here to navigate to different pages. e.g. if you have logic based on the URI used to launch
-                NavigationService.Navigate(typeof(ViewModels.wts.ItemNameViewModel).FullName, secret);
+                NavigationService.Navigate(typeof(ViewModels.wts.ItemNameExampleViewModel).FullName, secret);
             }
-            else
+            else if (args.PreviousExecutionState != ApplicationExecutionState.Running)
             {
-                // If not navigating to a specific page based on the URI, navigate to the home page
+                // If the app isn't running and not navigating to a specific page based on the URI, navigate to the home page
                 NavigationService.Navigate(typeof(ViewModels.MainViewModel).FullName);
             }
 

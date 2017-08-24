@@ -3,10 +3,10 @@
   "classifications": [
     "Universal"
   ],
-  "name": "URI Scheme",
+  "name": "Uri Scheme",
   "groupIdentity": "wts.Feat.UriScheme",
   "identity": "wts.Feat.UriScheme",
-  "shortName": "URI Scheme",
+  "shortName": "Uri Scheme",
   "description": "Add the ability to launch and deep link into the app with a custom URI scheme.",
   "tags": {
     "language": "C#",

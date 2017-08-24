@@ -15,10 +15,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\UriSchemeExamplePage.xaml"
+      "path": ".\\Views\\wts.ItemNameExamplePage.xaml"
     },
     {
-      "path": ".\\Views\\UriSchemeExamplePage.xaml.cs"
+      "path": ".\\Views\\wts.ItemNameExamplePage.xaml.cs"
     },
   ],
   "symbols": {

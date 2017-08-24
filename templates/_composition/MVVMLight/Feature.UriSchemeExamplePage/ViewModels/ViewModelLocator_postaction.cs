@@ -6,12 +6,12 @@
         {
             //^^
             //{[{
-            Register<wts.ItemNameViewModel, wts.ItemNamePage>();
+            Register<wts.ItemNameExampleViewModel, wts.ItemNameExamplePage>();
             //}]}
         }
 
         //{[{
-        public wts.ItemNameViewModel wts.ItemNameViewModel => ServiceLocator.Current.GetInstance<wts.ItemNameViewModel>();
+        public wts.ItemNameExampleViewModel wts.ItemNameExampleViewModel => ServiceLocator.Current.GetInstance<wts.ItemNameExampleViewModel>();
         //}]}
     }
 }
