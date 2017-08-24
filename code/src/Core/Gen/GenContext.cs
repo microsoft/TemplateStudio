@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.Core.Locations;
@@ -77,7 +78,7 @@ namespace Microsoft.Templates.Core.Gen
         {
             Fs.EnsureFolder(_tempGenerationFolder);
 
-            var tempGenerationName = $"{projectName}_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}";
+            var tempGenerationName = $"{projectName}_{DateTime.Now.FormatAsShortDateTime()}";
             var inferredName = Naming.Infer(tempGenerationName, new List<Validator>() { new DirectoryExistsValidator(_tempGenerationFolder) }, "_");
 
             return Path.Combine(_tempGenerationFolder, inferredName);

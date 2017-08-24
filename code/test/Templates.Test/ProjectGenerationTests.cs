@@ -42,8 +42,8 @@ namespace Microsoft.Templates.Test
             var projectTemplate =
                 GenerationFixture.Templates.FirstOrDefault(
                     t => t.GetTemplateType() == TemplateType.Project
-                      && t.GetProjectTypeList().Contains(projectType)
-                      && t.GetFrameworkList().Contains(framework));
+                        && t.GetProjectTypeList().Contains(projectType)
+                        && t.GetFrameworkList().Contains(framework));
             var projectName = $"{projectType}{framework}";
 
             ProjectName = projectName;
@@ -117,9 +117,9 @@ namespace Microsoft.Templates.Test
             SetUpFixtureForTesting(language);
 
             var targetProjectTemplate = GenerationFixture.Templates
-                                                         .FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project
-                                                                           && t.GetProjectTypeList().Contains(projectType)
-                                                                           && t.GetFrameworkList().Contains(framework));
+                                                            .FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project
+                                                                            && t.GetProjectTypeList().Contains(projectType)
+                                                                            && t.GetFrameworkList().Contains(framework));
 
             var projectName = $"{projectType}{framework}All";
 
