@@ -379,10 +379,24 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private bool IsTemplateAlreadyDefined(string identity) => Identities.Any(i => i == identity);
 
-        public void CloseTemplatesEdition()
+        public bool CloseTemplatesEdition()
         {
-            PagesGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t => t.CloseEdition()));
-            FeatureGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t => t.CloseEdition()));
+            bool isEditingTemplate = false;
+            PagesGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t =>
+            {
+                if (t.CloseEdition())
+                {
+                    isEditingTemplate = true;
+                }
+            }));
+            FeatureGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t =>
+            {
+                if (t.CloseEdition())
+                {
+                    isEditingTemplate = true;
+                }
+            }));
+            return isEditingTemplate;
         }
 
         public void CloseSummaryItemsEdition()

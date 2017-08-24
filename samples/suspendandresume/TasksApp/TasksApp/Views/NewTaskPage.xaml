@@ -1,0 +1,55 @@
+<Page
+    x:Class="TasksApp.Views.NewTaskPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Grid
+        x:Name="ContentArea"
+        Margin="{StaticResource MediumLeftRightMargin}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="TitleRow" Height="48"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            x:Name="TitlePage"
+            x:Uid="NewTask_Title"
+            Style="{StaticResource PageTitleStyle}" />
+
+        <Grid Grid.Row="1" Margin="24,12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <TextBlock x:Uid="NewTask_NewTitle"/>
+                <TextBox x:Name="title" Text="{x:Bind ViewModel.Title, Mode=TwoWay}" Margin="0,6,0,0"/>
+                <TextBlock x:Uid="NewTask_NewDescription" Margin="0,12,0,0"/>
+            </StackPanel>
+            <TextBox Grid.Row="1" Text="{x:Bind ViewModel.Description, Mode=TwoWay}" Margin="0,6,0,0"/>
+            <Button Grid.Row="2" x:Uid="NewTask_SaveButton" Command="{x:Bind ViewModel.SaveCommand}" Margin="0,12,0,0"/>
+        </Grid>
+        <!--  Adaptive triggers  -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TitlePage.Margin" Value="48,0,12,7"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>

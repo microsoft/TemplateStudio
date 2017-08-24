@@ -13,7 +13,7 @@ namespace Microsoft.Templates.UI.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (HorizontalAlignment)value == HorizontalAlignment.Stretch ? double.NaN : parameter;
+            return (HorizontalAlignment)value == HorizontalAlignment.Stretch ? double.PositiveInfinity : parameter;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

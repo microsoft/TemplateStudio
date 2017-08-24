@@ -47,19 +47,21 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var configInfo = ProjectConfigInfo.ReadProjectConfiguration();
             if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework))
             {
-                InfoShapeVisibility = System.Windows.Visibility.Visible;
+                InfoShapeVisibility = Visibility.Visible;
                 ProjectConfigurationWindow projectConfig = new ProjectConfigurationWindow(MainView);
+
                 if (projectConfig.ShowDialog().Value)
                 {
                     configInfo.ProjectType = projectConfig.ViewModel.SelectedProjectType.Name;
                     configInfo.Framework = projectConfig.ViewModel.SelectedFramework.Name;
-                    InfoShapeVisibility = System.Windows.Visibility.Collapsed;
+                    InfoShapeVisibility = Visibility.Collapsed;
                 }
                 else
                 {
                     Cancel();
                 }
             }
+
             ConfigFramework = configInfo.Framework;
             ConfigProjectType = configInfo.ProjectType;
         }

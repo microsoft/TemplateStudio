@@ -31,7 +31,7 @@ namespace Microsoft.Templates.Test
         {
             _fixture.InitializeFixture(language, this);
         }
-    /*
+
         [Theory]
         [MemberData("GetProjectTemplates")]
         [Trait("Type", "ProjectGeneration")]
@@ -143,7 +143,7 @@ namespace Microsoft.Templates.Test
             // Clean
             Directory.Delete(outputPath, true);
         }
-*/
+
         [Theory]
         [MemberData("GetProjectTemplates")]
         [Trait("Type", "ProjectGeneration")]
