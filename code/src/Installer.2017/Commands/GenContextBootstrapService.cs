@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Extension.Commands
         {
             serviceProvider = provider;
         }
-        public async System.Threading.Tasks.Task GenContextInit(GenShell shell, string language)
+        public async System.Threading.Tasks.Task GenContextInitAsync(GenShell shell, string language)
         {
             if (GenContext.InitializedLanguage != language)
             {
@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Extension.Commands
 
     public interface IGenContextBootstrapService
     {
-        System.Threading.Tasks.Task GenContextInit(GenShell shell, string language);
+        System.Threading.Tasks.Task GenContextInitAsync(GenShell shell, string language);
         TaskAwaiter GetAwaiter();
     }
 }
