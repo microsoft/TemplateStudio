@@ -15,7 +15,7 @@ namespace Microsoft.Templates.Core
 
         public static string FormatAsFullDateTime(this DateTime date)
         {
-            return date.ToString("yyyyMMdd HH:mm:ss.fff");
+            return date.ToString("yyyy-MM-dd HH:mm:ss.fff");
         }
 
         public static string FormatAsTime(this DateTime date)
