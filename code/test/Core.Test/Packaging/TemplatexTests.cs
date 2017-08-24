@@ -61,7 +61,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         public void PackAndSign_Folder()
         {
             var certPass = GetTestCertPassword();
-            X509Certificate2 cert = TemplatePackage.LoadCert(@"Locations\TestCert.pfx", certPass);
+            X509Certificate2 cert = TemplatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
 
             int filesInCurrentFolder = new DirectoryInfo(Environment.CurrentDirectory).GetFiles("*", SearchOption.AllDirectories).Count();
             var inFolder = Environment.CurrentDirectory;
@@ -81,7 +81,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         public void PackAndSign_FolderExtractToAbsoluteDir()
         {
             var certPass = GetTestCertPassword();
-            X509Certificate2 cert = TemplatePackage.LoadCert(@"Locations\TestCert.pfx", certPass);
+            X509Certificate2 cert = TemplatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
 
             int filesInCurrentFolder = new DirectoryInfo(Environment.CurrentDirectory).GetFiles("*", SearchOption.AllDirectories).Count();
             var inFolder = Environment.CurrentDirectory;
@@ -110,7 +110,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         public void PackAndSign_CertFromFile_RelativeInOutPath()
         {
             var certPass = GetTestCertPassword();
-            X509Certificate2 cert = TemplatePackage.LoadCert(@"Locations\TestCert.pfx", certPass);
+            X509Certificate2 cert = TemplatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
 
             var inFile = @"Packaging\SampleContent.txt";
             var outFile = @"Packaging\SignedContent.package";
@@ -222,7 +222,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         public void ExtractFileAndPacksInCurrentDir()
         {
             var certPass = GetTestCertPassword();
-            X509Certificate2 cert = TemplatePackage.LoadCert(@"Locations\TestCert.pfx", certPass);
+            X509Certificate2 cert = TemplatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
 
             File.Copy(@"Packaging\SampleContent.txt", Path.Combine(Environment.CurrentDirectory, "NewFile.txt"), true);
             var inFile = "NewFile.txt";
@@ -243,9 +243,9 @@ namespace Microsoft.Templates.Core.Test.Locations
         public void ExtractFileCurrentDir()
         {
             var certPass = GetTestCertPassword();
-            X509Certificate2 cert = TemplatePackage.LoadCert(@"Locations\TestCert.pfx", certPass);
+            X509Certificate2 cert = TemplatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
 
-            var inFile = @"Locations\SampleContent.txt";
+            var inFile = @"Packaging\SampleContent.txt";
             var outFile = @"ToExtract.package";
             var extractionDir = "";
 
@@ -262,10 +262,10 @@ namespace Microsoft.Templates.Core.Test.Locations
         public void ExtractFileTampered()
         {
             var certPass = GetTestCertPassword();
-            X509Certificate2 cert = TemplatePackage.LoadCert(@"Locations\TestCert.pfx", certPass);
+            X509Certificate2 cert = TemplatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
 
-            var inFile = @"Locations\SampleContent.txt";
-            var outFile = @"Locations\ToExtract.package";
+            var inFile = @"Packaging\SampleContent.txt";
+            var outFile = @"Packaging\ToExtract.package";
             var extractionDir = "SubDir";
 
             TemplatePackage.PackAndSign(inFile, outFile, cert, MediaTypeNames.Text.Plain);
@@ -285,10 +285,10 @@ namespace Microsoft.Templates.Core.Test.Locations
         public void ValidateSignatureTamperedPackage()
         {
             var certPass = GetTestCertPassword();
-            X509Certificate2 cert = TemplatePackage.LoadCert(@"Locations\TestCert.pfx", certPass);
+            X509Certificate2 cert = TemplatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
 
-            var inFile = @"Locations\SampleContent.txt";
-            var outFile = @"Locations\ToExtract.package";
+            var inFile = @"Packaging\SampleContent.txt";
+            var outFile = @"Packaging\ToExtract.package";
 
             TemplatePackage.PackAndSign(inFile, outFile, cert, MediaTypeNames.Text.Plain);
 
@@ -302,7 +302,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         [Fact]
         public void ValidateSignatureFromMsSigned()
         {
-            var msSignedFile = @"Locations\MsSigned\Templates.mstx";
+            var msSignedFile = @"Packaging\MsSigned\Templates.mstx";
             Assert.True(TemplatePackage.ValidateSignatures(msSignedFile));
         }
 
@@ -372,7 +372,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             SecureString ss = GetTestCertPassword();
             if (TemplatePackage.LoadCert("B584589A382B2AD20B54D2DD1634BB487792A970") == null)
             {
-                X509Certificate2 c = new X509Certificate2(@"Locations\TestCert.pfx", ss, X509KeyStorageFlags.Exportable | X509KeyStorageFlags.PersistKeySet);
+                X509Certificate2 c = new X509Certificate2(@"Packaging\TestCert.pfx", ss, X509KeyStorageFlags.Exportable | X509KeyStorageFlags.PersistKeySet);
 
                 X509Store store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
                 store.Open(OpenFlags.ReadWrite);
