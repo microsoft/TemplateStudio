@@ -14,7 +14,10 @@
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
-  "PrimaryOutputs": [],
+  "PrimaryOutputs": [
+    { "path": ".\\Helpers\\PropertyChangedBaseExtensions.cs" },
+    { "path": ".\\Activation\\DefaultLaunchActivationHandler.cs" }
+  ],
   "symbols": {
     "wts.rootNamespace": {
       "type": "parameter",

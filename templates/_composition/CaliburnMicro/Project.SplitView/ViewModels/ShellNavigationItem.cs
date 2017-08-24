@@ -4,6 +4,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
+using Param_ItemNamespace.Helpers;
 
 namespace wts.ItemName.ViewModels
 {
@@ -16,7 +17,7 @@ namespace wts.ItemName.ViewModels
         public Visibility SelectedVis
         {
             get { return _selectedVis; }
-            set { _selectedVis = value; NotifyOfPropertyChange(); }
+            set { this.Set(ref _selectedVis, value); }
         }
 
         private SolidColorBrush _selectedForeground = null;
@@ -24,7 +25,7 @@ namespace wts.ItemName.ViewModels
         public SolidColorBrush SelectedForeground
         {
             get { return _selectedForeground ?? (_selectedForeground = GetStandardTextColorBrush()); }
-            set { _selectedForeground = value; NotifyOfPropertyChange(); }
+            set { this.Set(ref _selectedForeground, value); }
         }
 
         public string Label { get; set; }
@@ -76,8 +77,7 @@ namespace wts.ItemName.ViewModels
 
             set
             {
-                _isSelected = value;
-                NotifyOfPropertyChange();
+                this.Set(ref _isSelected, value);
                 SelectedVis = value ? Visibility.Visible : Visibility.Collapsed;
                 SelectedForeground = value
                     ? Application.Current.Resources["SystemControlForegroundAccentBrush"] as SolidColorBrush
