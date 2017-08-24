@@ -43,7 +43,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         private TelemetryService(Configuration config)
         {
-            _currentConfig = config ?? throw new ArgumentNullException("config");
+            _currentConfig = config ?? throw new ArgumentNullException(nameof(config));
 
             IntializeTelemetryClient();
         }
@@ -306,14 +306,33 @@ namespace Microsoft.Templates.Core.Diagnostics
 
             VsTelem.TelemetryService.DefaultSession.PostEvent(e);
         }
+
         private async Task SafeExecuteAsync(Action action)
         {
             try
             {
-                var task = Task.Run(() =>
+                var task = Task.Run(action);
+
+                await task;
+            }
+            catch (AggregateException aggEx)
+            {
+                foreach (var ex in aggEx.InnerExceptions)
                 {
-                    action();
-                });
+                    Trace.TraceError($"Error tracking telemetry: {ex}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError($"Error tracking telemetry: {ex}");
+            }
+        }
+
+        private async Task SafeExecuteAsync(Func<Task> action)
+        {
+            try
+            {
+                var task = Task.Run(action);
 
                 await task;
             }
@@ -321,12 +340,12 @@ namespace Microsoft.Templates.Core.Diagnostics
             {
                 foreach (Exception ex in aggEx.InnerExceptions)
                 {
-                    Trace.TraceError("Error tracking telemetry: {0}", ex.ToString());
+                    Trace.TraceError($"Error tracking telemetry: {ex}");
                 }
             }
             catch (Exception ex)
             {
-                Trace.TraceError("Error tracking telemetry: {0}", ex.ToString());
+                Trace.TraceError($"Error tracking telemetry: {ex}");
             }
         }
 

@@ -44,28 +44,28 @@ namespace Microsoft.Templates.Extension.Commands
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IGenContextBootstrapService bootstrapsvc = await PrepareBootstrapSvc();
+            IGenContextBootstrapService bootstrapsvc = await PrepareBootstrapSvcAsync();
 
             var shell = new VsGenShell();
 
             var language = shell.GetActiveProjectLanguage();
 
-            await bootstrapsvc.GenContextInit(shell, language);
+            await bootstrapsvc.GenContextInitAsync(shell, language);
 
             InitializeCommands();
 
             await base.InitializeAsync(cancellationToken, progress);
         }
 
-        private async Task<IGenContextBootstrapService> PrepareBootstrapSvc()
+        private async Task<IGenContextBootstrapService> PrepareBootstrapSvcAsync()
         {
-            AddService(typeof(ISGenContextBootstrapService), CreateService);
+            AddService(typeof(ISGenContextBootstrapService), CreateServiceAsync);
             IGenContextBootstrapService bootstrapsvc = await GetServiceAsync(typeof(ISGenContextBootstrapService)) as IGenContextBootstrapService;
 
             return bootstrapsvc;
         }
 
-        private async Task<object> CreateService(IAsyncServiceContainer container, CancellationToken cancellationToken, Type serviceType)
+        private async Task<object> CreateServiceAsync(IAsyncServiceContainer container, CancellationToken cancellationToken, Type serviceType)
         {
             ISGenContextBootstrapService service = null;
 
