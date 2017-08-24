@@ -8,6 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -147,15 +148,15 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void NewCSharpProject()
         {
-            NewProject(ProgrammingLanguages.CSharp);
+           Task.Run(async () => await NewProjectAsync(ProgrammingLanguages.CSharp));
         }
 
         private void NewVisualBasicProject()
         {
-            NewProject(ProgrammingLanguages.VisualBasic);
+            Task.Run(async () => await NewProjectAsync(ProgrammingLanguages.VisualBasic));
         }
 
-        private async void NewProject(string language)
+        private async Task NewProjectAsync(string language)
         {
             _language = language;
             ConfigureGenContext(ForceLocalTemplatesRefresh);
@@ -170,7 +171,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                     GenContext.Current = this;
 
-                    var userSelection = NewProjectGenController.Instance.GetUserSelection(_language);
+                    var userSelection = NewProjectGenController.Instance.GetUserSelection();
 
                     if (userSelection != null)
                     {

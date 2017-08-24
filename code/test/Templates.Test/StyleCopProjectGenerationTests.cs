@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
@@ -34,9 +34,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplatesForStyleCop")]
         [Trait("Type", "ProjectGeneration")]
-#pragma warning disable RECS0165 // Asynchronous methods should return a Task instead of void - void return required by test framework
-        public async void GenerateAllPagesAndFeaturesAndCheckWithStyleCop(string projectType, string framework)
-#pragma warning restore RECS0165 // Asynchronous methods should return a Task instead of void
+        public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsync(string projectType, string framework)
         {
             SetUpFixtureForTesting();
 
@@ -79,7 +77,6 @@ namespace Microsoft.Templates.Test
             // Clean
             Directory.Delete(outputPath, true);
         }
-#pragma warning restore RECS0165
 
         public static IEnumerable<object[]> GetProjectTemplatesForStyleCop()
         {

@@ -36,7 +36,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             private set => SetProperty(ref _hasSummaryLicenses, value);
         }
 
-        public MainViewModel(MainView mainView, string language) : base(mainView)
+        public MainViewModel(MainView mainView) : base(mainView)
         {
             MainView = mainView;
             Current = this;
@@ -82,7 +82,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 return;
             }
-            if (button != null && button.Tag != null && button.Tag.ToString() == "AllowCloseEdition")
+            if (button?.Tag != null && button.Tag.ToString() == "AllowCloseEdition")
             {
                 return;
             }
@@ -144,8 +144,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             MainView.Result = CreateUserSelection();
             base.OnFinish(parameter);
         }
-        protected override async void OnTemplatesAvailable() => await ProjectSetup.InitializeAsync();
-        protected override async void OnNewTemplatesAvailable()
+
+        protected override async Task OnTemplatesAvailableAsync() => await ProjectSetup.InitializeAsync();
+
+        protected override async Task OnNewTemplatesAvailableAsync()
         {
             UpdateCanFinish(false);
             _canGoBack = false;
