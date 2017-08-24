@@ -27,15 +27,27 @@ namespace Param_ItemNamespace.ViewModels
             set { Set(ref _versionDescription, value); }
         }
 
-        public ICommand SwitchThemeCommand { get; private set; }
+        private ICommand _switchThemeCommand;
+
+        public ICommand SwitchThemeCommand
+        {
+            get
+            {
+                if (_switchThemeCommand == null)
+                {
+                    _switchThemeCommand = new RelayCommand<ElementTheme>(
+                        async (param) =>
+                        {
+                            await ThemeSelectorService.SetThemeAsync(param);
+                        });
+                }
+
+                return _switchThemeCommand;
+            }
+        }
 
         public SettingsPageViewModel()
         {
-            SwitchThemeCommand = new RelayCommand<ElementTheme>(
-                async (param) =>
-                {
-                    await ThemeSelectorService.SetThemeAsync(param);
-                });
         }
 
         public void Initialize()

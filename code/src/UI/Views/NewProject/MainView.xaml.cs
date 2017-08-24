@@ -2,7 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -16,11 +15,13 @@ namespace Microsoft.Templates.UI.Views.NewProject
     /// </summary>
     public partial class MainView : Window
     {
+        public static MainView Current;
         public MainViewModel ViewModel { get; private set; }
         public UserSelection Result { get; set; }
 
         public MainView(string language)
         {
+            Current = this;
             ViewModel = new MainViewModel(this, language);
 
             DataContext = ViewModel;
@@ -49,6 +50,17 @@ namespace Microsoft.Templates.UI.Views.NewProject
         {
             var element = e.Source as FrameworkElement;
             ViewModel.TryHideOverlayBox(element);
+        }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                if (!ViewModel.ProjectTemplates.CloseTemplatesEdition() && !ViewModel.ClearCurrentDragginTemplate())
+                {
+                    Close();
+                }
+            }
         }
     }
 }

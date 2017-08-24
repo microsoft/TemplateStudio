@@ -19,6 +19,7 @@ namespace Microsoft.Templates.UI.Controls
     public class ImageEx : ContentControl
     {
         private const string XamlExtension = ".xaml";
+        private Color _updatedColor;
 
         public override void OnApplyTemplate()
         {
@@ -36,12 +37,34 @@ namespace Microsoft.Templates.UI.Controls
             else
             {
                 Content = CreateFromBitmap();
+                LayoutUpdated += ImageEx_LayoutUpdated;
+            }
+        }
+
+        private void ImageEx_LayoutUpdated(object sender, EventArgs e)
+        {
+            if ((Foreground as SolidColorBrush).Color != _updatedColor)
+            {
+                _updatedColor = (Foreground as SolidColorBrush).Color;
+
+                ChangeColorOfBitmap(Content, (Foreground as SolidColorBrush).Color);
+            }
+        }
+
+        private static void ChangeColorOfBitmap(object sender, Color setColor)
+        {
+            var writeableBmp = (sender as Image).Source as WriteableBitmap;
+
+            using (writeableBmp.GetBitmapContext())
+            {
+                writeableBmp.ForEach((x, y, color) => Color.FromArgb(color.A, setColor.R, setColor.G, setColor.B));
             }
         }
 
         private UIElement CreateFromBitmap()
         {
-            var bitmap = CreateIcon(SourcePath);
+            var bitmap = new WriteableBitmap(CreateIcon(SourcePath) as BitmapSource);
+
             if (bitmap == null)
             {
                 return null;
@@ -50,7 +73,7 @@ namespace Microsoft.Templates.UI.Controls
             var image = new Image
             {
                 Source = bitmap,
-                Stretch = Stretch
+                Stretch = Stretch,
             };
 
             RenderOptions.SetBitmapScalingMode(image, BitmapScalingMode.HighQuality);
@@ -70,7 +93,7 @@ namespace Microsoft.Templates.UI.Controls
 
                 if (paths.Any())
                 {
-                    paths.ForEach(p => BindingOperations.SetBinding(p, Shapes.Path.FillProperty, CreateBinding(this, nameof(Foreground))));
+                    paths.ForEach(p => BindingOperations.SetBinding(p, Shapes.Shape.FillProperty, CreateBinding(this, nameof(Foreground))));
                 }
 
                 var shapes = element
