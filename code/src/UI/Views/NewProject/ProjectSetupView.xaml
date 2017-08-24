@@ -37,11 +37,7 @@
                             <!--Row 0-->
                             <controls:ImageEx Grid.Row="0" Grid.RowSpan="3" Focusable="False" SourcePath="{Binding Icon}" VerticalAlignment="Top" FallbackImage="/Microsoft.Templates.UI;component/Assets/DefaultIcon.png" />
                             <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding DisplayName}" Margin="{StaticResource Margin_M_Left}" />
-                            <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" Command="{Binding ShowInfoCommand}" ToolTip="{x:Static res:StringRes.LearnMore}">
-                                <Button.Content>
-                                    <TextBlock Text="&#xE946;" FontSize="18" Style="{StaticResource IconButtonTextStyle}" />
-                                </Button.Content>
-                            </Button>
+                            <controls:InformationButton Grid.Row="0" Grid.Column="2" Command="{Binding ShowInfoCommand}" />
 
                             <!--Row 1-->
                             <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding Summary}" Margin="{StaticResource Margin_M_Left}"/>

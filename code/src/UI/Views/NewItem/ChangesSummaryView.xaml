@@ -181,15 +181,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Foreground="{Binding ChangesSummary.SelectedFile.CircleColor}" Text="{Binding ChangesSummary.SelectedFile.DetailTitle}" Style="{StaticResource TextSummaryTitle}" />
-                        <Button 
-                            Grid.Column="1" VerticalAlignment="Bottom"                            
-                            Command="{Binding ChangesSummary.MoreDetailsCommand}" Focusable="True" 
-                            Style="{StaticResource BlueBaseTemplateInfoButtonStyle}"
-                            ToolTip="{x:Static res:StringRes.LearnMore}">
-                            <Button.Content>
-                                <TextBlock Text="&#xE946;" FontSize="18" Style="{StaticResource IconButtonTextStyle}"/>
-                            </Button.Content>
-                        </Button>
+                        <controls:InformationButton Grid.Column="1" Command="{Binding ChangesSummary.MoreDetailsCommand}" VerticalAlignment="Bottom"/>
                     </Grid>
                     <TextBlock Margin="0,7,0,0" Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}"/>
                 </StackPanel>
