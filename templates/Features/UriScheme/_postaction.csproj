@@ -1,4 +1,4 @@
-<!-- Nuget package references -->
+﻿<!-- Nuget package references -->
 <!--{[{-->
 <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
   <Version>1.4.1</Version>

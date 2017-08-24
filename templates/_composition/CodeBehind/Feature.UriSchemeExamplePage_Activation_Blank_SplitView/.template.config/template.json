@@ -3,23 +3,17 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Feat.UriSchemeExamplePage.CodeBehind",
+  "name": "wts.Feat.UriSchemeExamplePage.CodeBehind.Activation.BlankOrSplit",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind & identity == wts.Feat.UriScheme"
+    "wts.compositionFilter": "$framework == CodeBehind & identity == wts.Feat.UriScheme & $projectType == Blank|SplitView"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\Views\\wts.ItemNameExamplePage.xaml"
-    },
-    {
-      "path": ".\\Views\\wts.ItemNameExamplePage.xaml.cs"
-    },
   ],
   "symbols": {
     "wts.rootNamespace": {

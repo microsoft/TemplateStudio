@@ -33,3 +33,8 @@ The protocol name you specify MUST meet these rules:
 ## Supporting multiple protocols
 
 If you wish to support multiple custom protocols handled by different ActivationHandlers then in the `CanHandleInternal` method of the `SchemeActivationHandler` you will need to check the value of `args.Uri.Scheme` as well as the ActivationKind. This will allow you to have different handlers for each protocol.
+
+## Other points of note
+
+- The default behavior of the code is that if the app is already running when launched from a Uri but it doesn't go to a specific page, it will just remain on the page that is currently displayed. To alter this behavior remove the check against `PreviousExecutionState` in `SchemeActivationHandler.HandleInternalAsync`.
+- Related to the above, if the app is already running and displaying the sample page and you launch another Uri that points to the sample page the original version of the sample page will remain displayed. This is because you would not normally want multiple copies of the same page on the back stack. If in your app you would like to navigate to a copy of the page that is currently displayed but with different arguments passed to it, remove the conditional check in `NavigationService.Navigate`. (Note that this doesn't apply to projects using MVVM Light.)

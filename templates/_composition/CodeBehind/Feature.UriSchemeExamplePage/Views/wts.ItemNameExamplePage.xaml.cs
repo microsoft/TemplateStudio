@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
 using Windows.UI.Xaml.Controls;
@@ -28,7 +28,7 @@ namespace Param_ItemNamespace.Views
             base.OnNavigatedTo(e);
 
             // Capture the passed in value and assign it to a property that's displayed on the view
-            this.Secret = e.Parameter.ToString();
+            Secret = e.Parameter.ToString();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

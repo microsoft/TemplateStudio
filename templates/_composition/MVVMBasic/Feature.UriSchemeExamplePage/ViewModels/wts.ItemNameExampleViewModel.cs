@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Param_ItemNamespace.Helpers;
 
 namespace Param_ItemNamespace.ViewModels
