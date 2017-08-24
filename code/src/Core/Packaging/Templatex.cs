@@ -16,9 +16,9 @@ using System.Security.Cryptography.Xml;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Resources;
 
-namespace Microsoft.Templates.Core.Locations
+namespace Microsoft.Templates.Core.Packaging
 {
-    public static class Templatex
+    public static class TemplatePackage
     {
         public const string DefaultExtension = ".mstx";
 
@@ -54,7 +54,7 @@ namespace Microsoft.Templates.Core.Locations
 
             if (cert == null)
             {
-                throw new SignCertNotFoundException(string.Format(StringRes.TemplatexPackAndSignMessage, certThumbprint));
+                throw new SignCertNotFoundException(string.Format(StringRes.TemplatePackagePackAndSignMessage, certThumbprint));
             }
 
             PackAndSign(source, outFile, cert, mimeMediaType);
@@ -131,7 +131,7 @@ namespace Microsoft.Templates.Core.Locations
 
                 if (!isSignatureValid && verifySignatures)
                 {
-                    throw new InvalidSignatureException(string.Format(StringRes.TemplatexExtractMessage, signedFilePack));
+                    throw new InvalidSignatureException(string.Format(StringRes.TemplatePackageExtractMessage, signedFilePack));
                 }
             }
         }
@@ -180,7 +180,7 @@ namespace Microsoft.Templates.Core.Locations
 
             if (certFound == null)
             {
-                AppHealth.Current.Warning.TrackAsync(string.Format(StringRes.TemplatexLoadCertMessage, thumbprint)).FireAndForget();
+                AppHealth.Current.Warning.TrackAsync(string.Format(StringRes.TemplatePackageLoadCertMessage, thumbprint)).FireAndForget();
             }
 
             return certFound;
@@ -196,7 +196,7 @@ namespace Microsoft.Templates.Core.Locations
 
                 var certs = store.Certificates.Find(X509FindType.FindByThumbprint, thumbprint, false);
 
-                AppHealth.Current.Info.TrackAsync(string.Format(StringRes.TemplatexFindCertificateFoundMessage, certs.Count, thumbprint, location.ToString())).FireAndForget();
+                AppHealth.Current.Info.TrackAsync(string.Format(StringRes.TemplatePackageFindCertificateFoundMessage, certs.Count, thumbprint, location.ToString())).FireAndForget();
 
                 if (certs.Count >= 1)
                 {
@@ -204,12 +204,12 @@ namespace Microsoft.Templates.Core.Locations
 
                     if (certs.Count > 1)
                     {
-                        AppHealth.Current.Warning.TrackAsync(StringRes.TemplatexFindCertificateNotOneMessage).FireAndForget();
+                        AppHealth.Current.Warning.TrackAsync(StringRes.TemplatePackageFindCertificateNotOneMessage).FireAndForget();
                     }
 
                     if (!certFound.HasPrivateKey)
                     {
-                        AppHealth.Current.Info.TrackAsync(StringRes.TemplatexFindCertificateNoPkMessage).FireAndForget();
+                        AppHealth.Current.Info.TrackAsync(StringRes.TemplatePackageFindCertificateNoPkMessage).FireAndForget();
                     }
                 }
             }
@@ -282,7 +282,7 @@ namespace Microsoft.Templates.Core.Locations
 
                 if (!certificatesOk)
                 {
-                    AppHealth.Current.Warning.TrackAsync(StringRes.TemplatexValidatePackageCertificatesMessage).FireAndForget();
+                    AppHealth.Current.Warning.TrackAsync(StringRes.TemplatePackageValidatePackageCertificatesMessage).FireAndForget();
                     break;
                 }
             }
@@ -313,7 +313,7 @@ namespace Microsoft.Templates.Core.Locations
         private static bool VerifyCertificate(X509Certificate cert)
         {
             var status = PackageDigitalSignatureManager.VerifyCertificate(cert);
-            AppHealth.Current.Verbose.TrackAsync(string.Format(StringRes.TemplatexVerifyCertificateMessage, cert.Subject, status.ToString())).FireAndForget();
+            AppHealth.Current.Verbose.TrackAsync(string.Format(StringRes.TemplatePackageVerifyCertificateMessage, cert.Subject, status.ToString())).FireAndForget();
 
             return (status == X509ChainStatusFlags.NoError);
         }
@@ -359,7 +359,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             catch (CryptographicException ex)
             {
-                AppHealth.Current.Error.TrackAsync(StringRes.TemplatexSignAllPartsMessage, ex).FireAndForget();
+                AppHealth.Current.Error.TrackAsync(StringRes.TemplatePackageSignAllPartsMessage, ex).FireAndForget();
                 throw;
             }
         }
@@ -446,7 +446,7 @@ namespace Microsoft.Templates.Core.Locations
 
             if (files == null || files.Count() == 0)
             {
-                throw new FileNotFoundException(string.Format(StringRes.TemplatexGetSourceFilesMessage, source));
+                throw new FileNotFoundException(string.Format(StringRes.TemplatePackageGetSourceFilesMessage, source));
             }
 
             return files;

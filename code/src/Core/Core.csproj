@@ -275,7 +275,7 @@
     <Compile Include="Locations\TemplatesSynchronization.cs" />
     <Compile Include="Locations\TemplatesContent.cs" />
     <Compile Include="Locations\TemplatesSource.cs" />
-    <Compile Include="Locations\Templatex.cs" />
+    <Compile Include="Packaging\Templatex.cs" />
     <Compile Include="Locations\SignCertNotFoundException.cs" />
     <Compile Include="MetadataInfo.cs" />
     <Compile Include="Mvvm\ObservableBase.cs" />
@@ -340,26 +340,32 @@
     <EmbeddedResource Include="Resources\StringRes.cs-CZ.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.cs-CZ.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.de-DE.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.de-DE.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.es-ES.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.es-ES.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.fr-FR.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.fr-FR.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.it-IT.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.it-IT.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.ja-JP.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.ja-JP.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.ko-KR.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -368,34 +374,42 @@
     <EmbeddedResource Include="Resources\StringRes.pl-PL.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.pl-PL.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.pt-BR.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.pt-BR.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.ru-RU.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.ru-RU.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.tr-TR.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.tr-TR.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.zh-CN.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringRes.zh-TW.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.zh-TW.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Resources;
+using Microsoft.Templates.Core.Packaging;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -94,7 +95,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                Templatex.Extract(file, tempFolder, VerifyPackageSignatures);
+                TemplatePackage.Extract(file, tempFolder, VerifyPackageSignatures);
                 AppHealth.Current.Verbose.TrackAsync($"{StringRes.TemplatesContentExtractedToString} {tempFolder}.").FireAndForget();
             }
             catch (Exception ex)

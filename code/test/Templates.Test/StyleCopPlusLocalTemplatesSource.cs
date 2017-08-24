@@ -3,8 +3,10 @@
 // See the LICENSE file in the project root for more information.
 
 using System.IO;
+
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Core.Packaging;
 
 namespace Microsoft.Templates.Test
 {
@@ -32,7 +34,7 @@ namespace Microsoft.Templates.Test
 
         protected override string AcquireMstx()
         {
-            // Compress Content adding version return templatex path.
+            // Compress Content adding version return TemplatePackage path.
             var tempFolder = Path.Combine(GetTempFolder(), SourceFolderName);
 
             Copy(Origin, tempFolder);
@@ -41,7 +43,7 @@ namespace Microsoft.Templates.Test
 
             File.WriteAllText(Path.Combine(tempFolder, "version.txt"), LocalTemplatesVersion);
 
-            return Templatex.Pack(tempFolder);
+            return TemplatePackage.Pack(tempFolder);
         }
 
         protected static void Copy(string sourceFolder, string targetFolder)

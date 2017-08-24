@@ -143,18 +143,18 @@
     <Compile Include="PostActions\Catalog\SortImportsTest.cs" />
     <Compile Include="PostActions\Catalog\SortUsingsTest.cs" />
     <Compile Include="Templates\ITemplateInfoExtensionsTest.cs" />
-    <Compile Include="Locations\TemplatexTests.cs" />
+    <Compile Include="Packaging\TemplatexTests.cs" />
     <Compile Include="Locations\UnitTestTemplatesSource.cs" />
     <Compile Include="Naming\NamingTest.cs" />
     <Compile Include="Composition\CompositionQueryTest.cs" />
     <Content Include="..\..\TestCert.pfx">
-      <Link>Locations\TestCert.pfx</Link>
+      <Link>Packaging\TestCert.pfx</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <AdditionalFiles Include="..\..\StyleCop.json">
       <Link>StyleCop.json</Link>
     </AdditionalFiles>
-    <None Include="Locations\MsSigned\Templates.mstx">
+    <None Include="Packaging\MsSigned\Templates.mstx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="TestData\Merge\Source_expected.cs">
@@ -200,7 +200,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Locations\SampleContent.txt">
+    <Content Include="Packaging\SampleContent.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="packages.config" />
