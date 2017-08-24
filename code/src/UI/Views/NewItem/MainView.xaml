@@ -93,6 +93,7 @@
                         Grid.Column="1"
                         Text="{Binding NewItemSetup.ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"                    
                         Margin="{StaticResource Margin_M_All}"
+                        AutomationProperties.Name="{x:Static res:StringRes.EditTemplateDescription}"
                         Width="360"
                         MaxLength="30" HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
                         Visibility="{Binding NewItemSetup.EditionVisibility}">
