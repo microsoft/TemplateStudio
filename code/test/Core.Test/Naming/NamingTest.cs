@@ -207,7 +207,7 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Fact]
-        public void IsValid_DirectoryExistsValidator_NonExistantFolderDirectory()
+        public void IsValid_DirectoryExistsValidator_NonExistantDirectory()
         {
             var nonExistantFolderDirectoryValidator = new DirectoryExistsValidator(Path.Combine(Environment.CurrentDirectory, Guid.NewGuid().ToString()));
 
