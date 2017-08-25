@@ -292,7 +292,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     HomeName = item.ItemName;
                 }
 
-                AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.Rename).FireAndForget();
+                AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Rename).FireAndForget();
             }
             else
             {
@@ -335,7 +335,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
                 item.IsHome = true;
                 HomeName = item.ItemName;
-                AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.SetHome).FireAndForget();
+                AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.SetHome).FireAndForget();
             }
         }
 
@@ -374,7 +374,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             UpdateTemplatesAvailability();
             MainViewModel.Current.RebuildLicenses();
 
-            AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.Remove).FireAndForget();
+            AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Remove).FireAndForget();
         }
 
         private bool IsTemplateAlreadyDefined(string identity) => Identities.Any(i => i == identity);

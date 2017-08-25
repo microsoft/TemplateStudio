@@ -40,18 +40,18 @@ namespace Microsoft.Templates.Core.Locations
 
         public TemplatesSynchronization(TemplatesSource source, Version wizardVersion)
         {
-            _source = source ?? throw new ArgumentNullException("location");
+            _source = source ?? throw new ArgumentNullException(nameof(source));
             _content = new TemplatesContent(WorkingFolder, source.Id, wizardVersion);
             CurrentContentFolder = CodeGen.Instance?.GetCurrentContentSource(WorkingFolder);
         }
 
-        public async Task Do()
+        public async Task DoAsync()
         {
             if (LockSync())
             {
                 try
                 {
-                    await CheckInstallDeployedContent();
+                    await CheckInstallDeployedContentAsync();
 
                     var acquireCalled = await CheckMandatoryAcquireContentAsync();
 
@@ -98,12 +98,12 @@ namespace Microsoft.Templates.Core.Locations
 
         private async Task CheckContentStatusAsync()
         {
-            await CheckContentUnderVersion();
+            await CheckContentUnderVersionAsync();
             await CheckNewVersionAvailableAsync();
-            await CheckContentOverVersion();
+            await CheckContentOverVersionAsync();
         }
 
-        private async Task CheckInstallDeployedContent()
+        private async Task CheckInstallDeployedContentAsync()
         {
             if (!_content.Exists() || RequireExtractInstalledContent())
             {
@@ -180,7 +180,7 @@ namespace Microsoft.Templates.Core.Locations
             SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Updated });
         }
 
-        private async Task CheckContentOverVersion()
+        private async Task CheckContentOverVersionAsync()
         {
             await Task.Run(() =>
             {
@@ -198,7 +198,7 @@ namespace Microsoft.Templates.Core.Locations
             });
         }
 
-        private async Task CheckContentUnderVersion()
+        private async Task CheckContentUnderVersionAsync()
         {
             await Task.Run(() =>
             {

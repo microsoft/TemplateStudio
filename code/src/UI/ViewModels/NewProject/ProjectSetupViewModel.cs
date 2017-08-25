@@ -86,7 +86,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
                 var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes();
 
-                if (projectTypes.Count() > 0)
+                if (projectTypes.Any())
                 {
                     var data = projectTypes.Select(m => new MetadataInfoViewModel(m)).ToList();
 
