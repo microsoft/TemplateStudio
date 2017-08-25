@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplates")]
         [Trait("Type", "ProjectGeneration")]
-        public async void GenerateEmptyProject(string projectType, string framework, string language)
+        public async Task GenerateEmptyProjectAsync(string projectType, string framework, string language)
         {
             SetUpFixtureForTesting(language);
 
@@ -68,7 +68,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetPageAndFeatureTemplates")]
         [Trait("Type", "OneByOneItemGeneration")]
-        public async void GenerateProjectWithIsolatedItems(string itemName, string projectType, string framework, string itemId, string language)
+        public async Task GenerateProjectWithIsolatedItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
         {
             SetUpFixtureForTesting(language);
 
@@ -112,7 +112,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplates")]
         [Trait("Type", "ProjectGeneration")]
-        public async void GenerateAllPagesAndFeatures(string projectType, string framework, string language)
+        public async Task GenerateAllPagesAndFeaturesAsync(string projectType, string framework, string language)
         {
             SetUpFixtureForTesting(language);
 
