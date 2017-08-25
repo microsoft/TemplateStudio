@@ -44,7 +44,7 @@ namespace Microsoft.Templates.Test
         private static void InitializeTemplatesForLanguage(TemplatesSource source, string language)
         {
             GenContext.Bootstrap(source, new FakeGenShell(language), language);
-            GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
+            GenContext.ToolBox.Repo.SynchronizeAsync().RunSynchronously();
 
             _repos = new Lazy<TemplatesRepository>(CreateNewRepos, true);
         }
