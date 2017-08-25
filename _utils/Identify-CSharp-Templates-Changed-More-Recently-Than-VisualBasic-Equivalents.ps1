@@ -1,4 +1,8 @@
-# Firstly check file system and detect updates based on last modified time
+## This script will tell us all CS template files that have been modified more recently than their VB equivalents
+## May include false positives (CS file changed but VB one doesn't need changing)
+## May also include false negatives (VB file changed but not to be semantically equivalent to the CS one)
+
+## This script cannot be perfect in identifying everything. It should be used in combination with the script that looks at Git Commits.
 
 function Get-CsEquivalentFile($vbfile)
 {
@@ -35,13 +39,7 @@ Foreach ($t in $allTemplates)
             if ($cstimestamp -gt $vbtimestamp)
             {          
                 Write-Host "MAY need to update: $vbfile"
-                #Write-Output $cstimestamp
-                #Write-Output $vbtimestamp
             }
         }
     }
 }
-
-# This may not get everything - not all changes to CS will require a VB change. + VB files may have been changed for reasons other than semantic sync
-
-# TODO Also do equivalent of above but by querying GIT directly to find changes
