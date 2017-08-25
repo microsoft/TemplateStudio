@@ -8,13 +8,13 @@ namespace Param_ItemNamespace.Views
         public wts.ItemNamePage()
         {
             //{[{
-            Loaded += OnLoaded;
+            Loaded += wts.ItemNamePage_Loaded;
             //}]}
             InitializeComponent();
         }
 
         //{[{
-        private async void OnLoaded(object sender, RoutedEventArgs e)
+        private async void wts.ItemNamePage_Loaded(object sender, RoutedEventArgs e)
         {
             await LoadDataAsync();
         }

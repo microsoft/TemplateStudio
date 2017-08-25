@@ -122,7 +122,7 @@ Namespace ViewModels
 
         Public Sub Initialize(frame As Frame)
             NavigationService.Frame = frame
-            AddHandler NavigationService.Frame.Navigated, AddressOf NavigationService_Navigated
+            AddHandler NavigationService.Frame.Navigated, AddressOf Frame_Navigated
             PopulateNavItems()
 
             InitializeState(Window.Current.Bounds.Width)
@@ -143,7 +143,7 @@ Namespace ViewModels
             Navigate(args.ClickedItem)
         End Sub
 
-        Private Sub NavigationService_Navigated(sender As Object, e As NavigationEventArgs)
+        Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             Dim navigationItem = Nothing
 
             If PrimaryItems IsNot Nothing
