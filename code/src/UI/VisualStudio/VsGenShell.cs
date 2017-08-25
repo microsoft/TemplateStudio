@@ -247,7 +247,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             if (p != null)
             {
-                switch (Path.GetExtension(p.FileName))
+                switch (Path.GetExtension(p.SafeGetFileName()))
                 {
                     case ".csproj":
                         return ProgrammingLanguages.CSharp;
