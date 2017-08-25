@@ -50,10 +50,10 @@ namespace Microsoft.Templates.Core.Diagnostics
         public async Task TrackProjectGenAsync(ITemplateInfo template, string appProjectType, string appFx, TemplateCreationResult result, Guid vsProjectId, string language, int? pagesCount = null, int? featuresCount = null, string pageIdentities = "", string featureIdentitites = "",  double? timeSpent = null)
         {
             if (template == null)
-                throw new ArgumentNullException("template");
+                throw new ArgumentNullException(nameof(template));
 
             if (result == null)
-                throw new ArgumentNullException("result");
+                throw new ArgumentNullException(nameof(result));
 
             if (template.GetTemplateType() != TemplateType.Project)
             {
@@ -68,10 +68,10 @@ namespace Microsoft.Templates.Core.Diagnostics
         public async Task TrackItemGenAsync(ITemplateInfo template, GenSourceEnum genSource, string appProjectType, string appFx, TemplateCreationResult result)
         {
             if (template == null)
-                throw new ArgumentNullException("template");
+                throw new ArgumentNullException(nameof(template));
 
             if (result == null)
-                throw new ArgumentNullException("result");
+                throw new ArgumentNullException(nameof(result));
 
             if (template != null && result != null)
             {
@@ -127,7 +127,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.NewItemGen, properties, metrics).ConfigureAwait(false);
         }
 
-        public async Task TrackEditSummaryItem(EditItemActionEnum trackedAction)
+        public async Task TrackEditSummaryItemAsync(EditItemActionEnum trackedAction)
         {
             var properties = new Dictionary<string, string>()
             {
@@ -185,7 +185,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         private async Task TrackItemGenAsync(string eventToTrack, GenStatusEnum status, string appType, string pageFx, string templateName, GenSourceEnum genSource, CreationResultStatus genStatus = CreationResultStatus.Success, string message = "")
         {
-            var properties = new Dictionary<string, string>()
+            var properties = new Dictionary<string, string>
             {
                 { TelemetryProperties.Status, status.ToString() },
                 { TelemetryProperties.Framework, pageFx },
@@ -193,7 +193,8 @@ namespace Microsoft.Templates.Core.Diagnostics
                 { TelemetryProperties.GenEngineStatus, genStatus.ToString() },
                 { TelemetryProperties.GenEngineMessage, message },
                 { TelemetryProperties.EventName, eventToTrack },
-                { TelemetryProperties.GenSource, genSource.ToString() }
+                { TelemetryProperties.GenSource, genSource.ToString() },
+                { TelemetryProperties.ProjectType, appType },
             };
 
             await TelemetryService.Current.TrackEventAsync(eventToTrack, properties).ConfigureAwait(false);

@@ -151,13 +151,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             return null;
         }
 
-        protected override void OnTemplatesAvailable()
+        protected override async Task OnTemplatesAvailableAsync()
         {
             SetProjectConfigInfo();
             NewItemSetup.Initialize(true);
+
+            await Task.CompletedTask;
         }
 
-        protected override void OnNewTemplatesAvailable()
+        protected override async Task OnNewTemplatesAvailableAsync()
         {
             UpdateCanFinish(false);
             _canGoBack = false;
@@ -166,6 +168,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             EnableGoForward();
             NavigationService.Navigate(new NewItemSetupView());
             NewItemSetup.Initialize(true);
+
+            await Task.CompletedTask;
         }
 
         public override UserSelection CreateUserSelection()
