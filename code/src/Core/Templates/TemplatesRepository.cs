@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Core
         private const string Separator = "|";
         private const string LicensesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
         private const string Catalog = "_catalog";
-        private static readonly string[] SupportedIconTypes = new string[] { ".jpg", ".jpeg", ".png", ".xaml" };
+        private static readonly string[] SupportedIconTypes = { ".jpg", ".jpeg", ".png", ".xaml" };
 
         public TemplatesSynchronization Sync { get; private set; }
         public string WizardVersion { get; private set; }
@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Core
 
         public async Task SynchronizeAsync()
         {
-            await Sync.Do();
+            await Sync.DoAsync();
         }
 
         public async Task CheckForUpdatesAsync()

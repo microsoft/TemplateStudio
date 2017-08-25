@@ -19,11 +19,10 @@ namespace Microsoft.Templates.UI.Views.NewProject
         public MainViewModel ViewModel { get; private set; }
         public UserSelection Result { get; set; }
 
-        public MainView(string language)
+        public MainView()
         {
             Current = this;
-            ViewModel = new MainViewModel(this, language);
-
+            ViewModel = new MainViewModel(this);
             DataContext = ViewModel;
 
             Loaded += async (sender, e) =>
