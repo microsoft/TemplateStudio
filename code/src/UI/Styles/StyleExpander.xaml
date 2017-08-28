@@ -44,10 +44,11 @@
                                                             </Grid.ColumnDefinitions>
                                                             <TextBlock
                                                                 x:Name="arrow"
-                                                                HorizontalAlignment="Center" 
+                                                                HorizontalAlignment="Center"
                                                                 SnapsToDevicePixels="False" 
                                                                 VerticalAlignment="Center" 
-                                                                Text="&#xE970;" 
+                                                                Text="&#xE970;"
+                                                                Margin="0,4,0,0"
                                                                 FontFamily="Segoe MDL2 Assets" 
                                                                 FontSize="10"                        
                                                                 Style="{StaticResource UIBaseBlack}" />
