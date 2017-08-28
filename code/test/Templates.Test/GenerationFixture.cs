@@ -99,7 +99,7 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        public static IEnumerable<object[]> GetPageAndFeatureTemplates()
+        public static IEnumerable<object[]> GetPageAndFeatureTemplates(string frameworkFilter)
         {
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
@@ -114,7 +114,7 @@ namespace Microsoft.Templates.Test
 
                     foreach (var projectType in projectTypeList)
                     {
-                        var frameworks = GenComposer.GetSupportedFx(projectType);
+                        var frameworks = GenComposer.GetSupportedFx(projectType).Where(f => f == frameworkFilter);
 
                         foreach (var framework in frameworks)
                         {
