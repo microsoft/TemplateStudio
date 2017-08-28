@@ -89,7 +89,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     GenContext.Current = this;
 
-                    _userSelection = NewProjectGenController.Instance.GetUserSelection(_language);
+                    _userSelection = NewProjectGenController.Instance.GetUserSelection();
                 }
             }
             catch (WizardBackoutException)

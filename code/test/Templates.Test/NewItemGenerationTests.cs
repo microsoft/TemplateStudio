@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using System.Threading.Tasks;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI;
@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplates")]
         [Trait("Type", "NewItemGeneration")]
-        public async void GenerateProjectWithAllRightClickItems(string projectType, string framework, string language)
+        public async Task GenerateProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
             SetUpFixtureForTesting(language);
 

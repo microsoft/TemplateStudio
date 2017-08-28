@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using System.Threading.Tasks;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
@@ -31,11 +31,11 @@ namespace Microsoft.Templates.Test
         {
             _fixture.InitializeFixture(language, this);
         }
-    /*
+
         [Theory]
         [MemberData("GetProjectTemplates")]
         [Trait("Type", "ProjectGeneration")]
-        public async void GenerateEmptyProject(string projectType, string framework, string language)
+        public async Task GenerateEmptyProjectAsync(string projectType, string framework, string language)
         {
             SetUpFixtureForTesting(language);
 
@@ -68,7 +68,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetPageAndFeatureTemplates")]
         [Trait("Type", "OneByOneItemGeneration")]
-        public async void GenerateProjectWithIsolatedItems(string itemName, string projectType, string framework, string itemId, string language)
+        public async Task GenerateProjectWithIsolatedItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
         {
             SetUpFixtureForTesting(language);
 
@@ -112,7 +112,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplates")]
         [Trait("Type", "ProjectGeneration")]
-        public async void GenerateAllPagesAndFeatures(string projectType, string framework, string language)
+        public async Task GenerateAllPagesAndFeaturesAsync(string projectType, string framework, string language)
         {
             SetUpFixtureForTesting(language);
 
@@ -143,11 +143,11 @@ namespace Microsoft.Templates.Test
             // Clean
             Directory.Delete(outputPath, true);
         }
-*/
+
         [Theory]
         [MemberData("GetProjectTemplates")]
         [Trait("Type", "ProjectGeneration")]
-        public async void GenerateAllPagesAndFeaturesRandomNames(string projectType, string framework, string language)
+        public async Task GenerateAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string language)
         {
             SetUpFixtureForTesting(language);
 

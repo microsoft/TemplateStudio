@@ -63,7 +63,7 @@ namespace wts.ItemName.Views
         private void Initialize()
         {
             NavigationService.Frame = shellFrame;
-            NavigationService.Frame.Navigated += NavigationService_Navigated;
+            NavigationService.Frame.Navigated += Frame_Navigated;
             PopulateNavItems();
 
             InitializeState(Window.Current.Bounds.Width);
@@ -96,7 +96,7 @@ namespace wts.ItemName.Views
             // Edit String/en-US/Resources.resw: Add a menu item title for each page
         }
 
-        private void NavigationService_Navigated(object sender, NavigationEventArgs e)
+        private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
             var navigationItem = PrimaryItems?.FirstOrDefault(i => i.PageType == e?.SourcePageType);
             if (navigationItem == null)

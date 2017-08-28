@@ -44,7 +44,7 @@ namespace Microsoft.Templates.Test
         private static void InitializeTemplatesForLanguage(TemplatesSource source, string language)
         {
             GenContext.Bootstrap(source, new FakeGenShell(language), language);
-            GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
+            GenContext.ToolBox.Repo.SynchronizeAsync().RunSynchronously();
 
             _repos = new Lazy<TemplatesRepository>(CreateNewRepos, true);
         }
@@ -228,7 +228,9 @@ namespace Microsoft.Templates.Test
             return template.GetDefaultName();
         }
 
+#pragma warning disable RECS0154 // Parameter is never used - but used by method which takes an action which is passed a template
         public static string GetRandomName(ITemplateInfo template)
+#pragma warning restore RECS0154 // Parameter is never used
         {
             return Path.GetRandomFileName().Replace(".", "");
         }
