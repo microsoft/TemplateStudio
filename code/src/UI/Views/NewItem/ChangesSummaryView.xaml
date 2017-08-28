@@ -120,12 +120,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid Grid.RowSpan="2" Background="{StaticResource UILightGray}" Width="17" HorizontalAlignment="Right"/>
-                <ScrollViewer>
+                <ScrollViewer Padding="0,0,0,55">
                     <StackPanel>
                         <ItemsControl ItemsSource="{Binding ChangesSummary.FileGroups}" Focusable="False">
                             <ItemsControl.ItemTemplate>
@@ -165,8 +160,8 @@
                         </Expander>
                     </StackPanel>
                 </ScrollViewer>
-                <TextBlock Grid.Row="1" Margin="10,10,27,10" Style="{StaticResource TextSummaryTermsStyle}" Text="{x:Static res:StringRes.SummaryTerms}" />
-                </Grid>
+                <TextBlock  VerticalAlignment="Bottom" Margin="10,10,20,10" Style="{StaticResource TextSummaryTermsStyle}" Text="{x:Static res:StringRes.SummaryTerms}" />
+            </Grid>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
