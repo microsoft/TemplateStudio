@@ -121,6 +121,5 @@ namespace Microsoft.Templates.UI.VisualStudio
                 Directory.Delete(solutionDirectory, true);
             }
         }
-
     }
 }
