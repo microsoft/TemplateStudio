@@ -38,10 +38,32 @@ protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
 }
 ```
 
-# Mixed navigation sample
-In this sample we are going to create an app that includes a single login page before navigate to splitview shell page.
+## Mixed navigation sample
+In [this sample](../samples/navigation/MixedNavigationSample) we are going to create an app that includes a single login page before navigate to splitview shell page.
 
 - Step 1. Navigate to Login Page on App.xaml.cs
 ```csharp
 return new ActivationService(this, typeof(Views.LoginPage));
 ```
+- Step 2. Navigate to a ShellPage (Shell page will replace NavigationService Frame to a custom Frame) and then navigate to HomePage
+```csharp
+public class LoginViewModel : Observable
+{
+  public ICommand LoginCommand { get; set; }
+
+  public LoginViewModel()
+  {
+    LoginCommand = new RelayCommand(OnLogin);    
+  }
+
+  private void OnLogin()
+  {
+    NavigationService.Navigate<Views.ShellPage>();
+    NavigationService.Navigate<Views.HomePage>();
+  }
+}
+```
+
+Here is the navigation flow on this sample:
+
+![Mixed navigation sample](resources/navigation/MixedNavigationSample.png)

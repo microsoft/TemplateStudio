@@ -10,6 +10,7 @@ namespace MixedNavigationSample.ViewModels
     public class LoginViewModel : Observable
     {
         public ICommand LoginCommand { get; set; }
+
         public LoginViewModel()
         {
             LoginCommand = new RelayCommand(OnLogin);    
@@ -17,9 +18,6 @@ namespace MixedNavigationSample.ViewModels
 
         private void OnLogin()
         {
-            //Window.Current.Content = new Views.ShellPage();
-            //NavigationService.Navigate<Views.HomePage>();
-            
             NavigationService.Navigate<Views.ShellPage>();
             NavigationService.Navigate<Views.HomePage>();
         }
