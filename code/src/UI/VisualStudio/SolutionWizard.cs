@@ -4,6 +4,7 @@
 
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using EnvDTE;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -79,8 +80,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
-            var solutionDirectory = replacementsDictionary["$solutiondirectory$"];
-
             try
             {
                 if (runKind == WizardRunKind.AsNewProject || runKind == WizardRunKind.AsMultiProject)
@@ -94,10 +93,10 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (WizardBackoutException)
             {
-                if (Directory.Exists(solutionDirectory))
-                {
-                    Directory.Delete(solutionDirectory, true);
-                }
+                var projectDirectory = replacementsDictionary["$destinationdirectory$"];
+                var solutionDirectory = replacementsDictionary["$solutiondirectory$"];
+
+                CleanupDirectories(projectDirectory, solutionDirectory);
 
                 throw;
             }
@@ -106,6 +105,21 @@ namespace Microsoft.Templates.UI.VisualStudio
         public bool ShouldAddProjectItem(string filePath)
         {
             return true;
+        }
+
+        private void CleanupDirectories(string projectDirectory, string solutionDirectory)
+        {
+            if (Directory.Exists(projectDirectory))
+            {
+                Directory.Delete(projectDirectory, true);
+            }
+
+            if (Directory.Exists(solutionDirectory)
+                && !Directory.EnumerateDirectories(solutionDirectory).Any()
+                && !Directory.EnumerateFiles(solutionDirectory).Any())
+            {
+                Directory.Delete(solutionDirectory, true);
+            }
         }
     }
 }
