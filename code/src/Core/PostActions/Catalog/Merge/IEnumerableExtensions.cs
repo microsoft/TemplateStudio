@@ -127,8 +127,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var mergeString = string.Join(Environment.NewLine, merge);
             var sourceString = string.Join(Environment.NewLine, source);
 
-            var startIndex = mergeString.IndexOf(MacroStartDelete);
-            var endIndex = mergeString.IndexOf(MacroEndDelete);
+            var startIndex = mergeString.IndexOf(MacroStartDelete, StringComparison.InvariantCultureIgnoreCase);
+            var endIndex = mergeString.IndexOf(MacroEndDelete, StringComparison.InvariantCultureIgnoreCase);
 
             if (startIndex > 0 && endIndex > startIndex)
             {
@@ -151,8 +151,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
             var mergeString = string.Join(Environment.NewLine, merge);
 
-            var startIndex = mergeString.IndexOf(MacroStartDelete);
-            var endIndex = mergeString.IndexOf(MacroEndDelete);
+            var startIndex = mergeString.IndexOf(MacroStartDelete, StringComparison.InvariantCultureIgnoreCase);
+            var endIndex = mergeString.IndexOf(MacroEndDelete, StringComparison.InvariantCultureIgnoreCase);
 
             if (startIndex > 0 && endIndex > startIndex)
             {
@@ -161,7 +161,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
                 var lengthOfDeletion = endIndex - startIndex + MacroStartDelete.Length + commentIndicatorLength;
 
-                if (mergeString.Substring(startIndex + lengthOfDeletion - commentIndicatorLength).StartsWith(Environment.NewLine))
+                if (mergeString.Substring(startIndex + lengthOfDeletion - commentIndicatorLength).StartsWith(Environment.NewLine, StringComparison.InvariantCultureIgnoreCase))
                 {
                     lengthOfDeletion += Environment.NewLine.Length;
                 }

@@ -43,10 +43,10 @@ namespace wts.DefaultProject.Services
                     {
                         throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
                     };
-                    NavigationService.Frame.Navigated += OnFrameNavigated;
+                    NavigationService.Frame.Navigated += Frame_Navigated;
                     if (SystemNavigationManager.GetForCurrentView() != null)
                     {
-                        SystemNavigationManager.GetForCurrentView().BackRequested += OnAppViewBackButtonRequested;
+                        SystemNavigationManager.GetForCurrentView().BackRequested += ActivationService_BackRequested;
                     }
                 }
             }
@@ -95,13 +95,13 @@ namespace wts.DefaultProject.Services
             return args is IActivatedEventArgs;
         }
 
-        private void OnFrameNavigated(object sender, NavigationEventArgs e)
+        private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = NavigationService.CanGoBack ?
                 AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
         }
 
-        private void OnAppViewBackButtonRequested(object sender, BackRequestedEventArgs e)
+        private void ActivationService_BackRequested(object sender, BackRequestedEventArgs e)
         {
             if (NavigationService.CanGoBack)
             {

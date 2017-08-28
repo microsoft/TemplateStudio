@@ -120,7 +120,7 @@ Namespace ViewModels
 
         Public Sub Initialize(frame As Frame)
             NavigationService.Frame = frame
-            AddHandler NavigationService.Frame.Navigated, AddressOf NavigationService_Navigated
+            AddHandler NavigationService.Frame.Navigated, AddressOf Frame_Navigated
             PopulateNavItems()
 
             InitializeState(Window.Current.Bounds.Width)
@@ -151,7 +151,7 @@ Namespace ViewModels
             Navigate(args.ClickedItem)
         End Sub
 
-        Private Sub NavigationService_Navigated(sender As Object, e As NavigationEventArgs)
+        Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             If e IsNot Nothing Then
                 Dim vm = NavigationService.GetNameOfRegisteredPage(e.SourcePageType)
                 Dim navigationItem = PrimaryItems.FirstOrDefault(Function(i) i.ViewModelName = vm)
