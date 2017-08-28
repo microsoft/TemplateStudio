@@ -7,7 +7,7 @@ NavigationService has different implementation depending on the selected framewo
 - **CodeBehind and MVVMBasic**
   - NavigationService is defined as a static class that uses Navigate method to navigate between pages using the target page type as a parameter.
 - **MVVMLight**
-  - ViewModelLocator instance the NavigationService and registers this instance on the instances container. NavigationServices needs to register the ViewModel associated with each page to can navigate using the ViewModel as a parameter.
+  - ViewModelLocator creates the NavigationService instance and registers it with the instances container (SimpleIoC instances container). NavigationServices needs to register the ViewModel associated with each page to be able to navigate using the ViewModel as a parameter.
 
 ```csharp
 private NavigationServiceEx _navigationService = new NavigationServiceEx();
@@ -39,9 +39,9 @@ protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
 ```
 
 ## Mixed navigation sample
-In [this sample](../samples/navigation/MixedNavigationSample) we are going to create an app that includes a single login page before navigate to splitview shell page.
+In [this sample](../samples/navigation/MixedNavigationSample) we are going to create an app which includes a _startup page_ (a login page in the sample) before navigate to SplitView shell page.
 
-- Step 1. Navigate to Login Page on App.xaml.cs
+- Step 1. Navigate to the Login Page in App.xaml.cs
 ```csharp
 return new ActivationService(this, typeof(Views.LoginPage));
 ```
