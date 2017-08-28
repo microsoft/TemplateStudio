@@ -5,13 +5,8 @@
         private readonly Type _defaultNavItem;
 //{[{
 
-        private NavigationServiceEx NavigationService
-        {
-            get
-            {
-                return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
-            }
-        }
+        private ViewModels.ViewModelLocator Locator => Application.Current.Resources["Locator"] as ViewModels.ViewModelLocator;
+        private NavigationServiceEx NavigationService => Locator.NavigationService;
 //}]}
     }
 }

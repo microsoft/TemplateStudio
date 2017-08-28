@@ -146,14 +146,14 @@ namespace Microsoft.Templates.VsEmulator.Main
             SolutionName = null;
         }
 
-        private void NewCSharpProject()
+        private async void NewCSharpProject()
         {
-           Task.Run(async () => await NewProjectAsync(ProgrammingLanguages.CSharp));
+           await NewProjectAsync(ProgrammingLanguages.CSharp);
         }
 
-        private void NewVisualBasicProject()
+        private async void NewVisualBasicProject()
         {
-            Task.Run(async () => await NewProjectAsync(ProgrammingLanguages.VisualBasic));
+            await NewProjectAsync(ProgrammingLanguages.VisualBasic);
         }
 
         private async Task NewProjectAsync(string language)
