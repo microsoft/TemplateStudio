@@ -4,13 +4,18 @@ using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Navigation;
 
 namespace Param_RootNamespace.Services
 {
     public class NavigationServiceEx
     {
+        public event NavigatedEventHandler Navigated;
+        public event NavigationFailedEventHandler NavigationFailed;
+
         private readonly Dictionary<string, Type> _pages = new Dictionary<string, Type>();
 
+        private bool _frameEventsRegistrated;
         private Frame _frame;
 
         public Frame Frame
@@ -20,6 +25,7 @@ namespace Param_RootNamespace.Services
                 if (_frame == null)
                 {
                     _frame = Window.Current.Content as Frame;
+                    RegisterFrameEvents();
                 }
 
                 return _frame;
@@ -27,7 +33,9 @@ namespace Param_RootNamespace.Services
 
             set
             {
+                UnregisterFrameEvents();
                 _frame = value;
+                RegisterFrameEvents();
             }
         }
 
@@ -85,5 +93,24 @@ namespace Param_RootNamespace.Services
                 }
             }
         }
+
+        private void RegisterFrameEvents()
+        {
+            _frame.Navigated += _frame_Navigated;
+            _frame.NavigationFailed += _frame_NavigationFailed;
+            _frameEventsRegistrated = true;
+        }
+
+        private void UnregisterFrameEvents()
+        {
+            if (_frameEventsRegistrated)
+            {
+                _frame.Navigated -= _frame_Navigated;
+                _frame.NavigationFailed -= _frame_NavigationFailed;
+            }            
+        }
+
+        private void _frame_NavigationFailed(object sender, NavigationFailedEventArgs e) => NavigationFailed?.Invoke(sender, e);
+        private void _frame_Navigated(object sender, NavigationEventArgs e) => Navigated?.Invoke(sender, e);
     }
 }
