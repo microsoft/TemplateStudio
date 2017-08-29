@@ -109,16 +109,13 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private void CleanupDirectories(string projectDirectory, string solutionDirectory)
         {
-            if (Directory.Exists(projectDirectory))
-            {
-                Directory.Delete(projectDirectory, true);
-            }
+            Fs.SafeDeleteDirectory(projectDirectory);
 
             if (Directory.Exists(solutionDirectory)
                 && !Directory.EnumerateDirectories(solutionDirectory).Any()
                 && !Directory.EnumerateFiles(solutionDirectory).Any())
             {
-                Directory.Delete(solutionDirectory, true);
+                Fs.SafeDeleteDirectory(solutionDirectory);
             }
         }
     }
