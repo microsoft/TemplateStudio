@@ -26,17 +26,17 @@ namespace Microsoft.Templates.Test
             _fixture = fixture;
         }
 
-        private void SetUpFixtureForTesting()
+        private async Task SetUpFixtureForTestingAsync()
         {
-            _fixture.InitializeFixture(this);
+            await _fixture.InitializeFixtureAsync(this);
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForStyleCop")]
+        [MemberData("GetProjectTemplatesForStyleCopAsync")]
         [Trait("Type", "ProjectGeneration")]
         public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsync(string projectType, string framework)
         {
-            SetUpFixtureForTesting();
+            await SetUpFixtureForTestingAsync();
 
             var targetProjectTemplate = StyleCopGenerationTestsFixture.Templates
                 .FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project
@@ -78,9 +78,9 @@ namespace Microsoft.Templates.Test
             Directory.Delete(outputPath, true);
         }
 
-        public static IEnumerable<object[]> GetProjectTemplatesForStyleCop()
+        public static async Task<IEnumerable<object[]>> GetProjectTemplatesForStyleCopAsync()
         {
-            return StyleCopGenerationTestsFixture.GetProjectTemplatesForStyleCop();
+            return await StyleCopGenerationTestsFixture.GetProjectTemplatesForStyleCopAsync();
         }
 
         private IEnumerable<ITemplateInfo> GetTemplates(string framework, TemplateType templateType)

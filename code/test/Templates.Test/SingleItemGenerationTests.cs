@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Test
     public class SingleItemGenerationMVVMBasicTests : SingleItemGenerationBase
     {
         //[Theory]
-        //[MemberData("GetPageAndFeatureTemplates", "MVVMBasic")]
+        //[MemberData("GetPageAndFeatureTemplatesAsync", "MVVMBasic")]
         //[Trait("Type", "OneByOneItemGeneration")]
         //public async void GenMVVMBasicWithIsolatedItems(string itemName, string projectType, string framework, string itemId, string language)
         //{
@@ -30,29 +30,29 @@ namespace Microsoft.Templates.Test
         //}
 
         [Fact]
-        public void Test()
+        public async Task TestAsync()
         {
-            GetPageAndFeatureTemplates("MVVMLight");
-            GetPageAndFeatureTemplates("MVVMBasic");
-            GetPageAndFeatureTemplates("CodeBehind");
+            await GetPageAndFeatureTemplatesAsync("MVVMLight");
+            await GetPageAndFeatureTemplatesAsync("MVVMBasic");
+            await GetPageAndFeatureTemplatesAsync("CodeBehind");
         }
     }
-    //[Collection("OneByOneGenerationMVVMLight")]
+    //[CollectionDefinition("OneByOneGenerationMVVMLight")]
     //public class SingleItemGenerationMVVMLightTests : SingleItemGenerationBase
     //{
     //    [Theory]
-    //    [MemberData("GetPageAndFeatureTemplates", "MVVMLight")]
+    //    [MemberData("GetPageAndFeatureTemplatesAsync", "MVVMLight")]
     //    [Trait("Type", "OneByOneItemGeneration")]
     //    public async void GenMVVMLightWithIsolatedItems(string itemName, string projectType, string framework, string itemId, string language)
     //    {
     //        await ExecuteOneByOneGenerations(itemName, projectType, framework, itemId, language);
     //    }
     //}
-    //[Collection("OneByOneGenerationCodeBehind")]
+    //[CollectionDefinition("OneByOneGenerationCodeBehind")]
     //public class SingleItemGenerationCodeBehindTests : SingleItemGenerationBase
     //{
     //    [Theory]
-    //    [MemberData("GetPageAndFeatureTemplates", "CodeBehind")]
+    //    [MemberData("GetPageAndFeatureTemplatesAsync", "CodeBehind")]
     //    [Trait("Type", "OneByOneItemGeneration")]
     //    public async void GenCodeBehindWithIsolatedItems(string itemName, string projectType, string framework, string itemId, string language)
     //    {
@@ -64,14 +64,14 @@ namespace Microsoft.Templates.Test
     {
         protected GenerationFixture _fixture;
 
-        protected void SetUpFixtureForTesting(string language)
+        protected async Task SetUpFixtureForTestingAsync(string language)
         {
-            _fixture.InitializeFixture(language, this);
+            await _fixture.InitializeFixtureAsync(language, this);
         }
 
-        protected async Task ExecuteOneByOneGenerations(string itemName, string projectType, string framework, string itemId, string language)
+        protected async Task ExecuteOneByOneGenerationsAsync(string itemName, string projectType, string framework, string itemId, string language)
         {
-            SetUpFixtureForTesting(language);
+            await SetUpFixtureForTestingAsync(language);
 
             var projectTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
             var itemTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.Identity == itemId);
@@ -93,7 +93,7 @@ namespace Microsoft.Templates.Test
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
             OutputPath = ProjectPath;
 
-            var userSelection = GenerationFixture.SetupProject(projectType, framework, language);
+            var userSelection = await GenerationFixture.SetupProjectAsync(projectType, framework, language);
 
             GenerationFixture.AddItem(userSelection, itemTemplate, GenerationFixture.GetDefaultName);
 
@@ -109,9 +109,9 @@ namespace Microsoft.Templates.Test
             // Clean
             Directory.Delete(outputPath, true);
         }
-        public static IEnumerable<object[]> GetPageAndFeatureTemplates(string framework)
+        public static async Task<IEnumerable<object[]>> GetPageAndFeatureTemplatesAsync(string framework)
         {
-            return GenerationFixture.GetPageAndFeatureTemplates(framework);
+            return await GenerationFixture.GetPageAndFeatureTemplatesAsync(framework);
         }
     }
 }

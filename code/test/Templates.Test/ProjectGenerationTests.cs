@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
@@ -14,6 +15,7 @@ using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
 
 using Xunit;
+using Microsoft.VisualStudio.Threading;
 
 namespace Microsoft.Templates.Test
 {
@@ -27,17 +29,17 @@ namespace Microsoft.Templates.Test
             _fixture = fixture;
         }
 
-        private void SetUpFixtureForTesting(string language)
+        private async Task SetUpFixtureForTestingAsync(string language)
         {
-            _fixture.InitializeFixture(language, this);
+            await _fixture.InitializeFixtureAsync(language, this);
         }
 
         [Theory]
         [MemberData("GetProjectTemplates")]
         [Trait("Type", "ProjectGeneration")]
-        public async void GenerateEmptyProject(string projectType, string framework, string language)
+        public async Task GenerateEmptyProjectAsync(string projectType, string framework, string language)
         {
-            SetUpFixtureForTesting(language);
+            await SetUpFixtureForTestingAsync(language);
 
             var projectTemplate =
                 GenerationFixture.Templates.FirstOrDefault(
@@ -50,7 +52,7 @@ namespace Microsoft.Templates.Test
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
             OutputPath = ProjectPath;
 
-            var userSelection = GenerationFixture.SetupProject(projectType, framework, language);
+            var userSelection = await GenerationFixture.SetupProjectAsync(projectType, framework, language);
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
@@ -68,9 +70,9 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplates")]
         [Trait("Type", "ProjectGeneration")]
-        public async void GenerateAllPagesAndFeatures(string projectType, string framework, string language)
+        public async Task GenerateAllPagesAndFeaturesAsync(string projectType, string framework, string language)
         {
-            SetUpFixtureForTesting(language);
+            await SetUpFixtureForTestingAsync(language);
 
             var targetProjectTemplate = GenerationFixture.Templates
                                                             .FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project
@@ -83,7 +85,7 @@ namespace Microsoft.Templates.Test
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
             OutputPath = ProjectPath;
 
-            var userSelection = GenerationFixture.SetupProject(projectType, framework, language);
+            var userSelection = await GenerationFixture.SetupProjectAsync(projectType, framework, language);
 
             GenerationFixture.AddItems(userSelection, GenerationFixture.GetTemplates(framework), GenerationFixture.GetDefaultName);
 
@@ -103,9 +105,9 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplates")]
         [Trait("Type", "ProjectGeneration")]
-        public async void GenerateAllPagesAndFeaturesRandomNames(string projectType, string framework, string language)
+        public async Task GenerateAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string language)
         {
-            SetUpFixtureForTesting(language);
+            await SetUpFixtureForTestingAsync(language);
 
             var targetProjectTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project
                                                                                      && t.GetProjectTypeList().Contains(projectType)
@@ -118,7 +120,7 @@ namespace Microsoft.Templates.Test
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
             OutputPath = ProjectPath;
 
-            var userSelection = GenerationFixture.SetupProject(projectType, framework, language);
+            var userSelection = await GenerationFixture.SetupProjectAsync(projectType, framework, language);
 
             GenerationFixture.AddItems(userSelection, GenerationFixture.GetTemplates(framework), GenerationFixture.GetRandomName);
 
@@ -137,7 +139,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetProjectTemplates()
         {
-            return GenerationFixture.GetProjectTemplates();
+            return GenerationFixture.GetProjectTemplatesAsync().Result;
         }
     }
 }

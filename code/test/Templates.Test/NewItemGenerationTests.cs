@@ -25,9 +25,9 @@ namespace Microsoft.Templates.Test
             _fixture = fixture;
         }
 
-        private void SetUpFixtureForTesting(string language)
+        private async Task SetUpFixtureForTestingAsync(string language)
         {
-            _fixture.InitializeFixture(language, this);
+            await _fixture.InitializeFixtureAsync(language, this);
         }
 
         [Theory]
@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "NewItemGeneration")]
         public async Task GenerateProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
-            SetUpFixtureForTesting(language);
+            await SetUpFixtureForTestingAsync(language);
 
             var projectName = $"{projectType}{framework}";
 
@@ -43,7 +43,7 @@ namespace Microsoft.Templates.Test
             ProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName, projectName);
             OutputPath = ProjectPath;
 
-            var userSelection = GenerationFixture.SetupProject(projectType, framework, language);
+            var userSelection = await GenerationFixture.SetupProjectAsync(projectType, framework, language);
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
             // Add new item
@@ -84,7 +84,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetProjectTemplates()
         {
-            return GenerationFixture.GetProjectTemplates();
+            return GenerationFixture.GetProjectTemplatesAsync().Result;
         }
     }
 }
