@@ -62,7 +62,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private RelayCommand<SavedTemplateViewModel> _removeTemplateCommand;
-        public RelayCommand<SavedTemplateViewModel> RemoveTemplateCommand => _removeTemplateCommand ?? (_removeTemplateCommand = new RelayCommand<SavedTemplateViewModel>(OnRemoveTemplate));
+        public RelayCommand<SavedTemplateViewModel> RemoveTemplateCommand => _removeTemplateCommand ?? (_removeTemplateCommand = new RelayCommand<SavedTemplateViewModel>(item => RemoveTemplate(item, true)));
 
         private RelayCommand<TemplateInfoViewModel> _addTemplateCommand;
         public RelayCommand<TemplateInfoViewModel> AddTemplateCommand => _addTemplateCommand ?? (_addTemplateCommand = new RelayCommand<TemplateInfoViewModel>(OnAddTemplateItem));
@@ -339,7 +339,36 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        private void OnRemoveTemplate(SavedTemplateViewModel item)
+        private void RemoveTemplate(SavedTemplateViewModel item, bool showErrors)
+        {
+            // Look if is there any templates that depends on item
+            if (AnySavedTemplateDependsOnItem(item, showErrors))
+            {
+                return;
+            }
+
+            // Remove template
+            if (SavedPages[item.GenGroup].Contains(item))
+            {
+                SavedPages[item.GenGroup].Remove(item);
+                HasSavedPages = SavedPages.Any(g => g.Any());
+            }
+            else if (SavedFeatures.Contains(item))
+            {
+                SavedFeatures.Remove(item);
+                HasSavedFeatures = SavedFeatures.Any();
+            }
+
+            TryRemoveHiddenDependencies(item);
+
+            MainViewModel.Current.FinishCommand.OnCanExecuteChanged();
+            UpdateTemplatesAvailability();
+            MainViewModel.Current.RebuildLicenses();
+
+            AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Remove).FireAndForget();
+        }
+
+        private bool AnySavedTemplateDependsOnItem(SavedTemplateViewModel item, bool showErrors)
         {
             SavedTemplateViewModel dependencyItem = null;
             foreach (var group in SavedPages)
@@ -356,25 +385,46 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
             if (dependencyItem != null)
             {
-                string message = string.Format(StringRes.ValidationError_CanNotRemoveTemplate_SF, item.TemplateName, dependencyItem.TemplateName, dependencyItem.TemplateType);
-                MainViewModel.Current.SetStatus(StatusViewModel.Warning(message, 5));
-                return;
+                if (showErrors)
+                {
+                    string message = string.Format(StringRes.ValidationError_CanNotRemoveTemplate_SF, item.TemplateName, dependencyItem.TemplateName, dependencyItem.TemplateType);
+                    MainViewModel.Current.SetStatus(StatusViewModel.Warning(message, 5));
+                }
+                return true;
             }
-            if (SavedPages[item.GenGroup].Contains(item))
-            {
-                SavedPages[item.GenGroup].Remove(item);
-                HasSavedPages = SavedPages.Any(g => g.Any());
-            }
-            else if (SavedFeatures.Contains(item))
-            {
-                SavedFeatures.Remove(item);
-                HasSavedFeatures = SavedFeatures.Any();
-            }
-            MainViewModel.Current.FinishCommand.OnCanExecuteChanged();
-            UpdateTemplatesAvailability();
-            MainViewModel.Current.RebuildLicenses();
+            return false;
+        }
 
-            AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Remove).FireAndForget();
+        private void TryRemoveHiddenDependencies(SavedTemplateViewModel item)
+        {
+            foreach (var identity in item.DependencyList)
+            {
+                var dependency = SavedFeatures.FirstOrDefault(sf => sf.Identity == identity);
+                if (dependency == null)
+                {
+                    foreach (var pageGroup in SavedPages)
+                    {
+                        dependency = pageGroup.FirstOrDefault(sf => sf.Identity == identity);
+                        if (dependency != null)
+                        {
+                            break;
+                        }
+                    }
+                }
+                if (dependency != null)
+                {
+                    // If the template is not hidden we can not remove it because it could be added in wizard
+                    if (dependency.IsHidden)
+                    {
+                        // Look if there are another saved template that depends on it.
+                        // For example, if it's added two different chart pages, when remove the first one SampleDataService can not be removed, but if no saved templates use SampleDataService, it can be removed.
+                        if (!SavedFeatures.Any(sf => sf.DependencyList.Any(d => d == dependency.Identity)) || SavedPages.Any(spg => spg.Any(sp => sp.DependencyList.Any(d => d == dependency.Identity))))
+                        {
+                            RemoveTemplate(dependency, false);
+                        }
+                    }
+                }
+            }
         }
 
         private bool IsTemplateAlreadyDefined(string identity) => Identities.Any(i => i == identity);
