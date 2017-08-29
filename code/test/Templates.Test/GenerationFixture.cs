@@ -33,30 +33,24 @@ namespace Microsoft.Templates.Test
 
         internal string TestNewItemPath => Path.GetFullPath(Path.Combine(TestRunPath, "RightClick"));
 
-        private static List<string> languagesLoaded = new List<string>();
+        private static bool syncExecuted = false;
         public static IEnumerable<ITemplateInfo> Templates { get; private set; }
 
         private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source, string language)
         {
-            if (!languagesLoaded.Contains(language))
+            GenContext.Bootstrap(source, new FakeGenShell(language), language);
+
+            if (!syncExecuted)
             {
-                GenContext.Bootstrap(source, new FakeGenShell(language), language);
                 await GenContext.ToolBox.Repo.SynchronizeAsync();
-
-                if (Templates == null)
-                {
-                    Templates = GenContext.ToolBox.Repo.GetAll();
-                }
-                else
-                {
-                    List<ITemplateInfo> temp = new List<ITemplateInfo>();
-                    temp.AddRange(Templates);
-                    temp.AddRange(GenContext.ToolBox.Repo.GetAll());
-                    Templates = temp;
-                }
-
-                languagesLoaded.Add(language);
+                syncExecuted = true;
             }
+            else
+            {
+                await GenContext.ToolBox.Repo.RefreshAsync();
+            }
+
+            Templates = GenContext.ToolBox.Repo.GetAll();
         }
 
         public GenerationFixture()
