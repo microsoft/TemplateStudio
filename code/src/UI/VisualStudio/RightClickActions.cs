@@ -110,9 +110,14 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public bool Enabled()
+        public bool Visible()
         {
             return GenContext.ToolBox.Shell.GetActiveProjectIsWts();
+        }
+
+        public bool Enabled()
+        {
+            return !GenContext.ToolBox.Shell.IsDebuggerEnabled();
         }
 
         public void OpenTempFolder()

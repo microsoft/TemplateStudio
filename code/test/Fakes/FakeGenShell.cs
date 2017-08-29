@@ -171,5 +171,9 @@ namespace Microsoft.Templates.Fakes
         public override void OpenItems(params string[] itemsFullPath)
         {
         }
+        public override bool IsDebuggerEnabled()
+        {
+            return false;
+        }
     }
 }
