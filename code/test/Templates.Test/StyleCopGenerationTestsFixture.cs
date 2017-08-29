@@ -42,10 +42,13 @@ namespace Microsoft.Templates.Test
 
         private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source)
         {
-            GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
-            await GenContext.ToolBox.Repo.SynchronizeAsync();
+            if (_repos == null)
+            {
+                GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
+                await GenContext.ToolBox.Repo.SynchronizeAsync();
 
-            _repos = CreateNewRepos();
+                _repos = CreateNewRepos();
+            }
         }
 
         public async Task InitializeFixtureAsync(IContextProvider contextProvider)

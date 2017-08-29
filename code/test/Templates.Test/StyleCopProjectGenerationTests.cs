@@ -16,7 +16,8 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
-    [Collection("StyleCop collection")]
+    [Collection("StyleCopCollection")]
+    [Trait("ExecutionSet", "Minimum")]
     public class StyleCopProjectGenerationTests : BaseTestContextProvider
     {
         private readonly StyleCopGenerationTestsFixture _fixture;
@@ -33,7 +34,7 @@ namespace Microsoft.Templates.Test
 
         [Theory]
         [MemberData("GetProjectTemplatesForStyleCopAsync")]
-        [Trait("Type", "ProjectGeneration")]
+        [Trait("Type", "CodeStyle")]
         public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsync(string projectType, string framework)
         {
             await SetUpFixtureForTestingAsync();
@@ -75,12 +76,13 @@ namespace Microsoft.Templates.Test
             Assert.True(result.exitCode.Equals(0), $"Solution {targetProjectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
             // Clean
-            Directory.Delete(outputPath, true);
+            Fs.SafeDeleteDirectory(outputPath);
+            // Directory.Delete(outputPath, true);
         }
 
-        public static async Task<IEnumerable<object[]>> GetProjectTemplatesForStyleCopAsync()
+        public static IEnumerable<object[]> GetProjectTemplatesForStyleCopAsync()
         {
-            return await StyleCopGenerationTestsFixture.GetProjectTemplatesForStyleCopAsync();
+            return StyleCopGenerationTestsFixture.GetProjectTemplatesForStyleCopAsync().Result;
         }
 
         private IEnumerable<ITemplateInfo> GetTemplates(string framework, TemplateType templateType)
