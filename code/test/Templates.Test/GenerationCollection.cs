@@ -6,8 +6,13 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
-    [CollectionDefinition("Generation collection")]
-    public class DatabaseCollection : ICollectionFixture<GenerationFixture>
+    [CollectionDefinition("GenerationCollection")]
+    public class GenerationCollection : ICollectionFixture<GenerationFixture>
+    {
+    }
+
+    [CollectionDefinition("BuildCollection")]
+    public class BuildCollection : ICollectionFixture<GenerationFixture>
     {
     }
 }

@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
@@ -30,29 +31,32 @@ namespace Microsoft.Templates.Test
 
         internal string TestProjectsPath => Path.GetFullPath(Path.Combine(TestRunPath, "Proj"));
 
-        private static Lazy<TemplatesRepository> _repos = new Lazy<TemplatesRepository>(CreateNewRepos, true);
+        private static TemplatesRepository _repos;
 
-        public static IEnumerable<ITemplateInfo> Templates => _repos.Value.GetAll();
+        public static IEnumerable<ITemplateInfo> Templates => _repos.GetAll();
 
         private static TemplatesRepository CreateNewRepos()
         {
             return GenContext.ToolBox.Repo;
         }
 
-        private static void InitializeTemplatesForLanguage(TemplatesSource source)
+        private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source)
         {
-            GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
-            GenContext.ToolBox.Repo.SynchronizeAsync().RunSynchronously();
+            if (_repos == null)
+            {
+                GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
+                await GenContext.ToolBox.Repo.SynchronizeAsync();
 
-            _repos = new Lazy<TemplatesRepository>(CreateNewRepos, true);
+                _repos = CreateNewRepos();
+            }
         }
 
-        public void InitializeFixture(IContextProvider contextProvider)
+        public async Task InitializeFixtureAsync(IContextProvider contextProvider)
         {
             var source = new StyleCopPlusLocalTemplatesSource();
             GenContext.Current = contextProvider;
 
-            InitializeTemplatesForLanguage(source);
+            await InitializeTemplatesForLanguageAsync(source);
         }
 
         public void Dispose()
@@ -67,9 +71,10 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        public static IEnumerable<object[]> GetProjectTemplatesForStyleCop()
+        public static async Task<IEnumerable<object[]>> GetProjectTemplatesForStyleCopAsync()
         {
-            InitializeTemplatesForLanguage(new LocalTemplatesSource());
+            List<object[]> result = new List<object[]>();
+            await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource());
 
             var projectTemplates =
                 StyleCopGenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project);
@@ -84,10 +89,11 @@ namespace Microsoft.Templates.Test
 
                     foreach (var framework in frameworks)
                     {
-                        yield return new object[] { projectType, framework };
+                        result.Add(new object[] { projectType, framework });
                     }
                 }
             }
+            return result;
         }
 
         public void AddItems(UserSelection userSelection, IEnumerable<ITemplateInfo> templates, Func<ITemplateInfo, string> getName)
