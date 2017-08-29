@@ -34,13 +34,6 @@ namespace Microsoft.Templates.UI.Controls
         }
         public static readonly DependencyProperty MainViewTemplateProperty = DependencyProperty.Register("MainViewTemplate", typeof(DataTemplate), typeof(TogglePane), new PropertyMetadata(null));
 
-        public DataTemplateSelector MainViewTemplateSelector
-        {
-            get => (DataTemplateSelector)GetValue(MainViewTemplateSelectorProperty);
-            set => SetValue(MainViewTemplateSelectorProperty, value);
-        }
-        public static readonly DependencyProperty MainViewTemplateSelectorProperty = DependencyProperty.Register("MainViewTemplateSelector", typeof(DataTemplateSelector), typeof(TogglePane), new PropertyMetadata(null));
-
         public DataTemplate SecondaryViewTemplate
         {
             get => (DataTemplate)GetValue(SecondaryViewTemplateProperty);

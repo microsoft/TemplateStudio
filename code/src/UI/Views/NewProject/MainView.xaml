@@ -58,45 +58,21 @@
                             </Button>
                         </DataTemplate>
                     </controls:TogglePane.CloseButtonTemplate>
-                    <controls:TogglePane.MainViewTemplateSelector>
-                        <templateSelectors:SummaryItemTemplateSelector>
-                            <templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
-                                <DataTemplate>
-                                    <Grid Height="30" Focusable="False" Margin="{StaticResource Margin_S_Left}">
-                                        <Grid VerticalAlignment="Center">
-                                            <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
-                                            <controls:TextBoxEx Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}" Height="30">
-                                                <controls:TextBoxEx.InputBindings>
-                                                    <KeyBinding Command="{Binding ConfirmRenameCommand}" CommandParameter="{Binding}" Key="Enter" />
-                                                    <KeyBinding Command="{Binding CancelRenameCommand}" Key="Esc"  />
-                                                </controls:TextBoxEx.InputBindings>
-                                            </controls:TextBoxEx>
-                                        </Grid>
-                                    </Grid>
-                                </DataTemplate>
-                            </templateSelectors:SummaryItemTemplateSelector.MicrosoftTemplate>
-                            <templateSelectors:SummaryItemTemplateSelector.CommunityTemplate>
-                                <DataTemplate>
-                                    <Grid Height="40" Margin="{StaticResource Margin_S_Left}">
-                                        <Grid VerticalAlignment="Center">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                            </Grid.RowDefinitions>
-                                            <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
-                                            <TextBlock Grid.Row="1" Style="{StaticResource TextSummaryAuthorStyle}" Foreground="{Binding AuthorForeground}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}" Text="{Binding Author}" Margin="0,-2,0,0"/>
-                                            <controls:TextBoxEx Grid.Row="0" Grid.RowSpan="2" Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}" Height="30">
-                                                <controls:TextBoxEx.InputBindings>
-                                                    <KeyBinding Command="{Binding ConfirmRenameCommand}" CommandParameter="{Binding}" Key="Enter" />
-                                                    <KeyBinding Command="{Binding CancelRenameCommand}" Key="Esc"  />
-                                                </controls:TextBoxEx.InputBindings>
-                                            </controls:TextBoxEx>
-                                        </Grid>
-                                    </Grid>
-                                </DataTemplate>
-                            </templateSelectors:SummaryItemTemplateSelector.CommunityTemplate>
-                        </templateSelectors:SummaryItemTemplateSelector>
-                    </controls:TogglePane.MainViewTemplateSelector>
+                    <controls:TogglePane.MainViewTemplate>
+                        <DataTemplate>
+                            <Grid Height="30" Focusable="False" Margin="{StaticResource Margin_S_Left}">
+                                <Grid VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding DisplayText}" Style="{StaticResource TextSummaryItemStyle}" Foreground="{Binding ItemForeground}" FontWeight="{Binding ItemFontWeight}" Focusable="False" Visibility="{Binding NoEditingContentVisibility}"/>
+                                    <controls:TextBoxEx Text="{Binding NewItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" ForceSetFocus="{Binding IsEditionEnabled}" Visibility="{Binding EditingContentVisibility}" Tag="{Binding}" Height="30">
+                                        <controls:TextBoxEx.InputBindings>
+                                            <KeyBinding Command="{Binding ConfirmRenameCommand}" CommandParameter="{Binding}" Key="Enter" />
+                                            <KeyBinding Command="{Binding CancelRenameCommand}" Key="Esc"  />
+                                        </controls:TextBoxEx.InputBindings>
+                                    </controls:TextBoxEx>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </controls:TogglePane.MainViewTemplate>
                     <controls:TogglePane.SecondaryViewTemplate>
                         <DataTemplate>
                             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Focusable="False" KeyboardNavigation.TabNavigation="Local">
