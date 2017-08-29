@@ -5,7 +5,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Microsoft.Templates.Core.Locations
+namespace Microsoft.Templates.Core.Packaging
 {
     [Serializable]
     public class SignCertNotFoundException : Exception
