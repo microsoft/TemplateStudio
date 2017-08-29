@@ -19,6 +19,9 @@ namespace Param_ItemNamespace.Views
 {
     public sealed partial class CameraControl
     {
+        public static readonly DependencyProperty CanSwitchProperty =
+            DependencyProperty.Register("CanSwitch", typeof(bool), typeof(CameraControl), new PropertyMetadata(false));
+
         public static readonly DependencyProperty PanelProperty =
            DependencyProperty.Register("Panel", typeof(Panel), typeof(CameraControl), new PropertyMetadata(Panel.Front, OnPanelChanged));
 
@@ -42,7 +45,11 @@ namespace Param_ItemNamespace.Views
             InitializeComponent();
         }
 
-        public bool CanSwitch => _cameraDevices?.Count > 1;
+        public bool CanSwitch
+        {
+            get { return (bool)GetValue(CanSwitchProperty); }
+            set { SetValue(CanSwitchProperty, value); }
+        }
 
         public Panel Panel
         {
@@ -128,6 +135,11 @@ namespace Param_ItemNamespace.Views
                     {
                         _mediaCapture.SetRecordRotation(VideoRotation.Clockwise90Degrees);
                         _mediaCapture.SetPreviewRotation(VideoRotation.Clockwise90Degrees);
+                        _mirroringPreview = false;
+                    }
+                    else
+                    {
+                        _mirroringPreview = true;
                     }
 
                     IsInitialized = true;
@@ -139,7 +151,7 @@ namespace Param_ItemNamespace.Views
 
                 if (IsInitialized)
                 {
-                    _mirroringPreview = true;
+                    CanSwitch = _cameraDevices?.Count > 1;
                     PreviewControl.Source = _mediaCapture;
                     RegisterOrientationEventHandlers();
                     await StartPreviewAsync();
