@@ -13,6 +13,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
 using Xunit;
+using Microsoft.VisualStudio.Threading;
 
 namespace Microsoft.Templates.Test
 {
@@ -82,7 +83,11 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetProjectTemplatesForStyleCopAsync()
         {
-            return StyleCopGenerationTestsFixture.GetProjectTemplatesForStyleCopAsync().Result;
+            JoinableTaskContext context = new JoinableTaskContext();
+            JoinableTaskCollection tasks = context.CreateCollection();
+            context.CreateFactory(tasks);
+            var result = context.Factory.Run(() => StyleCopGenerationTestsFixture.GetProjectTemplatesForStyleCopAsync());
+            return result;
         }
 
         private IEnumerable<ITemplateInfo> GetTemplates(string framework, TemplateType templateType)
