@@ -6,11 +6,11 @@ using Windows.UI.Xaml.Controls;
 
 namespace MixedNavigationSample.Views
 {
-    public sealed partial class LoginPage : Page
+    public sealed partial class StartPage : Page
     {
-        public LoginViewModel ViewModel { get; } = new LoginViewModel();
+        public StartViewModel ViewModel { get; } = new StartViewModel();
 
-        public LoginPage()
+        public StartPage()
         {
             InitializeComponent();
         }

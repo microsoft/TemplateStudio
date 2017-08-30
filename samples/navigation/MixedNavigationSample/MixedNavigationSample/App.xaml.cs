@@ -56,7 +56,7 @@ namespace MixedNavigationSample
 
         private ActivationService CreateActivationService()
         {
-            return new ActivationService(this, typeof(Views.LoginPage));
+            return new ActivationService(this, typeof(Views.StartPage));
             //return new ActivationService(this, typeof(Views.HomePage), new Views.ShellPage());
         }
     }

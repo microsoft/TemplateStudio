@@ -191,18 +191,18 @@
     <Compile Include="ViewModels\HomeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\LoginPage.xaml">
+    <Page Include="Views\StartPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\LoginPage.xaml.cs">
-      <DependentUpon>LoginPage.xaml</DependentUpon>
+    <Compile Include="Views\StartPage.xaml.cs">
+      <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\StartViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />

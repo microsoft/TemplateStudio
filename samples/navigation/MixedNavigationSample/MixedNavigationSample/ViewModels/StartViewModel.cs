@@ -7,16 +7,16 @@ using Windows.UI.Xaml;
 
 namespace MixedNavigationSample.ViewModels
 {
-    public class LoginViewModel : Observable
+    public class StartViewModel : Observable
     {
-        public ICommand LoginCommand { get; set; }
+        public ICommand StartCommand { get; set; }
 
-        public LoginViewModel()
+        public StartViewModel()
         {
-            LoginCommand = new RelayCommand(OnLogin);    
+            StartCommand = new RelayCommand(OnStart);    
         }
 
-        private void OnLogin()
+        private void OnStart()
         {
             NavigationService.Navigate<Views.ShellPage>();
             NavigationService.Navigate<Views.HomePage>();

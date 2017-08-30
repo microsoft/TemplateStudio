@@ -120,8 +120,8 @@
   <data name="Home_Title.Text" xml:space="preserve">
     <value>Home</value>
   </data>
-  <data name="Login_Title.Text" xml:space="preserve">
-    <value>Login</value>
+  <data name="Start_Title.Text" xml:space="preserve">
+    <value>Start</value>
   </data>
   <data name="Settings_Title.Text" xml:space="preserve">
     <value>Settings</value>
@@ -156,19 +156,16 @@
   <data name="Shell_Home" xml:space="preserve">
     <value>Home</value>
   </data>
-  <data name="Shell_Login" xml:space="preserve">
-    <value>Login</value>
+  <data name="Shell_Start" xml:space="preserve">
+    <value>Start</value>
   </data>
   <data name="Shell_Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="Login_LoginButton.Content" xml:space="preserve">
-    <value>Login</value>
+  <data name="Start_StartButton.Content" xml:space="preserve">
+    <value>Start</value>
   </data>
-  <data name="Login_Password.Text" xml:space="preserve">
-    <value>Enter the password.</value>
-  </data>
-  <data name="Login_Username.Text" xml:space="preserve">
-    <value>Enter the user name.</value>
+  <data name="Start_Description.Text" xml:space="preserve">
+    <value>This is the application start page. Click Start to navigate.</value>
   </data>
 </root>
