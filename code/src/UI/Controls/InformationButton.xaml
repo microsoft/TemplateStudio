@@ -16,6 +16,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Button
+        Height="17" Width="17" Padding="-1"
         Command="{Binding Command, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:InformationButton}}}"
         Style="{StaticResource BlueBaseTemplateInfoButtonStyle}"
         ToolTip="{x:Static res:StringRes.LearnMore}">
