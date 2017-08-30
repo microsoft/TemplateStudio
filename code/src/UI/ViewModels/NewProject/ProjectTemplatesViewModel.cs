@@ -379,10 +379,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     break;
                 }
             }
+
             if (dependencyItem == null)
             {
                 dependencyItem = SavedFeatures.FirstOrDefault(st => st.DependencyList.Any(d => d == item.Identity));
             }
+
             if (dependencyItem != null)
             {
                 if (showErrors)
@@ -392,6 +394,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 }
                 return true;
             }
+
             return false;
         }
 
@@ -411,6 +414,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                         }
                     }
                 }
+
                 if (dependency != null)
                 {
                     // If the template is not hidden we can not remove it because it could be added in wizard
