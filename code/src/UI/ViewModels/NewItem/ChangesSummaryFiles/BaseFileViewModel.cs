@@ -25,6 +25,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public string TempFile { get; set; }
         public string ProjectFile { get; set; }
 
+        private double _codeFontSize = 14;
+        public double CodeFontSize
+        {
+            get => _codeFontSize;
+            set => SetProperty(ref _codeFontSize, value);
+        }
+
         public abstract FileStatus FileStatus { get; }
 
         public virtual string UpdateText(string fileText) => fileText;
