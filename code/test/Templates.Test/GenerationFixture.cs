@@ -204,6 +204,11 @@ namespace Microsoft.Templates.Test
 
             // Build
             var solutionFile = Path.GetFullPath(outputPath + @"\" + solutionName + ".sln");
+
+            Console.Out.WriteLine();
+            Console.Out.WriteLine($"### > Ready to start building");
+            Console.Out.Write($"### > Running following command: {GetPath("RestoreAndBuild.bat")} \"{solutionFile}\" {Platform} {Configuration}");
+
             var startInfo = new ProcessStartInfo(GetPath("RestoreAndBuild.bat"))
             {
                 Arguments = $"\"{solutionFile}\" {Platform} {Configuration}",
