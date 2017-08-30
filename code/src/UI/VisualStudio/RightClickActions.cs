@@ -135,7 +135,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private static string GetTempGenerationFolder()
         {
-            return Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
+            var projectGuid = GenContext.ToolBox.Shell.GetActiveProjectGuid();
+            return Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath, projectGuid.ToString());
         }
 
         private static bool HasContent(string tempPath)
