@@ -90,23 +90,8 @@
                                             <Button Style="{StaticResource ButtonRefreshTemplatesStyle}" Focusable="{TemplateBinding Visible}" Command="{TemplateBinding CheckForUpdatesCommand}" Content="{x:Static res:StringRes.CheckForUpdates}" Visibility="{TemplateBinding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}"/>
                                         </Grid>
 
-                                        <Grid Grid.Row="3" Margin="{StaticResource Margin_S_Top}">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="5"/>
-                                                <RowDefinition Height="Auto"/>
-                                            </Grid.RowDefinitions>
-                                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static res:StringRes.WizardVersion}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" Margin="{StaticResource Margin_M_Right}"/>
-                                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{TemplateBinding WizardVersion}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" />
-
-                                            <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static res:StringRes.TemplatesVersion}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" Margin="{StaticResource Margin_M_Right}"/>
-                                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{TemplateBinding TemplatesVersion}" Style="{StaticResource TextOverlayBoxDescriptionStyle}" />
-                                        </Grid>
-
+                                        <TextBox Grid.Row="3" Margin="{StaticResource Margin_S_Top}" Style="{StaticResource VersionsSelectTextBox}" Text="{TemplateBinding VersionsText}" Focusable="{TemplateBinding Visible}" />
+                                        
                                         <Grid Grid.Row="2" Margin="{StaticResource Margin_M_Top}">
                                             <Grid Visibility="{TemplateBinding StatusText, Converter={StaticResource StringVisibilityConverter}, ConverterParameter=reverse}">
                                                 <TextBlock Text="{x:Static res:StringRes.NewVersionAvailable}" Style="{StaticResource TextOverlayBoxImportantInformationStyle}" Visibility="{TemplateBinding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}}" />

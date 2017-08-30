@@ -10,6 +10,9 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
+    [Collection("StyleCopCollection")]
+    [Trait("Type", "CodeStyle")]
+    [Trait("ExecutionSet", "Minimum")]
     public class FileEncodingTests
     {
         [Fact]
@@ -53,7 +56,7 @@ namespace Microsoft.Templates.Test
         {
             var buffer = new byte[3];
 
-            using (var fs = new FileStream(filePath, FileMode.Open))
+            using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 fs.Read(buffer, 0, 3);
             }

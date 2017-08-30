@@ -100,7 +100,7 @@ namespace Microsoft.Templates.Extension.Commands
 
         private void AddPage(object sender, EventArgs e)
         {
-            if (RightClickActions.Enabled())
+            if (RightClickActions.Visible())
             {
                 RightClickActions.AddNewPage();
             }
@@ -108,7 +108,7 @@ namespace Microsoft.Templates.Extension.Commands
 
         private void AddFeature(object sender, EventArgs e)
         {
-            if (RightClickActions.Enabled())
+            if (RightClickActions.Visible())
             {
                 RightClickActions.AddNewFeature();
             }
@@ -116,7 +116,7 @@ namespace Microsoft.Templates.Extension.Commands
 
         private void OpenTempFolder(object sender, EventArgs e)
         {
-            if (RightClickActions.TempFolderAvailable() && RightClickActions.Enabled())
+            if (RightClickActions.TempFolderAvailable() && RightClickActions.Visible())
             {
                 RightClickActions.OpenTempFolder();
             }
@@ -125,13 +125,14 @@ namespace Microsoft.Templates.Extension.Commands
         private void RightClickAvailable(object sender, EventArgs e)
         {
             var cmd = (OleMenuCommand)sender;
-            cmd.Visible = RightClickActions.Enabled();
+            cmd.Enabled = RightClickActions.Enabled();
+            cmd.Visible = RightClickActions.Visible();
         }
 
         private void TempFolderAvailable(object sender, EventArgs e)
         {
             var cmd = (OleMenuCommand)sender;
-            cmd.Visible = RightClickActions.TempFolderAvailable() && RightClickActions.Enabled();
+            cmd.Visible = RightClickActions.TempFolderAvailable() && RightClickActions.Visible();
         }
     }
 }
