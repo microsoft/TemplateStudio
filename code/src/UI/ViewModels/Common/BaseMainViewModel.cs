@@ -183,7 +183,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public void CleanStatus(bool cleanValidationError = false)
         {
-            if (Status.CanBeCleaned)
+            if (Status.CanBeCleared)
             {
                 SetStatus(StatusViewModel.EmptyStatus);
             }

@@ -18,19 +18,19 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public StatusType Status { get; set; }
         public string Message { get; set; }
-        public bool CanBeCleaned { get; set; }
+        public bool CanBeCleared { get; set; }
         public int AutoHideSeconds { get; set; }
 
-        public StatusViewModel(StatusType status, string message = null, bool canBeCleaned = true, int autoHide = 0)
+        public StatusViewModel(StatusType status, string message = null, bool canBeCleared = true, int autoHide = 0)
         {
             Status = status;
             Message = message;
-            CanBeCleaned = canBeCleaned;
+            CanBeCleared = canBeCleared;
             AutoHideSeconds = autoHide;
         }
 
-        public static StatusViewModel Information(string message, bool canBeCleaned = true, int autoHide = 0) => new StatusViewModel(StatusType.Information, message, canBeCleaned, autoHide);
-        public static StatusViewModel Warning(string message, bool canBeCleaned = false, int autoHide = 0) => new StatusViewModel(StatusType.Warning, message, canBeCleaned, autoHide);
-        public static StatusViewModel Error(string message, bool canBeCleaned = false, int autoHide = 0) => new StatusViewModel(StatusType.Error, message, canBeCleaned, autoHide);
+        public static StatusViewModel Information(string message, bool canBeCleared = true, int autoHide = 0) => new StatusViewModel(StatusType.Information, message, canBeCleared, autoHide);
+        public static StatusViewModel Warning(string message, bool canBeCleared = false, int autoHide = 0) => new StatusViewModel(StatusType.Warning, message, canBeCleared, autoHide);
+        public static StatusViewModel Error(string message, bool canBeCleared = false, int autoHide = 0) => new StatusViewModel(StatusType.Error, message, canBeCleared, autoHide);
     }
 }
