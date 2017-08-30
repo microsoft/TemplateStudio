@@ -33,7 +33,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (double)GetValue(CodeFontSizeProperty);
             set => SetValue(CodeFontSizeProperty, value);
         }
-        public static readonly DependencyProperty CodeFontSizeProperty = DependencyProperty.Register(nameof(CodeFontSize), typeof(double), typeof(CodeViewer), new PropertyMetadata(14, OnItemChanged));
+        public static readonly DependencyProperty CodeFontSizeProperty = DependencyProperty.Register(nameof(CodeFontSize), typeof(double), typeof(CodeViewer), new PropertyMetadata(14.0, OnItemChanged));
 
         public CodeViewer()
         {

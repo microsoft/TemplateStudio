@@ -9,6 +9,7 @@ using System.Windows.Media;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -25,7 +26,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public string TempFile { get; set; }
         public string ProjectFile { get; set; }
 
-        private double _codeFontSize = 14;
+        private double _codeFontSize;
         public double CodeFontSize
         {
             get => _codeFontSize;
@@ -43,6 +44,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             Subject = name;
             LoadFile();
             UpdateTextAction = fileText => UpdateText(fileText);
+            CodeFontSize = GetCodeFontSize();
         }
 
         // TODO: Review constructor to remove this suppresion. Important
@@ -52,6 +54,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             Subject = generationInfo.Name;
             LoadFile();
             UpdateTextAction = fileText => UpdateText(fileText);
+            CodeFontSize = GetCodeFontSize();
         }
 
         private void LoadFile()
@@ -66,6 +69,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public override string ToString()
         {
             return Subject ?? base.ToString();
+        }
+        private double GetCodeFontSize()
+        {
+            double fontSize = 11;
+            fontSize = Math.Ceiling(fontSize * SystemService.Instance.Dpi.PixelsPerDip);
+            if (fontSize > 25)
+            {
+                fontSize = 25;
+            }
+            else if (fontSize < 9)
+            {
+                fontSize = 9;
+            }
+            return fontSize;
         }
 
         private SolidColorBrush GetCircleColor()
