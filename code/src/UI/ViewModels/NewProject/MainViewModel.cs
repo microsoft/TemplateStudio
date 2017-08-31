@@ -50,6 +50,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             await BaseInitializeAsync();
             SummaryLicenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryLicenses)); };
         }
+
         public void AlertProjectSetupChanged()
         {
             if (CheckProjectSetupChanged())
@@ -61,6 +62,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 CleanStatus();
             }
         }
+
         public void RebuildLicenses()
         {
             var userSelection = CreateUserSelection();
@@ -80,7 +82,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 return;
             }
-            if (button != null && button.Tag != null && button.Tag.ToString() == "AllowCloseEdition")
+            if (button?.Tag != null && button.Tag.ToString() == "AllowCloseEdition")
             {
                 return;
             }
@@ -142,8 +144,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             MainView.Result = CreateUserSelection();
             base.OnFinish(parameter);
         }
-        protected override async void OnTemplatesAvailable() => await ProjectSetup.InitializeAsync();
-        protected override async void OnNewTemplatesAvailable()
+
+        protected override async Task OnTemplatesAvailableAsync() => await ProjectSetup.InitializeAsync();
+
+        protected override async Task OnNewTemplatesAvailableAsync()
         {
             UpdateCanFinish(false);
             _canGoBack = false;
@@ -225,6 +229,48 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 service.ProcessDrop += ProjectTemplates.DropTemplate;
             }
             _summaryPageGroups.Children.Add(listView);
+        }
+
+        private SavedTemplateViewModel _currentDragginTemplate;
+        private SavedTemplateViewModel _dropTargetTemplate;
+
+        public void SavedTemplateGotFocus(SavedTemplateViewModel savedTemplate)
+        {
+            _dropTargetTemplate = savedTemplate;
+        }
+
+        public bool SavedTemplateSetDrag(SavedTemplateViewModel savedTemplate)
+        {
+            if (_currentDragginTemplate == null)
+            {
+                _currentDragginTemplate = savedTemplate;
+                return true;
+            }
+            return false;
+        }
+
+        public bool SavedTemplateSetDrop(SavedTemplateViewModel savedTemplate)
+        {
+            if (_currentDragginTemplate != null && _currentDragginTemplate.ItemName != _dropTargetTemplate.ItemName)
+            {
+                var newIndex = ProjectTemplates.SavedPages.First().IndexOf(_dropTargetTemplate);
+                var oldIndex = ProjectTemplates.SavedPages.First().IndexOf(_currentDragginTemplate);
+                ProjectTemplates.DropTemplate(null, new DragAndDropEventArgs<SavedTemplateViewModel>(null, _dropTargetTemplate, oldIndex, newIndex));
+                _currentDragginTemplate = null;
+                _dropTargetTemplate = null;
+            }
+            return false;
+        }
+
+        public bool ClearCurrentDragginTemplate()
+        {
+            if (_currentDragginTemplate != null)
+            {
+                _currentDragginTemplate = null;
+                _dropTargetTemplate = null;
+                return true;
+            }
+            return false;
         }
     }
 }

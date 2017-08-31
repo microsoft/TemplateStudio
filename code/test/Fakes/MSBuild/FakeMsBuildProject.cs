@@ -127,6 +127,16 @@ namespace Microsoft.Templates.Fakes
                         returnType = VsItemType.Compiled;
                     }
                     break;
+                case ".vb":
+                    if (fileName.EndsWith(".xaml.vb", true, CultureInfo.InvariantCulture))
+                    {
+                        returnType = VsItemType.CompiledWithDependant;
+                    }
+                    else
+                    {
+                        returnType = VsItemType.Compiled;
+                    }
+                    break;
                 case ".xaml":
                     returnType = VsItemType.XamlPage;
                     break;

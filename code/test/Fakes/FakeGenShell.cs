@@ -15,6 +15,7 @@ namespace Microsoft.Templates.Fakes
 {
     public class FakeGenShell : GenShell
     {
+        private readonly string _language;
         private readonly Action<string> _changeStatus;
         private readonly Action<string> _addLog;
         private readonly Window _owner;
@@ -31,8 +32,9 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
-        public FakeGenShell(Action<string> changeStatus = null, Action<string> addLog = null, Window owner = null)
+        public FakeGenShell(string language, Action<string> changeStatus = null, Action<string> addLog = null, Window owner = null)
         {
+            _language = language;
             _changeStatus = changeStatus;
             _addLog = addLog;
             _owner = owner;
@@ -70,7 +72,7 @@ namespace Microsoft.Templates.Fakes
             var msbuildProj = FakeMsBuildProject.Load(projectFullPath);
             var solutionFile = FakeSolution.Create(SolutionPath);
 
-            solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid);
+            solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid, projectFullPath.EndsWith(".csproj", StringComparison.InvariantCultureIgnoreCase));
         }
 
         public override string GetActiveProjectNamespace()
@@ -108,6 +110,11 @@ namespace Microsoft.Templates.Fakes
         public override string GetActiveProjectPath()
         {
             return (GenContext.Current != null) ? GenContext.Current.ProjectPath : string.Empty;
+        }
+
+        public override string GetActiveProjectLanguage()
+        {
+            return _language;
         }
 
         protected override string GetSelectedItemPath()
@@ -158,11 +165,16 @@ namespace Microsoft.Templates.Fakes
 
         public override Guid GetVsProjectId()
         {
-            return Guid.Empty;
+            Guid.TryParse(GetActiveProjectGuid(), out Guid guid);
+            return guid;
         }
 
         public override void OpenItems(params string[] itemsFullPath)
         {
+        }
+        public override bool IsDebuggerEnabled()
+        {
+            return false;
         }
     }
 }

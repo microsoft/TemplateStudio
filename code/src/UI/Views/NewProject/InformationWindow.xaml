@@ -13,7 +13,8 @@
         WindowState="Normal"
         WindowStyle="None"
         WindowStartupLocation="CenterOwner"
-        AutomationProperties.Name="{Binding HelpText}">
+        AutomationProperties.Name="{Binding Name}"
+        AutomationProperties.HelpText="{Binding HelpText}">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

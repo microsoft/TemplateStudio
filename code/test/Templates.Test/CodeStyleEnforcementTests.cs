@@ -10,6 +10,9 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
+    [Collection("StyleCopCollection")]
+    [Trait("Type", "CodeStyle")]
+    [Trait("ExecutionSet", "Minimum")]
     public class CodeStyleEnforcementTests
     {
         [Fact]

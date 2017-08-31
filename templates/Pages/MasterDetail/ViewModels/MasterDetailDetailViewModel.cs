@@ -12,11 +12,24 @@ namespace Param_ItemNamespace.ViewModels
 
         private const string WideStateName = "WideState";
 
-        public ICommand StateChangedCommand { get; private set; }
+        private ICommand _stateChangedCommand;
 
-        private Order _item;
+        public ICommand StateChangedCommand
+        {
+            get
+            {
+                if (_stateChangedCommand == null)
+                {
+                    _stateChangedCommand = new RelayCommand<VisualStateChangedEventArgs>(OnStateChanged);
+                }
 
-        public Order Item
+                return _stateChangedCommand;
+            }
+        }
+
+        private SampleOrder _item;
+
+        public SampleOrder Item
         {
             get { return _item; }
             set { Set(ref _item, value); }
@@ -24,7 +37,6 @@ namespace Param_ItemNamespace.ViewModels
 
         public MasterDetailDetailViewModel()
         {
-            StateChangedCommand = new RelayCommand<VisualStateChangedEventArgs>(OnStateChanged);
         }
 
         private void OnStateChanged(VisualStateChangedEventArgs args)

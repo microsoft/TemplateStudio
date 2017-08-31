@@ -69,6 +69,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             set => SetProperty(ref _canChooseItemName, value);
         }
 
+        private bool _isHidden;
+        public bool IsHidden
+        {
+            get => _isHidden;
+            set => SetProperty(ref _isHidden, value);
+        }
+
         private string _templateName;
         public string TemplateName
         {
@@ -241,6 +248,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             CanChooseItemName = item.template.GetItemNameEditable();
             Identity = item.template.Identity;
             TemplateName = item.template.Name;
+            IsHidden = item.template.GetIsHidden();
             DependencyList = item.template.GetDependencyList();
             IsRemoveEnabled = isRemoveEnabled;
             ItemForeground = GetItemForeground(true);

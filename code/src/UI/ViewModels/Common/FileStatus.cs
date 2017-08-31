@@ -6,10 +6,10 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 {
     public enum FileStatus
     {
-        New,
-        Modified,
-        Conflicting,
-        Warning,
+        NewFile,
+        ModifiedFile,
+        ConflictingFile,
+        WarningFile,
         Unchanged,
     }
 }

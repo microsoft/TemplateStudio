@@ -48,7 +48,7 @@ namespace Param_ItemNamespace.Services
             // to find out more about getting location, go to https://docs.microsoft.com/en-us/windows/uwp/maps-and-location/get-location
             if (geolocator != null)
             {
-                geolocator.PositionChanged -= GeolocatorOnPositionChanged;
+                geolocator.PositionChanged -= Geolocator_PositionChanged;
                 geolocator = null;
             }
 
@@ -87,7 +87,7 @@ namespace Param_ItemNamespace.Services
                 throw new InvalidOperationException("The StartListening method cannot be called before the InitializeAsync method.");
             }
 
-            geolocator.PositionChanged += GeolocatorOnPositionChanged;
+            geolocator.PositionChanged += Geolocator_PositionChanged;
 
             CurrentPosition = await geolocator.GetGeopositionAsync();
         }
@@ -102,10 +102,10 @@ namespace Param_ItemNamespace.Services
                 return;
             }
 
-            geolocator.PositionChanged -= GeolocatorOnPositionChanged;
+            geolocator.PositionChanged -= Geolocator_PositionChanged;
         }
 
-        private async void GeolocatorOnPositionChanged(Geolocator sender, PositionChangedEventArgs args)
+        private async void Geolocator_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
         {
             if (args == null)
             {

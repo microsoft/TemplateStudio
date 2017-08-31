@@ -69,7 +69,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 File.WriteAllLines(originalFilePath, result, Encoding.UTF8);
 
                 // REFRESH PROJECT TO UN-DIRTY IT
-                if (Path.GetExtension(_config.FilePath).Equals(".csproj", StringComparison.OrdinalIgnoreCase) && (GenContext.Current.OutputPath == GenContext.Current.ProjectPath))
+                if ((Path.GetExtension(_config.FilePath).Equals(".csproj", StringComparison.OrdinalIgnoreCase)
+                   || Path.GetExtension(_config.FilePath).Equals(".vbproj", StringComparison.OrdinalIgnoreCase))
+                  && (GenContext.Current.OutputPath == GenContext.Current.ProjectPath))
                 {
                     Gen.GenContext.ToolBox.Shell.RefreshProject();
                 }
@@ -84,6 +86,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var postactionFileName = _config.FilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
 
             var description = string.Format(StringRes.FailedMergePostActionFileNotFound, sourceFileName);
+
             var failedFileName = GetFailedPostActionFileName();
             GenContext.Current.FailedMergePostActions.Add(new FailedMergePostAction(sourceFileName, _config.FilePath, failedFileName, description, MergeFailureType.FileNotFound));
             File.Copy(_config.FilePath, failedFileName, true);
@@ -106,7 +109,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var folder = Path.GetDirectoryName(_config.FilePath);
             var extension = Path.GetExtension(_config.FilePath);
 
-            var validator = new List<Validator>()
+            var validator = new List<Validator>
             {
                 new FileExistsValidator(Path.GetDirectoryName(_config.FilePath))
             };
@@ -117,7 +120,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetFilePath()
         {
-            if (Path.GetFileName(_config.FilePath).StartsWith(Extension))
+            if (Path.GetFileName(_config.FilePath).StartsWith(Extension, StringComparison.InvariantCultureIgnoreCase))
             {
                 var extension = Path.GetExtension(_config.FilePath);
                 var directory = Path.GetDirectoryName(_config.FilePath);

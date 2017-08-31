@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Microsoft.Templates.VsEmulator.NewProject"
         mc:Ignorable="d"
         Title="New Project" 
+        KeyDown="Window_KeyDown"
         Height="180" Width="960" 
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">

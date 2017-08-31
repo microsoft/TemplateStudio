@@ -141,8 +141,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && !_hasValidationErrors && _canGoForward));
         public RelayCommand ShowOverlayMenuCommand => _showOverlayMenuCommand ?? (_showOverlayMenuCommand = new RelayCommand(() => IsOverlayBoxVisible = !IsOverlayBoxVisible));
         public RelayCommand<string> FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand<string>(OnFinish, CanFinish));
-        public RelayCommand CheckUpdatesCommand => _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand(OnCheckUpdates, CanCheckUpdates));
-        public RelayCommand RefreshTemplatesCommand => _refreshTemplatesCommand ?? (_refreshTemplatesCommand = new RelayCommand(OnRefreshTemplates));
+        public RelayCommand CheckUpdatesCommand => _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand(async () => await OnCheckUpdatesAsync(), CanCheckUpdates));
+        public RelayCommand RefreshTemplatesCommand => _refreshTemplatesCommand ?? (_refreshTemplatesCommand = new RelayCommand(async () => await OnRefreshTemplatesAsync()));
         #endregion
 
         public BaseMainViewModel(Window mainView)
@@ -151,7 +151,9 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         protected abstract void OnCancel();
+
         protected abstract void OnClose();
+
         protected virtual void OnNext()
         {
             _canGoBack = true;
@@ -159,8 +161,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             BackCommand.OnCanExecuteChanged();
             ShowFinishButton = true;
         }
-        protected abstract void OnTemplatesAvailable();
-        protected abstract void OnNewTemplatesAvailable();
+
+        protected abstract Task OnTemplatesAvailableAsync();
+
+        protected abstract Task OnNewTemplatesAvailableAsync();
+
         public abstract UserSelection CreateUserSelection();
 
         public void SetValidationErrors(string errorMessage, StatusType statusType = StatusType.Error)
@@ -178,7 +183,10 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public void CleanStatus(bool cleanValidationError = false)
         {
-            SetStatus(StatusViewModel.EmptyStatus);
+            if (Status.CanBeCleared)
+            {
+                SetStatus(StatusViewModel.EmptyStatus);
+            }
             if (cleanValidationError)
             {
                 _hasValidationErrors = false;
@@ -199,14 +207,15 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public void TryHideOverlayBox(FrameworkElement element)
         {
-            if (element != null && element.GetType() == typeof(OverlayBox))
+            if (element is OverlayBox)
             {
                 return;
             }
-            else if (element != null && element.Tag != null && element.Tag.ToString() == "AllowOverlay")
+            else if (element?.Tag != null && element.Tag.ToString() == "AllowOverlay")
             {
                 return;
             }
+
             IsOverlayBoxVisible = false;
         }
 
@@ -244,15 +253,15 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             _mainView.Close();
         }
 
-        private async void OnRefreshTemplates()
+        private async Task OnRefreshTemplatesAsync()
         {
             try
             {
                 await GenContext.ToolBox.Repo.RefreshAsync();
                 TemplatesVersion = GenContext.ToolBox.TemplatesVersion;
-                OnNewTemplatesAvailable();
+                await OnNewTemplatesAvailableAsync();
                 NewVersionAvailable = false;
-                SetStatus(StatusViewModel.Information(StringRes.StatusUpdated, 5));
+                SetStatus(StatusViewModel.Information(StringRes.StatusUpdated, true, 5));
             }
             catch (Exception ex)
             {
@@ -267,7 +276,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
         }
 
-        private async void OnCheckUpdates()
+        private async Task OnCheckUpdatesAsync()
         {
             try
             {
@@ -377,9 +386,9 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
         }
 
-        private void SyncSyncStatusChanged(object sender, SyncStatusEventArgs status)
+        private async void SyncSyncStatusChanged(object sender, SyncStatusEventArgs status)
         {
-            SetStatus(StatusViewModel.Information(GetStatusText(status.Status), GetStatusHideSeconds(status.Status)));
+            SetStatus(StatusViewModel.Information(GetStatusText(status.Status), true, GetStatusHideSeconds(status.Status)));
 
             if (status.Status == SyncStatus.Updated)
             {
@@ -387,7 +396,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 CleanStatus();
 
                 _templatesAvailable = true;
-                OnTemplatesAvailable();
+                await OnTemplatesAvailableAsync();
                 NextCommand.OnCanExecuteChanged();
                 IsLoading = false;
                 SetCanCheckUpdates(true);

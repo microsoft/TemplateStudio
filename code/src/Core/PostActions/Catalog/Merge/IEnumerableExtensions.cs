@@ -15,10 +15,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         internal const string MacroBeforeMode = "^^";
         internal const string MacroStartGroup = "{[{";
         internal const string MarcoEndGroup = "}]}";
+
         internal const string MacroStartDocumentation = "{**";
         internal const string MacroEndDocumentation = "**}";
-        private const string MacroStartDelete = "//{--{";
-        private const string MacroEndDelete = "//}--}";
+
+        private const string MacroStartDelete = "{--{";
+        private const string MacroEndDelete = "}--}";
 
         public static int SafeIndexOf(this IEnumerable<string> source, string item, int skip)
         {
@@ -125,13 +127,16 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var mergeString = string.Join(Environment.NewLine, merge);
             var sourceString = string.Join(Environment.NewLine, source);
 
-            var startIndex = mergeString.IndexOf(MacroStartDelete);
-            var endIndex = mergeString.IndexOf(MacroEndDelete);
+            var startIndex = mergeString.IndexOf(MacroStartDelete, StringComparison.InvariantCultureIgnoreCase);
+            var endIndex = mergeString.IndexOf(MacroEndDelete, StringComparison.InvariantCultureIgnoreCase);
 
             if (startIndex > 0 && endIndex > startIndex)
             {
-                var toRemove = mergeString.Substring(startIndex + MacroStartDelete.Length,
-                    endIndex - startIndex - MacroStartDelete.Length);
+                // VB uses a single character (') to start the comment, C# uses two (//)
+                int commentIndicatorLength = mergeString[startIndex - 1] == '\'' ? 1 : 2;
+
+                var toRemove = mergeString.Substring((startIndex - commentIndicatorLength) + (MacroStartDelete.Length + commentIndicatorLength),
+                    (endIndex - commentIndicatorLength) - (startIndex - commentIndicatorLength) - (MacroStartDelete.Length + commentIndicatorLength));
 
                 sourceString = sourceString.Replace(toRemove, string.Empty);
             }
@@ -146,19 +151,22 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
             var mergeString = string.Join(Environment.NewLine, merge);
 
-            var startIndex = mergeString.IndexOf(MacroStartDelete);
-            var endIndex = mergeString.IndexOf(MacroEndDelete);
+            var startIndex = mergeString.IndexOf(MacroStartDelete, StringComparison.InvariantCultureIgnoreCase);
+            var endIndex = mergeString.IndexOf(MacroEndDelete, StringComparison.InvariantCultureIgnoreCase);
 
             if (startIndex > 0 && endIndex > startIndex)
             {
-                var lengthOfDeletion = endIndex - startIndex + MacroStartDelete.Length;
+                // VB uses a single character (') to start the comment, C# uses two (//)
+                int commentIndicatorLength = mergeString[startIndex - 1] == '\'' ? 1 : 2;
 
-                if (mergeString.Substring(startIndex + lengthOfDeletion).StartsWith(Environment.NewLine))
+                var lengthOfDeletion = endIndex - startIndex + MacroStartDelete.Length + commentIndicatorLength;
+
+                if (mergeString.Substring(startIndex + lengthOfDeletion - commentIndicatorLength).StartsWith(Environment.NewLine, StringComparison.InvariantCultureIgnoreCase))
                 {
                     lengthOfDeletion += Environment.NewLine.Length;
                 }
 
-                mergeString = mergeString.Remove(startIndex, lengthOfDeletion);
+                mergeString = mergeString.Remove(startIndex - commentIndicatorLength, lengthOfDeletion);
             }
 
             return mergeString.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();

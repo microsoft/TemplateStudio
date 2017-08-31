@@ -2,19 +2,21 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using System.IO;
-using System.Security;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
+
+using Microsoft.Templates.Core.Packaging;
 
 namespace Microsoft.Templates.Core.Locations
 {
     public sealed class LocalTemplatesSource : TemplatesSource
     {
         public string LocalTemplatesVersion { get; private set; }
+
         public string LocalWizardVersion { get; private set; }
+
         protected override bool VerifyPackageSignatures => false;
+
         public override bool ForcedAcquisition { get => base.ForcedAcquisition; protected set => base.ForcedAcquisition = value; }
         public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
 
@@ -34,14 +36,14 @@ namespace Microsoft.Templates.Core.Locations
 
         protected override string AcquireMstx()
         {
-            // Compress Content adding version return templatex path.
+            // Compress Content adding version return TemplatePackage path.
             var tempFolder = Path.Combine(GetTempFolder(), SourceFolderName);
 
             Copy(Origin, tempFolder);
 
             File.WriteAllText(Path.Combine(tempFolder, "version.txt"), LocalTemplatesVersion, Encoding.UTF8);
 
-            return Templatex.Pack(tempFolder);
+            return TemplatePackage.Pack(tempFolder);
         }
 
         private void Copy(string sourceFolder, string targetFolder)

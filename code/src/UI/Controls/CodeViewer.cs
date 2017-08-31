@@ -10,8 +10,8 @@ using System.Windows.Controls;
 using System.Web;
 
 using Microsoft.Templates.UI.Services;
-using Microsoft.Templates.UI.ViewModels.NewItem;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.ViewModels.NewItem;
 
 namespace Microsoft.Templates.UI.Controls
 {
@@ -23,10 +23,17 @@ namespace Microsoft.Templates.UI.Controls
 
         public object Item
         {
-            get { return GetValue(ItemProperty); }
-            set { SetValue(ItemProperty, value); }
+            get => GetValue(ItemProperty);
+            set => SetValue(ItemProperty, value);
         }
-        public static readonly DependencyProperty ItemProperty = DependencyProperty.Register("Item", typeof(object), typeof(CodeViewer), new PropertyMetadata(true, OnItemChanged));
+        public static readonly DependencyProperty ItemProperty = DependencyProperty.Register(nameof(Item), typeof(object), typeof(CodeViewer), new PropertyMetadata(true, OnItemChanged));
+
+        public double CodeFontSize
+        {
+            get => (double)GetValue(CodeFontSizeProperty);
+            set => SetValue(CodeFontSizeProperty, value);
+        }
+        public static readonly DependencyProperty CodeFontSizeProperty = DependencyProperty.Register(nameof(CodeFontSize), typeof(double), typeof(CodeViewer), new PropertyMetadata(14.0, OnItemChanged));
 
         public CodeViewer()
         {
@@ -78,7 +85,8 @@ namespace Microsoft.Templates.UI.Controls
                 patternText = patternText
                     .Replace("##ExecutingDirectory##", executingDirectory)
                     .Replace("##renderSideBySide##", (renderSideBySide.ToString().ToLower()))
-                    .Replace("##theme##", SystemService.Instance.IsHighContrast ? "theme: 'hc-black'," : string.Empty);
+                    .Replace("##theme##", SystemService.Instance.IsHighContrast ? "theme: 'hc-black'," : string.Empty)
+                    .Replace("##fontSize##", $"fontSize: {CodeFontSize},");
                 if (_currentHtml != patternText)
                 {
                     _webBrowser.NavigateToString(patternText);
@@ -90,19 +98,31 @@ namespace Microsoft.Templates.UI.Controls
         private string GetLanguage(string filePath)
         {
             string extension = Path.GetExtension(filePath);
-            if (extension == ".xaml" || extension == ".csproj" || extension == ".appxmanifest" || extension == ".resw" || extension == ".xml")
+
+            var language = string.Empty;
+
+            switch (extension)
             {
-                return "xml";
+                case ".xaml":
+                case ".csproj":
+                case ".vbproj":
+                case ".appxmanifest":
+                case ".resw":
+                case ".xml":
+                    language = "xml";
+                    break;
+                case ".cs":
+                    language = "csharp";
+                    break;
+                case ".vb":
+                    language = "vb.net";
+                    break;
+                case ".json":
+                    language = "json";
+                    break;
             }
-            else if (extension == ".cs")
-            {
-                return "csharp";
-            }
-            else if (extension == ".json")
-            {
-                return "json";
-            }
-            return string.Empty;
+
+            return language;
         }
 
         private string LoadFile(string filePath, Func<string, string> updateTextAction)
@@ -119,7 +139,7 @@ namespace Microsoft.Templates.UI.Controls
         private static void OnItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as CodeViewer;
-            var item = e.NewValue as BaseFileViewModel;
+            var item = control.Item as BaseFileViewModel;
             if (control != null && item != null)
             {
                 control.UpdateCodeView(item);
@@ -130,15 +150,15 @@ namespace Microsoft.Templates.UI.Controls
         {
             switch (item.FileStatus)
             {
-                case FileStatus.New:
-                case FileStatus.Warning:
+                case FileStatus.NewFile:
+                case FileStatus.WarningFile:
                 case FileStatus.Unchanged:
                     UpdateCodeView(item.UpdateTextAction, item.TempFile);
                     break;
-                case FileStatus.Modified:
+                case FileStatus.ModifiedFile:
                     UpdateCodeView(item.UpdateTextAction, item.TempFile, item.ProjectFile);
                     break;
-                case FileStatus.Conflicting:
+                case FileStatus.ConflictingFile:
                     UpdateCodeView(item.UpdateTextAction, item.TempFile, item.ProjectFile, true);
                     break;
             }

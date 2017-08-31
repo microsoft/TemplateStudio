@@ -9,7 +9,7 @@ namespace Param_ItemNamespace.ViewModels
     public class SettingsPageViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
-        private ElementTheme _elementTheme = ElementTheme.Default;
+        private ElementTheme _elementTheme = ThemeSelectorService.Theme;
 
         public ElementTheme ElementTheme
         {
@@ -27,21 +27,31 @@ namespace Param_ItemNamespace.ViewModels
             set { Set(ref _versionDescription, value); }
         }
 
-        public ICommand SwitchThemeCommand { get; private set; }
+        private ICommand _switchThemeCommand;
+
+        public ICommand SwitchThemeCommand
+        {
+            get
+            {
+                if (_switchThemeCommand == null)
+                {
+                    _switchThemeCommand = new RelayCommand<ElementTheme>(
+                        async (param) =>
+                        {
+                            await ThemeSelectorService.SetThemeAsync(param);
+                        });
+                }
+
+                return _switchThemeCommand;
+            }
+        }
 
         public SettingsPageViewModel()
         {
-            SwitchThemeCommand = new RelayCommand<ElementTheme>(
-                async (param) =>
-                {
-                    await ThemeSelectorService.SetThemeAsync(param);
-                });
         }
 
         public void Initialize()
         {
-            ElementTheme = ThemeSelectorService.Theme;
-
             VersionDescription = GetVersionDescription();
         }
 

@@ -20,6 +20,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         public static string WizardAction { get; private set; } = TelemetryEvents.Prefix + "WizardAction";
         public static string LastStep { get; private set; } = TelemetryEvents.Prefix + "LastStep";
         public static string EventName { get; private set; } = TelemetryEvents.Prefix + "EventName";
+        public static string Language { get; internal set; } = TelemetryEvents.Prefix + "Language";
         public static string VisualStudioVersion { get; private set; } = TelemetryEvents.Prefix + "VsVersion";
         public static string VisualStudioEdition { get; private set; } = TelemetryEvents.Prefix + "VsEdition";
         public static string VisualStudioCulture { get; private set; } = TelemetryEvents.Prefix + "VsCulture";

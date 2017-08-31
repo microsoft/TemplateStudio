@@ -8,7 +8,8 @@
     xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
     xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"    
     PreviewMouseDown="OnPreviewMouseDown"
-    Title="{x:Static res:StringRes.Title}"    
+    Title="{x:Static res:StringRes.Title}"
+    Closing="Window_Closing"
     Width="1277"
     Height="727"
     MinWidth="800"
@@ -92,6 +93,7 @@
                         Grid.Column="1"
                         Text="{Binding NewItemSetup.ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"                    
                         Margin="{StaticResource Margin_M_All}"
+                        AutomationProperties.Name="{x:Static res:StringRes.EditTemplateDescription}"
                         Width="360"
                         MaxLength="30" HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
                         Visibility="{Binding NewItemSetup.EditionVisibility}">
@@ -108,9 +110,9 @@
                         </Grid.ColumnDefinitions>
                         <Button
                             Grid.Column="0"
-                            IsCancel="True"
                             Command="{Binding CancelCommand}"
                             Content="{x:Static res:StringRes.ButtonCancel}"
+                            IsCancel="True"
                             Style="{StaticResource ButtonNavigationStyle}" />
                         <Button
                             Grid.Column="1"

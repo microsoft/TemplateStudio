@@ -106,6 +106,7 @@
 
     <Style TargetType="Button" x:Key="AddTemplateInfoButtonStyle" BasedOn="{StaticResource BlueBaseTemplateInfoButtonStyle}">
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonAddTemplate}" />
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonAddTemplate}" />
     </Style>
 
     <Style TargetType="Button" x:Key="SaveTemplateInfoButtonStyle" BasedOn="{StaticResource BlueBaseTemplateInfoButtonStyle}">
@@ -291,6 +292,7 @@
 
     <Style TargetType="Button" BasedOn="{StaticResource BlackTogglePaneButtonStyle}" x:Key="DragAndDropTogglePaneButtonStyle">
         <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Focusable" Value="False"/>
     </Style>
 
     <Style TargetType="Button" x:Key="TopBarMenuStyle">
@@ -299,6 +301,7 @@
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Width" Value="50" />
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonViewInfo}" />
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonViewInfo}" />
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleWhiteGrid}"/>
         <Setter Property="Template">
@@ -338,6 +341,45 @@
                 </DataTrigger.Setters>
             </DataTrigger>
         </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Button" x:Key="ZoomButtonStyle">
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{StaticResource UIGray}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource UIGray}"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleBlueGrid}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="{StaticResource UIGrayColor}" Opacity="0.3"/>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+                <Setter Property="Background" Value="Transparent" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Button" BasedOn="{StaticResource ZoomButtonStyle}" x:Key="MoreZoomButtonStyle">
+        <Setter Property="Content">
+            <Setter.Value>
+                <TextBlock Text="+" FontSize="{StaticResource UI_M_FontSize}" FontWeight="Bold" Margin="0,-5,0,0"/>
+            </Setter.Value>
+        </Setter>    
+    </Style>
+
+    <Style TargetType="Button" BasedOn="{StaticResource ZoomButtonStyle}" x:Key="MinusZoomButtonStyle">
+        <Setter Property="Content">
+            <Setter.Value>
+                <TextBlock Text="-" FontSize="{StaticResource UI_M_FontSize}" FontWeight="Bold" Margin="0,-5,0,0"/>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>

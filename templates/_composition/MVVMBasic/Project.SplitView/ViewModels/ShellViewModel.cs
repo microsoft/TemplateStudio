@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using Windows.UI.Xaml;
@@ -136,7 +137,7 @@ namespace wts.ItemName.ViewModels
         public void Initialize(Frame frame)
         {
             NavigationService.Frame = frame;
-            NavigationService.Frame.Navigated += NavigationService_Navigated;
+            NavigationService.Frame.Navigated += Frame_Navigated;
             PopulateNavItems();
 
             InitializeState(Window.Current.Bounds.Width);
@@ -163,7 +164,7 @@ namespace wts.ItemName.ViewModels
             Navigate(args.ClickedItem);
         }
 
-        private void NavigationService_Navigated(object sender, NavigationEventArgs e)
+        private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
             var navigationItem = PrimaryItems?.FirstOrDefault(i => i.PageType == e?.SourcePageType);
             if (navigationItem == null)

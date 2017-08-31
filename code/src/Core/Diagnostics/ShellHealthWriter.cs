@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             {
                 await SafeTrackAsync(() =>
                 {
-                    string header = $"========== {StringRes.ExceptionTrackedString} [{DateTime.Now.ToString("yyyyMMdd HH:mm:ss.fff")}] ==========\n";
+                    string header = $"========== {StringRes.ExceptionTrackedString} [{DateTime.Now.FormatAsFullDateTime()}] ==========\n";
                     GenContext.ToolBox.Shell.WriteOutput(header);
 
                     if (message != null)
@@ -45,8 +45,8 @@ namespace Microsoft.Templates.Core.Diagnostics
             {
                 await SafeTrackAsync(() =>
                 {
-                    string eventMessage = $"[{DateTime.Now.ToString("HH:mm:ss.fff")} - {eventType}]::{message}\n";
-                    GenContext.ToolBox.Shell.WriteOutput(eventMessage);
+                    string eventMessage = $"[{DateTime.Now.FormatAsTime()} - {eventType}]::{message}\n";
+                    GenContext.ToolBox?.Shell.WriteOutput(eventMessage);
 
                     if (ex != null)
                     {

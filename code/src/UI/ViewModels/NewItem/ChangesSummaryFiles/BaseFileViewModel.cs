@@ -9,6 +9,7 @@ using System.Windows.Media;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -25,6 +26,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public string TempFile { get; set; }
         public string ProjectFile { get; set; }
 
+        private double _codeFontSize;
+        public double CodeFontSize
+        {
+            get => _codeFontSize;
+            set => SetProperty(ref _codeFontSize, value);
+        }
+
         public abstract FileStatus FileStatus { get; }
 
         public virtual string UpdateText(string fileText) => fileText;
@@ -36,6 +44,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             Subject = name;
             LoadFile();
             UpdateTextAction = fileText => UpdateText(fileText);
+            CodeFontSize = GetCodeFontSize();
         }
 
         // TODO: Review constructor to remove this suppresion. Important
@@ -45,6 +54,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             Subject = generationInfo.Name;
             LoadFile();
             UpdateTextAction = fileText => UpdateText(fileText);
+            CodeFontSize = GetCodeFontSize();
         }
 
         private void LoadFile()
@@ -56,6 +66,25 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             CircleColor = GetCircleColor();
         }
 
+        public override string ToString()
+        {
+            return Subject ?? base.ToString();
+        }
+        private double GetCodeFontSize()
+        {
+            double fontSize = 11;
+            fontSize = Math.Ceiling(fontSize * SystemService.Instance.Dpi.PixelsPerDip);
+            if (fontSize > 25)
+            {
+                fontSize = 25;
+            }
+            else if (fontSize < 9)
+            {
+                fontSize = 9;
+            }
+            return fontSize;
+        }
+
         private SolidColorBrush GetCircleColor()
         {
             if (Services.SystemService.Instance.IsHighContrast)
@@ -65,13 +94,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
             switch (FileStatus)
             {
-                case FileStatus.New:
+                case FileStatus.NewFile:
                     return MainViewModel.Current.MainView.FindResource("UIGreen") as SolidColorBrush;
-                case FileStatus.Modified:
+                case FileStatus.ModifiedFile:
                     return MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
-                case FileStatus.Conflicting:
+                case FileStatus.ConflictingFile:
                     return MainViewModel.Current.MainView.FindResource("UIRed") as SolidColorBrush;
-                case FileStatus.Warning:
+                case FileStatus.WarningFile:
                     return MainViewModel.Current.MainView.FindResource("UIDarkYellow") as SolidColorBrush;
                 case FileStatus.Unchanged:
                     return MainViewModel.Current.MainView.FindResource("UIDarkBlue") as SolidColorBrush;
@@ -104,6 +133,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     return FileExtension.Jpeg;
                 case ".png":
                     return FileExtension.Png;
+                case ".vb":
+                    return FileExtension.Vb;
+                case ".vbproj":
+                    return FileExtension.Vbproj;
                 default:
                     return FileExtension.Default;
             }
@@ -127,6 +160,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     return "/Microsoft.Templates.UI;component/Assets/FileExtensions/Csproj.png";
                 case FileExtension.Json:
                     return "/Microsoft.Templates.UI;component/Assets/FileExtensions/Json.png";
+                case FileExtension.Vb:
+                    return "/Microsoft.Templates.UI;component/Assets/FileExtensions/VisualBasic.png";
+                case FileExtension.Vbproj:
+                    return "/Microsoft.Templates.UI;component/Assets/FileExtensions/VBProj.png";
                 default:
                     return "/Microsoft.Templates.UI;component/Assets/FileExtensions/DefaultFile.png";
             }

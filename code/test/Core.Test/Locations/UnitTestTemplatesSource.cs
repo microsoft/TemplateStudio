@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 
 using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Core.Packaging;
 
 namespace Microsoft.Templates.Core.Test.Locations
 {
@@ -21,13 +22,11 @@ namespace Microsoft.Templates.Core.Test.Locations
         {
             var tempFolder = Path.Combine(GetTempFolder(), SourceFolderName);
 
-            var sourcePath = $@"..\..\TestData\{SourceFolderName}";
-
-            Copy(sourcePath, tempFolder);
+            Copy($@"..\..\TestData\{SourceFolderName}", tempFolder);
 
             File.WriteAllText(Path.Combine(tempFolder, "version.txt"), _localVersion, Encoding.UTF8);
 
-            return Templatex.Pack(tempFolder);
+            return TemplatePackage.Pack(tempFolder);
         }
 
         private static void Copy(string sourceFolder, string targetFolder)
