@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Test
             await _fixture.InitializeFixtureAsync(language, this);
         }
 
-        protected async Task AssertGenerateProjectAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string language, Func<ITemplateInfo, string> getName = null)
+        protected async Task AssertGenerateProjectAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string language, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
         {
             await SetUpFixtureForTestingAsync(language);
 
@@ -55,7 +55,10 @@ namespace Microsoft.Templates.Test
             Assert.True(Directory.GetFiles(resultPath, "*.*", SearchOption.AllDirectories).Count() > 2);
 
             // Clean
-            Fs.SafeDeleteDirectory(resultPath);
+            if (!cleanGeneration)
+            {
+                Fs.SafeDeleteDirectory(resultPath);
+            }
         }
 
         protected void AssertBuildProjectAsync(string projectName)
@@ -71,7 +74,7 @@ namespace Microsoft.Templates.Test
             Fs.SafeDeleteDirectory(outputPath);
         }
 
-        protected async Task AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string language)
+        protected async Task AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string language, bool cleanGeneration = true)
         {
             await SetUpFixtureForTestingAsync(language);
 
@@ -124,9 +127,12 @@ namespace Microsoft.Templates.Test
             Assert.True(finalProjectFileCount > emptyProjecFileCount);
 
             // Clean
-            Fs.SafeDeleteDirectory(finalProject);
+            if (cleanGeneration)
+            {
+                Fs.SafeDeleteDirectory(finalProject);
+            }
         }
-        protected async Task<string> AssertGenerationOneByOneAsync(string itemName, string projectType, string framework, string itemId, string language)
+        protected async Task<string> AssertGenerationOneByOneAsync(string itemName, string projectType, string framework, string itemId, string language, bool cleanGeneration = true)
         {
             await SetUpFixtureForTestingAsync(language);
 
@@ -163,7 +169,10 @@ namespace Microsoft.Templates.Test
             Assert.True(Directory.GetFiles(resultPath, "*.*", SearchOption.AllDirectories).Count() > 2);
 
             // Clean
-            Fs.SafeDeleteDirectory(resultPath);
+            if (cleanGeneration)
+            {
+                Fs.SafeDeleteDirectory(resultPath);
+            }
 
             return projectName;
         }
