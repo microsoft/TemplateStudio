@@ -190,6 +190,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                         SolutionName = newProjectInfo.name;
                         SolutionPath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
+                        OnPropertyChanged(nameof(TempFolderAvailable));
                     }
                 }
             }
@@ -217,6 +218,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 if (userSelection != null)
                 {
                     NewItemGenController.Instance.FinishGeneration(userSelection);
+                    OnPropertyChanged(nameof(TempFolderAvailable));
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
             }
@@ -251,6 +253,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 if (userSelection != null)
                 {
                     NewItemGenController.Instance.FinishGeneration(userSelection);
+                    OnPropertyChanged(nameof(TempFolderAvailable));
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
             }
@@ -287,6 +290,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 ProjectPath = Path.GetDirectoryName(projFile);
                 OutputPath = ProjectPath;
                 IsWtsProject = GenContext.ToolBox.Shell.GetActiveProjectIsWts() ? Visibility.Visible : Visibility.Collapsed;
+                OnPropertyChanged(nameof(TempFolderAvailable));
                 ClearContext();
             }
         }
@@ -343,7 +347,15 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private static string GetTempGenerationFolder()
         {
-            return Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
+            if (GenContext.ToolBox == null || GenContext.ToolBox.Shell == null)
+            {
+                return string.Empty;
+            }
+
+            var path = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
+
+            Guid guid = GenContext.ToolBox.Shell.GetVsProjectId();
+            return Path.Combine(path, guid.ToString());
         }
 
         private static bool HasContent(string tempPath)
