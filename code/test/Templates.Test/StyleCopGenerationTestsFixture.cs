@@ -31,24 +31,20 @@ namespace Microsoft.Templates.Test
 
         internal string TestProjectsPath => Path.GetFullPath(Path.Combine(TestRunPath, "Proj"));
 
-        private static TemplatesRepository _repos;
-
-        public static IEnumerable<ITemplateInfo> Templates => _repos.GetAll();
-
-        private static TemplatesRepository CreateNewRepos()
-        {
-            return GenContext.ToolBox.Repo;
-        }
+        public static IEnumerable<ITemplateInfo> Templates;
 
         private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source)
         {
-            if (_repos == null)
+            GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
+            if (Templates == null)
             {
-                GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
                 await GenContext.ToolBox.Repo.SynchronizeAsync();
-
-                _repos = CreateNewRepos();
             }
+            else
+            {
+                await GenContext.ToolBox.Repo.RefreshAsync();
+            }
+            Templates = GenContext.ToolBox.Repo.GetAll();
         }
 
         public async Task InitializeFixtureAsync(IContextProvider contextProvider)
@@ -74,10 +70,11 @@ namespace Microsoft.Templates.Test
         public static async Task<IEnumerable<object[]>> GetProjectTemplatesForStyleCopAsync()
         {
             List<object[]> result = new List<object[]>();
-            await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource());
+            await InitializeTemplatesForLanguageAsync(new StyleCopPlusLocalTemplatesSource());
 
             var projectTemplates =
-                StyleCopGenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project);
+                StyleCopGenerationTestsFixture.Templates.Where(
+                    t => t.GetTemplateType() == TemplateType.Project && t.Name != "Feature.Testing.StyleCop");
 
             foreach (var projectTemplate in projectTemplates)
             {

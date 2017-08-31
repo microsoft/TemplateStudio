@@ -9,7 +9,7 @@
     xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"    
     PreviewMouseDown="OnPreviewMouseDown"
     Title="{x:Static res:StringRes.Title}"
-    KeyDown="OnKeyDown"
+    Closing="Window_Closing"
     Width="1277"
     Height="727"
     MinWidth="800"
@@ -112,6 +112,7 @@
                             Grid.Column="0"
                             Command="{Binding CancelCommand}"
                             Content="{x:Static res:StringRes.ButtonCancel}"
+                            IsCancel="True"
                             Style="{StaticResource ButtonNavigationStyle}" />
                         <Button
                             Grid.Column="1"
