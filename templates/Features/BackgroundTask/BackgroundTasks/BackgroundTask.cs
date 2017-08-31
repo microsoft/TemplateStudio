@@ -1,3 +1,4 @@
+﻿using System;
 using System.Threading.Tasks;
 
 using Windows.ApplicationModel.Background;
@@ -14,7 +15,7 @@ namespace Param_ItemNamespace.BackgroundTasks
 
         public bool Match(string name)
         {
-            return (name == GetType().Name);
+            return name == GetType().Name;
         }
 
         public Task RunAsync(IBackgroundTaskInstance taskInstance)

@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
@@ -23,6 +15,7 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Views.NewProject;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -144,7 +137,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             set => SetProperty(ref _isValidName, value);
         }
 
-        private Brush _titleForeground = new SolidColorBrush(Colors.Black);
+        private Brush _titleForeground;
         public Brush TitleForeground
         {
             get => _titleForeground;
@@ -155,7 +148,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public RelayCommand<TemplateInfoViewModel> SaveItemCommand { get; private set; }
 
         private ICommand _closeEditionCommand;
-        public ICommand CloseEditionCommand => _closeEditionCommand ?? (_closeEditionCommand = new RelayCommand(CloseEdition));
+        public ICommand CloseEditionCommand => _closeEditionCommand ?? (_closeEditionCommand = new RelayCommand(() => CloseEdition()));
 
         private ICommand _showItemInfoCommand;
         public ICommand ShowItemInfoCommand => _showItemInfoCommand ?? (_showItemInfoCommand = new RelayCommand(ShowItemInfo));
@@ -180,6 +173,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             Template = template;
             Version = template.GetVersion();
 
+            TitleForeground = GetTitleForeground(true);
             AddItemCommand = addItemCommand;
             SaveItemCommand = saveItemCommand;
             _validateTemplateName = validateTemplateName;
@@ -192,13 +186,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        public void CloseEdition()
+        public bool CloseEdition()
         {
             if (IsEditionEnabled)
             {
                 IsEditionEnabled = false;
                 MainViewModel.Current.CleanStatus(true);
+                return true;
             }
+            return false;
         }
 
         public void UpdateTemplateAvailability(bool isAlreadyDefined)
@@ -206,13 +202,18 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (MultipleInstances == false && isAlreadyDefined)
             {
                 AddingVisibility = Visibility.Collapsed;
-                TitleForeground = MainViewModel.Current.MainView.FindResource("UIMiddleLightGray") as SolidColorBrush;
+                TitleForeground = GetTitleForeground(false);
             }
             else
             {
                 AddingVisibility = Visibility.Visible;
-                TitleForeground = MainViewModel.Current.MainView.FindResource("UIBlack") as SolidColorBrush;
+                TitleForeground = GetTitleForeground(true);
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{Name} - {Summary}";
         }
 
         private void ShowItemInfo()
@@ -222,6 +223,32 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
             infoView.ShowDialog();
             MainViewModel.Current.InfoShapeVisibility = Visibility.Collapsed;
+        }
+
+        private SolidColorBrush GetTitleForeground(bool isEnabled)
+        {
+            if (SystemService.Instance.IsHighContrast)
+            {
+                if (isEnabled)
+                {
+                    return SystemColors.ControlTextBrush;
+                }
+                else
+                {
+                    return SystemColors.ControlLightBrush;
+                }
+            }
+            else
+            {
+                if (isEnabled)
+                {
+                    return MainViewModel.Current.MainView.FindResource("UIBlack") as SolidColorBrush;
+                }
+                else
+                {
+                    return MainViewModel.Current.MainView.FindResource("UIMiddleLightGray") as SolidColorBrush;
+                }
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.Devices.Geolocation;
@@ -13,18 +13,19 @@ namespace Param_ItemNamespace.ViewModels
     public class MapPageViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         // TODO WTS: Set your preferred default zoom level
-        private const double defaultZoomLevel = 17;
+        private const double DefaultZoomLevel = 17;
 
         private readonly LocationService locationService;
 
         // TODO WTS: Set your preferred default location if a geolock can't be found.
         private readonly BasicGeoposition defaultPosition = new BasicGeoposition()
         {
-            Latitude = 47.609425, 
+            Latitude = 47.609425,
             Longitude = -122.3417
         };
 
         private double _zoomLevel;
+
         public double ZoomLevel
         {
             get { return _zoomLevel; }
@@ -32,6 +33,7 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         private Geopoint _center;
+
         public Geopoint Center
         {
             get { return _center; }
@@ -42,14 +44,14 @@ namespace Param_ItemNamespace.ViewModels
         {
             locationService = new LocationService();
             Center = new Geopoint(defaultPosition);
-            ZoomLevel = defaultZoomLevel;
+            ZoomLevel = DefaultZoomLevel;
         }
 
         public async Task InitializeAsync(MapControl map)
         {
             if (locationService != null)
             {
-                locationService.PositionChanged += LocationServicePositionChanged;
+                locationService.PositionChanged += LocationService_PositionChanged;
 
                 var initializationSuccessful = await locationService.InitializeAsync();
 
@@ -70,14 +72,14 @@ namespace Param_ItemNamespace.ViewModels
 
             if (map != null)
             {
-                // TODO WTS: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
-                map.MapServiceToken = "";
+                // TODO WTS: Set your map service token. If you don't have one, request at https://www.bingmapsportal.com/
+                map.MapServiceToken = string.Empty;
 
                 AddMapIcon(map, Center, "Map_YourLocation".GetLocalized());
             }
         }
 
-        private void LocationServicePositionChanged(object sender, Geoposition geoposition)
+        private void LocationService_PositionChanged(object sender, Geoposition geoposition)
         {
             if (geoposition != null)
             {

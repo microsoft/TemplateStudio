@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 
 namespace Param_ItemNamespace.Models
 {
@@ -6,6 +7,7 @@ namespace Param_ItemNamespace.Models
     public class DataPoint
     {
         public double Value { get; set; }
+
         public string Category { get; set; }
     }
 }

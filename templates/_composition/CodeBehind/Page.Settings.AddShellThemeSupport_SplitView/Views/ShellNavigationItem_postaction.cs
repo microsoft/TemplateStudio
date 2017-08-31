@@ -1,43 +1,35 @@
 ﻿//{**
 // This code block add code to the ShellNavigationItem to apply the correct color based on the selected theme.
-//**}    
+//**}
+//{[{
+using Param_RootNamespace.Services;
+//}]}
 
-public class ShellNavigationItem : INotifyPropertyChanged
-{
-    private SolidColorBrush GetStandardTextColorBrush()
-    {
-        var brush = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
-
-        //{[{
-        if (!Services.ThemeSelectorService.IsLightThemeEnabled)
+        private ShellNavigationItem(string label, Type pageType)
         {
-            brush = Application.Current.Resources["SystemControlForegroundAltHighBrush"] as SolidColorBrush;
+            Label = label;
+            PageType = pageType;
+//^^
+//{[{
+
+            ThemeSelectorService.OnThemeChanged += (s, e) =>
+            {
+                if (!IsSelected)
+                {
+                    SelectedForeground = GetStandardTextColorBrush();
+                }
+            };
+//}]}
         }
-        //}]}
-        return brush;
+
+        private SolidColorBrush GetStandardTextColorBrush()
+        {
+//{--{
+            var brush = Application.Current.Resources["ThemeControlForegroundBaseHighBrush"] as SolidColorBrush;
+
+            return brush;//}--}
+            //{[{
+            return ThemeSelectorService.GetSystemControlForegroundForTheme();
+            //}]}
+        }
     }
-
-    private ShellNavigationItem(string name, Symbol symbol, Type pageType)
-    {
-        this.Label = name;
-        this.Symbol = symbol;
-        this.PageType = pageType;
-
-        //^^
-        //{[{
-        Services.ThemeSelectorService.OnThemeChanged += (s, e) => { if (!IsSelected) SelectedForeground = GetStandardTextColorBrush(); };
-        //}]}
-    }
-
-    private ShellNavigationItem(string name, IconElement icon, Type pageType)
-    {
-        this.Label = name;
-        this._iconElement = icon;
-        this.PageType = pageType;
-
-        //^^
-        //{[{
-        Services.ThemeSelectorService.OnThemeChanged += (s, e) => { if (!IsSelected) SelectedForeground = GetStandardTextColorBrush(); };
-        //}]}
-    }
-}

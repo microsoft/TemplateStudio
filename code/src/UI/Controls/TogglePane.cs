@@ -1,26 +1,23 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
+using System;
 using System.Windows;
 using System.Windows.Controls;
-
+using System.Windows.Input;
 using Microsoft.Templates.UI.Extensions;
+using Microsoft.Templates.UI.ViewModels.NewProject;
+using Microsoft.Templates.UI.Views.NewProject;
 
 namespace Microsoft.Templates.UI.Controls
 {
     public sealed partial class TogglePane : Control
     {
         private Border _togglePaneShadowGrid;
+        private Border _dragAndDropShadowBorder;
         private Grid _menuGrid;
+        private Grid _mainGrid;
         private bool _isInitialized = false;
 
         public object TogglePaneContent
@@ -36,13 +33,6 @@ namespace Microsoft.Templates.UI.Controls
             set => SetValue(MainViewTemplateProperty, value);
         }
         public static readonly DependencyProperty MainViewTemplateProperty = DependencyProperty.Register("MainViewTemplate", typeof(DataTemplate), typeof(TogglePane), new PropertyMetadata(null));
-
-        public DataTemplateSelector MainViewTemplateSelector
-        {
-            get => (DataTemplateSelector)GetValue(MainViewTemplateSelectorProperty);
-            set => SetValue(MainViewTemplateSelectorProperty, value);
-        }
-        public static readonly DependencyProperty MainViewTemplateSelectorProperty = DependencyProperty.Register("MainViewTemplateSelector", typeof(DataTemplateSelector), typeof(TogglePane), new PropertyMetadata(null));
 
         public DataTemplate SecondaryViewTemplate
         {
@@ -88,11 +78,39 @@ namespace Microsoft.Templates.UI.Controls
         {
             base.OnApplyTemplate();
             _togglePaneShadowGrid = GetTemplateChild("togglePaneShadowGrid") as Border;
+            _dragAndDropShadowBorder = GetTemplateChild("dragAndDropShadowBorder") as Border;
             _menuGrid = GetTemplateChild("menuGrid") as Grid;
-
+            _mainGrid = GetTemplateChild("mainGrid") as Grid;
+            _mainGrid.GotFocus += OnMainGridGotFocus;
+            MainView.Current.KeyDown += OnMainViewKeyDown;
             _isInitialized = true;
             UpdateOpenStatus();
         }
+
+        private void OnMainViewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (!AllowDragAndDrop)
+            {
+                return;
+            }
+            if (e.Key == Key.Space && _mainGrid.IsFocused)
+            {
+                if (MainViewModel.Current.SavedTemplateSetDrag(TogglePaneContent as SavedTemplateViewModel))
+                {
+                    _dragAndDropShadowBorder.Opacity = 1;
+                }
+                else
+                {
+                    MainViewModel.Current.SavedTemplateSetDrop(TogglePaneContent as SavedTemplateViewModel);
+                }
+            }
+            if (e.Key == Key.Escape)
+            {
+                _dragAndDropShadowBorder.Opacity = 0;
+            }
+        }
+
+        private void OnMainGridGotFocus(object sender, RoutedEventArgs e) => MainViewModel.Current.SavedTemplateGotFocus(TogglePaneContent as SavedTemplateViewModel);
 
         private void UpdateOpenStatus(bool newValue = false, bool oldValue = false)
         {

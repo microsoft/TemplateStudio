@@ -1,0 +1,98 @@
+<Page
+    x:Class="Param_ItemNamespace.Views.CameraViewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="using:Param_ItemNamespace.Views"
+    mc:Ignorable="d">
+    <Grid
+        x:Name="ContentArea"
+        Margin="{StaticResource MediumLeftRightMargin}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="TitleRow" Height="48"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            x:Name="TitlePage"
+            x:Uid="Camera_Title"
+            Style="{StaticResource PageTitleStyle}" />
+
+        <Grid Grid.Row="1" Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+          <views:CameraControl
+              x:Name="Camera"/>
+
+          <TextBlock 
+              Text="{x:Bind ErrorMessage, Mode=OneWay}"
+              FontSize="18"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"/>
+
+          <RelativePanel
+              Margin="20"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Bottom">
+
+              <Button
+                  x:Name="SwitchBtn"
+                  RelativePanel.LeftOf="ShootBtn"
+                  RelativePanel.AlignBottomWithPanel="True"
+                  IsEnabled="{Binding CanSwitch, ElementName=Camera}"
+                  Content="&#xE124;"
+                  FontFamily="Segoe MDL2 Assets"
+                  FontSize="18"
+                  Click="SwitchCamera_Click"
+                  Padding="8"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Bottom"
+                  BorderThickness="1"
+                  Style="{StaticResource CircleButtonStyle}"/>
+
+              <Button
+                  x:Name="ShootBtn"
+                  RelativePanel.AlignHorizontalCenterWithPanel="True"
+                  RelativePanel.AlignVerticalCenterWithPanel="True"
+                  IsEnabled="{Binding IsInitialized, ElementName=Camera}"
+                  Content="&#xE114;"
+                  FontFamily="Segoe MDL2 Assets"
+                  FontSize="20"
+                  Click="Photo_Click"
+                  Margin="5,0"
+                  Padding="15"
+                  HorizontalAlignment="Center"
+                  BorderThickness="2"
+                  Style="{StaticResource CircleButtonStyle}"/>
+          </RelativePanel>
+
+          <Image
+              x:Name="Photo"
+              Height="70"
+              Width="70"
+              Margin="20"
+              Stretch="UniformToFill"
+              HorizontalAlignment="Right"
+              VerticalAlignment="Bottom"/>
+        </Grid>
+      
+        <!--  Adaptive triggers  -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TitlePage.Margin" Value="48,0,12,7"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>

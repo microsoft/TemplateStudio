@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.IO;
@@ -30,7 +22,10 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var expected = File.ReadAllText(@".\TestData\Merge\Source_expected.cs");
             var result = source.Merge(merge, out string errorLine);
 
-            Assert.Equal(expected, string.Join(Environment.NewLine, result.ToArray()));
+            // Remove all new line chars to avoid differentiation with the new line characters
+            expected = expected.Replace("\r\n", "").Replace("\n", "");
+
+            Assert.Equal(expected, string.Join("", result.ToArray()));
             Assert.Equal(errorLine, string.Empty);
         }
     }

@@ -1,19 +1,12 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Templates.Core.Gen;
 
@@ -73,9 +66,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             else
             {
                 Fs.EnsureFileEditable(originalFilePath);
-                File.WriteAllLines(originalFilePath, result);
+                File.WriteAllLines(originalFilePath, result, Encoding.UTF8);
+
                 // REFRESH PROJECT TO UN-DIRTY IT
-                if (Path.GetExtension(_config.FilePath).Equals(".csproj", StringComparison.OrdinalIgnoreCase) && (GenContext.Current.OutputPath == GenContext.Current.ProjectPath))
+                if ((Path.GetExtension(_config.FilePath).Equals(".csproj", StringComparison.OrdinalIgnoreCase)
+                   || Path.GetExtension(_config.FilePath).Equals(".vbproj", StringComparison.OrdinalIgnoreCase))
+                  && (GenContext.Current.OutputPath == GenContext.Current.ProjectPath))
                 {
                     Gen.GenContext.ToolBox.Shell.RefreshProject();
                 }
@@ -90,6 +86,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var postactionFileName = _config.FilePath.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
 
             var description = string.Format(StringRes.FailedMergePostActionFileNotFound, sourceFileName);
+
             var failedFileName = GetFailedPostActionFileName();
             GenContext.Current.FailedMergePostActions.Add(new FailedMergePostAction(sourceFileName, _config.FilePath, failedFileName, description, MergeFailureType.FileNotFound));
             File.Copy(_config.FilePath, failedFileName, true);
@@ -112,7 +109,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var folder = Path.GetDirectoryName(_config.FilePath);
             var extension = Path.GetExtension(_config.FilePath);
 
-            var validator = new List<Validator>()
+            var validator = new List<Validator>
             {
                 new FileExistsValidator(Path.GetDirectoryName(_config.FilePath))
             };
@@ -123,7 +120,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetFilePath()
         {
-            if (Path.GetFileName(_config.FilePath).StartsWith(Extension))
+            if (Path.GetFileName(_config.FilePath).StartsWith(Extension, StringComparison.InvariantCultureIgnoreCase))
             {
                 var extension = Path.GetExtension(_config.FilePath);
                 var directory = Path.GetDirectoryName(_config.FilePath);

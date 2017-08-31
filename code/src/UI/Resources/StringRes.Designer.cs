@@ -61,6 +61,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string ButtonAddTemplate {
+            get {
+                return ResourceManager.GetString("ButtonAddTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         public static string ButtonBack {
@@ -84,6 +93,24 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ButtonClose {
             get {
                 return ResourceManager.GetString("ButtonClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close status box.
+        /// </summary>
+        public static string ButtonCloseStatusButton {
+            get {
+                return ResourceManager.GetString("ButtonCloseStatusButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string ButtonConfirmTemplate {
+            get {
+                return ResourceManager.GetString("ButtonConfirmTemplate", resourceCulture);
             }
         }
         
@@ -147,6 +174,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ButtonRefreshTemplates {
             get {
                 return ResourceManager.GetString("ButtonRefreshTemplates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View info.
+        /// </summary>
+        public static string ButtonViewInfo {
+            get {
+                return ResourceManager.GetString("ButtonViewInfo", resourceCulture);
             }
         }
         
@@ -648,9 +684,9 @@ namespace Microsoft.Templates.UI.Resources {
         /// <summary>
         ///   Looks up a localized string similar to &quot;{0} is not expected as valid type for the Information Window.&quot;.
         /// </summary>
-        public static string InformationWindowIntilizeViewModelMessage {
+        public static string InformationWindowInitializeViewModelMessage {
             get {
-                return ResourceManager.GetString("InformationWindowIntilizeViewModelMessage", resourceCulture);
+                return ResourceManager.GetString("InformationWindowInitializeViewModelMessage", resourceCulture);
             }
         }
         
