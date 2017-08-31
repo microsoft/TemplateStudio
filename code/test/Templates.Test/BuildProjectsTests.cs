@@ -43,9 +43,9 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{projectType}{framework}";
 
-            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, null, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, null, false);
 
-            AssertBuildProjectAsync(projectName);
+            AssertBuildProjectAsync(projectPath, projectName);
         }
 
         [Theory]
@@ -60,9 +60,9 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{projectType}{framework}All";
 
-            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, null, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, null, false);
 
-            AssertBuildProjectAsync(projectName);
+            AssertBuildProjectAsync(projectPath, projectName);
         }
 
         [Theory]
@@ -79,9 +79,9 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{projectType}{framework}AllRandom";
 
-            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, GenerationFixture.GetRandomName, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, GenerationFixture.GetRandomName, false);
 
-            AssertBuildProjectAsync(projectName);
+            AssertBuildProjectAsync(projectPath, projectName);
         }
 
         [Theory]
@@ -90,41 +90,40 @@ namespace Microsoft.Templates.Test
         public async Task BuildProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
             var projectName = $"{projectType}{framework}AllRandom";
-            var projectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
 
-            await AssertGenerateRightClickAsync(projectName, projectType, framework, language, false);
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, language, false);
 
-            AssertBuildProjectAsync(projectName);
+            AssertBuildProjectAsync(projectPath, projectName);
         }
 
         [Theory]
         [MemberData("GetPageAndFeatureTemplatesAsync", "MVVMLight")]
         [Trait("Type", "BuildOneByOneMVVMLight")]
-        public async Task GenMVVMLightOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
+        public async Task BuildMVVMLightOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
         {
-            var projectName = await AssertGenerationOneByOneAsync(itemName, projectType, framework, itemId, language, false);
+            var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, itemId, language, false);
 
-            AssertBuildProjectAsync(projectName);
+            AssertBuildProjectAsync(result.ProjectPath, result.ProjecName);
         }
 
         [Theory]
         [MemberData("GetPageAndFeatureTemplatesAsync", "MVVMBasic")]
         [Trait("Type", "BuildOneByOneMVVMBasic")]
-        public async Task GenMVVMBasicOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
+        public async Task BuildMVVMBasicOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
         {
-            var projectName = await AssertGenerationOneByOneAsync(itemName, projectType, framework, itemId, language, false);
+            var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, itemId, language, false);
 
-            AssertBuildProjectAsync(projectName);
+            AssertBuildProjectAsync(result.ProjectPath, result.ProjecName);
         }
 
         [Theory]
         [MemberData("GetPageAndFeatureTemplatesAsync", "CodeBehind")]
         [Trait("Type", "BuildOneByOneCodeBehind")]
-        public async Task GenCodeBehindOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
+        public async Task BuildCodeBehindOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
         {
-            var projectName = await AssertGenerationOneByOneAsync(itemName, projectType, framework, itemId, language, false);
+            var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, itemId, language, false);
 
-            AssertBuildProjectAsync(projectName);
+            AssertBuildProjectAsync(result.ProjectPath, result.ProjecName);
         }
     }
 }
