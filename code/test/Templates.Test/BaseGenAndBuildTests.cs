@@ -55,7 +55,7 @@ namespace Microsoft.Templates.Test
             Assert.True(Directory.GetFiles(resultPath, "*.*", SearchOption.AllDirectories).Count() > 2);
 
             // Clean
-            if (!cleanGeneration)
+            if (cleanGeneration)
             {
                 Fs.SafeDeleteDirectory(resultPath);
             }
