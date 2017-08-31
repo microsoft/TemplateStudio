@@ -73,6 +73,7 @@ namespace Param_RootNamespace.Services
             {
                 _frame.Navigated -= _frame_Navigated;
                 _frame.NavigationFailed -= _frame_NavigationFailed;
+                _frameEventsRegistrated = false;
             }            
         }
 
