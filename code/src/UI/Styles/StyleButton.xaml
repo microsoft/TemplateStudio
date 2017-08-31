@@ -343,4 +343,43 @@
         </Style.Triggers>
     </Style>
 
+    <Style TargetType="Button" x:Key="ZoomButtonStyle">
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{StaticResource UIGray}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource UIGray}"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisualStyleBlueGrid}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="{StaticResource UIGrayColor}" Opacity="0.3"/>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+                <Setter Property="Background" Value="Transparent" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Button" BasedOn="{StaticResource ZoomButtonStyle}" x:Key="MoreZoomButtonStyle">
+        <Setter Property="Content">
+            <Setter.Value>
+                <TextBlock Text="+" FontSize="{StaticResource UI_M_FontSize}" FontWeight="Bold" Margin="0,-5,0,0"/>
+            </Setter.Value>
+        </Setter>    
+    </Style>
+
+    <Style TargetType="Button" BasedOn="{StaticResource ZoomButtonStyle}" x:Key="MinusZoomButtonStyle">
+        <Setter Property="Content">
+            <Setter.Value>
+                <TextBlock Text="-" FontSize="{StaticResource UI_M_FontSize}" FontWeight="Bold" Margin="0,-5,0,0"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>
