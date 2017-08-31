@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Test
             await _fixture.InitializeFixtureAsync(language, this);
         }
 
-        protected async Task AssertGenerateProjectAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string language, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
+        protected async Task<string> AssertGenerateProjectAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string language, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
         {
             await SetUpFixtureForTestingAsync(language);
 
@@ -59,22 +59,23 @@ namespace Microsoft.Templates.Test
             {
                 Fs.SafeDeleteDirectory(resultPath);
             }
+
+            return resultPath;
         }
 
-        protected void AssertBuildProjectAsync(string projectName)
+        protected void AssertBuildProjectAsync(string projectPath, string projectName)
         {
             // Build solution
-            var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
-            var result = GenerationFixture.BuildSolution(projectName, outputPath);
+            var result = GenerationFixture.BuildSolution(projectName, projectPath);
 
             // Assert
             Assert.True(result.exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {GenerationFixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
             // Clean
-            Fs.SafeDeleteDirectory(outputPath);
+            Fs.SafeDeleteDirectory(projectPath);
         }
 
-        protected async Task AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string language, bool cleanGeneration = true)
+        protected async Task<string> AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string language, bool cleanGeneration = true)
         {
             await SetUpFixtureForTestingAsync(language);
 
@@ -121,18 +122,20 @@ namespace Microsoft.Templates.Test
                 NewItemGenController.Instance.UnsafeFinishGeneration(newUserSelection);
             }
 
-            var finalProject = Path.Combine(_fixture.TestNewItemPath, projectName);
-            int finalProjectFileCount = Directory.GetFiles(finalProject, "*.*", SearchOption.AllDirectories).Count();
+            var finalProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName);
+            int finalProjectFileCount = Directory.GetFiles(finalProjectPath, "*.*", SearchOption.AllDirectories).Count();
 
             Assert.True(finalProjectFileCount > emptyProjecFileCount);
 
             // Clean
             if (cleanGeneration)
             {
-                Fs.SafeDeleteDirectory(finalProject);
+                Fs.SafeDeleteDirectory(finalProjectPath);
             }
+
+            return finalProjectPath;
         }
-        protected async Task<string> AssertGenerationOneByOneAsync(string itemName, string projectType, string framework, string itemId, string language, bool cleanGeneration = true)
+        protected async Task<(string ProjectPath, string ProjecName)> AssertGenerationOneByOneAsync(string itemName, string projectType, string framework, string itemId, string language, bool cleanGeneration = true)
         {
             await SetUpFixtureForTestingAsync(language);
 
@@ -174,7 +177,7 @@ namespace Microsoft.Templates.Test
                 Fs.SafeDeleteDirectory(resultPath);
             }
 
-            return projectName;
+            return (resultPath, projectName);
         }
 
         public static IEnumerable<object[]> GetProjectTemplatesAsync()
