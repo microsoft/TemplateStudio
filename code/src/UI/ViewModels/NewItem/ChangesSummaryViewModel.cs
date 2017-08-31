@@ -59,10 +59,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
 
         public ICommand MoreDetailsCommand { get; }
+        public ICommand UpdateFontSizeCommand { get; }
 
         public ChangesSummaryViewModel()
         {
             MoreDetailsCommand = new RelayCommand(OnMoreDetails);
+            UpdateFontSizeCommand = new RelayCommand<string>(OnUpdateFontSize);
         }
 
         public async Task InitializeAsync()
@@ -100,9 +102,24 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             IsLoading = false;
         }
 
-        private void OnMoreDetails()
+        public void ResetSelection()
         {
-            Process.Start($"{Configuration.Current.GitHubDocsUrl}newitem.md");
+            FileGroups.Clear();
+            Licenses.Clear();
+            HasLicenses = false;
+            SelectedFile = null;
+        }
+
+        private void OnMoreDetails() => Process.Start($"{Configuration.Current.GitHubDocsUrl}newitem.md");
+        private void OnUpdateFontSize(string points)
+        {
+            foreach (var group in FileGroups)
+            {
+                foreach (var template in group.Templates)
+                {
+                    template.CodeFontSize += double.Parse(points);
+                }
+            }
         }
 
         private void OnItemChanged(ItemsGroupViewModel<BaseFileViewModel> group)
@@ -115,14 +132,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 }
             }
             SelectedFile = group.SelectedItem;
-        }
-
-        public void ResetSelection()
-        {
-            FileGroups.Clear();
-            Licenses.Clear();
-            HasLicenses = false;
-            SelectedFile = null;
         }
     }
 }
