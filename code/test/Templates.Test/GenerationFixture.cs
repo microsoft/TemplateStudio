@@ -11,6 +11,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
@@ -32,33 +33,36 @@ namespace Microsoft.Templates.Test
 
         internal string TestNewItemPath => Path.GetFullPath(Path.Combine(TestRunPath, "RightClick"));
 
-        private static Lazy<TemplatesRepository> _repos = new Lazy<TemplatesRepository>(CreateNewRepos, true);
+        private static bool syncExecuted = false;
+        public static IEnumerable<ITemplateInfo> Templates { get; private set; }
 
-        public static IEnumerable<ITemplateInfo> Templates => _repos.Value.GetAll();
-
-        private static TemplatesRepository CreateNewRepos()
-        {
-            return GenContext.ToolBox.Repo;
-        }
-
-        private static void InitializeTemplatesForLanguage(TemplatesSource source, string language)
+        private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source, string language)
         {
             GenContext.Bootstrap(source, new FakeGenShell(language), language);
-            GenContext.ToolBox.Repo.SynchronizeAsync().RunSynchronously();
 
-            _repos = new Lazy<TemplatesRepository>(CreateNewRepos, true);
+            if (!syncExecuted)
+            {
+                await GenContext.ToolBox.Repo.SynchronizeAsync();
+                syncExecuted = true;
+            }
+            else
+            {
+                await GenContext.ToolBox.Repo.RefreshAsync();
+            }
+
+            Templates = GenContext.ToolBox.Repo.GetAll();
         }
 
         public GenerationFixture()
         {
         }
 
-        public void InitializeFixture(string language, IContextProvider contextProvider)
+        public async Task InitializeFixtureAsync(string language, IContextProvider contextProvider)
         {
             var source = new LocalTemplatesSource();
             GenContext.Current = contextProvider;
 
-            InitializeTemplatesForLanguage(source, language);
+            await InitializeTemplatesForLanguageAsync(source, language);
         }
 
         public void Dispose()
@@ -73,11 +77,12 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        public static IEnumerable<object[]> GetProjectTemplates()
+        public static async Task<IEnumerable<object[]>> GetProjectTemplatesAsync()
         {
+            List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
-                InitializeTemplatesForLanguage(new LocalTemplatesSource(), language);
+                await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource(), language);
 
                 var projectTemplates = Templates.Where(t => t.GetTemplateType() == TemplateType.Project
                                                          && t.GetLanguage() == language);
@@ -92,18 +97,20 @@ namespace Microsoft.Templates.Test
 
                         foreach (var framework in frameworks)
                         {
-                            yield return new object[] { projectType, framework, language };
+                            result.Add(new object[] { projectType, framework, language });
                         }
                     }
                 }
             }
+            return result;
         }
 
-        public static IEnumerable<object[]> GetPageAndFeatureTemplates()
+        public static async Task<IEnumerable<object[]>> GetPageAndFeatureTemplatesAsync(string frameworkFilter)
         {
+            List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
-                InitializeTemplatesForLanguage(new LocalTemplatesSource(), language);
+                await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource(), language);
 
                 var projectTemplates = Templates.Where(t => t.GetTemplateType() == TemplateType.Project
                                                          && t.GetLanguage() == language);
@@ -114,7 +121,7 @@ namespace Microsoft.Templates.Test
 
                     foreach (var projectType in projectTypeList)
                     {
-                        var frameworks = GenComposer.GetSupportedFx(projectType);
+                        var frameworks = GenComposer.GetSupportedFx(projectType).Where(f => f == frameworkFilter);
 
                         foreach (var framework in frameworks)
                         {
@@ -125,13 +132,14 @@ namespace Microsoft.Templates.Test
 
                             foreach (var itemTemplate in itemTemplates)
                             {
-                                yield return new object[]
-                                    { itemTemplate.Name, projectType, framework, itemTemplate.Identity, language };
+                                result.Add(new object[]
+                                    { itemTemplate.Name, projectType, framework, itemTemplate.Identity, language });
                             }
                         }
                     }
                 }
             }
+            return result;
         }
 
         public static IEnumerable<ITemplateInfo> GetTemplates(string framework)
@@ -139,9 +147,9 @@ namespace Microsoft.Templates.Test
             return Templates.Where(t => t.GetFrameworkList().Contains(framework));
         }
 
-        public static UserSelection SetupProject(string projectType, string framework, string language)
+        public static async Task<UserSelection> SetupProjectAsync(string projectType, string framework, string language)
         {
-            InitializeTemplatesForLanguage(new LocalTemplatesSource(), language);
+            await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource(), language);
 
             var userSelection = new UserSelection
             {
@@ -196,6 +204,11 @@ namespace Microsoft.Templates.Test
 
             // Build
             var solutionFile = Path.GetFullPath(outputPath + @"\" + solutionName + ".sln");
+
+            Console.Out.WriteLine();
+            Console.Out.WriteLine($"### > Ready to start building");
+            Console.Out.Write($"### > Running following command: {GetPath("RestoreAndBuild.bat")} \"{solutionFile}\" {Platform} {Configuration}");
+
             var startInfo = new ProcessStartInfo(GetPath("RestoreAndBuild.bat"))
             {
                 Arguments = $"\"{solutionFile}\" {Platform} {Configuration}",

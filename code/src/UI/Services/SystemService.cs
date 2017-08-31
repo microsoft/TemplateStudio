@@ -4,6 +4,7 @@
 
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Media;
 
 namespace Microsoft.Templates.UI.Services
 {
@@ -31,5 +32,7 @@ namespace Microsoft.Templates.UI.Services
             get => (bool)GetValue(IsHighContrastProperty);
             private set => SetValue(IsHighContrastProperty, value);
         }
+
+        public DpiScale Dpi => VisualTreeHelper.GetDpi(Application.Current.MainWindow as Visual);
     }
 }

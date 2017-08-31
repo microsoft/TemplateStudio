@@ -23,10 +23,17 @@ namespace Microsoft.Templates.UI.Controls
 
         public object Item
         {
-            get { return GetValue(ItemProperty); }
-            set { SetValue(ItemProperty, value); }
+            get => GetValue(ItemProperty);
+            set => SetValue(ItemProperty, value);
         }
-        public static readonly DependencyProperty ItemProperty = DependencyProperty.Register("Item", typeof(object), typeof(CodeViewer), new PropertyMetadata(true, OnItemChanged));
+        public static readonly DependencyProperty ItemProperty = DependencyProperty.Register(nameof(Item), typeof(object), typeof(CodeViewer), new PropertyMetadata(true, OnItemChanged));
+
+        public double CodeFontSize
+        {
+            get => (double)GetValue(CodeFontSizeProperty);
+            set => SetValue(CodeFontSizeProperty, value);
+        }
+        public static readonly DependencyProperty CodeFontSizeProperty = DependencyProperty.Register(nameof(CodeFontSize), typeof(double), typeof(CodeViewer), new PropertyMetadata(14.0, OnItemChanged));
 
         public CodeViewer()
         {
@@ -78,7 +85,8 @@ namespace Microsoft.Templates.UI.Controls
                 patternText = patternText
                     .Replace("##ExecutingDirectory##", executingDirectory)
                     .Replace("##renderSideBySide##", (renderSideBySide.ToString().ToLower()))
-                    .Replace("##theme##", SystemService.Instance.IsHighContrast ? "theme: 'hc-black'," : string.Empty);
+                    .Replace("##theme##", SystemService.Instance.IsHighContrast ? "theme: 'hc-black'," : string.Empty)
+                    .Replace("##fontSize##", $"fontSize: {CodeFontSize},");
                 if (_currentHtml != patternText)
                 {
                     _webBrowser.NavigateToString(patternText);
@@ -131,7 +139,7 @@ namespace Microsoft.Templates.UI.Controls
         private static void OnItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as CodeViewer;
-            var item = e.NewValue as BaseFileViewModel;
+            var item = control.Item as BaseFileViewModel;
             if (control != null && item != null)
             {
                 control.UpdateCodeView(item);

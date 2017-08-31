@@ -26,6 +26,7 @@ namespace Microsoft.Templates.Core.Gen
         public abstract void CancelWizard(bool back = true);
         public abstract void WriteOutput(string data);
         public abstract void CloseSolution();
+        public abstract bool IsDebuggerEnabled();
 
         public abstract Guid GetVsProjectId();
 

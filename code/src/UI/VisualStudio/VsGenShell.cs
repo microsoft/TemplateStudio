@@ -445,5 +445,10 @@ namespace Microsoft.Templates.UI.VisualStudio
                 }
             }
         }
+
+        public override bool IsDebuggerEnabled()
+        {
+            return Dte.Debugger.CurrentMode != dbgDebugMode.dbgDesignMode;
+        }
     }
 }

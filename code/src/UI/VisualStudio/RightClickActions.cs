@@ -110,9 +110,14 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public bool Enabled()
+        public bool Visible()
         {
             return GenContext.ToolBox.Shell.GetActiveProjectIsWts();
+        }
+
+        public bool Enabled()
+        {
+            return !GenContext.ToolBox.Shell.IsDebuggerEnabled();
         }
 
         public void OpenTempFolder()
@@ -130,7 +135,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private static string GetTempGenerationFolder()
         {
-            return Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
+            string projectGuid = GenContext.ToolBox.Shell.GetVsProjectId().ToString();
+            return Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath, projectGuid);
         }
 
         private static bool HasContent(string tempPath)
