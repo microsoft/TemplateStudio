@@ -244,8 +244,7 @@ namespace Param_ItemNamespace.Views
             using (var inputStream = stream)
             {
                 var decoder = await BitmapDecoder.CreateAsync(inputStream);
-                
-                // TODO WTS: Set the file path and the name of the photo
+
                 var file = await Package.Current.InstalledLocation.CreateFileAsync("photo.jpeg", CreationCollisionOption.GenerateUniqueName);
 
                 using (var outputStream = await file.OpenAsync(FileAccessMode.ReadWrite))

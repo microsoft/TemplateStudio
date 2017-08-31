@@ -17,7 +17,7 @@
 
         <TextBlock
             x:Name="TitlePage"
-            x:Uid="Camera_Title"
+            x:Uid="CameraView_Title"
             Style="{StaticResource PageTitleStyle}" />
 
         <Grid Grid.Row="1" Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
