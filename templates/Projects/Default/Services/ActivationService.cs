@@ -43,7 +43,7 @@ namespace wts.DefaultProject.Services
                     {
                         throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
                     };
-                    NavigationService.Navigated += OnFrameNavigated;
+                    NavigationService.Navigated += Frame_Navigated;
                     if (SystemNavigationManager.GetForCurrentView() != null)
                     {
                         SystemNavigationManager.GetForCurrentView().BackRequested += ActivationService_BackRequested;
