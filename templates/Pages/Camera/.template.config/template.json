@@ -7,7 +7,7 @@
   "groupIdentity": "wts.Page.Camera",
   "identity": "wts.Page.Camera",
   "shortName": "Camera Page",
-  "description": "A page for capturing a photo from the camera device, include previewing, mirroring and orientation.",
+  "description": "A page for capturing and displaying an image from the camera.",
   "tags": {
     "language": "C#",
     "type": "item",
