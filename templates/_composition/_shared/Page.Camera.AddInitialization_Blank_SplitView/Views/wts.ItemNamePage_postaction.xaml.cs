@@ -13,9 +13,9 @@ namespace Param_ItemNamespace.Views
             await ViewModel.InitializeAsync(Camera);
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        protected async override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            ViewModel.Cleanup();
+            await ViewModel.CleanupAsync();
         }
         //}]}
     }

@@ -5,8 +5,8 @@
 <root>
   <!--^^-->
   <!--{[{-->
-  <data name="CameraView_Title.Text" xml:space="preserve">
-    <value>CameraView</value>
+  <data name="wts.ItemName_Title.Text" xml:space="preserve">
+    <value>wts.ItemName</value>
   </data>
   <!--}]}-->
 </root>

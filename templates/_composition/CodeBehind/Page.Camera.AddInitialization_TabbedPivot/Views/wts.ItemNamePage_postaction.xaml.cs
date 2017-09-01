@@ -20,9 +20,9 @@ namespace Param_ItemNamespace.Views
             await InitializeAsync();
         }
 
-        private void OnUnloaded(object sender, RoutedEventArgs e)
+        private async void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            Cleanup();
+            await CleanupAsync();
         }
         //}]}
     }

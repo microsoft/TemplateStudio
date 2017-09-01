@@ -84,12 +84,9 @@ namespace Param_ItemNamespace.Views
             }
         }
 
-        public void Cleanup()
+        public Task CleanupAsync()
         {
-            Task.Run(async () => await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-            {
-                await CleanupCameraAsync();
-            }));
+            return CleanupCameraAsync();
         }
 
         public void CleanAndInitialize()
@@ -103,7 +100,8 @@ namespace Param_ItemNamespace.Views
 
         private static void OnPanelChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((CameraControl)d).CleanAndInitialize();
+            if (((CameraControl)d).IsInitialized)
+                ((CameraControl)d).CleanAndInitialize();
         }
 
         /// <summary>
@@ -149,19 +147,15 @@ namespace Param_ItemNamespace.Views
                     throw ex;
                 }
 
-                if (IsInitialized)
-                {
-                    CanSwitch = _cameraDevices?.Count > 1;
-                    PreviewControl.Source = _mediaCapture;
-                    RegisterOrientationEventHandlers();
-                    await StartPreviewAsync();
-                }
+                CanSwitch = _cameraDevices?.Count > 1;
+                RegisterOrientationEventHandlers();
+                await StartPreviewAsync();
             }
         }
 
-        private void MediaCapture_Failed(MediaCapture sender, MediaCaptureFailedEventArgs errorEventArgs)
+        private async void MediaCapture_Failed(MediaCapture sender, MediaCaptureFailedEventArgs errorEventArgs)
         {
-            Cleanup();
+            await CleanupAsync();
         }
 
         /// <summary>
@@ -175,9 +169,9 @@ namespace Param_ItemNamespace.Views
                 if (_isPreviewing)
                 {
                     await StopPreviewAsync();
-                    UnregisterOrientationEventHandlers();
                 }
 
+                UnregisterOrientationEventHandlers();
                 IsInitialized = false;
             }
 
@@ -198,12 +192,11 @@ namespace Param_ItemNamespace.Views
             PreviewControl.Source = _mediaCapture;
             PreviewControl.FlowDirection = _mirroringPreview ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
 
-            await _mediaCapture.StartPreviewAsync();
-            _isPreviewing = true;
-
-            if (_isPreviewing)
+            if (_mediaCapture != null)
             {
+                await _mediaCapture.StartPreviewAsync();
                 await SetPreviewRotationAsync();
+                _isPreviewing = true;
             }
         }
 
@@ -217,9 +210,12 @@ namespace Param_ItemNamespace.Views
                 rotationDegrees = (360 - rotationDegrees) % 360;
             }
 
-            var props = _mediaCapture.VideoDeviceController.GetMediaStreamProperties(MediaStreamType.VideoPreview);
-            props.Properties.Add(_rotationKey, rotationDegrees);
-            await _mediaCapture.SetEncodingPropertiesAsync(MediaStreamType.VideoPreview, props, null);
+            if (_mediaCapture != null)
+            {
+                var props = _mediaCapture.VideoDeviceController.GetMediaStreamProperties(MediaStreamType.VideoPreview);
+                props.Properties.Add(_rotationKey, rotationDegrees);
+                await _mediaCapture.SetEncodingPropertiesAsync(MediaStreamType.VideoPreview, props, null);
+            }
         }
 
         /// <summary>
@@ -294,11 +290,7 @@ namespace Param_ItemNamespace.Views
         private async void DisplayInformation_OrientationChanged(DisplayInformation sender, object args)
         {
             _displayOrientation = sender.CurrentOrientation;
-
-            if (_isPreviewing)
-            {
-                await SetPreviewRotationAsync();
-            }
+            await SetPreviewRotationAsync();
         }
 
         private SimpleOrientation GetCameraOrientation(DisplayInformation displayInformation, SimpleOrientation deviceOrientation)

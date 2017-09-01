@@ -8,6 +8,7 @@ namespace Param_ItemNamespace.Views
 {
     public sealed partial class CameraViewPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
+        private bool _capturing;
         private string _errorMessage;
 
         public string ErrorMessage
@@ -37,14 +38,23 @@ namespace Param_ItemNamespace.Views
             }
         }
 
-        private void Cleanup()
+        private Task CleanupAsync()
         {
-            Camera.Cleanup();
+            return Camera.CleanupAsync();
         }
 
         private async void Photo_Click(object sender, RoutedEventArgs e)
         {
-            Photo.Source = new BitmapImage(new Uri(await Camera.TakePhotoAsync()));
+            if (_capturing)
+            {
+                return;
+            }
+
+            _capturing = true;
+
+            Photo = new BitmapImage(new Uri(await Camera.TakePhotoAsync()));
+
+            _capturing = false;
         }
 
         private void SwitchCamera_Click(object sender, RoutedEventArgs e)

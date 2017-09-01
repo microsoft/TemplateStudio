@@ -13,9 +13,9 @@ namespace Param_ItemNamespace.Views
             await InitializeAsync();
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        protected async override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            Cleanup();
+            await CleanupAsync();
         }
         //}]}
     }

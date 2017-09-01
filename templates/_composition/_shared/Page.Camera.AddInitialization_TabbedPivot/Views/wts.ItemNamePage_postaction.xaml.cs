@@ -20,9 +20,9 @@ namespace Param_ItemNamespace.Views
             await ViewModel.InitializeAsync(Camera);
         }
 
-        private void OnUnloaded(object sender, RoutedEventArgs e)
+        private async void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            ViewModel.Cleanup();
+            await ViewModel.CleanupAsync();
         }
         //}]}
     }

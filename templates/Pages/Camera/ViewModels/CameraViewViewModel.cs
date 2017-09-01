@@ -13,6 +13,7 @@ namespace Param_ItemNamespace.ViewModels
         private string _errorMessage;
         private BitmapImage _photo;
         private Panel _panel;
+        private bool _capturing;
 
         public string ErrorMessage
         {
@@ -36,10 +37,9 @@ namespace Param_ItemNamespace.ViewModels
 
         public ICommand SwitchCommand { get; private set; }
 
-        public override void Cleanup()
+        public Task CleanupAsync()
         {
-            base.Cleanup();
-            _camera.Cleanup();
+            return _camera.CleanupAsync();
         }
 
         public async Task InitializeAsync(CameraControl camera)
@@ -68,7 +68,16 @@ namespace Param_ItemNamespace.ViewModels
 
         private async Task OnCaptureAsync()
         {
+            if (_capturing)
+            {
+                return;
+            }
+
+            _capturing = true;
+
             Photo = new BitmapImage(new Uri(await _camera.TakePhotoAsync()));
+
+            _capturing = false;
         }
 
         private void OnSwitch()
