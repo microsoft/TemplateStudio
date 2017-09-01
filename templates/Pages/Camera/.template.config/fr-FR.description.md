@@ -1,3 +1,3 @@
-﻿Une page permettant de prendre une photo grâce à la webcam connectée, inclus la prévisualisation, l'effet miroir et prend en charge la rotation.
+﻿A page for capturing a photo from the camera device, include previewing, mirroring and orientation.
 
-Plus de détails sur la classe MediaCapture sont disponible dans la [documentation officielle](https://docs.microsoft.com/en-us/uwp/api/windows.media.capture.mediacapture).
+More details on using the MediaCapture class can be found in the [official docs](https://docs.microsoft.com/en-us/uwp/api/windows.media.capture.mediacapture).

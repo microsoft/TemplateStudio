@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community Contribution",
   "name": "Camera",
-  "description": "Une page pour prévisualiser la caméra et prendre une photo",
+  "description": "A page for capturing a photo from the camera device, include previewing, mirroring and orientation",
   "identity": "wts.Page.Camera"
 }
