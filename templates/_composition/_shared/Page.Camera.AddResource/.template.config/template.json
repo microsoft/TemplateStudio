@@ -9,10 +9,21 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CodeBehind & identity == wts.Page.Camera|wts.Page.Camera.CodeBehind"
+    "wts.compositionFilter": "identity == wts.Page.Camera|wts.Page.Camera.CodeBehind"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Styles\\Button.xaml"
+    },
+    {
+      "path": ".\\Views\\CameraControl.xaml"
+    },
+    {
+      "path": ".\\Views\\CameraControl.xaml.cs"
+    }
+  ],
   "symbols": {
     "wts.rootNamespace": {
       "type": "parameter",

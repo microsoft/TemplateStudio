@@ -33,10 +33,12 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         public ICommand CaptureCommand { get; private set; }
+
         public ICommand SwitchCommand { get; private set; }
-        
-        public void Cleanup()
+
+        public override void Cleanup()
         {
+            base.Cleanup();
             _camera.Cleanup();
         }
 
