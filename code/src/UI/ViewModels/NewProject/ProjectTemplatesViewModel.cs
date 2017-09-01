@@ -390,7 +390,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 if (showErrors)
                 {
                     string message = string.Format(StringRes.ValidationError_CanNotRemoveTemplate_SF, item.TemplateName, dependencyItem.TemplateName, dependencyItem.TemplateType);
-                    MainViewModel.Current.SetStatus(StatusViewModel.Warning(message, 5));
+                    MainViewModel.Current.SetStatus(StatusViewModel.Warning(message, false, 5));
                 }
                 return true;
             }
