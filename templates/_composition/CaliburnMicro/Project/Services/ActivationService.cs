@@ -69,11 +69,6 @@ namespace Param_RootNamespace.Services
 
                         NavigationService.Navigated += OnFrameNavigated;
                     }
-                    
-                    if (SystemNavigationManager.GetForCurrentView() != null)
-                    {
-                        SystemNavigationManager.GetForCurrentView().BackRequested += OnAppViewBackButtonRequested;
-                    }
                 }
             }
 
@@ -128,15 +123,6 @@ namespace Param_RootNamespace.Services
         {
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = (NavigationService.CanGoBack) ? 
                 AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
-        }
-
-        private void OnAppViewBackButtonRequested(object sender, BackRequestedEventArgs e)
-        {
-            if (NavigationService.CanGoBack)
-            {
-                NavigationService.GoBack();
-                e.Handled = true;
-            }
         }
     }
 }
