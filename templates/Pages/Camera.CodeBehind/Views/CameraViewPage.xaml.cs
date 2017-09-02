@@ -53,7 +53,7 @@ namespace Param_ItemNamespace.Views
             _capturing = true;
 
             Photo.Source = new BitmapImage(new Uri(await Camera.TakePhotoAsync()));
-            
+
             _capturing = false;
         }
 
