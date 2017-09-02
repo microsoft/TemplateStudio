@@ -80,6 +80,11 @@ namespace Param_ItemNamespace.Views
 
                 var photoOrientation = ConvertOrientationToPhotoOrientation(GetCameraOrientation(_displayInformation, _deviceOrientation));
 
+                if (_mirroringPreview)
+                {
+                    photoOrientation = PhotoOrientation.FlipHorizontal;
+                }
+
                 return await ReencodeAndSavePhotoAsync(stream, photoOrientation);
             }
         }
@@ -100,8 +105,10 @@ namespace Param_ItemNamespace.Views
 
         private static void OnPanelChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (((CameraControl)d).IsInitialized)
-                ((CameraControl)d).CleanAndInitialize();
+            var ctrl = (CameraControl)d;
+
+            if (ctrl.IsInitialized)
+                ctrl.CleanAndInitialize();
         }
 
         /// <summary>
@@ -121,32 +128,24 @@ namespace Param_ItemNamespace.Views
                     throw new NotSupportedException();
                 }
 
-                try
+                var device = _cameraDevices.FirstOrDefault(camera => camera.EnclosureLocation?.Panel == Panel);
+
+                var cameraId = device != null ? device.Id : _cameraDevices.First().Id;
+
+                await _mediaCapture.InitializeAsync(new MediaCaptureInitializationSettings { VideoDeviceId = cameraId });
+
+                if (Panel == Panel.Back)
                 {
-                    var device = _cameraDevices.FirstOrDefault(camera => camera.EnclosureLocation?.Panel == Panel);
-
-                    var cameraId = device != null ? device.Id : _cameraDevices.First().Id;
-
-                    await _mediaCapture.InitializeAsync(new MediaCaptureInitializationSettings { VideoDeviceId = cameraId });
-
-                    if (Panel == Panel.Back)
-                    {
-                        _mediaCapture.SetRecordRotation(VideoRotation.Clockwise90Degrees);
-                        _mediaCapture.SetPreviewRotation(VideoRotation.Clockwise90Degrees);
-                        _mirroringPreview = false;
-                    }
-                    else
-                    {
-                        _mirroringPreview = true;
-                    }
-
-                    IsInitialized = true;
+                    _mediaCapture.SetRecordRotation(VideoRotation.Clockwise90Degrees);
+                    _mediaCapture.SetPreviewRotation(VideoRotation.Clockwise90Degrees);
+                    _mirroringPreview = false;
                 }
-                catch (UnauthorizedAccessException ex)
+                else
                 {
-                    throw ex;
+                    _mirroringPreview = true;
                 }
 
+                IsInitialized = true;
                 CanSwitch = _cameraDevices?.Count > 1;
                 RegisterOrientationEventHandlers();
                 await StartPreviewAsync();
