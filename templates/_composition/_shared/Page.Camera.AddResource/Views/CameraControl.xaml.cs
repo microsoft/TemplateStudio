@@ -108,7 +108,9 @@ namespace Param_ItemNamespace.Views
             var ctrl = (CameraControl)d;
 
             if (ctrl.IsInitialized)
+            {
                 ctrl.CleanAndInitialize();
+            }
         }
 
         /// <summary>
