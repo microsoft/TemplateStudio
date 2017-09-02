@@ -68,10 +68,6 @@ namespace Param_ItemNamespace.Views
             await InitializeCameraAsync();
         }
 
-        /// <summary>
-        /// Takes a photo to a StorageFile and adds rotation metadata to it
-        /// </summary>
-        /// <returns>Photo path</returns>
         public async Task<string> TakePhotoAsync()
         {
             using (var stream = new InMemoryRandomAccessStream())
@@ -113,10 +109,6 @@ namespace Param_ItemNamespace.Views
             }
         }
 
-        /// <summary>
-        /// Initializes the MediaCapture, registers events, gets camera device information for mirroring and rotating, starts preview and unlocks the UI
-        /// </summary>
-        /// <returns>Task</returns>
         private async Task InitializeCameraAsync()
         {
             if (_mediaCapture == null)
@@ -159,10 +151,6 @@ namespace Param_ItemNamespace.Views
             await CleanupAsync();
         }
 
-        /// <summary>
-        /// Cleans up the camera resources (after stopping any video recording and/or preview if necessary) and unregisters from MediaCapture events
-        /// </summary>
-        /// <returns>Task</returns>
         private async Task CleanupCameraAsync()
         {
             if (IsInitialized)
@@ -184,10 +172,6 @@ namespace Param_ItemNamespace.Views
             }
         }
 
-        /// <summary>
-        /// Starts the preview and adjusts it for for rotation and mirroring after making a request to keep the screen on
-        /// </summary>
-        /// <returns>Task</returns>
         private async Task StartPreviewAsync()
         {
             PreviewControl.Source = _mediaCapture;
@@ -219,10 +203,6 @@ namespace Param_ItemNamespace.Views
             }
         }
 
-        /// <summary>
-        /// Stops the preview and deactivates a display request, to allow the screen to go into power saving modes
-        /// </summary>
-        /// <returns>Task</returns>
         private async Task StopPreviewAsync()
         {
             _isPreviewing = false;
@@ -230,12 +210,6 @@ namespace Param_ItemNamespace.Views
             PreviewControl.Source = null;
         }
 
-        /// <summary>
-        /// Applies the given orientation to a photo stream and saves it as a StorageFile
-        /// </summary>
-        /// <param name="stream">The photo stream</param>
-        /// <param name="photoOrientation">The orientation metadata to apply to the photo</param>
-        /// <returns>File path</returns>
         private async Task<string> ReencodeAndSavePhotoAsync(IRandomAccessStream stream, PhotoOrientation photoOrientation)
         {
             using (var inputStream = stream)
