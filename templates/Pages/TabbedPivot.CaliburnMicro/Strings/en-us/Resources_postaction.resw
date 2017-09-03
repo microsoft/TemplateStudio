@@ -1,0 +1,12 @@
+﻿<!--{**-->
+<!--This xml blocks include string resources for the TabbedPivotPagePage to your project.-->
+<!--**}-->
+
+<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="TabbedPivotPage_Pivot.Text" xml:space="preserve">  
+    <value>TabbedPivotPage</value>
+  </data>
+  <!--}]}-->
+</root>
