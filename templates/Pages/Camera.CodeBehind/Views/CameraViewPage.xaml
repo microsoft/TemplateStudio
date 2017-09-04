@@ -30,41 +30,20 @@
               HorizontalAlignment="Center"
               VerticalAlignment="Center"/>
 
-          <RelativePanel
-              Margin="20"
-              HorizontalAlignment="Center"
-              VerticalAlignment="Bottom">
+          <Button
+              IsEnabled="{Binding CanSwitch, ElementName=Camera}"
+              Content="&#xE124;"
+              Click="SwitchCamera_Click"
+              FontSize="17"
+              Padding="8"
+              Margin="0,20,95,20"
+              Style="{StaticResource CameraButtonStyle}"/>
 
-              <Button
-                  x:Name="SwitchBtn"
-                  RelativePanel.LeftOf="ShootBtn"
-                  RelativePanel.AlignBottomWithPanel="True"
-                  IsEnabled="{Binding CanSwitch, ElementName=Camera}"
-                  Content="&#xE124;"
-                  FontFamily="Segoe MDL2 Assets"
-                  FontSize="18"
-                  Click="SwitchCamera_Click"
-                  Padding="8"
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Bottom"
-                  BorderThickness="1"
-                  Style="{StaticResource CircleButtonStyle}"/>
-
-              <Button
-                  x:Name="ShootBtn"
-                  RelativePanel.AlignHorizontalCenterWithPanel="True"
-                  RelativePanel.AlignVerticalCenterWithPanel="True"
-                  IsEnabled="{Binding IsInitialized, ElementName=Camera}"
-                  Content="&#xE114;"
-                  FontFamily="Segoe MDL2 Assets"
-                  FontSize="20"
-                  Click="Photo_Click"
-                  Margin="5,0"
-                  Padding="15"
-                  HorizontalAlignment="Center"
-                  BorderThickness="2"
-                  Style="{StaticResource CircleButtonStyle}"/>
-          </RelativePanel>
+          <Button
+              IsEnabled="{Binding IsInitialized, ElementName=Camera}"
+              Content="&#xE114;"
+              Click="Photo_Click"
+              Style="{StaticResource CameraButtonStyle}"/>
 
           <Image
               x:Name="Photo"

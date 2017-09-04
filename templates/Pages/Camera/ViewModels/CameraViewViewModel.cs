@@ -9,6 +9,8 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class CameraViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
+        private ICommand _captureCommand;
+        private ICommand _switchCommand;
         private CameraControl _camera;
         private string _errorMessage;
         private BitmapImage _photo;
@@ -33,9 +35,31 @@ namespace Param_ItemNamespace.ViewModels
             set { Set(ref _panel, value); }
         }
 
-        public ICommand CaptureCommand { get; private set; }
+        public ICommand CaptureCommand
+        {
+            get
+            {
+                if (_captureCommand == null)
+                {
+                    _captureCommand = new RelayCommand(async () => await OnCaptureAsync());
+                }
 
-        public ICommand SwitchCommand { get; private set; }
+                return _captureCommand;
+            }
+        }
+
+        public ICommand SwitchCommand
+        {
+            get
+            {
+                if (_switchCommand == null)
+                {
+                    _switchCommand = new RelayCommand(OnSwitch);
+                }
+
+                return _switchCommand;
+            }
+        }
 
         public Task CleanupAsync()
         {
@@ -60,12 +84,6 @@ namespace Param_ItemNamespace.ViewModels
             }
         }
 
-        public CameraViewViewModel()
-        {
-            CaptureCommand = new RelayCommand(async () => await OnCaptureAsync());
-            SwitchCommand = new RelayCommand(OnSwitch);
-        }
-
         private async Task OnCaptureAsync()
         {
             if (_capturing)
@@ -82,7 +100,7 @@ namespace Param_ItemNamespace.ViewModels
 
         private void OnSwitch()
         {
-            Panel = Panel == Panel.Front ? Panel.Back : Panel.Front;
+            Panel = (Panel == Panel.Front) ? Panel.Back : Panel.Front;
         }
     }
 }

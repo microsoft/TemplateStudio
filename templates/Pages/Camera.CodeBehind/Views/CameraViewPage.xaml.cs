@@ -59,7 +59,7 @@ namespace Param_ItemNamespace.Views
 
         private void SwitchCamera_Click(object sender, RoutedEventArgs e)
         {
-            Camera.Panel = Camera.Panel == Windows.Devices.Enumeration.Panel.Front ? Windows.Devices.Enumeration.Panel.Back : Windows.Devices.Enumeration.Panel.Front;
+            Camera.Panel = (Camera.Panel == Windows.Devices.Enumeration.Panel.Front) ? Windows.Devices.Enumeration.Panel.Back : Windows.Devices.Enumeration.Panel.Front;
         }
     }
 }
