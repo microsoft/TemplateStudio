@@ -12,7 +12,7 @@
     "type": "item",
     "wts.type": "page",
     "wts.framework": "CaliburnMicro",
-    "wts.version": "2.0.0",
+    "wts.version": "1.0.0",
     "wts.order": "3",
     "wts.rightClickEnabled":"true",
     "wts.genGroup": "0"
