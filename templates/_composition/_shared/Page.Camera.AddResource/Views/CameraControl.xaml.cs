@@ -14,6 +14,7 @@ using Windows.Storage.FileProperties;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using Param_ItemNamespace.Helpers;
 
 namespace Param_ItemNamespace.Views
 {
@@ -74,7 +75,7 @@ namespace Param_ItemNamespace.Views
             {
                 await _mediaCapture.CapturePhotoToStreamAsync(ImageEncodingProperties.CreateJpeg(), stream);
 
-                var photoOrientation = ConvertOrientationToPhotoOrientation(GetCameraOrientation(_displayInformation, _deviceOrientation));
+                var photoOrientation = _displayInformation.ToSimpleOrientation(_deviceOrientation, _mirroringPreview).ToPhotoOrientation();
 
                 if (_mirroringPreview)
                 {
@@ -124,7 +125,7 @@ namespace Param_ItemNamespace.Views
 
                 var device = _cameraDevices.FirstOrDefault(camera => camera.EnclosureLocation?.Panel == Panel);
 
-                var cameraId = device != null ? device.Id : _cameraDevices.First().Id;
+                var cameraId = device?.Id ?? _cameraDevices.First().Id;
 
                 await _mediaCapture.InitializeAsync(new MediaCaptureInitializationSettings { VideoDeviceId = cameraId });
 
@@ -188,7 +189,7 @@ namespace Param_ItemNamespace.Views
         private async Task SetPreviewRotationAsync()
         {
             _displayOrientation = _displayInformation.CurrentOrientation;
-            int rotationDegrees = ConvertDisplayOrientationToDegrees(_displayOrientation);
+            int rotationDegrees = _displayOrientation.ToDegrees();
 
             if (_mirroringPreview)
             {
@@ -266,75 +267,6 @@ namespace Param_ItemNamespace.Views
         {
             _displayOrientation = sender.CurrentOrientation;
             await SetPreviewRotationAsync();
-        }
-
-        private SimpleOrientation GetCameraOrientation(DisplayInformation displayInformation, SimpleOrientation deviceOrientation)
-        {
-            var result = deviceOrientation;
-
-            if (displayInformation.NativeOrientation == DisplayOrientations.Portrait)
-            {
-                switch (result)
-                {
-                    case SimpleOrientation.Rotated90DegreesCounterclockwise:
-                        result = SimpleOrientation.NotRotated;
-                        break;
-                    case SimpleOrientation.Rotated180DegreesCounterclockwise:
-                        result = SimpleOrientation.Rotated90DegreesCounterclockwise;
-                        break;
-                    case SimpleOrientation.Rotated270DegreesCounterclockwise:
-                        result = SimpleOrientation.Rotated180DegreesCounterclockwise;
-                        break;
-                    case SimpleOrientation.NotRotated:
-                        result = SimpleOrientation.Rotated270DegreesCounterclockwise;
-                        break;
-                }
-            }
-
-            if (_mirroringPreview)
-            {
-                switch (result)
-                {
-                    case SimpleOrientation.Rotated90DegreesCounterclockwise:
-                        return SimpleOrientation.Rotated270DegreesCounterclockwise;
-                    case SimpleOrientation.Rotated270DegreesCounterclockwise:
-                        return SimpleOrientation.Rotated90DegreesCounterclockwise;
-                }
-            }
-
-            return result;
-        }
-
-        private int ConvertDisplayOrientationToDegrees(DisplayOrientations orientation)
-        {
-            switch (orientation)
-            {
-                case DisplayOrientations.Portrait:
-                    return 90;
-                case DisplayOrientations.LandscapeFlipped:
-                    return 180;
-                case DisplayOrientations.PortraitFlipped:
-                    return 270;
-                case DisplayOrientations.Landscape:
-                default:
-                    return 0;
-            }
-        }
-
-        private PhotoOrientation ConvertOrientationToPhotoOrientation(SimpleOrientation orientation)
-        {
-            switch (orientation)
-            {
-                case SimpleOrientation.Rotated90DegreesCounterclockwise:
-                    return PhotoOrientation.Rotate90;
-                case SimpleOrientation.Rotated180DegreesCounterclockwise:
-                    return PhotoOrientation.Rotate180;
-                case SimpleOrientation.Rotated270DegreesCounterclockwise:
-                    return PhotoOrientation.Rotate270;
-                case SimpleOrientation.NotRotated:
-                default:
-                    return PhotoOrientation.Normal;
-            }
         }
     }
 }

@@ -18,6 +18,9 @@
       "path": ".\\Styles\\Button.xaml"
     },
     {
+      "path": ".\\Helpers\\CameraOrientationExtensions.cs"
+    },
+    {
       "path": ".\\Views\\CameraControl.xaml"
     },
     {
