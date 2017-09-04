@@ -9,7 +9,7 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings & $framework == CaliburnMicro & $projectType == SplitView"
+    "wts.compositionFilter": "wts.type == page & groupidentity != wts.Page.Settings & $framework == CaliburnMicro & $projectType == SplitView"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
