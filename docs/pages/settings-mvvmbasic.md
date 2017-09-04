@@ -12,9 +12,7 @@ Adding a setting requires you to:
 
 ### Update the View
 
-The default code uses a `ToggleSwitch` to control the theme. It's possible to use another `ToggleSwitch` for our new setting but we'll use a `CheckBox` to show an alternative.
-
-Add the following below the `ToggleSwitch` inside the `StackPanel` in **SettingsView.xaml**.
+Add the following below the `StackPanel` containing the `RadioButton`s in **SettingsView.xaml**
 
 ```xml
 <CheckBox IsChecked="{x:Bind ViewModel.IsAutoErrorReportingEnabled, Mode=TwoWay}"
@@ -24,9 +22,9 @@ Add the following below the `ToggleSwitch` inside the `StackPanel` in **Settings
 
 Add an entry to **Strings/en-us/Resources.resw**
 
-Name: Settings_EnableAutoErrorReporting.Content
+Name: **Settings_EnableAutoErrorReporting.Content**
 
-Value: Automatically report errors
+Value: **Automatically report errors**
 
 When run it will now look like this:
 
@@ -83,18 +81,27 @@ public async Task EnsureInstanceInitializedAsync()
 }
 ```
 
-Then change the constructor to match this:
+Then change the `SwitchThemeCommand` to match this:
 
 ```csharp
-public SettingsViewModel()
+public ICommand SwitchThemeCommand
 {
-    SwitchThemeCommand = new RelayCommand(async () =>
+    get
     {
-        if (_hasInstanceBeenInitialized)
+        if (_switchThemeCommand == null)
         {
-            await ThemeSelectorService.SwitchThemeAsync();
+            _switchThemeCommand = new RelayCommand<ElementTheme>(
+                async (param) =>
+                {
+                    if (_hasInstanceBeenInitialized)
+                    {
+                        await ThemeSelectorService.SetThemeAsync(param);
+                    }
+                });
         }
-    });
+
+        return _switchThemeCommand;
+    }
 }
 ```
 
@@ -102,7 +109,7 @@ We must now update our uses of the ViewModel.
 
 ### If your app is using the Blank or NavigationView structure
 
- In **SettingsView.xaml.cs** change the property declaration from this:
+ In **SettingsPage.xaml.cs** change the property declaration from this:
 
 ```csharp
 public SettingsViewModel ViewModel { get; } = new SettingsViewModel();
@@ -142,7 +149,7 @@ protected override async void OnNavigatedTo(NavigationEventArgs e)
 
 ### If your app is using the 'Pivot and Tabs' structure
 
-In **SettingsView.xaml.cs** change the constructor so that it handles the `OnLoaded` event and add the following event handler, like this:
+In **SettingsPage.xaml.cs** change the constructor so that it handles the `OnLoaded` event and add the following event handler, like this:
 
 ```csharp
 public SettingsPage()
