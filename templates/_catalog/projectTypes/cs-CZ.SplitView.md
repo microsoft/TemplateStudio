@@ -1,4 +1,4 @@
-This project includes a navigation pane (or 'hamburger menu') at the side of the screen, for navigation between pages.
+﻿This project includes a navigation pane (or 'hamburger menu') at the side of the screen, for navigation between pages.
 
 This style is popular in mobile apps but also works well on larger screens. The menu can be hidden when space is limited, or it isn't needed.
 

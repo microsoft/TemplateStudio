@@ -1,4 +1,4 @@
-<!--{**-->
+﻿<!--{**-->
 <!--This xml blocks include string resources for the ChartViewPage to your project.-->
 <!--**}-->
 
@@ -7,6 +7,7 @@
   <!--{[{-->
   <data name="ChartView_Title.Text" xml:space="preserve">
     <value>ChartView</value>
+    <comment>Page title for ChartView</comment>
   </data>
   <!--}]}-->
 </root>

@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class StringRes {
@@ -340,34 +340,6 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ## Conflicting files:.
-        /// </summary>
-        internal static string SyncInstructionsConflictingFiles {
-            get {
-                return ResourceManager.GetString("SyncInstructionsConflictingFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to These files already exist in your project and were also generated as part of the new item.
-        ///Please compare and make sure everything is in the right place..
-        /// </summary>
-        internal static string SyncInstructionsConflictingFilesDescription {
-            get {
-                return ResourceManager.GetString("SyncInstructionsConflictingFilesDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please follow the indications to include the new item into you project:.
-        /// </summary>
-        internal static string SyncInstructionsDescription {
-            get {
-                return ResourceManager.GetString("SyncInstructionsDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Steps to include new item generation.md.
         /// </summary>
         internal static string SyncInstructionsFileName {
@@ -377,147 +349,78 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to # Steps to include new item generation.
+        ///   Looks up a localized string similar to ## Conflicting files:
+        ///These files already exist in your project and were also generated as part of the new item.
+        ///Please compare and make sure everything is in the right place:
+        ///{0}.
         /// </summary>
-        internal static string SyncInstructionsHeader {
+        internal static string SyncInstructionsSectionConflictingFiles {
             get {
-                return ResourceManager.GetString("SyncInstructionsHeader", resourceCulture);
+                return ResourceManager.GetString("SyncInstructionsSectionConflictingFiles", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ### Changes required in file &apos;{0}&apos;:.
+        ///   Looks up a localized string similar to ## Modified files:
+        ///To integrate your new item with the existing project apply the following changes:
+        ///{0}.
         /// </summary>
-        internal static string SyncInstructionsMergeFile {
+        internal static string SyncInstructionsSectionModifiedFiles {
             get {
-                return ResourceManager.GetString("SyncInstructionsMergeFile", resourceCulture);
+                return ResourceManager.GetString("SyncInstructionsSectionModifiedFiles", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No preview file could be generated, the following changes could not be integrated: .
+        ///   Looks up a localized string similar to ## New files:
+        ///Copy and add the following files to your project:
+        ///{0}.
         /// </summary>
-        internal static string SyncInstructionsMergeFileError {
+        internal static string SyncInstructionsSectionNewFiles {
             get {
-                return ResourceManager.GetString("SyncInstructionsMergeFileError", resourceCulture);
+                return ResourceManager.GetString("SyncInstructionsSectionNewFiles", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Preview the changes in: [{0}]({0}).
+        ///   Looks up a localized string similar to ## Unchanged files:
+        ///These files already exist in your project, no action is necessary:
+        ///{0}.
         /// </summary>
-        internal static string SyncInstructionsMergeFilePreview {
+        internal static string SyncInstructionsSectionUnchangedFiles {
             get {
-                return ResourceManager.GetString("SyncInstructionsMergeFilePreview", resourceCulture);
+                return ResourceManager.GetString("SyncInstructionsSectionUnchangedFiles", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ## Modified files:.
+        ///   Looks up a localized string similar to *Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+        ///
+        ///# Steps to include new item generation
+        ///Please follow the instructions to include the new item into you project:
+        ///
+        ///You can find all referenced files in the temporary generation folder: {0}
+        ///
+        ///{1}
+        ///{2}
+        ///{3}
+        ///{4}.
         /// </summary>
-        internal static string SyncInstructionsModifiedFiles {
+        internal static string SyncInstructionsTemplate {
             get {
-                return ResourceManager.GetString("SyncInstructionsModifiedFiles", resourceCulture);
+                return ResourceManager.GetString("SyncInstructionsTemplate", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To integrate your new item with the existing project apply the following changes: .
+        ///   Looks up a localized string similar to 
+        ///### Changes required in file &apos;{0}&apos;:
+        ///{1}
+        ///Preview the changes in: {2}.
         /// </summary>
-        internal static string SyncInstructionsModifiedFilesDescription {
+        internal static string SyncInstructionsTemplateModifiedFile {
             get {
-                return ResourceManager.GetString("SyncInstructionsModifiedFilesDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ## New files:.
-        /// </summary>
-        internal static string SyncInstructionsNewFiles {
-            get {
-                return ResourceManager.GetString("SyncInstructionsNewFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Copy and add the following files to your project:.
-        /// </summary>
-        internal static string SyncInstructionsNewFilesDescription {
-            get {
-                return ResourceManager.GetString("SyncInstructionsNewFilesDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You can find all referenced files in the temporary generation folder: {0}.
-        /// </summary>
-        internal static string SyncInstructionsTempFolder {
-            get {
-                return ResourceManager.GetString("SyncInstructionsTempFolder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ## Unchanged files:.
-        /// </summary>
-        internal static string SyncInstructionsUnchangedFiles {
-            get {
-                return ResourceManager.GetString("SyncInstructionsUnchangedFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to These files already exist in your project, no action is necessary:.
-        /// </summary>
-        internal static string SyncInstructionsUnchangedFilesDescription {
-            get {
-                return ResourceManager.GetString("SyncInstructionsUnchangedFilesDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ## Conflicting files:.
-        /// </summary>
-        internal static string SyncSummaryConflictingFiles {
-            get {
-                return ResourceManager.GetString("SyncSummaryConflictingFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to These files already exist in your project and were also generated as part of the new item.
-        ///Please compare and make sure everything is in the right place..
-        /// </summary>
-        internal static string SyncSummaryConflictingFilesDescription {
-            get {
-                return ResourceManager.GetString("SyncSummaryConflictingFilesDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The following changes have been incorporated into your project:.
-        /// </summary>
-        internal static string SyncSummaryDescription {
-            get {
-                return ResourceManager.GetString("SyncSummaryDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ## Failed changes in files:.
-        /// </summary>
-        internal static string SyncSummaryFailedMerges {
-            get {
-                return ResourceManager.GetString("SyncSummaryFailedMerges", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Merges in the following files failed:.
-        /// </summary>
-        internal static string SyncSummaryFailedMergesDescription {
-            get {
-                return ResourceManager.GetString("SyncSummaryFailedMergesDescription", resourceCulture);
+                return ResourceManager.GetString("SyncInstructionsTemplateModifiedFile", resourceCulture);
             }
         }
         
@@ -531,78 +434,6 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to # Generation summary.
-        /// </summary>
-        internal static string SyncSummaryHeader {
-            get {
-                return ResourceManager.GetString("SyncSummaryHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ### Changes in file &apos;{0}&apos;:.
-        /// </summary>
-        internal static string SyncSummaryMergeFile {
-            get {
-                return ResourceManager.GetString("SyncSummaryMergeFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The following changes could not be integrated:.
-        /// </summary>
-        internal static string SyncSummaryMergeFileError {
-            get {
-                return ResourceManager.GetString("SyncSummaryMergeFileError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to See the final result: [{0}]({1}).
-        /// </summary>
-        internal static string SyncSummaryMergeFilePreview {
-            get {
-                return ResourceManager.GetString("SyncSummaryMergeFilePreview", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ## Modified files:.
-        /// </summary>
-        internal static string SyncSummaryModifiedFiles {
-            get {
-                return ResourceManager.GetString("SyncSummaryModifiedFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The following changes have been applied:.
-        /// </summary>
-        internal static string SyncSummaryModifiedFilesDescription {
-            get {
-                return ResourceManager.GetString("SyncSummaryModifiedFilesDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ## New files:.
-        /// </summary>
-        internal static string SyncSummaryNewFiles {
-            get {
-                return ResourceManager.GetString("SyncSummaryNewFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to These files have been added to your project..
-        /// </summary>
-        internal static string SyncSummaryNewFilesDescription {
-            get {
-                return ResourceManager.GetString("SyncSummaryNewFilesDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ProjectFile.
         /// </summary>
         internal static string SyncSummaryProjectFile {
@@ -612,11 +443,47 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can find the files from the generation in the temporary generation folder: {0}.
+        ///   Looks up a localized string similar to ## Conflicting files:
+        ///These files already exist in your project and were also generated as part of the new item.
+        ///Please compare and make sure everything is in the right place.
+        ///{0}.
         /// </summary>
-        internal static string SyncSummaryTempFolder {
+        internal static string SyncSummarySectionConflictingFiles {
             get {
-                return ResourceManager.GetString("SyncSummaryTempFolder", resourceCulture);
+                return ResourceManager.GetString("SyncSummarySectionConflictingFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ## Failed changes in files:
+        ///Merges in the following files failed:
+        ///{0}.
+        /// </summary>
+        internal static string SyncSummarySectionFailedMergeFiles {
+            get {
+                return ResourceManager.GetString("SyncSummarySectionFailedMergeFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ## Modified files:
+        ///The following changes have been applied:
+        ///{0}.
+        /// </summary>
+        internal static string SyncSummarySectionModifiedFiles {
+            get {
+                return ResourceManager.GetString("SyncSummarySectionModifiedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ## New files:
+        ///These files have been added to your project.
+        ///{0}.
+        /// </summary>
+        internal static string SyncSummarySectionNewFiles {
+            get {
+                return ResourceManager.GetString("SyncSummarySectionNewFiles", resourceCulture);
             }
         }
         
@@ -626,6 +493,140 @@ namespace Microsoft.Templates.Core.Resources {
         internal static string SyncSummaryTempGenerationFile {
             get {
                 return ResourceManager.GetString("SyncSummaryTempGenerationFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to *Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+        ///
+        ///# Generation summary
+        ///The following changes have been incorporated into your project:
+        ///
+        ///You can find the files from the generation in the temporary generation folder: {0}
+        ///
+        ///{1}
+        ///{2}
+        ///{3}
+        ///{4}.
+        /// </summary>
+        internal static string SyncSummaryTemplate {
+            get {
+                return ResourceManager.GetString("SyncSummaryTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///### Changes in file &apos;{0}&apos;:
+        ///The following changes could not be integrated: {2}
+        ///{1}.
+        /// </summary>
+        internal static string SyncSummaryTemplateFailedMerges {
+            get {
+                return ResourceManager.GetString("SyncSummaryTemplateFailedMerges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///### Changes in file &apos;{0}&apos;:
+        ///See the final result: {2}
+        ///
+        ///{1}.
+        /// </summary>
+        internal static string SyncSummaryTemplateModifiedFile {
+            get {
+                return ResourceManager.GetString("SyncSummaryTemplateModifiedFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid digital signatures in &apos;{0}&apos;. The content has been tampered or the certificate is not present, not valid or not allowed.  Unable to continue..
+        /// </summary>
+        internal static string TemplatePackageExtractMessage {
+            get {
+                return ResourceManager.GetString("TemplatePackageExtractMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Found {0} certificates matching the thumbprint {1} in the store {2}.
+        /// </summary>
+        internal static string TemplatePackageFindCertificateFoundMessage {
+            get {
+                return ResourceManager.GetString("TemplatePackageFindCertificateFoundMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The certificate found does not have private key..
+        /// </summary>
+        internal static string TemplatePackageFindCertificateNoPkMessage {
+            get {
+                return ResourceManager.GetString("TemplatePackageFindCertificateNoPkMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More than one certificate found matching the thumbrint. Returning the first one..
+        /// </summary>
+        internal static string TemplatePackageFindCertificateNotOneMessage {
+            get {
+                return ResourceManager.GetString("TemplatePackageFindCertificateNotOneMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified source &apos;{0}&apos; is invalid, the file does not exist, or the folder is empty..
+        /// </summary>
+        internal static string TemplatePackageGetSourceFilesMessage {
+            get {
+                return ResourceManager.GetString("TemplatePackageGetSourceFilesMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No certificate found matching the thumbrint {0}. Searched on CurrentUser/My and LocalMachine/My stores..
+        /// </summary>
+        internal static string TemplatePackageLoadCertMessage {
+            get {
+                return ResourceManager.GetString("TemplatePackageLoadCertMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The certificate with thumbprint {0} can&apos;t be found in CurrentUser/My or LocalMachine/My..
+        /// </summary>
+        internal static string TemplatePackagePackAndSignMessage {
+            get {
+                return ResourceManager.GetString("TemplatePackagePackAndSignMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error signing package..
+        /// </summary>
+        internal static string TemplatePackageSignAllPartsMessage {
+            get {
+                return ResourceManager.GetString("TemplatePackageSignAllPartsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Package signature certificate validation not passed..
+        /// </summary>
+        internal static string TemplatePackageValidatePackageCertificatesMessage {
+            get {
+                return ResourceManager.GetString("TemplatePackageValidatePackageCertificatesMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Certificate &apos;{0}&apos; verification finished with status &apos;{1}&apos;.
+        /// </summary>
+        internal static string TemplatePackageVerifyCertificateMessage {
+            get {
+                return ResourceManager.GetString("TemplatePackageVerifyCertificateMessage", resourceCulture);
             }
         }
         
@@ -653,96 +654,6 @@ namespace Microsoft.Templates.Core.Resources {
         internal static string TemplatesSynchronizationPurgeContentAsyncMessage {
             get {
                 return ResourceManager.GetString("TemplatesSynchronizationPurgeContentAsyncMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid digital signatures in &apos;{0}&apos;. The content has been tampered or the certificate is not present, not valid or not allowed.  Unable to continue..
-        /// </summary>
-        internal static string TemplatexExtractMessage {
-            get {
-                return ResourceManager.GetString("TemplatexExtractMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Found {0} certificates matching the thumbprint {1} in the store {2}.
-        /// </summary>
-        internal static string TemplatexFindCertificateFoundMessage {
-            get {
-                return ResourceManager.GetString("TemplatexFindCertificateFoundMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The certificate found does not have private key..
-        /// </summary>
-        internal static string TemplatexFindCertificateNoPkMessage {
-            get {
-                return ResourceManager.GetString("TemplatexFindCertificateNoPkMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to More than one certificate found matching the thumbrint. Returning the first one..
-        /// </summary>
-        internal static string TemplatexFindCertificateNotOneMessage {
-            get {
-                return ResourceManager.GetString("TemplatexFindCertificateNotOneMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The specified source &apos;{0}&apos; is invalid, the file does not exist, or the folder is empty..
-        /// </summary>
-        internal static string TemplatexGetSourceFilesMessage {
-            get {
-                return ResourceManager.GetString("TemplatexGetSourceFilesMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No certificate found matching the thumbrint {0}. Searched on CurrentUser/My and LocalMachine/My stores..
-        /// </summary>
-        internal static string TemplatexLoadCertMessage {
-            get {
-                return ResourceManager.GetString("TemplatexLoadCertMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The certificate with thumbprint {0} can&apos;t be found in CurrentUser/My or LocalMachine/My..
-        /// </summary>
-        internal static string TemplatexPackAndSignMessage {
-            get {
-                return ResourceManager.GetString("TemplatexPackAndSignMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error signing package..
-        /// </summary>
-        internal static string TemplatexSignAllPartsMessage {
-            get {
-                return ResourceManager.GetString("TemplatexSignAllPartsMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Package signature certificate validation not passed..
-        /// </summary>
-        internal static string TemplatexValidatePackageCertificatesMessage {
-            get {
-                return ResourceManager.GetString("TemplatexValidatePackageCertificatesMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Certificate &apos;{0}&apos; verification finished with status &apos;{1}&apos;.
-        /// </summary>
-        internal static string TemplatexVerifyCertificateMessage {
-            get {
-                return ResourceManager.GetString("TemplatexVerifyCertificateMessage", resourceCulture);
             }
         }
     }

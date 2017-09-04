@@ -1,0 +1,29 @@
+﻿{
+  "author": "Microsoft Community Contribution",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMLight.Project.SplitView.AddToPrimaryNavigationItems.VB",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.version": "1.0.0",
+    "wts.order": "2",
+    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings & $framework == MVVMLight & $projectType == SplitView"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    }
+  }
+}

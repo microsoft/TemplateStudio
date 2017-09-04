@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -58,6 +50,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             await BaseInitializeAsync();
             SummaryLicenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryLicenses)); };
         }
+
         public void AlertProjectSetupChanged()
         {
             if (CheckProjectSetupChanged())
@@ -69,6 +62,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 CleanStatus();
             }
         }
+
         public void RebuildLicenses()
         {
             var userSelection = CreateUserSelection();
@@ -88,19 +82,17 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 return;
             }
-            if (button != null && button.Tag != null && button.Tag.ToString() == "AllowCloseEdition")
+            if (button?.Tag != null && button.Tag.ToString() == "AllowCloseEdition")
             {
                 return;
             }
 
-            var templateInfo = textBox.Tag as TemplateInfoViewModel;
-            if (templateInfo != null)
+            if (textBox.Tag is TemplateInfoViewModel templateInfo)
             {
                 templateInfo.CloseEdition();
             }
 
-            var summaryItem = textBox.Tag as SavedTemplateViewModel;
-            if (summaryItem != null)
+            if (textBox.Tag is SavedTemplateViewModel summaryItem)
             {
                 ProjectTemplates.SavedPages.ToList().ForEach(spg => spg.ToList().ForEach(p =>
                 {
@@ -152,8 +144,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             MainView.Result = CreateUserSelection();
             base.OnFinish(parameter);
         }
-        protected override async void OnTemplatesAvailable() => await ProjectSetup.InitializeAsync();
-        protected override async void OnNewTemplatesAvailable()
+
+        protected override async Task OnTemplatesAvailableAsync() => await ProjectSetup.InitializeAsync();
+
+        protected override async Task OnNewTemplatesAvailableAsync()
         {
             UpdateCanFinish(false);
             _canGoBack = false;
@@ -226,6 +220,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 ItemsSource = items,
                 Style = MainView.FindResource("SummaryListViewStyle") as Style,
                 Tag = "AllowRename",
+                Focusable = false,
                 ItemTemplate = MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate
             };
             if (allowDragAndDrop)
@@ -234,6 +229,48 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 service.ProcessDrop += ProjectTemplates.DropTemplate;
             }
             _summaryPageGroups.Children.Add(listView);
+        }
+
+        private SavedTemplateViewModel _currentDragginTemplate;
+        private SavedTemplateViewModel _dropTargetTemplate;
+
+        public void SavedTemplateGotFocus(SavedTemplateViewModel savedTemplate)
+        {
+            _dropTargetTemplate = savedTemplate;
+        }
+
+        public bool SavedTemplateSetDrag(SavedTemplateViewModel savedTemplate)
+        {
+            if (_currentDragginTemplate == null)
+            {
+                _currentDragginTemplate = savedTemplate;
+                return true;
+            }
+            return false;
+        }
+
+        public bool SavedTemplateSetDrop(SavedTemplateViewModel savedTemplate)
+        {
+            if (_currentDragginTemplate != null && _currentDragginTemplate.ItemName != _dropTargetTemplate.ItemName)
+            {
+                var newIndex = ProjectTemplates.SavedPages.First().IndexOf(_dropTargetTemplate);
+                var oldIndex = ProjectTemplates.SavedPages.First().IndexOf(_currentDragginTemplate);
+                ProjectTemplates.DropTemplate(null, new DragAndDropEventArgs<SavedTemplateViewModel>(null, _dropTargetTemplate, oldIndex, newIndex));
+                _currentDragginTemplate = null;
+                _dropTargetTemplate = null;
+            }
+            return false;
+        }
+
+        public bool ClearCurrentDragginTemplate()
+        {
+            if (_currentDragginTemplate != null)
+            {
+                _currentDragginTemplate = null;
+                _dropTargetTemplate = null;
+                return true;
+            }
+            return false;
         }
     }
 }

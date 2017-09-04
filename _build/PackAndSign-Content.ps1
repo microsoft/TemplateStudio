@@ -20,7 +20,7 @@ Write-Host "Core Assembly Path: " $coreAssemblyPath
 
 $addType = Add-Type -Path $coreAssemblyPath -PassThru -ErrorAction Stop
 if($addType){
-  $resultPack = [Microsoft.Templates.Core.Locations.Templatex]::PackAndSign($source, $signingCertThumbprint, "text/plain")
+  $resultPack = [Microsoft.Templates.Core.Packaging.TemplatePackage]::PackAndSign($source, $signingCertThumbprint, "text/plain")
   
   if($resultPack){
     if (!(Test-Path -path $destinationDirectory)) 

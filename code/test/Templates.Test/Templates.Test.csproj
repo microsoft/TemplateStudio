@@ -51,6 +51,11 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="..\..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.0.240\analyzers\cs\Microsoft.VisualStudio.Threading.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Microsoft.TemplateEngine.Abstractions, Version=1.0.0.234, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.TemplateEngine.Abstractions.1.0.0-beta2-20170518-234\lib\net45\Microsoft.TemplateEngine.Abstractions.dll</HintPath>
     </Reference>
@@ -69,8 +74,14 @@
     <Reference Include="Microsoft.TemplateEngine.Utils, Version=1.0.0.234, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.TemplateEngine.Utils.1.0.0-beta2-20170518-234\lib\net45\Microsoft.TemplateEngine.Utils.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Microsoft.VisualStudio.Threading, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.VisualStudio.Threading.15.0.240\lib\net45\Microsoft.VisualStudio.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Validation, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.VisualStudio.Validation.15.0.82\lib\net45\Microsoft.VisualStudio.Validation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -109,11 +120,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildProjectsTests.cs" />
+    <Compile Include="GenProjectsTests.cs" />
+    <Compile Include="FileEncodingTests.cs" />
+    <Compile Include="BaseTestContextProvider.cs" />
+    <Compile Include="CodeStyleEnforcementTests.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="BaseGenAndBuildTests.cs" />
+    <Compile Include="StyleCopCollection.cs" />
+    <Compile Include="StyleCopGenerationTestsFixture.cs" />
+    <Compile Include="StyleCopProjectGenerationTests.cs" />
     <Compile Include="GenerationCollection.cs" />
-    <Compile Include="NewItemGenerationTests.cs" />
-    <Compile Include="ProjectGenerationTests.cs" />
     <Compile Include="GenerationFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StyleCopPlusLocalTemplatesSource.cs" />
+    <AdditionalFiles Include="..\..\StyleCop.json">
+      <Link>StyleCop.json</Link>
+    </AdditionalFiles>
+    <None Include="TestData\StyleCop\GlobalSuppressions.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -125,6 +151,9 @@
     <None Include="RestoreAndBuild.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="TestData\StyleCop\.template.config\template.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Core\Core.csproj">
@@ -135,13 +164,23 @@
       <Project>{dcfd282d-d91c-49b5-8dbf-d943bafef5aa}</Project>
       <Name>UI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Artifacts\Artifacts.csproj">
+    <ProjectReference Include="..\Fakes\Fakes.csproj">
       <Project>{fb3c81ad-823e-409c-bf6d-27534b84a8af}</Project>
-      <Name>Artifacts</Name>
+      <Name>Fakes</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="System\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestData\StyleCop\_postaction.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestData\StyleCop\_searchreplace.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

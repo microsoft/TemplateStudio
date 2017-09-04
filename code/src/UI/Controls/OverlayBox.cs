@@ -1,24 +1,19 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Text;
 using System.Windows.Threading;
+
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.Controls
 {
@@ -53,14 +48,27 @@ namespace Microsoft.Templates.UI.Controls
             get => (string)GetValue(WizardVersionProperty);
             set => SetValue(WizardVersionProperty, value);
         }
-        public static readonly DependencyProperty WizardVersionProperty = DependencyProperty.Register("WizardVersion", typeof(string), typeof(OverlayBox), new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty WizardVersionProperty = DependencyProperty.Register("WizardVersion", typeof(string), typeof(OverlayBox), new PropertyMetadata(string.Empty, OnVersionPropertiesChanged));
 
         public string TemplatesVersion
         {
             get => (string)GetValue(TemplatesVersionProperty);
             set => SetValue(TemplatesVersionProperty, value);
         }
-        public static readonly DependencyProperty TemplatesVersionProperty = DependencyProperty.Register("TemplatesVersion", typeof(string), typeof(OverlayBox), new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty TemplatesVersionProperty = DependencyProperty.Register("TemplatesVersion", typeof(string), typeof(OverlayBox), new PropertyMetadata(string.Empty, OnVersionPropertiesChanged));
+
+        private static void OnVersionPropertiesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as OverlayBox;
+            control.UpdateVersionsText();
+        }
+
+        public string VersionsText
+        {
+            get => (string)GetValue(VersionsTextProperty);
+            set => SetValue(VersionsTextProperty, value);
+        }
+        public static readonly DependencyProperty VersionsTextProperty = DependencyProperty.Register("VersionsText", typeof(string), typeof(OverlayBox), new PropertyMetadata(string.Empty));
 
         public bool NewVersionAvailable
         {
@@ -171,6 +179,14 @@ namespace Microsoft.Templates.UI.Controls
         {
             StatusText = string.Empty;
             HideTimer.Stop();
+        }
+
+        private void UpdateVersionsText()
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"{StringRes.WizardVersion} {WizardVersion}");
+            sb.AppendLine($"{StringRes.TemplatesVersion} {TemplatesVersion}");
+            VersionsText = sb.ToString();
         }
     }
 }

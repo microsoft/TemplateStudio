@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
@@ -70,7 +62,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private RelayCommand<SavedTemplateViewModel> _removeTemplateCommand;
-        public RelayCommand<SavedTemplateViewModel> RemoveTemplateCommand => _removeTemplateCommand ?? (_removeTemplateCommand = new RelayCommand<SavedTemplateViewModel>(OnRemoveTemplate));
+        public RelayCommand<SavedTemplateViewModel> RemoveTemplateCommand => _removeTemplateCommand ?? (_removeTemplateCommand = new RelayCommand<SavedTemplateViewModel>(item => RemoveTemplate(item, true)));
 
         private RelayCommand<TemplateInfoViewModel> _addTemplateCommand;
         public RelayCommand<TemplateInfoViewModel> AddTemplateCommand => _addTemplateCommand ?? (_addTemplateCommand = new RelayCommand<TemplateInfoViewModel>(OnAddTemplateItem));
@@ -300,7 +292,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     HomeName = item.ItemName;
                 }
 
-                AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.Rename).FireAndForget();
+                AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Rename).FireAndForget();
             }
             else
             {
@@ -343,31 +335,19 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
                 item.IsHome = true;
                 HomeName = item.ItemName;
-                AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.SetHome).FireAndForget();
+                AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.SetHome).FireAndForget();
             }
         }
 
-        private void OnRemoveTemplate(SavedTemplateViewModel item)
+        private void RemoveTemplate(SavedTemplateViewModel item, bool showErrors)
         {
-            SavedTemplateViewModel dependencyItem = null;
-            foreach (var group in SavedPages)
+            // Look if is there any templates that depends on item
+            if (AnySavedTemplateDependsOnItem(item, showErrors))
             {
-                dependencyItem = group.FirstOrDefault(st => st.DependencyList.Any(d => d == item.Identity));
-                if (dependencyItem != null)
-                {
-                    break;
-                }
-            }
-            if (dependencyItem == null)
-            {
-                dependencyItem = SavedFeatures.FirstOrDefault(st => st.DependencyList.Any(d => d == item.Identity));
-            }
-            if (dependencyItem != null)
-            {
-                string message = string.Format(StringRes.ValidationError_CanNotRemoveTemplate_SF, item.TemplateName, dependencyItem.TemplateName, dependencyItem.TemplateType);
-                MainViewModel.Current.SetStatus(StatusViewModel.Warning(message, 5));
                 return;
             }
+
+            // Remove template
             if (SavedPages[item.GenGroup].Contains(item))
             {
                 SavedPages[item.GenGroup].Remove(item);
@@ -378,19 +358,99 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 SavedFeatures.Remove(item);
                 HasSavedFeatures = SavedFeatures.Any();
             }
+
+            TryRemoveHiddenDependencies(item);
+
             MainViewModel.Current.FinishCommand.OnCanExecuteChanged();
             UpdateTemplatesAvailability();
             MainViewModel.Current.RebuildLicenses();
 
-            AppHealth.Current.Telemetry.TrackEditSummaryItem(EditItemActionEnum.Remove).FireAndForget();
+            AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Remove).FireAndForget();
+        }
+
+        private bool AnySavedTemplateDependsOnItem(SavedTemplateViewModel item, bool showErrors)
+        {
+            SavedTemplateViewModel dependencyItem = null;
+            foreach (var group in SavedPages)
+            {
+                dependencyItem = group.FirstOrDefault(st => st.DependencyList.Any(d => d == item.Identity));
+                if (dependencyItem != null)
+                {
+                    break;
+                }
+            }
+
+            if (dependencyItem == null)
+            {
+                dependencyItem = SavedFeatures.FirstOrDefault(st => st.DependencyList.Any(d => d == item.Identity));
+            }
+
+            if (dependencyItem != null)
+            {
+                if (showErrors)
+                {
+                    string message = string.Format(StringRes.ValidationError_CanNotRemoveTemplate_SF, item.TemplateName, dependencyItem.TemplateName, dependencyItem.TemplateType);
+                    MainViewModel.Current.SetStatus(StatusViewModel.Warning(message, false, 5));
+                }
+                return true;
+            }
+
+            return false;
+        }
+
+        private void TryRemoveHiddenDependencies(SavedTemplateViewModel item)
+        {
+            foreach (var identity in item.DependencyList)
+            {
+                var dependency = SavedFeatures.FirstOrDefault(sf => sf.Identity == identity);
+                if (dependency == null)
+                {
+                    foreach (var pageGroup in SavedPages)
+                    {
+                        dependency = pageGroup.FirstOrDefault(sf => sf.Identity == identity);
+                        if (dependency != null)
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                if (dependency != null)
+                {
+                    // If the template is not hidden we can not remove it because it could be added in wizard
+                    if (dependency.IsHidden)
+                    {
+                        // Look if there are another saved template that depends on it.
+                        // For example, if it's added two different chart pages, when remove the first one SampleDataService can not be removed, but if no saved templates use SampleDataService, it can be removed.
+                        if (!SavedFeatures.Any(sf => sf.DependencyList.Any(d => d == dependency.Identity)) || SavedPages.Any(spg => spg.Any(sp => sp.DependencyList.Any(d => d == dependency.Identity))))
+                        {
+                            RemoveTemplate(dependency, false);
+                        }
+                    }
+                }
+            }
         }
 
         private bool IsTemplateAlreadyDefined(string identity) => Identities.Any(i => i == identity);
 
-        public void CloseTemplatesEdition()
+        public bool CloseTemplatesEdition()
         {
-            PagesGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t => t.CloseEdition()));
-            FeatureGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t => t.CloseEdition()));
+            bool isEditingTemplate = false;
+            PagesGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t =>
+            {
+                if (t.CloseEdition())
+                {
+                    isEditingTemplate = true;
+                }
+            }));
+            FeatureGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t =>
+            {
+                if (t.CloseEdition())
+                {
+                    isEditingTemplate = true;
+                }
+            }));
+            return isEditingTemplate;
         }
 
         public void CloseSummaryItemsEdition()

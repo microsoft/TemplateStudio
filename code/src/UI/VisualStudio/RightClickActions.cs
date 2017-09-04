@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
@@ -27,6 +19,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 {
     public class RightClickActions : IContextProvider
     {
+        private string _language;
+
         public string ProjectName { get; private set; }
 
         public string OutputPath { get; private set; }
@@ -41,14 +35,16 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; private set; }
 
-        public RightClickActions()
+        public RightClickActions(string language)
         {
-            if (!GenContext.IsInitialized)
+            _language = language;
+
+            if (GenContext.InitializedLanguage != language)
             {
 #if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell());
+                GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell(), _language);
 #else
-                GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell());
+                GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell(), _language);
 #endif
             }
         }
@@ -78,11 +74,11 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private void SetContext()
         {
-            if (GenContext.IsInitialized)
+            if (GenContext.InitializedLanguage == _language)
             {
                 ProjectPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
                 ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
-                OutputPath = GetTempGenerationPath(ProjectName);
+                OutputPath = GenContext.GetTempGenerationPath(ProjectName);
                 ProjectItems = new List<string>();
                 FilesToOpen = new List<string>();
                 FailedMergePostActions = new List<FailedMergePostAction>();
@@ -90,17 +86,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                 GenContext.Current = this;
             }
-        }
-
-        private static string GetTempGenerationPath(string projectName)
-        {
-            var tempGenerationPath = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
-            Fs.EnsureFolder(tempGenerationPath);
-
-            var tempGenerationName = $"{projectName}_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}";
-            var inferredName = Naming.Infer(tempGenerationName, new List<Validator>() { new DirectoryExistsValidator(tempGenerationPath) }, "_");
-
-            return Path.Combine(tempGenerationPath, inferredName);
         }
 
         public void AddNewFeature()
@@ -125,9 +110,14 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public bool Enabled()
+        public bool Visible()
         {
             return GenContext.ToolBox.Shell.GetActiveProjectIsWts();
+        }
+
+        public bool Enabled()
+        {
+            return !GenContext.ToolBox.Shell.IsDebuggerEnabled();
         }
 
         public void OpenTempFolder()
@@ -145,7 +135,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private static string GetTempGenerationFolder()
         {
-            return Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
+            string projectGuid = GenContext.ToolBox.Shell.GetVsProjectId().ToString();
+            return Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath, projectGuid);
         }
 
         private static bool HasContent(string tempPath)

@@ -1,4 +1,4 @@
-//{[{
+﻿//{[{
 using Windows.UI.Xaml;
 //}]}
 namespace Param_ItemNamespace.Views
@@ -9,19 +9,19 @@ namespace Param_ItemNamespace.Views
         public wts.ItemNamePage()
         {
             //{[{
-            Loaded += OnLoaded;
-            Unloaded += OnUnLoaded;
+            Loaded += wts.ItemNamePage_Loaded;
+            Unloaded += wts.ItemNamePage_Unloaded;
             //}]}
             InitializeComponent();
         }
 
         //{[{
-        private async void OnLoaded(object sender, RoutedEventArgs e)
+        private async void wts.ItemNamePage_Loaded(object sender, RoutedEventArgs e)
         {
             await InitializeAsync();
         }
 
-        private void OnUnLoaded(object sender, RoutedEventArgs e)
+        private void wts.ItemNamePage_Unloaded(object sender, RoutedEventArgs e)
         {
             Cleanup();
         }

@@ -1,16 +1,8 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
-﻿// This file is used by Code Analysis to maintain SuppressMessage
+// This file is used by Code Analysis to maintain SuppressMessage
 // attributes that are applied to this project.
 // Project-level suppressions either have no target or are given
 // a specific target and scoped to a namespace, type, member, etc.
@@ -62,3 +54,11 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1652:EnableXmlDocumentationOutput", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]
 
 [assembly: SuppressMessage("Microsoft.Design", "CA1009:DeclareEventHandlersCorrectly", Scope = "member", Target = "Microsoft.Templates.Core.Locations.TemplatesSynchronization.#SyncStatusChanged", Justification = "Using an Action<object, SyncStatusEventArgs> does not allow the required notation")]
+
+[assembly: SuppressMessage("Potential Code Quality Issues", "RECS0022:A catch clause that catches System.Exception and has an empty body", Justification = "Review if ccan be more specific in the error or handle it in a different way. And/or add better comments to the exception.", Scope = "member", Target = "~M:Microsoft.Templates.UI.VisualStudio.VsGenShell.GetActiveProject~EnvDTE.Project")]
+
+[assembly: SuppressMessage("Usage", "VSTHRD001:Use Await JoinableTaskFactory.SwitchToMainThreadAsync() to switch to the UI thread", Justification = "Identified during async/await audit but needs further review.")]
+[assembly: SuppressMessage("Usage", "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks", Justification = "Identified during async/await audit but needs further review.")]
+[assembly: SuppressMessage("Usage", "VSTHRD010:Use VS services from UI thread", Justification = "Identified during async/await audit but needs further review.")]
+[assembly: SuppressMessage("Usage", "VSTHRD100:Async Void methods NOT used as asynchronous event handlers", Justification = "Identified during async/await audit but needs further review.")]
+[assembly: SuppressMessage("Usage", "VSTHRD101:Avoid using async lambda for a void returning delegate type", Justification = "Identified during async/await audit but needs further review.")]
