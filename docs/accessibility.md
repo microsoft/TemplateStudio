@@ -1,6 +1,6 @@
 ## Accessibility checklist
 
-Here we provide a checklist you can use to ensure that your pull request meets the accessibility conditions.
+Here we provide a checklist you can use to ensure that your pull request meets the accessibility requirements.
 
 ### Keyboard accessibility 
 
@@ -41,4 +41,4 @@ Here we provide a checklist you can use to ensure that your pull request meets t
 ### Accessibility tools 
 - Use tools such as [Inspect](https://msdn.microsoft.com/library/windows/desktop/Dd318521) to verify programmatic access, run diagnostic tools such as [AccChecker](https://msdn.microsoft.com/library/windows/desktop/Hh920985) to discover common errors, and verify the screen reading experience with Narrator. Other tools: [AccScope](https://msdn.microsoft.com/en-us/library/windows/desktop/dn433239.aspx) and [AccEvent](https://msdn.microsoft.com/en-us/library/windows/desktop/dd317979.aspx). 
 
-For more info see Windows Dev Center [Guidelines and checklist for accessibility (XAML)](https://msdn.microsoft.com/en-us/library/windows/apps/xaml/jj134090.aspx) and [UWP Accessibility checklist](https://docs.microsoft.com/en-us/windows/uwp/accessibility/accessibility-checklist).
+For more info check Windows Dev Center [Guidelines and checklist for accessibility (XAML)](https://msdn.microsoft.com/en-us/library/windows/apps/xaml/jj134090.aspx) and [UWP Accessibility checklist](https://docs.microsoft.com/en-us/windows/uwp/accessibility/accessibility-checklist).
