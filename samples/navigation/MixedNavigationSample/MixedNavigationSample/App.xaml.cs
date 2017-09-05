@@ -56,8 +56,11 @@ namespace MixedNavigationSample
 
         private ActivationService CreateActivationService()
         {
-            return new ActivationService(this, typeof(Views.StartPage));
+            //This is the default navigation for a NavigationPane project type
             //return new ActivationService(this, typeof(Views.HomePage), new Views.ShellPage());
+
+            //We are going to initialize navigation to a StartPage
+            return new ActivationService(this, typeof(Views.StartPage));            
         }
     }
 }
