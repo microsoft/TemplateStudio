@@ -25,17 +25,17 @@ Windows Template Studio approaches UWP app creation using the following four att
 
 ## Pages
 
-| Page          | Description |
-|--------------:|:------------|
-| Blank         | This is the most basic page. A blank canvas to mold into whatever you wish. |
-| Map           | The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting your location. |
+| Page        | Description |
+|------------:|:------------|
+| Blank       | This is the most basic page. A blank canvas to mold into whatever you wish. |
+| Map         | The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting your location. |
 | Master/Detail | The master-detail page has a master pane and a details pane for content. |
-| Settings      | The [settings page](pages/settings.md) is the page where we recommend putting the configuration settings for your app. |
-| Tabbed        | The tabbed page is used for navigating frequently accessed, distinct content categories. |
-| Web View      | The web view page embeds a view into your app that renders web content using the Microsoft Edge rendering engine. |
-| Media Player  | A page for showing video with system media controls enabled. |
-| Grid          | A page displaying a simple grid, powered by Telerik UI controls for UWP. |
-| Chart         | A page displaying a simple chart, powered by Telerik UI controls for UWP. |
+| Settings | The [settings page](pages/settings.md) is the page where we recommend putting the configuration settings for your app. |
+| Tabbed | The tabbed page is used for navigating frequently accessed, distinct content categories. |
+| Web View | The web view page embeds a view into your app that renders web content using the Microsoft Edge rendering engine. |
+| Media Player| A page for showing video with system media controls enabled. |
+| Grid | A page displaying a simple grid, powered by Telerik UI controls for UWP. |
+| Chart | A page displaying a simple chart, powered by Telerik UI controls for UWP. |
 
 
 ## Features
@@ -43,22 +43,22 @@ Windows Template Studio approaches UWP app creation using the following four att
 
 | Application Lifecycle | Feature Description |
 |-------------------:|:------------|
-| Settings Storage       | [Setting storage](https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata) is a class that simplifies storage of your application's data, handling loading, saving, serialization, and simplifying access. |
-| Suspend and Resume     | Enables your app to better handle when a user suspends your app. We do this by hooking into the suspend and resume service, so your app can resume right where it left off. |
+| Settings Storage | [Setting storage](https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata) is a class that simplifies storage of your application's data, handling loading, saving, serialization, and simplifying access. |
+| Suspend and Resume | Enables your app to better handle when a user suspends your app. We do this by hooking into the suspend and resume service, so your app can resume right where it left off. |
 
 | Background Work    | Feature Description |
 |-------------------:|:------------|
-| Background Task        | Creates an [in-process background task](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/create-and-register-an-inproc-background-task), allowing your app to run code when it is not in the foreground. The in-process model enhances the lifecycle of your app with improved notifications, whether your app is in the foreground or background. |
+| Background Task | Creates an [in-process background task](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/create-and-register-an-inproc-background-task), allowing your app to run code when it is not in the foreground. The in-process model enhances the lifecycle of your app with improved notifications, whether your app is in the foreground or background. |
 
 | User Interactions  | Feature Description |
 |-------------------:|:------------|
 | Azure Notification Hubs | [Azure Notification Hubs](https://docs.microsoft.com/en-us/azure/notification-hubs/notification-hubs-push-notification-overview) provide an easy-to-use, multi-platform way to push targeted notifications at Scale. |
-| Live tiles              | Enables modification and updates to your app's presence on the Windows 10 Start Menu, providing the ability to change the app's visual state and provide additional context or information. |
-| Toast Notification      | Adaptive and interactive toast notifications let you create flexible pop-up notifications that provide users with content, optional inline images, and optional user interactions. You can use pictures, buttons, text inputs, actions, and more. |
+| Live tiles | Enables modification and updates to your app's presence on the Windows 10 Start Menu, providing the ability to change the app's visual state and provide additional context or information. |
+| Toast Notification | Adaptive and interactive toast notifications let you create flexible pop-up notifications that provide users with content, optional inline images, and optional user interactions. You can use pictures, buttons, text inputs, actions, and more. |
 | Dev Center Notification | Register your app to receive notifications from the store and handle them being used to launch the app. |
-| First Run Prompt        | Display a prompt when the app is used for the first time. |
-| What's New Prompt       | Display a prompt when the app is first used after an update. |
-| Uri Scheme              | Add the ability to launch and deep link into the app with a custom URI scheme. |
+| First Run Prompt | Display a prompt when the app is used for the first time. |
+| What's New Prompt | Display a prompt when the app is first used after an update. |
+| Uri Scheme | Add the ability to launch and deep link into the app with a custom URI scheme. |
 
 ## Understanding generated code
 The final generated code is the result of a project configuration (project type and framework) and a multiple template choice (pages and features). There are a few concepts to understand before start working on the generated code.
