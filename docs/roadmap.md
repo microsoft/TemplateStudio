@@ -8,17 +8,17 @@
 
 ## Upcoming releases
 
-**[1.3 - August 2017](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.3)**
+**[1.3 - Sept, 11 2017](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.3)**
 
 **Goals:** Localization and accessibilty work done
 
-**[1.4 - September 2017](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.4)**
+**[1.4 - October 2017](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.4)**
 
-**Goals:** Feature additions, Xamarin + Visual Basic engine work
+**Goals:** Fall Creators Update work, [Fluent support]
 
-**[1.5 - October 2017](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.5)**
+**[1.5 - November 2017](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.5)**
 
-**Goals:** Fall Creators Update work, [Fluent support](https://github.com/Microsoft/WindowsTemplateStudio/wiki/Fluent)
+**Goals:** Feature additions, Xamarin + Visual Basic engine work (https://github.com/Microsoft/WindowsTemplateStudio/wiki/Fluent)
 
 ## Future Release [Backlog]
 
