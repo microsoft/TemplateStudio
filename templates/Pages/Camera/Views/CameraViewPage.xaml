@@ -36,10 +36,7 @@
                 IsEnabled="{Binding CanSwitch, ElementName=Camera}"
                 Content="&#xE124;"
                 Command="{x:Bind ViewModel.SwitchCommand, Mode=OneWay}"
-                FontSize="17"
-                Padding="8"
-                Margin="0,20,95,20"
-                Style="{StaticResource CameraButtonStyle}"/>
+                Style="{StaticResource SwitchCameraButtonStyle}"/>
 
             <Button
                 IsEnabled="{Binding IsInitialized, ElementName=Camera}"
