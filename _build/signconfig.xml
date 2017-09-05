@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SignConfigXML>
+  <job platform="" configuration="release" dest="" jobname="WindowsTemplateStudio Sign" approvers="hirsin;aaronste">
+    <file src="__INPATHROOT__\vsix\Microsoft.Templates.2017.vsix" signType="100040160" dest="__OUTPATHROOT__\Microsoft.Templates.2017.vsix" />
+    <file src="__INPATHROOT__\templates\latest\Templates.mstx" signType="100040160" dest="__OUTPATHROOT__\templates\latest\Templates.mstx" />
+  </job>
+</SignConfigXML>
