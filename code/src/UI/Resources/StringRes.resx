@@ -636,4 +636,12 @@
     <value>Close status box</value>
     <comment>Status bar close button name</comment>
   </data>
+  <data name="ZoomInButtonTooltip" xml:space="preserve">
+    <value>Zoom in</value>
+    <comment>Zoom in button tooltip on changes summary view</comment>
+  </data>
+  <data name="ZoomOutButtonTooltip" xml:space="preserve">
+    <value>Zoom out</value>
+    <comment>Zoom out button tooltip on changes summary view</comment>
+  </data>
 </root>

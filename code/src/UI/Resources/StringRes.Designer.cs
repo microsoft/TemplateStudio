@@ -1229,5 +1229,23 @@ namespace Microsoft.Templates.UI.Resources {
                 return ResourceManager.GetString("WTSDescription", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom in.
+        /// </summary>
+        public static string ZoomInButtonTooltip {
+            get {
+                return ResourceManager.GetString("ZoomInButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom out.
+        /// </summary>
+        public static string ZoomOutButtonTooltip {
+            get {
+                return ResourceManager.GetString("ZoomOutButtonTooltip", resourceCulture);
+            }
+        }
     }
 }
