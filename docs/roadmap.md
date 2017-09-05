@@ -12,7 +12,7 @@
 
 **Goals:** Localization and accessibilty work done
 
-**[1.4 - October 2017](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.4)**
+**[1.4 - October 17, 2017](https://github.com/Microsoft/WindowsTemplateStudio/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.4)**
 
 **Goals:** Fall Creators Update work, [Fluent support]
 
