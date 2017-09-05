@@ -251,7 +251,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public bool SavedTemplateSetDrop(SavedTemplateViewModel savedTemplate)
         {
-            if (_currentDragginTemplate != null && _currentDragginTemplate.ItemName != _dropTargetTemplate.ItemName)
+            if (_currentDragginTemplate != null && _dropTargetTemplate != null && _currentDragginTemplate.ItemName != _dropTargetTemplate.ItemName)
             {
                 var newIndex = ProjectTemplates.SavedPages.First().IndexOf(_dropTargetTemplate);
                 var oldIndex = ProjectTemplates.SavedPages.First().IndexOf(_currentDragginTemplate);
