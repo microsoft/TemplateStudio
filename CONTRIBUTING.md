@@ -15,6 +15,11 @@ Every contribution has to come with:
 * Before starting coding, **you must open an issue** and start discussing with the community to see if the idea/feature is interesting enough.
 * A documentation page in the [documentation folder](https://github.com/Microsoft/WindowsTemplateStudio/tree/master/docs).
 * Unit tests (If applicable)
+
+* If you've changed the UI: 
+  - Be sure you are including screenshots to show the changes
+  - Be sure you have reviewed the [accesibility checklist](accessibility.md)
+
 * You tested your code with two most recent Windows 10 SDKs. (Build 14393 and 15063)
 * PR has to target dev branch
 
