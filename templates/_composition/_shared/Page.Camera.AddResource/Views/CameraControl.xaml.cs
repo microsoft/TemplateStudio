@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
+using Windows.ApplicationModel.Resources;
 using Windows.Devices.Enumeration;
 using Windows.Devices.Sensors;
 using Windows.Foundation;
@@ -34,6 +35,7 @@ namespace Param_ItemNamespace.Views
         private readonly Guid _rotationKey = new Guid("C380465D-2271-428C-9B83-ECEA3B4A85C1");
         private readonly DisplayInformation _displayInformation = DisplayInformation.GetForCurrentView();
         private readonly SimpleOrientationSensor _orientationSensor = SimpleOrientationSensor.GetDefault();
+        private readonly ResourceLoader _resLoader = ResourceLoader.GetForCurrentView();
         private MediaCapture _mediaCapture;
         private bool _isPreviewing;
         private bool _mirroringPreview;
@@ -66,7 +68,18 @@ namespace Param_ItemNamespace.Views
 
         public async Task InitializeAsync()
         {
-            await InitializeCameraAsync();
+            try
+            {
+                await InitializeCameraAsync();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                throw new UnauthorizedAccessException(_resLoader.GetString("Camera_Exception_UnauthorizedAccess"), ex);
+            }
+            catch (NotSupportedException ex)
+            {
+                throw new NotSupportedException(_resLoader.GetString("Camera_Exception_NotSuppored"), ex);
+            }
         }
 
         public async Task<string> TakePhotoAsync()

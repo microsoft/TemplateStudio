@@ -8,5 +8,11 @@
   <data name="wts.ItemName_Title.Text" xml:space="preserve">
     <value>wts.ItemName</value>
   </data>
+  <data name="Camera_Exception_UnauthorizedAccess" xml:space="preserve">
+    <value>The app was denied access to the camera.</value>
+  </data>
+  <data name="Camera_Exception_NotSupported" xml:space="preserve">
+    <value>No video capture devices found.</value>
+  </data>
   <!--}]}-->
 </root>

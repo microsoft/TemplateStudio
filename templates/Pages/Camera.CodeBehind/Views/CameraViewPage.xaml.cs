@@ -28,13 +28,9 @@ namespace Param_ItemNamespace.Views
             {
                 await Camera.InitializeAsync();
             }
-            catch (UnauthorizedAccessException)
+            catch (Exception ex)
             {
-                ErrorMessage = "The app was denied access to the camera.";
-            }
-            catch (NotSupportedException)
-            {
-                ErrorMessage = "No video capture devices found.";
+                ErrorMessage = ex.Message;
             }
         }
 
