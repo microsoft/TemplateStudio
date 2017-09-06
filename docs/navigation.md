@@ -38,12 +38,27 @@ protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
 }
 ```
 
+## Understanding navigation on each project type
+**Navigation** paradigm has any differences between different project types.
+- **Blank** project type setups Window.Current.Content as a new Frame and navigates to the HomePage by default. NavigationService will do future navigations on this frame.
+- **Navigation Pane** project type setups Window.Current.Content as a new ShellPage instance. This ShellPage will set NavigationService frame to an inner frame handled by NavigationPane and NavigationService will do future navigations on this frame.
+- **Pivot and Tabs** project type setups Window.Current.Content as a new Frame and navigates to PivotPage that contains a PivotControl, this PivotControl contains one PivotItem for each page. PivotItems contains a header text and a Frame set to configurated page. On this project type, NavigationService has not the responsibility to navigate between pivot items, but NavigationService could navigate out of PivotPage if it would be necessary.
+
+
 ## Mixed navigation sample
-In [this sample](../samples/navigation/MixedNavigationSample) we are going to create an app which includes a _startup page_ before navigate to SplitView shell page.
+In this sample we are going to create an app which includes a _startup page_ before navigate to SplitView shell page.
+The following code is related to [MVVMBasic](../samples/navigation/MixedNavigationSample.MVVMBasic) framework, versions for [MVVMLight](../samples/navigation/MixedNavigationSample.MVVMLight) and [CodeBehind](../samples/navigation/MixedNavigationSample.CodeBehind) frameworks are available.
 
 - Step 1. Navigate to Start Page on App.xaml.cs
 ```csharp
-return new ActivationService(this, typeof(Views.StartPage));
+private ActivationService CreateActivationService()
+{
+  //This is the default navigation for a NavigationPane project type
+  //return new ActivationService(this, typeof(Views.HomePage), new Views.ShellPage());
+
+  //We are going to initialize navigation to a StartPage
+  return new ActivationService(this, typeof(Views.StartPage));            
+}
 ```
 - Step 2. Navigate to a ShellPage (Shell page will replace NavigationService Frame to a custom Frame) and then navigate to HomePage
 ```csharp
@@ -53,12 +68,15 @@ public class StartViewModel : Observable
 
   public StartViewModel()
   {
-    StartCommand = new RelayCommand(OnStart);    
+    StartCommand = new RelayCommand(OnStart);
   }
 
   private void OnStart()
   {
+    //Navigating to a ShellPage, this will replaces NavigationService frame for an inner frame to change navigation handling.
     NavigationService.Navigate<Views.ShellPage>();
+
+    //Navigating now to a HomePage, this will be the first navigation on a NavigationPane menu
     NavigationService.Navigate<Views.HomePage>();
   }
 }
@@ -67,3 +85,5 @@ public class StartViewModel : Observable
 Here is the navigation flow on this sample:
 
 ![Mixed navigation sample](resources/navigation/MixedNavigationSample.png)
+
+This sample is based on Windows Template Studio 1.3 release.

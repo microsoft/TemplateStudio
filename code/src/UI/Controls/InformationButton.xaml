@@ -21,6 +21,7 @@
         VerticalAlignment="Top"
         HorizontalAlignment="Right"
         Style="{StaticResource BlueBaseTemplateInfoButtonStyle}"
+        AutomationProperties.Name="{x:Static res:StringRes.LearnMore}"
         ToolTip="{x:Static res:StringRes.LearnMore}">
         <Button.Content>
             <TextBlock Text="&#xE946;" FontSize="18" Style="{StaticResource IconButtonTextStyle}"/>

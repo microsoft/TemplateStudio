@@ -23,6 +23,7 @@ using Microsoft.Templates.VsEmulator.LoadProject;
 using Microsoft.Templates.VsEmulator.NewProject;
 using Microsoft.Templates.VsEmulator.TemplatesContent;
 using Microsoft.VisualStudio.TemplateWizard;
+using Microsoft.Templates.Core.Diagnostics;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
@@ -57,6 +58,8 @@ namespace Microsoft.Templates.VsEmulator.Main
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
 
         public List<string> FilesToOpen { get; } = new List<string>();
+
+        public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; } = new Dictionary<ProjectMetricsEnum, double>();
 
         public RelayCommand NewCSharpProjectCommand => new RelayCommand(NewCSharpProject);
         public RelayCommand NewVisualBasicProjectCommand => new RelayCommand(NewVisualBasicProject);

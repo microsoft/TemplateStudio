@@ -113,7 +113,7 @@ namespace Microsoft.Templates.UI
 
                     if (genInfo.Template.GetTemplateType() == TemplateType.Project)
                     {
-                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, appProjectType, appFx, genResults[resultsKey], GenContext.ToolBox.Shell.GetVsProjectId(), language, pagesAdded, featuresAdded, pageIdentities, featureIdentities, timeSpent).FireAndForget();
+                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, appProjectType, appFx, genResults[resultsKey], GenContext.ToolBox.Shell.GetVsProjectId(), language, pagesAdded, featuresAdded, pageIdentities, featureIdentities, timeSpent, GenContext.Current.ProjectMetrics).FireAndForget();
                     }
                     else
                     {

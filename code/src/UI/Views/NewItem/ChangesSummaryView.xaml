@@ -185,8 +185,11 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Margin="15,7,15,15" Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}"/>
                         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="{StaticResource Margin_XS_All}">
-                            <Button Style="{StaticResource MoreZoomButtonStyle}" Command="{Binding ChangesSummary.UpdateFontSizeCommand}" CommandParameter="2"/>
-                            <Button Margin="{StaticResource Margin_XS_Left}" Style="{StaticResource MinusZoomButtonStyle}" Command="{Binding ChangesSummary.UpdateFontSizeCommand}" CommandParameter="-2"/>
+                            <!--
+                            Zoom buttons
+                            <Button Style="{StaticResource MinusZoomButtonStyle}" Command="{Binding ChangesSummary.UpdateFontSizeCommand}" CommandParameter="-2" ToolTip="{x:Static res:StringRes.ZoomOutButtonTooltip}"/>
+                            <Button Margin="{StaticResource Margin_XS_Left}" Style="{StaticResource MoreZoomButtonStyle}" Command="{Binding ChangesSummary.UpdateFontSizeCommand}" CommandParameter="2" ToolTip="{x:Static res:StringRes.ZoomInButtonTooltip}"/>
+                            -->
                         </StackPanel>
                     </Grid>
                 </StackPanel>

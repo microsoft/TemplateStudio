@@ -22,6 +22,7 @@ namespace Microsoft.Templates.Core.Gen
 
         public static GenToolBox ToolBox { get; private set; }
         public static string InitializedLanguage { get; private set; }
+        public static bool ContextInitialized => _currentContext != null;
 
         public static IContextProvider Current
         {
