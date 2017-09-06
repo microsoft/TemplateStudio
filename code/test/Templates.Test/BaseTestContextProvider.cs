@@ -25,6 +25,6 @@ namespace Microsoft.Templates.Test
 
         public List<string> FilesToOpen { get; } = new List<string>();
 
-        public Dictionary<PerformanceCounterEnum, double> PerformanceCounters { get; } = new Dictionary<PerformanceCounterEnum, double>();
+        public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; } = new Dictionary<ProjectMetricsEnum, double>();
     }
 }

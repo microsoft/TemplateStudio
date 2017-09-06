@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             GenContext.ToolBox.Shell.AddItems(GenContext.Current.ProjectItems.ToArray());
 
             chrono.Stop();
-            GenContext.Current.PerformanceCounters.Add(PerformanceCounterEnum.AddFilesToProject, chrono.Elapsed.TotalSeconds);
+            GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddFilesToProject] = chrono.Elapsed.TotalSeconds;
 
             GenContext.Current.ProjectItems.Clear();
         }

@@ -36,7 +36,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public List<string> FilesToOpen { get; } = new List<string>();
 
-        public Dictionary<PerformanceCounterEnum, double> PerformanceCounters { get; private set; } = new Dictionary<PerformanceCounterEnum, double>();
+        public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; private set; } = new Dictionary<ProjectMetricsEnum, double>();
 
         protected void Initialize(string language)
         {

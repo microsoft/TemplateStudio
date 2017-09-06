@@ -4,7 +4,7 @@
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
-    public enum PerformanceCounterEnum
+    public enum ProjectMetricsEnum
     {
         Generation,
         AddFilesToProject,

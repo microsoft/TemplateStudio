@@ -19,6 +19,6 @@ namespace Microsoft.Templates.Core.Gen
         List<FailedMergePostAction> FailedMergePostActions { get; }
         Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; }
 
-        Dictionary<PerformanceCounterEnum, double> PerformanceCounters { get; }
+        Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; }
     }
 }
