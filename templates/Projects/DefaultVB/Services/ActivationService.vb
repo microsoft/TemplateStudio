@@ -35,7 +35,7 @@ Namespace Services
                     AddHandler NavigationService.Frame.NavigationFailed, Function(sender, e)
                     Throw New Exception("Failed to load Page " + e.SourcePageType.FullName)
                                                                 End Function
-                    AddHandler NavigationService.Navigated, AddressOf OnFrameNavigated
+                    AddHandler NavigationService.Frame.Navigated, AddressOf OnFrameNavigated
                     If SystemNavigationManager.GetForCurrentView() IsNot Nothing Then
                         AddHandler SystemNavigationManager.GetForCurrentView().BackRequested, AddressOf OnAppViewBackButtonRequested
                     End If
