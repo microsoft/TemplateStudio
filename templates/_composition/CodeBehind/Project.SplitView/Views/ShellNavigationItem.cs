@@ -76,7 +76,7 @@ namespace wts.ItemName.Views
                 SelectedVis = value ? Visibility.Visible : Visibility.Collapsed;
 
                 SelectedForeground = IsSelected
-                    ? Application.Current.Resources["ThemeControlForegroundBaseHighBrush"] as SolidColorBrush
+                    ? Application.Current.Resources["SystemControlForegroundAccentBrush"] as SolidColorBrush
                     : GetStandardTextColorBrush();
             }
         }
