@@ -21,7 +21,8 @@ using Microsoft.Templates.UI.VisualStudio;
 namespace Microsoft.Templates.Extension.Commands
 {
     [ProvideService((typeof(ISGenContextBootstrapService)), IsAsyncQueryable = true)]
-    [ProvideAutoLoad("{f1536ef8-92ec-443c-9ed7-fdadf150da82}", PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideAutoLoad(Microsoft.VisualStudio.Shell.Interop.UIContextGuids.SolutionHasMultipleProjects)]
+    [ProvideAutoLoad(Microsoft.VisualStudio.Shell.Interop.UIContextGuids.SolutionHasSingleProject)]
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
     [ProvideMenuResource("Menus.ctmenu", 1)]
@@ -29,7 +30,7 @@ namespace Microsoft.Templates.Extension.Commands
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     public sealed class RelayCommandPackage : AsyncPackage
     {
-        private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions(GenContext.ToolBox.Shell.GetActiveProjectLanguage()));
+        private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions());
         private RightClickActions RightClickActions => _rightClickActions.Value;
 
         private RelayCommand addPageCommand;
@@ -45,12 +46,6 @@ namespace Microsoft.Templates.Extension.Commands
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             IGenContextBootstrapService bootstrapsvc = await PrepareBootstrapSvcAsync();
-
-            var shell = new VsGenShell();
-
-            var language = shell.GetActiveProjectLanguage();
-
-            await bootstrapsvc.GenContextInitAsync(shell, language);
 
             InitializeCommands();
 
@@ -76,7 +71,6 @@ namespace Microsoft.Templates.Extension.Commands
 
             return service;
         }
-
         private void InitializeCommands()
         {
             addPageCommand = new RelayCommand(this,

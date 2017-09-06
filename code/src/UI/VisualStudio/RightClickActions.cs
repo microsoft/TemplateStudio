@@ -19,7 +19,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 {
     public class RightClickActions : IContextProvider
     {
-        private string _language;
+        private string _currentLanguage;
+        private static VsGenShell _shell;
 
         public string ProjectName { get; private set; }
 
@@ -35,23 +36,15 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; private set; }
 
-        public RightClickActions(string language)
+        public RightClickActions()
         {
-            _language = language;
-
-            if (GenContext.InitializedLanguage != language)
-            {
-#if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell(), _language);
-#else
-                GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell(), _language);
-#endif
-            }
+            _shell = new VsGenShell();
+            _currentLanguage = _shell.GetActiveProjectLanguage();
         }
 
         public void AddNewPage()
         {
-            if (GenContext.ToolBox.Shell.GetActiveProjectIsWts())
+            if (_shell.GetActiveProjectIsWts())
             {
                 SetContext();
 
@@ -62,35 +55,19 @@ namespace Microsoft.Templates.UI.VisualStudio
                     if (userSelection != null)
                     {
                         NewItemGenController.Instance.FinishGeneration(userSelection);
-                        GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.NewItemAddPageSuccessStatusMsg, userSelection.Pages[0].name));
+                        _shell.ShowStatusBarMessage(string.Format(StringRes.NewItemAddPageSuccessStatusMsg, userSelection.Pages[0].name));
                     }
                 }
                 catch (WizardBackoutException)
                 {
-                    GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.NewItemAddPageCancelled);
+                    _shell.ShowStatusBarMessage(StringRes.NewItemAddPageCancelled);
                 }
-            }
-        }
-
-        private void SetContext()
-        {
-            if (GenContext.InitializedLanguage == _language)
-            {
-                ProjectPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
-                ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
-                OutputPath = GenContext.GetTempGenerationPath(ProjectName);
-                ProjectItems = new List<string>();
-                FilesToOpen = new List<string>();
-                FailedMergePostActions = new List<FailedMergePostAction>();
-                MergeFilesFromProject = new Dictionary<string, List<MergeInfo>>();
-
-                GenContext.Current = this;
             }
         }
 
         public void AddNewFeature()
         {
-            if (GenContext.ToolBox.Shell.GetActiveProjectIsWts())
+            if (_shell.GetActiveProjectIsWts())
             {
                 SetContext();
                 try
@@ -100,24 +77,24 @@ namespace Microsoft.Templates.UI.VisualStudio
                     if (userSelection != null)
                     {
                         NewItemGenController.Instance.FinishGeneration(userSelection);
-                        GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.NewItemAddFeatureSuccessStatusMsg, userSelection.Features[0].name));
+                        _shell.ShowStatusBarMessage(string.Format(StringRes.NewItemAddFeatureSuccessStatusMsg, userSelection.Features[0].name));
                     }
                 }
                 catch (WizardBackoutException)
                 {
-                    GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.NewItemAddFeatureCancelled);
+                    _shell.ShowStatusBarMessage(StringRes.NewItemAddFeatureCancelled);
                 }
             }
         }
 
         public bool Visible()
         {
-            return GenContext.ToolBox.Shell.GetActiveProjectIsWts();
+            return _shell.GetActiveProjectIsWts();
         }
 
         public bool Enabled()
         {
-            return !GenContext.ToolBox.Shell.IsDebuggerEnabled();
+            return !_shell.IsDebuggerEnabled();
         }
 
         public void OpenTempFolder()
@@ -133,9 +110,39 @@ namespace Microsoft.Templates.UI.VisualStudio
             return HasContent(GetTempGenerationFolder());
         }
 
+        private void SetContext()
+        {
+            EnsureGenContextInitialized();
+
+            if (GenContext.InitializedLanguage == _currentLanguage)
+            {
+                ProjectPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
+                ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
+                OutputPath = GenContext.GetTempGenerationPath(ProjectName);
+                ProjectItems = new List<string>();
+                FilesToOpen = new List<string>();
+                FailedMergePostActions = new List<FailedMergePostAction>();
+                MergeFilesFromProject = new Dictionary<string, List<MergeInfo>>();
+
+                GenContext.Current = this;
+            }
+        }
+
+        private void EnsureGenContextInitialized()
+        {
+            if (!GenContext.ContextInitialized || GenContext.InitializedLanguage != _currentLanguage)
+            {
+#if DEBUG
+                GenContext.Bootstrap(new LocalTemplatesSource(), _shell, _currentLanguage);
+#else
+                GenContext.Bootstrap(new RemoteTemplatesSource(), _shell, _language);
+#endif
+            }
+        }
+
         private static string GetTempGenerationFolder()
         {
-            string projectGuid = GenContext.ToolBox.Shell.GetVsProjectId().ToString();
+            string projectGuid = _shell.GetVsProjectId().ToString();
             return Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath, projectGuid);
         }
 

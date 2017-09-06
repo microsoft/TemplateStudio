@@ -24,15 +24,7 @@ namespace Microsoft.Templates.Extension.Commands
         }
         public async System.Threading.Tasks.Task GenContextInitAsync(GenShell shell, string language)
         {
-            if (GenContext.InitializedLanguage != language)
-            {
-#if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSource(), shell, language);
-#else
-                GenContext.Bootstrap(new RemoteTemplatesSource(), shell, language);
-#endif
-                await GenContext.ToolBox.Repo.SynchronizeAsync();
-            }
+            await Task.Delay(0);
         }
 
         public TaskAwaiter GetAwaiter()
