@@ -29,7 +29,8 @@
         <controls:MasterDetailsView
             Grid.Row="1"
             ItemsSource="{x:Bind ViewModel.Items}"
-            SelectedItem="{x:Bind ViewModel.ActiveItem}">
+            SelectedItem="{x:Bind ViewModel.ActiveItem}"
+            BorderBrush="Transparent">
             <controls:MasterDetailsView.ItemTemplate>
                 <DataTemplate>
                     <ContentControl cm:View.Model="{Binding}" cm:View.Context="MasterView" />
