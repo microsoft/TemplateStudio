@@ -14,6 +14,7 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.VisualStudio.TemplateWizard;
+using Microsoft.Templates.Core.Diagnostics;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -34,6 +35,8 @@ namespace Microsoft.Templates.UI.VisualStudio
         public List<FailedMergePostAction> FailedMergePostActions { get; private set; }
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; private set; }
+
+        public Dictionary<PerformanceCounterEnum, double> PerformanceCounters { get; private set; }
 
         public RightClickActions(string language)
         {
@@ -83,6 +86,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 FilesToOpen = new List<string>();
                 FailedMergePostActions = new List<FailedMergePostAction>();
                 MergeFilesFromProject = new Dictionary<string, List<MergeInfo>>();
+                PerformanceCounters = new Dictionary<PerformanceCounterEnum, double>();
 
                 GenContext.Current = this;
             }
