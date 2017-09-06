@@ -113,7 +113,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalVersion}" Style="{StaticResource TextInformationPropertyTitle}" />
-                        <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Text="{Binding NewItemSetup.Information.Version}" Style="{StaticResource TextInformationPropertyValue}"/>
+                        <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Text="{Binding NewItemSetup.Information.Version}" Style="{StaticResource UIBaseBlack}"/>
                     </Grid>
                     <Grid Margin="{StaticResource Margin_M_Top}" Visibility="{Binding NewItemSetup.Information.Author, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
                         <Grid.ColumnDefinitions>
@@ -121,7 +121,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalAuthor}" Style="{StaticResource TextInformationPropertyTitle}" />
-                        <TextBlock Grid.Column="1" Text="{Binding NewItemSetup.Information.Author}" Margin="{StaticResource Margin_M_Left}" Style="{StaticResource TextInformationPropertyValue}" />
+                        <TextBlock Grid.Column="1" Text="{Binding NewItemSetup.Information.Author}" Margin="{StaticResource Margin_M_Left}" Style="{StaticResource UIBaseBlack}" />
                     </Grid>
                     <Grid Margin="{StaticResource Margin_M_Top}" Visibility="{Binding NewItemSetup.Information.LicensesVisibility, FallbackValue=Collapsed}">
                         <Grid.ColumnDefinitions>
