@@ -18,7 +18,7 @@ Every contribution has to come with:
 
 * If you've changed the UI: 
   - Be sure you are including screenshots to show the changes
-  - Be sure you have reviewed the [accesibility checklist](accessibility.md)
+  - Be sure you have reviewed the [accesibility checklist](docs/accessibility.md)
 
 * You tested your code with two most recent Windows 10 SDKs. (Build 14393 and 15063)
 * PR has to target dev branch
