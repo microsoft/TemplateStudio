@@ -131,7 +131,7 @@ namespace wts.ItemName.ViewModels
         public void Initialize(Frame frame)
         {
             NavigationService.Frame = frame;
-            NavigationService.Frame.Navigated += Frame_Navigated;
+            NavigationService.Navigated += Frame_Navigated;
             PopulateNavItems();
 
             InitializeState(Window.Current.Bounds.Width);

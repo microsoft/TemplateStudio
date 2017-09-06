@@ -7,6 +7,7 @@
   <!--{[{-->
   <data name="UriSchemeExampleExample_Title.Text" xml:space="preserve">
     <value>URI Scheme Example</value>
+    <comment>Page Title for URI Scheme Example</comment>
   </data>
   <!--}]}-->
 </root>

@@ -49,7 +49,11 @@ namespace Microsoft.Templates.UI.Views.NewItem
             {
                 NewItemGenController.Instance.CleanupTempGeneration();
             }
-            ViewModel.MainView.Result = null;
+
+            if (Result != null && Result.ItemGenerationType == ItemGenerationType.None)
+            {
+                Result = null;
+            }
         }
     }
 }
