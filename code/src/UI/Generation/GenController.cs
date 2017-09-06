@@ -63,12 +63,12 @@ namespace Microsoft.Templates.UI
         private static void CalculateGenerationTime(double totalTime)
         {
             var generationTime = totalTime;
-            if (GenContext.Current.PerformanceCounters.ContainsKey(PerformanceCounterEnum.AddProjectToSolution))
+            if (GenContext.Current.ProjectMetrics.ContainsKey(ProjectMetricsEnum.AddProjectToSolution))
             {
-                generationTime = totalTime - GenContext.Current.PerformanceCounters[PerformanceCounterEnum.AddProjectToSolution];
+                generationTime = totalTime - GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddProjectToSolution];
             }
 
-            GenContext.Current.PerformanceCounters.Add(PerformanceCounterEnum.Generation, generationTime);
+            GenContext.Current.ProjectMetrics[ProjectMetricsEnum.Generation] = generationTime;
         }
 
         internal void ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult)

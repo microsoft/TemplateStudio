@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 }
             }
             chrono.Stop();
-            GenContext.Current.PerformanceCounters.Add(PerformanceCounterEnum.AddProjectToSolution, chrono.Elapsed.TotalSeconds);
+            GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddProjectToSolution] = chrono.Elapsed.TotalSeconds;
         }
     }
 }

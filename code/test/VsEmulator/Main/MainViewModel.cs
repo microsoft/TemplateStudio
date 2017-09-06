@@ -59,7 +59,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public List<string> FilesToOpen { get; } = new List<string>();
 
-        public Dictionary<PerformanceCounterEnum, double> PerformanceCounters { get; } = new Dictionary<PerformanceCounterEnum, double>();
+        public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; } = new Dictionary<ProjectMetricsEnum, double>();
 
         public RelayCommand NewCSharpProjectCommand => new RelayCommand(NewCSharpProject);
         public RelayCommand NewVisualBasicProjectCommand => new RelayCommand(NewVisualBasicProject);

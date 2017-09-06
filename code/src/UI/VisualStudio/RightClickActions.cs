@@ -36,7 +36,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; private set; }
 
-        public Dictionary<PerformanceCounterEnum, double> PerformanceCounters { get; private set; }
+        public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; private set; }
 
         public RightClickActions(string language)
         {
@@ -86,7 +86,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 FilesToOpen = new List<string>();
                 FailedMergePostActions = new List<FailedMergePostAction>();
                 MergeFilesFromProject = new Dictionary<string, List<MergeInfo>>();
-                PerformanceCounters = new Dictionary<PerformanceCounterEnum, double>();
+                ProjectMetrics = new Dictionary<ProjectMetricsEnum, double>();
 
                 GenContext.Current = this;
             }

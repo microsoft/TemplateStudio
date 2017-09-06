@@ -7,8 +7,8 @@ namespace Microsoft.Templates.Core.Diagnostics
     public class TelemetryMetrics
     {
         public static string PagesCount { get; private set; } = TelemetryEvents.Prefix + "PagesCount";
-        public static string TimeSpent { get; private set; } = TelemetryEvents.Prefix + "SecTotal";
-        public static string PerfCounterTimeSpent { get; private set; } = TelemetryEvents.Prefix + "Sec";
         public static string FeaturesCount { get; private set; } = TelemetryEvents.Prefix + "FeaturesCount";
+        public static string TimeSpent { get; private set; } = TelemetryEvents.Prefix + "SecTotal";
+        public static string ProjectMetricsTimeSpent { get; private set; } = TelemetryEvents.Prefix + "Sec";
     }
 }
