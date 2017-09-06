@@ -68,7 +68,6 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
-    <Compile Include="Commands\GenContextBootstrapService.cs" />
     <Compile Include="Commands\PackageIds.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\RelayCommandPackage.cs" />

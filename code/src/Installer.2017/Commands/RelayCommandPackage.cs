@@ -20,7 +20,6 @@ using Microsoft.Templates.UI.VisualStudio;
 
 namespace Microsoft.Templates.Extension.Commands
 {
-    [ProvideService((typeof(ISGenContextBootstrapService)), IsAsyncQueryable = true)]
     [ProvideAutoLoad(Microsoft.VisualStudio.Shell.Interop.UIContextGuids.SolutionHasMultipleProjects)]
     [ProvideAutoLoad(Microsoft.VisualStudio.Shell.Interop.UIContextGuids.SolutionHasSingleProject)]
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
@@ -45,32 +44,11 @@ namespace Microsoft.Templates.Extension.Commands
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IGenContextBootstrapService bootstrapsvc = await PrepareBootstrapSvcAsync();
-
             InitializeCommands();
 
             await base.InitializeAsync(cancellationToken, progress);
         }
 
-        private async Task<IGenContextBootstrapService> PrepareBootstrapSvcAsync()
-        {
-            AddService(typeof(ISGenContextBootstrapService), CreateServiceAsync);
-            IGenContextBootstrapService bootstrapsvc = await GetServiceAsync(typeof(ISGenContextBootstrapService)) as IGenContextBootstrapService;
-
-            return bootstrapsvc;
-        }
-
-        private async Task<object> CreateServiceAsync(IAsyncServiceContainer container, CancellationToken cancellationToken, Type serviceType)
-        {
-            ISGenContextBootstrapService service = null;
-
-            await System.Threading.Tasks.Task.Run(() =>
-            {
-                service = new GenContextBootstrapService(this);
-            });
-
-            return service;
-        }
         private void InitializeCommands()
         {
             addPageCommand = new RelayCommand(this,

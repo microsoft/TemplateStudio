@@ -19,7 +19,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 {
     public class RightClickActions : IContextProvider
     {
-        private string _currentLanguage;
         private static VsGenShell _shell;
 
         public string ProjectName { get; private set; }
@@ -39,7 +38,6 @@ namespace Microsoft.Templates.UI.VisualStudio
         public RightClickActions()
         {
             _shell = new VsGenShell();
-            _currentLanguage = _shell.GetActiveProjectLanguage();
         }
 
         public void AddNewPage()
@@ -114,7 +112,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             EnsureGenContextInitialized();
 
-            if (GenContext.InitializedLanguage == _currentLanguage)
+            if (GenContext.InitializedLanguage == _shell.GetActiveProjectLanguage())
             {
                 ProjectPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
                 ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
@@ -130,12 +128,12 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private void EnsureGenContextInitialized()
         {
-            if (!GenContext.ContextInitialized || GenContext.InitializedLanguage != _currentLanguage)
+            if (!GenContext.ContextInitialized || GenContext.InitializedLanguage != _shell.GetActiveProjectLanguage())
             {
 #if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSource(), _shell, _currentLanguage);
+                GenContext.Bootstrap(new LocalTemplatesSource(), _shell, _shell.GetActiveProjectLanguage());
 #else
-                GenContext.Bootstrap(new RemoteTemplatesSource(), _shell, _language);
+                GenContext.Bootstrap(new RemoteTemplatesSource(), _shell, _shell.GetActiveProjectLanguage());
 #endif
             }
         }
