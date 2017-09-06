@@ -15,7 +15,7 @@ namespace wts.ItemName.ViewModels
 
         public Type PageType { get; set; }
 
-        private Visibility _selectedVis = Visibility.Collapsed;
+        private Visibility _selectedVis = Visibility.Collapsed; 
 
         public Visibility SelectedVis
         {
@@ -74,7 +74,7 @@ namespace wts.ItemName.ViewModels
                 SelectedVis = value ? Visibility.Visible : Visibility.Collapsed;
 
                 SelectedForeground = IsSelected
-                    ? Application.Current.Resources["ThemeControlForegroundBaseHighBrush"] as SolidColorBrush
+                    ? Application.Current.Resources["SystemControlForegroundAccentBrush"] as SolidColorBrush
                     : GetStandardTextColorBrush();
             }
         }
