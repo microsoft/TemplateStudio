@@ -4,8 +4,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
-
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -24,6 +24,7 @@ namespace Microsoft.Templates.UI
         {
             var genResults = new Dictionary<string, TemplateCreationResult>();
 
+            var chrono = Stopwatch.StartNew();
             foreach (var genInfo in genItems)
             {
                 if (genInfo.Template == null)
@@ -51,10 +52,23 @@ namespace Microsoft.Templates.UI
 
                 ExecutePostActions(genInfo, result);
             }
+            chrono.Stop();
+            CalculateGenerationTime(chrono.Elapsed.TotalSeconds);
 
             ExecuteGlobalPostActions();
 
             return genResults;
+        }
+
+        private static void CalculateGenerationTime(double totalTime)
+        {
+            var generationTime = totalTime;
+            if (GenContext.Current.PerformanceCounters.ContainsKey(PerformanceCounterEnum.AddProjectToSolution))
+            {
+                generationTime = totalTime - GenContext.Current.PerformanceCounters[PerformanceCounterEnum.AddProjectToSolution];
+            }
+
+            GenContext.Current.PerformanceCounters.Add(PerformanceCounterEnum.Generation, generationTime);
         }
 
         internal void ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult)

@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.Core.Diagnostics;
 
 namespace Microsoft.Templates.Test
 {
@@ -23,5 +24,7 @@ namespace Microsoft.Templates.Test
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
 
         public List<string> FilesToOpen { get; } = new List<string>();
+
+        public Dictionary<PerformanceCounterEnum, double> PerformanceCounters { get; } = new Dictionary<PerformanceCounterEnum, double>();
     }
 }
