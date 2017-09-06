@@ -14,6 +14,7 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.VisualStudio.TemplateWizard;
+using Microsoft.Templates.Core.Diagnostics;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -22,18 +23,13 @@ namespace Microsoft.Templates.UI.VisualStudio
         private static VsGenShell _shell;
 
         public string ProjectName { get; private set; }
-
         public string OutputPath { get; private set; }
-
         public string ProjectPath { get; private set; }
-
         public List<string> ProjectItems { get; private set; }
-
         public List<string> FilesToOpen { get; private set; }
-
         public List<FailedMergePostAction> FailedMergePostActions { get; private set; }
-
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; private set; }
+        public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; private set; }
 
         public RightClickActions()
         {
@@ -121,6 +117,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 FilesToOpen = new List<string>();
                 FailedMergePostActions = new List<FailedMergePostAction>();
                 MergeFilesFromProject = new Dictionary<string, List<MergeInfo>>();
+                ProjectMetrics = new Dictionary<ProjectMetricsEnum, double>();
 
                 GenContext.Current = this;
             }
