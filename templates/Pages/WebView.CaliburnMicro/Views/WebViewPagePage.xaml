@@ -89,29 +89,29 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <ProgressRing IsActive="{x:Bind ViewModel.IsLoading, Mode=OneWay}" />
-            <TextBlock x:Uid="Web_Loading" />
+            <TextBlock x:Uid="WebViewPage_Loading" />
         </StackPanel>
         <StackPanel Visibility="{x:Bind ViewModel.FailedMesageVisibility, Mode=OneWay}"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-            <TextBlock HorizontalAlignment="Center" x:Uid="Web_FailedMessage" TextWrapping="WrapWholeWords" />
-            <HyperlinkButton cm:Message.Attach="Retry" x:Uid="Web_Retry" HorizontalAlignment="Center" />
+            <TextBlock HorizontalAlignment="Center" x:Uid="WebViewPage_FailedMessage" TextWrapping="WrapWholeWords" />
+            <HyperlinkButton cm:Message.Attach="Retry" x:Uid="WebViewPage_Retry" HorizontalAlignment="Center" />
         </StackPanel>
 
         <Grid Grid.Row="1" Background="{ThemeResource SystemControlBackgroundBaseLowBrush}">
             <StackPanel Orientation="Horizontal">
-                <Button Style="{StaticResource BrowserButtonStyle}" cm:Message.Attach="GoBack"  x:Uid="Web_BrowserBackButton">
+                <Button Style="{StaticResource BrowserButtonStyle}" cm:Message.Attach="GoBack"  x:Uid="WebViewPage_BrowserBackButton">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72B;" />
                 </Button>
-                <Button Style="{StaticResource BrowserButtonStyle}" cm:Message.Attach="GoForward" x:Uid="Web_BrowserForwardButton">
+                <Button Style="{StaticResource BrowserButtonStyle}" cm:Message.Attach="GoForward" x:Uid="WebViewPage_BrowserForwardButton">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72A;" />
                 </Button>
             </StackPanel >
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Style="{StaticResource BrowserButtonStyle}" cm:Message.Attach="RefreshBrowser" x:Uid="Web_RefreshBrowserButton">
+                <Button Style="{StaticResource BrowserButtonStyle}" cm:Message.Attach="RefreshBrowser" x:Uid="WebViewPage_RefreshBrowserButton">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72C;" />
                 </Button>
-                <Button Style="{StaticResource BrowserButtonStyle}" cm:Message.Attach="OpenInBrowser" x:Uid="Web_OpenInBrowserButton">
+                <Button Style="{StaticResource BrowserButtonStyle}" cm:Message.Attach="OpenInBrowser" x:Uid="WebViewPage_OpenInBrowserButton">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE774;" />
                 </Button>
             </StackPanel>
