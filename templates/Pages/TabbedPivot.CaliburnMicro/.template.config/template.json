@@ -28,6 +28,15 @@
     },
     {
       "path": ".\\ViewModels\\TabbedPivotPageViewModel.cs"
+    },
+    {
+      "path": ".\\Views\\ExampleTabPage.xaml"
+    },
+    {
+      "path": ".\\Views\\ExampleTabPage.xaml.cs"
+    },
+    {
+      "path": ".\\ViewModels\\ExampleTabViewModel.cs"
     }
   ],
   "symbols": {
