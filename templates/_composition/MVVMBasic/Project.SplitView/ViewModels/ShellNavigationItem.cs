@@ -15,7 +15,7 @@ namespace wts.ItemName.ViewModels
 
         public Type PageType { get; set; }
 
-        private Visibility _selectedVis = Visibility.Collapsed; 
+        private Visibility _selectedVis = Visibility.Collapsed;
 
         public Visibility SelectedVis
         {
