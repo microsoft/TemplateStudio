@@ -120,7 +120,7 @@ Namespace ViewModels
 
         Public Sub Initialize(frame As Frame)
             NavigationService.Frame = frame
-            AddHandler NavigationService.Navigated, AddressOf Frame_Navigated
+            AddHandler NavigationService.Frame.Navigated, AddressOf Frame_Navigated
             PopulateNavItems()
 
             InitializeState(Window.Current.Bounds.Width)

@@ -69,7 +69,7 @@ Namespace Views
 
         Private Sub Initialize()
             NavigationService.Frame = shellFrame
-            AddHandler NavigationService.Navigated, AddressOf Frame_Navigated
+            AddHandler NavigationService.Frame.Navigated, AddressOf Frame_Navigated
             PopulateNavItems()
 
             InitializeState(Window.Current.Bounds.Width)
