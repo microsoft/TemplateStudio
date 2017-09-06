@@ -46,7 +46,7 @@ protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
 
 
 ## Mixed navigation sample
-In [this sample](../samples/navigation/MixedNavigationSample) we are going to create an app which includes a _startup page_ before navigate to SplitView shell page.
+In [this sample](../samples/navigation) we are going to create an app which includes a _startup page_ before navigate to SplitView shell page.
 
 - Step 1. Navigate to Start Page on App.xaml.cs
 ```csharp
@@ -85,4 +85,4 @@ Here is the navigation flow on this sample:
 
 ![Mixed navigation sample](resources/navigation/MixedNavigationSample.png)
 
-This sample was build using MVVM Basic configuration on Windows Template Studio 1.3 release.
+This sample was built using three different frameworks on Windows Template Studio 1.3 release.
