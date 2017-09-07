@@ -1,4 +1,4 @@
-//{[{
+﻿//{[{
 using Caliburn.Micro;
 using Param_RootNamespace.Helpers;
 //}]}

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Windows.Devices.Geolocation;
 
 namespace Param_ItemNamespace.Views

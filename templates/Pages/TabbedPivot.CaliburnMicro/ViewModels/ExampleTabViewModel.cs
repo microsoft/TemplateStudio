@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Caliburn.Micro;
 
 namespace Param_ItemNamespace.ViewModels

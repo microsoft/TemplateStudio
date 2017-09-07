@@ -1,4 +1,4 @@
-<!-- Nuget package references -->
+﻿<!-- Nuget package references -->
 <!--{[{-->
 <PackageReference Include="Caliburn.Micro">
   <Version>3.1.0</Version>

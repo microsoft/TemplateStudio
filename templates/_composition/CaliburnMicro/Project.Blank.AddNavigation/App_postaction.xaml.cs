@@ -1,4 +1,4 @@
-public sealed partial class App
+﻿public sealed partial class App
 {
     //^^
     //{[{
