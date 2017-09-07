@@ -39,11 +39,11 @@ namespace wts.DefaultProject.Services
                 {
                     // Create a Frame to act as the navigation context and navigate to the first page
                     Window.Current.Content = _shell;
-                    NavigationService.Frame.NavigationFailed += (sender, e) =>
+                    NavigationService.NavigationFailed += (sender, e) =>
                     {
                         throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
                     };
-                    NavigationService.Frame.Navigated += Frame_Navigated;
+                    NavigationService.Navigated += Frame_Navigated;
                     if (SystemNavigationManager.GetForCurrentView() != null)
                     {
                         SystemNavigationManager.GetForCurrentView().BackRequested += ActivationService_BackRequested;
