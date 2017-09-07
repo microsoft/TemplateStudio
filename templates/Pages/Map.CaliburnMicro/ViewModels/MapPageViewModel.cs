@@ -13,12 +13,12 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class MapPageViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        // TODO WTS: Set your preferred default zoom level
+        // TODO WTS: Specify your preferred default zoom level
         private const double DefaultZoomLevel = 17;
 
         private readonly LocationService locationService;
 
-        // TODO WTS: Set your preferred default location if a geolock can't be found.
+        // TODO WTS: Specify your preferred default location if a geolock can't be found.
         private readonly BasicGeoposition defaultPosition = new BasicGeoposition()
         {
             Latitude = 47.609425,
@@ -81,7 +81,7 @@ namespace Param_ItemNamespace.ViewModels
                 }
             }
 
-            // TODO WTS: this.Set your map service token. If you don't have one, request at https://www.bingmapsportal.com/
+            // TODO WTS: Specify your map service token. If you don't have one, request at https://www.bingmapsportal.com/
             MapServiceToken = string.Empty;
 
             var view = GetView() as IMapPageView;
