@@ -122,7 +122,7 @@ namespace Microsoft.Templates.Core.Locations
 
                     if (!v.IsZero() && v < GetVersionFromFolder(currentContent))
                     {
-                        Fs.SafeDeleteDirectory(sdi.FullName);
+                        Fs.SafeDeleteDirectory(sdi.FullName, false);
                     }
                 }
             }
