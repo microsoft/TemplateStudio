@@ -16,8 +16,12 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Button
+        Height="17" Width="17" Padding="-1"
         Command="{Binding Command, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:InformationButton}}}"
+        VerticalAlignment="Top"
+        HorizontalAlignment="Right"
         Style="{StaticResource BlueBaseTemplateInfoButtonStyle}"
+        AutomationProperties.Name="{x:Static res:StringRes.LearnMore}"
         ToolTip="{x:Static res:StringRes.LearnMore}">
         <Button.Content>
             <TextBlock Text="&#xE946;" FontSize="18" Style="{StaticResource IconButtonTextStyle}"/>

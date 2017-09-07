@@ -183,7 +183,10 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public void CleanStatus(bool cleanValidationError = false)
         {
-            SetStatus(StatusViewModel.EmptyStatus);
+            if (Status.CanBeCleared)
+            {
+                SetStatus(StatusViewModel.EmptyStatus);
+            }
             if (cleanValidationError)
             {
                 _hasValidationErrors = false;
@@ -258,7 +261,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 TemplatesVersion = GenContext.ToolBox.TemplatesVersion;
                 await OnNewTemplatesAvailableAsync();
                 NewVersionAvailable = false;
-                SetStatus(StatusViewModel.Information(StringRes.StatusUpdated, 5));
+                SetStatus(StatusViewModel.Information(StringRes.StatusUpdated, true, 5));
             }
             catch (Exception ex)
             {
@@ -385,7 +388,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         private async void SyncSyncStatusChanged(object sender, SyncStatusEventArgs status)
         {
-            SetStatus(StatusViewModel.Information(GetStatusText(status.Status), GetStatusHideSeconds(status.Status)));
+            SetStatus(StatusViewModel.Information(GetStatusText(status.Status), true, GetStatusHideSeconds(status.Status)));
 
             if (status.Status == SyncStatus.Updated)
             {

@@ -165,7 +165,8 @@ namespace Microsoft.Templates.Fakes
 
         public override Guid GetVsProjectId()
         {
-            return Guid.Empty;
+            Guid.TryParse(GetActiveProjectGuid(), out Guid guid);
+            return guid;
         }
 
         public override void OpenItems(params string[] itemsFullPath)

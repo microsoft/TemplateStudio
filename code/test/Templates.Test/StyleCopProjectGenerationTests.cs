@@ -13,10 +13,12 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
 using Xunit;
+using Microsoft.VisualStudio.Threading;
 
 namespace Microsoft.Templates.Test
 {
-    [Collection("StyleCop collection")]
+    [Collection("StyleCopCollection")]
+    [Trait("ExecutionSet", "Minimum")]
     public class StyleCopProjectGenerationTests : BaseTestContextProvider
     {
         private readonly StyleCopGenerationTestsFixture _fixture;
@@ -26,17 +28,17 @@ namespace Microsoft.Templates.Test
             _fixture = fixture;
         }
 
-        private void SetUpFixtureForTesting()
+        private async Task SetUpFixtureForTestingAsync()
         {
-            _fixture.InitializeFixture(this);
+            await _fixture.InitializeFixtureAsync(this);
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForStyleCop")]
-        [Trait("Type", "ProjectGeneration")]
+        [MemberData("GetProjectTemplatesForStyleCopAsync")]
+        [Trait("Type", "CodeStyle")]
         public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsync(string projectType, string framework)
         {
-            SetUpFixtureForTesting();
+            await SetUpFixtureForTestingAsync();
 
             var targetProjectTemplate = StyleCopGenerationTestsFixture.Templates
                 .FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project
@@ -75,12 +77,17 @@ namespace Microsoft.Templates.Test
             Assert.True(result.exitCode.Equals(0), $"Solution {targetProjectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
             // Clean
-            Directory.Delete(outputPath, true);
+            Fs.SafeDeleteDirectory(outputPath);
+            // Directory.Delete(outputPath, true);
         }
 
-        public static IEnumerable<object[]> GetProjectTemplatesForStyleCop()
+        public static IEnumerable<object[]> GetProjectTemplatesForStyleCopAsync()
         {
-            return StyleCopGenerationTestsFixture.GetProjectTemplatesForStyleCop();
+            JoinableTaskContext context = new JoinableTaskContext();
+            JoinableTaskCollection tasks = context.CreateCollection();
+            context.CreateFactory(tasks);
+            var result = context.Factory.Run(() => StyleCopGenerationTestsFixture.GetProjectTemplatesForStyleCopAsync());
+            return result;
         }
 
         private IEnumerable<ITemplateInfo> GetTemplates(string framework, TemplateType templateType)
