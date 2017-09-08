@@ -68,6 +68,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplatesAsync")]
         [Trait("Type", "BuildRandomNames")]
+        [Trait("ExecutionSet", "Minimum")]
         public async Task BuildAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string language)
         {
             Func<ITemplateInfo, bool> selector =

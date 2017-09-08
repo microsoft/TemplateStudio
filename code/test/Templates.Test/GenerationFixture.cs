@@ -147,7 +147,7 @@ namespace Microsoft.Templates.Test
             return Templates.Where(t => t.GetFrameworkList().Contains(framework));
         }
 
-        public static async Task<UserSelection> SetupProjectAsync(string projectType, string framework, string language)
+        public static async Task<UserSelection> SetupProjectAsync(string projectType, string framework, string language, Func<ITemplateInfo, string> getName = null)
         {
             await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource(), language);
 
@@ -156,15 +156,23 @@ namespace Microsoft.Templates.Test
                 Framework = framework,
                 ProjectType = projectType,
                 Language = language,
-                HomeName = "Main"
             };
 
             var layouts = GenComposer.GetLayoutTemplates(userSelection.ProjectType, userSelection.Framework);
 
             foreach (var item in layouts)
             {
-                AddItem(userSelection, item.Layout.name, item.Template);
+                if (getName != null)
+                {
+                    AddItem(userSelection, item.Template, getName);
+                }
+                else
+                {
+                    AddItem(userSelection, item.Layout.name, item.Template);
+                }
             }
+
+            userSelection.HomeName = userSelection.Pages.FirstOrDefault().name;
 
             return userSelection;
         }
@@ -245,7 +253,12 @@ namespace Microsoft.Templates.Test
         public static string GetRandomName(ITemplateInfo template)
 #pragma warning restore RECS0154 // Parameter is never used
         {
-            return Path.GetRandomFileName().Replace(".", "");
+            var randomName = Path.GetRandomFileName().Replace(".", "");
+            if (Regex.IsMatch(randomName, @"^\d+"))
+            {
+                randomName = string.Concat("a", randomName);
+            }
+            return randomName;
         }
 
         private static void AddItem(UserSelection userSelection, string itemName, ITemplateInfo template)
