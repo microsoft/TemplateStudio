@@ -253,12 +253,17 @@ namespace Microsoft.Templates.Test
         public static string GetRandomName(ITemplateInfo template)
 #pragma warning restore RECS0154 // Parameter is never used
         {
-            var randomName = Path.GetRandomFileName().Replace(".", "");
-            if (Regex.IsMatch(randomName, @"^\d+"))
+
+            for (int i = 0; i < 10; i++)
             {
-                randomName = string.Concat("a", randomName);
+                var randomName = Path.GetRandomFileName().Replace(".", "");
+                if (Naming.Validate(randomName, new List<Validator>()).IsValid)
+                {
+                    return randomName;
+                }
             }
-            return randomName;
+
+            throw new ApplicationException("No valid randomName could be generated");
         }
 
         private static void AddItem(UserSelection userSelection, string itemName, ITemplateInfo template)

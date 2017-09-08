@@ -56,7 +56,9 @@ namespace Microsoft.Templates.Test
             Func<ITemplateInfo, bool> selector =
                 t => t.GetTemplateType() == TemplateType.Project
                     && t.GetProjectTypeList().Contains(projectType)
-                    && t.GetFrameworkList().Contains(framework);
+                    && t.GetFrameworkList().Contains(framework)
+                    && !t.GetIsHidden()
+                    && t.GetLanguage() == language;
 
             var projectName = $"{projectType}{framework}All";
 
