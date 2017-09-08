@@ -13,15 +13,15 @@
     <value>Choose Theme</value>
     <comment>Choose theme text for SettingsPage</comment>
   </data>
-  <data name="Settings_Theme_Dark.Content" xml:space="preserve">
+  <data name="SettingsPage_Theme_Dark.Content" xml:space="preserve">
     <value>Dark</value>
     <comment>Dark theme text for SettingsPage</comment>
   </data>
-  <data name="Settings_Theme_Default.Content" xml:space="preserve">
+  <data name="SettingsPage_Theme_Default.Content" xml:space="preserve">
     <value>Windows default</value>
     <comment>Windows default theme text for SettingsPage</comment>
   </data>
-  <data name="Settings_Theme_Light.Content" xml:space="preserve">
+  <data name="SettingsPage_Theme_Light.Content" xml:space="preserve">
     <value>Light</value>
     <comment>Light theme text for SettingsPage</comment>
   </data>
