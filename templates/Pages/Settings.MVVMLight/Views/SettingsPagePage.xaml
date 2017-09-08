@@ -19,23 +19,23 @@
             </Grid.RowDefinitions>
             <TextBlock
                 Grid.Row="0"
-                x:Uid="Settings_Title"
+                x:Uid="SettingsPage_Title"
                 x:Name="TitlePage"
                 Style="{StaticResource PageTitleStyle}" />
 
             <StackPanel Grid.Row="1">
                 <TextBlock
-                    x:Uid="Settings_Personalization"
+                    x:Uid="SettingsPage_Personalization"
                     Style="{StaticResource SubtitleTextBlockStyle}" />
 
                 <StackPanel Margin="{StaticResource SettingsSubheaderMargin}">
                     <TextBlock
-                        x:Uid="Settings_Theme"
+                        x:Uid="SettingsPage_Theme"
                         Style="{StaticResource BodyTextStyle}" />
 
                     <StackPanel Margin="{StaticResource EightTopMargin}">
                         <RadioButton 
-                            x:Uid="Settings_Theme_Light" 
+                            x:Uid="SettingsPage_Theme_Light" 
                             GroupName="AppTheme" 
                             IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=TwoWay}"
                             Command="{Binding SwitchThemeCommand}">
@@ -44,7 +44,7 @@
                             </RadioButton.CommandParameter>
                         </RadioButton>
                         <RadioButton 
-                            x:Uid="Settings_Theme_Dark" 
+                            x:Uid="SettingsPage_Theme_Dark" 
                             GroupName="AppTheme"
                             IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=TwoWay}"
                             Command="{Binding SwitchThemeCommand}">
@@ -53,7 +53,7 @@
                             </RadioButton.CommandParameter>
                         </RadioButton>
                         <RadioButton 
-                            x:Uid="Settings_Theme_Default"
+                            x:Uid="SettingsPage_Theme_Default"
                             GroupName="AppTheme"
                             IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=TwoWay}"
                             Command="{Binding SwitchThemeCommand}">
@@ -65,18 +65,18 @@
                 </StackPanel>
 
                 <TextBlock
-                        x:Uid="Settings_About"
+                        x:Uid="SettingsPage_About"
                         Style="{StaticResource SubtitleTextBlockStyle}"/>
 
                 <StackPanel Margin="{StaticResource EightTopMargin}">
                     <TextBlock
                         Text="{x:Bind ViewModel.VersionDescription, Mode=OneWay}" />
                     <TextBlock
-                        x:Uid="Settings_AboutDescription"
+                        x:Uid="SettingsPage_AboutDescription"
                         Margin="{StaticResource EightTopMargin}" />
 
                     <HyperlinkButton
-                        x:Uid="Settings_PrivacyTermsLink" 
+                        x:Uid="SettingsPage_PrivacyTermsLink" 
                         Margin="{StaticResource EightTopMargin}" />
                 </StackPanel>
             </StackPanel>
