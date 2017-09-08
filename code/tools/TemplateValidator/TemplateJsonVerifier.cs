@@ -6,10 +6,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ApiAnalysis;
 using Microsoft.Templates.Core.Composition;
+using Microsoft.Templates.Core.Gen;
 using Newtonsoft.Json;
 
 namespace TemplateValidator
@@ -96,6 +98,8 @@ namespace TemplateValidator
                 EnsureAllDefinedPrimaryOutputsExist(template, templateRoot, results);
 
                 EnsureAllDefinedGuidsAreUsed(template, templateRoot, results);
+
+                VerifySymbols(template, results);
             }
             catch (Exception ex)
             {
@@ -105,6 +109,28 @@ namespace TemplateValidator
             await Task.CompletedTask;
 
             return results;
+        }
+
+        private static void VerifySymbols(ValidationTemplateInfo template, List<string> results)
+        {
+            var type = typeof(GenParams);
+            var paramValues = type.GetFields(BindingFlags.Static | BindingFlags.Public)
+                                  .Where(f => f.IsLiteral)
+                                  .Select(f => f.GetValue(null).ToString())
+                                  .ToList();
+
+            // The explicit values here are the ones that are currently in use.
+            // In theory any string could be exported and used as a symbol but currently it's only these
+            // If lots of tempaltes start exporting new symbols it might be necessary to change how symbol keys are verified
+            var allValidSymbolKeys = new List<string>(paramValues) { "baseclass", "setter" };
+
+            foreach (var symbol in template.Symbols)
+            {
+                if (!allValidSymbolKeys.Contains(symbol.Key))
+                {
+                    results.Add($"Invalid Symbol key '{symbol.Key}' specified.");
+                }
+            }
         }
 
         private static void VerifyTagUsage(ValidationTemplateInfo template, List<string> results)
