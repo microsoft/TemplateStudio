@@ -39,7 +39,7 @@ namespace Microsoft.Templates.Test
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
             OutputPath = ProjectPath;
 
-            var userSelection = await GenerationFixture.SetupProjectAsync(projectType, framework, language);
+            var userSelection = await GenerationFixture.SetupProjectAsync(projectType, framework, language, getName);
 
             if (getName != null)
             {
