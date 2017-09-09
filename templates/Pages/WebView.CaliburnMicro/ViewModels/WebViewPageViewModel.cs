@@ -9,7 +9,7 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class WebViewPageViewModel : Screen
     {
-        // TODO WTS: Set your hyperlink default here
+        // TODO WTS: Specify your hyperlink default here
         private const string DefaultUrl = "https://developer.microsoft.com/en-us/windows/apps";
 
         private Uri _source;
