@@ -169,6 +169,11 @@ namespace wts.ItemName.ViewModels
 
         private void Navigate(object item)
         {
+            if (_lastSelectedItem == item)
+            {
+                return;
+            }
+            
             var navigationItem = item as ShellNavigationItem;
             if (navigationItem != null)
             {
