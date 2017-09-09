@@ -3,7 +3,7 @@
 //**}
 namespace Param_RootNamespace
 {
-    public sealed partial class App : Application
+    public sealed partial class App
     {
 //^^
 //{[{

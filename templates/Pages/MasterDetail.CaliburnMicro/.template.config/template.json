@@ -1,0 +1,63 @@
+﻿{
+  "author": "Nigel Sampson",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Master/Detail",
+  "groupIdentity": "wts.Page.MasterDetail",
+  "identity": "wts.Page.MasterDetail.CaliburnMicro",
+  "description": "The master-detail page has a master pane and a details pane for content.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "page",
+    "wts.framework": "CaliburnMicro",
+    "wts.version": "1.0.0",
+    "wts.order": "5",
+    "wts.dependencies": "wts.Feat.SampleDataService",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true" 
+  },
+  "sourceName": "MasterDetailsItem",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Views\\MasterDetailsItemPage.xaml"
+    },
+    {
+      "path": ".\\Views\\MasterDetailsItemPage.xaml.cs"
+    },
+    {
+      "path": ".\\Views\\MasterDetailsItemDetail\\DetailsView.xaml"
+    },
+    {
+      "path": ".\\Views\\MasterDetailsItemDetail\\DetailsView.xaml.cs"
+    },
+    {
+      "path": ".\\Views\\MasterDetailsItemDetail\\MasterView.xaml"
+    },
+    {
+      "path": ".\\Views\\MasterDetailsItemDetail\\MasterView.xaml.cs"
+    },
+    {
+      "path": ".\\ViewModels\\MasterDetailsItemViewModel.cs"
+    },
+    {
+      "path": ".\\ViewModels\\MasterDetailsItemDetailViewModel.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    }
+  }
+}
