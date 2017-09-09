@@ -1,6 +1,6 @@
 ﻿namespace Param_RootNamespace
 {
-	public sealed partial class App
+    public sealed partial class App
     {
 //^^
 //{[{
