@@ -32,7 +32,7 @@ namespace Param_ItemNamespace.ViewModels
             await ThemeSelectorService.SetThemeAsync(theme);
         }
 
-        public SettingsViewModel()
+        public SettingsPageViewModel()
         {
         }
 

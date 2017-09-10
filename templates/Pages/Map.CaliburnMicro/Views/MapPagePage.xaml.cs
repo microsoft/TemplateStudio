@@ -7,8 +7,7 @@ using Windows.UI.Xaml.Controls.Maps;
 
 namespace Param_ItemNamespace.Views
 {
-    public sealed partial class MapPagePage : Page
-        , IMapPageView
+    public sealed partial class MapPagePage : Page, IMapPageView
     {
         public MapPagePage()
         {

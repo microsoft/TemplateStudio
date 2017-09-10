@@ -7,15 +7,15 @@ namespace Param_RootNamespace.Activation
 {
     internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
     {
-         private readonly Type _navElement;
+        private readonly Type _navElement;
         private readonly INavigationService _navigationService;
-    
+
         public DefaultLaunchActivationHandler(Type navElement, INavigationService navigationService)
         {
             _navElement = navElement;
             _navigationService = navigationService;
         }
-    
+
         protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
         {
             // When the navigation stack isn't restored navigate to the first page,

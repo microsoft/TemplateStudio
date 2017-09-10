@@ -99,7 +99,7 @@ namespace Param_ItemNamespace.ViewModels
                 locationService.StopListening();
             }
         }
-       
+
         private void LocationServicePositionChanged(object sender, Geoposition geoposition)
         {
             if (geoposition != null)

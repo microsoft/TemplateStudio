@@ -8,7 +8,7 @@ namespace Param_ItemNamespace.Views
         public WebViewPagePage()
         {
             InitializeComponent();
-            
+
             Loaded += (s, e) => ViewModel.Initialize(webView);
         }
     }

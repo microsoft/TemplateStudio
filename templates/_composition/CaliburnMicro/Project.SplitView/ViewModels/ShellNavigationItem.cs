@@ -94,7 +94,6 @@ namespace wts.ItemName.ViewModels
 
         protected ShellNavigationItem()
         {
-            
         }
 
         public ShellNavigationItem(string label, Symbol symbol, Type viewModeType)

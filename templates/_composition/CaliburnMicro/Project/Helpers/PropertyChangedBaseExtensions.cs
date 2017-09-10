@@ -9,7 +9,9 @@ namespace Param_RootNamespace.Helpers
         public static bool Set<T>(this PropertyChangedBase propertyChangedBase, ref T oldValue, T newValue, [CallerMemberName] string propertyName = null)
         {
             if (Equals(oldValue, newValue))
+            {
                 return false;
+            }
 
             oldValue = newValue;
             propertyChangedBase.NotifyOfPropertyChange(propertyName);

@@ -1,11 +1,14 @@
-﻿public sealed partial class App
+﻿namespace Param_ItemNamespace
 {
-    //^^
-    //{[{
-
-    private ActivationService CreateActivationService()
+    public sealed partial class App
     {
-        return new ActivationService(_container, typeof(ViewModels.Param_HomeNameViewModel));
+//^^
+//{[{
+
+        private ActivationService CreateActivationService()
+        {
+            return new ActivationService(_container, typeof(ViewModels.Param_HomeNameViewModel));
+        }
+//}]}
     }
-    //}]}
 }

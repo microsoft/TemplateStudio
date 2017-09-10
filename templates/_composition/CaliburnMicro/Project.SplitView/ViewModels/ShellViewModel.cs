@@ -13,14 +13,14 @@ namespace wts.ItemName.ViewModels
 {
     public class ShellViewModel : Screen
     {
-        private readonly WinRTContainer _container;
-        private INavigationService _navigationService;
-
         private const string PanoramicStateName = "PanoramicState";
         private const string WideStateName = "WideState";
         private const string NarrowStateName = "NarrowState";
         private const double WideStateMinWindowWidth = 640;
         private const double PanoramicStateMinWindowWidth = 1024;
+
+        private readonly WinRTContainer _container;
+        private INavigationService _navigationService;
 
         public ShellViewModel(WinRTContainer container)
         {
@@ -48,7 +48,6 @@ namespace wts.ItemName.ViewModels
         public ObservableCollection<ShellNavigationItem> PrimaryItems { get; } = new ObservableCollection<ShellNavigationItem>();
 
         public ObservableCollection<ShellNavigationItem> SecondaryItems { get; } = new ObservableCollection<ShellNavigationItem>();
-
 
         public void Open()
         {
@@ -173,7 +172,7 @@ namespace wts.ItemName.ViewModels
             {
                 return;
             }
-            
+
             var navigationItem = item as ShellNavigationItem;
             if (navigationItem != null)
             {

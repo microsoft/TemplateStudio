@@ -11,7 +11,6 @@ namespace wts.ItemName.ViewModels
 
         protected override void OnInitialize()
         {
-             
         }
     }
 }

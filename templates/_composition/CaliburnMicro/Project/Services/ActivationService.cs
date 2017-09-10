@@ -13,12 +13,12 @@ using Param_RootNamespace.Activation;
 
 namespace Param_RootNamespace.Services
 {
-    //For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
+    // For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
     internal class ActivationService
     {
         private readonly WinRTContainer _container;
-        private UIElement _shell;
         private readonly Type _defaultNavItem;
+        private UIElement _shell;
 
         public ActivationService(WinRTContainer container, Type defaultNavItem, UIElement shell = null)
         {
@@ -33,13 +33,12 @@ namespace Param_RootNamespace.Services
             {
                 // Initialize things like registering background task before the app is loaded
                 await InitializeAsync();
-                
+
                 // Do not repeat app initialization when the Window already has content,
                 // just ensure that the window is active
                 if (Window.Current.Content == null)
                 {
                     // Create a Frame to act as the navigation context and navigate to the first page
-
                     if (_shell == null)
                     {
                         var frame = new Frame();
@@ -110,7 +109,6 @@ namespace Param_RootNamespace.Services
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
-
             yield break;
         }
 
@@ -121,7 +119,7 @@ namespace Param_RootNamespace.Services
 
         private void OnFrameNavigated(object sender, NavigationEventArgs e)
         {
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = (NavigationService.CanGoBack) ? 
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = NavigationService.CanGoBack ?
                 AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
         }
     }
