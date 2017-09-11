@@ -33,35 +33,35 @@ namespace Microsoft.Templates.UI.Controls
             get => (DataTemplate)GetValue(SecondaryViewTemplateProperty);
             set => SetValue(SecondaryViewTemplateProperty, value);
         }
-        public static readonly DependencyProperty SecondaryViewTemplateProperty = DependencyProperty.Register("SecondaryViewTemplate", typeof(DataTemplate), typeof(TogglePanel), new PropertyMetadata(null));
+        public static readonly DependencyProperty SecondaryViewTemplateProperty = DependencyProperty.Register(nameof(SecondaryViewTemplate), typeof(DataTemplate), typeof(TogglePanel), new PropertyMetadata(null));
 
         public DataTemplate OpenButtonTemplate
         {
             get => (DataTemplate)GetValue(OpenButtonTemplateProperty);
             set => SetValue(OpenButtonTemplateProperty, value);
         }
-        public static readonly DependencyProperty OpenButtonTemplateProperty = DependencyProperty.Register("OpenButtonTemplate", typeof(DataTemplate), typeof(TogglePanel), new PropertyMetadata(null));
+        public static readonly DependencyProperty OpenButtonTemplateProperty = DependencyProperty.Register(nameof(OpenButtonTemplate), typeof(DataTemplate), typeof(TogglePanel), new PropertyMetadata(null));
 
         public DataTemplate CloseButtonTemplate
         {
             get => (DataTemplate)GetValue(CloseButtonTemplateProperty);
             set => SetValue(CloseButtonTemplateProperty, value);
         }
-        public static readonly DependencyProperty CloseButtonTemplateProperty = DependencyProperty.Register("CloseButtonTemplate", typeof(DataTemplate), typeof(TogglePanel), new PropertyMetadata(null));
+        public static readonly DependencyProperty CloseButtonTemplateProperty = DependencyProperty.Register(nameof(CloseButtonTemplate), typeof(DataTemplate), typeof(TogglePanel), new PropertyMetadata(null));
 
         public bool IsOpen
         {
             get => (bool)GetValue(IsOpenProperty);
             set => SetValue(IsOpenProperty, value);
         }
-        public static readonly DependencyProperty IsOpenProperty = DependencyProperty.Register("IsOpen", typeof(bool), typeof(TogglePanel), new PropertyMetadata(false, OnIsOpenPropertyChanged));
+        public static readonly DependencyProperty IsOpenProperty = DependencyProperty.Register(nameof(IsOpen), typeof(bool), typeof(TogglePanel), new PropertyMetadata(false, OnIsOpenPropertyChanged));
 
         public bool AllowDragAndDrop
         {
             get => (bool)GetValue(AllowDragAndDropProperty);
             set => SetValue(AllowDragAndDropProperty, value);
         }
-        public static readonly DependencyProperty AllowDragAndDropProperty = DependencyProperty.Register("AllowDragAndDrop", typeof(bool), typeof(TogglePanel), new PropertyMetadata(false));
+        public static readonly DependencyProperty AllowDragAndDropProperty = DependencyProperty.Register(nameof(AllowDragAndDrop), typeof(bool), typeof(TogglePanel), new PropertyMetadata(false));
 
         public TogglePanel()
         {
