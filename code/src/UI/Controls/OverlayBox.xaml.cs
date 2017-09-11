@@ -17,7 +17,7 @@ using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.Controls
 {
-    public sealed class OverlayBox : Control
+    public partial class OverlayBox : UserControl
     {
         private DispatcherTimer _hideTimer;
         private DispatcherTimer HideTimer
@@ -134,14 +134,9 @@ namespace Microsoft.Templates.UI.Controls
             control.UpdateVisible((bool)e.NewValue);
         }
 
-        static OverlayBox()
+        public OverlayBox()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(OverlayBox), new FrameworkPropertyMetadata(typeof(OverlayBox)));
-        }
-
-        public override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
+            InitializeComponent();
             if (Status != null)
             {
                 UpdateStatus(Status);

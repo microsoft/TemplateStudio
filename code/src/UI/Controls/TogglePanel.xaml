@@ -6,7 +6,8 @@
              xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
              xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
              xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
-             xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"             
+             xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
+             Focusable="False"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>

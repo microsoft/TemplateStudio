@@ -202,6 +202,9 @@
     <Compile Include="Controls\InformationButton.xaml.cs">
       <DependentUpon>InformationButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\OverlayBox.xaml.cs">
+      <DependentUpon>OverlayBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\StatusBox.xaml.cs">
       <DependentUpon>StatusBox.xaml</DependentUpon>
     </Compile>
@@ -295,7 +298,6 @@
     <Compile Include="Services\DragAndDropService\ListViewItemDragState.cs" />
     <Compile Include="Services\DragAndDropService\NativeMethods.cs" />
     <Compile Include="Services\DragAndDropService\MouseUtilities.cs" />
-    <Compile Include="Controls\OverlayBox.cs" />
     <Compile Include="Controls\SymbolFonts.cs" />
     <Compile Include="Controls\TextBoxEx.cs" />
     <Compile Include="Converters\ColumnCountConverter.cs" />
@@ -473,10 +475,6 @@
     <Page Include="Styles\_FocusVisualStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Common\ErrorDialog.xaml">
       <SubType>Designer</SubType>
