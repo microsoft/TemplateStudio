@@ -12,13 +12,15 @@ using System.Web;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.ViewModels.NewItem;
-
 namespace Microsoft.Templates.UI.Controls
 {
-    public class CodeViewer : Control
+    /// <summary>
+    /// Interaction logic for CodeViewer.xaml
+    /// </summary>
+    public partial class CodeViewer : UserControl
     {
         private bool _isInitialized;
-        private WebBrowser _webBrowser;
+
         private string _currentHtml = string.Empty;
 
         public object Item
@@ -37,14 +39,7 @@ namespace Microsoft.Templates.UI.Controls
 
         public CodeViewer()
         {
-            DefaultStyleKey = typeof(CodeViewer);
-        }
-
-        public override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
-
-            _webBrowser = GetTemplateChild("webBrowser") as WebBrowser;
+            InitializeComponent();
             _isInitialized = true;
 
             if (Item is BaseFileViewModel item)
@@ -89,7 +84,7 @@ namespace Microsoft.Templates.UI.Controls
                     .Replace("##fontSize##", $"fontSize: {CodeFontSize},");
                 if (_currentHtml != patternText)
                 {
-                    _webBrowser.NavigateToString(patternText);
+                    webBrowser.NavigateToString(patternText);
                     _currentHtml = patternText;
                 }
             }
