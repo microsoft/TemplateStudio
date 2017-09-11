@@ -10,6 +10,7 @@
              mc:Ignorable="d"
              Focusable="False"
              d:DesignHeight="300" d:DesignWidth="300">
+    
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -24,10 +25,10 @@
     <Grid>
         <Grid Width="360" Height="265">
             <Polygon
-                    Points="0,10 20,10 10,0"
-                    Margin="0,0,5,0"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Right">
+                Points="0,10 20,10 10,0"
+                Margin="0,0,5,0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right">
                 <Polygon.Style>
                     <Style TargetType="Polygon">
                         <Setter Property="Fill" Value="{StaticResource UIMiddleDarkGray}"/>
@@ -71,13 +72,14 @@
                                 </Style>
                             </Grid.Style>
                             <TextBlock Margin="{StaticResource Margin_M_All}">
-                                            <Hyperlink Command="{Binding OpenUrlCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:OverlayBox}}}"
-                                                       CommandParameter="https://github.com/Microsoft/WindowsTemplateStudio" Style="{StaticResource LicenseHyperlinkStyle}"
-                                                       Focusable="{Binding Visible, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:OverlayBox}}}"
-                                                       AutomationProperties.Name="{x:Static res:StringRes.Title}">
-                                                <TextBlock Text="{x:Static res:StringRes.Title}" Style="{StaticResource TextOverlayBoxTitleStyle}" VerticalAlignment="Center" FontSize="{StaticResource UI_M_FontSize}"/>
-                                            </Hyperlink>
-                                        </TextBlock>
+                                <Hyperlink
+                                    Command="{Binding OpenUrlCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:OverlayBox}}}"
+                                    CommandParameter="https://github.com/Microsoft/WindowsTemplateStudio" Style="{StaticResource LicenseHyperlinkStyle}"
+                                    Focusable="{Binding Visible, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:OverlayBox}}}"
+                                    AutomationProperties.Name="{x:Static res:StringRes.Title}">
+                                    <TextBlock Text="{x:Static res:StringRes.Title}" Style="{StaticResource TextOverlayBoxTitleStyle}" VerticalAlignment="Center" FontSize="{StaticResource UI_M_FontSize}"/>
+                                </Hyperlink>
+                            </TextBlock>
                         </Grid>
                         <Grid Grid.Row="1" Margin="{StaticResource Margin_L_All}">
                             <Grid.RowDefinitions>
@@ -112,12 +114,14 @@
 
                             <Grid Grid.Row="2" Margin="{StaticResource Margin_M_Top}">
                                 <Grid Visibility="{Binding StatusText, Converter={StaticResource StringVisibilityConverter}, ConverterParameter=reverse, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:OverlayBox}}}">
-                                    <TextBlock Text="{x:Static res:StringRes.NewVersionAvailable}" Style="{StaticResource TextOverlayBoxImportantInformationStyle}"
-                                               Visibility="{Binding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:OverlayBox}}}" />
+                                    <TextBlock
+                                        Text="{x:Static res:StringRes.NewVersionAvailable}" Style="{StaticResource TextOverlayBoxImportantInformationStyle}"
+                                        Visibility="{Binding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:OverlayBox}}}" />
                                 </Grid>
-                                <TextBlock Style="{StaticResource TextOverlayBoxDescriptionStyle}"
-                                           Text="{Binding StatusText, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:OverlayBox}}}"
-                                           Visibility="{Binding StatusText, Converter={StaticResource StringVisibilityConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:OverlayBox}}}" />
+                                <TextBlock
+                                    Style="{StaticResource TextOverlayBoxDescriptionStyle}"
+                                    Text="{Binding StatusText, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:OverlayBox}}}"
+                                    Visibility="{Binding StatusText, Converter={StaticResource StringVisibilityConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:OverlayBox}}}" />
                             </Grid>
                         </Grid>
                     </Grid>

@@ -87,15 +87,18 @@
         </Grid.Triggers>
         <Border x:Name="mouseOvershadowGrid" Style="{StaticResource shadowBorderStyle}" Opacity="0" Focusable="False"/>
         <Border x:Name="dragAndDropShadowBorder" Style="{StaticResource dragAndDropShadowBorderStyle}" Opacity="0" Focusable="False"/>
-        <Border Style="{StaticResource shadowBorderStyle}" Focusable="False" Visibility="{Binding IsOpen, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:TogglePanel}}}"/>
+        <Border
+            Style="{StaticResource shadowBorderStyle}" Focusable="False"
+            Visibility="{Binding IsOpen, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:TogglePanel}}}" />
         <Grid Focusable="False">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="16"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="dragAndDropButton" Margin="{StaticResource Margin_M_Left}" Style="{StaticResource DragAndDropTogglePaneButtonStyle}"
-                    Visibility="{Binding AllowDragAndDrop, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:TogglePanel}}}"
-                    Opacity="0" ToolTip="{x:Static res:StringRes.SummaryDragAndDrop}" AutomationProperties.Name="{x:Static res:StringRes.SummaryDragAndDrop}">
+            <Button
+                x:Name="dragAndDropButton" Margin="{StaticResource Margin_M_Left}" Style="{StaticResource DragAndDropTogglePaneButtonStyle}"
+                Visibility="{Binding AllowDragAndDrop, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:TogglePanel}}}"
+                Opacity="0" ToolTip="{x:Static res:StringRes.SummaryDragAndDrop}" AutomationProperties.Name="{x:Static res:StringRes.SummaryDragAndDrop}">
                 <Button.Content>
                     <TextBlock Text="&#xE700;" FontSize="12" Style="{StaticResource IconButtonTextStyle}" />
                 </Button.Content>

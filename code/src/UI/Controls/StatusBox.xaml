@@ -119,8 +119,12 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="&#xE946;" FontSize="25" FontFamily="Segoe MDL2 Assets" Foreground="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" VerticalAlignment="Center" />
-                        <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" Foreground="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+                        <TextBlock
+                            Grid.Column="0" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="&#xE946;" FontSize="25" FontFamily="Segoe MDL2 Assets"
+                            Foreground="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" VerticalAlignment="Center" />
+                        <TextBlock
+                            Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}"
+                            Foreground="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
                     </Grid>
                 </Border>
             </DataTemplate>
@@ -131,8 +135,12 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="&#xE7BA;" FontSize="25" FontFamily="Segoe MDL2 Assets" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" VerticalAlignment="Center" />
-                        <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" VerticalAlignment="Center" FontSize="{StaticResource UI_S_FontSize}" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+                        <TextBlock
+                            Grid.Column="0" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="&#xE7BA;" FontSize="25" FontFamily="Segoe MDL2 Assets"
+                            Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" VerticalAlignment="Center" />
+                        <TextBlock
+                            Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" VerticalAlignment="Center"
+                            FontSize="{StaticResource UI_S_FontSize}" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
                     </Grid>
                 </Border>
             </DataTemplate>
@@ -143,8 +151,12 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="&#xEA39;" FontSize="25" FontFamily="Segoe MDL2 Assets" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" VerticalAlignment="Center" />
-                        <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" VerticalAlignment="Center" FontSize="{StaticResource UI_S_FontSize}" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+                        <TextBlock
+                            Grid.Column="0" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="&#xEA39;" FontSize="25" FontFamily="Segoe MDL2 Assets"
+                            Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" VerticalAlignment="Center" />
+                        <TextBlock
+                            Grid.Column="1" Margin="{StaticResource Margin_M_LeftTopBottom}" Text="{Binding Message}" VerticalAlignment="Center"
+                            FontSize="{StaticResource UI_S_FontSize}" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
                     </Grid>
                 </Border>
             </DataTemplate>
@@ -152,21 +164,27 @@
             <DataTemplate x:Key="HighContrastInformationButtonCloseTemplate">
                 <Border BorderThickness="4" BorderBrush="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}">
                     <Grid Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <TextBlock Text="&#xE894;" FontSize="8" Style="{StaticResource IconButtonTextStyle}" FontWeight="ExtraBold" Margin="{StaticResource Margin_M_All}" Foreground="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                        <TextBlock
+                            Text="&#xE894;" FontSize="8" Style="{StaticResource IconButtonTextStyle}" FontWeight="ExtraBold" Margin="{StaticResource Margin_M_All}"
+                            Foreground="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
                     </Grid>
                 </Border>
             </DataTemplate>
             <DataTemplate x:Key="HighContrastWarningButtonCloseTemplate">
                 <Border BorderThickness="4" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                     <Grid Background="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}">
-                        <TextBlock Text="&#xE894;" FontSize="8" Style="{StaticResource IconButtonTextStyle}" FontWeight="ExtraBold" Margin="{StaticResource Margin_M_All}" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                        <TextBlock
+                            Text="&#xE894;" FontSize="8" Style="{StaticResource IconButtonTextStyle}" FontWeight="ExtraBold" Margin="{StaticResource Margin_M_All}"
+                            Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
                     </Grid>
                 </Border>
             </DataTemplate>
             <DataTemplate x:Key="HighContrastErrorButtonCloseTemplate">
                 <Border BorderThickness="4" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                     <Grid Background="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
-                        <TextBlock Text="&#xE894;" FontSize="8" Style="{StaticResource IconButtonTextStyle}" FontWeight="ExtraBold" Margin="{StaticResource Margin_M_All}" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                        <TextBlock
+                            Text="&#xE894;" FontSize="8" Style="{StaticResource IconButtonTextStyle}" FontWeight="ExtraBold" Margin="{StaticResource Margin_M_All}"
+                            Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
                     </Grid>
                 </Border>
             </DataTemplate>
@@ -207,8 +225,8 @@
                 <Button.Content>
                     <Grid>
                         <ContentPresenter
-                        Content="{Binding Status, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:StatusBox}}}"
-                        Visibility="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
+                            Content="{Binding Status, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:StatusBox}}}"
+                            Visibility="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
                             <ContentPresenter.ContentTemplateSelector>
                                 <templateSelectors:StatusBoxTemplateSelector
                                     EmptyStatusTemplate="{StaticResource EmptyStatusTemplate}"
@@ -219,8 +237,8 @@
                             </ContentPresenter.ContentTemplateSelector>
                         </ContentPresenter>
                         <ContentPresenter
-                        Content="{Binding Status, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:StatusBox}}}"
-                        Visibility="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}, Converter={StaticResource BoolToVisibilityConverter}}">
+                            Content="{Binding Status, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:StatusBox}}}"
+                            Visibility="{Binding IsHighContrast, Source={x:Static services:SystemService.Instance}, Converter={StaticResource BoolToVisibilityConverter}}">
                             <ContentPresenter.ContentTemplateSelector>
                                 <templateSelectors:StatusBoxTemplateSelector
                                     EmptyStatusTemplate="{StaticResource EmptyStatusTemplate}"
