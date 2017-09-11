@@ -3,6 +3,7 @@
   <!--{[{-->
   <data name="PivotItem_wts.ItemName.Header" xml:space="preserve">
     <value>wts.ItemName</value>
+    <comment>Pivot item header for wts.ItemName</comment>
   </data>
   <!--}]}-->
 </root>

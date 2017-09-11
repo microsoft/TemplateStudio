@@ -23,6 +23,7 @@ using Microsoft.Templates.VsEmulator.LoadProject;
 using Microsoft.Templates.VsEmulator.NewProject;
 using Microsoft.Templates.VsEmulator.TemplatesContent;
 using Microsoft.VisualStudio.TemplateWizard;
+using Microsoft.Templates.Core.Diagnostics;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
@@ -57,6 +58,8 @@ namespace Microsoft.Templates.VsEmulator.Main
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
 
         public List<string> FilesToOpen { get; } = new List<string>();
+
+        public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; } = new Dictionary<ProjectMetricsEnum, double>();
 
         public RelayCommand NewCSharpProjectCommand => new RelayCommand(NewCSharpProject);
         public RelayCommand NewVisualBasicProjectCommand => new RelayCommand(NewVisualBasicProject);
@@ -146,14 +149,14 @@ namespace Microsoft.Templates.VsEmulator.Main
             SolutionName = null;
         }
 
-        private void NewCSharpProject()
+        private async void NewCSharpProject()
         {
-           Task.Run(async () => await NewProjectAsync(ProgrammingLanguages.CSharp));
+           await NewProjectAsync(ProgrammingLanguages.CSharp);
         }
 
-        private void NewVisualBasicProject()
+        private async void NewVisualBasicProject()
         {
-            Task.Run(async () => await NewProjectAsync(ProgrammingLanguages.VisualBasic));
+            await NewProjectAsync(ProgrammingLanguages.VisualBasic);
         }
 
         private async Task NewProjectAsync(string language)
@@ -190,6 +193,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                         SolutionName = newProjectInfo.name;
                         SolutionPath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
+                        OnPropertyChanged(nameof(TempFolderAvailable));
                     }
                 }
             }
@@ -217,6 +221,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 if (userSelection != null)
                 {
                     NewItemGenController.Instance.FinishGeneration(userSelection);
+                    OnPropertyChanged(nameof(TempFolderAvailable));
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
             }
@@ -251,6 +256,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 if (userSelection != null)
                 {
                     NewItemGenController.Instance.FinishGeneration(userSelection);
+                    OnPropertyChanged(nameof(TempFolderAvailable));
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
             }
@@ -287,6 +293,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 ProjectPath = Path.GetDirectoryName(projFile);
                 OutputPath = ProjectPath;
                 IsWtsProject = GenContext.ToolBox.Shell.GetActiveProjectIsWts() ? Visibility.Visible : Visibility.Collapsed;
+                OnPropertyChanged(nameof(TempFolderAvailable));
                 ClearContext();
             }
         }
@@ -343,7 +350,15 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private static string GetTempGenerationFolder()
         {
-            return Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
+            if (GenContext.ToolBox == null || GenContext.ToolBox.Shell == null)
+            {
+                return string.Empty;
+            }
+
+            var path = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
+
+            Guid guid = GenContext.ToolBox.Shell.GetVsProjectId();
+            return Path.Combine(path, guid.ToString());
         }
 
         private static bool HasContent(string tempPath)

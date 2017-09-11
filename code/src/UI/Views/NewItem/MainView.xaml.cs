@@ -43,11 +43,16 @@ namespace Microsoft.Templates.UI.Views.NewItem
             ViewModel.TryHideOverlayBox(element);
         }
 
-        private void OnKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (e.Key == Key.Escape)
+            if (!DialogResult.HasValue || !DialogResult.Value)
             {
-                Close();
+                NewItemGenController.Instance.CleanupTempGeneration();
+            }
+
+            if (Result != null && Result.ItemGenerationType == ItemGenerationType.None)
+            {
+                Result = null;
             }
         }
     }

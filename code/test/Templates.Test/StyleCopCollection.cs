@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
-    [CollectionDefinition("StyleCop collection")]
+    [CollectionDefinition("StyleCopCollection")]
     public class StyleCopCollection : ICollectionFixture<StyleCopGenerationTestsFixture>
     {
     }

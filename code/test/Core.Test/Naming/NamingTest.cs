@@ -207,24 +207,37 @@ namespace Microsoft.Templates.Core.Test
         }
 
         [Fact]
-        public void DirectoryExistsValidator()
+        public void IsValid_DirectoryExistsValidator_NonExistantDirectory()
         {
-            var directoryValidator = new DirectoryExistsValidator(Environment.CurrentDirectory);
-            var invalidDirectoryValidator = new DirectoryExistsValidator(Path.Combine(Environment.CurrentDirectory, Guid.NewGuid().ToString()));
-            var existingDir = Directory.CreateDirectory(Guid.NewGuid().ToString());
+            var nonExistantFolderDirectoryValidator = new DirectoryExistsValidator(Path.Combine(Environment.CurrentDirectory, Guid.NewGuid().ToString()));
 
             // invalid dir
-            var invalidDirectory = invalidDirectoryValidator.Validate(Guid.NewGuid().ToString());
+            var nonExistantFolderDirectory = nonExistantFolderDirectoryValidator.Validate(Guid.NewGuid().ToString());
 
-            var badDirectory = directoryValidator.Validate(Guid.NewGuid().ToString());
+            Assert.Equal(nonExistantFolderDirectory.IsValid, true);
+        }
+
+        [Fact]
+        public void IsValid_DirectoryExistsValidator_ValidDirectory()
+        {
+            var directoryValidator = new DirectoryExistsValidator(Environment.CurrentDirectory);
+            var randomValidFolderDirectory = directoryValidator.Validate(Guid.NewGuid().ToString());
+
+            Assert.Equal(randomValidFolderDirectory.IsValid, true);
+        }
+
+        [Fact]
+        public void IsNotValid_DirectoryExistsValidator_CollisionDirectory()
+        {
+            var directoryValidator = new DirectoryExistsValidator(Environment.CurrentDirectory);
+            var existingDir = Directory.CreateDirectory(Path.Combine(Environment.CurrentDirectory, Guid.NewGuid().ToString()));
+
             var existsDirectory = directoryValidator.Validate(existingDir.Name);
 
-            Assert.Equal(invalidDirectory.IsValid, true);
-            Assert.Equal(badDirectory.IsValid, true);
             Assert.Equal(existsDirectory.IsValid, false);
 
             // Clean
-            Directory.Delete(existingDir.FullName, true);
+            existingDir.Delete();
         }
 
         private ITemplateInfo GetTarget(string templateName)

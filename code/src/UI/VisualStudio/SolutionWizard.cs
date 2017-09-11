@@ -4,6 +4,7 @@
 
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using EnvDTE;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -32,7 +33,10 @@ namespace Microsoft.Templates.UI.VisualStudio
         public List<FailedMergePostAction> FailedMergePostActions { get; } = new List<FailedMergePostAction>();
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
+
         public List<string> FilesToOpen { get; } = new List<string>();
+
+        public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; private set; } = new Dictionary<ProjectMetricsEnum, double>();
 
         protected void Initialize(string language)
         {
@@ -79,8 +83,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
-            var solutionDirectory = replacementsDictionary["$solutiondirectory$"];
-
             try
             {
                 if (runKind == WizardRunKind.AsNewProject || runKind == WizardRunKind.AsMultiProject)
@@ -94,10 +96,10 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (WizardBackoutException)
             {
-                if (Directory.Exists(solutionDirectory))
-                {
-                    Directory.Delete(solutionDirectory, true);
-                }
+                var projectDirectory = replacementsDictionary["$destinationdirectory$"];
+                var solutionDirectory = replacementsDictionary["$solutiondirectory$"];
+
+                CleanupDirectories(projectDirectory, solutionDirectory);
 
                 throw;
             }
@@ -106,6 +108,18 @@ namespace Microsoft.Templates.UI.VisualStudio
         public bool ShouldAddProjectItem(string filePath)
         {
             return true;
+        }
+
+        private void CleanupDirectories(string projectDirectory, string solutionDirectory)
+        {
+            Fs.SafeDeleteDirectory(projectDirectory);
+
+            if (Directory.Exists(solutionDirectory)
+                && !Directory.EnumerateDirectories(solutionDirectory).Any()
+                && !Directory.EnumerateFiles(solutionDirectory).Any())
+            {
+                Fs.SafeDeleteDirectory(solutionDirectory);
+            }
         }
     }
 }

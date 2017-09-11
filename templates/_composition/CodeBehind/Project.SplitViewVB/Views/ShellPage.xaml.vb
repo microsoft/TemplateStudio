@@ -69,7 +69,7 @@ Namespace Views
 
         Private Sub Initialize()
             NavigationService.Frame = shellFrame
-            AddHandler NavigationService.Frame.Navigated, AddressOf NavigationService_Navigated
+            AddHandler NavigationService.Frame.Navigated, AddressOf Frame_Navigated
             PopulateNavItems()
 
             InitializeState(Window.Current.Bounds.Width)
@@ -93,7 +93,7 @@ Namespace Views
             ' Edit String/en-US/Resources.resw: Add a menu item title for each page
         End Sub
 
-        Private Sub NavigationService_Navigated(sender As Object, e As NavigationEventArgs)
+        Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             Dim navigationItem = Nothing
             
             If PrimaryItems IsNot Nothing

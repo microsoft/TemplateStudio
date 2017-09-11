@@ -13,6 +13,7 @@ namespace Microsoft.Templates.UI
 {
     public enum ItemGenerationType
     {
+        None,
         Generate,
         GenerateAndMerge
     }
@@ -23,7 +24,7 @@ namespace Microsoft.Templates.UI
         public string Framework { get; set; }
         public string HomeName { get; set; }
         public string Language { get; set; }
-        public ItemGenerationType ItemGenerationType { get; set; }
+        public ItemGenerationType ItemGenerationType { get; set; } = ItemGenerationType.None;
         public List<(string name, ITemplateInfo template)> Pages { get; } = new List<(string name, ITemplateInfo template)>();
         public List<(string name, ITemplateInfo template)> Features { get; } = new List<(string name, ITemplateInfo template)>();
 
