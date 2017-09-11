@@ -27,14 +27,14 @@ namespace Microsoft.Templates.UI.Controls
             get { return (StatusViewModel)GetValue(StatusProperty); }
             set { SetValue(StatusProperty, value); }
         }
-        public static readonly DependencyProperty StatusProperty = DependencyProperty.Register("Status", typeof(StatusViewModel), typeof(StatusBox), new PropertyMetadata(null, OnStatusPropertyChanged));
+        public static readonly DependencyProperty StatusProperty = DependencyProperty.Register(nameof(Status), typeof(StatusViewModel), typeof(StatusBox), new PropertyMetadata(null, OnStatusPropertyChanged));
 
         public ICommand CloseCommand
         {
             get { return (ICommand)GetValue(CloseCommandProperty); }
             private set { SetValue(CloseCommandProperty, value); }
         }
-        public static readonly DependencyProperty CloseCommandProperty = DependencyProperty.Register("CloseCommand", typeof(ICommand), typeof(StatusBox), new PropertyMetadata(null));
+        public static readonly DependencyProperty CloseCommandProperty = DependencyProperty.Register(nameof(CloseCommand), typeof(ICommand), typeof(StatusBox), new PropertyMetadata(null));
 
         private static void OnStatusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
