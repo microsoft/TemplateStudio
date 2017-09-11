@@ -253,7 +253,6 @@ namespace Microsoft.Templates.Test
         public static string GetRandomName(ITemplateInfo template)
 #pragma warning restore RECS0154 // Parameter is never used
         {
-
             for (int i = 0; i < 10; i++)
             {
                 var randomName = Path.GetRandomFileName().Replace(".", "");

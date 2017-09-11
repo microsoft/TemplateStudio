@@ -90,11 +90,23 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplatesAsync")]
         [Trait("Type", "BuildRightClick")]
-        public async Task BuildProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
+        public async Task BuildEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
-            var projectName = $"{projectType}{framework}AllRandom";
+            var projectName = $"{projectType}{framework}AllRightClick";
 
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, language, false);
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, language, true, false);
+
+            AssertBuildProjectAsync(projectPath, projectName);
+        }
+
+        [Theory]
+        [MemberData("GetProjectTemplatesAsync")]
+        [Trait("Type", "BuildRightClick")]
+        public async Task BuildCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
+        {
+            var projectName = $"{projectType}{framework}AllRightClick2";
+
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, language, false, false);
 
             AssertBuildProjectAsync(projectPath, projectName);
         }
