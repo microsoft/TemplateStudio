@@ -42,6 +42,7 @@ protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
 **Navigation** paradigm has any differences between different project types.
 - **Blank** project type setups Window.Current.Content as a new Frame and navigates to the HomePage by default. NavigationService will do future navigations on this frame.
 - **Navigation Pane** project type setups Window.Current.Content as a new ShellPage instance. This ShellPage will set NavigationService frame to an inner frame handled by NavigationPane and NavigationService will do future navigations on this frame.
+You can find more on configuring code generated with this project type [here](./projectTypes/navigationpane.md).
 - **Pivot and Tabs** project type setups Window.Current.Content as a new Frame and navigates to PivotPage that contains a PivotControl, this PivotControl contains one PivotItem for each page. PivotItems contains a header text and a Frame set to configurated page. On this project type, NavigationService has not the responsibility to navigate between pivot items, but NavigationService could navigate out of PivotPage if it would be necessary.
 
 
