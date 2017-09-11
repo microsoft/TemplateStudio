@@ -203,6 +203,9 @@
     <Compile Include="Controls\StatusBox.xaml.cs">
       <DependentUpon>StatusBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TogglePanel.xaml.cs">
+      <DependentUpon>TogglePanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Extensions\ListViewExtensions.cs" />
     <Compile Include="Generation\NewItemGenerationFileInfo.cs" />
@@ -299,7 +302,6 @@
     <Compile Include="Converters\MicrosoftTemplatesAuthorConverter.cs" />
     <Compile Include="Converters\StringVisibilityConverter.cs" />
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
-    <Compile Include="Controls\TogglePane.cs" />
     <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="Generation\NewProjectGenController.cs" />
     <Compile Include="Generation\NewItemGenController.cs" />
@@ -442,7 +444,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\TogglePane.xaml">
+    <Page Include="Controls\TogglePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -454,10 +456,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\StyleImage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Styles\StyleLogoDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -466,7 +464,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Styles\StyleTogglePane.xaml">
+    <Page Include="Styles\StyleTogglePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
