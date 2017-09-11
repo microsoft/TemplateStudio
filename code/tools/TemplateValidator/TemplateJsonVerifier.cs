@@ -32,12 +32,20 @@ namespace TemplateValidator
                 results.Add("Path to template.json file not provided.");
             }
 
-            if (configFilePath?.EndsWith(".template.config\\template.json", StringComparison.InvariantCulture) == false)
+            if (Path.GetFileName(configFilePath) != "template.json")
             {
-                results.Add("Path to template.json file not provided.");
+                results.Add("Path does not point to a template.json file.");
             }
 
-            if (!File.Exists(configFilePath))
+            // handle relative and absolute paths
+            var rootedFilePath = configFilePath;
+
+            if (configFilePath != null && !Path.IsPathRooted(configFilePath))
+            {
+                rootedFilePath = new FileInfo(configFilePath).FullName;
+            }
+
+            if (!File.Exists(rootedFilePath))
             {
                 results.Add("Path to template.json file does not exist.");
             }

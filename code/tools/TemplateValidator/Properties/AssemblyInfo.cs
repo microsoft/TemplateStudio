@@ -14,7 +14,7 @@ using CommandLine;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("TemplateValidator")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCopyright("Copyright © .NET Foundation and Contributors 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -44,4 +44,4 @@ using CommandLine;
 [assembly: AssemblyUsage(
     "Usage: TemplateValidator -f \"../../Templates/Pages/Blank/.template.config/template.json\" ",
     "       TemplateValidator -d \"C:\\GitHub\\WindowsTemplateStudio\\templates\" ",
-    "       TemplateValidator -d \"C:\\GitHub\\WindowsTemplateStudio\\templates\" \"C:\\MyWtsTemplates\" ")]
+    "       TemplateValidator -d \"C:\\GitHub\\WTS\\templates\" \"C:\\MyWtsTemplates\" ")]

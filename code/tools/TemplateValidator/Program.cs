@@ -15,20 +15,9 @@ namespace TemplateValidator
         {
             Task.Run(async () =>
             {
-                ////var analyzer = new SimpleJsonAnalyzer();
-
-                ////var sampleTemplate = File.ReadAllText("../../Templates/Pages/Blank/.template.config/template.json");
-
-                ////var results = await analyzer.AnalyzeJsonAsync(sampleTemplate, typeof(VerificationTemplateInfo));
-
-                ////var pathToFolder = "../../Templates";
-                ////var pathToJson = "../../Templates/Pages/Blank/.template.config/template.json";
-
-                ////var results = await TemplateJsonVerifier.VerifyTemplatePathAsync(pathToJson);
-
                 var options = new CommandLineOptions();
 
-                if (CommandLine.Parser.Default.ParseArguments(args, options))
+                if (args?.Any() != false && CommandLine.Parser.Default.ParseArguments(args, options))
                 {
                     var appTitle = new HelpText
                     {
@@ -44,11 +33,18 @@ namespace TemplateValidator
 
                     if (!string.IsNullOrWhiteSpace(options.File))
                     {
+                        Console.WriteLine(options.File);
+
                         results = await TemplateJsonVerifier.VerifyTemplatePathAsync(options.File);
                     }
                     else if (options.Directories.Any())
                     {
-                        results = TemplateFolderVerifier.VerifyTemplateFolders(!options.NoWarnings, options.Directories.ToArray());
+                        foreach (var directory in options.Directories)
+                        {
+                            Console.WriteLine(directory);
+                        }
+
+                        results = TemplateFolderVerifier.VerifyTemplateFolders(!options.NoWarnings, options.Directories);
                     }
                     else
                     {

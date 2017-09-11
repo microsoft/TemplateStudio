@@ -10,11 +10,12 @@ namespace TemplateValidator
 {
     public class CommandLineOptions
     {
-        [Option('f', "file", DefaultValue = false, HelpText = "Verify a single config file.")]
+        [Option('f', "file", DefaultValue = "", HelpText = "Verify a single config file.")]
         public string File { get; set; }
 
-        [OptionList('d', "directories", DefaultValue = false, HelpText = "Verify all the templates in the defined directories.")]
-        public List<string> Directories { get; set; }
+        // Use arral rather than List<T> becuase the CommandLineParser interprets ':' in a special way for parsing list items but we need it for file paths
+        [OptionArray('d', "directories", DefaultValue = new string[] { }, HelpText = "Verify all the templates in the defined directories.")]
+        public string[] Directories { get; set; }
 
         // Warnings should be used to provide guidance in the output but for issues that are optional to address.
         [Option("nowarn", DefaultValue = false, HelpText = "Do not show warnings.")]

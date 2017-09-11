@@ -120,6 +120,11 @@ namespace TemplateValidator
 
             var success = results.Count == 0;
 
+            if (success)
+            {
+                results.Add("All looks good.");
+            }
+
             return new VerifierResult(success, results);
         }
 
