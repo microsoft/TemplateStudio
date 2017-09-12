@@ -27,7 +27,10 @@ namespace Microsoft.Templates.Test
 
             foreach (var file in GetFiles(templatesRoot, fileExtension))
             {
-                if (File.ReadAllText(file).Contains(textThatShouldNotBeinTheFile))
+                var allText = File.ReadAllText(file);
+
+                if (allText.Contains(textThatShouldNotBeinTheFile)
+                 && !IsValidException(textThatShouldNotBeinTheFile, file, allText))
                 {
                     // Throw an assertion failure here and stop checking other files.
                     // We don't need to check every file if at least one fails as this should just be a final verification.
@@ -36,6 +39,28 @@ namespace Microsoft.Templates.Test
             }
 
             return new Tuple<bool, string>(true, string.Empty);
+        }
+
+        private bool IsValidException(string textThatShouldNotBeinTheFile, string fileName, string fileContents)
+        {
+            switch (textThatShouldNotBeinTheFile)
+            {
+                case "this.":
+                    // The CaliburnMicro templates include a Set method that is an extension method on PropertyChangedBase.
+                    // Calling it requires referencing `this` and so is a valid exception
+                    if (fileName.Contains("CaliburnMicro"))
+                    {
+                        var fileContentsMinusValidExceptions = fileContents.Replace("set { this.Set(", "XXXXX");
+
+                        return !fileContentsMinusValidExceptions.Contains(textThatShouldNotBeinTheFile);
+                    }
+
+                    break;
+                default:
+                    break;
+            }
+
+            return false;
         }
 
         private IEnumerable<string> GetFiles(string directory, string extension = ".*")
