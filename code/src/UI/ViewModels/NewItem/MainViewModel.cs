@@ -16,6 +16,12 @@ using Microsoft.Templates.UI.Views.NewItem;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
+    public enum NewItemStep
+    {
+        ItemConfiguration = 0,
+        ChangesSummary = 1
+    }
+
     public class MainViewModel : BaseMainViewModel
     {
         public static MainViewModel Current;
@@ -27,6 +33,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public string ConfigProjectType;
         public NewItemSetupViewModel NewItemSetup { get; private set; } = new NewItemSetupViewModel();
         public ChangesSummaryViewModel ChangesSummary { get; private set; } = new ChangesSummaryViewModel();
+
+        public NewItemStep CurrentStep { get; set; }
 
         public MainViewModel(MainView mainView) : base(mainView)
         {
@@ -114,6 +122,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         protected override void OnGoBack()
         {
             base.OnGoBack();
+
+            if (CurrentStep == NewItemStep.ChangesSummary)
+            {
+                CurrentStep = NewItemStep.ItemConfiguration;
+                UpdateGoBack(false);
+            }
             NewItemSetup.Initialize(false);
             HasOverlayBox = true;
             ChangesSummary.ResetSelection();
@@ -123,11 +137,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         protected override void OnNext()
         {
-            HasOverlayBox = false;
-            base.OnNext();
-            NewItemSetup.EditionVisibility = Visibility.Collapsed;
-            SetChangesSummaryTitle();
-            NavigationService.Navigate(new ChangesSummaryView());
+            if (CurrentStep == NewItemStep.ItemConfiguration)
+            {
+                base.OnNext();
+                CurrentStep = NewItemStep.ChangesSummary;
+                HasOverlayBox = false;
+                NewItemSetup.EditionVisibility = Visibility.Collapsed;
+                SetChangesSummaryTitle();
+                NavigationService.Navigate(new ChangesSummaryView());
+            }
         }
 
         protected override void OnFinish(string parameter)
@@ -156,11 +174,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         protected override async Task OnNewTemplatesAvailableAsync()
         {
-            UpdateCanFinish(false);
-            _canGoBack = false;
-            BackCommand.OnCanExecuteChanged();
-            ShowFinishButton = false;
-            EnableGoForward();
             NavigationService.Navigate(new NewItemSetupView());
             NewItemSetup.Initialize(true);
 

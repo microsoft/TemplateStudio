@@ -75,7 +75,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             if (TemplateGroups.Any())
             {
                 MainViewModel.Current.HasContent = true;
-                MainViewModel.Current.EnableGoForward();
+                MainViewModel.Current.UpdateGoForward(true);
                 var activeTemplate = MainViewModel.Current.GetActiveTemplate();
                 if (activeTemplate == null)
                 {

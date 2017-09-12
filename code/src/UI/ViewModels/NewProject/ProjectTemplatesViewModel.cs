@@ -85,17 +85,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             SavedPages.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SavedPages)); };
         }
 
-        public IEnumerable<string> Names
-        {
-            get
-            {
-                var names = new List<string>();
-                SavedPages.ToList().ForEach(spg => names.AddRange(spg.Select(sp => sp.ItemName)));
-                names.AddRange(SavedFeatures.Select(sf => sf.ItemName));
-                return names;
-            }
-        }
-
         public IEnumerable<string> Identities
         {
             get
@@ -107,81 +96,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        public bool HasTemplatesAdded => SavedPages?.Count > 0 || SavedFeatures?.Count > 0;
-
-        private void ValidateCurrentTemplateName(SavedTemplateViewModel item)
-        {
-            if (item.NewItemName != item.ItemName)
-            {
-                var validators = new List<Validator>()
-                {
-                    new ExistingNamesValidator(Names),
-                    new ReservedNamesValidator()
-                };
-                if (item.CanChooseItemName)
-                {
-                    validators.Add(new DefaultNamesValidator());
-                }
-                var validationResult = Naming.Validate(item.NewItemName, validators);
-
-                item.IsValidName = validationResult.IsValid;
-                item.ErrorMessage = string.Empty;
-
-                if (!item.IsValidName)
-                {
-                    item.ErrorMessage = StringRes.ResourceManager.GetString($"ValidationError_{validationResult.ErrorType}");
-
-                    if (string.IsNullOrWhiteSpace(item.ErrorMessage))
-                    {
-                        item.ErrorMessage = StringRes.UndefinedErrorString;
-                    }
-                    MainViewModel.Current.SetValidationErrors(item.ErrorMessage);
-                    throw new Exception(item.ErrorMessage);
-                }
-            }
-            MainViewModel.Current.CleanStatus(true);
-        }
-
-        private void ValidateNewTemplateName(TemplateInfoViewModel template)
-        {
-            var validators = new List<Validator>()
-            {
-                new ExistingNamesValidator(Names),
-                new ReservedNamesValidator()
-            };
-            if (template.CanChooseItemName)
-            {
-                validators.Add(new DefaultNamesValidator());
-            }
-            var validationResult = Naming.Validate(template.NewTemplateName, validators);
-
-            template.IsValidName = validationResult.IsValid;
-            template.ErrorMessage = string.Empty;
-
-            if (!template.IsValidName)
-            {
-                template.ErrorMessage = StringRes.ResourceManager.GetString($"ValidationError_{validationResult.ErrorType}");
-
-                if (string.IsNullOrWhiteSpace(template.ErrorMessage))
-                {
-                    template.ErrorMessage = StringRes.UndefinedErrorString;
-                }
-                MainViewModel.Current.SetValidationErrors(template.ErrorMessage);
-                throw new Exception(template.ErrorMessage);
-            }
-            MainViewModel.Current.CleanStatus(true);
-        }
-
         public async Task InitializeAsync()
         {
-            MainViewModel.Current.Title = StringRes.ProjectTemplatesTitle;
             ContextProjectType = MainViewModel.Current.ProjectSetup.SelectedProjectType;
             ContextFramework = MainViewModel.Current.ProjectSetup.SelectedFramework;
 
             if (PagesGroups.Count == 0)
             {
                 var pages = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page && t.GetFrameworkList().Contains(ContextFramework.Name))
-                                                   .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), AddTemplateCommand, SaveTemplateCommand, ValidateNewTemplateName));
+                                                   .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), AddTemplateCommand, SaveTemplateCommand, MainViewModel.Current.Validations.ValidateNewTemplateName));
 
                 var groups = pages.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order))).OrderBy(gr => gr.Title);
 
@@ -192,7 +115,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (FeatureGroups.Count == 0)
             {
                 var features = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Feature && t.GetFrameworkList().Contains(ContextFramework.Name) && !t.GetIsHidden())
-                                                      .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), AddTemplateCommand, SaveTemplateCommand, ValidateNewTemplateName));
+                                                      .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), AddTemplateCommand, SaveTemplateCommand, MainViewModel.Current.Validations.ValidateNewTemplateName));
 
                 var groups = features.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order))).OrderBy(gr => gr.Title);
 
@@ -205,41 +128,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 SetupTemplatesFromLayout(ContextProjectType.Name, ContextFramework.Name);
                 MainViewModel.Current.RebuildLicenses();
             }
-            MainViewModel.Current.UpdateCanFinish(true);
             CloseTemplatesEdition();
             await Task.CompletedTask;
         }
 
-        public void ResetSelection()
-        {
-            SavedPages.Clear();
-            SavedFeatures.Clear();
-            PagesGroups.Clear();
-            FeatureGroups.Clear();
-        }
-
         private void OnAddTemplateItem(TemplateInfoViewModel template)
         {
+            template.NewTemplateName = MainViewModel.Current.Validations.InferItemNameForNewTemplate(template);
             if (template.CanChooseItemName)
             {
-                var validators = new List<Validator>()
-                {
-                    new ReservedNamesValidator(),
-                    new ExistingNamesValidator(Names),
-                    new DefaultNamesValidator()
-                };
-                template.NewTemplateName = Naming.Infer(template.Template.GetDefaultName(), validators);
                 CloseTemplatesEdition();
                 template.IsEditionEnabled = true;
             }
             else
             {
-                var validators = new List<Validator>()
-                {
-                    new ReservedNamesValidator(),
-                    new ExistingNamesValidator(Names)
-                };
-                template.NewTemplateName = Naming.Infer(template.Template.GetDefaultName(), validators);
                 SetupTemplateAndDependencies((template.NewTemplateName, template.Template));
                 var isAlreadyDefined = IsTemplateAlreadyDefined(template.Template.Identity);
                 template.UpdateTemplateAvailability(isAlreadyDefined);
@@ -272,18 +174,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 item.IsEditionEnabled = false;
                 return;
             }
-            var validators = new List<Validator>()
-            {
-                new ExistingNamesValidator(Names),
-                new ReservedNamesValidator()
-            };
-            if (item.CanChooseItemName)
-            {
-                validators.Add(new DefaultNamesValidator());
-            }
-            var validationResult = Naming.Validate(item.NewItemName, validators);
 
-            if (validationResult.IsValid)
+            if (MainViewModel.Current.Validations.IsValidRename(item.NewItemName, item.CanChooseItemName))
             {
                 item.ItemName = item.NewItemName;
 
@@ -533,7 +425,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void SaveNewTemplate((string name, ITemplateInfo template) item, bool isRemoveEnabled = true)
         {
-            var newItem = new SavedTemplateViewModel(item, isRemoveEnabled, OpenSummaryItemCommand, RemoveTemplateCommand, RenameSummaryItemCommand, ConfirmRenameSummaryItemCommand, ValidateCurrentTemplateName);
+            var newItem = new SavedTemplateViewModel(item, isRemoveEnabled, OpenSummaryItemCommand, RemoveTemplateCommand, RenameSummaryItemCommand, ConfirmRenameSummaryItemCommand, MainViewModel.Current.Validations.ValidateCurrentTemplateName);
 
             if (item.template.GetTemplateType() == TemplateType.Page)
             {

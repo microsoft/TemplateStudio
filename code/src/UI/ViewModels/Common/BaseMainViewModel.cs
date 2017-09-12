@@ -22,12 +22,13 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     public abstract class BaseMainViewModel : Observable
     {
         private Window _mainView;
-        protected bool _canFinish;
-        protected bool _canGoBack;
-        protected bool _canGoForward;
-        protected bool _hasValidationErrors;
-        protected bool _templatesAvailable;
-        protected bool _canCheckingUpdates;
+
+        private bool _canFinish;
+        private bool _canGoBack;
+        private bool _canGoForward;
+        private bool _hasValidationErrors;
+        private bool _templatesAvailable;
+        private bool _canCheckingUpdates;
 
         protected StatusViewModel _status = StatusViewModel.EmptyStatus;
         public StatusViewModel Status
@@ -121,7 +122,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public bool ShowFinishButton
         {
             get => _showFinishButton;
-            set => SetProperty(ref _showFinishButton, value);
+            private set => SetProperty(ref _showFinishButton, value);
         }
 
         #region Commands
@@ -140,8 +141,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public RelayCommand BackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && !_hasValidationErrors && _canGoForward));
         public RelayCommand ShowOverlayMenuCommand => _showOverlayMenuCommand ?? (_showOverlayMenuCommand = new RelayCommand(() => IsOverlayBoxVisible = !IsOverlayBoxVisible));
-        public RelayCommand<string> FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand<string>(OnFinish, CanFinish));
-        public RelayCommand CheckUpdatesCommand => _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand(async () => await OnCheckUpdatesAsync(), CanCheckUpdates));
+        public RelayCommand<string> FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand<string>(OnFinish, (parameter) => !_hasValidationErrors && _canFinish));
+        public RelayCommand CheckUpdatesCommand => _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand(async () => await OnCheckUpdatesAsync(), () => _canCheckingUpdates));
         public RelayCommand RefreshTemplatesCommand => _refreshTemplatesCommand ?? (_refreshTemplatesCommand = new RelayCommand(async () => await OnRefreshTemplatesAsync()));
         #endregion
 
@@ -156,10 +157,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         protected virtual void OnNext()
         {
-            _canGoBack = true;
+            UpdateGoBack(true);
             IsOverlayBoxVisible = false;
-            BackCommand.OnCanExecuteChanged();
-            ShowFinishButton = true;
         }
 
         protected abstract Task OnTemplatesAvailableAsync();
@@ -168,17 +167,46 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public abstract UserSelection CreateUserSelection();
 
-        public void SetValidationErrors(string errorMessage, StatusType statusType = StatusType.Error)
+        public void UpdateTemplatesAvailable(bool value)
         {
-            SetStatus(new StatusViewModel(statusType, errorMessage));
-            _hasValidationErrors = true;
-            FinishCommand.OnCanExecuteChanged();
+            _templatesAvailable = value;
+            NextCommand.OnCanExecuteChanged();
         }
 
+        private void UpdateCanCheckUpdates(bool value)
+        {
+            _canCheckingUpdates = value;
+            CheckUpdatesCommand.OnCanExecuteChanged();
+        }
+
+        private void UpdateHasValidationErrors(bool value)
+        {
+            _hasValidationErrors = value;
+            NextCommand.OnCanExecuteChanged();
+            FinishCommand.OnCanExecuteChanged();
+        }
+        public void UpdateGoBack(bool canGoBack)
+        {
+            _canGoBack = canGoBack;
+            BackCommand.OnCanExecuteChanged();
+        }
+
+        public void UpdateGoForward(bool canGoForward)
+        {
+            _canGoForward = canGoForward;
+            NextCommand.OnCanExecuteChanged();
+        }
         public void UpdateCanFinish(bool canFinish)
         {
             _canFinish = canFinish;
             FinishCommand.OnCanExecuteChanged();
+            ShowFinishButton = canFinish;
+        }
+
+        protected virtual void OnGoBack()
+        {
+            UpdateCanFinish(false);
+            NavigationService.GoBack();
         }
 
         public void CleanStatus(bool cleanValidationError = false)
@@ -189,17 +217,16 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
             if (cleanValidationError)
             {
-                _hasValidationErrors = false;
-                NextCommand.OnCanExecuteChanged();
-                FinishCommand.OnCanExecuteChanged();
+                UpdateHasValidationErrors(false);
             }
         }
 
-        public void EnableGoForward()
+        public void SetValidationErrors(string errorMessage, StatusType statusType = StatusType.Error)
         {
-            _canGoForward = true;
-            NextCommand.OnCanExecuteChanged();
+            SetStatus(new StatusViewModel(statusType, errorMessage));
+            UpdateHasValidationErrors(true);
         }
+
         public virtual void UnsuscribeEventHandlers()
         {
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged -= SyncSyncStatusChanged;
@@ -219,34 +246,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             IsOverlayBoxVisible = false;
         }
 
-        protected virtual void OnGoBack()
-        {
-            NavigationService.GoBack();
-            _canGoBack = false;
-            _canFinish = false;
-            BackCommand.OnCanExecuteChanged();
-
-            ShowFinishButton = false;
-        }
-        protected virtual bool CanFinish(string parameter)
-        {
-            if (_hasValidationErrors || !_canFinish)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        private bool CanCheckUpdates()
-        {
-            return _canCheckingUpdates;
-        }
-
-        private void SetCanCheckUpdates(bool value)
-        {
-            _canCheckingUpdates = value;
-            CheckUpdatesCommand.OnCanExecuteChanged();
-        }
         protected virtual void OnFinish(string parameter)
         {
             _mainView.DialogResult = true;
@@ -280,7 +279,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             try
             {
-                SetCanCheckUpdates(false);
+                UpdateCanCheckUpdates(false);
                 await GenContext.ToolBox.Repo.CheckForUpdatesAsync();
             }
             catch (Exception ex)
@@ -292,7 +291,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             finally
             {
                 IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
-                SetCanCheckUpdates(!GenContext.ToolBox.Repo.SyncInProgress);
+                UpdateCanCheckUpdates(!GenContext.ToolBox.Repo.SyncInProgress);
             }
         }
 
@@ -316,7 +315,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             finally
             {
                 IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
-                SetCanCheckUpdates(!GenContext.ToolBox.Repo.SyncInProgress);
+                UpdateCanCheckUpdates(!GenContext.ToolBox.Repo.SyncInProgress);
             }
         }
 
@@ -395,11 +394,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 TemplatesVersion = GenContext.ToolBox.Repo.TemplatesVersion;
                 CleanStatus();
 
-                _templatesAvailable = true;
+                UpdateTemplatesAvailable(true);
                 await OnTemplatesAvailableAsync();
                 NextCommand.OnCanExecuteChanged();
                 IsLoading = false;
-                SetCanCheckUpdates(true);
+                UpdateCanCheckUpdates(true);
             }
             if (status.Status == SyncStatus.OverVersion)
             {
@@ -414,8 +413,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 _mainView.Dispatcher.Invoke(() =>
                 {
                     SetStatus(StatusViewModel.Error(StringRes.StatusOverVersionNoContent));
-                    _templatesAvailable = false;
-                    NextCommand.OnCanExecuteChanged();
+                    UpdateTemplatesAvailable(true);
                 });
             }
 
@@ -424,8 +422,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 _mainView.Dispatcher.Invoke(() =>
                 {
                     SetStatus(StatusViewModel.Error(StringRes.StatusLowerVersionContent));
-                    _templatesAvailable = false;
-                    NextCommand.OnCanExecuteChanged();
+                    UpdateTemplatesAvailable(false);
                 });
             }
 

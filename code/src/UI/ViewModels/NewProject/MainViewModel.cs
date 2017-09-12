@@ -18,6 +18,13 @@ using Microsoft.Templates.UI.Views.NewProject;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
+    public enum NewProjectStep
+    {
+        ProjectConfiguration = 0,
+        AddPages = 1,
+        AddTemplates = 2
+    }
+
     public class MainViewModel : BaseMainViewModel
     {
         public static MainViewModel Current;
@@ -26,6 +33,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public ProjectSetupViewModel ProjectSetup { get; private set; } = new ProjectSetupViewModel();
 
         public ProjectTemplatesViewModel ProjectTemplates { get; private set; } = new ProjectTemplatesViewModel();
+        public ValidationsViewModel Validations { get; } = new ValidationsViewModel();
 
         public ObservableCollection<SummaryLicenseViewModel> SummaryLicenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
 
@@ -35,6 +43,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             get => _hasSummaryLicenses;
             private set => SetProperty(ref _hasSummaryLicenses, value);
         }
+
+        public NewProjectStep CurrentStep { get; set; }
 
         public MainViewModel(MainView mainView) : base(mainView)
         {
@@ -128,33 +138,61 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             MainView.Close();
         }
 
-        protected override void OnNext()
+        protected override async void OnNext()
         {
             base.OnNext();
-            if (CheckProjectSetupChanged())
+            if (CurrentStep == NewProjectStep.ProjectConfiguration)
             {
-                ProjectTemplates.ResetSelection();
-                _summaryPageGroups.Children.Clear();
-                CleanStatus();
+                if (CheckProjectSetupChanged())
+                {
+                    ResetSelection();
+                    _summaryPageGroups.Children.Clear();
+                    CleanStatus();
+                }
+                Title = StringRes.ProjectPagesTitle;
+                await ProjectTemplates.InitializeAsync();
+                NavigationService.Navigate(new ProjectPagesView());
+                CurrentStep = NewProjectStep.AddPages;
             }
-            NavigationService.Navigate(new ProjectTemplatesView());
+            else if (CurrentStep == NewProjectStep.AddPages)
+            {
+                Title = StringRes.ProjectFeaturesTitle;
+                NavigationService.Navigate(new ProjectFeaturesView());
+                CurrentStep = NewProjectStep.AddTemplates;
+                UpdateCanFinish(true);
+            }
         }
+
+        protected override void OnGoBack()
+        {
+            base.OnGoBack();
+            if (CurrentStep == NewProjectStep.AddPages)
+            {
+                CurrentStep = NewProjectStep.ProjectConfiguration;
+                UpdateGoBack(false);
+                Title = StringRes.ProjectSetupTitle;
+            }
+            else if (CurrentStep == NewProjectStep.AddTemplates)
+            {
+                CurrentStep = NewProjectStep.AddPages;
+                Title = StringRes.ProjectPagesTitle;
+            }
+        }
+
         protected override void OnFinish(string parameter)
         {
-            MainView.Result = CreateUserSelection();
-            base.OnFinish(parameter);
+            if (CurrentStep == NewProjectStep.AddTemplates)
+            {
+                MainView.Result = CreateUserSelection();
+                base.OnFinish(parameter);
+            }
         }
 
         protected override async Task OnTemplatesAvailableAsync() => await ProjectSetup.InitializeAsync();
 
         protected override async Task OnNewTemplatesAvailableAsync()
         {
-            UpdateCanFinish(false);
-            _canGoBack = false;
-            BackCommand.OnCanExecuteChanged();
-            ShowFinishButton = false;
-            EnableGoForward();
-            ProjectTemplates.ResetSelection();
+            ResetSelection();
             _summaryPageGroups.Children.Clear();
             NavigationService.Navigate(new ProjectSetupView());
             await ProjectSetup.InitializeAsync(true);
@@ -204,7 +242,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
         private bool CheckProjectSetupChanged()
         {
-            if (ProjectTemplates.HasTemplatesAdded && (FrameworkChanged || ProjectTypeChanged))
+            if (HasTemplatesAdded && (FrameworkChanged || ProjectTypeChanged))
             {
                 return true;
             }
@@ -271,6 +309,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 return true;
             }
             return false;
+        }
+
+        public bool HasTemplatesAdded => ProjectTemplates.SavedPages.Any() || ProjectTemplates.SavedFeatures.Any();
+
+        public void ResetSelection()
+        {
+            ProjectTemplates.SavedPages.Clear();
+            ProjectTemplates.SavedFeatures.Clear();
+            ProjectTemplates.PagesGroups.Clear();
+            ProjectTemplates.FeatureGroups.Clear();
         }
     }
 }

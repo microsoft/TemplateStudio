@@ -5,14 +5,12 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.Views.NewProject
 {
-    /// <summary>
-    /// Interaction logic for MainView.xaml
-    /// </summary>
     public partial class MainView : Window
     {
         public static MainView Current;

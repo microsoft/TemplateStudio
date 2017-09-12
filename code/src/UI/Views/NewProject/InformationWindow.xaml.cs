@@ -3,14 +3,12 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Windows;
+
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.Views.NewProject
 {
-    /// <summary>
-    /// Interaction logic for InformationWindow.xaml
-    /// </summary>
     public partial class InformationWindow : Window
     {
         public InformationViewModel ViewModel { get; private set; }

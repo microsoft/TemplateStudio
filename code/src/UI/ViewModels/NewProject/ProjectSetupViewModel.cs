@@ -78,6 +78,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public async Task InitializeAsync(bool force = false)
         {
+            MainViewModel.Current.CurrentStep = NewProjectStep.ProjectConfiguration;
             MainViewModel.Current.Title = StringRes.ProjectSetupTitle;
 
             if (SelectedProjectType == null || force)
@@ -131,7 +132,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
 
             FrameworkHeader = string.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
-            MainViewModel.Current.EnableGoForward();
+            MainViewModel.Current.UpdateGoForward(true);
         }
     }
 }
