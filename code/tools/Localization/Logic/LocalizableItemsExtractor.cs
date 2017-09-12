@@ -4,8 +4,8 @@
 
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Xml;
-
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -193,15 +193,13 @@ namespace Localization
                     destinationDirectroy.Create();
                 foreach (string culture in cultures)
                 {
-                    FileInfo desFile = new FileInfo(Path.Combine(destinationDirectroy.FullName, culture + "." + templateJsonFile));
-                    if (!desFile.Exists)
+                    string filePath = Path.Combine(destinationDirectroy.FullName, culture + "." + templateJsonFile);
+                    if (!File.Exists(filePath))
                     {
-                        using (TextWriter writer = desFile.CreateText())
-                        {
-                            writer.Write(string.Format(templateEngineJsonContent, metadata.GetValue("author").Value<string>(), metadata.GetValue("name").Value<string>(), metadata.GetValue("description").Value<string>(), metadata.GetValue("identity").Value<string>()));
-                        }
+                        string content = string.Format(templateEngineJsonContent, metadata.GetValue("author").Value<string>(), metadata.GetValue("name").Value<string>(), metadata.GetValue("description").Value<string>(), metadata.GetValue("identity").Value<string>());
+                        File.WriteAllText(filePath, content, Encoding.UTF8);
                     }
-                    desFile = new FileInfo(Path.Combine(destinationDirectroy.FullName, culture + "." + templateDescriptionFile));
+                    FileInfo desFile = new FileInfo(Path.Combine(destinationDirectroy.FullName, culture + "." + templateDescriptionFile));
                     if (!desFile.Exists)
                     {
                         srcFile.CopyTo(desFile.FullName);
@@ -236,44 +234,44 @@ namespace Localization
 
             var projectMetadata = JsonConvert.DeserializeObject<List<JObject>>(File.ReadAllText(Path.Combine(templateSrcDirectory.FullName, wtsProjectTypes + ".json")));
             var frameworkMetadata = JsonConvert.DeserializeObject<List<JObject>>(File.ReadAllText(Path.Combine(templateSrcDirectory.FullName, wtsFrameworks + ".json")));
-            string currentName;
-            FileInfo projectDesFile, projectSrcFile, frameworkDesFile, frameworkSrcFile;
-
+            string currentName, projectDesFile, frameworkDesFile;
+            FileInfo projectSrcFile, frameworkSrcFile;
+            var fileContent = new StringBuilder();
             foreach (string culture in cultures)
             {
-                projectDesFile = new FileInfo(Path.Combine(templateDesDirectory.FullName, culture + "." + wtsProjectTypes + ".json"));
-                if (!projectDesFile.Exists)
+                projectDesFile = Path.Combine(templateDesDirectory.FullName, culture + "." + wtsProjectTypes + ".json");
+
+                if (!File.Exists(projectDesFile))
                 {
-                    using (TextWriter writer = projectDesFile.CreateText())
+                    int index = 1;
+                    foreach (JObject json in projectMetadata)
                     {
-                        int index = 1;
-                        foreach (JObject json in projectMetadata)
-                        {
-                            currentName = json.GetValue("name").Value<string>();
-                            writer.Write((index == 1 ? "[\r\n" : (index <= projectMetadata.Count ? ",\r\n" : string.Empty)) + string.Format(wtsTemplateJsonContent, currentName, json.GetValue("displayName").Value<string>(), json.GetValue("summary").Value<string>()) + (index >= projectMetadata.Count ? "\r\n]" : string.Empty));
-                            projectSrcFile = new FileInfo(Path.Combine(templateSrcDirectory.FullName, wtsProjectTypes, currentName + ".md"));
-                            projectSrcFile.CopyTo(Path.Combine(projectsDesDirectory.FullName, culture + "." + currentName + ".md"));
-                            index++;
-                        }
+                        currentName = json.GetValue("name").Value<string>();
+                        fileContent.Append((index == 1 ? "[\r\n" : (index <= projectMetadata.Count ? ",\r\n" : string.Empty)) + string.Format(wtsTemplateJsonContent, currentName, json.GetValue("displayName").Value<string>(), json.GetValue("summary").Value<string>()) + (index >= projectMetadata.Count ? "\r\n]" : string.Empty));
+
+                        projectSrcFile = new FileInfo(Path.Combine(templateSrcDirectory.FullName, wtsProjectTypes, currentName + ".md"));
+                        projectSrcFile.CopyTo(Path.Combine(projectsDesDirectory.FullName, culture + "." + currentName + ".md"));
+                        index++;
                     }
+
+                    File.WriteAllText(projectDesFile, fileContent.ToString(), Encoding.UTF8);
+                    fileContent.Clear();
                 }
 
-                frameworkDesFile = new FileInfo(Path.Combine(templateDesDirectory.FullName, culture + "." + wtsFrameworks + ".json"));
-
-                if (!frameworkDesFile.Exists)
+                frameworkDesFile = Path.Combine(templateDesDirectory.FullName, culture + "." + wtsFrameworks + ".json");
+                if (!File.Exists(frameworkDesFile))
                 {
-                    using (TextWriter writer = frameworkDesFile.CreateText())
+                    int index = 1;
+                    foreach (JObject json in frameworkMetadata)
                     {
-                        int index = 1;
-                        foreach (JObject json in frameworkMetadata)
-                        {
-                            currentName = json.GetValue("name").Value<string>();
-                            writer.Write((index == 1 ? "[\r\n" : (index <= projectMetadata.Count ? ",\r\n" : string.Empty)) + string.Format(wtsTemplateJsonContent, currentName, json.GetValue("displayName").Value<string>(), json.GetValue("summary").Value<string>()) + (index >= projectMetadata.Count ? "\r\n]" : string.Empty));
-                            frameworkSrcFile = new FileInfo(Path.Combine(templateSrcDirectory.FullName, wtsFrameworks, currentName + ".md"));
-                            frameworkSrcFile.CopyTo(Path.Combine(frameworksDesDirectory.FullName, culture + "." + currentName + ".md"));
-                            index++;
-                        }
+                        currentName = json.GetValue("name").Value<string>();
+                        fileContent.Append((index == 1 ? "[\r\n" : (index <= projectMetadata.Count ? ",\r\n" : string.Empty)) + string.Format(wtsTemplateJsonContent, currentName, json.GetValue("displayName").Value<string>(), json.GetValue("summary").Value<string>()) + (index >= projectMetadata.Count ? "\r\n]" : string.Empty));
+                        frameworkSrcFile = new FileInfo(Path.Combine(templateSrcDirectory.FullName, wtsFrameworks, currentName + ".md"));
+                        frameworkSrcFile.CopyTo(Path.Combine(frameworksDesDirectory.FullName, culture + "." + currentName + ".md"));
+                        index++;
                     }
+                    File.WriteAllText(frameworkDesFile, fileContent.ToString(), Encoding.UTF8);
+                    fileContent.Clear();
                 }
             }
         }
