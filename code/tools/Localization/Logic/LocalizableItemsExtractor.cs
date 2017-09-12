@@ -42,7 +42,7 @@ namespace Localization
 <VsixLanguagePack Version = ""1.0.0"" xmlns=""http://schemas.microsoft.com/developer/vsx-schema-lp/2010"" >  
   <LocalizedName>{0}</LocalizedName>  
   <LocalizedDescription>{1}</LocalizedDescription>  
-  <License>Content\EULA.{2}.rtf</License>
+  <License>..\Content\EULA.{2}.rtf</License>
   <MoreInfoUrl>https://github.com/Microsoft/WindowsTemplateStudio/</MoreInfoUrl>  
 </VsixLanguagePack> ";
         private const string templateEngineJsonContent = @"{{
@@ -89,10 +89,6 @@ namespace Localization
             if (!manifiestFile.Exists)
                 throw new FileNotFoundException($"File \"{manifiestFile.FullName}\" not found.");
 
-            FileInfo eulaFile = new FileInfo(Path.Combine(vsixSrcDirectory.FullName, "Content\\EULA.rtf"));
-            if (!eulaFile.Exists)
-                throw new FileNotFoundException($"File \"{eulaFile.FullName}\" not found.");
-
             XmlDocument xmlManifiestFile = XmlUtility.LoadXmlFile(manifiestFile.FullName);
             FileInfo langpackFile;
             DirectoryInfo vsixLocDesDirectory;
@@ -115,8 +111,6 @@ namespace Localization
                         writer.Write(string.Format(vsixLangpackContent, localizedName, localizedDescription, culture));
                     }
                 }
-
-                eulaFile.CopyTo(Path.Combine(vsixDesDirectory.FullName, $"Content\\EULA.{culture}.rtf"));
             }
         }
 
