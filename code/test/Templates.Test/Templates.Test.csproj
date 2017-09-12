@@ -137,6 +137,8 @@
     <AdditionalFiles Include="..\..\StyleCop.json">
       <Link>StyleCop.json</Link>
     </AdditionalFiles>
+    <Compile Include="TemplateFolderValidationTests.cs" />
+    <Compile Include="TemplateJsonValidationTests.cs" />
     <None Include="TestData\StyleCop\GlobalSuppressions.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -163,6 +165,10 @@
     <ProjectReference Include="..\..\src\UI\UI.csproj">
       <Project>{dcfd282d-d91c-49b5-8dbf-d943bafef5aa}</Project>
       <Name>UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\tools\TemplateValidator\TemplateValidator.csproj">
+      <Project>{365acd5e-0ffe-45a5-80b3-c0873b6bdb08}</Project>
+      <Name>TemplateValidator</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fakes\Fakes.csproj">
       <Project>{fb3c81ad-823e-409c-bf6d-27534b84a8af}</Project>
