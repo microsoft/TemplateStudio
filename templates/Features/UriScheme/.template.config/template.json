@@ -14,7 +14,7 @@
     "wts.type": "feature",
     "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
     "wts.version": "1.0.0",
-    "wts.order": "7",
+    "wts.displayOrder": "7",
     "wts.group": "UserInteraction",
     "wts.defaultInstance": "UriScheme",
     "wts.multipleInstance": "false",

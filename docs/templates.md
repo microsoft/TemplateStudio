@@ -108,7 +108,7 @@ The replacements are done based on the configuration established in the `templat
     "wts.type": "page",
     "wts.framework": "MVVMBasic|MVVMLight",       //Frameworks where this template can be used.
     "wts.version": "1.0.0",
-    "wts.order": "1",
+    "wts.displayOrder": "1",                      //This tag is used to order the templates in the wizard.
     "wts.rightClickEnabled":"true",               //If set to 'true' then this feature or page is available from right click on an existing project.
     "wts.isHidden": "false"                       //If set to 'true' then not shown in the wizard. Used for dependencies that can't be selected on their own.
   },
@@ -199,7 +199,8 @@ The structure of files and folders within the `_composition` folder is just for 
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind|MVVMBasic & identity == wts.Proj.Blank"
+    "wts.compositionFilter": "$framework == CodeBehind|MVVMBasic & identity == wts.Proj.Blank",
+    "wts.compositionOrder" : "1"
  },
  ```
 
@@ -208,6 +209,7 @@ In this case, the template which have this configuration will be added to the ge
 * There is a template within the generation basket whose `identity` property is "wts.Proj.Blank".
 
 In other words, this template is designed to be added to the generation basket when we are generating a Blank Project Type with the CodeBehind or MVVMBasic framework.
+The wts.compositionOrder can be used to establish the order in which of composition templates are generated where necessary.
 
 We have a basic pseudo-language to define the composition filters. The composition filters must match the following structure:
 

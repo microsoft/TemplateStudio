@@ -13,7 +13,7 @@
     "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
     "wts.projecttype":"Blank|SplitView|TabbedPivot",
     "wts.version": "1.0.0",
-    "wts.order": "1"
+    "wts.displayOrder": "1"
   },
   "sourceName": "wts.DefaultProject",
   "preferNameDirectory": true,
