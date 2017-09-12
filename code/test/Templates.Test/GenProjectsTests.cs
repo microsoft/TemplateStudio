@@ -54,7 +54,9 @@ namespace Microsoft.Templates.Test
             Func<ITemplateInfo, bool> selector =
                 t => t.GetTemplateType() == TemplateType.Project
                     && t.GetProjectTypeList().Contains(projectType)
-                    && t.GetFrameworkList().Contains(framework);
+                    && t.GetFrameworkList().Contains(framework)
+                    && !t.GetIsHidden()
+                    && t.GetLanguage() == language;
 
             var projectName = $"{projectType}{framework}All";
 
@@ -81,12 +83,23 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplatesAsync")]
         [Trait("Type", "GenerationRightClick")]
-        public async Task GenProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
+        public async Task GenEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
-            var projectName = $"{projectType}{framework}AllRandom";
+            var projectName = $"{projectType}{framework}AllRightClick";
             var projectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
 
-            await AssertGenerateRightClickAsync(projectName, projectType, framework, language);
+            await AssertGenerateRightClickAsync(projectName, projectType, framework, language, true);
+        }
+
+        [Theory]
+        [MemberData("GetProjectTemplatesAsync")]
+        [Trait("Type", "GenerationRightClick")]
+        public async Task GenCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
+        {
+            var projectName = $"{projectType}{framework}AllRightClick2";
+            var projectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+
+            await AssertGenerateRightClickAsync(projectName, projectType, framework, language, false);
         }
 
         [Theory]
