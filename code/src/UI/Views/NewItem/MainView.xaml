@@ -42,36 +42,11 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Style="{StaticResource GridTitleStyle}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <controls:LogoDisplay Style="{StaticResource HeaderLogoDisplay}" />
-                <TextBlock
-                    Grid.Column="1"
-                    Margin="{StaticResource Margin_M_Left}"
-                    VerticalAlignment="Center"
-                    Style="{StaticResource TextTitleStyle}"
-                    Text="{Binding Title}" />
-                <Grid Grid.Column="2" Visibility="{Binding HasOverlayBox, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <Grid>
-                        <Grid.Background>
-                            <SolidColorBrush Color="{StaticResource UIWhiteColor}" Opacity="0.2"/>
-                        </Grid.Background>
-                    </Grid>
-                    <Grid Background="{StaticResource UIMiddleDarkGray}" Visibility="{Binding IsOverlayBoxVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                    <Button Style="{StaticResource TopBarMenuStyle}" Command="{Binding ShowOverlayMenuCommand}">
-                        <Button.Content>
-                            <Grid>
-                                <TextBlock Text="&#xEC42;" Style="{StaticResource IconButtonTextStyle}" FontSize="24" Margin="{StaticResource Margin_M_All}" Tag="AllowOverlay" />
-                                <Ellipse Width="12" Height="12" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,5,0" Visibility="{Binding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}}" Fill="{StaticResource UIDarkYellow}" />
-                            </Grid>
-                        </Button.Content>
-                    </Button>
-                </Grid>
-            </Grid>
+            <controls:WizardHeader
+                HasOverlayBox="{Binding HasOverlayBox}"
+                HeaderText="{Binding Title}"
+                IsOverlayBoxVisible="{Binding IsOverlayBoxVisible, Mode=TwoWay}"
+                NewVersionAvailable="{Binding NewVersionAvailable}" />
             <Grid Grid.Row="1">
                 <controls:LogoDisplay Style="{StaticResource LoadingLogoDisplay}" IsBusy="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}" />
                 <Grid Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
