@@ -39,7 +39,10 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private RelayCommand _checkUpdatesCommand;
         private RelayCommand _refreshTemplatesCommand;
 
+        protected int CurrentStep { get; private set; }
+
         public WizardStatus WizardStatus { get; } = new WizardStatus();
+
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
         public RelayCommand CloseCommand => _closeCommand ?? (_closeCommand = new RelayCommand(OnClose));
         public RelayCommand BackCommand => _backCommand ?? (_backCommand = new RelayCommand(OnGoBack, () => _canGoBack));
@@ -59,11 +62,14 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             UpdateCanFinish(false);
             NavigationService.GoBack();
+            CurrentStep--;
+            UpdateCanGoBack(CurrentStep > 0);
         }
         protected virtual void OnNext()
         {
             UpdateCanGoBack(true);
             WizardStatus.IsOverlayBoxVisible = false;
+            CurrentStep++;
         }
         protected virtual void OnFinish(string parameter)
         {
@@ -71,7 +77,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             _mainView.Close();
         }
 
-        protected void UpdateCanGoBack(bool canGoBack)
+        private void UpdateCanGoBack(bool canGoBack)
         {
             _canGoBack = canGoBack;
             BackCommand.OnCanExecuteChanged();

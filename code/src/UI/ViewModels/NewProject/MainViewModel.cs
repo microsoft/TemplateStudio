@@ -44,8 +44,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             private set => SetProperty(ref _hasSummaryLicenses, value);
         }
 
-        public NewProjectStep CurrentStep { get; set; }
-
         public MainViewModel(MainView mainView) : base(mainView)
         {
             MainView = mainView;
@@ -55,6 +53,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private StackPanel _summaryPageGroups;
         public async Task InitializeAsync(Frame stepFrame, StackPanel summaryPageGroups)
         {
+            WizardStatus.WizardTitle = StringRes.ProjectSetupTitle;
             NavigationService.Initialize(stepFrame, new ProjectSetupView());
             _summaryPageGroups = summaryPageGroups;
             await BaseInitializeAsync();
@@ -141,7 +140,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         protected override async void OnNext()
         {
             base.OnNext();
-            if (CurrentStep == NewProjectStep.ProjectConfiguration)
+            if (CurrentStep == 1)
             {
                 if (CheckProjectSetupChanged())
                 {
@@ -152,13 +151,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 WizardStatus.WizardTitle = StringRes.ProjectPagesTitle;
                 await ProjectTemplates.InitializeAsync();
                 NavigationService.Navigate(new ProjectPagesView());
-                CurrentStep = NewProjectStep.AddPages;
             }
-            else if (CurrentStep == NewProjectStep.AddPages)
+            else if (CurrentStep == 2)
             {
                 WizardStatus.WizardTitle = StringRes.ProjectFeaturesTitle;
                 NavigationService.Navigate(new ProjectFeaturesView());
-                CurrentStep = NewProjectStep.AddTemplates;
                 UpdateCanFinish(true);
             }
         }
@@ -166,22 +163,19 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         protected override void OnGoBack()
         {
             base.OnGoBack();
-            if (CurrentStep == NewProjectStep.AddPages)
+            if (CurrentStep == 0)
             {
-                CurrentStep = NewProjectStep.ProjectConfiguration;
-                UpdateCanGoBack(false);
                 WizardStatus.WizardTitle = StringRes.ProjectSetupTitle;
             }
-            else if (CurrentStep == NewProjectStep.AddTemplates)
+            else if (CurrentStep == 1)
             {
-                CurrentStep = NewProjectStep.AddPages;
                 WizardStatus.WizardTitle = StringRes.ProjectPagesTitle;
             }
         }
 
         protected override void OnFinish(string parameter)
         {
-            if (CurrentStep == NewProjectStep.AddTemplates)
+            if (CurrentStep == 2)
             {
                 MainView.Result = CreateUserSelection();
                 base.OnFinish(parameter);

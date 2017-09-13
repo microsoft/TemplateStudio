@@ -34,8 +34,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public NewItemSetupViewModel NewItemSetup { get; private set; } = new NewItemSetupViewModel();
         public ChangesSummaryViewModel ChangesSummary { get; private set; } = new ChangesSummaryViewModel();
 
-        public NewItemStep CurrentStep { get; set; }
-
         public MainViewModel(MainView mainView) : base(mainView)
         {
             MainView = mainView;
@@ -122,12 +120,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         protected override void OnGoBack()
         {
             base.OnGoBack();
-
-            if (CurrentStep == NewItemStep.ChangesSummary)
-            {
-                CurrentStep = NewItemStep.ItemConfiguration;
-                UpdateCanGoBack(false);
-            }
             NewItemSetup.Initialize(false);
             WizardStatus.HasOverlayBox = true;
             ChangesSummary.ResetSelection();
@@ -137,10 +129,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         protected override void OnNext()
         {
-            if (CurrentStep == NewItemStep.ItemConfiguration)
+            base.OnNext();
+            if (CurrentStep == 1)
             {
-                base.OnNext();
-                CurrentStep = NewItemStep.ChangesSummary;
                 WizardStatus.HasOverlayBox = false;
                 NewItemSetup.EditionVisibility = Visibility.Collapsed;
                 SetChangesSummaryTitle();

@@ -78,9 +78,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public async Task InitializeAsync(bool force = false)
         {
-            MainViewModel.Current.CurrentStep = NewProjectStep.ProjectConfiguration;
-            MainViewModel.Current.WizardStatus.WizardTitle = StringRes.ProjectSetupTitle;
-
             if (SelectedProjectType == null || force)
             {
                 ProjectTypes.Clear();
