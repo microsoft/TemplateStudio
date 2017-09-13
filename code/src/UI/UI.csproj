@@ -211,6 +211,9 @@
     <Compile Include="Controls\TogglePanel.xaml.cs">
       <DependentUpon>TogglePanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\WizardHeader.xaml.cs">
+      <DependentUpon>WizardHeader.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Extensions\ListViewExtensions.cs" />
     <Compile Include="Generation\NewItemGenerationFileInfo.cs" />
@@ -453,6 +456,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\TogglePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\WizardHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

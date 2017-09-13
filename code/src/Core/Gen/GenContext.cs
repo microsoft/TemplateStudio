@@ -82,7 +82,7 @@ namespace Microsoft.Templates.Core.Gen
 
             Fs.EnsureFolder(projectTempFolder);
             var tempGenerationName = $"{projectName}_{DateTime.Now.FormatAsShortDateTime()}";
-            var inferredName = Naming.Infer(tempGenerationName, new List<Validator>() { new DirectoryExistsValidator(projectTempFolder) }, "_");
+            var inferredName = Naming.Infer(tempGenerationName, new List<Validator> { new SuggestedDirectoryNameValidator(projectTempFolder) }, "_");
 
             return Path.Combine(projectTempFolder, inferredName);
         }
