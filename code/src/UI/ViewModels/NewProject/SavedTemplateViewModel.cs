@@ -13,6 +13,7 @@ using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Core;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.Extensions;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -55,10 +56,19 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             set
             {
                 SetProperty(ref _newItemName, value);
-                if (CanChooseItemName)
+                if (CanChooseItemName && NewItemName != ItemName)
                 {
-                    ValidateTemplateName?.Invoke(this);
+                    var validationResult = ValidationService.ValidateTemplateName(NewItemName, CanChooseItemName, true);
+                    IsValidName = validationResult.IsValid;
+                    ErrorMessage = string.Empty;
+                    if (!IsValidName)
+                    {
+                        ErrorMessage = validationResult.ErrorType.GetResourceString();
+                        MainViewModel.Current.SetValidationErrors(ErrorMessage);
+                        throw new Exception(ErrorMessage);
+                    }
                 }
+                MainViewModel.Current.CleanStatus(true);
             }
         }
 
@@ -228,15 +238,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public ICommand ConfirmRenameCommand { get; set; }
 
-        public Action<SavedTemplateViewModel> ValidateTemplateName;
-
         public ICommand _cancelRenameCommand;
         public ICommand CancelRenameCommand => _cancelRenameCommand ?? (_cancelRenameCommand = new RelayCommand(CancelRenameAction));
 
         public Action CancelRenameAction => OnCancelRename;
         #endregion
 
-        public SavedTemplateViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled, ICommand openCommand, ICommand removeTemplateCommand, ICommand renameItemCommand, ICommand confirmRenameCommand, Action<SavedTemplateViewModel> validateCurrentTemplateName)
+        public SavedTemplateViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled, ICommand openCommand, ICommand removeTemplateCommand, ICommand renameItemCommand, ICommand confirmRenameCommand)
         {
             _template = item.template;
             colorTimer.Tick += OnColorTimerTick;
@@ -257,7 +265,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             RemoveCommand = removeTemplateCommand;
             RenameCommand = renameItemCommand;
             ConfirmRenameCommand = confirmRenameCommand;
-            ValidateTemplateName = validateCurrentTemplateName;
             AllowDragAndDrop = false;
         }
 

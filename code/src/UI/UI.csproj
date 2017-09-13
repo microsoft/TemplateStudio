@@ -217,6 +217,7 @@
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Extensions\ListViewExtensions.cs" />
     <Compile Include="Extensions\SyncStatusExtensions.cs" />
+    <Compile Include="Extensions\ValidationExtensions.cs" />
     <Compile Include="Generation\NewItemGenerationFileInfo.cs" />
     <Compile Include="Generation\NewItemGenerationResult.cs" />
     <Compile Include="Generation\ProjectConfigInfo.cs" />
@@ -337,7 +338,7 @@
     <Compile Include="ViewModels\Common\CommonInfoViewModel.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="ViewModels\Common\DependencyInfoViewModel.cs" />
-    <Compile Include="ViewModels\NewProject\ValidationsViewModel.cs" />
+    <Compile Include="Services\ValidationService.cs" />
     <Compile Include="Views\Common\ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>
     </Compile>

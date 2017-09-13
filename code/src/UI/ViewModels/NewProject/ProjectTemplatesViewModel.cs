@@ -83,6 +83,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             SavedFeatures.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SavedFeatures)); };
             SavedPages.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SavedPages)); };
+            ValidationService.Initialize(GetNames);
+        }
+
+        private IEnumerable<string> GetNames()
+        {
+            var names = new List<string>();
+            SavedPages.ToList().ForEach(spg => names.AddRange(spg.Select(sp => sp.ItemName)));
+            names.AddRange(SavedFeatures.Select(sf => sf.ItemName));
+            return names;
         }
 
         public IEnumerable<string> Identities
@@ -104,7 +113,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (PagesGroups.Count == 0)
             {
                 var pages = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page && t.GetFrameworkList().Contains(ContextFramework.Name))
-                                                   .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), AddTemplateCommand, SaveTemplateCommand, MainViewModel.Current.Validations.ValidateNewTemplateName));
+                                                   .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), AddTemplateCommand, SaveTemplateCommand));
 
                 var groups = pages.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order))).OrderBy(gr => gr.Title);
 
@@ -115,7 +124,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (FeatureGroups.Count == 0)
             {
                 var features = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Feature && t.GetFrameworkList().Contains(ContextFramework.Name) && !t.GetIsHidden())
-                                                      .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), AddTemplateCommand, SaveTemplateCommand, MainViewModel.Current.Validations.ValidateNewTemplateName));
+                                                      .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), AddTemplateCommand, SaveTemplateCommand));
 
                 var groups = features.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order))).OrderBy(gr => gr.Title);
 
@@ -134,7 +143,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void OnAddTemplateItem(TemplateInfoViewModel template)
         {
-            template.NewTemplateName = MainViewModel.Current.Validations.InferItemNameForNewTemplate(template);
+            template.NewTemplateName = ValidationService.InferTemplateName(template.Template.GetDefaultName(), template.CanChooseItemName, true);
             if (template.CanChooseItemName)
             {
                 CloseTemplatesEdition();
@@ -175,7 +184,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 return;
             }
 
-            if (MainViewModel.Current.Validations.IsValidRename(item.NewItemName, item.CanChooseItemName))
+            if (ValidationService.ValidateTemplateName(item.NewItemName, item.CanChooseItemName, true).IsValid)
             {
                 item.ItemName = item.NewItemName;
 
@@ -425,7 +434,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void SaveNewTemplate((string name, ITemplateInfo template) item, bool isRemoveEnabled = true)
         {
-            var newItem = new SavedTemplateViewModel(item, isRemoveEnabled, OpenSummaryItemCommand, RemoveTemplateCommand, RenameSummaryItemCommand, ConfirmRenameSummaryItemCommand, MainViewModel.Current.Validations.ValidateCurrentTemplateName);
+            var newItem = new SavedTemplateViewModel(item, isRemoveEnabled, OpenSummaryItemCommand, RemoveTemplateCommand, RenameSummaryItemCommand, ConfirmRenameSummaryItemCommand);
 
             if (item.template.GetTemplateType() == TemplateType.Page)
             {

@@ -33,7 +33,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public ProjectSetupViewModel ProjectSetup { get; private set; } = new ProjectSetupViewModel();
 
         public ProjectTemplatesViewModel ProjectTemplates { get; private set; } = new ProjectTemplatesViewModel();
-        public ValidationsViewModel Validations { get; } = new ValidationsViewModel();
 
         public ObservableCollection<SummaryLicenseViewModel> SummaryLicenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
 

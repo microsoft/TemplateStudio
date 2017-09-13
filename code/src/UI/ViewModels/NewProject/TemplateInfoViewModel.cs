@@ -16,6 +16,7 @@ using Microsoft.Templates.UI.Views.NewProject;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.Extensions;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -125,7 +126,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 SetProperty(ref _newTemplateName, value);
                 if (CanChooseItemName)
                 {
-                    _validateTemplateName?.Invoke(this);
+                    var validationResult = ValidationService.ValidateTemplateName(NewTemplateName, CanChooseItemName, true);
+                    IsValidName = validationResult.IsValid;
+                    ErrorMessage = string.Empty;
+                    if (!IsValidName)
+                    {
+                        ErrorMessage = validationResult.ErrorType.GetResourceString();
+                        MainViewModel.Current.SetValidationErrors(ErrorMessage);
+                        throw new Exception(ErrorMessage);
+                    }
+                    MainViewModel.Current.CleanStatus(true);
                 }
             }
         }
@@ -152,11 +162,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private ICommand _showItemInfoCommand;
         public ICommand ShowItemInfoCommand => _showItemInfoCommand ?? (_showItemInfoCommand = new RelayCommand(ShowItemInfo));
-
-        private Action<TemplateInfoViewModel> _validateTemplateName;
         #endregion
 
-        public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies, RelayCommand<TemplateInfoViewModel> addItemCommand, RelayCommand<TemplateInfoViewModel> saveItemCommand, Action<TemplateInfoViewModel> validateTemplateName)
+        public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies, RelayCommand<TemplateInfoViewModel> addItemCommand, RelayCommand<TemplateInfoViewModel> saveItemCommand)
         {
             Author = template.Author;
             CanChooseItemName = template.GetItemNameEditable();
@@ -176,11 +184,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             TitleForeground = GetTitleForeground(true);
             AddItemCommand = addItemCommand;
             SaveItemCommand = saveItemCommand;
-            _validateTemplateName = validateTemplateName;
 
             if (dependencies != null && dependencies.Any())
             {
-                DependencyItems.AddRange(dependencies.Select(d => new DependencyInfoViewModel(new TemplateInfoViewModel(d, GenComposer.GetAllDependencies(d, MainViewModel.Current.ProjectSetup.SelectedFramework.Name), AddItemCommand, SaveItemCommand, validateTemplateName))));
+                DependencyItems.AddRange(dependencies.Select(d => new DependencyInfoViewModel(new TemplateInfoViewModel(d, GenComposer.GetAllDependencies(d, MainViewModel.Current.ProjectSetup.SelectedFramework.Name), AddItemCommand, SaveItemCommand))));
 
                 Dependencies = string.Join(",", dependencies.Select(d => d.Name));
             }
