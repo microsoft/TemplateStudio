@@ -12,7 +12,6 @@
     "wts.framework": "fx1",
     "wts.version": "1.0.0",
     "wts.licenses": "[text1](url1)|[text2](url2)",
-    "wts.order": "1",
     "wts.group": "group1",
     "wts.defaultInstance": "DefaultName"
   },
