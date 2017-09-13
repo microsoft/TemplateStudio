@@ -8,10 +8,10 @@
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
-    "wts.version": "1.0.0",    
+    "wts.version": "1.0.0",
     "wts.compositionFilter": "$framework == MVVMBasic & $projectType == SplitView & wts.type == project",
     "wts.compositionOrder": "0",
-    "wts.licences": "[Microsoft.Toolkit.Uwp.UI.Controls](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)"
+    "wts.licenses": "[Microsoft.Toolkit.Uwp.UI.Controls](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

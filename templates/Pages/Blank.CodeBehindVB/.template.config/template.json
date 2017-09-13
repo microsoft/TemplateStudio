@@ -4,9 +4,8 @@
     "Universal"
   ],
   "name": "Blank",
-  "groupIdentity": "wts.Page.Blank.VB",
+  "groupIdentity": "wts.Page.Blank.CodeBehind",
   "identity": "wts.Page.Blank.CodeBehind.VB",
-  "shortName": "Blank Page",
   "description": "This is the most basic page. A blank canvas to mold into whatever you wish.",
   "tags": {
     "language": "VisualBasic",

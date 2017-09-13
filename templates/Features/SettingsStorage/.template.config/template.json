@@ -21,7 +21,6 @@
   },
   "sourceName": "SettingsStorageFeature",
   "preferNameDirectory": true,
-  "guids": [ "5b9d2eee-b648-4ca1-837e-9abb8f3dffdd" ],
   "PrimaryOutputs": [
     {
       "path": ".\\Helpers\\SettingsStorageExtensions.cs"

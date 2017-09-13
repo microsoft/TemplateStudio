@@ -151,7 +151,8 @@
     <Compile Include="Templates\ITemplateInfoExtensionsTest.cs" />
     <Compile Include="Packaging\TemplatexTests.cs" />
     <Compile Include="Locations\UnitTestTemplatesSource.cs" />
-    <Compile Include="Naming\NamingTest.cs" />
+    <Compile Include="Naming\NamingTests.cs" />
+    <Compile Include="Naming\SuggestedDirectoryNameValidatorTests.cs" />
     <Compile Include="Composition\CompositionQueryTest.cs" />
     <Content Include="..\..\TestCert.pfx">
       <Link>Packaging\TestCert.pfx</Link>
