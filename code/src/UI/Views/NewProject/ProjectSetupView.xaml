@@ -20,7 +20,7 @@
             <DataTemplate x:Key="ProjectSetupItemTemplate">
                 <Grid MinWidth="350" MaxWidth="{Binding RelativeSource={RelativeSource Self}, Path=HorizontalAlignment, Converter={StaticResource FixedWidthConverter}, ConverterParameter=350}" HorizontalAlignment="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UniformGrid}}, Path=Columns, Converter={StaticResource ItemAlignmentConverter}}">
                     <Rectangle Style="{StaticResource RectangleDropShadowStyle}" />
-                    <Border Height="90" Background="{StaticResource UIWhite}">
+                    <Border Height="90">
                         <Grid Margin="{StaticResource Margin_M_All}">
 
                             <Grid.RowDefinitions>
@@ -37,11 +37,7 @@
                             <!--Row 0-->
                             <controls:ImageEx Grid.Row="0" Grid.RowSpan="3" Focusable="False" SourcePath="{Binding Icon}" VerticalAlignment="Top" FallbackImage="/Microsoft.Templates.UI;component/Assets/DefaultIcon.png" />
                             <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding DisplayName}" Margin="{StaticResource Margin_M_Left}" />
-                            <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource BlackBaseTemplateInfoButtonStyle}" Command="{Binding ShowInfoCommand}" ToolTip="{x:Static res:StringRes.LearnMore}">
-                                <Button.Content>
-                                    <TextBlock Text="&#xE946;" FontSize="18" Style="{StaticResource IconButtonTextStyle}" />
-                                </Button.Content>
-                            </Button>
+                            <controls:InformationButton Grid.Row="0" Grid.Column="2" Command="{Binding ShowInfoCommand}" />
 
                             <!--Row 1-->
                             <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding Summary}" Margin="{StaticResource Margin_M_Left}"/>
@@ -61,7 +57,6 @@
             <StackPanel>
                 <GroupBox Header="{Binding ProjectSetup.ProjectTypesHeader}" Margin="{StaticResource Margin_M_LeftTopRight}">
                     <ListView
-                        KeyboardNavigation.TabNavigation="Local"
                         SelectionMode="Single"
                         ItemsSource="{Binding ProjectSetup.ProjectTypes}"
                         Style="{StaticResource ListViewProjectSetupStyle}"
@@ -76,7 +71,6 @@
                 </GroupBox>
                 <GroupBox Header="{Binding ProjectSetup.FrameworkHeader}" Margin="{StaticResource Margin_M_LeftTopRight}">
                     <ListView
-                        KeyboardNavigation.TabNavigation="Local"
                         SelectionMode="Single"
                         ItemsSource="{Binding ProjectSetup.Frameworks}"
                         Style="{StaticResource ListViewProjectSetupStyle}"

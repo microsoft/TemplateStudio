@@ -1,4 +1,4 @@
-namespace Param_ItemNamespace.ViewModels
+﻿namespace Param_ItemNamespace.ViewModels
 {
     public class wts.ItemNameViewModel : Observable
     {
@@ -9,7 +9,7 @@ namespace Param_ItemNamespace.ViewModels
         {
             if (locationService != null)
             {
-                locationService.PositionChanged -= LocationServicePositionChanged;
+                locationService.PositionChanged -= LocationService_PositionChanged;
                 locationService.StopListening();
             }
         }

@@ -1,0 +1,15 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "PageTemplate",
+  "groupIdentity": "Microsoft.UWPTemplates.Test.PageTemplate",
+  "identity": "Microsoft.UWPTemplates.Test.PageTemplate.VisualBasic",
+  "shortName": "page-test",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "page"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

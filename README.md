@@ -5,7 +5,7 @@ Windows Template Studio is a Visual Studio 2017 Extension that accelerates the c
 **Example scenario:**
 I need an app that uses MVVM Light, uses master detail, can suspend and resume, settings, maps on one of the pages and will need Azure hub notifications.   It will need a background service that does a query every 5 minutes.
 
-![Windows Template Studio screenshot](docs/resources/getting-started/WPT%20-%20Project%20Type%20and%20Framework.png)
+![Windows Template Studio screenshot](docs/resources/getting-started/WTS%20-%20Project%20Type%20and%20Framework.png)
 
 ## Build Status
 
@@ -35,8 +35,7 @@ Once you select the attributes you want your new UWP app to have, you can quickl
 
 ## Known issues
 
-* [Project creation failing with VS 15.2 and VS Preview side by side](https://github.com/Microsoft/WindowsTemplateStudio/issues/668) - We believe right now there is a side by side issue.
-* [Chart page in x86 mode design-time error](https://github.com/Microsoft/WindowsTemplateStudio/issues/818) - Waiting for a fix
+None Currently
 
 ## Feedback, Requests and Roadmap
 
@@ -57,7 +56,7 @@ Do you want to contribute? We would love to have you help out.  Here are our [co
 1. Generated templates once generated, must be able to be compiled and run.
 1. Generated templates should work on all device families.
 1. Templates should have comments to aid developers.  This includes links to signup pages for keys, MSDN, blogs and how-to's.  All guidance provide should be validated from either the framework/SDK/library’s creator.
-1. All features will be supported for two current Windows SDK for Windows 10 release cycles or until another principle supersedes it.
+1. All features will be supported for two most recent RTM Windows 10 Updates. Those supported releases are Windows 10 Anniversary Update and Windows 10 Creators Update.
 1. Templates released in production will try to adhere to the design language used in the current release of Windows 10.
 1. Code should follow [.NET Core coding style](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md)
 

@@ -1,3 +1,4 @@
+﻿using System;
 using System.Threading.Tasks;
 
 namespace Param_ItemNamespace.Helpers
@@ -6,7 +7,6 @@ namespace Param_ItemNamespace.Helpers
     {
         public static void FireAndForget(this Task task)
         {
-
         }
     }
 }

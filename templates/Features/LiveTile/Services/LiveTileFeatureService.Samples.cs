@@ -1,4 +1,4 @@
-using Microsoft.Toolkit.Uwp.Notifications;
+﻿using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Threading.Tasks;
 using Windows.UI.Notifications;
@@ -75,7 +75,7 @@ namespace Param_RootNamespace.Services
                 }
             };
 
-            // Then create the tile notification            
+            // Then create the tile notification
             var notification = new TileNotification(content.GetXml());
             UpdateTile(notification);
         }

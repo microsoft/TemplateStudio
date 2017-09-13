@@ -30,8 +30,10 @@
             var editor = monaco.editor.create(document.getElementById('container'),
             {
                 model: model,
-                readOnly: 'true',
-                automaticLayout: 'true'
+                readOnly: true,
+                ##theme##
+                ##fontSize##
+                automaticLayout: true                
             });
         });
     </script>

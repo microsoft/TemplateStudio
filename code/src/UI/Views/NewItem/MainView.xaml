@@ -8,7 +8,8 @@
     xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
     xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"    
     PreviewMouseDown="OnPreviewMouseDown"
-    Title="{x:Static res:StringRes.Title}"    
+    Title="{x:Static res:StringRes.Title}"
+    Closing="Window_Closing"
     Width="1277"
     Height="727"
     MinWidth="800"
@@ -34,50 +35,20 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid>
+    <Grid Style="{StaticResource MainGrid}">
         <Grid Panel.ZIndex="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Style="{StaticResource GridTitleStyle}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <controls:LogoDisplay
-                    Grid.Column="0"
-                    Width="40"
-                    Margin="{StaticResource Margin_M_Left}"
-                    Fill="{StaticResource UIWhite}"
-                    HorizontalAlignment="Left" />
-                <TextBlock
-                    Grid.Column="1"
-                    Margin="{StaticResource Margin_M_Left}"
-                    VerticalAlignment="Center"
-                    Style="{StaticResource TextTitleStyle}"
-                    Text="{Binding Title}" />
-                <Grid Grid.Column="2" Visibility="{Binding HasOverlayBox, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <Grid>
-                        <Grid.Background>
-                            <SolidColorBrush Color="{StaticResource UIWhiteColor}" Opacity="0.2"/>
-                        </Grid.Background>
-                    </Grid>
-                    <Grid Background="{StaticResource UIMiddleDarkGray}" Visibility="{Binding IsOverlayBoxVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                    <Button Style="{StaticResource TopBarMenuStyle}" Command="{Binding ShowOverlayMenuCommand}">
-                        <Button.Content>
-                            <Grid>
-                                <TextBlock Text="&#xEC42;" Style="{StaticResource IconButtonTextStyle}" Foreground="{StaticResource UIWhite}" FontSize="24" Margin="{StaticResource Margin_M_All}" Tag="AllowOverlay" />
-                                <Ellipse Width="12" Height="12" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,5,0" Visibility="{Binding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}}" Fill="{StaticResource UIDarkYellow}" />
-                            </Grid>
-                        </Button.Content>
-                    </Button>
-                </Grid>
-            </Grid>
+            <controls:WizardHeader
+                HasOverlayBox="{Binding HasOverlayBox}"
+                HeaderText="{Binding Title}"
+                IsOverlayBoxVisible="{Binding IsOverlayBoxVisible, Mode=TwoWay}"
+                NewVersionAvailable="{Binding NewVersionAvailable}" />
             <Grid Grid.Row="1">
-                <controls:LogoDisplay IsBusy="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}" Width="150" Fill="{StaticResource UILightGray}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <controls:LogoDisplay Style="{StaticResource LoadingLogoDisplay}" IsBusy="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}" />
                 <Grid Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
                     <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}}"/>
                 </Grid>
@@ -97,6 +68,7 @@
                         Grid.Column="1"
                         Text="{Binding NewItemSetup.ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"                    
                         Margin="{StaticResource Margin_M_All}"
+                        AutomationProperties.Name="{x:Static res:StringRes.EditTemplateDescription}"
                         Width="360"
                         MaxLength="30" HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
                         Visibility="{Binding NewItemSetup.EditionVisibility}">
@@ -113,9 +85,9 @@
                         </Grid.ColumnDefinitions>
                         <Button
                             Grid.Column="0"
-                            IsCancel="True"
                             Command="{Binding CancelCommand}"
                             Content="{x:Static res:StringRes.ButtonCancel}"
+                            IsCancel="True"
                             Style="{StaticResource ButtonNavigationStyle}" />
                         <Button
                             Grid.Column="1"
@@ -150,6 +122,21 @@
                             <TextBlock Text="{Binding}" FontSize="{StaticResource UI_S_FontSize}" FontWeight="Normal"/>
                         </DataTemplate>
                     </CheckBox.ContentTemplate>
+                    <CheckBox.FocusVisualStyle>
+                        <Style>
+                            <Setter Property="Control.Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Grid Width="16" VerticalAlignment="Stretch" HorizontalAlignment="Left">
+                                            <Grid.Background>
+                                                <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
+                                            </Grid.Background>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </CheckBox.FocusVisualStyle>
                 </CheckBox>
             </Grid>
             <Grid Grid.Row="0" Grid.RowSpan="3" Visibility="{Binding InfoShapeVisibility, FallbackValue=Collapsed}">

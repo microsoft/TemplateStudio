@@ -7,6 +7,21 @@
   <!--This header contains the command ids for the menus provided by the shell. -->
   <Extern href="vsshlids.h"/>
 
+  <VisibilityConstraints>
+    <VisibilityItem guid="guidRelayCommandPackageCmdSet"
+                        id="AddPageCommand" context="UICONTEXT_SolutionHasSingleProject" />
+    <VisibilityItem guid="guidRelayCommandPackageCmdSet"
+                    id="AddPageCommand" context="UICONTEXT_SolutionHasMultipleProjects" />
+    <VisibilityItem guid="guidRelayCommandPackageCmdSet"
+                    id="AddFeatureCommand" context="UICONTEXT_SolutionHasSingleProject" />
+    <VisibilityItem guid="guidRelayCommandPackageCmdSet"
+                    id="AddFeatureCommand" context="UICONTEXT_SolutionHasMultipleProjects" />
+    <VisibilityItem guid="guidRelayCommandPackageCmdSet"
+                    id="OpenTempFolder" context="UICONTEXT_SolutionHasSingleProject" />
+    <VisibilityItem guid="guidRelayCommandPackageCmdSet"
+                    id="OpenTempFolder" context="UICONTEXT_SolutionHasMultipleProjects" />
+  </VisibilityConstraints>
+  
   <Commands package="guidRelayCommandPackage">
     <Groups>
       <Group guid="guidRelayCommandPackageCmdSet" id="AddItemContextGroup" priority="0x0200"/>
@@ -27,6 +42,8 @@
 
     <Buttons>
       <Button guid="guidRelayCommandPackageCmdSet" id="AddPageCommand" priority="0x0100" type="Button">
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Icon guid="guidImages" id="bmpPage1" />
         <Strings>
@@ -34,6 +51,8 @@
         </Strings>
       </Button>
       <Button guid="guidRelayCommandPackageCmdSet" id="AddFeatureCommand" priority="0x0200" type="Button">
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Icon guid="guidImages" id="bmpFeature1" />
         <Strings>
@@ -41,6 +60,8 @@
         </Strings>
       </Button>
       <Button guid="guidRelayCommandPackageCmdSet" id="OpenTempFolder" priority="0x0300" type="Button">
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Icon guid="guidImages" id="bmpOpenTemp" />
         <Strings>

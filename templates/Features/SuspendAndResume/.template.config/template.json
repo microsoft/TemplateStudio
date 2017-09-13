@@ -1,10 +1,9 @@
-{
+﻿{
   "author": "Microsoft",
   "classifications": ["Universal"],
   "name": "Suspend and Resume",
   "groupIdentity": "wts.Feat.SuspendAndResume",
   "identity": "wts.Feat.SuspendAndResume",
-  "shortName": "Suspend and Resume",
   "description": "A simple service you can hook into to handle when a user leaves and returns to the app.",
   "tags": {
     "language": "C#",
@@ -22,7 +21,6 @@
   },
   "sourceName": "SuspendAndResumeFeature",
   "preferNameDirectory": true,
-  "guids": [ "5b9d2eee-b648-4ca1-837e-9abb8f3dffdd" ],
   "PrimaryOutputs": [
     {
       "path": ".\\Services\\SuspendAndResumeService.cs"

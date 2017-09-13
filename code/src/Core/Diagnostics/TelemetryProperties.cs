@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
@@ -28,6 +20,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         public static string WizardAction { get; private set; } = TelemetryEvents.Prefix + "WizardAction";
         public static string LastStep { get; private set; } = TelemetryEvents.Prefix + "LastStep";
         public static string EventName { get; private set; } = TelemetryEvents.Prefix + "EventName";
+        public static string Language { get; internal set; } = TelemetryEvents.Prefix + "Language";
         public static string VisualStudioVersion { get; private set; } = TelemetryEvents.Prefix + "VsVersion";
         public static string VisualStudioEdition { get; private set; } = TelemetryEvents.Prefix + "VsEdition";
         public static string VisualStudioCulture { get; private set; } = TelemetryEvents.Prefix + "VsCulture";

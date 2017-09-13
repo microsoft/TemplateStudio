@@ -18,7 +18,7 @@
             <DataTemplate x:Key="ProjectTemplatesItemTemplate">
                 <Grid>
                     <Rectangle Style="{StaticResource RectangleDropShadowStyle}" />
-                    <Border Width="205" Height="180" Background="{StaticResource UIWhite}">
+                    <Border Width="205" Height="180" Background="Transparent">
                         <Grid Margin="{StaticResource Margin_M_All}">
 
                             <Grid.RowDefinitions>
@@ -42,14 +42,9 @@
                                 <controls:ImageEx Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Focusable="False" MaxWidth="50" SourcePath="{Binding Icon}" FallbackImage="/Microsoft.Templates.UI;component/Assets/DefaultIcon.png" />
                                 <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextTemplateItemTitleStyle}" Text="{Binding Name}" Margin="{StaticResource Margin_M_LeftRight}" Foreground="{Binding TitleForeground, FallbackValue={StaticResource UIBlack}}" />
                                 <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TextTemplateItemAuthorStyle}" MaxHeight="40" Margin="{StaticResource Margin_M_Left}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}" Text="{Binding Author}"/>
-                                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource InfoTemplateInfoButtonStyle}" Command="{Binding ShowItemInfoCommand}" ToolTip="{x:Static res:StringRes.LearnMore}">
-                                    <Button.Content>
-                                        <TextBlock Text="&#xE946;" FontSize="18" Style="{StaticResource IconButtonTextStyle}" />
-                                    </Button.Content>
-                                </Button>
-
+                                <controls:InformationButton Grid.Row="0" Grid.Column="2" Command="{Binding ShowItemInfoCommand}" />
                             </Grid>
-                            <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding Summary}" Visibility="{Binding NoEditingContentVisibility}" Foreground="{StaticResource UIBlack}"/>
+                            <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding Summary}" Visibility="{Binding NoEditingContentVisibility}" />
 
                             <Grid Grid.Row="1" VerticalAlignment="Bottom" Margin="{StaticResource Margin_S_Bottom}" Visibility="{Binding EditingContentVisibility}">
 
@@ -69,6 +64,8 @@
                                 <Grid Visibility="{Binding EditingContentVisibility}">
                                     <controls:TextBoxEx
                                         Text="{Binding NewTemplateName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"
+                                        AutomationProperties.Name="{x:Static res:StringRes.EditTemplateDescription}"
+                                        
                                         MaxLength="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"                                        
                                         ForceSetFocus="{Binding IsEditionEnabled}"
                                         Tag="{Binding}">
@@ -90,7 +87,7 @@
                                 </Grid>
 
                                 <Grid Grid.Column="1" Visibility="{Binding AddingVisibility}">
-                                    <Button Style="{StaticResource AddTemplateInfoButtonStyle}" Command="{Binding AddItemCommand}" CommandParameter="{Binding}" Visibility="{Binding NoEditingContentVisibility}">
+                                    <Button Style="{StaticResource AddTemplateInfoButtonStyle}" Command="{Binding AddItemCommand}" CommandParameter="{Binding}" Visibility="{Binding NoEditingContentVisibility}" VerticalAlignment="Center" HorizontalAlignment="Right">
                                         <Button.Content>
                                             <Grid>
                                                 <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource IconButtonTextStyle}" />
@@ -98,7 +95,7 @@
                                             </Grid>
                                         </Button.Content>
                                     </Button>
-                                    <Button Style="{StaticResource SaveTemplateInfoButtonStyle}" Command="{Binding SaveItemCommand}" CommandParameter="{Binding}" IsEnabled="{Binding IsValidName}" Visibility="{Binding EditingContentVisibility}" Tag="AllowCloseEdition">
+                                    <Button Style="{StaticResource SaveTemplateInfoButtonStyle}" Command="{Binding SaveItemCommand}" CommandParameter="{Binding}" IsEnabled="{Binding IsValidName}" Visibility="{Binding EditingContentVisibility}" Tag="AllowCloseEdition" VerticalAlignment="Center" HorizontalAlignment="Right">
                                         <Button.Content>
                                             <Grid>
                                                 <TextBlock Text="&#xECCA;" FontSize="25" Style="{StaticResource IconButtonTextStyle}" />

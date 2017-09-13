@@ -1,4 +1,4 @@
-{
+﻿{
   "author": "Microsoft",
   "classifications": [
     "Universal"
@@ -9,7 +9,7 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings & $framework == MVVMLight & $projectType == SplitView"
+    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings.MVVMLight & $framework == MVVMLight & $projectType == SplitView"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
