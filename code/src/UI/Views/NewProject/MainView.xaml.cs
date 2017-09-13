@@ -46,7 +46,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
         private void OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             var element = e.Source as FrameworkElement;
-            ViewModel.TryHideOverlayBox(element);
+            ViewModel.WizardStatus.TryHideOverlayBox(element);
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)

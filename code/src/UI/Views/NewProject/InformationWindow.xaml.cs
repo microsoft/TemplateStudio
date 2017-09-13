@@ -42,11 +42,6 @@ namespace Microsoft.Templates.UI.Views.NewProject
                 IntilizeViewModel(info);
             };
 
-            Unloaded += (sender, e) =>
-            {
-                ViewModel.UnsuscribeEventHandlers();
-            };
-
             InitializeComponent();
         }
 

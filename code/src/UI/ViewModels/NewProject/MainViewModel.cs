@@ -65,7 +65,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             if (CheckProjectSetupChanged())
             {
-                SetStatus(StatusViewModel.Warning(string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName)));
+                WizardStatus.SetStatus(StatusViewModel.Warning(string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName)));
             }
             else
             {
@@ -149,14 +149,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     _summaryPageGroups.Children.Clear();
                     CleanStatus();
                 }
-                Title = StringRes.ProjectPagesTitle;
+                WizardStatus.WizardTitle = StringRes.ProjectPagesTitle;
                 await ProjectTemplates.InitializeAsync();
                 NavigationService.Navigate(new ProjectPagesView());
                 CurrentStep = NewProjectStep.AddPages;
             }
             else if (CurrentStep == NewProjectStep.AddPages)
             {
-                Title = StringRes.ProjectFeaturesTitle;
+                WizardStatus.WizardTitle = StringRes.ProjectFeaturesTitle;
                 NavigationService.Navigate(new ProjectFeaturesView());
                 CurrentStep = NewProjectStep.AddTemplates;
                 UpdateCanFinish(true);
@@ -169,13 +169,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (CurrentStep == NewProjectStep.AddPages)
             {
                 CurrentStep = NewProjectStep.ProjectConfiguration;
-                UpdateGoBack(false);
-                Title = StringRes.ProjectSetupTitle;
+                UpdateCanGoBack(false);
+                WizardStatus.WizardTitle = StringRes.ProjectSetupTitle;
             }
             else if (CurrentStep == NewProjectStep.AddTemplates)
             {
                 CurrentStep = NewProjectStep.AddPages;
-                Title = StringRes.ProjectPagesTitle;
+                WizardStatus.WizardTitle = StringRes.ProjectPagesTitle;
             }
         }
 

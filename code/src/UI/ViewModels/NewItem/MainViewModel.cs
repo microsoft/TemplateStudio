@@ -55,14 +55,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var configInfo = ProjectConfigInfo.ReadProjectConfiguration();
             if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework))
             {
-                InfoShapeVisibility = Visibility.Visible;
+                WizardStatus.InfoShapeVisibility = Visibility.Visible;
                 ProjectConfigurationWindow projectConfig = new ProjectConfigurationWindow(MainView);
 
                 if (projectConfig.ShowDialog().Value)
                 {
                     configInfo.ProjectType = projectConfig.ViewModel.SelectedProjectType.Name;
                     configInfo.Framework = projectConfig.ViewModel.SelectedFramework.Name;
-                    InfoShapeVisibility = Visibility.Collapsed;
+                    WizardStatus.InfoShapeVisibility = Visibility.Collapsed;
                 }
                 else
                 {
@@ -74,7 +74,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             ConfigProjectType = configInfo.ProjectType;
         }
 
-        public void SetNewItemSetupTitle() => Title = string.Format(StringRes.NewItemTitle_SF, GetLocalizedTemplateTypeName(ConfigTemplateType).ToLower());
+        public void SetNewItemSetupTitle() => WizardStatus.WizardTitle = string.Format(StringRes.NewItemTitle_SF, GetLocalizedTemplateTypeName(ConfigTemplateType).ToLower());
 
         private string GetLocalizedTemplateTypeName(TemplateType templateType)
         {
@@ -96,11 +96,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var template = GetActiveTemplate();
             if (template.IsItemNameEditable)
             {
-                Title = string.Format(StringRes.ChangesSummaryTitle_SF, NewItemSetup.ItemName, template.TemplateType.ToString().ToLower());
+                WizardStatus.WizardTitle = string.Format(StringRes.ChangesSummaryTitle_SF, NewItemSetup.ItemName, template.TemplateType.ToString().ToLower());
             }
             else
             {
-                Title = string.Format(StringRes.ChangesSummaryTitle_SF, template.Name, template.TemplateType.ToString().ToLower());
+                WizardStatus.WizardTitle = string.Format(StringRes.ChangesSummaryTitle_SF, template.Name, template.TemplateType.ToString().ToLower());
             }
         }
 
@@ -126,10 +126,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             if (CurrentStep == NewItemStep.ChangesSummary)
             {
                 CurrentStep = NewItemStep.ItemConfiguration;
-                UpdateGoBack(false);
+                UpdateCanGoBack(false);
             }
             NewItemSetup.Initialize(false);
-            HasOverlayBox = true;
+            WizardStatus.HasOverlayBox = true;
             ChangesSummary.ResetSelection();
             SetNewItemSetupTitle();
             CleanStatus();
@@ -141,7 +141,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 base.OnNext();
                 CurrentStep = NewItemStep.ChangesSummary;
-                HasOverlayBox = false;
+                WizardStatus.HasOverlayBox = false;
                 NewItemSetup.EditionVisibility = Visibility.Collapsed;
                 SetChangesSummaryTitle();
                 NavigationService.Navigate(new ChangesSummaryView());

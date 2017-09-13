@@ -218,11 +218,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void ShowItemInfo()
         {
-            MainViewModel.Current.InfoShapeVisibility = Visibility.Visible;
+            MainViewModel.Current.WizardStatus.InfoShapeVisibility = Visibility.Visible;
             var infoView = new InformationWindow(this, MainViewModel.Current.MainView);
 
             infoView.ShowDialog();
-            MainViewModel.Current.InfoShapeVisibility = Visibility.Collapsed;
+            MainViewModel.Current.WizardStatus.InfoShapeVisibility = Visibility.Collapsed;
         }
 
         private SolidColorBrush GetTitleForeground(bool isEnabled)

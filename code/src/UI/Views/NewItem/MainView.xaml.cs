@@ -38,7 +38,7 @@ namespace Microsoft.Templates.UI.Views.NewItem
         private void OnPreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var element = e.Source as FrameworkElement;
-            ViewModel.TryHideOverlayBox(element);
+            ViewModel.WizardStatus.TryHideOverlayBox(element);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

@@ -74,8 +74,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
             if (TemplateGroups.Any())
             {
-                MainViewModel.Current.HasContent = true;
-                MainViewModel.Current.UpdateGoForward(true);
+                MainViewModel.Current.WizardStatus.HasContent = true;
+                MainViewModel.Current.UpdateCanGoForward(true);
                 var activeTemplate = MainViewModel.Current.GetActiveTemplate();
                 if (activeTemplate == null)
                 {
@@ -89,7 +89,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
             else
             {
-                MainViewModel.Current.HasContent = false;
+                MainViewModel.Current.WizardStatus.HasContent = false;
             }
         }
 
