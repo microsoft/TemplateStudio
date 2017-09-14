@@ -154,17 +154,24 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             set => SetProperty(ref _titleForeground, value);
         }
 
-        public RelayCommand<TemplateInfoViewModel> AddItemCommand { get; private set; }
-        public RelayCommand<TemplateInfoViewModel> SaveItemCommand { get; private set; }
+        private ICommand _addItemCommand;
+        public ICommand AddItemCommand => _addItemCommand ?? (_addItemCommand = new RelayCommand(OnAddItem));
+
+        private ICommand _saveItemCommand;
+        public ICommand SaveItemCommand => _saveItemCommand ?? (_saveItemCommand = new RelayCommand(OnSaveItem));
 
         private ICommand _closeEditionCommand;
         public ICommand CloseEditionCommand => _closeEditionCommand ?? (_closeEditionCommand = new RelayCommand(() => CloseEdition()));
 
         private ICommand _showItemInfoCommand;
         public ICommand ShowItemInfoCommand => _showItemInfoCommand ?? (_showItemInfoCommand = new RelayCommand(ShowItemInfo));
+
+        private Func<string, bool> IsTemplateAlreadyDefined { get; }
+        private Action<(string, ITemplateInfo), bool> SetupTemplateAndDependencies { get; }
+        private Func<bool> CloseAllEditions { get; }
         #endregion
 
-        public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies, RelayCommand<TemplateInfoViewModel> addItemCommand, RelayCommand<TemplateInfoViewModel> saveItemCommand)
+        public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies, Func<string, bool> isTemplateAlreadyDefined, Action<(string, ITemplateInfo), bool> setupTemplateAndDependencies, Func<bool> closeAllEditions)
         {
             Author = template.Author;
             CanChooseItemName = template.GetItemNameEditable();
@@ -182,12 +189,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             Version = template.GetVersion();
 
             TitleForeground = GetTitleForeground(true);
-            AddItemCommand = addItemCommand;
-            SaveItemCommand = saveItemCommand;
+            IsTemplateAlreadyDefined = isTemplateAlreadyDefined;
+            SetupTemplateAndDependencies = setupTemplateAndDependencies;
+            CloseAllEditions = closeAllEditions;
 
             if (dependencies != null && dependencies.Any())
             {
-                DependencyItems.AddRange(dependencies.Select(d => new DependencyInfoViewModel(new TemplateInfoViewModel(d, GenComposer.GetAllDependencies(d, MainViewModel.Current.ProjectSetup.SelectedFramework.Name), AddItemCommand, SaveItemCommand))));
+                DependencyItems.AddRange(dependencies.Select(d => new DependencyInfoViewModel(new TemplateInfoViewModel(d, GenComposer.GetAllDependencies(d, MainViewModel.Current.ProjectSetup.SelectedFramework.Name), IsTemplateAlreadyDefined, SetupTemplateAndDependencies, CloseAllEditions))));
 
                 Dependencies = string.Join(",", dependencies.Select(d => d.Name));
             }
@@ -255,6 +263,31 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 {
                     return MainViewModel.Current.MainView.FindResource("UIMiddleLightGray") as SolidColorBrush;
                 }
+            }
+        }
+
+        private void OnAddItem()
+        {
+            NewTemplateName = ValidationService.InferTemplateName(Template.GetDefaultName(), CanChooseItemName, true);
+            if (CanChooseItemName)
+            {
+                CloseAllEditions();
+                IsEditionEnabled = true;
+            }
+            else
+            {
+                SetupTemplateAndDependencies((NewTemplateName, Template), false);
+                UpdateTemplateAvailability(IsTemplateAlreadyDefined(Template.Identity));
+            }
+        }
+
+        private void OnSaveItem()
+        {
+            if (IsValidName)
+            {
+                SetupTemplateAndDependencies((NewTemplateName, Template), false);
+                CloseEdition();
+                UpdateTemplateAvailability(IsTemplateAlreadyDefined(Template.Identity));
             }
         }
     }

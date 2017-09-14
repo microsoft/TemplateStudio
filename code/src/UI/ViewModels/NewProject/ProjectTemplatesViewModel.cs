@@ -61,24 +61,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             private set => SetProperty(ref _hasSavedFeatures, value);
         }
 
-        private RelayCommand<SavedTemplateViewModel> _removeTemplateCommand;
-        public RelayCommand<SavedTemplateViewModel> RemoveTemplateCommand => _removeTemplateCommand ?? (_removeTemplateCommand = new RelayCommand<SavedTemplateViewModel>(item => RemoveTemplate(item, true)));
-
-        private RelayCommand<TemplateInfoViewModel> _addTemplateCommand;
-        public RelayCommand<TemplateInfoViewModel> AddTemplateCommand => _addTemplateCommand ?? (_addTemplateCommand = new RelayCommand<TemplateInfoViewModel>(OnAddTemplateItem));
-
-        private RelayCommand<TemplateInfoViewModel> _saveTemplateCommand;
-        public RelayCommand<TemplateInfoViewModel> SaveTemplateCommand => _saveTemplateCommand ?? (_saveTemplateCommand = new RelayCommand<TemplateInfoViewModel>(OnSaveTemplateItem));
-
-        private ICommand _openSummaryItemCommand;
-        public ICommand OpenSummaryItemCommand => _openSummaryItemCommand ?? (_openSummaryItemCommand = new RelayCommand<SavedTemplateViewModel>(OnOpenSummaryItem));
-
-        private ICommand _renameSummaryItemCommand;
-        public ICommand RenameSummaryItemCommand => _renameSummaryItemCommand ?? (_renameSummaryItemCommand = new RelayCommand<SavedTemplateViewModel>(OnRenameSummaryItem));
-
-        private ICommand _confirmRenameSummaryItemCommand;
-        public ICommand ConfirmRenameSummaryItemCommand => _confirmRenameSummaryItemCommand ?? (_confirmRenameSummaryItemCommand = new RelayCommand<SavedTemplateViewModel>(OnConfirmRenameSummaryItem));
-
         public ProjectTemplatesViewModel()
         {
             SavedFeatures.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SavedFeatures)); };
@@ -113,7 +95,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (PagesGroups.Count == 0)
             {
                 var pages = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page && t.GetFrameworkList().Contains(ContextFramework.Name))
-                                                   .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), AddTemplateCommand, SaveTemplateCommand));
+                                                   .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), IsTemplateAlreadyDefined, SetupTemplateAndDependencies, CloseAllEditions));
 
                 var groups = pages.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order))).OrderBy(gr => gr.Title);
 
@@ -124,7 +106,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (FeatureGroups.Count == 0)
             {
                 var features = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Feature && t.GetFrameworkList().Contains(ContextFramework.Name) && !t.GetIsHidden())
-                                                      .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), AddTemplateCommand, SaveTemplateCommand));
+                                                      .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), IsTemplateAlreadyDefined, SetupTemplateAndDependencies, CloseAllEditions));
 
                 var groups = features.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order))).OrderBy(gr => gr.Title);
 
@@ -137,92 +119,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 SetupTemplatesFromLayout(ContextProjectType.Name, ContextFramework.Name);
                 MainViewModel.Current.Licenses.RebuildLicenses();
             }
-            CloseTemplatesEdition();
+            CloseAllEditions();
             await Task.CompletedTask;
-        }
-
-        private void OnAddTemplateItem(TemplateInfoViewModel template)
-        {
-            template.NewTemplateName = ValidationService.InferTemplateName(template.Template.GetDefaultName(), template.CanChooseItemName, true);
-            if (template.CanChooseItemName)
-            {
-                CloseTemplatesEdition();
-                template.IsEditionEnabled = true;
-            }
-            else
-            {
-                SetupTemplateAndDependencies((template.NewTemplateName, template.Template));
-                var isAlreadyDefined = IsTemplateAlreadyDefined(template.Template.Identity);
-                template.UpdateTemplateAvailability(isAlreadyDefined);
-            }
-        }
-
-        private void OnSaveTemplateItem(TemplateInfoViewModel template)
-        {
-            if (template.IsValidName)
-            {
-                SetupTemplateAndDependencies((template.NewTemplateName, template.Template));
-                template.CloseEdition();
-
-                var isAlreadyDefined = IsTemplateAlreadyDefined(template.Template.Identity);
-                template.UpdateTemplateAvailability(isAlreadyDefined);
-            }
-        }
-
-        private void OnRenameSummaryItem(SavedTemplateViewModel item)
-        {
-            CloseSummaryItemsEdition();
-            item.IsEditionEnabled = true;
-            item.TryClose();
-        }
-
-        private void OnConfirmRenameSummaryItem(SavedTemplateViewModel item)
-        {
-            if (item.NewItemName == item.ItemName)
-            {
-                item.IsEditionEnabled = false;
-                return;
-            }
-
-            if (ValidationService.ValidateTemplateName(item.NewItemName, item.CanChooseItemName, true).IsValid)
-            {
-                item.ItemName = item.NewItemName;
-
-                if (item.IsHome)
-                {
-                    HomeName = item.ItemName;
-                }
-
-                AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Rename).FireAndForget();
-            }
-            else
-            {
-                item.NewItemName = item.ItemName;
-            }
-            item.IsEditionEnabled = false;
-            MainViewModel.Current.CleanStatus(true);
-        }
-
-        private void OnOpenSummaryItem(SavedTemplateViewModel item)
-        {
-            if (!item.IsOpen)
-            {
-                SavedPages.ToList().ForEach(pg => pg.ToList().ForEach(p => TryClose(p, item)));
-                SavedFeatures.ToList().ForEach(f => TryClose(f, item));
-                item.IsOpen = true;
-            }
-            else
-            {
-                item.TryClose();
-            }
-        }
-
-        private void TryClose(SavedTemplateViewModel target, SavedTemplateViewModel origin)
-        {
-            if (target.IsOpen && target.ItemName != origin.ItemName)
-            {
-                target.TryClose();
-            }
         }
 
         public void SetHomePage(SavedTemplateViewModel item)
@@ -239,6 +137,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.SetHome).FireAndForget();
             }
         }
+        public void UpdateHomePageName(string name) => HomeName = name;
 
         private void RemoveTemplate(SavedTemplateViewModel item, bool showErrors)
         {
@@ -334,32 +233,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private bool IsTemplateAlreadyDefined(string identity) => Identities.Any(i => i == identity);
 
-        public bool CloseTemplatesEdition()
-        {
-            bool isEditingTemplate = false;
-            PagesGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t =>
-            {
-                if (t.CloseEdition())
-                {
-                    isEditingTemplate = true;
-                }
-            }));
-            FeatureGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t =>
-            {
-                if (t.CloseEdition())
-                {
-                    isEditingTemplate = true;
-                }
-            }));
-            return isEditingTemplate;
-        }
-
-        public void CloseSummaryItemsEdition()
-        {
-            SavedPages.ToList().ForEach(spg => spg.ToList().ForEach(p => p.OnCancelRename()));
-            SavedFeatures.ToList().ForEach(f => f.OnCancelRename());
-        }
-
         private void UpdateTemplatesAvailability()
         {
             PagesGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t =>
@@ -414,7 +287,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void SaveNewTemplate((string name, ITemplateInfo template) item, bool isRemoveEnabled = true)
         {
-            var newItem = new SavedTemplateViewModel(item, isRemoveEnabled, OpenSummaryItemCommand, RemoveTemplateCommand, RenameSummaryItemCommand, ConfirmRenameSummaryItemCommand);
+            var newItem = new SavedTemplateViewModel(item, isRemoveEnabled, CloseAllButThis, RemoveTemplate, CancelAllRenaming, UpdateHomePageName);
 
             if (item.template.GetTemplateType() == TemplateType.Page)
             {
@@ -439,6 +312,48 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
             UpdateTemplatesAvailability();
             UpdateSummaryTemplates();
+        }
+
+        // UI Changes
+        public bool CloseAllEditions()
+        {
+            // Try to cancel edition on all templates and return true if any template was editing
+            bool isEditingTemplate = false;
+            PagesGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t =>
+            {
+                if (t.CloseEdition())
+                {
+                    isEditingTemplate = true;
+                }
+            }));
+            FeatureGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t =>
+            {
+                if (t.CloseEdition())
+                {
+                    isEditingTemplate = true;
+                }
+            }));
+            return isEditingTemplate;
+        }
+
+        private void CancelAllRenaming()
+        {
+            SavedPages.ToList().ForEach(spg => spg.ToList().ForEach(p => p.CancelRename()));
+            SavedFeatures.ToList().ForEach(f => f.CancelRename());
+        }
+
+        private void CloseAllButThis(SavedTemplateViewModel item)
+        {
+            SavedPages.ToList().ForEach(pg => pg.ToList().ForEach(p => TryClose(p, item)));
+            SavedFeatures.ToList().ForEach(f => TryClose(f, item));
+        }
+
+        private void TryClose(SavedTemplateViewModel target, SavedTemplateViewModel origin)
+        {
+            if (target.IsOpen && target.ItemName != origin.ItemName)
+            {
+                target.Close();
+            }
         }
     }
 }

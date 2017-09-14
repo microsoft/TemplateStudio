@@ -87,7 +87,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     if (p.IsEditionEnabled)
                     {
                         p.ConfirmRenameCommand.Execute(p);
-                        p.TryClose();
+                        p.Close();
                     }
                 }));
 
@@ -96,7 +96,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     if (f.IsEditionEnabled)
                     {
                         f.ConfirmRenameCommand.Execute(f);
-                        f.TryClose();
+                        f.Close();
                     }
                 });
             }

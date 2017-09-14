@@ -14,6 +14,7 @@ using Microsoft.Templates.Core;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Extensions;
+using Microsoft.Templates.Core.Diagnostics;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -230,21 +231,29 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public string DisplayText => CanChooseItemName ? $"{ItemName} [{TemplateName}]" : ItemName;
 
-        public ICommand OpenCommand { get; set; }
+        private ICommand _openCommand { get; set; }
+        public ICommand OpenCommand => _openCommand ?? (_openCommand = new RelayCommand(OnOpen));
 
-        public ICommand RemoveCommand { get; set; }
+        private ICommand _removeCommand;
+        public ICommand RemoveCommand => _removeCommand ?? (_removeCommand = new RelayCommand(OnRemove));
 
-        public ICommand RenameCommand { get; set; }
+        private ICommand _renameCommand;
+        public ICommand RenameCommand => _renameCommand ?? (_renameCommand = new RelayCommand(OnRename));
 
-        public ICommand ConfirmRenameCommand { get; set; }
+        private ICommand _confirmRenameCommand;
+        public ICommand ConfirmRenameCommand => _confirmRenameCommand ?? (_confirmRenameCommand = new RelayCommand(OnConfirmRename));
 
-        public ICommand _cancelRenameCommand;
+        private ICommand _cancelRenameCommand;
         public ICommand CancelRenameCommand => _cancelRenameCommand ?? (_cancelRenameCommand = new RelayCommand(CancelRenameAction));
 
-        public Action CancelRenameAction => OnCancelRename;
+        public Action CancelRenameAction => CancelRename;
+        public Action<SavedTemplateViewModel> CloseAllButThis;
+        public Action CancelAllRenaming;
+        public Action<SavedTemplateViewModel, bool> RemoveTemplate;
+        public Action<string> UpdateHomePageName;
         #endregion
 
-        public SavedTemplateViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled, ICommand openCommand, ICommand removeTemplateCommand, ICommand renameItemCommand, ICommand confirmRenameCommand)
+        public SavedTemplateViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled, Action<SavedTemplateViewModel> closeAllButThis, Action<SavedTemplateViewModel, bool> removeTemplate, Action cancelAllRenaming, Action<string> updateHomePageName)
         {
             _template = item.template;
             colorTimer.Tick += OnColorTimerTick;
@@ -261,10 +270,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             IsRemoveEnabled = isRemoveEnabled;
             ItemForeground = GetItemForeground(true);
             AuthorForeground = GetAuthorForeground(true);
-            OpenCommand = openCommand;
-            RemoveCommand = removeTemplateCommand;
-            RenameCommand = renameItemCommand;
-            ConfirmRenameCommand = confirmRenameCommand;
+            RemoveTemplate = removeTemplate;
+            CancelAllRenaming = cancelAllRenaming;
+            UpdateHomePageName = updateHomePageName;
+            CloseAllButThis = closeAllButThis;
             AllowDragAndDrop = false;
         }
 
@@ -276,7 +285,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             colorTimer.Stop();
         }
 
-        internal void TryClose(bool force = false)
+        internal void Close()
         {
             if (IsOpen)
             {
@@ -297,7 +306,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        public void OnCancelRename()
+        public void CancelRename()
         {
             if (IsEditionEnabled)
             {
@@ -344,6 +353,55 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     return MainViewModel.Current.MainView.FindResource("UIGray") as SolidColorBrush;
                 }
             }
+        }
+
+        private void OnOpen()
+        {
+            if (!IsOpen)
+            {
+                CloseAllButThis(this);
+                IsOpen = true;
+            }
+            else
+            {
+                Close();
+            }
+        }
+
+        private void OnRename()
+        {
+            CancelAllRenaming();
+            IsEditionEnabled = true;
+            Close();
+        }
+
+        private void OnRemove() => RemoveTemplate(this, true);
+
+        private void OnConfirmRename()
+        {
+            if (NewItemName == ItemName)
+            {
+                IsEditionEnabled = false;
+                return;
+            }
+
+            if (ValidationService.ValidateTemplateName(NewItemName, CanChooseItemName, true).IsValid)
+            {
+                ItemName = NewItemName;
+
+                if (IsHome)
+                {
+                    UpdateHomePageName(ItemName);
+                }
+
+                AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Rename).FireAndForget();
+            }
+            else
+            {
+                NewItemName = ItemName;
+            }
+            IsEditionEnabled = false;
+            MainViewModel.Current.CleanStatus(true);
         }
     }
 }
