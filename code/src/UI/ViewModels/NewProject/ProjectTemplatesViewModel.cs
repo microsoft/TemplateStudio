@@ -135,7 +135,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (SavedPages.Count == 0 && SavedFeatures.Count == 0)
             {
                 SetupTemplatesFromLayout(ContextProjectType.Name, ContextFramework.Name);
-                MainViewModel.Current.RebuildLicenses();
+                MainViewModel.Current.Licenses.RebuildLicenses();
             }
             CloseTemplatesEdition();
             await Task.CompletedTask;
@@ -264,7 +264,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
             MainViewModel.Current.FinishCommand.OnCanExecuteChanged();
             UpdateTemplatesAvailability();
-            MainViewModel.Current.RebuildLicenses();
+            MainViewModel.Current.Licenses.RebuildLicenses();
 
             AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Remove).FireAndForget();
         }
@@ -360,26 +360,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             SavedFeatures.ToList().ForEach(f => f.OnCancelRename());
         }
 
-        public void DropTemplate(object sender, DragAndDropEventArgs<SavedTemplateViewModel> e)
-        {
-            if (SavedPages.Count > 0 && SavedPages.Count >= e.ItemData.GenGroup + 1)
-            {
-                var items = SavedPages[e.ItemData.GenGroup];
-                if (items.Count > 1)
-                {
-                    if (e.NewIndex == 0)
-                    {
-                        SetHomePage(e.ItemData);
-                    }
-                    if (e.OldIndex > -1)
-                    {
-                        SavedPages[e.ItemData.GenGroup].Move(e.OldIndex, e.NewIndex);
-                    }
-                    SetHomePage(items.First());
-                }
-            }
-        }
-
         private void UpdateTemplatesAvailability()
         {
             PagesGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t =>
@@ -429,7 +409,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 }
             }
 
-            MainViewModel.Current.RebuildLicenses();
+            MainViewModel.Current.Licenses.RebuildLicenses();
         }
 
         private void SaveNewTemplate((string name, ITemplateInfo template) item, bool isRemoveEnabled = true)
@@ -447,7 +427,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 {
                     var items = new ObservableCollection<SavedTemplateViewModel>();
                     SavedPages.Add(items);
-                    MainViewModel.Current.DefineDragAndDrop(items, SavedPages.Count == 1);
+                    MainViewModel.Current.Ordering.DefineDragAndDrop(items, SavedPages.Count == 1);
                 }
                 SavedPages[newItem.GenGroup].Add(newItem);
                 HasSavedPages = true;

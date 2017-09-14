@@ -286,6 +286,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StringRes.zh-TW.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\OrderingService.cs" />
     <Compile Include="Services\DragAndDropService\DragAndDropService.Members.cs" />
     <Compile Include="Services\DragAndDropService\DragAdornerLayer.cs" />
     <Compile Include="Services\DragAndDropService\DragAndDropService.cs" />
@@ -314,6 +315,7 @@
     <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="Generation\NewProjectGenController.cs" />
     <Compile Include="Generation\NewItemGenController.cs" />
+    <Compile Include="Services\LicensesService.cs" />
     <Compile Include="Services\SystemService.cs" />
     <Compile Include="TemplateSelectors\FileExtensionTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\FileStatusTemplateSelector.cs" />

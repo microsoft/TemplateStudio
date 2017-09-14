@@ -53,7 +53,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
         {
             if (e.Key == Key.Escape)
             {
-                if (!ViewModel.ProjectTemplates.CloseTemplatesEdition() && !ViewModel.ClearCurrentDragginTemplate())
+                if (!ViewModel.ProjectTemplates.CloseTemplatesEdition() && !ViewModel.Ordering.ClearCurrentDragginTemplate())
                 {
                     Close();
                 }

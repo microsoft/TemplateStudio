@@ -50,7 +50,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     }
                 }
 
-                MainViewModel.Current.RebuildLicenses();
+                MainViewModel.Current.Licenses.RebuildLicenses();
             }
         }
 
@@ -69,7 +69,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     MainViewModel.Current.AlertProjectSetupChanged();
                 }
 
-                MainViewModel.Current.RebuildLicenses();
+                MainViewModel.Current.Licenses.RebuildLicenses();
             }
         }
 

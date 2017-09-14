@@ -18,45 +18,44 @@ using Microsoft.Templates.UI.Views.NewProject;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
-    public enum NewProjectStep
-    {
-        ProjectConfiguration = 0,
-        AddPages = 1,
-        AddTemplates = 2
-    }
-
     public class MainViewModel : BaseMainViewModel
     {
+        // private SavedTemplateViewModel _currentDragginTemplate;
+        // private SavedTemplateViewModel _dropTargetTemplate;
+
         public static MainViewModel Current;
         public MainView MainView;
 
-        public ProjectSetupViewModel ProjectSetup { get; private set; } = new ProjectSetupViewModel();
+        public ProjectSetupViewModel ProjectSetup { get; } = new ProjectSetupViewModel();
 
-        public ProjectTemplatesViewModel ProjectTemplates { get; private set; } = new ProjectTemplatesViewModel();
+        public ProjectTemplatesViewModel ProjectTemplates { get; } = new ProjectTemplatesViewModel();
 
-        public ObservableCollection<SummaryLicenseViewModel> SummaryLicenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
-
-        private bool _hasSummaryLicenses;
-        public bool HasSummaryLicenses
-        {
-            get => _hasSummaryLicenses;
-            private set => SetProperty(ref _hasSummaryLicenses, value);
-        }
+        public LicensesService Licenses { get; }
+        public OrderingService Ordering { get; private set; }
 
         public MainViewModel(MainView mainView) : base(mainView)
         {
             MainView = mainView;
+            Licenses = new LicensesService(CreateUserSelection);
             Current = this;
         }
 
-        private StackPanel _summaryPageGroups;
+        // private StackPanel _summaryPageGroups;
         public async Task InitializeAsync(Frame stepFrame, StackPanel summaryPageGroups)
         {
             WizardStatus.WizardTitle = StringRes.ProjectSetupTitle;
             NavigationService.Initialize(stepFrame, new ProjectSetupView());
-            _summaryPageGroups = summaryPageGroups;
+            // _summaryPageGroups = summaryPageGroups;
+            // summaryPageGroups, MainView.FindResource("SummaryListViewStyle") as Style, MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate);
+            Ordering = new OrderingService()
+            {
+                Panel = summaryPageGroups,
+                ListViewStyle = MainView.FindResource("SummaryListViewStyle") as Style,
+                ItemTemplate = MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate,
+                GetData = () => ProjectTemplates.SavedPages,
+                SetHomePage = ProjectTemplates.SetHomePage
+            };
             await BaseInitializeAsync();
-            SummaryLicenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryLicenses)); };
         }
 
         public void AlertProjectSetupChanged()
@@ -69,19 +68,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 CleanStatus();
             }
-        }
-
-        public void RebuildLicenses()
-        {
-            var userSelection = CreateUserSelection();
-            var genItems = GenComposer.Compose(userSelection);
-
-            var genLicenses = genItems
-                                .SelectMany(s => s.Template.GetLicenses())
-                                .Distinct(new TemplateLicenseEqualityComparer())
-                                .ToList();
-
-            SyncLicenses(genLicenses);
         }
 
         public void TryCloseEdition(TextBoxEx textBox, Button button)
@@ -141,15 +127,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             base.OnNext();
             if (CurrentStep == 1)
             {
-                if (CheckProjectSetupChanged())
-                {
-                    ResetSelection();
-                    _summaryPageGroups.Children.Clear();
-                    CleanStatus();
-                }
                 WizardStatus.WizardTitle = StringRes.ProjectPagesTitle;
                 await ProjectTemplates.InitializeAsync();
                 NavigationService.Navigate(new ProjectPagesView());
+                if (CheckProjectSetupChanged())
+                {
+                    ResetSelection();
+                    Ordering.Panel.Children.Clear();
+                    CleanStatus();
+                }
             }
             else if (CurrentStep == 2)
             {
@@ -186,7 +172,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         protected override async Task OnNewTemplatesAvailableAsync()
         {
             ResetSelection();
-            _summaryPageGroups.Children.Clear();
+            Ordering.Panel.Children.Clear();
             NavigationService.Navigate(new ProjectSetupView());
             await ProjectSetup.InitializeAsync(true);
         }
@@ -206,105 +192,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             return userSelection;
         }
 
-        private void SyncLicenses(IEnumerable<TemplateLicense> licenses)
-        {
-            var toRemove = new List<SummaryLicenseViewModel>();
-
-            foreach (var summaryLicense in SummaryLicenses)
-            {
-                if (!licenses.Any(l => l.Url == summaryLicense.Url))
-                {
-                    toRemove.Add(summaryLicense);
-                }
-            }
-
-            foreach (var licenseToRemove in toRemove)
-            {
-                SummaryLicenses.Remove(licenseToRemove);
-            }
-
-            foreach (var license in licenses)
-            {
-                if (!SummaryLicenses.Any(l => l.Url == license.Url))
-                {
-                    SummaryLicenses.Add(new SummaryLicenseViewModel(license));
-                }
-            }
-
-            HasSummaryLicenses = SummaryLicenses.Any();
-        }
         private bool CheckProjectSetupChanged()
         {
-            if (HasTemplatesAdded && (FrameworkChanged || ProjectTypeChanged))
-            {
-                return true;
-            }
-            return false;
+            bool hasTemplatesAdded = ProjectTemplates.SavedPages.Any() || ProjectTemplates.SavedFeatures.Any();
+            bool frameworkChanged = ProjectTemplates.ContextFramework.Name != ProjectSetup.SelectedFramework.Name;
+            var projectTypeChanged = ProjectTemplates.ContextProjectType.Name != ProjectSetup.SelectedProjectType.Name;
+
+            return hasTemplatesAdded && (frameworkChanged || projectTypeChanged);
         }
-        private bool FrameworkChanged => ProjectTemplates.ContextFramework.Name != ProjectSetup.SelectedFramework.Name;
-        private bool ProjectTypeChanged => ProjectTemplates.ContextProjectType.Name != ProjectSetup.SelectedProjectType.Name;
-
-        public void DefineDragAndDrop(ObservableCollection<SavedTemplateViewModel> items, bool allowDragAndDrop)
-        {
-            var listView = new ListView()
-            {
-                ItemsSource = items,
-                Style = MainView.FindResource("SummaryListViewStyle") as Style,
-                Tag = "AllowRename",
-                Focusable = false,
-                ItemTemplate = MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate
-            };
-            if (allowDragAndDrop)
-            {
-                var service = new DragAndDropService<SavedTemplateViewModel>(listView);
-                service.ProcessDrop += ProjectTemplates.DropTemplate;
-            }
-            _summaryPageGroups.Children.Add(listView);
-        }
-
-        private SavedTemplateViewModel _currentDragginTemplate;
-        private SavedTemplateViewModel _dropTargetTemplate;
-
-        public void SavedTemplateGotFocus(SavedTemplateViewModel savedTemplate)
-        {
-            _dropTargetTemplate = savedTemplate;
-        }
-
-        public bool SavedTemplateSetDrag(SavedTemplateViewModel savedTemplate)
-        {
-            if (_currentDragginTemplate == null)
-            {
-                _currentDragginTemplate = savedTemplate;
-                return true;
-            }
-            return false;
-        }
-
-        public bool SavedTemplateSetDrop(SavedTemplateViewModel savedTemplate)
-        {
-            if (_currentDragginTemplate != null && _dropTargetTemplate != null && _currentDragginTemplate.ItemName != _dropTargetTemplate.ItemName)
-            {
-                var newIndex = ProjectTemplates.SavedPages.First().IndexOf(_dropTargetTemplate);
-                var oldIndex = ProjectTemplates.SavedPages.First().IndexOf(_currentDragginTemplate);
-                ProjectTemplates.DropTemplate(null, new DragAndDropEventArgs<SavedTemplateViewModel>(null, _dropTargetTemplate, oldIndex, newIndex));
-                _currentDragginTemplate = null;
-                _dropTargetTemplate = null;
-            }
-            return false;
-        }
-
-        public bool ClearCurrentDragginTemplate()
-        {
-            if (_currentDragginTemplate != null)
-            {
-                _currentDragginTemplate = null;
-                _dropTargetTemplate = null;
-                return true;
-            }
-            return false;
-        }
-
-        public bool HasTemplatesAdded => ProjectTemplates.SavedPages.Any() || ProjectTemplates.SavedFeatures.Any();
 
         public void ResetSelection()
         {
