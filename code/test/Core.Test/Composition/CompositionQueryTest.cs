@@ -12,7 +12,7 @@ namespace Microsoft.Templates.Core.Test.Composition
     public class CompositionQueryTest
     {
         [Fact]
-        public void ParseIvalidQueries()
+        public void ParseInvalidQueries()
         {
             var query1 = "wts.framework = framework & wts.type != Page&$name == Map";
 

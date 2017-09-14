@@ -25,14 +25,14 @@ namespace Microsoft.Templates.UI.Controls
             get => (Brush)GetValue(FillProperty);
             set => SetValue(FillProperty, value);
         }
-        public static readonly DependencyProperty FillProperty = DependencyProperty.Register("Fill", typeof(Brush), typeof(LogoDisplay), new PropertyMetadata(new SolidColorBrush(Colors.White)));
+        public static readonly DependencyProperty FillProperty = DependencyProperty.Register(nameof(Fill), typeof(Brush), typeof(LogoDisplay), new PropertyMetadata(new SolidColorBrush(Colors.White)));
 
         public bool IsBusy
         {
             get { return (bool)GetValue(IsBusyProperty); }
             set { SetValue(IsBusyProperty, value); }
         }
-        public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register("IsBusy", typeof(bool), typeof(LogoDisplay), new PropertyMetadata(false, OnIsBusyPropertyChanged));
+        public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register(nameof(IsBusy), typeof(bool), typeof(LogoDisplay), new PropertyMetadata(false, OnIsBusyPropertyChanged));
 
         public LogoDisplay()
         {

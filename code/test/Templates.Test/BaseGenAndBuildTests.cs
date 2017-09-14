@@ -39,7 +39,7 @@ namespace Microsoft.Templates.Test
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
             OutputPath = ProjectPath;
 
-            var userSelection = await GenerationFixture.SetupProjectAsync(projectType, framework, language);
+            var userSelection = await GenerationFixture.SetupProjectAsync(projectType, framework, language, getName);
 
             if (getName != null)
             {
@@ -75,7 +75,7 @@ namespace Microsoft.Templates.Test
             Fs.SafeDeleteDirectory(projectPath);
         }
 
-        protected async Task<string> AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string language, bool cleanGeneration = true)
+        protected async Task<string> AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string language, bool emptyProject, bool cleanGeneration = true)
         {
             await SetUpFixtureForTestingAsync(language);
 
@@ -85,14 +85,19 @@ namespace Microsoft.Templates.Test
 
             var userSelection = await GenerationFixture.SetupProjectAsync(projectType, framework, language);
 
+            if (!emptyProject)
+            {
+                GenerationFixture.AddItems(userSelection, GenerationFixture.GetTemplates(framework), GenerationFixture.GetDefaultName);
+            }
+
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
-            var emptyProject = Path.Combine(_fixture.TestNewItemPath, projectName);
+            var project = Path.Combine(_fixture.TestNewItemPath, projectName);
 
             // Assert on project
-            Assert.True(Directory.Exists(emptyProject));
+            Assert.True(Directory.Exists(project));
 
-            int emptyProjecFileCount = Directory.GetFiles(emptyProject, "*.*", SearchOption.AllDirectories).Count();
+            int emptyProjecFileCount = Directory.GetFiles(project, "*.*", SearchOption.AllDirectories).Count();
             Assert.True(emptyProjecFileCount > 2);
 
             // Add new items
@@ -125,8 +130,14 @@ namespace Microsoft.Templates.Test
             var finalProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName);
             int finalProjectFileCount = Directory.GetFiles(finalProjectPath, "*.*", SearchOption.AllDirectories).Count();
 
-            Assert.True(finalProjectFileCount > emptyProjecFileCount);
-
+            if (emptyProject)
+            {
+                Assert.True(finalProjectFileCount > emptyProjecFileCount);
+            }
+            else
+            {
+                Assert.True(finalProjectFileCount == emptyProjecFileCount);
+            }
             // Clean
             if (cleanGeneration)
             {

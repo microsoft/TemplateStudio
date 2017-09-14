@@ -196,12 +196,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\CodeViewer.cs" />
+    <Compile Include="Controls\CodeViewer.xaml.cs">
+      <DependentUpon>CodeViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\InformationButton.xaml.cs">
       <DependentUpon>InformationButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\OverlayBox.xaml.cs">
+      <DependentUpon>OverlayBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\StatusBox.xaml.cs">
       <DependentUpon>StatusBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TogglePanel.xaml.cs">
+      <DependentUpon>TogglePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WizardHeader.xaml.cs">
+      <DependentUpon>WizardHeader.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Extensions\ListViewExtensions.cs" />
@@ -290,7 +301,6 @@
     <Compile Include="Services\DragAndDropService\ListViewItemDragState.cs" />
     <Compile Include="Services\DragAndDropService\NativeMethods.cs" />
     <Compile Include="Services\DragAndDropService\MouseUtilities.cs" />
-    <Compile Include="Controls\OverlayBox.cs" />
     <Compile Include="Controls\SymbolFonts.cs" />
     <Compile Include="Controls\TextBoxEx.cs" />
     <Compile Include="Converters\ColumnCountConverter.cs" />
@@ -299,7 +309,6 @@
     <Compile Include="Converters\MicrosoftTemplatesAuthorConverter.cs" />
     <Compile Include="Converters\StringVisibilityConverter.cs" />
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
-    <Compile Include="Controls\TogglePane.cs" />
     <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="Generation\NewProjectGenController.cs" />
     <Compile Include="Generation\NewItemGenController.cs" />
@@ -422,6 +431,10 @@
     <Resource Include="Assets\IconUp.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\CodeViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\InformationButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -429,10 +442,6 @@
     <Page Include="Controls\LogoDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\CodeViewer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\OverlayBox.xaml">
       <SubType>Designer</SubType>
@@ -442,7 +451,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\TogglePane.xaml">
+    <Page Include="Controls\TogglePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\WizardHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -454,10 +467,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\StyleImage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Styles\StyleLogoDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -466,17 +475,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Styles\StyleTogglePane.xaml">
+    <Page Include="Styles\StyleTogglePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\_FocusVisualStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Common\ErrorDialog.xaml">
       <SubType>Designer</SubType>
