@@ -13,7 +13,7 @@
     "wts.type": "feature",
     "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
     "wts.version": "1.0.0",
-    "wts.order": "4",
+    "wts.displayOrder": "4",
     "wts.group": "UserInteraction",
     "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)",
     "wts.dependencies":"wts.Feat.SettingsStorage",

@@ -159,6 +159,12 @@ namespace TemplateValidator
                     case "wts.order":
                         VerifyWtsOrderTagValue(tag, results);
                         break;
+                    case "wts.displayOrder":
+                        VerifyWtsDisplayOrderTagValue(tag, results);
+                        break;
+                    case "wts.compositionOrder":
+                        VerifyWtsCompositionOrderTagValue(tag, results);
+                        break;
                     case "wts.framework":
                         VerifyWtsFrameworkTagValue(tag, results);
                         break;
@@ -327,9 +333,22 @@ namespace TemplateValidator
 
         private static void VerifyWtsOrderTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
+            results.Add($"The wts.order tag is no longer supported. Please use the wts.displayOrder or the wts.compositionOrder tag.");
+        }
+
+        private static void VerifyWtsDisplayOrderTagValue(KeyValuePair<string, string> tag, List<string> results)
+        {
             if (!int.TryParse(tag.Value, out int ignoredOrderResult))
             {
-                results.Add($"The wts.order tag must be an integer. Not '{tag.Value}'.");
+                results.Add($"The wts.displayOrder tag must be an integer. Not '{tag.Value}'.");
+            }
+        }
+
+        private static void VerifyWtsCompositionOrderTagValue(KeyValuePair<string, string> tag, List<string> results)
+        {
+            if (!int.TryParse(tag.Value, out int ignoredOrderResult))
+            {
+                results.Add($"The wts.compositionOrder tag must be an integer. Not '{tag.Value}'.");
             }
         }
 
