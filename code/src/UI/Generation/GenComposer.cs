@@ -55,7 +55,7 @@ namespace Microsoft.Templates.UI
 
         public static IEnumerable<ITemplateInfo> GetAllDependencies(ITemplateInfo template, string framework)
         {
-           return GetDependencies(template, framework, new List<ITemplateInfo>());
+            return GetDependencies(template, framework, new List<ITemplateInfo>());
         }
 
         private static IEnumerable<ITemplateInfo> GetDependencies(ITemplateInfo template, string framework, IList<ITemplateInfo> dependencyList)
@@ -114,6 +114,14 @@ namespace Microsoft.Templates.UI
             genQueue = AddInCompositionTemplates(genQueue, userSelection);
 
             return genQueue;
+        }
+
+        public static IEnumerable<TemplateLicense> GetAllLicences(UserSelection userSelection)
+        {
+            return Compose(userSelection)
+                    .SelectMany(s => s.Template.GetLicenses())
+                    .Distinct(new TemplateLicenseEqualityComparer())
+                    .ToList();
         }
 
         public static IEnumerable<GenInfo> ComposeNewItem(UserSelection userSelection)

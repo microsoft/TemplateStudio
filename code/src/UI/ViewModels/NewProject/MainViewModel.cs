@@ -27,13 +27,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public ProjectTemplatesViewModel ProjectTemplates { get; } = new ProjectTemplatesViewModel();
 
-        public LicensesService Licenses { get; }
+        public LicensesService Licenses { get; } = new LicensesService();
         public OrderingService Ordering { get; private set; }
 
         public MainViewModel(MainView mainView) : base(mainView)
         {
             MainView = mainView;
-            Licenses = new LicensesService(CreateUserSelection);
             Current = this;
         }
 
@@ -45,9 +44,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 Panel = summaryPageGroups,
                 ListViewStyle = MainView.FindResource("SummaryListViewStyle") as Style,
-                ItemTemplate = MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate,
-                GetData = () => ProjectTemplates.SavedPages,
-                SetHomePage = ProjectTemplates.SetHomePage
+                ItemTemplate = MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate
             };
             await BaseInitializeAsync();
         }

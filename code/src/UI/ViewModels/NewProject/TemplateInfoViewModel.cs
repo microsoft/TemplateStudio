@@ -165,13 +165,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private ICommand _showItemInfoCommand;
         public ICommand ShowItemInfoCommand => _showItemInfoCommand ?? (_showItemInfoCommand = new RelayCommand(ShowItemInfo));
-
-        private Func<string, bool> IsTemplateAlreadyDefined { get; }
-        private Action<(string, ITemplateInfo), bool> SetupTemplateAndDependencies { get; }
-        private Func<bool> CloseAllEditions { get; }
         #endregion
 
-        public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies, Func<string, bool> isTemplateAlreadyDefined, Action<(string, ITemplateInfo), bool> setupTemplateAndDependencies, Func<bool> closeAllEditions)
+        public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies)
         {
             Author = template.Author;
             CanChooseItemName = template.GetItemNameEditable();
@@ -189,13 +185,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             Version = template.GetVersion();
 
             TitleForeground = GetTitleForeground(true);
-            IsTemplateAlreadyDefined = isTemplateAlreadyDefined;
-            SetupTemplateAndDependencies = setupTemplateAndDependencies;
-            CloseAllEditions = closeAllEditions;
 
             if (dependencies != null && dependencies.Any())
             {
-                DependencyItems.AddRange(dependencies.Select(d => new DependencyInfoViewModel(new TemplateInfoViewModel(d, GenComposer.GetAllDependencies(d, MainViewModel.Current.ProjectSetup.SelectedFramework.Name), IsTemplateAlreadyDefined, SetupTemplateAndDependencies, CloseAllEditions))));
+                DependencyItems.AddRange(dependencies.Select(d => new DependencyInfoViewModel(new TemplateInfoViewModel(d, GenComposer.GetAllDependencies(d, MainViewModel.Current.ProjectSetup.SelectedFramework.Name)))));
 
                 Dependencies = string.Join(",", dependencies.Select(d => d.Name));
             }
@@ -271,13 +264,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             NewTemplateName = ValidationService.InferTemplateName(Template.GetDefaultName(), CanChooseItemName, true);
             if (CanChooseItemName)
             {
-                CloseAllEditions();
+                MainViewModel.Current.ProjectTemplates.CloseAllEditions();
                 IsEditionEnabled = true;
             }
             else
             {
-                SetupTemplateAndDependencies((NewTemplateName, Template), false);
-                UpdateTemplateAvailability(IsTemplateAlreadyDefined(Template.Identity));
+                MainViewModel.Current.ProjectTemplates.AddTemplateAndDependencies((NewTemplateName, Template), false);
+                UpdateTemplateAvailability(MainViewModel.Current.ProjectTemplates.IsTemplateAlreadyDefined(Template.Identity));
             }
         }
 
@@ -285,9 +278,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             if (IsValidName)
             {
-                SetupTemplateAndDependencies((NewTemplateName, Template), false);
+                MainViewModel.Current.ProjectTemplates.AddTemplateAndDependencies((NewTemplateName, Template), false);
                 CloseEdition();
-                UpdateTemplateAvailability(IsTemplateAlreadyDefined(Template.Identity));
+                UpdateTemplateAvailability(MainViewModel.Current.ProjectTemplates.IsTemplateAlreadyDefined(Template.Identity));
             }
         }
     }

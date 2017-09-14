@@ -244,16 +244,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public ICommand ConfirmRenameCommand => _confirmRenameCommand ?? (_confirmRenameCommand = new RelayCommand(OnConfirmRename));
 
         private ICommand _cancelRenameCommand;
-        public ICommand CancelRenameCommand => _cancelRenameCommand ?? (_cancelRenameCommand = new RelayCommand(CancelRenameAction));
-
-        public Action CancelRenameAction => CancelRename;
-        public Action<SavedTemplateViewModel> CloseAllButThis;
-        public Action CancelAllRenaming;
-        public Action<SavedTemplateViewModel, bool> RemoveTemplate;
-        public Action<string> UpdateHomePageName;
+        public ICommand CancelRenameCommand => _cancelRenameCommand ?? (_cancelRenameCommand = new RelayCommand(() => CancelRename()));
         #endregion
 
-        public SavedTemplateViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled, Action<SavedTemplateViewModel> closeAllButThis, Action<SavedTemplateViewModel, bool> removeTemplate, Action cancelAllRenaming, Action<string> updateHomePageName)
+        public SavedTemplateViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled)
         {
             _template = item.template;
             colorTimer.Tick += OnColorTimerTick;
@@ -270,10 +264,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             IsRemoveEnabled = isRemoveEnabled;
             ItemForeground = GetItemForeground(true);
             AuthorForeground = GetAuthorForeground(true);
-            RemoveTemplate = removeTemplate;
-            CancelAllRenaming = cancelAllRenaming;
-            UpdateHomePageName = updateHomePageName;
-            CloseAllButThis = closeAllButThis;
             AllowDragAndDrop = false;
         }
 
@@ -359,7 +349,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             if (!IsOpen)
             {
-                CloseAllButThis(this);
+                MainViewModel.Current.ProjectTemplates.CloseAllButThis(this);
                 IsOpen = true;
             }
             else
@@ -370,12 +360,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void OnRename()
         {
-            CancelAllRenaming();
+            MainViewModel.Current.ProjectTemplates.CancelAllRenaming();
             IsEditionEnabled = true;
             Close();
         }
 
-        private void OnRemove() => RemoveTemplate(this, true);
+        private void OnRemove() => MainViewModel.Current.ProjectTemplates.RemoveTemplate(this, true);
 
         private void OnConfirmRename()
         {
@@ -391,7 +381,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
                 if (IsHome)
                 {
-                    UpdateHomePageName(ItemName);
+                    MainViewModel.Current.ProjectTemplates.UpdateHomePageName(ItemName);
                 }
 
                 AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Rename).FireAndForget();

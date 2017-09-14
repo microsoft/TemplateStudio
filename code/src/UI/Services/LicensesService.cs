@@ -23,24 +23,16 @@ namespace Microsoft.Templates.UI.Services
         }
 
         public ObservableCollection<SummaryLicenseViewModel> SummaryLicenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
-        Func<UserSelection> GetUserSelection { get; }
 
-        public LicensesService(Func<UserSelection> getUserSelection)
+        public LicensesService()
         {
             SummaryLicenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryLicenses)); };
-            GetUserSelection = getUserSelection;
         }
 
-        public void RebuildLicenses()
+        public void RebuildLicenses(UserSelection userSelection)
         {
-            var genItems = GenComposer.Compose(GetUserSelection());
-
-            var genLicenses = genItems
-                                .SelectMany(s => s.Template.GetLicenses())
-                                .Distinct(new TemplateLicenseEqualityComparer())
-                                .ToList();
-
-            SyncLicenses(genLicenses);
+            var licenses = GenComposer.GetAllLicences(userSelection);
+            SyncLicenses(licenses);
         }
 
         private void SyncLicenses(IEnumerable<TemplateLicense> licenses)

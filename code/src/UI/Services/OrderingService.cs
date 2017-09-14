@@ -17,8 +17,6 @@ namespace Microsoft.Templates.UI.Services
         public StackPanel Panel { get; set; }
         public Style ListViewStyle { get; set; }
         public DataTemplate ItemTemplate { get; set; }
-        public Func<ObservableCollection<ObservableCollection<SavedTemplateViewModel>>> GetData { get; set; }
-        public Action<SavedTemplateViewModel> SetHomePage { get; set; }
 
         private SavedTemplateViewModel _dragginItem;
         private SavedTemplateViewModel _dropTarget;
@@ -57,7 +55,7 @@ namespace Microsoft.Templates.UI.Services
         {
             if (_dragginItem != null && _dropTarget != null && _dragginItem.ItemName != _dropTarget.ItemName)
             {
-                var savedPages = GetData();
+                var savedPages = MainViewModel.Current.ProjectTemplates.SavedPages;
                 var newIndex = savedPages.First().IndexOf(_dropTarget);
                 var oldIndex = savedPages.First().IndexOf(_dragginItem);
                 Drop(null, new DragAndDropEventArgs<SavedTemplateViewModel>(null, _dropTarget, oldIndex, newIndex));
@@ -80,7 +78,7 @@ namespace Microsoft.Templates.UI.Services
 
         private void Drop(object sender, DragAndDropEventArgs<SavedTemplateViewModel> e)
         {
-            var savedPages = GetData();
+            var savedPages = MainViewModel.Current.ProjectTemplates.SavedPages;
             if (savedPages.Count > 0 && savedPages.Count >= e.ItemData.GenGroup + 1)
             {
                 var items = savedPages[e.ItemData.GenGroup];
@@ -88,13 +86,13 @@ namespace Microsoft.Templates.UI.Services
                 {
                     if (e.NewIndex == 0)
                     {
-                        SetHomePage(e.ItemData);
+                        MainViewModel.Current.ProjectTemplates.SetHomePage(e.ItemData);
                     }
                     if (e.OldIndex > -1)
                     {
                         savedPages[e.ItemData.GenGroup].Move(e.OldIndex, e.NewIndex);
                     }
-                    SetHomePage(items.First());
+                    MainViewModel.Current.ProjectTemplates.SetHomePage(items.First());
                 }
             }
         }

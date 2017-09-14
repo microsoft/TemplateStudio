@@ -95,7 +95,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (PagesGroups.Count == 0)
             {
                 var pages = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page && t.GetFrameworkList().Contains(ContextFramework.Name))
-                                                   .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), IsTemplateAlreadyDefined, SetupTemplateAndDependencies, CloseAllEditions));
+                                                   .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name)));
 
                 var groups = pages.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order))).OrderBy(gr => gr.Title);
 
@@ -106,7 +106,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (FeatureGroups.Count == 0)
             {
                 var features = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Feature && t.GetFrameworkList().Contains(ContextFramework.Name) && !t.GetIsHidden())
-                                                      .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name), IsTemplateAlreadyDefined, SetupTemplateAndDependencies, CloseAllEditions));
+                                                      .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name)));
 
                 var groups = features.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order))).OrderBy(gr => gr.Title);
 
@@ -117,7 +117,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (SavedPages.Count == 0 && SavedFeatures.Count == 0)
             {
                 SetupTemplatesFromLayout(ContextProjectType.Name, ContextFramework.Name);
-                MainViewModel.Current.Licenses.RebuildLicenses();
+                MainViewModel.Current.Licenses.RebuildLicenses(MainViewModel.Current.CreateUserSelection());
             }
             CloseAllEditions();
             await Task.CompletedTask;
@@ -139,7 +139,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
         public void UpdateHomePageName(string name) => HomeName = name;
 
-        private void RemoveTemplate(SavedTemplateViewModel item, bool showErrors)
+        public void RemoveTemplate(SavedTemplateViewModel item, bool showErrors)
         {
             // Look if is there any templates that depends on item
             if (AnySavedTemplateDependsOnItem(item, showErrors))
@@ -163,7 +163,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
             MainViewModel.Current.FinishCommand.OnCanExecuteChanged();
             UpdateTemplatesAvailability();
-            MainViewModel.Current.Licenses.RebuildLicenses();
+            MainViewModel.Current.Licenses.RebuildLicenses(MainViewModel.Current.CreateUserSelection());
 
             AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Remove).FireAndForget();
         }
@@ -231,7 +231,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        private bool IsTemplateAlreadyDefined(string identity) => Identities.Any(i => i == identity);
+        public bool IsTemplateAlreadyDefined(string identity) => Identities.Any(i => i == identity);
 
         private void UpdateTemplatesAvailability()
         {
@@ -264,12 +264,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (item.Template != null)
                 {
-                    SetupTemplateAndDependencies((item.Layout.name, item.Template), !item.Layout.@readonly);
+                    AddTemplateAndDependencies((item.Layout.name, item.Template), !item.Layout.@readonly);
                 }
             }
         }
 
-        private void SetupTemplateAndDependencies((string name, ITemplateInfo template) item, bool isRemoveEnabled = true)
+        public void AddTemplateAndDependencies((string name, ITemplateInfo template) item, bool isRemoveEnabled = true)
         {
             SaveNewTemplate(item, isRemoveEnabled);
             var dependencies = GenComposer.GetAllDependencies(item.template, ContextFramework.Name);
@@ -282,12 +282,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 }
             }
 
-            MainViewModel.Current.Licenses.RebuildLicenses();
+            MainViewModel.Current.Licenses.RebuildLicenses(MainViewModel.Current.CreateUserSelection());
         }
 
         private void SaveNewTemplate((string name, ITemplateInfo template) item, bool isRemoveEnabled = true)
         {
-            var newItem = new SavedTemplateViewModel(item, isRemoveEnabled, CloseAllButThis, RemoveTemplate, CancelAllRenaming, UpdateHomePageName);
+            var newItem = new SavedTemplateViewModel(item, isRemoveEnabled);
 
             if (item.template.GetTemplateType() == TemplateType.Page)
             {
@@ -336,13 +336,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             return isEditingTemplate;
         }
 
-        private void CancelAllRenaming()
+        public void CancelAllRenaming()
         {
             SavedPages.ToList().ForEach(spg => spg.ToList().ForEach(p => p.CancelRename()));
             SavedFeatures.ToList().ForEach(f => f.CancelRename());
         }
 
-        private void CloseAllButThis(SavedTemplateViewModel item)
+        public void CloseAllButThis(SavedTemplateViewModel item)
         {
             SavedPages.ToList().ForEach(pg => pg.ToList().ForEach(p => TryClose(p, item)));
             SavedFeatures.ToList().ForEach(f => TryClose(f, item));
