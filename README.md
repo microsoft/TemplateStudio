@@ -15,7 +15,7 @@ I need an app that uses MVVM Light, uses master detail, can suspend and resume, 
 |dev|[![Build status](https://ci.appveyor.com/api/projects/status/nf8r35r45o4yqbqs/branch/dev?svg=true)](https://ci.appveyor.com/project/ralarcon/windowstemplatestudio/branch/dev)|![Generation Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/135/badge)|![Full Integration Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/128/badge)|[![Nightly Version](https://wtsrepository.blob.core.windows.net/badges/img.nightly.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio)||
 
 > The builds include test verifications to validate the contributions:
-> * *CI Build*: Includes all unit test + minimum integration verifications (minumum generation + build + code style rules). Runs every PR requested / PR approved.
+> * *CI Build*: Includes all unit test + minimum integration verifications (minumum generation + build + code style rules). Runs every PR requested / PR accepted.
 > * *Gen Tests*: Includes tests to verify combinations and variations of templates from a project generation point of view. Runs every PR accepted and takes a bit to complete.
 > * *Full Tests*: Includes `Gen Tests` and actually builds the solutions generated to ensure no build time issues found. Runs every PR accepted and takes longer to be completed. 
 > 
