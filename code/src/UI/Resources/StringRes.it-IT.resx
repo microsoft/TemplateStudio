@@ -636,4 +636,8 @@
     <value>Close status box</value>
     <comment>Status bar close button name</comment>
   </data>
+  <data name="ExceptionDependencyMissing" xml:space="preserve">
+    <value>Dependency template {0} not found on user selection</value>
+    <comment>Log text for misssing dependency exception.</comment>
+  </data>
 </root>

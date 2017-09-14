@@ -212,9 +212,24 @@ namespace Microsoft.Templates.Core
             return GetValueFromTag(ti, TagPrefix + "version");
         }
 
-        public static int GetOrder(this ITemplateInfo ti)
+        public static int GetDisplayOrder(this ITemplateInfo ti)
         {
-            var rawOrder = GetValueFromTag(ti, TagPrefix + "order");
+            var rawOrder = GetValueFromTag(ti, TagPrefix + "displayOrder");
+
+            if (!string.IsNullOrEmpty(rawOrder))
+            {
+                if (int.TryParse(rawOrder, out int order))
+                {
+                    return order;
+                }
+            }
+
+            return int.MaxValue;
+        }
+
+        public static int GetCompositionOrder(this ITemplateInfo ti)
+        {
+            var rawOrder = GetValueFromTag(ti, TagPrefix + "compositionOrder");
 
             if (!string.IsNullOrEmpty(rawOrder))
             {
