@@ -8,7 +8,7 @@ Param(
   [string]$Color = "blue"
 )
 $ext = "svg"
-$file = ".\$Identifier.version.$ext"
+$file = ".\img.$Identifier.version.$ext"
 
 function GetVersionNumberFromBuildNumber
 {
