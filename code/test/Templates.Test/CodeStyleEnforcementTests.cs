@@ -23,6 +23,22 @@ namespace Microsoft.Templates.Test
             Assert.True(result.Item1, result.Item2);
         }
 
+        [Fact]
+        public void EnsureCSharpCodeDoesNotUseTabs()
+        {
+            var result = CodeIsNotUsed('\t'.ToString(), ".cs");
+
+            Assert.True(result.Item1, result.Item2);
+        }
+
+        [Fact]
+        public void EnsureVisualbasicCodeDoesNotUseTabs()
+        {
+            var result = CodeIsNotUsed('\t'.ToString(), ".vb");
+
+            Assert.True(result.Item1, result.Item2);
+        }
+
         private Tuple<bool, string> CodeIsNotUsed(string textThatShouldNotBeinTheFile, string fileExtension)
         {
             // This is the relative path from where the test assembly will run from
