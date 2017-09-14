@@ -421,6 +421,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dependency template {0} not found on user selection.
+        /// </summary>
+        public static string ExceptionDependencyMissing {
+            get {
+                return ResourceManager.GetString("ExceptionDependencyMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid dependency item {0}. Dependencies have to be configured as multpleInstance = false..
         /// </summary>
         public static string ExceptionDependencyMultipleInstance {

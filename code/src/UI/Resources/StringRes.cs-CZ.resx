@@ -648,4 +648,8 @@
     <value>Select pages</value>
     <comment>New Project Wizard title for pages</comment>
   </data>
+  <data name="ExceptionDependencyMissing" xml:space="preserve">
+    <value>Dependency template {0} not found on user selection</value>
+    <comment>Log text for misssing dependency exception.</comment>
+  </data>
 </root>

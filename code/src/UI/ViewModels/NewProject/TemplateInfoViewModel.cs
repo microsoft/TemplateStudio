@@ -175,7 +175,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             MultipleInstances = template.GetMultipleInstance();
             GenGroup = template.GetGenGroup();
             Name = template.Name;
-            Order = template.GetOrder();
+            Order = template.GetDisplayOrder();
             Summary = template.Description;
             TemplateType = template.GetTemplateType();
             Template = template;
