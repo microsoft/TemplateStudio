@@ -20,14 +20,10 @@ namespace Microsoft.Templates.UI.Services
         public Func<ObservableCollection<ObservableCollection<SavedTemplateViewModel>>> GetData { get; set; }
         public Action<SavedTemplateViewModel> SetHomePage { get; set; }
 
-        private SavedTemplateViewModel _currentDragginTemplate;
-        private SavedTemplateViewModel _dropTargetTemplate;
+        private SavedTemplateViewModel _dragginItem;
+        private SavedTemplateViewModel _dropTarget;
 
-        public OrderingService()
-        {
-        }
-
-        public void DefineDragAndDrop(ObservableCollection<SavedTemplateViewModel> items, bool allowDragAndDrop)
+        public void AddList(ObservableCollection<SavedTemplateViewModel> items, bool allowDragAndDrop)
         {
             var listView = new ListView()
             {
@@ -40,52 +36,49 @@ namespace Microsoft.Templates.UI.Services
             if (allowDragAndDrop)
             {
                 var service = new DragAndDropService<SavedTemplateViewModel>(listView);
-                service.ProcessDrop += DropTemplate;
+                service.ProcessDrop += Drop;
             }
             Panel.Children.Add(listView);
         }
 
-        public void SavedTemplateGotFocus(SavedTemplateViewModel savedTemplate)
-        {
-            _dropTargetTemplate = savedTemplate;
-        }
+        public void SetDropTarget(SavedTemplateViewModel savedTemplate) => _dropTarget = savedTemplate;
 
-        public bool SavedTemplateSetDrag(SavedTemplateViewModel savedTemplate)
+        public bool SetDrag(SavedTemplateViewModel savedTemplate)
         {
-            if (_currentDragginTemplate == null)
+            if (_dragginItem == null)
             {
-                _currentDragginTemplate = savedTemplate;
+                _dragginItem = savedTemplate;
                 return true;
             }
             return false;
         }
 
-        public bool SavedTemplateSetDrop(SavedTemplateViewModel savedTemplate)
+        public bool SetDrop(SavedTemplateViewModel savedTemplate)
         {
-            if (_currentDragginTemplate != null && _dropTargetTemplate != null && _currentDragginTemplate.ItemName != _dropTargetTemplate.ItemName)
+            if (_dragginItem != null && _dropTarget != null && _dragginItem.ItemName != _dropTarget.ItemName)
             {
                 var savedPages = GetData();
-                var newIndex = savedPages.First().IndexOf(_dropTargetTemplate);
-                var oldIndex = savedPages.First().IndexOf(_currentDragginTemplate);
-                DropTemplate(null, new DragAndDropEventArgs<SavedTemplateViewModel>(null, _dropTargetTemplate, oldIndex, newIndex));
-                _currentDragginTemplate = null;
-                _dropTargetTemplate = null;
+                var newIndex = savedPages.First().IndexOf(_dropTarget);
+                var oldIndex = savedPages.First().IndexOf(_dragginItem);
+                Drop(null, new DragAndDropEventArgs<SavedTemplateViewModel>(null, _dropTarget, oldIndex, newIndex));
+                _dragginItem = null;
+                _dropTarget = null;
             }
             return false;
         }
 
-        public bool ClearCurrentDragginTemplate()
+        public bool ClearDraggin()
         {
-            if (_currentDragginTemplate != null)
+            if (_dragginItem != null)
             {
-                _currentDragginTemplate = null;
-                _dropTargetTemplate = null;
+                _dragginItem = null;
+                _dropTarget = null;
                 return true;
             }
             return false;
         }
 
-        public void DropTemplate(object sender, DragAndDropEventArgs<SavedTemplateViewModel> e)
+        private void Drop(object sender, DragAndDropEventArgs<SavedTemplateViewModel> e)
         {
             var savedPages = GetData();
             if (savedPages.Count > 0 && savedPages.Count >= e.ItemData.GenGroup + 1)

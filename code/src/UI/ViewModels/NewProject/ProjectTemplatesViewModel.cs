@@ -427,7 +427,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 {
                     var items = new ObservableCollection<SavedTemplateViewModel>();
                     SavedPages.Add(items);
-                    MainViewModel.Current.Ordering.DefineDragAndDrop(items, SavedPages.Count == 1);
+                    MainViewModel.Current.Ordering.AddList(items, SavedPages.Count == 1);
                 }
                 SavedPages[newItem.GenGroup].Add(newItem);
                 HasSavedPages = true;

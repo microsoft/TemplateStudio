@@ -20,9 +20,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class MainViewModel : BaseMainViewModel
     {
-        // private SavedTemplateViewModel _currentDragginTemplate;
-        // private SavedTemplateViewModel _dropTargetTemplate;
-
         public static MainViewModel Current;
         public MainView MainView;
 
@@ -40,13 +37,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             Current = this;
         }
 
-        // private StackPanel _summaryPageGroups;
         public async Task InitializeAsync(Frame stepFrame, StackPanel summaryPageGroups)
         {
             WizardStatus.WizardTitle = StringRes.ProjectSetupTitle;
             NavigationService.Initialize(stepFrame, new ProjectSetupView());
-            // _summaryPageGroups = summaryPageGroups;
-            // summaryPageGroups, MainView.FindResource("SummaryListViewStyle") as Style, MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate);
             Ordering = new OrderingService()
             {
                 Panel = summaryPageGroups,

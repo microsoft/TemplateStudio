@@ -70,7 +70,7 @@ namespace Microsoft.Templates.UI.Controls
             UpdateOpenStatus();
         }
 
-        private void OnMainGridGotFocus(object sender, RoutedEventArgs e) => MainViewModel.Current.Ordering.SavedTemplateGotFocus(TogglePanelContent as SavedTemplateViewModel);
+        private void OnMainGridGotFocus(object sender, RoutedEventArgs e) => MainViewModel.Current.Ordering.SetDropTarget(TogglePanelContent as SavedTemplateViewModel);
 
         private static void OnIsOpenPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -89,13 +89,13 @@ namespace Microsoft.Templates.UI.Controls
             }
             if (e.Key == Key.Space && mainGrid.IsFocused)
             {
-                if (MainViewModel.Current.Ordering.SavedTemplateSetDrag(TogglePanelContent as SavedTemplateViewModel))
+                if (MainViewModel.Current.Ordering.SetDrag(TogglePanelContent as SavedTemplateViewModel))
                 {
                     dragAndDropShadowBorder.Opacity = 1;
                 }
                 else
                 {
-                    MainViewModel.Current.Ordering.SavedTemplateSetDrop(TogglePanelContent as SavedTemplateViewModel);
+                    MainViewModel.Current.Ordering.SetDrop(TogglePanelContent as SavedTemplateViewModel);
                 }
             }
             if (e.Key == Key.Escape)
