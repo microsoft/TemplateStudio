@@ -156,8 +156,8 @@
                             </Grid>
                             <Expander Margin="{StaticResource Margin_M_Top}" Header="{x:Static res:StringRes.SummaryLicenseTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">
                                 <Grid>
-                                    <ItemsControl Focusable="False" Margin="{StaticResource Margin_XL_Left}" ItemTemplate="{StaticResource LicenseSummaryItemTemplate}" ItemsSource="{Binding Licenses.SummaryLicenses}" />
-                                    <TextBlock Margin="27,7,0,0" Style="{StaticResource UIBaseDarkGray}" Text="{x:Static res:StringRes.SummaryNoLicenses}" Visibility="{Binding Licenses.HasSummaryLicenses, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
+                                    <ItemsControl Focusable="False" Margin="{StaticResource Margin_XL_Left}" ItemTemplate="{StaticResource LicenseSummaryItemTemplate}" ItemsSource="{Binding Licenses}" />
+                                    <TextBlock Margin="27,7,0,0" Style="{StaticResource UIBaseDarkGray}" Text="{x:Static res:StringRes.SummaryNoLicenses}" Visibility="{Binding HasLicenses, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
                                 </Grid>
                             </Expander>
                             <Expander Margin="{StaticResource Margin_M_Top}" Header="{x:Static res:StringRes.SummaryPagesTitle}" HeaderTemplate="{StaticResource SummaryExpanderHeaderTemplate}" IsExpanded="True">

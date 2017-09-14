@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -27,12 +28,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public ProjectTemplatesViewModel ProjectTemplates { get; } = new ProjectTemplatesViewModel();
 
-        public LicensesService Licenses { get; } = new LicensesService();
+        private bool _hasLicenses;
+        public bool HasLicenses
+        {
+            get => _hasLicenses;
+            private set => SetProperty(ref _hasLicenses, value);
+        }
+
+        public ObservableCollection<SummaryLicenseViewModel> Licenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
         public OrderingService Ordering { get; private set; }
 
         public MainViewModel(MainView mainView) : base(mainView)
         {
             MainView = mainView;
+            Licenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(Licenses)); };
             Current = this;
         }
 
@@ -47,6 +56,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 ItemTemplate = MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate
             };
             await BaseInitializeAsync();
+        }
+
+        internal void RebuildLicenses()
+        {
+            LicensesService.RebuildLicenses(CreateUserSelection(), Licenses);
+            HasLicenses = Licenses.Any();
         }
 
         public void AlertProjectSetupChanged()

@@ -33,12 +33,12 @@ namespace UI.Test
             ITemplateInfo template = _fixture.Repository.Get(t => t.Identity == "wts.Page.Blank").FirstOrDefault();
             userSelection.Pages.Add(("Main", template));
 
-            var licensesService = new LicensesService();
-            licensesService.RebuildLicenses(userSelection);
+            var licenses = new List<SummaryLicenseViewModel>();
+            LicensesService.RebuildLicenses(userSelection, licenses);
 
-            Assert.True(licensesService.SummaryLicenses.Count == 2);
-            Assert.True(licensesService.SummaryLicenses.Any(l => l.Text == "MVVM Light"));
-            Assert.True(licensesService.SummaryLicenses.Any(l => l.Text == "Microsoft.Toolkit.Uwp"));
+            Assert.True(licenses.Count == 2);
+            Assert.True(licenses.Any(l => l.Text == "MVVM Light"));
+            Assert.True(licenses.Any(l => l.Text == "Microsoft.Toolkit.Uwp"));
 
 
         }
@@ -46,8 +46,9 @@ namespace UI.Test
         [Fact]
         public void RebuildLicenses_AddRemovePage()
         {
-            var licensesService = new LicensesService();
-            licensesService.SummaryLicenses.Add(new SummaryLicenseViewModel(new TemplateLicense() { Text = "TestLicense", Url = "Test" }));
+            var licenses = new List<SummaryLicenseViewModel>();
+
+            licenses.Add(new SummaryLicenseViewModel(new TemplateLicense() { Text = "TestLicense", Url = "Test" }));
 
             var userSelection = new UserSelection()
             {
@@ -60,13 +61,13 @@ namespace UI.Test
             userSelection.Features.Add(("SettingStorage", _fixture.Repository.Get(t => t.Identity == "wts.Feat.SettingsStorage").FirstOrDefault()));
 
 
-            licensesService.RebuildLicenses(userSelection);
+            LicensesService.RebuildLicenses(userSelection, licenses);
 
-            Assert.True(licensesService.SummaryLicenses.Count == 3);
-            Assert.False(licensesService.SummaryLicenses.Any(l => l.Text == "TestLicense"));
-            Assert.True(licensesService.SummaryLicenses.Any(l => l.Text == "MVVM Light"));
-            Assert.True(licensesService.SummaryLicenses.Any(l => l.Text == "Microsoft.Toolkit.Uwp"));
-            Assert.True(licensesService.SummaryLicenses.Any(l => l.Text == "Newtonsoft.Json"));
+            Assert.True(licenses.Count == 3);
+            Assert.False(licenses.Any(l => l.Text == "TestLicense"));
+            Assert.True(licenses.Any(l => l.Text == "MVVM Light"));
+            Assert.True(licenses.Any(l => l.Text == "Microsoft.Toolkit.Uwp"));
+            Assert.True(licenses.Any(l => l.Text == "Newtonsoft.Json"));
 
 
         }

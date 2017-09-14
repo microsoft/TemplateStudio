@@ -117,7 +117,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (SavedPages.Count == 0 && SavedFeatures.Count == 0)
             {
                 SetupTemplatesFromLayout(ContextProjectType.Name, ContextFramework.Name);
-                MainViewModel.Current.Licenses.RebuildLicenses(MainViewModel.Current.CreateUserSelection());
+                MainViewModel.Current.RebuildLicenses();
             }
             CloseAllEditions();
             await Task.CompletedTask;
@@ -163,7 +163,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
             MainViewModel.Current.FinishCommand.OnCanExecuteChanged();
             UpdateTemplatesAvailability();
-            MainViewModel.Current.Licenses.RebuildLicenses(MainViewModel.Current.CreateUserSelection());
+            MainViewModel.Current.RebuildLicenses();
 
             AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Remove).FireAndForget();
         }
@@ -282,7 +282,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 }
             }
 
-            MainViewModel.Current.Licenses.RebuildLicenses(MainViewModel.Current.CreateUserSelection());
+            MainViewModel.Current.RebuildLicenses();
         }
 
         private void SaveNewTemplate((string name, ITemplateInfo template) item, bool isRemoveEnabled = true)

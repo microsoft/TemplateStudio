@@ -50,7 +50,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     }
                 }
 
-                MainViewModel.Current.Licenses.RebuildLicenses(MainViewModel.Current.CreateUserSelection());
+                MainViewModel.Current.RebuildLicenses();
             }
         }
 
@@ -69,7 +69,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     MainViewModel.Current.AlertProjectSetupChanged();
                 }
 
-                MainViewModel.Current.Licenses.RebuildLicenses(MainViewModel.Current.CreateUserSelection());
+                MainViewModel.Current.RebuildLicenses();
             }
         }
 
