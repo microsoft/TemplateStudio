@@ -10,6 +10,7 @@ namespace Microsoft.Templates.Fakes
         CompiledWithDependant,
         XamlPage,
         Resource,
-        Content
+        Content,
+        None
     }
 }

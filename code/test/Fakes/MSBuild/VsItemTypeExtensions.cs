@@ -24,6 +24,8 @@ namespace Microsoft.Templates.Fakes
                     return GetResourceXElement(includePath);
                 case VsItemType.Content:
                     return GetContentXElement(includePath);
+                case VsItemType.None:
+                    return GetNoneXElement(includePath);
                 default:
                     return null;
             }
@@ -81,6 +83,17 @@ namespace Microsoft.Templates.Fakes
         {
             var sb = new StringBuilder();
             sb.AppendLine($"<Content Include=\"{includePath}\" />");
+
+            var sr = new StringReader(sb.ToString());
+            var itemElement = XElement.Load(sr);
+
+            return itemElement;
+        }
+
+        private static XElement GetNoneXElement(string includePath)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"<None Include=\"{includePath}\" />");
 
             var sr = new StringReader(sb.ToString());
             var itemElement = XElement.Load(sr);
