@@ -32,7 +32,7 @@ namespace Localization
 
         internal void ExtractVsix(List<string> cultures)
         {
-            if (!validator.ValidVisxFile())
+            if (!validator.HasChanges(Routes.VsixValidatePath))
                 return;
 
             DirectoryInfo vsixDesDirectory = new DirectoryInfo(Path.Combine(_destinationDir.FullName, Routes.VsixRootDirPath));
@@ -77,7 +77,7 @@ namespace Localization
 
         internal void ExtractProjectTemplates(List<string> cultures)
         {
-            if (!validator.ValidProjectTemplateFile())
+            if (!validator.HasChanges(Routes.ProjectTemplateFileNameValidate))
                 return;
 
             DirectoryInfo templateDesDirectory = new DirectoryInfo(Path.Combine(_destinationDir.FullName, Routes.ProjectTemplateRootDirPath, Routes.ProjectTemplateDirNamePattern));
@@ -112,10 +112,10 @@ namespace Localization
             if (!templateSrcDirectory.Exists)
                 throw new DirectoryNotFoundException($"Source directory \"{templateSrcDirectory.FullName}\" not found.");
 
-            if (validator.ValidRelayCommandeFile())
+            if (validator.HasChanges(Routes.RelayCommandFileNameValidate))
                 LocalizeFileType(templateSrcDirectory, templateDesDirectory, Routes.RelayCommandFileNamePattern, cultures);
 
-            if (validator.ValidVspackageFile())
+            if (validator.HasChanges(Routes.VspackageFileNameValidate))
                 LocalizeFileType(templateSrcDirectory, templateDesDirectory, Routes.VspackageFileNamePattern, cultures);
         }
 
@@ -164,7 +164,7 @@ namespace Localization
 
                 // template.json
                 var metadata = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(file.FullName));
-                if (validator.CheckModifiedFile(templateFileDirectory))
+                if (validator.HasChanges(templateFileDirectory))
                 {
                     foreach (string culture in cultures)
                     {
@@ -179,7 +179,7 @@ namespace Localization
 
                 // description.md
                 string srcFileDirectory = Path.Combine(templateSrcDirectory, Routes.TemplateDescriptionFile);
-                if (validator.CheckModifiedFile(srcFileDirectory))
+                if (validator.HasChanges(srcFileDirectory))
                 {
                     FileInfo srcFile = new FileInfo(Path.Combine(_sourceDir.FullName, srcFileDirectory));
                     foreach (string culture in cultures)
@@ -225,7 +225,7 @@ namespace Localization
             var fileContent = new StringBuilder();
 
             // project
-            if (validator.ValidWtsProjectTypes())
+            if (validator.HasChanges(Routes.WtsProjectTypesValidate))
             {
                 var projectMetadata = JsonConvert.DeserializeObject<List<JObject>>(File.ReadAllText(Path.Combine(templateSrcDirectory.FullName, Routes.WtsProjectTypes + ".json")));
                 foreach (string culture in cultures)
@@ -252,7 +252,7 @@ namespace Localization
             }
 
             // framework
-            if (validator.ValidWtsFrameworks())
+            if (validator.HasChanges(Routes.WtsFrameworksValidate))
             {
                 var frameworkMetadata = JsonConvert.DeserializeObject<List<JObject>>(File.ReadAllText(Path.Combine(templateSrcDirectory.FullName, Routes.WtsFrameworks + ".json")));
                 foreach (string culture in cultures)
@@ -296,7 +296,7 @@ namespace Localization
                     throw new FileNotFoundException($"File \"{resourceFile.FullName}\" not found.");
 
                 var resFile = Path.Combine(resDirectory, resFileName);
-                if (validator.CheckModifiedFile(resFile))
+                if (validator.HasChanges(resFile))
                 {
                     foreach (string culture in cultures)
                     {
