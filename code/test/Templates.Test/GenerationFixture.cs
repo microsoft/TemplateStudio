@@ -235,6 +235,64 @@ namespace Microsoft.Templates.Test
             return (process.ExitCode, outputFile);
         }
 
+        [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
+        public static (int exitCode, string outputFile) BuildAppxBundle(string projectName, string outputPath)
+        {
+            var outputFile = Path.Combine(outputPath, $"_buildOutput_{projectName}.txt");
+
+            var solutionFile = Path.GetFullPath(outputPath + @"\" + projectName + ".sln");
+            var projectFile = Path.GetFullPath(outputPath + @"\" + projectName + @"\" + projectName + ".csproj");
+
+            Console.Out.WriteLine();
+            Console.Out.WriteLine($"### > Ready to start building");
+            Console.Out.Write($"### > Running following command: {GetPath("RestoreAndBuildAppx.bat")} \"{projectFile}\"");
+
+            var startInfo = new ProcessStartInfo(GetPath("RestoreAndBuildAppx.bat"))
+            {
+                Arguments = $"\"{solutionFile}\" \"{projectFile}\" ",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                CreateNoWindow = false,
+                WorkingDirectory = outputPath
+            };
+
+            var process = Process.Start(startInfo);
+
+            File.WriteAllText(outputFile, process.StandardOutput.ReadToEnd(), Encoding.UTF8);
+
+            process.WaitForExit();
+
+            return (process.ExitCode, outputFile);
+        }
+
+        [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
+        public static (int exitCode, string outputFile, string resultFile) RunWackTestOnAppxBundle(string bundleFilePath, string outputPath)
+        {
+            var outputFile = Path.Combine(outputPath, $"_wackOutput_{Path.GetFileName(bundleFilePath)}.txt");
+            var resultFile = Path.Combine(outputPath, "_wackresults.xml");
+
+            Console.Out.WriteLine();
+            Console.Out.WriteLine("### > Ready to run WACK test");
+            Console.Out.Write($"### > Running following command: {GetPath("RunWackTest.bat")} \"{bundleFilePath}\" \"{resultFile}\"");
+
+            var startInfo = new ProcessStartInfo(GetPath("RunWackTest.bat"))
+            {
+                Arguments = $"\"{bundleFilePath}\" \"{resultFile}\" ",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                CreateNoWindow = false,
+                WorkingDirectory = outputPath
+            };
+
+            var process = Process.Start(startInfo);
+
+            File.WriteAllText(outputFile, process.StandardOutput.ReadToEnd(), Encoding.UTF8);
+
+            process.WaitForExit();
+
+            return (process.ExitCode, outputFile, resultFile);
+        }
+
         public static string GetErrorLines(string filePath)
         {
             Regex re = new Regex(@"^.*error .*$", RegexOptions.Multiline & RegexOptions.IgnoreCase);
