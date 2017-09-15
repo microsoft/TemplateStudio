@@ -1,14 +1,16 @@
-﻿using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Fakes;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.Fakes;
 
 namespace UI.Test
 {
@@ -39,7 +41,6 @@ namespace UI.Test
             GenContext.Bootstrap(source, new FakeGenShell(language), language);
 
             GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
-
             Repository = GenContext.ToolBox.Repo;
             GenContext.Current = this;
         }
