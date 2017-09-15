@@ -2,24 +2,18 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
-using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.Templates.Core.Gen;
 
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test
 {
     [Collection("Unit Test Templates")]
-    public class NamingTest
+    public class NamingTests
     {
         private TemplatesFixture _fixture;
 
-        public NamingTest(TemplatesFixture fixture)
+        public NamingTests(TemplatesFixture fixture)
         {
             _fixture = fixture;
         }
@@ -27,12 +21,12 @@ namespace Microsoft.Templates.Core.Test
         [Theory]
         [MemberData("GetAllLanguages")]
         [Trait("Type", "ProjectGeneration")]
-        public void Infer_Existing(string language)
+        public void Infer_SuccessfullyAccountsForExistingNames(string language)
         {
             SetUpFixtureForTesting(language);
 
-            var existing = new string[] { "App" };
-            var validators = new List<Validator>()
+            var existing = new[] { "App" };
+            var validators = new List<Validator>
             {
                 new ExistingNamesValidator(existing)
             };
@@ -43,12 +37,11 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        public void Infer_Reserved(string language)
+        public void Infer_SuccessfullyAccountsForReservedNames(string language)
         {
             SetUpFixtureForTesting(language);
 
-            var existing = new string[] { };
-            var validators = new List<Validator>()
+            var validators = new List<Validator>
             {
                 new ReservedNamesValidator()
             };
@@ -59,12 +52,11 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        public void Infer_Default(string language)
+        public void Infer_SuccessfullyAccountsForDefaultNames(string language)
         {
             SetUpFixtureForTesting(language);
 
-            var existing = new string[] { };
-            var validators = new List<Validator>()
+            var validators = new List<Validator>
             {
                 new DefaultNamesValidator()
             };
@@ -75,11 +67,10 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        public void Infer_Clean(string language)
+        public void Infer_RemovesInvalidCharacters(string language)
         {
             SetUpFixtureForTesting(language);
 
-            var existing = new string[] { };
             var result = Naming.Infer("Blank$Page", new List<Validator>());
 
             Assert.Equal("BlankPage", result);
@@ -87,11 +78,10 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        public void Infer_Clean2(string language)
+        public void Infer_DoesNotRemoveNonAsciiCharacters(string language)
         {
             SetUpFixtureForTesting(language);
 
-            var existing = new string[] { };
             var result = Naming.Infer("ÑäöÜ!Page", new List<Validator>());
 
             Assert.Equal("ÑäöÜPage", result);
@@ -99,11 +89,10 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        public void Infer_TitleCase(string language)
+        public void Infer_SuccessfullyHandlesSpacesAndConversionToTitleCase(string language)
         {
             SetUpFixtureForTesting(language);
 
-            var existing = new string[] { };
             var result = Naming.Infer("blank page", new List<Validator>());
 
             Assert.Equal("BlankPage", result);
@@ -111,7 +100,7 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        public void Validate(string language)
+        public void Validate_RecognizesValidNameAsValid(string language)
         {
             SetUpFixtureForTesting(language);
 
@@ -122,7 +111,7 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        public void Validate_Empty(string language)
+        public void Validate_RecognizesEmptyStringAsInvalid(string language)
         {
             SetUpFixtureForTesting(language);
 
@@ -134,12 +123,12 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        public void Validate_Existing(string language)
+        public void Validate_SuccessfullyIdentifiesExistingNames(string language)
         {
             SetUpFixtureForTesting(language);
 
-            var existing = new string[] { "Blank" };
-            var validators = new List<Validator>()
+            var existing = new[] { "Blank" };
+            var validators = new List<Validator>
             {
                 new ExistingNamesValidator(existing)
             };
@@ -151,7 +140,7 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        public void Validate_Default(string language)
+        public void Validate_SuccessfullyIdentifiesDefaultNames(string language)
         {
             SetUpFixtureForTesting(language);
 
@@ -167,11 +156,11 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        public void Validate_Reserved(string language)
+        public void Validate_SuccessfullyIdentifiesReservedNames(string language)
         {
             SetUpFixtureForTesting(language);
 
-            var validators = new List<Validator>()
+            var validators = new List<Validator>
             {
                 new ReservedNamesValidator()
             };
@@ -183,11 +172,10 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        public void Validate_BadFormat_InvalidChars(string language)
+        public void Validate_SuccessfullyIdentifies_InvalidChars(string language)
         {
             SetUpFixtureForTesting(language);
 
-            var existing = new string[] { };
             var result = Naming.Validate("Blank;", new List<Validator>());
 
             Assert.False(result.IsValid);
@@ -196,7 +184,7 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        public void Validate_BadFormat_StartWithNumber(string language)
+        public void Validate_SuccessfullyIdentifies_NamesThatStartWithNumbers(string language)
         {
             SetUpFixtureForTesting(language);
 
@@ -204,51 +192,6 @@ namespace Microsoft.Templates.Core.Test
 
             Assert.False(result.IsValid);
             Assert.Equal(ValidationErrorType.BadFormat, result.ErrorType);
-        }
-
-        [Fact]
-        public void IsValid_DirectoryExistsValidator_NonExistantDirectory()
-        {
-            var nonExistantFolderDirectoryValidator = new DirectoryExistsValidator(Path.Combine(Environment.CurrentDirectory, Guid.NewGuid().ToString()));
-
-            // invalid dir
-            var nonExistantFolderDirectory = nonExistantFolderDirectoryValidator.Validate(Guid.NewGuid().ToString());
-
-            Assert.Equal(nonExistantFolderDirectory.IsValid, true);
-        }
-
-        [Fact]
-        public void IsValid_DirectoryExistsValidator_ValidDirectory()
-        {
-            var directoryValidator = new DirectoryExistsValidator(Environment.CurrentDirectory);
-            var randomValidFolderDirectory = directoryValidator.Validate(Guid.NewGuid().ToString());
-
-            Assert.Equal(randomValidFolderDirectory.IsValid, true);
-        }
-
-        [Fact]
-        public void IsNotValid_DirectoryExistsValidator_CollisionDirectory()
-        {
-            var directoryValidator = new DirectoryExistsValidator(Environment.CurrentDirectory);
-            var existingDir = Directory.CreateDirectory(Path.Combine(Environment.CurrentDirectory, Guid.NewGuid().ToString()));
-
-            var existsDirectory = directoryValidator.Validate(existingDir.Name);
-
-            Assert.Equal(existsDirectory.IsValid, false);
-
-            // Clean
-            existingDir.Delete();
-        }
-
-        private ITemplateInfo GetTarget(string templateName)
-        {
-            var allTemplates = GenContext.ToolBox.Repo.GetAll();
-            var target = allTemplates.FirstOrDefault(t => t.Name == templateName);
-            if (target == null)
-            {
-                throw new ArgumentException($"There is no template with name '{templateName}'. Number of templates: '{allTemplates.Count()}'");
-            }
-            return target;
         }
 
         private void SetUpFixtureForTesting(string language)

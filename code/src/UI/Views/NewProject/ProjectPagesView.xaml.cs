@@ -8,23 +8,14 @@ using Microsoft.Templates.UI.ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.Views.NewProject
 {
-    /// <summary>
-    /// Interaction logic for ProjectTemplatesView.xaml
-    /// </summary>
-    public partial class ProjectTemplatesView : Page
+    public partial class ProjectPagesView : Page
     {
         public ProjectTemplatesViewModel ViewModel { get; }
 
-        public ProjectTemplatesView()
+        public ProjectPagesView()
         {
             ViewModel = MainViewModel.Current.ProjectTemplates;
             DataContext = ViewModel;
-
-            Loaded += async (sender, e) =>
-            {
-                await ViewModel.InitializeAsync();
-            };
-
             InitializeComponent();
         }
     }
