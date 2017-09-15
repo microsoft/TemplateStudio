@@ -12,7 +12,7 @@ namespace Microsoft.Templates.Test
     }
 
     [CollectionDefinition("BuildCollection")]
-    public class BuildCollection : ICollectionFixture<GenerationFixture>
+    public class BuildCollection : ICollectionFixture<BuildFixture>
     {
     }
 }
