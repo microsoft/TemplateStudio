@@ -114,7 +114,7 @@
     </Page.Resources>
 
     <Grid Style="{StaticResource MainGrid}">
-        <Grid Visibility="{Binding ChangesSummary.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse, FallbackValue=Collapsed}">
+        <Grid Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse, FallbackValue=Collapsed}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300"/>
                 <ColumnDefinition Width="*"/>
@@ -204,6 +204,6 @@
                 <ContentPresenter Grid.Row="2" Content="{Binding ChangesSummary.SelectedFile}" ContentTemplateSelector="{StaticResource DetailTemplateSelector}" Focusable="False"/>
             </Grid>
         </Grid>
-        <controls:LogoDisplay Visibility="{Binding ChangesSummary.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Visible}" IsBusy="{Binding ChangesSummary.IsLoading}" Style="{StaticResource LoadingLogoDisplay}" />
+        <controls:LogoDisplay Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Visible}" IsBusy="{Binding WizardStatus.IsLoading}" Style="{StaticResource LoadingLogoDisplay}" />
     </Grid>
 </Page>

@@ -43,17 +43,17 @@
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <controls:WizardHeader
-                HasOverlayBox="{Binding HasOverlayBox}"
-                HeaderText="{Binding Title}"
-                IsOverlayBoxVisible="{Binding IsOverlayBoxVisible, Mode=TwoWay}"
-                NewVersionAvailable="{Binding NewVersionAvailable}" />
+                HasOverlayBox="{Binding WizardStatus.HasOverlayBox}"
+                HeaderText="{Binding WizardStatus.WizardTitle}"
+                IsOverlayBoxVisible="{Binding WizardStatus.IsOverlayBoxVisible, Mode=TwoWay}"
+                NewVersionAvailable="{Binding WizardStatus.NewVersionAvailable}" />
             <Grid Grid.Row="1">
-                <controls:LogoDisplay Style="{StaticResource LoadingLogoDisplay}" IsBusy="{Binding IsLoading}" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}" />
-                <Grid Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
-                    <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                <controls:LogoDisplay Style="{StaticResource LoadingLogoDisplay}" IsBusy="{Binding WizardStatus.IsLoading}" Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}}" />
+                <Grid Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
+                    <Frame x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" Visibility="{Binding WizardStatus.HasContent, Converter={StaticResource BoolToVisibilityConverter}}"/>
                 </Grid>
-                <Grid Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
-                    <TextBlock Style="{StaticResource TextMainLoadingStyle}" Text="{x:Static res:StringRes.NoContentText}"  Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}"/>
+                <Grid Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
+                    <TextBlock Style="{StaticResource TextMainLoadingStyle}" Text="{x:Static res:StringRes.NoContentText}"  Visibility="{Binding WizardStatus.HasContent, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}"/>
                 </Grid>
             </Grid>
             <Grid Grid.Row="2" Style="{StaticResource GridBottomBarStyle}">
@@ -99,8 +99,8 @@
                             Command="{Binding NextCommand}"
                             Content="{x:Static res:StringRes.ButtonNext}"
                             Style="{StaticResource ButtonNavigationStyle}"
-                            Visibility="{Binding ShowFinishButton, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
-                        <Grid Grid.Column="2" Visibility="{Binding ShowFinishButton, Converter={StaticResource BoolToVisibilityConverter}}">
+                            Visibility="{Binding WizardStatus.ShowFinishButton, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
+                        <Grid Grid.Column="2" Visibility="{Binding WizardStatus.ShowFinishButton, Converter={StaticResource BoolToVisibilityConverter}}">
                             <Button
                                 Command="{Binding CloseCommand}"
                                 Content="{x:Static res:StringRes.ButtonClose}"
@@ -115,7 +115,7 @@
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid Grid.Row="2" Visibility="{Binding ShowFinishButton, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid Grid.Row="2" Visibility="{Binding WizardStatus.ShowFinishButton, Converter={StaticResource BoolToVisibilityConverter}}">
                 <CheckBox Content="{x:Static res:StringRes.ChangesSummaryCheckBoxText}" IsEnabled="True" Margin="17,0,400,0" IsChecked="{Binding ChangesSummary.DoNotMerge, Mode=TwoWay}" Visibility="{Binding ChangesSummary.HasChangesToApply, Converter={StaticResource BoolToVisibilityConverter}}" VerticalAlignment="Center">
                     <CheckBox.ContentTemplate>
                         <DataTemplate>
@@ -139,13 +139,13 @@
                     </CheckBox.FocusVisualStyle>
                 </CheckBox>
             </Grid>
-            <Grid Grid.Row="0" Grid.RowSpan="3" Visibility="{Binding InfoShapeVisibility, FallbackValue=Collapsed}">
+            <Grid Grid.Row="0" Grid.RowSpan="3" Visibility="{Binding WizardStatus.InfoShapeVisibility, FallbackValue=Collapsed}">
                 <Grid.Background>
                     <SolidColorBrush Opacity="0.4" Color="Black" />
                 </Grid.Background>
             </Grid>
         </Grid>
-        <controls:StatusBox Style="{StaticResource StatusBoxStyle}" Status="{Binding Status}" Visibility="{Binding HasStatus, Converter={StaticResource BoolToVisibilityConverter}}" />
-        <controls:OverlayBox Style="{StaticResource OverlayBoxStyle}" NewVersionAvailable="{Binding NewVersionAvailable}" WizardVersion="{Binding WizardVersion}" TemplatesVersion="{Binding TemplatesVersion}" Visible="{Binding IsOverlayBoxVisible}" RefreshCommand="{Binding RefreshTemplatesCommand}" CheckForUpdatesCommand="{Binding CheckUpdatesCommand}" Status="{Binding OverlayStatus}" />
+        <controls:StatusBox Style="{StaticResource StatusBoxStyle}" Status="{Binding WizardStatus.Status}" />
+        <controls:OverlayBox Style="{StaticResource OverlayBoxStyle}" NewVersionAvailable="{Binding WizardStatus.NewVersionAvailable}" WizardVersion="{Binding WizardStatus.WizardVersion}" TemplatesVersion="{Binding WizardStatus.TemplatesVersion}" Visible="{Binding WizardStatus.IsOverlayBoxVisible}" RefreshCommand="{Binding RefreshTemplatesCommand}" CheckForUpdatesCommand="{Binding CheckUpdatesCommand}" Status="{Binding WizardStatus.OverlayStatus}" />
     </Grid>
 </Window>

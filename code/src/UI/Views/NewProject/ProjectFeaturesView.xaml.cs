@@ -8,15 +8,14 @@ using Microsoft.Templates.UI.ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.Views.NewProject
 {
-    public partial class ProjectSetupView : Page
+    public partial class ProjectFeaturesView : Page
     {
-        public MainViewModel ViewModel { get; }
+        public ProjectTemplatesViewModel ViewModel { get; }
 
-        public ProjectSetupView()
+        public ProjectFeaturesView()
         {
-            ViewModel = MainViewModel.Current;
+            ViewModel = MainViewModel.Current.ProjectTemplates;
             DataContext = ViewModel;
-
             InitializeComponent();
         }
     }
