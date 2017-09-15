@@ -1,11 +1,14 @@
-﻿using Microsoft.TemplateEngine.Abstractions;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.UI;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Xunit;
 
 namespace UI.Test
@@ -39,8 +42,6 @@ namespace UI.Test
             Assert.True(licenses.Count == 2);
             Assert.True(licenses.Any(l => l.Text == "MVVM Light"));
             Assert.True(licenses.Any(l => l.Text == "Microsoft.Toolkit.Uwp"));
-
-
         }
 
         [Fact]
@@ -60,7 +61,6 @@ namespace UI.Test
             userSelection.Pages.Add(("Main", _fixture.Repository.Get(t => t.Identity == "wts.Page.Blank").FirstOrDefault()));
             userSelection.Features.Add(("SettingStorage", _fixture.Repository.Get(t => t.Identity == "wts.Feat.SettingsStorage").FirstOrDefault()));
 
-
             LicensesService.RebuildLicenses(userSelection, licenses);
 
             Assert.True(licenses.Count == 3);
@@ -68,8 +68,6 @@ namespace UI.Test
             Assert.True(licenses.Any(l => l.Text == "MVVM Light"));
             Assert.True(licenses.Any(l => l.Text == "Microsoft.Toolkit.Uwp"));
             Assert.True(licenses.Any(l => l.Text == "Newtonsoft.Json"));
-
-
         }
     }
 }

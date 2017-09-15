@@ -1,5 +1,9 @@
-﻿using Microsoft.Templates.UI.Services;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
 using System.Collections.Generic;
+using Microsoft.Templates.UI.Services;
 using Xunit;
 
 namespace UI.Test
@@ -24,19 +28,19 @@ namespace UI.Test
                 "SettingsStorage"
             });
 
-            //Add a template that can choose the name
+            // Add a template that can choose the name
             Assert.True(ValidationService.ValidateTemplateName("Map", true, true).IsValid);
 
-            //Add a template that can choose the name and this name is already used
+            // Add a template that can choose the name and this name is already used
             Assert.False(ValidationService.ValidateTemplateName("Main", true, true).IsValid);
 
-            //Add a template that can not choose the name
+            // Add a template that can not choose the name
             Assert.True(ValidationService.ValidateTemplateName("UriScheme", false, true).IsValid);
 
-            //Add a template that can not choose the name and this name is already used
+            // Add a template that can not choose the name and this name is already used
             Assert.False(ValidationService.ValidateTemplateName("SettingsStorage", false, true).IsValid);
 
-            //Add a template that can choose the name but we don't know if it is already used (Right click)
+            // Add a template that can choose the name but we don't know if it is already used (Right click)
             Assert.True(ValidationService.ValidateTemplateName("Main", true, false).IsValid);
         }
 
