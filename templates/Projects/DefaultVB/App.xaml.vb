@@ -29,10 +29,10 @@ NotInheritable Partial Class App
     ''' Invoked when the application is launched normally by the end user.  Other entry points
     ''' will be used such as when the application is launched to open a specific file.
     ''' </summary>
-    ''' <param name="e">Details about the launch request and process.</param>
-    Protected Overrides Async Sub OnLaunched(e As LaunchActivatedEventArgs)
-        If Not e.PrelaunchActivated Then
-            Await ActivationService.ActivateAsync(e)
+    ''' <param name="args">Details about the launch request and process.</param>
+    Protected Overrides Async Sub OnLaunched(args As LaunchActivatedEventArgs)
+        If Not args.PrelaunchActivated Then
+            Await ActivationService.ActivateAsync(args)
         End If
     End Sub
 

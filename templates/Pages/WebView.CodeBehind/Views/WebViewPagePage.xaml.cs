@@ -6,7 +6,7 @@ namespace Param_ItemNamespace.Views
 {
     public sealed partial class WebViewPagePage : Page, System.ComponentModel.INotifyPropertyChanged
     {
-        // TODO WTS: Set your hyperlink default here
+        // TODO WTS: Set the URI of the page to show by default
         private const string DefaultUrl = "https://developer.microsoft.com/en-us/windows/apps";
 
         private Uri _source;
