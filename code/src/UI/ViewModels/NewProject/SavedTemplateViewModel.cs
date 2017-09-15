@@ -317,11 +317,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (isNewAdded)
                 {
-                    return MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
+                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlue");
                 }
                 else
                 {
-                    return MainViewModel.Current.MainView.FindResource("UIBlack") as SolidColorBrush;
+                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlack");
                 }
             }
         }
@@ -336,11 +336,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (isNewAdded)
                 {
-                    return MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
+                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlue");
                 }
                 else
                 {
-                    return MainViewModel.Current.MainView.FindResource("UIGray") as SolidColorBrush;
+                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIGray");
                 }
             }
         }

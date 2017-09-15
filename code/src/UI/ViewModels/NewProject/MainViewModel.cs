@@ -36,25 +36,25 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         public ObservableCollection<SummaryLicenseViewModel> Licenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
-        public OrderingService Ordering { get; private set; }
+        public OrderingService Ordering { get; } = new OrderingService();
 
-        public MainViewModel(MainView mainView) : base(mainView)
+        public MainViewModel() : base()
         {
-            MainView = mainView;
             Licenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(Licenses)); };
             Current = this;
+        }
+
+        public override void SetView(Window mainView)
+        {
+            base.SetView(mainView);
+            MainView = mainView as MainView;
         }
 
         public async Task InitializeAsync(Frame stepFrame, StackPanel summaryPageGroups)
         {
             WizardStatus.WizardTitle = StringRes.ProjectSetupTitle;
             NavigationService.Initialize(stepFrame, new ProjectSetupView());
-            Ordering = new OrderingService()
-            {
-                Panel = summaryPageGroups,
-                ListViewStyle = MainView.FindResource("SummaryListViewStyle") as Style,
-                ItemTemplate = MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate
-            };
+            Ordering.Panel = summaryPageGroups;
             await BaseInitializeAsync();
         }
 

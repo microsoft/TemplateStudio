@@ -250,11 +250,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (isEnabled)
                 {
-                    return MainViewModel.Current.MainView.FindResource("UIBlack") as SolidColorBrush;
+                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlack");
                 }
                 else
                 {
-                    return MainViewModel.Current.MainView.FindResource("UIMiddleLightGray") as SolidColorBrush;
+                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIMiddleLightGray");
                 }
             }
         }

@@ -15,28 +15,29 @@ namespace Microsoft.Templates.UI.Services
     public class OrderingService
     {
         public StackPanel Panel { get; set; }
-        public Style ListViewStyle { get; set; }
-        public DataTemplate ItemTemplate { get; set; }
 
         private SavedTemplateViewModel _dragginItem;
         private SavedTemplateViewModel _dropTarget;
 
         public void AddList(ObservableCollection<SavedTemplateViewModel> items, bool allowDragAndDrop)
         {
-            var listView = new ListView()
+            if (Panel != null)
             {
-                ItemsSource = items,
-                Style = ListViewStyle,
-                Tag = "AllowRename",
-                Focusable = false,
-                ItemTemplate = ItemTemplate
-            };
-            if (allowDragAndDrop)
-            {
-                var service = new DragAndDropService<SavedTemplateViewModel>(listView);
-                service.ProcessDrop += Drop;
+                var listView = new ListView()
+                {
+                    ItemsSource = items,
+                    Style = MainViewModel.Current.FindResource<Style>("SummaryListViewStyle"),
+                    Tag = "AllowRename",
+                    Focusable = false,
+                    ItemTemplate = MainViewModel.Current.FindResource<DataTemplate>("ProjectTemplatesSummaryItemTemplate")
+                };
+                if (allowDragAndDrop)
+                {
+                    var service = new DragAndDropService<SavedTemplateViewModel>(listView);
+                    service.ProcessDrop += Drop;
+                }
+                Panel.Children.Add(listView);
             }
-            Panel.Children.Add(listView);
         }
 
         public void SetDropTarget(SavedTemplateViewModel savedTemplate) => _dropTarget = savedTemplate;

@@ -20,7 +20,8 @@ namespace Microsoft.Templates.UI.Views.NewProject
         public MainView()
         {
             Current = this;
-            ViewModel = new MainViewModel(this);
+            ViewModel = new MainViewModel();
+            ViewModel.SetView(this);
             DataContext = ViewModel;
 
             Loaded += async (sender, e) =>

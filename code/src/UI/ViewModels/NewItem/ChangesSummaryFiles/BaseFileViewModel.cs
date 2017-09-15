@@ -95,15 +95,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             switch (FileStatus)
             {
                 case FileStatus.NewFile:
-                    return MainViewModel.Current.MainView.FindResource("UIGreen") as SolidColorBrush;
+                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIGreen") as SolidColorBrush;
                 case FileStatus.ModifiedFile:
-                    return MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
+                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlue") as SolidColorBrush;
                 case FileStatus.ConflictingFile:
-                    return MainViewModel.Current.MainView.FindResource("UIRed") as SolidColorBrush;
+                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIRed") as SolidColorBrush;
                 case FileStatus.WarningFile:
-                    return MainViewModel.Current.MainView.FindResource("UIDarkYellow") as SolidColorBrush;
+                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIDarkYellow") as SolidColorBrush;
                 case FileStatus.Unchanged:
-                    return MainViewModel.Current.MainView.FindResource("UIDarkBlue") as SolidColorBrush;
+                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIDarkBlue");
                 default:
                     return new SolidColorBrush(Colors.Transparent);
             }
