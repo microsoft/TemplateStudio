@@ -1,9 +1,7 @@
 using System;
 using System.Windows.Input;
-
 using Prism.Commands;
 using Prism.Windows.Mvvm;
-
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WTSPrism.Services;
@@ -13,64 +11,78 @@ namespace WTSPrism.ViewModels
     public class WebViewPageViewModel : ViewModelBase
     {
         // TODO WTS: Set your hyperlink default here
-        private const string defaultUrl = "https://developer.microsoft.com/en-us/windows/apps";
+        private const string DefaultUrl = "https://developer.microsoft.com/en-us/windows/apps";
 
-        private Uri _source;
-        public Uri Source
+        public WebViewPageViewModel()
         {
-            get { return _source; }
-            set { SetProperty(ref _source, value); }
+            IsLoading = true;
+            Source = new Uri(DefaultUrl);
+
+            BrowserBackCommand = new DelegateCommand(() => webViewService?.GoBack(), () => webViewService?.CanGoBack ?? false);
+            BrowserForwardCommand = new DelegateCommand(() => webViewService?.GoForward(), () => webViewService?.CanGoForward ?? false);
+            RefreshCommand = new DelegateCommand(() => webViewService?.Refresh());
+            RetryCommand = new DelegateCommand(Retry);
+            OpenInBrowserCommand = new DelegateCommand(async () => await Windows.System.Launcher.LaunchUriAsync(Source));
+
+            // Note that the WebViewService is set from within the view because it needs a reference to the WebView control
         }
 
-        private bool _isLoading;
+        private Uri source;
+        public Uri Source
+        {
+            get { return source; }
+            set { SetProperty(ref source, value); }
+        }
+
+        private bool isLoading;
         public bool IsLoading
         {
-            get { return _isLoading; }
+            get { return isLoading; }
             set
             {
                 if (value) IsShowingFailedMessage = false;
-                SetProperty(ref _isLoading, value);
+                SetProperty(ref isLoading, value);
                 IsLoadingVisibility = value ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
-        private Visibility _isLoadingVisibility;
+        private Visibility isLoadingVisibility;
         public Visibility IsLoadingVisibility
         {
-            get { return _isLoadingVisibility; }
+            get { return isLoadingVisibility; }
             set
             {
-                SetProperty(ref _isLoadingVisibility, value);
+                SetProperty(ref isLoadingVisibility, value);
             }
         }
 
-        private bool _isShowingFailedMessage;
+        private bool isShowingFailedMessage;
         public bool IsShowingFailedMessage
         {
-            get { return _isShowingFailedMessage; }
+            get { return isShowingFailedMessage; }
             set
             {
                 if (value) IsLoading = false;
-                SetProperty(ref _isShowingFailedMessage, value);
+                SetProperty(ref isShowingFailedMessage, value);
                 FailedMesageVisibility = value ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
-        private Visibility _failedMesageVisibility;
+        private Visibility failedMesageVisibility;
         public Visibility FailedMesageVisibility
         {
-            get { return _failedMesageVisibility; }
+            get { return failedMesageVisibility; }
             set
             {
-                SetProperty(ref _failedMesageVisibility, value);
+                SetProperty(ref failedMesageVisibility, value);
             }
         }
 
         private IWebViewService webViewService;
-
         public IWebViewService WebViewService
         {
             get { return webViewService; }
+            // the WebViewService is set from within the view (instead of IoC) because it needs a reference to the control
             set
             {
                 if (webViewService != null)
@@ -83,6 +95,13 @@ namespace WTSPrism.ViewModels
                 webViewService.NavigationFailed += WebViewService_NavigationFailed;
             }
         }
+
+        public ICommand BrowserBackCommand { get; }
+        public ICommand BrowserForwardCommand { get; }
+        public ICommand RefreshCommand { get; }
+        public ICommand RetryCommand { get; }
+        public ICommand OpenInBrowserCommand { get; }
+
 
         private void WebViewService_NavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
         {
@@ -107,88 +126,12 @@ namespace WTSPrism.ViewModels
             IsShowingFailedMessage = true;
         }
 
-        private ICommand _retryCommand;
-        public ICommand RetryCommand
-        {
-            get
-            {
-                if (_retryCommand == null)
-                {
-                    _retryCommand = new DelegateCommand(Retry);
-                }
-
-                return _retryCommand;
-            }
-        }
-
         private void Retry()
         {
             IsShowingFailedMessage = false;
             IsLoading = true;
 
             webViewService?.Refresh();
-        }
-
-        private ICommand _browserBackCommand;
-        public ICommand BrowserBackCommand
-        {
-            get
-            {
-                if (_browserBackCommand == null)
-                {
-                    _browserBackCommand = new DelegateCommand(() => webViewService?.GoBack(), () => webViewService?.CanGoBack ?? false);
-                }
-
-                return _browserBackCommand;
-            }
-        }
-
-        private ICommand _browserForwardCommand;
-        public ICommand BrowserForwardCommand
-        {
-            get
-            {
-                if (_browserForwardCommand == null)
-                {
-                    _browserForwardCommand = new DelegateCommand(() => webViewService?.GoForward(), () => webViewService?.CanGoForward ?? false);
-                }
-
-                return _browserForwardCommand;
-            }
-        }
-
-        private ICommand _refreshCommand;
-        public ICommand RefreshCommand
-        {
-            get
-            {
-                if (_refreshCommand == null)
-                {
-                    _refreshCommand = new DelegateCommand(() => webViewService?.Refresh());
-                }
-
-                return _refreshCommand;
-            }
-        }
-
-        private ICommand _openInBrowserCommand;
-        public ICommand OpenInBrowserCommand
-        {
-            get
-            {
-                if (_openInBrowserCommand == null)
-                {
-                    _openInBrowserCommand = new DelegateCommand(async () => await Windows.System.Launcher.LaunchUriAsync(Source));
-                }
-
-                return _openInBrowserCommand;
-            }
-        }
-
-        public WebViewPageViewModel()
-        {
-            IsLoading = true;
-            Source = new Uri(defaultUrl);
         }
     }
 }

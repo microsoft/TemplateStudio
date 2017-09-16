@@ -22,19 +22,29 @@ namespace WTSPrism.ViewModels
 {
     public class MasterDetailPageViewModel : ViewModelBase, IPivotNavigationAware
     {
+        private readonly INavigationService navigationService;
+        private readonly ISampleDataService sampleDataService;
+
         const string NarrowStateName = "NarrowState";
         const string WideStateName = "WideState";
 
-        private VisualState _currentState;
+        private VisualState currentState;
 
-        private Order _selected;
-        public Order Selected
+        public MasterDetailPageViewModel(INavigationService navigationService, ISampleDataService sampleDataService)
         {
-            get { return _selected; }
-            set { SetProperty(ref _selected, value); }
+            this.navigationService = navigationService;
+            this.sampleDataService = sampleDataService;
+            ItemClickCommand = new DelegateCommand<ItemClickEventArgs>(OnItemClick);
+            StateChangedCommand = new DelegateCommand<VisualStateChangedEventArgs>(OnStateChanged);
+            SetInitialStateCommand = new DelegateCommand<VisualState>(SetInitialState);
         }
 
-        private INavigationService navigationService;
+        private Order selected;
+        public Order Selected
+        {
+            get => selected;
+            set => SetProperty(ref selected, value);
+        }
 
         public ICommand ItemClickCommand { get; private set; }
         public ICommand StateChangedCommand { get; private set; }
@@ -42,20 +52,12 @@ namespace WTSPrism.ViewModels
 
         public ObservableCollection<Order> SampleItems { get; private set; } = new ObservableCollection<Order>();
 
-        public MasterDetailPageViewModel(INavigationService navigationService)
-        {
-            this.navigationService = navigationService;
-            ItemClickCommand = new DelegateCommand<ItemClickEventArgs>(OnItemClick);
-            StateChangedCommand = new DelegateCommand<VisualStateChangedEventArgs>(OnStateChanged);
-            SetInitialStateCommand = new DelegateCommand<VisualState>(SetInitialState);
-        }
-
         public async Task LoadDataAsync(VisualState currentState)
         {
-            _currentState = currentState;
+            this.currentState = currentState;
             SampleItems.Clear();
 
-            var data = await SampleDataService.GetSampleModelDataAsync();
+            var data = await sampleDataService.GetSampleModelDataAsync();
 
             foreach (var item in data)
             {
@@ -66,12 +68,12 @@ namespace WTSPrism.ViewModels
 
         private void SetInitialState(VisualState state)
         {
-            _currentState = state;
+            currentState = state;
         }
 
         private void OnStateChanged(VisualStateChangedEventArgs args)
         {
-            _currentState = args.NewState;
+            currentState = args.NewState;
         }
 
         private void OnItemClick(ItemClickEventArgs args)
@@ -79,7 +81,7 @@ namespace WTSPrism.ViewModels
             Order item = args?.ClickedItem as Order;
             if (item != null)
             {
-                if (_currentState?.Name == NarrowStateName)
+                if (currentState?.Name == NarrowStateName)
                 {
                     navigationService.Navigate("MasterDetailDetail", item);
                 }
@@ -97,7 +99,7 @@ namespace WTSPrism.ViewModels
 
         public async void OnPivotNavigatedTo()
         {
-            await LoadDataAsync(_currentState);
+            await LoadDataAsync(currentState);
         }
     }
 }

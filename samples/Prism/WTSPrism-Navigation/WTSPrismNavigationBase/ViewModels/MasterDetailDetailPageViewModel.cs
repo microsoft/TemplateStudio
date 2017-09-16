@@ -1,14 +1,10 @@
 using Prism.Commands;
 using Prism.Windows.Mvvm;
-using System;
-using System.Windows.Input;
-
-using Windows.UI.Xaml;
-
-using WTSPrismNavigationBase.Models;
-using WTSPrismNavigationBase.Services;
 using Prism.Windows.Navigation;
 using System.Collections.Generic;
+using System.Windows.Input;
+using Windows.UI.Xaml;
+using WTSPrismNavigationBase.Models;
 
 namespace WTSPrismNavigationBase.ViewModels
 {

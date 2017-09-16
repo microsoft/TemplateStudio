@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-
 using WTSPrism.Models;
 
 namespace WTSPrism.Services
 {
     // This class holds sample data used by some generated pages to show how they can be used.
     // TODO WTS: Delete this file once your app is using real data.
-    public static class SampleDataService
+    public class SampleDataService : ISampleDataService
     {
-        private static IEnumerable<Order> AllOrders()
+        private IEnumerable<Order> AllOrders()
         {
             // The following is order summary data
             var data = new ObservableCollection<Order>
@@ -113,7 +112,7 @@ namespace WTSPrism.Services
         }
 
         // TODO WTS: Remove this once your chart page is displaying real data
-        public static ObservableCollection<DataPoint> GetChartSampleData()
+        public ObservableCollection<DataPoint> GetChartSampleData()
         {
             var data = AllOrders().Select(o => new DataPoint() { Category = o.Company, Value = o.OrderTotal })
                                   .OrderBy(dp => dp.Category);
@@ -122,13 +121,13 @@ namespace WTSPrism.Services
         }
 
         // TODO WTS: Remove this once your grid page is displaying real data
-        public static ObservableCollection<Order> GetGridSampleData()
+        public ObservableCollection<Order> GetGridSampleData()
         {
             return new ObservableCollection<Order>(AllOrders());
         }
 
         // TODO WTS: Remove this once your MasterDetail pages are displaying real data
-        public static async Task<IEnumerable<Order>> GetSampleModelDataAsync()
+        public async Task<IEnumerable<Order>> GetSampleModelDataAsync()
         {
             await Task.CompletedTask;
 

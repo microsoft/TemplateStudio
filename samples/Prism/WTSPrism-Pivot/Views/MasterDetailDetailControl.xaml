@@ -20,13 +20,13 @@
 
         <ScrollViewer
             Grid.Row="1"
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-            ScrollViewer.VerticalScrollBarVisibility="Auto"
-            ScrollViewer.VerticalScrollMode="Auto">
+            HorizontalScrollBarVisibility="Disabled"
+            VerticalScrollBarVisibility="Auto"
+            VerticalScrollMode="Auto">
 
             <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your detail content.-->
             <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            
+
                 <!--Replate this StackPanel with your detail content.-->
                 <StackPanel Orientation="Vertical" Margin="{StaticResource MediumLeftTopRightBottomMargin}">
                     <TextBlock Text="Order Date" Style="{StaticResource CaptionTextBlockStyle}" />

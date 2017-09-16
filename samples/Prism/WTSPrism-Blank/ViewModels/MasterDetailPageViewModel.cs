@@ -1,65 +1,63 @@
-using System;
+using Prism.Commands;
+using Prism.Windows.Mvvm;
+using Prism.Windows.Navigation;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-
-using Prism.Commands;
-using Prism.Windows.Mvvm;
-
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-
+using WTSPrism.Constants;
 using WTSPrism.Models;
 using WTSPrism.Services;
-using Prism.Windows.Navigation;
-using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace WTSPrism.ViewModels
 {
     public class MasterDetailPageViewModel : ViewModelBase
     {
+        private readonly INavigationService navigationService;
+        private readonly ISampleDataService sampleDataService;
+
         const string NarrowStateName = "NarrowState";
         const string WideStateName = "WideState";
 
-        private VisualState _currentState;
+        private VisualState currentState;
 
-        private Order _selected;
-        public Order Selected
-        {
-            get { return _selected; }
-            set { SetProperty(ref _selected, value); }
-        }
-
-        private INavigationService navigationService;
-
-        public ICommand ItemClickCommand { get; private set; }
-        public ICommand StateChangedCommand { get; private set; }
-        public ICommand LoadedCommand { get; private set; }
-
-        public ObservableCollection<Order> SampleItems { get; private set; } = new ObservableCollection<Order>();
-
-        public MasterDetailPageViewModel(INavigationService navigationService)
+        public MasterDetailPageViewModel(INavigationService navigationService, ISampleDataService sampleDataService)
         {
             this.navigationService = navigationService;
+            this.sampleDataService = sampleDataService;
             ItemClickCommand = new DelegateCommand<ItemClickEventArgs>(OnItemClick);
             StateChangedCommand = new DelegateCommand<VisualStateChangedEventArgs>(OnStateChanged);
             LoadedCommand = new DelegateCommand<VisualState>(OnLoaded);
         }
 
-        public async override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        private Order selected;
+        public Order Selected
+        {
+            get => selected;
+            set => SetProperty(ref selected, value);
+        }
+
+        public ICommand ItemClickCommand { get; }
+        public ICommand StateChangedCommand { get; }
+        public ICommand LoadedCommand { get; }
+
+        public ObservableCollection<Order> SampleItems { get; } = new ObservableCollection<Order>();
+
+        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
-            await LoadDataAsync(_currentState);
-    }
+            await LoadDataAsync(currentState);
+        }
 
         public async Task LoadDataAsync(VisualState currentState)
         {
-            _currentState = currentState;
+            this.currentState = currentState;
             SampleItems.Clear();
 
-            var data = await SampleDataService.GetSampleModelDataAsync();
+            var data = await sampleDataService.GetSampleModelDataAsync();
 
             foreach (var item in data)
             {
@@ -70,22 +68,21 @@ namespace WTSPrism.ViewModels
 
         private void OnLoaded(VisualState state)
         {
-            _currentState = state;
+            currentState = state;
         }
 
         private void OnStateChanged(VisualStateChangedEventArgs args)
         {
-            _currentState = args.NewState;
+            currentState = args.NewState;
         }
 
         private void OnItemClick(ItemClickEventArgs args)
         {
-            Order item = args?.ClickedItem as Order;
-            if (item != null)
+            if (args?.ClickedItem is Order item)
             {
-                if (_currentState?.Name == NarrowStateName)
+                if (currentState?.Name == NarrowStateName)
                 {
-                    navigationService.Navigate("MasterDetailDetail", item);
+                    navigationService.Navigate(PageTokens.MasterDetailDetailPage, item);
                 }
                 else
                 {

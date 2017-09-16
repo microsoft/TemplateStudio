@@ -9,58 +9,52 @@ namespace WTSPrismNavigationBase.Services
 {
     public class WebViewService : IWebViewService
     {
-        private WebView _webView;
+        private WebView webView;
 
         public WebViewService(WebView webView)
         {
-            _webView = webView;
-            _webView.NavigationCompleted += _webView_NavigationCompleted;
-            _webView.NavigationFailed += _webView_NavigationFailed;
+            this.webView = webView;
+            this.webView.NavigationCompleted += webView_NavigationCompleted;
+            this.webView.NavigationFailed += webView_NavigationFailed;
         }
 
         public void Detatch()
         {
-            if (_webView != null)
+            if (webView != null)
             {
-                _webView.NavigationCompleted -= _webView_NavigationCompleted;
-                _webView.NavigationFailed += _webView_NavigationFailed;
+                webView.NavigationCompleted -= webView_NavigationCompleted;
+                webView.NavigationFailed += webView_NavigationFailed;
             }
         }
 
-        private void _webView_NavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
+        private void webView_NavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
         {
             NavigationFailed?.Invoke(sender, e);
         }
 
-        private void _webView_NavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs e)
+        private void webView_NavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs e)
         {
             NavigationComplete?.Invoke(sender, e);
         }
 
         public void Refresh()
         {
-            _webView?.Refresh();
+            webView?.Refresh();
         }
 
         public void GoForward()
         {
-            _webView?.GoForward();
+            webView?.GoForward();
         }
 
         public void GoBack()
         {
-            _webView?.GoBack();
+            webView?.GoBack();
         }
 
-        public bool CanGoForward
-        {
-            get { return _webView?.CanGoForward == true; }
-        }
+        public bool CanGoForward => webView?.CanGoForward == true;
 
-        public bool CanGoBack
-        {
-            get { return _webView?.CanGoBack == true; }
-        }
+        public bool CanGoBack => webView?.CanGoBack == true;
 
         public event EventHandler<WebViewNavigationCompletedEventArgs> NavigationComplete;
 

@@ -118,12 +118,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviors\BindableMapIconBehavior.cs" />
-    <Compile Include="Behaviors\PivotNavigationBehavior.cs" />
+    <Compile Include="Constants\PageTokens.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
     <Compile Include="Models\DataPoint.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Services\ILocationService.cs" />
+    <Compile Include="Services\ISampleDataService.cs" />
     <Compile Include="Services\IWebViewService.cs" />
     <Compile Include="Services\LocationService.cs" />
     <Compile Include="Services\SampleDataService.cs" />
@@ -137,7 +138,6 @@
     <Compile Include="ViewModels\MasterDetailDetailPageViewModel.cs" />
     <Compile Include="ViewModels\MasterDetailPageViewModel.cs" />
     <Compile Include="ViewModels\MediaPlayerPageViewModel.cs" />
-    <Compile Include="ViewModels\PivotPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="ViewModels\TabbedPageViewModel.cs" />
     <Compile Include="ViewModels\WebViewPageViewModel.cs" />
@@ -167,9 +167,6 @@
     </Compile>
     <Compile Include="Views\MediaPlayerPage.xaml.cs">
       <DependentUpon>MediaPlayerPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PivotPage.xaml.cs">
-      <DependentUpon>PivotPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
@@ -241,10 +238,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MediaPlayerPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\PivotPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

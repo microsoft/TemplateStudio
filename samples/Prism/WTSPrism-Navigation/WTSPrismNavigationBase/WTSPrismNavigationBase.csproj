@@ -124,14 +124,15 @@
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
     <Compile Include="Behaviors\BindableMapIconBehavior.cs" />
+    <Compile Include="Constants\PageTokens.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
     <Compile Include="Interfaces\INavigationInitializer.cs" />
     <Compile Include="Models\DataPoint.cs" />
     <Compile Include="Models\Order.cs" />
-    <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
     <Compile Include="Services\ILocationService.cs" />
+    <Compile Include="Services\ISampleDataService.cs" />
     <Compile Include="Services\IWebViewService.cs" />
     <Compile Include="Services\LocationService.cs" />
     <Compile Include="Services\NavigationService.cs" />

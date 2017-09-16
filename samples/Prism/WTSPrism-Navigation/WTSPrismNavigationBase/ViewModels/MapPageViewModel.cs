@@ -1,19 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Windows.Input;
-
 using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls.Maps;
-
 using WTSPrismNavigationBase.Helpers;
 using WTSPrismNavigationBase.Services;
-using System.Collections.ObjectModel;
-using WTSPrismNavigationBase.Behaviors;
 
 namespace WTSPrismNavigationBase.ViewModels
 {
@@ -38,18 +34,18 @@ namespace WTSPrismNavigationBase.ViewModels
             set { SetProperty(ref mapServiceToken, value); }
         }
 
-        private double _zoomLevel;
+        private double zoomLevel;
         public double ZoomLevel
         {
-            get { return _zoomLevel; }
-            set { SetProperty(ref _zoomLevel, value); }
+            get { return zoomLevel; }
+            set { SetProperty(ref zoomLevel, value); }
         }
 
-        private Geopoint _center;
+        private Geopoint center;
         public Geopoint Center
         {
-            get { return _center; }
-            set { SetProperty(ref _center, value); }
+            get { return center; }
+            set { SetProperty(ref center, value); }
         }
 
         private ObservableCollection<MapIcon> mapIcons = new ObservableCollection<MapIcon>();

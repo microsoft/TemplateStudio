@@ -6,10 +6,7 @@ namespace WTSPrism.Views
 {
     public sealed partial class BlankPage : Page
     {
-        private BlankPageViewModel ViewModel
-        {
-            get { return DataContext as BlankPageViewModel; }
-        }
+        private BlankPageViewModel ViewModel => DataContext as BlankPageViewModel;
 
         public BlankPage()
         {

@@ -1,35 +1,31 @@
+using System.Collections.Generic;
+using System.Windows.Input;
+using Windows.ApplicationModel;
+using WTSPrism.Services;
 using Prism.Commands;
 using Prism.Windows.Mvvm;
-using System;
-using System.Windows.Input;
-
-using Windows.ApplicationModel;
-
-using WTSPrism.Services;
 using Prism.Windows.Navigation;
-using System.Collections.Generic;
-using WTSPrism.Behaviors;
 
 namespace WTSPrism.ViewModels
 {
-    public class SettingsPageViewModel : ViewModelBase, IPivotNavigationAware
+    public class SettingsPageViewModel : ViewModelBase
     {
         // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
-        private bool _isLightThemeEnabled;
+        private bool isLightThemeEnabled;
         public bool IsLightThemeEnabled
         {
-            get { return _isLightThemeEnabled; }
-            set { SetProperty(ref _isLightThemeEnabled, value); }
+            get { return isLightThemeEnabled; }
+            set { SetProperty(ref isLightThemeEnabled, value); }
         }
 
-        private string _appDescription;
+        private string appDescription;
         public string AppDescription
         {
-            get { return _appDescription; }
-            set { SetProperty(ref _appDescription, value); }
+            get { return appDescription; }
+            set { SetProperty(ref appDescription, value); }
         }
 
-        public ICommand SwitchThemeCommand { get; private set; }
+        public ICommand SwitchThemeCommand { get; }
 
         public SettingsPageViewModel()
         {
@@ -55,16 +51,6 @@ namespace WTSPrism.ViewModels
             var version = packageId.Version;
 
             return $"{package.DisplayName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
-        }
-
-        public void OnPivotNavigatedFrom()
-        {
-            
-        }
-
-        public void OnPivotNavigatedTo()
-        {
-            Initialize();
         }
     }
 }

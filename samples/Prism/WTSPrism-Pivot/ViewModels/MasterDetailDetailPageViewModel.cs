@@ -1,31 +1,26 @@
+using System.Collections.Generic;
+using System.Windows.Input;
 using Prism.Commands;
 using Prism.Windows.Mvvm;
-using System;
-using System.Windows.Input;
-
-using Windows.UI.Xaml;
-
-using WTSPrism.Models;
-using WTSPrism.Services;
 using Prism.Windows.Navigation;
-using System.Collections.Generic;
+using Windows.UI.Xaml;
+using WTSPrism.Models;
 
 namespace WTSPrism.ViewModels
 {
     public class MasterDetailDetailPageViewModel : ViewModelBase
     {
-
         const string NarrowStateName = "NarrowState";
         const string WideStateName = "WideState";
-        private INavigationService navigationService;
+        private readonly INavigationService navigationService;
 
-        public ICommand StateChangedCommand { get; private set; }
+        public ICommand StateChangedCommand { get; }
 
-        private Order _item;
+        private Order item;
         public Order Item
         {
-            get { return _item; }
-            set { SetProperty(ref _item, value); }
+            get { return item; }
+            set { SetProperty(ref item, value); }
         }
 
         public MasterDetailDetailPageViewModel(INavigationService navigationService)

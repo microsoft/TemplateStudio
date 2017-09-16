@@ -1,18 +1,14 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Windows.Input;
-
+using System.Collections.ObjectModel;
 using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls.Maps;
-
 using WTSPrism.Helpers;
 using WTSPrism.Services;
-using System.Collections.ObjectModel;
 
 namespace WTSPrism.ViewModels
 {
@@ -37,18 +33,18 @@ namespace WTSPrism.ViewModels
             set { SetProperty(ref mapServiceToken, value); }
         }
 
-        private double _zoomLevel;
+        private double zoomLevel;
         public double ZoomLevel
         {
-            get { return _zoomLevel; }
-            set { SetProperty(ref _zoomLevel, value); }
+            get { return zoomLevel; }
+            set { SetProperty(ref zoomLevel, value); }
         }
 
-        private Geopoint _center;
+        private Geopoint center;
         public Geopoint Center
         {
-            get { return _center; }
-            set { SetProperty(ref _center, value); }
+            get { return center; }
+            set { SetProperty(ref center, value); }
         }
 
         private ObservableCollection<MapIcon> mapIcons = new ObservableCollection<MapIcon>();
@@ -68,7 +64,7 @@ namespace WTSPrism.ViewModels
             MapServiceToken = "";
         }
 
-        public async override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
             if (locationService != null)

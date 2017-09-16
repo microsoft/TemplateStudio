@@ -6,10 +6,7 @@ namespace WTSPrism.Views
 {
     public sealed partial class WebViewPage : Page
     {
-        private WebViewPageViewModel ViewModel
-        {
-            get { return DataContext as WebViewPageViewModel; }
-        }
+        private WebViewPageViewModel ViewModel => DataContext as WebViewPageViewModel;
 
         public WebViewPage()
         {

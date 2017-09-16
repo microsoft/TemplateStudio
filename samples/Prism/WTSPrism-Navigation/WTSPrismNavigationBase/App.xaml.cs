@@ -1,21 +1,15 @@
-using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
-
 using Microsoft.Practices.Unity;
 using Prism.Unity.Windows;
 using Prism.Windows.AppModel;
-using Prism.Mvvm;
-using System.Globalization;
 using Windows.UI.Xaml.Controls;
 using Prism.Windows.Navigation;
-using WTSPrismNavigationBase.Interfaces;
 using WTSPrismNavigationBase.Views;
-using Microsoft.Toolkit.Uwp.UI.Controls;
-using WTSPrismNavigationBase.ViewModels;
 using WTSPrismNavigationBase.Services;
+using WTSPrism.Constants;
 
 namespace WTSPrismNavigationBase
 {
@@ -24,17 +18,21 @@ namespace WTSPrismNavigationBase
     /// </summary>
     sealed partial class App : PrismUnityApplication
     {
-
-        protected async override Task OnInitializeAsync(IActivatedEventArgs args)
+        /// <summary>
+        /// Initializes the singleton application object.  This is the first line of authored code
+        /// executed, and as such is the logical equivalent of main() or WinMain().
+        /// </summary>
+        public App()
         {
-            RegisterTypes();
-            await ThemeSelectorService.InitializeAsync();
+            InitializeComponent();
         }
 
-        private void RegisterTypes()
+        protected override void ConfigureContainer()
         {
+            base.ConfigureContainer();
             Container.RegisterInstance<IResourceLoader>(new ResourceLoaderAdapter(new ResourceLoader()));
             Container.RegisterType<ILocationService, LocationService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<ISampleDataService, SampleDataService>();
         }
 
         public void SetNavigationFrame(Frame frame)
@@ -49,14 +47,18 @@ namespace WTSPrismNavigationBase
             shell.SetRootFrame(rootFrame);
             return shell;
         }
+        protected override async Task OnInitializeAsync(IActivatedEventArgs args)
+        {
+            await ThemeSelectorService.InitializeAsync();
+        }
 
         protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
             Services.ThemeSelectorService.SetRequestedTheme();
 
-            NavigationService.Navigate("Main", null);
+            NavigationService.Navigate(PageTokens.MainPage, null);
             Window.Current.Activate();
-            return Task.FromResult<object>(null);
+            return Task.CompletedTask;
         }
     }
 }

@@ -1,7 +1,5 @@
-using Prism.Windows.Mvvm;
-using System;
 using System.Collections.ObjectModel;
-
+using Prism.Windows.Mvvm;
 using WTSPrism.Models;
 using WTSPrism.Services;
 
@@ -9,8 +7,11 @@ namespace WTSPrism.ViewModels
 {
     public class ChartPageViewModel : ViewModelBase
     {
-        public ChartPageViewModel()
+        private readonly ISampleDataService sampleDataService;
+
+        public ChartPageViewModel(ISampleDataService sampleDataService)
         {
+            this.sampleDataService = sampleDataService;
         }
 
         public ObservableCollection<DataPoint> Source
@@ -18,7 +19,7 @@ namespace WTSPrism.ViewModels
             get
             {
                 // TODO WTS: Replace this with your actual data
-                return SampleDataService.GetChartSampleData();
+                return sampleDataService.GetChartSampleData();
             }
         }
     }

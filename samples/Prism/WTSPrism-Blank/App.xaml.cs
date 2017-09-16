@@ -1,12 +1,11 @@
-using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Resources;
-using Windows.UI.Xaml;
-
 using Microsoft.Practices.Unity;
 using Prism.Unity.Windows;
 using Prism.Windows.AppModel;
+using WTSPrism.Services;
+using WTSPrism.Constants;
 
 namespace WTSPrism
 {
@@ -24,16 +23,25 @@ namespace WTSPrism
             InitializeComponent();
         }
 
-        protected override Task OnInitializeAsync(IActivatedEventArgs args)
+        protected override void ConfigureContainer()
         {
+            base.ConfigureContainer();
             Container.RegisterInstance<IResourceLoader>(new ResourceLoaderAdapter(new ResourceLoader()));
-            return base.OnInitializeAsync(args);
+            Container.RegisterType<ILocationService, LocationService>();
+            Container.RegisterType<ISampleDataService, SampleDataService>();
+        }
+
+        protected async override Task OnInitializeAsync(IActivatedEventArgs args)
+        {
+            await ThemeSelectorService.InitializeAsync();
         }
 
         protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
-            NavigationService.Navigate("Blank", null);
-            return Task.FromResult(true);
+            Services.ThemeSelectorService.SetRequestedTheme();
+
+            NavigationService.Navigate(PageTokens.BlankPage, null);
+            return Task.CompletedTask;
         }
     }
 }

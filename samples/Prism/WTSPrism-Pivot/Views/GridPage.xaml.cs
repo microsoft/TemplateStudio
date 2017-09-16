@@ -1,17 +1,12 @@
 using System;
-
 using Windows.UI.Xaml.Controls;
-
 using WTSPrism.ViewModels;
 
 namespace WTSPrism.Views
 {
     public sealed partial class GridPage : Page
     {
-        private GridPageViewModel ViewModel
-        {
-            get { return DataContext as GridPageViewModel; }
-        }
+        private GridPageViewModel ViewModel => DataContext as GridPageViewModel;
 
         // TODO WTS: Change the grid as appropriate to your app.
         // For help see http://docs.telerik.com/windows-universal/controls/raddatagrid/gettingstarted

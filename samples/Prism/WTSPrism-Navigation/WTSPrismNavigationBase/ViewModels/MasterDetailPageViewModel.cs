@@ -17,15 +17,28 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Prism;
 using WTSPrismNavigationBase.Behaviors;
+using WTSPrism.Constants;
 
 namespace WTSPrismNavigationBase.ViewModels
 {
     public class MasterDetailPageViewModel : ViewModelBase
     {
+        private readonly INavigationService navigationService;
+        private readonly ISampleDataService sampleDataService;
+
         const string NarrowStateName = "NarrowState";
         const string WideStateName = "WideState";
 
-        private VisualState _currentState;
+        private VisualState currentState;
+
+        public MasterDetailPageViewModel(INavigationService navigationService, ISampleDataService sampleDataService)
+        {
+            this.navigationService = navigationService;
+            this.sampleDataService = sampleDataService;
+            ItemClickCommand = new DelegateCommand<ItemClickEventArgs>(OnItemClick);
+            StateChangedCommand = new DelegateCommand<VisualStateChangedEventArgs>(OnStateChanged);
+            SetInitialStateCommand = new DelegateCommand<VisualState>(SetInitialState);
+        }
 
         private Order _selected;
         public Order Selected
@@ -34,21 +47,11 @@ namespace WTSPrismNavigationBase.ViewModels
             set { SetProperty(ref _selected, value); }
         }
 
-        private INavigationService navigationService;
-
         public ICommand ItemClickCommand { get; private set; }
         public ICommand StateChangedCommand { get; private set; }
         public ICommand SetInitialStateCommand { get; private set; }
 
         public ObservableCollection<Order> SampleItems { get; private set; } = new ObservableCollection<Order>();
-
-        public MasterDetailPageViewModel(INavigationService navigationService)
-        {
-            this.navigationService = navigationService;
-            ItemClickCommand = new DelegateCommand<ItemClickEventArgs>(OnItemClick);
-            StateChangedCommand = new DelegateCommand<VisualStateChangedEventArgs>(OnStateChanged);
-            SetInitialStateCommand = new DelegateCommand<VisualState>(SetInitialState);
-        }
 
         public async override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
@@ -60,7 +63,7 @@ namespace WTSPrismNavigationBase.ViewModels
         {
             SampleItems.Clear();
 
-            var data = await SampleDataService.GetSampleModelDataAsync();
+            var data = await sampleDataService.GetSampleModelDataAsync();
 
             foreach (var item in data)
             {
@@ -71,12 +74,12 @@ namespace WTSPrismNavigationBase.ViewModels
 
         private void SetInitialState(VisualState state)
         {
-            _currentState = state;
+            currentState = state;
         }
 
         private void OnStateChanged(VisualStateChangedEventArgs args)
         {
-            _currentState = args.NewState;
+            currentState = args.NewState;
         }
 
         private void OnItemClick(ItemClickEventArgs args)
@@ -84,9 +87,9 @@ namespace WTSPrismNavigationBase.ViewModels
             Order item = args?.ClickedItem as Order;
             if (item != null)
             {
-                if (_currentState?.Name == NarrowStateName)
+                if (currentState?.Name == NarrowStateName)
                 {
-                    navigationService.Navigate("MasterDetailDetail", item);
+                    navigationService.Navigate(PageTokens.MasterDetailDetailPage, item);
                 }
                 else
                 {

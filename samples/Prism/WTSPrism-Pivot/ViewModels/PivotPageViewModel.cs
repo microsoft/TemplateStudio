@@ -4,8 +4,5 @@ namespace WTSPrism.ViewModels
 {
     public class PivotPageViewModel : ViewModelBase
     {
-        public PivotPageViewModel()
-        {
-        }
     }
 }
