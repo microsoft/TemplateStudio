@@ -34,7 +34,7 @@ namespace WTSPrism
             Container.RegisterType<ISampleDataService, SampleDataService>();
         }
 
-        protected async override Task OnInitializeAsync(IActivatedEventArgs args)
+        protected override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
             await ThemeSelectorService.InitializeAsync();
         }
