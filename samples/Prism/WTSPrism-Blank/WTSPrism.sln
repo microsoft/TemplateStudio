@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26823.1
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WTSPrism", "WTSPrism.csproj", "{5E420EF7-EBF9-47C9-A964-36A6378BE6D8}"
 EndProject
@@ -39,13 +39,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {90844128-F815-453D-83E3-26B69A2F59D3}
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://mastwin10.visualstudio.com/
-		SccProjectUniqueName0 = WTSPrism.csproj
-		SccLocalPath0 = .
-		SccLocalPath1 = .
 	EndGlobalSection
 EndGlobal

@@ -130,9 +130,7 @@ namespace WTSPrism.Services
         // TODO WTS: Remove this once your MasterDetail pages are displaying real data
         public static async Task<IEnumerable<Order>> GetSampleModelDataAsync()
         {
-            await Task.CompletedTask;
-
-            return AllOrders();
+            return await Task.FromResult<IEnumerable<Order>>(AllOrders());
         }
     }
 }

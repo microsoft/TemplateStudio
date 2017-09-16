@@ -7,6 +7,7 @@ using Windows.UI.Xaml;
 using Microsoft.Practices.Unity;
 using Prism.Unity.Windows;
 using Prism.Windows.AppModel;
+using WTSPrism.Constants;
 
 namespace WTSPrism
 {
@@ -32,8 +33,8 @@ namespace WTSPrism
 
         protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
-            NavigationService.Navigate("Blank", null);
-            return Task.FromResult(true);
+            NavigationService.Navigate(PageTokens.BlankPage, null);
+            return Task.CompletedTask;
         }
     }
 }

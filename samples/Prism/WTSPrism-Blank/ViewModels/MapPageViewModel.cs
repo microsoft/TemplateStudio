@@ -68,7 +68,7 @@ namespace WTSPrism.ViewModels
             MapServiceToken = "";
         }
 
-        public async override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
             if (locationService != null)

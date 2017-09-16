@@ -48,7 +48,7 @@ namespace WTSPrism.ViewModels
             LoadedCommand = new DelegateCommand<VisualState>(OnLoaded);
         }
 
-        public async override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
             await LoadDataAsync(_currentState);

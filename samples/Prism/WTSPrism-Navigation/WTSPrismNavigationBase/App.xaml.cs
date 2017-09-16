@@ -16,6 +16,7 @@ using WTSPrismNavigationBase.Views;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using WTSPrismNavigationBase.ViewModels;
 using WTSPrismNavigationBase.Services;
+using WTSPrism.Constants;
 
 namespace WTSPrismNavigationBase
 {
@@ -25,7 +26,7 @@ namespace WTSPrismNavigationBase
     sealed partial class App : PrismUnityApplication
     {
 
-        protected async override Task OnInitializeAsync(IActivatedEventArgs args)
+        protected override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
             RegisterTypes();
             await ThemeSelectorService.InitializeAsync();
@@ -54,9 +55,9 @@ namespace WTSPrismNavigationBase
         {
             Services.ThemeSelectorService.SetRequestedTheme();
 
-            NavigationService.Navigate("Main", null);
+            NavigationService.Navigate(PageTokens.MainPage, null);
             Window.Current.Activate();
-            return Task.FromResult<object>(null);
+            return Task.CompletedTask;
         }
     }
 }

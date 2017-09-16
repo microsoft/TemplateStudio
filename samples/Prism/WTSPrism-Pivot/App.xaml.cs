@@ -8,6 +8,7 @@ using Microsoft.Practices.Unity;
 using Prism.Unity.Windows;
 using Prism.Windows.AppModel;
 using WTSPrism.Services;
+using WTSPrism.Constants;
 
 namespace WTSPrism
 {
@@ -31,7 +32,7 @@ namespace WTSPrism
             Container.RegisterType<ILocationService, LocationService>(new ContainerControlledLifetimeManager());
         }
 
-        protected async override Task OnInitializeAsync(IActivatedEventArgs args)
+        protected override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
             RegisterTypes();
             await ThemeSelectorService.InitializeAsync();
@@ -41,8 +42,8 @@ namespace WTSPrism
         {
             Services.ThemeSelectorService.SetRequestedTheme();
 
-            NavigationService.Navigate("Pivot", null);
-            return Task.FromResult(true);
+            NavigationService.Navigate(PageTokens.TabbedPage, null);
+            return Task.CompletedTask;
         }
     }
 }

@@ -119,6 +119,7 @@
   <ItemGroup>
     <Compile Include="Behaviors\BindableMapIconBehavior.cs" />
     <Compile Include="Behaviors\PivotNavigationBehavior.cs" />
+    <Compile Include="Constants\PageTokens.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
     <Compile Include="Models\DataPoint.cs" />
