@@ -213,10 +213,6 @@
     <value>Select project type and framework</value>
     <comment>Wizard new project tiltle for step 1</comment>
   </data>
-  <data name="ProjectTemplatesTitle" xml:space="preserve">
-    <value>Select pages and features</value>
-    <comment>Wizard new project tiltle for step 2</comment>
-  </data>
   <data name="ResetSelection" xml:space="preserve">
     <value>You have changed your project type or framework selection. Pages and feature selections will be lost if you continue. Your prior selections were: {0} and {1}.</value>
     <comment>Wizard new project reset selection error message</comment>
@@ -643,5 +639,17 @@
   <data name="ZoomOutButtonTooltip" xml:space="preserve">
     <value>Zoom out</value>
     <comment>Zoom out button tooltip on changes summary view</comment>
+  </data>
+  <data name="ProjectFeaturesTitle" xml:space="preserve">
+    <value>Select features</value>
+    <comment>New Project Wizard title for features</comment>
+  </data>
+  <data name="ProjectPagesTitle" xml:space="preserve">
+    <value>Select pages</value>
+    <comment>New Project Wizard title for pages</comment>
+  </data>
+  <data name="ExceptionDependencyMissing" xml:space="preserve">
+    <value>Dependency template {0} not found on user selection</value>
+    <comment>Log text for misssing dependency exception.</comment>
   </data>
 </root>

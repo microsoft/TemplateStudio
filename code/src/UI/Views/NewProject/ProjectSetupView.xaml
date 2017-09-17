@@ -52,8 +52,8 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
-        <ScrollViewer Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}}">
+    <Grid Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
+        <ScrollViewer Visibility="{Binding WizardStatus.HasContent, Converter={StaticResource BoolToVisibilityConverter}}">
             <StackPanel>
                 <GroupBox Header="{Binding ProjectSetup.ProjectTypesHeader}" Margin="{StaticResource Margin_M_LeftTopRight}">
                     <ListView

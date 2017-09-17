@@ -51,13 +51,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             set => SetProperty(ref _hasChangesToApply, value);
         }
 
-        private bool _isLoading = true;
-        public bool IsLoading
-        {
-            get => _isLoading;
-            set => SetProperty(ref _isLoading, value);
-        }
-
         public ICommand MoreDetailsCommand { get; }
         public ICommand UpdateFontSizeCommand { get; }
 
@@ -69,6 +62,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public async Task InitializeAsync()
         {
+            MainViewModel.Current.WizardStatus.IsLoading = true;
             MainViewModel.Current.MainView.Result = MainViewModel.Current.CreateUserSelection();
             NewItemGenController.Instance.CleanupTempGeneration();
             await NewItemGenController.Instance.GenerateNewItemAsync(MainViewModel.Current.ConfigTemplateType, MainViewModel.Current.MainView.Result);
@@ -99,7 +93,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 group.SelectedItem = group.Templates.First();
             }
             MainViewModel.Current.UpdateCanFinish(true);
-            IsLoading = false;
+            MainViewModel.Current.WizardStatus.IsLoading = false;
         }
 
         public void ResetSelection()

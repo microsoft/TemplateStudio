@@ -143,6 +143,9 @@ namespace Microsoft.Templates.Fakes
                 case ".resw":
                     returnType = VsItemType.Resource;
                     break;
+                case ".pfx":
+                    returnType = VsItemType.None;
+                    break;
                 default:
                     returnType = VsItemType.Content;
                     break;

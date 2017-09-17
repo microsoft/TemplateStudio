@@ -208,26 +208,52 @@ namespace Microsoft.Templates.Core.Test
         [Theory]
         [MemberData("GetAllLanguages")]
         [Trait("Type", "ProjectGeneration")]
-        public void GetOrder(string language)
+        public void GetDisplayOrder(string language)
         {
             SetUpFixtureForTesting(language);
 
-            var target = GetTargetByName("ProjectTemplate");
+            var target = GetTargetByIdentity("Microsoft.UWPTemplates.Test.PageTemplate.CSharp");
 
-            var result = target.GetOrder();
+            var result = target.GetDisplayOrder();
             Assert.Equal(1, result);
         }
 
         [Theory]
         [MemberData("GetAllLanguages")]
         [Trait("Type", "ProjectGeneration")]
-        public void GetOrder_unspecified(string language)
+        public void GetDisplayOrder_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
 
             var target = GetTargetByName("UnspecifiedTemplate");
 
-            var result = target.GetOrder();
+            var result = target.GetDisplayOrder();
+            Assert.Equal(int.MaxValue, result);
+        }
+
+        [Theory]
+        [MemberData("GetAllLanguages")]
+        [Trait("Type", "ProjectGeneration")]
+        public void GetCompositionOrder(string language)
+        {
+            SetUpFixtureForTesting(language);
+
+            var target = GetTargetByName("CompositionTemplate");
+
+            var result = target.GetCompositionOrder();
+            Assert.Equal(1, result);
+        }
+
+        [Theory]
+        [MemberData("GetAllLanguages")]
+        [Trait("Type", "ProjectGeneration")]
+        public void GetCompositionOrder_unspecified(string language)
+        {
+            SetUpFixtureForTesting(language);
+
+            var target = GetTargetByName("UnspecifiedTemplate");
+
+            var result = target.GetCompositionOrder();
             Assert.Equal(int.MaxValue, result);
         }
 

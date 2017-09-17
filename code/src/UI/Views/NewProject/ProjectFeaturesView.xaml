@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Microsoft.Templates.UI.Views.NewProject.ProjectTemplatesView"
+    x:Class="Microsoft.Templates.UI.Views.NewProject.ProjectFeaturesView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"     
@@ -118,18 +118,6 @@
     </Page.Resources>
     <ScrollViewer>
         <StackPanel>
-            <GroupBox Header="{Binding PagesHeader}" Margin="{StaticResource Margin_M_LeftTopRight}">
-                <ItemsControl ItemsSource="{Binding PagesGroups}" Focusable="False">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding Title}" Style="{StaticResource TextSubGroupTemplateItemsHeaderStyle}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
-                                <ListView KeyboardNavigation.TabNavigation="Local" ItemsSource="{Binding Templates}" Style="{StaticResource ListViewProjectTemplatesStyle}" ItemTemplate="{StaticResource ProjectTemplatesItemTemplate}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </GroupBox>
             <GroupBox Header="{Binding FeaturesHeader}" Margin="{StaticResource Margin_M_LeftTopRight}">
                 <ItemsControl ItemsSource="{Binding FeatureGroups}" Margin="{StaticResource Margin_M_Top}" Focusable="False">
                     <ItemsControl.ItemTemplate>

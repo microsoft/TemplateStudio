@@ -5,14 +5,12 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.Views.NewProject
 {
-    /// <summary>
-    /// Interaction logic for MainView.xaml
-    /// </summary>
     public partial class MainView : Window
     {
         public static MainView Current;
@@ -48,14 +46,14 @@ namespace Microsoft.Templates.UI.Views.NewProject
         private void OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             var element = e.Source as FrameworkElement;
-            ViewModel.TryHideOverlayBox(element);
+            ViewModel.WizardStatus.TryHideOverlayBox(element);
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
             {
-                if (!ViewModel.ProjectTemplates.CloseTemplatesEdition() && !ViewModel.ClearCurrentDragginTemplate())
+                if (!ViewModel.ProjectTemplates.CloseAllEditions() && !ViewModel.Ordering.ClearDraggin())
                 {
                     Close();
                 }
