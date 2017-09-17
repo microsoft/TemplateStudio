@@ -191,6 +191,32 @@ namespace Microsoft.Templates.Test
             return (resultPath, projectName);
         }
 
+        protected async Task<(string ProjectPath, string ProjecName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities)
+        {
+            await SetUpFixtureForTestingAsync(language);
+
+            var projectTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
+
+            ProjectName = $"{projectType}{framework}Compare{language.Replace("#", "S")}";
+            ProjectPath = Path.Combine(_fixture.TestProjectsPath, ProjectName, ProjectName);
+            OutputPath = ProjectPath;
+
+            var userSelection = await GenerationFixture.SetupProjectAsync(projectType, framework, language);
+
+            foreach (var identity in genIdentities)
+            {
+                var itemTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.Identity.Contains(identity)
+                                                                                && t.GetFrameworkList().Contains(framework));
+                GenerationFixture.AddItem(userSelection, itemTemplate, GenerationFixture.GetDefaultName);
+            }
+
+            await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
+
+            var resultPath = Path.Combine(_fixture.TestProjectsPath, ProjectName);
+
+            return (resultPath, ProjectName);
+        }
+
         public static IEnumerable<object[]> GetProjectTemplatesAsync()
         {
             JoinableTaskContext context = new JoinableTaskContext();
@@ -208,6 +234,51 @@ namespace Microsoft.Templates.Test
             context.CreateFactory(tasks);
             var result = context.Factory.Run(() => GenerationFixture.GetPageAndFeatureTemplatesAsync(framework));
             return result;
+        }
+
+
+        private const string NavigationPanel = "SplitView";
+        private const string Blank = "Blank";
+        private const string TabsAndPivot = "TabbedPivot";
+        private const string MvvmBasic = "MVVMBasic";
+        private const string MvvmLight = "MVVMLight";
+        private const string CodeBehind = "CodeBehind";
+
+        // This returns a list of project types and frameworks supported by BOTH C# and VB
+        public static IEnumerable<object[]> GetMultiLanguageProjectsAndFrameworks()
+        {
+            yield return new object[] { NavigationPanel, CodeBehind };
+            yield return new object[] { NavigationPanel, MvvmBasic };
+            yield return new object[] { NavigationPanel, MvvmLight };
+            yield return new object[] { Blank, CodeBehind };
+            yield return new object[] { Blank, MvvmBasic };
+            yield return new object[] { Blank, MvvmLight };
+            yield return new object[] { TabsAndPivot, CodeBehind };
+            yield return new object[] { TabsAndPivot, MvvmBasic };
+            yield return new object[] { TabsAndPivot, MvvmLight };
+        }
+
+        /// <summary>
+        /// Gets a list of partial identities for page and feature templates supported by C# and VB
+        /// </summary>
+        protected static IEnumerable<string> GetPagesAndFeaturesForMultiLanguageProjectsAndFrameworks(string projectType, string framework)
+        {
+            // Hardcoding the response lists is necessary while there are different pages & features available for different combinations of projecttype and framework
+            if (projectType == NavigationPanel && framework == CodeBehind)
+            {
+                // These are the items being built out for first public trial
+                return new[] { "wts.Page.Blank.CodeBehind", "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume" };
+            }
+            else if (framework == CodeBehind)
+            {
+                // Every combination supports these
+                return new[] { "wts.Page.Blank.CodeBehind", "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume" };
+            }
+            else
+            {
+                // Every combination supports these
+                return new[] { "wts.Page.Blank", "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume" };
+            }
         }
     }
 }
