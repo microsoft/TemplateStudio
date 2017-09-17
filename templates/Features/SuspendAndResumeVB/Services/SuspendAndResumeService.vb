@@ -12,7 +12,7 @@ Namespace Services
     Friend Class SuspendAndResumeService
         Inherits ActivationHandler(Of LaunchActivatedEventArgs)
 
-        ' TODO WTS: For more information regarding the application lifecycle and how to handle suspend and resume, please see:
+        ' For more information regarding the application lifecycle and how to handle suspend and resume, please see:
         ' Documentation: https://docs.microsoft.com/windows/uwp/launch-resume/app-lifecycle
 
         Private Const StateFilename As String = "suspensionState"

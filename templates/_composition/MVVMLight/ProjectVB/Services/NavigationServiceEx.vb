@@ -4,6 +4,7 @@ Imports System.Linq
 Imports Windows.UI.Xaml
 Imports Windows.UI.Xaml.Controls
 Imports Windows.UI.Xaml.Media.Animation
+Imports Windows.UI.Xaml.Navigation
 
 Namespace Services
     Public Class NavigationServiceEx
@@ -16,12 +17,15 @@ Namespace Services
             Get
               If _frame Is Nothing Then
                   _frame = TryCast(Window.Current.Content, Frame)
+                    RegisterFrameEvents()
               End If
 
               Return _frame
             End Get
             Set
+                UnregisterFrameEvents()
                 _frame = value
+                RegisterFrameEvents()
             End Set
         End Property
 
@@ -78,5 +82,27 @@ Namespace Services
                 End If
             End SyncLock
         End Function
+
+        Private Shared Sub RegisterFrameEvents()
+            If _frame IsNot Nothing Then
+                AddHandler _frame.Navigated, AddressOf Frame_Navigated
+                AddHandler _frame.NavigationFailed, AddressOf Frame_NavigationFailed
+            End If
+        End Sub
+
+        Private Shared Sub UnregisterFrameEvents()
+            If _frame IsNot Nothing Then
+                RemoveHandler _frame.Navigated, AddressOf Frame_Navigated
+                RemoveHandler _frame.NavigationFailed, AddressOf Frame_NavigationFailed
+            End If
+        End Sub
+
+        Private Shared Sub Frame_NavigationFailed(sender As Object, e As NavigationFailedEventArgs)
+            RaiseEvent NavigationFailed(sender, e)
+        End Sub 
+        
+        Private Shared Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
+            RaiseEvent Navigated(sender, e)
+        End Sub
     End Class
 End Namespace

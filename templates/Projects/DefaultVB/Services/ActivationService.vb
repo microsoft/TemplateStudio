@@ -32,10 +32,10 @@ Namespace Services
                 If Window.Current.Content Is Nothing Then
                     ' Create a Frame to act as the navigation context and navigate to the first page
                     Window.Current.Content = _shell
-                    AddHandler NavigationService.Frame.NavigationFailed, Function(sender, e)
+                    AddHandler NavigationService.NavigationFailed, Function(sender, e)
                     Throw New Exception("Failed to load Page " + e.SourcePageType.FullName)
                                                                 End Function
-                    AddHandler NavigationService.Frame.Navigated, AddressOf OnFrameNavigated
+                    AddHandler NavigationService.Navigated, AddressOf OnFrameNavigated
                     If SystemNavigationManager.GetForCurrentView() IsNot Nothing Then
                         AddHandler SystemNavigationManager.GetForCurrentView().BackRequested, AddressOf OnAppViewBackButtonRequested
                     End If
