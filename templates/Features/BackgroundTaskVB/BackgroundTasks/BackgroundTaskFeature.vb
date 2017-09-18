@@ -8,15 +8,7 @@ Namespace BackgroundTasks
         Inherits BackgroundTask
 
         Public Shared Property Message As String
-            Get
-                Return s_Message
-            End Get
-            Set
-                s_Message = Value
-            End Set
-        End Property
 
-        Private Shared s_Message As String
         Private _cancelRequested As Boolean = False
         Private _taskInstance As IBackgroundTaskInstance
         Private _deferral As BackgroundTaskDeferral
