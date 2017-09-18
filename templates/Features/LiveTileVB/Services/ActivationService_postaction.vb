@@ -1,0 +1,32 @@
+﻿'{**
+' These code blocks include the LiveTileFeatureService Instance in the method `GetActivationHandlers()`,
+' enable the notification queue in the method `InitializeAsync()` and add a sample LiveTile to the method 
+' `StartupAsync()` in the ActivationService of your project.
+'**}
+'{[{
+Imports Param_RootNamespace.Helpers
+'}]}
+Namespace Services
+    Friend Class ActivationService
+        Private Function InitializeAsync() As Task
+            '{[{
+            Await Singleton(Of LiveTileFeatureService).Instance.EnableQueueAsync()
+            '}]}
+        End Function
+
+        Private Function StartupAsync() As Task
+            '{[{
+            Singleton(Of LiveTileFeatureService).Instance.SampleUpdate()
+            '}]}
+        End Function
+
+        Private Iterator Function GetActivationHandlers() As IEnumerable(Of ActivationHandler)
+            '{[{
+            Yield Singleton(Of LiveTileFeatureService).Instance
+            '}]}
+            '{--{
+            Return
+            '}--}
+        End Function
+    End Class
+End Namespace
