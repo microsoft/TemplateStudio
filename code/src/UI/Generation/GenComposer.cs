@@ -55,7 +55,7 @@ namespace Microsoft.Templates.UI
 
         public static IEnumerable<ITemplateInfo> GetAllDependencies(ITemplateInfo template, string framework)
         {
-           return GetDependencies(template, framework, new List<ITemplateInfo>());
+            return GetDependencies(template, framework, new List<ITemplateInfo>());
         }
 
         private static IEnumerable<ITemplateInfo> GetDependencies(ITemplateInfo template, string framework, IList<ITemplateInfo> dependencyList)
@@ -111,9 +111,17 @@ namespace Microsoft.Templates.UI
             AddTemplates(userSelection.Pages, genQueue, userSelection);
             AddTemplates(userSelection.Features, genQueue, userSelection);
 
-            AddCompositionTemplates(genQueue, userSelection);
+            genQueue = AddInCompositionTemplates(genQueue, userSelection);
 
             return genQueue;
+        }
+
+        public static IEnumerable<TemplateLicense> GetAllLicences(UserSelection userSelection)
+        {
+            return Compose(userSelection)
+                    .SelectMany(s => s.Template.GetLicenses())
+                    .Distinct(new TemplateLicenseEqualityComparer())
+                    .ToList();
         }
 
         public static IEnumerable<GenInfo> ComposeNewItem(UserSelection userSelection)
@@ -128,7 +136,7 @@ namespace Microsoft.Templates.UI
             AddTemplates(userSelection.Pages, genQueue, userSelection);
             AddTemplates(userSelection.Features, genQueue, userSelection);
 
-            AddCompositionTemplates(genQueue, userSelection);
+            genQueue = AddInCompositionTemplates(genQueue, userSelection);
 
             return genQueue;
         }
@@ -157,12 +165,37 @@ namespace Microsoft.Templates.UI
         {
             foreach (var selectionItem in templates)
             {
-                var genInfo = CreateGenInfo(selectionItem.name, selectionItem.template, genQueue);
-                genInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
+                if (!genQueue.Any(t => t.Name == selectionItem.name && t.Template.Identity == selectionItem.template.Identity))
+                {
+                    AddDependencyTemplates(selectionItem, genQueue, userSelection);
+                    var genInfo = CreateGenInfo(selectionItem.name, selectionItem.template, genQueue);
+                    genInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
+                }
             }
         }
 
-        private static void AddCompositionTemplates(List<GenInfo> genQueue, UserSelection userSelection)
+        private static void AddDependencyTemplates((string name, ITemplateInfo template) selectionItem, List<GenInfo> genQueue, UserSelection userSelection)
+        {
+            var dependencies = GetAllDependencies(selectionItem.template, userSelection.Framework);
+            foreach (var dependencyItem in dependencies)
+            {
+                var dependencyTemplate = userSelection.Features.FirstOrDefault(f => f.template.Identity == dependencyItem.Identity);
+                if (dependencyTemplate.template != null)
+                {
+                    if (!genQueue.Any(t => t.Name == dependencyTemplate.name && t.Template.Identity == dependencyTemplate.template.Identity))
+                    {
+                        var depGenInfo = CreateGenInfo(dependencyTemplate.name, dependencyTemplate.template, genQueue);
+                        depGenInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
+                    }
+                }
+                else
+                {
+                    LogOrAlertException(string.Format(StringRes.ExceptionDependencyMissing, dependencyItem.Identity));
+                }
+            }
+        }
+
+        private static List<GenInfo> AddInCompositionTemplates(List<GenInfo> genQueue, UserSelection userSelection)
         {
             var compositionCatalog = GetCompositionCatalog().ToList();
             var context = new QueryablePropertyDictionary
@@ -171,10 +204,13 @@ namespace Microsoft.Templates.UI
                 new QueryableProperty("framework", userSelection.Framework)
             };
 
-            var compositionQueue = new List<GenInfo>();
+            var combinedQueue = new List<GenInfo>();
 
             foreach (var genItem in genQueue)
             {
+                combinedQueue.Add(genItem);
+                var compositionQueue = new List<GenInfo>();
+
                 foreach (var compositionItem in compositionCatalog)
                 {
                     if (compositionItem.query.Match(genItem.Template, context))
@@ -182,9 +218,10 @@ namespace Microsoft.Templates.UI
                         AddTemplate(genItem, compositionQueue, compositionItem.template, userSelection);
                     }
                 }
+                combinedQueue.AddRange(compositionQueue.OrderBy(g => g.Template.GetCompositionOrder()));
             }
 
-            genQueue.AddRange(compositionQueue.OrderBy(g => g.Template.GetOrder()));
+            return combinedQueue;
         }
 
         private static IEnumerable<(CompositionQuery query, ITemplateInfo template)> GetCompositionCatalog()

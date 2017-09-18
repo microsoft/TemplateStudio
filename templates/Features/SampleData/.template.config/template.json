@@ -11,7 +11,7 @@
     "wts.type": "feature",
     "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
     "wts.version": "1.0.0",
-    "wts.order": "1",
+    "wts.displayOrder": "1",
     "wts.defaultInstance": "SampleDataService",
     "wts.multipleInstance": "false",
     "wts.isHidden": "true",

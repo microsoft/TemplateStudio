@@ -32,7 +32,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             Icon = template.GetIcon();
             Name = template.Name;
             Author = template.Author;
-            Order = template.GetOrder();
+            Order = template.GetDisplayOrder();
             Summary = template.Description;
             Identity = template.Identity;
             Version = template.GetVersion();

@@ -73,6 +73,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (isVisible)
             {
+                Visibility = Visibility.Visible;
                 Panel.SetZIndex(this, 2);
                 closeButton.Focusable = true;
                 if (autoHideSeconds > 0)
@@ -87,6 +88,7 @@ namespace Microsoft.Templates.UI.Controls
                 Panel.SetZIndex(this, 0);
                 closeButton.Focusable = false;
                 this.FadeOut(0);
+                Visibility = Visibility.Collapsed;
             }
         }
     }

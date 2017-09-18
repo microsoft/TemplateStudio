@@ -9,8 +9,8 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.order": "1",
-    "wts.compositionFilter": "$framework == MVVMLight & $projectType == TabbedPivot & wts.type == project"
+    "wts.compositionFilter": "$framework == MVVMLight & $projectType == TabbedPivot & wts.type == project",
+    "wts.compositionOrder": "1",
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

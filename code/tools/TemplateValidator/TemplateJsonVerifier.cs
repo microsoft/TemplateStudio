@@ -155,9 +155,16 @@ namespace TemplateValidator
                         break;
                     case "wts.type":
                         VerifyWtsTypeTagValue(tag, results);
+                        VerifyWtsTypeFeatureMultipleInstancesRule(tag, template, results);
                         break;
                     case "wts.order":
                         VerifyWtsOrderTagValue(tag, results);
+                        break;
+                    case "wts.displayOrder":
+                        VerifyWtsDisplayOrderTagValue(tag, results);
+                        break;
+                    case "wts.compositionOrder":
+                        VerifyWtsCompositionOrderTagValue(tag, results);
                         break;
                     case "wts.framework":
                         VerifyWtsFrameworkTagValue(tag, results);
@@ -327,9 +334,22 @@ namespace TemplateValidator
 
         private static void VerifyWtsOrderTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
+            results.Add($"The wts.order tag is no longer supported. Please use the wts.displayOrder or the wts.compositionOrder tag.");
+        }
+
+        private static void VerifyWtsDisplayOrderTagValue(KeyValuePair<string, string> tag, List<string> results)
+        {
             if (!int.TryParse(tag.Value, out int ignoredOrderResult))
             {
-                results.Add($"The wts.order tag must be an integer. Not '{tag.Value}'.");
+                results.Add($"The wts.displayOrder tag must be an integer. Not '{tag.Value}'.");
+            }
+        }
+
+        private static void VerifyWtsCompositionOrderTagValue(KeyValuePair<string, string> tag, List<string> results)
+        {
+            if (!int.TryParse(tag.Value, out int ignoredOrderResult))
+            {
+                results.Add($"The wts.compositionOrder tag must be an integer. Not '{tag.Value}'.");
             }
         }
 
@@ -338,6 +358,24 @@ namespace TemplateValidator
             if (!new[] { "composition", "page", "feature" }.Contains(tag.Value))
             {
                 results.Add($"Invalid value '{tag.Value}' specified in the wts.type tag.");
+            }
+        }
+
+        private static void VerifyWtsTypeFeatureMultipleInstancesRule(KeyValuePair<string, string> tag, ValidationTemplateInfo template, List<string> results)
+        {
+            if ("feature".Equals(tag.Value))
+            {
+                if (template.TemplateTags.Keys.Contains("wts.multipleInstance"))
+                {
+                    bool.TryParse(template.TemplateTags["wts.multipleInstance"], out var allowMultipleInstances);
+                    if (!allowMultipleInstances)
+                    {
+                        if (string.IsNullOrWhiteSpace(template.TemplateTags["wts.defaultInstance"]))
+                        {
+                            results.Add($"Template must define a valid value for wts.defaultInstance tag as wts.Type is '{tag.Value}' and wts.multipleInstance is 'false'.");
+                        }
+                    }
+                }
             }
         }
 
