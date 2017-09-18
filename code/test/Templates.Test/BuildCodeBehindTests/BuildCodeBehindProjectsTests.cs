@@ -22,6 +22,7 @@ namespace Microsoft.Templates.Test
 {
     [Collection("BuildCodeBehindCollection")]
     [Trait("ExecutionSet", "BuildCodeBehind")]
+    [Trait("ExecutionSet", "Build")]
     public class BuildCodeBehindProjectTests : BaseGenAndBuildTests
     {
         public BuildCodeBehindProjectTests(BuildCodeBehindFixture fixture)

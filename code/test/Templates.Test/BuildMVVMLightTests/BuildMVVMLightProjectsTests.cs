@@ -22,6 +22,7 @@ namespace Microsoft.Templates.Test
 {
     [Collection("BuildMVVMLightCollection")]
     [Trait("ExecutionSet", "BuildMVVMLight")]
+    [Trait("ExecutionSet", "Build")]
     public class BuildMVVMLightProjectTests : BaseGenAndBuildTests
     {
         public BuildMVVMLightProjectTests(BuildMVVMLightFixture fixture)
