@@ -8,7 +8,7 @@ Param(
   [string]$Color = "blue"
 )
 $ext = "svg"
-$file = ".\$Identifier.version.$ext"
+$file = ".\img.$Identifier.version.$ext"
 
 function GetVersionNumberFromBuildNumber
 {
@@ -44,6 +44,6 @@ $keys = Get-AzureRmStorageAccountKey -StorageAccountName "wtsrepository" -Resour
 $context = New-AzureStorageContext -StorageAccountName "wtsrepository" -StorageAccountKey $keys[0].value
 
 Write-Host "Uploading badge to wtsrepository badges container..."
-$properties = @{"ContentType"="image/jpeg"}
+$properties = @{"ContentType"="image/svg+xml"; "CacheControl"="public, max-age=0"}
 Set-AzureStorageBlobContent -Container "badges" -File $file -Properties $properties -Context $context -Force
 

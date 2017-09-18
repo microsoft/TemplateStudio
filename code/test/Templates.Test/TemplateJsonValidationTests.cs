@@ -13,6 +13,7 @@ namespace Microsoft.Templates.Test
 {
     [Collection("Unit Test Templates")]
     [Trait("Type", "TemplateValidation")]
+    [Trait("ExecutionSet", "Minimum")]
     public class TemplateJsonValidationTests
     {
         public static IEnumerable<object[]> GetAllTemplateJsonFiles()
