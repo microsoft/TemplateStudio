@@ -25,7 +25,7 @@ Namespace ViewModels
 
         Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
 
-        Dim _zoomLevel As Double
+        Private _zoomLevel As Double
         Public Property ZoomLevel As Double
             Get
                 Return _zoomLevel
@@ -36,7 +36,7 @@ Namespace ViewModels
             End Set
         End Property
 
-        Dim _center As Geopoint
+        Private _center As Geopoint
         Public Property Center As Geopoint
             Get
                 Return _center
