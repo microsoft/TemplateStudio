@@ -1,6 +1,6 @@
 ﻿Imports Windows.UI.Xaml.Controls
 
-Namespace Param_ItemNamespace.Views
+Namespace Views
     Partial Public NotInheritable Class WhatsNewDialog
         Inherits ContentDialog
         Public Sub New()

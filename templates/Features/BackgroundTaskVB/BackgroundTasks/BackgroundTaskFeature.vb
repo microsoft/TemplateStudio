@@ -60,13 +60,13 @@ Namespace BackgroundTasks
         Private Sub SampleTimerCallback(timer As ThreadPoolTimer)
             If (_cancelRequested = False) AndAlso (_taskInstance.Progress < 100) Then
                 _taskInstance.Progress += 10
-                Message = "Background Task {_taskInstance.Task.Name} running"
+                Message = $"Background Task {_taskInstance.Task.Name} running"
             Else
                 timer.Cancel()
                 If _cancelRequested Then
-                    Message = "Background Task {_taskInstance.Task.Name} cancelled"
+                    Message = $"Background Task {_taskInstance.Task.Name} cancelled"
                 Else
-                    Message = "Background Task {_taskInstance.Task.Name} finished"
+                    Message = $"Background Task {_taskInstance.Task.Name} finished"
                 End If
                 _deferral?.Complete()
             End If

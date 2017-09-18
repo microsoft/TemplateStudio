@@ -31,7 +31,7 @@ Namespace Helpers
                 Return Nothing
             End If
 
-            Dim file__1 = Await folder.GetFileAsync("{name}.json")
+            Dim file__1 = Await folder.GetFileAsync($"{name}.json")
             Dim fileContent = Await FileIO.ReadTextAsync(file__1)
 
             Return Await Json.ToObjectAsync(Of T)(fileContent)
