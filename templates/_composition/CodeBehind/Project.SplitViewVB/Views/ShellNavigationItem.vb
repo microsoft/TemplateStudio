@@ -14,7 +14,7 @@
             End Get
         End Property
 
-        Private _iconElement As IconElement = Nothing
+        Private ReadOnly _iconElement As IconElement = Nothing
         Public ReadOnly Property Icon() As IconElement
             Get
                 Dim foregroundBinding = New Binding() With {
@@ -35,7 +35,7 @@
                     .Glyph = SymbolAsChar.ToString()
                 }
 
-                BindingOperations.SetBinding(fontIcon, FontIcon.ForegroundProperty, foregroundBinding)
+                BindingOperations.SetBinding(fontIcon, IconElement.ForegroundProperty, foregroundBinding)
 
                 Return fontIcon
             End Get

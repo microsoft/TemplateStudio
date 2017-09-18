@@ -42,6 +42,20 @@ namespace Microsoft.Templates.Test
         }
 
         [Fact]
+        public void EnsureCodeDoesNotUseOldTodoCommentIdentifier()
+        {
+            void EnsureUwpTemplatesNotUsed(string fileExtension)
+            {
+                var result = CodeIsNotUsed("UWPTemplates", fileExtension);
+
+                Assert.True(result.Item1, result.Item2);
+            }
+
+            EnsureUwpTemplatesNotUsed("*.cs");
+            EnsureUwpTemplatesNotUsed("*.vb");
+        }
+
+        [Fact]
         public void EnsureVisualbasicCodeDoesNotIncludeCommonPortingIssues()
         {
             // Build tests will fail if these are included but this test is quicker than building everything
