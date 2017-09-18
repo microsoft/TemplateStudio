@@ -34,9 +34,26 @@ namespace Microsoft.Templates.Test
         [Fact]
         public void EnsureVisualbasicCodeDoesNotUseTabs()
         {
+            // Some of the merge functionality includes whitespace in string comparisons.
+            // Ensuring all whitespace is spaces avoids issues where strings differ due to different whitespace (which can be hard to spot)
             var result = CodeIsNotUsed('\t'.ToString(), ".vb");
 
             Assert.True(result.Item1, result.Item2);
+        }
+
+        [Fact]
+        public void EnsureVisualbasicCodeDoesNotIncludeCommonPortingIssues()
+        {
+            // Build tests will fail if these are included but this test is quicker than building everything
+            void CheckStringNotIncluded(string toSearchFor)
+            {
+                var result = CodeIsNotUsed(toSearchFor, ".vb");
+
+                Assert.True(result.Item1, result.Item2);
+            }
+
+            CheckStringNotIncluded("Namespace Param_RootNamespace."); // Root namespace is included by default in VB
+            CheckStringNotIncluded(";");
         }
 
         private Tuple<bool, string> CodeIsNotUsed(string textThatShouldNotBeinTheFile, string fileExtension)

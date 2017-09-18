@@ -129,7 +129,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetMultiLanguageProjectsAndFrameworks")]
         [Trait("Type", "GenerationLanguageComparison")]
-        public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalent(string projectType, string framework)
+        public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(string projectType, string framework)
         {
             var genIdentities = GetPagesAndFeaturesForMultiLanguageProjectsAndFrameworks(projectType, framework).ToList();
 
@@ -216,7 +216,7 @@ namespace Microsoft.Templates.Test
                 {
                     return true;
                 }
-                
+
                 if (!buffer1.Take(count1).SequenceEqual(buffer2.Take(count2)))
                 {
                     return false;

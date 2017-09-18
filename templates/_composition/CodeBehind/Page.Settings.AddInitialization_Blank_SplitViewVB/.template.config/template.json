@@ -3,15 +3,14 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CodeBehind.Project.SplitView.AddToPrimaryNavigation.VB",
-  "tags": {
+  "name": "CodeBehind.Page.Settings.AddInitialization_Blank_SplitView.VB",
+   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings.CodeBehind.VB & $projectType == SplitView & $framework == CodeBehind",
-    "wts.compositionOrder": "1"
- },
+    "wts.compositionFilter": "identity == wts.Page.Settings.CodeBehind.VB & $projectType == Blank|SplitView"
+  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [

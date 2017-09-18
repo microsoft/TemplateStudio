@@ -242,7 +242,6 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-
         private const string NavigationPanel = "SplitView";
         private const string Blank = "Blank";
         private const string TabsAndPivot = "TabbedPivot";
@@ -273,7 +272,7 @@ namespace Microsoft.Templates.Test
             if (projectType == NavigationPanel && framework == CodeBehind)
             {
                 // These are the items being built out for first public trial
-                return new[] { "wts.Page.Blank.CodeBehind", "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume" };
+                return new[] { "wts.Page.Blank.CodeBehind", "wts.Page.Settings.CodeBehind", "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume" };
             }
             else if (framework == CodeBehind)
             {

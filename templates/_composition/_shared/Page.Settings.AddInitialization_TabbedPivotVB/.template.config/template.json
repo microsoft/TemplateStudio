@@ -3,19 +3,17 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CodeBehind.Project.SplitView.AddToPrimaryNavigation.VB",
+  "name": "Page.Settings.AddInitialization_TabbedPivot.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings.CodeBehind.VB & $projectType == SplitView & $framework == CodeBehind",
-    "wts.compositionOrder": "1"
- },
+    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight & $projectType == TabbedPivot & identity == wts.Page.Settings.VB|wts.Page.Settings.MVVMLight.VB"
+  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
-  "PrimaryOutputs": [
-  ],
+  "PrimaryOutputs": [],
   "symbols": {
     "wts.rootNamespace": {
       "type": "parameter",
