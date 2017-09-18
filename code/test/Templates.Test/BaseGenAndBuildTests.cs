@@ -231,6 +231,9 @@ namespace Microsoft.Templates.Test
                 case "MVVMLight":
                     result = context.Factory.Run(() => BuildMVVMLightFixture.GetProjectTemplatesAsync(framework));
                     break;
+                default:
+                    result = context.Factory.Run(() => BuildFixture.GetProjectTemplatesAsync());
+                    break;
             }
 
             return result;
