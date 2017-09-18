@@ -33,7 +33,7 @@ Namespace Services
                     ' Create a Frame to act as the navigation context and navigate to the first page
                     Window.Current.Content = _shell
                     AddHandler NavigationService.Frame.NavigationFailed, Function(sender, e)
-                    Throw New Exception("Failed to load Page " + e.SourcePageType.FullName)
+                    Throw e.Exception
                                                                 End Function
                     AddHandler NavigationService.Frame.Navigated, AddressOf OnFrameNavigated
                     If SystemNavigationManager.GetForCurrentView() IsNot Nothing Then

@@ -61,12 +61,12 @@ namespace Param_ItemNamespace.Helpers
         {
             if (content == null)
             {
-                throw new ArgumentNullException("content");
+                throw new ArgumentNullException(nameof(content));
             }
 
             if (string.IsNullOrEmpty(fileName))
             {
-                throw new ArgumentException("File name is null or empty. Specify a valid file name", "fileName");
+                throw new ArgumentException("File name is null or empty. Specify a valid file name", nameof(fileName));
             }
 
             var storageFile = await folder.CreateFileAsync(fileName, options);
