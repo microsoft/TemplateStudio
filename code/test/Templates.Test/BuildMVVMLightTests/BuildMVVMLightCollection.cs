@@ -4,7 +4,7 @@
 
 using Xunit;
 
-namespace Microsoft.Templates.Test.BuildMVVMLightTests
+namespace Microsoft.Templates.Test
 {
     [CollectionDefinition("BuildMVVMLightCollection")]
     public class BuildMVVMLightCollection : ICollectionFixture<BuildMVVMLightFixture>
