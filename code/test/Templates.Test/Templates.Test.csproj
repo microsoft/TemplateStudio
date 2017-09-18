@@ -120,18 +120,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuildProjectsTests.cs" />
-    <Compile Include="GenProjectsTests.cs" />
+    <Compile Include="BuildCodeBehindTests\BuildCodeBehindCollection.cs" />
+    <Compile Include="BuildMVVMBasic\BuildMVVMBasicCollection.cs" />
+    <Compile Include="BuildMVVMBasic\BuildMVVMBasicFixture.cs" />
+    <Compile Include="BuildMVVMBasic\BuildMVVMBasicProjectsTests.cs" />
+    <Compile Include="BuildMVVMBasic\BuildMVVMBasicTestsTemplateSource.cs" />
+    <Compile Include="BuildMVVMLightTests\BuildMVVMLightCollection.cs" />
+    <Compile Include="BuildMVVMLightTests\BuildMVVMLightFixture.cs" />
+    <Compile Include="BuildMVVMLightTests\BuildMVVMLightProjectsTests.cs" />
+    <Compile Include="BuildMVVMLightTests\BuildMVVMLightTestsTemplateSource.cs" />
+    <Compile Include="BuildCodeBehindTests\BuildCodeBehindProjectsTests.cs" />
+    <Compile Include="BuildCodeBehindTests\BuildCodeBehindFixture.cs" />
+    <Compile Include="BuildFixture.cs" />
+    <Compile Include="BuildTestsTemplateSource.cs" />
+    <Compile Include="GenTests\GenTestsTemplateSource.cs" />
+    <Compile Include="BuildCodeBehindTests\BuildCodeBehindTestsTemplateSource.cs" />
+    <Compile Include="GenTests\GenProjectsTests.cs" />
     <Compile Include="FileEncodingTests.cs" />
     <Compile Include="BaseTestContextProvider.cs" />
     <Compile Include="CodeStyleEnforcementTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="BaseGenAndBuildTests.cs" />
+    <Compile Include="BaseGenAndBuildFixture.cs" />
     <Compile Include="StyleCopCollection.cs" />
     <Compile Include="StyleCopGenerationTestsFixture.cs" />
     <Compile Include="StyleCopProjectGenerationTests.cs" />
-    <Compile Include="GenerationCollection.cs" />
-    <Compile Include="GenerationFixture.cs" />
+    <Compile Include="BuildCollection.cs" />
+    <Compile Include="GenTests\GenerationFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StyleCopPlusLocalTemplatesSource.cs" />
     <AdditionalFiles Include="..\..\StyleCop.json">

@@ -51,13 +51,13 @@ namespace Microsoft.Templates.Core
         ////    Initialize(locationId, GetHostVersion());
         ////}
 
-        public string GetCurrentContentSource(string workingFolder)
+        public string GetCurrentContentSource(string workingFolder, string sourceId)
         {
             var result = string.Empty;
 
             foreach (var mp in Instance?.Settings.SettingsLoader.MountPoints)
             {
-                if (Directory.Exists(mp.Place) && IsHigherVersion(result, mp.Place))
+                if (mp != null && Directory.Exists(mp.Place) && IsHigherVersion(result, mp.Place) && (mp.Place.IndexOf(sourceId, StringComparison.InvariantCultureIgnoreCase) != -1))
                 {
                     result = mp.Place;
                 }
