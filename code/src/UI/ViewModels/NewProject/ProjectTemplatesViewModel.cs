@@ -92,15 +92,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             ContextProjectType = MainViewModel.Current.ProjectSetup.SelectedProjectType;
             ContextFramework = MainViewModel.Current.ProjectSetup.SelectedFramework;
 
-            if (PagesGroups.Count == 0)
+            string header = string.Empty;
+            if (DataService.LoadPagesGroups(PagesGroups, ContextFramework.Name, ref header))
             {
-                var pages = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page && t.GetFrameworkList().Contains(ContextFramework.Name))
-                                                   .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name)));
-
-                var groups = pages.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order))).OrderBy(gr => gr.Title);
-
-                PagesGroups.AddRange(groups);
-                PagesHeader = string.Format(StringRes.GroupPagesHeader_SF, pages.Count());
+                PagesHeader = header;
             }
 
             if (FeatureGroups.Count == 0)

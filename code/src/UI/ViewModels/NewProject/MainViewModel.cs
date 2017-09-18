@@ -68,7 +68,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             if (CheckProjectSetupChanged())
             {
-                WizardStatus.SetStatus(StatusViewModel.Warning(string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName)));
+                WizardStatus.SetStatus(StatusViewModel.Warning(string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName), true, 5));
             }
             else
             {
@@ -201,8 +201,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private bool CheckProjectSetupChanged()
         {
             bool hasTemplatesAdded = ProjectTemplates.SavedPages.Any() || ProjectTemplates.SavedFeatures.Any();
-            bool frameworkChanged = ProjectTemplates.ContextFramework.Name != ProjectSetup.SelectedFramework.Name;
-            var projectTypeChanged = ProjectTemplates.ContextProjectType.Name != ProjectSetup.SelectedProjectType.Name;
+            bool frameworkChanged = ProjectTemplates.ContextFramework?.Name != ProjectSetup.SelectedFramework.Name;
+            var projectTypeChanged = ProjectTemplates.ContextProjectType?.Name != ProjectSetup.SelectedProjectType.Name;
 
             return hasTemplatesAdded && (frameworkChanged || projectTypeChanged);
         }

@@ -18,14 +18,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public string ProjectTypesHeader
         {
             get => _projectTypesHeader;
-            set => SetProperty(ref _projectTypesHeader, value);
+            private set => SetProperty(ref _projectTypesHeader, value);
         }
 
         private string _frameworkHeader;
         public string FrameworkHeader
         {
             get => _frameworkHeader;
-            set => SetProperty(ref _frameworkHeader, value);
+            private set => SetProperty(ref _frameworkHeader, value);
         }
 
         private MetadataInfoViewModel _selectedProjectType;
@@ -36,20 +36,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (value != null)
                 {
-                    DataService.LoadFrameworks(Frameworks, _selectedFramework.Name);
-                    SelectedFramework = Frameworks.FirstOrDefault(f => f.Name == _selectedFramework?.Name);
+                    DataService.LoadFrameworks(Frameworks, value.Name);
+                    FrameworkHeader = string.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
 
+                    SelectedFramework = Frameworks.FirstOrDefault(f => f.Name == _selectedFramework?.Name);
                     if (SelectedFramework == null)
                     {
                         SelectedFramework = Frameworks.FirstOrDefault();
                     }
 
+                    SetProperty(ref _selectedProjectType, value);
                     if (_selectedProjectType != null && _selectedProjectType != value)
                     {
                         MainViewModel.Current.AlertProjectSetupChanged();
                     }
-                    SetProperty(ref _selectedProjectType, value);
-                    FrameworkHeader = string.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
                     MainViewModel.Current.UpdateCanGoForward(true);
                     MainViewModel.Current.RebuildLicenses();
                 }

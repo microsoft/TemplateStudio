@@ -7,6 +7,9 @@ using System.Linq;
 
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.ViewModels.NewProject;
+using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.Core;
+using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.Services
 {
@@ -46,6 +49,19 @@ namespace Microsoft.Templates.UI.Services
                 frameworks.Add(item);
             }
             return frameworks.Any();
+        }
+
+        public static bool LoadPagesGroups(ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>> pagesGroups, string frameworkName, ref string header)
+        {
+            if (!pagesGroups.Any())
+            {
+                var pages = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page && t.GetFrameworkList().Contains(frameworkName)).Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, frameworkName)));
+                var groups = pages.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order))).OrderBy(gr => gr.Title);
+                pagesGroups.AddRange(groups);
+                header = string.Format(StringRes.GroupPagesHeader_SF, pages.Count());
+                return pagesGroups.Any();
+            }
+            return false;
         }
     }
 }
