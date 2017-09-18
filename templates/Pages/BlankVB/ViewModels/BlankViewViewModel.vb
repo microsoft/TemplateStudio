@@ -1,7 +1,12 @@
-﻿Namespace ViewModels
+﻿Imports System.ComponentModel
+
+Namespace ViewModels
     Public Class BlankViewViewModel
-        Inherits System.ComponentModel.INotifyPropertyChanged
+        Implements INotifyPropertyChanged
+
         Public Sub New()
         End Sub
+
+        Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
     End Class
 End Namespace
