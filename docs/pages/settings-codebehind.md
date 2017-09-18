@@ -4,7 +4,7 @@ By default the settings page contains a single boolean setting to track whether 
 
 ## Add another boolean setting
 
-Add the following below the `ToggleSwitch` inside the `StackPanel` in **SettingsView.xaml**
+Add the following below the `StackPanel` containing the `RadioButton`s in **SettingsView.xaml**
 
 ```xml
 <CheckBox IsChecked="{x:Bind IsAutoErrorReportingEnabled, Mode=OneWay}"
@@ -16,9 +16,9 @@ Add the following below the `ToggleSwitch` inside the `StackPanel` in **Settings
 
 Add an entry to **Strings/en-us/Resources.resw**
 
-Name: Settings_EnableAutoErrorReporting.Content
+Name: **Settings_EnableAutoErrorReporting.Content**
 
-Value: Automatically report errors
+Value: **Automatically report errors**
 
 When run it will now look like this:
 
@@ -35,7 +35,7 @@ In **SettingsPage.xaml.cs**, change the `OnNavigatedTo` method to be like this
 ```csharp
 protected override async void OnNavigatedTo(NavigationEventArgs e)
 {
-    AppDescription = GetAppDescription();
+    Initialize();
     IsAutoErrorReportingEnabled = await Windows.Storage.ApplicationData.Current.LocalSettings.ReadAsync<bool>(nameof(IsAutoErrorReportingEnabled));
 }
 ```
@@ -52,8 +52,7 @@ private async void OnLoaded(object sender, RoutedEventArgs e)
 
 private async Task InitializeAsync()
 {
-    IsLightThemeEnabled = ThemeSelectorService.IsLightThemeEnabled;
-    AppDescription = GetAppDescription();
+    VersionDescription = GetVersionDescription();
     IsAutoErrorReportingEnabled = await Windows.Storage.ApplicationData.Current.LocalSettings.ReadAsync<bool>(nameof(IsAutoErrorReportingEnabled));
 }
 ```

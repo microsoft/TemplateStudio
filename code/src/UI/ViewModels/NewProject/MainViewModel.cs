@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -23,57 +24,56 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public static MainViewModel Current;
         public MainView MainView;
 
-        public ProjectSetupViewModel ProjectSetup { get; private set; } = new ProjectSetupViewModel();
+        public ProjectSetupViewModel ProjectSetup { get; } = new ProjectSetupViewModel();
 
-        public ProjectTemplatesViewModel ProjectTemplates { get; private set; } = new ProjectTemplatesViewModel();
+        public ProjectTemplatesViewModel ProjectTemplates { get; } = new ProjectTemplatesViewModel();
 
-        public ObservableCollection<SummaryLicenseViewModel> SummaryLicenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
-
-        private bool _hasSummaryLicenses;
-        public bool HasSummaryLicenses
+        private bool _hasLicenses;
+        public bool HasLicenses
         {
-            get => _hasSummaryLicenses;
-            private set => SetProperty(ref _hasSummaryLicenses, value);
+            get => _hasLicenses;
+            private set => SetProperty(ref _hasLicenses, value);
         }
 
-        public MainViewModel(MainView mainView, string language) : base(mainView)
+        public ObservableCollection<SummaryLicenseViewModel> Licenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
+        public OrderingService Ordering { get; private set; }
+
+        public MainViewModel(MainView mainView) : base(mainView)
         {
             MainView = mainView;
+            Licenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(Licenses)); };
             Current = this;
         }
 
-        private StackPanel _summaryPageGroups;
         public async Task InitializeAsync(Frame stepFrame, StackPanel summaryPageGroups)
         {
+            WizardStatus.WizardTitle = StringRes.ProjectSetupTitle;
             NavigationService.Initialize(stepFrame, new ProjectSetupView());
-            _summaryPageGroups = summaryPageGroups;
+            Ordering = new OrderingService()
+            {
+                Panel = summaryPageGroups,
+                ListViewStyle = MainView.FindResource("SummaryListViewStyle") as Style,
+                ItemTemplate = MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate
+            };
             await BaseInitializeAsync();
-            SummaryLicenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SummaryLicenses)); };
+        }
+
+        internal void RebuildLicenses()
+        {
+            LicensesService.RebuildLicenses(CreateUserSelection(), Licenses);
+            HasLicenses = Licenses.Any();
         }
 
         public void AlertProjectSetupChanged()
         {
             if (CheckProjectSetupChanged())
             {
-                SetStatus(StatusViewModel.Warning(string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName)));
+                WizardStatus.SetStatus(StatusViewModel.Warning(string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName)));
             }
             else
             {
                 CleanStatus();
             }
-        }
-
-        public void RebuildLicenses()
-        {
-            var userSelection = CreateUserSelection();
-            var genItems = GenComposer.Compose(userSelection);
-
-            var genLicenses = genItems
-                                .SelectMany(s => s.Template.GetLicenses())
-                                .Distinct(new TemplateLicenseEqualityComparer())
-                                .ToList();
-
-            SyncLicenses(genLicenses);
         }
 
         public void TryCloseEdition(TextBoxEx textBox, Button button)
@@ -82,7 +82,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 return;
             }
-            if (button != null && button.Tag != null && button.Tag.ToString() == "AllowCloseEdition")
+            if (button?.Tag != null && button.Tag.ToString() == "AllowCloseEdition")
             {
                 return;
             }
@@ -99,7 +99,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     if (p.IsEditionEnabled)
                     {
                         p.ConfirmRenameCommand.Execute(p);
-                        p.TryClose();
+                        p.Close();
                     }
                 }));
 
@@ -108,7 +108,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     if (f.IsEditionEnabled)
                     {
                         f.ConfirmRenameCommand.Execute(f);
-                        f.TryClose();
+                        f.Close();
                     }
                 });
             }
@@ -128,32 +128,57 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             MainView.Close();
         }
 
-        protected override void OnNext()
+        protected override async void OnNext()
         {
             base.OnNext();
-            if (CheckProjectSetupChanged())
+            if (CurrentStep == 1)
             {
-                ProjectTemplates.ResetSelection();
-                _summaryPageGroups.Children.Clear();
-                CleanStatus();
+                WizardStatus.WizardTitle = StringRes.ProjectPagesTitle;
+                await ProjectTemplates.InitializeAsync();
+                NavigationService.Navigate(new ProjectPagesView());
+                if (CheckProjectSetupChanged())
+                {
+                    ResetSelection();
+                    Ordering.Panel.Children.Clear();
+                    CleanStatus();
+                }
             }
-            NavigationService.Navigate(new ProjectTemplatesView());
+            else if (CurrentStep == 2)
+            {
+                WizardStatus.WizardTitle = StringRes.ProjectFeaturesTitle;
+                NavigationService.Navigate(new ProjectFeaturesView());
+                UpdateCanFinish(true);
+            }
         }
+
+        protected override void OnGoBack()
+        {
+            base.OnGoBack();
+            if (CurrentStep == 0)
+            {
+                WizardStatus.WizardTitle = StringRes.ProjectSetupTitle;
+            }
+            else if (CurrentStep == 1)
+            {
+                WizardStatus.WizardTitle = StringRes.ProjectPagesTitle;
+            }
+        }
+
         protected override void OnFinish(string parameter)
         {
-            MainView.Result = CreateUserSelection();
-            base.OnFinish(parameter);
+            if (CurrentStep == 2)
+            {
+                MainView.Result = CreateUserSelection();
+                base.OnFinish(parameter);
+            }
         }
-        protected override async void OnTemplatesAvailable() => await ProjectSetup.InitializeAsync();
-        protected override async void OnNewTemplatesAvailable()
+
+        protected override async Task OnTemplatesAvailableAsync() => await ProjectSetup.InitializeAsync();
+
+        protected override async Task OnNewTemplatesAvailableAsync()
         {
-            UpdateCanFinish(false);
-            _canGoBack = false;
-            BackCommand.OnCanExecuteChanged();
-            ShowFinishButton = false;
-            EnableGoForward();
-            ProjectTemplates.ResetSelection();
-            _summaryPageGroups.Children.Clear();
+            ResetSelection();
+            Ordering.Panel.Children.Clear();
             NavigationService.Navigate(new ProjectSetupView());
             await ProjectSetup.InitializeAsync(true);
         }
@@ -173,60 +198,21 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             return userSelection;
         }
 
-        private void SyncLicenses(IEnumerable<TemplateLicense> licenses)
-        {
-            var toRemove = new List<SummaryLicenseViewModel>();
-
-            foreach (var summaryLicense in SummaryLicenses)
-            {
-                if (!licenses.Any(l => l.Url == summaryLicense.Url))
-                {
-                    toRemove.Add(summaryLicense);
-                }
-            }
-
-            foreach (var licenseToRemove in toRemove)
-            {
-                SummaryLicenses.Remove(licenseToRemove);
-            }
-
-            foreach (var license in licenses)
-            {
-                if (!SummaryLicenses.Any(l => l.Url == license.Url))
-                {
-                    SummaryLicenses.Add(new SummaryLicenseViewModel(license));
-                }
-            }
-
-            HasSummaryLicenses = SummaryLicenses.Any();
-        }
         private bool CheckProjectSetupChanged()
         {
-            if (ProjectTemplates.HasTemplatesAdded && (FrameworkChanged || ProjectTypeChanged))
-            {
-                return true;
-            }
-            return false;
-        }
-        private bool FrameworkChanged => ProjectTemplates.ContextFramework.Name != ProjectSetup.SelectedFramework.Name;
-        private bool ProjectTypeChanged => ProjectTemplates.ContextProjectType.Name != ProjectSetup.SelectedProjectType.Name;
+            bool hasTemplatesAdded = ProjectTemplates.SavedPages.Any() || ProjectTemplates.SavedFeatures.Any();
+            bool frameworkChanged = ProjectTemplates.ContextFramework.Name != ProjectSetup.SelectedFramework.Name;
+            var projectTypeChanged = ProjectTemplates.ContextProjectType.Name != ProjectSetup.SelectedProjectType.Name;
 
-        public void DefineDragAndDrop(ObservableCollection<SavedTemplateViewModel> items, bool allowDragAndDrop)
+            return hasTemplatesAdded && (frameworkChanged || projectTypeChanged);
+        }
+
+        public void ResetSelection()
         {
-            var listView = new ListView()
-            {
-                ItemsSource = items,
-                Style = MainView.FindResource("SummaryListViewStyle") as Style,
-                Tag = "AllowRename",
-                Focusable = false,
-                ItemTemplate = MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate
-            };
-            if (allowDragAndDrop)
-            {
-                var service = new DragAndDropService<SavedTemplateViewModel>(listView);
-                service.ProcessDrop += ProjectTemplates.DropTemplate;
-            }
-            _summaryPageGroups.Children.Add(listView);
+            ProjectTemplates.SavedPages.Clear();
+            ProjectTemplates.SavedFeatures.Clear();
+            ProjectTemplates.PagesGroups.Clear();
+            ProjectTemplates.FeatureGroups.Clear();
         }
     }
 }

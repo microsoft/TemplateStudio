@@ -247,7 +247,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             if (p != null)
             {
-                switch (Path.GetExtension(p.FileName))
+                switch (Path.GetExtension(p.SafeGetFileName()))
                 {
                     case ".csproj":
                         return ProgrammingLanguages.CSharp;
@@ -444,6 +444,11 @@ namespace Microsoft.Templates.UI.VisualStudio
                         break;
                 }
             }
+        }
+
+        public override bool IsDebuggerEnabled()
+        {
+            return Dte.Debugger.CurrentMode != dbgDebugMode.dbgDesignMode;
         }
     }
 }

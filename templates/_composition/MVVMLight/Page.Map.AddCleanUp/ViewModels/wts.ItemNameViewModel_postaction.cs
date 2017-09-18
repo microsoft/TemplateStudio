@@ -9,7 +9,7 @@
         {
             if (locationService != null)
             {
-                locationService.PositionChanged -= LocationServicePositionChanged;
+                locationService.PositionChanged -= LocationService_PositionChanged;
                 locationService.StopListening();
             }
 

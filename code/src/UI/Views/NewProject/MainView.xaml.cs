@@ -2,27 +2,25 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.Views.NewProject
 {
-    /// <summary>
-    /// Interaction logic for MainView.xaml
-    /// </summary>
     public partial class MainView : Window
     {
+        public static MainView Current;
         public MainViewModel ViewModel { get; private set; }
         public UserSelection Result { get; set; }
 
-        public MainView(string language)
+        public MainView()
         {
-            ViewModel = new MainViewModel(this, language);
-
+            Current = this;
+            ViewModel = new MainViewModel(this);
             DataContext = ViewModel;
 
             Loaded += async (sender, e) =>
@@ -48,14 +46,14 @@ namespace Microsoft.Templates.UI.Views.NewProject
         private void OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             var element = e.Source as FrameworkElement;
-            ViewModel.TryHideOverlayBox(element);
+            ViewModel.WizardStatus.TryHideOverlayBox(element);
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
             {
-                if (ViewModel.ProjectTemplates.CloseTemplatesEdition() == false)
+                if (!ViewModel.ProjectTemplates.CloseAllEditions() && !ViewModel.Ordering.ClearDraggin())
                 {
                     Close();
                 }

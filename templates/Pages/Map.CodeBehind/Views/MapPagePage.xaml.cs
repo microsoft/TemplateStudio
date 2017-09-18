@@ -52,7 +52,7 @@ namespace Param_ItemNamespace.Views
         {
             if (locationService != null)
             {
-                locationService.PositionChanged += LocationServicePositionChanged;
+                locationService.PositionChanged += LocationService_PositionChanged;
 
                 var initializationSuccessful = await locationService.InitializeAsync();
 
@@ -84,12 +84,12 @@ namespace Param_ItemNamespace.Views
         {
             if (locationService != null)
             {
-                locationService.PositionChanged -= LocationServicePositionChanged;
+                locationService.PositionChanged -= LocationService_PositionChanged;
                 locationService.StopListening();
             }
         }
 
-        private void LocationServicePositionChanged(object sender, Geoposition geoposition)
+        private void LocationService_PositionChanged(object sender, Geoposition geoposition)
         {
             if (geoposition != null)
             {

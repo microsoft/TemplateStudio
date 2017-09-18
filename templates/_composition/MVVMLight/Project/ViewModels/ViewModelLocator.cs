@@ -8,21 +8,21 @@ namespace Param_RootNamespace.ViewModels
 {
     public class ViewModelLocator
     {
-        private NavigationServiceEx _navigationService = new NavigationServiceEx();
-
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            SimpleIoc.Default.Register(() => _navigationService);
+            SimpleIoc.Default.Register(() => new NavigationServiceEx());
         }
+
+        public NavigationServiceEx NavigationService => ServiceLocator.Current.GetInstance<NavigationServiceEx>();
 
         public void Register<VM, V>()
             where VM : class
         {
             SimpleIoc.Default.Register<VM>();
 
-            _navigationService.Configure(typeof(VM).FullName, typeof(V));
+            NavigationService.Configure(typeof(VM).FullName, typeof(V));
         }
     }
 }

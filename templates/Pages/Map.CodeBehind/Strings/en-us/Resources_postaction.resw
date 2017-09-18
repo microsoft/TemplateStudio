@@ -7,6 +7,7 @@
   <!--{[{-->
   <data name="Map_YourLocation" xml:space="preserve">
     <value>Your location</value>
+    <comment>Your location text on map page</comment>
   </data>
   <!--}]}-->
 </root>

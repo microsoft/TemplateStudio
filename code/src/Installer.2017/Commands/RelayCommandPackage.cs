@@ -20,8 +20,8 @@ using Microsoft.Templates.UI.VisualStudio;
 
 namespace Microsoft.Templates.Extension.Commands
 {
-    [ProvideService((typeof(ISGenContextBootstrapService)), IsAsyncQueryable = true)]
-    [ProvideAutoLoad("{f1536ef8-92ec-443c-9ed7-fdadf150da82}", PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideAutoLoad(Microsoft.VisualStudio.Shell.Interop.UIContextGuids.SolutionHasMultipleProjects)]
+    [ProvideAutoLoad(Microsoft.VisualStudio.Shell.Interop.UIContextGuids.SolutionHasSingleProject)]
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
     [ProvideMenuResource("Menus.ctmenu", 1)]
@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Extension.Commands
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     public sealed class RelayCommandPackage : AsyncPackage
     {
-        private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions(GenContext.ToolBox.Shell.GetActiveProjectLanguage()));
+        private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions());
         private RightClickActions RightClickActions => _rightClickActions.Value;
 
         private RelayCommand addPageCommand;
@@ -44,37 +44,9 @@ namespace Microsoft.Templates.Extension.Commands
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IGenContextBootstrapService bootstrapsvc = await PrepareBootstrapSvc();
-
-            var shell = new VsGenShell();
-
-            var language = shell.GetActiveProjectLanguage();
-
-            await bootstrapsvc.GenContextInit(shell, language);
-
             InitializeCommands();
 
             await base.InitializeAsync(cancellationToken, progress);
-        }
-
-        private async Task<IGenContextBootstrapService> PrepareBootstrapSvc()
-        {
-            AddService(typeof(ISGenContextBootstrapService), CreateService);
-            IGenContextBootstrapService bootstrapsvc = await GetServiceAsync(typeof(ISGenContextBootstrapService)) as IGenContextBootstrapService;
-
-            return bootstrapsvc;
-        }
-
-        private async Task<object> CreateService(IAsyncServiceContainer container, CancellationToken cancellationToken, Type serviceType)
-        {
-            ISGenContextBootstrapService service = null;
-
-            await System.Threading.Tasks.Task.Run(() =>
-            {
-                service = new GenContextBootstrapService(this);
-            });
-
-            return service;
         }
 
         private void InitializeCommands()
@@ -100,7 +72,7 @@ namespace Microsoft.Templates.Extension.Commands
 
         private void AddPage(object sender, EventArgs e)
         {
-            if (RightClickActions.Enabled())
+            if (RightClickActions.Visible())
             {
                 RightClickActions.AddNewPage();
             }
@@ -108,7 +80,7 @@ namespace Microsoft.Templates.Extension.Commands
 
         private void AddFeature(object sender, EventArgs e)
         {
-            if (RightClickActions.Enabled())
+            if (RightClickActions.Visible())
             {
                 RightClickActions.AddNewFeature();
             }
@@ -116,7 +88,7 @@ namespace Microsoft.Templates.Extension.Commands
 
         private void OpenTempFolder(object sender, EventArgs e)
         {
-            if (RightClickActions.TempFolderAvailable() && RightClickActions.Enabled())
+            if (RightClickActions.TempFolderAvailable() && RightClickActions.Visible())
             {
                 RightClickActions.OpenTempFolder();
             }
@@ -125,13 +97,14 @@ namespace Microsoft.Templates.Extension.Commands
         private void RightClickAvailable(object sender, EventArgs e)
         {
             var cmd = (OleMenuCommand)sender;
-            cmd.Visible = RightClickActions.Enabled();
+            cmd.Enabled = RightClickActions.Enabled();
+            cmd.Visible = RightClickActions.Visible();
         }
 
         private void TempFolderAvailable(object sender, EventArgs e)
         {
             var cmd = (OleMenuCommand)sender;
-            cmd.Visible = RightClickActions.TempFolderAvailable() && RightClickActions.Enabled();
+            cmd.Visible = RightClickActions.TempFolderAvailable() && RightClickActions.Visible();
         }
     }
 }

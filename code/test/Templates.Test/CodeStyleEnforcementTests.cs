@@ -10,12 +10,31 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
+    [Collection("StyleCopCollection")]
+    [Trait("Type", "CodeStyle")]
+    [Trait("ExecutionSet", "Minimum")]
     public class CodeStyleEnforcementTests
     {
         [Fact]
         public void EnsureCSharpCodeDoesNotUseThis()
         {
             var result = CodeIsNotUsed("this.", ".cs");
+
+            Assert.True(result.Item1, result.Item2);
+        }
+
+        [Fact]
+        public void EnsureCSharpCodeDoesNotUseTabs()
+        {
+            var result = CodeIsNotUsed('\t'.ToString(), ".cs");
+
+            Assert.True(result.Item1, result.Item2);
+        }
+
+        [Fact]
+        public void EnsureVisualbasicCodeDoesNotUseTabs()
+        {
+            var result = CodeIsNotUsed('\t'.ToString(), ".vb");
 
             Assert.True(result.Item1, result.Item2);
         }

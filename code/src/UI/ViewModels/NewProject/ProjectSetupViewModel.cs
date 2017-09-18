@@ -78,15 +78,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public async Task InitializeAsync(bool force = false)
         {
-            MainViewModel.Current.Title = StringRes.ProjectSetupTitle;
-
             if (SelectedProjectType == null || force)
             {
                 ProjectTypes.Clear();
 
                 var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes();
 
-                if (projectTypes.Count() > 0)
+                if (projectTypes.Any())
                 {
                     var data = projectTypes.Select(m => new MetadataInfoViewModel(m)).ToList();
 
@@ -96,11 +94,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     }
 
                     SelectedProjectType = ProjectTypes.First();
-                    MainViewModel.Current.HasContent = true;
+                    MainViewModel.Current.WizardStatus.HasContent = true;
                 }
                 else
                 {
-                    MainViewModel.Current.HasContent = false;
+                    MainViewModel.Current.WizardStatus.HasContent = false;
                 }
 
                 ProjectTypesHeader = string.Format(StringRes.GroupProjectTypeHeader_SF, ProjectTypes.Count);
@@ -131,7 +129,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
 
             FrameworkHeader = string.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
-            MainViewModel.Current.EnableGoForward();
+            MainViewModel.Current.UpdateCanGoForward(true);
         }
     }
 }
