@@ -6,9 +6,9 @@ namespace Localization
 {
     public static class Routes
     {
+        internal static string ProjectTemplatePath = "code\\src\\ProjectTemplates\\CSharp.UWP.2017.Solution";
+        internal static string ProjectTemplateFile = "CSharp.UWP.VS2017.Solution.vstemplate";
         internal static string ProjectTemplateFileNamePattern = "CSharp.UWP.VS2017.Solution.{0}.vstemplate";
-        internal static string ProjectTemplateDirNamePattern = "CSharp.UWP.2017.Solution";
-        internal static string ProjectTemplateRootDirPath = "code\\src\\ProjectTemplates";
 
         internal static string CommandTemplateRootDirPath = "code\\src\\Installer.2017\\Commands";
         internal static string RelayCommandFileNamePattern = "RelayCommandPackage.{0}.vsct";
@@ -18,6 +18,10 @@ namespace Localization
         internal static string RightClickFileSearchPattern = "*postaction.md";
 
         internal static string TemplatesRootDirPath = "templates";
+        internal static string TemplatesPagesPath = "templates\\Pages";
+        internal static string TemplatesFeaturesPath = "templates\\Features";
+
+        internal static string TemplateConfigDir = ".template.config";
         internal static string TemplateDescriptionFile = "description.md";
         internal static string TemplateJsonFile = "template.json";
 
@@ -36,21 +40,14 @@ namespace Localization
               <MoreInfoUrl>https://github.com/Microsoft/WindowsTemplateStudio/</MoreInfoUrl>  
             </VsixLanguagePack> ";
 
-        internal static string TemplateEngineJsonContent = @"{{
-                ""author"": ""{0}"",
-                ""name"": ""{1}"",
-                ""description"": ""{2}"",
-                ""identity"": ""{3}""
-            }}";
-
-        internal static string WtsTemplateJsonContent = @"    {{
-        ""name"": ""{0}"",
-        ""displayName"": ""{1}"",
-        ""summary"": ""{2}""
-                }}";
-
-        internal static string ResourcesFilePathPattern = "StringRes.{0}";
-        internal static string[] ResoureceDirectories = new string[] { "Core", "Installer.2017", "UI" };
+        internal static string ResourcesFilePath = "StringRes.resx";
+        internal static string ResourcesFilePathPattern = "StringRes.{0}.resx";
+        internal static string[] ResoureceDirectories = new string[]
+        {
+            "code\\src\\Core\\Resources",
+            "code\\src\\Installer.2017\\Resources",
+            "code\\src\\UI\\Resources"
+        };
 
         // Validate Routes
         internal static string VsixValidatePath = "code\\src\\Installer.2017\\source.extension.vsixmanifest";

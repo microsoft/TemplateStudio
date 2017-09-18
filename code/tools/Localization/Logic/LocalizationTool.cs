@@ -53,13 +53,13 @@ namespace Localization
             string destinationDirectory = commandInfo.Arguments[1];
             List<string> cultures = new List<string>(commandInfo.Arguments[2].Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries));
             string tagName = commandInfo.Arguments.Length > 3 ? commandInfo.Arguments[3] : string.Empty;
-            LocalizableItemsExtractor extractor = new LocalizableItemsExtractor(sourceDirectory, destinationDirectory, tagName);
-            extractor.ExtractVsix(cultures);
-            extractor.ExtractProjectTemplates(cultures);
-            extractor.ExtractCommandTemplates(cultures);
-            extractor.ExtractTemplateEngineTemplates(cultures);
-            extractor.ExtractWtsTemplates(cultures);
-            extractor.ExtractResourceFiles(cultures);
+            LocalizableItemsExtractor extractor = new LocalizableItemsExtractor(sourceDirectory, destinationDirectory, cultures, tagName);
+            extractor.ExtractVsix();
+            extractor.ExtractProjectTemplates();
+            extractor.ExtractCommandTemplates();
+            extractor.ExtractTemplatePagesAndFeatures();
+            extractor.ExtractWtsTemplates();
+            extractor.ExtractResourceFiles();
         }
     }
 }
