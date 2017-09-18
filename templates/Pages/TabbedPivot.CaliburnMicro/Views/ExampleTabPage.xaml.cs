@@ -7,7 +7,7 @@ namespace Param_ItemNamespace.Views
     {
         public ExampleTabPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }
