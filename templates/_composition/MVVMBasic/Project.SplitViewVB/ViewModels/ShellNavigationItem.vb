@@ -4,7 +4,7 @@ Imports Windows.UI.Xaml.Controls
 Imports Windows.UI.Xaml.Media
 
 Namespace ViewModels
-    Public Class ShellNavigationItem
+    Public NotInheritable Class ShellNavigationItem
         Inherits Observable
 
         Public Property Label As String

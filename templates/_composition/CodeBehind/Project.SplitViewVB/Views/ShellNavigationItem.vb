@@ -1,5 +1,5 @@
 ﻿Namespace Views
-    Public Class ShellNavigationItem
+    Public NotInheritable Class ShellNavigationItem
         Implements INotifyPropertyChanged
 
         Public Property Label As String

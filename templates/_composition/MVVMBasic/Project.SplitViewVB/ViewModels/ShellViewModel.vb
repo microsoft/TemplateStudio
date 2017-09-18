@@ -40,23 +40,17 @@ Namespace ViewModels
         Private _lastSelectedItem As Object
 
         Private _primaryItems As New ObservableCollection(Of ShellNavigationItem)()
-        Public Property PrimaryItems() As ObservableCollection(Of ShellNavigationItem)
+        Public ReadOnly Property PrimaryItems() As ObservableCollection(Of ShellNavigationItem)
             Get
                 Return _primaryItems
             End Get
-            Set
-                [Set](_primaryItems, value)
-            End Set
         End Property
 
         Private _secondaryItems As New ObservableCollection(Of ShellNavigationItem)()
-        Public Property SecondaryItems() As ObservableCollection(Of ShellNavigationItem)
+        Public ReadOnly Property SecondaryItems() As ObservableCollection(Of ShellNavigationItem)
             Get
                 Return _secondaryItems
             End Get
-            Set
-                [Set](_secondaryItems, value)
-            End Set
         End Property
 
         Private _openPaneCommand As ICommand
