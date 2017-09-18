@@ -46,84 +46,84 @@ namespace Microsoft.Templates.Test
             await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language);
         }
 
-        //[Theory]
-        //[MemberData("GetProjectTemplatesAsync")]
-        //[Trait("Type", "GenerationAllPagesAndFeatures")]
-        //public async Task GenAllPagesAndFeaturesAsync(string projectType, string framework, string language)
-        //{
-        //    Func<ITemplateInfo, bool> selector =
-        //        t => t.GetTemplateType() == TemplateType.Project
-        //            && t.GetProjectTypeList().Contains(projectType)
-        //            && t.GetFrameworkList().Contains(framework)
-        //            && !t.GetIsHidden()
-        //            && t.GetLanguage() == language;
+        [Theory]
+        [MemberData("GetProjectTemplatesForGenerationAsync")]
+        [Trait("Type", "GenerationAllPagesAndFeatures")]
+        public async Task GenAllPagesAndFeaturesAsync(string projectType, string framework, string language)
+        {
+            Func<ITemplateInfo, bool> selector =
+                t => t.GetTemplateType() == TemplateType.Project
+                    && t.GetProjectTypeList().Contains(projectType)
+                    && t.GetFrameworkList().Contains(framework)
+                    && !t.GetIsHidden()
+                    && t.GetLanguage() == language;
 
-        //    var projectName = $"{projectType}{framework}All";
+            var projectName = $"{projectType}{framework}All";
 
-        //    await AssertGenerateProjectAsync("gen", selector, projectName, projectType, framework, language, GenerationFixture.GetDefaultName);
-        //}
+            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, GenerationFixture.GetDefaultName);
+        }
 
-        //[Theory]
-        //[MemberData("GetProjectTemplatesAsync")]
-        //[Trait("Type", "GenerationRandomNames")]
-        //public async Task GenAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string language)
-        //{
-        //    Func<ITemplateInfo, bool> selector =
-        //        t => t.GetTemplateType() == TemplateType.Project
-        //            && t.GetProjectTypeList().Contains(projectType)
-        //            && t.GetFrameworkList().Contains(framework)
-        //            && !t.GetIsHidden()
-        //            && t.GetLanguage() == language;
+        [Theory]
+        [MemberData("GetProjectTemplatesForGenerationAsync")]
+        [Trait("Type", "GenerationRandomNames")]
+        public async Task GenAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string language)
+        {
+            Func<ITemplateInfo, bool> selector =
+                t => t.GetTemplateType() == TemplateType.Project
+                    && t.GetProjectTypeList().Contains(projectType)
+                    && t.GetFrameworkList().Contains(framework)
+                    && !t.GetIsHidden()
+                    && t.GetLanguage() == language;
 
-        //    var projectName = $"{projectType}{framework}AllRandom";
+            var projectName = $"{projectType}{framework}AllRandom";
 
-        //    await AssertGenerateProjectAsync("gen", selector, projectName, projectType, framework, language, GenerationFixture.GetRandomName);
-        //}
+            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, GenerationFixture.GetRandomName);
+        }
 
-        //[Theory]
-        //[MemberData("GetProjectTemplatesAsync")]
-        //[Trait("Type", "GenerationRightClick")]
-        //public async Task GenEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
-        //{
-        //    var projectName = $"{projectType}{framework}AllRightClick";
-        //    var projectPath = Path.Combine(_fixture.TestProjectsPath(), projectName, projectName);
+        [Theory]
+        [MemberData("GetProjectTemplatesForGenerationAsync")]
+        [Trait("Type", "GenerationRightClick")]
+        public async Task GenEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
+        {
+            var projectName = $"{projectType}{framework}AllRightClick";
+            var projectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
 
-        //    await AssertGenerateRightClickAsync("gen", projectName, projectType, framework, language, true);
-        //}
+            await AssertGenerateRightClickAsync(projectName, projectType, framework, language, true);
+        }
 
-        //[Theory]
-        //[MemberData("GetProjectTemplatesAsync")]
-        //[Trait("Type", "GenerationRightClick")]
-        //public async Task GenCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
-        //{
-        //    var projectName = $"{projectType}{framework}AllRightClick2";
-        //    var projectPath = Path.Combine(_fixture.TestProjectsPath(), projectName, projectName);
+        [Theory]
+        [MemberData("GetProjectTemplatesForGenerationAsync")]
+        [Trait("Type", "GenerationRightClick")]
+        public async Task GenCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
+        {
+            var projectName = $"{projectType}{framework}AllRightClick2";
+            var projectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
 
-        //    await AssertGenerateRightClickAsync("gen", projectName, projectType, framework, language, false);
-        //}
+            await AssertGenerateRightClickAsync(projectName, projectType, framework, language, false);
+        }
 
-        //[Theory]
-        //[MemberData("GetPageAndFeatureTemplatesAsync", "MVVMLight")]
-        //[Trait("Type", "GenerationOneByOneMVVMLight")]
-        //public async Task GenMVVMLightOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
-        //{
-        //    await AssertGenerationOneByOneAsync("gen", itemName, projectType, framework, itemId, language);
-        //}
+        [Theory]
+        [MemberData("GetPageAndFeatureTemplatesForGenerationAsync", "MVVMLight")]
+        [Trait("Type", "GenerationOneByOneMVVMLight")]
+        public async Task GenMVVMLightOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
+        {
+            await AssertGenerationOneByOneAsync(itemName, projectType, framework, itemId, language);
+        }
 
-        //[Theory]
-        //[MemberData("GetPageAndFeatureTemplatesAsync", "MVVMBasic")]
-        //[Trait("Type", "GenerationOneByOneMVVMBasic")]
-        //public async Task GenMVVMBasicOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
-        //{
-        //    await AssertGenerationOneByOneAsync("gen", itemName, projectType, framework, itemId, language);
-        //}
+        [Theory]
+        [MemberData("GetPageAndFeatureTemplatesForGenerationAsync", "MVVMBasic")]
+        [Trait("Type", "GenerationOneByOneMVVMBasic")]
+        public async Task GenMVVMBasicOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
+        {
+            await AssertGenerationOneByOneAsync(itemName, projectType, framework, itemId, language);
+        }
 
-        //[Theory]
-        //[MemberData("GetPageAndFeatureTemplatesAsync", "CodeBehind")]
-        //[Trait("Type", "GenerationOneByOneCodeBehind")]
-        //public async Task GenCodeBehindOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
-        //{
-        //    await AssertGenerationOneByOneAsync("gen", itemName, projectType, framework, itemId, language);
-        //}
+        [Theory]
+        [MemberData("GetPageAndFeatureTemplatesForGenerationAsync", "CodeBehind")]
+        [Trait("Type", "GenerationOneByOneCodeBehind")]
+        public async Task GenCodeBehindOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
+        {
+            await AssertGenerationOneByOneAsync(itemName, projectType, framework, itemId, language);
+        }
     }
 }

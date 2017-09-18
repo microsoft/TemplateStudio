@@ -1,24 +1,27 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Templates.Core.Gen;
-using System.Collections.Generic;
-using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.Templates.UI;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
 using System;
-using System.Linq;
-using Microsoft.Templates.Core;
-using System.IO;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Reflection;
+using System.Threading.Tasks;
+using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Fakes;
+using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.Test
 {
     public abstract class BaseGenAndBuildFixture
     {
-
         private const string Platform = "x86";
         private const string Config = "Debug";
 
@@ -29,7 +32,6 @@ namespace Microsoft.Templates.Test
         public string TestProjectsPath => Path.GetFullPath(Path.Combine(GetTestRunPath(), "Proj"));
 
         public string TestNewItemPath => Path.GetFullPath(Path.Combine(GetTestRunPath(), "RightClick"));
-
 
         public IEnumerable<ITemplateInfo> Templates() => GenContext.ToolBox.Repo.GetAll();
 
@@ -143,7 +145,7 @@ namespace Microsoft.Templates.Test
             throw new ApplicationException("No valid randomName could be generated");
         }
 
-        public (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath)
+        public(int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath)
         {
             var outputFile = Path.Combine(outputPath, $"_buildOutput_{solutionName}.txt");
 

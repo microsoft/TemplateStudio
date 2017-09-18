@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Packaging;
@@ -14,28 +14,13 @@ namespace Microsoft.Templates.Test
     {
         public string LocalTemplatesVersion { get; private set; }
 
-        public string LocalWizardVersion { get; private set; }
-
         protected override bool VerifyPackageSignatures => false;
 
-        public override bool ForcedAcquisition { get => base.ForcedAcquisition; protected set => base.ForcedAcquisition = value; }
+        public override bool ForcedAcquisition => true;
+
         public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
 
-        private object lockObject = new object();
-
         public override string Id => "TestBuild";
-
-        public BuildTestTemplatesSource() : this("0.0.0.0", "0.0.0.0")
-        {
-            base.ForcedAcquisition = true;
-        }
-
-        public BuildTestTemplatesSource(string wizardVersion, string templatesVersion, bool forcedAdquisition = true)
-        {
-            base.ForcedAcquisition = forcedAdquisition;
-            LocalTemplatesVersion = templatesVersion;
-            LocalWizardVersion = wizardVersion;
-        }
 
         protected override string AcquireMstx()
         {

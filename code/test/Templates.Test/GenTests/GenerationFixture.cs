@@ -24,7 +24,8 @@ namespace Microsoft.Templates.Test
 {
     public sealed class GenerationFixture : BaseGenAndBuildFixture, IDisposable
     {
-        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\GUIT\\{DateTime.Now.FormatAsDateHoursMinutes()}\\";
+        private string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
+        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\GUIT\\{testExecutionTimeStamp}\\";
 
         public TemplatesSource Source => new GenTestTemplatesSource();
 
@@ -58,6 +59,43 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
+        public static async Task<IEnumerable<object[]>> GetPageAndFeatureTemplatesAsync(string frameworkFilter)
+        {
+            List<object[]> result = new List<object[]>();
+            foreach (var language in ProgrammingLanguages.GetAllLanguages())
+            {
+                await InitializeTemplatesForLanguageAsync(new GenTestTemplatesSource(), language);
+
+                var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
+                                                         && t.GetLanguage() == language);
+
+                foreach (var projectTemplate in projectTemplates)
+                {
+                    var projectTypeList = projectTemplate.GetProjectTypeList();
+
+                    foreach (var projectType in projectTypeList)
+                    {
+                        var frameworks = GenComposer.GetSupportedFx(projectType).Where(f => f == frameworkFilter);
+
+                        foreach (var framework in frameworks)
+                        {
+                            var itemTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrameworkList().Contains(framework)
+                                                                  && (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                                                                  && t.GetLanguage() == language
+                                                                  && !t.GetIsHidden());
+
+                            foreach (var itemTemplate in itemTemplates)
+                            {
+                                result.Add(new object[]
+                                    { itemTemplate.Name, projectType, framework, itemTemplate.Identity, language });
+                            }
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
         private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source, string language)
         {
             GenContext.Bootstrap(source, new FakeGenShell(language), language);
@@ -79,42 +117,5 @@ namespace Microsoft.Templates.Test
 
             await InitializeTemplatesForLanguageAsync(Source, language);
         }
-
-        //public static async Task<IEnumerable<object[]>> GetPageAndFeatureTemplatesAsync(string frameworkFilter)
-        //{
-        //    List<object[]> result = new List<object[]>();
-        //    foreach (var language in ProgrammingLanguages.GetAllLanguages())
-        //    {
-        //        await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource(), language);
-
-        //        var projectTemplates = Templates.Where(t => t.GetTemplateType() == TemplateType.Project
-        //                                                 && t.GetLanguage() == language);
-
-        //        foreach (var projectTemplate in projectTemplates)
-        //        {
-        //            var projectTypeList = projectTemplate.GetProjectTypeList();
-
-        //            foreach (var projectType in projectTypeList)
-        //            {
-        //                var frameworks = GenComposer.GetSupportedFx(projectType).Where(f => f == frameworkFilter);
-
-        //                foreach (var framework in frameworks)
-        //                {
-        //                    var itemTemplates = Templates.Where(t => t.GetFrameworkList().Contains(framework)
-        //                                                          && (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-        //                                                          && t.GetLanguage() == language
-        //                                                          && !t.GetIsHidden());
-
-        //                    foreach (var itemTemplate in itemTemplates)
-        //                    {
-        //                        result.Add(new object[]
-        //                            { itemTemplate.Name, projectType, framework, itemTemplate.Identity, language });
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return result;
-        //}
     }
 }
