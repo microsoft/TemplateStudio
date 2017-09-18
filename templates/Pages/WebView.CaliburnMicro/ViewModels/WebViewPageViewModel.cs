@@ -17,7 +17,7 @@ namespace Param_ItemNamespace.ViewModels
         public Uri Source
         {
             get { return _source; }
-            set { this.Set(ref _source, value); }
+            set { Set(ref _source, value); }
         }
 
         private bool _isLoading;
@@ -36,7 +36,7 @@ namespace Param_ItemNamespace.ViewModels
                     IsShowingFailedMessage = false;
                 }
 
-                this.Set(ref _isLoading, value);
+                Set(ref _isLoading, value);
                 IsLoadingVisibility = value ? Visibility.Visible : Visibility.Collapsed;
             }
         }
@@ -46,7 +46,7 @@ namespace Param_ItemNamespace.ViewModels
         public Visibility IsLoadingVisibility
         {
             get { return _isLoadingVisibility; }
-            set { this.Set(ref _isLoadingVisibility, value); }
+            set { Set(ref _isLoadingVisibility, value); }
         }
 
         private bool _isShowingFailedMessage;
@@ -65,7 +65,7 @@ namespace Param_ItemNamespace.ViewModels
                     IsLoading = false;
                 }
 
-                this.Set(ref _isShowingFailedMessage, value);
+                Set(ref _isShowingFailedMessage, value);
                 FailedMesageVisibility = value ? Visibility.Visible : Visibility.Collapsed;
             }
         }
@@ -75,7 +75,7 @@ namespace Param_ItemNamespace.ViewModels
         public Visibility FailedMesageVisibility
         {
             get { return _failedMesageVisibility; }
-            set { this.Set(ref _failedMesageVisibility, value); }
+            set { Set(ref _failedMesageVisibility, value); }
         }
 
         public void NavCompleted(WebViewNavigationCompletedEventArgs e)

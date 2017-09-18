@@ -11,7 +11,7 @@
     "wts.version": "1.0.0",
     "wts.compositionFilter": "$framework == CaliburnMicro & wts.type==page",
     "wts.export.baseclass": "Screen",
-    "wts.export.setter": "this.Set"
+    "wts.export.setter": "Set"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

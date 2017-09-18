@@ -17,7 +17,7 @@ namespace wts.ItemName.ViewModels
         public Visibility SelectedVis
         {
             get { return _selectedVis; }
-            set { this.Set(ref _selectedVis, value); }
+            set { Set(ref _selectedVis, value); }
         }
 
         private SolidColorBrush _selectedForeground = null;
@@ -25,7 +25,7 @@ namespace wts.ItemName.ViewModels
         public SolidColorBrush SelectedForeground
         {
             get { return _selectedForeground ?? (_selectedForeground = GetStandardTextColorBrush()); }
-            set { this.Set(ref _selectedForeground, value); }
+            set { Set(ref _selectedForeground, value); }
         }
 
         public string Label { get; set; }
@@ -77,7 +77,7 @@ namespace wts.ItemName.ViewModels
 
             set
             {
-                this.Set(ref _isSelected, value);
+                Set(ref _isSelected, value);
                 SelectedVis = value ? Visibility.Visible : Visibility.Collapsed;
                 SelectedForeground = value
                     ? Application.Current.Resources["ThemeControlForegroundBaseHighBrush"] as SolidColorBrush

@@ -32,7 +32,7 @@ namespace wts.ItemName.ViewModels
         public bool IsPaneOpen
         {
             get { return _isPaneOpen; }
-            set { this.Set(ref _isPaneOpen, value); }
+            set { Set(ref _isPaneOpen, value); }
         }
 
         private SplitViewDisplayMode _displayMode = SplitViewDisplayMode.CompactInline;
@@ -40,7 +40,7 @@ namespace wts.ItemName.ViewModels
         public SplitViewDisplayMode DisplayMode
         {
             get { return _displayMode; }
-            set { this.Set(ref _displayMode, value); }
+            set { Set(ref _displayMode, value); }
         }
 
         private object _lastSelectedItem;
