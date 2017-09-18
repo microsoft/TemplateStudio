@@ -208,6 +208,12 @@ namespace Microsoft.Templates.Test
                 var itemTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.Identity.Contains(identity)
                                                                                 && t.GetFrameworkList().Contains(framework));
                 GenerationFixture.AddItem(userSelection, itemTemplate, GenerationFixture.GetDefaultName);
+
+                // Add multiple pages if supported to check these are handled the same
+                if (itemTemplate.GetMultipleInstance())
+                {
+                    GenerationFixture.AddItem(userSelection, itemTemplate, GenerationFixture.GetDefaultName);
+                }
             }
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);

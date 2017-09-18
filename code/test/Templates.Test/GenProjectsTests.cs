@@ -138,7 +138,19 @@ namespace Microsoft.Templates.Test
             var (vbResultPath, vbProjectName) = await SetUpComparisonProjectAsync(ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities);
 #pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
 
-            // Resource files should be identical regardless of programming language
+            // Check file names equivalence
+            var allCsFiles = new DirectoryInfo(csResultPath).GetFiles("*.*").ToList();
+            var allVbFiles = new DirectoryInfo(vbResultPath).GetFiles("*.*").ToList();
+            var equalNumberOfFiles = allCsFiles.Count == allVbFiles.Count;
+            Assert.True(equalNumberOfFiles, "Differing number of files in the generated projects.");
+
+            for (var i = 0; i < allCsFiles.Count; i++)
+            {
+                var fileNameMatches = allCsFiles[i].FullName == VbFileToCsEquivalent(allVbFiles[i].FullName);
+                Assert.True(fileNameMatches, $"File '{allCsFiles[i].FullName}' does not have a VB equivalent.");
+            }
+
+            // Resource file contents should be identical regardless of programming language
             var csReswFilePath = Path.Combine(csResultPath, csProjectName, "Strings", "en-us", "Resources.resw");
             var vbReswFilePath = Path.Combine(vbResultPath, vbProjectName, "Strings", "en-us", "Resources.resw");
             var reswFilesMatch = File.ReadAllText(csReswFilePath) == File.ReadAllText(vbReswFilePath);
@@ -147,8 +159,6 @@ namespace Microsoft.Templates.Test
             // Check conntents of the Assets folder is identical
             var csAssets = new DirectoryInfo(Path.Combine(csResultPath, csProjectName, "Assets")).GetFiles().OrderBy(f => f.FullName).ToList();
             var vbAssets = new DirectoryInfo(Path.Combine(vbResultPath, vbProjectName, "Assets")).GetFiles().OrderBy(f => f.FullName).ToList();
-            var equalNumberOfAssetsFiles = csAssets.Count == vbAssets.Count;
-            Assert.True(equalNumberOfAssetsFiles, "Differing number of files in the Assets directory.");
 
             for (var i = 0; i < csAssets.Count; i++)
             {
@@ -156,11 +166,9 @@ namespace Microsoft.Templates.Test
                 Assert.True(styleFileMatches, $"Asset file '{csAssets[i].Name}' does not match.");
             }
 
-            // Check conntents of the Styles folder is identical
+            // Check contents of the Styles folder is identical
             var csStyles = new DirectoryInfo(Path.Combine(csResultPath, csProjectName, "Styles")).GetFiles().OrderBy(f => f.FullName).ToList();
             var vbStyles = new DirectoryInfo(Path.Combine(vbResultPath, vbProjectName, "Styles")).GetFiles().OrderBy(f => f.FullName).ToList();
-            var equalNumberOfStyleFiles = csStyles.Count == vbStyles.Count;
-            Assert.True(equalNumberOfStyleFiles, "Differing number of files in the Styles directory.");
 
             for (var i = 0; i < csStyles.Count; i++)
             {
@@ -170,6 +178,13 @@ namespace Microsoft.Templates.Test
 
             Fs.SafeDeleteDirectory(csResultPath);
             Fs.SafeDeleteDirectory(vbResultPath);
+        }
+
+        private static string VbFileToCsEquivalent(string vbFilePath)
+        {
+            return vbFilePath.Replace("VisualBasic", "CS")
+                             .Replace(".vb", ".cs")
+                             .Replace("My Project", "Properties");
         }
 
         private static bool BinaryFileEquals(string fileName1, string fileName2)
