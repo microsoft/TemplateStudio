@@ -12,7 +12,7 @@ Namespace Services
 
         Private _frame As Frame
 
-        Public Property Frame() As Frame
+        Public Property Frame As Frame
             Get
                 If _frame Is Nothing Then
                     _frame = TryCast(Window.Current.Content, Frame)
@@ -28,17 +28,13 @@ Namespace Services
             End Set
         End Property
 
-        Public ReadOnly Property CanGoBack() As Boolean
-            Get
-                Return Frame.CanGoBack
-            End Get
-        End Property
+        Public Function CanGoBack() As Boolean
+            Return Frame.CanGoBack
+        End Function
 
-        Public ReadOnly Property CanGoForward() As Boolean
-            Get
-                Return Frame.CanGoForward
-            End Get
-        End Property
+        Public Function CanGoForward() As Boolean
+            Return Frame.CanGoForward
+        End Function
 
         Public Sub GoBack()
             Frame.GoBack()
@@ -48,16 +44,16 @@ Namespace Services
             Frame.GoForward()
         End Sub
 
-        Public Function Navigate(pageType As Type, Optional parameter As Object = Nothing, Optional infoOverride As NavigationTransitionInfo = Nothing) As Boolean
+        Public Function Navigate(pageType As Type, Optional ByVal parameter As Object = Nothing, Optional ByVal infoOverride As NavigationTransitionInfo = Nothing) As Boolean
             ' Don't open the same page multiple times
-            If Frame.Content Is Nothing OrElse Not Frame.Content.GetType() Is pageType Then
+            If Frame.Content?.GetType IsNot pageType.GetType Then
                 Return Frame.Navigate(pageType, parameter, infoOverride)
             Else
                 Return False
             End If
         End Function
 
-        Public Function Navigate(Of T As Page)(Optional parameter As Object = Nothing, Optional infoOverride As NavigationTransitionInfo = Nothing) As Boolean
+        Public Function Navigate(Of T As Page)(Optional ByVal parameter As Object = Nothing, Optional ByVal infoOverride As NavigationTransitionInfo = Nothing) As Boolean
             Return Navigate(GetType(T), parameter, infoOverride)
         End Function
 

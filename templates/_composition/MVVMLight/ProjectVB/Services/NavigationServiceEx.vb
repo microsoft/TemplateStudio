@@ -13,11 +13,11 @@ Namespace Services
 
         Private Shared _frame As Frame
 
-        Public Property Frame() As Frame
+        Public Property Frame As Frame
             Get
               If _frame Is Nothing Then
                   _frame = TryCast(Window.Current.Content, Frame)
-                    RegisterFrameEvents()
+                  RegisterFrameEvents()
               End If
 
               Return _frame
@@ -29,17 +29,13 @@ Namespace Services
             End Set
         End Property
 
-        Public ReadOnly Property CanGoBack() As Boolean
-            Get
-                Return Frame.CanGoBack
-            End Get
-        End Property
+        Public Function CanGoBack() As Boolean
+            Return Frame.CanGoBack
+        End Function
 
-        Public ReadOnly Property CanGoForward() As Boolean
-            Get
-                Return Frame.CanGoForward
-            End Get
-        End Property
+        Public Function CanGoForward() As Boolean
+            Return Frame.CanGoForward
+        End Function
 
         Public Sub GoBack()
             Frame.GoBack()
