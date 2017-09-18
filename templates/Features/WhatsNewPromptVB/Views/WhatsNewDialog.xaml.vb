@@ -1,0 +1,11 @@
+﻿Imports Windows.UI.Xaml.Controls
+
+Namespace Param_ItemNamespace.Views
+    Partial Public NotInheritable Class WhatsNewDialog
+        Inherits ContentDialog
+        Public Sub New()
+            ' TODO WTS: Update the contents of this dialog every time you release a new version of the app
+            InitializeComponent()
+        End Sub
+    End Class
+End Namespace

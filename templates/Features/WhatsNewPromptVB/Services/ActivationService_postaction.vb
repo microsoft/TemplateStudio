@@ -1,0 +1,13 @@
+﻿'{**
+' This code block includes code to show the WhatsNew control if appropriate on application startup to your project
+'**}
+
+Namespace Services
+    Friend Class ActivationService
+        Private Function StartupAsync() As Task
+            '{[{
+            Await WhatsNewDisplayService.ShowIfAppropriateAsync()
+            '}]}
+        End Function
+    End Class
+End Namespace
