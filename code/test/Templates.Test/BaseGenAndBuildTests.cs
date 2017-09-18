@@ -202,16 +202,6 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        public static IEnumerable<object[]> GetProjectTemplatesForBuildAsync()
-        {
-            JoinableTaskContext context = new JoinableTaskContext();
-            JoinableTaskCollection tasks = context.CreateCollection();
-            context.CreateFactory(tasks);
-            var result = context.Factory.Run(() => BuildFixture.GetProjectTemplatesAsync());
-
-            return result;
-        }
-
         public static IEnumerable<object[]> GetPageAndFeatureTemplatesForGenerationAsync(string framework)
         {
             JoinableTaskContext context = new JoinableTaskContext();
@@ -221,12 +211,53 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
+        public static IEnumerable<object[]> GetProjectTemplatesForBuildAsync(string framework)
+        {
+            JoinableTaskContext context = new JoinableTaskContext();
+            JoinableTaskCollection tasks = context.CreateCollection();
+            context.CreateFactory(tasks);
+            IEnumerable<object[]> result = new List<object[]>();
+
+            switch (framework)
+            {
+                case "CodeBehind":
+                    result = context.Factory.Run(() => BuildCodeBehindFixture.GetProjectTemplatesAsync(framework));
+                    break;
+
+                case "MVVMBasic":
+                    result = context.Factory.Run(() => BuildMVVMBasicFixture.GetProjectTemplatesAsync(framework));
+                    break;
+
+                case "MVVMLight":
+                    result = context.Factory.Run(() => BuildMVVMLightFixture.GetProjectTemplatesAsync(framework));
+                    break;
+
+            }
+
+            return result;
+        }
+
         public static IEnumerable<object[]> GetPageAndFeatureTemplatesForBuildAsync(string framework)
         {
             JoinableTaskContext context = new JoinableTaskContext();
             JoinableTaskCollection tasks = context.CreateCollection();
             context.CreateFactory(tasks);
-            var result = context.Factory.Run(() => BuildFixture.GetPageAndFeatureTemplatesAsync(framework));
+            IEnumerable<object[]> result = new List<object[]>();
+
+            switch (framework)
+            {
+                case "CodeBehind":
+                    result = context.Factory.Run(() => BuildCodeBehindFixture.GetPageAndFeatureTemplatesAsync(framework));
+                    break;
+
+                case "MVVMBasic":
+                    result = context.Factory.Run(() => BuildMVVMBasicFixture.GetPageAndFeatureTemplatesAsync(framework));
+                    break;
+
+                case "MVVMLight":
+                    result = context.Factory.Run(() => BuildMVVMLightFixture.GetPageAndFeatureTemplatesAsync(framework));
+                    break;
+            }
             return result;
         }
     }

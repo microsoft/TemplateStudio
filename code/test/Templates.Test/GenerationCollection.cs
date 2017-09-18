@@ -11,8 +11,18 @@ namespace Microsoft.Templates.Test
     {
     }
 
-    [CollectionDefinition("BuildCollection")]
-    public class BuildCollection : ICollectionFixture<BuildFixture>
+    [CollectionDefinition("BuildCodeBehindCollection")]
+    public class BuildCodeBehindCollection : ICollectionFixture<BuildCodeBehindFixture>
+    {
+    }
+
+    [CollectionDefinition("BuildMVVMBasicCollection")]
+    public class BuildMVVMBasicCollection : ICollectionFixture<BuildMVVMBasicFixture>
+    {
+    }
+
+    [CollectionDefinition("BuildMVVMLightCollection")]
+    public class BuildMVVMLightCollection : ICollectionFixture<BuildMVVMLightFixture>
     {
     }
 }

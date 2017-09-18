@@ -120,10 +120,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuildTests\BuildProjectsTests.cs" />
-    <Compile Include="BuildTests\BuildFixture.cs" />
+    <Compile Include="BuildMVVMBasic\BuildMVVMBasicFixture.cs" />
+    <Compile Include="BuildMVVMBasic\BuildMVVMBasicProjectsTests.cs" />
+    <Compile Include="BuildMVVMBasic\BuildMVVMBasicTestsTemplateSource.cs" />
+    <Compile Include="BuildMVVMLightTests\BuildMVVMLightFixture.cs" />
+    <Compile Include="BuildMVVMLightTests\BuildMVVMLightProjectsTests.cs" />
+    <Compile Include="BuildMVVMLightTests\BuildMVVMLightTestsTemplateSource.cs" />
+    <Compile Include="BuildCodeBehindTests\BuildCodeBehindProjectsTests.cs" />
+    <Compile Include="BuildCodeBehindTests\BuildCodeBehindFixture.cs" />
     <Compile Include="GenTests\GenTestsTemplateSource.cs" />
-    <Compile Include="BuildTests\BuildTestsTemplateSource.cs" />
+    <Compile Include="BuildCodeBehindTests\BuildCodeBehindTestsTemplateSource.cs" />
     <Compile Include="GenTests\GenProjectsTests.cs" />
     <Compile Include="FileEncodingTests.cs" />
     <Compile Include="BaseTestContextProvider.cs" />

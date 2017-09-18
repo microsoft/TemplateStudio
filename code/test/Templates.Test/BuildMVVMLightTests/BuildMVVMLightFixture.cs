@@ -22,21 +22,21 @@ using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.Test
 {
-    public sealed class GenerationFixture : BaseGenAndBuildFixture, IDisposable
+    public sealed class BuildMVVMLightFixture : BaseGenAndBuildFixture, IDisposable
     {
         private string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
-        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\Generation\\{testExecutionTimeStamp}\\";
+        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\MVVMLight\\{testExecutionTimeStamp}\\";
 
-        public TemplatesSource Source => new GenTestTemplatesSource();
+        public TemplatesSource Source => new BuildMVVMLightTestTemplatesSource();
 
         private static bool syncExecuted;
 
-        public static async Task<IEnumerable<object[]>> GetProjectTemplatesAsync()
+        public static async Task<IEnumerable<object[]>> GetProjectTemplatesAsync(string frameworkFilter)
         {
             List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
-                await InitializeTemplatesForLanguageAsync(new GenTestTemplatesSource(), language);
+                await InitializeTemplatesForLanguageAsync(new BuildMVVMLightTestTemplatesSource(), language);
 
                 var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
                                                          && t.GetLanguage() == language);
@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Test
 
                     foreach (var projectType in projectTypeList)
                     {
-                        var frameworks = GenComposer.GetSupportedFx(projectType);
+                        var frameworks = GenComposer.GetSupportedFx(projectType).Where(f => f == frameworkFilter);
 
                         foreach (var framework in frameworks)
                         {
@@ -64,7 +64,7 @@ namespace Microsoft.Templates.Test
             List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
-                await InitializeTemplatesForLanguageAsync(new GenTestTemplatesSource(), language);
+                await InitializeTemplatesForLanguageAsync(new BuildMVVMLightTestTemplatesSource(), language);
 
                 var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
                                                          && t.GetLanguage() == language);

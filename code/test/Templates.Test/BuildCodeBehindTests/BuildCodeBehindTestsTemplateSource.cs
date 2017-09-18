@@ -10,7 +10,7 @@ using Microsoft.Templates.Core.Packaging;
 
 namespace Microsoft.Templates.Test
 {
-    public sealed class BuildTestTemplatesSource : TemplatesSource
+    public sealed class BuildCodeBehindTestTemplatesSource : TemplatesSource
     {
         public string LocalTemplatesVersion { get; private set; }
 
@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Test
 
         public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
 
-        public override string Id => "TestBuild";
+        public override string Id => "TestBuildCodeBehind";
 
         protected override string AcquireMstx()
         {
