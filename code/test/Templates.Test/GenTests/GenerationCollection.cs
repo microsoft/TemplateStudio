@@ -6,8 +6,8 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
-    [CollectionDefinition("BuildMVVMBasicCollection")]
-    public class BuildMVVMBasicCollection : ICollectionFixture<BuildMVVMBasicFixture>
+    [CollectionDefinition("GenerationCollection")]
+    public class GenerationCollection : ICollectionFixture<GenerationFixture>
     {
     }
 }
