@@ -147,6 +147,7 @@ namespace Microsoft.Templates.Test
 
             return finalProjectPath;
         }
+
         protected async Task<(string ProjectPath, string ProjecName)> AssertGenerationOneByOneAsync(string itemName, string projectType, string framework, string itemId, string language, bool cleanGeneration = true)
         {
             await SetUpFixtureForTestingAsync(language);
@@ -192,29 +193,28 @@ namespace Microsoft.Templates.Test
             return (resultPath, projectName);
         }
 
-<<<<<<< HEAD
         protected async Task<(string ProjectPath, string ProjecName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities)
         {
             await SetUpFixtureForTestingAsync(language);
 
-            var projectTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
+            var projectTemplate = _fixture.Templates().FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
 
             ProjectName = $"{projectType}{framework}Compare{language.Replace("#", "S")}";
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, ProjectName, ProjectName);
             OutputPath = ProjectPath;
 
-            var userSelection = await GenerationFixture.SetupProjectAsync(projectType, framework, language);
+            var userSelection = _fixture.SetupProject(projectType, framework, language);
 
             foreach (var identity in genIdentities)
             {
-                var itemTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.Identity.Contains(identity)
-                                                                                && t.GetFrameworkList().Contains(framework));
-                GenerationFixture.AddItem(userSelection, itemTemplate, GenerationFixture.GetDefaultName);
+                var itemTemplate = _fixture.Templates().FirstOrDefault(t => t.Identity.Contains(identity)
+                                                                         && t.GetFrameworkList().Contains(framework));
+                _fixture.AddItem(userSelection, itemTemplate, GenerationFixture.GetDefaultName);
 
                 // Add multiple pages if supported to check these are handled the same
                 if (itemTemplate.GetMultipleInstance())
                 {
-                    GenerationFixture.AddItem(userSelection, itemTemplate, GenerationFixture.GetDefaultName);
+                    _fixture.AddItem(userSelection, itemTemplate, GenerationFixture.GetDefaultName);
                 }
             }
 
@@ -223,16 +223,6 @@ namespace Microsoft.Templates.Test
             var resultPath = Path.Combine(_fixture.TestProjectsPath, ProjectName);
 
             return (resultPath, ProjectName);
-        }
-
-        public static IEnumerable<object[]> GetProjectTemplatesAsync()
-        {
-            JoinableTaskContext context = new JoinableTaskContext();
-            JoinableTaskCollection tasks = context.CreateCollection();
-            context.CreateFactory(tasks);
-            var result = context.Factory.Run(() => GenerationFixture.GetProjectTemplatesAsync());
-
-            return result;
         }
 
         public static IEnumerable<object[]> GetPageAndFeatureTemplatesForGenerationAsync(string framework)

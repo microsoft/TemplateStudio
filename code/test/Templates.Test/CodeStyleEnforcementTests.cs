@@ -24,21 +24,19 @@ namespace Microsoft.Templates.Test
         }
 
         [Fact]
-        public void EnsureCSharpCodeDoesNotUseTabs()
-        {
-            var result = CodeIsNotUsed('\t'.ToString(), ".cs");
-
-            Assert.True(result.Item1, result.Item2);
-        }
-
-        [Fact]
-        public void EnsureVisualbasicCodeDoesNotUseTabs()
+        public void EnsureTemplatesDoNotUseTabsInWhitespace()
         {
             // Some of the merge functionality includes whitespace in string comparisons.
             // Ensuring all whitespace is spaces avoids issues where strings differ due to different whitespace (which can be hard to spot)
-            var result = CodeIsNotUsed('\t'.ToString(), ".vb");
+            void EnsureTabsNotUsed(string fileExtension)
+            {
+                var result = CodeIsNotUsed('\t'.ToString(), fileExtension);
 
-            Assert.True(result.Item1, result.Item2);
+                Assert.True(result.Item1, result.Item2);
+            }
+
+            EnsureTabsNotUsed("*.cs");
+            EnsureTabsNotUsed("*.vb");
         }
 
         [Fact]

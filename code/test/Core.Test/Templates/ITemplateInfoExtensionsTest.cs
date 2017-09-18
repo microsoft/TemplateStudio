@@ -205,12 +205,11 @@ namespace Microsoft.Templates.Core.Test
             Assert.Null(result);
         }
 
-        [Theory]
-        [MemberData("GetAllLanguages")]
+        [Fact]
         [Trait("Type", "ProjectGeneration")]
-        public void GetDisplayOrder(string language)
+        public void GetDisplayOrder()
         {
-            SetUpFixtureForTesting(language);
+            SetUpFixtureForTesting(ProgrammingLanguages.CSharp);
 
             var target = GetTargetByIdentity("Microsoft.UWPTemplates.Test.PageTemplate.CSharp");
 
@@ -231,12 +230,11 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal(int.MaxValue, result);
         }
 
-        [Theory]
-        [MemberData("GetAllLanguages")]
+        [Fact]
         [Trait("Type", "ProjectGeneration")]
-        public void GetCompositionOrder(string language)
+        public void GetCompositionOrder()
         {
-            SetUpFixtureForTesting(language);
+            SetUpFixtureForTesting(ProgrammingLanguages.CSharp);
 
             var target = GetTargetByName("CompositionTemplate");
 

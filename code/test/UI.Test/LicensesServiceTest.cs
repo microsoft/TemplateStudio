@@ -20,7 +20,7 @@ namespace UI.Test
         public LicensesServiceTest(TemplatesFixture fixture)
         {
             _fixture = fixture;
-            _fixture.InitializeFixture("C#");
+            _fixture.InitializeFixture(ProgrammingLanguages.CSharp);
         }
 
         [Fact]
