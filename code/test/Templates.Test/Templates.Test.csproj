@@ -133,6 +133,7 @@
     <Compile Include="BuildCodeBehindTests\BuildCodeBehindFixture.cs" />
     <Compile Include="BuildFixture.cs" />
     <Compile Include="BuildTestsTemplateSource.cs" />
+    <Compile Include="GenTests\GenerationCollection.cs" />
     <Compile Include="GenTests\GenTestsTemplateSource.cs" />
     <Compile Include="BuildCodeBehindTests\BuildCodeBehindTestsTemplateSource.cs" />
     <Compile Include="GenTests\GenProjectsTests.cs" />
