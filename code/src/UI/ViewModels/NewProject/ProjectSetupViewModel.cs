@@ -6,10 +6,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -35,22 +34,25 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             get => _selectedProjectType;
             set
             {
-                var orgFramework = _selectedFramework;
-                var orgProjectType = _selectedProjectType;
-
-                SetProperty(ref _selectedProjectType, value);
-
                 if (value != null)
                 {
-                    LoadFrameworks(value, orgFramework);
+                    DataService.LoadFrameworks(Frameworks, _selectedFramework.Name);
+                    SelectedFramework = Frameworks.FirstOrDefault(f => f.Name == _selectedFramework?.Name);
 
-                    if (orgProjectType != null && orgProjectType != value)
+                    if (SelectedFramework == null)
+                    {
+                        SelectedFramework = Frameworks.FirstOrDefault();
+                    }
+
+                    if (_selectedProjectType != null && _selectedProjectType != value)
                     {
                         MainViewModel.Current.AlertProjectSetupChanged();
                     }
+                    SetProperty(ref _selectedProjectType, value);
+                    FrameworkHeader = string.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
+                    MainViewModel.Current.UpdateCanGoForward(true);
+                    MainViewModel.Current.RebuildLicenses();
                 }
-
-                MainViewModel.Current.RebuildLicenses();
             }
         }
 
@@ -80,19 +82,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             if (SelectedProjectType == null || force)
             {
-                ProjectTypes.Clear();
-
-                var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes();
-
-                if (projectTypes.Any())
+                if (DataService.LoadProjectTypes(ProjectTypes))
                 {
-                    var data = projectTypes.Select(m => new MetadataInfoViewModel(m)).ToList();
-
-                    foreach (var projectType in data.Where(p => !string.IsNullOrEmpty(p.Description)))
-                    {
-                        ProjectTypes.Add(projectType);
-                    }
-
                     SelectedProjectType = ProjectTypes.First();
                     MainViewModel.Current.WizardStatus.HasContent = true;
                 }
@@ -104,32 +95,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 ProjectTypesHeader = string.Format(StringRes.GroupProjectTypeHeader_SF, ProjectTypes.Count);
                 await Task.CompletedTask;
             }
-        }
-
-        private void LoadFrameworks(MetadataInfoViewModel projectType, MetadataInfoViewModel orgFramework)
-        {
-            var projectFrameworks = GenComposer.GetSupportedFx(projectType.Name);
-            var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks()
-                                                                .Where(m => projectFrameworks.Contains(m.Name))
-                                                                .Select(m => new MetadataInfoViewModel(m))
-                                                                .ToList();
-
-            Frameworks.Clear();
-
-            foreach (var framework in targetFrameworks)
-            {
-                Frameworks.Add(framework);
-            }
-
-            SelectedFramework = Frameworks.FirstOrDefault(f => f.Name == orgFramework?.Name);
-
-            if (SelectedFramework == null)
-            {
-                SelectedFramework = Frameworks.FirstOrDefault();
-            }
-
-            FrameworkHeader = string.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
-            MainViewModel.Current.UpdateCanGoForward(true);
         }
     }
 }

@@ -141,6 +141,7 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
+    <Compile Include="DataServiceTest.cs" />
     <Compile Include="LicensesServiceTest.cs" />
     <Compile Include="OrderingServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
