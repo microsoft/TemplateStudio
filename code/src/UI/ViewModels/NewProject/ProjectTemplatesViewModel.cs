@@ -92,21 +92,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             ContextProjectType = MainViewModel.Current.ProjectSetup.SelectedProjectType;
             ContextFramework = MainViewModel.Current.ProjectSetup.SelectedFramework;
 
-            string header = string.Empty;
-            if (DataService.LoadPagesGroups(PagesGroups, ContextFramework.Name, ref header))
+            var totalPages = DataService.LoadTemplatesGroups(PagesGroups, TemplateType.Page, ContextFramework.Name);
+            if (totalPages > 0)
             {
-                PagesHeader = header;
+                PagesHeader = string.Format(StringRes.GroupPagesHeader_SF, totalPages);
             }
 
-            if (FeatureGroups.Count == 0)
+            var totalFeatures = DataService.LoadTemplatesGroups(FeatureGroups, TemplateType.Feature, ContextFramework.Name);
+            if (totalFeatures > 0)
             {
-                var features = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Feature && t.GetFrameworkList().Contains(ContextFramework.Name) && !t.GetIsHidden())
-                                                      .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, ContextFramework.Name)));
-
-                var groups = features.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order))).OrderBy(gr => gr.Title);
-
-                FeatureGroups.AddRange(groups);
-                FeaturesHeader = string.Format(StringRes.GroupFeaturesHeader_SF, features.Count());
+                PagesHeader = string.Format(StringRes.GroupFeaturesHeader_SF, totalFeatures);
             }
 
             if (SavedPages.Count == 0 && SavedFeatures.Count == 0)

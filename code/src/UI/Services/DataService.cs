@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -9,7 +10,6 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.ViewModels.NewProject;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.Services
 {
@@ -51,17 +51,16 @@ namespace Microsoft.Templates.UI.Services
             return frameworks.Any();
         }
 
-        public static bool LoadPagesGroups(ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>> pagesGroups, string frameworkName, ref string header)
+        public static int LoadTemplatesGroups(ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>> templatesGroups, TemplateType templateType, string frameworkName)
         {
-            if (!pagesGroups.Any())
+            if (!templatesGroups.Any())
             {
-                var pages = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == TemplateType.Page && t.GetFrameworkList().Contains(frameworkName)).Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, frameworkName)));
-                var groups = pages.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order))).OrderBy(gr => gr.Title);
-                pagesGroups.AddRange(groups);
-                header = string.Format(StringRes.GroupPagesHeader_SF, pages.Count());
-                return pagesGroups.Any();
+                var templates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == templateType && t.GetFrameworkList().Contains(frameworkName) && !t.GetIsHidden()).Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, frameworkName)));
+                var groups = templates.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order))).OrderBy(gr => gr.Title);
+                templatesGroups.AddRange(groups);
+                return templates.Count();
             }
-            return false;
+            return 0;
         }
     }
 }

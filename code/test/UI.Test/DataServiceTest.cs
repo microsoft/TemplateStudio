@@ -3,12 +3,13 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.ObjectModel;
-
-using Microsoft.Templates.UI.Services;
-using Microsoft.Templates.UI.ViewModels.NewProject;
-
+using System.Linq;
 using Xunit;
+using Microsoft.Templates.Core;
+using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.ViewModels.NewProject;
+using Microsoft.Templates.Core.Gen;
 
 namespace UI.Test
 {
@@ -39,12 +40,18 @@ namespace UI.Test
         }
 
         [Fact]
-        public void LoadPagesGroups()
+        public void LoadTemplates()
         {
             var viewModel = new MainViewModel();
+            viewModel.ProjectSetup.SelectedFramework = new MetadataInfoViewModel(GenContext.ToolBox.Repo.GetFrameworks().FirstOrDefault(f => f.Name == "MVVMBasic"));
             ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>> pagesGroups = new ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>>();
-            string header = string.Empty;
-            Assert.True(DataService.LoadPagesGroups(pagesGroups, "MVVMBasic", ref header));
+            ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>> featuresGroups = new ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>>();
+
+            var totalPages = DataService.LoadTemplatesGroups(pagesGroups, TemplateType.Page, "MVVMBasic");
+            var totalFeatures = DataService.LoadTemplatesGroups(featuresGroups, TemplateType.Feature, "MVVMBasic");
+
+            Assert.True(totalPages > 0);
+            Assert.True(totalFeatures > 0);
         }
     }
 }
