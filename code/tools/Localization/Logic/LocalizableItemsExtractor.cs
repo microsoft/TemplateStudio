@@ -16,20 +16,20 @@ namespace Localization
     {
         private DirectoryInfo _sourceDir;
         private DirectoryInfo _destinationDir;
-        private ValidateLocalizableExtractor validator;
-        private IEnumerable<string> cultures;
+        private ValidateLocalizableExtractor _validator;
+        private IEnumerable<string> _cultures;
 
         internal LocalizableItemsExtractor(string sourceDirPath, string destinationDirPath, IEnumerable<string> cultures, ValidateLocalizableExtractor validator)
         {
             _sourceDir = GetDirectory(sourceDirPath);
             _destinationDir = GetOrCreateDirectory(destinationDirPath);
-            this.cultures = cultures;
-            this.validator = validator;
+            _cultures = cultures;
+            _validator = validator;
         }
 
         internal void ExtractVsix()
         {
-            if (!validator.HasChanges(Routes.VsixValidatePath))
+            if (!_validator.HasChanges(Routes.VsixValidatePath))
             {
                  return;
             }
@@ -39,7 +39,7 @@ namespace Localization
             string name = XmlUtility.GetNode(xmlManifiestFile, "DisplayName").InnerText.Trim();
             string description = XmlUtility.GetNode(xmlManifiestFile, "Description").InnerText.Trim();
 
-            foreach (var culture in cultures)
+            foreach (var culture in _cultures)
             {
                 var vsixDesDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, Routes.VsixRootDirPath, culture));
                 var langpackFile = new FileInfo(Path.Combine(vsixDesDirectory.FullName, Routes.VsixLangpackFile));
@@ -53,7 +53,7 @@ namespace Localization
 
         internal void ExtractProjectTemplates()
         {
-            if (validator.HasChanges(Routes.ProjectTemplateFileNameValidateCS))
+            if (_validator.HasChanges(Routes.ProjectTemplateFileNameValidateCS))
             {
                 ExtractProjectTemplatesByLanguage(
                     Routes.ProjectTemplatePathCS,
@@ -61,7 +61,7 @@ namespace Localization
                     Routes.ProjectTemplateFileNamePatternCS);
             }
 
-            if (validator.HasChanges(Routes.ProjectTemplateFileNameValidateVB))
+            if (_validator.HasChanges(Routes.ProjectTemplateFileNameValidateVB))
             {
                 ExtractProjectTemplatesByLanguage(
                     Routes.ProjectTemplatePathVB,
@@ -75,7 +75,7 @@ namespace Localization
             FileInfo srcFile = GetFile(Path.Combine(_sourceDir.FullName, projectTemplatePath, projectTemplateFile));
             var desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, projectTemplatePath));
 
-            foreach (string culture in cultures)
+            foreach (string culture in _cultures)
             {
                 string desFile = Path.Combine(desDirectory.FullName, string.Format(projectTemplateFileNamePattern, culture));
                 srcFile.CopyTo(desFile, true);
@@ -84,12 +84,12 @@ namespace Localization
 
         internal void ExtractCommandTemplates()
         {
-            if (validator.HasChanges(Routes.RelayCommandFileNameValidate))
+            if (_validator.HasChanges(Routes.RelayCommandFileNameValidate))
             {
                 LocalizeFileType(Routes.RelayCommandFileNameValidate, Routes.RelayCommandFileNamePattern);
             }
 
-            if (validator.HasChanges(Routes.VspackageFileNameValidate))
+            if (_validator.HasChanges(Routes.VspackageFileNameValidate))
             {
                 LocalizeFileType(Routes.VspackageFileNameValidate, Routes.VspackageFileNamePattern);
             }
@@ -100,7 +100,7 @@ namespace Localization
             FileInfo file = GetFile(Path.Combine(_sourceDir.FullName, filePath));
             DirectoryInfo desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, Routes.CommandTemplateRootDirPath));
 
-            foreach (string culture in cultures)
+            foreach (string culture in _cultures)
             {
                 file.CopyTo(Path.Combine(desDirectory.FullName, string.Format(searchPattern, culture)), true);
             }
@@ -133,12 +133,12 @@ namespace Localization
             string fileJson = Path.Combine(srcDirectory, Routes.TemplateJsonFile);
             FileInfo file = new FileInfo(Path.Combine(_sourceDir.FullName, fileJson));
 
-            if (file.Exists && validator.HasChanges(fileJson))
+            if (file.Exists && _validator.HasChanges(fileJson))
             {
                 var desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, srcDirectory));
                 var metadata = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(file.FullName));
 
-                foreach (string culture in cultures)
+                foreach (string culture in _cultures)
                 {
                     string filePath = Path.Combine(desDirectory.FullName, culture + "." + Routes.TemplateJsonFile);
                     var con = new
@@ -159,11 +159,11 @@ namespace Localization
             string fileMd = Path.Combine(srcDirectory, Routes.TemplateDescriptionFile);
             FileInfo file = new FileInfo(Path.Combine(_sourceDir.FullName, fileMd));
 
-            if (file.Exists && validator.HasChanges(fileMd))
+            if (file.Exists && _validator.HasChanges(fileMd))
             {
                 var desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, srcDirectory));
 
-                foreach (string culture in cultures)
+                foreach (string culture in _cultures)
                 {
                     FileInfo desFile = new FileInfo(Path.Combine(desDirectory.FullName, culture + "." + Routes.TemplateDescriptionFile));
                     file.CopyTo(desFile.FullName, true);
@@ -173,7 +173,7 @@ namespace Localization
 
         internal void ExtractWtsProjectTypes()
         {
-            if (validator.HasChanges(Routes.WtsProjectTypesValidate))
+            if (_validator.HasChanges(Routes.WtsProjectTypesValidate))
             {
                 ExtractWtsTemplateFiles(Routes.WtsProjectTypes);
             }
@@ -182,7 +182,7 @@ namespace Localization
 
         internal void ExtractWtsFrameworks()
         {
-            if (validator.HasChanges(Routes.WtsFrameworksValidate))
+            if (_validator.HasChanges(Routes.WtsFrameworksValidate))
             {
                 ExtractWtsTemplateFiles(Routes.WtsFrameworks);
             }
@@ -206,7 +206,7 @@ namespace Localization
 
             var data = JsonConvert.SerializeObject(projects, Newtonsoft.Json.Formatting.Indented);
 
-            foreach (string culture in cultures)
+            foreach (string culture in _cultures)
             {
                 var desFile = Path.Combine(desDirectory.FullName, culture + "." + srcFile.Name);
                 File.WriteAllText(desFile, data, Encoding.UTF8);
@@ -223,7 +223,7 @@ namespace Localization
             var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
             var projectNames = content.Select(json => json.GetValue("name").Value<string>());
 
-            foreach (string culture in cultures)
+            foreach (string culture in _cultures)
             {
                 foreach (var name in projectNames)
                 {
@@ -239,12 +239,12 @@ namespace Localization
             foreach (string directory in Routes.ResoureceDirectories)
             {
                 var srcResFile = Path.Combine(directory, Routes.ResourcesFilePath);
-                if (validator.HasChanges(srcResFile))
+                if (_validator.HasChanges(srcResFile))
                 {
                     var desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, directory));
                     FileInfo resourceFile = GetFile(Path.Combine(_sourceDir.FullName, srcResFile));
 
-                    foreach (string culture in cultures)
+                    foreach (string culture in _cultures)
                     {
                         string destResFile = Path.Combine(desDirectory.FullName, string.Format(Routes.ResourcesFilePathPattern, culture));
                         resourceFile.CopyTo(destResFile, true);
