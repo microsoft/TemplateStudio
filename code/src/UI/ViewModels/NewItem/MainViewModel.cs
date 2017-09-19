@@ -34,10 +34,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public NewItemSetupViewModel NewItemSetup { get; private set; } = new NewItemSetupViewModel();
         public ChangesSummaryViewModel ChangesSummary { get; private set; } = new ChangesSummaryViewModel();
 
-        public MainViewModel(MainView mainView) : base(mainView)
+        public MainViewModel() : base()
         {
-            MainView = mainView;
             Current = this;
+        }
+
+        public override void SetView(Window window)
+        {
+            base.SetView(window);
+            MainView = window as MainView;
         }
 
         public async Task InitializeAsync(TemplateType templateType)

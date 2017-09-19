@@ -7,8 +7,10 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Services;
 using Xunit;
 
-namespace UI.Test
+namespace Microsoft.UI.Test
 {
+    [Collection("UI")]
+    [Trait("ExecutionSet", "Minimum")]
     public class ValidationServiceTest : IClassFixture<TemplatesFixture>
     {
         private TemplatesFixture _fixture;
