@@ -85,6 +85,7 @@
     </Compile>
     <Compile Include="ClientInterface\ToolCommandHandler.cs" />
     <Compile Include="Logic\CSharpProjectTemplateGenerator.cs" />
+    <Compile Include="Logic\ExtractorMode.cs" />
     <Compile Include="Logic\LocalizableItemsExtractor.cs" />
     <Compile Include="Logic\LocalizationTool.cs" />
     <Compile Include="Logic\RightClickCommandGenerator.cs" />

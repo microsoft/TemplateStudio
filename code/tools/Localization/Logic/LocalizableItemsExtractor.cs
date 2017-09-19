@@ -19,7 +19,7 @@ namespace Localization
         private ValidateLocalizableExtractor validator;
         private IEnumerable<string> cultures;
 
-        internal LocalizableItemsExtractor(string sourceDirPath, string destinationDirPath, IEnumerable<string> cultures, string tagName)
+        internal LocalizableItemsExtractor(string sourceDirPath, string destinationDirPath, IEnumerable<string> cultures, ValidateLocalizableExtractor validator)
         {
             _sourceDir = GetDirectory(sourceDirPath);
 
@@ -28,7 +28,7 @@ namespace Localization
                 _destinationDir.Create();
 
             this.cultures = cultures;
-            validator = new ValidateLocalizableExtractor(sourceDirPath, tagName);
+            this.validator = validator;
         }
 
         internal void ExtractVsix()

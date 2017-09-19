@@ -10,17 +10,19 @@ namespace Localization
     public class ValidateLocalizableExtractor
     {
         private string _repository;
-        private string _tagName;
+        private string _extractorParameter;
+        private ExtractorMode _extractorMode;
 
-        public ValidateLocalizableExtractor(string repository, string tagName)
+        public ValidateLocalizableExtractor(string repository, ExtractorMode extractorMode, string extractorParameter)
         {
             _repository = repository;
-            _tagName = tagName;
+            _extractorMode = extractorMode;
+            _extractorParameter = extractorParameter;
         }
 
         internal bool HasChanges(string file)
         {
-            if (string.IsNullOrEmpty(_tagName))
+            if (_extractorMode == ExtractorMode.All || string.IsNullOrEmpty(_extractorParameter))
             {
                 return true;
             }
@@ -34,9 +36,13 @@ namespace Localization
 
         private CommitFilter ConfigureFilter(Repository repository)
         {
+            var excludeReachableFrom = _extractorMode == ExtractorMode.Commit
+                ? _extractorParameter
+                : repository.Tags[_extractorParameter].Target.Sha; // SHA from tag
+
             return new CommitFilter
             {
-                ExcludeReachableFrom = repository.Tags[_tagName].Target.Sha, // SHA from tag
+                ExcludeReachableFrom = excludeReachableFrom,
                 IncludeReachableFrom = repository.Head.Tip.Sha // SHA from last commit
             };
         }
