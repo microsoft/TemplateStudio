@@ -16,7 +16,9 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     { "path": ".\\Helpers\\PropertyChangedBaseExtensions.cs" },
-    { "path": ".\\Activation\\DefaultLaunchActivationHandler.cs" }
+    { "path": ".\\Activation\\DefaultLaunchActivationHandler.cs" },
+    { "path": ".\\Services\\ActivationService.cs" },
+    { "path": ".\\App.xaml" }
   ],
   "symbols": {
     "wts.rootNamespace": {
