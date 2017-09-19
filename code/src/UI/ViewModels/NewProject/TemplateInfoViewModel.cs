@@ -250,18 +250,18 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (isEnabled)
                 {
-                    return MainViewModel.Current.MainView.FindResource("UIBlack") as SolidColorBrush;
+                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlack");
                 }
                 else
                 {
-                    return MainViewModel.Current.MainView.FindResource("UIMiddleLightGray") as SolidColorBrush;
+                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIMiddleLightGray");
                 }
             }
         }
 
         private void OnAddItem()
         {
-            NewTemplateName = ValidationService.InferTemplateName(Template.GetDefaultName(), CanChooseItemName, true);
+            NewTemplateName = ValidationService.InferTemplateName(Template.GetDefaultName(), CanChooseItemName, CanChooseItemName);
             if (CanChooseItemName)
             {
                 MainViewModel.Current.ProjectTemplates.CloseAllEditions();

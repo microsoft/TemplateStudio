@@ -3,15 +3,18 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
+
 using Microsoft.Templates.UI.Services;
+
 using Xunit;
 
-namespace UI.Test
+namespace Microsoft.UI.Test
 {
+    [Collection("UI")]
+    [Trait("ExecutionSet", "Minimum")]
     public class ValidationServiceTest : IClassFixture<TemplatesFixture>
     {
         private TemplatesFixture _fixture;
-
         public ValidationServiceTest(TemplatesFixture fixture)
         {
             _fixture = fixture;

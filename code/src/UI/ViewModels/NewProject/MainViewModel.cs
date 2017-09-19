@@ -36,25 +36,25 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         public ObservableCollection<SummaryLicenseViewModel> Licenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
-        public OrderingService Ordering { get; private set; }
+        public OrderingService Ordering { get; } = new OrderingService();
 
-        public MainViewModel(MainView mainView) : base(mainView)
+        public MainViewModel() : base()
         {
-            MainView = mainView;
             Licenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(Licenses)); };
             Current = this;
+        }
+
+        public override void SetView(Window mainView)
+        {
+            base.SetView(mainView);
+            MainView = mainView as MainView;
         }
 
         public async Task InitializeAsync(Frame stepFrame, StackPanel summaryPageGroups)
         {
             WizardStatus.WizardTitle = StringRes.ProjectSetupTitle;
             NavigationService.Initialize(stepFrame, new ProjectSetupView());
-            Ordering = new OrderingService()
-            {
-                Panel = summaryPageGroups,
-                ListViewStyle = MainView.FindResource("SummaryListViewStyle") as Style,
-                ItemTemplate = MainView.FindResource("ProjectTemplatesSummaryItemTemplate") as DataTemplate
-            };
+            Ordering.Panel = summaryPageGroups;
             await BaseInitializeAsync();
         }
 
@@ -68,7 +68,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             if (CheckProjectSetupChanged())
             {
-                WizardStatus.SetStatus(StatusViewModel.Warning(string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName)));
+                WizardStatus.SetStatus(StatusViewModel.Warning(string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName), true, 5));
             }
             else
             {
@@ -201,8 +201,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private bool CheckProjectSetupChanged()
         {
             bool hasTemplatesAdded = ProjectTemplates.SavedPages.Any() || ProjectTemplates.SavedFeatures.Any();
-            bool frameworkChanged = ProjectTemplates.ContextFramework.Name != ProjectSetup.SelectedFramework.Name;
-            var projectTypeChanged = ProjectTemplates.ContextProjectType.Name != ProjectSetup.SelectedProjectType.Name;
+            bool frameworkChanged = ProjectTemplates.ContextFramework?.Name != ProjectSetup.SelectedFramework.Name;
+            var projectTypeChanged = ProjectTemplates.ContextProjectType?.Name != ProjectSetup.SelectedProjectType.Name;
 
             return hasTemplatesAdded && (frameworkChanged || projectTypeChanged);
         }

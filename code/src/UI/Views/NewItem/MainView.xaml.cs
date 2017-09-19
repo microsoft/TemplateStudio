@@ -17,7 +17,8 @@ namespace Microsoft.Templates.UI.Views.NewItem
 
         public MainView(TemplateType templateType)
         {
-            ViewModel = new MainViewModel(this);
+            ViewModel = new MainViewModel();
+            ViewModel.SetView(this);
 
             DataContext = ViewModel;
 

@@ -51,9 +51,13 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public RelayCommand CheckUpdatesCommand => _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand(async () => await OnCheckUpdatesAsync(), () => _canCheckingUpdates));
         public RelayCommand RefreshTemplatesCommand => _refreshTemplatesCommand ?? (_refreshTemplatesCommand = new RelayCommand(async () => await OnRefreshTemplatesAsync()));
 
-        public BaseMainViewModel(Window mainView)
+        public BaseMainViewModel()
         {
-            _mainView = mainView;
+        }
+
+        public virtual void SetView(Window window)
+        {
+            _mainView = window;
         }
 
         protected abstract void OnCancel();
@@ -238,6 +242,15 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             _templatesAvailable = value;
             NextCommand.OnCanExecuteChanged();
+        }
+
+        public T FindResource<T>(string resourceKey) where T : class
+        {
+            if (_mainView != null)
+            {
+                return _mainView.FindResource(resourceKey) as T;
+            }
+            return default(T);
         }
     }
 }
