@@ -122,6 +122,16 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
+        [MemberData("GetPageAndFeatureTemplatesAsync", "CaliburnMicro")]
+        [Trait("Type", "BuildOneByOneCaliburnMicro")]
+        public async Task BuildCaliburnMicroOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
+        {
+            var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, itemId, language, false);
+
+            AssertBuildProjectAsync(result.ProjectPath, result.ProjecName);
+        }
+
+        [Theory]
         [MemberData("GetPageAndFeatureTemplatesAsync", "MVVMBasic")]
         [Trait("Type", "BuildOneByOneMVVMBasic")]
         public async Task BuildMVVMBasicOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
