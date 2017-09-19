@@ -193,6 +193,16 @@ namespace Microsoft.Templates.Test
             return (resultPath, projectName);
         }
 
+        public static IEnumerable<object[]> GetProjectTemplatesForGenerationAsync()
+        {
+            JoinableTaskContext context = new JoinableTaskContext();
+            JoinableTaskCollection tasks = context.CreateCollection();
+            context.CreateFactory(tasks);
+            var result = context.Factory.Run(() => GenerationFixture.GetProjectTemplatesAsync());
+
+            return result;
+        }
+
         protected async Task<(string ProjectPath, string ProjecName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities)
         {
             await SetUpFixtureForTestingAsync(language);
