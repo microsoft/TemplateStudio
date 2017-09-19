@@ -17,6 +17,7 @@ using Microsoft.VisualStudio.Threading;
 using Microsoft.TemplateEngine.Abstractions;
 
 using Xunit;
+using Microsoft.Templates.UI.Generation;
 
 namespace Microsoft.Templates.Test
 {
@@ -54,6 +55,7 @@ namespace Microsoft.Templates.Test
             // Assert
             Assert.True(Directory.Exists(resultPath));
             Assert.True(Directory.GetFiles(resultPath, "*.*", SearchOption.AllDirectories).Count() > 2);
+            AssertCorrectProjectConfigInfo(projectType, framework);
 
             // Clean
             if (cleanGeneration)
@@ -62,6 +64,13 @@ namespace Microsoft.Templates.Test
             }
 
             return resultPath;
+        }
+        protected void AssertCorrectProjectConfigInfo(string expectedProjectType, string expectedFramework)
+        {
+            var info = ProjectConfigInfo.ReadProjectConfiguration();
+
+            Assert.Equal(expectedProjectType, info.ProjectType);
+            Assert.Equal(expectedFramework, info.Framework);
         }
 
         protected void AssertBuildProjectAsync(string projectPath, string projectName)
