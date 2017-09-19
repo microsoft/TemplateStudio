@@ -20,18 +20,18 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
-    [Collection("BuildCodeBehindCollection")]
-    [Trait("ExecutionSet", "BuildCodeBehind")]
+    [Collection("BuildCaliburnMicroCollection")]
+    [Trait("ExecutionSet", "BuildCaliburnMicro")]
     [Trait("ExecutionSet", "Build")]
-    public class BuildCodeBehindProjectTests : BaseGenAndBuildTests
+    public class BuildCaliburnMicroProjectTests : BaseGenAndBuildTests
     {
-        public BuildCodeBehindProjectTests(BuildCodeBehindFixture fixture)
+        public BuildCaliburnMicroProjectTests(BuildCaliburnMicroFixture fixture)
         {
             _fixture = fixture;
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "CodeBehind")]
+        [MemberData("GetProjectTemplatesForBuildAsync", "CaliburnMicro")]
         [Trait("Type", "BuildProjects")]
         public async Task BuildEmptyProjectAsync(string projectType, string framework, string language)
         {
@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Test
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
-            var projectName = $"{projectType}{framework}";
+            var projectName = $"{projectType}";
 
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, null, false);
 
@@ -50,7 +50,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "CodeBehind")]
+        [MemberData("GetProjectTemplatesForBuildAsync", "CaliburnMicro")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         public async Task BuildAllPagesAndFeaturesAsync(string projectType, string framework, string language)
         {
@@ -61,7 +61,7 @@ namespace Microsoft.Templates.Test
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
-            var projectName = $"{projectType}{framework}All";
+            var projectName = $"{projectType}All";
 
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, GenerationFixture.GetDefaultName, false);
 
@@ -69,7 +69,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "CodeBehind")]
+        [MemberData("GetProjectTemplatesForBuildAsync", "CaliburnMicro")]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
         public async Task BuildAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string language)
@@ -81,7 +81,7 @@ namespace Microsoft.Templates.Test
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
-            var projectName = $"{projectType}{framework}AllRandom";
+            var projectName = $"{projectType}AllRandom";
 
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, GenerationFixture.GetRandomName, false);
 
@@ -89,11 +89,11 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "CodeBehind")]
+        [MemberData("GetProjectTemplatesForBuildAsync", "CaliburnMicro")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
-            var projectName = $"{projectType}{framework}AllRightClick";
+            var projectName = $"{projectType}AllRightClick";
 
             var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, language, true, false);
 
@@ -101,11 +101,11 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "CodeBehind")]
+        [MemberData("GetProjectTemplatesForBuildAsync", "CaliburnMicro")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
-            var projectName = $"{projectType}{framework}AllRightClick2";
+            var projectName = $"{projectType}AllRightClick2";
 
             var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, language, false, false);
 
@@ -113,9 +113,9 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetPageAndFeatureTemplatesForBuildAsync", "CodeBehind")]
-        [Trait("Type", "BuildOneByOneCodeBehind")]
-        public async Task BuildCodeBehindOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
+        [MemberData("GetPageAndFeatureTemplatesForBuildAsync", "CaliburnMicro")]
+        [Trait("Type", "BuildOneByOneCaliburnMicro")]
+        public async Task BuildCaliburnMicroOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
         {
             var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, itemId, language, false);
 
