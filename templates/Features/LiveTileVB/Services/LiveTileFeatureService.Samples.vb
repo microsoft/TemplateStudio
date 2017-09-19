@@ -54,7 +54,7 @@ Namespace Services
             UpdateTile(notification)
         End Sub
 
-        Public Function SamplePinSecondaryAsync(pageName As String) As Task
+        Public Async Function SamplePinSecondaryAsync(pageName As String) As Task
             ' TODO WTS: Call this method to Pin a Secondary Tile from a page.
             ' You also must implement the navigation to this specific page in the OnLaunched event handler on App.xaml.cs
             Dim tile = New SecondaryTile(DateTime.Now.Ticks.ToString())

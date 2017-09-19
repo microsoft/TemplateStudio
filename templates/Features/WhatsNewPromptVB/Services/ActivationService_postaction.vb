@@ -4,7 +4,7 @@
 
 Namespace Services
     Friend Class ActivationService
-        Private Function StartupAsync() As Task
+        Private Async Function StartupAsync() As Task
             '{[{
             Await WhatsNewDisplayService.ShowIfAppropriateAsync()
             '}]}

@@ -6,12 +6,12 @@ Imports Param_RootNamespace.Activation
 Namespace Services
     Friend Class StoreNotificationsFeatureService
         Inherits ActivationHandler(Of ToastNotificationActivatedEventArgs)
-        Public Function InitializeAsync() As Task
+        Public Async Function InitializeAsync() As Task
             Dim engagementManager As StoreServicesEngagementManager = StoreServicesEngagementManager.GetDefault()
             Await engagementManager.RegisterNotificationChannelAsync()
         End Function
 
-        Protected Overrides Function HandleInternalAsync(args As ToastNotificationActivatedEventArgs) As Task
+        Protected Overrides Async Function HandleInternalAsync(args As ToastNotificationActivatedEventArgs) As Task
             Dim toastActivationArgs = TryCast(args, ToastNotificationActivatedEventArgs)
 
             Dim engagementManager As StoreServicesEngagementManager = StoreServicesEngagementManager.GetDefault()

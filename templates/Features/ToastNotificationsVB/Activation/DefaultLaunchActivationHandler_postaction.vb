@@ -7,7 +7,7 @@ Imports Param_RootNamespace.Helpers
 Namespace Activation
     Friend Class DefaultLaunchActivationHandler
         Inherits ActivationHandler(Of LaunchActivatedEventArgs)
-        Protected Overrides Function HandleInternalAsync(args As LaunchActivatedEventArgs) As Task
+        Protected Overrides Async Function HandleInternalAsync(args As LaunchActivatedEventArgs) As Task
             '^^
             '{[{
             ' TODO WTS: This is a sample on how to show a toast notification.

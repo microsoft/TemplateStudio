@@ -12,9 +12,9 @@ Namespace Services
         Inherits ActivationHandler(Of LaunchActivatedEventArgs)
         Private Const QueueEnabledKey As String = "NotificationQueueEnabled"
 
-        Public Function EnableQueueAsync() As Task
+        Public Async Function EnableQueueAsync() As Task
             Dim queueEnabled = Await ApplicationData.Current.LocalSettings.ReadAsync(Of Boolean)(QueueEnabledKey)
-			If Not queueEnabled Then
+            If Not queueEnabled Then
                 TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueue(True)
                 Await ApplicationData.Current.LocalSettings.SaveAsync(QueueEnabledKey, True)
             End If
@@ -24,20 +24,20 @@ Namespace Services
             TileUpdateManager.CreateTileUpdaterForApplication().Update(notification)
         End Sub
 
-        Public Function PinSecondaryTileAsync(tile As SecondaryTile, Optional allowDuplicity As Boolean = False) As Task(Of Boolean)
+        Public Async Function PinSecondaryTileAsync(tile As SecondaryTile, Optional allowDuplicity As Boolean = False) As Task(Of Boolean)
             If Not Await IsAlreadyPinnedAsync(tile) OrElse allowDuplicity Then
-				Return Await tile.RequestCreateAsync()
-			End If
+                Return Await tile.RequestCreateAsync()
+            End If
 
             Return False
         End Function
 
-        Private Function IsAlreadyPinnedAsync(tile As SecondaryTile) As Task(Of Boolean)
+        Private Async Function IsAlreadyPinnedAsync(tile As SecondaryTile) As Task(Of Boolean)
             Dim secondaryTiles = Await SecondaryTile.FindAllAsync()
-			Return secondaryTiles.Any(Function(t) t.Arguments = tile.Arguments)
+            Return secondaryTiles.Any(Function(t) t.Arguments = tile.Arguments)
         End Function
 
-        Protected Overrides Function HandleInternalAsync(args As LaunchActivatedEventArgs) As Task
+        Protected Overrides Async Function HandleInternalAsync(args As LaunchActivatedEventArgs) As Task
             ' If app is launched from a SecondaryTile, tile arguments property is contained in args.Arguments
             ' var secondaryTileArguments = args.Arguments;
 

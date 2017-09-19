@@ -5,7 +5,7 @@ Partial NotInheritable Class App
     Inherits Application
     '^^
     '{[{
-    Protected Overrides Sub OnBackgroundActivated(args As BackgroundActivatedEventArgs)
+    Protected Overrides Async Sub OnBackgroundActivated(args As BackgroundActivatedEventArgs)
         Await ActivationService.ActivateAsync(args)
     End Sub
     '}]}

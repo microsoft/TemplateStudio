@@ -6,11 +6,11 @@ Imports Windows.ApplicationModel
 Namespace Services
     ' For instructions on testing this service see https://github.com/Microsoft/WindowsTemplateStudio/tree/master/docs/features/whats-new-prompt.md
     Public Class WhatsNewDisplayService
-        Friend Shared Function ShowIfAppropriateAsync() As Task
+        Friend Shared Async Function ShowIfAppropriateAsync() As Task
             Dim currentVersion = PackageVersionToReadableString(Package.Current.Id.Version)
             Dim lastVersion = Await Windows.Storage.ApplicationData.Current.LocalSettings.ReadAsync(Of String)(NameOf(currentVersion))
 
-			If lastVersion Is Nothing Then
+            If lastVersion Is Nothing Then
                 Await Windows.Storage.ApplicationData.Current.LocalSettings.SaveAsync(NameOf(currentVersion), currentVersion)
             Else
                 If currentVersion <> lastVersion Then

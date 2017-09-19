@@ -48,7 +48,7 @@ Namespace Services
             task.RunAsync(taskInstance).FireAndForget()
         End Sub
 
-        Protected Overrides Function HandleInternalAsync(args As BackgroundActivatedEventArgs) As Task
+        Protected Overrides Async Function HandleInternalAsync(args As BackgroundActivatedEventArgs) As Task
             Start(args.TaskInstance)
 
             Await Task.CompletedTask
