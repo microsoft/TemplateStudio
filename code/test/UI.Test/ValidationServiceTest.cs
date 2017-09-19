@@ -8,7 +8,7 @@ using Microsoft.Templates.UI.Services;
 
 using Xunit;
 
-namespace UI.Test
+namespace Microsoft.UI.Test
 {
     [Collection("UI")]
     [Trait("ExecutionSet", "Minimum")]

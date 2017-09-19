@@ -9,7 +9,7 @@ using Xunit;
 using Microsoft.Templates.UI.ViewModels.NewProject;
 using Microsoft.Templates.UI.Services;
 
-namespace UI.Test
+namespace Microsoft.UI.Test
 {
     [Collection("UI")]
     [Trait("ExecutionSet", "Minimum")]

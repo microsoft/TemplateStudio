@@ -11,7 +11,7 @@ using Microsoft.Templates.UI.ViewModels.Common;
 
 using Xunit;
 
-namespace UI.Test
+namespace Microsoft.UI.Test
 {
     [Collection("UI")]
     [Trait("ExecutionSet", "Minimum")]

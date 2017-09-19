@@ -12,7 +12,7 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
 
-namespace UI.Test
+namespace Microsoft.UI.Test
 {
     public class TemplatesFixture : IContextProvider
     {
