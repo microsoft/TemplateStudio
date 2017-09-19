@@ -16,33 +16,41 @@ namespace UI.Test
 {
     public class TemplatesFixture : IContextProvider
     {
-        public TemplatesRepository Repository { get; private set; }
+        private static bool syncExecuted = false;
 
         public string ProjectName => "Test";
 
-        public string OutputPath => throw new NotImplementedException();
+        public string OutputPath => string.Empty;
 
-        public string ProjectPath => throw new NotImplementedException();
+        public string ProjectPath => string.Empty;
 
-        public List<string> ProjectItems => throw new NotImplementedException();
+        public List<string> ProjectItems => null;
 
-        public List<string> FilesToOpen => throw new NotImplementedException();
+        public List<string> FilesToOpen => null;
 
-        public List<FailedMergePostAction> FailedMergePostActions => throw new NotImplementedException();
+        public List<FailedMergePostAction> FailedMergePostActions => null;
 
-        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject => throw new NotImplementedException();
+        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject => null;
 
-        public Dictionary<ProjectMetricsEnum, double> ProjectMetrics => throw new NotImplementedException();
+        public Dictionary<ProjectMetricsEnum, double> ProjectMetrics => null;
+
+        public TemplatesRepository Repository { get; private set; }
 
         public void InitializeFixture(string language)
         {
             var source = new LocalTemplatesSource();
-
             GenContext.Bootstrap(source, new FakeGenShell(language), language);
-
-            GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
-            Repository = GenContext.ToolBox.Repo;
             GenContext.Current = this;
+            if (!syncExecuted)
+            {
+                GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
+                syncExecuted = true;
+            }
+            else
+            {
+                GenContext.ToolBox.Repo.RefreshAsync().Wait();
+            }
+            Repository = GenContext.ToolBox.Repo;
         }
     }
 }

@@ -262,14 +262,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public void AddTemplateAndDependencies((string name, ITemplateInfo template) item, bool isRemoveEnabled = true)
         {
             SaveNewTemplate(item, isRemoveEnabled);
-            var dependencies = GenComposer.GetAllDependencies(item.template, ContextFramework.Name);
 
-            foreach (var dependencyTemplate in dependencies)
+            foreach (var dependencyTemplate in GenComposer.GetAllDependencies(item.template, ContextFramework.Name))
             {
-                if (!Identities.Any(i => i == dependencyTemplate.Identity))
-                {
-                    SaveNewTemplate((dependencyTemplate.GetDefaultName(), dependencyTemplate), isRemoveEnabled);
-                }
+                SaveNewTemplate((dependencyTemplate.GetDefaultName(), dependencyTemplate), isRemoveEnabled);
             }
 
             MainViewModel.Current.RebuildLicenses();
@@ -277,6 +273,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void SaveNewTemplate((string name, ITemplateInfo template) item, bool isRemoveEnabled = true)
         {
+            //if (item.template.GetMultipleInstance() == false && IsTemplateAlreadyDefined(item.template.Identity))
+            //{
+            //    return;
+            //}
             var newItem = new SavedTemplateViewModel(item, isRemoveEnabled);
 
             if (item.template.GetTemplateType() == TemplateType.Page)
