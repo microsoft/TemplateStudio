@@ -261,7 +261,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void OnAddItem()
         {
-            NewTemplateName = ValidationService.InferTemplateName(Template.GetDefaultName(), CanChooseItemName, true);
+            NewTemplateName = ValidationService.InferTemplateName(Template.GetDefaultName(), CanChooseItemName, CanChooseItemName);
             if (CanChooseItemName)
             {
                 MainViewModel.Current.ProjectTemplates.CloseAllEditions();
