@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             _source = source ?? throw new ArgumentNullException(nameof(source));
             _content = new TemplatesContent(WorkingFolder, source.Id, wizardVersion);
-            CurrentContentFolder = CodeGen.Instance?.GetCurrentContentSource(WorkingFolder);
+            CurrentContentFolder = CodeGen.Instance?.GetCurrentContentSource(WorkingFolder, source.Id);
         }
 
         public async Task DoAsync()
@@ -233,7 +233,7 @@ namespace Microsoft.Templates.Core.Locations
 
                     CodeGen.Instance.Settings.SettingsLoader.Save();
 
-                    CurrentContentFolder = CodeGen.Instance.GetCurrentContentSource(WorkingFolder);
+                    CurrentContentFolder = CodeGen.Instance.GetCurrentContentSource(WorkingFolder, _source.Id);
                 }
             }
             catch (Exception ex)

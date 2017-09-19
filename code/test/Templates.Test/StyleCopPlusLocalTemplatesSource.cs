@@ -26,6 +26,8 @@ namespace Microsoft.Templates.Test
             ForcedAcquisition = true;
         }
 
+        public override string Id => "BuildStyleCop";
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public StyleCopPlusLocalTemplatesSource(string wizardVersion, string templatesVersion, bool forcedAdquisition = true)
         {

@@ -10,9 +10,4 @@ namespace Microsoft.Templates.Test
     public class GenerationCollection : ICollectionFixture<GenerationFixture>
     {
     }
-
-    [CollectionDefinition("BuildCollection")]
-    public class BuildCollection : ICollectionFixture<GenerationFixture>
-    {
-    }
 }
