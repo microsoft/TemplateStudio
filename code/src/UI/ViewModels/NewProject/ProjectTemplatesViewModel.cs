@@ -273,10 +273,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void SaveNewTemplate((string name, ITemplateInfo template) item, bool isRemoveEnabled = true)
         {
-            //if (item.template.GetMultipleInstance() == false && IsTemplateAlreadyDefined(item.template.Identity))
-            //{
-            //    return;
-            //}
+            if (item.template.GetMultipleInstance() == false && IsTemplateAlreadyDefined(item.template.Identity))
+            {
+                return;
+            }
             var newItem = new SavedTemplateViewModel(item, isRemoveEnabled);
 
             if (item.template.GetTemplateType() == TemplateType.Page)

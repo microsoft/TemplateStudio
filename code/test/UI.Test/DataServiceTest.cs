@@ -11,6 +11,8 @@ using Microsoft.Templates.UI.Services;
 
 namespace UI.Test
 {
+    [Collection("UI")]
+    [Trait("ExecutionSet", "Minimum")]
     public class DataServiceTest : IClassFixture<TemplatesFixture>
     {
         private TemplatesFixture _fixture;

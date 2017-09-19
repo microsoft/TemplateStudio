@@ -2,18 +2,19 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.UI.ViewModels.NewProject;
-using Xunit;
 using Microsoft.Templates.UI.ViewModels.Common;
-using Microsoft.Templates.UI.Services;
+
+using Xunit;
 
 namespace UI.Test
 {
+    [Collection("UI")]
+    [Trait("ExecutionSet", "Minimum")]
     public class NewProjectTest : IClassFixture<TemplatesFixture>
     {
         private TemplatesFixture _fixture;
@@ -110,7 +111,6 @@ namespace UI.Test
             Assert.True(viewModel.Licenses.Count() == 4); // Added WindowsAzure.Messaging.Managed
             viewModel.ProjectTemplates.RemoveTemplate(viewModel.ProjectTemplates.SavedFeatures.First(sf => sf.Identity == "wts.Feat.HubNotifications"), false);
             Assert.True(viewModel.Licenses.Count() == 3); // Deleted WindowsAzure.Messaging.Managed
-
         }
 
         private TemplateInfoViewModel FindTemplate(ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>> groups, string identity)
