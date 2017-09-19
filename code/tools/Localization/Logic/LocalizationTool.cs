@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,41 +41,51 @@ namespace Localization
 
         public void ExtractLocalizableItems(ToolCommandInfo commandInfo)
         {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-
             if (commandInfo.Arguments == null || commandInfo.Arguments.Length < 2)
             {
                 throw new Exception("Error executing command. Too few arguments.");
             }
+
             string sourceDirectory = commandInfo.Arguments[0];
             string destinationDirectory = commandInfo.Arguments[1];
-            ValidateLocalizableExtractor validator = GetValidateExtractor(sourceDirectory, commandInfo.Arguments);
-            LocalizableItemsExtractor extractor = new LocalizableItemsExtractor(sourceDirectory, destinationDirectory, cultures, validator);
 
-            Console.WriteLine("Extract vsix");
-            extractor.ExtractVsix();
+            if (CanOverwriteDirectory(destinationDirectory))
+            {
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
 
-            Console.WriteLine("Extract project templates");
-            extractor.ExtractProjectTemplates();
+                ValidateLocalizableExtractor validator = GetValidateExtractor(sourceDirectory, commandInfo.Arguments);
+                LocalizableItemsExtractor extractor = new LocalizableItemsExtractor(sourceDirectory, destinationDirectory, cultures, validator);
 
-            Console.WriteLine("Extract command templates");
-            extractor.ExtractCommandTemplates();
+                Console.WriteLine("\nExtract vsix");
+                extractor.ExtractVsix();
 
-            Console.WriteLine("Extract template pages and features");
-            extractor.ExtractTemplatePagesAndFeatures();
+                Console.WriteLine("Extract project templates");
+                extractor.ExtractProjectTemplates();
 
-            Console.WriteLine("Extract project types and frameworks");
-            extractor.ExtractWtsTemplates();
+                Console.WriteLine("Extract command templates");
+                extractor.ExtractCommandTemplates();
 
-            Console.WriteLine("Extract resources");
-            extractor.ExtractResourceFiles();
+                Console.WriteLine("Extract template pages");
+                extractor.ExtractTemplatePages();
 
-            Console.WriteLine("End");
-            stopwatch.Stop();
-            TimeSpan ts = stopwatch.Elapsed;
-            Console.WriteLine(string.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-                ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10));
+                Console.WriteLine("Extract template features");
+                extractor.ExtractTemplateFeatures();
+
+                Console.WriteLine("Extract project types");
+                extractor.ExtractWtsProjectTypes();
+
+                Console.WriteLine("Extract project frameworks");
+                extractor.ExtractWtsFrameworks();
+
+                Console.WriteLine("Extract resources");
+                extractor.ExtractResourceFiles();
+
+                Console.WriteLine("End");
+                stopwatch.Stop();
+                TimeSpan ts = stopwatch.Elapsed;
+                Console.WriteLine(string.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10));
+            }
         }
 
         private ValidateLocalizableExtractor GetValidateExtractor(string repository, string[] arguments)
@@ -94,6 +105,17 @@ namespace Localization
             }
 
             return new ValidateLocalizableExtractor(repository, extractorMode, extractorParameter);
+        }
+
+        private bool CanOverwriteDirectory(string destDirectory)
+        {
+            if (!Directory.Exists(destDirectory) || !Directory.EnumerateFileSystemEntries(destDirectory).Any())
+            {
+                return true;
+            }
+
+            Console.WriteLine("\nTarget directory is not empty. Existing files will be overwritten. Continue? (Y/N)");
+            return Console.ReadLine().ToUpperInvariant() == "Y";
         }
     }
 }

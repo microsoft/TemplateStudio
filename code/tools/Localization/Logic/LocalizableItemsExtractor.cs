@@ -22,23 +22,17 @@ namespace Localization
         internal LocalizableItemsExtractor(string sourceDirPath, string destinationDirPath, IEnumerable<string> cultures, ValidateLocalizableExtractor validator)
         {
             _sourceDir = GetDirectory(sourceDirPath);
-
-            _destinationDir = new DirectoryInfo(destinationDirPath);
-            if (!_destinationDir.Exists)
-                _destinationDir.Create();
-
+            _destinationDir = GetOrCreateDirectory(destinationDirPath);
             this.cultures = cultures;
             this.validator = validator;
         }
 
         internal void ExtractVsix()
         {
-            var desDirectory = Path.Combine(_destinationDir.FullName, Routes.VsixRootDirPath);
-            if (Directory.Exists(desDirectory))
-                return;
-
             if (!validator.HasChanges(Routes.VsixValidatePath))
-                return;
+            {
+                 return;
+            }
 
             FileInfo manifiestFile = GetFile(Path.Combine(_sourceDir.FullName, Routes.VsixRootDirPath, Routes.VsixManifestFile));
             XmlDocument xmlManifiestFile = XmlUtility.LoadXmlFile(manifiestFile.FullName);
@@ -47,14 +41,8 @@ namespace Localization
 
             foreach (var culture in cultures)
             {
-                var vsixDesDirectory = new DirectoryInfo(Path.Combine(desDirectory, culture));
+                var vsixDesDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, Routes.VsixRootDirPath, culture));
                 var langpackFile = new FileInfo(Path.Combine(vsixDesDirectory.FullName, Routes.VsixLangpackFile));
-
-                if (langpackFile.Exists)
-                    continue;
-
-                if (!vsixDesDirectory.Exists)
-                    vsixDesDirectory.Create();
 
                 using (TextWriter writer = langpackFile.CreateText())
                 {
@@ -84,66 +72,52 @@ namespace Localization
 
         private void ExtractProjectTemplatesByLanguage(string projectTemplatePath, string projectTemplateFile, string projectTemplateFileNamePattern)
         {
-            var desDirectory = new DirectoryInfo(Path.Combine(_destinationDir.FullName, projectTemplatePath));
-            if (desDirectory.Exists)
-                return;
-
             FileInfo srcFile = GetFile(Path.Combine(_sourceDir.FullName, projectTemplatePath, projectTemplateFile));
-            desDirectory.Create();
+            var desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, projectTemplatePath));
 
             foreach (string culture in cultures)
             {
                 string desFile = Path.Combine(desDirectory.FullName, string.Format(projectTemplateFileNamePattern, culture));
-
-                if (File.Exists(desFile))
-                    continue;
-
-                srcFile.CopyTo(desFile);
+                srcFile.CopyTo(desFile, true);
             }
         }
 
         internal void ExtractCommandTemplates()
         {
-            var desDirectory = new DirectoryInfo(Path.Combine(_destinationDir.FullName, Routes.CommandTemplateRootDirPath));
-            if (desDirectory.Exists)
-                return;
-
             if (validator.HasChanges(Routes.RelayCommandFileNameValidate))
             {
-                LocalizeFileType(Routes.RelayCommandFileNameValidate, desDirectory, Routes.RelayCommandFileNamePattern);
+                LocalizeFileType(Routes.RelayCommandFileNameValidate, Routes.RelayCommandFileNamePattern);
             }
 
             if (validator.HasChanges(Routes.VspackageFileNameValidate))
             {
-                LocalizeFileType(Routes.VspackageFileNameValidate, desDirectory, Routes.VspackageFileNamePattern);
+                LocalizeFileType(Routes.VspackageFileNameValidate, Routes.VspackageFileNamePattern);
             }
         }
 
-        private void LocalizeFileType(string filePath, DirectoryInfo desDirectory, string searchPattern)
+        private void LocalizeFileType(string filePath, string searchPattern)
         {
             FileInfo file = GetFile(Path.Combine(_sourceDir.FullName, filePath));
-
-            if (!desDirectory.Exists)
-                desDirectory.Create();
+            DirectoryInfo desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, Routes.CommandTemplateRootDirPath));
 
             foreach (string culture in cultures)
             {
-                file.CopyTo(Path.Combine(desDirectory.FullName, string.Format(searchPattern, culture)));
+                file.CopyTo(Path.Combine(desDirectory.FullName, string.Format(searchPattern, culture)), true);
             }
         }
 
-        internal void ExtractTemplatePagesAndFeatures()
+        internal void ExtractTemplatePages()
         {
             ExtractTemplateEngineTemplates(Routes.TemplatesPagesPath);
+        }
+
+        internal void ExtractTemplateFeatures()
+        {
             ExtractTemplateEngineTemplates(Routes.TemplatesFeaturesPath);
         }
 
         private void ExtractTemplateEngineTemplates(string templatePath)
         {
-            var desDirectory = new DirectoryInfo(Path.Combine(_destinationDir.FullName, templatePath));
-            if (desDirectory.Exists)
-                return;
-
             var srcDirectory = GetDirectory(Path.Combine(_sourceDir.FullName, templatePath));
             foreach (var subDirectory in srcDirectory.GetDirectories())
             {
@@ -161,26 +135,21 @@ namespace Localization
 
             if (file.Exists && validator.HasChanges(fileJson))
             {
-                var desDirectory = new DirectoryInfo(Path.Combine(_destinationDir.FullName, srcDirectory));
-                if (!desDirectory.Exists)
-                    desDirectory.Create();
-
+                var desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, srcDirectory));
                 var metadata = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(file.FullName));
+
                 foreach (string culture in cultures)
                 {
                     string filePath = Path.Combine(desDirectory.FullName, culture + "." + Routes.TemplateJsonFile);
-                    if (!File.Exists(filePath))
+                    var con = new
                     {
-                        var con = new
-                        {
-                            author = metadata.GetValue("author").Value<string>(),
-                            name = metadata.GetValue("name").Value<string>(),
-                            description = metadata.GetValue("description").Value<string>(),
-                            identity = metadata.GetValue("identity").Value<string>()
-                        };
-                        string content = JsonConvert.SerializeObject(con, Newtonsoft.Json.Formatting.Indented);
-                        File.WriteAllText(filePath, content, Encoding.UTF8);
-                    }
+                        author = metadata.GetValue("author").Value<string>(),
+                        name = metadata.GetValue("name").Value<string>(),
+                        description = metadata.GetValue("description").Value<string>(),
+                        identity = metadata.GetValue("identity").Value<string>()
+                    };
+                    string content = JsonConvert.SerializeObject(con, Newtonsoft.Json.Formatting.Indented);
+                    File.WriteAllText(filePath, content, Encoding.UTF8);
                 }
             }
         }
@@ -192,44 +161,37 @@ namespace Localization
 
             if (file.Exists && validator.HasChanges(fileMd))
             {
-                var desDirectory = new DirectoryInfo(Path.Combine(_destinationDir.FullName, srcDirectory));
-                if (!desDirectory.Exists)
-                    desDirectory.Create();
+                var desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, srcDirectory));
 
                 foreach (string culture in cultures)
                 {
                     FileInfo desFile = new FileInfo(Path.Combine(desDirectory.FullName, culture + "." + Routes.TemplateDescriptionFile));
-                    if (!desFile.Exists)
-                    {
-                        file.CopyTo(desFile.FullName);
-                    }
+                    file.CopyTo(desFile.FullName, true);
                 }
             }
         }
 
-        internal void ExtractWtsTemplates()
+        internal void ExtractWtsProjectTypes()
         {
-            var desDirectory = new DirectoryInfo(Path.Combine(_destinationDir.FullName, Routes.WtsTemplatesRootDirPath));
-            if (desDirectory.Exists)
-                return;
-
             if (validator.HasChanges(Routes.WtsProjectTypesValidate))
             {
                 ExtractWtsTemplateFiles(Routes.WtsProjectTypes);
             }
+            ExtractWtsTemplateSubfolderFiles(Routes.WtsProjectTypes);
+        }
 
+        internal void ExtractWtsFrameworks()
+        {
             if (validator.HasChanges(Routes.WtsFrameworksValidate))
             {
                 ExtractWtsTemplateFiles(Routes.WtsFrameworks);
             }
-
-            ExtractWtsTemplateSubfolderFiles(Routes.WtsProjectTypes);
             ExtractWtsTemplateSubfolderFiles(Routes.WtsFrameworks);
         }
 
         private void ExtractWtsTemplateFiles(string routeType)
         {
-            var desDirectory = new DirectoryInfo(Path.Combine(_destinationDir.FullName, Routes.WtsTemplatesRootDirPath));
+            var desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, Routes.WtsTemplatesRootDirPath));
             var srcDirectory = new DirectoryInfo(Path.Combine(_sourceDir.FullName, Routes.WtsTemplatesRootDirPath, routeType));
             var srcFile = GetFile(srcDirectory.FullName + ".json");
 
@@ -247,20 +209,13 @@ namespace Localization
             foreach (string culture in cultures)
             {
                 var desFile = Path.Combine(desDirectory.FullName, culture + "." + srcFile.Name);
-
-                if (File.Exists(desFile))
-                    continue;
-
-                if (!desDirectory.Exists)
-                    desDirectory.Create();
-
                 File.WriteAllText(desFile, data, Encoding.UTF8);
             }
         }
 
         private void ExtractWtsTemplateSubfolderFiles(string routeType)
         {
-            var desDirectory = new DirectoryInfo(Path.Combine(_destinationDir.FullName, Routes.WtsTemplatesRootDirPath, routeType));
+            var desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, Routes.WtsTemplatesRootDirPath, routeType));
             var srcDirectory = new DirectoryInfo(Path.Combine(_sourceDir.FullName, Routes.WtsTemplatesRootDirPath, routeType));
 
             var srcFile = GetFile(srcDirectory.FullName + ".json");
@@ -273,15 +228,8 @@ namespace Localization
                 foreach (var name in projectNames)
                 {
                     var mdFilePath = Path.Combine(Routes.WtsTemplatesRootDirPath, routeType, name + ".md");
-
-                    if (!validator.HasChanges(mdFilePath))
-                        continue;
-
-                    if (!desDirectory.Exists)
-                        desDirectory.Create();
-
                     var mdFile = new FileInfo(Path.Combine(_sourceDir.FullName, mdFilePath));
-                    mdFile.CopyTo(Path.Combine(desDirectory.FullName, culture + "." + name + ".md"));
+                    mdFile.CopyTo(Path.Combine(desDirectory.FullName, culture + "." + name + ".md"), true);
                 }
             }
         }
@@ -290,21 +238,17 @@ namespace Localization
         {
             foreach (string directory in Routes.ResoureceDirectories)
             {
-                var desDirectory = new DirectoryInfo(Path.Combine(_destinationDir.FullName, directory));
-                if (desDirectory.Exists)
-                    continue;
-
                 var srcResFile = Path.Combine(directory, Routes.ResourcesFilePath);
-                if (!validator.HasChanges(srcResFile))
-                    continue;
-
-                FileInfo resourceFile = GetFile(Path.Combine(_sourceDir.FullName, srcResFile));
-                desDirectory.Create();
-
-                foreach (string culture in cultures)
+                if (validator.HasChanges(srcResFile))
                 {
-                    string destResFile = Path.Combine(desDirectory.FullName, string.Format(Routes.ResourcesFilePathPattern, culture));
-                    resourceFile.CopyTo(destResFile);
+                    var desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, directory));
+                    FileInfo resourceFile = GetFile(Path.Combine(_sourceDir.FullName, srcResFile));
+
+                    foreach (string culture in cultures)
+                    {
+                        string destResFile = Path.Combine(desDirectory.FullName, string.Format(Routes.ResourcesFilePathPattern, culture));
+                        resourceFile.CopyTo(destResFile, true);
+                    }
                 }
             }
         }
@@ -315,6 +259,18 @@ namespace Localization
 
             if (!directory.Exists)
                 throw new DirectoryNotFoundException($"Source directory \"{directory.FullName}\" not found.");
+
+            return directory;
+        }
+
+        private DirectoryInfo GetOrCreateDirectory(string path)
+        {
+            var directory = new DirectoryInfo(path);
+
+            if (!directory.Exists)
+            {
+                directory.Create();
+            }
 
             return directory;
         }
