@@ -55,13 +55,13 @@ Namespace Views
             InitializeComponent()
         End Sub
 
-        Public Function InitializeAsync() As Task
+        Public Async Function InitializeAsync() As Task
             If _locationService IsNot Nothing Then
                 AddHandler _locationService.PositionChanged, AddressOf LocationService_PositionChanged
 
                 Dim initializationSuccessful = Await _locationService.InitializeAsync()
 
-				If initializationSuccessful Then
+                If initializationSuccessful Then
                     Await _locationService.StartListeningAsync()
                 End If
 

@@ -23,7 +23,7 @@ Namespace Views
             RemoveHandler mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged, AddressOf PlaybackSession_PlaybackStateChanged
         End Sub
 
-        Private Sub PlaybackSession_PlaybackStateChanged(sender As MediaPlaybackSession, args As Object)
+        Private Async Sub PlaybackSession_PlaybackStateChanged(sender As MediaPlaybackSession, args As Object)
             Dim playbackSession = TryCast(sender, MediaPlaybackSession)
             If playbackSession IsNot Nothing AndAlso playbackSession.NaturalVideoHeight <> 0 Then
                 If playbackSession.PlaybackState = MediaPlaybackState.Playing Then

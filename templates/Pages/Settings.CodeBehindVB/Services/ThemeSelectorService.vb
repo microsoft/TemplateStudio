@@ -13,11 +13,11 @@ Namespace Services
 
         Public Shared Property Theme As ElementTheme = ElementTheme.Default
 
-        Public Shared Function InitializeAsync() As Task
+        Public Shared Async Function InitializeAsync() As Task
             Theme = Await LoadThemeFromSettingsAsync()
-		End Function
+        End Function
 
-        Public Shared Function SetThemeAsync(theme As ElementTheme) As Task
+        Public Shared Async Function SetThemeAsync(theme As ElementTheme) As Task
             Me.Theme = theme
 
             SetRequestedTheme()
@@ -31,18 +31,18 @@ Namespace Services
             End If
         End Sub
 
-        Private Shared Function LoadThemeFromSettingsAsync() As Task(Of ElementTheme)
+        Private Shared Async Function LoadThemeFromSettingsAsync() As Task(Of ElementTheme)
             Dim cacheTheme As ElementTheme = ElementTheme.Default
             Dim themeName As String = Await ApplicationData.Current.LocalSettings.ReadAsync(Of String)(SettingsKey)
 
-			If Not String.IsNullOrEmpty(themeName) Then
+            If Not String.IsNullOrEmpty(themeName) Then
                 [Enum].TryParse(themeName, cacheTheme)
             End If
 
             Return cacheTheme
         End Function
 
-        Private Shared Function SaveThemeInSettingsAsync(theme As ElementTheme) As Task
+        Private Shared Async Function SaveThemeInSettingsAsync(theme As ElementTheme) As Task
             Await ApplicationData.Current.LocalSettings.SaveAsync(SettingsKey, theme.ToString)
         End Function
     End Class

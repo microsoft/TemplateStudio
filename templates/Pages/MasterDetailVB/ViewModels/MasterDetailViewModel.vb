@@ -48,13 +48,13 @@ Namespace ViewModels
 
         Public Property SampleItems As New ObservableCollection(Of SampleOrder)
 
-        Public Function LoadDataAsync(currentState As VisualState) As Task
+        Public Async Function LoadDataAsync(currentState As VisualState) As Task
             _currentState = currentState
             SampleItems.Clear()
 
             Dim data = Await SampleDataService.GetSampleModelDataAsync()
 
-			For Each item In data
+            For Each item In data
                 SampleItems.Add(item)
             Next
 

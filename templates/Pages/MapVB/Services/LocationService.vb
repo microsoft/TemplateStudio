@@ -38,14 +38,14 @@ Namespace Services
         ''' <param name="desiredAccuracyInMeters">The desired accuracy at which the service provides location updates.</param>
         ''' <param name="movementThreshold">The distance of movement, in meters, that is required for the service to raise the PositionChanged event.</param>
         ''' <returns>True if the initialization was successful and the service can be used.</returns>
-        Public Function InitializeAsync(desiredAccuracyInMeters As UInteger, movementThreshold As Double) As Task(Of Boolean)
+        Public Async Function InitializeAsync(desiredAccuracyInMeters As UInteger, movementThreshold As Double) As Task(Of Boolean)
             ' to find out more about getting location, go to https://docs.microsoft.com/en-us/windows/uwp/maps-and-location/get-location
             If _geolocator IsNot Nothing Then
                 RemoveHandler _geolocator.PositionChanged, AddressOf Geolocator_PositionChanged
                 _geolocator = Nothing
             End If
             Dim access = Await Geolocator.RequestAccessAsync()
-			Dim result As Boolean
+            Dim result As Boolean
             Select Case access
                 Case GeolocationAccessStatus.Allowed
                     _geolocator = New Geolocator With {
@@ -63,13 +63,13 @@ Namespace Services
         ''' Starts the service listening for location updates.
         ''' </summary>
         ''' <returns>An object that is used to manage the asynchronous operation.</returns>
-        Public Function StartListeningAsync() As Task
+        Public Async Function StartListeningAsync() As Task
             If _geolocator Is Nothing Then
                 Throw New InvalidOperationException("The StartListening method cannot be called before the InitializeAsync method.")
             End If
             AddHandler _geolocator.PositionChanged, AddressOf Geolocator_PositionChanged
             CurrentPosition = Await _geolocator.GetGeopositionAsync()
-		End Function
+        End Function
 
         ''' <summary>
         ''' Stops the service listening for location updates.
@@ -81,7 +81,7 @@ Namespace Services
             RemoveHandler _geolocator.PositionChanged, AddressOf Geolocator_PositionChanged
         End Sub
 
-        Private Sub Geolocator_PositionChanged(sender As Geolocator, args As PositionChangedEventArgs)
+        Private Async Sub Geolocator_PositionChanged(sender As Geolocator, args As PositionChangedEventArgs)
             If args Is Nothing Then
                 Return
             End If

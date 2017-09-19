@@ -53,13 +53,13 @@ Namespace ViewModels
             ZoomLevel = DefaultZoomLevel
         End Sub
 
-        Public Function InitializeAsync(map As MapControl) As Task
+        Public Async Function InitializeAsync(map As MapControl) As Task
             If _locationService IsNot Nothing Then
                 AddHandler _locationService.PositionChanged, AddressOf LocationService_PositionChanged
 
                 Dim initializationSuccessful = Await _locationService.InitializeAsync()
 
-				If initializationSuccessful Then
+                If initializationSuccessful Then
                     Await _locationService.StartListeningAsync()
                 End If
 

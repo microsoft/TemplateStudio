@@ -1,7 +1,7 @@
 ﻿'{**
 ' These code blocks add the ThemeSelectorService initialization to the ActivationService of your project.
 '**}
-Private Function InitializeAsync() As Task
+Private Async Function InitializeAsync() As Task
     '{[{
     Await ThemeSelectorService.InitializeAsync()
     '}]}

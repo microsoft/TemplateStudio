@@ -26,12 +26,12 @@ Namespace Param_ItemNamespace.Views
 
         Public Property SampleItems As New ObservableCollection(Of SampleOrder)
 
-        Private Function LoadDataAsync() As Task
+        Private Async Function LoadDataAsync() As Task
             SampleItems.Clear()
 
             Dim data = Await SampleDataService.GetSampleModelDataAsync()
 
-			For Each item In data
+            For Each item In data
                 SampleItems.Add(item)
             Next
 
