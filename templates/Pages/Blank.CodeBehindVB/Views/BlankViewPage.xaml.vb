@@ -1,7 +1,7 @@
 ﻿Imports System.ComponentModel
 
 Namespace Views
-    Partial NotInheritable Class BlankViewPage
+    NotInheritable Class BlankViewPage
         Inherits Page
         Implements INotifyPropertyChanged
 

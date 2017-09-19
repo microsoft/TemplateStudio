@@ -1,7 +1,7 @@
 ﻿Imports Windows.UI.Xaml.Controls
 
 Namespace Views
-    Partial NotInheritable Class GridViewPage
+    NotInheritable Class GridViewPage
         Inherits Page
         ' TODO WTS: Change the grid as appropriate to your app.
         ' For help see http://docs.telerik.com/windows-universal/controls/raddatagrid/gettingstarted

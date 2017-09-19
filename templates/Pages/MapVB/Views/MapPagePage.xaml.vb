@@ -1,7 +1,7 @@
 ﻿Imports Windows.UI.Xaml.Controls
 
 Namespace Views
-    Partial NotInheritable Class MapPagePage
+    NotInheritable Class MapPagePage
         Inherits Page
 
     End Class

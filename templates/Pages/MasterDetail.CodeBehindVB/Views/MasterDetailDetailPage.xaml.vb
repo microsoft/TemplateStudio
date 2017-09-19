@@ -6,7 +6,7 @@ Imports Param_ItemNamespace.Services
 Imports System.ComponentModel
 
 Namespace Views
-    Partial NotInheritable Class MasterDetailDetailPage
+    NotInheritable Class MasterDetailDetailPage
         Inherits Page
         Implements INotifyPropertyChanged
 

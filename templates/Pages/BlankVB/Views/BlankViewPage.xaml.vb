@@ -1,5 +1,5 @@
 ﻿Namespace Views
-    Partial NotInheritable Class BlankViewPage
+    NotInheritable Class BlankViewPage
         Inherits Page
 
     End Class

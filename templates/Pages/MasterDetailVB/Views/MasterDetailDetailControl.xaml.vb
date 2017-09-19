@@ -3,7 +3,7 @@ Imports Windows.UI.Xaml.Controls
 Imports Param_ItemNamespace.Models
 
 Namespace Views
-    Partial NotInheritable Class MasterDetailDetailControl
+    NotInheritable Class MasterDetailDetailControl
         Inherits UserControl
 
         Public Property MasterMenuItem As SampleOrder

@@ -9,7 +9,7 @@ Imports System.Threading.Tasks
 Imports System.ComponentModel
 
 Namespace Views
-    Partial NotInheritable Class MapPagePage
+    NotInheritable Class MapPagePage
         Inherits Page
         Implements INotifyPropertyChanged
 

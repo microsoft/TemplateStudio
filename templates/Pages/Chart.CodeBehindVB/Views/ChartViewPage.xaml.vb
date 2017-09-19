@@ -5,7 +5,7 @@ Imports Param_ItemNamespace.Services
 Imports System.ComponentModel
 
 Namespace Views
-    Partial NotInheritable Class ChartViewPage
+    NotInheritable Class ChartViewPage
         Inherits Page
         Implements INotifyPropertyChanged
 
