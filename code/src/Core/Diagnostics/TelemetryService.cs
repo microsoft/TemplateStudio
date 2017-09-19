@@ -160,7 +160,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                     vsCulture = VsTelem.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.Locale.ProductLocaleName");
                     vsManifestId = VsTelem.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.ManifestId");
 
-                    return isOptedIn;
+                    result = isOptedIn;
                 }
                 else
                 {
