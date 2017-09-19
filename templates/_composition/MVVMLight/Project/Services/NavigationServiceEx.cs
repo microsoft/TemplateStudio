@@ -53,7 +53,7 @@ namespace Param_RootNamespace.Services
             {
                 if (!_pages.ContainsKey(pageKey))
                 {
-                    throw new ArgumentException($"Page not found: {pageKey}. Did you forget to call NavigationService.Configure?", "pageKey");
+                    throw new ArgumentException($"Page not found: {pageKey}. Did you forget to call NavigationService.Configure?", nameof(pageKey));
                 }
 
                 var navigationResult = Frame.Navigate(_pages[pageKey], parameter, infoOverride);

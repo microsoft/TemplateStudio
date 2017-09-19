@@ -31,7 +31,7 @@ namespace wts.ItemName.Views
             get { return (char)Symbol; }
         }
 
-        private IconElement _iconElement = null;
+        private readonly IconElement _iconElement = null;
 
         public IconElement Icon
         {
@@ -54,7 +54,7 @@ namespace wts.ItemName.Views
 
                 var fontIcon = new FontIcon { FontSize = 16, Glyph = SymbolAsChar.ToString() };
 
-                BindingOperations.SetBinding(fontIcon, FontIcon.ForegroundProperty, foregroundBinding);
+                BindingOperations.SetBinding(fontIcon, IconElement.ForegroundProperty, foregroundBinding);
 
                 return fontIcon;
             }

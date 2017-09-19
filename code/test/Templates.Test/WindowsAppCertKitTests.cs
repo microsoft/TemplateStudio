@@ -18,7 +18,7 @@ namespace Microsoft.Templates.Test
     [Trait("ExecutionSet", "ManualOnly")]
     public class WindowsAppCertKitTests : BaseGenAndBuildTests
     {
-        public WindowsAppCertKitTests(GenerationFixture fixture)
+        public WindowsAppCertKitTests(BuildFixture fixture)
         {
             _fixture = fixture;
         }
@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Test
         /// - Control of the machine (as WACK tests will launch and try and control the generated app. If you're doing other things it may cause the test to fail incorrectly)
         /// </summary>
         [Theory(Skip = "This test is very slow and expensive so shouldn't be run automatically.")]
-        [MemberData("GetProjectTemplatesAsync")]
+        [MemberData("GetProjectTemplatesForBuildAsync", "")]
         public async Task RunWackOnProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string language)
         {
             Func<ITemplateInfo, bool> selector =
@@ -54,17 +54,17 @@ namespace Microsoft.Templates.Test
 
             // Create APPXBundle
             // NOTE. This is very slow. (i.e. ~10+ mins) as it does a full release build including all .net native compilation
-            var bundleResult = GenerationFixture.BuildAppxBundle(projectName, projectPath);
+            var bundleResult = _fixture.BuildAppxBundle(projectName, projectPath);
 
-            Assert.True(bundleResult.exitCode.Equals(0), $"Failed to create AppxBundle for {projectName}. {Environment.NewLine}Errors found: {GenerationFixture.GetErrorLines(bundleResult.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(bundleResult.outputFile)} for more details.");
+            Assert.True(bundleResult.exitCode.Equals(0), $"Failed to create AppxBundle for {projectName}. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(bundleResult.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(bundleResult.outputFile)} for more details.");
 
             var bundleFile = new DirectoryInfo(Path.Combine(projectPath, projectName, "AppPackages")).GetFiles("*.appxbundle", SearchOption.AllDirectories).First().FullName;
 
             // Run WACK test
             // NOTE. This requires elevation. If not elevated you'll get a UAC prompt
-            var wackResult = GenerationFixture.RunWackTestOnAppxBundle(bundleFile, projectPath);
+            var wackResult = _fixture.RunWackTestOnAppxBundle(bundleFile, projectPath);
 
-            Assert.True(wackResult.exitCode.Equals(0), $"Failed to create AppxBundle for {projectName}. {Environment.NewLine}Errors found: {GenerationFixture.GetErrorLines(wackResult.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(wackResult.outputFile)} for more details.");
+            Assert.True(wackResult.exitCode.Equals(0), $"Failed to create AppxBundle for {projectName}. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(wackResult.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(wackResult.outputFile)} for more details.");
 
             var overallSuccessXml = @"OVERALL_RESULT=""PASS""";
 

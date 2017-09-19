@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesAsync")]
+        [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationProjects")]
         public async Task GenEmptyProjectAsync(string projectType, string framework, string language)
         {
@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesAsync")]
+        [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationAllPagesAndFeatures")]
         public async Task GenAllPagesAndFeaturesAsync(string projectType, string framework, string language)
         {
@@ -64,7 +64,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesAsync")]
+        [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationRandomNames")]
         public async Task GenAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string language)
         {
@@ -81,7 +81,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesAsync")]
+        [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationRightClick")]
         public async Task GenEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
@@ -92,7 +92,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesAsync")]
+        [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationRightClick")]
         public async Task GenCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
@@ -103,7 +103,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetPageAndFeatureTemplatesAsync", "MVVMLight")]
+        [MemberData("GetPageAndFeatureTemplatesForGenerationAsync", "MVVMLight")]
         [Trait("Type", "GenerationOneByOneMVVMLight")]
         public async Task GenMVVMLightOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
         {
@@ -119,7 +119,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetPageAndFeatureTemplatesAsync", "MVVMBasic")]
+        [MemberData("GetPageAndFeatureTemplatesForGenerationAsync", "MVVMBasic")]
         [Trait("Type", "GenerationOneByOneMVVMBasic")]
         public async Task GenMVVMBasicOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
         {
@@ -127,7 +127,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetPageAndFeatureTemplatesAsync", "CodeBehind")]
+        [MemberData("GetPageAndFeatureTemplatesForGenerationAsync", "CodeBehind")]
         [Trait("Type", "GenerationOneByOneCodeBehind")]
         public async Task GenCodeBehindOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
         {
