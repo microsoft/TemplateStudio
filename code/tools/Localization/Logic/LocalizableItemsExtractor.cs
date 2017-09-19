@@ -65,19 +65,35 @@ namespace Localization
 
         internal void ExtractProjectTemplates()
         {
-            var desDirectory = new DirectoryInfo(Path.Combine(_destinationDir.FullName, Routes.ProjectTemplatePath));
+            if (validator.HasChanges(Routes.ProjectTemplateFileNameValidateCS))
+            {
+                ExtractProjectTemplatesByLanguage(
+                    Routes.ProjectTemplatePathCS,
+                    Routes.ProjectTemplateFileCS,
+                    Routes.ProjectTemplateFileNamePatternCS);
+            }
+
+            if (validator.HasChanges(Routes.ProjectTemplateFileNameValidateVB))
+            {
+                ExtractProjectTemplatesByLanguage(
+                    Routes.ProjectTemplatePathVB,
+                    Routes.ProjectTemplateFileVB,
+                    Routes.ProjectTemplateFileNamePatternVB);
+            }
+        }
+
+        private void ExtractProjectTemplatesByLanguage(string projectTemplatePath, string projectTemplateFile, string projectTemplateFileNamePattern)
+        {
+            var desDirectory = new DirectoryInfo(Path.Combine(_destinationDir.FullName, projectTemplatePath));
             if (desDirectory.Exists)
                 return;
 
-            if (!validator.HasChanges(Routes.ProjectTemplateFileNameValidate))
-                return;
-
-            FileInfo srcFile = GetFile(Path.Combine(_sourceDir.FullName, Routes.ProjectTemplatePath, Routes.ProjectTemplateFile));
+            FileInfo srcFile = GetFile(Path.Combine(_sourceDir.FullName, projectTemplatePath, projectTemplateFile));
             desDirectory.Create();
 
             foreach (string culture in cultures)
             {
-                string desFile = Path.Combine(desDirectory.FullName, string.Format(Routes.ProjectTemplateFileNamePattern, culture));
+                string desFile = Path.Combine(desDirectory.FullName, string.Format(projectTemplateFileNamePattern, culture));
 
                 if (File.Exists(desFile))
                     continue;

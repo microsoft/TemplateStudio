@@ -6,9 +6,12 @@ namespace Localization
 {
     public static class Routes
     {
-        internal static string ProjectTemplatePath = "code\\src\\ProjectTemplates\\CSharp.UWP.2017.Solution";
-        internal static string ProjectTemplateFile = "CSharp.UWP.VS2017.Solution.vstemplate";
-        internal static string ProjectTemplateFileNamePattern = "CSharp.UWP.VS2017.Solution.{0}.vstemplate";
+        internal static string ProjectTemplatePathCS = "code\\src\\ProjectTemplates\\CSharp.UWP.2017.Solution";
+        internal static string ProjectTemplatePathVB = "code\\src\\ProjectTemplates\\VBNet.UWP.VS2017.Solution";
+        internal static string ProjectTemplateFileCS = "CSharp.UWP.VS2017.Solution.vstemplate";
+        internal static string ProjectTemplateFileVB = "VBNet.UWP.VS2017.Solution.vstemplate";
+        internal static string ProjectTemplateFileNamePatternCS = "CSharp.UWP.VS2017.Solution.{0}.vstemplate";
+        internal static string ProjectTemplateFileNamePatternVB = "VBNet.UWP.VS2017.Solution.{0}.vstemplate";
 
         internal static string CommandTemplateRootDirPath = "code\\src\\Installer.2017\\Commands";
         internal static string RelayCommandFileNamePattern = "RelayCommandPackage.{0}.vsct";
@@ -51,7 +54,8 @@ namespace Localization
 
         // Validate Routes
         internal static string VsixValidatePath = "code\\src\\Installer.2017\\source.extension.vsixmanifest";
-        internal static string ProjectTemplateFileNameValidate = "code\\src\\ProjectTemplates\\CSharp.UWP.2017.Solution\\CSharp.UWP.VS2017.Solution.vstemplate";
+        internal static string ProjectTemplateFileNameValidateCS = "code\\src\\ProjectTemplates\\CSharp.UWP.2017.Solution\\CSharp.UWP.VS2017.Solution.vstemplate";
+        internal static string ProjectTemplateFileNameValidateVB = "code\\src\\ProjectTemplates\\VBNet.UWP.2017.Solution\\VBNet.UWP.VS2017.Solution.vstemplate";
         internal static string RelayCommandFileNameValidate = "code\\src\\Installer.2017\\Commands\\RelayCommandPackage.en-US.vsct";
         internal static string VspackageFileNameValidate = "code\\src\\Installer.2017\\Commands\\VSPackage.en-US.resx";
         internal static string WtsProjectTypesValidate = "templates\\_catalog\\projectTypes.json";
