@@ -10,7 +10,7 @@ Namespace Services
         Private Sub New()
         End Sub
         Private Const SettingsKey As String = "RequestedTheme"
-        
+
         Public Shared Property Theme As ElementTheme = ElementTheme.Default
 
         Public Shared Async Function InitializeAsync() As Task
@@ -43,7 +43,7 @@ Namespace Services
         End Function
 
         Private Shared Async Function SaveThemeInSettingsAsync(theme As ElementTheme) As Task
-            Await ApplicationData.Current.LocalSettings.SaveAsync(SettingsKey, theme.ToString())
+            Await ApplicationData.Current.LocalSettings.SaveAsync(SettingsKey, theme.ToString)
         End Function
     End Class
 End Namespace

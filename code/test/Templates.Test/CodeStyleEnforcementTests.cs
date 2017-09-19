@@ -65,6 +65,7 @@ namespace Microsoft.Templates.Test
             }
 
             CheckStringNotIncluded("Namespace Param_RootNamespace."); // Root namespace is included by default in VB
+            CheckStringNotIncluded("Namespace Param_ItemNamespace."); // Root namespace is included by default in VB
             CheckStringNotIncluded(";");
         }
 

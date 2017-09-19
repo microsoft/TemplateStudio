@@ -5,7 +5,7 @@ Imports Windows.UI.Xaml
 
 Namespace ViewModels
     Public Class SettingsPageViewModel
-        Implements System.ComponentModel.INotifyPropertyChanged
+        Inherits System.ComponentModel.INotifyPropertyChanged
 
         ' TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
         Private _elementTheme As ElementTheme = ThemeSelectorService.Theme
@@ -37,9 +37,9 @@ Namespace ViewModels
         Public ReadOnly Property SwitchThemeCommand() As ICommand
             Get
                 If _switchThemeCommand Is Nothing Then
-                    _switchThemeCommand = New RelayCommand(Of ElementTheme)(Function(param) 
+                    _switchThemeCommand = New RelayCommand(Of ElementTheme)(Async Sub(param) 
                         Await ThemeSelectorService.SetThemeAsync(param)
-                    End Function)
+                    End Sub)
                 End If
 
                 Return _switchThemeCommand

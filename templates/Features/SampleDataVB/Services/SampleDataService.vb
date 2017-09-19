@@ -10,84 +10,84 @@ Namespace Services
             ' The following is order summary data
             Dim data = New ObservableCollection(Of SampleOrder)() From {
                 New SampleOrder() With {
-                    Key .OrderId = 70,
-                    Key .OrderDate = New DateTime(2017, 5, 24),
-                    Key .Company = "Company F",
-                    Key .ShipTo = "Francisco Pérez-Olaeta",
-                    Key .OrderTotal = 2490.0,
-                    Key .Status = "Closed"
+                    .OrderId = 70,
+                    .OrderDate = New DateTime(2017, 5, 24),
+                    .Company = "Company F",
+                    .ShipTo = "Francisco Pérez-Olaeta",
+                    .OrderTotal = 2490.0,
+                    .Status = "Closed"
                 },
                 New SampleOrder() With {
-                    Key .OrderId = 71,
-                    Key .OrderDate = New DateTime(2017, 5, 24),
-                    Key .Company = "Company CC",
-                    Key .ShipTo = "Soo Jung Lee",
-                    Key .OrderTotal = 1760.0,
-                    Key .Status = "Closed"
+                    .OrderId = 71,
+                    .OrderDate = New DateTime(2017, 5, 24),
+                    .Company = "Company CC",
+                    .ShipTo = "Soo Jung Lee",
+                    .OrderTotal = 1760.0,
+                    .Status = "Closed"
                 },
                 New SampleOrder() With {
-                    Key .OrderId = 72,
-                    Key .OrderDate = New DateTime(2017, 6, 3),
-                    Key .Company = "Company Z",
-                    Key .ShipTo = "Run Liu",
-                    Key .OrderTotal = 2310.0,
-                    Key .Status = "Closed"
+                    .OrderId = 72,
+                    .OrderDate = New DateTime(2017, 6, 3),
+                    .Company = "Company Z",
+                    .ShipTo = "Run Liu",
+                    .OrderTotal = 2310.0,
+                    .Status = "Closed"
                 },
                 New SampleOrder() With {
-                    Key .OrderId = 73,
-                    Key .OrderDate = New DateTime(2017, 6, 5),
-                    Key .Company = "Company Y",
-                    Key .ShipTo = "John Rodman",
-                    Key .OrderTotal = 665.0,
-                    Key .Status = "Closed"
+                    .OrderId = 73,
+                    .OrderDate = New DateTime(2017, 6, 5),
+                    .Company = "Company Y",
+                    .ShipTo = "John Rodman",
+                    .OrderTotal = 665.0,
+                    .Status = "Closed"
                 },
                 New SampleOrder() With {
-                    Key .OrderId = 74,
-                    Key .OrderDate = New DateTime(2017, 6, 7),
-                    Key .Company = "Company H",
-                    Key .ShipTo = "Elizabeth Andersen",
-                    Key .OrderTotal = 560.0,
-                    Key .Status = "Shipped"
+                    .OrderId = 74,
+                    .OrderDate = New DateTime(2017, 6, 7),
+                    .Company = "Company H",
+                    .ShipTo = "Elizabeth Andersen",
+                    .OrderTotal = 560.0,
+                    .Status = "Shipped"
                 },
                 New SampleOrder() With {
-                    Key .OrderId = 75,
-                    Key .OrderDate = New DateTime(2017, 6, 7),
-                    Key .Company = "Company F",
-                    Key .ShipTo = "Francisco Pérez-Olaeta",
-                    Key .OrderTotal = 810.0,
-                    Key .Status = "Shipped"
+                    .OrderId = 75,
+                    .OrderDate = New DateTime(2017, 6, 7),
+                    .Company = "Company F",
+                    .ShipTo = "Francisco Pérez-Olaeta",
+                    .OrderTotal = 810.0,
+                    .Status = "Shipped"
                 },
                 New SampleOrder() With {
-                    Key .OrderId = 76,
-                    Key .OrderDate = New DateTime(2017, 6, 11),
-                    Key .Company = "Company I",
-                    Key .ShipTo = "Sven Mortensen",
-                    Key .OrderTotal = 196.5,
-                    Key .Status = "Shipped"
+                    .OrderId = 76,
+                    .OrderDate = New DateTime(2017, 6, 11),
+                    .Company = "Company I",
+                    .ShipTo = "Sven Mortensen",
+                    .OrderTotal = 196.5,
+                    .Status = "Shipped"
                 },
                 New SampleOrder() With {
-                    Key .OrderId = 77,
-                    Key .OrderDate = New DateTime(2017, 6, 14),
-                    Key .Company = "Company BB",
-                    Key .ShipTo = "Amritansh Raghav",
-                    Key .OrderTotal = 270.0,
-                    Key .Status = "New"
+                    .OrderId = 77,
+                    .OrderDate = New DateTime(2017, 6, 14),
+                    .Company = "Company BB",
+                    .ShipTo = "Amritansh Raghav",
+                    .OrderTotal = 270.0,
+                    .Status = "New"
                 },
                 New SampleOrder() With {
-                    Key .OrderId = 78,
-                    Key .OrderDate = New DateTime(2017, 6, 14),
-                    Key .Company = "Company A",
-                    Key .ShipTo = "Anna Bedecs",
-                    Key .OrderTotal = 736.0,
-                    Key .Status = "New"
+                    .OrderId = 78,
+                    .OrderDate = New DateTime(2017, 6, 14),
+                    .Company = "Company A",
+                    .ShipTo = "Anna Bedecs",
+                    .OrderTotal = 736.0,
+                    .Status = "New"
                 },
                 New SampleOrder() With {
-                    Key .OrderId = 79,
-                    Key .OrderDate = New DateTime(2017, 6, 18),
-                    Key .Company = "Company K",
-                    Key .ShipTo = "Peter Krschne",
-                    Key .OrderTotal = 800.0,
-                    Key .Status = "New"
+                    .OrderId = 79,
+                    .OrderDate = New DateTime(2017, 6, 18),
+                    .Company = "Company K",
+                    .ShipTo = "Peter Krschne",
+                    .OrderTotal = 800.0,
+                    .Status = "New"
                 }
             }
 

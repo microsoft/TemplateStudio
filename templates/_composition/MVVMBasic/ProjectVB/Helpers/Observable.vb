@@ -1,9 +1,6 @@
-﻿Imports System.ComponentModel
-Imports System.Runtime.CompilerServices
-
-Namespace Helpers
+﻿Namespace Helpers
     Public Class Observable
-        Implements System.ComponentModel.INotifyPropertyChanged
+        Implements INotifyPropertyChanged
 
         Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
  

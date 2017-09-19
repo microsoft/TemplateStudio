@@ -12,7 +12,7 @@ Namespace Helpers
                     Throw New ArgumentException("value must be an Enum!")
                 End If
 
-                Dim enumValue = [Enum].Parse(EnumType, value.ToString())
+                Dim enumValue = [Enum].Parse(EnumType, parameter.ToString())
 
                 Return enumValue.Equals(value)
             End If
@@ -21,8 +21,9 @@ Namespace Helpers
         End Function
 
         Public Function ConvertBack(value As Object, targetType As Type, parameter As Object, language As String) As Object Implements IValueConverter.ConvertBack
-            If TypeOf parameter Is String Then
-                Return [Enum].Parse(EnumType, value.ToString())
+            Dim enumString = TryCast(parameter, String)
+            If enumString IsNot Nothing Then
+                Return [Enum].Parse(EnumType, enumString)
             End If
 
             Throw New ArgumentException("parameter must be an Enum name!")

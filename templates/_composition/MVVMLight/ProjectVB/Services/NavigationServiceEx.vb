@@ -9,6 +9,10 @@ Imports Windows.UI.Xaml.Navigation
 Namespace Services
     Public Class NavigationServiceEx
 
+        Public Event Navigated As NavigatedEventHandler
+
+        Public Event NavigationFailed As NavigationFailedEventHandler
+
         Private ReadOnly _pages As New Dictionary(Of String, Type)()
 
         Private Shared _frame As Frame
@@ -62,7 +66,7 @@ Namespace Services
                 End If
 
                 If _pages.Any(Function(p) p.Value.Equals(pageType)) Then
-                    Throw New ArgumentException($"This type is already configured with key {_pages.First(p => p.Value == pageType).Key}")
+                    Throw New ArgumentException($"This type is already configured with key {_pages.First(Function(p) p.Value Is pageType).Key}")
                 End If
 
                 _pages.Add(key, pageType)
@@ -79,25 +83,25 @@ Namespace Services
             End SyncLock
         End Function
 
-        Private Shared Sub RegisterFrameEvents()
+        Private Sub RegisterFrameEvents()
             If _frame IsNot Nothing Then
                 AddHandler _frame.Navigated, AddressOf Frame_Navigated
                 AddHandler _frame.NavigationFailed, AddressOf Frame_NavigationFailed
             End If
         End Sub
 
-        Private Shared Sub UnregisterFrameEvents()
+        Private Sub UnregisterFrameEvents()
             If _frame IsNot Nothing Then
                 RemoveHandler _frame.Navigated, AddressOf Frame_Navigated
                 RemoveHandler _frame.NavigationFailed, AddressOf Frame_NavigationFailed
             End If
         End Sub
 
-        Private Shared Sub Frame_NavigationFailed(sender As Object, e As NavigationFailedEventArgs)
+        Private Sub Frame_NavigationFailed(sender As Object, e As NavigationFailedEventArgs)
             RaiseEvent NavigationFailed(sender, e)
         End Sub 
         
-        Private Shared Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
+        Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             RaiseEvent Navigated(sender, e)
         End Sub
     End Class

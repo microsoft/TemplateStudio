@@ -1,7 +1,4 @@
-﻿Imports System.IO
-Imports System.Threading.Tasks
-
-Imports Windows.Storage
+﻿Imports Windows.Storage
 Imports Windows.Storage.Streams
 
 Namespace Helpers
@@ -27,7 +24,7 @@ Namespace Helpers
 
         <Extension>
         Public Async Function ReadAsync(Of T)(folder As StorageFolder, name As String) As Task(Of T)
-            If Not File.Exists(Path.Combine(folder.Path, GetFileName(name))) Then
+            If Not IO.File.Exists(Path.Combine(folder.Path, GetFileName(name))) Then
                 Return Nothing
             End If
 
