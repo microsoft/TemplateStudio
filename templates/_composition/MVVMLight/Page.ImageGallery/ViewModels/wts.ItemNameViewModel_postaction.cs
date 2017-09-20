@@ -1,0 +1,27 @@
+﻿//{[{
+using GalaSoft.MvvmLight.Command;
+//}]}
+using Param_ItemNamespace.Services;
+namespace Param_ItemNamespace.ViewModels
+{
+    public class wts.ItemNameViewModel : ViewModelBase
+    {
+        //{[{
+        public NavigationServiceEx NavigationService
+        {
+            get
+            {
+                return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
+            }
+        }
+        //}]}
+
+        //^^
+        //{[{
+        private void OnsItemSelected(ItemClickEventArgs args)
+        {
+            NavigationService.Navigate(typeof(wts.ItemNameDetailViewModel).FullName, args.ClickedItem);
+        }
+        //}]}
+    }
+}
