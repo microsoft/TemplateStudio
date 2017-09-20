@@ -4,6 +4,7 @@
 
 using System.IO;
 using System.Text;
+using System;
 
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Packaging;
@@ -20,19 +21,25 @@ namespace Microsoft.Templates.Core.Test.Locations
 
         protected override string AcquireMstx()
         {
-            var tempFolder = Path.Combine(GetTempFolder(), SourceFolderName);
-
-            Copy($@"..\..\TestData\{SourceFolderName}", tempFolder);
-
-            File.WriteAllText(Path.Combine(tempFolder, "version.txt"), _localVersion, Encoding.UTF8);
-
-            return TemplatePackage.Pack(tempFolder);
+            // Hack and return the tempfolder directly to skip zipping and unzipping
+            return $@"..\..\TestData\{SourceFolderName}";
         }
 
-        private static void Copy(string sourceFolder, string targetFolder)
+        public override void Extract(string source, string targetFolder)
         {
-            Fs.SafeDeleteDirectory(targetFolder);
-            Fs.CopyRecursive(sourceFolder, targetFolder);
+            SetLocalContent(source, targetFolder, new Version(_localVersion));
+        }
+
+        private void SetLocalContent(string sourcePath, string finalTargetFolder, Version version)
+        {
+            Version ver = version;
+
+            string finalDestination = PrepareFinalDestination(finalTargetFolder, ver);
+
+            if (!Directory.Exists(finalDestination))
+            {
+                Fs.CopyRecursive(sourcePath, finalDestination);
+            }
         }
     }
 }

@@ -10,34 +10,8 @@ using Microsoft.Templates.Core.Packaging;
 
 namespace Microsoft.Templates.Test
 {
-    public sealed class BuildMVVMLightTestTemplatesSource : TemplatesSource
+    public sealed class BuildMVVMLightTestTemplatesSource : LocalTemplatesSource
     {
-        public string LocalTemplatesVersion { get; private set; }
-
-        protected override bool VerifyPackageSignatures => false;
-
-        public override bool ForcedAcquisition => true;
-
-        public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
-
         public override string Id => "TestBuildMVVMLight";
-
-        protected override string AcquireMstx()
-        {
-            // Compress Content adding version return TemplatePackage path.
-            var tempFolder = Path.Combine(GetTempFolder(), SourceFolderName);
-
-            Copy(Origin, tempFolder);
-
-            File.WriteAllText(Path.Combine(tempFolder, "version.txt"), LocalTemplatesVersion, Encoding.UTF8);
-
-            return TemplatePackage.Pack(tempFolder);
-        }
-
-        private void Copy(string sourceFolder, string targetFolder)
-        {
-            Fs.SafeDeleteDirectory(targetFolder);
-            Fs.CopyRecursive(sourceFolder, targetFolder);
-        }
     }
 }

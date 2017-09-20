@@ -10,34 +10,8 @@ using Microsoft.Templates.Core.Packaging;
 
 namespace Microsoft.Templates.Test
 {
-    public sealed class GenTestTemplatesSource : TemplatesSource
+    public sealed class GenTestTemplatesSource : LocalTemplatesSource
     {
-        private string _localVersion = "0.0.0.0";
-
-        protected override bool VerifyPackageSignatures => false;
-
-        public override bool ForcedAcquisition => true;
-
-        public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
-
         public override string Id => "TestGen";
-
-        protected override string AcquireMstx()
-        {
-            // Compress Content adding version return TemplatePackage path.
-            var tempFolder = Path.Combine(GetTempFolder(), SourceFolderName);
-
-            Copy(Origin, tempFolder);
-
-            File.WriteAllText(Path.Combine(tempFolder, "version.txt"), _localVersion, Encoding.UTF8);
-
-            return TemplatePackage.Pack(tempFolder);
-        }
-
-        private void Copy(string sourceFolder, string targetFolder)
-        {
-            Fs.SafeDeleteDirectory(targetFolder);
-            Fs.CopyRecursive(sourceFolder, targetFolder);
-        }
     }
 }
