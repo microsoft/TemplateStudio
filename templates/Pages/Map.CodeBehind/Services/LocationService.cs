@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
+using Param_ItemNamespace.Helpers;
 
 namespace Param_ItemNamespace.Services
 {
@@ -84,7 +85,7 @@ namespace Param_ItemNamespace.Services
         {
             if (geolocator == null)
             {
-                throw new InvalidOperationException("The StartListening method cannot be called before the InitializeAsync method.");
+                throw new InvalidOperationException("ExceptionLocationServiceStartListeningCanNotBeCalled".GetLocalized());
             }
 
             geolocator.PositionChanged += Geolocator_PositionChanged;
