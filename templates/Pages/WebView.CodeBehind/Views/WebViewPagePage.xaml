@@ -4,8 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:rs3="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
-    xmlns:rs2="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"
+    xmlns:Win10FCU ="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
+    xmlns:Win10CU ="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"
     mc:Ignorable="d">
     <Page.Resources>
         <Style x:Key="BrowserButtonStyle" TargetType="Button">
@@ -96,7 +96,7 @@
             <HyperlinkButton Click="OnRetry" x:Uid="WebViewPage_Retry" HorizontalAlignment="Center" />
         </StackPanel>
 
-        <Grid rs3:VerticalAlignment="Bottom" rs2:Grid.Row="1" rs2:Background="{ThemeResource SystemControlBackgroundBaseLowBrush}" rs3:Background="{ThemeResource SystemControlChromeHighAcrylicElementMediumBrush }">
+        <Grid Win10FCU:VerticalAlignment="Bottom" Win10CU:Grid.Row="1" Win10CU:Background="{ThemeResource SystemControlBackgroundBaseLowBrush}" Win10FCU:Background="{ThemeResource SystemControlChromeHighAcrylicElementMediumBrush }">
             <StackPanel Orientation="Horizontal">
                 <Button IsEnabled="{x:Bind IsBackEnabled, Mode=OneWay}" Style="{StaticResource BrowserButtonStyle}" Click="OnGoBack" x:Uid="WebViewPage_BrowserBackButton">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72B;" />

@@ -4,8 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:rs3="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
-    xmlns:rs2="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"
+    xmlns:Win10FCU ="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
+    xmlns:Win10CU="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"
 
     mc:Ignorable="d"
     d:DesignHeight="300"
@@ -17,9 +17,9 @@
 
         <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your detail content.-->
         <Grid Grid.Row="1">
-            <!--             <rs3:ParallaxView VerticalAlignment="Stretch" Source="{x:Bind ForegroundElement}" VerticalShift="100" >
-                    <rs3:Image Opacity=".1" x:Name="BackgroundImage" Source="/Assets/crtest.jpg" Stretch="UniformToFill"/>
-                </rs3:ParallaxView> -->
+            <!--             <Win10FCU:ParallaxView VerticalAlignment="Stretch" Source="{x:Bind ForegroundElement}" VerticalShift="100" >
+                    <Win10FCU:Image Opacity=".1" x:Name="BackgroundImage" Source="/Assets/crtest.jpg" Stretch="UniformToFill"/>
+                </Win10FCU:ParallaxView> -->
 
                 <ScrollViewer Name="ForegroundElement" VerticalScrollMode="Enabled" HorizontalAlignment="Stretch" Padding="24,48,0,0" >
                 <StackPanel HorizontalAlignment="Left">
