@@ -2,5 +2,5 @@
     "author": "Microsoft Community Contribution",
     "name": "Chart",
     "description": "A page displaying a simple chart, powered by Telerik UI controls for UWP.",
-    "identity": "wts.Page.Chart.CodeBehind"
+    "identity": "wts.Page.Chart.CodeBehind.VB"
 }

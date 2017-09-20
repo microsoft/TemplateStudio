@@ -4,20 +4,20 @@
     "Universal"
   ],
   "name": "Chart",
-  "groupIdentity": "wts.Page.Chart",
-  "identity": "wts.Page.Chart",
+  "groupIdentity": "wts.Page.Chart.VB",
+  "identity": "wts.Page.Chart.VB",
   "description": "A page displaying a simple chart, powered by Telerik UI controls for UWP.",
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "page",
-    "wts.framework": "MVVMBasic|MVVMLight",
-    "wts.version": "1.0.0",
-    "wts.order": "7",
-    "wts.licenses": "[Telerik.UI-For-UWP](https://github.com/telerik/UI-For-UWP/blob/master/LICENSE.md)",
-    "wts.dependencies": "wts.Feat.SampleDataService",
-    "wts.genGroup": "0",
-    "wts.rightClickEnabled":"true" 
+    "wts.type.VB": "page",
+    "wts.framework.VB": "MVVMBasic|MVVMLight",
+    "wts.version.VB": "1.0.0",
+    "wts.order.VB": "7",
+    "wts.licenses.VB": "[Telerik.UI-For-UWP](https://github.com/telerik/UI-For-UWP/blob/master/LICENSE.md)",
+    "wts.dependencies.VB": "wts.Feat.SampleDataService.VB",
+    "wts.genGroup.VB": "0",
+    "wts.rightClickEnabled.VB":"true" 
   },
   "sourceName": "ChartView",
   "preferNameDirectory": true,
@@ -33,11 +33,11 @@
     }
   ],
   "symbols": {
-    "wts.rootNamespace": {
+    "wts.rootNamespace.VB": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.itemNamespace": {
+    "wts.itemNamespace.VB": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
     },

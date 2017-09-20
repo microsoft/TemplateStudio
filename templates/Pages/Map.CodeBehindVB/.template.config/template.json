@@ -2,19 +2,19 @@
   "author": "Microsoft",
   "classifications": ["Universal"],
   "name": "Map",
-  "groupIdentity": "wts.Page.Map",
-  "identity": "wts.Page.Map.CodeBehind",
+  "groupIdentity": "wts.Page.Map.VB",
+  "identity": "wts.Page.Map.CodeBehind.VB",
   "description": "The map page is based around the Map Control. Code includes adding a Map Icon and setting your location.",
   "tags":
   {
     "language": "C#",
     "type": "item",
-    "wts.type": "page",
-    "wts.framework": "CodeBehind",
-    "wts.version": "1.0.0",
-    "wts.order": "9",
-    "wts.genGroup": "0",
-    "wts.rightClickEnabled":"true" 
+    "wts.type.VB": "page",
+    "wts.framework.VB": "CodeBehind",
+    "wts.version.VB": "1.0.0",
+    "wts.order.VB": "9",
+    "wts.genGroup.VB": "0",
+    "wts.rightClickEnabled.VB":"true" 
   },
   "sourceName": "MapPage",
   "preferNameDirectory": true,
@@ -26,11 +26,11 @@
     { "path": ".\\Services\\LocationService.cs" }
   ],
   "symbols": {
-    "wts.rootNamespace": {
+    "wts.rootNamespace.VB": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.itemNamespace": {
+    "wts.itemNamespace.VB": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
     },

@@ -2,21 +2,21 @@
   "author": "Microsoft Community Contribution",
   "classifications": [ "Universal" ],
   "name": "First Run Prompt",
-  "groupIdentity": "wts.Feat.FirstRunPrompt",
-  "identity": "wts.Feat.FirstRunPrompt",
+  "groupIdentity": "wts.Feat.FirstRunPrompt.VB",
+  "identity": "wts.Feat.FirstRunPrompt.VB",
   "description": "Display a prompt when the app is used for the first time.",
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "feature",
-    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
-    "wts.version": "1.0.0",
-    "wts.order": "5",
-    "wts.group": "UserInteraction",
-    "wts.dependencies":"wts.Feat.SettingsStorage",
-    "wts.multipleInstance": "false",
-    "wts.defaultInstance": "FirstRunPrompt",    
-    "wts.rightClickEnabled":"true"
+    "wts.type.VB": "feature",
+    "wts.framework.VB": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.version.VB": "1.0.0",
+    "wts.order.VB": "5",
+    "wts.group.VB": "UserInteraction",
+    "wts.dependencies.VB":"wts.Feat.SettingsStorage.VB",
+    "wts.multipleInstance.VB": "false",
+    "wts.defaultInstance.VB": "FirstRunPrompt",    
+    "wts.rightClickEnabled.VB":"true"
   },
   "sourceName": "FirstRunPromptFeature",
   "preferNameDirectory": true,
@@ -32,11 +32,11 @@
     },
   ],
   "symbols": {
-    "wts.rootNamespace": {
+    "wts.rootNamespace.VB": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.itemNamespace": {
+    "wts.itemNamespace.VB": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
     }

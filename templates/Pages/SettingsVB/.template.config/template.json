@@ -4,20 +4,20 @@
     "Universal"
   ],
   "name": "Settings",
-  "groupIdentity": "wts.Page.Settings",
-  "identity": "wts.Page.Settings",
+  "groupIdentity": "wts.Page.Settings.VB",
+  "identity": "wts.Page.Settings.VB",
   "description": "The settings page is the page where we recommend putting the configuration settings for your app.",
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "page",
-    "wts.framework": "MVVMBasic",
-    "wts.version": "1.0.0",
-    "wts.order": "2",
-    "wts.dependencies":"wts.Feat.SettingsStorage",
-    "wts.multipleInstance": "false",
-    "wts.genGroup": "1",
-    "wts.rightClickEnabled":"true" 
+    "wts.type.VB": "page",
+    "wts.framework.VB": "MVVMBasic",
+    "wts.version.VB": "1.0.0",
+    "wts.order.VB": "2",
+    "wts.dependencies.VB":"wts.Feat.SettingsStorage.VB",
+    "wts.multipleInstance.VB": "false",
+    "wts.genGroup.VB": "1",
+    "wts.rightClickEnabled.VB":"true" 
   },
   "sourceName": "SettingsPage",
   "preferNameDirectory": true,
@@ -39,11 +39,11 @@
     }
   ],
   "symbols": {
-    "wts.rootNamespace": {
+    "wts.rootNamespace.VB": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.itemNamespace": {
+    "wts.itemNamespace.VB": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
     },

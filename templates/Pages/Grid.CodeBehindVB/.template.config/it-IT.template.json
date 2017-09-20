@@ -2,5 +2,5 @@
     "author": "Microsoft Community Contribution",
     "name": "Grid",
     "description": "A page displaying a simple grid, powered by Telerik UI controls for UWP.",
-    "identity": "wts.Page.Grid.CodeBehind"
+    "identity": "wts.Page.Grid.CodeBehind.VB"
 }

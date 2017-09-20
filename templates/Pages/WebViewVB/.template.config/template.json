@@ -4,18 +4,18 @@
     "Universal"
   ],
   "name": "Web View",
-  "groupIdentity": "wts.Page.WebView",
-  "identity": "wts.Page.WebView",
+  "groupIdentity": "wts.Page.WebView.VB",
+  "identity": "wts.Page.WebView.VB",
   "description": "The web view page embeds a view into your app that renders web content using the Microsoft Edge rendering engine.",
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "page",
-    "wts.framework": "MVVMBasic|MVVMLight",
-    "wts.version": "2.0.0",
-    "wts.order": "3",
-    "wts.rightClickEnabled":"true",
-    "wts.genGroup": "0"
+    "wts.type.VB": "page",
+    "wts.framework.VB": "MVVMBasic|MVVMLight",
+    "wts.version.VB": "2.0.0",
+    "wts.order.VB": "3",
+    "wts.rightClickEnabled.VB":"true",
+    "wts.genGroup.VB": "0"
   },
   "sourceName": "WebViewPage",
   "preferNameDirectory": true,
@@ -31,11 +31,11 @@
     }
   ],
   "symbols": {
-    "wts.rootNamespace": {
+    "wts.rootNamespace.VB": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.itemNamespace": {
+    "wts.itemNamespace.VB": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
     },

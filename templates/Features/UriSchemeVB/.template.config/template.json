@@ -4,20 +4,20 @@
     "Universal"
   ],
   "name": "Uri Scheme",
-  "groupIdentity": "wts.Feat.UriScheme",
-  "identity": "wts.Feat.UriScheme",
+  "groupIdentity": "wts.Feat.UriScheme.VB",
+  "identity": "wts.Feat.UriScheme.VB",
   "description": "Add the ability to launch and deep link into the app with a custom URI scheme.",
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "feature",
-    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
-    "wts.version": "1.0.0",
-    "wts.order": "7",
-    "wts.group": "UserInteraction",
-    "wts.defaultInstance": "UriScheme",
-    "wts.multipleInstance": "false",
-    "wts.genGroup": "0"
+    "wts.type.VB": "feature",
+    "wts.framework.VB": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.version.VB": "1.0.0",
+    "wts.order.VB": "7",
+    "wts.group.VB": "UserInteraction",
+    "wts.defaultInstance.VB": "UriScheme",
+    "wts.multipleInstance.VB": "false",
+    "wts.genGroup.VB": "0"
   },
   "sourceName": "UriSchemeExample",
   "preferNameDirectory": true,
@@ -30,15 +30,15 @@
     },
   ],
   "symbols": {
-    "wts.rootNamespace": {
+    "wts.rootNamespace.VB": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.itemNamespace": {
+    "wts.itemNamespace.VB": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
     },
-    "wts.homePageName": {
+    "wts.homePageName.VB": {
       "type":"parameter",
       "replaces":"Param_HomeName"
     }

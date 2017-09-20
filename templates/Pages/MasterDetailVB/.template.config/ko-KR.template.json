@@ -2,5 +2,5 @@
     "author": "Microsoft",
     "name": "Master/Detail",
     "description": "The master-detail page has a master pane and a details pane for content.",
-    "identity": "wts.Page.MasterDetail"
+    "identity": "wts.Page.MasterDetail.VB"
 }

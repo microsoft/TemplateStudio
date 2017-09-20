@@ -2,21 +2,21 @@
   "author": "Microsoft Community Contribution",
   "classifications": [ "Universal" ],
   "name": "What's New Prompt",
-  "groupIdentity": "wts.Feat.WhatsNewPrompt",
-  "identity": "wts.Feat.WhatsNewPrompt",
+  "groupIdentity": "wts.Feat.WhatsNewPrompt.VB",
+  "identity": "wts.Feat.WhatsNewPrompt.VB",
   "description": "Display a prompt when the app is first used after an update.",
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "feature",
-    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
-    "wts.version": "1.0.0",
-    "wts.order": "6",
-    "wts.group": "UserInteraction",
-    "wts.dependencies":"wts.Feat.SettingsStorage",
-    "wts.multipleInstance": "false",
-    "wts.defaultInstance": "WhatsNewPrompt",    
-    "wts.rightClickEnabled":"true"
+    "wts.type.VB": "feature",
+    "wts.framework.VB": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.version.VB": "1.0.0",
+    "wts.order.VB": "6",
+    "wts.group.VB": "UserInteraction",
+    "wts.dependencies.VB":"wts.Feat.SettingsStorage.VB",
+    "wts.multipleInstance.VB": "false",
+    "wts.defaultInstance.VB": "WhatsNewPrompt",    
+    "wts.rightClickEnabled.VB":"true"
   },
   "sourceName": "WhatsNewPromptFeature",
   "preferNameDirectory": true,
@@ -32,11 +32,11 @@
     }
   ],
   "symbols": {
-    "wts.rootNamespace": {
+    "wts.rootNamespace.VB": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.itemNamespace": {
+    "wts.itemNamespace.VB": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
     }
