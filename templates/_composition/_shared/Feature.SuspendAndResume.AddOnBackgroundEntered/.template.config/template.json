@@ -1,15 +1,15 @@
 ﻿{
-  "author": "Nigel Sampson",
+  "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
-  "name": "CaliburnMicro.Page.Settings.AddShellThemeSupport_SplitView",
-   "tags": {
+  "name": "Feature.SuspendAndResume.AddOnBackgroundEntered", 
+  "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CaliburnMicro & identity == wts.Page.Settings.CaliburnMicro & $projectType == SplitView"
+    "wts.compositionFilter": "$framework == CodeBehind|MVVMBasic|MVVMLight & identity == wts.Feat.SuspendAndResume"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

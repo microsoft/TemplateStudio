@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Test
     public sealed class BuildCaliburnMicroFixture : BaseGenAndBuildFixture, IDisposable
     {
         private string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
-        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\CaliburnMicro\\{testExecutionTimeStamp}\\";
+        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\CM\\{testExecutionTimeStamp}\\";
 
         public TemplatesSource Source => new BuildCaliburnMicroTestTemplatesSource();
 

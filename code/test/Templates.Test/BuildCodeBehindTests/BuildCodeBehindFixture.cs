@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Test
     public sealed class BuildCodeBehindFixture : BaseGenAndBuildFixture, IDisposable
     {
         private string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
-        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\CodeBehind\\{testExecutionTimeStamp}\\";
+        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\CB\\{testExecutionTimeStamp}\\";
 
         public TemplatesSource Source => new BuildCodeBehindTestTemplatesSource();
 
