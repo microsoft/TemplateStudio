@@ -13,15 +13,15 @@
     <value>Choose Theme</value>
     <comment>Choose theme text for SettingsPage</comment>
   </data>
-  <data name="Settings_Theme_Dark.Content" xml:space="preserve">
+  <data name="SettingsPage_Theme_Dark.Content" xml:space="preserve">
     <value>Dark</value>
     <comment>Dark theme text for SettingsPage</comment>
   </data>
-  <data name="Settings_Theme_Default.Content" xml:space="preserve">
+  <data name="SettingsPage_Theme_Default.Content" xml:space="preserve">
     <value>Windows default</value>
     <comment>Windows default theme text for SettingsPage</comment>
   </data>
-  <data name="Settings_Theme_Light.Content" xml:space="preserve">
+  <data name="SettingsPage_Theme_Light.Content" xml:space="preserve">
     <value>Light</value>
     <comment>Light theme text for SettingsPage</comment>
   </data>
@@ -44,6 +44,14 @@
   <data name="SettingsPage_Personalization.Text" xml:space="preserve">   
     <value>Personalization</value>
     <comment>Personalization text for SettingsPage</comment>
+  </data>
+  <data name="ExceptionEnumToBooleanConverterValueMustBeAnEnum" xml:space="preserve">   
+    <value>value must be an Enum!</value>
+    <comment>Value must be an Enum in enum to boolean converter</comment>
+  </data>
+  <data name="ExceptionEnumToBooleanConverterParameterMustBeAnEnumName" xml:space="preserve">   
+    <value>parameter must be an Enum name!</value>
+    <comment>Parameter must be an Enum name in enum to boolean converter</comment>
   </data>
   NavigateUri
   <!--}]}-->

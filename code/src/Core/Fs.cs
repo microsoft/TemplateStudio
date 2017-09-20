@@ -105,7 +105,7 @@ namespace Microsoft.Templates.Core
             }
         }
 
-        public static void SafeDeleteDirectory(string dir)
+        public static void SafeDeleteDirectory(string dir, bool warnOnFailure = true)
         {
             try
             {
@@ -116,7 +116,10 @@ namespace Microsoft.Templates.Core
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Warning.TrackAsync(string.Format(StringRes.FsSafeDeleteDirectoryMessage, dir, ex.Message), ex).FireAndForget();
+                if (warnOnFailure)
+                {
+                    AppHealth.Current.Warning.TrackAsync(string.Format(StringRes.FsSafeDeleteDirectoryMessage, dir, ex.Message), ex).FireAndForget();
+                }
             }
         }
     }

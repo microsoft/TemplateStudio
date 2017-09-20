@@ -120,23 +120,48 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuildProjectsTests.cs" />
-    <Compile Include="GenProjectsTests.cs" />
+    <Compile Include="BuildCodeBehindTests\BuildCodeBehindCollection.cs" />
+    <Compile Include="BuildMVVMBasic\BuildMVVMBasicCollection.cs" />
+    <Compile Include="BuildMVVMBasic\BuildMVVMBasicFixture.cs" />
+    <Compile Include="BuildMVVMBasic\BuildMVVMBasicProjectsTests.cs" />
+    <Compile Include="BuildMVVMBasic\BuildMVVMBasicTestsTemplateSource.cs" />
+    <Compile Include="BuildMVVMLightTests\BuildMVVMLightCollection.cs" />
+    <Compile Include="BuildMVVMLightTests\BuildMVVMLightFixture.cs" />
+    <Compile Include="BuildMVVMLightTests\BuildMVVMLightProjectsTests.cs" />
+    <Compile Include="BuildMVVMLightTests\BuildMVVMLightTestsTemplateSource.cs" />
+    <Compile Include="BuildCodeBehindTests\BuildCodeBehindProjectsTests.cs" />
+    <Compile Include="BuildCodeBehindTests\BuildCodeBehindFixture.cs" />
+    <Compile Include="BuildFixture.cs" />
+    <Compile Include="BuildTestsTemplateSource.cs" />
+    <Compile Include="GenTests\GenerationCollection.cs" />
+    <Compile Include="GenTests\GenTestsTemplateSource.cs" />
+    <Compile Include="BuildCodeBehindTests\BuildCodeBehindTestsTemplateSource.cs" />
+    <Compile Include="GenTests\GenProjectsTests.cs" />
     <Compile Include="FileEncodingTests.cs" />
     <Compile Include="BaseTestContextProvider.cs" />
     <Compile Include="CodeStyleEnforcementTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="BaseGenAndBuildTests.cs" />
+    <Compile Include="BaseGenAndBuildFixture.cs" />
     <Compile Include="StyleCopCollection.cs" />
     <Compile Include="StyleCopGenerationTestsFixture.cs" />
     <Compile Include="StyleCopProjectGenerationTests.cs" />
-    <Compile Include="GenerationCollection.cs" />
-    <Compile Include="GenerationFixture.cs" />
+    <Compile Include="BuildCollection.cs" />
+    <Compile Include="GenTests\GenerationFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StyleCopPlusLocalTemplatesSource.cs" />
     <AdditionalFiles Include="..\..\StyleCop.json">
       <Link>StyleCop.json</Link>
     </AdditionalFiles>
+    <Compile Include="TemplateFolderValidationTests.cs" />
+    <Compile Include="TemplateJsonValidationTests.cs" />
+    <Compile Include="WindowsAppCertKitTests.cs" />
+    <None Include="RunWackTest.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="RestoreAndBuildAppx.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="TestData\StyleCop\GlobalSuppressions.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -164,6 +189,10 @@
       <Project>{dcfd282d-d91c-49b5-8dbf-d943bafef5aa}</Project>
       <Name>UI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\tools\TemplateValidator\TemplateValidator.csproj">
+      <Project>{365acd5e-0ffe-45a5-80b3-c0873b6bdb08}</Project>
+      <Name>TemplateValidator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fakes\Fakes.csproj">
       <Project>{fb3c81ad-823e-409c-bf6d-27534b84a8af}</Project>
       <Name>Fakes</Name>
@@ -181,6 +210,32 @@
     <None Include="TestData\StyleCop\_searchreplace.csproj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestData\NonDefaultAssets\LockScreenLogo.scale-200.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\NonDefaultAssets\Logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\NonDefaultAssets\SplashScreen.scale-200.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\NonDefaultAssets\Square150x150Logo.scale-200.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\NonDefaultAssets\Square44x44Logo.scale-200.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\NonDefaultAssets\Square44x44Logo.targetsize-24_altform-unplated.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\NonDefaultAssets\StoreLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\NonDefaultAssets\Wide310x150Logo.scale-200.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

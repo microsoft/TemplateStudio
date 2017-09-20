@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Test
 {
     public class BaseGenAndBuildTests : BaseTestContextProvider
     {
-        protected GenerationFixture _fixture;
+        protected BaseGenAndBuildFixture _fixture;
 
         private async Task SetUpFixtureForTestingAsync(string language)
         {
@@ -33,17 +33,18 @@ namespace Microsoft.Templates.Test
         {
             await SetUpFixtureForTestingAsync(language);
 
-            var targetProjectTemplate = GenerationFixture.Templates.FirstOrDefault(projectTemplateSelector);
+            var targetProjectTemplate = _fixture.Templates().FirstOrDefault(projectTemplateSelector);
 
             ProjectName = projectName;
+
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
             OutputPath = ProjectPath;
 
-            var userSelection = await GenerationFixture.SetupProjectAsync(projectType, framework, language);
+            var userSelection = _fixture.SetupProject(projectType, framework, language, getName);
 
             if (getName != null)
             {
-                GenerationFixture.AddItems(userSelection, GenerationFixture.GetTemplates(framework), getName);
+                _fixture.AddItems(userSelection, _fixture.GetTemplates(framework), getName);
             }
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
@@ -66,16 +67,16 @@ namespace Microsoft.Templates.Test
         protected void AssertBuildProjectAsync(string projectPath, string projectName)
         {
             // Build solution
-            var result = GenerationFixture.BuildSolution(projectName, projectPath);
+            var result = _fixture.BuildSolution(projectName, projectPath);
 
             // Assert
-            Assert.True(result.exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {GenerationFixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
+            Assert.True(result.exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
             // Clean
             Fs.SafeDeleteDirectory(projectPath);
         }
 
-        protected async Task<string> AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string language, bool cleanGeneration = true)
+        protected async Task<string> AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string language, bool emptyProject, bool cleanGeneration = true)
         {
             await SetUpFixtureForTestingAsync(language);
 
@@ -83,20 +84,25 @@ namespace Microsoft.Templates.Test
             ProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName, projectName);
             OutputPath = ProjectPath;
 
-            var userSelection = await GenerationFixture.SetupProjectAsync(projectType, framework, language);
+            var userSelection = _fixture.SetupProject(projectType, framework, language);
+
+            if (!emptyProject)
+            {
+                _fixture.AddItems(userSelection, _fixture.GetTemplates(framework), GenerationFixture.GetDefaultName);
+            }
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
-            var emptyProject = Path.Combine(_fixture.TestNewItemPath, projectName);
+            var project = Path.Combine(_fixture.TestNewItemPath, projectName);
 
             // Assert on project
-            Assert.True(Directory.Exists(emptyProject));
+            Assert.True(Directory.Exists(project));
 
-            int emptyProjecFileCount = Directory.GetFiles(emptyProject, "*.*", SearchOption.AllDirectories).Count();
+            int emptyProjecFileCount = Directory.GetFiles(project, "*.*", SearchOption.AllDirectories).Count();
             Assert.True(emptyProjecFileCount > 2);
 
             // Add new items
-            var rightClickTemplates = GenerationFixture.Templates.Where(
+            var rightClickTemplates = _fixture.Templates().Where(
                                             t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
                                               && t.GetFrameworkList().Contains(framework)
                                               && !t.GetIsHidden()
@@ -115,7 +121,7 @@ namespace Microsoft.Templates.Test
                     ItemGenerationType = ItemGenerationType.GenerateAndMerge
                 };
 
-                GenerationFixture.AddItem(newUserSelection, item, GenerationFixture.GetDefaultName);
+                _fixture.AddItem(newUserSelection, item, GenerationFixture.GetDefaultName);
 
                 await NewItemGenController.Instance.UnsafeGenerateNewItemAsync(item.GetTemplateType(), newUserSelection);
 
@@ -125,8 +131,14 @@ namespace Microsoft.Templates.Test
             var finalProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName);
             int finalProjectFileCount = Directory.GetFiles(finalProjectPath, "*.*", SearchOption.AllDirectories).Count();
 
-            Assert.True(finalProjectFileCount > emptyProjecFileCount);
-
+            if (emptyProject)
+            {
+                Assert.True(finalProjectFileCount > emptyProjecFileCount);
+            }
+            else
+            {
+                Assert.True(finalProjectFileCount == emptyProjecFileCount);
+            }
             // Clean
             if (cleanGeneration)
             {
@@ -139,8 +151,8 @@ namespace Microsoft.Templates.Test
         {
             await SetUpFixtureForTestingAsync(language);
 
-            var projectTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
-            var itemTemplate = GenerationFixture.Templates.FirstOrDefault(t => t.Identity == itemId);
+            var projectTemplate = _fixture.Templates().FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
+            var itemTemplate = _fixture.Templates().FirstOrDefault(t => t.Identity == itemId);
             var finalName = itemTemplate.GetDefaultName();
             var validators = new List<Validator>
             {
@@ -159,9 +171,9 @@ namespace Microsoft.Templates.Test
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
             OutputPath = ProjectPath;
 
-            var userSelection = await GenerationFixture.SetupProjectAsync(projectType, framework, language);
+            var userSelection = _fixture.SetupProject(projectType, framework, language);
 
-            GenerationFixture.AddItem(userSelection, itemTemplate, GenerationFixture.GetDefaultName);
+            _fixture.AddItem(userSelection, itemTemplate, GenerationFixture.GetDefaultName);
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
@@ -180,7 +192,7 @@ namespace Microsoft.Templates.Test
             return (resultPath, projectName);
         }
 
-        public static IEnumerable<object[]> GetProjectTemplatesAsync()
+        public static IEnumerable<object[]> GetProjectTemplatesForGenerationAsync()
         {
             JoinableTaskContext context = new JoinableTaskContext();
             JoinableTaskCollection tasks = context.CreateCollection();
@@ -190,12 +202,64 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        public static IEnumerable<object[]> GetPageAndFeatureTemplatesAsync(string framework)
+        public static IEnumerable<object[]> GetPageAndFeatureTemplatesForGenerationAsync(string framework)
         {
             JoinableTaskContext context = new JoinableTaskContext();
             JoinableTaskCollection tasks = context.CreateCollection();
             context.CreateFactory(tasks);
             var result = context.Factory.Run(() => GenerationFixture.GetPageAndFeatureTemplatesAsync(framework));
+            return result;
+        }
+
+        public static IEnumerable<object[]> GetProjectTemplatesForBuildAsync(string framework)
+        {
+            JoinableTaskContext context = new JoinableTaskContext();
+            JoinableTaskCollection tasks = context.CreateCollection();
+            context.CreateFactory(tasks);
+            IEnumerable<object[]> result = new List<object[]>();
+
+            switch (framework)
+            {
+                case "CodeBehind":
+                    result = context.Factory.Run(() => BuildCodeBehindFixture.GetProjectTemplatesAsync(framework));
+                    break;
+
+                case "MVVMBasic":
+                    result = context.Factory.Run(() => BuildMVVMBasicFixture.GetProjectTemplatesAsync(framework));
+                    break;
+
+                case "MVVMLight":
+                    result = context.Factory.Run(() => BuildMVVMLightFixture.GetProjectTemplatesAsync(framework));
+                    break;
+                default:
+                    result = context.Factory.Run(() => BuildFixture.GetProjectTemplatesAsync());
+                    break;
+            }
+
+            return result;
+        }
+
+        public static IEnumerable<object[]> GetPageAndFeatureTemplatesForBuildAsync(string framework)
+        {
+            JoinableTaskContext context = new JoinableTaskContext();
+            JoinableTaskCollection tasks = context.CreateCollection();
+            context.CreateFactory(tasks);
+            IEnumerable<object[]> result = new List<object[]>();
+
+            switch (framework)
+            {
+                case "CodeBehind":
+                    result = context.Factory.Run(() => BuildCodeBehindFixture.GetPageAndFeatureTemplatesAsync(framework));
+                    break;
+
+                case "MVVMBasic":
+                    result = context.Factory.Run(() => BuildMVVMBasicFixture.GetPageAndFeatureTemplatesAsync(framework));
+                    break;
+
+                case "MVVMLight":
+                    result = context.Factory.Run(() => BuildMVVMLightFixture.GetPageAndFeatureTemplatesAsync(framework));
+                    break;
+            }
             return result;
         }
     }

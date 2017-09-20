@@ -115,7 +115,7 @@ namespace Microsoft.Templates.Core.Packaging
 
             EnsureDirectory(outDir);
 
-            using (Package package = Package.Open(inFilePack, FileMode.Open, FileAccess.Read))
+            using (Package package = Package.Open(inFilePack, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 bool isSignatureValid = false;
 

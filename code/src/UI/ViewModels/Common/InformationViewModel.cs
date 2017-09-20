@@ -223,10 +223,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             ComposeHelpText();
         }
 
-        public void UnsuscribeEventHandlers()
-        {
-        }
-
         private void OnOk()
         {
             _infoWindow.DialogResult = false;

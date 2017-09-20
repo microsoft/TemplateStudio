@@ -421,6 +421,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dependency template {0} not found on user selection.
+        /// </summary>
+        public static string ExceptionDependencyMissing {
+            get {
+                return ResourceManager.GetString("ExceptionDependencyMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid dependency item {0}. Dependencies have to be configured as multpleInstance = false..
         /// </summary>
         public static string ExceptionDependencyMultipleInstance {
@@ -727,20 +736,29 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select features.
+        /// </summary>
+        public static string ProjectFeaturesTitle {
+            get {
+                return ResourceManager.GetString("ProjectFeaturesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select pages.
+        /// </summary>
+        public static string ProjectPagesTitle {
+            get {
+                return ResourceManager.GetString("ProjectPagesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select project type and framework.
         /// </summary>
         public static string ProjectSetupTitle {
             get {
                 return ResourceManager.GetString("ProjectSetupTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select pages and features.
-        /// </summary>
-        public static string ProjectTemplatesTitle {
-            get {
-                return ResourceManager.GetString("ProjectTemplatesTitle", resourceCulture);
             }
         }
         

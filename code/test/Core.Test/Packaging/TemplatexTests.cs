@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net.Mime;
 using System.Security;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Locations;
 
@@ -259,6 +260,25 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
         [Fact]
+        public async Task ExtractConcurrentReadAsync()
+        {
+            var inFile = @"Packaging\MsSigned\Templates.mstx";
+            var outDir1 = @"C:\Temp\OutFolder\Concurrent1";
+            var outDir2 = @"C:\Temp\OutFolder\Concurrent2";
+
+            Task t1 = new Task(() => TemplatePackage.Extract(inFile, outDir1));
+            Task t2 = new Task(() => TemplatePackage.Extract(inFile, outDir2));
+
+            t1.Start();
+            t2.Start();
+
+            await Task.WhenAll(t1, t2);
+
+            Directory.Delete(outDir1, true);
+            Directory.Delete(outDir2, true);
+        }
+
+        [Fact]
         public void ExtractFileTampered()
         {
             var certPass = GetTestCertPassword();
@@ -351,6 +371,7 @@ namespace Microsoft.Templates.Core.Test.Locations
                 }
             }
         }
+
         private void ModifyContent(string signedPack, string contentFile)
         {
             using (ZipArchive zip = ZipFile.Open(signedPack, ZipArchiveMode.Update))
