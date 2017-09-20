@@ -162,7 +162,10 @@ namespace Param_ItemNamespace.Views
 
         private async void MediaCapture_Failed(MediaCapture sender, MediaCaptureFailedEventArgs errorEventArgs)
         {
-            await CleanupAsync();
+            Task.Run(async () => await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                await CleanupAsync();
+            }));
         }
 
         private async Task CleanupCameraAsync()
