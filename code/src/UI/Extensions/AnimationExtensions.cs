@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Threading.Tasks;
@@ -87,7 +79,10 @@ namespace Microsoft.Templates.UI.Extensions
         public static Task AnimateDoublePropertyAsync(this DependencyObject target, string property, double from, double to, double duration = 250, EasingFunctionBase easingFunction = null)
         {
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+            // TODO: Ensure this is properly callled in the async world. if so, remove the in-line suppresion and move it to the suppresion file.
+#pragma warning disable VSTHRD103 // Llame a métodos asincrónicos cuando esté en un método asincrónico
             Storyboard storyboard = AnimateDoubleProperty(target, property, from, to, duration, easingFunction);
+#pragma warning restore VSTHRD103 // Llame a métodos asincrónicos cuando esté en un método asincrónico
             storyboard.Completed += (sender, e) =>
             {
                 tcs.SetResult(true);

@@ -1,4 +1,4 @@
-{
+﻿{
   "author": "Microsoft",
   "classifications": [
     "Universal"
@@ -9,7 +9,7 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight & $projectType == TabbedPivot & identity == wts.Page.Settings"
+    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight & $projectType == TabbedPivot & identity == wts.Page.Settings|wts.Page.Settings.MVVMLight"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

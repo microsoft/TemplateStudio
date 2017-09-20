@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Windows.UI.Xaml.Controls;
 using System.Collections.ObjectModel;
 using Param_ItemNamespace.Models;
@@ -16,7 +16,7 @@ namespace Param_ItemNamespace.Views
             InitializeComponent();
         }
 
-        public ObservableCollection<Order> Source
+        public ObservableCollection<SampleOrder> Source
         {
             get
             {

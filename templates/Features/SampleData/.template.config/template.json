@@ -1,4 +1,4 @@
-{
+﻿{
   "author": "Microsoft Community Contribution",
   "classifications": ["Universal"],
   "name": "Sample Data",
@@ -11,7 +11,7 @@
     "wts.type": "feature",
     "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
     "wts.version": "1.0.0",
-    "wts.order": "1",
+    "wts.displayOrder": "1",
     "wts.defaultInstance": "SampleDataService",
     "wts.multipleInstance": "false",
     "wts.isHidden": "true",
@@ -20,13 +20,12 @@
   },
   "sourceName": "SampleDataServiceFeature",
   "preferNameDirectory": true,
-  "guids": [ "5b9d2eee-b648-4ca1-837e-9abb8f3dffdd" ],
   "PrimaryOutputs": [
     {
       "path": ".\\Services\\SampleDataService.cs"
     },
     {
-      "path": ".\\Models\\Order.cs"
+      "path": ".\\Models\\SampleOrder.cs"
     }
   ],
   "symbols": {

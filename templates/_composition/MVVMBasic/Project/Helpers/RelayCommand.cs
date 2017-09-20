@@ -18,8 +18,8 @@ namespace Param_RootNamespace.Helpers
 
         public RelayCommand(Action execute, Func<bool> canExecute)
         {
-            this._execute = execute ?? throw new ArgumentNullException("execute");
-            this._canExecute = canExecute;
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+            _canExecute = canExecute;
         }
 
         public bool CanExecute(object parameter) => _canExecute == null || _canExecute();
@@ -44,8 +44,8 @@ namespace Param_RootNamespace.Helpers
 
         public RelayCommand(Action<T> execute, Func<T, bool> canExecute)
         {
-            this._execute = execute ?? throw new ArgumentNullException("execute");
-            this._canExecute = canExecute;
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+            _canExecute = canExecute;
         }
 
         public bool CanExecute(object parameter) => _canExecute == null || _canExecute((T)parameter);

@@ -33,7 +33,7 @@
                             <ColumnDefinition Width="5"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Ellipse Grid.Column="0" Fill="{Binding CircleColor, FallbackValue=Red}" Stroke="White" Width="10" Height="10" StrokeThickness="1"/>
+                        <Ellipse Grid.Column="0" Fill="{Binding CircleColor, FallbackValue=Red}" Stroke="White" Width="10" Height="10" StrokeThickness="1" Margin="{StaticResource Margin_M_Left}"/>
                         <Image 
                             Grid.Column="2" 
                             Source="{Binding Icon}"
@@ -61,7 +61,7 @@
             </DataTemplate>
 
             <DataTemplate x:Key="CodeFileTemplate">
-                <controls:CodeViewer Item="{Binding}" Focusable="False"/>
+                <controls:CodeViewer Item="{Binding}" Focusable="False" CodeFontSize="{Binding CodeFontSize}" />
             </DataTemplate>
 
             <DataTemplate x:Key="CodeConflictingFileTemplate">
@@ -70,10 +70,7 @@
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Grid>
-                        <Grid.Background>
-                            <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.1"/>
-                        </Grid.Background>
+                    <Grid Style="{StaticResource ChangesSummaryFileHeader}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -81,7 +78,7 @@
                         <TextBlock Text="{x:Static res:StringRes.ChangesSummaryConflictExistingFile}" Margin="40,0,0,0" VerticalAlignment="Center"/>
                         <TextBlock Grid.Column="1" Text="{x:Static res:StringRes.ChangesSummaryConflictGeneratedFile}" Margin="30,0,0,0" VerticalAlignment="Center"/>
                     </Grid>
-                    <controls:CodeViewer Grid.Row="1" Item="{Binding}" />
+                    <controls:CodeViewer Grid.Row="1" Item="{Binding}" CodeFontSize="{Binding CodeFontSize}" />
                 </Grid>
             </DataTemplate>
 
@@ -116,19 +113,14 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid>
-        <Grid Visibility="{Binding ChangesSummary.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse, FallbackValue=Collapsed}">
+    <Grid Style="{StaticResource MainGrid}">
+        <Grid Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse, FallbackValue=Collapsed}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid Grid.RowSpan="2" Background="{StaticResource UILightGray}" Width="17" HorizontalAlignment="Right"/>
-                <ScrollViewer>
+                <ScrollViewer Padding="0,0,0,55">
                     <StackPanel>
                         <ItemsControl ItemsSource="{Binding ChangesSummary.FileGroups}" Focusable="False">
                             <ItemsControl.ItemTemplate>
@@ -140,6 +132,7 @@
                                         IsExpanded="True"
                                         BorderThickness="0"
                                         Focusable="False"
+                                        Style="{StaticResource ChangesSummaryFilesExpander}"
                                         Visibility="{Binding HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
                                         <ListView
                                             Focusable="False"
@@ -167,54 +160,40 @@
                         </Expander>
                     </StackPanel>
                 </ScrollViewer>
-                <TextBlock Grid.Row="1" Margin="10,10,27,10" Style="{StaticResource TextSummaryTermsStyle}" Text="{x:Static res:StringRes.SummaryTerms}" />
-                </Grid>
-            <Grid Grid.Column="1" Background="{StaticResource UIWhite}">
+                <TextBlock  VerticalAlignment="Bottom" Margin="10,10,20,10" Style="{StaticResource TextSummaryTermsStyle}" Text="{x:Static res:StringRes.SummaryTerms}" />
+            </Grid>
+            <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <StackPanel Margin="15,11,15,0">
-                    <Grid>
+                <StackPanel>
+                    <Grid Margin="15,11,15,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Foreground="{Binding ChangesSummary.SelectedFile.CircleColor}" Text="{Binding ChangesSummary.SelectedFile.DetailTitle}" Style="{StaticResource TextSummaryTitle}" />
-
-                        <Button 
-                            Grid.Column="1" VerticalAlignment="Bottom"
-                            Style="{StaticResource SettingsButtonStyle}" 
-                            Command="{Binding ChangesSummary.MoreDetailsCommand}" Focusable="True" 
-                            ToolTip="{x:Static res:StringRes.LearnMore}">
-                            <Button.Content>
-                                <TextBlock Text="&#xE946;" FontSize="18" Style="{StaticResource IconButtonTextStyle}"/>
-                            </Button.Content>
-                            <Button.FocusVisualStyle>
-                                <Style>
-                                    <Setter Property="Control.Template">
-                                        <Setter.Value>
-                                            <ControlTemplate>
-                                                <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                                    <Ellipse.Fill>
-                                                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.2"/>
-                                                    </Ellipse.Fill>
-                                                </Ellipse>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </Button.FocusVisualStyle>
-                        </Button>
+                        <controls:InformationButton Grid.Column="1" Command="{Binding ChangesSummary.MoreDetailsCommand}" VerticalAlignment="Bottom"/>
                     </Grid>
-                    <TextBlock Margin="0,7,0,0" Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="15,7,15,15" Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="{StaticResource Margin_XS_All}">
+                            <!--
+                            Zoom buttons
+                            <Button Style="{StaticResource MinusZoomButtonStyle}" Command="{Binding ChangesSummary.UpdateFontSizeCommand}" CommandParameter="-2" ToolTip="{x:Static res:StringRes.ZoomOutButtonTooltip}"/>
+                            <Button Margin="{StaticResource Margin_XS_Left}" Style="{StaticResource MoreZoomButtonStyle}" Command="{Binding ChangesSummary.UpdateFontSizeCommand}" CommandParameter="2" ToolTip="{x:Static res:StringRes.ZoomInButtonTooltip}"/>
+                            -->
+                        </StackPanel>
+                    </Grid>
                 </StackPanel>
-                <Grid Grid.Row="1" Margin="{StaticResource Margin_L_Top}" Height="30">
-                    <Grid.Background>
-                        <SolidColorBrush Color="{StaticResource UIBlueColor}" Opacity="0.3"/>
-                    </Grid.Background>
+                <Grid Grid.Row="1" Height="30" Style="{StaticResource ChangesSummaryFileHeader}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="30"/>
                         <ColumnDefinition Width="*"/>
@@ -225,6 +204,6 @@
                 <ContentPresenter Grid.Row="2" Content="{Binding ChangesSummary.SelectedFile}" ContentTemplateSelector="{StaticResource DetailTemplateSelector}" Focusable="False"/>
             </Grid>
         </Grid>
-        <controls:LogoDisplay Visibility="{Binding ChangesSummary.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Visible}" IsBusy="{Binding ChangesSummary.IsLoading}" Width="150" Fill="{StaticResource UILightGray}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <controls:LogoDisplay Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Visible}" IsBusy="{Binding WizardStatus.IsLoading}" Style="{StaticResource LoadingLogoDisplay}" />
     </Grid>
 </Page>

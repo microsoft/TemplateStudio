@@ -1,4 +1,4 @@
-<!--{**-->
+﻿<!--{**-->
 <!--This xml block adds a reference to Microsoft.Services.Store.SDK, Microsoft.Services.Store.Engagement and Microsoft.VCLibs to your project.-->
 <!--**}-->
 
@@ -11,6 +11,6 @@
   <Name>Microsoft Engagement Framework</Name>
 </SDKReference>
 <SDKReference Include="Microsoft.VCLibs, Version=14.0">
-    <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
+  <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
 </SDKReference>
 <!--}]}-->

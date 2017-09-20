@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,7 +32,7 @@ namespace Param_ItemNamespace.Services
         {
             if (!BackgroundTaskRegistration.AllTasks.Any(t => t.Value.Name == typeof(T).Name))
             {
-                // This condition should not be met, if so it means the background task was not registered correctly.
+                // This condition should not be met. If it is it means the background task was not registered correctly.
                 // Please check CreateInstances to see if the background task was properly added to the BackgroundTasks property.
                 return null;
             }
@@ -46,7 +46,7 @@ namespace Param_ItemNamespace.Services
 
             if (task == null)
             {
-                // This condition should not be met, if so it means the background task to start was not found in the background tasks managed by this service.
+                // This condition should not be met. It is it it means the background task to start was not found in the background tasks managed by this service.
                 // Please check CreateInstances to see if the background task was properly added to the BackgroundTasks property.
                 return;
             }

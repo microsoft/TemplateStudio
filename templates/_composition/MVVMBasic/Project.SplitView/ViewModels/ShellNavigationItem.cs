@@ -9,36 +9,27 @@ namespace wts.ItemName.ViewModels
 {
     public class ShellNavigationItem : Observable
     {
-        private bool _isSelected;
+        public string Label { get; set; }
+
+        public Symbol Symbol { get; set; }
+
+        public Type PageType { get; set; }
 
         private Visibility _selectedVis = Visibility.Collapsed;
 
         public Visibility SelectedVis
         {
             get { return _selectedVis; }
+
             set { Set(ref _selectedVis, value); }
         }
-
-        private SolidColorBrush _selectedForeground = null;
-
-        public SolidColorBrush SelectedForeground
-        {
-            get { return _selectedForeground ?? (_selectedForeground = GetStandardTextColorBrush()); }
-            set { Set(ref _selectedForeground, value); }
-        }
-
-        public string Label { get; set; }
-
-        public Symbol Symbol { get; set; }
 
         public char SymbolAsChar
         {
             get { return (char)Symbol; }
         }
 
-        public Type PageType { get; set; }
-
-        private IconElement _iconElement = null;
+        private readonly IconElement _iconElement = null;
 
         public IconElement Icon
         {
@@ -49,7 +40,7 @@ namespace wts.ItemName.ViewModels
                     Source = this,
                     Path = new PropertyPath("SelectedForeground"),
                     Mode = BindingMode.OneWay,
-                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
                 };
 
                 if (_iconElement != null)
@@ -61,11 +52,13 @@ namespace wts.ItemName.ViewModels
 
                 var fontIcon = new FontIcon { FontSize = 16, Glyph = SymbolAsChar.ToString() };
 
-                BindingOperations.SetBinding(fontIcon, FontIcon.ForegroundProperty, foregroundBinding);
+                BindingOperations.SetBinding(fontIcon, IconElement.ForegroundProperty, foregroundBinding);
 
                 return fontIcon;
             }
         }
+
+        private bool _isSelected;
 
         public bool IsSelected
         {
@@ -77,44 +70,64 @@ namespace wts.ItemName.ViewModels
             set
             {
                 Set(ref _isSelected, value);
+
                 SelectedVis = value ? Visibility.Visible : Visibility.Collapsed;
-                SelectedForeground = value
+
+                SelectedForeground = IsSelected
                     ? Application.Current.Resources["SystemControlForegroundAccentBrush"] as SolidColorBrush
                     : GetStandardTextColorBrush();
             }
         }
 
+        private SolidColorBrush _selectedForeground = null;
+
+        public SolidColorBrush SelectedForeground
+        {
+            get { return _selectedForeground ?? (_selectedForeground = GetStandardTextColorBrush()); }
+
+            set { Set(ref _selectedForeground, value); }
+        }
+
+        public ShellNavigationItem(string label, Symbol symbol, Type pageType)
+            : this(label, pageType)
+        {
+            Symbol = symbol;
+        }
+
+        public ShellNavigationItem(string label, IconElement icon, Type pageType)
+            : this(label, pageType)
+        {
+            _iconElement = icon;
+        }
+
+        public ShellNavigationItem(string label, Type pageType)
+        {
+            Label = label;
+            PageType = pageType;
+        }
+
+        public static ShellNavigationItem FromType<T>(string label, Symbol symbol)
+            where T : Page
+        {
+            return new ShellNavigationItem(label, symbol, typeof(T));
+        }
+
+        public static ShellNavigationItem FromType<T>(string label, IconElement icon)
+            where T : Page
+        {
+            return new ShellNavigationItem(label, icon, typeof(T));
+        }
+
         private SolidColorBrush GetStandardTextColorBrush()
         {
-            var brush = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
+            var brush = Application.Current.Resources["ThemeControlForegroundBaseHighBrush"] as SolidColorBrush;
 
             return brush;
         }
 
-        private ShellNavigationItem(string name, Symbol symbol, Type pageType)
+        public override string ToString()
         {
-            this.Label = name;
-            this.Symbol = symbol;
-            this.PageType = pageType;
-        }
-
-        private ShellNavigationItem(string name, IconElement icon, Type pageType)
-        {
-            this.Label = name;
-            this._iconElement = icon;
-            this.PageType = pageType;
-        }
-
-        public static ShellNavigationItem FromType<T>(string name, Symbol symbol)
-            where T : Page
-        {
-            return new ShellNavigationItem(name, symbol, typeof(T));
-        }
-
-        public static ShellNavigationItem FromType<T>(string name, IconElement icon)
-            where T : Page
-        {
-            return new ShellNavigationItem(name, icon, typeof(T));
+            return Label;
         }
     }
 }

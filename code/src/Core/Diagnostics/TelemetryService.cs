@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
@@ -51,7 +43,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         private TelemetryService(Configuration config)
         {
-            _currentConfig = config ?? throw new ArgumentNullException("config");
+            _currentConfig = config ?? throw new ArgumentNullException(nameof(config));
 
             IntializeTelemetryClient();
         }
@@ -168,7 +160,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                     vsCulture = VsTelem.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.Locale.ProductLocaleName");
                     vsManifestId = VsTelem.TelemetryService.DefaultSession?.GetSharedProperty("VS.Core.ManifestId");
 
-                    return isOptedIn;
+                    result = isOptedIn;
                 }
                 else
                 {
@@ -314,14 +306,33 @@ namespace Microsoft.Templates.Core.Diagnostics
 
             VsTelem.TelemetryService.DefaultSession.PostEvent(e);
         }
+
         private async Task SafeExecuteAsync(Action action)
         {
             try
             {
-                var task = Task.Run(() =>
+                var task = Task.Run(action);
+
+                await task;
+            }
+            catch (AggregateException aggEx)
+            {
+                foreach (var ex in aggEx.InnerExceptions)
                 {
-                    action();
-                });
+                    Trace.TraceError($"Error tracking telemetry: {ex}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError($"Error tracking telemetry: {ex}");
+            }
+        }
+
+        private async Task SafeExecuteAsync(Func<Task> action)
+        {
+            try
+            {
+                var task = Task.Run(action);
 
                 await task;
             }
@@ -329,12 +340,12 @@ namespace Microsoft.Templates.Core.Diagnostics
             {
                 foreach (Exception ex in aggEx.InnerExceptions)
                 {
-                    Trace.TraceError("Error tracking telemetry: {0}", ex.ToString());
+                    Trace.TraceError($"Error tracking telemetry: {ex}");
                 }
             }
             catch (Exception ex)
             {
-                Trace.TraceError("Error tracking telemetry: {0}", ex.ToString());
+                Trace.TraceError($"Error tracking telemetry: {ex}");
             }
         }
 

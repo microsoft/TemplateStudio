@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Configuration;
@@ -41,9 +33,9 @@ namespace Microsoft.Templates.Core.Test.Config
             {
                 serializer.Serialize(writer, new Configuration());
             }
-            
+
             Assert.True(File.Exists(filePath));
-        }        
+        }
 
         [Fact]
         public void NewInstanceDefaultConfiguration()
@@ -54,13 +46,13 @@ namespace Microsoft.Templates.Core.Test.Config
             Assert.Equal(TraceEventType.Verbose, configInstance.DiagnosticsTraceLevel);
             Assert.Equal("https://wtsrepository.blob.core.windows.net/dev/Latest", configInstance.CdnUrl);
             Assert.Equal("https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/", configInstance.GitHubDocsUrl);
-
         }
 
         [Fact]
         public void InstanceFileDoesNotExists()
         {
-            Exception ex = Assert.Throws<FileNotFoundException>(() => {
+            Exception ex = Assert.Throws<FileNotFoundException>(() =>
+            {
                 var configInstance = Configuration.LoadFromFile("FileNotExists.txt");
             });
 
@@ -70,7 +62,8 @@ namespace Microsoft.Templates.Core.Test.Config
         [Fact]
         public void InstanceFileExistsWrongContent()
         {
-            Exception ex = Assert.Throws<ConfigurationErrorsException>(() => {
+            Exception ex = Assert.Throws<ConfigurationErrorsException>(() =>
+            {
                 var configInstance = Configuration.LoadFromFile(@"Config\Error.config.no.valid.json");
             });
 
@@ -81,10 +74,10 @@ namespace Microsoft.Templates.Core.Test.Config
         public void InstanceFileExists()
         {
             var configInstance = Configuration.LoadFromFile(@"Config\Ok.config.valid.json");
-           
+
             Assert.NotNull(configInstance);
 
-            //Especific configuration must be loaded
+            // Especific configuration must be loaded
             Assert.Equal(TraceEventType.Information, configInstance.DiagnosticsTraceLevel);
             Assert.Equal("myCdnUrldata", configInstance.CdnUrl);
             Assert.Equal("myRemoteTelemetryKey", configInstance.RemoteTelemetryKey);
@@ -101,7 +94,7 @@ namespace Microsoft.Templates.Core.Test.Config
 
             Assert.NotNull(configInstance);
 
-            //Especific configuration must be loaded
+            // Especific configuration must be loaded
             Assert.Equal(configDefault.DiagnosticsTraceLevel, configInstance.DiagnosticsTraceLevel);
             Assert.Equal(configDefault.CdnUrl, configInstance.CdnUrl);
             Assert.NotEqual(configDefault.RemoteTelemetryKey, configInstance.RemoteTelemetryKey);
@@ -113,7 +106,7 @@ namespace Microsoft.Templates.Core.Test.Config
         [Fact]
         public void CurrentConfigForTests()
         {
-            //The App.Config must especify the "JsonConfigFile" appsetting.
+            // The App.Config must especify the "JsonConfigFile" appsetting.
             var config = Configuration.Current;
 
             Assert.NotNull(config);

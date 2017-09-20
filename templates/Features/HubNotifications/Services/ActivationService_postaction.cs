@@ -1,4 +1,4 @@
-//{**
+﻿//{**
 // These code blocks include the HubNotificationsFeatureService Instance in the method `GetActivationHandlers()`
 // in the ActivationService of your project and add documentation about how to use the HubNotificationsFeatureService.
 //**}
@@ -18,8 +18,8 @@ namespace Param_ItemNamespace.Services
 
             // TODO WTS: To use the HubNotificationService specific data related with your Azure Notification Hubs is required.
             //  1. Go to the HubNotificationsFeatureService class, in the InitializeAsync() method, provide the Hub Name and DefaultListenSharedAccessSignature.
-            //  2. Uncomment the following line (an exception is thrown if it is executed before the previous information is provided).
-            // Singleton<HubNotificationsFeatureService>.Instance.InitializeAsync();
+            //  2. Uncomment the following line (an exception will be thrown if it is executed and the above information is not provided).
+            // await Singleton<HubNotificationsFeatureService>.Instance.InitializeAsync();
 //}]}
         }
 

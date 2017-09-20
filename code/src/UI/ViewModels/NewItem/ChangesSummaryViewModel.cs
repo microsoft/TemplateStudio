@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
@@ -59,22 +51,18 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             set => SetProperty(ref _hasChangesToApply, value);
         }
 
-        private bool _isLoading = true;
-        public bool IsLoading
-        {
-            get => _isLoading;
-            set => SetProperty(ref _isLoading, value);
-        }
-
         public ICommand MoreDetailsCommand { get; }
+        public ICommand UpdateFontSizeCommand { get; }
 
         public ChangesSummaryViewModel()
         {
             MoreDetailsCommand = new RelayCommand(OnMoreDetails);
+            UpdateFontSizeCommand = new RelayCommand<string>(OnUpdateFontSize);
         }
 
         public async Task InitializeAsync()
         {
+            MainViewModel.Current.WizardStatus.IsLoading = true;
             MainViewModel.Current.MainView.Result = MainViewModel.Current.CreateUserSelection();
             NewItemGenController.Instance.CleanupTempGeneration();
             await NewItemGenController.Instance.GenerateNewItemAsync(MainViewModel.Current.ConfigTemplateType, MainViewModel.Current.MainView.Result);
@@ -105,12 +93,27 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 group.SelectedItem = group.Templates.First();
             }
             MainViewModel.Current.UpdateCanFinish(true);
-            IsLoading = false;
+            MainViewModel.Current.WizardStatus.IsLoading = false;
         }
 
-        private void OnMoreDetails()
+        public void ResetSelection()
         {
-            Process.Start($"{Configuration.Current.GitHubDocsUrl}newitem.md");
+            FileGroups.Clear();
+            Licenses.Clear();
+            HasLicenses = false;
+            SelectedFile = null;
+        }
+
+        private void OnMoreDetails() => Process.Start($"{Configuration.Current.GitHubDocsUrl}newitem.md");
+        private void OnUpdateFontSize(string points)
+        {
+            foreach (var group in FileGroups)
+            {
+                foreach (var template in group.Templates)
+                {
+                    template.CodeFontSize += double.Parse(points);
+                }
+            }
         }
 
         private void OnItemChanged(ItemsGroupViewModel<BaseFileViewModel> group)
@@ -123,14 +126,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 }
             }
             SelectedFile = group.SelectedItem;
-        }
-
-        public void ResetSelection()
-        {
-            FileGroups.Clear();
-            Licenses.Clear();
-            HasLicenses = false;
-            SelectedFile = null;
         }
     }
 }

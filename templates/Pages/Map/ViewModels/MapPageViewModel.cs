@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.Devices.Geolocation;
@@ -51,7 +51,7 @@ namespace Param_ItemNamespace.ViewModels
         {
             if (locationService != null)
             {
-                locationService.PositionChanged += LocationServicePositionChanged;
+                locationService.PositionChanged += LocationService_PositionChanged;
 
                 var initializationSuccessful = await locationService.InitializeAsync();
 
@@ -79,7 +79,7 @@ namespace Param_ItemNamespace.ViewModels
             }
         }
 
-        private void LocationServicePositionChanged(object sender, Geoposition geoposition)
+        private void LocationService_PositionChanged(object sender, Geoposition geoposition)
         {
             if (geoposition != null)
             {

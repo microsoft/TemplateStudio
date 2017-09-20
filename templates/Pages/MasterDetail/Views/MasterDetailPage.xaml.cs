@@ -1,3 +1,4 @@
+﻿using System;
 using Param_ItemNamespace.Services;
 using Param_ItemNamespace.ViewModels;
 using Param_ItemNamespace.Models;
@@ -20,7 +21,7 @@ namespace Param_ItemNamespace.Views
          private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
 
-            var item = e?.ClickedItem as Order;
+            var item = e?.ClickedItem as SampleOrder;
             if (item != null)
             {
             	if (WindowStates.CurrentState.Name != "NarrowState")

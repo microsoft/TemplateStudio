@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Windows;
@@ -63,7 +55,7 @@ namespace Microsoft.Templates.UI.Services
 
                 var listViewItem = _listView.GetListViewItem(_indexToSelect);
                 var bounds = VisualTreeHelper.GetDescendantBounds(listViewItem);
-                var ptInItem = this._listView.TranslatePoint(_mouseDownPosition, listViewItem);
+                var ptInItem = _listView.TranslatePoint(_mouseDownPosition, listViewItem);
 
                 int distanceScale = 3;
 
@@ -74,7 +66,7 @@ namespace Microsoft.Templates.UI.Services
                 double height = Math.Min(SystemParameters.MinimumVerticalDragDistance, vertOffset) * distanceScale;
                 Size szThreshold = new Size(width, height);
 
-                Rect rect = new Rect(this._mouseDownPosition, szThreshold);
+                Rect rect = new Rect(_mouseDownPosition, szThreshold);
                 rect.Offset(szThreshold.Width / -2, szThreshold.Height / -2);
 
                 Point ptInListView = MouseUtilities.GetMousePosition(_listView);

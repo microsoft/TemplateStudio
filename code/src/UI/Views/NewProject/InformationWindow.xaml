@@ -10,8 +10,11 @@
         ResizeMode="NoResize"
         ShowInTaskbar="False"
         ShowActivated="True"
-        WindowState="Normal" Title="{Binding ElementName=TextTitle, Path=Text, StringFormat='{}{0} information'}"
-        WindowStyle="None" WindowStartupLocation="CenterOwner">
+        WindowState="Normal"
+        WindowStyle="None"
+        WindowStartupLocation="CenterOwner"
+        AutomationProperties.Name="{Binding Name}"
+        AutomationProperties.HelpText="{Binding HelpText}">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -49,7 +52,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Style="{StaticResource GridTitleStyle}">
-            <TextBlock x:Name="TextTitle" Style="{StaticResource TextTitleStyle}" Margin="{StaticResource Margin_XL_LeftRight_M_TopBottom}">
+            <TextBlock Style="{StaticResource TextTitleStyle}" Margin="{StaticResource Margin_XL_LeftRight_M_TopBottom}">
                 <TextBlock.Text>
                     <MultiBinding StringFormat="{}{0} ({1})">
                         <Binding Path="Name" />
@@ -69,23 +72,23 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalVersion}" Style="{StaticResource TextInformationPropertyTitle}" Focusable="True"/>
-                    <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Text="{Binding Version}" Style="{StaticResource TextInformationPropertyValue}" Focusable="True"/>
+                    <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalVersion}" Style="{StaticResource TextInformationPropertyTitle}" />
+                    <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Text="{Binding Version}" Style="{StaticResource TextInformationPropertyValue}" />
                 </Grid>
                 <Grid Margin="{StaticResource Margin_M_Top}" Visibility="{Binding Author, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalAuthor}" Style="{StaticResource TextInformationPropertyTitle}"  Focusable="True"/>
-                    <TextBlock Grid.Column="1" Text="{Binding Author}" Margin="{StaticResource Margin_M_Left}" Style="{StaticResource TextInformationPropertyValue}"  Focusable="True"/>
+                    <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalAuthor}" Style="{StaticResource TextInformationPropertyTitle}" />
+                    <TextBlock Grid.Column="1" Text="{Binding Author}" Margin="{StaticResource Margin_M_Left}" Style="{StaticResource TextInformationPropertyValue}" />
                 </Grid>
                 <Grid Margin="{StaticResource Margin_M_Top}" Visibility="{Binding LicensesVisibility, FallbackValue=Collapsed}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalLicenses}" Style="{StaticResource TextInformationPropertyTitle}" VerticalAlignment="Bottom"  Focusable="True"/>
+                    <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalLicenses}" Style="{StaticResource TextInformationPropertyTitle}" VerticalAlignment="Bottom"  />
                     <ItemsControl Grid.Column="1" ItemsSource="{Binding LicenseTerms}" Margin="10,3,0,0" ItemTemplate="{StaticResource LicenseInfoModalItemTemplate}" Focusable="False"/>
                 </Grid>
                 <Grid Margin="{StaticResource Margin_M_Top}" Visibility="{Binding DependenciesVisibility, FallbackValue=Collapsed}">
@@ -93,7 +96,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalDependencies}" Style="{StaticResource TextInformationPropertyTitle}" VerticalAlignment="Bottom"  Focusable="True"/>
+                    <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalDependencies}" Style="{StaticResource TextInformationPropertyTitle}" VerticalAlignment="Bottom" />
                     <ItemsControl Grid.Column="1" ItemsSource="{Binding DependencyItems}" Margin="10,3,0,0" ItemTemplate="{StaticResource DependencyInfoModalTemplate}" Focusable="False"/>
                 </Grid>
             </StackPanel>

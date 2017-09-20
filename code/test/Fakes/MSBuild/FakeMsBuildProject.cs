@@ -1,16 +1,9 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,7 +11,6 @@ using System.Xml.Linq;
 
 namespace Microsoft.Templates.Fakes
 {
-
     public class FakeMsBuildProject
     {
         private const string MsBuildNs = "http://schemas.microsoft.com/developer/msbuild/2003";
@@ -121,32 +113,45 @@ namespace Microsoft.Templates.Fakes
 
         private VsItemType GetItemType(string fileName)
         {
-            string ext = Path.GetExtension(fileName).ToLower();
-            if (ext == ".cs")
-            {
-                if (fileName.ToLower().Contains(".xaml.cs"))
-                {
-                    return VsItemType.CompiledWithDependant;
-                }
-                else
-                {
-                    return VsItemType.Compiled;
-                }
-            }
-            else if (ext == ".xaml")
-            {
-                return VsItemType.XamlPage;
-            }
-            else if (ext == ".resw")
-            {
-                return VsItemType.Resource;
-            }
-            else
-            {
-                return VsItemType.Content;
-            }
-        }
+            VsItemType returnType = VsItemType.Content;
 
+            switch (Path.GetExtension(fileName).ToLower())
+            {
+                case ".cs":
+                    if (fileName.EndsWith(".xaml.cs", true, CultureInfo.InvariantCulture))
+                    {
+                        returnType = VsItemType.CompiledWithDependant;
+                    }
+                    else
+                    {
+                        returnType = VsItemType.Compiled;
+                    }
+                    break;
+                case ".vb":
+                    if (fileName.EndsWith(".xaml.vb", true, CultureInfo.InvariantCulture))
+                    {
+                        returnType = VsItemType.CompiledWithDependant;
+                    }
+                    else
+                    {
+                        returnType = VsItemType.Compiled;
+                    }
+                    break;
+                case ".xaml":
+                    returnType = VsItemType.XamlPage;
+                    break;
+                case ".resw":
+                    returnType = VsItemType.Resource;
+                    break;
+                case ".pfx":
+                    returnType = VsItemType.None;
+                    break;
+                default:
+                    returnType = VsItemType.Content;
+                    break;
+            }
+
+            return returnType;
+        }
     }
 }
-

@@ -1,25 +1,22 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.Test
@@ -30,29 +27,32 @@ namespace Microsoft.Templates.Test
         private const string Configuration = "Debug";
         private List<string> _usedNames = new List<string>();
 
-        internal string TestRunPath = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\SC{DateTime.Now.ToString("dd_HHmm")}\\";
+        internal string TestRunPath = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\SC{DateTime.Now.FormatAsDateHoursMinutes()}\\";
 
         internal string TestProjectsPath => Path.GetFullPath(Path.Combine(TestRunPath, "Proj"));
 
-        private static readonly Lazy<TemplatesRepository> _repos = new Lazy<TemplatesRepository>(() => CreateNewRepos(), true);
+        public static IEnumerable<ITemplateInfo> Templates;
 
-        public static IEnumerable<ITemplateInfo> Templates => _repos.Value.GetAll();
-
-        private static TemplatesRepository CreateNewRepos()
+        private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source)
         {
-            var source = new StyleCopPlusLocalTemplatesSource();
-
-            CodeGen.Initialize(source.Id, "0.0");
-
-            var repos = new TemplatesRepository(source, Version.Parse("0.0.0.0"));
-
-            repos.SynchronizeAsync().Wait();
-
-            return repos;
+            GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
+            if (Templates == null)
+            {
+                await GenContext.ToolBox.Repo.SynchronizeAsync();
+            }
+            else
+            {
+                await GenContext.ToolBox.Repo.RefreshAsync();
+            }
+            Templates = GenContext.ToolBox.Repo.GetAll();
         }
 
-        public StyleCopGenerationTestsFixture()
+        public async Task InitializeFixtureAsync(IContextProvider contextProvider)
         {
+            var source = new StyleCopPlusLocalTemplatesSource();
+            GenContext.Current = contextProvider;
+
+            await InitializeTemplatesForLanguageAsync(source);
         }
 
         public void Dispose()
@@ -65,6 +65,32 @@ namespace Microsoft.Templates.Test
                     Directory.Delete(TestRunPath, true);
                 }
             }
+        }
+
+        public static async Task<IEnumerable<object[]>> GetProjectTemplatesForStyleCopAsync()
+        {
+            List<object[]> result = new List<object[]>();
+            await InitializeTemplatesForLanguageAsync(new StyleCopPlusLocalTemplatesSource());
+
+            var projectTemplates =
+                StyleCopGenerationTestsFixture.Templates.Where(
+                    t => t.GetTemplateType() == TemplateType.Project && t.Name != "Feature.Testing.StyleCop");
+
+            foreach (var projectTemplate in projectTemplates)
+            {
+                var projectTypeList = projectTemplate.GetProjectTypeList();
+
+                foreach (var projectType in projectTypeList)
+                {
+                    var frameworks = GenComposer.GetSupportedFx(projectType);
+
+                    foreach (var framework in frameworks)
+                    {
+                        result.Add(new object[] { projectType, framework });
+                    }
+                }
+            }
+            return result;
         }
 
         public void AddItems(UserSelection userSelection, IEnumerable<ITemplateInfo> templates, Func<ITemplateInfo, string> getName)
@@ -115,11 +141,12 @@ namespace Microsoft.Templates.Test
             }
         }
 
+        [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
         public (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath)
         {
             var outputFile = Path.Combine(outputPath, $"_buildOutput_{solutionName}.txt");
 
-            //Build
+            // Build
             var solutionFile = Path.GetFullPath(outputPath + @"\" + solutionName + ".sln");
             var startInfo = new ProcessStartInfo(GetPath("RestoreAndBuild.bat"))
             {
@@ -141,11 +168,11 @@ namespace Microsoft.Templates.Test
 
         public string GetErrorLines(string filePath)
         {
-            Regex re = new Regex(@"^.*error .*$", RegexOptions.Multiline & RegexOptions.IgnoreCase);
+            var re = new Regex(@"^.*error .*$", RegexOptions.Multiline & RegexOptions.IgnoreCase);
             var outputLines = File.ReadAllLines(filePath);
             var errorLines = outputLines.Where(l => re.IsMatch(l));
 
-            return errorLines.Count() > 0 ? errorLines.Aggregate((i, j) => i + Environment.NewLine + j) : String.Empty;
+            return errorLines.Any() ? errorLines.Aggregate((i, j) => i + Environment.NewLine + j) : string.Empty;
         }
 
         public string GetDefaultName(ITemplateInfo template)

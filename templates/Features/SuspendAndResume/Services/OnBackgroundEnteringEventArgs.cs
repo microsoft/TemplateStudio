@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Param_ItemNamespace.Services
 {
@@ -9,7 +9,6 @@ namespace Param_ItemNamespace.Services
         public Type Target { get; private set; }
 
         public OnBackgroundEnteringEventArgs(SuspensionState suspensionState, Type target)
-            : base()
         {
             SuspensionState = suspensionState;
             Target = target;

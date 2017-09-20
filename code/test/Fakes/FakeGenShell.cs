@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.IO;
@@ -23,6 +15,7 @@ namespace Microsoft.Templates.Fakes
 {
     public class FakeGenShell : GenShell
     {
+        private readonly string _language;
         private readonly Action<string> _changeStatus;
         private readonly Action<string> _addLog;
         private readonly Window _owner;
@@ -39,8 +32,9 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
-        public FakeGenShell(Action<string> changeStatus = null, Action<string> addLog = null, Window owner = null)
+        public FakeGenShell(string language, Action<string> changeStatus = null, Action<string> addLog = null, Window owner = null)
         {
+            _language = language;
             _changeStatus = changeStatus;
             _addLog = addLog;
             _owner = owner;
@@ -78,7 +72,7 @@ namespace Microsoft.Templates.Fakes
             var msbuildProj = FakeMsBuildProject.Load(projectFullPath);
             var solutionFile = FakeSolution.Create(SolutionPath);
 
-            solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid);
+            solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid, projectFullPath.EndsWith(".csproj", StringComparison.InvariantCultureIgnoreCase));
         }
 
         public override string GetActiveProjectNamespace()
@@ -118,7 +112,10 @@ namespace Microsoft.Templates.Fakes
             return (GenContext.Current != null) ? GenContext.Current.ProjectPath : string.Empty;
         }
 
-        
+        public override string GetActiveProjectLanguage()
+        {
+            return _language;
+        }
 
         protected override string GetSelectedItemPath()
         {
@@ -168,12 +165,16 @@ namespace Microsoft.Templates.Fakes
 
         public override Guid GetVsProjectId()
         {
-            return Guid.Empty;
+            Guid.TryParse(GetActiveProjectGuid(), out Guid guid);
+            return guid;
         }
 
         public override void OpenItems(params string[] itemsFullPath)
         {
         }
+        public override bool IsDebuggerEnabled()
+        {
+            return false;
+        }
     }
 }
-

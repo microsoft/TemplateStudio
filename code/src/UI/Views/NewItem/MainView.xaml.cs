@@ -1,27 +1,15 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System.Windows;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.NewItem;
-using Microsoft.Templates.UI.Controls;
 
 namespace Microsoft.Templates.UI.Views.NewItem
 {
-    /// <summary>
-    /// Interaction logic for MainView.xaml
-    /// </summary>
     public partial class MainView : Window
     {
         public MainViewModel ViewModel { get; }
@@ -29,7 +17,8 @@ namespace Microsoft.Templates.UI.Views.NewItem
 
         public MainView(TemplateType templateType)
         {
-            ViewModel = new MainViewModel(this);
+            ViewModel = new MainViewModel();
+            ViewModel.SetView(this);
 
             DataContext = ViewModel;
 
@@ -50,7 +39,20 @@ namespace Microsoft.Templates.UI.Views.NewItem
         private void OnPreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var element = e.Source as FrameworkElement;
-            ViewModel.TryHideOverlayBox(element);
+            ViewModel.WizardStatus.TryHideOverlayBox(element);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!DialogResult.HasValue || !DialogResult.Value)
+            {
+                NewItemGenController.Instance.CleanupTempGeneration();
+            }
+
+            if (Result != null && Result.ItemGenerationType == ItemGenerationType.None)
+            {
+                Result = null;
+            }
         }
     }
 }

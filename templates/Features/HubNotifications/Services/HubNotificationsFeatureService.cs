@@ -1,4 +1,4 @@
-using Microsoft.WindowsAzure.Messaging;
+﻿using Microsoft.WindowsAzure.Messaging;
 using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
@@ -10,15 +10,15 @@ namespace Param_RootNamespace.Services
 {
     internal class HubNotificationsFeatureService : ActivationHandler<ToastNotificationActivatedEventArgs>
     {
-        public async void InitializeAsync()
+        public async Task InitializeAsync()
         {
             //// See more about adding push notifications to your Windows app at
             //// https://docs.microsoft.com/azure/app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push
 
-            // Use your Hub Name here
+            // Specify your Hub Name here
             var hubName = string.Empty;
 
-            // Use your DefaultListenSharedAccessSignature here
+            // Specify your DefaultListenSharedAccessSignature here
             var accessSignature = string.Empty;
 
             var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
@@ -27,7 +27,7 @@ namespace Param_RootNamespace.Services
             var result = await hub.RegisterNativeAsync(channel.Uri);
             if (result.RegistrationId != null)
             {
-                // RegistrationID let you know it was successful
+                // Registration was successful
             }
 
             // You can also send push notifications from Windows Developer Center targeting your app consumers

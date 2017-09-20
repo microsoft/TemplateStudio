@@ -1,4 +1,4 @@
-using Microsoft.Toolkit.Uwp.Notifications;
+﻿using Microsoft.Toolkit.Uwp.Notifications;
 using Windows.UI.Notifications;
 
 namespace Param_RootNamespace.Services
@@ -49,7 +49,7 @@ namespace Param_RootNamespace.Services
                 }
             };
 
-            // Create the toast
+            // Add the content to the toast
             var toast = new ToastNotification(content.GetXml())
             {
                 // TODO WTS: Gets or sets the unique identifier of this notification within the notification Group. Max length 16 characters.

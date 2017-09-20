@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System.IO;
 using System.Text;
@@ -32,6 +24,8 @@ namespace Microsoft.Templates.Fakes
                     return GetResourceXElement(includePath);
                 case VsItemType.Content:
                     return GetContentXElement(includePath);
+                case VsItemType.None:
+                    return GetNoneXElement(includePath);
                 default:
                     return null;
             }
@@ -89,6 +83,17 @@ namespace Microsoft.Templates.Fakes
         {
             var sb = new StringBuilder();
             sb.AppendLine($"<Content Include=\"{includePath}\" />");
+
+            var sr = new StringReader(sb.ToString());
+            var itemElement = XElement.Load(sr);
+
+            return itemElement;
+        }
+
+        private static XElement GetNoneXElement(string includePath)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"<None Include=\"{includePath}\" />");
 
             var sr = new StringReader(sb.ToString());
             var itemElement = XElement.Load(sr);

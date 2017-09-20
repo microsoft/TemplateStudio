@@ -1,3 +1,4 @@
+﻿using System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml;
@@ -13,16 +14,16 @@ namespace Param_ItemNamespace.Views
 {
     public sealed partial class MasterDetailPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
-        private Order _selected;
+        private SampleOrder _selected;
         private Dictionary<string, UIElement> dict = new Dictionary<string, UIElement>();
 
-        public Order Selected
+        public SampleOrder Selected
         {
             get { return _selected; }
             set { Set(ref _selected, value); }
         }
 
-        public ObservableCollection<Order> SampleItems { get; private set; } = new ObservableCollection<Order>();
+        public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
 
         public MasterDetailPage()
         {
@@ -45,8 +46,7 @@ namespace Param_ItemNamespace.Views
 
         private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            
-            var item = e?.ClickedItem as Order;
+            var item = e?.ClickedItem as SampleOrder;
             if (item != null)
             {
                 if (WindowStates.CurrentState.Name != "NarrowState")

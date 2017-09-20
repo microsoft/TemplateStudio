@@ -1,4 +1,4 @@
-Setting storage is a class to simplify storing your application data.  It handles loading, saving, serializing your data and easy access to your application's data.
+﻿Setting storage is a class to simplify storing your application data.  It handles loading, saving, serializing your data and easy access to your application's data.
 
 These are the main types of app data:
 

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Windows.Media.Core;
 using Windows.Media.Playback;
 using Windows.System.Display;

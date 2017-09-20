@@ -1,4 +1,4 @@
-using Param_RootNamespace.Activation;
+﻿using Param_RootNamespace.Activation;
 using Param_RootNamespace.Helpers;
 using System;
 using System.Linq;

@@ -1,16 +1,10 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace Microsoft.Templates.Fakes
 {
@@ -38,10 +32,12 @@ namespace Microsoft.Templates.Fakes
 		{0}.Release|x86.Deploy.0 = Release|x86
 ";
 
-        private const string ProjectTemplate = @"Project(""{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"") = ""{name}"", ""{name}\{name}.csproj"", ""{id}""
+        private const string ProjectTemplateCS = @"Project(""{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"") = ""{name}"", ""{name}\{name}.csproj"", ""{id}""
 EndProject
 ";
-
+        private const string ProjectTemplateVB = @"Project(""{7CF740F7-735F-48EA-8B7B-3FFA4902371C}"") = ""{name}"", ""{name}\{name}.vbproj"", ""{id}""
+EndProject
+";
         private readonly string _path;
 
         private FakeSolution(string path)
@@ -52,32 +48,32 @@ EndProject
         public static FakeSolution Create(string path)
         {
             var solutionTemplate = ReadTemplate();
-            File.WriteAllText(path, solutionTemplate);
+            File.WriteAllText(path, solutionTemplate, Encoding.UTF8);
 
             return new FakeSolution(path);
         }
 
-        public void AddProjectToSolution(string projectName, string projectGuid)
+        public void AddProjectToSolution(string projectName, string projectGuid, bool isCSharp)
         {
             var slnContent = File.ReadAllText(_path);
 
             if (slnContent.IndexOf(projectName) == -1)
             {
                 var globalIndex = slnContent.IndexOf("Global");
-                var projectContent = ProjectTemplate
+                var projectTemplate = isCSharp ? ProjectTemplateCS : ProjectTemplateVB;
+                var projectContent = projectTemplate
                                             .Replace("{name}", projectName)
                                             .Replace("{id}", projectGuid);
 
                 slnContent = slnContent.Insert(globalIndex, projectContent);
 
-                var GlobalSectionIndex = slnContent.IndexOf(GlobalSectionText);
+                var globalSectionIndex = slnContent.IndexOf(GlobalSectionText);
                 var projectConfigContent = string.Format(ConfigurationTemplate, projectGuid);
 
-                slnContent = slnContent.Insert(GlobalSectionIndex + GlobalSectionText.Length + 1, projectConfigContent);
-
+                slnContent = slnContent.Insert(globalSectionIndex + GlobalSectionText.Length + 1, projectConfigContent);
             }
 
-            File.WriteAllText(_path, slnContent);
+            File.WriteAllText(_path, slnContent, Encoding.UTF8);
         }
 
         private static string ReadTemplate()
