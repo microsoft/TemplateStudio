@@ -6,6 +6,7 @@ This document covers:
 
 * [Modifying the menu items](#menu)
 * [Using the navigation pane with command bars](#commandbar)
+* [Have the menu item invoke code rather than navigate](#invokecode)
 
 <a name="menu"></a>
 
@@ -147,3 +148,110 @@ Events and commands are not shown in the above code but can easily be added like
 In all the above code examples the `Label` values have been hard-coded. This is to make the samples simpler. To use localized text, set the `x:Uid` value for the `AppBarButton` and add a corresponding resource entry for "{name}.Label".
 
 The examples also only show a single `AppBarButton` being added. This is to keep the code sample as simple as possible but you can add any appropriate content to the bar, as [documented here](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/app-bars).
+
+<a name="invokecode"></a>
+
+## Have the menu item invoke code rather than navigate
+
+Extending the app to add this functionality requires making two changes.
+
+1. Change the ShellNavigationItem to be able to handle an `Action`.
+1. Change the ShellPage or ShellViewModel to invoke the action.
+
+In **ShellNavigationItem.cs** add the following
+
+```csharp
+    public Action Action { get; private set; }
+
+    private ShellNavigationItem(string label, Symbol symbol, Action action)
+        : this(label, null)
+    {
+        Symbol = symbol;
+        Action = action;
+    }
+
+    public static ShellNavigationItem ForAction(string label, Symbol symbol, Action action)
+    {
+        return new ShellNavigationItem(label, symbol, action);
+    }
+```
+
+### If using CodeBehind
+
+In **ShellPage.xaml.cs** change the `Navigate` method to be like this.
+
+```csharp
+    private void Navigate(object item)
+    {
+        var navigationItem = item as ShellNavigationItem;
+        if (navigationItem != null)
+        {
+            if (navigationItem.Action != null)
+            {
+                navigationItem.Action.Invoke();
+            }
+            else
+            {
+                NavigationService.Navigate(navigationItem.PageType);
+            }
+        }
+    }
+```
+
+### If using MVVM Basic
+
+In **ShellPageViewModel** change the `Navigate` method to be like this.
+
+```csharp
+    private void Navigate(object item)
+    {
+        var navigationItem = item as ShellNavigationItem;
+        if (navigationItem != null)
+        {
+            if (navigationItem.Action != null)
+            {
+                navigationItem.Action.Invoke();
+            }
+            else
+            {
+                NavigationService.Navigate(navigationItem.PageType);
+            }
+        }
+    }
+```
+
+### If using MVVM Light
+
+In **ShellPageViewModel** change the `Navigate` method to be like this.
+
+```csharp
+    private void Navigate(object item)
+    {
+        var navigationItem = item as ShellNavigationItem;
+        if (navigationItem != null)
+        {
+            if (navigationItem.Action != null)
+            {
+                navigationItem.Action.Invoke();
+            }
+            else
+            {
+                NavigationService.Navigate(navigationItem.ViewModelName);
+            }
+        }
+    }
+```
+
+You can then add a menu item that uses the above.
+e.g. In `PopulateNavItems()` add something like this:
+
+```csharp
+_secondaryItems.Add(
+    ShellNavigationItem.ForAction(
+        "Rate this app",
+        Symbol.OutlineStar,
+        async () => {
+            await new Windows.UI.Popups.MessageDialog("5 stars please").ShowAsync();
+            // .. code to launch the review process, etc.
+        }));
+```
