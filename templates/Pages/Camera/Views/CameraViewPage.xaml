@@ -5,8 +5,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="using:Param_ItemNamespace.Views"
+    xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
     mc:Ignorable="d">
-  
+    <Page.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </Page.Resources>
+    
     <Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
@@ -33,7 +37,7 @@
                 VerticalAlignment="Center"/>
 
             <Button
-                IsEnabled="{Binding CanSwitch, ElementName=Camera}"
+                Visibility="{Binding CanSwitch, ElementName=Camera, Converter={StaticResource BoolToVisibilityConverter}}"
                 Content="&#xE124;"
                 Command="{x:Bind ViewModel.SwitchCommand, Mode=OneWay}"
                 Style="{StaticResource SwitchCameraButtonStyle}"/>
