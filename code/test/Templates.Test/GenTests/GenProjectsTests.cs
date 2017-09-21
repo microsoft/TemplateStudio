@@ -111,7 +111,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetPageAndFeatureTemplatesAsync", "CaliburnMicro")]
+        [MemberData("GetPageAndFeatureTemplatesForGenerationAsync", "CaliburnMicro")]
         [Trait("Type", "GenerationOneByOneCaliburnMicro")]
         public async Task GenCaliburnMicroOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
         {
