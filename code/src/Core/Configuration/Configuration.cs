@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Core
         public TraceEventType DiagnosticsTraceLevel { get; set; } = TraceEventType.Verbose;
         public int DaysToKeepTempGenerations { get; set; } = 5;
         public int DaysToKeepDiagnosticsLogs { get; set; } = 5;
-        public int VersionCheckingExpirationMinutes { get; set; } = 0;
+        public int VersionCheckingExpirationMinutes { get; set; } = 3600;
         public List<string> AllowedPublicKeysPins { get; set; } = new List<string>() { };
         public string CustomTelemetryEndpoint { get; set; } = string.Empty;
         public string GitHubDocsUrl { get; set; } = "https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/";
