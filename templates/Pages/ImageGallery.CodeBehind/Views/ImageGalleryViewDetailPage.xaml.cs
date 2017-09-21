@@ -8,12 +8,13 @@ namespace Param_ItemNamespace.Views
     public sealed partial class ImageGalleryViewDetailPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
         private SampleImage _selectedImage;
+
         public SampleImage SelectedImage
         {
             get => _selectedImage;
             set => Set(ref _selectedImage, value);
         }
-        
+
         public ImageGalleryViewDetailPage()
         {
             InitializeComponent();

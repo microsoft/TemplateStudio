@@ -8,6 +8,7 @@ namespace Param_ItemNamespace.Services
 {
     public static class SampleDataService
     {
+
 //^^
 //{[{
         // TODO WTS: Remove this once your image gallery page is displaying real data
@@ -23,6 +24,7 @@ namespace Param_ItemNamespace.Services
                     Name = $"{name} {i}"
                 });
             }
+
             return data;
         }
 //}]}
