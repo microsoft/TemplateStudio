@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.ImageGallery.AddSampleData",
+  "name": "Page.ImageGallery",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,6 +14,9 @@
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": ".\\Assets\\PlaceholderImage.png"
+    },
     {
       "path": ".\\Assets\\SampleData\\SamplePhoto1.png"
     },
@@ -43,6 +46,12 @@
     },
     {
       "path": ".\\Assets\\SampleData\\SamplePhoto10.png"
+    },
+    {
+      "path": ".\\Models\\SampleImage.cs"
+    },
+    {
+      "path": ".\\Styles\\ImageEx.xaml"
     }
   ],
   "symbols": {

@@ -23,18 +23,6 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Assets\\PlaceholderImage.png"
-    },
-    {
-      "path": ".\\Extensions\\StringExtensions.cs"
-    },
-    {
-      "path": ".\\Models\\SampleImage.cs"
-    },
-    {
-      "path": ".\\Styles\\ImageEx.xaml"
-    },
-    {
       "path": ".\\Views\\ImageGalleryViewPage.xaml"
     },
     {
