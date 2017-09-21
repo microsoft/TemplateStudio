@@ -14,7 +14,7 @@ namespace Param_RootNamespace.Helpers
             {
                 if (!Enum.IsDefined(EnumType, value))
                 {
-                    throw new ArgumentException("value must be an Enum!");
+                    throw new ArgumentException("ExceptionEnumToBooleanConverterValueMustBeAnEnum".GetLocalized());
                 }
 
                 var enumValue = Enum.Parse(EnumType, enumString);
@@ -22,7 +22,7 @@ namespace Param_RootNamespace.Helpers
                 return enumValue.Equals(value);
             }
 
-            throw new ArgumentException("parameter must be an Enum name!");
+            throw new ArgumentException("ExceptionEnumToBooleanConverterParameterMustBeAnEnumName".GetLocalized());
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -32,7 +32,7 @@ namespace Param_RootNamespace.Helpers
                 return Enum.Parse(EnumType, enumString);
             }
 
-            throw new ArgumentException("parameter must be an Enum name!");
+            throw new ArgumentException("ExceptionEnumToBooleanConverterParameterMustBeAnEnumName".GetLocalized());
         }
     }
 }

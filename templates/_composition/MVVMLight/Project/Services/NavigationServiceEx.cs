@@ -6,6 +6,8 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
+using Param_RootNamespace.Helpers;
+
 namespace Param_RootNamespace.Services
 {
     public class NavigationServiceEx
@@ -53,7 +55,7 @@ namespace Param_RootNamespace.Services
             {
                 if (!_pages.ContainsKey(pageKey))
                 {
-                    throw new ArgumentException($"Page not found: {pageKey}. Did you forget to call NavigationService.Configure?", nameof(pageKey));
+                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageNotFound".GetLocalized(), pageKey), nameof(pageKey));
                 }
 
                 var navigationResult = Frame.Navigate(_pages[pageKey], parameter, infoOverride);
@@ -67,12 +69,12 @@ namespace Param_RootNamespace.Services
             {
                 if (_pages.ContainsKey(key))
                 {
-                    throw new ArgumentException($"The key {key} is already configured in NavigationService");
+                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExKeyIsInNavigationService".GetLocalized(), key));
                 }
 
                 if (_pages.Any(p => p.Value == pageType))
                 {
-                    throw new ArgumentException($"This type is already configured with key {_pages.First(p => p.Value == pageType).Key}");
+                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExTypeAlreadyConfigured".GetLocalized(), _pages.First(p => p.Value == pageType).Key));
                 }
 
                 _pages.Add(key, pageType);
@@ -89,7 +91,7 @@ namespace Param_RootNamespace.Services
                 }
                 else
                 {
-                    throw new ArgumentException($"The page '{page.Name}' is unknown by the NavigationService");
+                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageUnknow".GetLocalized(), page.Name));
                 }
             }
         }

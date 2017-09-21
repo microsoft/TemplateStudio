@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Test
     public sealed class BuildMVVMBasicFixture : BaseGenAndBuildFixture, IDisposable
     {
         private string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
-        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\MVVMBasic\\{testExecutionTimeStamp}\\";
+        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\MB\\{testExecutionTimeStamp}\\";
 
         public TemplatesSource Source => new BuildMVVMBasicTestTemplatesSource();
 
