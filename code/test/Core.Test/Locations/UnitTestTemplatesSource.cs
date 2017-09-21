@@ -38,7 +38,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             if (!Directory.Exists(finalDestination))
             {
-                Fs.CopyRecursive(sourcePath, finalDestination);
+                Fs.CopyRecursive(sourcePath, finalDestination, true);
             }
         }
     }

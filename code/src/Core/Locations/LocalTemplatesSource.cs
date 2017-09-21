@@ -21,13 +21,21 @@ namespace Microsoft.Templates.Core.Locations
         public override bool ForcedAcquisition { get => base.ForcedAcquisition; protected set => base.ForcedAcquisition = value; }
         public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
 
+        private string _id;
+        public override string Id { get => _id; }
+
         private object lockObject = new object();
 
-        public LocalTemplatesSource() : this("0.0.0.0", "0.0.0.0")
-        {
-            ForcedAcquisition = true;
-        }
+        protected string FinalDestination { get; set; }
 
+        public LocalTemplatesSource() : this("0.0.0.0", "0.0.0.0", true)
+        {
+            _id = Configuration.Current.Environment;
+        }
+        public LocalTemplatesSource(string id) : this("0.0.0.0", "0.0.0.0", true)
+        {
+            _id = id;
+        }
         public LocalTemplatesSource(string wizardVersion, string templatesVersion, bool forcedAdquisition = true)
         {
             ForcedAcquisition = forcedAdquisition;
@@ -56,11 +64,11 @@ namespace Microsoft.Templates.Core.Locations
         {
             Version ver = version;
 
-            string finalDestination = PrepareFinalDestination(finalTargetFolder, ver);
+            FinalDestination = PrepareFinalDestination(finalTargetFolder, ver);
 
-            if (!Directory.Exists(finalDestination))
+            if (!Directory.Exists(FinalDestination))
             {
-                Fs.CopyRecursive(sourcePath, finalDestination);
+                Fs.CopyRecursive(sourcePath, FinalDestination, true);
             }
         }
     }

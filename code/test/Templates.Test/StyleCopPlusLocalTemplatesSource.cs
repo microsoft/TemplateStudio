@@ -13,13 +13,24 @@ namespace Microsoft.Templates.Test
 {
     public class StyleCopPlusLocalTemplatesSource : LocalTemplatesSource
     {
-        public override string Id => "BuildStyleCop";
-
+        public StyleCopPlusLocalTemplatesSource() : base("BuildStyleCop")
+        {
+        }
         public override void Extract(string source, string targetFolder)
         {
             base.Extract(source, targetFolder);
 
-            Fs.CopyRecursive(@".\TestData\StyleCop", Path.Combine(targetFolder, "Features", "StyleCop"));
+            SetStyleCopFeatureContent();
+        }
+
+        private void SetStyleCopFeatureContent()
+        {
+            string targetStyleCopFeaturePath = Path.Combine(FinalDestination, "Features", "StyleCop");
+            if (Directory.Exists(targetStyleCopFeaturePath))
+            {
+                Fs.SafeDeleteDirectory(targetStyleCopFeaturePath);
+            }
+            Fs.CopyRecursive(@".\TestData\StyleCop", targetStyleCopFeaturePath, true);
         }
     }
 }

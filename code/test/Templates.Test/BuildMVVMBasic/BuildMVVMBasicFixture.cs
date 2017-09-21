@@ -27,7 +27,7 @@ namespace Microsoft.Templates.Test
         private string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\MVVMBasic\\{testExecutionTimeStamp}\\";
 
-        public TemplatesSource Source => new BuildMVVMBasicTestTemplatesSource();
+        public TemplatesSource Source => new LocalTemplatesSource("TestBuildMVVMBasic");
 
         private static bool syncExecuted;
 
@@ -36,7 +36,7 @@ namespace Microsoft.Templates.Test
             List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
-                await InitializeTemplatesForLanguageAsync(new BuildMVVMBasicTestTemplatesSource(), language);
+                await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TestBuildMVVMBasic"), language);
 
                 var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
                                                          && t.GetLanguage() == language);
@@ -64,7 +64,7 @@ namespace Microsoft.Templates.Test
             List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
-                await InitializeTemplatesForLanguageAsync(new BuildMVVMBasicTestTemplatesSource(), language);
+                await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TestBuildMVVMBasic"), language);
 
                 var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
                                                          && t.GetLanguage() == language);
