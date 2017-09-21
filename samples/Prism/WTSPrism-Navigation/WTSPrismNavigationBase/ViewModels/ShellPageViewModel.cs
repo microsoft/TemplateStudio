@@ -8,6 +8,9 @@ using Windows.UI.Xaml.Navigation;
 using WTSPrismNavigationBase.Helpers;
 using WTSPrismNavigationBase.Views;
 using Prism.Windows.Navigation;
+using Prism.Events;
+using System;
+using System.Linq;
 
 namespace WTSPrismNavigationBase.ViewModels
 {
@@ -86,7 +89,7 @@ namespace WTSPrismNavigationBase.ViewModels
 
         public void Initialize(Frame frame)
         {
-            frame.Navigated += NavigationService_Navigated;
+            frame.Navigated += Frame_Navigated;
             PopulateNavItems();
             InitializeState(Window.Current.Bounds.Width);
         }
@@ -133,17 +136,25 @@ namespace WTSPrismNavigationBase.ViewModels
             {
                 IsPaneOpen = false;
             }
-            _lastSelectedItem = _currentSelectedItem;
-            _currentSelectedItem = args.ClickedItem;
             Navigate(args.ClickedItem);
-
         }
 
-        private void NavigationService_Navigated(object sender, NavigationEventArgs e)
+        private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
             if (e != null)
             {
-                ChangeSelected(_lastSelectedItem, _currentSelectedItem);
+                var vm = e.SourcePageType.ToString().Split('.').Last().Replace("Page",String.Empty);
+                var navigationItem = PrimaryItems?.FirstOrDefault(i => i.PageIdentifier == vm);
+                if (navigationItem == null)
+                {
+                    navigationItem = SecondaryItems?.FirstOrDefault(i => i.PageIdentifier == vm);
+                }
+
+                if (navigationItem != null)
+                {
+                    ChangeSelected(_lastSelectedItem, navigationItem);
+                    _lastSelectedItem = navigationItem;
+                }
             }
         }
 
@@ -153,6 +164,7 @@ namespace WTSPrismNavigationBase.ViewModels
             {
                 (oldValue as ShellNavigationItem).IsSelected = false;
             }
+
             if (newValue != null)
             {
                 (newValue as ShellNavigationItem).IsSelected = true;

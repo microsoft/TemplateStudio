@@ -13,17 +13,12 @@ namespace WTSPrismNavigationBase.Views
         public void SetRootFrame(Frame frame)
         {
             shellFrame.Content = frame;
+            ViewModel.Initialize(frame);
         }
 
         public ShellPage()
         {
             InitializeComponent();
-            Initialize();
-        }
-
-        private void Initialize()
-        {
-            ViewModel.Initialize(shellFrame);
         }
     }
 }
