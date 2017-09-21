@@ -231,6 +231,11 @@ namespace Microsoft.Templates.Test
                 case "MVVMLight":
                     result = context.Factory.Run(() => BuildMVVMLightFixture.GetProjectTemplatesAsync(framework));
                     break;
+
+                case "CaliburnMicro":
+                    result = context.Factory.Run(() => BuildCaliburnMicroFixture.GetProjectTemplatesAsync(framework));
+                    break;
+
                 default:
                     result = context.Factory.Run(() => BuildFixture.GetProjectTemplatesAsync());
                     break;
@@ -258,6 +263,10 @@ namespace Microsoft.Templates.Test
 
                 case "MVVMLight":
                     result = context.Factory.Run(() => BuildMVVMLightFixture.GetPageAndFeatureTemplatesAsync(framework));
+                    break;
+
+                case "CaliburnMicro":
+                    result = context.Factory.Run(() => BuildCaliburnMicroFixture.GetPageAndFeatureTemplatesAsync(framework));
                     break;
             }
             return result;
