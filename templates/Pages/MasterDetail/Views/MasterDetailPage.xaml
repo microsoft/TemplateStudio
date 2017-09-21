@@ -11,26 +11,40 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="MasterListViewItemTemplate" x:DataType="model:SampleOrder">
-            <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+            <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}" >
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
+                    <RelativePanel>
+                        <Rectangle Stroke="Gray"
+                             Fill="LightGray"
+                             Width="48"
+                             Height="48"
+                             StrokeThickness="0" 
+                             Name="border"
+                             RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                        <FontIcon
+                            Name="icon"
+                            Tag="{x:Bind HashIdentIcon}"
+                            FontSize="35"
+                            Glyph="{x:Bind SymbolAsChar}" VerticalAlignment="Top" 
+                            RelativePanel.AlignVerticalCenterWith="border"
+                            RelativePanel.AlignHorizontalCenterWith="border"/>
 
-                <TextBlock 
-                    Text="{x:Bind OrderId}" 
-                    Style="{StaticResource ListTitleStyle}" />
-
-                <TextBlock
-                    Grid.Row="1"
-                    Tag="{x:Bind HashIdentTitle}"
-                    Text="{x:Bind Company}"
-                    Style="{StaticResource ListSubTitleStyle}" />
-
-                <FontIcon 
-                    Tag="{x:Bind HashIdentIcon}"
-                    FontSize="16"
-                    Glyph="{x:Bind SymbolAsChar}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        <StackPanel RelativePanel.AlignVerticalCenterWithPanel="True" Margin="12,0,0,0" RelativePanel.RightOf="border">
+                            <TextBlock
+                                Name="title"
+                                RelativePanel.RightOf="border"
+                                Text="{x:Bind Company}"
+                                Tag="{x:Bind HashIdentTitle}"
+                                Style="{StaticResource BaseTextBlockStyle}"/>
+                            <TextBlock
+                                Name="subtitle"
+                                RelativePanel.Below="title"
+                                RelativePanel.AlignLeftWith="title"
+                                Text="{x:Bind Status}"
+                                Style="{StaticResource BodyTextBlockStyle}"/>
+                        </StackPanel>
+                    </RelativePanel>
+                </StackPanel>
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -78,8 +92,7 @@
                 SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
                 ItemContainerTransitions="{x:Null}"
                 ItemTemplate="{StaticResource MasterListViewItemTemplate}"
-                IsItemClickEnabled="True"
-                Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                IsItemClickEnabled="True">
                 <i:Interaction.Behaviors>
                     <ic:EventTriggerBehavior EventName="ItemClick">
                         <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemClickCommand}" />
@@ -127,6 +140,7 @@
                         <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="TitlePage.Margin" Value="48,0,12,7"/>
                         <Setter Target="TitleRow.Height" Value="48"/>
                         <Setter Target="MasterRow.Height" Value="Auto"/>
                         <Setter Target="TitlePage.Visibility" Value="Visible"/>
