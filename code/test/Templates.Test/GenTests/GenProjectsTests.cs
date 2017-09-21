@@ -50,7 +50,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationProjects")]
-        public async Task GenEmptyProjectCorrectInfeProjectConfigInfoAsync(string projectType, string framework, string language)
+        public async Task GenEmptyProjectCorrectInferProjectConfigInfoAsync(string projectType, string framework, string language)
         {
             Func<ITemplateInfo, bool> selector =
                 t => t.GetTemplateType() == TemplateType.Project
