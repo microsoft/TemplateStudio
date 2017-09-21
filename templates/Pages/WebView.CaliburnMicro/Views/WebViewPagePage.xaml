@@ -7,6 +7,8 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:cm="using:Caliburn.Micro"
+    xmlns:FCU ="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
+    xmlns:CU ="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"
     mc:Ignorable="d">
     <Page.Resources>
         <Style x:Key="BrowserButtonStyle" TargetType="Button">
@@ -98,7 +100,7 @@
             <HyperlinkButton cm:Message.Attach="Retry" x:Uid="WebViewPage_Retry" HorizontalAlignment="Center" />
         </StackPanel>
 
-        <Grid Grid.Row="1" Background="{ThemeResource SystemControlBackgroundBaseLowBrush}">
+        <Grid FCU:VerticalAlignment="Bottom" CU:Grid.Row="1" CU:Background="{ThemeResource SystemControlBackgroundBaseLowBrush}" FCU:Background="{ThemeResource SystemControlChromeHighAcrylicElementMediumBrush }">
             <StackPanel Orientation="Horizontal">
                 <Button Style="{StaticResource BrowserButtonStyle}" cm:Message.Attach="GoBack"  x:Uid="WebViewPage_BrowserBackButton">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72B;" />
