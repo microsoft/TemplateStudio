@@ -28,6 +28,22 @@ namespace Microsoft.Templates.UI
         public List<(string name, ITemplateInfo template)> Pages { get; } = new List<(string name, ITemplateInfo template)>();
         public List<(string name, ITemplateInfo template)> Features { get; } = new List<(string name, ITemplateInfo template)>();
 
+        public IEnumerable<(string name, ITemplateInfo template)> PagesAndFeatures
+        {
+            get
+            {
+                foreach (var page in Pages)
+                {
+                    yield return page;
+                }
+
+                foreach (var feature in Features)
+                {
+                    yield return feature;
+                }
+            }
+        }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

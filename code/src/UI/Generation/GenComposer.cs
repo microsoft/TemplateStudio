@@ -82,13 +82,16 @@ namespace Microsoft.Templates.UI
                     {
                         LogOrAlertException(string.Format(StringRes.ExceptionDependencyMultipleInstance, dependencyTemplate.Identity));
                     }
-                    else if (dependencyList.Any(d => d.Identity == template.Identity))
+                    else if (dependencyList.Any(d => d.Identity == template.Identity && d.GetDependencyList().Contains(template.Identity)))
                     {
                         LogOrAlertException(string.Format(StringRes.ExceptionDependencyCircularReference, template.Identity, dependencyTemplate.Identity));
                     }
                     else
                     {
-                        dependencyList.Add(dependencyTemplate);
+                        if (!dependencyList.Contains(dependencyTemplate))
+                        {
+                            dependencyList.Add(dependencyTemplate);
+                        }
 
                         GetDependencies(dependencyTemplate, framework, dependencyList);
                     }
@@ -177,9 +180,11 @@ namespace Microsoft.Templates.UI
         private static void AddDependencyTemplates((string name, ITemplateInfo template) selectionItem, List<GenInfo> genQueue, UserSelection userSelection)
         {
             var dependencies = GetAllDependencies(selectionItem.template, userSelection.Framework);
+
             foreach (var dependencyItem in dependencies)
             {
-                var dependencyTemplate = userSelection.Features.FirstOrDefault(f => f.template.Identity == dependencyItem.Identity);
+                var dependencyTemplate = userSelection.PagesAndFeatures.FirstOrDefault(f => f.template.Identity == dependencyItem.Identity);
+
                 if (dependencyTemplate.template != null)
                 {
                     if (!genQueue.Any(t => t.Name == dependencyTemplate.name && t.Template.Identity == dependencyTemplate.template.Identity))

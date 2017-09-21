@@ -208,7 +208,25 @@ namespace TemplateValidator
                     case "wts.isHidden":
                         VerifyWtsIshiddenTagValue(tag, results);
                         break;
+                    default:
+                        if (tag.Key.StartsWith("wts.fileNameSearch", StringComparison.Ordinal))
+                        {
+                            VerifyWtsFileNameSearchTagValue(tag, results);
+                        }
+                        else
+                        {
+                            results.Add($"Unknown tag '{tag.Value}' specified in the file.");
+                        }
+                        break;
                 }
+            }
+        }
+
+        private static void VerifyWtsFileNameSearchTagValue(KeyValuePair<string, string> tag, List<string> results)
+        {
+            if (string.IsNullOrWhiteSpace(tag.Value))
+            {
+                results.Add($"The tag '{tag.Key}' cannot be blank if specified.");
             }
         }
 
@@ -370,7 +388,7 @@ namespace TemplateValidator
                     bool.TryParse(template.TemplateTags["wts.multipleInstance"], out var allowMultipleInstances);
                     if (!allowMultipleInstances)
                     {
-                        if (string.IsNullOrWhiteSpace(template.TemplateTags["wts.defaultInstance"]))
+                        if (!template.TemplateTags.Keys.Contains("wts.defaultInstance") || string.IsNullOrWhiteSpace(template.TemplateTags["wts.defaultInstance"]))
                         {
                             results.Add($"Template must define a valid value for wts.defaultInstance tag as wts.Type is '{tag.Value}' and wts.multipleInstance is 'false'.");
                         }

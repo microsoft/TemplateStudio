@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.PostActions.Catalog;
 using Newtonsoft.Json;
 
 namespace TemplateValidator
@@ -70,11 +72,26 @@ namespace TemplateValidator
 
                     var templateRoot = templateFilePath.Replace("\\.template.config\\template.json", string.Empty);
 
+                    if (template.TemplateTags.Any(t => t.Key.StartsWith("wts.fileNameSearch", StringComparison.Ordinal)))
+                    {
+                        for (int i = 0; i <= 9; i++)
+                        {
+                            if (template.TemplateTags.ContainsKey($"wts.fileNameSearch{i}"))
+                            {
+                                    if (!new DirectoryInfo(templateRoot).GetFiles($"{FileNameSearchPostAction.FileNameStart}{i}$.*", SearchOption.AllDirectories).Any())
+                                {
+                                    results.Add($"'{templateFilePath}' contains the tag 'wts.fileNameSearch{i}' but has no corresponding $SEARCH{i}$ file.");
+                                }
+                            }
+                        }
+                    }
+
                     foreach (var file in new DirectoryInfo(templateRoot).GetFiles("*.*", SearchOption.AllDirectories))
                     {
                         // Filter out files the following tests cannot handle
                         if (!file.Name.Contains("_postaction")
                          && !file.Name.Contains("_gpostaction")
+                         && !file.Name.StartsWith(FileNameSearchPostAction.FileNameStart, StringComparison.Ordinal)
                          && !file.FullName.Contains("\\Projects\\Default")
                          && !file.FullName.Contains(".template.config"))
                         {

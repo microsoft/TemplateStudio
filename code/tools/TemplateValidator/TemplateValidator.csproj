@@ -46,8 +46,8 @@
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ApiAnalysis.SimpleJsonAnalyzer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ApiAnalysis.SimpleJsonAnalyzer.1.3.0\lib\net462\ApiAnalysis.SimpleJsonAnalyzer.dll</HintPath>
+    <Reference Include="ApiAnalysis.SimpleJsonAnalyzer, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ApiAnalysis.SimpleJsonAnalyzer.1.4.0\lib\net462\ApiAnalysis.SimpleJsonAnalyzer.dll</HintPath>
     </Reference>
     <Reference Include="CommandLine, Version=1.9.71.2, Culture=neutral, PublicKeyToken=de6f01bd326f8c32, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
@@ -97,6 +97,7 @@
     <None Include="..\..\..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
