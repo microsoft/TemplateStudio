@@ -93,7 +93,6 @@
                 Grid.Row="1"
                 ItemsSource="{x:Bind SampleItems, Mode=OneWay}"
                 SelectedItem="{x:Bind Selected, Mode=OneWay}"
-                Loaded="ListView_Loaded"
                 ItemContainerTransitions="{x:Null}"
                 ItemTemplate="{StaticResource MasterListViewItemTemplate}"
                 IsItemClickEnabled="True"

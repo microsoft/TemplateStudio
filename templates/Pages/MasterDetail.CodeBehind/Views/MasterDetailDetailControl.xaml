@@ -4,9 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:FCU ="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
-    xmlns:CU="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"
-
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -17,10 +14,6 @@
 
         <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your detail content.-->
         <Grid Grid.Row="1">
-            <!--             <FCU:ParallaxView VerticalAlignment="Stretch" Source="{x:Bind ForegroundElement}" VerticalShift="100" >
-                    <FCU:Image Opacity=".1" x:Name="BackgroundImage" Source="/Assets/crtest.jpg" Stretch="UniformToFill"/>
-                </FCU:ParallaxView> -->
-
                 <ScrollViewer Name="ForegroundElement" VerticalScrollMode="Enabled" HorizontalAlignment="Stretch" Padding="24,48,0,0" >
                 <StackPanel HorizontalAlignment="Left">
                     <Border BorderThickness="0,0,0,0" BorderBrush="Gray">

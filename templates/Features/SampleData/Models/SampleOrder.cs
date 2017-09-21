@@ -31,7 +31,7 @@ namespace Param_ItemNamespace.Models
         {
             get { return GetHashCode().ToString() + "-icon"; }
         }
-        
+
         public string HashIdentTitle
         {
             get { return GetHashCode().ToString() + "-title"; }

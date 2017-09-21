@@ -15,7 +15,6 @@ namespace Param_ItemNamespace.Views
     public sealed partial class MasterDetailPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
         private SampleOrder _selected;
-        private Dictionary<string, UIElement> dict = new Dictionary<string, UIElement>();
 
         public SampleOrder Selected
         {
@@ -49,13 +48,6 @@ namespace Param_ItemNamespace.Views
             var item = e?.ClickedItem as SampleOrder;
             if (item != null)
             {
-                if (WindowStates.CurrentState.Name != "NarrowState")
-                {
-                    ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("companyIcon", dict[item.HashIdentIcon]);
-                    ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("companyTitle", dict[item.HashIdentTitle]);
-
-                }
-
                 if (WindowStates.CurrentState == NarrowState)
                 {
                     NavigationService.Navigate<Views.MasterDetailDetailPage>(item);
@@ -65,43 +57,6 @@ namespace Param_ItemNamespace.Views
                     Selected = item;
                 }
             }
-        }
-
-        private void registerAllElemens(DependencyObject root)
-        {
-            int childCount = VisualTreeHelper.GetChildrenCount(root);
-            for (int i = 0; i < childCount; i++)
-            {
-                DependencyObject child = VisualTreeHelper.GetChild(root, i);
-                if (child != null && child is FontIcon)
-                {
-                    FontIcon elem = (FontIcon)child;
-                    if (elem.Tag != null && !dict.ContainsKey((string)elem.Tag))
-                    {
-                        dict.Add((string)elem.Tag, elem);
-                    }
-                }
-                else if (child != null && child is TextBlock)
-                {
-                    TextBlock elem = (TextBlock)child;
-                    if (elem.Tag != null && !dict.ContainsKey((string)elem.Tag))
-                    {
-                        dict.Add((string)elem.Tag, elem);
-                    }
-                }
-                else
-                {
-                    for (int j = 0; j < childCount; j++)
-                    {
-                        registerAllElemens(child);
-                    }
-                }
-            }
-        }
-
-        private void ListView_Loaded(object sender, RoutedEventArgs e)
-        {
-            registerAllElemens(MasterListView);
         }
     }
 }

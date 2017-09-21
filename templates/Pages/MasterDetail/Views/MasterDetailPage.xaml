@@ -79,7 +79,6 @@
                 ItemContainerTransitions="{x:Null}"
                 ItemTemplate="{StaticResource MasterListViewItemTemplate}"
                 IsItemClickEnabled="True"
-                ItemClick="MasterListView_ItemClick"
                 Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
                 <i:Interaction.Behaviors>
                     <ic:EventTriggerBehavior EventName="ItemClick">
