@@ -77,13 +77,11 @@ namespace Param_ItemNamespace.Views
             set { Set(ref _failedMesageVisibility, value); }
         }
 
-        private async void OnNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
+        private void OnNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
         {
             IsLoading = false;
             OnPropertyChanged(nameof(IsBackEnabled));
             OnPropertyChanged(nameof(IsForwardEnabled));
-            string insertBreakString = String.Format("document.body.appendChild(document.createElement(\"BR\"));");
-            String s = await sender.InvokeScriptAsync("eval", new string[] { insertBreakString, insertBreakString });
         }
 
         private void OnNavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
