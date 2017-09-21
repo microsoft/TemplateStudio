@@ -25,7 +25,6 @@ namespace Param_RootNamespace.Services
 
             SetRequestedTheme();
             await SaveThemeInSettingsAsync(Theme);
-
         }
 
         public static void SetRequestedTheme()
