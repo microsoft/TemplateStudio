@@ -7,23 +7,18 @@
     xmlns:model="using:Param_ItemNamespace.Models"
     xmlns:views="using:Param_ItemNamespace.Views"
     mc:Ignorable="d">
-    <Page.Transitions>
-        <TransitionCollection>
-            <NavigationThemeTransition />
-        </TransitionCollection>
-    </Page.Transitions>
-        <Page.Resources>
+    <Page.Resources>
         <DataTemplate x:Key="MasterListViewItemTemplate" x:DataType="model:SampleOrder">
             <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}" >
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
                     <RelativePanel>
                         <Rectangle Stroke="Gray"
-                             Fill="LightGray"
-                             Width="48"
-                             Height="48"
-                             StrokeThickness="0" 
-                             Name="border"
-                             RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                                Fill="LightGray"
+                                Width="48"
+                                Height="48"
+                                StrokeThickness="0" 
+                                Name="border"
+                                RelativePanel.AlignVerticalCenterWithPanel="True"/>
                         <FontIcon
                             Name="icon"
                             Tag="{x:Bind HashIdentIcon}"
@@ -116,7 +111,7 @@
                 x:Name="DetailControl"
                 MasterMenuItem="{x:Bind Selected, Mode=OneWay}"/>
         </Grid>
-
+        
         <!--  Adaptive triggers  -->
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WindowStates">
