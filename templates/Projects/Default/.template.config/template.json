@@ -9,7 +9,7 @@
     "language": "C#",
     "type": "project",
     "wts.type": "project",
-    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
     "wts.projecttype":"Blank|SplitView|TabbedPivot",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1"

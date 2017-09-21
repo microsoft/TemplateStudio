@@ -120,6 +120,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildCaliburnMicroTests\BuildCaliburnMicroCollection.cs" />
+    <Compile Include="BuildCaliburnMicroTests\BuildCaliburnMicroFixture.cs" />
+    <Compile Include="BuildCaliburnMicroTests\BuildCaliburnMicroProjectTests.cs" />
+    <Compile Include="BuildCaliburnMicroTests\BuildCaliburnMicroTestTemplatesSource.cs" />
     <Compile Include="BuildCodeBehindTests\BuildCodeBehindCollection.cs" />
     <Compile Include="BuildMVVMBasic\BuildMVVMBasicCollection.cs" />
     <Compile Include="BuildMVVMBasic\BuildMVVMBasicFixture.cs" />
