@@ -9,7 +9,7 @@
     "language": "C#",
     "type": "item",
     "wts.type": "feature",
-    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
     "wts.group": "BackgroundWork",
