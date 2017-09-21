@@ -17,21 +17,21 @@
                 <ScrollViewer Name="ForegroundElement" VerticalScrollMode="Enabled" HorizontalAlignment="Stretch" Padding="24,48,0,0" >
                 <StackPanel HorizontalAlignment="Left">
                     <Border BorderThickness="0,0,0,0" BorderBrush="Gray">
-                        <StackPanel Name="destPanel" Orientation="Horizontal" MaxHeight="200" HorizontalAlignment="Stretch">
+                        <StackPanel Orientation="Horizontal" MaxHeight="200" HorizontalAlignment="Stretch">
                             <FontIcon
-                            Name="destIcon"
+                            Name="Icon"
                             FontSize="46" 
                             Glyph="{x:Bind MasterMenuItem.SymbolAsChar, Mode=OneWay}"
                             VerticalAlignment="Center" Margin="0,0,30,0"
                             HorizontalAlignment="Center"/>
                             <TextBlock
-                            Name="destTitle"
+                            Name="Title"
                             Text="{x:Bind MasterMenuItem.Company, Mode=OneWay}"
                             FontSize="46" FontWeight="Light" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"
                             VerticalAlignment="Center" HorizontalAlignment="Center" />
                         </StackPanel>
                     </Border>
-                    <StackPanel Name="block" Padding="0,15,0,0">
+                    <StackPanel Padding="0,15,0,0">
                         <TextBlock Text="Status" FontSize="20" FontWeight="SemiLight" />
                         <TextBlock Text="{x:Bind MasterMenuItem.Status, Mode=OneWay}" FontSize="15" Padding="0,0,0,6" />
                         <TextBlock Text="Order date" Style="{StaticResource CaptionTextBlockStyle}" FontSize="20" FontWeight="SemiLight"  />
@@ -58,6 +58,6 @@
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>
-            </Grid>
+        </Grid>
     </Grid>
 </UserControl>
