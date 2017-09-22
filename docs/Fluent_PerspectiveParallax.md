@@ -41,20 +41,20 @@ IsApiContractPresent(ContractName, VersionNumber)
 Therefore, we could create a namespace that checks for the 5th version of the contract in the following way. It would be added to our page in the following way
 
 ``` XML
-xmlns:FCU="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
+xmlns:fcu="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
 
 <UserControl
     x:Class="XXXXX"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     ...
-    xmlns:FCU="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
+    xmlns:fcu="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
 
 ```
 
 We can then conditionally instantiate controls based on the API contract as follows. In this example, the ColorPicker (a control only introduced in the Fall Creators Update) is only created at runtime when the machine it is running on has the right APIs.
 
 ``` XML
-<FCU:ColorPicker x:Name="colorPicker" Grid.Column="1"/>
+<fcu:ColorPicker x:Name="colorPicker" Grid.Column="1"/>
 ```
 
 ## Parallax Controls
@@ -81,9 +81,9 @@ As in the above section, we are going to selectively create a ParallaxView contr
 
 ``` XML
 <Grid>
-  <FCU:ParallaxView Source="{x:Bind ForegroundElement}">
-    <FCU:Image x:Name="BackgroundImage" Source="/Assets/XXXX.jpg"/>
-  </FCU:ParallaxView>
+  <fcu:ParallaxView Source="{x:Bind ForegroundElement}">
+    <fcu:Image x:Name="BackgroundImage" Source="/Assets/XXXX.jpg"/>
+  </fcu:ParallaxView>
 
   <ScrollViewer Name="ForegroundElement".../>
   ...
