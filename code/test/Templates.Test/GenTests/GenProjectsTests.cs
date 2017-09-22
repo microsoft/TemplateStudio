@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
@@ -44,6 +45,59 @@ namespace Microsoft.Templates.Test
             var projectName = $"{projectType}{framework}";
 
             await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language);
+        }
+
+        [Theory]
+        [MemberData("GetProjectTemplatesForGenerationAsync")]
+        [Trait("Type", "GenerationProjects")]
+        public async Task GenEmptyProjectCorrectInfeProjectConfigInfoAsync(string projectType, string framework, string language)
+        {
+            Func<ITemplateInfo, bool> selector =
+                t => t.GetTemplateType() == TemplateType.Project
+                    && t.GetProjectTypeList().Contains(projectType)
+                    && t.GetFrameworkList().Contains(framework)
+                    && !t.GetIsHidden()
+                    && t.GetLanguage() == language;
+
+            var projectName = $"{projectType}{framework}";
+
+            string projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, null, false);
+
+            // Remove configuration from the manifest
+            RemoveProjectConfigInfoFromProject();
+
+            // Now the configuration must be inferred and should be as expected
+            AssertCorrectProjectConfigInfo(projectType, framework);
+
+            AssertProjectConfigInfoRecreated(projectType, framework);
+        }
+
+        private static void AssertProjectConfigInfoRecreated(string projectType, string framework)
+        {
+            string content = File.ReadAllText(Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest"));
+            string expectedFxText = $"Name=\"framework\" Value=\"{framework}\"";
+            string expectedPtText = $"Name=\"projectType\" Value=\"{projectType}\"";
+
+            Assert.Contains(expectedFxText, content, StringComparison.InvariantCulture);
+            Assert.Contains(expectedPtText, content, StringComparison.InvariantCulture);
+        }
+
+        private void RemoveProjectConfigInfoFromProject()
+        {
+            string manifest = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
+            var lines = File.ReadAllLines(manifest);
+            StringBuilder sb = new StringBuilder();
+            string fx = $"genTemplate:Item Name=\"framework\"";
+            string pt = $"genTemplate:Item Name=\"projectType\"";
+            foreach (var line in lines)
+            {
+                if (!line.Contains(fx) && !line.Contains(pt))
+                {
+                    sb.AppendLine(line);
+                }
+            }
+            File.Delete(manifest);
+            File.WriteAllText(manifest, sb.ToString());
         }
 
         [Theory]
