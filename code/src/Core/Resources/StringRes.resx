@@ -372,4 +372,16 @@ The following changes could not be integrated: {2}
   <data name="SyncSummaryProjectFile" xml:space="preserve">
     <value>ProjectFile</value>
   </data>
+  <data name="TemplatesSynchronizationWaitingOtherInstanceMessage" xml:space="preserve">
+    <value>Other instance is syncing templates... Waiting 5 seconds.</value>
+  </data>
+  <data name="TemplatesSynchronizationWarnCreatingLockFileMessage" xml:space="preserve">
+    <value>Error creating the instance locking file.</value>
+  </data>
+  <data name="TemplatesSynchronizationWarnDeletingLockFileMessage" xml:space="preserve">
+    <value>Error deleting the instance locking file.</value>
+  </data>
+  <data name="TemplatesSynchronizationWarnReadingLockFileMessage" xml:space="preserve">
+    <value>Error reading the instance locking file.</value>
+  </data>
 </root>
