@@ -157,8 +157,11 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                 string installedTemplatesPath = GetInstalledTemplatesPath();
-                _source.Extract(installedTemplatesPath, _content.TemplatesFolder);
+                string installedTemplatesPath = GetInstalledTemplatesPath();
+                if (File.Exists(installedTemplatesPath))
+                {
+                    _source.Extract(installedTemplatesPath, _content.TemplatesFolder);
+                }
             }
             catch (Exception ex)
             {
