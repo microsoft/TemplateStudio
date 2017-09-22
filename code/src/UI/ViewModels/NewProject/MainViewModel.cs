@@ -21,6 +21,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class MainViewModel : BaseMainViewModel
     {
+        private bool _needRestartConfiguration = false;
         public static MainViewModel Current;
         public MainView MainView;
 
@@ -69,10 +70,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (CheckProjectSetupChanged())
             {
                 WizardStatus.SetStatus(StatusViewModel.Warning(string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName), true, 5));
+                _needRestartConfiguration = true;
             }
             else
             {
                 CleanStatus();
+                _needRestartConfiguration = false;
             }
         }
 
@@ -133,15 +136,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             base.OnNext();
             if (CurrentStep == 1)
             {
-                WizardStatus.WizardTitle = StringRes.ProjectPagesTitle;
-                await ProjectTemplates.InitializeAsync();
-                NavigationService.Navigate(new ProjectPagesView());
-                if (CheckProjectSetupChanged())
+                if (_needRestartConfiguration)
                 {
                     ResetSelection();
                     Ordering.Panel.Children.Clear();
                     CleanStatus();
                 }
+                WizardStatus.WizardTitle = StringRes.ProjectPagesTitle;
+                await ProjectTemplates.InitializeAsync();
+                NavigationService.Navigate(new ProjectPagesView());
             }
             else if (CurrentStep == 2)
             {

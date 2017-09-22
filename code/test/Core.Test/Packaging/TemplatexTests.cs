@@ -18,6 +18,8 @@ using Microsoft.Templates.Core.Packaging;
 
 namespace Microsoft.Templates.Core.Test.Locations
 {
+    [Trait("ExecutionSet", "Minimum")]
+
     public class TemplatePackageTests
     {
         [Fact]

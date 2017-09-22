@@ -16,15 +16,16 @@ using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.UI.Generation
 {
-    internal class ProjectConfigInfo
+    public class ProjectConfigInfo
     {
-        const string FxMVVMBasic = "MVVMBasic";
-        const string FxMVVMLight = "MVVMLight";
-        const string FxCodeBehid = "CodeBehind";
+        public const string FxMVVMBasic = "MVVMBasic";
+        public const string FxMVVMLight = "MVVMLight";
+        public const string FxCodeBehid = "CodeBehind";
+        public const string FxCaliburnMicro = "CaliburnMicro";
 
-        const string ProjTypeBlank = "Blank";
-        const string ProjTypeSplitView = "SplitView";
-        const string ProjTypeTabbedPivot = "TabbedPivot";
+        public const string ProjTypeBlank = "Blank";
+        public const string ProjTypeSplitView = "SplitView";
+        public const string ProjTypeTabbedPivot = "TabbedPivot";
 
         const string ProjectTypeLiteral = "projectType";
         const string FrameworkLiteral = "framework";
@@ -117,6 +118,10 @@ namespace Microsoft.Templates.UI.Generation
             {
                 return FxCodeBehid;
             }
+            else if (IsCaliburnMicro())
+            {
+                return FxCaliburnMicro;
+            }
             else
             {
                 return string.Empty;
@@ -177,6 +182,22 @@ namespace Microsoft.Templates.UI.Generation
                     var fileContent = File.ReadAllText(codebehindFile);
                     return fileContent.Contains($"INotifyPropertyChanged") &&
                         fileContent.Contains("public event PropertyChangedEventHandler PropertyChanged;");
+                }
+            }
+            return false;
+        }
+
+        private static bool IsCaliburnMicro()
+        {
+            if (ExistsFileInProjectPath("Services", "ActivationService.cs"))
+            {
+                var files = Directory.GetFiles(GenContext.Current.ProjectPath, "*.*proj", SearchOption.TopDirectoryOnly);
+                foreach (string file in files)
+                {
+                    if (File.ReadAllText(file).Contains("<PackageReference Include=\"Caliburn.Micro\">"))
+                    {
+                        return true;
+                    }
                 }
             }
             return false;
