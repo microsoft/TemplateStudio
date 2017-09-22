@@ -15,7 +15,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Styles\\Button.xaml"
+      "path": ".\\Styles\\CameraPageStyles.xaml"
     },
     {
       "path": ".\\Helpers\\CameraOrientationExtensions.cs"
