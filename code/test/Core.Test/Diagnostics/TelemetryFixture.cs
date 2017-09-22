@@ -8,18 +8,13 @@ using Microsoft.Templates.Core.Diagnostics;
 
 namespace Microsoft.Templates.Core.Test.Diagnostics
 {
-    public sealed class TelemetryFixture : IDisposable
+    public sealed class TelemetryFixture
     {
         public TelemetryService Telemetry { get; }
 
         public TelemetryFixture()
         {
             Telemetry = TelemetryService.Current;
-        }
-
-        public void Dispose()
-        {
-            TelemetryService.Current.Dispose();
         }
     }
 }

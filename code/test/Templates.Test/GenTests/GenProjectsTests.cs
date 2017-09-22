@@ -50,7 +50,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationProjects")]
-        public async Task GenEmptyProjectCorrectInfeProjectConfigInfoAsync(string projectType, string framework, string language)
+        public async Task GenEmptyProjectCorrectInferProjectConfigInfoAsync(string projectType, string framework, string language)
         {
             Func<ITemplateInfo, bool> selector =
                 t => t.GetTemplateType() == TemplateType.Project
@@ -165,7 +165,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetPageAndFeatureTemplatesAsync", "CaliburnMicro")]
+        [MemberData("GetPageAndFeatureTemplatesForGenerationAsync", "CaliburnMicro")]
         [Trait("Type", "GenerationOneByOneCaliburnMicro")]
         public async Task GenCaliburnMicroOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
         {

@@ -189,8 +189,18 @@ namespace Microsoft.Templates.UI.Generation
 
         private static bool IsCaliburnMicro()
         {
-           // TODO: Determine unique circumstances which make a project be caliburn micro based
-            return true;
+            if (ExistsFileInProjectPath("Services", "ActivationService.cs"))
+            {
+                var files = Directory.GetFiles(GenContext.Current.ProjectPath, "*.*proj", SearchOption.TopDirectoryOnly);
+                foreach (string file in files)
+                {
+                    if (File.ReadAllText(file).Contains("<PackageReference Include=\"Caliburn.Micro\">"))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         private static bool IsSplitView()
