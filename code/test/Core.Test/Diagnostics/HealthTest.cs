@@ -12,6 +12,8 @@ using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Diagnostics
 {
+    [Trait("ExecutionSet", "Minimum")]
+
     public class HealthTest
     {
         TestHealthWriter _testWriter = null;

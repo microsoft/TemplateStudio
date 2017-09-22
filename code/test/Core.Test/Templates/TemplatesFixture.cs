@@ -12,14 +12,21 @@ namespace Microsoft.Templates.Core.Test
     public class TemplatesFixture
     {
         public TemplatesRepository Repository { get; private set; }
-
+        private bool _syncExecuted = false;
         public void InitializeFixture(string language)
         {
             var source = new UnitTestsTemplatesSource();
 
             GenContext.Bootstrap(source, new FakeGenShell(language), language);
-
-            GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
+            if (!_syncExecuted)
+            {
+                GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
+                _syncExecuted = true;
+            }
+            else
+            {
+                GenContext.ToolBox.Repo.CheckForUpdatesAsync().Wait();
+            }
 
             Repository = GenContext.ToolBox.Repo;
         }

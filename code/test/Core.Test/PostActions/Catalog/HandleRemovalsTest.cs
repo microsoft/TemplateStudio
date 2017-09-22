@@ -8,6 +8,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 {
+    [Trait("ExecutionSet", "Minimum")]
     public class HandleRemovalsTest
     {
         [Fact]
