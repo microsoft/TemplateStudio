@@ -28,6 +28,7 @@ namespace Param_ItemNamespace.ViewModels
                 return _launchFeedbackHubCommand;
             }
         }
+
         //}]}
     }
 }
