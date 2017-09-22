@@ -4,6 +4,7 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
@@ -52,7 +53,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
                 File.Move(_config, newFileName);
 
-                if (extOfInterest == ".xaml.cs")
+                if (new[] { ".cs", ".vb" }.Contains(Path.GetExtension(targetFileName)))
                 {
                     // Need to set the class name correctly for merge to work as it won't have been renamed like other files would
                     var targetFileLines = File.ReadAllLines(targetFileName);
