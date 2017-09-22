@@ -10,8 +10,7 @@
     mc:Ignorable="d">
 
     <Grid
-        x:Name="ContentArea"
-        Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+        x:Name="ContentArea">
 
         <views:MasterDetailDetailControl
             Margin="{StaticResource MediumLeftRightMargin}"
