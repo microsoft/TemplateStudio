@@ -38,15 +38,17 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 {
                     DataService.LoadFrameworks(Frameworks, value.Name);
                     FrameworkHeader = string.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
-
-                    SelectedFramework = Frameworks.FirstOrDefault(f => f.Name == _selectedFramework?.Name);
-                    if (SelectedFramework == null)
+                    if (_selectedFramework != null)
+                    {
+                        SelectedFramework = Frameworks.FirstOrDefault(f => f.Name == _selectedFramework.Name);
+                    }
+                    else
                     {
                         SelectedFramework = Frameworks.FirstOrDefault();
                     }
-
+                    var hasChanged = _selectedProjectType != null && _selectedProjectType.Name != value.Name;
                     SetProperty(ref _selectedProjectType, value);
-                    if (_selectedProjectType != null && _selectedProjectType != value)
+                    if (hasChanged)
                     {
                         MainViewModel.Current.AlertProjectSetupChanged();
                     }
@@ -62,16 +64,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             get => _selectedFramework;
             set
             {
-                var orgframework = _selectedFramework;
-
-                SetProperty(ref _selectedFramework, value);
-
-                if (value != null && orgframework != null && orgframework != _selectedFramework)
+                if (value != null)
                 {
-                    MainViewModel.Current.AlertProjectSetupChanged();
+                    bool hasChanged = _selectedFramework != null && _selectedFramework.Name != value.Name;
+                    SetProperty(ref _selectedFramework, value);
+                    if (hasChanged)
+                    {
+                        MainViewModel.Current.AlertProjectSetupChanged();
+                    }
+                    MainViewModel.Current.RebuildLicenses();
                 }
-
-                MainViewModel.Current.RebuildLicenses();
             }
         }
 
