@@ -66,7 +66,7 @@ namespace Param_ItemNamespace.Helpers
 
             if (string.IsNullOrEmpty(fileName))
             {
-                throw new ArgumentException("File name is null or empty. Specify a valid file name", nameof(fileName));
+                throw new ArgumentException("ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty".GetLocalized(), nameof(fileName));
             }
 
             var storageFile = await folder.CreateFileAsync(fileName, options);
