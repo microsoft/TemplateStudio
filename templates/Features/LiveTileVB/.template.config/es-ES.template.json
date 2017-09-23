@@ -1,5 +1,5 @@
 ﻿{
-    "author": "Microsoft",
+    "author": "Microsoft Community Contribution",
     "name": "Live Tile",
     "description": "Adds a sample to show updating the tile as well as code for working with multiple tiles.",
     "identity": "wts.Feat.LiveTile.VB"

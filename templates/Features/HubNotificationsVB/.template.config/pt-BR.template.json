@@ -1,5 +1,5 @@
 ﻿{
-    "author": "Microsoft",
+    "author": "Microsoft Community Contribution",
     "name": "Azure Notifications",
     "description": "Register to receive and handle messages from Azure Notification Hubs.",
     "identity": "wts.Feat.HubNotifications.VB"
