@@ -114,7 +114,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{projectType}{framework}All";
 
-            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, GenerationFixture.GetDefaultName);
+            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, BaseGenAndBuildFixture.GetDefaultName);
         }
 
         [Theory]
@@ -131,7 +131,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{projectType}{framework}AllRandom";
 
-            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, GenerationFixture.GetRandomName);
+            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, BaseGenAndBuildFixture.GetRandomName);
         }
 
         [Theory]
