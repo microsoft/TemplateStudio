@@ -6,16 +6,16 @@
   "identity": "wts.Feat.BackgroundTask.VB",
   "description": "Add an in-process background task ready to run code even while the app is not in the foreground.",
   "tags": {
-    "language": "C#",
+    "language": "VisualBasic",
     "type": "item",
-    "wts.type.VB": "feature",
-    "wts.framework.VB": "MVVMBasic|MVVMLight|CodeBehind",
-    "wts.version.VB": "1.0.0",
-    "wts.order.VB": "1",
-    "wts.group.VB": "BackgroundWork",
-    "wts.multipleInstance.VB": "true",
-    "wts.genGroup.VB": "0",    
-    "wts.rightClickEnabled.VB":"true"
+    "wts.type": "feature",
+    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.version": "1.0.0",
+    "wts.order": "1",
+    "wts.group": "BackgroundWork",
+    "wts.multipleInstance": "true",
+    "wts.genGroup": "0",    
+    "wts.rightClickEnabled":"true"
   },
   "sourceName": "BackgroundTaskFeature",
   "preferNameDirectory": true,
@@ -34,11 +34,11 @@
     }
   ],
   "symbols": {
-    "wts.rootNamespace.VB": {
+    "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.itemNamespace.VB": {
+    "wts.itemNamespace": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
     }

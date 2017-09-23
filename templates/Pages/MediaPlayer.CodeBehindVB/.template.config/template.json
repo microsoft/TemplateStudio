@@ -8,14 +8,14 @@
   "identity": "wts.Page.MediaPlayer.CodeBehind.VB",
   "description": "A page for showing video with system media controls enabled.",
   "tags": {
-    "language": "C#",
+    "language": "VisualBasic",
     "type": "item",
-    "wts.type.VB": "page",
-    "wts.framework.VB": "CodeBehind",
-    "wts.version.VB": "1.0.0",    
-    "wts.genGroup.VB": "0",
-    "wts.order.VB": "4",
-    "wts.rightClickEnabled.VB":"true" 
+    "wts.type": "page",
+    "wts.framework": "CodeBehind",
+    "wts.version": "1.0.0",    
+    "wts.genGroup": "0",
+    "wts.order": "4",
+    "wts.rightClickEnabled":"true" 
   },
   "sourceName": "MediaPlayerView",
   "preferNameDirectory": true,
@@ -28,11 +28,11 @@
     }
   ],
   "symbols": {
-    "wts.rootNamespace.VB": {
+    "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.itemNamespace.VB": {
+    "wts.itemNamespace": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
     },

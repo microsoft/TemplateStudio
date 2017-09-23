@@ -8,14 +8,14 @@
   "identity": "wts.Page.WebView.CodeBehind.VB",
   "description": "The web view page embeds a view into your app that renders web content using the Microsoft Edge rendering engine.",
   "tags": {
-    "language": "C#",
+    "language": "VisualBasic",
     "type": "item",
-    "wts.type.VB": "page",
-    "wts.framework.VB": "CodeBehind",
-    "wts.version.VB": "2.0.0",
-    "wts.order.VB": "3",
-    "wts.genGroup.VB": "0",
-    "wts.rightClickEnabled.VB":"true" 
+    "wts.type": "page",
+    "wts.framework": "CodeBehind",
+    "wts.version": "2.0.0",
+    "wts.order": "3",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true" 
   },
   "sourceName": "WebViewPage",
   "preferNameDirectory": true,
@@ -28,11 +28,11 @@
     }
   ],
   "symbols": {
-    "wts.rootNamespace.VB": {
+    "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.itemNamespace.VB": {
+    "wts.itemNamespace": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
     },

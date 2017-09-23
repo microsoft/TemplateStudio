@@ -8,15 +8,15 @@
   "identity": "wts.Page.MasterDetail.CodeBehind.VB",
   "description": "The master-detail page has a master pane and a details pane for content.",
   "tags": {
-    "language": "C#",
+    "language": "VisualBasic",
     "type": "item",
-    "wts.type.VB": "page",
-    "wts.framework.VB": "CodeBehind",
-    "wts.version.VB": "1.0.0",
-    "wts.order.VB": "5",
-    "wts.dependencies.VB": "wts.Feat.SampleDataService.VB",
-    "wts.genGroup.VB": "0",
-    "wts.rightClickEnabled.VB":"true" 
+    "wts.type": "page",
+    "wts.framework": "CodeBehind",
+    "wts.version": "1.0.0",
+    "wts.order": "5",
+    "wts.dependencies": "wts.Feat.SampleDataService.VB",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true" 
   },
   "sourceName": "MasterDetail",
   "preferNameDirectory": true,
@@ -41,11 +41,11 @@
     }   
   ],
   "symbols": {
-    "wts.rootNamespace.VB": {
+    "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.itemNamespace.VB": {
+    "wts.itemNamespace": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
     },
