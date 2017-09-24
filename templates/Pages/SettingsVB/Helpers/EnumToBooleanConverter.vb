@@ -9,7 +9,7 @@ Namespace Helpers
         Public Function Convert(value As Object, targetType As Type, parameter As Object, language As String) As Object Implements IValueConverter.Convert
             If TypeOf parameter Is String Then
                 If Not [Enum].IsDefined(EnumType, value) Then
-                    Throw New ArgumentException("value must be an Enum!")
+                    Throw New ArgumentException("ExceptionEnumToBooleanConverterValueMustBeAnEnum".GetLocalized())
                 End If
 
                 Dim enumValue = [Enum].Parse(EnumType, parameter.ToString())
@@ -17,7 +17,7 @@ Namespace Helpers
                 Return enumValue.Equals(value)
             End If
 
-            Throw New ArgumentException("parameter must be an Enum name!")
+            Throw New ArgumentException("ExceptionEnumToBooleanConverterParameterMustBeAnEnumName".GetLocalized())
         End Function
 
         Public Function ConvertBack(value As Object, targetType As Type, parameter As Object, language As String) As Object Implements IValueConverter.ConvertBack
@@ -26,7 +26,7 @@ Namespace Helpers
                 Return [Enum].Parse(EnumType, enumString)
             End If
 
-            Throw New ArgumentException("parameter must be an Enum name!")
+            Throw New ArgumentException("ExceptionEnumToBooleanConverterParameterMustBeAnEnumName".GetLocalized())
         End Function
     End Class
 End Namespace

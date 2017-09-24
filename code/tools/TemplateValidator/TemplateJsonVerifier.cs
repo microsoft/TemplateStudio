@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ApiAnalysis;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Composition;
 using Microsoft.Templates.Core.Gen;
 using Newtonsoft.Json;
@@ -182,7 +183,8 @@ namespace TemplateValidator
                         VerifyWtsRightclickenabledTagValue(tag, results);
                         break;
                     case "wts.compositionFilter":
-                        VerifyWtsCompositionfilterTagValue(tag, results);
+                        VerifyWtsCompositionFilterTagValue(tag, results);
+                        VerifyWtsCompositionFilterLogic(template, tag, results);
                         break;
                     case "wts.licenses":
                         VerifyWtsLicensesTagValue(tag, results);
@@ -269,7 +271,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsCompositionfilterTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyWtsCompositionFilterTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             try
             {
@@ -279,6 +281,19 @@ namespace TemplateValidator
             catch (InvalidCompositionQueryException ex)
             {
                 results.Add($"Unable to parse the wts.compositionFilter value of '{tag.Value}': {ex}.");
+            }
+        }
+
+        private static void VerifyWtsCompositionFilterLogic(ValidationTemplateInfo template, KeyValuePair<string, string> tag, List<string> results)
+        {
+            // Ensure VB tempaltes refere to VB identities
+            if (template.TemplateTags["language"] == ProgrammingLanguages.VisualBasic)
+            {
+                // This can't catch everything but is better than nothing
+                if (tag.Value.Contains("identity") && !tag.Value.Contains(".VB"))
+                {
+                    results.Add($" wts.compositionFilter identitiy vlaue does not match the language. ({tag.Value}).");
+                }
             }
         }
 
@@ -389,8 +404,7 @@ namespace TemplateValidator
 
         private static void VerifyLanguageTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            // Get these strings from Core.ProgrammingLanguages once VB support reenabled
-            if (!new[] { "C#", "VisualBasic" }.Contains(tag.Value))
+            if (!new[] { ProgrammingLanguages.CSharp, ProgrammingLanguages.VisualBasic }.Contains(tag.Value))
             {
                 results.Add($"Invalid value '{tag.Value}' specified in the language tag.");
             }

@@ -4,7 +4,7 @@ Imports Param_ItemNamespace.Services
 
 Namespace ViewModels
     Public Class GridViewViewModel
-        Implements System.ComponentModel.INotifyPropertyChanged
+        Inherits System.ComponentModel.INotifyPropertyChanged
         Public ReadOnly Property Source() As ObservableCollection(Of SampleOrder)
             Get
                 ' TODO WTS: Replace this with your actual data

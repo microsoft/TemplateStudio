@@ -204,7 +204,7 @@ namespace Microsoft.Templates.Test
             var allCsFiles = new DirectoryInfo(csResultPath).GetFiles("*.*").ToList();
             var allVbFiles = new DirectoryInfo(vbResultPath).GetFiles("*.*").ToList();
             var equalNumberOfFiles = allCsFiles.Count == allVbFiles.Count;
-            Assert.True(equalNumberOfFiles, "Differing number of files in the generated projects.");
+            Assert.True(equalNumberOfFiles, $"Differing number of files in the generated projects ({csResultPath.Replace("CS", " * ")}).");
 
             for (var i = 0; i < allCsFiles.Count; i++)
             {
@@ -215,17 +215,31 @@ namespace Microsoft.Templates.Test
             // Resource file contents should be identical regardless of programming language
             var csReswFilePath = Path.Combine(csResultPath, csProjectName, "Strings", "en-us", "Resources.resw");
             var vbReswFilePath = Path.Combine(vbResultPath, vbProjectName, "Strings", "en-us", "Resources.resw");
-            var reswFilesMatch = File.ReadAllText(csReswFilePath) == File.ReadAllText(vbReswFilePath);
-            Assert.True(reswFilesMatch, "Resource files do not match.");
 
-            // Check conntents of the Assets folder is identical
+            var csResourcesString = File.ReadAllText(csReswFilePath);
+            var vbResourcesString = File.ReadAllText(vbReswFilePath);
+
+            var reswFilesMatch = csResourcesString == vbResourcesString;
+            Assert.True(reswFilesMatch, $"Resource files do not match ({csResultPath.Replace("CS", "*")}).");
+
+            // TODO [ML]: add this test
+            // Ensure all resources are used by both languages
+            ///convert resource string to xml
+            ///build a list of allresource keys
+            /// loop through all *.cs files
+            /// as found a resource key being used remove it from the list
+            /// if list empty then break
+            /// if get through all files and haven't found a key use report it as an error
+            ///repeat for VB
+
+            // Check contents of the Assets folder are identical
             var csAssets = new DirectoryInfo(Path.Combine(csResultPath, csProjectName, "Assets")).GetFiles().OrderBy(f => f.FullName).ToList();
             var vbAssets = new DirectoryInfo(Path.Combine(vbResultPath, vbProjectName, "Assets")).GetFiles().OrderBy(f => f.FullName).ToList();
 
             for (var i = 0; i < csAssets.Count; i++)
             {
                 var styleFileMatches = BinaryFileEquals(csAssets[i].FullName, vbAssets[i].FullName);
-                Assert.True(styleFileMatches, $"Asset file '{csAssets[i].Name}' does not match.");
+                Assert.True(styleFileMatches, $"Asset file '{csAssets[i].Name}' does not match ({csResultPath.Replace("CS", "*")}).");
             }
 
             // Check contents of the Styles folder is identical
@@ -235,7 +249,7 @@ namespace Microsoft.Templates.Test
             for (var i = 0; i < csStyles.Count; i++)
             {
                 var styleFileMatches = File.ReadAllText(csStyles[i].FullName) == File.ReadAllText(vbStyles[i].FullName);
-                Assert.True(styleFileMatches, $"Style file '{csStyles[i].Name}' does not match.");
+                Assert.True(styleFileMatches, $"Style file '{csStyles[i].Name}' does not match ({csResultPath.Replace("CS", "*")}).");
             }
 
             Fs.SafeDeleteDirectory(csResultPath);
