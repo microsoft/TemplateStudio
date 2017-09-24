@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Text;
-
+using System.Xml;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
@@ -224,15 +224,41 @@ namespace Microsoft.Templates.Test
             var reswFilesMatch = csResourcesString == vbResourcesString;
             Assert.True(reswFilesMatch, $"Resource files do not match ({csResultPath.Replace("CS", "*")}).");
 
-            // TODO [ML]: add this test
-            // Ensure all resources are used by both languages
-            ///convert resource string to xml
-            ///build a list of allresource keys
-            /// loop through all *.cs files
-            /// as found a resource key being used remove it from the list
-            /// if list empty then break
-            /// if get through all files and haven't found a key use report it as an error
-            ///repeat for VB
+            // Ensure all resources are used
+            var resourceKeys = new List<string>();
+            var resourceXml = new XmlDocument();
+            resourceXml.LoadXml(csResourcesString);
+
+            var nodes = resourceXml.GetElementsByTagName("data");
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                // Assume resources containing dots are Uids
+                var resourceName = nodes[i].Attributes.GetNamedItem("name").Value;
+                if (!resourceName.Contains("."))
+                {
+                    resourceKeys.Add(resourceName);
+                }
+            }
+
+            foreach (var vbFile in new DirectoryInfo(Path.Combine(vbResultPath, vbProjectName)).GetFiles("*.vb", SearchOption.AllDirectories))
+            {
+                var vbFileContents = File.ReadAllText(vbFile.FullName);
+
+                for (var i = resourceKeys.Count - 1; i >= 0; i--)
+                {
+                    if (vbFileContents.Contains(resourceKeys[i]))
+                    {
+                        resourceKeys.RemoveAt(i);
+                    }
+                }
+
+                if (!resourceKeys.Any())
+                {
+                    break;
+                }
+            }
+
+            Assert.True(!resourceKeys.Any(), $"Resource strings are defined but not used in VB files: {string.Join("; ", resourceKeys)}");
 
             // Check contents of the Assets folder are identical
             var csAssets = new DirectoryInfo(Path.Combine(csResultPath, csProjectName, "Assets")).GetFiles().OrderBy(f => f.FullName).ToList();

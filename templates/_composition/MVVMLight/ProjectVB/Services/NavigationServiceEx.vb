@@ -5,6 +5,7 @@ Imports Windows.UI.Xaml
 Imports Windows.UI.Xaml.Controls
 Imports Windows.UI.Xaml.Media.Animation
 Imports Windows.UI.Xaml.Navigation
+Imports Param_RootNamespace.Helpers
 
 Namespace Services
     Public Class NavigationServiceEx
@@ -52,7 +53,7 @@ Namespace Services
         Public Function Navigate(pageKey As String, Optional parameter As Object = Nothing, Optional infoOverride As NavigationTransitionInfo = Nothing) As Boolean
             SyncLock _pages
                 If Not _pages.ContainsKey(pageKey) Then
-                    Throw New ArgumentException($"Page not found: {pageKey}. Did you forget to call NavigationService.Configure?", NameOf(pageKey))
+                    Throw New ArgumentException(String.Format("ExceptionNavigationServiceExPageNotFound".GetLocalized(), pageKey), nameof(pageKey))
                 End If
                 Dim navigationResult = Frame.Navigate(_pages(pageKey), parameter, infoOverride)
                 Return navigationResult
@@ -62,11 +63,11 @@ Namespace Services
         Public Sub Configure(key As String, pageType As Type)
             SyncLock _pages
                 If _pages.ContainsKey(key) Then
-                    Throw New ArgumentException($"The key {key} is already configured in NavigationService")
+                    Throw New ArgumentException(String.Format("ExceptionNavigationServiceExKeyIsInNavigationService".GetLocalized(), key))
                 End If
 
                 If _pages.Any(Function(p) p.Value.Equals(pageType)) Then
-                    Throw New ArgumentException($"This type is already configured with key {_pages.First(Function(p) p.Value Is pageType).Key}")
+                    Throw New ArgumentException(String.Format("ExceptionNavigationServiceExTypeAlreadyConfigured".GetLocalized(), _pages.First(Function(p) p.Value.Equals(pageType)).Key))
                 End If
 
                 _pages.Add(key, pageType)
@@ -78,7 +79,7 @@ Namespace Services
                 If _pages.ContainsValue(page) Then
                     Return _pages.FirstOrDefault(Function(p) p.Value.Equals(page)).Key
                 Else
-                    Throw New ArgumentException($"The page '{page.Name}' is unknown by the NavigationService")
+                    Throw New ArgumentException(String.Format("ExceptionNavigationServiceExPageUnknow".GetLocalized(), page.Name))
                 End If
             End SyncLock
         End Function
