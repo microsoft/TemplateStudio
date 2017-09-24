@@ -120,6 +120,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationRandomNames")]
+        [Trait("ExecutionSet", "VBQuickCheck")]
         public async Task GenAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string language)
         {
             Func<ITemplateInfo, bool> selector =
@@ -191,6 +192,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetMultiLanguageProjectsAndFrameworks")]
         [Trait("Type", "GenerationLanguageComparison")]
+        [Trait("ExecutionSet", "VBQuickCheck")]
         public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(string projectType, string framework)
         {
             var genIdentities = GetPagesAndFeaturesForMultiLanguageProjectsAndFrameworks(projectType, framework).ToList();

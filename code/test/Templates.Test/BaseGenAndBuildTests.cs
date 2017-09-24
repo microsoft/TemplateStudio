@@ -283,8 +283,11 @@ namespace Microsoft.Templates.Test
             if (projectType == NavigationPanel && framework == CodeBehind)
             {
                 // These are the items being built out for first public trial
-                return new[] { "wts.Page.Blank.CodeBehind", "wts.Page.Settings.CodeBehind", "wts.Page.Chart.CodeBehind",
-                               "wts.Page.Grid.CodeBehind", "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume" };
+                return new[] {
+                    "wts.Page.Blank.CodeBehind", "wts.Page.Settings.CodeBehind", "wts.Page.Chart.CodeBehind",
+                    "wts.Page.Grid.CodeBehind", "wts.Page.WebView.CodeBehind",
+                    "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume"
+                };
             }
             else if (framework == CodeBehind)
             {

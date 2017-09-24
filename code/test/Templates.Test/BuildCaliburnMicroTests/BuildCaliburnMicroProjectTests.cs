@@ -52,6 +52,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplatesForBuildAsync", "CaliburnMicro")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
+        [Trait("ExecutionSet", "VBQuickCheck")]
         public async Task BuildAllPagesAndFeaturesAsync(string projectType, string framework, string language)
         {
             Func<ITemplateInfo, bool> selector =

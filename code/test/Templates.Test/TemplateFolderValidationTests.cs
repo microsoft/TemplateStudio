@@ -10,6 +10,7 @@ namespace Microsoft.Templates.Test
 {
     [Collection("Unit Test Templates")]
     [Trait("Type", "TemplateValidation")]
+    [Trait("ExecutionSet", "VBQuickCheck")]
     public class TemplateFolderValidationTests
     {
         // Perform checks based on the entirety of the templates folder
