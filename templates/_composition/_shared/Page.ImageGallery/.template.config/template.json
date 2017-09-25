@@ -51,7 +51,7 @@
       "path": ".\\Models\\SampleImage.cs"
     },
     {
-      "path": ".\\Styles\\ImageEx.xaml"
+      "path": ".\\Styles\\ImageGalleryPageStyles.xaml"
     }
   ],
   "symbols": {

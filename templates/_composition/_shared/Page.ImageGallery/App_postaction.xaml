@@ -2,7 +2,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <!--{[{-->
-                <ResourceDictionary Source="/Styles/ImageEx.xaml"/>
+                <ResourceDictionary Source="/Styles/ImageGalleryPageStyles.xaml"/>
                 <!--}]}-->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
