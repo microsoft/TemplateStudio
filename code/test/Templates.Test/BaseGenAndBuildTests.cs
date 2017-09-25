@@ -287,6 +287,7 @@ namespace Microsoft.Templates.Test
                 {
                     "wts.Page.Blank.CodeBehind", "wts.Page.Settings.CodeBehind", "wts.Page.Chart.CodeBehind",
                     "wts.Page.Grid.CodeBehind", "wts.Page.WebView.CodeBehind", "wts.Page.MediaPlayer.CodeBehind",
+                    "wts.Page.Tabbed.CodeBehind",
                     "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume"
                 };
             }
