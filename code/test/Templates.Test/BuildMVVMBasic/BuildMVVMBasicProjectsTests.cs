@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Test
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
-            var projectName = $"{projectType}";
+            var projectName = $"{projectType}{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, null, false);
 
@@ -61,7 +61,7 @@ namespace Microsoft.Templates.Test
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
-            var projectName = $"{projectType}All";
+            var projectName = $"{projectType}All{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, GenerationFixture.GetDefaultName, false);
 
@@ -83,7 +83,7 @@ namespace Microsoft.Templates.Test
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
-            var projectName = $"{projectType}AllRandom";
+            var projectName = $"{projectType}AllRandom{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, GenerationFixture.GetRandomName, false);
 
@@ -95,7 +95,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "BuildRightClick")]
         public async Task BuildEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
-            var projectName = $"{projectType}AllRightClick";
+            var projectName = $"{projectType}AllRightClick{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, language, true, false);
 
@@ -107,7 +107,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "BuildRightClick")]
         public async Task BuildCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
-            var projectName = $"{projectType}AllRightClick2";
+            var projectName = $"{projectType}AllRightClick2{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, language, false, false);
 

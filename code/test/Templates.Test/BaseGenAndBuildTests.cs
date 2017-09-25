@@ -30,6 +30,11 @@ namespace Microsoft.Templates.Test
             await _fixture.InitializeFixtureAsync(language, this);
         }
 
+        protected static string ShortLanguageName(string language)
+        {
+            return language == ProgrammingLanguages.CSharp ? "CS" : "VB";
+        }
+
         protected async Task<string> AssertGenerateProjectAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string language, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
         {
             await SetUpFixtureForTestingAsync(language);
