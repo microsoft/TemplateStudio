@@ -9,6 +9,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Composition
 {
+    [Trait("ExecutionSet", "Minimum")]
     public class CompositionQueryTest
     {
         [Fact]

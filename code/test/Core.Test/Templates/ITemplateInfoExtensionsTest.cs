@@ -17,6 +17,8 @@ using Xunit;
 namespace Microsoft.Templates.Core.Test
 {
     [Collection("Unit Test Templates")]
+    [Trait("ExecutionSet", "Minimum")]
+    [Trait("Type", "ProjectGeneration")]
     public class ITemplateInfoExtensionsTest
     {
         private readonly TemplatesFixture _fixture;
@@ -28,7 +30,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetTemplateType_project(string language)
         {
             SetUpFixtureForTesting(language);
@@ -52,7 +53,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetTemplateType_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
@@ -65,7 +65,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetIcon(string language)
         {
             SetUpFixtureForTesting(language);
@@ -86,7 +85,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetIcon_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
@@ -99,7 +97,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetRichDescription(string language)
         {
             SetUpFixtureForTesting(language);
@@ -112,7 +109,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetRichDescription_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
@@ -125,7 +121,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetFramework(string language)
         {
             SetUpFixtureForTesting(language);
@@ -142,7 +137,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetFramework_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
@@ -155,7 +149,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetVersion(string language)
         {
             SetUpFixtureForTesting(language);
@@ -168,7 +161,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetVersion_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
@@ -181,7 +173,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetGroup(string language)
         {
             SetUpFixtureForTesting(language);
@@ -194,7 +185,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetGroup_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
@@ -207,7 +197,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetDisplayOrder(string language)
         {
             SetUpFixtureForTesting(language);
@@ -220,7 +209,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetDisplayOrder_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
@@ -233,7 +221,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetCompositionOrder(string language)
         {
             SetUpFixtureForTesting(language);
@@ -246,7 +233,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetCompositionOrder_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
@@ -259,7 +245,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetLicenses(string language)
         {
             SetUpFixtureForTesting(language);
@@ -284,7 +269,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetLicenses_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
@@ -297,7 +281,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetLayout(string language)
         {
             SetUpFixtureForTesting(language);
@@ -322,7 +305,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetLayout_NoLayout(string language)
         {
             SetUpFixtureForTesting(language);
@@ -335,7 +317,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetDefaultName(string language)
         {
             SetUpFixtureForTesting(language);
@@ -371,7 +352,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetDefaultName_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
@@ -396,7 +376,6 @@ namespace Microsoft.Templates.Core.Test
         private void SetUpFixtureForTesting(string language)
         {
             _fixture.InitializeFixture(language);
-            GenContext.Bootstrap(new UnitTestsTemplatesSource(), new FakeGenShell(language), language);
         }
 
         public static IEnumerable<object[]> GetAllLanguages()
