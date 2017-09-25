@@ -29,7 +29,7 @@ Namespace ViewModels
                 Return _posterSource
             End Get
             Set
-                [Set](_posterSource, value)
+                [Set](_posterSource, value, propertyName:=NameOf(PosterSource))
             End Set
         End Property
 

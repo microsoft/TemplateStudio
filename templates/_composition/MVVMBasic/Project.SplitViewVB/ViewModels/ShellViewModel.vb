@@ -18,7 +18,7 @@ Namespace ViewModels
         Private Const PanoramicStateMinWindowWidth As Double = 1024
 
         Private _isPaneOpen As Boolean
-        Public Property IsPaneOpen() As Boolean
+        Public Property IsPaneOpen As Boolean
             Get
                 Return _isPaneOpen
             End Get
@@ -28,7 +28,7 @@ Namespace ViewModels
         End Property
 
         Private _displayMode As SplitViewDisplayMode = SplitViewDisplayMode.CompactInline
-        Public Property DisplayMode() As SplitViewDisplayMode
+        Public Property DisplayMode As SplitViewDisplayMode
             Get
                 Return _displayMode
             End Get
@@ -40,21 +40,21 @@ Namespace ViewModels
         Private _lastSelectedItem As Object
 
         Private _primaryItems As New ObservableCollection(Of ShellNavigationItem)()
-        Public ReadOnly Property PrimaryItems() As ObservableCollection(Of ShellNavigationItem)
+        Public ReadOnly Property PrimaryItems As ObservableCollection(Of ShellNavigationItem)
             Get
                 Return _primaryItems
             End Get
         End Property
 
         Private _secondaryItems As New ObservableCollection(Of ShellNavigationItem)()
-        Public ReadOnly Property SecondaryItems() As ObservableCollection(Of ShellNavigationItem)
+        Public ReadOnly Property SecondaryItems As ObservableCollection(Of ShellNavigationItem)
             Get
                 Return _secondaryItems
             End Get
         End Property
 
         Private _openPaneCommand As ICommand
-        Public ReadOnly Property OpenPaneCommand() As ICommand
+        Public ReadOnly Property OpenPaneCommand As ICommand
             Get
                 If _openPaneCommand Is Nothing Then
                     _openPaneCommand = New RelayCommand(Function() InlineAssignHelper(IsPaneOpen, Not _isPaneOpen))
@@ -65,7 +65,7 @@ Namespace ViewModels
         End Property
 
         Private _itemSelected As ICommand
-        Public ReadOnly Property ItemSelectedCommand() As ICommand
+        Public ReadOnly Property ItemSelectedCommand As ICommand
             Get
                 If _itemSelected Is Nothing Then
                     _itemSelected = New RelayCommand(Of ItemClickEventArgs)(AddressOf ItemSelected)
@@ -76,7 +76,7 @@ Namespace ViewModels
         End Property
 
         Private _stateChangedCommand As ICommand
-        Public ReadOnly Property StateChangedCommand() As ICommand
+        Public ReadOnly Property StateChangedCommand As ICommand
             Get
                 If _stateChangedCommand Is Nothing Then
                     _stateChangedCommand = New RelayCommand(Of Windows.UI.Xaml.VisualStateChangedEventArgs)(Sub(args) GoToState(args.NewState.Name))

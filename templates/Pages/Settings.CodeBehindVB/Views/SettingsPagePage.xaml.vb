@@ -12,7 +12,7 @@ Namespace Views
         ' TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
         Private _elementTheme As ElementTheme = ThemeSelectorService.Theme
 
-        Public Property ElementTheme() As ElementTheme
+        Public Property ElementTheme As ElementTheme
             Get
                 Return _elementTheme
             End Get
@@ -24,7 +24,7 @@ Namespace Views
 
         Private _versionDescription As String
 
-        Public Property VersionDescription() As String
+        Public Property VersionDescription As String
             Get
                 Return _versionDescription
             End Get

@@ -23,19 +23,19 @@ Namespace ViewModels
 
         Private _versionDescription As String
 
-        Public Property VersionDescription() As String
+        Public Property VersionDescription As String
             Get
                 Return _versionDescription
             End Get
 
             Set
-                [Set](_versionDescription, value)
+                [Set](_versionDescription, value, propertyName:=NameOf(VersionDescription))
             End Set
         End Property
 
         Private _switchThemeCommand As ICommand
 
-        Public ReadOnly Property SwitchThemeCommand() As ICommand
+        Public ReadOnly Property SwitchThemeCommand As ICommand
             Get
                 If _switchThemeCommand Is Nothing Then
                     _switchThemeCommand = New RelayCommand(Of ElementTheme)(Async Sub(param) 

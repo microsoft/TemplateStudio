@@ -12,7 +12,7 @@ Namespace Views
 
         Private _source As Uri
 
-        Public Property Source() As Uri
+        Public Property Source As Uri
             Get
                 Return _source
             End Get
@@ -23,7 +23,7 @@ Namespace Views
 
         Private _isLoading As Boolean
 
-        Public Property IsLoading() As Boolean
+        Public Property IsLoading As Boolean
             Get
                 Return _isLoading
             End Get
@@ -40,7 +40,7 @@ Namespace Views
 
         Private _isLoadingVisibility As Visibility
 
-        Public Property IsLoadingVisibility() As Visibility
+        Public Property IsLoadingVisibility As Visibility
             Get
                 Return _isLoadingVisibility
             End Get
@@ -51,7 +51,7 @@ Namespace Views
 
         Private _isShowingFailedMessage As Boolean
 
-        Public Property IsShowingFailedMessage() As Boolean
+        Public Property IsShowingFailedMessage As Boolean
             Get
                 Return _isShowingFailedMessage
             End Get
@@ -68,7 +68,7 @@ Namespace Views
 
         Private _failedMesageVisibility As Visibility
 
-        Public Property FailedMesageVisibility() As Visibility
+        Public Property FailedMesageVisibility As Visibility
             Get
                 Return _failedMesageVisibility
             End Get
@@ -95,13 +95,13 @@ Namespace Views
             webView.Refresh()
         End Sub
 
-        Public ReadOnly Property IsBackEnabled() As Boolean
+        Public ReadOnly Property IsBackEnabled As Boolean
             Get
                 Return webView.CanGoBack
             End Get
         End Property
 
-        Public ReadOnly Property IsForwardEnabled() As Boolean
+        Public ReadOnly Property IsForwardEnabled As Boolean
             Get
                 Return webView.CanGoForward
             End Get

@@ -10,7 +10,7 @@ Namespace ViewModels
 
         Private _source As Uri
 
-        Public Property Source() As Uri
+        Public Property Source As Uri
             Get
                 Return _source
             End Get
@@ -21,7 +21,7 @@ Namespace ViewModels
 
         Private _isLoading As Boolean
 
-        Public Property IsLoading() As Boolean
+        Public Property IsLoading As Boolean
             Get
                 Return _isLoading
             End Get
@@ -38,7 +38,7 @@ Namespace ViewModels
 
         Private _isLoadingVisibility As Visibility
 
-        Public Property IsLoadingVisibility() As Visibility
+        Public Property IsLoadingVisibility As Visibility
             Get
                 Return _isLoadingVisibility
             End Get
@@ -49,7 +49,7 @@ Namespace ViewModels
 
         Private _isShowingFailedMessage As Boolean
 
-        Public Property IsShowingFailedMessage() As Boolean
+        Public Property IsShowingFailedMessage As Boolean
             Get
                 Return _isShowingFailedMessage
             End Get
@@ -66,7 +66,7 @@ Namespace ViewModels
 
         Private _failedMesageVisibility As Visibility
 
-        Public Property FailedMesageVisibility() As Visibility
+        Public Property FailedMesageVisibility As Visibility
             Get
                 Return _failedMesageVisibility
             End Get
@@ -77,7 +77,7 @@ Namespace ViewModels
 
         Private _navCompleted As ICommand
 
-        Public ReadOnly Property NavCompletedCommand() As ICommand
+        Public ReadOnly Property NavCompletedCommand As ICommand
             Get
                 If _navCompleted Is Nothing Then
                     _navCompleted = New RelayCommand(Of WebViewNavigationCompletedEventArgs)(AddressOf NavCompleted)
@@ -93,7 +93,7 @@ Namespace ViewModels
 
         Private _navFailed As ICommand
 
-        Public ReadOnly Property NavFailedCommand() As ICommand
+        Public ReadOnly Property NavFailedCommand As ICommand
             Get
                 If _navFailed Is Nothing Then
                     _navFailed = New RelayCommand(Of WebViewNavigationFailedEventArgs)(AddressOf NavFailed)
@@ -110,7 +110,7 @@ Namespace ViewModels
 
         Private _retryCommand As ICommand
 
-        Public ReadOnly Property RetryCommand() As ICommand
+        Public ReadOnly Property RetryCommand As ICommand
             Get
                 If _retryCommand Is Nothing Then
                     _retryCommand = New RelayCommand(AddressOf Retry)
@@ -129,7 +129,7 @@ Namespace ViewModels
 
         Private _browserBackCommand As ICommand
 
-        Public ReadOnly Property BrowserBackCommand() As ICommand
+        Public ReadOnly Property BrowserBackCommand As ICommand
             Get
                 If _browserBackCommand Is Nothing Then
                     _browserBackCommand = New RelayCommand(Sub() _webView?.GoBack(), Function() If(_webView?.CanGoBack, False))
@@ -141,7 +141,7 @@ Namespace ViewModels
 
         Private _browserForwardCommand As ICommand
 
-        Public ReadOnly Property BrowserForwardCommand() As ICommand
+        Public ReadOnly Property BrowserForwardCommand As ICommand
             Get
                 If _browserForwardCommand Is Nothing Then
                     _browserForwardCommand = New RelayCommand(Sub() _webView?.GoForward(), Function() If(_webView?.CanGoForward, False))
@@ -153,7 +153,7 @@ Namespace ViewModels
 
         Private _refreshCommand As ICommand
 
-        Public ReadOnly Property RefreshCommand() As ICommand
+        Public ReadOnly Property RefreshCommand As ICommand
             Get
                 If _refreshCommand Is Nothing Then
                     _refreshCommand = New RelayCommand(Sub() _webView?.Refresh())
@@ -165,7 +165,7 @@ Namespace ViewModels
 
         Private _openInBrowserCommand As ICommand
 
-        Public ReadOnly Property OpenInBrowserCommand() As ICommand
+        Public ReadOnly Property OpenInBrowserCommand As ICommand
             Get
                 If _openInBrowserCommand Is Nothing Then
                     _openInBrowserCommand = New RelayCommand(Async Sub() Await Windows.System.Launcher.LaunchUriAsync(Source))
