@@ -41,6 +41,10 @@ namespace Microsoft.Templates.Core.Locations
             ForcedAcquisition = forcedAdquisition;
             LocalTemplatesVersion = templatesVersion;
             LocalWizardVersion = wizardVersion;
+            if (string.IsNullOrEmpty(_id))
+            {
+                _id = Configuration.Current.Environment;
+            }
         }
 
         protected override string AcquireMstx()
