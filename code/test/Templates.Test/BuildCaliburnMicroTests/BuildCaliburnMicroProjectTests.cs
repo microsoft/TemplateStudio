@@ -72,6 +72,7 @@ namespace Microsoft.Templates.Test
         [MemberData("GetProjectTemplatesForBuildAsync", "CaliburnMicro")]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
+        [Trait("ExecutionSet", "BuildMinimum")]
         public async Task BuildAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string language)
         {
             Func<ITemplateInfo, bool> selector =
