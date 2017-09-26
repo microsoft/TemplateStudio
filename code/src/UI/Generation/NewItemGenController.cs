@@ -41,31 +41,28 @@ namespace Microsoft.Templates.UI
 
         public UserSelection GetUserSelectionNewFeature()
         {
-            if (VerifyNetVersion())
+            var newItem = new Views.NewItem.MainView(TemplateType.Feature);
+
+            try
             {
-                var newItem = new Views.NewItem.MainView(TemplateType.Feature);
+                CleanStatusBar();
 
-                try
+                GenContext.ToolBox.Shell.ShowModal(newItem);
+                if (newItem.Result != null)
                 {
-                    CleanStatusBar();
+                    TrackWizardCompletedTelemery(WizardTypeEnum.AddFeature, newItem.Result.ItemGenerationType);
 
-                    GenContext.ToolBox.Shell.ShowModal(newItem);
-                    if (newItem.Result != null)
-                    {
-                        TrackWizardCompletedTelemery(WizardTypeEnum.AddFeature, newItem.Result.ItemGenerationType);
-
-                        return newItem.Result;
-                    }
-                    else
-                    {
-                        AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.AddFeature).FireAndForget();
-                    }
+                    return newItem.Result;
                 }
-                catch (Exception ex) when (!(ex is WizardBackoutException))
+                else
                 {
-                    newItem.SafeClose();
-                    ShowError(ex);
+                    AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.AddFeature).FireAndForget();
                 }
+            }
+            catch (Exception ex) when (!(ex is WizardBackoutException))
+            {
+                newItem.SafeClose();
+                ShowError(ex);
             }
 
             GenContext.ToolBox.Shell.CancelWizard();
@@ -75,31 +72,28 @@ namespace Microsoft.Templates.UI
 
         public UserSelection GetUserSelectionNewPage()
         {
-            if (VerifyNetVersion())
+            var newItem = new Views.NewItem.MainView(TemplateType.Page);
+
+            try
             {
-                var newItem = new Views.NewItem.MainView(TemplateType.Page);
+                CleanStatusBar();
 
-                try
+                GenContext.ToolBox.Shell.ShowModal(newItem);
+                if (newItem.Result != null)
                 {
-                    CleanStatusBar();
+                    TrackWizardCompletedTelemery(WizardTypeEnum.AddPage, newItem.Result.ItemGenerationType);
 
-                    GenContext.ToolBox.Shell.ShowModal(newItem);
-                    if (newItem.Result != null)
-                    {
-                        TrackWizardCompletedTelemery(WizardTypeEnum.AddPage, newItem.Result.ItemGenerationType);
-
-                        return newItem.Result;
-                    }
-                    else
-                    {
-                        AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.AddPage).FireAndForget();
-                    }
+                    return newItem.Result;
                 }
-                catch (Exception ex) when (!(ex is WizardBackoutException))
+                else
                 {
-                    newItem.SafeClose();
-                    ShowError(ex);
+                    AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.AddPage).FireAndForget();
                 }
+            }
+            catch (Exception ex) when (!(ex is WizardBackoutException))
+            {
+                newItem.SafeClose();
+                ShowError(ex);
             }
 
             GenContext.ToolBox.Shell.CancelWizard();

@@ -36,31 +36,28 @@ namespace Microsoft.Templates.UI
 
         public UserSelection GetUserSelection()
         {
-            if (VerifyNetVersion())
+            var mainView = new Views.NewProject.MainView();
+
+            try
             {
-                var mainView = new Views.NewProject.MainView();
+                CleanStatusBar();
 
-                try
+                GenContext.ToolBox.Shell.ShowModal(mainView);
+                if (mainView.Result != null)
                 {
-                    CleanStatusBar();
+                    AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject, WizardActionEnum.GenerateProject).FireAndForget();
 
-                    GenContext.ToolBox.Shell.ShowModal(mainView);
-                    if (mainView.Result != null)
-                    {
-                        AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject, WizardActionEnum.GenerateProject).FireAndForget();
-
-                        return mainView.Result;
-                    }
-                    else
-                    {
-                        AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewProject).FireAndForget();
-                    }
+                    return mainView.Result;
                 }
-                catch (Exception ex) when (!(ex is WizardBackoutException))
+                else
                 {
-                    mainView.SafeClose();
-                    ShowError(ex);
+                    AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewProject).FireAndForget();
                 }
+            }
+            catch (Exception ex) when (!(ex is WizardBackoutException))
+            {
+                mainView.SafeClose();
+                ShowError(ex);
             }
 
             GenContext.ToolBox.Shell.CancelWizard();
