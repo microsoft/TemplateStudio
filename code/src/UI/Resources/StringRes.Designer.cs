@@ -664,6 +664,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is already part of your project. Please choose another {1}..
+        /// </summary>
+        public static string NewItemHasNoChanges {
+            get {
+                return ResourceManager.GetString("NewItemHasNoChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name:.
         /// </summary>
         public static string NewItemName {
