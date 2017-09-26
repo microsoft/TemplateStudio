@@ -7,6 +7,7 @@
   <!--{[{-->
   <data name="MasterDetailPage_Title.Text" xml:space="preserve">
     <value>MasterDetail</value>
+    <comment>Page title for MasterDetail</comment>
   </data>
   <!--}]}-->
 </root>

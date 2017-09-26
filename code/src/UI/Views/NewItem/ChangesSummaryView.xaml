@@ -114,7 +114,7 @@
     </Page.Resources>
 
     <Grid Style="{StaticResource MainGrid}">
-        <Grid Visibility="{Binding ChangesSummary.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse, FallbackValue=Collapsed}">
+        <Grid Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse, FallbackValue=Collapsed}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300"/>
                 <ColumnDefinition Width="*"/>
@@ -185,8 +185,11 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Margin="15,7,15,15" Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}"/>
                         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="{StaticResource Margin_XS_All}">
-                            <Button Style="{StaticResource MoreZoomButtonStyle}" Command="{Binding ChangesSummary.UpdateFontSizeCommand}" CommandParameter="2"/>
-                            <Button Margin="{StaticResource Margin_XS_Left}" Style="{StaticResource MinusZoomButtonStyle}" Command="{Binding ChangesSummary.UpdateFontSizeCommand}" CommandParameter="-2"/>
+                            <!--
+                            Zoom buttons
+                            <Button Style="{StaticResource MinusZoomButtonStyle}" Command="{Binding ChangesSummary.UpdateFontSizeCommand}" CommandParameter="-2" ToolTip="{x:Static res:StringRes.ZoomOutButtonTooltip}"/>
+                            <Button Margin="{StaticResource Margin_XS_Left}" Style="{StaticResource MoreZoomButtonStyle}" Command="{Binding ChangesSummary.UpdateFontSizeCommand}" CommandParameter="2" ToolTip="{x:Static res:StringRes.ZoomInButtonTooltip}"/>
+                            -->
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -201,6 +204,6 @@
                 <ContentPresenter Grid.Row="2" Content="{Binding ChangesSummary.SelectedFile}" ContentTemplateSelector="{StaticResource DetailTemplateSelector}" Focusable="False"/>
             </Grid>
         </Grid>
-        <controls:LogoDisplay Visibility="{Binding ChangesSummary.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Visible}" IsBusy="{Binding ChangesSummary.IsLoading}" Style="{StaticResource LoadingLogoDisplay}" />
+        <controls:LogoDisplay Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Visible}" IsBusy="{Binding WizardStatus.IsLoading}" Style="{StaticResource LoadingLogoDisplay}" />
     </Grid>
 </Page>

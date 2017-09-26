@@ -83,7 +83,7 @@ namespace Microsoft.Templates.VsEmulator.NewProject
         {
             var validator = new List<Validator>()
             {
-                new DirectoryExistsValidator(path)
+                new SuggestedDirectoryNameValidator(path)
             };
 
             return Naming.Infer(DefaultName, validator);

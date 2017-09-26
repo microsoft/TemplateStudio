@@ -35,12 +35,12 @@ namespace wts.DefaultProject
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
-        /// <param name="e">Details about the launch request and process.</param>
-        protected override async void OnLaunched(LaunchActivatedEventArgs e)
+        /// <param name="args">Details about the launch request and process.</param>
+        protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
-            if (!e.PrelaunchActivated)
+            if (!args.PrelaunchActivated)
             {
-                await ActivationService.ActivateAsync(e);
+                await ActivationService.ActivateAsync(args);
             }
         }
 

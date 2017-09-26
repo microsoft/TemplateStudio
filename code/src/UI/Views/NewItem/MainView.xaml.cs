@@ -1,17 +1,15 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
+
 using System.Windows;
-using System.Windows.Input;
+
 using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.NewItem;
 
 namespace Microsoft.Templates.UI.Views.NewItem
 {
-    /// <summary>
-    /// Interaction logic for MainView.xaml
-    /// </summary>
     public partial class MainView : Window
     {
         public MainViewModel ViewModel { get; }
@@ -19,7 +17,8 @@ namespace Microsoft.Templates.UI.Views.NewItem
 
         public MainView(TemplateType templateType)
         {
-            ViewModel = new MainViewModel(this);
+            ViewModel = new MainViewModel();
+            ViewModel.SetView(this);
 
             DataContext = ViewModel;
 
@@ -40,7 +39,7 @@ namespace Microsoft.Templates.UI.Views.NewItem
         private void OnPreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var element = e.Source as FrameworkElement;
-            ViewModel.TryHideOverlayBox(element);
+            ViewModel.WizardStatus.TryHideOverlayBox(element);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -49,7 +48,11 @@ namespace Microsoft.Templates.UI.Views.NewItem
             {
                 NewItemGenController.Instance.CleanupTempGeneration();
             }
-            ViewModel.MainView.Result = null;
+
+            if (Result != null && Result.ItemGenerationType == ItemGenerationType.None)
+            {
+                Result = null;
+            }
         }
     }
 }

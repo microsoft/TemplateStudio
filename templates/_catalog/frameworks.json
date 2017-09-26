@@ -24,6 +24,15 @@
         "author": "Microsoft",
         "order": "1",
         "licenses": "",
-        "languages": [ "C#", "VisualBasic" ]
+		"languages": [ "C#", "VisualBasic" ]
+    },
+    {
+        "name": "CaliburnMicro",
+        "displayName": "Caliburn.Micro",
+        "summary": "Caliburn.Micro is a popular MVVM framework emphasising conventions and composability.",
+        "author": "Nigel Sampson",
+        "order": "4",
+        "licenses": "[Caliburn.Micro](https://github.com/Caliburn-Micro/Caliburn.Micro/blob/master/License.txt)",
+        "languages": [ "C#" ]
     }
 ]

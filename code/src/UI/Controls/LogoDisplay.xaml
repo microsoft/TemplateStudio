@@ -10,11 +10,13 @@
     <UserControl.Resources>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
     </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        
         <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
             <Canvas Name="Layer_1" Width="48" Height="48">
                 <Canvas.RenderTransform>
@@ -27,10 +29,13 @@
                 </Path>
             </Canvas>
         </Viewbox>
+        
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Visibility="{Binding IsBusy, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:LogoDisplay}}, Converter={StaticResource BoolToVisibilityConverter}}">
             <Ellipse x:Name="circle1" Margin="0,5,0,0" Opacity="0" Fill="{Binding Fill, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:LogoDisplay}}}" Height="10" Width="10"/>
             <Ellipse x:Name="circle2" Margin="10,5,0,0" Opacity="0" Fill="{Binding Fill, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:LogoDisplay}}}" Height="10" Width="10"/>
             <Ellipse x:Name="circle3" Margin="10,5,0,0" Opacity="0" Fill="{Binding Fill, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:LogoDisplay}}}" Height="10" Width="10"/>
         </StackPanel>
+        
     </Grid>
+    
 </UserControl>

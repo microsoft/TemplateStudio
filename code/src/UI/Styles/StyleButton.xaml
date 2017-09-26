@@ -213,7 +213,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="Button" BasedOn="{StaticResource TogglePaneButtonStyle}" x:Key="BlackTogglePaneButtonStyle">
+    <Style TargetType="Button" BasedOn="{StaticResource TogglePaneButtonStyle}" x:Key="BlackTogglePanelButtonStyle">
         <Setter Property="Foreground" Value="{StaticResource UIBlack}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0,1,0,1"/>
@@ -251,7 +251,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style TargetType="Button" BasedOn="{StaticResource TogglePaneButtonStyle}" x:Key="BlueTogglePaneButtonStyle">
+    <Style TargetType="Button" BasedOn="{StaticResource TogglePaneButtonStyle}" x:Key="BlueTogglePanelButtonStyle">
         <Setter Property="Foreground" Value="{StaticResource UIWhite}"/>
         <Setter Property="Background" Value="{StaticResource UIBlue}"/>
         <Setter Property="BorderThickness" Value="1,1,0,1"/>
@@ -290,7 +290,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style TargetType="Button" BasedOn="{StaticResource BlackTogglePaneButtonStyle}" x:Key="DragAndDropTogglePaneButtonStyle">
+    <Style TargetType="Button" BasedOn="{StaticResource BlackTogglePanelButtonStyle}" x:Key="DragAndDropTogglePaneButtonStyle">
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Focusable" Value="False"/>
     </Style>

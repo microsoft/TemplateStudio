@@ -63,7 +63,7 @@ namespace wts.ItemName.Views
         private void Initialize()
         {
             NavigationService.Frame = shellFrame;
-            NavigationService.Frame.Navigated += Frame_Navigated;
+            NavigationService.Navigated += Frame_Navigated;
             PopulateNavItems();
 
             InitializeState(Window.Current.Bounds.Width);

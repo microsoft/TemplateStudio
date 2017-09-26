@@ -150,7 +150,8 @@
     <Compile Include="Templates\ITemplateInfoExtensionsTest.cs" />
     <Compile Include="Packaging\TemplatexTests.cs" />
     <Compile Include="Locations\UnitTestTemplatesSource.cs" />
-    <Compile Include="Naming\NamingTest.cs" />
+    <Compile Include="Naming\NamingTests.cs" />
+    <Compile Include="Naming\SuggestedDirectoryNameValidatorTests.cs" />
     <Compile Include="Composition\CompositionQueryTest.cs" />
     <Content Include="..\..\TestCert.pfx">
       <Link>Packaging\TestCert.pfx</Link>
@@ -214,6 +215,7 @@
     <Content Include="TestData\Templates\Naming.DefaultNameTemplate\.template.config\template.json" />
     <Content Include="TestData\Templates\PageTemplateVB\.template.config\template.json" />
     <Content Include="TestData\Templates\Naming.DefaultNameTemplateVB\.template.config\template.json" />
+    <Content Include="TestData\Templates\CompositionTemplate\.template.config\template.json" />
     <None Include="TestData\Templates\ProjectTemplateVB\.template.config\description.md" />
     <Content Include="TestData\Templates\ProjectTemplateVB\.template.config\Layout.json" />
     <Content Include="TestData\Templates\ProjectTemplateVB\.template.config\template.json" />
