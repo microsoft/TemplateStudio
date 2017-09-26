@@ -4,9 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:models="using:Param_ItemNamespace.Models"
+    NavigationCacheMode="Required"
     mc:Ignorable="d">
+    <Page.Transitions>
+        <TransitionCollection>
+            <ContentThemeTransition/>
+        </TransitionCollection>
+    </Page.Transitions>
     <Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
@@ -22,15 +27,18 @@
             Style="{StaticResource PageTitleStyle}" />
 
         <GridView
+            x:Name="ImagesGridView"
             Grid.Row="1"
             ItemsSource="{x:Bind Source}"
             IsItemClickEnabled="True"
             SelectionMode="None"
-            ItemClick="OnItemClick">
+            Loaded="ImagesGridView_Loaded"
+            ItemClick="ImagesGridView_ItemClick">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="models:SampleImage">
-                    <controls:ImageEx
-                        Style="{StaticResource ThumbnailImageExStyle}"
+                    <Image
+                        x:Name="galleryImage"
+                        Style="{StaticResource ThumbnailImageStyle}"
                         Source="{x:Bind Source}"
                         AutomationProperties.Name="{x:Bind Name}"
                         ToolTipService.ToolTip="{x:Bind Name}" />

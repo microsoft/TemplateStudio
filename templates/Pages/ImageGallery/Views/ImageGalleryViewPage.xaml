@@ -6,28 +6,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
-    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:models="using:Param_ItemNamespace.Models"
+    NavigationCacheMode="Required"
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-
-        <Grid.RowDefinitions>
-            <RowDefinition x:Name="TitleRow" Height="48"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <TextBlock
-            x:Name="TitlePage"
-            x:Uid="ImageGalleryView_Title"
-            Style="{StaticResource PageTitleStyle}" />
-
+    <Page.Transitions>
+        <TransitionCollection>
+            <ContentThemeTransition/>
+        </TransitionCollection>
+    </Page.Transitions>
+    <Grid>
         <GridView
-            Grid.Row="1"
             ItemsSource="{x:Bind ViewModel.Source}"
             IsItemClickEnabled="True"
-            SelectionMode="None">
+            SelectionMode="None"
+            Loaded="GridView_Loaded">
             <i:Interaction.Behaviors>
                 <ic:EventTriggerBehavior EventName="ItemClick">
                     <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemSelectedCommand}" />
@@ -35,11 +27,12 @@
             </i:Interaction.Behaviors>
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="models:SampleImage">
-                    <controls:ImageEx
-                        Style="{StaticResource ThumbnailImageExStyle}"
+                    <Image
+                        x:Name="galleryImage"
+                        Style="{StaticResource ThumbnailImageStyle}"
                         Source="{x:Bind Source}"
                         AutomationProperties.Name="{x:Bind Name}"
-                        ToolTipService.ToolTip="{x:Bind Name}" />
+                        ToolTipService.ToolTip="{x:Bind Name}"/>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>

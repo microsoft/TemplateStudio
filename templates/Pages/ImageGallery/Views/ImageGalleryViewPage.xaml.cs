@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace Param_ItemNamespace.Views
@@ -8,6 +9,12 @@ namespace Param_ItemNamespace.Views
         public ImageGalleryViewPage()
         {
             InitializeComponent();
+        }
+
+        private async void GridView_Loaded(object sender, RoutedEventArgs e)
+        {
+            var gridView = sender as GridView;
+            await ViewModel.LoadAnimationAsync(gridView);
         }
     }
 }

@@ -4,15 +4,30 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:models="using:Param_ItemNamespace.Models"
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        
-        <controls:ImageEx
-            Source="{x:Bind ViewModel.SelectedImage.Source, Mode=OneWay}"
-            Style="{StaticResource DefaultImageExStyle}"/>
+    <Grid>
+        <FlipView
+            x:Name="flipView"
+            Visibility="{x:Bind ViewModel.FlipViewVisibility, Mode=OneWay}"
+            ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
+            SelectedItem="{x:Bind ViewModel.SelectedImage, Mode=TwoWay}">
+            <FlipView.ItemTemplate>
+                <DataTemplate x:DataType="models:SampleImage">
+                    <Image
+                        x:Name="detailImage"
+                        Width="600" Height="600"
+                        Source="{x:Bind Source, Mode=OneWay}" />
+                </DataTemplate>
+            </FlipView.ItemTemplate>
+        </FlipView>
 
+
+        <Grid Visibility="{x:Bind ViewModel.ShapeVisibility, Mode=OneWay}" Background="{ThemeResource FlipViewBackground}"/>
+        <Image
+            x:Name="previewImage"
+            Style="{StaticResource DetailImageStyle}"
+            Visibility="{x:Bind ViewModel.PreViewImageVisibility, Mode=OneWay}"
+            Source="{x:Bind ViewModel.SelectedImage.(models:SampleImage.Source), Mode=OneWay}" />
     </Grid>
 </Page>

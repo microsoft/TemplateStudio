@@ -10,12 +10,19 @@ namespace Param_ItemNamespace.Views
         public ImageGalleryViewDetailPage()
         {
             InitializeComponent();
+            ViewModel.SetImage(previewImage);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            ViewModel.SelectedImage = e.Parameter as SampleImage;
+            ViewModel.Initialize(e.Parameter as SampleImage);
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);            
+            ViewModel.SetAnimation();
         }
     }
 }
