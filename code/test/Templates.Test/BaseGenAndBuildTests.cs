@@ -102,7 +102,7 @@ namespace Microsoft.Templates.Test
 
             if (!emptyProject)
             {
-                _fixture.AddItems(userSelection, _fixture.GetTemplates(framework), GenerationFixture.GetDefaultName);
+                _fixture.AddItems(userSelection, _fixture.GetTemplates(framework), BaseGenAndBuildFixture.GetDefaultName);
             }
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
@@ -135,7 +135,7 @@ namespace Microsoft.Templates.Test
                     ItemGenerationType = ItemGenerationType.GenerateAndMerge
                 };
 
-                _fixture.AddItem(newUserSelection, item, GenerationFixture.GetDefaultName);
+                _fixture.AddItem(newUserSelection, item, BaseGenAndBuildFixture.GetDefaultName);
 
                 await NewItemGenController.Instance.UnsafeGenerateNewItemAsync(item.GetTemplateType(), newUserSelection);
 
@@ -188,7 +188,7 @@ namespace Microsoft.Templates.Test
 
             var userSelection = _fixture.SetupProject(projectType, framework, language);
 
-            _fixture.AddItem(userSelection, itemTemplate, GenerationFixture.GetDefaultName);
+            _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
@@ -233,12 +233,12 @@ namespace Microsoft.Templates.Test
             {
                 var itemTemplate = _fixture.Templates().FirstOrDefault(t => t.Identity.Contains(identity)
                                                                          && t.GetFrameworkList().Contains(framework));
-                _fixture.AddItem(userSelection, itemTemplate, GenerationFixture.GetDefaultName);
+                _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
 
                 // Add multiple pages if supported to check these are handled the same
                 if (itemTemplate.GetMultipleInstance())
                 {
-                    _fixture.AddItem(userSelection, itemTemplate, GenerationFixture.GetDefaultName);
+                    _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
                 }
             }
 
@@ -293,7 +293,7 @@ namespace Microsoft.Templates.Test
                     "wts.Page.Blank.CodeBehind", "wts.Page.Settings.CodeBehind", "wts.Page.Chart.CodeBehind",
                     "wts.Page.Grid.CodeBehind", "wts.Page.WebView.CodeBehind", "wts.Page.MediaPlayer.CodeBehind",
                     "wts.Page.TabbedPivot.CodeBehind", "wts.Page.Map.CodeBehind",
-                    "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume"
+                    "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile"
                 };
             }
             else if (framework == CodeBehind)

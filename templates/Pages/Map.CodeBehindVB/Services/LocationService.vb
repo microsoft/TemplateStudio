@@ -29,8 +29,8 @@ Namespace Services
         ''' Initializes the location service with a default accuracy (100 meters) and movement threshold.
         ''' </summary>
         ''' <returns>True if the initialization was successful and the service can be used.</returns>
-        Public Function InitializeAsync() As Task(Of Boolean)
-            Return InitializeAsync(100)
+        Public Async Function InitializeAsync() As Task(Of Boolean)
+            Return Await InitializeAsync(100)
         End Function
 
         ''' <summary>
@@ -38,8 +38,8 @@ Namespace Services
         ''' </summary>
         ''' <param name="desiredAccuracyInMeters">The desired accuracy at which the service provides location updates.</param>
         ''' <returns>True if the initialization was successful and the service can be used.</returns>
-        Public Function InitializeAsync(desiredAccuracyInMeters As UInteger) As Task(Of Boolean)
-            Return InitializeAsync(desiredAccuracyInMeters, CDbl(desiredAccuracyInMeters) / 2)
+        Public Async Function InitializeAsync(desiredAccuracyInMeters As UInteger) As Task(Of Boolean)
+            Return Await InitializeAsync(desiredAccuracyInMeters, CDbl(desiredAccuracyInMeters) / 2)
         End Function
 
         ''' <summary>

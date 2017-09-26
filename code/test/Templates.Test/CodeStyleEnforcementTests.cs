@@ -17,6 +17,9 @@ namespace Microsoft.Templates.Test
     [Trait("ExecutionSet", "TemplateValidation")]
     public class CodeStyleEnforcementTests
     {
+        // This is the relative path from where the test assembly will run from
+        private const string TemplatesRoot = "..\\..\\..\\..\\..\\Templates";
+
         [Fact]
         public void EnsureCSharpCodeDoesNotUseThis()
         {
@@ -56,7 +59,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Fact]
-        public void EnsureVisualbasicCodeDoesNotIncludeCommonPortingIssues()
+        public void EnsureVisualBasicCodeDoesNotIncludeCommonPortingIssues()
         {
             // Build tests will fail if these are included but this test is quicker than building everything
             void CheckStringNotIncluded(string toSearchFor)
@@ -69,15 +72,33 @@ namespace Microsoft.Templates.Test
             CheckStringNotIncluded("Namespace Param_RootNamespace."); // Root namespace is included by default in VB
             CheckStringNotIncluded("Namespace Param_ItemNamespace."); // Root namespace is included by default in VB
             CheckStringNotIncluded(";");
-            CheckStringNotIncluded("Key .");
+            CheckStringNotIncluded("var "); // May be in commented our code included in template as an example
+            CheckStringNotIncluded("Key ."); // Output by converter as part of object initializers
+            CheckStringNotIncluded("yield Return"); // Return not needed but converter includes it
+
+            void IfLineIncludes(string ifIncludes, string itMustAlsoInclude, string unlessItContains = "DeFaUlTvAlUeThAtWoNtMaTcHaNyThInG")
+            {
+                foreach (var file in GetFiles(TemplatesRoot, ".vb"))
+                {
+                    foreach (var line in File.ReadAllLines(file))
+                    {
+                        if (line.Contains(ifIncludes) && !line.Contains(itMustAlsoInclude))
+                        {
+                            if (!line.Contains(unlessItContains))
+                            {
+                                Assert.True(false, $"The file '{file}' contains '{ifIncludes}' but doesn't also include '{itMustAlsoInclude}'.");
+                            }
+                        }
+                    }
+                }
+            }
+
+            IfLineIncludes(" As Task", itMustAlsoInclude: " Async ", unlessItContains: " MustOverride ");
         }
 
         private Tuple<bool, string> CodeIsNotUsed(string textThatShouldNotBeinTheFile, string fileExtension)
         {
-            // This is the relative path from where the test assembly will run from
-            const string templatesRoot = "..\\..\\..\\..\\..\\Templates";
-
-            foreach (var file in GetFiles(templatesRoot, fileExtension))
+            foreach (var file in GetFiles(TemplatesRoot, fileExtension))
             {
                 if (File.ReadAllText(file).Contains(textThatShouldNotBeinTheFile))
                 {
