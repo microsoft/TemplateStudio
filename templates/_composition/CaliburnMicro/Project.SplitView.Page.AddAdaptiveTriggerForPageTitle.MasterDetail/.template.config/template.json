@@ -1,0 +1,28 @@
+﻿{
+  "author": "Nigel Sampson",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Project.SplitView.Page.AddAdaptiveTriggerForPageTitle_MasterDetail.CaliburnMicro",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$projectType == SplitView & groupidentity == wts.Page.MasterDetail & $framework == CaliburnMicro"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    }
+  }
+}

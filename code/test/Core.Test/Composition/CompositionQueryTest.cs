@@ -9,10 +9,11 @@ using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Composition
 {
+    [Trait("ExecutionSet", "Minimum")]
     public class CompositionQueryTest
     {
         [Fact]
-        public void ParseIvalidQueries()
+        public void ParseInvalidQueries()
         {
             var query1 = "wts.framework = framework & wts.type != Page&$name == Map";
 

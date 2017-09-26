@@ -5,14 +5,20 @@ Windows Template Studio is a Visual Studio 2017 Extension that accelerates the c
 **Example scenario:**
 I need an app that uses MVVM Light, uses master detail, can suspend and resume, settings, maps on one of the pages and will need Azure hub notifications.   It will need a background service that does a query every 5 minutes.
 
-![Windows Template Studio screenshot](docs/resources/getting-started/WPT%20-%20Project%20Type%20and%20Framework.png)
+![Windows Template Studio screenshot](docs/resources/getting-started/WTS%20-%20Project%20Type%20and%20Framework.png)
 
 ## Build Status
 
-|Env|CI           |Templates Publishing |Extension Publishing |Full Templates Tests|
-|:-----|:--------:|:-------------------:|:-------------------:|:------------------:|
-|dev|![CI Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/121/badge) | ![Templates Publishing Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/123/badge) | ![Extension Publishing Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/122/badge)|![Full Templates Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/128/badge)|
-|pre-release|![CI Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/125/badge)|![Templates Publishing Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/124/badge)|![Extension Publishing Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/126/badge)|![Full Templates Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/129/badge)|
+|Branch   |CI                |Gen Tests        |Full Tests       |Test Version|Version|
+|:--------|:----------------:|:---------------:|:---------------:|:---------------:|:---------------:|
+|master|[![Build status](https://ci.appveyor.com/api/projects/status/nf8r35r45o4yqbqs/branch/master?svg=true)](https://ci.appveyor.com/project/ralarcon/windowstemplatestudio/branch/master)|[![Generation Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/141/badge)](https://winappstudio.visualstudio.com/DefaultCollection/Vegas/_build/index?definitionId=141)|[![Full Integration Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/129/badge)](https://winappstudio.visualstudio.com/DefaultCollection/Vegas/_build/index?definitionId=129)|[![Prerelease Version](https://wtsrepository.blob.core.windows.net/badges/img.prerelease.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio) |[![Production Version](https://wtsrepository.blob.core.windows.net/badges/img.release.version.svg)](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)|
+|dev|[![Build status](https://ci.appveyor.com/api/projects/status/nf8r35r45o4yqbqs/branch/dev?svg=true)](https://ci.appveyor.com/project/ralarcon/windowstemplatestudio/branch/dev)|[![Generation Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/135/badge)](https://winappstudio.visualstudio.com/DefaultCollection/Vegas/_build/index?definitionId=135)|[![Full Integration Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/128/badge)](https://winappstudio.visualstudio.com/DefaultCollection/Vegas/_build/index?definitionId=128)|[![Nightly Version](https://wtsrepository.blob.core.windows.net/badges/img.nightly.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio)||
+
+> The builds include test verifications to validate the contributions:
+> * *CI Build*: Includes all unit test + minimum integration verifications (minumum generation + build + code style rules). Runs every PR requested / PR accepted.
+> * *Gen Tests*: Includes tests to verify combinations and variations of templates from a project generation point of view. Runs every PR accepted and takes a bit to complete.
+> * *Full Tests*: Includes `Gen Tests` and actually builds the solutions generated to ensure no build time issues found. Runs every PR accepted and takes longer to be completed. 
+> 
 
 ## Features
 
@@ -35,8 +41,7 @@ Once you select the attributes you want your new UWP app to have, you can quickl
 
 ## Known issues
 
-* [Project creation failing with VS 15.2 and VS Preview side by side](https://github.com/Microsoft/WindowsTemplateStudio/issues/668) - We believe right now there is a side by side issue.
-* [Chart page in x86 mode design-time error](https://github.com/Microsoft/WindowsTemplateStudio/issues/818) - Waiting for a fix
+None Currently
 
 ## Feedback, Requests and Roadmap
 
@@ -57,7 +62,7 @@ Do you want to contribute? We would love to have you help out.  Here are our [co
 1. Generated templates once generated, must be able to be compiled and run.
 1. Generated templates should work on all device families.
 1. Templates should have comments to aid developers.  This includes links to signup pages for keys, MSDN, blogs and how-to's.  All guidance provide should be validated from either the framework/SDK/library’s creator.
-1. All features will be supported for two current Windows SDK for Windows 10 release cycles or until another principle supersedes it.
+1. All features will be supported for two most recent RTM Windows 10 Updates. Those supported releases are Windows 10 Anniversary Update and Windows 10 Creators Update.
 1. Templates released in production will try to adhere to the design language used in the current release of Windows 10.
 1. Code should follow [.NET Core coding style](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md)
 

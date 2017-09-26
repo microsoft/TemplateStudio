@@ -11,10 +11,13 @@ using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 
 using Xunit;
+using Microsoft.Templates.Core.Diagnostics;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 {
     [Collection("Unit Test Templates")]
+    [Trait("ExecutionSet", "Minimum")]
+
     public class GenerateTestCertificatePostActionTest : IContextProvider
     {
         private TemplatesFixture _fixture;
@@ -34,6 +37,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
 
         public List<string> FilesToOpen { get; } = new List<string>();
+
+        public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; } = new Dictionary<ProjectMetricsEnum, double>();
 
         [Fact]
         public void Execute_Ok()

@@ -16,6 +16,12 @@ using Microsoft.Templates.UI.Views.NewItem;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
+    public enum NewItemStep
+    {
+        ItemConfiguration = 0,
+        ChangesSummary = 1
+    }
+
     public class MainViewModel : BaseMainViewModel
     {
         public static MainViewModel Current;
@@ -28,10 +34,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public NewItemSetupViewModel NewItemSetup { get; private set; } = new NewItemSetupViewModel();
         public ChangesSummaryViewModel ChangesSummary { get; private set; } = new ChangesSummaryViewModel();
 
-        public MainViewModel(MainView mainView) : base(mainView)
+        public MainViewModel() : base()
         {
-            MainView = mainView;
             Current = this;
+        }
+
+        public override void SetView(Window window)
+        {
+            base.SetView(window);
+            MainView = window as MainView;
         }
 
         public async Task InitializeAsync(TemplateType templateType)
@@ -47,14 +58,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var configInfo = ProjectConfigInfo.ReadProjectConfiguration();
             if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework))
             {
-                InfoShapeVisibility = Visibility.Visible;
+                WizardStatus.InfoShapeVisibility = Visibility.Visible;
                 ProjectConfigurationWindow projectConfig = new ProjectConfigurationWindow(MainView);
 
                 if (projectConfig.ShowDialog().Value)
                 {
                     configInfo.ProjectType = projectConfig.ViewModel.SelectedProjectType.Name;
                     configInfo.Framework = projectConfig.ViewModel.SelectedFramework.Name;
-                    InfoShapeVisibility = Visibility.Collapsed;
+                    WizardStatus.InfoShapeVisibility = Visibility.Collapsed;
                 }
                 else
                 {
@@ -66,7 +77,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             ConfigProjectType = configInfo.ProjectType;
         }
 
-        public void SetNewItemSetupTitle() => Title = string.Format(StringRes.NewItemTitle_SF, GetLocalizedTemplateTypeName(ConfigTemplateType).ToLower());
+        public void SetNewItemSetupTitle() => WizardStatus.WizardTitle = string.Format(StringRes.NewItemTitle_SF, GetLocalizedTemplateTypeName(ConfigTemplateType).ToLower());
 
         private string GetLocalizedTemplateTypeName(TemplateType templateType)
         {
@@ -88,11 +99,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var template = GetActiveTemplate();
             if (template.IsItemNameEditable)
             {
-                Title = string.Format(StringRes.ChangesSummaryTitle_SF, NewItemSetup.ItemName, template.TemplateType.ToString().ToLower());
+                WizardStatus.WizardTitle = string.Format(StringRes.ChangesSummaryTitle_SF, NewItemSetup.ItemName, template.TemplateType.ToString().ToLower());
             }
             else
             {
-                Title = string.Format(StringRes.ChangesSummaryTitle_SF, template.Name, template.TemplateType.ToString().ToLower());
+                WizardStatus.WizardTitle = string.Format(StringRes.ChangesSummaryTitle_SF, template.Name, template.TemplateType.ToString().ToLower());
             }
         }
 
@@ -103,24 +114,19 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void Cancel()
         {
-            NewItemGenController.Instance.CleanupTempGeneration();
             MainView.DialogResult = false;
-            MainView.Result = null;
-            MainView.Close();
         }
 
         protected override void OnClose()
         {
             MainView.DialogResult = true;
-            MainView.Result = null;
-            MainView.Close();
         }
 
         protected override void OnGoBack()
         {
             base.OnGoBack();
             NewItemSetup.Initialize(false);
-            HasOverlayBox = true;
+            WizardStatus.HasOverlayBox = true;
             ChangesSummary.ResetSelection();
             SetNewItemSetupTitle();
             CleanStatus();
@@ -128,11 +134,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         protected override void OnNext()
         {
-            HasOverlayBox = false;
             base.OnNext();
-            NewItemSetup.EditionVisibility = Visibility.Collapsed;
-            SetChangesSummaryTitle();
-            NavigationService.Navigate(new ChangesSummaryView());
+            if (CurrentStep == 1)
+            {
+                WizardStatus.HasOverlayBox = false;
+                NewItemSetup.EditionVisibility = Visibility.Collapsed;
+                SetChangesSummaryTitle();
+                NavigationService.Navigate(new ChangesSummaryView());
+            }
         }
 
         protected override void OnFinish(string parameter)
@@ -161,11 +170,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         protected override async Task OnNewTemplatesAvailableAsync()
         {
-            UpdateCanFinish(false);
-            _canGoBack = false;
-            BackCommand.OnCanExecuteChanged();
-            ShowFinishButton = false;
-            EnableGoForward();
             NavigationService.Navigate(new NewItemSetupView());
             NewItemSetup.Initialize(true);
 

@@ -13,7 +13,7 @@
 
         Public Sub New(execute As Action, canExecute As Func(Of Boolean))
             If execute Is Nothing Then
-                Throw New ArgumentNullException("execute")
+                Throw New ArgumentNullException(NameOf(execute))
             End If
 
             Me._execute = execute
@@ -52,7 +52,7 @@
 
         Public Sub New(execute As Action(Of T), canExecute As Func(Of T, Boolean))
             If execute Is Nothing Then
-                Throw New ArgumentNullException("execute")
+                Throw New ArgumentNullException(NameOf(execute))
             End If
 
             Me._execute = execute

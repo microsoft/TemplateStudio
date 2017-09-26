@@ -19,6 +19,7 @@ namespace Microsoft.Templates.Test
 {
     [Collection("StyleCopCollection")]
     [Trait("ExecutionSet", "Minimum")]
+    [Trait("ExecutionSet", "BuildStyleCop")]
     public class StyleCopProjectGenerationTests : BaseTestContextProvider
     {
         private readonly StyleCopGenerationTestsFixture _fixture;

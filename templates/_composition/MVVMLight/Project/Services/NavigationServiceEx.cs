@@ -4,11 +4,18 @@ using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Navigation;
+
+using Param_RootNamespace.Helpers;
 
 namespace Param_RootNamespace.Services
 {
     public class NavigationServiceEx
     {
+        public event NavigatedEventHandler Navigated;
+
+        public event NavigationFailedEventHandler NavigationFailed;
+
         private readonly Dictionary<string, Type> _pages = new Dictionary<string, Type>();
 
         private Frame _frame;
@@ -20,6 +27,7 @@ namespace Param_RootNamespace.Services
                 if (_frame == null)
                 {
                     _frame = Window.Current.Content as Frame;
+                    RegisterFrameEvents();
                 }
 
                 return _frame;
@@ -27,7 +35,9 @@ namespace Param_RootNamespace.Services
 
             set
             {
+                UnregisterFrameEvents();
                 _frame = value;
+                RegisterFrameEvents();
             }
         }
 
@@ -45,7 +55,7 @@ namespace Param_RootNamespace.Services
             {
                 if (!_pages.ContainsKey(pageKey))
                 {
-                    throw new ArgumentException($"Page not found: {pageKey}. Did you forget to call NavigationService.Configure?", "pageKey");
+                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageNotFound".GetLocalized(), pageKey), nameof(pageKey));
                 }
 
                 var navigationResult = Frame.Navigate(_pages[pageKey], parameter, infoOverride);
@@ -59,12 +69,12 @@ namespace Param_RootNamespace.Services
             {
                 if (_pages.ContainsKey(key))
                 {
-                    throw new ArgumentException($"The key {key} is already configured in NavigationService");
+                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExKeyIsInNavigationService".GetLocalized(), key));
                 }
 
                 if (_pages.Any(p => p.Value == pageType))
                 {
-                    throw new ArgumentException($"This type is already configured with key {_pages.First(p => p.Value == pageType).Key}");
+                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExTypeAlreadyConfigured".GetLocalized(), _pages.First(p => p.Value == pageType).Key));
                 }
 
                 _pages.Add(key, pageType);
@@ -81,9 +91,31 @@ namespace Param_RootNamespace.Services
                 }
                 else
                 {
-                    throw new ArgumentException($"The page '{page.Name}' is unknown by the NavigationService");
+                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageUnknow".GetLocalized(), page.Name));
                 }
             }
         }
+
+        private void RegisterFrameEvents()
+        {
+            if (_frame != null)
+            {
+                _frame.Navigated += Frame_Navigated;
+                _frame.NavigationFailed += Frame_NavigationFailed;
+            }
+        }
+
+        private void UnregisterFrameEvents()
+        {
+            if (_frame != null)
+            {
+                _frame.Navigated -= Frame_Navigated;
+                _frame.NavigationFailed -= Frame_NavigationFailed;
+            }
+        }
+
+        private void Frame_NavigationFailed(object sender, NavigationFailedEventArgs e) => NavigationFailed?.Invoke(sender, e);
+
+        private void Frame_Navigated(object sender, NavigationEventArgs e) => Navigated?.Invoke(sender, e);
     }
 }

@@ -6,10 +6,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -19,14 +18,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public string ProjectTypesHeader
         {
             get => _projectTypesHeader;
-            set => SetProperty(ref _projectTypesHeader, value);
+            private set => SetProperty(ref _projectTypesHeader, value);
         }
 
         private string _frameworkHeader;
         public string FrameworkHeader
         {
             get => _frameworkHeader;
-            set => SetProperty(ref _frameworkHeader, value);
+            private set => SetProperty(ref _frameworkHeader, value);
         }
 
         private MetadataInfoViewModel _selectedProjectType;
@@ -35,22 +34,27 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             get => _selectedProjectType;
             set
             {
-                var orgFramework = _selectedFramework;
-                var orgProjectType = _selectedProjectType;
-
-                SetProperty(ref _selectedProjectType, value);
-
                 if (value != null)
                 {
-                    LoadFrameworks(value, orgFramework);
-
-                    if (orgProjectType != null && orgProjectType != value)
+                    DataService.LoadFrameworks(Frameworks, value.Name);
+                    FrameworkHeader = string.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
+                    if (_selectedFramework != null)
+                    {
+                        SelectedFramework = Frameworks.FirstOrDefault(f => f.Name == _selectedFramework.Name);
+                    }
+                    else
+                    {
+                        SelectedFramework = Frameworks.FirstOrDefault();
+                    }
+                    var hasChanged = _selectedProjectType != null && _selectedProjectType.Name != value.Name;
+                    SetProperty(ref _selectedProjectType, value);
+                    if (hasChanged)
                     {
                         MainViewModel.Current.AlertProjectSetupChanged();
                     }
+                    MainViewModel.Current.UpdateCanGoForward(true);
+                    MainViewModel.Current.RebuildLicenses();
                 }
-
-                MainViewModel.Current.RebuildLicenses();
             }
         }
 
@@ -60,16 +64,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             get => _selectedFramework;
             set
             {
-                var orgframework = _selectedFramework;
-
-                SetProperty(ref _selectedFramework, value);
-
-                if (value != null && orgframework != null && orgframework != _selectedFramework)
+                if (value != null)
                 {
-                    MainViewModel.Current.AlertProjectSetupChanged();
+                    bool hasChanged = _selectedFramework != null && _selectedFramework.Name != value.Name;
+                    SetProperty(ref _selectedFramework, value);
+                    if (hasChanged)
+                    {
+                        MainViewModel.Current.AlertProjectSetupChanged();
+                    }
+                    MainViewModel.Current.RebuildLicenses();
                 }
-
-                MainViewModel.Current.RebuildLicenses();
             }
         }
 
@@ -78,60 +82,21 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public async Task InitializeAsync(bool force = false)
         {
-            MainViewModel.Current.Title = StringRes.ProjectSetupTitle;
-
             if (SelectedProjectType == null || force)
             {
-                ProjectTypes.Clear();
-
-                var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes();
-
-                if (projectTypes.Any())
+                if (DataService.LoadProjectTypes(ProjectTypes))
                 {
-                    var data = projectTypes.Select(m => new MetadataInfoViewModel(m)).ToList();
-
-                    foreach (var projectType in data.Where(p => !string.IsNullOrEmpty(p.Description)))
-                    {
-                        ProjectTypes.Add(projectType);
-                    }
-
                     SelectedProjectType = ProjectTypes.First();
-                    MainViewModel.Current.HasContent = true;
+                    MainViewModel.Current.WizardStatus.HasContent = true;
                 }
                 else
                 {
-                    MainViewModel.Current.HasContent = false;
+                    MainViewModel.Current.WizardStatus.HasContent = false;
                 }
 
                 ProjectTypesHeader = string.Format(StringRes.GroupProjectTypeHeader_SF, ProjectTypes.Count);
                 await Task.CompletedTask;
             }
-        }
-
-        private void LoadFrameworks(MetadataInfoViewModel projectType, MetadataInfoViewModel orgFramework)
-        {
-            var projectFrameworks = GenComposer.GetSupportedFx(projectType.Name);
-            var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks()
-                                                                .Where(m => projectFrameworks.Contains(m.Name))
-                                                                .Select(m => new MetadataInfoViewModel(m))
-                                                                .ToList();
-
-            Frameworks.Clear();
-
-            foreach (var framework in targetFrameworks)
-            {
-                Frameworks.Add(framework);
-            }
-
-            SelectedFramework = Frameworks.FirstOrDefault(f => f.Name == orgFramework?.Name);
-
-            if (SelectedFramework == null)
-            {
-                SelectedFramework = Frameworks.FirstOrDefault();
-            }
-
-            FrameworkHeader = string.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
-            MainViewModel.Current.EnableGoForward();
         }
     }
 }

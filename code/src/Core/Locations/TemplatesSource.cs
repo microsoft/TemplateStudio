@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Core.Locations
             Extract(mstxFilePath, targetFolder);
         }
 
-        public void Extract(string mstxFilePath, string targetFolder)
+        public virtual void Extract(string mstxFilePath, string targetFolder)
         {
             string extractedContent = ExtractMstx(mstxFilePath);
 
@@ -119,7 +119,7 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private static string PrepareFinalDestination(string finalTargetFolder, Version ver)
+        protected static string PrepareFinalDestination(string finalTargetFolder, Version ver)
         {
             Fs.EnsureFolder(finalTargetFolder);
 
@@ -133,7 +133,7 @@ namespace Microsoft.Templates.Core.Locations
             return finalDestination;
         }
 
-        private static Version GetVersionFromFile(string versionFilePath)
+        protected static Version GetVersionFromFile(string versionFilePath)
         {
             var version = "0.0.0.0";
 
@@ -157,7 +157,7 @@ namespace Microsoft.Templates.Core.Locations
             return tempFolder;
         }
 
-        private void CleanUpTemps()
+        protected void CleanUpTemps()
         {
             List<string> removedFolders = new List<string>();
             foreach (string tempFolder in _tempFoldersUsed)

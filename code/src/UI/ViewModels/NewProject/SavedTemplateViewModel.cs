@@ -13,6 +13,8 @@ using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Core;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.Extensions;
+using Microsoft.Templates.Core.Diagnostics;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -55,10 +57,19 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             set
             {
                 SetProperty(ref _newItemName, value);
-                if (CanChooseItemName)
+                if (CanChooseItemName && NewItemName != ItemName)
                 {
-                    ValidateTemplateName?.Invoke(this);
+                    var validationResult = ValidationService.ValidateTemplateName(NewItemName, CanChooseItemName, true);
+                    IsValidName = validationResult.IsValid;
+                    ErrorMessage = string.Empty;
+                    if (!IsValidName)
+                    {
+                        ErrorMessage = validationResult.ErrorType.GetResourceString();
+                        MainViewModel.Current.SetValidationErrors(ErrorMessage);
+                        throw new Exception(ErrorMessage);
+                    }
                 }
+                MainViewModel.Current.CleanStatus(true);
             }
         }
 
@@ -220,23 +231,23 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public string DisplayText => CanChooseItemName ? $"{ItemName} [{TemplateName}]" : ItemName;
 
-        public ICommand OpenCommand { get; set; }
+        private ICommand _openCommand { get; set; }
+        public ICommand OpenCommand => _openCommand ?? (_openCommand = new RelayCommand(OnOpen));
 
-        public ICommand RemoveCommand { get; set; }
+        private ICommand _removeCommand;
+        public ICommand RemoveCommand => _removeCommand ?? (_removeCommand = new RelayCommand(OnRemove));
 
-        public ICommand RenameCommand { get; set; }
+        private ICommand _renameCommand;
+        public ICommand RenameCommand => _renameCommand ?? (_renameCommand = new RelayCommand(OnRename));
 
-        public ICommand ConfirmRenameCommand { get; set; }
+        private ICommand _confirmRenameCommand;
+        public ICommand ConfirmRenameCommand => _confirmRenameCommand ?? (_confirmRenameCommand = new RelayCommand(OnConfirmRename));
 
-        public Action<SavedTemplateViewModel> ValidateTemplateName;
-
-        public ICommand _cancelRenameCommand;
-        public ICommand CancelRenameCommand => _cancelRenameCommand ?? (_cancelRenameCommand = new RelayCommand(CancelRenameAction));
-
-        public Action CancelRenameAction => OnCancelRename;
+        private ICommand _cancelRenameCommand;
+        public ICommand CancelRenameCommand => _cancelRenameCommand ?? (_cancelRenameCommand = new RelayCommand(() => CancelRename()));
         #endregion
 
-        public SavedTemplateViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled, ICommand openCommand, ICommand removeTemplateCommand, ICommand renameItemCommand, ICommand confirmRenameCommand, Action<SavedTemplateViewModel> validateCurrentTemplateName)
+        public SavedTemplateViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled)
         {
             _template = item.template;
             colorTimer.Tick += OnColorTimerTick;
@@ -253,11 +264,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             IsRemoveEnabled = isRemoveEnabled;
             ItemForeground = GetItemForeground(true);
             AuthorForeground = GetAuthorForeground(true);
-            OpenCommand = openCommand;
-            RemoveCommand = removeTemplateCommand;
-            RenameCommand = renameItemCommand;
-            ConfirmRenameCommand = confirmRenameCommand;
-            ValidateTemplateName = validateCurrentTemplateName;
             AllowDragAndDrop = false;
         }
 
@@ -269,7 +275,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             colorTimer.Stop();
         }
 
-        internal void TryClose(bool force = false)
+        internal void Close()
         {
             if (IsOpen)
             {
@@ -290,7 +296,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        public void OnCancelRename()
+        public void CancelRename()
         {
             if (IsEditionEnabled)
             {
@@ -311,11 +317,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (isNewAdded)
                 {
-                    return MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
+                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlue");
                 }
                 else
                 {
-                    return MainViewModel.Current.MainView.FindResource("UIBlack") as SolidColorBrush;
+                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlack");
                 }
             }
         }
@@ -330,13 +336,62 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (isNewAdded)
                 {
-                    return MainViewModel.Current.MainView.FindResource("UIBlue") as SolidColorBrush;
+                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlue");
                 }
                 else
                 {
-                    return MainViewModel.Current.MainView.FindResource("UIGray") as SolidColorBrush;
+                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIGray");
                 }
             }
+        }
+
+        private void OnOpen()
+        {
+            if (!IsOpen)
+            {
+                MainViewModel.Current.ProjectTemplates.CloseAllButThis(this);
+                IsOpen = true;
+            }
+            else
+            {
+                Close();
+            }
+        }
+
+        private void OnRename()
+        {
+            MainViewModel.Current.ProjectTemplates.CancelAllRenaming();
+            IsEditionEnabled = true;
+            Close();
+        }
+
+        private void OnRemove() => MainViewModel.Current.ProjectTemplates.RemoveTemplate(this, true);
+
+        private void OnConfirmRename()
+        {
+            if (NewItemName == ItemName)
+            {
+                IsEditionEnabled = false;
+                return;
+            }
+
+            if (ValidationService.ValidateTemplateName(NewItemName, CanChooseItemName, true).IsValid)
+            {
+                ItemName = NewItemName;
+
+                if (IsHome)
+                {
+                    MainViewModel.Current.ProjectTemplates.UpdateHomePageName(ItemName);
+                }
+
+                AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Rename).FireAndForget();
+            }
+            else
+            {
+                NewItemName = ItemName;
+            }
+            IsEditionEnabled = false;
+            MainViewModel.Current.CleanStatus(true);
         }
     }
 }

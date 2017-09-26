@@ -25,6 +25,12 @@ namespace Microsoft.Templates.Core.Locations
 
         private readonly TemplatesContent _content;
 
+        private static object syncLock = new object();
+
+        private readonly TimeSpan instanceSyncWait = new TimeSpan(0, 0, 5);
+
+        private readonly TimeSpan instanceMaxSyncWait = new TimeSpan(0, 0, 30);
+
         public string WorkingFolder => _workingFolder.Value;
 
         public string CurrentTemplatesFolder { get => _content?.TemplatesFolder; }
@@ -35,18 +41,19 @@ namespace Microsoft.Templates.Core.Locations
 
         public Version CurrentWizardVersion { get; private set; }
 
-        private static object syncLock = new object();
         public static bool SyncInProgress { get; private set; }
 
         public TemplatesSynchronization(TemplatesSource source, Version wizardVersion)
         {
             _source = source ?? throw new ArgumentNullException(nameof(source));
             _content = new TemplatesContent(WorkingFolder, source.Id, wizardVersion);
-            CurrentContentFolder = CodeGen.Instance?.GetCurrentContentSource(WorkingFolder);
+            CurrentContentFolder = CodeGen.Instance?.GetCurrentContentSource(WorkingFolder, source.Id);
         }
 
         public async Task DoAsync()
         {
+            await EnsureVsInstancesSyncingAsync();
+
             if (LockSync())
             {
                 try
@@ -157,8 +164,11 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                 string installedTemplatesPath = GetInstalledTemplatesPath();
-                _source.Extract(installedTemplatesPath, _content.TemplatesFolder);
+                string installedTemplatesPath = GetInstalledTemplatesPath();
+                if (File.Exists(installedTemplatesPath))
+                {
+                    _source.Extract(installedTemplatesPath, _content.TemplatesFolder);
+                }
             }
             catch (Exception ex)
             {
@@ -233,7 +243,7 @@ namespace Microsoft.Templates.Core.Locations
 
                     CodeGen.Instance.Settings.SettingsLoader.Save();
 
-                    CurrentContentFolder = CodeGen.Instance.GetCurrentContentSource(WorkingFolder);
+                    CurrentContentFolder = CodeGen.Instance.GetCurrentContentSource(WorkingFolder, _source.Id);
                 }
             }
             catch (Exception ex)
@@ -272,16 +282,73 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     return false;
                 }
+                SetInstanceSyncLock();
                 SyncInProgress = true;
-                return true;
+                return SyncInProgress;
             }
         }
-
         private void UnlockSync()
         {
             lock (syncLock)
             {
                 SyncInProgress = false;
+                RemoveInstanceSyncLock();
+            }
+        }
+        private async Task EnsureVsInstancesSyncingAsync()
+        {
+            while (IsOtherInstanceSyncing())
+            {
+                await AppHealth.Current.Info.TrackAsync(StringRes.TemplatesSynchronizationWaitingOtherInstanceMessage);
+                await Task.Delay(instanceSyncWait);
+            }
+        }
+
+        private bool IsOtherInstanceSyncing()
+        {
+            try
+            {
+                FileInfo fileInfo = new FileInfo(Path.Combine(CurrentTemplatesFolder, ".lock"));
+                return fileInfo.Exists && DateTime.Now < fileInfo.CreationTime.Add(instanceMaxSyncWait);
+            }
+            catch (Exception ex)
+            {
+                AppHealth.Current.Warning.TrackAsync(StringRes.TemplatesSynchronizationWarnReadingLockFileMessage, ex).FireAndForget();
+
+                // No matter the exception. If there is one, we behave exactly the same as if we don't have instance syncronization exclusion.
+                return false;
+            }
+        }
+
+        private void SetInstanceSyncLock()
+        {
+            try
+            {
+                FileInfo fileInfo = new FileInfo(Path.Combine(CurrentTemplatesFolder, ".lock"));
+                if (fileInfo.Exists)
+                {
+                    fileInfo.Delete();
+                }
+                File.WriteAllText(fileInfo.FullName, "Instance syncing");
+            }
+            catch (Exception ex)
+            {
+                AppHealth.Current.Warning.TrackAsync(StringRes.TemplatesSynchronizationWarnCreatingLockFileMessage, ex).FireAndForget();
+            }
+        }
+        private void RemoveInstanceSyncLock()
+        {
+            try
+            {
+                FileInfo fileInfo = new FileInfo(Path.Combine(CurrentTemplatesFolder, ".lock"));
+                if (fileInfo.Exists)
+                {
+                    fileInfo.Delete();
+                }
+            }
+            catch (Exception ex)
+            {
+                AppHealth.Current.Warning.TrackAsync(StringRes.TemplatesSynchronizationWarnDeletingLockFileMessage, ex).FireAndForget();
             }
         }
     }
