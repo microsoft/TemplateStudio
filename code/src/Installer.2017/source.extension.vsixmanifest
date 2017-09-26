@@ -15,7 +15,7 @@
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0,15.4)" />
     </Installation>
     <Dependencies>
-        <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.7,)" d:InstallSource="Download" Location="http://go.microsoft.com/fwlink/?LinkId=825319" />
+        <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" d:InstallSource="Download" Location="http://go.microsoft.com/fwlink/?LinkId=825319" />
         <Dependency Id="Microsoft.VisualStudio.MPF.15.0" DisplayName="Visual Studio MPF 15.0" d:Source="Installed" Version="[15.0]" />
     </Dependencies>
     <Prerequisites>

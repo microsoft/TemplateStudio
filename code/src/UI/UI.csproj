@@ -395,6 +395,7 @@
     <Compile Include="Views\NewProject\ProjectPagesView.xaml.cs">
       <DependentUpon>ProjectPagesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Generation\DotNetVersion.cs" />
     <Compile Include="VisualStudio\RightClickActions.cs" />
     <Compile Include="VisualStudio\SolutionWizard.cs" />
     <Compile Include="VisualStudio\SolutionWizardCS.cs" />

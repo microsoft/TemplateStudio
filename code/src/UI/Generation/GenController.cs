@@ -116,6 +116,16 @@ namespace Microsoft.Templates.UI
 
             GenContext.ToolBox.Shell.ShowModal(error);
         }
+        internal bool VerifyNetVersion()
+        {
+            if (!DotNetVersion.IsAllowed())
+            {
+                var error = new ErrorDialog(new Exception(string.Format("Windows Template Studio extension requires .NET Framework version {0}. Please download .NET Framework {0} Developer Pack from https://www.microsoft.com/net/targeting.", DotNetVersion.MinimumAllowedVersionLabel)));
+                GenContext.ToolBox.Shell.ShowModal(error);
+                return false;
+            }
+            return true;
+        }
 
         internal void CleanStatusBar()
         {
