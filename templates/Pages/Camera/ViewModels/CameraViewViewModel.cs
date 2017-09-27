@@ -25,7 +25,7 @@ namespace Param_ItemNamespace.ViewModels
             if (!string.IsNullOrEmpty(args.Photo))
             {
                 Photo = new BitmapImage(new Uri(args.Photo));
-            }            
+            }
         }
     }
 }

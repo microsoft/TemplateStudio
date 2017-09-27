@@ -30,7 +30,7 @@ namespace Param_ItemNamespace.Controls
             DependencyProperty.Register("CanSwitch", typeof(bool), typeof(CameraControl), new PropertyMetadata(false));
 
         public static readonly DependencyProperty PanelProperty =
-           DependencyProperty.Register("Panel", typeof(Panel), typeof(CameraControl), new PropertyMetadata(Panel.Front, OnPanelChanged));
+            DependencyProperty.Register("Panel", typeof(Panel), typeof(CameraControl), new PropertyMetadata(Panel.Front, OnPanelChanged));
 
         public static readonly DependencyProperty IsInitializedProperty =
             DependencyProperty.Register("IsInitialized", typeof(bool), typeof(CameraControl), new PropertyMetadata(false));
@@ -87,10 +87,10 @@ namespace Param_ItemNamespace.Controls
         public CameraControl()
         {
             InitializeComponent();
-            
+
             CameraButtonStyle = Resources["CameraButtonStyle"] as Style;
             SwitchCameraButtonStyle = Resources["SwitchCameraButtonStyle"] as Style;
-            
+
             Loaded += OnLoaded;
             Unloaded += OnUnloaded;
         }
@@ -170,6 +170,7 @@ namespace Param_ItemNamespace.Controls
             {
                 return null;
             }
+
             _capturing = true;
 
             using (var stream = new InMemoryRandomAccessStream())
@@ -193,7 +194,7 @@ namespace Param_ItemNamespace.Controls
         {
             Panel = (Panel == Panel.Front) ? Panel.Back : Panel.Front;
         }
-        
+
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
             try
@@ -220,7 +221,7 @@ namespace Param_ItemNamespace.Controls
         {
             SwitchPanel();
         }
-        
+
         private async void CleanAndInitialize()
         {
             await Task.Run(async () => await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
