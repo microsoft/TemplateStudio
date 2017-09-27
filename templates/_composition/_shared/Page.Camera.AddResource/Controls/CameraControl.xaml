@@ -151,7 +151,7 @@
 
         <Button
         Click="SwitchButton_Click"
-        Visibility="{x:Bind CanSwitch, Converter={StaticResource BoolToVisibilityConverter}}"
+        Visibility="{x:Bind CanSwitch, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
         Style="{x:Bind SwitchCameraButtonStyle}"/>
     </Grid>
 </UserControl>
