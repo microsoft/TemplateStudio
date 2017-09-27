@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+
+using Param_ItemNamespace.Helpers;
+
 using Windows.ApplicationModel;
-using Windows.ApplicationModel.Resources;
 using Windows.Devices.Enumeration;
 using Windows.Devices.Sensors;
 using Windows.Foundation;
@@ -15,17 +17,20 @@ using Windows.Storage.FileProperties;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using Param_ItemNamespace.Helpers;
+using Param_ItemNamespace.EventHandlers;
+using System.Windows.Input;
 
-namespace Param_ItemNamespace.Views
+namespace Param_ItemNamespace.Controls
 {
     public sealed partial class CameraControl
     {
+        public event EventHandler<CameraControlEventArgs> PhotoTaken;
+
         public static readonly DependencyProperty CanSwitchProperty =
             DependencyProperty.Register("CanSwitch", typeof(bool), typeof(CameraControl), new PropertyMetadata(false));
 
         public static readonly DependencyProperty PanelProperty =
-           DependencyProperty.Register("Panel", typeof(Panel), typeof(CameraControl), new PropertyMetadata(Panel.Front, OnPanelChanged));
+           DependencyProperty.Register("Panel", typeof(Panel), typeof(CameraControl), new PropertyMetadata(Panel.Front));
 
         public static readonly DependencyProperty IsInitializedProperty =
             DependencyProperty.Register("IsInitialized", typeof(bool), typeof(CameraControl), new PropertyMetadata(false));
@@ -41,11 +46,7 @@ namespace Param_ItemNamespace.Views
         private SimpleOrientation _deviceOrientation = SimpleOrientation.NotRotated;
         private DisplayOrientations _displayOrientation = DisplayOrientations.Portrait;
         private DeviceInformationCollection _cameraDevices;
-
-        public CameraControl()
-        {
-            InitializeComponent();
-        }
+        private bool _capturing;
 
         public bool CanSwitch
         {
@@ -65,7 +66,31 @@ namespace Param_ItemNamespace.Views
             private set { SetValue(IsInitializedProperty, value); }
         }
 
-        public async Task InitializeAsync()
+        public CameraControl()
+        {
+            InitializeComponent();
+            Loaded += OnLoaded;
+            Unloaded += OnUnloaded;
+        }
+
+        private async void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            await CleanupCameraAsync();
+        }
+
+        private async void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                await InitializeAsync();
+            }
+            catch (Exception ex)
+            {
+                errorMessage.Text = ex.Message;
+            }
+        }
+
+        private async Task InitializeAsync()
         {
             try
             {
@@ -77,12 +102,17 @@ namespace Param_ItemNamespace.Views
             }
             catch (NotSupportedException ex)
             {
-                throw new NotSupportedException("Camera_Exception_NotSuppored".GetLocalized(), ex);
+                throw new NotSupportedException("Camera_Exception_NotSupported".GetLocalized(), ex);
             }
         }
 
-        public async Task<string> TakePhotoAsync()
+        private async Task OnCapture()
         {
+            if (_capturing)
+            {
+                return;
+            }
+            _capturing = true;
             using (var stream = new InMemoryRandomAccessStream())
             {
                 await _mediaCapture.CapturePhotoToStreamAsync(ImageEncodingProperties.CreateJpeg(), stream);
@@ -94,32 +124,20 @@ namespace Param_ItemNamespace.Views
                     photoOrientation = PhotoOrientation.FlipHorizontal;
                 }
 
-                return await ReencodeAndSavePhotoAsync(stream, photoOrientation);
+                var photo = await ReencodeAndSavePhotoAsync(stream, photoOrientation);
+                PhotoTaken?.Invoke(this, new CameraControlEventArgs(photo));
+                _capturing = false;
             }
         }
 
-        public Task CleanupAsync()
+        private async Task OnSwitch()
         {
-            return CleanupCameraAsync();
-        }
-
-        public void CleanAndInitialize()
-        {
-            Task.Run(async () => await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            Panel = (Panel == Panel.Front) ? Panel.Back : Panel.Front;
+            await Task.Run(async () => await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 await CleanupCameraAsync();
                 await InitializeAsync();
             }));
-        }
-
-        private static void OnPanelChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var ctrl = (CameraControl)d;
-
-            if (ctrl.IsInitialized)
-            {
-                ctrl.CleanAndInitialize();
-            }
         }
 
         private async Task InitializeCameraAsync()
@@ -130,13 +148,13 @@ namespace Param_ItemNamespace.Views
                 _mediaCapture.Failed += MediaCapture_Failed;
 
                 _cameraDevices = await DeviceInformation.FindAllAsync(DeviceClass.VideoCapture);
-                if (_cameraDevices == null)
+                if (_cameraDevices == null || !_cameraDevices.Any())
                 {
                     throw new NotSupportedException();
                 }
-
+                
                 var device = _cameraDevices.FirstOrDefault(camera => camera.EnclosureLocation?.Panel == Panel);
-
+                
                 var cameraId = device?.Id ?? _cameraDevices.First().Id;
 
                 await _mediaCapture.InitializeAsync(new MediaCaptureInitializationSettings { VideoDeviceId = cameraId });
@@ -163,7 +181,7 @@ namespace Param_ItemNamespace.Views
         {
             Task.Run(async () => await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
-                await CleanupAsync();
+                await CleanupCameraAsync();
             }));
         }
 
@@ -282,6 +300,16 @@ namespace Param_ItemNamespace.Views
         {
             _displayOrientation = sender.CurrentOrientation;
             await SetPreviewRotationAsync();
+        }
+
+        private async void CaptureButton_Click(object sender, RoutedEventArgs e)
+        {
+            await OnCapture();
+        }
+
+        private async void SwitchButton_Click(object sender, RoutedEventArgs e)
+        {
+            await OnSwitch();
         }
     }
 }

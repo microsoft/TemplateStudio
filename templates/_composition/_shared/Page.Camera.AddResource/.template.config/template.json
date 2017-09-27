@@ -15,16 +15,19 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
+      "path": ".\\EventHandlers\\CameraControlEventArgs.cs"
+    },
+    {
       "path": ".\\Styles\\CameraPageStyles.xaml"
     },
     {
       "path": ".\\Helpers\\CameraOrientationExtensions.cs"
     },
     {
-      "path": ".\\Views\\CameraControl.xaml"
+      "path": ".\\Controls\\CameraControl.xaml"
     },
     {
-      "path": ".\\Views\\CameraControl.xaml.cs"
+      "path": ".\\Controls\\CameraControl.xaml.cs"
     }
   ],
   "symbols": {
