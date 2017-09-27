@@ -60,14 +60,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             UpdateFontSizeCommand = new RelayCommand<string>(OnUpdateFontSize);
         }
 
-        public async Task InitializeAsync()
+        public void Initialize(NewItemGenerationResult output)
         {
-            MainViewModel.Current.WizardStatus.IsLoading = true;
-            MainViewModel.Current.MainView.Result = MainViewModel.Current.CreateUserSelection();
-            NewItemGenController.Instance.CleanupTempGeneration();
-            await NewItemGenController.Instance.GenerateNewItemAsync(MainViewModel.Current.ConfigTemplateType, MainViewModel.Current.MainView.Result);
-
-            var output = NewItemGenController.Instance.CompareOutputAndProject();
             var warnings = GenContext.Current.FailedMergePostActions.Select(w => new FailedMergesFileViewModel(w));
             HasChangesToApply = output.HasChangesToApply;
 
