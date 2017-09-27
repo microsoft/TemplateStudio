@@ -14,10 +14,12 @@
             SelectedItem="{x:Bind ViewModel.SelectedImage, Mode=TwoWay}">
             <FlipView.ItemTemplate>
                 <DataTemplate x:DataType="models:SampleImage">
-                    <Image
-                        x:Name="detailImage"
-                        Width="600" Height="600"
-                        Source="{x:Bind Source, Mode=OneWay}" />
+                    <Viewbox StretchDirection="DownOnly">
+                        <Image
+                            x:Name="detailImage"
+                            Stretch="None"
+                            Source="{x:Bind Source, Mode=OneWay}" />
+                    </Viewbox>
                 </DataTemplate>
             </FlipView.ItemTemplate>
         </FlipView>

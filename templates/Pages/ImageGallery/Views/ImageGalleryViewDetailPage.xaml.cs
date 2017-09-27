@@ -21,7 +21,7 @@ namespace Param_ItemNamespace.Views
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-            base.OnNavigatingFrom(e);            
+            base.OnNavigatingFrom(e);
             ViewModel.SetAnimation();
         }
     }

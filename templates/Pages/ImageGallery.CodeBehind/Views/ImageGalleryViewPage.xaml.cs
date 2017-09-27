@@ -16,8 +16,7 @@ namespace Param_ItemNamespace.Views
 {
     public sealed partial class ImageGalleryViewPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
-        private const string ImageGalleryViewSelectedImageId = "ImageGalleryViewSelectedImageId";
-
+        public const string ImageGalleryViewSelectedImageId = "ImageGalleryViewSelectedImageId";
         public const string ImageGalleryViewAnimationOpen = "ImageGalleryView_AnimationOpen";
         public const string ImageGalleryViewAnimationClose = "ImageGalleryView_AnimationClose";
 
@@ -36,16 +35,6 @@ namespace Param_ItemNamespace.Views
             InitializeComponent();
         }
 
-        public static async Task<string> GetSelectedImageIdAsync()
-        {
-            return await ApplicationData.Current.LocalSettings.ReadAsync<string>(ImageGalleryViewSelectedImageId);
-        }
-
-        public static void SetSelectedImageId(string imageId)
-        {
-            ApplicationData.Current.LocalSettings.Values[ImageGalleryViewSelectedImageId] = imageId;
-        }
-
         private void ImagesGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var selected = e.ClickedItem as SampleImage;
@@ -55,7 +44,7 @@ namespace Param_ItemNamespace.Views
 
         private async void ImagesGridView_Loaded(object sender, RoutedEventArgs e)
         {
-            var selectedImageId = await GetSelectedImageIdAsync();
+            var selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(ImageGalleryViewSelectedImageId);
             if (!string.IsNullOrEmpty(selectedImageId))
             {
                 var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewAnimationClose);
@@ -65,7 +54,8 @@ namespace Param_ItemNamespace.Views
                     ImagesGridView.ScrollIntoView(item);
                     await ImagesGridView.TryStartConnectedAnimationAsync(animation, item, "galleryImage");
                 }
-                SetSelectedImageId(string.Empty);
+
+                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewSelectedImageId, string.Empty);
             }
         }
     }

@@ -9,11 +9,6 @@
     xmlns:models="using:Param_ItemNamespace.Models"
     NavigationCacheMode="Required"
     mc:Ignorable="d">
-    <Page.Transitions>
-        <TransitionCollection>
-            <ContentThemeTransition/>
-        </TransitionCollection>
-    </Page.Transitions>
     <Grid>
         <GridView
             ItemsSource="{x:Bind ViewModel.Source}"

@@ -7,11 +7,6 @@
     xmlns:models="using:Param_ItemNamespace.Models"
     NavigationCacheMode="Required"
     mc:Ignorable="d">
-    <Page.Transitions>
-        <TransitionCollection>
-            <ContentThemeTransition/>
-        </TransitionCollection>
-    </Page.Transitions>
     <Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">

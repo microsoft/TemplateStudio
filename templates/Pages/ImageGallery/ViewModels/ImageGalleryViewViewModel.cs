@@ -16,8 +16,7 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class ImageGalleryViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        private const string ImageGalleryViewSelectedImageId = "ImageGalleryViewSelectedImageId";
-
+        public const string ImageGalleryViewSelectedImageId = "ImageGalleryViewSelectedImageId";
         public const string ImageGalleryViewAnimationOpen = "ImageGalleryView_AnimationOpen";
         public const string ImageGalleryViewAnimationClose = "ImageGalleryView_AnimationClose";
 
@@ -42,7 +41,7 @@ namespace Param_ItemNamespace.ViewModels
         public async Task LoadAnimationAsync(GridView imagesGridView)
         {
             _imagesGridView = imagesGridView;
-            var selectedImageId = await GetSelectedImageIdAsync();
+            var selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(ImageGalleryViewSelectedImageId);
             if (!string.IsNullOrEmpty(selectedImageId))
             {
                 var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewAnimationClose);
@@ -52,18 +51,9 @@ namespace Param_ItemNamespace.ViewModels
                     _imagesGridView.ScrollIntoView(item);
                     await _imagesGridView.TryStartConnectedAnimationAsync(animation, item, "galleryImage");
                 }
-                SetSelectedImageId(string.Empty);
+
+                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewSelectedImageId, string.Empty);
             }
-        }
-
-        public static async Task<string> GetSelectedImageIdAsync()
-        {
-            return await ApplicationData.Current.LocalSettings.ReadAsync<string>(ImageGalleryViewSelectedImageId);
-        }
-
-        public static void SetSelectedImageId(string imageId)
-        {
-            ApplicationData.Current.LocalSettings.Values[ImageGalleryViewSelectedImageId] = imageId;
         }
     }
 }

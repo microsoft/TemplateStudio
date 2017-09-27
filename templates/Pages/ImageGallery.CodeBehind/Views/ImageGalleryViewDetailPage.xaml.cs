@@ -3,11 +3,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
+using Param_ItemNamespace.Helpers;
 using Param_ItemNamespace.Models;
 using Param_ItemNamespace.Services;
 
@@ -28,9 +30,10 @@ namespace Param_ItemNamespace.Views
             set
             {
                 Set(ref _selectedImage, value);
-                ImageGalleryViewPage.SetSelectedImageId(((SampleImage)SelectedImage).ID);
+                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewPage.ImageGalleryViewSelectedImageId, ((SampleImage)SelectedImage).ID);
             }
         }
+
         public ObservableCollection<SampleImage> Source
         {
             get => _source;
@@ -59,7 +62,7 @@ namespace Param_ItemNamespace.Views
         {
             // TODO WTS: Replace this with your actual data
             Source = SampleDataService.GetGallerySampleData();
-            _timer.Tick += _timer_Tick;
+            _timer.Tick += Timer_Tick;
             InitializeComponent();
         }
 
@@ -75,12 +78,12 @@ namespace Param_ItemNamespace.Views
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-            base.OnNavigatingFrom(e);            
+            base.OnNavigatingFrom(e);
             PreViewImageVisibility = Visibility.Visible;
             ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewPage.ImageGalleryViewAnimationClose, previewImage);
         }
 
-        private async void _timer_Tick(object sender, object e)
+        private async void Timer_Tick(object sender, object e)
         {
             _timer.Stop();
             FlipViewVisibility = Visibility.Visible;

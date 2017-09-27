@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Animation;
 
@@ -28,9 +29,10 @@ namespace Param_ItemNamespace.ViewModels
             set
             {
                 Set(ref _selectedImage, value);
-                ImageGalleryViewViewModel.SetSelectedImageId(((SampleImage)SelectedImage).ID);
+                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewViewModel.ImageGalleryViewSelectedImageId, ((SampleImage)SelectedImage).ID);
             }
         }
+
         public ObservableCollection<SampleImage> Source
         {
             get => _source;
@@ -59,7 +61,7 @@ namespace Param_ItemNamespace.ViewModels
         {
             // TODO WTS: Replace this with your actual data
             Source = SampleDataService.GetGallerySampleData();
-            _timer.Tick += _timer_Tick;
+            _timer.Tick += Timer_Tick;
         }
 
         public void SetImage(UIElement image) => _image = image;
@@ -78,7 +80,7 @@ namespace Param_ItemNamespace.ViewModels
             ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewViewModel.ImageGalleryViewAnimationClose, _image);
         }
 
-        private async void _timer_Tick(object sender, object e)
+        private async void Timer_Tick(object sender, object e)
         {
             _timer.Stop();
             FlipViewVisibility = Visibility.Visible;
