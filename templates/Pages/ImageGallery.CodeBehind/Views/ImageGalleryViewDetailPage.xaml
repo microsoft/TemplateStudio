@@ -6,10 +6,25 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:Param_ItemNamespace.Models"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <Storyboard x:Name="showFlipView">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="flipView" BeginTime="0:0:0.5">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="shapeGrid" BeginTime="0:0:0.5">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="previewImage" BeginTime="0:0:0.6">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
+
     <Grid>
         <FlipView
             x:Name="flipView"
-            Visibility="{x:Bind FlipViewVisibility, Mode=OneWay}"
+            Visibility="Collapsed"
             ItemsSource="{x:Bind Source, Mode=OneWay}"
             SelectedItem="{x:Bind SelectedImage, Mode=TwoWay}">
             <FlipView.ItemTemplate>
@@ -25,11 +40,10 @@
         </FlipView>
 
 
-        <Grid Visibility="{x:Bind ShapeVisibility, Mode=OneWay}" Background="{ThemeResource FlipViewBackground}"/>
+        <Grid x:Name="shapeGrid" Background="{ThemeResource FlipViewBackground}"/>
         <Image
             x:Name="previewImage"
             Style="{StaticResource DetailImageStyle}"
-            Visibility="{x:Bind PreViewImageVisibility, Mode=OneWay}"
             Source="{x:Bind SelectedImage.(models:SampleImage.Source), Mode=OneWay}" />
     </Grid>
 </Page>
