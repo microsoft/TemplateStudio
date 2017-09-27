@@ -69,8 +69,8 @@
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
                                 <Ellipse x:Name="BorderOutCircle" Stroke="{TemplateBinding Background}" StrokeThickness="{TemplateBinding BorderThickness}" Fill="{TemplateBinding Background}"/>
-                                <ContentPresenter x:Name="ContentPresenter" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                 <Ellipse x:Name="BorderCircle" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" Margin="1"/>
+                                <ContentPresenter x:Name="ContentPresenter" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>
@@ -144,12 +144,12 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"/>
         
-        <Button
+        <Button x:Uid="CameraControl_CameraButton"
             Click="CaptureButton_Click"
             IsEnabled="{x:Bind IsInitialized, Mode=OneWay}"
             Style="{x:Bind CameraButtonStyle}"/>
 
-        <Button
+        <Button x:Uid="CameraControl_SwitchCameraButton"
         Click="SwitchButton_Click"
         Visibility="{x:Bind CanSwitch, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
         Style="{x:Bind SwitchCameraButtonStyle}"/>
