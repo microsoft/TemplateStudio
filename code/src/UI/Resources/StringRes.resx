@@ -652,4 +652,7 @@
     <value>Dependency template {0} not found on user selection</value>
     <comment>Log text for misssing dependency exception.</comment>
   </data>
+  <data name="NewItemHasNoChanges" xml:space="preserve">
+    <value>{0} is already part of your project. Please choose another {1}.</value>
+  </data>
 </root>
