@@ -141,9 +141,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 var output = await CleanupAndGenerateNewItemAsync();
                 if (output.HasChangesToApply)
                 {
-                    WizardStatus.IsLoading = true;
-                    await Task.Delay(250);
                     base.OnNext();
+                    await EnsureCodeViewerInitializedAsync();
                     WizardStatus.HasOverlayBox = false;
                     NewItemSetup.EditionVisibility = Visibility.Collapsed;
                     SetChangesSummaryTitle();
@@ -155,6 +154,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     WizardStatus.SetStatus(StatusViewModel.Warning(string.Format(StringRes.NewItemHasNoChanges, NewItemSetup.ItemName, GetLocalizedTemplateTypeName(ConfigTemplateType).ToLower()), true, 5));
                 }
             }
+        }
+
+        private async Task EnsureCodeViewerInitializedAsync()
+        {
+            WizardStatus.IsLoading = true;
+            await Task.Delay(300);
         }
 
         private async Task<NewItemGenerationResult> CleanupAndGenerateNewItemAsync()
