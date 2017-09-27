@@ -26,11 +26,13 @@
         
         <Button
             Content="&#xE114;"
+            Click="CaptureButton_Click"
             IsEnabled="{x:Bind IsInitialized, Mode=OneWay}"
             Style="{StaticResource CameraButtonStyle}"/>
 
         <Button        
         Content="&#xE124;"
+        Click="SwitchButton_Click"
         Visibility="{x:Bind CanSwitch, Converter={StaticResource BoolToVisibilityConverter}}"
         Style="{StaticResource SwitchCameraButtonStyle}"/>
     </Grid>
