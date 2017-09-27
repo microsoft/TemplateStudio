@@ -18,9 +18,6 @@
       "path": ".\\EventHandlers\\CameraControlEventArgs.cs"
     },
     {
-      "path": ".\\Styles\\CameraPageStyles.xaml"
-    },
-    {
       "path": ".\\Helpers\\CameraOrientationExtensions.cs"
     },
     {

@@ -35,6 +35,12 @@ namespace Param_ItemNamespace.Controls
         public static readonly DependencyProperty IsInitializedProperty =
             DependencyProperty.Register("IsInitialized", typeof(bool), typeof(CameraControl), new PropertyMetadata(false));
 
+        public static readonly DependencyProperty CameraButtonStyleProperty =
+            DependencyProperty.Register("CameraButtonStyle", typeof(Style), typeof(CameraControl), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty SwitchCameraButtonStyleProperty =
+            DependencyProperty.Register("SwitchCameraButtonStyle", typeof(Style), typeof(CameraControl), new PropertyMetadata(null));
+
         // Rotation metadata to apply to the preview stream and recorded videos (MF_MT_VIDEO_ROTATION)
         // Reference: http://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh868174.aspx
         private readonly Guid _rotationKey = new Guid("C380465D-2271-428C-9B83-ECEA3B4A85C1");
@@ -66,9 +72,25 @@ namespace Param_ItemNamespace.Controls
             private set { SetValue(IsInitializedProperty, value); }
         }
 
+        public Style CameraButtonStyle
+        {
+            get { return (Style)GetValue(CameraButtonStyleProperty); }
+            set { SetValue(CameraButtonStyleProperty, value); }
+        }
+
+        public Style SwitchCameraButtonStyle
+        {
+            get { return (Style)GetValue(SwitchCameraButtonStyleProperty); }
+            set { SetValue(SwitchCameraButtonStyleProperty, value); }
+        }
+
         public CameraControl()
         {
             InitializeComponent();
+            
+            CameraButtonStyle = Resources["CameraButtonStyle"] as Style;
+            SwitchCameraButtonStyle = Resources["SwitchCameraButtonStyle"] as Style;
+            
             Loaded += OnLoaded;
             Unloaded += OnUnloaded;
         }
