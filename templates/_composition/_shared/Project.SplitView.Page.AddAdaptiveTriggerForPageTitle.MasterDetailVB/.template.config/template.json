@@ -3,15 +3,13 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CodeBehind.Page.AddINotifyPropertyChanged.VB",
+  "name": "Project.SplitView.Page.AddAdaptiveTriggerForPageTitle_MasterDetail.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind & wts.type == page",
-    "wts.export.baseclass": "INotifyPropertyChanged",
-    "wts.export.setter": "Set"
+    "wts.compositionFilter": "$projectType == SplitView & groupidentity == wts.Page.MasterDetail.VB & $framework != CaliburnMicro"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
