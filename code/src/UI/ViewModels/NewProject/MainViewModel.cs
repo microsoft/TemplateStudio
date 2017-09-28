@@ -25,6 +25,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public static MainViewModel Current;
         public MainView MainView;
 
+        public double Width { get; }
+        public double Height { get; }
+
         public ProjectSetupViewModel ProjectSetup { get; } = new ProjectSetupViewModel();
 
         public ProjectTemplatesViewModel ProjectTemplates { get; } = new ProjectTemplatesViewModel();
@@ -41,6 +44,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public MainViewModel() : base()
         {
+            var size = SystemService.Instance.GetMainWindowSize();
+            Width = size.width;
+            Height = size.height;
             Licenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(Licenses)); };
             Current = this;
         }
