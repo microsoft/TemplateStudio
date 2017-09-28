@@ -15,7 +15,8 @@ Namespace Services
                     .Company = "Company F",
                     .ShipTo = "Francisco Pérez-Olaeta",
                     .OrderTotal = 2490.0,
-                    .Status = "Closed"
+                    .Status = "Closed",
+                    .Symbol = Symbol.Globe
                 },
                 New SampleOrder() With {
                     .OrderId = 71,
@@ -23,7 +24,8 @@ Namespace Services
                     .Company = "Company CC",
                     .ShipTo = "Soo Jung Lee",
                     .OrderTotal = 1760.0,
-                    .Status = "Closed"
+                    .Status = "Closed",
+                    .Symbol = Symbol.Audio
                 },
                 New SampleOrder() With {
                     .OrderId = 72,
@@ -31,7 +33,8 @@ Namespace Services
                     .Company = "Company Z",
                     .ShipTo = "Run Liu",
                     .OrderTotal = 2310.0,
-                    .Status = "Closed"
+                    .Status = "Closed",
+                    .Symbol = Symbol.Calendar
                 },
                 New SampleOrder() With {
                     .OrderId = 73,
@@ -39,7 +42,8 @@ Namespace Services
                     .Company = "Company Y",
                     .ShipTo = "John Rodman",
                     .OrderTotal = 665.0,
-                    .Status = "Closed"
+                    .Status = "Closed",
+                    .Symbol = Symbol.Camera
                 },
                 New SampleOrder() With {
                     .OrderId = 74,
@@ -47,7 +51,8 @@ Namespace Services
                     .Company = "Company H",
                     .ShipTo = "Elizabeth Andersen",
                     .OrderTotal = 560.0,
-                    .Status = "Shipped"
+                    .Status = "Shipped",
+                    .Symbol = Symbol.Clock
                 },
                 New SampleOrder() With {
                     .OrderId = 75,
@@ -55,7 +60,8 @@ Namespace Services
                     .Company = "Company F",
                     .ShipTo = "Francisco Pérez-Olaeta",
                     .OrderTotal = 810.0,
-                    .Status = "Shipped"
+                    .Status = "Shipped",
+                    .Symbol = Symbol.Contact
                 },
                 New SampleOrder() With {
                     .OrderId = 76,
@@ -63,7 +69,8 @@ Namespace Services
                     .Company = "Company I",
                     .ShipTo = "Sven Mortensen",
                     .OrderTotal = 196.5,
-                    .Status = "Shipped"
+                    .Status = "Shipped",
+                    .Symbol = Symbol.Favorite
                 },
                 New SampleOrder() With {
                     .OrderId = 77,
@@ -71,7 +78,8 @@ Namespace Services
                     .Company = "Company BB",
                     .ShipTo = "Amritansh Raghav",
                     .OrderTotal = 270.0,
-                    .Status = "New"
+                    .Status = "New",
+                    .Symbol = Symbol.Home
                 },
                 New SampleOrder() With {
                     .OrderId = 78,
@@ -79,7 +87,8 @@ Namespace Services
                     .Company = "Company A",
                     .ShipTo = "Anna Bedecs",
                     .OrderTotal = 736.0,
-                    .Status = "New"
+                    .Status = "New",
+                    .Symbol = Symbol.Mail
                 },
                 New SampleOrder() With {
                     .OrderId = 79,
@@ -87,7 +96,8 @@ Namespace Services
                     .Company = "Company K",
                     .ShipTo = "Peter Krschne",
                     .OrderTotal = 800.0,
-                    .Status = "New"
+                    .Status = "New",
+                    .Symbol = Symbol.OutlineStar
                 }
             }
 

@@ -1,0 +1,28 @@
+﻿{
+  "author": "Microsoft Community Contribution",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "CodeBehind.Page.MasterDetail.AddInitialization_TabbedPivot.VB",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "identity == wts.Page.MasterDetail.CodeBehind.VB & $projectType == TabbedPivot"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    }
+  }
+}

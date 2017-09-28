@@ -75,6 +75,7 @@ namespace Microsoft.Templates.Test
             CheckStringNotIncluded("var "); // May be in commented our code included in template as an example
             CheckStringNotIncluded("Key ."); // Output by converter as part of object initializers
             CheckStringNotIncluded("yield Return"); // Return not needed but converter includes it
+            CheckStringNotIncluded("wts__"); // temporary placeholder used during conversion
 
             void IfLineIncludes(string ifIncludes, string itMustAlsoInclude, string unlessItContains = "DeFaUlTvAlUeThAtWoNtMaTcHaNyThInG")
             {

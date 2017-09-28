@@ -14,5 +14,25 @@
         Public Property OrderTotal As Double
 
         Public Property Status As String
+
+        Public Property Symbol As String
+
+        Public ReadOnly Property SymbolAsChar() As Char
+            Get
+                Return CChar(Symbol)
+            End Get
+        End Property
+
+        Public ReadOnly Property HashIdentIcon() As String
+            Get
+                Return GetHashCode().ToString() + "-icon"
+            End Get
+        End Property
+
+        Public ReadOnly Property HashIdentTitle() As String
+            Get
+                Return GetHashCode().ToString() + "-title"
+            End Get
+        End Property
     End Class
 End Namespace
