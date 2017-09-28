@@ -24,7 +24,7 @@
       "path": ".\\Views\\MediaPlayerViewPage.xaml"
     },
     {
-      "path": ".\\Views\\MediaPlayerViewPage.xaml.cs"
+      "path": ".\\Views\\MediaPlayerViewPage.xaml.vb"
     }
   ],
   "symbols": {

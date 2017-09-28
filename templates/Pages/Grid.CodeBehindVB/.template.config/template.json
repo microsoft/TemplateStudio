@@ -26,7 +26,7 @@
       "path": ".\\Views\\GridViewPage.xaml"
     },
     {
-      "path": ".\\Views\\GridViewPage.xaml.cs"
+      "path": ".\\Views\\GridViewPage.xaml.vb"
     }
   ],
   "symbols": {

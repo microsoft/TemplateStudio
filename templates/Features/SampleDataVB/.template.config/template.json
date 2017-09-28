@@ -22,10 +22,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\SampleDataService.cs"
+      "path": ".\\Services\\SampleDataService.vb"
     },
     {
-      "path": ".\\Models\\SampleOrder.cs"
+      "path": ".\\Models\\SampleOrder.vb"
     }
   ],
   "symbols": {

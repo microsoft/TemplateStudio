@@ -24,10 +24,10 @@
       "path": ".\\Views\\TabbedPivotPagePage.xaml"
     },
     {
-      "path": ".\\Views\\TabbedPivotPagePage.xaml.cs"
+      "path": ".\\Views\\TabbedPivotPagePage.xaml.vb"
     },
     {
-      "path": ".\\ViewModels\\TabbedPivotPageViewModel.cs"
+      "path": ".\\ViewModels\\TabbedPivotPageViewModel.vb"
     }
   ],
   "symbols": {

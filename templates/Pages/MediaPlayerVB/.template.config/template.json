@@ -24,10 +24,10 @@
       "path": ".\\Views\\MediaPlayerViewPage.xaml"
     },
     {
-      "path": ".\\Views\\MediaPlayerViewPage.xaml.cs"
+      "path": ".\\Views\\MediaPlayerViewPage.xaml.vb"
     },
     {
-      "path": ".\\ViewModels\\MediaPlayerViewViewModel.cs"
+      "path": ".\\ViewModels\\MediaPlayerViewViewModel.vb"
     }
   ],
   "symbols": {

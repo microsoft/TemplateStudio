@@ -23,19 +23,19 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Helpers\\EnumToBooleanConverter.cs"
+      "path": ".\\Helpers\\EnumToBooleanConverter.vb"
     },
     {
       "path": ".\\Views\\SettingsPagePage.xaml"
     },
     {
-      "path": ".\\Views\\SettingsPagePage.xaml.cs"
+      "path": ".\\Views\\SettingsPagePage.xaml.vb"
     },
     {
-      "path": ".\\ViewModels\\SettingsPageViewModel.cs"
+      "path": ".\\ViewModels\\SettingsPageViewModel.vb"
     },
     {
-      "path": ".\\Services\\ThemeSelectorService.cs"
+      "path": ".\\Services\\ThemeSelectorService.vb"
     }
   ],
   "symbols": {

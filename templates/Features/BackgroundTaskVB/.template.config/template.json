@@ -21,16 +21,16 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\BackgroundTaskService.cs"
+      "path": ".\\Services\\BackgroundTaskService.vb"
     },
     {
-      "path": ".\\BackgroundTasks\\BackgroundTask.cs"
+      "path": ".\\BackgroundTasks\\BackgroundTask.vb"
     },
     {
-      "path": ".\\BackgroundTasks\\BackgroundTaskFeature.cs"
+      "path": ".\\BackgroundTasks\\BackgroundTaskFeature.vb"
     },
     {
-      "path": ".\\Helpers\\TaskExtensions.cs"
+      "path": ".\\Helpers\\TaskExtensions.vb"
     }
   ],
   "symbols": {

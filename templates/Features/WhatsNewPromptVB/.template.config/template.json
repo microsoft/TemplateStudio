@@ -25,10 +25,10 @@
       "path": ".\\Views\\WhatsNewDialog.xaml"
     },
     {
-      "path": ".\\Views\\WhatsNewDialog.xaml.cs"
+      "path": ".\\Views\\WhatsNewDialog.xaml.vb"
     },
     {
-      "path": ".\\Services\\WhatsNewDisplayService.cs"
+      "path": ".\\Services\\WhatsNewDisplayService.vb"
     }
   ],
   "symbols": {

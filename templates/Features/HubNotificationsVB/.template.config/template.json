@@ -25,7 +25,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\HubNotificationsFeatureService.cs"
+      "path": ".\\Services\\HubNotificationsFeatureService.vb"
     }
   ],
   "symbols": {

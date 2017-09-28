@@ -20,10 +20,10 @@
   "PrimaryOutputs":
   [
     { "path": ".\\Views\\MapPagePage.xaml" },
-    { "path": ".\\Views\\MapPagePage.xaml.cs" },
-    { "path": ".\\ViewModels\\MapPageViewModel.cs" },
+    { "path": ".\\Views\\MapPagePage.xaml.vb" },
+    { "path": ".\\ViewModels\\MapPageViewModel.vb" },
     { "path": ".\\Assets\\map.png" },
-    { "path": ".\\Services\\LocationService.cs" }
+    { "path": ".\\Services\\LocationService.vb" }
   ],
   "symbols": {
     "wts.rootNamespace": {

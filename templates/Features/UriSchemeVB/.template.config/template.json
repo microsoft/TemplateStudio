@@ -23,7 +23,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Activation\\SchemeActivationHandler.cs"
+      "path": ".\\Activation\\SchemeActivationHandler.vb"
     },
     {
       "path": ".\\Assets\\Logo.png"

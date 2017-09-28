@@ -25,25 +25,25 @@
       "path": ".\\Views\\MasterDetailPage.xaml"
     },
     {
-      "path": ".\\Views\\MasterDetailPage.xaml.cs"
+      "path": ".\\Views\\MasterDetailPage.xaml.vb"
     },
     {
       "path": ".\\Views\\MasterDetailDetailPage.xaml"
     },
     {
-      "path": ".\\Views\\MasterDetailDetailPage.xaml.cs"
+      "path": ".\\Views\\MasterDetailDetailPage.xaml.vb"
     },
     {
       "path": ".\\Views\\MasterDetailDetailControl.xaml"
     },
     {
-      "path": ".\\Views\\MasterDetailDetailControl.xaml.cs"
+      "path": ".\\Views\\MasterDetailDetailControl.xaml.vb"
     },
     {
-      "path": ".\\ViewModels\\MasterDetailViewModel.cs"
+      "path": ".\\ViewModels\\MasterDetailViewModel.vb"
     },
     {
-      "path": ".\\ViewModels\\MasterDetailDetailViewModel.cs"
+      "path": ".\\ViewModels\\MasterDetailDetailViewModel.vb"
     }
   ],
   "symbols": {

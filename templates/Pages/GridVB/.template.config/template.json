@@ -26,10 +26,10 @@
       "path": ".\\Views\\GridViewPage.xaml"
     },
     {
-      "path": ".\\Views\\GridViewPage.xaml.cs"
+      "path": ".\\Views\\GridViewPage.xaml.vb"
     },
     {
-      "path": ".\\ViewModels\\GridViewViewModel.cs"
+      "path": ".\\ViewModels\\GridViewViewModel.vb"
     }
   ],
   "symbols": {

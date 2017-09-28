@@ -26,10 +26,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\LiveTileFeatureService.cs"
+      "path": ".\\Services\\LiveTileFeatureService.vb"
     },
     {
-      "path": ".\\Services\\LiveTileFeatureService.Samples.cs"
+      "path": ".\\Services\\LiveTileFeatureService.Samples.vb"
     }
   ],
   "symbols": {

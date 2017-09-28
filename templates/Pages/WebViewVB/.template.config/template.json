@@ -24,10 +24,10 @@
       "path": ".\\Views\\WebViewPagePage.xaml"
     },
     {
-      "path": ".\\Views\\WebViewPagePage.xaml.cs"
+      "path": ".\\Views\\WebViewPagePage.xaml.vb"
     },
     {
-      "path": ".\\ViewModels\\WebViewPageViewModel.cs"
+      "path": ".\\ViewModels\\WebViewPageViewModel.vb"
     }
   ],
   "symbols": {
