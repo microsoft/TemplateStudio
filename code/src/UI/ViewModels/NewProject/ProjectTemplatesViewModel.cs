@@ -101,7 +101,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             var totalFeatures = DataService.LoadTemplatesGroups(FeatureGroups, TemplateType.Feature, ContextFramework.Name);
             if (totalFeatures > 0)
             {
-                PagesHeader = string.Format(StringRes.GroupFeaturesHeader_SF, totalFeatures);
+                FeaturesHeader = string.Format(StringRes.GroupFeaturesHeader_SF, totalFeatures);
             }
 
             if (SavedPages.Count == 0 && SavedFeatures.Count == 0)

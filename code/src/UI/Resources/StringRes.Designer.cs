@@ -250,7 +250,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file &apos;{0}&apos; already exists in your project but was also generated as part of the new item. Your current file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing..
+        ///   Looks up a localized string similar to This file already exists in your project but was also generated as part of the new item. Your current file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionConflictingFiles {
             get {
@@ -268,7 +268,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file &apos;{0}&apos; will be modified to include required content..
+        ///   Looks up a localized string similar to This file will be modified to include required content..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionModifiedFiles {
             get {
@@ -277,7 +277,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file &apos;{0}&apos; will be added as new file to your project..
+        ///   Looks up a localized string similar to This file will be added as new file to your project..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionNewFiles {
             get {
@@ -286,7 +286,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file &apos;{0}&apos; already exists in your project and no further action is necessary. The file will remain unchanged..
+        ///   Looks up a localized string similar to This file already exists in your project and no further action is necessary. The file will remain unchanged..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionUnchangedFiles {
             get {
@@ -358,7 +358,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file {0} already exists. By continuing this file will be replaced..
+        ///   Looks up a localized string similar to This file already exists. By continuing this file will be replaced..
         /// </summary>
         public static string ConflictingDetailDescription_SF {
             get {
@@ -660,6 +660,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string NewItemAddPageSuccessStatusMsg {
             get {
                 return ResourceManager.GetString("NewItemAddPageSuccessStatusMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is already part of your project. Please choose another {1}..
+        /// </summary>
+        public static string NewItemHasNoChanges {
+            get {
+                return ResourceManager.GetString("NewItemHasNoChanges", resourceCulture);
             }
         }
         

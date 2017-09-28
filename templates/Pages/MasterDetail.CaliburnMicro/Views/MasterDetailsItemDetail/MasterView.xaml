@@ -8,19 +8,39 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <Grid Margin="0,12,0,12">
+        <StackPanel  Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
+            <RelativePanel>
+                <Rectangle Stroke="Gray"
+                    Fill="LightGray"
+                    Width="48"
+                    Height="48"
+                    StrokeThickness="0"
+                    Name="border"
+                    RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                <FontIcon
+                    Name="icon"
+                    Tag="{x:Bind ViewModel.Item.HashIdentIcon}"
+                    FontSize="35"
+                    Glyph="{x:Bind ViewModel.Item.SymbolAsChar}" VerticalAlignment="Top"
+                    RelativePanel.AlignVerticalCenterWith="border"
+                    RelativePanel.AlignHorizontalCenterWith="border"/>
 
-        <TextBlock 
-            Text="{x:Bind ViewModel.Item.OrderId}" 
-            Style="{StaticResource ListTitleStyle}" />
-
-        <TextBlock
-            Grid.Row="1"
-            Text="{x:Bind ViewModel.Item.Company}"
-            Style="{StaticResource ListSubTitleStyle}" />
+                <StackPanel RelativePanel.AlignVerticalCenterWithPanel="True" Margin="12,0,0,0" RelativePanel.RightOf="border">
+                    <TextBlock
+                        Name="title"
+                        RelativePanel.RightOf="border"
+                        Text="{x:Bind ViewModel.Item.Company}"
+                        Tag="{x:Bind ViewModel.Item.HashIdentTitle}"
+                        Style="{StaticResource BaseTextBlockStyle}"/>
+                    <TextBlock
+                        Name="subtitle"
+                        RelativePanel.Below="title"
+                        RelativePanel.AlignLeftWith="title"
+                        Text="{x:Bind ViewModel.Item.Status}"
+                        Style="{StaticResource BodyTextBlockStyle}"/>
+                </StackPanel>
+            </RelativePanel>
+        </StackPanel>
     </Grid>
 </UserControl>

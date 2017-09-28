@@ -170,27 +170,20 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel>
-                    <Grid Margin="15,11,15,0">
+                    <Grid Margin="15,13,15,13">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Foreground="{Binding ChangesSummary.SelectedFile.CircleColor}" Text="{Binding ChangesSummary.SelectedFile.DetailTitle}" Style="{StaticResource TextSummaryTitle}" />
-                        <controls:InformationButton Grid.Column="1" Command="{Binding ChangesSummary.MoreDetailsCommand}" VerticalAlignment="Bottom"/>
-                    </Grid>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Margin="15,7,15,15" Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}"/>
+                        <TextBlock Text="{Binding ChangesSummary.SelectedFile.DetailDescription}" Style="{StaticResource ChangesSummaryDetailDescriptionStyle}"/>
+                        <controls:InformationButton Grid.Column="1" Command="{Binding ChangesSummary.MoreDetailsCommand}" VerticalAlignment="Top"/>
+                        <!--
                         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="{StaticResource Margin_XS_All}">
-                            <!--
                             Zoom buttons
                             <Button Style="{StaticResource MinusZoomButtonStyle}" Command="{Binding ChangesSummary.UpdateFontSizeCommand}" CommandParameter="-2" ToolTip="{x:Static res:StringRes.ZoomOutButtonTooltip}"/>
                             <Button Margin="{StaticResource Margin_XS_Left}" Style="{StaticResource MoreZoomButtonStyle}" Command="{Binding ChangesSummary.UpdateFontSizeCommand}" CommandParameter="2" ToolTip="{x:Static res:StringRes.ZoomInButtonTooltip}"/>
-                            -->
                         </StackPanel>
+                        -->
                     </Grid>
                 </StackPanel>
                 <Grid Grid.Row="1" Height="30" Style="{StaticResource ChangesSummaryFileHeader}">
