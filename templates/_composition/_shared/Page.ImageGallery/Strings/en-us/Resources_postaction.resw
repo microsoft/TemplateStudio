@@ -5,9 +5,9 @@
 <root>
   <!--^^-->
   <!--{[{-->
-  <data name="ImageGalleryView_Title.Text" xml:space="preserve">
-    <value>ImageGalleryView</value>
-    <comment>Page title for ImageGalleryView</comment>
+  <data name="wts.ItemName_Title.Text" xml:space="preserve">
+    <value>wts.ItemName</value>
+    <comment>Page title for wts.ItemName</comment>
   </data>
   <!--}]}-->
 </root>
