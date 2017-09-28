@@ -1,15 +1,13 @@
-internal class ActivationService
+﻿namespace Param_RootNamespace.Services
 {
-    private readonly Type _defaultNavItem;
-    //{[{
-
-    private NavigationServiceEx NavigationService
+    internal class ActivationService
     {
-        get
-        {
-            return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
-        }
+        private readonly Type _defaultNavItem;
+//{[{
+
+        private ViewModels.ViewModelLocator Locator => Application.Current.Resources["Locator"] as ViewModels.ViewModelLocator;
+
+        private NavigationServiceEx NavigationService => Locator.NavigationService;
+//}]}
     }
-    
-    //}]}
 }

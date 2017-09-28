@@ -1,18 +1,17 @@
-{
+﻿{
   "author": "Microsoft Community Contribution",
   "classifications": [ "Universal" ],
   "name": "What's New Prompt",
   "groupIdentity": "wts.Feat.WhatsNewPrompt",
   "identity": "wts.Feat.WhatsNewPrompt",
-  "shortName": "What's New Prompt",
   "description": "Display a prompt when the app is first used after an update.",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "feature",
-    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
     "wts.version": "1.0.0",
-    "wts.order": "6",
+    "wts.displayOrder": "6",
     "wts.group": "UserInteraction",
     "wts.dependencies":"wts.Feat.SettingsStorage",
     "wts.multipleInstance": "false",

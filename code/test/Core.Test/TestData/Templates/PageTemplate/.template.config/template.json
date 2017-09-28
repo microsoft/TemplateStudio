@@ -5,11 +5,11 @@
   "description": "Generic description...",
   "groupIdentity": "Microsoft.UWPTemplates.Test.PageTemplate",
   "identity": "Microsoft.UWPTemplates.Test.PageTemplate.CSharp",
-  "shortName": "page-test",
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "page"
+    "wts.type": "page",
+    "wts.displayOrder" : "1"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

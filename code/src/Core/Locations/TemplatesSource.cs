@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.IO;
@@ -18,6 +10,7 @@ using System.Collections.Generic;
 
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Resources;
+using Microsoft.Templates.Core.Packaging;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -40,7 +33,7 @@ namespace Microsoft.Templates.Core.Locations
             Extract(mstxFilePath, targetFolder);
         }
 
-        public void Extract(string mstxFilePath, string targetFolder)
+        public virtual void Extract(string mstxFilePath, string targetFolder)
         {
             string extractedContent = ExtractMstx(mstxFilePath);
 
@@ -102,7 +95,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                Templatex.Extract(file, tempFolder, VerifyPackageSignatures);
+                TemplatePackage.Extract(file, tempFolder, VerifyPackageSignatures);
                 AppHealth.Current.Verbose.TrackAsync($"{StringRes.TemplatesContentExtractedToString} {tempFolder}.").FireAndForget();
             }
             catch (Exception ex)
@@ -126,7 +119,7 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private static string PrepareFinalDestination(string finalTargetFolder, Version ver)
+        protected static string PrepareFinalDestination(string finalTargetFolder, Version ver)
         {
             Fs.EnsureFolder(finalTargetFolder);
 
@@ -140,7 +133,7 @@ namespace Microsoft.Templates.Core.Locations
             return finalDestination;
         }
 
-        private static Version GetVersionFromFile(string versionFilePath)
+        protected static Version GetVersionFromFile(string versionFilePath)
         {
             var version = "0.0.0.0";
 
@@ -164,7 +157,7 @@ namespace Microsoft.Templates.Core.Locations
             return tempFolder;
         }
 
-        private void CleanUpTemps()
+        protected void CleanUpTemps()
         {
             List<string> removedFolders = new List<string>();
             foreach (string tempFolder in _tempFoldersUsed)

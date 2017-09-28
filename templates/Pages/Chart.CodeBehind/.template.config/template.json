@@ -1,4 +1,4 @@
-{
+﻿{
   "author": "Microsoft Community Contribution",
   "classifications": [
     "Universal"
@@ -6,7 +6,6 @@
   "name": "Chart",
   "groupIdentity": "wts.Page.Chart",
   "identity": "wts.Page.Chart.CodeBehind",
-  "shortName": "Chart Page",
   "description": "A page displaying a simple chart, powered by Telerik UI controls for UWP.",	
   "tags": {
     "language": "C#",
@@ -14,7 +13,7 @@
     "wts.type": "page",
     "wts.framework": "CodeBehind",
     "wts.version": "1.0.0",
-    "wts.order": "7",
+    "wts.displayOrder": "7",
     "wts.licenses": "[Telerik.UI-For-UWP](https://github.com/telerik/UI-For-UWP/blob/master/LICENSE.md)",
     "wts.dependencies": "wts.Feat.SampleDataService",
     "wts.genGroup": "0",

@@ -22,7 +22,7 @@
             <DataTemplate x:Key="NewItemSetupItemTemplate">
                 <Grid>
                     <Rectangle Style="{StaticResource RectangleDropShadowStyle}" />
-                    <Border Width="205" Height="180" Background="{StaticResource UIWhite}">
+                    <Border Width="205" Height="180">
                         <Grid Margin="{StaticResource Margin_M_All}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="60" />
@@ -45,7 +45,7 @@
                                 <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource TextTemplateItemAuthorStyle}" MaxHeight="40" Margin="{StaticResource Margin_M_Left}" Visibility="{Binding Author, Converter={StaticResource MicrosoftTemplatesAuthorConverter}}" Text="{Binding Author}"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding Summary}" Foreground="{StaticResource UIBlack}"/>
+                            <TextBlock Grid.Row="1" Style="{StaticResource TextTemplateItemSubtitleStyle}" Text="{Binding Summary}"/>
                         </Grid>
                     </Border>
                 </Grid>
@@ -54,7 +54,7 @@
             <DataTemplate x:Key="LicenseInfoModalItemTemplate">
                 <Grid>
                     <TextBlock>
-                        <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
+                        <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}" AutomationProperties.Name="{Binding Text}">
                             <TextBlock Text="{Binding Text}" Style="{StaticResource TextSummaryLicenseStyle}" FontSize="{StaticResource UI_M_FontSize}"/>
                         </Hyperlink>
                     </TextBlock>
@@ -64,7 +64,7 @@
             <DataTemplate x:Key="DependencyInfoModalTemplate">
                 <Grid>
                     <TextBlock>
-                        <Hyperlink Command="{Binding ShowInfoCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
+                        <Hyperlink Command="{Binding ShowInfoCommand}" Style="{StaticResource LicenseHyperlinkStyle}" AutomationProperties.Name="{Binding Name}">
                           <TextBlock Text="{Binding Name}" Style="{StaticResource TextSummaryLicenseStyle}" FontSize="{StaticResource UI_M_FontSize}"/>
                         </Hyperlink>
                     </TextBlock>
@@ -89,7 +89,6 @@
                                     <TextBlock Text="{Binding Title}" Style="{StaticResource TextSubGroupTemplateItemsHeaderStyle}" Visibility="{Binding Title, Converter={StaticResource StringVisibilityConverter}}"/>
                                     <ListView
                                         SelectionMode="Single"
-                                        KeyboardNavigation.TabNavigation="Local"
                                         ItemsSource="{Binding Templates}"
                                         SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                                         Style="{StaticResource ListViewProjectSetupStyle}"
@@ -114,7 +113,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalVersion}" Style="{StaticResource TextInformationPropertyTitle}" />
-                        <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Text="{Binding NewItemSetup.Information.Version}" Style="{StaticResource TextInformationPropertyValue}"/>
+                        <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Text="{Binding NewItemSetup.Information.Version}" Style="{StaticResource UIBaseBlack}"/>
                     </Grid>
                     <Grid Margin="{StaticResource Margin_M_Top}" Visibility="{Binding NewItemSetup.Information.Author, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
                         <Grid.ColumnDefinitions>
@@ -122,7 +121,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalAuthor}" Style="{StaticResource TextInformationPropertyTitle}" />
-                        <TextBlock Grid.Column="1" Text="{Binding NewItemSetup.Information.Author}" Margin="{StaticResource Margin_M_Left}" Style="{StaticResource TextInformationPropertyValue}" />
+                        <TextBlock Grid.Column="1" Text="{Binding NewItemSetup.Information.Author}" Margin="{StaticResource Margin_M_Left}" Style="{StaticResource UIBaseBlack}" />
                     </Grid>
                     <Grid Margin="{StaticResource Margin_M_Top}" Visibility="{Binding NewItemSetup.Information.LicensesVisibility, FallbackValue=Collapsed}">
                         <Grid.ColumnDefinitions>

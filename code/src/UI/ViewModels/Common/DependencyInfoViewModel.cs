@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System.Windows.Input;
 
@@ -52,10 +44,10 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
             else if (_newItemTemplateItem != null)
             {
-                NewItem.MainViewModel.Current.InfoShapeVisibility = System.Windows.Visibility.Visible;
+                NewItem.MainViewModel.Current.WizardStatus.InfoShapeVisibility = System.Windows.Visibility.Visible;
                 var infoView = new Views.NewProject.InformationWindow(_newItemTemplateItem, NewItem.MainViewModel.Current.MainView);
                 infoView.ShowDialog();
-                NewItem.MainViewModel.Current.InfoShapeVisibility = System.Windows.Visibility.Collapsed;
+                NewItem.MainViewModel.Current.WizardStatus.InfoShapeVisibility = System.Windows.Visibility.Collapsed;
             }
         }
     }

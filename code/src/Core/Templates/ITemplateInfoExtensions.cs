@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
@@ -116,6 +108,11 @@ namespace Microsoft.Templates.Core
             return GetValueFromTag(ti, TagPrefix + "compositionFilter");
         }
 
+        public static string GetLanguage(this ITemplateInfo ti)
+        {
+            return GetValueFromTag(ti, "language");
+        }
+
         public static IEnumerable<TemplateLicense> GetLicenses(this ITemplateInfo ti)
         {
             var licenses = GetValueFromTag(ti, TagPrefix + "licenses");
@@ -215,9 +212,24 @@ namespace Microsoft.Templates.Core
             return GetValueFromTag(ti, TagPrefix + "version");
         }
 
-        public static int GetOrder(this ITemplateInfo ti)
+        public static int GetDisplayOrder(this ITemplateInfo ti)
         {
-            var rawOrder = GetValueFromTag(ti, TagPrefix + "order");
+            var rawOrder = GetValueFromTag(ti, TagPrefix + "displayOrder");
+
+            if (!string.IsNullOrEmpty(rawOrder))
+            {
+                if (int.TryParse(rawOrder, out int order))
+                {
+                    return order;
+                }
+            }
+
+            return int.MaxValue;
+        }
+
+        public static int GetCompositionOrder(this ITemplateInfo ti)
+        {
+            var rawOrder = GetValueFromTag(ti, TagPrefix + "compositionOrder");
 
             if (!string.IsNullOrEmpty(rawOrder))
             {

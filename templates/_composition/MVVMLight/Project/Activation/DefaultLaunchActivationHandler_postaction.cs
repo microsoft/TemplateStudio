@@ -1,20 +1,23 @@
-internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
+﻿namespace Param_RootNamespace.Activation
 {
-    //{[{
-    private readonly string _navElement;
-
-    private NavigationServiceEx NavigationService
+    internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
     {
-        get
+//{[{
+        private readonly string _navElement;
+
+        private NavigationServiceEx NavigationService
         {
-            return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
+            get
+            {
+                return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
+            }
         }
-    }
 
-    public DefaultLaunchActivationHandler(Type navElement)
-    {
-        _navElement = navElement.FullName;
-    }
+        public DefaultLaunchActivationHandler(Type navElement)
+        {
+            _navElement = navElement.FullName;
+        }
 
-    //}]}
+//}]}
+    }
 }

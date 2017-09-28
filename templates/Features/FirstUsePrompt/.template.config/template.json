@@ -1,18 +1,17 @@
-{
+﻿{
   "author": "Microsoft Community Contribution",
   "classifications": [ "Universal" ],
   "name": "First Run Prompt",
   "groupIdentity": "wts.Feat.FirstRunPrompt",
   "identity": "wts.Feat.FirstRunPrompt",
-  "shortName": "First Run Prompt",
   "description": "Display a prompt when the app is used for the first time.",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "feature",
-    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
     "wts.version": "1.0.0",
-    "wts.order": "5",
+    "wts.displayOrder": "5",
     "wts.group": "UserInteraction",
     "wts.dependencies":"wts.Feat.SettingsStorage",
     "wts.multipleInstance": "false",

@@ -1,4 +1,4 @@
-//{[{
+﻿//{[{
 using Windows.UI.Xaml;
 //}]}
 namespace Param_ItemNamespace.Views
@@ -9,18 +9,18 @@ namespace Param_ItemNamespace.Views
         {
             InitializeComponent();
             //{[{
-            Loaded += OnLoaded;
-            Unloaded += OnUnloaded;
+            Loaded += wts.ItemNamePage_Loaded;
+            Unloaded += wts.ItemNamePage_Unloaded;
             //}]}
         }
 
         //{[{
-        private async void OnLoaded(object sender, RoutedEventArgs e)
+        private async void wts.ItemNamePage_Loaded(object sender, RoutedEventArgs e)
         {
             await ViewModel.InitializeAsync(mapControl);
         }
 
-        private void OnUnloaded(object sender, RoutedEventArgs e)
+        private void wts.ItemNamePage_Unloaded(object sender, RoutedEventArgs e)
         {
             ViewModel.Cleanup();
         }

@@ -51,6 +51,10 @@ Using this solution while authoring templates or improving the Wizard have the f
 
 So we encourage to use this solution for the general template authoring or code development and, once you are done, make some final local tests using the Installer.sln or Big.sln solution.
 
+### Accesible UI
+
+Both the UI and the templates (generated code) must be accesible by definition. If you are going to collaborate in this space, please, be sure you have verified all accesibility rules defined in [Accessibility checklist](accesibility.md).
+
 ## Inside the Code folder
 
 Following are described the contents for each folder:
@@ -59,7 +63,7 @@ Following are described the contents for each folder:
 * [src](../code/src): solution source code
   * [Core](../code/src/core): Core VS Project for the solution Core classes, i.e.: enable the generation of code wrapping the "Template Engine generator", deals with templates source location and synchronization, provide the diagnostics infrastructure, etc .
   * [Installer.2017](../code/src/Installer.2017): This is the Visual Studio Extension project. Enables the installation of the extension to enable the access to the Windows Template Studio Project Template and ensures that all required assets are deployed with it.
-  * [ProjectTemplates](../code/src/ProjectTemplates): This folder contains the [Visual Studio Project Templates](https://msdn.microsoft.com/library/ms247121.aspx) deployed with the extension to enable the "File --> New Project..." experience (currently just one).
+  * [ProjectTemplates](../code/src/ProjectTemplates): This folder contains the [Visual Studio Project Templates](https://msdn.microsoft.com/library/ms247121.aspx) deployed with the extension to enable the "File --> New Project..." experience. There are separate templates for the C# and Visual basic versions of the template.
   * [Wizard](../code/src/Wizard): This project handles the generation as well as the UI dialogs required by the generation workflow.
 * [test](../code/test)
   * [Artifacts](../code/test/Artifacts): Common test elements.

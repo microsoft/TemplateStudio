@@ -11,7 +11,10 @@
         ShowInTaskbar="False"
         ShowActivated="True"
         WindowState="Normal"
-        WindowStyle="None" WindowStartupLocation="CenterOwner">
+        WindowStyle="None"
+        WindowStartupLocation="CenterOwner"
+        AutomationProperties.Name="{Binding Name}"
+        AutomationProperties.HelpText="{Binding HelpText}">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -23,7 +26,7 @@
             <DataTemplate x:Key="LicenseInfoModalItemTemplate">
                 <Grid>
                     <TextBlock>
-                        <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
+                        <Hyperlink Command="{Binding NavigateCommand}" Style="{StaticResource LicenseHyperlinkStyle}" AutomationProperties.Name="{Binding Text}">
                             <TextBlock Text="{Binding Text}" Style="{StaticResource TextSummaryLicenseStyle}" FontSize="{StaticResource UI_M_FontSize}"/>
                         </Hyperlink>
                     </TextBlock>
@@ -33,7 +36,7 @@
             <DataTemplate x:Key="DependencyInfoModalTemplate">
                 <Grid>
                     <TextBlock>
-                        <Hyperlink Command="{Binding ShowInfoCommand}" Style="{StaticResource LicenseHyperlinkStyle}">
+                        <Hyperlink Command="{Binding ShowInfoCommand}" Style="{StaticResource LicenseHyperlinkStyle}" AutomationProperties.Name="{Binding Name}">
                           <TextBlock Text="{Binding Name}" Style="{StaticResource TextSummaryLicenseStyle}" FontSize="{StaticResource UI_M_FontSize}"/>
                         </Hyperlink>
                     </TextBlock>
@@ -70,7 +73,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalVersion}" Style="{StaticResource TextInformationPropertyTitle}" />
-                    <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Text="{Binding Version}" Style="{StaticResource TextInformationPropertyValue}"/>
+                    <TextBlock Grid.Column="1" Margin="{StaticResource Margin_M_Left}" Text="{Binding Version}" Style="{StaticResource TextInformationPropertyValue}" />
                 </Grid>
                 <Grid Margin="{StaticResource Margin_M_Top}" Visibility="{Binding Author, Converter={StaticResource StringVisibilityConverter}, FallbackValue=Collapsed}">
                     <Grid.ColumnDefinitions>
@@ -85,7 +88,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalLicenses}" Style="{StaticResource TextInformationPropertyTitle}" VerticalAlignment="Bottom" />
+                    <TextBlock Grid.Column="0" Text="{x:Static res:StringRes.InfoModalLicenses}" Style="{StaticResource TextInformationPropertyTitle}" VerticalAlignment="Bottom"  />
                     <ItemsControl Grid.Column="1" ItemsSource="{Binding LicenseTerms}" Margin="10,3,0,0" ItemTemplate="{StaticResource LicenseInfoModalItemTemplate}" Focusable="False"/>
                 </Grid>
                 <Grid Margin="{StaticResource Margin_M_Top}" Visibility="{Binding DependenciesVisibility, FallbackValue=Collapsed}">

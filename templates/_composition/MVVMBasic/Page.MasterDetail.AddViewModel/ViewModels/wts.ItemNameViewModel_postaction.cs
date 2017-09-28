@@ -1,4 +1,4 @@
-using Param_ItemNamespace.Services;
+﻿using Param_ItemNamespace.Services;
 //{[{
 using Param_ItemNamespace.Models;
 //}]}
@@ -9,7 +9,7 @@ namespace Param_ItemNamespace.ViewModels
         private void OnItemClick(ItemClickEventArgs args)
         {
             //{[{
-            Order item = args?.ClickedItem as Order;
+            SampleOrder item = args?.ClickedItem as SampleOrder;
             if (item != null)
             {
                 if (_currentState.Name == NarrowStateName)

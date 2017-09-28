@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
@@ -24,15 +16,16 @@ using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.UI.Generation
 {
-    internal class ProjectConfigInfo
+    public class ProjectConfigInfo
     {
-        const string FxMVVMBasic = "MVVMBasic";
-        const string FxMVVMLight = "MVVMLight";
-        const string FxCodeBehid = "CodeBehind";
+        public const string FxMVVMBasic = "MVVMBasic";
+        public const string FxMVVMLight = "MVVMLight";
+        public const string FxCodeBehid = "CodeBehind";
+        public const string FxCaliburnMicro = "CaliburnMicro";
 
-        const string ProjTypeBlank = "Blank";
-        const string ProjTypeSplitView = "SplitView";
-        const string ProjTypeTabbedPivot = "TabbedPivot";
+        public const string ProjTypeBlank = "Blank";
+        public const string ProjTypeSplitView = "SplitView";
+        public const string ProjTypeTabbedPivot = "TabbedPivot";
 
         const string ProjectTypeLiteral = "projectType";
         const string FrameworkLiteral = "framework";
@@ -125,6 +118,10 @@ namespace Microsoft.Templates.UI.Generation
             {
                 return FxCodeBehid;
             }
+            else if (IsCaliburnMicro())
+            {
+                return FxCaliburnMicro;
+            }
             else
             {
                 return string.Empty;
@@ -185,6 +182,22 @@ namespace Microsoft.Templates.UI.Generation
                     var fileContent = File.ReadAllText(codebehindFile);
                     return fileContent.Contains($"INotifyPropertyChanged") &&
                         fileContent.Contains("public event PropertyChangedEventHandler PropertyChanged;");
+                }
+            }
+            return false;
+        }
+
+        private static bool IsCaliburnMicro()
+        {
+            if (ExistsFileInProjectPath("Services", "ActivationService.cs"))
+            {
+                var files = Directory.GetFiles(GenContext.Current.ProjectPath, "*.*proj", SearchOption.TopDirectoryOnly);
+                foreach (string file in files)
+                {
+                    if (File.ReadAllText(file).Contains("<PackageReference Include=\"Caliburn.Micro\">"))
+                    {
+                        return true;
+                    }
                 }
             }
             return false;

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:converters="clr-namespace:Microsoft.Templates.VsEmulator.Converters"
         mc:Ignorable="d"
+        KeyDown="OnKeyDown"
         Title="Visual Studio Emulator" 
         Height="480" Width="800" 
         WindowStartupLocation="CenterScreen"
@@ -35,11 +36,17 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackPanel>
-                    <TextBlock>           
-                        <Hyperlink Command="{Binding NewProjectCommand}">
-                            <TextBlock Text="New project..."/>
+                    <TextBlock>
+                        <Hyperlink Command="{Binding NewCSharpProjectCommand}">
+                            <TextBlock Text="New C# project..."/>
+                        </Hyperlink>
+                    </TextBlock>
+                    <TextBlock>
+                        <Hyperlink Command="{Binding NewVisualBasicProjectCommand}">
+                            <TextBlock Text="New VB project..."/>
                         </Hyperlink>
                     </TextBlock>
                     <TextBlock>
@@ -61,7 +68,7 @@
                 <ScrollViewer x:Name="logScroll" Grid.Row="1" VerticalAlignment="Bottom" VerticalScrollBarVisibility="Auto" Height="200">
                     <TextBlock Text="{Binding Log}" TextWrapping="Wrap"></TextBlock>
                 </ScrollViewer>
-                <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Bottom">
+                <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Bottom">
                     <TextBlock Text="Wizard Version: "></TextBlock>
                     <TextBlock Text="{Binding WizardVersion}"></TextBlock>
                     <TextBlock Margin="10,0,0,0" Text="Templates Version: "></TextBlock>
@@ -76,12 +83,12 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal">
-                    <Button Command="{Binding OpenInVsCommand}" Content="{StaticResource VsImage}" Style="{StaticResource IconButton}" />
-                    <Button Command="{Binding OpenInVsCodeCommand}" Content="{StaticResource VsCodeImage}" Style="{StaticResource IconButton}" />
-                    <Button Command="{Binding OpenInExplorerCommand}" Content="{StaticResource FolderImage}" Style="{StaticResource IconButton}"  />
-                    <Button Command="{Binding AddNewFeatureCommand}" Content="{StaticResource NewFeatureImage}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}"/>
-                    <Button Command="{Binding AddNewPageCommand}" Content="{StaticResource NewPageImage}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}"/>
-                    <Button Command="{Binding OpenTempInExplorerCommand}" Content="{StaticResource OpenFolderImage}" Style="{StaticResource IconButton}" Visibility="{Binding TempFolderAvailable}"  />
+                    <Button Command="{Binding OpenInVsCommand}" Content="{StaticResource VsImage}" Style="{StaticResource IconButton}" ToolTip="Open in Visual Studio"/>
+                    <Button Command="{Binding OpenInVsCodeCommand}" Content="{StaticResource VsCodeImage}" Style="{StaticResource IconButton}" ToolTip="Open in Visual Studio Code" />
+                    <Button Command="{Binding OpenInExplorerCommand}" Content="{StaticResource FolderImage}" Style="{StaticResource IconButton}" ToolTip="Open in explorer" />
+                    <Button Command="{Binding AddNewFeatureCommand}" Content="{StaticResource NewFeatureImage}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}" ToolTip="Add new feature"/>
+                    <Button Command="{Binding AddNewPageCommand}" Content="{StaticResource NewPageImage}" Style="{StaticResource IconButton}"  Visibility="{Binding IsWtsProject}" ToolTip="Add new page"/>
+                    <Button Command="{Binding OpenTempInExplorerCommand}" Content="{StaticResource OpenFolderImage}" Style="{StaticResource IconButton}" Visibility="{Binding TempFolderAvailable}"  ToolTip="Open temp folder in explorer"/>
                 </StackPanel>
                 <Grid Grid.Row="1" Style="{StaticResource HorizontalSeparator}" />
                 <TextBlock Grid.Row="2" Text="{Binding SolutionName}" Style="{StaticResource Header2}" />

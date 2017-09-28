@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +13,7 @@ namespace Microsoft.Templates.UI
 {
     public enum ItemGenerationType
     {
+        None,
         Generate,
         GenerateAndMerge
     }
@@ -30,13 +23,20 @@ namespace Microsoft.Templates.UI
         public string ProjectType { get; set; }
         public string Framework { get; set; }
         public string HomeName { get; set; }
-        public ItemGenerationType ItemGenerationType { get; set; }
+        public string Language { get; set; }
+        public ItemGenerationType ItemGenerationType { get; set; } = ItemGenerationType.None;
         public List<(string name, ITemplateInfo template)> Pages { get; } = new List<(string name, ITemplateInfo template)>();
         public List<(string name, ITemplateInfo template)> Features { get; } = new List<(string name, ITemplateInfo template)>();
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
+
+            if (!string.IsNullOrEmpty(Language))
+            {
+                sb.AppendFormat("Language: '{0}'", Language);
+                sb.AppendLine();
+            }
 
             if (!string.IsNullOrEmpty(ProjectType))
             {

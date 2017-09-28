@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
@@ -23,6 +15,8 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Views.NewProject;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.Extensions;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -132,7 +126,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 SetProperty(ref _newTemplateName, value);
                 if (CanChooseItemName)
                 {
-                    _validateTemplateName?.Invoke(this);
+                    var validationResult = ValidationService.ValidateTemplateName(NewTemplateName, CanChooseItemName, true);
+                    IsValidName = validationResult.IsValid;
+                    ErrorMessage = string.Empty;
+                    if (!IsValidName)
+                    {
+                        ErrorMessage = validationResult.ErrorType.GetResourceString();
+                        MainViewModel.Current.SetValidationErrors(ErrorMessage);
+                        throw new Exception(ErrorMessage);
+                    }
+                    MainViewModel.Current.CleanStatus(true);
                 }
             }
         }
@@ -144,26 +147,27 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             set => SetProperty(ref _isValidName, value);
         }
 
-        private Brush _titleForeground = new SolidColorBrush(Colors.Black);
+        private Brush _titleForeground;
         public Brush TitleForeground
         {
             get => _titleForeground;
             set => SetProperty(ref _titleForeground, value);
         }
 
-        public RelayCommand<TemplateInfoViewModel> AddItemCommand { get; private set; }
-        public RelayCommand<TemplateInfoViewModel> SaveItemCommand { get; private set; }
+        private ICommand _addItemCommand;
+        public ICommand AddItemCommand => _addItemCommand ?? (_addItemCommand = new RelayCommand(OnAddItem));
+
+        private ICommand _saveItemCommand;
+        public ICommand SaveItemCommand => _saveItemCommand ?? (_saveItemCommand = new RelayCommand(OnSaveItem));
 
         private ICommand _closeEditionCommand;
-        public ICommand CloseEditionCommand => _closeEditionCommand ?? (_closeEditionCommand = new RelayCommand(CloseEdition));
+        public ICommand CloseEditionCommand => _closeEditionCommand ?? (_closeEditionCommand = new RelayCommand(() => CloseEdition()));
 
         private ICommand _showItemInfoCommand;
         public ICommand ShowItemInfoCommand => _showItemInfoCommand ?? (_showItemInfoCommand = new RelayCommand(ShowItemInfo));
-
-        private Action<TemplateInfoViewModel> _validateTemplateName;
         #endregion
 
-        public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies, RelayCommand<TemplateInfoViewModel> addItemCommand, RelayCommand<TemplateInfoViewModel> saveItemCommand, Action<TemplateInfoViewModel> validateTemplateName)
+        public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies)
         {
             Author = template.Author;
             CanChooseItemName = template.GetItemNameEditable();
@@ -174,31 +178,31 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             MultipleInstances = template.GetMultipleInstance();
             GenGroup = template.GetGenGroup();
             Name = template.Name;
-            Order = template.GetOrder();
+            Order = template.GetDisplayOrder();
             Summary = template.Description;
             TemplateType = template.GetTemplateType();
             Template = template;
             Version = template.GetVersion();
 
-            AddItemCommand = addItemCommand;
-            SaveItemCommand = saveItemCommand;
-            _validateTemplateName = validateTemplateName;
+            TitleForeground = GetTitleForeground(true);
 
             if (dependencies != null && dependencies.Any())
             {
-                DependencyItems.AddRange(dependencies.Select(d => new DependencyInfoViewModel(new TemplateInfoViewModel(d, GenComposer.GetAllDependencies(d, MainViewModel.Current.ProjectSetup.SelectedFramework.Name), AddItemCommand, SaveItemCommand, validateTemplateName))));
+                DependencyItems.AddRange(dependencies.Select(d => new DependencyInfoViewModel(new TemplateInfoViewModel(d, GenComposer.GetAllDependencies(d, MainViewModel.Current.ProjectSetup.SelectedFramework.Name)))));
 
                 Dependencies = string.Join(",", dependencies.Select(d => d.Name));
             }
         }
 
-        public void CloseEdition()
+        public bool CloseEdition()
         {
             if (IsEditionEnabled)
             {
                 IsEditionEnabled = false;
                 MainViewModel.Current.CleanStatus(true);
+                return true;
             }
+            return false;
         }
 
         public void UpdateTemplateAvailability(bool isAlreadyDefined)
@@ -206,22 +210,78 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (MultipleInstances == false && isAlreadyDefined)
             {
                 AddingVisibility = Visibility.Collapsed;
-                TitleForeground = MainViewModel.Current.MainView.FindResource("UIMiddleLightGray") as SolidColorBrush;
+                TitleForeground = GetTitleForeground(false);
             }
             else
             {
                 AddingVisibility = Visibility.Visible;
-                TitleForeground = MainViewModel.Current.MainView.FindResource("UIBlack") as SolidColorBrush;
+                TitleForeground = GetTitleForeground(true);
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{Name} - {Summary}";
         }
 
         private void ShowItemInfo()
         {
-            MainViewModel.Current.InfoShapeVisibility = Visibility.Visible;
+            MainViewModel.Current.WizardStatus.InfoShapeVisibility = Visibility.Visible;
             var infoView = new InformationWindow(this, MainViewModel.Current.MainView);
 
             infoView.ShowDialog();
-            MainViewModel.Current.InfoShapeVisibility = Visibility.Collapsed;
+            MainViewModel.Current.WizardStatus.InfoShapeVisibility = Visibility.Collapsed;
+        }
+
+        private SolidColorBrush GetTitleForeground(bool isEnabled)
+        {
+            if (SystemService.Instance.IsHighContrast)
+            {
+                if (isEnabled)
+                {
+                    return SystemColors.ControlTextBrush;
+                }
+                else
+                {
+                    return SystemColors.ControlLightBrush;
+                }
+            }
+            else
+            {
+                if (isEnabled)
+                {
+                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlack");
+                }
+                else
+                {
+                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIMiddleLightGray");
+                }
+            }
+        }
+
+        private void OnAddItem()
+        {
+            NewTemplateName = ValidationService.InferTemplateName(Template.GetDefaultName(), CanChooseItemName, CanChooseItemName);
+            if (CanChooseItemName)
+            {
+                MainViewModel.Current.ProjectTemplates.CloseAllEditions();
+                IsEditionEnabled = true;
+            }
+            else
+            {
+                MainViewModel.Current.ProjectTemplates.AddTemplateAndDependencies((NewTemplateName, Template), false);
+                UpdateTemplateAvailability(MainViewModel.Current.ProjectTemplates.IsTemplateAlreadyDefined(Template.Identity));
+            }
+        }
+
+        private void OnSaveItem()
+        {
+            if (IsValidName)
+            {
+                MainViewModel.Current.ProjectTemplates.AddTemplateAndDependencies((NewTemplateName, Template), false);
+                CloseEdition();
+                UpdateTemplateAvailability(MainViewModel.Current.ProjectTemplates.IsTemplateAlreadyDefined(Template.Identity));
+            }
         }
     }
 }

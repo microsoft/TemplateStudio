@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
@@ -21,6 +13,8 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.Extensions;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -47,7 +41,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             set
             {
                 SetProperty(ref _itemName, value);
-                UpdateItemName(_itemName);
+                var validationResult = ValidationService.ValidateTemplateName(ItemName, true, false);
+                if (!validationResult.IsValid)
+                {
+                    var errorMessage = validationResult.ErrorType.GetResourceString();
+                    MainViewModel.Current.SetValidationErrors(errorMessage);
+                    throw new Exception(errorMessage);
+                }
+                MainViewModel.Current.CleanStatus(true);
             }
         }
 
@@ -82,8 +83,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
             if (TemplateGroups.Any())
             {
-                MainViewModel.Current.HasContent = true;
-                MainViewModel.Current.EnableGoForward();
+                MainViewModel.Current.WizardStatus.HasContent = true;
+                MainViewModel.Current.UpdateCanGoForward(true);
                 var activeTemplate = MainViewModel.Current.GetActiveTemplate();
                 if (activeTemplate == null)
                 {
@@ -92,12 +93,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 }
                 else
                 {
-                    UpdateItemName(activeTemplate);
+                    UpdateSelectedTemplateProperties(activeTemplate);
                 }
             }
             else
             {
-                MainViewModel.Current.HasContent = false;
+                MainViewModel.Current.WizardStatus.HasContent = false;
             }
         }
 
@@ -107,10 +108,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 if (gr.Name == group.Name)
                 {
-                    var template = gr.SelectedItem as TemplateInfoViewModel;
-                    if (template != null)
+                    if (gr.SelectedItem is TemplateInfoViewModel template)
                     {
-                        UpdateItemName(template);
+                        UpdateSelectedTemplateProperties(template);
                         Information = new InformationViewModel(template);
                     }
                 }
@@ -121,19 +121,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        public void UpdateItemName(TemplateInfoViewModel template)
+        public void UpdateSelectedTemplateProperties(TemplateInfoViewModel template)
         {
-            var validators = new List<Validator>() { new ReservedNamesValidator() };
-            if (template.IsItemNameEditable)
-            {
-                validators.Add(new DefaultNamesValidator());
-                EditionVisibility = Visibility.Visible;
-            }
-            else
-            {
-                EditionVisibility = Visibility.Collapsed;
-            }
-            _itemName = Naming.Infer(template.DefaultName, validators);
+            EditionVisibility = template.IsItemNameEditable ? Visibility.Visible : Visibility.Collapsed;
+            _itemName = ValidationService.InferTemplateName(template.DefaultName, false, template.IsItemNameEditable);
             OnPropertyChanged("ItemName");
             MainViewModel.Current.CleanStatus(true);
         }
@@ -148,29 +139,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 Header = string.Format(StringRes.GroupFeatureHeader_SF, templatesCount);
             }
-        }
-
-        private void UpdateItemName(string name)
-        {
-            var validators = new List<Validator>()
-            {
-                new DefaultNamesValidator(),
-                new ReservedNamesValidator()
-            };
-
-            var validationResult = Naming.Validate(name, validators);
-            if (!validationResult.IsValid)
-            {
-                var errorMessage = StringRes.ResourceManager.GetString($"ValidationError_{validationResult.ErrorType}");
-
-                if (string.IsNullOrWhiteSpace(errorMessage))
-                {
-                    errorMessage = "UndefinedError";
-                }
-                MainViewModel.Current.SetValidationErrors(errorMessage);
-                throw new Exception(errorMessage);
-            }
-            MainViewModel.Current.CleanStatus(true);
         }
     }
 }

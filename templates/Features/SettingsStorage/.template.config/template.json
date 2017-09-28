@@ -1,18 +1,17 @@
-{
+﻿{
   "author": "Microsoft",
   "classifications": ["Universal"],
   "name": "Settings Storage",
   "groupIdentity": "wts.Feat.SettingsStorage",
   "identity": "wts.Feat.SettingsStorage",
-  "shortName": "Settings Storage",
   "description": "Setting storage helps simplify storing data inside your application data folder.",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "feature",
-    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
     "wts.version": "1.0.0",
-    "wts.order": "1",
+    "wts.displayOrder": "1",
     "wts.group": "ApplicationLifecycle",
     "wts.licenses": "[Newtonsoft.Json](https://raw.githubusercontent.com/JamesNK/Newtonsoft.Json/master/LICENSE.md)",
     "wts.defaultInstance": "SettingsStorage",
@@ -22,7 +21,6 @@
   },
   "sourceName": "SettingsStorageFeature",
   "preferNameDirectory": true,
-  "guids": [ "5b9d2eee-b648-4ca1-837e-9abb8f3dffdd" ],
   "PrimaryOutputs": [
     {
       "path": ".\\Helpers\\SettingsStorageExtensions.cs"
