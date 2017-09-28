@@ -22,6 +22,7 @@ namespace Localization
                 commandHandler.SubscribeOnCommand("help", PrintHelp);
                 commandHandler.SubscribeOnCommand("gen", tool.GenerateProjectTemplatesAndCommandsHandler);
                 commandHandler.SubscribeOnCommand("ext", tool.ExtractLocalizableItems);
+                commandHandler.SubscribeOnCommand("verify", tool.VerifyLocalizableItems);
                 commandHandler.Listen();
             }
             catch (Exception ex)
@@ -49,6 +50,7 @@ namespace Localization
                 Console.WriteLine("EXIT\tQuits Windows Template Studio Localization Tool.");
                 Console.WriteLine("EXT\tExtract localizable items for different cultures.");
                 Console.WriteLine("GEN\tGenerates Project Templates for different cultures.");
+                Console.WriteLine("VERIFY\tVerify if exist localizable items for different cultures.");
                 Console.WriteLine("HELP\tProvides Help information for Windows Template Studio Localization Tool.");
                 Console.WriteLine();
             }
@@ -94,6 +96,18 @@ namespace Localization
                         Console.WriteLine("Example:");
                         Console.WriteLine();
                         Console.WriteLine("\tGEN \"C:\\MyFolder\\wts\" \"C:\\MyFolder\\Generated\\ProjectTemplates\"");
+                        Console.WriteLine();
+                        break;
+                    case "VERIFY":
+                        Console.WriteLine("Verify if exist localizable items for different cultures.");
+                        Console.WriteLine();
+                        Console.WriteLine("VERIFY \"sourceDirectoryPath\"");
+                        Console.WriteLine();
+                        Console.WriteLine($"\tsourceDirectoryPath\t - path to the folder that contains{argumentNewLine}source files for verify{argumentNewLine}(it's root project folder).");
+                        Console.WriteLine();
+                        Console.WriteLine("Example:");
+                        Console.WriteLine();
+                        Console.WriteLine("\tVERIFY \"C:\\MyFolder\\wts\"");
                         Console.WriteLine();
                         break;
                     case "HELP":

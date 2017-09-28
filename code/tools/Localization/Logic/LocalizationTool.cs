@@ -88,6 +88,16 @@ namespace Localization
             }
         }
 
+        public void VerifyLocalizableItems(ToolCommandInfo commandInfo)
+        {
+            if (commandInfo.Arguments == null || commandInfo.Arguments.Length != 1)
+            {
+                throw new Exception("Error executing command. Needs a single argument.");
+            }
+
+            // TO-DO - Verify localizable files
+        }
+
         private ValidateLocalizableExtractor GetValidateExtractor(string repository, string[] arguments)
         {
             string extractorType = arguments.Length > 2 ? arguments[2].ToLowerInvariant() : string.Empty;
