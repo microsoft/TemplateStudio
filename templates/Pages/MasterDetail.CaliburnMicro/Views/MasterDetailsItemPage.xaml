@@ -30,6 +30,7 @@
             Grid.Row="1"
             ItemsSource="{x:Bind ViewModel.Items}"
             SelectedItem="{x:Bind ViewModel.ActiveItem}"
+            MasterPaneWidth="296"
             BorderBrush="Transparent">
             <controls:MasterDetailsView.ItemTemplate>
                 <DataTemplate>
@@ -38,7 +39,7 @@
             </controls:MasterDetailsView.ItemTemplate>
             <controls:MasterDetailsView.DetailsTemplate>
                 <DataTemplate>
-                    <ContentControl cm:View.Model="{Binding}" cm:View.Context="DetailsView" Margin="12,0,0,0"
+                    <ContentControl cm:View.Model="{Binding}" cm:View.Context="DetailsView" Margin="48,0,0,0"
                                     HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
                 </DataTemplate>
             </controls:MasterDetailsView.DetailsTemplate>
@@ -60,9 +61,8 @@
                         <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="TitlePage.Margin" Value="48,0,12,7"/>
                         <Setter Target="TitleRow.Height" Value="48"/>
-                        <Setter Target="TitlePage.Visibility" Value="Visible"/>
-                        <Setter Target="Title.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
