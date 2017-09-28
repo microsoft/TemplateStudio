@@ -12,8 +12,6 @@
     Closing="Window_Closing"
     Width="{Binding WizardStatus.Width}"
     Height="{Binding WizardStatus.Height}"
-    MinWidth="800"
-    MinHeight="600"
     ResizeMode="CanResize"
     ShowInTaskbar="False"
     WindowStartupLocation="CenterScreen"
