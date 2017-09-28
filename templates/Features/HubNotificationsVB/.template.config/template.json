@@ -4,7 +4,7 @@
     "Universal"
   ],
   "name": "Azure Notifications",
-  "groupIdentity": "wts.Feat.HubNotifications.VB",
+  "groupIdentity": "wts.Feat.HubNotifications",
   "identity": "wts.Feat.HubNotifications.VB",
   "description": "Register to receive and handle messages from Azure Notification Hubs.",
   "tags": {

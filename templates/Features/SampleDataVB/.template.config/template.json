@@ -2,7 +2,7 @@
   "author": "Microsoft Community Contribution",
   "classifications": ["Universal"],
   "name": "Sample Data",
-  "groupIdentity": "wts.Feat.SampleDataService.VB",
+  "groupIdentity": "wts.Feat.SampleDataService",
   "identity": "wts.Feat.SampleDataService.VB",
   "description": "SampleDataService holds sample data used by the generated version of some pages.",
   "tags": {

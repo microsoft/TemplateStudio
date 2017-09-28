@@ -4,7 +4,7 @@
     "Universal"
   ],
   "name": "Tabbed",
-  "groupIdentity": "wts.Page.TabbedPivot.VB",
+  "groupIdentity": "wts.Page.TabbedPivot",
   "identity": "wts.Page.TabbedPivot.VB",
   "description": "The tabbed page is used for navigating frequently accessed, distinct content categories.",
   "tags": {

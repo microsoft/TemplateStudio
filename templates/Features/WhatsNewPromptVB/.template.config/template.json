@@ -2,7 +2,7 @@
   "author": "Microsoft Community Contribution",
   "classifications": [ "Universal" ],
   "name": "What's New Prompt",
-  "groupIdentity": "wts.Feat.WhatsNewPrompt.VB",
+  "groupIdentity": "wts.Feat.WhatsNewPrompt",
   "identity": "wts.Feat.WhatsNewPrompt.VB",
   "description": "Display a prompt when the app is first used after an update.",
   "tags": {

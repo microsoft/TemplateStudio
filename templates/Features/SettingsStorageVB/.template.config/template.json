@@ -2,7 +2,7 @@
   "author": "Microsoft Community Contribution",
   "classifications": ["Universal"],
   "name": "Settings Storage",
-  "groupIdentity": "wts.Feat.SettingsStorage.VB",
+  "groupIdentity": "wts.Feat.SettingsStorage",
   "identity": "wts.Feat.SettingsStorage.VB",
   "description": "Setting storage helps simplify storing data inside your application data folder.",
   "tags": {

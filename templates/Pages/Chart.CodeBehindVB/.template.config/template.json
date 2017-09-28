@@ -4,7 +4,7 @@
     "Universal"
   ],
   "name": "Chart",
-  "groupIdentity": "wts.Page.Chart.VB",
+  "groupIdentity": "wts.Page.Chart",
   "identity": "wts.Page.Chart.CodeBehind.VB",
   "description": "A page displaying a simple chart, powered by Telerik UI controls for UWP.",	
   "tags": {

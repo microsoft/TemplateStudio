@@ -4,7 +4,7 @@
     "Universal"
   ],
   "name": "Settings",
-  "groupIdentity": "wts.Page.Settings.VB",
+  "groupIdentity": "wts.Page.Settings",
   "identity": "wts.Page.Settings.CodeBehind.VB",
   "description": "The settings page is the page where we recommend putting the configuration settings for your app.",
   "tags": {

@@ -2,7 +2,7 @@
   "author": "Microsoft Community Contribution",
   "classifications": ["Universal"],
   "name": "Background Task",
-  "groupIdentity": "wts.Feat.BackgroundTask.VB",
+  "groupIdentity": "wts.Feat.BackgroundTask",
   "identity": "wts.Feat.BackgroundTask.VB",
   "description": "Add an in-process background task ready to run code even while the app is not in the foreground.",
   "tags": {
