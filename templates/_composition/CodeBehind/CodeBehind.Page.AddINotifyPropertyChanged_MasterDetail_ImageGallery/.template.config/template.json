@@ -3,13 +3,13 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Project.SplitView.Page.AddAdaptiveTriggerForPageTitle_Blank_Settings_TabbedPivot",
+  "name": "CodeBehind.Page.AddINotifyPropertyChanged_MasterDetail_ImageGallery",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == SplitView & groupidentity == wts.Page.Blank|wts.Page.Settings|wts.Page.Settings.MVVMLight|wts.Page.TabbedPivot|wts.Page.Chart"
+    "wts.compositionFilter": "identity == wts.Page.MasterDetail.CodeBehind|wts.Page.ImageGallery.CodeBehind"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

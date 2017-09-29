@@ -42,7 +42,12 @@ namespace Param_ItemNamespace.Helpers
 
         public static async Task SaveAsync<T>(this ApplicationDataContainer settings, string key, T value)
         {
-            settings.Values[key] = await Json.StringifyAsync(value);
+            settings.SaveString(key, await Json.StringifyAsync(value));
+        }
+
+        public static void SaveString(this ApplicationDataContainer settings, string key, string value)
+        {
+            settings.Values[key] = value;
         }
 
         public static async Task<T> ReadAsync<T>(this ApplicationDataContainer settings, string key)
