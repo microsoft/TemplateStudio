@@ -12,13 +12,13 @@ namespace Microsoft.Templates.UI.Views.NewItem
     {
         public MainViewModel ViewModel { get; }
 
-        public ChangesSummaryView()
+        public ChangesSummaryView(NewItemGenerationResult output)
         {
             ViewModel = MainViewModel.Current;
             DataContext = ViewModel;
             InitializeComponent();
 
-            Loaded += async (sender, args) => { await ViewModel.ChangesSummary.InitializeAsync(); };
+            Loaded += (sender, args) => { ViewModel.ChangesSummary.Initialize(output); };
         }
     }
 }

@@ -9,6 +9,8 @@ using Xunit;
 namespace Microsoft.Templates.Core.Test
 {
     [Collection("Unit Test Templates")]
+    [Trait("ExecutionSet", "Minimum")]
+
     public class NamingTests
     {
         private TemplatesFixture _fixture;

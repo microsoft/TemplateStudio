@@ -25,9 +25,9 @@ namespace Microsoft.Templates.Test
     public sealed class BuildCodeBehindFixture : BaseGenAndBuildFixture, IDisposable
     {
         private string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
-        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\CodeBehind\\{testExecutionTimeStamp}\\";
+        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\CB\\{testExecutionTimeStamp}\\";
 
-        public TemplatesSource Source => new BuildCodeBehindTestTemplatesSource();
+        public TemplatesSource Source => new LocalTemplatesSource("TestBuildCodeBehind");
 
         private static bool syncExecuted;
 
@@ -36,7 +36,7 @@ namespace Microsoft.Templates.Test
             List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
-                await InitializeTemplatesForLanguageAsync(new BuildCodeBehindTestTemplatesSource(), language);
+                await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TestBuildCodeBehind"), language);
 
                 var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
                                                          && t.GetLanguage() == language);
@@ -64,7 +64,7 @@ namespace Microsoft.Templates.Test
             List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
-                await InitializeTemplatesForLanguageAsync(new BuildCodeBehindTestTemplatesSource(), language);
+                await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TestBuildCodeBehind"), language);
 
                 var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
                                                          && t.GetLanguage() == language);

@@ -13,6 +13,8 @@ using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Diagnostics
 {
+    [Trait("ExecutionSet", "Minimum")]
+
     public class FileHealthWriterTest
     {
         [Fact]

@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media;
@@ -33,6 +34,49 @@ namespace Microsoft.Templates.UI.Services
             private set => SetValue(IsHighContrastProperty, value);
         }
 
-        public DpiScale Dpi => VisualTreeHelper.GetDpi(Application.Current.MainWindow as Visual);
+        public double GetCodeFontSize()
+        {
+            double fontSize = 11;
+            fontSize = Math.Ceiling(fontSize * VisualTreeHelper.GetDpi(Application.Current.MainWindow as Visual).PixelsPerDip);
+            if (fontSize > 25)
+            {
+                fontSize = 25;
+            }
+            else if (fontSize < 9)
+            {
+                fontSize = 9;
+            }
+            return fontSize;
+        }
+        public(double width, double height) GetMainWindowSize()
+        {
+            double width = 1277;
+            double height = 727;
+            double dpi = 0;
+            if (Application.Current != null)
+            {
+                dpi = VisualTreeHelper.GetDpi(Application.Current.MainWindow as Visual).PixelsPerDip;
+            }
+            if (dpi >= 2)
+            {
+                return (width / 1.10, height / 1.10);
+            }
+            else if (dpi >= 1.75)
+            {
+                return (width / 1.07, height / 1.07);
+            }
+            else if (dpi >= 1.5)
+            {
+                return (width / 1.03, height / 1.03);
+            }
+            else if (dpi >= 1.25)
+            {
+                return (width / 1.01, height / 1.01);
+            }
+            else
+            {
+                return (width, height);
+            }
+        }
     }
 }

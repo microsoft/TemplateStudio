@@ -132,16 +132,44 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             CleanStatus();
         }
 
-        protected override void OnNext()
+        protected async override void OnNext()
         {
-            base.OnNext();
-            if (CurrentStep == 1)
+            if (CurrentStep == 0)
             {
-                WizardStatus.HasOverlayBox = false;
-                NewItemSetup.EditionVisibility = Visibility.Collapsed;
-                SetChangesSummaryTitle();
-                NavigationService.Navigate(new ChangesSummaryView());
+                UpdateCanGoForward(false);
+
+                var output = await CleanupAndGenerateNewItemAsync();
+                if (output.HasChangesToApply)
+                {
+                    base.OnNext();
+                    await EnsureCodeViewerInitializedAsync();
+                    WizardStatus.HasOverlayBox = false;
+                    NewItemSetup.EditionVisibility = Visibility.Collapsed;
+                    SetChangesSummaryTitle();
+                    NavigationService.Navigate(new ChangesSummaryView(output));
+                }
+                else
+                {
+                    UpdateCanGoForward(true);
+                    WizardStatus.SetStatus(StatusViewModel.Warning(string.Format(StringRes.NewItemHasNoChanges, NewItemSetup.ItemName, GetLocalizedTemplateTypeName(ConfigTemplateType).ToLower()), true, 5));
+                }
             }
+        }
+
+        private async Task EnsureCodeViewerInitializedAsync()
+        {
+            WizardStatus.IsLoading = true;
+            await Task.Delay(300);
+        }
+
+        private async Task<NewItemGenerationResult> CleanupAndGenerateNewItemAsync()
+        {
+            MainView.Result = CreateUserSelection();
+            NewItemGenController.Instance.CleanupTempGeneration();
+            await NewItemGenController.Instance.GenerateNewItemAsync(ConfigTemplateType, MainView.Result);
+
+            var output = NewItemGenController.Instance.CompareOutputAndProject();
+            return output;
         }
 
         protected override void OnFinish(string parameter)

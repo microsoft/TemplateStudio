@@ -1,6 +1,8 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Param_ItemNamespace.Views
 {

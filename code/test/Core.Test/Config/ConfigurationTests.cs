@@ -14,6 +14,8 @@ using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Config
 {
+    [Trait("ExecutionSet", "Minimum")]
+
     public class ConfigurationTests
     {
         [Fact]
