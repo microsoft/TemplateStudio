@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+
+using Param_ItemNamespace.Helpers;
+
 using Windows.ApplicationModel;
-using Windows.ApplicationModel.Resources;
 using Windows.Devices.Enumeration;
 using Windows.Devices.Sensors;
 using Windows.Foundation;
@@ -15,20 +17,29 @@ using Windows.Storage.FileProperties;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using Param_ItemNamespace.Helpers;
+using Param_ItemNamespace.EventHandlers;
+using System.Windows.Input;
 
-namespace Param_ItemNamespace.Views
+namespace Param_ItemNamespace.Controls
 {
     public sealed partial class CameraControl
     {
+        public event EventHandler<CameraControlEventArgs> PhotoTaken;
+
         public static readonly DependencyProperty CanSwitchProperty =
             DependencyProperty.Register("CanSwitch", typeof(bool), typeof(CameraControl), new PropertyMetadata(false));
 
         public static readonly DependencyProperty PanelProperty =
-           DependencyProperty.Register("Panel", typeof(Panel), typeof(CameraControl), new PropertyMetadata(Panel.Front, OnPanelChanged));
+            DependencyProperty.Register("Panel", typeof(Panel), typeof(CameraControl), new PropertyMetadata(Panel.Front, OnPanelChanged));
 
         public static readonly DependencyProperty IsInitializedProperty =
             DependencyProperty.Register("IsInitialized", typeof(bool), typeof(CameraControl), new PropertyMetadata(false));
+
+        public static readonly DependencyProperty CameraButtonStyleProperty =
+            DependencyProperty.Register("CameraButtonStyle", typeof(Style), typeof(CameraControl), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty SwitchCameraButtonStyleProperty =
+            DependencyProperty.Register("SwitchCameraButtonStyle", typeof(Style), typeof(CameraControl), new PropertyMetadata(null));
 
         // Rotation metadata to apply to the preview stream and recorded videos (MF_MT_VIDEO_ROTATION)
         // Reference: http://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh868174.aspx
@@ -41,11 +52,7 @@ namespace Param_ItemNamespace.Views
         private SimpleOrientation _deviceOrientation = SimpleOrientation.NotRotated;
         private DisplayOrientations _displayOrientation = DisplayOrientations.Portrait;
         private DeviceInformationCollection _cameraDevices;
-
-        public CameraControl()
-        {
-            InitializeComponent();
-        }
+        private bool _capturing;
 
         public bool CanSwitch
         {
@@ -65,11 +72,66 @@ namespace Param_ItemNamespace.Views
             private set { SetValue(IsInitializedProperty, value); }
         }
 
-        public async Task InitializeAsync()
+        public Style CameraButtonStyle
+        {
+            get { return (Style)GetValue(CameraButtonStyleProperty); }
+            set { SetValue(CameraButtonStyleProperty, value); }
+        }
+
+        public Style SwitchCameraButtonStyle
+        {
+            get { return (Style)GetValue(SwitchCameraButtonStyleProperty); }
+            set { SetValue(SwitchCameraButtonStyleProperty, value); }
+        }
+
+        public CameraControl()
+        {
+            InitializeComponent();
+
+            CameraButtonStyle = Resources["CameraButtonStyle"] as Style;
+            SwitchCameraButtonStyle = Resources["SwitchCameraButtonStyle"] as Style;
+
+            Loaded += OnLoaded;
+            Unloaded += OnUnloaded;
+        }
+
+        public async Task InitializeCameraAsync()
         {
             try
             {
-                await InitializeCameraAsync();
+                if (_mediaCapture == null)
+                {
+                    _mediaCapture = new MediaCapture();
+                    _mediaCapture.Failed += MediaCapture_Failed;
+
+                    _cameraDevices = await DeviceInformation.FindAllAsync(DeviceClass.VideoCapture);
+                    if (_cameraDevices == null || !_cameraDevices.Any())
+                    {
+                        throw new NotSupportedException();
+                    }
+
+                    var device = _cameraDevices.FirstOrDefault(camera => camera.EnclosureLocation?.Panel == Panel);
+
+                    var cameraId = device?.Id ?? _cameraDevices.First().Id;
+
+                    await _mediaCapture.InitializeAsync(new MediaCaptureInitializationSettings { VideoDeviceId = cameraId });
+
+                    if (Panel == Panel.Back)
+                    {
+                        _mediaCapture.SetRecordRotation(VideoRotation.Clockwise90Degrees);
+                        _mediaCapture.SetPreviewRotation(VideoRotation.Clockwise90Degrees);
+                        _mirroringPreview = false;
+                    }
+                    else
+                    {
+                        _mirroringPreview = true;
+                    }
+
+                    IsInitialized = true;
+                    CanSwitch = _cameraDevices?.Count > 1;
+                    RegisterOrientationEventHandlers();
+                    await StartPreviewAsync();
+                }
             }
             catch (UnauthorizedAccessException ex)
             {
@@ -77,97 +139,11 @@ namespace Param_ItemNamespace.Views
             }
             catch (NotSupportedException ex)
             {
-                throw new NotSupportedException("Camera_Exception_NotSuppored".GetLocalized(), ex);
+                throw new NotSupportedException("Camera_Exception_NotSupported".GetLocalized(), ex);
             }
         }
 
-        public async Task<string> TakePhotoAsync()
-        {
-            using (var stream = new InMemoryRandomAccessStream())
-            {
-                await _mediaCapture.CapturePhotoToStreamAsync(ImageEncodingProperties.CreateJpeg(), stream);
-
-                var photoOrientation = _displayInformation.ToSimpleOrientation(_deviceOrientation, _mirroringPreview).ToPhotoOrientation();
-
-                if (_mirroringPreview)
-                {
-                    photoOrientation = PhotoOrientation.FlipHorizontal;
-                }
-
-                return await ReencodeAndSavePhotoAsync(stream, photoOrientation);
-            }
-        }
-
-        public Task CleanupAsync()
-        {
-            return CleanupCameraAsync();
-        }
-
-        public void CleanAndInitialize()
-        {
-            Task.Run(async () => await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-            {
-                await CleanupCameraAsync();
-                await InitializeAsync();
-            }));
-        }
-
-        private static void OnPanelChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var ctrl = (CameraControl)d;
-
-            if (ctrl.IsInitialized)
-            {
-                ctrl.CleanAndInitialize();
-            }
-        }
-
-        private async Task InitializeCameraAsync()
-        {
-            if (_mediaCapture == null)
-            {
-                _mediaCapture = new MediaCapture();
-                _mediaCapture.Failed += MediaCapture_Failed;
-
-                _cameraDevices = await DeviceInformation.FindAllAsync(DeviceClass.VideoCapture);
-                if (_cameraDevices == null)
-                {
-                    throw new NotSupportedException();
-                }
-
-                var device = _cameraDevices.FirstOrDefault(camera => camera.EnclosureLocation?.Panel == Panel);
-
-                var cameraId = device?.Id ?? _cameraDevices.First().Id;
-
-                await _mediaCapture.InitializeAsync(new MediaCaptureInitializationSettings { VideoDeviceId = cameraId });
-
-                if (Panel == Panel.Back)
-                {
-                    _mediaCapture.SetRecordRotation(VideoRotation.Clockwise90Degrees);
-                    _mediaCapture.SetPreviewRotation(VideoRotation.Clockwise90Degrees);
-                    _mirroringPreview = false;
-                }
-                else
-                {
-                    _mirroringPreview = true;
-                }
-
-                IsInitialized = true;
-                CanSwitch = _cameraDevices?.Count > 1;
-                RegisterOrientationEventHandlers();
-                await StartPreviewAsync();
-            }
-        }
-
-        private void MediaCapture_Failed(MediaCapture sender, MediaCaptureFailedEventArgs errorEventArgs)
-        {
-            Task.Run(async () => await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-            {
-                await CleanupAsync();
-            }));
-        }
-
-        private async Task CleanupCameraAsync()
+        public async Task CleanupCameraAsync()
         {
             if (IsInitialized)
             {
@@ -186,6 +162,82 @@ namespace Param_ItemNamespace.Views
                 _mediaCapture.Dispose();
                 _mediaCapture = null;
             }
+        }
+
+        public async Task<string> TakePhoto()
+        {
+            if (_capturing)
+            {
+                return null;
+            }
+
+            _capturing = true;
+
+            using (var stream = new InMemoryRandomAccessStream())
+            {
+                await _mediaCapture.CapturePhotoToStreamAsync(ImageEncodingProperties.CreateJpeg(), stream);
+
+                var photoOrientation = _displayInformation.ToSimpleOrientation(_deviceOrientation, _mirroringPreview).ToPhotoOrientation();
+
+                if (_mirroringPreview)
+                {
+                    photoOrientation = PhotoOrientation.FlipHorizontal;
+                }
+
+                var photo = await ReencodeAndSavePhotoAsync(stream, photoOrientation);
+                PhotoTaken?.Invoke(this, new CameraControlEventArgs(photo));
+                _capturing = false;
+                return photo;
+            }
+        }
+
+        public void SwitchPanel()
+        {
+            Panel = (Panel == Panel.Front) ? Panel.Back : Panel.Front;
+        }
+
+        private async void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                await InitializeCameraAsync();
+            }
+            catch (Exception ex)
+            {
+                errorMessage.Text = ex.Message;
+            }
+        }
+
+        private async void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            await CleanupCameraAsync();
+        }
+
+        private async void CaptureButton_Click(object sender, RoutedEventArgs e)
+        {
+            await TakePhoto();
+        }
+
+        private void SwitchButton_Click(object sender, RoutedEventArgs e)
+        {
+            SwitchPanel();
+        }
+
+        private async void CleanAndInitialize()
+        {
+            await Task.Run(async () => await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                await CleanupCameraAsync();
+                await InitializeCameraAsync();
+            }));
+        }
+
+        private void MediaCapture_Failed(MediaCapture sender, MediaCaptureFailedEventArgs errorEventArgs)
+        {
+            Task.Run(async () => await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                await CleanupCameraAsync();
+            }));
         }
 
         private async Task StartPreviewAsync()
@@ -282,6 +334,16 @@ namespace Param_ItemNamespace.Views
         {
             _displayOrientation = sender.CurrentOrientation;
             await SetPreviewRotationAsync();
+        }
+
+        private static void OnPanelChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var ctrl = (CameraControl)d;
+
+            if (ctrl.IsInitialized)
+            {
+                ctrl.CleanAndInitialize();
+            }
         }
     }
 }
