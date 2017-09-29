@@ -3,13 +3,13 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CodeBehind.Page.MasterDetail.AddINotifyPropertyChanged",
+  "name": "MVVMLight.Page.ImageGallery",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "identity == wts.Page.MasterDetail.CodeBehind"
+    "wts.compositionFilter": "$framework == MVVMLight & identity == wts.Page.ImageGallery"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
