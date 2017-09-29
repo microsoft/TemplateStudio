@@ -95,7 +95,21 @@ namespace Localization
                 throw new Exception("Error executing command. Needs a single argument.");
             }
 
-            // TO-DO - Verify localizable files
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            string sourceDirectory = commandInfo.Arguments[0];
+            var verificator = new LocalizableItemsVerificator(sourceDirectory, cultures);
+
+            Console.WriteLine("\nVerify vsix");
+            bool notFoundFiles = verificator.VerificateAllFiles();
+
+            Console.WriteLine("End");
+            stopwatch.Stop();
+            TimeSpan ts = stopwatch.Elapsed;
+            Console.WriteLine(string.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10));
+
+            // TODO - If notFoundFiles.Any() return -1.
         }
 
         private ValidateLocalizableExtractor GetValidateExtractor(string repository, string[] arguments)
