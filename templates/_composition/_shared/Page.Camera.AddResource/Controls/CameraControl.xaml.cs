@@ -186,6 +186,7 @@ namespace Param_ItemNamespace.Controls
 
                 var photo = await ReencodeAndSavePhotoAsync(stream, photoOrientation);
                 PhotoTaken?.Invoke(this, new CameraControlEventArgs(photo));
+                _capturing = false;
                 return photo;
             }
         }
