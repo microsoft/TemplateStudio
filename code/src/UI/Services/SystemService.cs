@@ -48,5 +48,31 @@ namespace Microsoft.Templates.UI.Services
             }
             return fontSize;
         }
+        public(double width, double height) GetMainWindowSize()
+        {
+            double width = 1277;
+            double height = 727;
+            var dpi = VisualTreeHelper.GetDpi(Application.Current.MainWindow as Visual).PixelsPerDip;
+            if (dpi >= 2)
+            {
+                return (width / 1.10, height / 1.10);
+            }
+            else if (dpi >= 1.75)
+            {
+                return (width / 1.07, height / 1.07);
+            }
+            else if (dpi >= 1.5)
+            {
+                return (width / 1.03, height / 1.03);
+            }
+            else if (dpi >= 1.25)
+            {
+                return (width / 1.01, height / 1.01);
+            }
+            else
+            {
+                return (width, height);
+            }
+        }
     }
 }
