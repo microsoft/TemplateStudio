@@ -61,18 +61,6 @@ namespace Microsoft.Templates.UI.Services
             {
                 return (width / (dpi * 0.9), height / dpi);
             }
-            else if (dpi >= 1.5)
-            {
-                return (width / dpi, height / dpi);
-            }
-            else if (dpi >= 1.25)
-            {
-                return (width / dpi, height / dpi);
-            }
-            else if (dpi >= 1.0)
-            {
-                return (width / dpi, height / dpi);
-            }
             else
             {
                 return (width / dpi, height / dpi);
