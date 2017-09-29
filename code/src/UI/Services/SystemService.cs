@@ -52,7 +52,11 @@ namespace Microsoft.Templates.UI.Services
         {
             double width = 1277;
             double height = 727;
-            var dpi = VisualTreeHelper.GetDpi(Application.Current.MainWindow as Visual).PixelsPerDip;
+            double dpi = 0;
+            if (Application.Current != null)
+            {
+                dpi = VisualTreeHelper.GetDpi(Application.Current.MainWindow as Visual).PixelsPerDip;
+            }
             if (dpi >= 2)
             {
                 return (width / 1.10, height / 1.10);
