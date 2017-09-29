@@ -24,17 +24,17 @@ namespace Microsoft.Templates.Core.Diagnostics
                 await SafeTrackAsync(() =>
                 {
                     string header = $"========== {StringRes.ExceptionTrackedString} [{DateTime.Now.FormatAsFullDateTime()}] ==========\n";
-                    GenContext.ToolBox.Shell.WriteOutput(header);
+                    _shell.WriteOutput(header);
 
                     if (message != null)
                     {
-                        GenContext.ToolBox.Shell.WriteOutput($"{StringRes.AdditionalMessageString}: {message}\n");
+                        _shell.WriteOutput($"{StringRes.AdditionalMessageString}: {message}\n");
                     }
 
-                    GenContext.ToolBox.Shell.WriteOutput($"{ex.ToString()}\n");
+                    _shell.WriteOutput($"{ex.ToString()}\n");
 
                     string footer = $"{new string('-', header.Length - 2)}\n";
-                    GenContext.ToolBox.Shell.WriteOutput(footer);
+                    _shell.WriteOutput(footer);
                 });
             }
         }
@@ -53,7 +53,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                         string header = $"----------- {StringRes.AddtionalExceptionInfoString} -----------\n";
                         string footer = $"{new string('-', header.Length - 2)}\n";
                         string exceptionInfo = header + $"{ex}\n" + footer;
-                        GenContext.ToolBox.Shell.WriteOutput(exceptionInfo);
+                        _shell.WriteOutput(exceptionInfo);
                     }
                 });
             }
