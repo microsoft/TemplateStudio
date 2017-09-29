@@ -14,7 +14,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public NewFileViewModel(NewItemGenerationFileInfo generationInfo) : base(generationInfo)
         {
             DetailTitle = StringRes.ChangesSummaryDetailTitleNewFiles;
-            DetailDescription = string.Format(StringRes.ChangesSummaryDetailDescriptionNewFiles, generationInfo.Name);
+            DetailDescription = StringRes.ChangesSummaryDetailDescriptionNewFiles;
         }
     }
 }
