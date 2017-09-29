@@ -11,5 +11,6 @@
     <Thickness x:Key="MediumLeftTopRightBottomMargin">12,12,12,12</Thickness>
     
     <!--Small size margins-->
+    <Thickness x:Key="SmallAllMargin">5, 5, 5, 5</Thickness>
     <Thickness x:Key="EightTopMargin">0, 8, 0, 0</Thickness>
 </ResourceDictionary>
