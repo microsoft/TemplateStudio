@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Feat.UriSchemeExamplePage.MvvmLigh.VB",
+  "name": "wts.Feat.UriSchemeExamplePage.MvvmLight.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -22,7 +22,7 @@
     },
     {
       "path": ".\\Views\\wts.ItemNameExamplePage.xaml.vb"
-    },
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {
