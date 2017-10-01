@@ -18,7 +18,8 @@
     { "path": ".\\Helpers\\PropertyChangedBaseExtensions.cs" },
     { "path": ".\\Activation\\DefaultLaunchActivationHandler.cs" },
     { "path": ".\\Services\\ActivationService.cs" },
-    { "path": ".\\App.xaml" }
+    { "path": ".\\App.xaml" },
+    { "path": ".\\App.xaml.cs" }
   ],
   "symbols": {
     "wts.rootNamespace": {
