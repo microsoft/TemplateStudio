@@ -12,7 +12,7 @@ Namespace ViewModels
                 Return _secret
             End Get
             Set
-                [Set](_secret, Value)
+                [Set](_secret, Value, False)
             End Set
         End Property
     End Class
