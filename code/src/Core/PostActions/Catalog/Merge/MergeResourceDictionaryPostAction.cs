@@ -2,9 +2,11 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
@@ -66,13 +68,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                     }
                 }
 
-                XmlWriterSettings settings = new XmlWriterSettings();
-                settings.OmitXmlDeclaration = true;
-                settings.Indent = true;
-                settings.IndentChars = "    ";
-                using (XmlWriter writer = XmlTextWriter.Create(originalFilePath, settings))
+                using (TextWriter writeFile = new StreamWriter(originalFilePath))
                 {
-                    sourceRoot.Save(writer);
+                    var writer = new ResourceDictionaryWriter(writeFile);
+                    writer.WriteResourceDictionary(sourceRoot);
+                    writer.Flush();
+                    writer.Close();
                 }
             }
 
