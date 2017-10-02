@@ -22,7 +22,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             sb.AppendLine(StringRes.ChangesSummaryDetailDescriptionFailedMerges);
             if (!string.IsNullOrEmpty(warning.Description))
             {
-                sb.AppendLine(warning.Description);
+                sb.Append(warning.Description);
             }
 
             DetailDescription = sb.ToString();

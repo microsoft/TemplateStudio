@@ -6,6 +6,7 @@ using System.Windows;
 
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Controls;
+using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
@@ -95,9 +96,14 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             set => SetProperty(ref _showFinishButton, value);
         }
 
+        public double Width { get; }
+        public double Height { get; }
         public WizardStatus()
         {
             IsLoading = true;
+            var size = SystemService.Instance.GetMainWindowSize();
+            Width = size.width;
+            Height = size.height;
         }
 
         public void SetStatus(StatusViewModel status)

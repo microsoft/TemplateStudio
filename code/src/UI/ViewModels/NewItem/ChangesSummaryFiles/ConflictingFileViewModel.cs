@@ -16,7 +16,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public ConflictingFileViewModel(NewItemGenerationFileInfo generationInfo) : base(generationInfo)
         {
             DetailTitle = StringRes.ChangesSummaryDetailTitleConflictingFiles;
-            DetailDescription = string.Format(StringRes.ChangesSummaryDetailDescriptionConflictingFiles, generationInfo.Name);
+            DetailDescription = StringRes.ChangesSummaryDetailDescriptionConflictingFiles;
         }
     }
 }
