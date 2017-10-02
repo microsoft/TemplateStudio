@@ -12,6 +12,7 @@ namespace Localization
         private const string separator = "**********************************************************************";
         private const string argumentNewLine = "\r\n\t\t\t\t   ";
 
+        [STAThread]
         static void Main(string[] args)
         {
             try

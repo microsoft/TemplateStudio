@@ -101,7 +101,6 @@ namespace Localization
                 VerifyFile(directory, Routes.ResourcesFilePath);
                 VerifyFilesByCulture(directory, Routes.ResourcesFilePathPattern);
                 VerifyResourceContent(directory, Routes.ResourcesFilePath);
-
             }
         }
 
