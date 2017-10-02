@@ -5,8 +5,8 @@
 <root>
   <!--^^-->
   <!--{[{-->
-  <data name="MasterDetailsItemPage_Title.Text" xml:space="preserve">
-    <value>MasterDetailsItem</value>
+  <data name="MasterDetailView_Title.Text" xml:space="preserve">
+    <value>MasterDetailView</value>
   </data>
   <!--}]}-->
 </root>
