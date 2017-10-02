@@ -85,6 +85,7 @@
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
     <Compile Include="ClientInterface\ToolCommandHandler.cs" />
+    <Compile Include="Extensions\ConsoleExtensions.cs" />
     <Compile Include="Logic\CSharpProjectTemplateGenerator.cs" />
     <Compile Include="Logic\ExtractorMode.cs" />
     <Compile Include="Logic\LocalizableItemsExtractor.cs" />

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Resources;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Localization.Extensions;
 
 namespace Localization
 {
@@ -17,7 +18,10 @@ namespace Localization
     {
         private DirectoryInfo _sourceDir;
         private IEnumerable<string> _cultures;
-        private List<string> _notFoundFiles;
+        private List<string> _errors;
+        private List<string> _warnings;
+
+        private bool _verificationResult;
 
         internal LocalizableItemsVerificator(string sourceDir, IEnumerable<string> cultures)
         {
@@ -27,38 +31,24 @@ namespace Localization
                 throw new DirectoryNotFoundException($"Source directory \"{_sourceDir.FullName}\" not found.");
 
             _cultures = cultures;
-            _notFoundFiles = new List<string>();
+            _errors = new List<string>();
+            _warnings = new List<string>();
         }
 
         internal bool VerificateAllFiles()
         {
-            _notFoundFiles.Clear();
+            _verificationResult = true;
 
-            Console.WriteLine("\nVerifying vsix");
-            VerifyVsix();
+            Execute(VerifyVsix, "Verifying vsix");
+            Execute(VerifyProjectTemplates, "Verifying project templates");
+            Execute(VerifyCommandTemplates, "Verifying command templates");
+            Execute(VerifyTemplatePages, "Verifying template pages");
+            Execute(VerifyTemplateFeatures, "Verifying template features");
+            Execute(VerifyWtsProjectTypes, "Verifying project types");
+            Execute(VerifyWtsFrameworks, "Verifying project frameworks");
+            Execute(VerifyResourceFiles, "Verifying resources");
 
-            Console.WriteLine("Verifying project templates");
-            VerifyProjectTemplates();
-
-            Console.WriteLine("Verifying command templates");
-            VerifyCommandTemplates();
-
-            Console.WriteLine("Verifying template pages");
-            VerifyTemplatePages();
-
-            Console.WriteLine("Verifying template features");
-            VerifyTemplateFeatures();
-
-            Console.WriteLine("Verifying project types");
-            VerifyWtsProjectTypes();
-
-            Console.WriteLine("Verifying project frameworks");
-            VerifyWtsFrameworks();
-
-            Console.WriteLine("Verifying resources");
-            VerifyResourceFiles();
-
-            return _notFoundFiles.Any();
+            return _verificationResult;
         }
 
         private void VerifyVsix()
@@ -122,8 +112,8 @@ namespace Localization
 
             if (!file.Exists)
             {
-                _notFoundFiles.Add(file.FullName);
-                Console.WriteLine(string.Format("\t {0} not found.", file.FullName));
+                _verificationResult = false;
+                _errors.Add(string.Format("{0} not found.", file.FullName));
             }
         }
 
@@ -135,8 +125,8 @@ namespace Localization
 
                 if (!languageFile.Exists)
                 {
-                    _notFoundFiles.Add(languageFile.FullName);
-                    Console.WriteLine(string.Format("\t {0} not found.", languageFile.FullName));
+                    _verificationResult = false;
+                    _errors.Add(string.Format("{0} not found.", languageFile.FullName));
                 }
             }
         }
@@ -196,12 +186,12 @@ namespace Localization
                     resNames.Except(cultureNames)
                         .ToList()
                         .ForEach(name =>
-                        Console.WriteLine(string.Format("\t{0} not contain \"{1}\" resource name", languageFile.FullName, name)));
+                        _errors.Add(string.Format("{0} not contain \"{1}\" resource name", languageFile.FullName, name)));
 
                     cultureNames.Except(resNames)
                         .ToList()
                         .ForEach(name =>
-                        Console.WriteLine(string.Format("\t{0} contain \"{1}\" resource name but not in {2}", languageFile.FullName, name, resNames)));
+                        _warnings.Add(string.Format("{0} contain \"{1}\" resource name but not in {2}", languageFile.FullName, name, resxFile)));
                 }
             }
         }
@@ -218,6 +208,31 @@ namespace Localization
                 resx.UseResXDataNodes = true;
                 return resx.Cast<DictionaryEntry>().Select(x => x.Key as string);
             }
+        }
+
+        private void Execute(Action action, string message)
+        {
+            Console.WriteLine();
+            Console.Write(message);
+
+            _errors.Clear();
+            action.Invoke();
+
+            if (_errors.Any())
+            {
+                ConsoleExt.WriteError(" - ERROR");
+            }
+            else if (_warnings.Any())
+            {
+                ConsoleExt.WriteWarning(" - WARNING");
+            }
+            else
+            {
+                ConsoleExt.WriteSuccess(" - OK");
+            }
+
+            _errors.ToList().ForEach(e => ConsoleExt.WriteError(string.Concat(" - ", e)));
+            _warnings.ToList().ForEach(e => ConsoleExt.WriteWarning(string.Concat(" - ", e)));
         }
     }
 }
