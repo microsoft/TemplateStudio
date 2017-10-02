@@ -19,8 +19,6 @@ namespace Microsoft.Templates.Core
 {
     public class CodeGen
     {
-        public const string BaseName = "BaseName";
-
         public static CodeGen Instance { get; private set; }
 
         public TemplateCreator Creator { get; }
@@ -45,11 +43,6 @@ namespace Microsoft.Templates.Core
             Instance = new CodeGen(locationId, hostVersion);
             Instance.Init();
         }
-
-        ////public static void Initialize(string locationId)
-        ////{
-        ////    Initialize(locationId, GetHostVersion());
-        ////}
 
         public string GetCurrentContentSource(string workingFolder, string sourceId)
         {
@@ -97,16 +90,7 @@ namespace Microsoft.Templates.Core
 
         private static ITemplateEngineHost CreateHost(string locationId, string hostVersion)
         {
-            return new DefaultTemplateEngineHost($"{BaseName}_{locationId}", hostVersion, CultureInfo.CurrentUICulture.Name, new Dictionary<string, string>());
+            return new DefaultTemplateEngineHost($"{locationId}", hostVersion, CultureInfo.CurrentUICulture.Name, new Dictionary<string, string>());
         }
-
-        ////private static string GetHostVersion()
-        ////{
-        ////    string assemblyLocation = Assembly.GetExecutingAssembly().Location;
-        ////    var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
-        ////    Version.TryParse(versionInfo.FileVersion, out Version v);
-
-        ////    return $"{v.Major}.{v.Minor}";
-        ////}
     }
 }
