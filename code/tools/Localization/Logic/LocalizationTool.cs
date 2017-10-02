@@ -100,8 +100,6 @@ namespace Localization
 
             string sourceDirectory = commandInfo.Arguments[0];
             var verificator = new LocalizableItemsVerificator(sourceDirectory, cultures);
-
-            Console.WriteLine("\nVerify vsix");
             bool notFoundFiles = verificator.VerificateAllFiles();
 
             Console.WriteLine("End");

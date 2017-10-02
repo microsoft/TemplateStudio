@@ -2,14 +2,14 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Resources;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Localization
 {
@@ -34,32 +34,31 @@ namespace Localization
         {
             _notFoundFiles.Clear();
 
-            Console.WriteLine("\nVerify vsix");
+            Console.WriteLine("\nVerifying vsix");
             VerifyVsix();
 
-            Console.WriteLine("Verify project templates");
+            Console.WriteLine("Verifying project templates");
             VerifyProjectTemplates();
 
-            Console.WriteLine("Verify command templates");
+            Console.WriteLine("Verifying command templates");
             VerifyCommandTemplates();
 
-            Console.WriteLine("Verify template pages");
+            Console.WriteLine("Verifying template pages");
             VerifyTemplatePages();
 
-            Console.WriteLine("Verify template features");
+            Console.WriteLine("Verifying template features");
             VerifyTemplateFeatures();
 
-            Console.WriteLine("Verify project types");
+            Console.WriteLine("Verifying project types");
             VerifyWtsProjectTypes();
 
-            Console.WriteLine("Verify project frameworks");
+            Console.WriteLine("Verifying project frameworks");
             VerifyWtsFrameworks();
 
-            Console.WriteLine("Verify resources");
+            Console.WriteLine("Verifying resources");
             VerifyResourceFiles();
 
             return _notFoundFiles.Any();
-
         }
 
         private void VerifyVsix()
@@ -83,7 +82,6 @@ namespace Localization
 
             VerifyFilesByCulture(Routes.CommandTemplateRootDirPath, Routes.RelayCommandFileNamePattern);
             VerifyFilesByCulture(Routes.CommandTemplateRootDirPath, Routes.VspackageFileNamePattern);
-
         }
 
         private void VerifyTemplatePages()
@@ -112,18 +110,20 @@ namespace Localization
             {
                 VerifyFile(directory, Routes.ResourcesFilePath);
                 VerifyFilesByCulture(directory, Routes.ResourcesFilePathPattern);
+                VerifyResourceContent(directory, Routes.ResourcesFilePath);
+
             }
         }
 
         private void VerifyFile(string directoryPath, string fileName)
         {
             var principalDirectory = Path.Combine(_sourceDir.FullName, directoryPath);
-            var principalFile = new FileInfo(Path.Combine(principalDirectory, fileName));
+            var file = new FileInfo(Path.Combine(principalDirectory, fileName));
 
-            if (!principalFile.Exists)
+            if (!file.Exists)
             {
-                _notFoundFiles.Add(principalFile.FullName);
-                Console.WriteLine(string.Format("\t {0} not found.", principalFile.FullName));
+                _notFoundFiles.Add(file.FullName);
+                Console.WriteLine(string.Format("\t {0} not found.", file.FullName));
             }
         }
 
@@ -177,6 +177,46 @@ namespace Localization
                 var itemFileName = string.Concat(wtsItem, ".md");
                 VerifyFile(wtsItemDirectory, itemFileName);
                 VerifyFilesByCulture(wtsItemDirectory, string.Concat("{0}.", itemFileName));
+            }
+        }
+
+        private void VerifyResourceContent(string directory, string fileName)
+        {
+            var resxFile = Path.Combine(_sourceDir.FullName, directory, fileName);
+            var resNames = GetResourceNamesByFile(resxFile);
+
+            foreach (var culture in _cultures)
+            {
+                var languageFile = new FileInfo(Path.Combine(_sourceDir.FullName, directory, string.Format(Routes.ResourcesFilePathPattern, culture)));
+
+                if (languageFile.Exists)
+                {
+                    var cultureNames = GetResourceNamesByFile(languageFile.FullName);
+
+                    resNames.Except(cultureNames)
+                        .ToList()
+                        .ForEach(name =>
+                        Console.WriteLine(string.Format("\t{0} not contain \"{1}\" resource name", languageFile.FullName, name)));
+
+                    cultureNames.Except(resNames)
+                        .ToList()
+                        .ForEach(name =>
+                        Console.WriteLine(string.Format("\t{0} contain \"{1}\" resource name but not in {2}", languageFile.FullName, name, resNames)));
+                }
+            }
+        }
+
+        private IEnumerable<string> GetResourceNamesByFile(string filePath)
+        {
+            if (!File.Exists(filePath))
+            {
+                 return Enumerable.Empty<string>();
+            }
+
+            using (var resx = new ResXResourceReader(filePath))
+            {
+                resx.UseResXDataNodes = true;
+                return resx.Cast<DictionaryEntry>().Select(x => x.Key as string);
             }
         }
     }
