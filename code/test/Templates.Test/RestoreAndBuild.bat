@@ -7,9 +7,6 @@ ELSE (
 )
 
 :DEV15
-	IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\Preview\Community" (
-		call "%ProgramFiles(x86)%\Microsoft Visual Studio\Preview\Community\Common7\Tools\VsMSBuildCmd.bat"
-	)
 	IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community" (
 		call "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\Common7\Tools\VsMSBuildCmd.bat"
 	)
