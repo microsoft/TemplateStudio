@@ -156,6 +156,9 @@ namespace Microsoft.Templates.UI.Controls
                 case FileStatus.ConflictingFile:
                     UpdateCodeView(item.UpdateTextAction, item.TempFile, item.ProjectFile, true);
                     break;
+                case FileStatus.ConflictingStylesFile:
+                    UpdateCodeView(item.UpdateTextAction, item.FailedPostaction);
+                    break;
             }
         }
     }

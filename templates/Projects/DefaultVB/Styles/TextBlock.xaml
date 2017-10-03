@@ -27,18 +27,17 @@
 
     <!--List texts-->
     <Style x:Key="ListTitleStyle" TargetType="TextBlock">        
-        <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
-        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
-        <Setter Property="TextWrapping" Value="NoWrap"/>
+        <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="TextAlignment" Value="Left"/>
+        <Setter Property="MaxLines" Value="1"/>
     </Style>
 
     <Style x:Key="ListSubTitleStyle" TargetType="TextBlock">
-        <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="Opacity" Value="0.6"/>
-        <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
-        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
-        <Setter Property="TextWrapping" Value="NoWrap"/>
+        <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseMediumBrush}"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="TextAlignment" Value="Left"/>
+        <Setter Property="MaxLines" Value="1"/>
     </Style>
 
 </ResourceDictionary>
