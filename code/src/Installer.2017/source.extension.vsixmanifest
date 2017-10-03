@@ -12,11 +12,12 @@
     <Tags>Windows Template Studio UWP XAML MVVM</Tags>
   </Metadata>
   <Installation AllUsers="true">
-    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0,15.4)" />
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0,16.0)" />
   </Installation>
   <Dependencies>
     <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework 4.7 or higher" d:Source="Manual" Version="[4.7,)" d:InstallSource="Download" Location="http://go.microsoft.com/fwlink/?LinkId=825319" />
-    <Dependency Id="Microsoft.VisualStudio.MPF.15.0" DisplayName="Visual Studio MPF 15.0" d:Source="Installed" Version="[15.0]" />
+    <Dependency Id="Microsoft.VisualStudio.MPF.15.0" DisplayName="Visual Studio MPF 15.0" d:Source="Installed" Version="[15.0,16.0)" />
+    <Dependency d:Source="Installed" Version="[15.0.26730,16.0)" d:InstallSource="Download" Id="8EAF6C8E-1283-4EEE-AB6E-F0F087BFCBFD" DisplayName="Visual Studio 2017 Update 3 or higher" Location="https://www.visualstudio.com/downloads" />
   </Dependencies>
   <Prerequisites>
     <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" DisplayName="Visual Studio core editor" />

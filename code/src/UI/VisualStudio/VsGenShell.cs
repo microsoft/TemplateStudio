@@ -21,6 +21,7 @@ using Microsoft.VisualStudio.TemplateWizard;
 using NuGet.VisualStudio;
 using Microsoft.VisualStudio;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.VisualStudio.Setup.Configuration;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -449,6 +450,15 @@ namespace Microsoft.Templates.UI.VisualStudio
         public override bool IsDebuggerEnabled()
         {
             return Dte.Debugger.CurrentMode != dbgDebugMode.dbgDesignMode;
+        }
+
+        public override string GetVsVersion()
+        {
+            ISetupConfiguration configuration = new SetupConfiguration() as ISetupConfiguration;
+            ISetupInstance instance = configuration.GetInstanceForCurrentProcess();
+            string version = instance.GetInstallationVersion();
+            string instanceId = instance.GetInstanceId();
+            return $"{version}-{instanceId}";
         }
     }
 }
