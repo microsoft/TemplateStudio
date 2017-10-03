@@ -22,6 +22,10 @@
                 </StackPanel>
             </Grid>
         </DataTemplate>
+
+        <DataTemplate x:Key="MasterListViewNoSelectionContentTemplate">
+            <TextBlock x:Uid="MasterDetailView_NoSelection" Style="{StaticResource ListNoSelectionTextStyle}" />
+        </DataTemplate>
     </Page.Resources>
 
     <Grid>
@@ -43,6 +47,7 @@
             ItemsSource="{x:Bind ViewModel.SampleItems, Mode=OneWay}"
             SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
             ItemTemplate="{StaticResource MasterListViewItemTemplate}"
+            NoSelectionContentTemplate="{StaticResource MasterListViewNoSelectionContentTemplate}"
             BorderBrush="Transparent">
             <controls:MasterDetailsView.DetailsTemplate>
                 <DataTemplate>

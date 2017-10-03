@@ -15,6 +15,12 @@
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="TextAlignment" Value="Left" />
         <Setter Property="MaxLines" Value="1" />
-    </Style>    
+    </Style>
+
+    <Style x:Key="ListNoSelectionTextStyle" TargetType="TextBlock" BasedOn="{StaticResource SubtitleTextBlockStyle}">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="TextAlignment" Value="Center" />
+    </Style>
 
 </ResourceDictionary>
