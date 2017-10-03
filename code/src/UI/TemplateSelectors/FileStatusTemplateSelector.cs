@@ -15,6 +15,7 @@ namespace Microsoft.Templates.UI.TemplateSelectors
         public DataTemplate NewFileTemplate { get; set; }
         public DataTemplate ModifiedFileTemplate { get; set; }
         public DataTemplate ConflictingFileTemplate { get; set; }
+        public DataTemplate ConflictingStylesFileTemplate { get; set; }
         public DataTemplate WarningFileTemplate { get; set; }
         public DataTemplate UnchangedFileTemplate { get; set; }
 
@@ -30,6 +31,8 @@ namespace Microsoft.Templates.UI.TemplateSelectors
                         return ModifiedFileTemplate;
                     case FileStatus.ConflictingFile:
                         return ConflictingFileTemplate;
+                    case FileStatus.ConflictingStylesFile:
+                        return ConflictingStylesFileTemplate;
                     case FileStatus.WarningFile:
                         return WarningFileTemplate;
                     case FileStatus.Unchanged:

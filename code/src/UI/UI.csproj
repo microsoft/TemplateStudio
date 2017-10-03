@@ -327,6 +327,7 @@
     <Compile Include="ViewModels\Common\FileExtension.cs" />
     <Compile Include="ViewModels\Common\FileStatus.cs" />
     <Compile Include="ViewModels\Common\WizardStatus.cs" />
+    <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\FailedStyleMergesFileViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\UnchangedFileViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\BaseFileViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\NewFileViewModel.cs" />
