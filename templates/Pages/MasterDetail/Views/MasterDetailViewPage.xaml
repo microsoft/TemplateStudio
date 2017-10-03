@@ -33,6 +33,7 @@
 
         <TextBlock
             x:Uid="MasterDetailView_Title"
+            x:Name="TitlePage"
             Margin="24,12"
             Style="{StaticResource PageTitleStyle}" />
 
@@ -49,6 +50,7 @@
             </controls:MasterDetailsView.DetailsTemplate>
         </controls:MasterDetailsView>
 
+        <!--  Adaptive triggers  -->
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WindowStates">
                 <VisualState x:Name="WideState">

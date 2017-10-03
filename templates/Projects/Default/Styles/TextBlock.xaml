@@ -27,14 +27,14 @@
 
     <!--List texts-->
         <Style x:Key="ListTitleStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
-        <Setter Property="Foreground" Value="{StaticResource SystemControlForegroundBaseHighBrush}"/>
+        <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="TextAlignment" Value="Left"/>
         <Setter Property="MaxLines" Value="1"/>
     </Style>
 
     <Style x:Key="ListSubTitleStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
-        <Setter Property="Foreground" Value="{StaticResource SystemControlForegroundBaseMediumBrush}"/>
+        <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseMediumBrush}"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="TextAlignment" Value="Left"/>
         <Setter Property="MaxLines" Value="1"/>
