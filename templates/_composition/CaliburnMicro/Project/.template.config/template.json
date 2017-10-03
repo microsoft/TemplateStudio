@@ -18,6 +18,7 @@
     { "path": ".\\Helpers\\PropertyChangedBaseExtensions.cs" },
     { "path": ".\\Activation\\DefaultLaunchActivationHandler.cs" },
     { "path": ".\\Services\\ActivationService.cs" },
+    { "path": ".\\App.xaml.cs" },
     { "path": ".\\App.xaml" }
   ],
   "symbols": {
