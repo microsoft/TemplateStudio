@@ -182,6 +182,8 @@
     <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Gen\IContextProvider.cs" />
     <Compile Include="PostActions\Catalog\FileNameSearchPostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\MergeResourceDictionaryPostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\ResourceDictionaryWriter.cs" />
     <Compile Include="ProgrammingLanguages.cs" />
     <Compile Include="Naming\SuggestedDirectoryNameValidator.cs" />
     <Compile Include="PostActions\Catalog\Merge\FailedMergePostAction.cs" />
