@@ -384,4 +384,7 @@ The following changes could not be integrated: {2}
   <data name="TemplatesSynchronizationWarnReadingLockFileMessage" xml:space="preserve">
     <value>Error reading the instance locking file.</value>
   </data>
+  <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
+    <value>Key {0} already defined with different value or elements in file '{1}'</value>
+  </data>
 </root>

@@ -18,7 +18,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         public override void Execute()
         {
-            if (Regex.IsMatch(_config, MergePostAction.GlobalExtension))
+            if (Regex.IsMatch(_config, MergeConfiguration.GlobalExtension))
             {
                 GetFileFromProject();
             }
@@ -55,16 +55,16 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetMergeFileFromDirectory(string directory)
         {
-            if (Path.GetFileName(_config).StartsWith(MergePostAction.Extension))
+            if (Path.GetFileName(_config).StartsWith(MergeConfiguration.Extension))
             {
                 var extension = Path.GetExtension(_config);
 
-                return Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !Regex.IsMatch(f, MergePostAction.PostactionRegex));
+                return Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !Regex.IsMatch(f, MergeConfiguration.PostactionRegex));
             }
             else
             {
                 var filePath = Path.Combine(directory, Path.GetFileName(_config));
-                var path = Regex.Replace(filePath, MergePostAction.PostactionRegex, ".");
+                var path = Regex.Replace(filePath, MergeConfiguration.PostactionRegex, ".");
 
                 return path;
             }

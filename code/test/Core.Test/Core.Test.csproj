@@ -146,6 +146,7 @@
     <Compile Include="Diagnostics\TestHealthWriter.cs" />
     <Compile Include="Localization\LocalizationTest.cs" />
     <Compile Include="PostActions\Catalog\HandleRemovalsTest.cs" />
+    <Compile Include="PostActions\Catalog\MergeResourceDictionaryPostactionTest.cs" />
     <Compile Include="PostActions\Catalog\SortImportsTest.cs" />
     <Compile Include="PostActions\Catalog\SortUsingsTest.cs" />
     <Compile Include="Templates\ITemplateInfoExtensionsTest.cs" />
@@ -271,6 +272,40 @@
     <Analyzer Include="..\..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.0.240\analyzers\cs\Microsoft.VisualStudio.Threading.Analyzers.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestData\Merge\Style.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestData\Merge\Style_postaction.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestData\Merge\Style_expected.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestData\Merge\Style_fail_postaction.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestData\Merge\Style_fail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
