@@ -4,6 +4,7 @@
 
 using System.Linq;
 using LibGit2Sharp;
+using Localization.Options;
 
 namespace Localization
 {
@@ -13,11 +14,23 @@ namespace Localization
         private string _extractorParameter;
         private ExtractorMode _extractorMode;
 
-        public ValidateLocalizableExtractor(string repository, ExtractorMode extractorMode, string extractorParameter)
+        public ValidateLocalizableExtractor(ExtractOptions options)
         {
-            _repository = repository;
-            _extractorMode = extractorMode;
-            _extractorParameter = extractorParameter;
+            _repository = options.SourceDirectory;
+            _extractorMode = options.ExtractorMode;
+
+            switch (options.ExtractorMode)
+            {
+                case ExtractorMode.Commit:
+                    _extractorParameter = options.CommitSha;
+                    break;
+                case ExtractorMode.TagName:
+                    _extractorParameter = options.TagName;
+                    break;
+                default:
+                    _extractorParameter = string.Empty;
+                    break;
+            }
         }
 
         internal bool HasChanges(string file)

@@ -7,8 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Localization.Options;
 
 namespace Localization
 {
@@ -19,43 +18,41 @@ namespace Localization
         {
         }
 
-        public void GenerateProjectTemplatesAndCommandsHandler(ToolCommandInfo commandInfo)
+        public void GenerateProjectTemplatesAndCommandsHandler(GenerationOptions options)
         {
-            if (commandInfo.Arguments == null || commandInfo.Arguments.Length < 2)
-            {
-                throw new Exception("Error executing command. Too few arguments.");
-            }
-
-            string sourceDirectory = commandInfo.Arguments[0];
-            string destinationDirectory = commandInfo.Arguments[1];
-
-            var csProjectTemplateGenerator = new CSharpProjectTemplateGenerator(sourceDirectory, destinationDirectory);
-            csProjectTemplateGenerator.GenerateProjectTemplates(cultures);
-
-            var vbProjectTemplateGenerator = new VisualBasicProjectTemplateGenerator(sourceDirectory, destinationDirectory);
-            vbProjectTemplateGenerator.GenerateProjectTemplates(cultures);
-
-            var rightClickCommandGenerator = new RightClickCommandGenerator(sourceDirectory, destinationDirectory);
-            rightClickCommandGenerator.GenerateRightClickCommands(cultures);
-        }
-
-        public void ExtractLocalizableItems(ToolCommandInfo commandInfo)
-        {
-            if (commandInfo.Arguments == null || commandInfo.Arguments.Length < 2)
-            {
-                throw new Exception("Error executing command. Too few arguments.");
-            }
-
-            string sourceDirectory = commandInfo.Arguments[0];
-            string destinationDirectory = commandInfo.Arguments[1];
-
-            if (CanOverwriteDirectory(destinationDirectory))
+            if (CanOverwriteDirectory(options.DestinationDirectory))
             {
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
 
-                ValidateLocalizableExtractor validator = GetValidateExtractor(sourceDirectory, commandInfo.Arguments);
-                LocalizableItemsExtractor extractor = new LocalizableItemsExtractor(sourceDirectory, destinationDirectory, cultures, validator);
+                Console.WriteLine("\nGenerate C# project templates.");
+                var csProjectTemplateGenerator = new CSharpProjectTemplateGenerator(options.SourceDirectory, options.DestinationDirectory);
+                csProjectTemplateGenerator.GenerateProjectTemplates(cultures);
+
+                Console.WriteLine("\nGenerate VB project templates.");
+                var vbProjectTemplateGenerator = new VisualBasicProjectTemplateGenerator(options.SourceDirectory, options.DestinationDirectory);
+                vbProjectTemplateGenerator.GenerateProjectTemplates(cultures);
+
+                Console.WriteLine("\nGenerate right click commands.");
+                var rightClickCommandGenerator = new RightClickCommandGenerator(options.SourceDirectory, options.DestinationDirectory);
+                rightClickCommandGenerator.GenerateRightClickCommands(cultures);
+
+            Console.WriteLine("End");
+            stopwatch.Stop();
+            TimeSpan ts = stopwatch.Elapsed;
+            Console.WriteLine(string.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10));
+        }
+        }
+
+        public void ExtractLocalizableItems(ExtractOptions options)
+        {
+            if (CanOverwriteDirectory(options.DestinationDirectory))
+            {
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+
+                var validator = new ValidateLocalizableExtractor(options);
+                var extractor = new LocalizableItemsExtractor(options.SourceDirectory, options.DestinationDirectory, cultures, validator);
 
                 Console.WriteLine("\nExtract vsix");
                 extractor.ExtractVsix();
@@ -88,45 +85,20 @@ namespace Localization
             }
         }
 
-        public void VerifyLocalizableItems(ToolCommandInfo commandInfo)
+        public bool VerifyLocalizableItems(VerifyOptions options)
         {
-            if (commandInfo.Arguments == null || commandInfo.Arguments.Length != 1)
-            {
-                throw new Exception("Error executing command. Needs a single argument.");
-            }
-
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            string sourceDirectory = commandInfo.Arguments[0];
-            var verificator = new LocalizableItemsVerificator(sourceDirectory, cultures);
-            bool notFoundFiles = verificator.VerificateAllFiles();
+            var verificator = new LocalizableItemsVerificator(options.SourceDirectory, cultures);
+            bool result = verificator.VerificateAllFiles();
 
             Console.WriteLine("End");
             stopwatch.Stop();
             TimeSpan ts = stopwatch.Elapsed;
             Console.WriteLine(string.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10));
 
-            // TODO - If notFoundFiles.Any() return -1.
-        }
-
-        private ValidateLocalizableExtractor GetValidateExtractor(string repository, string[] arguments)
-        {
-            string extractorType = arguments.Length > 2 ? arguments[2].ToLowerInvariant() : string.Empty;
-            string extractorParameter = arguments.Length > 3 ? arguments[3] : string.Empty;
-
-            var extractorMode = ExtractorMode.All;
-            switch (extractorType)
-            {
-                case "c":
-                    extractorMode = ExtractorMode.Commit;
-                    break;
-                case "t":
-                    extractorMode = ExtractorMode.TagName;
-                    break;
-            }
-
-            return new ValidateLocalizableExtractor(repository, extractorMode, extractorParameter);
+            return result;
         }
 
         private bool CanOverwriteDirectory(string destDirectory)
