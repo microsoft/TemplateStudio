@@ -106,6 +106,7 @@
                 NewFileTemplate="{StaticResource SimpleDetailTemplate}"
                 ModifiedFileTemplate="{StaticResource SimpleDetailTemplate}"
                 ConflictingFileTemplate="{StaticResource ConflictingDetailTemplate}"
+                ConflictingStylesFileTemplate="{StaticResource SimpleDetailTemplate}"
                 WarningFileTemplate="{StaticResource SimpleDetailTemplate}"
                 UnchangedFileTemplate="{StaticResource SimpleDetailTemplate}"/>
 
