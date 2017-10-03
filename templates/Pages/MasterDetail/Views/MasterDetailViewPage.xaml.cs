@@ -14,7 +14,7 @@ namespace Param_ItemNamespace.Views
 
         private async void MasterDetailViewPage_Loaded(object sender, RoutedEventArgs e)
         {
-            await ViewModel.LoadDataAsync(WindowStates.CurrentState);
+            await ViewModel.LoadDataAsync(MasterDetailsViewControl.ViewState);
         }
     }
 }

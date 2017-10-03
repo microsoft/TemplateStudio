@@ -1,14 +1,15 @@
 ﻿using System;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using Param_ItemNamespace.Models;
-using Param_ItemNamespace.Services;
+using Windows.UI.Xaml.Media.Animation;
+using Microsoft.Toolkit.Uwp.UI.Controls;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
+using Param_ItemNamespace.Models;
+using Param_ItemNamespace.Services;
 
 namespace Param_ItemNamespace.Views
 {
@@ -41,7 +42,7 @@ namespace Param_ItemNamespace.Views
                 SampleItems.Add(item);
             }
 
-            if (WindowStates.CurrentState.Name == "WideState")
+            if (MasterDetailsViewControl.ViewState == MasterDetailsViewState.Both)
             {
                 Selected = SampleItems.First();
             }

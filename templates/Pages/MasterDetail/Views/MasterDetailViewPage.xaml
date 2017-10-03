@@ -39,6 +39,7 @@
 
         <controls:MasterDetailsView
             Grid.Row="1"
+            x:Name="MasterDetailsViewControl"
             ItemsSource="{x:Bind ViewModel.SampleItems, Mode=OneWay}"
             SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
             ItemTemplate="{StaticResource MasterListViewItemTemplate}"
@@ -49,21 +50,5 @@
                 </DataTemplate>
             </controls:MasterDetailsView.DetailsTemplate>
         </controls:MasterDetailsView>
-
-        <!--  Adaptive triggers  -->
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="WindowStates">
-                <VisualState x:Name="WideState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="640"/>
-                    </VisualState.StateTriggers>
-                </VisualState>
-                <VisualState x:Name="NarrowState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0"/>
-                    </VisualState.StateTriggers>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>

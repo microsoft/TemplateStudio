@@ -23,6 +23,7 @@
 
         <controls:MasterDetailsView
             Grid.Row="1"
+            x:Name="MasterDetailsViewControl"
             ItemsSource="{x:Bind ViewModel.Items}"
             SelectedItem="{x:Bind ViewModel.ActiveItem}"
             BorderBrush="Transparent">
@@ -37,21 +38,5 @@
                 </DataTemplate>
             </controls:MasterDetailsView.DetailsTemplate>
         </controls:MasterDetailsView>
-
-        <!--  Adaptive triggers  -->
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="WindowStates">
-                <VisualState x:Name="WideState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="640"/>
-                    </VisualState.StateTriggers>
-                </VisualState>
-                <VisualState x:Name="NarrowState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0"/>
-                    </VisualState.StateTriggers>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>

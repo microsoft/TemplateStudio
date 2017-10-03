@@ -2,9 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.Toolkit.Uwp.UI.Controls;
 using Param_ItemNamespace.Models;
 using Param_ItemNamespace.Services;
 
@@ -26,7 +24,7 @@ namespace Param_ItemNamespace.ViewModels
         {
         }
 
-        public async Task LoadDataAsync(VisualState currentVisualState)
+        public async Task LoadDataAsync(MasterDetailsViewState viewState)
         {
             SampleItems.Clear();
 
@@ -37,7 +35,7 @@ namespace Param_ItemNamespace.ViewModels
                 SampleItems.Add(item);
             }
 
-            if (currentVisualState.Name == "WideState")
+            if (viewState == MasterDetailsViewState.Both)
             {
                 Selected = SampleItems.First();
             }

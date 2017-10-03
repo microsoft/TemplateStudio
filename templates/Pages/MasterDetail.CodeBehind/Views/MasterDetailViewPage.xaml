@@ -32,13 +32,14 @@
         </Grid.RowDefinitions>
 
         <TextBlock
-            x:Uid="MasterDetailViewPage_Title"
+            x:Uid="MasterDetailView_Title"
             x:Name="TitlePage"
             Margin="24,12"
             Style="{StaticResource PageTitleStyle}" />
 
         <controls:MasterDetailsView
             Grid.Row="1"
+            x:Name="MasterDetailsViewControl"
             ItemsSource="{x:Bind SampleItems, Mode=OneWay}"
             SelectedItem="{x:Bind Selected, Mode=OneWay}"
             ItemTemplate="{StaticResource MasterListViewItemTemplate}"
@@ -49,21 +50,5 @@
                 </DataTemplate>
             </controls:MasterDetailsView.DetailsTemplate>
         </controls:MasterDetailsView>
-
-        <!--  Adaptive triggers  -->
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="WindowStates">
-                <VisualState x:Name="WideState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="640"/>
-                    </VisualState.StateTriggers>
-                </VisualState>
-                <VisualState x:Name="NarrowState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0"/>
-                    </VisualState.StateTriggers>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
     </Grid>  
 </Page>
