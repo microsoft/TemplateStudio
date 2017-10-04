@@ -45,25 +45,23 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             set => SetProperty(ref _codeFontSize, value);
         }
 
-        public abstract FileStatus FileStatus { get; }
+        public FileStatus FileStatus { get; }
 
         public virtual string UpdateText(string fileText) => fileText;
 
-        // TODO: Review constructor to remove this suppresion. Important
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BaseFileViewModel(string name)
+        public BaseFileViewModel(string name, FileStatus fileStatus)
         {
             Subject = name;
+            FileStatus = fileStatus;
             LoadFile();
             UpdateTextAction = fileText => UpdateText(fileText);
             CodeFontSize = SystemService.Instance.GetCodeFontSize();
         }
 
-        // TODO: Review constructor to remove this suppresion. Important
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BaseFileViewModel(NewItemGenerationFileInfo generationInfo)
+        public BaseFileViewModel(NewItemGenerationFileInfo generationInfo, FileStatus fileStatus)
         {
             Subject = generationInfo.Name;
+            FileStatus = fileStatus;
             LoadFile();
             UpdateTextAction = fileText => UpdateText(fileText);
             CodeFontSize = SystemService.Instance.GetCodeFontSize();
