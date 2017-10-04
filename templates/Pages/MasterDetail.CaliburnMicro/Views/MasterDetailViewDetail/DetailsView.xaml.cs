@@ -3,9 +3,9 @@ using Param_ItemNamespace.ViewModels;
 
 namespace Param_ItemNamespace.Views.MasterDetailViewDetail
 {
-    public sealed partial class MasterDetailViewDetailControl
+    public sealed partial class DetailsView
     {
-        public MasterDetailViewDetailControl()
+        public DetailsView()
         {
             InitializeComponent();
         }

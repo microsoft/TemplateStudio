@@ -28,16 +28,16 @@
       "path": ".\\Views\\MasterDetailViewPage.xaml.cs"
     },
     {
-      "path": ".\\Views\\MasterDetailViewDetail\\MasterDetailViewDetailControl.xaml"
+      "path": ".\\Views\\MasterDetailViewDetail\\DetailsView.xaml"
     },
     {
-      "path": ".\\Views\\MasterDetailViewDetail\\MasterDetailViewDetailControl.xaml.cs"
+      "path": ".\\Views\\MasterDetailViewDetail\\DetailsView.xaml.cs"
     },
     {
-      "path": ".\\Views\\MasterDetailViewDetail\\MasterDetailViewItemControl.xaml"
+      "path": ".\\Views\\MasterDetailViewDetail\\MasterView.xaml"
     },
     {
-      "path": ".\\Views\\MasterDetailViewDetail\\MasterDetailViewItemControl.xaml.cs"
+      "path": ".\\Views\\MasterDetailViewDetail\\MasterView.xaml.cs"
     },
     {
       "path": ".\\ViewModels\\MasterDetailViewViewModel.cs"
