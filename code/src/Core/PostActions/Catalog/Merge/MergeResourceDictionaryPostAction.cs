@@ -34,7 +34,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             if (!File.Exists(originalFilePath))
             {
                 File.Copy(_config.FilePath, originalFilePath);
-                GenContext.Current.ProjectItems.Add(originalFilePath);
+                GenContext.Current.ProjectItems.Add(originalFilePath.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath));
                 AddToMergeDictionary(originalFilePath);
             }
             else
