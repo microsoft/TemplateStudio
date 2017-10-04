@@ -9,7 +9,7 @@
     xmlns:views="using:Param_ItemNamespace.Views"
     mc:Ignorable="d">
     <Page.Resources>
-        <DataTemplate x:Key="MasterListViewItemTemplate" x:DataType="model:SampleOrder">
+        <DataTemplate x:Key="ItemTemplate" x:DataType="model:SampleOrder">
             <Grid Height="64" Padding="0,8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -23,7 +23,11 @@
             </Grid>
         </DataTemplate>
 
-        <DataTemplate x:Key="MasterListViewNoSelectionContentTemplate">
+        <DataTemplate x:Key="DetailsTemplate">
+            <views:MasterDetailViewDetailControl MasterMenuItem="{Binding}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="NoSelectionContentTemplate">
             <TextBlock x:Uid="MasterDetailView_NoSelection" Style="{StaticResource ListNoSelectionTextStyle}" />
         </DataTemplate>
     </Page.Resources>
@@ -46,14 +50,9 @@
             x:Name="MasterDetailsViewControl"
             ItemsSource="{x:Bind ViewModel.SampleItems, Mode=OneWay}"
             SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
-            ItemTemplate="{StaticResource MasterListViewItemTemplate}"
-            NoSelectionContentTemplate="{StaticResource MasterListViewNoSelectionContentTemplate}"
-            BorderBrush="Transparent">
-            <controls:MasterDetailsView.DetailsTemplate>
-                <DataTemplate>
-                    <views:MasterDetailViewDetailControl MasterMenuItem="{Binding}"/>
-                </DataTemplate>
-            </controls:MasterDetailsView.DetailsTemplate>
-        </controls:MasterDetailsView>
+            ItemTemplate="{StaticResource ItemTemplate}"
+            DetailsTemplate="{StaticResource DetailsTemplate}"
+            NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
+            BorderBrush="Transparent" />
     </Grid>
 </Page>
