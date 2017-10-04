@@ -88,6 +88,7 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
+    <Compile Include="Logic\ProjectTemplateGeneratorConfig.cs" />
     <Compile Include="Options\ExtractOptions.cs" />
     <Compile Include="Options\GenerationOptions.cs" />
     <Compile Include="Options\CommandLineOptions.cs" />
