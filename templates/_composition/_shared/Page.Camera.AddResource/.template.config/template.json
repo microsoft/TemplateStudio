@@ -3,17 +3,29 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMLight.Page.AddCommandNS.VB",
+  "name": "Page.Camera.AddResource",
   "tags": {
-    "language": "VisualBasic",
+    "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMLight & identity == wts.Page.Settings.MVVMLight|wts.Page.Camera"
+    "wts.compositionFilter": "identity == wts.Page.Camera|wts.Page.Camera.CodeBehind"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": ".\\EventHandlers\\CameraControlEventArgs.cs"
+    },
+    {
+      "path": ".\\Helpers\\CameraOrientationExtensions.cs"
+    },
+    {
+      "path": ".\\Controls\\CameraControl.xaml"
+    },
+    {
+      "path": ".\\Controls\\CameraControl.xaml.cs"
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {
