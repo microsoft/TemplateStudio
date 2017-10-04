@@ -14,9 +14,9 @@ namespace Param_ItemNamespace.Views
             InitializeComponent();
         }
 
-        private ImageGalleryDetailViewModel ViewModel
+        private ImageGalleryViewDetailViewModel ViewModel
         {
-            get { return DataContext as ImageGalleryDetailViewModel; }
+            get { return DataContext as ImageGalleryViewDetailViewModel; }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

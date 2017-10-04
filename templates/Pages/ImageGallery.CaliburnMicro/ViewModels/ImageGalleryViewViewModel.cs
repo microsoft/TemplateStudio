@@ -24,7 +24,7 @@ namespace Param_ItemNamespace.ViewModels
         private GridView _imagesGridView;
 
         public BindableCollection<SampleImage> Source { get; } = new BindableCollection<SampleImage>();
-        
+
         public ImageGalleryViewViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
@@ -59,7 +59,7 @@ namespace Param_ItemNamespace.ViewModels
         public void OnImageSelected(SampleImage image)
         {
             _imagesGridView.PrepareConnectedAnimation(ImageGalleryViewAnimationOpen, image, "galleryImage");
-            
+
             _navigationService.For<ImageGalleryViewDetailViewModel>()
                 .WithParam(v => v.ID, image.ID)
                 .Navigate();

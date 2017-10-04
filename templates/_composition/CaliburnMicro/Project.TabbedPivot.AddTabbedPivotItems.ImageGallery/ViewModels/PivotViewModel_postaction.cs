@@ -5,7 +5,7 @@
         //{[{
         private readonly INavigationService _navigationService;
 
-        public PivotViewModel(INavigationService navigationService)  
+        public PivotViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
         }

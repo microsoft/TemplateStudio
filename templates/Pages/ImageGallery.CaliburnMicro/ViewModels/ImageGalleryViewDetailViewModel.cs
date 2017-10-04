@@ -40,7 +40,7 @@ namespace Param_ItemNamespace.ViewModels
             // TODO WTS: Replace this with your actual data
             Source.AddRange(SampleDataService.GetGallerySampleData());
         }
-        
+
         public void Initialize(UIElement image)
         {
             _image = image;
