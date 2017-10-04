@@ -49,9 +49,6 @@
     },
     {
       "path": ".\\Models\\SampleImage.cs"
-    },
-    {
-      "path": ".\\Styles\\ImageGalleryPageStyles.xaml"
     }
   ],
   "symbols": {

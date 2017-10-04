@@ -109,15 +109,13 @@ namespace TemplateValidator
                     }
                 }
 
-                foreach (var templateDependency in allDependencies)
+                foreach (var dependencies in allDependencies)
                 {
-                    var dependencies = templateDependency.Value.Split('|');
-
-                    foreach (var dependency in dependencies)
+                    foreach (var dependency in dependencies.Value.Split('|'))
                     {
                         if (!allIdentities.ContainsKey(dependency))
                         {
-                            results.Add($"'{templateDependency.Key}' contains dependency '{dependency}' that does not exist.");
+                            results.Add($"'{dependencies.Key}' contains dependency '{dependency}' that does not exist.");
                         }
                     }
                 }

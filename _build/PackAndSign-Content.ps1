@@ -18,7 +18,18 @@ Write-Host "Destination Directory: " $destinationDirectory
 Write-Host "Signing Cert Thumbprint: " $signingCertThumbprint
 Write-Host "Core Assembly Path: " $coreAssemblyPath
 
-$addType = Add-Type -Path $coreAssemblyPath -PassThru -ErrorAction Stop
+try
+{
+  $addType = Add-Type -Path $coreAssemblyPath -PassThru -ErrorAction Stop
+}
+catch
+{
+    ForEach($ex in $_.Exception.LoaderExceptions)
+    {
+        Write-Error $ex.Message
+    }
+}
+
 if($addType){
   if($signingCertThumbprint){
       $resultPack = [Microsoft.Templates.Core.Packaging.TemplatePackage]::PackAndSign($source, $signingCertThumbprint, "text/plain")
