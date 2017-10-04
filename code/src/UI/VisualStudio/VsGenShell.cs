@@ -128,6 +128,11 @@ namespace Microsoft.Templates.UI.VisualStudio
             return null;
         }
 
+        public override void CleanSolution()
+        {
+            Dte.Solution.SolutionBuild.Clean();
+        }
+
         public override void SaveSolution()
         {
             Dte.Solution.SaveAs(Dte.Solution.FullName);
