@@ -53,7 +53,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                     {
                         if (!XNode.DeepEquals(node, sourceNode))
                         {
-                            var errorMessage = string.Format(StringRes.FailedMergePostActionKeyAlreadyDefined, GetKey(node), GetRelativePath(originalFilePath));
+                            var errorMessage = string.Format(StringRes.FailedMergePostActionKeyAlreadyDefined, GetKey(node));
                             if (_config.FailOnError)
                             {
                                 throw new InvalidDataException(errorMessage);

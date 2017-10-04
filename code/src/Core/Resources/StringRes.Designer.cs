@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class StringRes {
@@ -151,7 +151,7 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Key {0} already defined with different value or elements in file &apos;{1}&apos;.
+        ///   Looks up a localized string similar to The style with key &apos;{0}&apos; is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project..
         /// </summary>
         internal static string FailedMergePostActionKeyAlreadyDefined {
             get {

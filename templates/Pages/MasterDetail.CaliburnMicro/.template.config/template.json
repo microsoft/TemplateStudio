@@ -18,32 +18,32 @@
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true" 
   },
-  "sourceName": "MasterDetailsItem",
+  "sourceName": "MasterDetailView",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\MasterDetailsItemPage.xaml"
+      "path": ".\\Views\\MasterDetailViewPage.xaml"
     },
     {
-      "path": ".\\Views\\MasterDetailsItemPage.xaml.cs"
+      "path": ".\\Views\\MasterDetailViewPage.xaml.cs"
     },
     {
-      "path": ".\\Views\\MasterDetailsItemDetail\\DetailsView.xaml"
+      "path": ".\\Views\\MasterDetailViewDetail\\MasterDetailViewDetailControl.xaml"
     },
     {
-      "path": ".\\Views\\MasterDetailsItemDetail\\DetailsView.xaml.cs"
+      "path": ".\\Views\\MasterDetailViewDetail\\MasterDetailViewDetailControl.xaml.cs"
     },
     {
-      "path": ".\\Views\\MasterDetailsItemDetail\\MasterView.xaml"
+      "path": ".\\Views\\MasterDetailViewDetail\\MasterDetailViewItemControl.xaml"
     },
     {
-      "path": ".\\Views\\MasterDetailsItemDetail\\MasterView.xaml.cs"
+      "path": ".\\Views\\MasterDetailViewDetail\\MasterDetailViewItemControl.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\MasterDetailsItemViewModel.cs"
+      "path": ".\\ViewModels\\MasterDetailViewViewModel.cs"
     },
     {
-      "path": ".\\ViewModels\\MasterDetailsItemDetailViewModel.cs"
+      "path": ".\\ViewModels\\MasterDetailViewDetailViewModel.cs"
     }
   ],
   "symbols": {
