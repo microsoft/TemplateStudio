@@ -19,6 +19,7 @@ namespace Microsoft.Templates.Core.Gen
         public abstract void ShowStatusBarMessage(string message);
         public abstract void AddProjectToSolution(string projectFullPath);
         public abstract void AddItems(params string[] itemsFullPath);
+        public abstract void CleanSolution();
         public abstract void SaveSolution();
         public abstract string GetActiveProjectNamespace();
         public abstract void ShowTaskList();
