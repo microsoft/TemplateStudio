@@ -18,35 +18,35 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     [Trait("ExecutionSet", "Minimum")]
     public class MergeResourceDictionaryPostactionTest : IContextProvider
     {
-        public string ProjectName => throw new NotImplementedException();
+        public string ProjectName => "TestResourceDictionaryPostAction";
 
         public string OutputPath => Directory.GetCurrentDirectory();
 
-        public string ProjectPath => throw new NotImplementedException();
+        public string ProjectPath => Directory.GetCurrentDirectory();
 
-        public List<string> ProjectItems => throw new NotImplementedException();
+        public List<string> ProjectItems => new List<string>();
 
-        public List<string> FilesToOpen => throw new NotImplementedException();
+        public List<string> FilesToOpen => new List<string>();
 
-        public List<FailedMergePostAction> FailedMergePostActions => throw new NotImplementedException();
+        public List<FailedMergePostAction> FailedMergePostActions => new List<FailedMergePostAction>();
 
-        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject => throw new NotImplementedException();
+        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject => new Dictionary<string, List<MergeInfo>>();
 
-        public Dictionary<ProjectMetricsEnum, double> ProjectMetrics => throw new NotImplementedException();
+        public Dictionary<ProjectMetricsEnum, double> ProjectMetrics => new Dictionary<ProjectMetricsEnum, double>();
 
         [Fact]
         public void MergeResourceDictionaryPostaction()
         {
             var source = Path.GetFullPath(@".\TestData\Merge\Style.xaml");
             var postaction = Path.GetFullPath(@".\TestData\Merge\Style_postaction.xaml");
-            var expected = File.ReadAllText(@".\TestData\Merge\Style_expected.xaml").Replace("\r\n", "");
+            var expected = File.ReadAllText(@".\TestData\Merge\Style_expected.xaml").Replace("\r\n", "").Replace("\n", "");
 
             var config = new MergeConfiguration(postaction, true);
 
             var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction(config);
             mergeResourceDictionaryPostAction.Execute();
 
-            var result = File.ReadAllText(source).Replace("\r\n", "");
+            var result = File.ReadAllText(source).Replace("\r\n", "").Replace("\n", "");
 
             Assert.Equal(result, expected);
         }
@@ -64,8 +64,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction(config);
 
             Exception ex = Assert.Throws<InvalidDataException>(() => mergeResourceDictionaryPostAction.Execute());
-
-            Assert.Equal($"Key PageTitleStyle already defined with different value or elements in file '{source.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, "")}'", ex.Message);
+            Assert.Equal($"The style with key 'PageTitleStyle' is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project.", ex.Message);
         }
     }
 }

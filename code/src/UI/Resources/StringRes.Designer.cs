@@ -187,6 +187,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed style merges.
+        /// </summary>
+        public static string ChangesSummaryCategoryFailedStyleMerges {
+            get {
+                return ResourceManager.GetString("ChangesSummaryCategoryFailedStyleMerges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Licenses.
         /// </summary>
         public static string ChangesSummaryCategoryLicenses {
@@ -268,6 +277,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We are not able to introduce the styles in the resource dictionary..
+        /// </summary>
+        public static string ChangesSummaryDetailDescriptionFailedStyleMerges {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailDescriptionFailedStyleMerges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This file will be modified to include required content..
         /// </summary>
         public static string ChangesSummaryDetailDescriptionModifiedFiles {
@@ -309,6 +327,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ChangesSummaryDetailTitleFailedMerges {
             get {
                 return ResourceManager.GetString("ChangesSummaryDetailTitleFailedMerges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed style merge.
+        /// </summary>
+        public static string ChangesSummaryDetailTitleFailedStyleMerges {
+            get {
+                return ResourceManager.GetString("ChangesSummaryDetailTitleFailedStyleMerges", resourceCulture);
             }
         }
         

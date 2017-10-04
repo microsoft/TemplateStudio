@@ -381,6 +381,16 @@ Because it may be necessary for a template to include multiple files of unknown 
 
 Follow the above steps and the file will be merged with the one that contains the search text. An example of this functionality in use can be found in the FeedbackHub feature.
 
+### Merge Resource Dictionary PostActions
+
+When the _postaction file contains a resource dictionary instead of the *basic* merge postaction a resource dictionary postaction is executed.
+This postaction does not work with directives but based on the x:keys contained in the source and _postaction files.
+
+The postaction works in three steps:
+1. Locate the source resource dictionary file. (Imagine the postaction file is called Styles/Button_postaction.xaml, the source file would be Styles/Button.xaml)
+2. If the file is not found the whole resource dictionary contained in the postaction file is copied to the source file. 
+3. If the file is found, each element from _postaction file is copied if not already there. In case the key is already defined in the source resource dictionary and the elements are different, a warning is shown.
+
 ## Testing and verifying template contents
 
 The tool **TemplateValidator.exe** exists to help template authors verify their templates are correctly structured and to identify common errors. It can verify the contents of an individual `template.json` file or the contents of multiple directories containing templates.

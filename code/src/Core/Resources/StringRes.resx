@@ -385,6 +385,6 @@ The following changes could not be integrated: {2}
     <value>Error reading the instance locking file.</value>
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
-    <value>Key {0} already defined with different value or elements in file '{1}'</value>
+    <value>The style with key '{0}' is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project.</value>
   </data>
 </root>
