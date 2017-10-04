@@ -2,38 +2,44 @@ using Prism.Commands;
 using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using Windows.UI.Xaml;
 using WTSPrismNavigationBase.Models;
+using WTSPrismNavigationBase.Services;
 
 namespace WTSPrismNavigationBase.ViewModels
 {
     public class MasterDetailDetailPageViewModel : ViewModelBase
     {
-
         const string NarrowStateName = "NarrowState";
         const string WideStateName = "WideState";
-        private INavigationService navigationService;
 
-        public ICommand StateChangedCommand { get; private set; }
+        private readonly INavigationService navigationService;
+        private readonly ISampleDataService sampleDataService;
 
-        private Order _item;
+        public ICommand StateChangedCommand { get; }
+
+        private Order item;
         public Order Item
         {
-            get { return _item; }
-            set { SetProperty(ref _item, value); }
+            get { return item; }
+            set { SetProperty(ref item, value); }
         }
 
-        public MasterDetailDetailPageViewModel(INavigationService navigationService)
+        public MasterDetailDetailPageViewModel(INavigationService navigationService, ISampleDataService sampleDataService)
         {
             this.navigationService = navigationService;
+            this.sampleDataService = sampleDataService;
             StateChangedCommand = new DelegateCommand<VisualStateChangedEventArgs>(OnStateChanged);
         }
 
-        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public async override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
-            Item = e.Parameter as Order;
+            long orderId = (long)e.Parameter;
+            var data = await sampleDataService.GetSampleModelDataAsync();
+            Item = data.FirstOrDefault(x => x.OrderId == orderId);
         }
 
         private void OnStateChanged(VisualStateChangedEventArgs args)

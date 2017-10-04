@@ -8,12 +8,12 @@
     prismMvvm:ViewModelLocator.AutoWireViewModel="True"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:local="using:WTSPrismNavigationBase.Views"
+    xmlns:vm="using:WTSPrismNavigationBase.ViewModels"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d">
     <Page.Resources>
-        <DataTemplate x:Key="NavigationMenuItemDataTemplate" x:DataType="local:ShellNavigationItem">
-            <Grid Width="320" Height="40">
+        <DataTemplate x:Key="NavigationMenuItemDataTemplate" x:DataType="vm:ShellNavigationItem">
+            <Grid Width="320" Height="40" Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48" />
                     <ColumnDefinition />
@@ -27,6 +27,7 @@
                         Visibility="{x:Bind SelectedVis, Mode=OneWay}" />
                 <Viewbox
                         Child="{x:Bind Icon}"
+                        ToolTipService.ToolTip="{x:Bind Label}"
                         Margin="16,12"
                         VerticalAlignment="Center" />
                 <TextBlock
@@ -101,7 +102,7 @@
             ItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
             ItemsSource="{x:Bind ViewModel.PrimaryItems}"
             OptionsItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
-            OptionsItemsSource="{x:Bind ViewModel.SecondaryItems}"           
+            OptionsItemsSource="{x:Bind ViewModel.SecondaryItems}"
             PaneBackground="{ThemeResource SystemControlBackgroundAltHighBrush}"
             PaneForeground="{ThemeResource SystemControlForegroundBaseHighBrush}"
             >
@@ -116,7 +117,6 @@
         <Grid Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
             <Frame x:Name="shellFrame"/>
         </Grid>
-        <!--  Adaptive triggers  -->
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WindowStates">
                 <i:Interaction.Behaviors>

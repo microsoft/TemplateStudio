@@ -39,7 +39,7 @@
         "name": "Prism",
         "displayName": "Prism",
         "summary": "Prism is a framework for building loosely coupled, maintainable, and testable XAML applications in WPF, Windows 10 UWP, and Xamarin Forms.",
-        "author": "Brian Lagunas",
+        "author": "Brian Lagunas, Bart Lannoeye, Dan Siegel",
         "order": "5",
         "licenses": "",
         "languages": [ "C#" ]

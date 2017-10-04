@@ -40,7 +40,7 @@ namespace WTSPrism
         {
             Services.ThemeSelectorService.SetRequestedTheme();
 
-            NavigationService.Navigate(PageTokens.BlankPage, null);
+            NavigationService.Navigate(PageTokens.MasterDetailPage, null);
             return Task.CompletedTask;
         }
     }

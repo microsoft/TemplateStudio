@@ -128,6 +128,7 @@
                         <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="TitlePage.Margin" Value="48,0,12,7"/>
                         <Setter Target="TitleRow.Height" Value="48"/>
                         <Setter Target="MasterRow.Height" Value="Auto"/>
                         <Setter Target="TitlePage.Visibility" Value="Visible"/>

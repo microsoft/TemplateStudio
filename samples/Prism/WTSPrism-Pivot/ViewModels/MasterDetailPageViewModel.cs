@@ -83,7 +83,7 @@ namespace WTSPrism.ViewModels
             {
                 if (currentState?.Name == NarrowStateName)
                 {
-                    navigationService.Navigate("MasterDetailDetail", item);
+                    navigationService.Navigate("MasterDetailDetail", item.OrderId);
                 }
                 else
                 {

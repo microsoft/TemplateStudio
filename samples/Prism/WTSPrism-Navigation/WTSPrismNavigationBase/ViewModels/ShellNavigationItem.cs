@@ -8,7 +8,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 
-namespace WTSPrismNavigationBase.Views
+namespace WTSPrismNavigationBase.ViewModels
 {
     public class ShellNavigationItem : BindableBase, INotifyPropertyChanged
     {

@@ -1,10 +1,12 @@
-using System.Collections.Generic;
-using System.Windows.Input;
 using Prism.Commands;
 using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Input;
 using Windows.UI.Xaml;
 using WTSPrism.Models;
+using WTSPrism.Services;
 
 namespace WTSPrism.ViewModels
 {
@@ -12,7 +14,9 @@ namespace WTSPrism.ViewModels
     {
         const string NarrowStateName = "NarrowState";
         const string WideStateName = "WideState";
+
         private readonly INavigationService navigationService;
+        private readonly ISampleDataService sampleDataService;
 
         public ICommand StateChangedCommand { get; }
 
@@ -23,16 +27,19 @@ namespace WTSPrism.ViewModels
             set { SetProperty(ref item, value); }
         }
 
-        public MasterDetailDetailPageViewModel(INavigationService navigationService)
+        public MasterDetailDetailPageViewModel(INavigationService navigationService, ISampleDataService sampleDataService)
         {
             this.navigationService = navigationService;
+            this.sampleDataService = sampleDataService;
             StateChangedCommand = new DelegateCommand<VisualStateChangedEventArgs>(OnStateChanged);
         }
 
-        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public async override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
-            Item = e.Parameter as Order;
+            long orderId = (long)e.Parameter;
+            var data = await sampleDataService.GetSampleModelDataAsync();
+            Item = data.FirstOrDefault(x => x.OrderId == orderId);
         }
 
         private void OnStateChanged(VisualStateChangedEventArgs args)
