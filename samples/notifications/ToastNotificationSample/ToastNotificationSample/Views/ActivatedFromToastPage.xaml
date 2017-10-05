@@ -19,11 +19,8 @@
             x:Uid="ActivatedFromToast_Title"
             Style="{StaticResource PageTitleStyle}" />
 
-        <Grid 
-            Grid.Row="1" 
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
+        <Grid Grid.Row="1">
+            <TextBlock Text="{x:Bind ViewModel.ActivationSource, Mode=OneWay}" />
         </Grid>
     </Grid>
 </Page>

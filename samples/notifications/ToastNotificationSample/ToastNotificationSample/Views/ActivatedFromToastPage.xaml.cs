@@ -1,8 +1,9 @@
 ﻿using System;
 
 using ToastNotificationSample.ViewModels;
-
+using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace ToastNotificationSample.Views
 {
@@ -13,6 +14,12 @@ namespace ToastNotificationSample.Views
         public ActivatedFromToastPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            ViewModel.Initialize(e.Parameter as ToastNotificationActivatedEventArgs);
         }
     }
 }

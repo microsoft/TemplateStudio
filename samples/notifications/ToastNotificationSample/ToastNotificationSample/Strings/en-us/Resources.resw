@@ -125,4 +125,10 @@
     <value>ActivatedFromToast</value>
     <comment>Page title for ActivatedFromToast</comment>
   </data>
+  <data name="ActivationSourceContent" xml:space="preserve">
+    <value>The application was launched from a toast notification by clicking on the notification message.</value>
+  </data>
+  <data name="ActivationSourceButtonOk" xml:space="preserve">
+    <value>The application was launched from a toast notification by clicking on OK button.</value>
+  </data>
 </root>
