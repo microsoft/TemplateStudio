@@ -18,21 +18,21 @@ namespace Microsoft.Templates.UI.Generation
 {
     public class ProjectConfigInfo
     {
-        public const string FxMVVMBasic = "MVVMBasic";
-        public const string FxMVVMLight = "MVVMLight";
-        public const string FxCodeBehid = "CodeBehind";
-        public const string FxCaliburnMicro = "CaliburnMicro";
+        private const string FxMVVMBasic = "MVVMBasic";
+        private const string FxMVVMLight = "MVVMLight";
+        private const string FxCodeBehid = "CodeBehind";
+        private const string FxCaliburnMicro = "CaliburnMicro";
 
-        public const string ProjTypeBlank = "Blank";
-        public const string ProjTypeSplitView = "SplitView";
-        public const string ProjTypeTabbedPivot = "TabbedPivot";
+        private const string ProjTypeBlank = "Blank";
+        private const string ProjTypeSplitView = "SplitView";
+        private const string ProjTypeTabbedPivot = "TabbedPivot";
 
-        const string ProjectTypeLiteral = "projectType";
-        const string FrameworkLiteral = "framework";
-        const string MetadataLiteral = "Metadata";
-        const string NameAttribLiteral = "Name";
-        const string ValueAttribLiteral = "Value";
-        const string ItemLiteral = "Item";
+        private const string ProjectTypeLiteral = "projectType";
+        private const string FrameworkLiteral = "framework";
+        private const string MetadataLiteral = "Metadata";
+        private const string NameAttribLiteral = "Name";
+        private const string ValueAttribLiteral = "Value";
+        private const string ItemLiteral = "Item";
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1008:Opening parenthesis must be spaced correctly", Justification = "Using tuples must allow to have preceding whitespace", Scope = "member")]
         public static (string ProjectType, string Framework) ReadProjectConfiguration()

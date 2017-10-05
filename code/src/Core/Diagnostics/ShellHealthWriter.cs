@@ -12,7 +12,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 {
     public class ShellHealthWriter : IHealthWriter
     {
-        GenShell _shell;
+        private GenShell _shell;
         public ShellHealthWriter(GenShell shell)
         {
             _shell = shell;

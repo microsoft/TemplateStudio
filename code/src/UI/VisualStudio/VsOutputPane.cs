@@ -15,7 +15,7 @@ using Microsoft.VisualStudio.Shell;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
-    class VsOutputPane
+    internal class VsOutputPane
     {
         private const string TemplatesPaneGuid = "45480fff-0658-42e1-97f0-82cac23603aa";
         private OutputWindowPane _pane;

@@ -17,7 +17,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         public ExceptionTracker Exception { get; private set; }
         public TelemetryTracker Telemetry { get; private set; }
 
-        static AppHealth _current;
+        private static AppHealth _current;
         public static AppHealth Current
         {
             get

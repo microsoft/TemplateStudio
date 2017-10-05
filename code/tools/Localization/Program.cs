@@ -9,13 +9,13 @@ using Localization.Options;
 
 namespace Localization
 {
-    class Program
+    public class Program
     {
         private const string separator = "**********************************************************************";
         private const string argumentNewLine = "\r\n\t\t\t\t   ";
 
         [STAThread]
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             var options = new CommandLineOptions();
             var parser = new Parser(s => s.MutuallyExclusive = true);
