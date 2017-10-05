@@ -83,7 +83,10 @@ namespace Microsoft.Templates.Core
             var configDir = GetConfigDir(ti);
             var descriptionFile = Directory.EnumerateFiles(configDir, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.description.md").FirstOrDefault();
             if (string.IsNullOrWhiteSpace(descriptionFile) || !File.Exists(descriptionFile))
+            {
                 descriptionFile = Directory.EnumerateFiles(configDir, "description.md").FirstOrDefault();
+            }
+
             if (!string.IsNullOrEmpty(descriptionFile))
             {
                 return File.ReadAllText(descriptionFile);

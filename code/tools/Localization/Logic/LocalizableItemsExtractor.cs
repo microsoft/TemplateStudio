@@ -258,7 +258,9 @@ namespace Localization
             var directory = new DirectoryInfo(path);
 
             if (!directory.Exists)
+            {
                 throw new DirectoryNotFoundException($"Source directory \"{directory.FullName}\" not found.");
+            }
 
             return directory;
         }
@@ -280,7 +282,9 @@ namespace Localization
             var file = new FileInfo(path);
 
             if (!file.Exists)
+            {
                 throw new FileNotFoundException($"File \"{file.FullName}\" not found.");
+            }
 
             return file;
         }

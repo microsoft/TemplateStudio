@@ -661,10 +661,8 @@ namespace Microsoft.Templates.UI.Controls
 
             // We use a different prefix before nested lists than top-level lists.
             // See extended comment in _ProcessListItems().
-            if (_listLevel > 0)
-                return Evaluate(text, _listNested, ListEvaluator, defaultHandler);
-            else
-                return Evaluate(text, _listTopLevel, ListEvaluator, defaultHandler);
+            var list = _listLevel > 0 ? _listNested : _listTopLevel;
+            return Evaluate(text, list, ListEvaluator, defaultHandler);
         }
 
         private Block ListEvaluator(Match match)
@@ -917,7 +915,10 @@ namespace Microsoft.Templates.UI.Controls
                 {
                     case '\n':
                         if (valid)
+                        {
                             output.Append(line);
+                        }
+
                         output.Append('\n');
                         line.Length = 0;
                         valid = false;
@@ -926,7 +927,10 @@ namespace Microsoft.Templates.UI.Controls
                         if ((i < text.Length - 1) && (text[i + 1] != '\n'))
                         {
                             if (valid)
+                            {
                                 output.Append(line);
+                            }
+
                             output.Append('\n');
                             line.Length = 0;
                             valid = false;
@@ -935,20 +939,29 @@ namespace Microsoft.Templates.UI.Controls
                     case '\t':
                         int width = (_tabWidth - (line.Length % _tabWidth));
                         for (int k = 0; k < width; k++)
+                        {
                             line.Append(' ');
+                        }
+
                         break;
                     case '\x1A':
                         break;
                     default:
                         if (!valid && text[i] != ' ')
+                        {
                             valid = true;
+                        }
+
                         line.Append(text[i]);
                         break;
                 }
             }
 
             if (valid)
+            {
                 output.Append(line);
+            }
+
             output.Append('\n');
 
             // add two newlines to the end before return
@@ -967,7 +980,10 @@ namespace Microsoft.Templates.UI.Controls
 
             var sb = new StringBuilder(text.Length * count);
             for (int i = 0; i < count; i++)
+            {
                 sb.Append(text);
+            }
+
             return sb.ToString();
         }
 

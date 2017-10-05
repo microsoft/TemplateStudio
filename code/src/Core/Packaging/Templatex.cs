@@ -245,7 +245,9 @@ namespace Microsoft.Templates.Core.Packaging
         private static bool ValidateSignatures(Package package)
         {
             if (package == null)
+            {
                 throw new ArgumentNullException("ValidateSignatures(package)");
+            }
 
             var dsm = new PackageDigitalSignatureManager(package);
             bool result = dsm.IsSigned;
@@ -331,10 +333,14 @@ namespace Microsoft.Templates.Core.Packaging
         private static void SignAllParts(Package package, X509Certificate cert)
         {
             if (package == null)
+            {
                 throw new ArgumentNullException("SignAllParts(package)");
+            }
 
             if (cert == null)
+            {
                 throw new ArgumentNullException("SignAllParts(cert)");
+            }
 
             var dsm = new PackageDigitalSignatureManager(package)
             {

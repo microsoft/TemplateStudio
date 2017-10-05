@@ -27,14 +27,20 @@ namespace Localization
             _sourceDir = new DirectoryInfo(sourceDirPath);
 
             if (!_sourceDir.Exists)
+            {
                 throw new DirectoryNotFoundException($"Source directory \"{sourceDirPath}\" not found.");
+            }
 
             if (_sourceDir.Name.ToLower() != sourceDirNamePattern.ToLower())
+            {
                 throw new Exception($"Source directory \"{_sourceDir.Name}\" is not valid. Directory name should be \"{sourceDirNamePattern}\".");
+            }
 
             _destinationDir = new DirectoryInfo(destinationDirPath);
             if (!_destinationDir.Exists)
+            {
                 _destinationDir.Create();
+            }
         }
 
         internal void GenerateRightClickCommands(List<string> cultures)
@@ -42,7 +48,9 @@ namespace Localization
             DirectoryInfo templateDirectory = new DirectoryInfo(Path.Combine(_destinationDir.FullName, destinationDirNamePattern));
 
             if (templateDirectory.Exists)
+            {
                 return;
+            }
 
             templateDirectory.Create();
 
@@ -56,7 +64,9 @@ namespace Localization
             FileInfo vstemplateFile = new FileInfo(vstemplateFilePath);
 
             if (!vstemplateFile.Exists)
+            {
                 throw new FileNotFoundException($"File \"{vstemplateFilePath}\" not found.");
+            }
 
             foreach (string culture in cultures)
             {
