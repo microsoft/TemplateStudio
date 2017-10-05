@@ -35,6 +35,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 return _current;
             }
         }
+
         private FileHealthWriter()
         {
             _workingFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), Configuration.Current.LogFileFolderPath);
@@ -57,6 +58,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
             await WriteAndFlushAsync(sb.ToString());
         }
+
         public async Task WriteExceptionAsync(Exception ex, string message = null)
         {
             if (ex == null)

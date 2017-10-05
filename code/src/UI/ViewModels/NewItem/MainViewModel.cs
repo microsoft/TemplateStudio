@@ -185,6 +185,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 return activeGroup.SelectedItem as TemplateInfoViewModel;
             }
+
             return null;
         }
 
@@ -227,6 +228,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     AddTemplate(userSelection, dependencyTemplate.GetDefaultName(), dependencyTemplate, dependencyTemplate.GetTemplateType());
                 }
             }
+
             return userSelection;
         }
 

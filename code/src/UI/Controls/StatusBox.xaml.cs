@@ -27,6 +27,7 @@ namespace Microsoft.Templates.UI.Controls
             get { return (StatusViewModel)GetValue(StatusProperty); }
             set { SetValue(StatusProperty, value); }
         }
+
         public static readonly DependencyProperty StatusProperty = DependencyProperty.Register(nameof(Status), typeof(StatusViewModel), typeof(StatusBox), new PropertyMetadata(null, OnStatusPropertyChanged));
 
         public ICommand CloseCommand
@@ -34,6 +35,7 @@ namespace Microsoft.Templates.UI.Controls
             get { return (ICommand)GetValue(CloseCommandProperty); }
             private set { SetValue(CloseCommandProperty, value); }
         }
+
         public static readonly DependencyProperty CloseCommandProperty = DependencyProperty.Register(nameof(CloseCommand), typeof(ICommand), typeof(StatusBox), new PropertyMetadata(null));
 
         private static void OnStatusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -81,6 +83,7 @@ namespace Microsoft.Templates.UI.Controls
                     _hideTimer.Interval = TimeSpan.FromSeconds(autoHideSeconds);
                     _hideTimer.Start();
                 }
+
                 this.FadeIn();
             }
             else

@@ -25,6 +25,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (Brush)GetValue(FillProperty);
             set => SetValue(FillProperty, value);
         }
+
         public static readonly DependencyProperty FillProperty = DependencyProperty.Register(nameof(Fill), typeof(Brush), typeof(LogoDisplay), new PropertyMetadata(new SolidColorBrush(Colors.White)));
 
         public bool IsBusy
@@ -32,6 +33,7 @@ namespace Microsoft.Templates.UI.Controls
             get { return (bool)GetValue(IsBusyProperty); }
             set { SetValue(IsBusyProperty, value); }
         }
+
         public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register(nameof(IsBusy), typeof(bool), typeof(LogoDisplay), new PropertyMetadata(false, OnIsBusyPropertyChanged));
 
         public LogoDisplay()
@@ -58,6 +60,7 @@ namespace Microsoft.Templates.UI.Controls
                 _isBusyTimer.Stop();
             }
         }
+
         private void OnIsBusyTimerTick(object sender, EventArgs e)
         {
             switch (animationStatus)
@@ -82,6 +85,7 @@ namespace Microsoft.Templates.UI.Controls
                     animationStatus = 0;
                     return;
             }
+
             animationStatus++;
         }
     }

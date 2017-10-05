@@ -218,6 +218,7 @@ namespace Microsoft.Templates.UI
                         AddTemplate(genItem, compositionQueue, compositionItem.template, userSelection);
                     }
                 }
+
                 combinedQueue.AddRange(compositionQueue.OrderBy(g => g.Template.GetCompositionOrder()));
             }
 

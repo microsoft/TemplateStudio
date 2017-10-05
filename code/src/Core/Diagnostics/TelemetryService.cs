@@ -281,6 +281,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 Trace.TraceInformation($"Exception tracking New Item Creation in VsTelemetry:\r\n" + ex.ToString());
             }
         }
+
         private void TrackNewItemVsTelemetry(Dictionary<string, string> properties, string pageIdentities, string featureIdentities, Dictionary<string, double> metrics, bool success = true)
         {
             VsTelem.TelemetryResult result = success ? VsTelem.TelemetryResult.Success : VsTelem.TelemetryResult.Failure;
@@ -295,6 +296,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                     e.Properties[renamedKey] = properties[key];
                 }
             }
+
             e.Properties.Add(VsTelemetryProperties.Pages, pageIdentities);
             e.Properties.Add(VsTelemetryProperties.Features, featureIdentities);
 
@@ -422,6 +424,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 // free managed resources
                 Flush();
             }
+
             // free native resources if any
         }
     }

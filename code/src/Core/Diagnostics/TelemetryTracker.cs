@@ -234,6 +234,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 // free managed resources
                 TelemetryService.Current.Dispose();
             }
+
             // free native resources if any.
         }
     }

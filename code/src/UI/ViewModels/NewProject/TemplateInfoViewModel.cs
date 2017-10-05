@@ -135,6 +135,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                         MainViewModel.Current.SetValidationErrors(ErrorMessage);
                         throw new Exception(ErrorMessage);
                     }
+
                     MainViewModel.Current.CleanStatus(true);
                 }
             }
@@ -202,6 +203,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 MainViewModel.Current.CleanStatus(true);
                 return true;
             }
+
             return false;
         }
 

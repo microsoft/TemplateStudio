@@ -53,6 +53,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (Style)GetValue(DocumentStyleProperty);
             set => SetValue(DocumentStyleProperty, value);
         }
+
         public static readonly DependencyProperty DocumentStyleProperty = DependencyProperty.Register("DocumentStyle", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style Heading1Style
@@ -60,6 +61,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (Style)GetValue(Heading1StyleProperty);
             set => SetValue(Heading1StyleProperty, value);
         }
+
         public static readonly DependencyProperty Heading1StyleProperty = DependencyProperty.Register("Heading1Style", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style Heading2Style
@@ -67,6 +69,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (Style)GetValue(Heading2StyleProperty);
             set => SetValue(Heading2StyleProperty, value);
         }
+
         public static readonly DependencyProperty Heading2StyleProperty = DependencyProperty.Register("Heading2Style", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style Heading3Style
@@ -74,6 +77,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (Style)GetValue(Heading3StyleProperty);
             set => SetValue(Heading3StyleProperty, value);
         }
+
         public static readonly DependencyProperty Heading3StyleProperty = DependencyProperty.Register("Heading3Style", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style Heading4Style
@@ -81,6 +85,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (Style)GetValue(Heading4StyleProperty);
             set => SetValue(Heading4StyleProperty, value);
         }
+
         public static readonly DependencyProperty Heading4StyleProperty = DependencyProperty.Register("Heading4Style", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style CodeStyle
@@ -88,6 +93,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (Style)GetValue(CodeStyleProperty);
             set => SetValue(CodeStyleProperty, value);
         }
+
         public static readonly DependencyProperty CodeStyleProperty = DependencyProperty.Register("CodeStyle", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style LinkStyle
@@ -95,6 +101,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (Style)GetValue(LinkStyleProperty);
             set => SetValue(LinkStyleProperty, value);
         }
+
         public static readonly DependencyProperty LinkStyleProperty = DependencyProperty.Register("LinkStyle", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style ImageStyle
@@ -102,6 +109,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (Style)GetValue(ImageStyleProperty);
             set => SetValue(ImageStyleProperty, value);
         }
+
         public static readonly DependencyProperty ImageStyleProperty = DependencyProperty.Register("ImageStyle", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style SeparatorStyle
@@ -109,6 +117,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (Style)GetValue(SeparatorStyleProperty);
             set => SetValue(SeparatorStyleProperty, value);
         }
+
         public static readonly DependencyProperty SeparatorStyleProperty = DependencyProperty.Register("SeparatorStyle", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public string AssetPathRoot
@@ -544,6 +553,7 @@ namespace Microsoft.Templates.UI.Controls
                     {
                         block.Style = Heading1Style;
                     }
+
                     break;
 
                 case 2:
@@ -551,6 +561,7 @@ namespace Microsoft.Templates.UI.Controls
                     {
                         block.Style = Heading2Style;
                     }
+
                     break;
 
                 case 3:
@@ -558,6 +569,7 @@ namespace Microsoft.Templates.UI.Controls
                     {
                         block.Style = Heading3Style;
                     }
+
                     break;
 
                 case 4:
@@ -565,6 +577,7 @@ namespace Microsoft.Templates.UI.Controls
                     {
                         block.Style = Heading4Style;
                     }
+
                     break;
             }
 
@@ -935,6 +948,7 @@ namespace Microsoft.Templates.UI.Controls
                             line.Length = 0;
                             valid = false;
                         }
+
                         break;
                     case '\t':
                         int width = (_tabWidth - (line.Length % _tabWidth));

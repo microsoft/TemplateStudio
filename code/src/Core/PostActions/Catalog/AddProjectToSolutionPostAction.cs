@@ -29,6 +29,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                     GenContext.ToolBox.Shell.AddProjectToSolution(projectPath);
                 }
             }
+
             chrono.Stop();
             GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddProjectToSolution] = chrono.Elapsed.TotalSeconds;
         }

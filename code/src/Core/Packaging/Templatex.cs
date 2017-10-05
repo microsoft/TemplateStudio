@@ -74,6 +74,7 @@ namespace Microsoft.Templates.Core.Packaging
 
             return outFile;
         }
+
         public static void Pack(string source, string outFile, string mimeMediaType)
         {
             if (string.IsNullOrWhiteSpace(source))
@@ -380,6 +381,7 @@ namespace Microsoft.Templates.Core.Packaging
                 target.Write(buf, 0, bytesRead);
             }
         }
+
         private static void EnsureDirectory(string dir)
         {
             if (!string.IsNullOrEmpty(dir) && dir.ToLower() != Environment.CurrentDirectory.ToLower())

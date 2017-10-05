@@ -370,6 +370,7 @@ namespace Microsoft.Templates.Core.Test
             {
                 throw new ArgumentException($"There is no template with name '{templateName}'. Number of templates: '{allTemplates.Count()}'");
             }
+
             return target;
         }
 
@@ -394,6 +395,7 @@ namespace Microsoft.Templates.Core.Test
             {
                 throw new ArgumentException($"There is no template with identity '{templateIdentity}'. Number of templates: '{allTemplates.Count()}'");
             }
+
             return target;
         }
     }

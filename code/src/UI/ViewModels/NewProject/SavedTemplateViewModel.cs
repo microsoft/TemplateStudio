@@ -47,6 +47,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 colorTimer.Start();
             }
         }
+
         private string _newItemName;
         public string NewItemName
         {
@@ -69,6 +70,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                         throw new Exception(ErrorMessage);
                     }
                 }
+
                 MainViewModel.Current.CleanStatus(true);
             }
         }
@@ -390,6 +392,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 NewItemName = ItemName;
             }
+
             IsEditionEnabled = false;
             MainViewModel.Current.CleanStatus(true);
         }

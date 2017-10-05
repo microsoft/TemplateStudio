@@ -100,6 +100,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                     }
                 }
             }
+
             return false;
         }
 
@@ -215,6 +216,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 {
                     return Path.GetDirectoryName(item.Project.FullName);
                 }
+
                 if (item.ProjectItem != null)
                 {
                     string fullPath = $"{item.ProjectItem.Properties.GetSafeValue("FullPath")}";
@@ -392,6 +394,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 projectGuid = Guid.Empty;
             }
+
             return projectGuid;
         }
 
@@ -424,6 +427,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                     internet = false;
                 }
             }
+
             return internet;
         }
 
@@ -447,6 +451,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                         {
                             Dte.ItemOperations.OpenFile(item, EnvDTE.Constants.vsViewKindPrimary);
                         }
+
                         break;
                 }
             }

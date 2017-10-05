@@ -60,6 +60,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 WriteElement(node);
             }
+
             WriteFullEndElement();
             WriteNewLine();
         }
@@ -78,6 +79,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 WriteRaw(e.Value);
             }
+
             WriteEndElement();
             WriteNewLine();
             if (e.Name.LocalName == "Style")
@@ -119,6 +121,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 WriteEndElement();
                 WriteNewLine();
             }
+
             WriteRaw(intend);
         }
 

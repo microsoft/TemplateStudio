@@ -40,12 +40,15 @@ namespace Microsoft.Templates.UI.Extensions
             {
                 throw new ArgumentNullException("element");
             }
+
             if (element.Opacity > 0.0)
             {
                 return AnimateDoubleProperty(element, "Opacity", element.Opacity, 0.0, duration, easingFunction);
             }
+
             return null;
         }
+
         public static async Task FadeOutAsync(this UIElement element, double duration = 250, EasingFunctionBase easingFunction = null)
         {
             if (element.Opacity > 0.0)
@@ -65,6 +68,7 @@ namespace Microsoft.Templates.UI.Extensions
             {
                 return AnimateDoubleProperty(element, "Width", element.ActualWidth, width, duration, easingFunction);
             }
+
             return null;
         }
 

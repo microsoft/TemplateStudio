@@ -60,9 +60,11 @@ namespace Microsoft.Templates.UI.Generation
                         {
                             SaveProjectConfiguration(inferredConfig.ProjectType, inferredConfig.Framework);
                         }
+
                         return inferredConfig;
                     }
                 }
+
                 return (string.Empty, string.Empty);
             }
             catch (Exception ex)
@@ -157,6 +159,7 @@ namespace Microsoft.Templates.UI.Generation
                     }
                 }
             }
+
             return false;
         }
 
@@ -184,6 +187,7 @@ namespace Microsoft.Templates.UI.Generation
                         fileContent.Contains("public event PropertyChangedEventHandler PropertyChanged;");
                 }
             }
+
             return false;
         }
 
@@ -200,6 +204,7 @@ namespace Microsoft.Templates.UI.Generation
                     }
                 }
             }
+
             return false;
         }
 

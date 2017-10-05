@@ -96,6 +96,7 @@ namespace Microsoft.Templates.Test
                     sb.AppendLine(line);
                 }
             }
+
             File.Delete(manifest);
             File.WriteAllText(manifest, sb.ToString());
         }

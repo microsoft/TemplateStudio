@@ -29,6 +29,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 _pane.Activate();
             }
         }
+
         public void Write(string data)
         {
             _pane.OutputString(data);

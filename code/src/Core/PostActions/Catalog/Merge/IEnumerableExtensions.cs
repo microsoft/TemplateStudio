@@ -184,6 +184,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                     return insertionBuffer.Count;
                 }
             }
+
             return 0;
         }
 

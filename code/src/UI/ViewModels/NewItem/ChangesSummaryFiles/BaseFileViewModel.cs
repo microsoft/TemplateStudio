@@ -32,9 +32,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     var name = Subject.Replace(".xaml", "");
                     return Path.Combine(GenContext.Current.OutputPath, $"{name}_failedpostaction.xaml");
                 }
+
                 return string.Empty;
             }
         }
+
         public string TempFile => Path.Combine(GenContext.Current.OutputPath, Subject);
         public string ProjectFile => Path.Combine(GenContext.Current.ProjectPath, Subject);
 

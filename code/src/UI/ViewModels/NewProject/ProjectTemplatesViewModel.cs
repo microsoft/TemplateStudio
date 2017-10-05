@@ -109,6 +109,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 SetupTemplatesFromLayout(ContextProjectType.Name, ContextFramework.Name);
                 MainViewModel.Current.RebuildLicenses();
             }
+
             CloseAllEditions();
             await Task.CompletedTask;
         }
@@ -127,6 +128,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.SetHome).FireAndForget();
             }
         }
+
         public void UpdateHomePageName(string name) => HomeName = name;
 
         public void RemoveTemplate(SavedTemplateViewModel item, bool showErrors)
@@ -182,6 +184,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     string message = string.Format(StringRes.ValidationError_CanNotRemoveTemplate_SF, item.TemplateName, dependencyItem.TemplateName, dependencyItem.TemplateType);
                     MainViewModel.Current.WizardStatus.SetStatus(StatusViewModel.Warning(message, false, 5));
                 }
+
                 return true;
             }
 
@@ -277,6 +280,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 return;
             }
+
             var newItem = new SavedTemplateViewModel(item, isRemoveEnabled);
 
             if (item.template.GetTemplateType() == TemplateType.Page)
@@ -286,12 +290,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     HomeName = item.name;
                     newItem.IsHome = true;
                 }
+
                 while (SavedPages.Count < newItem.GenGroup + 1)
                 {
                     var items = new ObservableCollection<SavedTemplateViewModel>();
                     SavedPages.Add(items);
                     MainViewModel.Current.Ordering.AddList(items, SavedPages.Count == 1);
                 }
+
                 SavedPages[newItem.GenGroup].Add(newItem);
                 HasSavedPages = true;
             }
@@ -300,6 +306,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 SavedFeatures.Add(newItem);
                 HasSavedFeatures = true;
             }
+
             UpdateTemplatesAvailability();
             UpdateSummaryTemplates();
         }

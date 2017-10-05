@@ -69,12 +69,14 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             CurrentStep--;
             UpdateCanGoBack(CurrentStep > 0);
         }
+
         protected virtual void OnNext()
         {
             UpdateCanGoBack(true);
             WizardStatus.IsOverlayBoxVisible = false;
             CurrentStep++;
         }
+
         protected virtual void OnFinish(string parameter)
         {
             _mainView.DialogResult = true;
@@ -86,17 +88,20 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             _canGoBack = canGoBack;
             BackCommand.OnCanExecuteChanged();
         }
+
         public void UpdateCanGoForward(bool canGoForward)
         {
             _canGoForward = canGoForward;
             NextCommand.OnCanExecuteChanged();
         }
+
         public void UpdateCanFinish(bool canFinish)
         {
             _canFinish = canFinish;
             FinishCommand.OnCanExecuteChanged();
             WizardStatus.ShowFinishButton = canFinish;
         }
+
         private void UpdateCanCheckUpdates(bool value)
         {
             _canCheckingUpdates = value;
@@ -109,6 +114,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             NextCommand.OnCanExecuteChanged();
             FinishCommand.OnCanExecuteChanged();
         }
+
         public void SetValidationErrors(string errorMessage, StatusType statusType = StatusType.Error)
         {
             WizardStatus.SetStatus(new StatusViewModel(statusType, errorMessage));
@@ -250,6 +256,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 return _mainView.FindResource(resourceKey) as T;
             }
+
             return default(T);
         }
     }

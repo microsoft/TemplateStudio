@@ -50,6 +50,7 @@ namespace Microsoft.UI.Test
             {
                 GenContext.ToolBox.Repo.RefreshAsync().Wait();
             }
+
             Repository = GenContext.ToolBox.Repo;
         }
     }

@@ -177,6 +177,7 @@ namespace Localization
             {
                 ExtractWtsTemplateFiles(Routes.WtsProjectTypes);
             }
+
             ExtractWtsTemplateSubfolderFiles(Routes.WtsProjectTypes);
         }
 
@@ -186,6 +187,7 @@ namespace Localization
             {
                 ExtractWtsTemplateFiles(Routes.WtsFrameworks);
             }
+
             ExtractWtsTemplateSubfolderFiles(Routes.WtsFrameworks);
         }
 

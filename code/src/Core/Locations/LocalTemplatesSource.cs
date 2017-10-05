@@ -32,10 +32,12 @@ namespace Microsoft.Templates.Core.Locations
         {
             _id = Configuration.Current.Environment;
         }
+
         public LocalTemplatesSource(string id) : this("0.0.0.0", "0.0.0.0", true)
         {
             _id = id;
         }
+
         public LocalTemplatesSource(string wizardVersion, string templatesVersion, bool forcedAdquisition = true)
         {
             ForcedAcquisition = forcedAdquisition;

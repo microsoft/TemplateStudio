@@ -55,6 +55,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 HealthWriters.Available.Add(newWriter);
             }
         }
+
         private void InstanceDefaultWriters()
         {
             HealthWriters.Available.Add(FileHealthWriter.Current);
@@ -86,6 +87,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                     }
                 }
             }
+
             // free native resources if any.
         }
     }

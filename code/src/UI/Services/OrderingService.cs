@@ -36,6 +36,7 @@ namespace Microsoft.Templates.UI.Services
                     var service = new DragAndDropService<SavedTemplateViewModel>(listView);
                     service.ProcessDrop += Drop;
                 }
+
                 Panel.Children.Add(listView);
             }
         }
@@ -49,6 +50,7 @@ namespace Microsoft.Templates.UI.Services
                 _dragginItem = savedTemplate;
                 return true;
             }
+
             return false;
         }
 
@@ -63,6 +65,7 @@ namespace Microsoft.Templates.UI.Services
                 _dragginItem = null;
                 _dropTarget = null;
             }
+
             return false;
         }
 
@@ -74,6 +77,7 @@ namespace Microsoft.Templates.UI.Services
                 _dropTarget = null;
                 return true;
             }
+
             return false;
         }
 
@@ -89,10 +93,12 @@ namespace Microsoft.Templates.UI.Services
                     {
                         MainViewModel.Current.ProjectTemplates.SetHomePage(e.ItemData);
                     }
+
                     if (e.OldIndex > -1)
                     {
                         savedPages[e.ItemData.GenGroup].Move(e.OldIndex, e.NewIndex);
                     }
+
                     MainViewModel.Current.ProjectTemplates.SetHomePage(items.First());
                 }
             }

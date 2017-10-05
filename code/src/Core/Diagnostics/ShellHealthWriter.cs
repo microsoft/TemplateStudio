@@ -17,6 +17,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             _shell = shell;
         }
+
         public async SystemTasks.Task WriteExceptionAsync(Exception ex, string message = null)
         {
             if (_shell != null)

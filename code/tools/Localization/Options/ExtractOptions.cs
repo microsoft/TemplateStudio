@@ -36,10 +36,12 @@ namespace Localization.Options
                 {
                     return ExtractorMode.TagName;
                 }
+
                 if (!string.IsNullOrEmpty(CommitSha))
                 {
                     return ExtractorMode.Commit;
                 }
+
                 return ExtractorMode.All;
             }
         }

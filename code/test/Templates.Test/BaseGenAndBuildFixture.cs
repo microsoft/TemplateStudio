@@ -92,6 +92,7 @@ namespace Microsoft.Templates.Test
                 {
                     validators.Add(new DefaultNamesValidator());
                 }
+
                 itemName = Naming.Infer(itemName, validators);
                 AddItem(userSelection, itemName, template);
             }

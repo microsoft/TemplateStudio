@@ -85,6 +85,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 return;
             }
+
             if (button?.Tag != null && button.Tag.ToString() == "AllowCloseEdition")
             {
                 return;
@@ -142,6 +143,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     Ordering.Panel.Children.Clear();
                     CleanStatus();
                 }
+
                 WizardStatus.WizardTitle = StringRes.ProjectPagesTitle;
                 await ProjectTemplates.InitializeAsync();
                 NavigationService.Navigate(new ProjectPagesView());

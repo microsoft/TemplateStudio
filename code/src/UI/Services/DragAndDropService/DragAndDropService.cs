@@ -185,6 +185,7 @@ namespace Microsoft.Templates.UI.Services
                                 {
                                     itemsSource.Insert(newIndex, data);
                                 }
+
                                 e.Effects = DragDropEffects.Move;
                             }
                         }
@@ -221,6 +222,7 @@ namespace Microsoft.Templates.UI.Services
                     break;
                 }
             }
+
             return index;
         }
 
@@ -230,6 +232,7 @@ namespace Microsoft.Templates.UI.Services
             {
                 return null;
             }
+
             return _listView.ItemContainerGenerator.ContainerFromItem(dataItem) as ListViewItem;
         }
 

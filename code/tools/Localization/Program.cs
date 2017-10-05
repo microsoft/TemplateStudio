@@ -69,6 +69,7 @@ namespace Localization
                         {
                             ExitWithError();
                         }
+
                         break;
                 }
             }

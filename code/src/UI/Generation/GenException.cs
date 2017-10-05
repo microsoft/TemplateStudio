@@ -15,6 +15,7 @@ namespace Microsoft.Templates.UI
         protected GenException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
+
         public GenException(string message) : base(message)
         {
         }

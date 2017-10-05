@@ -107,6 +107,7 @@ namespace Microsoft.Templates.Core.Locations
             {
                 AppHealth.Current.Verbose.TrackAsync($"{StringRes.CurrentContentExpirationString}: {expiration.ToString()}").FireAndForget();
             }
+
             return expired;
         }
 

@@ -46,12 +46,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     {
                         SelectedFramework = Frameworks.FirstOrDefault();
                     }
+
                     var hasChanged = _selectedProjectType != null && _selectedProjectType.Name != value.Name;
                     SetProperty(ref _selectedProjectType, value);
                     if (hasChanged)
                     {
                         MainViewModel.Current.AlertProjectSetupChanged();
                     }
+
                     MainViewModel.Current.UpdateCanGoForward(true);
                     MainViewModel.Current.RebuildLicenses();
                 }
@@ -72,6 +74,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     {
                         MainViewModel.Current.AlertProjectSetupChanged();
                     }
+
                     MainViewModel.Current.RebuildLicenses();
                 }
             }
