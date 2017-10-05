@@ -38,7 +38,7 @@
             Grid.Row="1"
             x:Name="MasterDetailsViewControl"
             ItemsSource="{x:Bind ViewModel.Items}"
-            SelectedItem="{x:Bind ViewModel.ActiveItem, Mode=OneWay}"
+            SelectedItem="{x:Bind ViewModel.ActiveItem, Mode=TwoWay}"
             ItemTemplate="{StaticResource ItemTemplate}"
             DetailsTemplate="{StaticResource DetailsTemplate}"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
