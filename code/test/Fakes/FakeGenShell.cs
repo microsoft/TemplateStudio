@@ -80,6 +80,10 @@ namespace Microsoft.Templates.Fakes
             return GenContext.Current.ProjectName;
         }
 
+        public override void CleanSolution()
+        {
+        }
+
         public override void SaveSolution()
         {
         }

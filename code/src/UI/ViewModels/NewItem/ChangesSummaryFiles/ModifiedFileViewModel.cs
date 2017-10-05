@@ -9,9 +9,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class ModifiedFileViewModel : BaseFileViewModel
     {
-        public override FileStatus FileStatus => FileStatus.ModifiedFile;
-
-        public ModifiedFileViewModel(NewItemGenerationFileInfo generationInfo) : base(generationInfo)
+        public ModifiedFileViewModel(NewItemGenerationFileInfo generationInfo) : base(generationInfo, FileStatus.ModifiedFile)
         {
             DetailTitle = StringRes.ChangesSummaryDetailTitleModifiedFiles;
             DetailDescription = StringRes.ChangesSummaryDetailDescriptionModifiedFiles;

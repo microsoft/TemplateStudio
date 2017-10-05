@@ -4,19 +4,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:cm="using:Caliburn.Micro"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:cm="using:Caliburn.Micro"
     mc:Ignorable="d">
     <Page.Resources>
-        <DataTemplate x:Key="MasterListViewItemTemplate">
-            <ContentControl cm:View.Model="{Binding}" cm:View.Context="MasterDetailViewItemControl" />
+        <DataTemplate x:Key="ItemTemplate">
+            <ContentControl cm:View.Model="{Binding}" cm:View.Context="MasterView" />
         </DataTemplate>
 
-        <DataTemplate x:Key="MasterListViewDetailsTemplate">
-            <ContentControl cm:View.Model="{Binding}" cm:View.Context="MasterDetailViewDetailControl" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
+        <DataTemplate x:Key="DetailsTemplate">
+            <ContentControl cm:View.Model="{Binding}" cm:View.Context="DetailsView" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
         </DataTemplate>
 
-        <DataTemplate x:Key="MasterListViewNoSelectionContentTemplate">
+        <DataTemplate x:Key="NoSelectionContentTemplate">
             <TextBlock x:Uid="MasterDetailView_NoSelection" Style="{StaticResource ListNoSelectionTextStyle}" />
         </DataTemplate>
     </Page.Resources>
@@ -39,9 +39,9 @@
             x:Name="MasterDetailsViewControl"
             ItemsSource="{x:Bind ViewModel.Items}"
             SelectedItem="{x:Bind ViewModel.ActiveItem}"
-            ItemTemplate="{StaticResource MasterListViewItemTemplate}"
-            DetailsTemplate="{StaticResource MasterListViewDetailsTemplate}"
-            NoSelectionContentTemplate="{StaticResource MasterListViewNoSelectionContentTemplate}"
+            ItemTemplate="{StaticResource ItemTemplate}"
+            DetailsTemplate="{StaticResource DetailsTemplate}"
+            NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
             BorderBrush="Transparent" />
     </Grid>
 </Page>
