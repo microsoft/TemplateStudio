@@ -31,6 +31,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 {
                     Gen.GenContext.ToolBox.Shell.RefreshProject();
                     GenContext.ToolBox.Shell.SaveSolution();
+                    GenContext.ToolBox.Shell.CleanSolution();
                 }
             }
 
