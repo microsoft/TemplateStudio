@@ -109,7 +109,30 @@ namespace Microsoft.Templates.Test
 
             int emptyProjecFileCount = Directory.GetFiles(project, "*.*", SearchOption.AllDirectories).Count();
             Assert.True(emptyProjecFileCount > 2);
+            await AddRightClickTemplatesAsync(projectName, projectType, framework, language);
 
+            var finalProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName);
+            int finalProjectFileCount = Directory.GetFiles(finalProjectPath, "*.*", SearchOption.AllDirectories).Count();
+
+            if (emptyProject)
+            {
+                Assert.True(finalProjectFileCount > emptyProjecFileCount);
+            }
+            else
+            {
+                Assert.True(finalProjectFileCount == emptyProjecFileCount);
+            }
+            // Clean
+            if (cleanGeneration)
+            {
+                Fs.SafeDeleteDirectory(finalProjectPath);
+            }
+
+            return finalProjectPath;
+        }
+
+        protected async Task AddRightClickTemplatesAsync(string projectName, string projectType, string framework, string language)
+        {
             // Add new items
             var rightClickTemplates = _fixture.Templates().Where(
                                             t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
@@ -136,26 +159,8 @@ namespace Microsoft.Templates.Test
 
                 NewItemGenController.Instance.UnsafeFinishGeneration(newUserSelection);
             }
-
-            var finalProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName);
-            int finalProjectFileCount = Directory.GetFiles(finalProjectPath, "*.*", SearchOption.AllDirectories).Count();
-
-            if (emptyProject)
-            {
-                Assert.True(finalProjectFileCount > emptyProjecFileCount);
-            }
-            else
-            {
-                Assert.True(finalProjectFileCount == emptyProjecFileCount);
-            }
-            // Clean
-            if (cleanGeneration)
-            {
-                Fs.SafeDeleteDirectory(finalProjectPath);
-            }
-
-            return finalProjectPath;
         }
+
         protected async Task<(string ProjectPath, string ProjecName)> AssertGenerationOneByOneAsync(string itemName, string projectType, string framework, string itemId, string language, bool cleanGeneration = true)
         {
             await SetUpFixtureForTestingAsync(language);
