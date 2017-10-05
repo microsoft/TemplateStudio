@@ -692,26 +692,26 @@ namespace Microsoft.Templates.UI.Controls
         /// </summary>
         private IEnumerable<ListItem> ProcessListItems(string list, string marker)
         {
-            // The listLevel global keeps track of when we're inside a list.
-            // Each time we enter a list, we increment it; when we leave a list,
-            // we decrement. If it's zero, we're not in a list anymore.
+            //// The listLevel global keeps track of when we're inside a list.
+            //// Each time we enter a list, we increment it; when we leave a list,
+            //// we decrement. If it's zero, we're not in a list anymore.
 
-            // We do this because when we're not inside a list, we want to treat
-            // something like this:
+            //// We do this because when we're not inside a list, we want to treat
+            //// something like this:
 
-            // I recommend upgrading to version
-            // 8. Oops, now this line is treated
-            // as a sub-list.
+            //// I recommend upgrading to version
+            //// 8. Oops, now this line is treated
+            //// as a sub-list.
 
-            // As a single paragraph, despite the fact that the second line starts
-            // with a digit-period-space sequence.
+            //// As a single paragraph, despite the fact that the second line starts
+            //// with a digit-period-space sequence.
 
-            // Whereas when we're inside a list (or sub-list), that line will be
-            // treated as the start of a sub-list. What a kludge, huh? This is
-            // an aspect of Markdown's syntax that's hard to parse perfectly
-            // without resorting to mind-reading. Perhaps the solution is to
-            // change the syntax rules such that sub-lists must start with a
-            // starting cardinal number; e.g. "1." or "a.".
+            //// Whereas when we're inside a list (or sub-list), that line will be
+            //// treated as the start of a sub-list. What a kludge, huh? This is
+            //// an aspect of Markdown's syntax that's hard to parse perfectly
+            //// without resorting to mind-reading. Perhaps the solution is to
+            //// change the syntax rules such that sub-lists must start with a
+            //// starting cardinal number; e.g. "1." or "a.".
 
             _listLevel++;
             try
