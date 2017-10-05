@@ -252,6 +252,7 @@ namespace Microsoft.Templates.UI.Controls
             // in other words [this] and [this[also]] and [this[also[too]]]
             // up to _nestDepth
             if (_nestedBracketsPattern == null)
+            {
                 _nestedBracketsPattern =
                     RepeatString(@"
                     (?>              # Atomic matching
@@ -262,6 +263,8 @@ namespace Microsoft.Templates.UI.Controls
                     @" \]
                     )*",
                     _nestDepth);
+            }
+
             return _nestedBracketsPattern;
         }
 
@@ -276,6 +279,7 @@ namespace Microsoft.Templates.UI.Controls
             // in other words (this) and (this(also)) and (this(also(too)))
             // up to _nestDepth
             if (_nestedParensPattern == null)
+            {
                 _nestedParensPattern =
                     RepeatString(@"
                     (?>              # Atomic matching
@@ -286,6 +290,8 @@ namespace Microsoft.Templates.UI.Controls
                     @" \)
                     )*",
                     _nestDepth);
+            }
+
             return _nestedParensPattern;
         }
 
@@ -300,6 +306,7 @@ namespace Microsoft.Templates.UI.Controls
             // in other words (this) and (this(also)) and (this(also(too)))
             // up to _nestDepth
             if (_nestedParensPatternWithWhiteSpace == null)
+            {
                 _nestedParensPatternWithWhiteSpace =
                     RepeatString(@"
                     (?>              # Atomic matching
@@ -310,6 +317,8 @@ namespace Microsoft.Templates.UI.Controls
                     @" \)
                     )*",
                     _nestDepth);
+            }
+
             return _nestedParensPatternWithWhiteSpace;
         }
 
