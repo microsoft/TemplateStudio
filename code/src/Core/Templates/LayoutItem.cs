@@ -2,12 +2,19 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using Newtonsoft.Json;
+
 namespace Microsoft.Templates.Core
 {
     public class LayoutItem
     {
-        public string name { get; set; }
-        public string templateGroupIdentity { get; set; }
-        public bool @readonly { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("templateGroupIdentity")]
+        public string TemplateGroupIdentity { get; set; }
+
+        [JsonProperty("readonly")]
+        public bool Readonly { get; set; }
     }
 }

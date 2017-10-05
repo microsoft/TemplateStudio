@@ -60,7 +60,7 @@ namespace Microsoft.Templates.Test
                 }
                 else
                 {
-                    AddItem(userSelection, item.Layout.name, item.Template);
+                    AddItem(userSelection, item.Layout.Name, item.Template);
                 }
             }
 

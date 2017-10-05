@@ -233,7 +233,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public string DisplayText => CanChooseItemName ? $"{ItemName} [{TemplateName}]" : ItemName;
 
-        private ICommand _openCommand { get; set; }
+        private ICommand _openCommand;
         public ICommand OpenCommand => _openCommand ?? (_openCommand = new RelayCommand(OnOpen));
 
         private ICommand _removeCommand;

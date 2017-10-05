@@ -257,7 +257,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (item.Template != null)
                 {
-                    AddTemplateAndDependencies((item.Layout.name, item.Template), !item.Layout.@readonly);
+                    AddTemplateAndDependencies((item.Layout.Name, item.Template), !item.Layout.Readonly);
                 }
             }
         }
