@@ -63,6 +63,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         private static void CreateUwpPane(Guid paneGuid, bool visible, bool clearWithSolution, string title)
         {
             IVsOutputWindow output = ServiceProvider.GlobalProvider.GetService(typeof(SVsOutputWindow)) as IVsOutputWindow;
+
             // Create a new pane.
             int createRetVal = output.CreatePane(
                 ref paneGuid,

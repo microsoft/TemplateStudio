@@ -29,6 +29,7 @@ namespace Localization
             }))
             {
                 ShowHelp(verb, args);
+
                 // TO-DO: Use options.GetUsage(verb) to auto-generate help
                 // Console.WriteLine(options.GetUsage(verb));
                 ExitWithError();

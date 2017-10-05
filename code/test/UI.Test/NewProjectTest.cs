@@ -42,6 +42,7 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, CodeBehind, Blank page
             var viewModel = new MainViewModel();
             await viewModel.ProjectSetup.InitializeAsync();
+
             // Update project to Blank and framework to MVVM Light
             viewModel.ProjectSetup.SelectedProjectType = viewModel.ProjectSetup.ProjectTypes.First(pt => pt.Name == "Blank");
             viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == "MVVMLight");

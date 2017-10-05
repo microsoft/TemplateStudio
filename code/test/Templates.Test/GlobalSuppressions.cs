@@ -35,7 +35,6 @@ using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1401:FieldsMustBePrivate", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]
 
-[assembly: SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1515:SingleLineCommentMustBePrecededByBlankLine", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]
 [assembly: SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1516:ElementsMustBeSeparatedByBlankLine", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]
 [assembly: SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1519:BracesMustNotBeOmittedFromMultiLineChildStatement", Justification = "Initially suppressing everything before evaluating what we want and what's appropriate.")]
 

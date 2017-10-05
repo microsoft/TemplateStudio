@@ -79,7 +79,6 @@ namespace Microsoft.Templates.Test
 
             // Clean
             Fs.SafeDeleteDirectory(outputPath);
-            // Directory.Delete(outputPath, true);
         }
 
         public static IEnumerable<object[]> GetProjectTemplatesForStyleCopAsync()
