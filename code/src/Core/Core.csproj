@@ -187,8 +187,11 @@
     <Compile Include="Gen\GenContext.cs" />
     <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Gen\IContextProvider.cs" />
+    <Compile Include="Mvvm\RelayCommandOfT.cs" />
+    <Compile Include="Naming\ValidatorOfT.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeResourceDictionaryPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\ResourceDictionaryWriter.cs" />
+    <Compile Include="PostActions\PostActionOfT.cs" />
     <Compile Include="ProgrammingLanguages.cs" />
     <Compile Include="Naming\SuggestedDirectoryNameValidator.cs" />
     <Compile Include="PostActions\Catalog\Merge\FailedMergePostAction.cs" />

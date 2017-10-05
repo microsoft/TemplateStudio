@@ -4,8 +4,13 @@
 
 namespace Microsoft.Templates.Core
 {
-    public abstract class Validator
+    public abstract class Validator<TConfig> : Validator
     {
-        public abstract ValidationResult Validate(string suggestedName);
+        protected readonly TConfig _config;
+
+        public Validator(TConfig config)
+        {
+            _config = config;
+        }
     }
 }

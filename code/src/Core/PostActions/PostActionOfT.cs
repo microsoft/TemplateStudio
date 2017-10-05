@@ -4,8 +4,13 @@
 
 namespace Microsoft.Templates.Core.PostActions
 {
-    public abstract class PostAction
+    public abstract class PostAction<TConfig> : PostAction
     {
-        public abstract void Execute();
+        protected readonly TConfig _config;
+
+        public PostAction(TConfig config)
+        {
+            _config = config;
+        }
     }
 }

@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Test.Locations;
 using Microsoft.Templates.Fakes;
@@ -32,6 +33,7 @@ namespace Microsoft.Templates.Core.Test
         }
     }
 
+    [SuppressMessage("StyleCop", "SA1402", Justification = "This class does not have implementation")]
     [CollectionDefinition("Unit Test Templates")]
     public class TemplatesCollection : ICollectionFixture<TemplatesFixture>
     {
