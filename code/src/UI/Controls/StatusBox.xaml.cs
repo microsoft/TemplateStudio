@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -57,9 +56,7 @@ namespace Microsoft.Templates.UI.Controls
 
         private void OnHideTimerTick(object sender, EventArgs e)
         {
-            this.FadeOut();
-            Panel.SetZIndex(this, 0);
-            closeButton.Focusable = false;
+            HideStatus();
             _hideTimer.Stop();
         }
 
@@ -81,15 +78,24 @@ namespace Microsoft.Templates.UI.Controls
                     _hideTimer.Interval = TimeSpan.FromSeconds(autoHideSeconds);
                     _hideTimer.Start();
                 }
+                else
+                {
+                    _hideTimer.Stop();
+                }
                 this.FadeIn();
             }
             else
             {
-                Panel.SetZIndex(this, 0);
-                closeButton.Focusable = false;
-                this.FadeOut(0);
-                Visibility = Visibility.Collapsed;
+                HideStatus();
             }
+        }
+
+        private void HideStatus()
+        {
+            this.FadeOut(0);
+            Panel.SetZIndex(this, 0);
+            closeButton.Focusable = false;
+            Visibility = Visibility.Collapsed;
         }
     }
 }
