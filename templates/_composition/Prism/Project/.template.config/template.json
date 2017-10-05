@@ -15,7 +15,6 @@
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
-      { "path": ".\\App.xaml" }
     ],
     "symbols": {
       "wts.rootNamespace": {

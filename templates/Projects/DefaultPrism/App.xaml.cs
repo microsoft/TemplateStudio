@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Microsoft.Practices.Unity;
@@ -7,7 +7,7 @@ using Prism.Windows.AppModel;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 
-namespace Param_RootNamespace
+namespace wts.DefaultProject
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
@@ -27,12 +27,6 @@ namespace Param_RootNamespace
         {
             Container.RegisterInstance<IResourceLoader>(new ResourceLoaderAdapter(new ResourceLoader()));
             return base.OnInitializeAsync(args);
-        }
-
-        protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
-        {
-            NavigationService.Navigate("Blank", null);
-            return Task.FromResult(true);
         }
     }
 }
