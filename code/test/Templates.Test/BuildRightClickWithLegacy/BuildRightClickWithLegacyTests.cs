@@ -20,11 +20,12 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
-    [Collection("BuildRightClickWithLegacy")]
-    [Trait("ExecutionSet", "BuildLegacy")]
+    [Collection("BuildRightClickWithLegacyCollection")]
+    [Trait("ExecutionSet", "BuildRightClickWithLegacy")]
     public class BuildRightClickWithLegacyTests : BaseGenAndBuildTests
     {
-        private new BuildRightClickWithLegacyFixture _fixture;
+        // Excluded wts.Page.WebView from this test as webview requires creator update as min target version
+        private string[] excludedTemplates = { "wts.Page.WebView" };
 
         public BuildRightClickWithLegacyTests(BuildRightClickWithLegacyFixture fixture)
         {
@@ -32,11 +33,11 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "")]
+        [MemberData("GetProjectTemplatesForBuildAsync", "LegacyFrameworks")]
         [Trait("Type", "BuildRightClickLegacy")]
         public async Task BuildEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
-            var projectName = $"{projectType}AllLegacy";
+            var projectName = $"{projectType}{framework}AllLegacy";
 
             Func<ITemplateInfo, bool> selector =
                t => t.GetTemplateType() == TemplateType.Project
@@ -45,11 +46,19 @@ namespace Microsoft.Templates.Test
                    && !t.GetIsHidden()
                    && t.GetLanguage() == language;
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, GenerationFixture.GetRandomName, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, null, false);
 
-            await _fixture.ChangeTemplatesSourceAsync(_fixture.LocalSource, language);
+            var fixture = (_fixture as BuildRightClickWithLegacyFixture);
+            await fixture.ChangeTemplatesSourceAsync(fixture.LocalSource, language);
 
-            await AddRightClickTemplatesAsync(projectName, projectType, framework, language);
+            var rightClickTemplates = _fixture.Templates().Where(
+                                          t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
+                                            && t.GetFrameworkList().Contains(framework)
+                                            && !excludedTemplates.Contains(t.GroupIdentity)
+                                            && !t.GetIsHidden()
+                                            && t.GetRightClickEnabled());
+
+            await AddRightClickTemplatesAsync(rightClickTemplates, projectName, projectType, framework, language);
 
             AssertBuildProjectAsync(projectPath, projectName);
         }

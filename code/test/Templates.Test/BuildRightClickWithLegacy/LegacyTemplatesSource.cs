@@ -14,10 +14,14 @@ namespace Microsoft.Templates.Test
 {
     public sealed class LegacyTemplatesSource : TemplatesSource
     {
-        public static string TemplatesVersion { get; private set; } = "1.3.17255.01";
-        public override bool ForcedAcquisition => false;
-        private readonly string _cdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
+        private static string TemplatesVersion { get; } = "1.3.17255.01";
         private string TemplatesPackageFileName { get; } = $"pro.version_{TemplatesVersion}.mstx";
+
+        private readonly string _cdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
+
+        public override bool ForcedAcquisition => false;
+
+        public override string Id => "TestBuildLegacy";
 
         protected override string AcquireMstx()
         {
