@@ -98,6 +98,7 @@ The following list shows which tests are executed in which build. Within the Tem
     * ExecutionSet=BuildCaliburnMicro
     * ExecutionSet=BuildStyleCop
     * ExecutionSet=TemplateValidation
+    * ExecutionSet=BuildRightClickWithLegacy
 
 * VSO 'Templates.Test.Wack'	Build (Wack Tests):
   * Templates.Test
