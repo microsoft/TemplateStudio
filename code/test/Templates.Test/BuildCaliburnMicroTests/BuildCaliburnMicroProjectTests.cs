@@ -22,7 +22,6 @@ namespace Microsoft.Templates.Test
 {
     [Collection("BuildCaliburnMicroCollection")]
     [Trait("ExecutionSet", "BuildCaliburnMicro")]
-    [Trait("ExecutionSet", "Build")]
     public class BuildCaliburnMicroProjectTests : BaseGenAndBuildTests
     {
         public BuildCaliburnMicroProjectTests(BuildCaliburnMicroFixture fixture)
