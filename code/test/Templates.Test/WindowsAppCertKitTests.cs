@@ -15,7 +15,7 @@ using Xunit;
 namespace Microsoft.Templates.Test
 {
     [Collection("BuildCollection")]
-    [Trait("ExecutionSet", "ManualOnly")]
+    [Trait("ExecutionSet", "LongRunning")]
     public class WindowsAppCertKitTests : BaseGenAndBuildTests
     {
         public WindowsAppCertKitTests(BuildFixture fixture)
