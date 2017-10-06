@@ -105,7 +105,7 @@ namespace Microsoft.UI.Test
             viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == "MVVMLight");
             Assert.True(viewModel.Licenses.Count() == 2); // Added MVVMLight lib
             await viewModel.ProjectTemplates.InitializeAsync();
-            viewModel.ProjectTemplates.AddTemplateAndDependencies(("Settings", FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Settings.MVVMLight").Template));
+            viewModel.ProjectTemplates.AddTemplateAndDependencies(("Settings", FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Settings").Template));
             Assert.True(viewModel.Licenses.Count() == 3); // Added Newtonsoft.Json
             viewModel.ProjectTemplates.AddTemplateAndDependencies(("HubNotifications", FindTemplate(viewModel.ProjectTemplates.FeatureGroups, "wts.Feat.HubNotifications").Template));
             Assert.True(viewModel.Licenses.Count() == 4); // Added WindowsAzure.Messaging.Managed

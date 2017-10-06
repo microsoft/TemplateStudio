@@ -11,7 +11,7 @@
     "language": "C#",
     "type": "item",
     "wts.type": "page",
-    "wts.framework": "MVVMBasic",
+    "wts.framework": "MVVMBasic|MVVMLight",
     "wts.version": "1.0.0",
     "wts.displayOrder": "2",
     "wts.dependencies":"wts.Feat.SettingsStorage",
