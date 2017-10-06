@@ -21,7 +21,6 @@ using Xunit;
 namespace Microsoft.Templates.Test
 {
     [Collection("BuildRightClickWithLegacyCollection")]
-    [Trait("ExecutionSet", "BuildRightClickWithLegacy")]
     public class BuildRightClickWithLegacyTests : BaseGenAndBuildTests
     {
         // Excluded wts.Page.WebView from this test as webview requires creator update as min target version
@@ -34,10 +33,11 @@ namespace Microsoft.Templates.Test
 
         [Theory]
         [MemberData("GetProjectTemplatesForBuildAsync", "LegacyFrameworks")]
+        [Trait("ExecutionSet", "BuildRightClickWithLegacy")]
         [Trait("Type", "BuildRightClickLegacy")]
         public async Task BuildEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
-            var projectName = $"{projectType}{framework}AllLegacy";
+            var projectName = $"{projectType}{framework}Legacy";
 
             Func<ITemplateInfo, bool> selector =
                t => t.GetTemplateType() == TemplateType.Project
@@ -61,6 +61,23 @@ namespace Microsoft.Templates.Test
             await AddRightClickTemplatesAsync(rightClickTemplates, projectName, projectType, framework, language);
 
             AssertBuildProjectAsync(projectPath, projectName);
+        }
+
+        [Theory]
+        [MemberData("GetProjectTemplatesForBuildAsync", "LegacyFrameworks")]
+        [Trait("ExecutionSet", "ManualOnly")]
+        public async Task GenerateLegacyProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string language)
+        {
+            var projectName = $"{projectType}{framework}AllLegacy";
+
+            Func<ITemplateInfo, bool> selector =
+               t => t.GetTemplateType() == TemplateType.Project
+                   && t.GetProjectTypeList().Contains(projectType)
+                   && t.GetFrameworkList().Contains(framework)
+                   && !t.GetIsHidden()
+                   && t.GetLanguage() == language;
+
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, BaseGenAndBuildFixture.GetDefaultName, false);
         }
     }
 }
