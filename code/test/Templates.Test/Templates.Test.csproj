@@ -133,6 +133,10 @@
     <Compile Include="BuildCodeBehindTests\BuildCodeBehindProjectsTests.cs" />
     <Compile Include="BuildCodeBehindTests\BuildCodeBehindFixture.cs" />
     <Compile Include="BuildFixture.cs" />
+    <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyCollection.cs" />
+    <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyFixture.cs" />
+    <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyTests.cs" />
+    <Compile Include="BuildRightClickWithLegacy\LegacyTemplatesSource.cs" />
     <Compile Include="GenTests\GenerationCollection.cs" />
     <Compile Include="GenTests\GenProjectsTests.cs" />
     <Compile Include="FileEncodingTests.cs" />

@@ -110,32 +110,13 @@ namespace Microsoft.Templates.Test
             int emptyProjecFileCount = Directory.GetFiles(project, "*.*", SearchOption.AllDirectories).Count();
             Assert.True(emptyProjecFileCount > 2);
 
-            // Add new items
             var rightClickTemplates = _fixture.Templates().Where(
-                                            t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
-                                              && t.GetFrameworkList().Contains(framework)
-                                              && !t.GetIsHidden()
-                                              && t.GetRightClickEnabled());
+                                           t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
+                                             && t.GetFrameworkList().Contains(framework)
+                                             && !t.GetIsHidden()
+                                             && t.GetRightClickEnabled());
 
-            foreach (var item in rightClickTemplates)
-            {
-                OutputPath = GenContext.GetTempGenerationPath(projectName);
-
-                var newUserSelection = new UserSelection
-                {
-                    ProjectType = projectType,
-                    Framework = framework,
-                    HomeName = "",
-                    Language = language,
-                    ItemGenerationType = ItemGenerationType.GenerateAndMerge
-                };
-
-                _fixture.AddItem(newUserSelection, item, GenerationFixture.GetDefaultName);
-
-                await NewItemGenController.Instance.UnsafeGenerateNewItemAsync(item.GetTemplateType(), newUserSelection);
-
-                NewItemGenController.Instance.UnsafeFinishGeneration(newUserSelection);
-            }
+            await AddRightClickTemplatesAsync(rightClickTemplates, projectName, projectType, framework, language);
 
             var finalProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName);
             int finalProjectFileCount = Directory.GetFiles(finalProjectPath, "*.*", SearchOption.AllDirectories).Count();
@@ -156,6 +137,31 @@ namespace Microsoft.Templates.Test
 
             return finalProjectPath;
         }
+
+        protected async Task AddRightClickTemplatesAsync(IEnumerable<ITemplateInfo> rightClickTemplates, string projectName, string projectType, string framework, string language)
+        {
+            // Add new items
+            foreach (var item in rightClickTemplates)
+            {
+                OutputPath = GenContext.GetTempGenerationPath(projectName);
+
+                var newUserSelection = new UserSelection
+                {
+                    ProjectType = projectType,
+                    Framework = framework,
+                    HomeName = "",
+                    Language = language,
+                    ItemGenerationType = ItemGenerationType.GenerateAndMerge
+                };
+
+                _fixture.AddItem(newUserSelection, item, GenerationFixture.GetDefaultName);
+
+                await NewItemGenController.Instance.UnsafeGenerateNewItemAsync(item.GetTemplateType(), newUserSelection);
+
+                NewItemGenController.Instance.UnsafeFinishGeneration(newUserSelection);
+            }
+        }
+
         protected async Task<(string ProjectPath, string ProjecName)> AssertGenerationOneByOneAsync(string itemName, string projectType, string framework, string itemId, string language, bool cleanGeneration = true)
         {
             await SetUpFixtureForTestingAsync(language);
@@ -245,6 +251,9 @@ namespace Microsoft.Templates.Test
                     result = context.Factory.Run(() => BuildCaliburnMicroFixture.GetProjectTemplatesAsync(framework));
                     break;
 
+                case "LegacyFrameworks":
+                    result = context.Factory.Run(() => BuildRightClickWithLegacyFixture.GetProjectTemplatesAsync());
+                    break;
                 default:
                     result = context.Factory.Run(() => BuildFixture.GetProjectTemplatesAsync());
                     break;
