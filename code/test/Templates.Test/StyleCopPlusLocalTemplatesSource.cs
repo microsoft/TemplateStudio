@@ -13,7 +13,8 @@ namespace Microsoft.Templates.Test
 {
     public class StyleCopPlusLocalTemplatesSource : LocalTemplatesSource
     {
-        public StyleCopPlusLocalTemplatesSource() : base("BuildStyleCop")
+        public StyleCopPlusLocalTemplatesSource()
+            : base("BuildStyleCop")
         {
         }
 

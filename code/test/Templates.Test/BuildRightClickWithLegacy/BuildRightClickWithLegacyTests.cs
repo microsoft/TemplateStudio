@@ -48,7 +48,7 @@ namespace Microsoft.Templates.Test
 
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, null, false);
 
-            var fixture = (_fixture as BuildRightClickWithLegacyFixture);
+            var fixture = _fixture as BuildRightClickWithLegacyFixture;
             await fixture.ChangeTemplatesSourceAsync(fixture.LocalSource, language);
 
             var rightClickTemplates = _fixture.Templates().Where(
