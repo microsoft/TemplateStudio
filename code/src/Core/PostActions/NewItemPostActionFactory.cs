@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Core.PostActions
 
             AddGetMergeFilesFromProjectPostAction(postActions);
             AddGenerateMergeInfoPostAction(postActions);
-            AddMergeActions(postActions, $"*{MergePostAction.Extension}*", false);
+            AddMergeActions(postActions, $"*{MergeConfiguration.Extension}*", false);
 
             return postActions;
         }
@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Core.PostActions
         {
             var postActions = new List<PostAction>();
 
-            AddGlobalMergeActions(postActions, $"*{MergePostAction.GlobalExtension}*", false);
+            AddGlobalMergeActions(postActions, $"*{MergeConfiguration.GlobalExtension}*", false);
             postActions.Add(new SortUsingsPostAction());
             postActions.Add(new SortImportsPostAction());
 

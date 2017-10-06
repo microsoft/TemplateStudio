@@ -8,6 +8,7 @@ using System.Windows.Input;
 
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.ViewModels.NewProject;
+using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.Views.NewProject
 {
@@ -54,7 +55,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
         {
             if (e.Key == Key.Escape)
             {
-                if (!ViewModel.ProjectTemplates.CloseAllEditions() && !ViewModel.Ordering.ClearDraggin())
+                if (!ViewModel.ProjectTemplates.CloseAllEditions() && !OrderingService.ClearDraggin())
                 {
                     Close();
                 }

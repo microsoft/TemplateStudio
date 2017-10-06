@@ -127,7 +127,7 @@ namespace TemplateValidator
                     {
                         if (!allIdentities.ContainsKey(dependency))
                         {
-                            results.Add($"'{dependency}' contains dependency '{dependency}' that does not exist.");
+                            results.Add($"'{dependencies.Key}' contains dependency '{dependency}' that does not exist.");
                         }
                     }
                 }
